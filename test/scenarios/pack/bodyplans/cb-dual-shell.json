@@ -1,0 +1,55 @@
+{
+  "id": "bodyplan/cb-dual-shell",
+  "name": "戰鬥測試雙層殼",
+  "parts": [
+    {
+      "id": "core",
+      "name": "核心座艙",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 5,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 15,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "core",
+        "cockpit",
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/cb-shock"
+          ]
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    }
+  ]
+}

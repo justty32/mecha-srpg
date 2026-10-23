@@ -1,0 +1,81 @@
+{
+  "id": "combat-conduct",
+  "seed": 42,
+  "setup": {
+    "id": "combat-conduct",
+    "map": {
+      "width": 4,
+      "height": 4,
+      "fill": "terrain/plain",
+      "exits": []
+    },
+    "units": [
+      {
+        "id": "a",
+        "owner": "player",
+        "frame": "frame/cb-lancer",
+        "pos": {
+          "x": 1,
+          "y": 1
+        },
+        "persons": [
+          {
+            "id": "a-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      },
+      {
+        "id": "b",
+        "owner": "enemy",
+        "frame": "frame/cb-lancer",
+        "pos": {
+          "x": 2,
+          "y": 1
+        },
+        "persons": [
+          {
+            "id": "b-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      }
+    ],
+    "objectives": [],
+    "maxRounds": 5
+  },
+  "commands": [
+    {
+      "kind": "useAbility",
+      "actor": "a",
+      "ability": "ability/cb-shot",
+      "target": {
+        "unit": "b",
+        "part": "core"
+      }
+    }
+  ],
+  "expect": {
+    "sequence": [
+      "AbilityUsed",
+      "Hit",
+      "LayerDamaged",
+      "LayerBroken",
+      "EffectApplied",
+      "Conducted"
+    ],
+    "minCounts": {
+      "LayerDamaged": 2,
+      "Conducted": 1,
+      "PartBroken": 1
+    }
+  }
+}

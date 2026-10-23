@@ -1,0 +1,43 @@
+{
+  "id": "ability/cb-shot",
+  "name": "戰鬥測試傳統射擊",
+  "mode": "activated",
+  "costs": [
+    {
+      "owner": "person",
+      "pool": "ap",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 100,
+  "partAim": {
+    "allowed": true,
+    "penalty": 0
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 100
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}
