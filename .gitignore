@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.pytest_cache/
+.venv/
+venv/
+
+# 編譯產物（C++ mtcore）
+build/
+_skbuild/
+*.so
+*.pyd
+*.dll
+*.obj
+*.lib
+CMakeCache.txt
+CMakeFiles/
+
+# 編輯器
+.vscode/
+.idea/
+
+# node / 網頁版
+node_modules/
+dist/
+
+# inbox 輪詢已讀狀態不進版控（見 wf/workflows/inbox/PROTOCOL.md）
+wf/inbox/.state/
+
+# 線的丟棄物與 codex log 不進版控
+wf/workflows/dispatch/handoffs/*/trash/

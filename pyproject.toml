@@ -1,0 +1,66 @@
+# ============================================================================
+# pyproject.toml — mecha-srpg 專案設定
+#
+# 建置後端採用 scikit-build-core，在安裝時透過 CMake + pybind11 編譯 C++ 核心
+# 模組 mtcore（SPEC §1 / §4）。
+#
+# 重要（SPEC §12「完成定義」）：
+#   C++ 為「選用加速」。即使沒有 C++ 編譯器 / CMake / pybind11，無法編譯 mtcore，
+#   遊戲仍可走純 Python fallback 執行：
+#       pip install tcod numpy
+#       python -m mecha_srpg
+#   詳見 README.md 的「安裝」章節。
+# ============================================================================
+
+[build-system]
+# 以 scikit-build-core 作為 build backend，pybind11 提供 CMake 設定。
+requires = ["scikit-build-core>=0.8", "pybind11>=2.11"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "mecha-srpg"
+version = "0.1.0"
+description = "回合制機甲戰旗 SRPG（Python 主體 + 可選 C++ 核心 mtcore，python-tcod 渲染）"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "mecha-srpg authors" }]
+keywords = ["roguelike", "tactics", "srpg", "tcod", "pybind11", "mecha"]
+
+# 執行期相依（與 requirements.txt 一致）：純 Python 路線只需這些。
+dependencies = [
+    "tcod>=16",
+    "numpy",
+]
+
+[project.scripts]
+# console_scripts 入口：安裝後可直接執行 `mecha-srpg`
+mecha-srpg = "mecha_srpg.main:main"
+
+# ---------------------------------------------------------------------------
+# scikit-build-core 設定
+# ---------------------------------------------------------------------------
+[tool.scikit-build]
+# 套件原始碼位於 src/ 佈局
+wheel.packages = ["src/mecha_srpg"]
+
+# CMake 最低版本（與頂層 CMakeLists.txt 對齊）
+cmake.version = ">=3.18"
+
+# 建置型別
+cmake.build-type = "Release"
+
+# 開發安裝（pip install -e .）採用可重建的 editable 模式：
+# 變更 .py 立即生效；變更 C++ 需重新觸發建置。
+build-dir = "build/{wheel_tag}"
+
+[tool.scikit-build.editable]
+# editable 安裝時重建模式為 redirect，純 Python 變更免重編。
+mode = "redirect"
+
+# ---------------------------------------------------------------------------
+# 注意：此處不把 C++ 列為「必須成功」。若使用者僅需純 Python 路線，
+# 可不執行 `pip install -e .`，改以 `pip install tcod numpy` + `python -m mecha_srpg`。
+# 若執行 `pip install -e .` 而 C++ 工具鏈缺失導致 mtcore 編譯失敗，
+# 請改走純 Python 路線（見 README）。
+# ---------------------------------------------------------------------------
