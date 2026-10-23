@@ -71,3 +71,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `lead-impl-foundation`，團隊 `teams/foundation` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人（codex）走 inbox 回報給你。等工人與等前置條件都用**前景**迴圈，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `npm test`：tests 38／pass 38／fail 0（沙箱外重跑）。2. `npm run check`：OK 0 errors 0 warnings，person 2（human 1、soul 1）、registries 7/7、rules 4/4。3. `src/core/` 10 檔（含 3 測試）、`src/content/` 5 檔；`package.json` 無 dependencies／devDependencies；無 `node_modules`。4. rng 測試寫死 seed 42／54 的 PCG32 參考序列（領導另以 Python 獨立算過），同 seed 日誌 hash 一致。5. wf-lint TOTAL 全 0。6. commit `56117db`、`03369be`、`7d2bb92`、`cee622a`（`foundation: `），工作樹乾淨，無殘留行程，團隊已 close。備註：schema 手寫、未從型別產生（零依賴下無 tsc）；codex 沙箱內 `node --test` 計數不準、`.git` 唯讀——驗收與 commit 由領導在沙箱外做（已寫進 codex-exec）。

@@ -43,6 +43,11 @@ echo $! > "<log 目錄>/<線名>.pid"
 
 線**可以 commit 到 `main`**，只加明確路徑並用 `git commit -- <檔…>` 提交（index 共用，見 [lessons](lessons.md)；禁 `git add -A`）；**不 push、不建分支、不 rebase／reset 別人的 commit**。注意 `-s workspace-write` 下 `.git/` 要在可寫範圍內才 commit 得了——`-C` 指專案根以外的子目錄時，commit 交給調度者做，線只回報改了哪些檔。共通禁區（不碰鍵鼠螢幕、不開 GUI、Godot 只 `godot-mono --headless`、不 `rm -rf`、不裝依賴）照 [TEMPLATE.handoff](../TEMPLATE.handoff.md) 寫進交接書。
 
+## 沙箱兩坑（2026-10-24 foundation 線實證）
+
+- 沙箱內 `node --test` 的計數不準（每檔只算 1 項，沙箱外同指令 28 項）；工人常因此回報 BLOCKED。**驗收一律由領導在沙箱外重跑。**
+- `-s workspace-write` 下 `.git/` 可能被擋成唯讀，工人 commit 會失敗。**工人只回報改了哪些檔，commit 由領導做**（`git commit -- 路徑`）。
+
 ## 背景跑與等它結束
 
 ```sh

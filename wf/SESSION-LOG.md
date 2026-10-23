@@ -11,7 +11,8 @@
 
 ## 最新進度
 
-- [dispatch] 現役實作線 `lead-impl-foundation`（spec 切線 1＋2：core 型別／RNG／事件／內容載入器，node 24 原生 TS、零依賴）→ 收線後開切線 3–5（rules）
+- [dispatch] 現役實作線 `lead-impl-rules`（spec 切線 3＋4＋5：規則核心／戰鬥結算／人物與流程，黃金日誌）→ 收線後開 ai＋content-base，再 sim、ui-adapter
+- [feature-dev] 地基已落地（`src/core`、`src/content`、`content/base`，`npm test` 38 綠）；待決：要不要只為型別檢查裝 `typescript`（判準：rules 線出現第一個型別與 schema 對不上的 bug 就裝）
 - [planning] 舊版 Python 專案已封存 `legacy/`（2026-10-24）；SPEC.md 已改指 `specs/core/`＋`specs/world/`
 - [planning] 四條調查／規劃線已收線（技術棧、BB 卷、ToME 卷、世界觀 v1），證據在 `workflows/dispatch/handoffs/done/2026-10-23/`
 
