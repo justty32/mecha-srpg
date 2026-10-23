@@ -1,0 +1,55 @@
+{
+  "id": "person/unit-07",
+  "name": "七號機魂",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 50,
+    "evasion": 10,
+    "resolve": 50,
+    "initiative": 6,
+    "perception": 6,
+    "control": 45
+  },
+  "traits": [],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "protect-kin"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "tree": "soultree/standard",
+    "researchPerDirection": {},
+    "companionshipRate": 1
+  },
+  "tags": [
+    "soul"
+  ]
+}

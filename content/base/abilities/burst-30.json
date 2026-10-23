@@ -1,0 +1,51 @@
+{
+  "id": "ability/burst-30",
+  "name": "30mm 連射",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 3
+    },
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 24
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "ammoPool": "ammo-30"
+}

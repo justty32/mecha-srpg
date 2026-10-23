@@ -1,0 +1,36 @@
+{
+  "id": "effect/acid-corrode",
+  "name": "酸蝕",
+  "scope": "layer",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onTick": [
+      {
+        "do": "damage",
+        "packets": [
+          {
+            "type": "acid",
+            "amount": 3,
+            "layerFilter": [
+              "flesh"
+            ]
+          }
+        ],
+        "target": "self"
+      }
+    ]
+  },
+  "tags": [
+    "acid"
+  ],
+  "ui": {
+    "badge": "酸蝕"
+  }
+}

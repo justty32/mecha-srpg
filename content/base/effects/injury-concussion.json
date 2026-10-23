@@ -1,0 +1,27 @@
+{
+  "id": "effect/injury-concussion",
+  "name": "腦震盪",
+  "scope": "person",
+  "clock": {
+    "kind": "days",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/injury-concussion"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:temporary"
+  ],
+  "ui": {
+    "badge": "腦震盪"
+  }
+}

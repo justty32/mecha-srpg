@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-tidewolf",
+  "name": "生物機甲・潮狼",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/quadruped-beast",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/bite",
+    "ability/pounce"
+  ],
+  "burden": 5,
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "kaiju",
+    "beast",
+    "bio"
+  ]
+}
