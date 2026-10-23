@@ -1,12 +1,13 @@
 import { cellKey } from "../../core/ids.ts";
 import type { Cell } from "../../core/types-def.ts";
-import type { AbilityTarget } from "../rules-query.ts";
 import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
 import { scoreCandidate } from "../score.ts";
 
 const DEFAULTS = { maxMoves: 8 };
+// 經 AiCtx 取 RulesQuery 的目標型別（policies 不直接 import rules-query，讓「rules 只在 adapters/」的 grep 乾淨）。
+type AbilityTarget = NonNullable<Parameters<AiCtx["q"]["checkAbility"]>[3]>;
 
 export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: number; hostileOnly?: boolean }): Candidate[] {
   const { q, view } = ctx;
@@ -70,7 +71,9 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
       }
     }
   }
-  candidates.push({ cmd: { kind: "wait", actor } }, { cmd: { kind: "end", actor } });
+  // 本輪已用過 Wait 就不提（真規則會拒絕 wait-used；stub 無 rt.waitUsed 簿記時照舊）。
+  if (!view.rt?.waitUsed.includes(actor)) candidates.push({ cmd: { kind: "wait", actor } });
+  candidates.push({ cmd: { kind: "end", actor } });
   if (view.rt?.exits.some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
   candidates.push({ cmd: { kind: "eject", actor } });
   return candidates;
