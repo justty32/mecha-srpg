@@ -42,7 +42,7 @@
 - **訂閱主題**：無
 
 ### `lead-impl-ai`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；AI 層（spec 切線 6）：`src/ai/`、`test/ai/`。
 - **團隊**：`teams/ai`（領導；codex 工人格由我代登記於此）
 - **上游**：dispatcher（行程內回傳，不走 inbox）
@@ -53,7 +53,7 @@
 - **訂閱主題**：無
 
 ### `cx-ai-knowledge-score`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ai/{knowledge,danger,score}.ts`＋`test/ai/stub-rules.ts`＋測試。
 - **團隊**：`teams/ai`
 - **上游**：lead-impl-ai
@@ -64,7 +64,7 @@
 - **訂閱主題**：無
 
 ### `cx-ai-policies`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ai/{strategy,agent,index}.ts`＋`src/ai/policies/` 六檔＋測試。
 - **團隊**：`teams/ai`
 - **上游**：lead-impl-ai
