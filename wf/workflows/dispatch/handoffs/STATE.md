@@ -7,6 +7,7 @@
 **工作樹現況**（中止當下）：
 - 新增未追蹤：`src/rules/{state,state.test,contribs,pools}.ts`、`test/golden.test.ts`、`content/base/terrains/plain.json`、`wf/workflows/dispatch/handoffs/lead-impl-rules/`（contract.md＋三份子線交接書＋`cx-rules-core/`）、`wf/inbox/teams/rules/`。
 - 修改：`src/core/types-state.ts`（領導說只准新增匯出，需核）、`content/base/rules/constants.json`、ROSTER（領導與工人格）、`wf/inbox/done/2026-10-23/messages.*`（歸檔）。
+- 中止當下工作樹 `npm test`：38 過、**2 敗**（半成品所致；已 commit 的 main HEAD 仍是綠的，所以半成品**沒有 commit**）。wf-lint 另有兩項屬本線未收尾：ROSTER 超 8 KB（工人格累積，收線時封存已收線格即可）、`local=1`（某份子線交接書 brief_lint 未過，重派前跑 `python3 wf/tools/brief_lint.py handoffs/lead-impl-rules/*.md --strict` 修掉）。
 - 工人 log：`/tmp/lead-impl-rules-logs/cx-rules-core.log`。
 
 **下一步（明天）**：
