@@ -16,7 +16,7 @@
 
 | 驗證 | 指令 | 誰跑 |
 |------|------|------|
-| 快速驗證（改完必跑）| `npm test`（node 內建 test runner，零依賴；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）| agent |
+| 快速驗證（改完必跑）| `npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（tsc --noEmit，唯一 devDependency）| agent |
 | 完整驗證（commit 前）| 快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .` | agent |
 | 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
 | 實際遊玩（畫面、操作、敵方回合）| 瀏覽器開網頁版玩一回合（待實作線補啟動指令）| 使用者 → [WAIT_USER](../WAIT_USER.md) |

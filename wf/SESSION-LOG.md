@@ -11,8 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 並行現役：`lead-impl-ai`（AI 層，先用替身規則）、`plan-ops-spec`（營運層 spec，Fable）→ 四線收齊後開 sim；UI 線等使用者授權 vite／happy-dom／Playwright
-- [dispatch] 現役實作線 `lead-impl-rules`（2026-10-24 上午重派，接手凌晨中止的半成品；切線 3＋4＋5）→ 收線後開 ai＋content-base，再 sim、ui-adapter
+- [dispatch] 並行現役：`lead-impl-ai`（AI 層，先用替身規則）、`plan-ops-spec`（營運層 spec，Fable）→ rules 已收線（164 測試綠）；ai 收線後開 sim；UI 線等使用者授權 vite／happy-dom／Playwright
 
 ## 各工作流 session-log
 

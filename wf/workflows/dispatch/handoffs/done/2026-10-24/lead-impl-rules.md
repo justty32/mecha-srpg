@@ -67,3 +67,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `lead-impl-rules`，團隊 `teams/rules` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人（codex）走 inbox 回報給你。等工人用**前景**迴圈，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `npm test` 164 過 0 敗（兩次）。2. `src/rules/` 17 模組＋`index.ts`；core 既有簽名未變（領導核、調度者抽查）。3. `test/golden/` 6 個 hash（combat-conduct／layers／tenth、people-berserk／capture／eject），黃金測試兩次一致。4. constraints 中 rules-* 31 列 id 全部在測試裡找得到。5. `npm run check` 0 錯；`npm run typecheck` 0 錯（typescript 7.0.2 為唯一 devDependency）；wf-lint TOTAL 全 0。6. commit `4082996`…`3caa014` 共 6 個 `rules: `；本線領地無未提交檔；無殘留行程；團隊已 close。未做：reaction 只有機會攻擊（反擊／掩護／自動開盾待補）、sustained 池見底撤除待補；base 內容缺 13 個常數鍵與步兵／士氣／失控內容，目前靠 `test/scenarios/pack/` 補足。
