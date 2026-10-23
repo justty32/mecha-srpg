@@ -7,11 +7,11 @@ root=${1:-.}; strict=${2:-0}
 dir="$root/wf/workflows/dispatch/handoffs"
 [[ -d $dir ]] || exit 0
 files=()
-for f in "$dir"/*.md; do
-  [[ -f $f ]] || continue
-  case "$(basename "$f")" in README.md|STATE.md|TEMPLATE*) continue ;; esac
+# 頂層＝調度者派的線；第二層 <線名>/cx-*.md＝領導派的子線。REPORT／README／STATE 不是交接書。
+while IFS= read -r f; do
+  case "$(basename "$f")" in README.md|STATE.md|REPORT.md|*-REPORT.md|TEMPLATE*) continue ;; esac
   files+=("$f")
-done
+done < <(find "$dir" -maxdepth 2 -name '*.md' -not -path '*/done/*' -not -path '*/superseded/*' -not -path '*/trash/*' | sort)
 [[ ${#files[@]} -eq 0 ]] && exit 0
 args=(); [[ $strict -eq 1 ]] && args+=(--strict)
 python3 "$root/wf/tools/brief_lint.py" --root "$root" "${args[@]}" "${files[@]}" | sed 's/^/LOCAL brief_lint: /'

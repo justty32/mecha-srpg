@@ -46,6 +46,7 @@ list_owned_files() {
     -o -path '*/archive' -o -path '*/reference' -o -path '*/references' -o -path '*/vendor'
     -o -path '*/done' -o -path '*/superseded'
     -o \( -path '*/inbox' ! -path '*/workflows/inbox' \)
+    -o -path '*/dispatch/handoffs'   # 本專案在地補丁（2026-10-23，見 workflows/decisions.md）：現役交接書是契約，閘門是 brief_lint（wf-lint-local.sh），不套 8 KB／1 KB 文件規則
   )
   # .gitmodules 在 git 頂層，$root 可能是子目錄（例 skills/）；宣告過的 submodule 路徑不論落在哪一層都不下鑽。
   local top; top=$(git -C "$root" rev-parse --show-toplevel 2>/dev/null) || top=""
@@ -77,7 +78,7 @@ list_data() { list_owned_files "$1" -name '*.json' -o -name '*.csv'; }
 # worktree 暫存區（repo 的巢狀副本）與 .gitmodules 宣告的 submodule（上游 vendor 碼不受 8 KB 限制）。
 list_oversize_files() {
   local root=${1%/} _ rel
-  local -a prunes=( -path '*/.git' -o -path '*/.venv' -o -path '*/venv' -o -path '*/__pycache__' -o -path '*/.claude/worktrees' )
+  local -a prunes=( -path '*/.git' -o -path '*/.venv' -o -path '*/venv' -o -path '*/__pycache__' -o -path '*/.claude/worktrees' -o -path '*/dispatch/handoffs' )  # 在地補丁同上
   while read -r _ rel; do
     [[ -n $rel ]] && prunes+=( -o -path "$root/${rel%/}" )
   done < <(git -C "$root" config --file .gitmodules --get-regexp '^submodule\..*\.path$' 2>/dev/null || true)
