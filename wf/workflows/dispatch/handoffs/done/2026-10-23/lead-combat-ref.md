@@ -75,3 +75,8 @@ REPORT 四段（做了什麼／產出／沒做到或證據不足的／需要決�
 ## 完成／阻塞回報（必做）
 
 我是 `lead-combat-ref`，團隊 `teams/combatref` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人（codex）走 inbox 回報給你。等工人時用前景 `wf/tools/inbox_poll.sh lead-combat-ref --wait --timeout 540`，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-23 收線）
+
+1. REPORT.md 存在、四段齊全（另有全貌與七條裁示對應）。2. `mechanics.json` 107 列（採用 19／改造 80／不採用 8；戰鬥 30／營運 27／AI 18／人物 17／資料 15），`source`／`recommendation` 空值 0。3. 領導抽 10 列出處全中；調度者再抽 3 列路徑皆指向 BB 拆解檔。4. REPORT 七條裁示各一段、`design_note_ref` 覆蓋七條。5. `wf-lint.sh --strict .` exit 0。6. 無 `codex exec` 行程、`teams/combatref` 已 close、ROSTER 已標已收線。產物約 1 MB。

@@ -74,3 +74,8 @@ REPORT 四段（做了什麼／產出／沒做到或證據不足的／需要決�
 ## 完成／阻塞回報（必做）
 
 我是 `lead-techstack`，團隊 `teams/techstack` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人（codex）走 inbox 回報給你。等工人時用前景 `wf/tools/inbox_poll.sh lead-techstack --wait --timeout 540`，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-23 收線）
+
+1. REPORT.md 存在、四段齊全。2. `matrix.json` 4 列，首次渲染／回合更新 ms 皆非空（純 TS 65.8／30.9、Lit 96.9／25.0、Svelte 321.8／30.7、Godot headless 114.5／13.8）。3. 三個網頁候選各有工人 REPORT；數字在 `/tmp/lead-techstack-spike/logs/{vanilla,lit}-perf.log`、`cx-spike-*.last.txt`、`godot-spike.log` 對到。4. 三棧 node test runner＋happy-dom 與 Playwright headless 皆通過，Godot GDScript 3 斷言通過（見各 cx-spike-*/REPORT.md）。5. `wf-lint.sh --strict .` exit 0。6. 無 `codex exec` 行程、無 tmux session、`teams/techstack` 已 close、ROSTER 已標已收線。spike 目錄 556 MB 留在 /tmp（不進專案）。

@@ -1,0 +1,194 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "domain",
+  "bb_mechanic",
+  "source",
+  "mecha_adaptation",
+  "design_note_ref",
+  "recommendation",
+  "why",
+  "open_question"
+ ],
+ "rows": [
+  {
+   "id": "DAT-01",
+   "domain": "資料",
+   "bb_mechanic": "原版以腳本物件與 hook 執行規則；使用技能時扣費早於 onUse，onUse 回傳 false 不表示狀態完全沒變。Definition／State／Command／Query／Effect／DomainEvent 六分法是拆解作者的復刻建議，不能當作原版架構事實。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/replication-design.md § 六類資料與責任",
+   "mecha_adaptation": "建議將機體／部件／部位佈局與效果詞彙放入 Definition，駕駛員與裝備實例放入 State；玩家與 AI 以 Command 表達意圖，Query 供查詢，Effect 按順序改狀態，DomainEvent 通知既成事實。部位破壞與駕駛員受傷均執行資料掛載的效果清單，並明定命令失敗時已執行效果是否保留。",
+   "design_note_ref": "架構；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "明確責任邊界能支援資料擴充，同時避免把失敗回傳誤當成整筆回滾。",
+   "open_question": "動作執行途中失敗時，已扣成本要保留還是回復？"
+  },
+  {
+   "id": "DAT-02",
+   "domain": "資料",
+   "bb_mechanic": "原版 buildPropertiesForUse 可修改技能狀態，命中率查詢也會經過這條路徑，因此單純查看預覽未必是無副作用操作。拆解建議若要純 Query，必須隔離副本並承認語義已改動。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/replication-design.md § 六類資料與責任",
+   "mecha_adaptation": "建議網頁預覽與 AI 候選評估只讀駕駛員、機甲及部件狀態，在隔離的計算副本上求結果；真正修改裝備 HP、資源與駕駛員傷勢只由執行入口提交。預覽不得消耗效果次數或改動技能狀態。",
+   "design_note_ref": "架構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "畫面重繪或 AI 多次評估不應改變下一次行動的結果。",
+   "open_question": "是否採用完全無副作用的預覽與 AI 評估查詢？"
+  },
+  {
+   "id": "DAT-03",
+   "domain": "資料",
+   "bb_mechanic": "原版 new(path) 從腳本類別建立可變實例，Const 提供共用定義；世界 entity、faction、合約實例與物品／技能類型使用不同識別來源。讀檔可依世界 entity ID 重接，但物品 getInstanceID 的物件 hash 未找到原樣持久保存的欄位，不能當跨存檔主鍵。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 定義、實例與不同種類的 ID",
+   "mecha_adaptation": "建議分開定義 ID、駕駛員 ID、機甲實例 ID 與部件實例 ID，部位以所屬裝備實例加部位鍵定位。更換駕駛員或拆裝部件時保持實例身分，讀檔依持久 ID 重接，不把機甲類型當作人物或裝備實例。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "機甲與部件可轉移且有獨立損傷，必須有穩定且互不混用的身分。",
+   "open_question": "無"
+  },
+  {
+   "id": "DAT-04",
+   "domain": "資料",
+   "bb_mechanic": "原版 Actor 強持有裝備與技能容器，容器反向弱引用 Actor；item 指向目前容器，skill 也可指向提供它的 item。裝備變動必須同步安裝／移除技能，清理物件時也須處理失效引用，僅改裝備欄位會留下錯誤能力。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 強持有者、弱引用與索引",
+   "mecha_adaptation": "採用單一裝備所有權與反向關聯同步規則：機甲屬於駕駛員裝備槽或庫存，部件屬於某機甲部位或庫存。拆裝、報廢或轉交時同步移除／加入來源能力與資料效果，索引只供查找，不另持有一份裝備狀態。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "採用",
+   "why": "裝備所有權與能力來源一致，才能避免部件卸下後仍可使用其能力。",
+   "open_question": "無"
+  },
+  {
+   "id": "DAT-05",
+   "domain": "資料",
+   "bb_mechanic": "原版 NPC 世界部隊保存 Troops 條目，入戰才建立 actor 並以 WorldTroop 指回；死亡與一般 NPC 撤退可當場移除世界條目。玩家另有持久 roster，世界 player party 只是公司投影，若戰後再猜算一次兵力會重複移除。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 世界兵條目與戰術人物的橋接",
+   "mecha_adaptation": "建議遭遇參戰映射分別連到持久駕駛員、機甲與部件實例，戰術代理只持有當場所需狀態。駕駛員離場、機甲損毀與部件破壞應分別回寫對應實例，已提交的死亡或損毀不能在戰後再套一次，映射不預設參戰單位上限。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；戰鬥規模與地圖",
+   "recommendation": "改造",
+   "why": "分離人物存續與裝備損毀，才能保留持久角色並避免重複結算。",
+   "open_question": "NPC 駕駛員是否也要跨遭遇保存個別身分與傷勢？"
+  },
+  {
+   "id": "DAT-06",
+   "domain": "資料",
+   "bb_mechanic": "原版重算從 BaseProperties 複製，先跑全部 onUpdate 再跑全部 onAfterUpdate，回填 CurrentProperties 並保留 HP 比例；AP 與 Fatigue 只限縮到新上限，不隨上限增加補滿。攻擊、防禦與受傷計算另用臨時 property copy，不直接回寫目前屬性。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 基礎值、目前值、臨時值",
+   "mecha_adaptation": "建議駕駛員基礎屬性、機甲／部件加成、部位效果與攻防臨時修正分開，依明確效果階段重算衍生值。部位與分層 HP 是裝備實例狀態，不能因重新掛載效果而被重置；最大 HP 變動時的換算政策須另選，不直接套用人物 HP 比例。",
+   "design_note_ref": "架構；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "可重算屬性與持久損傷分離，才能避免換裝或重算意外修好部位。",
+   "open_question": "部位最大 HP 變動時，要保留剩餘比例、已受損量，還是目前 HP？"
+  },
+  {
+   "id": "DAT-07",
+   "domain": "資料",
+   "bb_mechanic": "原版 Actor 依父類／基礎屬性、物品、技能、人物資料及 HP 比例等順序保存；只有 isSerialized 為真的技能保存，額外技能狀態由各技能自己處理。載入前清互動引用與 manager，重建裝備自帶技能時若再反序還原或重複讀入，會重複安裝能力或用錯最大 HP。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 保存與載入的順序是契約",
+   "mecha_adaptation": "建議先還原駕駛員、機甲與分層部件的持久狀態及所有權，再依裝備重建能力並重算衍生值；需保存的效果自身狀態另外還原。讀檔應走專用還原流程，避免重播取得裝備、部位破壞或駕駛員受傷效果。",
+   "design_note_ref": "架構；戰鬥系統路線；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "有依賴的還原順序可保留損傷與效果狀態，避免重複能力及讀檔副作用。",
+   "open_question": "無"
+  },
+  {
+   "id": "DAT-08",
+   "domain": "資料",
+   "bb_mechanic": "原版 world_entity 將 troop 數以 U8 截至 255 寫入，後續卻寫出全部 troop；超過可編碼數量時，計數與 payload 便不一致。拆解以原位元碼確認此寫法，但未聲稱已觀察實際存檔損壞。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 編碼邊界與實作政策",
+   "mecha_adaptation": "不採用靜默截斷計數；機甲參戰清單、部位層級與地圖尺寸應使用能表達實際資料量且計數與內容一致的格式。若碰到實作資源限制，必須明確報錯或由儲存方案處理，不得把舊編碼容量轉成固定戰鬥單位上限。",
+   "design_note_ref": "戰鬥規模與地圖；機甲結構；架構",
+   "recommendation": "不採用",
+   "why": "靜默截斷既會破壞存檔結構，也違反戰鬥數量與地圖尺寸由資料決定的裁示。",
+   "open_question": "無"
+  },
+  {
+   "id": "DAT-09",
+   "domain": "資料",
+   "bb_mechanic": "原版進戰時保存 CombatStartTime 並把虛擬時間設零，戰後恢復世界時間；戰術演算耗時不直接算入世界旅程，戰術回合也不自動觸發世界每小時修理。載入則保留 LastDayPaid、LastHourUpdated 與 LastFoodConsumed 等門檻狀態，不能一律重設為現在。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 新局、戰鬥與載入的時間邊界",
+   "mecha_adaptation": "採用戰術時間與營運曆法分離，機甲行動、部位效果持續期與戰場外修理各使用明確時鐘。長戰鬥不因瀏覽器停留或實際思考耗時偷跑薪資與修理；如要戰後扣除營運時間，應用獨立且明示的結算規則。",
+   "design_note_ref": "戰鬥規模與地圖；營運層；架構",
+   "recommendation": "採用",
+   "why": "戰鬥時長不限時，玩家思考時間不宜暗中改變營運狀態。",
+   "open_question": "戰鬥結束是否要額外推進營運曆法？"
+  },
+  {
+   "id": "DAT-10",
+   "domain": "資料",
+   "bb_mechanic": "原版未暫停的前景更新中 Contracts 先於 Assets，背景路徑則依 Entities、Factions、Combat 更新，且受首幀與強制更新條件限制。腳本只能證明各路徑內部順序，不能證明兩路徑的 native 排程或同步屏障。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 世界一幀的兩條更新路徑",
+   "mecha_adaptation": "建議模擬以明確階段安排命令、狀態效果與營運更新，先採有固定順序及安全提交點的同步政策。機甲／部件移除與效果連鎖在可控階段提交；未來因不限單位數而平行化時仍須保留這些可觀察順序，不假稱復刻 BB 的未知排程。",
+   "design_note_ref": "架構；戰鬥規模與地圖；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "確定的提交順序能解耦模組，並避免一邊移除裝備一邊讀取其效果。",
+   "open_question": "無"
+  },
+  {
+   "id": "DAT-11",
+   "domain": "資料",
+   "bb_mechanic": "原版以 IsGamePaused 或 IsGameAutoPaused 任一為真判定暫停，並停止世界速度及 AI；解除後恢復先前速度。載入／初始化的強制背景模擬和一次性合約更新另有開關，所以暫停不是所有工作一律停止。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 暫停與強制更新",
+   "mecha_adaptation": "採用依原因管理暫停的規則，將玩家暫停、介面自動暫停及初始化工作分開。關閉部件配置或人物視窗只解除該視窗原因，不能意外解除玩家暫停；暫停中允許執行的更新另列清單。",
+   "design_note_ref": "架構；營運層",
+   "recommendation": "採用",
+   "why": "多個介面與系統共用暫停時，分開原因才能避免誤恢復模擬。",
+   "open_question": "網頁中的營運模擬要在哪些視窗開啟時自動暫停？"
+  },
+  {
+   "id": "DAT-12",
+   "domain": "營運",
+   "bb_mechanic": "原版日結依 roster 順序先呼人物技能 onNewDay、處理欠薪缺糧心情，再扣該人的每日薪資，因此後面人物看到的是已被前面扣款的資金。平均心情在之後重算，不能等同於先一次扣全隊工資再判斷每人的心情。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 資產更新的日／時門檻",
+   "mecha_adaptation": "建議薪資與心情仍落在持久駕駛員，機甲修理成本另屬裝備，不把機甲當成領薪角色。若採日結，明定共享資金不足時的分配政策；建議使用共同結算基準判定，而非讓 roster 排列隱含決定誰先承受欠薪後果。",
+   "design_note_ref": "營運層；戰鬥系統路線",
+   "recommendation": "改造",
+   "why": "資金不足的結果應由可見規則決定，不能無意間受人物排列影響。",
+   "open_question": "資金不足時採全體共同欠薪、按比例分配，還是玩家指定支付優先序？"
+  },
+  {
+   "id": "DAT-13",
+   "domain": "營運",
+   "bb_mechanic": "原版日結、時結各按目前門檻最多處理一次，日結先於時結；跳過多個時段不會逐段補工資、治療與修理。食物例外按實際經過時間積分，而且時結用一天內的小時比較，跨日落在相同小時可能不觸發。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 資產更新的日／時門檻",
+   "mecha_adaptation": "建議若有時間跳轉，駕駛員薪資／治療與裝備各部位／層的修理按實際跨過的營運結算點補算，並保持明示的資源扣除先後。必須連同消耗、欠缺後果一起決定，不可只把時間計數換成累計小時便宣稱等價。",
+   "design_note_ref": "營運層；機甲結構",
+   "recommendation": "改造",
+   "why": "補算政策會直接改變長時間等待的修復與消耗結果，須作為整體營運規則選擇。",
+   "open_question": "時間跳轉時要補算每個結算點，還是沿用 BB 只結算目前門檻一次？"
+  },
+  {
+   "id": "DAT-14",
+   "domain": "資料",
+   "bb_mechanic": "原版新局以同一 seed 分別啟動世界生成與後續初始化，之後又以 real time 重設 RNG。故新局 seed 不能保證整場戰役永久可重播；拆解提出完整重播需自行保存各 RNG stream 狀態。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/simulation-loop.md § 新局、戰鬥與載入的時間邊界",
+   "mecha_adaptation": "建議若要求可重播，將命中、部位效果與營運事件所用亂數流及其狀態列為模擬資料，與命令順序一同保存。預覽與畫面更新不能消耗權威亂數，讀檔不以真實時間重新播種。",
+   "design_note_ref": "架構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "可保存的亂數狀態能讓相同命令的部位與駕駛員後果重現。",
+   "open_question": "是否要求存讀檔後重播同一命令序列得到相同結果？"
+  },
+  {
+   "id": "DAT-15",
+   "domain": "資料",
+   "bb_mechanic": "原版讀檔以版本條件決定是否讀取 Regions、CombatSeed、Crafting、Retinue 等區段，region 的 Tiles 則讀後清空並在需要時重建。這些條件維持舊存檔相容，不能把所有現版欄位直接套到舊資料。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/data-model.md § 保存與載入的順序是契約",
+   "mecha_adaptation": "建議為新作存檔與內容定義建立自己的版本及遷移政策；新增部位層、效果欄位或更改機體佈局時，明定舊機甲實例如何對應。地圖快取與衍生值可重建，但持久部位 HP 與駕駛員傷勢不能因缺欄位就默認恢復。",
+   "design_note_ref": "架構；機甲結構",
+   "recommendation": "改造",
+   "why": "資料擴充若沒有遷移政策，舊裝備的損傷與部位引用可能失去意義。",
+   "open_question": "新增或重排機體部位後，要遷移舊存檔、保留舊定義，還是明示拒絕不相容存檔？"
+  },
+  {
+   "id": "DAT-16",
+   "domain": "資料",
+   "bb_mechanic": "拆解記錄原版可證異常，例如額外 AP 在 getter 與 use 重複計入，以及日／時結只按當下門檻一次處理；原版結果不能因不合理就被改寫成另一種事實。每個異常分記原作行為與新作採用政策，是拆解作者的復刻建議，並非原作提供的相容模式。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/replication-design.md § 保留相容與修正原作的選擇",
+   "mecha_adaptation": "建議每項 BB 異常分別記錄證據、機甲版選擇與受影響的預覽／AI／效果執行入口；預設修正會破壞資料一致性的異常，玩法差異則由使用者挑選。反編譯錯誤不列為遊戲規則選項，native 未知行為保持未定，不用猜測填補。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "把忠實參考與有意修正分開，才能追溯每項玩法差異及其依據。",
+   "open_question": "是否同意以修正資料一致性異常為預設，而其餘玩法差異逐條拍板？"
+  }
+ ]
+}

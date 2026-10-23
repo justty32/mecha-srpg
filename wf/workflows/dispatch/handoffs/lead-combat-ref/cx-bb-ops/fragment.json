@@ -1,0 +1,260 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "domain",
+  "bb_mechanic",
+  "source",
+  "mecha_adaptation",
+  "design_note_ref",
+  "recommendation",
+  "why",
+  "open_question"
+ ],
+ "rows": [
+  {
+   "id": "OPS-01",
+   "domain": "營運",
+   "bb_mechanic": "取得資產時分流到金錢／補給帳本或實物倉庫；金錢可負，食物由倉庫物件份量重算。彈藥、工具、藥包先佔倉位，離城或戰後才轉帳本，超過容量的部分會損失。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 帳本與取得入口",
+   "mecha_adaptation": "保留貨幣、消耗資源與實物裝備分層；機甲與部件保有獨立實例及部位狀態，駕駛員不進裝備帳本。補給轉換與超額處置改為資料規則並先顯示結果。",
+   "design_note_ref": "營運層；戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "資源與裝備分帳能表達零件損耗，但原版超額吞包不宜直接照搬。",
+   "open_question": "補給超額時要保留原包、允許部分轉換，還是丟棄超額？"
+  },
+  {
+   "id": "OPS-02",
+   "domain": "營運",
+   "bb_mechanic": "日結門檻成立時按名單逐人檢查能否付薪，再扣完整日薪，因此可形成負金錢；先被處理的人可能領足，後面的人因欠薪扣心情。每日人物技能在該人的欠薪判定之前執行。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 時鐘與順序",
+   "mecha_adaptation": "薪資掛在持久駕駛員身上，裝備維護另列；改為同一結算時點先算全團應付額，再依明示的欠薪政策處理，避免名單排列左右待遇。",
+   "design_note_ref": "營運層；戰鬥系統路線",
+   "recommendation": "改造",
+   "why": "固定人事支出形成接約壓力，但名單順序不應成為隱藏財務策略。",
+   "open_question": "現金不足時要全團等比例欠薪，還是允許指定優先支付對象？"
+  },
+  {
+   "id": "OPS-03",
+   "domain": "營運",
+   "bb_mechanic": "進食時先移除過期食物，再依實際經過時間、人物食量及倍率計需求，優先吃 desirable 與較早到期者；不足的需求不累積成食物債。停用口糧消耗仍會腐敗。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 食物、修理、醫療、彈藥",
+   "mecha_adaptation": "口糧只依駕駛員等人員計需求，不能把機甲數當食量；若採生物機甲供養，另用裝備資料描述資源需求。保鮮與自動取用作為可選後勤規則。",
+   "design_note_ref": "營運層；戰鬥系統路線；機甲結構",
+   "recommendation": "改造",
+   "why": "人員口糧可形成遠征期限，但必須與機甲補給區分。",
+   "open_question": "人員口糧要保留腐敗與批次保鮮，還是只追蹤通用存量？"
+  },
+  {
+   "id": "OPS-04",
+   "domain": "營運",
+   "bb_mechanic": "每小時依人物裝備、袋內物品、勾選倉庫物件的順序修理，露營與倍率影響恢復量；先加耐久再扣工具，所以剩餘少量工具仍能完成第一件的當次修理，後續物件停止。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 食物、修理、醫療、彈藥",
+   "mecha_adaptation": "修理目標改為機甲各部位及其層的 HP，耗材、修理資格與恢復效果讀部件資料；讓玩家排維修順序，耗材不足時依明示政策處理。駕駛員傷勢另走醫療。",
+   "design_note_ref": "營運層；機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "部位維修能把戰損帶入營運選擇，且不必假設固定人形骨架。",
+   "open_question": "HP 歸零的部位是否仍可修復，還是只能更換？"
+  },
+  {
+   "id": "OPS-05",
+   "domain": "營運",
+   "bb_mechanic": "人物每小時回血的路徑不扣藥；普通可恢復傷勢則在每日回呼耗藥，缺藥會延後恢復計時。回血與傷勢康復不是同一條資源消耗規則。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 食物、修理、醫療、彈藥",
+   "mecha_adaptation": "保留駕駛員 HP 恢復與傷勢治療的區別；機甲部位 HP 與生物內層的修復方式由裝備資料指定，受擊傳給駕駛員的傷勢再走人物醫療。",
+   "design_note_ref": "營運層；戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "分離醫療與修理可避免換機甲就抹除駕駛員傷勢。",
+   "open_question": "駕駛員一般 HP 恢復要免費等待，還是也耗醫療資源？"
+  },
+  {
+   "id": "OPS-06",
+   "domain": "營運",
+   "bb_mechanic": "補彈按人物及物件順序把公司 Ammo 轉成個別彈量，換算使用向上取整；剩餘資源不足完整單發成本時仍可能補上一發。有限補給會先供應遍歷到的物件。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 食物、修理、醫療、彈藥",
+   "mecha_adaptation": "改為依武器部件的彈種與補給成本補充，排程可指定優先機甲；不足完整成本時採明示換算規則。能源武器是否消耗補給由裝備資料決定。",
+   "design_note_ref": "營運層；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "武器補給形成裝備選擇成本，但不應依人物名單暗中決定供應優先序。",
+   "open_question": "彈藥要共用一個補給帳本，還是依彈種分庫存？"
+  },
+  {
+   "id": "OPS-07",
+   "domain": "營運",
+   "bb_mechanic": "欠薪與飢餓降低心情；週期性逃兵檢查受事件可觸發條件控制，低心情人物依特質等倍率抽籤，再從候選均勻挑一人。負金錢不立即結束戰役，但只剩一人時其逃兵可結束戰役。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 短缺、逃兵與存檔",
+   "mecha_adaptation": "短缺後果掛在駕駛員，先以可見的不滿與離隊風險表達；離隊時機甲、部件的所有權和歸還規則獨立處理。不要把人物退出直接等同整台機甲消失。",
+   "design_note_ref": "營運層；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "漸進人事後果比負債即敗更有周轉空間，但須釐清人與裝備的歸屬。",
+   "open_question": "駕駛員離隊時是否可以帶走配發的機甲或部件？"
+  },
+  {
+   "id": "OPS-08",
+   "domain": "營運",
+   "bb_mechanic": "成交時依物品子類有效值、耐久或保鮮、產地文化、城鎮買賣係數及難度分層計價，買入還要核對金錢與倉位。正常買賣的 setSold/setBought 在此版為空函式，不能視為原價撤銷交易。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/economy.md § 價格與交易",
+   "mecha_adaptation": "機甲與部件以部位／分層受損及附加裝備計有效值，駕駛員招募費不混入裝備售價；保留城鎮差價但把成交預覽顯示清楚。",
+   "design_note_ref": "營運層；戰鬥系統路線；機甲結構",
+   "recommendation": "改造",
+   "why": "狀態定價使維修與出售形成可比較的選擇。",
+   "open_question": "整機交易價格要按部件價值加總，還是另有機體整備價值？"
+  },
+  {
+   "id": "OPS-09",
+   "domain": "營運",
+   "bb_mechanic": "更新城鎮局勢時清除失效項、重設倍率並按保存順序重套效果；局勢可改價格、稀有度、招募與庫存刷新。設施失活會即時影響相關價格，但商品要等刷新或明確 resetShop 才改變。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/settlements.md § 局勢與附屬設施",
+   "mecha_adaptation": "將據點事件與有效設施做成資料效果，分別影響機甲／部件供應、駕駛員招募與維修服務；明確區分即時價格效果和下次刷新效果。",
+   "design_note_ref": "營運層；架構",
+   "recommendation": "採用",
+   "why": "資料效果能讓任務後果反映在服務與供應而不綁定世界觀。",
+   "open_question": "契約造成的據點局勢要只影響交易，還是也改變可用維修服務？"
+  },
+  {
+   "id": "OPS-10",
+   "domain": "營運",
+   "bb_mechanic": "玩家進城時商店依時間門檻刷新，未到期通常只處理待匯入清單；到期以保存的 seed 從定義清單、設施與局勢生成商品。R 是抽樣門檻，刷新會清空舊店鋪，玩家賣出的實物不永久保留。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/settlements.md § 商品生成：R是門檻，不是出現百分比",
+   "mecha_adaptation": "以資料清單生成可購機甲與部件，受損狀態保存在每個裝備實例；保留定時刷新，但對玩家售出物是否保留另定政策。不要把 R 直接當顯示機率。",
+   "design_note_ref": "營運層；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "清單刷新能提供裝備取得差異，無須先建立逐件物流模擬。",
+   "open_question": "玩家售出的機甲與部件是否要跨商店刷新保留供回購？"
+  },
+  {
+   "id": "OPS-11",
+   "domain": "營運",
+   "bb_mechanic": "招募名單依刷新門檻與經過時間淘汰舊人並補到目標量，低關係可縮小池子。背景候選依城鎮、設施、建築、局勢與起源順序組成，重複條目形成權重，最後還可改寫最終名單。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/settlements.md § 招募池與刷新",
+   "mecha_adaptation": "招募池只生成人物駕駛員；機甲取得另走裝備市場，若要附帶裝備則以獨立實例連結。背景與來源權重留在資料，不能以原版招募量反推戰鬥單位上限。",
+   "design_note_ref": "營運層；戰鬥系統路線；戰鬥規模與地圖；架構",
+   "recommendation": "改造",
+   "why": "人物來源差異能支持成長與人事選擇，同時保持人機分離。",
+   "open_question": "招募駕駛員是否允許附帶其自有機甲？"
+  },
+  {
+   "id": "OPS-12",
+   "domain": "營運",
+   "bb_mechanic": "合約候選進 Open 後會被有效性與逾期清理；只在 Active 為空時才能啟用一份。長期 State 轉移會先結束舊狀態再開始新狀態，互動畫面 Screen 另行轉移；Active 不套候選的通用逾期規則。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts.md § 生命周期與轉移順序",
+   "mecha_adaptation": "保留任務長期狀態與互動畫面的分離，目標及戰場地圖尺寸用資料參照；是否限制同時接約獨立設定，不以 Active 限制推導出戰機甲上限。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；架構",
+   "recommendation": "改造",
+   "why": "雙狀態模型可容納文字互動與多段任務，但接約容量仍是玩法選擇。",
+   "open_question": "同時只准一份進行中契約，還是允許多份並行？"
+  },
+  {
+   "id": "OPS-13",
+   "domain": "營運",
+   "bb_mechanic": "要求加價會累積雇主厭煩並可能被拒絕或談崩；談判可改總額或預付、完工、按頭分配。一般與按頭模板在預付上限的處理不同，IsFinal 也不等於完全鎖死後續選項。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts.md § 談判狀態",
+   "mecha_adaptation": "把報酬與付款時機做成可配置的談判選項，預付可供維修與補給周轉；以明確拒絕／終止條件取代容易誤解的最終報價旗標語意。",
+   "design_note_ref": "營運層；架構",
+   "recommendation": "改造",
+   "why": "付款時機本身能形成營運取捨，不必只靠提高任務報酬。",
+   "open_question": "談判是否允許冒失約風險反覆加價？"
+  },
+  {
+   "id": "OPS-14",
+   "domain": "營運",
+   "bb_mechanic": "主動取消會扣名聲及關係，預付比例存在時另有關係懲罰，再執行 onCancel；clear 另跑 onClear 並解除生成單位的合約歸屬，不是把全部任務兵團消滅。持久 Flags 與 State 被保存，但 TempFlags 等談判暫態不全保存。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts.md § 結束、儲存與失敗",
+   "mecha_adaptation": "保留退出任務的聲望代價與清理責任，將效果、裝備借用及世界實體歸屬分開定義；存檔保存可恢復的任務資料，結算效果採一次性執行作為本作新增防護。",
+   "design_note_ref": "營運層；架構",
+   "recommendation": "改造",
+   "why": "取消有成本且能恢復世界控制權，才能避免任務失敗污染後續營運。",
+   "open_question": "已領預付款後取消契約，要追回款項還是僅處理聲望後果？"
+  },
+  {
+   "id": "OPS-15",
+   "domain": "營運",
+   "bb_mechanic": "商隊護送啟動時生成商隊並禁露營；Running 同步玩家與商隊、停用玩家口糧並檢查目標，離開狀態時恢復資產與移動旗標。特殊俘虜分支仍可繼續任務，不能把離開 Running 一律當結束。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts-families.md § 追蹤、交付與護送",
+   "mecha_adaptation": "保留護送時由任務接管行軍與部分補給的規則，以資料列出被接管的資源與可用服務；駕駛員口糧、機甲維修與武器補給分別決定，取消或轉支線時明確移交。",
+   "design_note_ref": "營運層；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "護送能改變遠征的資源安排，但人員與裝備的後勤不可一個旗標全包。",
+   "open_question": "護送期間雇主要負擔哪些人員與機甲補給？"
+  },
+  {
+   "id": "OPS-16",
+   "domain": "營運",
+   "bb_mechanic": "巡邏必須依序到站，期限從 Offer 首次顯示時已開始計算；有效擊殺會過濾擊殺者、盟友、零經驗目標、復活者及部分附屬單位。返程仍可計頭，付款按有效頭數及上限計算。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts-execution.md § 巡邏：五日、三站與有效人頭",
+   "mecha_adaptation": "保留按有效戰果付酬，將機甲裝備破壞、駕駛員死亡／俘虜及召出單位分成可配置的計功事件；同一持久目標避免重複計功，不把部位數當擊殺數。",
+   "design_note_ref": "營運層；戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "有效戰果條件可避免多部位機甲被重複領賞。",
+   "open_question": "按戰果付酬要以敵機失去戰力，還是駕駛員被擊敗為基準？"
+  },
+  {
+   "id": "OPS-17",
+   "domain": "營運",
+   "bb_mechanic": "防村在敵已到達後可因敵軍撤離或生成隊伍清空而進返城，不要求殺光敵人。返城依有效設施損失與俘虜救回情況分全額、半額或失敗，離開任務時恢復先前暫停的勢力活動。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts-execution.md § 防村：敵人撤離也會推進，設施損失決定獎金",
+   "mecha_adaptation": "把守住目標、敵軍退卻與附帶損失分開判斷，用任務資料定義部分成功及獎勵效果；設施目標與戰場尺寸可變，不以殺敵數或固定機甲數作唯一勝利條件。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；架構",
+   "recommendation": "採用",
+   "why": "部分成功能讓防守與止損成為獨立於全殲的選擇。",
+   "open_question": "防守契約是否允許帶著設施損失領取部分報酬？"
+  },
+  {
+   "id": "OPS-18",
+   "domain": "營運",
+   "bb_mechanic": "會戰的偵察、徵糧、逃兵與截補支線不全以失敗立即結約，而會改變最終敵我生成資源。主戰勝負先寫旗標再進後續結果；勝利仍須返城結算，部分危機效果另受危機是否仍在進行控制。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts-execution.md § 會戰：支線失敗直接改最終敵我資源",
+   "mecha_adaptation": "把支線結果寫成最終戰資料修正，例如參戰裝備、補給或支援可用性；敵我規模和地圖由任務資料給定，不固定為 BB 原版隊伍容量。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；架構",
+   "recommendation": "採用",
+   "why": "讓支線成敗改變主戰條件，可保留失敗後繼續作戰的價值。",
+   "open_question": "首批契約是否納入會影響最終會戰的多段支線？"
+  },
+  {
+   "id": "OPS-19",
+   "domain": "營運",
+   "bb_mechanic": "合約報酬池由難度、隨機項、公司倍率、聲望及契約家族公式共同計算，預付與完工另按分配及取整規則支付。敵方資源係數再交由模板成本生成敵軍，並不直接等於敵人數。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/contracts.md § 難度與錢：不能把倍率重複套成一次",
+   "mecha_adaptation": "分開定義報酬、危險估計與敵方編成預算；若按玩家戰力縮放，戰力必須考慮駕駛員能力、已裝機甲與部位狀態，不能只計人物或機甲數。具體公式待使用者選定營運取向後再定。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；戰鬥系統路線；機甲結構",
+   "recommendation": "改造",
+   "why": "分離報酬與編成能避免不限單位數時把難度誤換算成固定增員。",
+   "open_question": "契約敵軍應隨玩家現有戰力縮放，還是接約前固定編成？"
+  },
+  {
+   "id": "OPS-20",
+   "domain": "營運",
+   "bb_mechanic": "世界背景回呼先更新實體再更新勢力及戰鬥，一般暫停時不跑；勢力管理器先處理換日關係回歸，再輪到單一勢力更新。跨多日只觸發一次換日回歸，行動還受虛擬時間間隔限制。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/world-simulation.md § 1. 世界更新不是每日把所有勢力一次算完",
+   "mecha_adaptation": "以可控的遊戲時間輪巡世界勢力並分散工作量；網頁離線、暫停及跨日推進是否補算需明定，不能直接把 BB 每次回呼行為等同伺服器真實時間。",
+   "design_note_ref": "營運層；架構",
+   "recommendation": "改造",
+   "why": "時間政策決定玩家離線期間的營運後果，不能隱藏在更新頻率裡。",
+   "open_question": "離線期間世界應停止，還是持續推進？"
+  },
+  {
+   "id": "OPS-21",
+   "domain": "營運",
+   "bb_mechanic": "勢力行動依評分後抽一張執行，再清暫存並設冷卻；Score 是抽選權重，不是各牌獨立成功百分比，也不是把所有有效牌一起執行。世界資料另分勢力、據點歸屬、守軍快取與部隊控制器。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/world-simulation.md § 復刻順序、驗收與真正限制",
+   "mecha_adaptation": "保留有效條件、權重與冷卻的資料行動牌，用來派發契約、生成隊伍或改變據點狀況；行動效果與隊伍行為分離，避免資料內容綁進通用排程。",
+   "design_note_ref": "營運層；架構",
+   "recommendation": "採用",
+   "why": "權重行動牌能增添世界變化且維持內容擴充的解耦。",
+   "open_question": "世界行動是否可在玩家未接約時改變任務目標狀態？"
+  },
+  {
+   "id": "OPS-22",
+   "domain": "營運",
+   "bb_mechanic": "守軍在觀察、查詢或戰前需要時才依 Resources 與時間等條件生成並快取，並非每日全圖換兵。出兵通常不扣 Resources，回營消失也不退還預算；近期出兵削弱守軍是生成修正而非真的搬走兵表中的士兵。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/world-simulation.md § 4. 營地的變強是預算與懶生成",
+   "mecha_adaptation": "以據點生成預算與快取裝備／駕駛員編成減少世界計算，模板成本及部位配置都讀資料；將其明確作為抽象戰力系統，若要可耗盡的敵方後勤則需另選設計。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "懶生成適合可變規模世界，但不能宣稱擊毀出兵就耗盡敵方實物庫存。",
+   "open_question": "敵方據點要採抽象生成預算，還是追蹤可被消耗的實際機甲與駕駛員？"
+  }
+ ]
+}

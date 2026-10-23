@@ -40,3 +40,25 @@
 - **答不出什麼**：實作細節（問該線的領導或 REPORT）
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/new/`（`inbox_mail.sh <我> --up …` 或 `--to dispatcher`）
 - **訂閱主題**：無
+
+### `lead-techstack`
+- **狀態**：已收線（2026-10-23）
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；評估網頁技術棧 vs Godot headless，交選型報告。
+- **團隊**：`teams/techstack`
+- **上游**：dispatcher（行程內回傳，不走 inbox）
+- **領地**：`wf/workflows/dispatch/handoffs/lead-techstack/`（REPORT、matrix.json、子線交接書與其 REPORT）；spike 程式碼在 `/tmp/lead-techstack-spike/`
+- **答得出什麼**：各候選棧的實測渲染／更新 ms、headless 驗證路徑
+- **答不出什麼**：架構設計、資料模型、遊戲規則（歸頂層 spec）
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-techstack/`
+- **訂閱主題**：無
+
+### `lead-combat-ref`
+- **狀態**：已收線（2026-10-23）
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出），把 Battle Brothers 拆解消化成機甲 SRPG「可選機制表」。
+- **團隊**：`teams/combatref`（領導；工人 `cx-bb-combat`、`cx-bb-character`、`cx-bb-ai`、`cx-bb-ops`、`cx-bb-data`，codex 沙箱寫不到本檔，由我代登記於此）
+- **上游**：頂層 `dispatcher`（行程內回傳，不走 inbox）
+- **領地**：`wf/workflows/dispatch/handoffs/lead-combat-ref/` 與 `wf/workflows/dispatch/handoffs/lead-combat-ref.md` 的唯讀引用；工人各寫 `lead-combat-ref/cx-bb-<組>/`
+- **答得出什麼**：BB 戰鬥／人物／AI／營運／資料模型機制如何搬到機甲設定、建議採用與否
+- **答不出什麼**：世界觀、數值、程式碼、spec
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-combat-ref/`
+- **訂閱主題**：無

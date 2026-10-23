@@ -1,0 +1,260 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "domain",
+  "bb_mechanic",
+  "source",
+  "mecha_adaptation",
+  "design_note_ref",
+  "recommendation",
+  "why",
+  "open_question"
+ ],
+ "rows": [
+  {
+   "id": "CMB-01",
+   "domain": "戰鬥",
+   "bb_mechanic": "每輪結束前補完未結束者，再依序結算輪末、地面效果、輪初裝備與技能及補 AP，之後按先攻排序。排序在本人首次行動恢復疲勞之前，因此尚未恢復的疲勞會影響本輪先後。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 回合是有順序的狀態變化",
+   "mecha_adaptation": "沿用每輪個體輪序，先攻由駕駛員與所裝機甲、部件及狀態共同產生。佇列容納戰場所有單位，地圖尺寸與單位數都不作固定小隊假設。",
+   "design_note_ref": "戰鬥系統路線；戰鬥規模與地圖",
+   "recommendation": "採用",
+   "why": "輪序提供 BB 式個體行動節奏，又不需要固定出戰上限。",
+   "open_question": "同先攻時是否用固定單位識別次序破同分？"
+  },
+  {
+   "id": "CMB-02",
+   "domain": "戰鬥",
+   "bb_mechanic": "Wait 保留 AP 並把當前者移至隊尾，同輪恢復時不再觸發首次 TurnStart 的疲勞回復。上一輪的等待旗標在下輪排序後才清除，因而帶來下一輪先攻代價。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 回合是有順序的狀態變化",
+   "mecha_adaptation": "將等待與結束行動保留為不同選項；等待不重新補駕駛員或機甲資源。輪序與效果事件共同辨認首次啟動、等待及續行，避免等待刷回復。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "採用",
+   "why": "保留 AP 換取時機並承擔後續代價，是可獨立選擇的戰術規則。",
+   "open_question": "是否保留等待造成的下一輪先攻代價？"
+  },
+  {
+   "id": "CMB-03",
+   "domain": "戰鬥",
+   "bb_mechanic": "AP 限制當次可做的動作，疲勞則跨輪累積並拖慢先攻；首次行動才回復疲勞，Resume 不再回。原版回復另帶剩餘疲勞上限裁切，不能簡化成固定減量。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 回合是有順序的狀態變化",
+   "mecha_adaptation": "保留短期行動預算與跨輪累積負荷的區分，但疲勞究竟落在駕駛員、機甲熱負荷或兩者分立須另決定。各資源的上限、回復時點與輪序影響由資料宣告，部件故障只透過效果修改它們。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "BB 的人物耐力不能直接等同所有機體與駕駛員的負荷。",
+   "open_question": "累積負荷要只設駕駛員疲勞、只設機甲熱量，還是分成兩種資源？"
+  },
+  {
+   "id": "CMB-04",
+   "domain": "戰鬥",
+   "bb_mechanic": "AdditionalActionPointCost 在費用 getter 與實扣時各加一次，可能通過可負擔檢查後扣成負 AP。屬性 IsSkillUseFree 仍可能留下額外扣費，只有 forFree 旗標整筆免除。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 已解除的AP疑點",
+   "mecha_adaptation": "不沿用重複扣除；由同一份成本結果供預覽、AI、可負擔檢查與實際扣費使用。機甲、部件及駕駛員效果只修改這份成本，免費反應則明確指定免除哪些成本。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "不採用",
+   "why": "預估與實扣分歧會破壞玩家及 AI 的行動預算。",
+   "open_question": "無"
+  },
+  {
+   "id": "CMB-05",
+   "domain": "戰鬥",
+   "bb_mechanic": "施放先檢可用與目標，再扣 AP／累積疲勞並呼 item.onUse，最後執行技能；onUse 回 false 不退費，未命中也可能回 false。useForFree 只略過標準負擔與扣費，仍檢可用、目標並通知裝備。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 施放契約與命中事件先後",
+   "mecha_adaptation": "沿用驗證成功後承擔成本、命中與否另算的規則，武器部件仍可在施放時消耗其資源。駕駛員、部件失能及目標條件均須通過，即使是免費反應也不能跳過。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "採用",
+   "why": "把施放成本與命中結果分開，能清楚處理未命中和免費反應。",
+   "open_question": "無"
+  },
+  {
+   "id": "CMB-06",
+   "domain": "戰鬥",
+   "bb_mechanic": "移動每步重算地形 AP 與疲勞，再加一次高差成本；不足支付時整步不扣。尋路的 ZoC 偏好成本與真正移動扣費分離，到格後再依序更新控制區、地形、進格及移動 hooks。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 移動與反應必須分層",
+   "mecha_adaptation": "在方格地圖上依地形與機甲移動部件逐步報價，地圖大小由資料提供。到格後以部位效果處理移動能力變更；尋路偏好不得混成玩家支付成本。",
+   "design_note_ref": "地圖呈現；戰鬥規模與地圖；機甲結構",
+   "recommendation": "改造",
+   "why": "可保留逐步承擔地形代價，同時替換 BB 的格網與人物移動假設。",
+   "open_question": "方格移動是否允許斜向？"
+  },
+  {
+   "id": "CMB-07",
+   "domain": "戰鬥",
+   "bb_mechanic": "機會攻擊挑選最低 AP 的合法近戰技能，同費選較後者，不檢可負擔而以 useForFree 執行；Spearwall 可在敵人進入 ZoC 時反應。離格及多人 ZoC 的原生 callback 先後仍未證實。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 移動與反應必須分層",
+   "mecha_adaptation": "把離開或進入控制區的觸發資格掛到武器、感測器或部位效果，並依方格鄰接定義範圍。免費反應資格與多人觸發順序須自訂明確政策，不把未知 BB 原生時序當既定規則。",
+   "design_note_ref": "地圖呈現；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "不同機體的武器與機動部位應決定控制區能力。",
+   "open_question": "機會攻擊要保留免費反應，還是消耗獨立反應資源？"
+  },
+  {
+   "id": "CMB-08",
+   "domain": "戰鬥",
+   "bb_mechanic": "Riposte 在對方未命中後排入延遲反擊，並以 SkillCounter 防止同一動作反覆觸發。反擊發生在未命中支線，反擊殺死原攻擊者會影響後續處理。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 移動與反應必須分層",
+   "mecha_adaptation": "以裝備或駕駛員效果提供反擊姿態，沿用同一動作去重。以規則事件次序執行反擊並重查雙方存活及武器部件可用性，無須依賴畫面演出延遲。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "反擊可保留戰術意義，但其因果順序應與網頁呈現解耦。",
+   "open_question": "反擊資格應限定近戰未命中，還是由各裝備效果宣告？"
+  },
+  {
+   "id": "CMB-09",
+   "domain": "戰鬥",
+   "bb_mechanic": "一般命中以攻擊與防禦及距離、高差等修正得到門檻，再套一般機率上下限；無命中骰及不可攻擊分支不沿用同一限幅。防禦重擲另擲一次，且不再次套簡單難度修正。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 失敗支線也有行為",
+   "mecha_adaptation": "將駕駛員能力與武器、感測器、機體機動等裝備修正接入同一命中階段。方格距離與高差採地圖規則，必中、不可攻擊及重擲則以明確效果條件表達。",
+   "design_note_ref": "戰鬥系統路線；地圖呈現；機甲結構",
+   "recommendation": "改造",
+   "why": "可保留 BB 的命中判定骨架，又不把人物屬性直接當機甲屬性。",
+   "open_question": "一般攻擊是否保留命中機率上下限？"
+  },
+  {
+   "id": "CMB-10",
+   "domain": "戰鬥",
+   "bb_mechanic": "盾擋是未命中骰落入盾加值區間的子類，不是另擲格擋骰。盾擋會處理盾本身的耐久，與身體或頭部護甲磨損分開。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 失敗支線也有行為",
+   "mecha_adaptation": "若盾列為可用部件，將盾擋結果交給該部位 HP 與效果清單，盾毀後撤除它授予的能力。此規則只適用有相應部件的機體，不要求所有 body plan 具備盾。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "獨立盾部件可承接格擋損耗，且不混淆本體護甲與駕駛員受傷。",
+   "open_question": "盾擋是否沿用未命中區間判定，還是另設主動防禦動作？"
+  },
+  {
+   "id": "CMB-11",
+   "domain": "戰鬥",
+   "bb_mechanic": "遮擋可先更換實際目標但不重建攻方屬性；未命中後的散射則再呼 attackEntity 並重建屬性。原版散射打空有 BusyStack 未配對釋放的已證實分支。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 失敗支線也有行為",
+   "mecha_adaptation": "在方格視線上分開判定遮擋轉移與失手散射，並明訂換目標時哪些修正重算。動作事件完成狀態由規則層管理，不沿用依賴生成地面圖樣才解忙碌的異常。",
+   "design_note_ref": "地圖呈現；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "保留射線與誤傷取捨，但必須替換格網假設並修正失效分支。",
+   "open_question": "散射或遮擋轉移是否允許打中友軍？"
+  },
+  {
+   "id": "CMB-12",
+   "domain": "戰鬥",
+   "bb_mechanic": "命中後抽部位，原版以頭部機率選頭，否則落在身體，並非頭與身各擲一次。頭部倍率放大 HP 傷害，並不同步放大護甲傷害。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 傷害是一條帶副作用的事件鏈",
+   "mecha_adaptation": "不採用固定頭／身二分；改由各機體 body plan 提供可命中部位與權重，再依被中部位的分層資料結算。部位 HP 歸機甲裝備，是否傷到駕駛員另由效果清單決定。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "不採用",
+   "why": "固定人體部位模型與多種、多層機甲的裁示不相容。",
+   "open_question": "玩家能否指定部位攻擊，還是只透過武器與效果改命中權重？"
+  },
+  {
+   "id": "CMB-13",
+   "domain": "戰鬥",
+   "bb_mechanic": "HP 傷與護甲傷各自獨立抽樣，扣抵後的剩甲抑制穿透傷，破甲後再處理其餘傷害。完全穿透分支直接傷 HP 且不磨甲，因此不是先扣一條統一護盾再扣生命。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/combat-rules.md § 傷害是一條帶副作用的事件鏈",
+   "mecha_adaptation": "保留破甲、穿透與內層損傷可分開調整的概念，以部位層定義承傷與繼續向內傳遞的條件。內層可以是機械或生物 HP；駕駛員不自動視為每個部位後方的共同血條。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "分層承傷能表達外甲與內體差異，需重定多層而非照抄雙池公式。",
+   "open_question": "完全穿透是否保留不磨損外層裝甲的規則？"
+  },
+  {
+   "id": "CMB-14",
+   "domain": "戰鬥",
+   "bb_mechanic": "命中傷害依序經攻方 before-hit、防方臨時屬性與裝備、受傷 hook、扣 HP、保命、裝甲磨損及死亡或傷勢士氣。致死時 target-killed 可早於外層 target-hit，後者還要確認攻擊者仍活著。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 施放契約與命中事件先後",
+   "mecha_adaptation": "建立明確的計算前、傷害提交及後續效果階段，讓部位破壞與駕駛員受傷清單在指定階段執行。連鎖效果每次重查對象與部件狀態；不把機甲失去部位直接當成駕駛員死亡。",
+   "design_note_ref": "部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "效果清單只有掛在明確先後的事件上，才能一致處理破壞和巢狀傷害。",
+   "open_question": "同一命中同時打壞部位與傷到駕駛員時，先執行哪一組後果？"
+  },
+  {
+   "id": "CMB-15",
+   "domain": "戰鬥",
+   "bb_mechanic": "技能容器依 Order 再依 ID 字典序分派，Type 只分類，隱藏技能仍參與事件。Order 與 ID 都相同時比較器回相等，不能推稱插入次序穩定。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 模型：同一容器裡的不同責任",
+   "mecha_adaptation": "沿用效果有明確排序且隱藏不等於停用的原則，將駕駛員、機甲與部件效果合入事件調度。新增部件只需提供效果及順序資料，同鍵實例順序另作政策決定。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "採用",
+   "why": "可預期的效果順序是資料擴充與解耦的共同基礎。",
+   "open_question": "同順序且同 ID 的多個效果實例，是否依來源部件及實例識別排序？"
+  },
+  {
+   "id": "CMB-16",
+   "domain": "戰鬥",
+   "bb_mechanic": "屬性重建先複製 BaseProperties，全部 onUpdate 跑完才跑全部 onAfterUpdate，最後提交 CurrentProperties。重建保持 HP 比例，AP 與疲勞只向下裁到新上限，不因上限提高而補滿。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 安裝、移除、重建的精確順序",
+   "mecha_adaptation": "保留基礎資料、修正階段與衍生階段的區分，先算機甲／部件與駕駛員效果，再讓技能讀其結果。各部位 HP 與駕駛員 HP 的容量變動政策須分別宣告，不直接套用共同比例回復。",
+   "design_note_ref": "機甲結構；架構",
+   "recommendation": "改造",
+   "why": "分階段重建適合裝備衍生能力，但保留 HP 比例未必適合部位維修與毀損。",
+   "open_question": "部位最大 HP 改變時，要保留現有 HP 絕對值、比例還是已損失量？"
+  },
+  {
+   "id": "CMB-17",
+   "domain": "戰鬥",
+   "bb_mechanic": "攻擊使用、防禦與受命中各建立獨立臨時屬性，不寫回 CurrentProperties。命中／傷害預覽也會建立使用屬性並呼 onAnySkillUsed，多段攻擊又會重建，因此該 hook 不能視為每次施放僅一次。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 三種臨時屬性，不能混用",
+   "mecha_adaptation": "保留攻、防、受傷各自的情境屬性，供部位與裝備效果判定當次條件。將預覽及 AI 評估限制為無消耗計算，消耗資源或改變狀態只在正式事件中執行。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "同一計算規則可供 UI 與 AI 使用，卻不應讓查詢次數改變戰局。",
+   "open_question": "無"
+  },
+  {
+   "id": "CMB-18",
+   "domain": "戰鬥",
+   "bb_mechanic": "容器更新中新增技能會進 pending，移除則標 garbage，下一次回收才執行移除與安裝；新加者不會補跑本輪全部 pass。onAdded 按 pending 加入次序執行，並非排序後次序。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 安裝、移除、重建的精確順序",
+   "mecha_adaptation": "將部件破壞引發的效果安裝與撤除集中到明確事件邊界提交，避免遍歷中改清單。已標移除的效果是否還能收到當前事件後續階段須明訂，與駕駛員效果、裝備效果共用處理。",
+   "design_note_ref": "部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "延後結構變更可支援連鎖效果，但 BB 的垃圾物件仍收部分 hook 不宜隱含繼承。",
+   "open_question": "部位被打壞後，其原有防護效果應立即失效，還是等當次傷害鏈結束？"
+  },
+  {
+   "id": "CMB-19",
+   "domain": "戰鬥",
+   "bb_mechanic": "裝備透過 item.addSkill 綁定技能與來源物品，並共同參與屬性重算。清除裝備技能會觸發 onRemoved，可連帶移除依附該裝備的 shieldwall、riposte 等姿態。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 回合及裝備邊界",
+   "mecha_adaptation": "沿用技能具有來源裝備的關係，機甲與部件提供其動作及被動效果，駕駛員保有自己的技能來源。卸載或部位失效是否撤除技能，由部位效果清單觸發，避免傷到裝備就刪除人物成長。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "採用",
+   "why": "來源綁定直接符合機甲與部件都是裝備的設定。",
+   "open_question": "無"
+  },
+  {
+   "id": "CMB-20",
+   "domain": "戰鬥",
+   "bb_mechanic": "BB 沒有全域統一倒數 buff 表；效果自管回合、啟動、攻擊次數或世界日期等時鐘。Wait 與 Resume 不等於新的 TurnStart；例如流血在 Wait／End 入口以當輪標記去重，姿態則可在下次 TurnStart 移除。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 模型：同一容器裡的不同責任",
+   "mecha_adaptation": "把效果的到期時鐘、觸發時機與同輪去重方式寫進資料，而不是所有狀態每輪一起減一。駕駛員與裝備效果均可選相應時鐘，但本片段只提出戰鬥期間語義。",
+   "design_note_ref": "戰鬥系統路線；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "可表達持續灼傷與防禦姿態等不同期限，並避免等待重複觸發。",
+   "open_question": "戰鬥效果到期預設要以全局輪末還是受影響單位的行動邊界計時？"
+  },
+  {
+   "id": "CMB-21",
+   "domain": "戰鬥",
+   "bb_mechanic": "不可疊加技能遇到已安裝同 ID 時呼既有者 onRefresh；同 ID 只在 pending 時再加則直接忽略而不 refresh。可疊加效果可保有多個實例，實際延長時間或刷新次數仍由各效果或施加路徑決定。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 安裝、移除、重建的精確順序",
+   "mecha_adaptation": "效果資料明訂獨立層、刷新或忽略的政策，並讓疊加識別包含承受部位及必要的來源。不同節肢的同名故障可分開計算，是否影響同一駕駛員則走其傳遞效果。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "只以同名 ID 去重會把不同部位的故障誤合併。",
+   "open_question": "同一部位遭不同來源施加同名效果時，要合併刷新還是保留獨立層？"
+  },
+  {
+   "id": "CMB-22",
+   "domain": "戰鬥",
+   "bb_mechanic": "DOT 或爆炸可以直接呼 actor.onDamageReceived，並不保證經 attackEntity 或攻方 onTargetHit。持續傷害仍可進受傷處理，而非必須重走一般武器命中程序。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/skill-effects.md § 施放契約與命中事件先後",
+   "mecha_adaptation": "提供持續傷害或環境效果直接進入部位承傷鏈的入口，仍依目標層、破壞後果與駕駛員傳遞清單處理。是否另發攻擊者命中、擊殺或裝備觸發事件由效果資料明定。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "直接傷害入口能共用破壞規則，又不把每次灼傷當作重新開火。",
+   "open_question": "持續傷害是否允許觸發來源裝備的命中效果？"
+  }
+ ]
+}

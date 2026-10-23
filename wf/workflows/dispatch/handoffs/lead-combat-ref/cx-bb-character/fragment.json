@@ -1,0 +1,249 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "domain",
+  "bb_mechanic",
+  "source",
+  "mecha_adaptation",
+  "design_note_ref",
+  "recommendation",
+  "why",
+  "open_question"
+ ],
+ "rows": [
+  {
+   "id": "CHR-01",
+   "domain": "人物",
+   "bb_mechanic": "人物持有等級、XP、天賦與待用升級骰；背景、trait、perk、傷勢附於人物技能容器，裝備另有容器。重算時從基本值建立當前值，避免把效果反覆永久累乘。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 發現：資料所有權",
+   "mecha_adaptation": "駕駛員持有成長與人物效果，機甲及部件持有裝備狀態；換裝時重建衍生能力，保留人物基本值。部位 HP、分層及破壞效果留在裝備資料。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "採用",
+   "why": "人物與裝備分離直接符合裁示並支援換機。",
+   "open_question": "無"
+  },
+  {
+   "id": "CHR-02",
+   "domain": "人物",
+   "bb_mechanic": "生成時依背景修正屬性隨機區間的兩個端點，再從修正後區間抽初值；不是分別抽底值與背景加值。特性與裝備另影響最終顯示能力。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-backgrounds.md § 發現：端點與欄位不是同一類數據",
+   "mecha_adaptation": "以駕駛員背景資料定義人物能力生成區間，機甲性能由部件提供；顯示時區分人物基礎能力與裝備帶來的修正。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "背景能提供招募差異，但不能把機甲性能當成人物天生屬性。",
+   "open_question": "駕駛員初始能力要採背景區間隨機，還是背景固定值？"
+  },
+  {
+   "id": "CHR-03",
+   "domain": "營運",
+   "bb_mechanic": "招募費由背景起始等級與隨身裝備價值共同構成；薪水依人物目前等級及相關倍率變動。背景的工資隨機倍率在生成時抽取並保存，不每日重抽。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-backgrounds.md § 初始等級、價格與工資",
+   "mecha_adaptation": "駕駛員聘金、持續薪酬與機甲購置成本分開建帳；若提供連機招募，將人物與裝備費用分項顯示，成長是否漲薪由營運規則決定。",
+   "design_note_ref": "營運層；戰鬥系統路線",
+   "recommendation": "改造",
+   "why": "人物是持久成員而機甲可更換，分項費用較能反映兩者價值。",
+   "open_question": "要採隨駕駛員等級調整薪酬的制度嗎？"
+  },
+  {
+   "id": "CHR-04",
+   "domain": "人物",
+   "bb_mechanic": "候選生成時就建立背景、trait、天賦與升級預骰；招募把同一人物移入公司，不重新抽取。特殊生成若略過 addTraits，也會略過天賦與預骰，須由呼叫者補足。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 候選生成與購買",
+   "mecha_adaptation": "駕駛員候選一生成即有穩定身分與成長資料，錄用只改隸屬；事件招募也明確指定如何初始化，不因換機或錄用重新抽取。",
+   "design_note_ref": "戰鬥系統路線；營運層；架構",
+   "recommendation": "採用",
+   "why": "穩定候選避免招募操作改寫同一人的潛能。",
+   "open_question": "候選階段要公開天賦與特質到什麼程度？"
+  },
+  {
+   "id": "CHR-05",
+   "domain": "人物",
+   "bb_mechanic": "一般人物生成時從未有星且未被背景排除的能力欄抽取天賦星，星數影響後續升級骰；無天賦背景會跳過抽取。可用欄位不足時原函式缺乏終止保護。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 天賦與升級骰",
+   "mecha_adaptation": "天賦只作用於駕駛員可成長能力，由資料列出可選欄與排除條件；機甲部位 HP 不隨人物天賦升級，無效候選資料應拒絕載入。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "可保留長期養成差異，同時避免把裝備耐久與人物潛能混為一體。",
+   "open_question": "要保留不可自由改派的先天天賦嗎？"
+  },
+  {
+   "id": "CHR-06",
+   "domain": "人物",
+   "bb_mechanic": "一般升級從預先保存的各能力骰中選欄加點；提交一次升級時，未選欄位的同級骰也一併消耗。額外加點可插入獨立骰，不能只用人物等級推算剩餘隊列。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 天賦與升級骰",
+   "mecha_adaptation": "駕駛員保留待加點機會及各欄結果，玩家選擇後消耗同批機會；能力集合由資料定義，提交端核對可選項與增量，不沿用 BB 固定能力欄。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "保留每次升級取捨，同時能容納不同駕駛能力設計。",
+   "open_question": "成長要用預骰選欄，還是固定配點？"
+  },
+  {
+   "id": "CHR-07",
+   "domain": "人物",
+   "bb_mechanic": "addXP 在資格與上限檢查後套用適用倍率並儲存經驗，不直接升級；updateLevel 再逐個跨過的門檻增加等級與待加點機會。部分個人與小團倍率即使 scale=false 仍適用。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § XP 與 perk 點",
+   "mecha_adaptation": "將駕駛員獲得 XP 與處理升級分開，門檻、資格和倍率由資料定義；依實際人物集合計算，不移植依小隊人數設計的固定懲罰。",
+   "design_note_ref": "戰鬥系統路線；戰鬥規模與地圖；架構",
+   "recommendation": "改造",
+   "why": "逐門檻處理能保留跨多級成長，且不預設戰場單位上限。",
+   "open_question": "駕駛員經驗累積後要自動升級，還是戰後由玩家確認？"
+  },
+  {
+   "id": "CHR-08",
+   "domain": "人物",
+   "bb_mechanic": "升級在指定等級範圍內給 perk 點；正常解鎖依剩餘點數、是否重複及累計已花點數開放層級，不是沿連線的前置技能樹。底層解鎖函式本身不完整重驗這些門檻。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § XP 與 perk 點",
+   "mecha_adaptation": "perk 作為駕駛員專長，以資料設定層級及花點門檻；裝備附帶能力由機甲或部件持有，解鎖專長的統一入口檢查所有條件。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "保留自由組合專長的選擇，並避免把機甲附帶功能永久學到人物身上。",
+   "open_question": "駕駛員專長要採已花點數解鎖層級的制度嗎？"
+  },
+  {
+   "id": "CHR-09",
+   "domain": "人物",
+   "bb_mechanic": "隨機 trait 在生成時逐槽嘗試，檢查既有背景或 trait 對候選的排除及重複；重試耗盡可少給特質。排除檢查不是自動雙向對稱，且隨機池與所有 trait 定義並不相同。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 候選生成與購買",
+   "mecha_adaptation": "人物特質獨立於機甲部件詞條，生成池與可相容條件均資料化；明確決定衝突是否雙向，而不把 BB 的單向判定當成通用規則。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "人物個性可持續影響換機後表現，但相容性規則應可預期。",
+   "open_question": "隨機特質要允許負面特質與正面特質共同出現嗎？"
+  },
+  {
+   "id": "CHR-10",
+   "domain": "人物",
+   "bb_mechanic": "傷勢作為人物技能物件參與屬性重算，與裝備分開；允許的傷勢證據表補充：暫時傷有按日恢復資料，數值懲罰受是否受傷勢及新傷影響的條件控制。指定拆解主文尚未交代受擊生成暫時傷的完整條件。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-rules.md § 發現：資料所有權",
+   "mecha_adaptation": "部位受擊或損壞時，僅在該部位效果清單明定傳傷時建立駕駛員暫時傷；恢復條件與人物懲罰獨立設定，維修機甲不自動治好駕駛員。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員；營運層",
+   "recommendation": "改造",
+   "why": "暫時傷提供休養與輪換理由，又能避免把每次部件受損都等同人體受傷。",
+   "open_question": "要採需要跨戰鬥休養的駕駛員暫時傷嗎？"
+  },
+  {
+   "id": "CHR-11",
+   "domain": "人物",
+   "bb_mechanic": "人物戰後處理不刪永久傷；允許的傷勢證據表補充：永久傷不靠日常療程自然消失，但外部治癒效果可移除。指定拆解主文未完整列出永久傷的生成機率與適用傷亡條件。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § 四份人物集合",
+   "mecha_adaptation": "永久傷留在駕駛員資料，換機及修復裝備不移除；僅由指定傳傷或倖存效果加入，是否能復健或用其他效果移除仍需另定。",
+   "design_note_ref": "戰鬥系統路線；部位打壞的後果與傳到駕駛員；營運層",
+   "recommendation": "改造",
+   "why": "永久後果能延續角色履歷，但必須與機甲報廢分離並由玩家決定嚴酷程度。",
+   "open_question": "要讓駕駛員傷勢留下無法自然恢復的永久後果嗎？"
+  },
+  {
+   "id": "CHR-12",
+   "domain": "人物",
+   "bb_mechanic": "背景可以在特定士氣檢定中修正 Bravery，例如 witchhunter 只對 MentalAttack 士氣檢定加值，不是常駐提高勇氣。指定拆解材料未完整列出各士氣階段、所有觸發與崩潰後行動。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/character-backgrounds.md § 每次重算與攻擊快照",
+   "mecha_adaptation": "士氣與勇氣歸駕駛員，機甲受損是否觸發檢定由部位效果清單明定；背景或專長可依事件類型修正檢定，崩潰後的控制權另待裁示。",
+   "design_note_ref": "戰鬥系統路線；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "情境化士氣檢定符合人物定位，也能適應不同機體的損壞後果。",
+   "open_question": "要讓士氣失敗造成駕駛員失去部分或全部行動控制嗎？"
+  },
+  {
+   "id": "CHR-13",
+   "domain": "人物",
+   "bb_mechanic": "勝利時處理參戰及候補人物的 mood；非勝利則依是否有傷亡區分失敗與退卻的心情影響，部分背景有例外。這些反應在戰鬥終局流程中發生。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § onBattleEnded 的順序",
+   "mecha_adaptation": "戰後心情歸駕駛員，依勝敗、同伴傷亡及是否參戰等事件套用資料效果；心情持續多久、是否影響下一戰，由營運規則決定。",
+   "design_note_ref": "戰鬥系統路線；營運層；架構",
+   "recommendation": "改造",
+   "why": "跨戰心情可串接人物經歷與營運，而非只保留單場戰術士氣。",
+   "open_question": "要保留跨戰鬥累積的心情及候補反應嗎？"
+  },
+  {
+   "id": "CHR-14",
+   "domain": "人物",
+   "bb_mechanic": "結果區分真實 survivor 人物與死亡統計用 casualty stub；普通勝利會恢復 survivor 並移除對應 stub，普通非勝利則將未救回 survivor 留下等死。競技場的 survivor 回收規則另有例外，stub 本身不會復活。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § 四份人物集合",
+   "mecha_adaptation": "駕駛員死亡、昏迷與救回分開記錄，機甲報廢只執行資料指定的後果；勝敗是否決定救援資格另定，不直接把裝備 HP 歸零當作人物真死。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "保留傷亡風險又容納駕駛艙保護與不同機體傳傷方式。",
+   "open_question": "昏迷駕駛員是否必須控制戰場才能救回？"
+  },
+  {
+   "id": "CHR-15",
+   "domain": "戰鬥",
+   "bb_mechanic": "安全撤退檢查要求所有存活玩家人物在邊緣；否則自動撤退啟動退卻 AI，不直接免傷傳送。禁止逃跑旗標可拒絕撤退，普通戰役的撤退結果再強制進入終局結算。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § 終局偵測與防重",
+   "mecha_adaptation": "在可變尺寸方格地圖上以資料指定撤離區域，逐單位記錄駕駛員與機甲是否撤出；退卻行為與撤離條件分開，不用固定隊伍大小或固定邊界座標。",
+   "design_note_ref": "戰鬥規模與地圖；地圖呈現；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "撤退可形成戰術取捨並保留持久人物，同時支援不同戰場布局。",
+   "open_question": "撤退要到達指定區域才安全，還是允許整隊即時離場？"
+  },
+  {
+   "id": "CHR-16",
+   "domain": "人物",
+   "bb_mechanic": "人物 onCombatFinished 恢復可活動旗標、將 HP 保底、士氣設回 Steady，並清理疲勞與部分戰術狀態；不補滿 HP 或護甲，也不刪永久傷。世界返回流程還可能再次呼叫部分結束回呼。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § 四份人物集合",
+   "mecha_adaptation": "戰術臨時狀態與持久損傷分開結算；駕駛員保留傷勢及未回復生命，機甲各層部位保留剩餘 HP，治療與修理留給各自營運流程。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；營運層",
+   "recommendation": "改造",
+   "why": "保留損耗可讓戰後決策有意義，且不把人物與裝備修復綁在一起。",
+   "open_question": "要採戰鬥結束不自動補滿人物生命與機甲耐久嗎？"
+  },
+  {
+   "id": "CHR-17",
+   "domain": "人物",
+   "bb_mechanic": "擊殺即發 XP：玩家擊殺者取得獨享部分，其餘分給當時戰術 Player faction 集合並包含擊殺者；不是戰後分給全公司，已撤離者不在該集合。分配先取整，再逐人套各自 XP 規則。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results-loot-xp.md § XP 分配與取整",
+   "mecha_adaptation": "經驗記在駕駛員身上；擊殺獨享、隊友分享及撤離者資格各以實際參與資料判定，不沿用固定人數假設或直接把所有機甲實體當成獨立受益人物。",
+   "design_note_ref": "戰鬥系統路線；戰鬥規模與地圖；架構",
+   "recommendation": "改造",
+   "why": "大規模戰場仍需明確受益對象，避免經驗隨機體數量被錯分。",
+   "open_question": "要保留擊殺者額外經驗，還是參戰駕駛員平均分配？"
+  },
+  {
+   "id": "CHR-18",
+   "domain": "人物",
+   "bb_mechanic": "多人分享擊殺 XP 時，遇到 IsAllyXPBlocked 人物會 return 整個函式；先前人物已拿到，之後人物完全拿不到，因此結果受容器順序影響。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results-loot-xp.md § XP 分配與取整",
+   "mecha_adaptation": "不沿用遇一人阻擋就中止後續所有分配的規則；若需排除人物，先按資料形成合格受益集合，再以一致方式分配。",
+   "design_note_ref": "戰鬥規模與地圖；架構",
+   "recommendation": "不採用",
+   "why": "容器順序不應決定其他駕駛員有沒有獲得經驗。",
+   "open_question": "無"
+  },
+  {
+   "id": "CHR-19",
+   "domain": "營運",
+   "bb_mechanic": "戰利品集合由地面物品、已放置屍體、未放置屍體及符合資格的世界部隊或地點等來源組成；屍體裝備有來源各異的過濾條件，部分較完整裝備還會重骰耐久。蒐集不是完整掉落機率規則。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results-loot-xp.md § gatherLoot 的四種來源",
+   "mecha_adaptation": "回收物由戰場殘骸、掉落部件與任務補給等資料來源形成；部件是否可回收及保留哪些分層 HP 由其資料決定，另議是否需要二次隨機損耗。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員；營運層；架構",
+   "recommendation": "改造",
+   "why": "殘骸與部件回收符合裝備定位，但不能把人體屍體欄位直接套到所有機體。",
+   "open_question": "回收部件要保留戰場實際損傷，還是額外隨機折損？"
+  },
+  {
+   "id": "CHR-20",
+   "domain": "營運",
+   "bb_mechanic": "普通結果流通常只在勝利且允許掠奪時開放領取；戰利品集合不等於已進背包。領取逐件移到空格，容量不足會保留已領部分，最終清理時未領物不自動進世界背包。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results-loot-xp.md § 得到集合不等於已入背包",
+   "mecha_adaptation": "將戰場回收資格與營運倉儲接收分開，玩家確認後轉移具身分的機甲或部件；容量與未取物去向由營運資料設定，不依戰鬥單位上限定死。",
+   "design_note_ref": "營運層；戰鬥規模與地圖；機甲結構",
+   "recommendation": "改造",
+   "why": "戰利品取捨需要清楚的接收與遺留規則，避免畫面列出就被視為已擁有。",
+   "open_question": "戰後未取的回收物要永久放棄，還是留作可再取的戰場殘骸？"
+  },
+  {
+   "id": "CHR-21",
+   "domain": "資料",
+   "bb_mechanic": "BB 正常更新用 finished 與 IsBattleEnded 等條件使戰鬥只進一次結算；但結果函式與世界返回函式本身不是可任意重入交易，重呼可能重發回呼及副作用。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/battle-results.md § 終局偵測與防重",
+   "mecha_adaptation": "以戰鬥識別與已處理結果保護駕駛員成長、傷亡及裝備轉移，重試同次結算不重複發放；各效果處理器明確區分戰中事件與終局事件。",
+   "design_note_ref": "架構；戰鬥系統路線",
+   "recommendation": "改造",
+   "why": "網頁重送或流程重入不應重複經驗、傷亡與戰利品。",
+   "open_question": "無"
+  }
+ ]
+}

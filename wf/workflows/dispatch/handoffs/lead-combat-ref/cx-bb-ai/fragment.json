@@ -1,0 +1,216 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "domain",
+  "bb_mechanic",
+  "source",
+  "mecha_adaptation",
+  "design_note_ref",
+  "recommendation",
+  "why",
+  "open_question"
+ ],
+ "rows": [
+  {
+   "id": "AI-01",
+   "domain": "AI",
+   "bb_mechanic": "每個陣營持有 Strategy、每個 actor 持有 Agent，且每個 Agent 各有獨立 behavior 實例。引用對象可能死亡、離圖或失效，決策不能假定引用永遠有效。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/tactical-ai.md § 發現：資料形狀與持有者",
+   "mecha_adaptation": "保留陣營策略、戰場單位代理、行為實例的分層；代理從持久駕駛員及當前裝備組成讀取能力，機甲換裝或部位效果改變能力時更新決策資料。戰場代理的生命週期與駕駛員存檔分離。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；架構",
+   "recommendation": "採用",
+   "why": "分層持有狀態能容納多樣裝備與駕駛員持久資料，避免把機甲當永久人物。",
+   "open_question": "無"
+  },
+  {
+   "id": "AI-02",
+   "domain": "AI",
+   "bb_mechanic": "行為評估可修改後續候選會讀取的意圖、接敵距離或其他行為分數，甚至零分行為也有副作用。評估遇到正分仍須完成後續候選，不能只算第一個可用行為或把所有行為當平行純函式。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/tactical-ai.md § 抽取、同分與評估副作用",
+   "mecha_adaptation": "保留明確的意圖產生與候選修正順序，將資料依賴與修正結果顯式傳遞。大量單位的評估可分段讓出執行權，但每次決策仍須完成所需依賴後才選行為。",
+   "design_note_ref": "戰鬥規模與地圖；架構",
+   "recommendation": "改造",
+   "why": "顯式依賴保留戰術意義，也減少新部件行為因隱藏副作用互相干擾。",
+   "open_question": "是否接受有順序的行為修正規則，或要求候選獨立評估後統一協調？"
+  },
+  {
+   "id": "AI-03",
+   "domain": "AI",
+   "bb_mechanic": "候選全部評完後依分數降序排列，只讓達到最高分某一比例的前段候選參與按分數加權抽選，無適用結果時回退 Idle。同分沒有明定 actor ID 排序，原生隨機數對浮點上界的轉換也尚未證實。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/tactical-ai.md § 抽取、同分與評估副作用",
+   "mecha_adaptation": "讓 AI 風格資料決定選最高分或從高分候選加權抽選；若採抽選，另明定隨機序列與同分規則，讓大型戰鬥的決策可追查。候選分數由駕駛員傾向及當前裝備能力共同產生。",
+   "design_note_ref": "戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "可保留行為變化，同時避免依賴未證實的原生排序及隨機細節。",
+   "open_question": "AI 要固定選最佳候選，還是允許高分候選間帶隨機變化？"
+  },
+  {
+   "id": "AI-04",
+   "domain": "AI",
+   "bb_mechanic": "多數攻擊分準備與提交階段，提交時呼叫共通 skill.use，再驗成本、可用性、目標、可見格與距離；不合法會在扣成本前返回失敗。部分行為只重查格上有無 actor，未核對原目標身分，失敗通常留待下一次評估重新選擇。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/tactical-ai.md § 提交、失效與重新計算",
+   "mecha_adaptation": "AI 與玩家統一走技能提交入口，按當時駕駛員狀態、裝備及部位效果檢查合法性，再扣成本與執行資料效果。明定目標離格或部位已毀時是重新選擇還是攻擊原格，失敗後以實際狀態重評。",
+   "design_note_ref": "部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "共用提交規則可避免 AI 繞過部位損壞、資源成本或技能限制。",
+   "open_question": "原鎖定單位離開後，攻擊應取消重評還是允許打原格的新佔用者？"
+  },
+  {
+   "id": "AI-05",
+   "domain": "AI",
+   "bb_mechanic": "編已知敵人時會納入一般未在當前視野的敵人，只排除特定隱藏且不可見者等不合法對象；名單清理不因時間或離開視野而過期。攻擊另外檢查可見性，所以知道敵人與本輪能射擊並非同一門檻。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-strategy.md § 情報不是純視野記憶",
+   "mecha_adaptation": "不直接沿用越過視野且不過期的情報規則；將可感知單位、已知位置與當前合法攻擊分開，讓感測及共享政策可由資料選擇。部位損壞造成的感測改變也應經效果系統反映。",
+   "design_note_ref": "機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "不採用",
+   "why": "原版情報規則會預先限制感測部件與隱蔽玩法的取捨。",
+   "open_question": "AI 情報採全場公開、各機個別感測，還是陣營共享感測？"
+  },
+  {
+   "id": "AI-06",
+   "domain": "AI",
+   "bb_mechanic": "攻守判斷依模式、護送、接戰、撤退、世界主動攻擊與兵力條件順序短路，再比較防守評分及門檻。達防守條件而先前為攻勢時，先清攻勢旗標並維持進攻，後續策略更新再符合才防守；這是更新次序的遲滯，不保證跨完整回合。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-strategy.md § 攻守判斷：按下列順序短路",
+   "mecha_adaptation": "採用帶切換緩衝的陣營姿態，但將任務目標、可用火力、防禦與部位失效結果納入資料化評估。參與統計的情報須服從所選感測政策，並明定策略更新時機，避免單位數改變切換節奏。",
+   "design_note_ref": "戰鬥規模與地圖；戰鬥系統路線；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "姿態切換能提供一致戰術傾向，但原觸發條件綁定 BB 任務與更新頻率。",
+   "open_question": "攻守切換緩衝要按策略更新次數，還是按戰場回合計算？"
+  },
+  {
+   "id": "AI-07",
+   "domain": "AI",
+   "bb_mechanic": "被風箏判斷要求未防守、未接戰、敵方已有一定射擊態勢，並檢查玩家部署形態及所有玩家的固定 X 座標界線。條件成立才標示被風箏，並非模擬追逐速度得出的結果。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-strategy.md § 營地、被風箏與算例",
+   "mecha_adaptation": "不搬固定座標判斷；若需要反風箏行為，另用資料地圖上的交戰距離、接近成本或任務壓力定義觸發。方格尺寸與部署區改變不應直接翻轉 AI 判斷。",
+   "design_note_ref": "戰鬥規模與地圖；地圖呈現",
+   "recommendation": "不採用",
+   "why": "固定座標啟發式不適用大小可變的機甲戰場。",
+   "open_question": "是否需要專門的反風箏行為，還是由一般射程與接敵評估處理？"
+  },
+  {
+   "id": "AI-08",
+   "domain": "AI",
+   "bb_mechanic": "目標估值讀技能預期傷害與命中，混合護甲、生命、士氣及個體偏好，再依收尾、反擊風險、逃跑、吸引力與強制目標等條件修正。這是預估價值，沒有真的扣目標生命，也不是完整戰鬥後果模擬。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-targeting.md § queryTargetValue 的逐步契約",
+   "mecha_adaptation": "把頭身護甲模型換成資料 body plan 的部位與分層預期效果，區分機甲部位受損、功能被破壞及駕駛員受影響的價值。評估只預覽效果清單的可能結果，不把部件 HP 歸零等同駕駛員死亡。",
+   "design_note_ref": "戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "目標價值必須反映裝備失能與人物傷害的分離。",
+   "open_question": "AI 是否能直接瞄準部位，還是只能選單位並估計技能的部位命中分布？"
+  },
+  {
+   "id": "AI-09",
+   "domain": "AI",
+   "bb_mechanic": "普通攻擊先篩存在、可用且付得起成本的技能，依 AP 與疲勞相關權重抽技能，再搜尋目標；不是比較全部技能與目標配對後取最佳。近戰目標同分時保留先枚舉者，攻擊行為分另受疲勞及換武器修正。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-targeting.md § 普通單體與技能抽選",
+   "mecha_adaptation": "可保留先縮小技能候選的成本節制，但為不同武器與部件提供可替換策略，決定是否比較技能與目標配對。資源消耗讀裝備資料與駕駛員狀態，不先把 BB 疲勞硬指定成機甲熱量。",
+   "design_note_ref": "戰鬥規模與地圖；戰鬥系統路線；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "先選技能可能漏掉部位剋制機會，但全配對搜尋也會隨單位與裝備數增加成本。",
+   "open_question": "技能選擇採先選技能再選目標，還是容許比較技能與目標的配對？"
+  },
+  {
+   "id": "AI-10",
+   "domain": "AI",
+   "bb_mechanic": "Bow 先累積技能對受影響格的價值，但選目標時比較另一個未加技能價值的分數，簡單局面會留下第一合法目標。選定目標後的技能抽選又混用原分數與轉換後權重作門檻比較，拆解已以位元碼支持這些行為。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-targeting.md § Bow：兩階段與已證實異常",
+   "mecha_adaptation": "不複製這些評分混用；遠程候選應明定各分數用途，讓命中、部位效果及友傷風險實際參與所屬決策。若採先目標後技能，也要讓目標排序讀到可比較的攻擊收益。",
+   "design_note_ref": "機甲結構；架構",
+   "recommendation": "不採用",
+   "why": "原版異常會讓遠程 AI 忽略已算出的有效收益，沒有必要作為新作規則保留。",
+   "open_question": "無"
+  },
+  {
+   "id": "AI-11",
+   "domain": "AI",
+   "bb_mechanic": "範圍攻擊按技能形狀枚舉候選，再計敵人收益與友軍代價；有的先比敵人數、有的比總價值，也有最低命中數及友傷拒絕條件。這些行為不能一律化為單體最高價值目標。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-targeting.md § AoE不能共用單體 argmax",
+   "mecha_adaptation": "由技能資料提供方格上的受影響格與層／部位效果，AI 對整個作用區域估值。友傷容忍及必要目標條件可由戰術風格配置，角色受傷與裝備破壞分別計入收益和代價。",
+   "design_note_ref": "地圖呈現；機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "範圍技能的戰術意義來自覆蓋形狀與附帶傷害，不能只看主目標。",
+   "open_question": "友傷是否一律禁止，還是允許依任務或 AI 風格權衡？"
+  },
+  {
+   "id": "AI-12",
+   "domain": "AI",
+   "bb_mechanic": "尋路結果與本回合依 AP、疲勞可走的路徑前段分開；搜尋失敗不得沿用舊路徑。移動因死亡、控制區或預算停止後，依實際狀態重評，原生搜尋啟發式與成本合成未證明。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-movement.md § 接口與最小替代實作",
+   "mecha_adaptation": "在尺寸資料化的方格地圖保留完整路徑與本次可達前段的分離；移動能力與地形成本由當前裝備和部位效果提供。履帶、節肢等受損後重新計算合法路徑與可達範圍，另明定新作成本規則。",
+   "design_note_ref": "戰鬥規模與地圖；地圖呈現；機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "採用",
+   "why": "路徑存在不代表當次能走完，明確分離能處理多樣機體與中途失效。",
+   "open_question": "無"
+  },
+  {
+   "id": "AI-13",
+   "domain": "AI",
+   "bb_mechanic": "近戰先產生與篩除站位候選，按距離、目標價值、地形、危險及友軍支援等排序，再有限次進行昂貴尋路。可達性及移動後是否能攻擊會修正選擇，最後才形成接敵行為分，候選格分數不等於行為分數。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-movement.md § 近戰接敵：候選分與行為分是兩層",
+   "mecha_adaptation": "保留便宜站位初篩再做尋路的分段搜尋，將方格鄰接、機體移動限制與部位可用技能納入條件。搜尋預算做成獨立政策以適應任意單位數與地圖大小，不藉此限制戰鬥規模。",
+   "design_note_ref": "戰鬥規模與地圖；地圖呈現；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "有限的昂貴搜尋可控制決策成本，但需要讓搜尋取捨與戰場容量分離。",
+   "open_question": "是否接受有限候選搜尋可能漏掉更佳站位，以換取較短決策等待？"
+  },
+  {
+   "id": "AI-14",
+   "domain": "AI",
+   "bb_mechanic": "遠程接敵根據技能射程、射線及可見性產生站位，結合危險、掩護、地形與路徑可達性選擇。可保留本輪或下一輪能射擊的位置，並標示移動後等待，不能把本輪不可達格全部刪掉。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-movement.md § 遠程接敵與位置安全",
+   "mecha_adaptation": "為遠程機甲保留跨回合的射擊位置候選，但以當前感測政策及可用武器部位計算收益。地圖資料控制搜尋區域，移動或部位失效後重新評估，跨回合位置只作意圖。",
+   "design_note_ref": "戰鬥規模與地圖；機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "跨回合站位可避免只看立即射擊，但不能保證未來裝備與戰場狀態不變。",
+   "open_question": "遠程 AI 是否允許本輪無法開火、為下一輪取得位置的移動？"
+  },
+  {
+   "id": "AI-15",
+   "domain": "AI",
+   "bb_mechanic": "接敵候選會受到已宣告接敵分工的懲罰；抵近對手後，行動者向對手的 agent 登記自身 ID，供後續己方 agent 讀取。這是循序貪婪分工，沒有全隊聯合規劃。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-movement.md § 近戰接敵：候選分與行為分是兩層",
+   "mecha_adaptation": "保留輕量接敵宣告，宣告指向戰場單位並在失效時清理；評分可依各機體可用武器與部位效果判斷是否仍需要增援。以資料化的支援需求避免機甲數增加後所有單位擠向同一目標。",
+   "design_note_ref": "戰鬥規模與地圖；機甲結構；架構",
+   "recommendation": "改造",
+   "why": "輕量分工有助於分散接敵，但不能宣稱能求出全隊最佳配置。",
+   "open_question": "同目標已有友軍接敵時，AI 要優先分散牽制還是仍偏好集中火力？"
+  },
+  {
+   "id": "AI-16",
+   "domain": "AI",
+   "bb_mechanic": "Flee 在士氣逃跑、可移動且 AP 足夠等條件下才評估，且每回合有嘗試限制。它由敵人方向累積危險，從低危險方向有限次隨機找可前進目的地，首個可用即採取；特定情況會讓路給 Retreat。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-retreat-heat.md § Flee與Retreat",
+   "mecha_adaptation": "若採士氣逃跑，觸發應屬駕駛員狀態，逃跑路徑則受機甲移動部位與地形限制。將方向掃描改為方格鄰接規則，保留有限搜尋與無路可走的處理，不讓部位毀損自動等同駕駛員潰逃。",
+   "design_note_ref": "地圖呈現；戰鬥系統路線；機甲結構；部位打壞的後果與傳到駕駛員",
+   "recommendation": "改造",
+   "why": "人物士氣與裝備可動性分開後，逃跑才符合機甲即裝備的裁示。",
+   "open_question": "是否採用駕駛員士氣潰逃，並讓它暫時接管玩家單位的移動？"
+  },
+  {
+   "id": "AI-17",
+   "domain": "AI",
+   "bb_mechanic": "一般 Retreat 受場景禁撤、控制區與勇氣相關條件限制，依存活盟友相對初始兵力及敵我數量決定是否候選。它搜尋邊界格並評估路徑及危險，到邊界才退場；特定合約可注入不要求一般兵力／士氣門檻的 RetreatAlways。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-retreat-heat.md § Flee與Retreat",
+   "mecha_adaptation": "把有意撤離與士氣逃跑分開，將任務退場區及准撤條件做成地圖／任務資料，不固定只能從邊界撤離。退場結果分開保存駕駛員與機甲裝備狀態，是否棄機另待裁示。",
+   "design_note_ref": "戰鬥規模與地圖；營運層；戰鬥系統路線；架構",
+   "recommendation": "改造",
+   "why": "可配置撤離條件能支援大小地圖與不同任務，也不預設駕駛員和機甲共同存亡。",
+   "open_question": "撤離是否只允許整機離場，還要支援駕駛員棄機撤離？"
+  },
+  {
+   "id": "AI-18",
+   "domain": "AI",
+   "bb_mechanic": "啟用 UseHeat 的 agent 在評估時依已知敵人及其受控制區牽制情況重建 heat，接敵與撤退會把它當路徑成本。只有特定 agent 與玩家自動撤退會啟用；原生擴散、衰減及疊加方式未知，近戰評估與執行重算所用倍率也不同。",
+   "source": "/home/lorkhan/repo/moddings/battle-brothers/wf/workflows/investigations/ai-retreat-heat.md § Heat 已追到邊界",
+   "mecha_adaptation": "將此 heat 明稱空間威脅代價，與機甲武器熱量分開；若採用，依可感知敵人、可用武器及部位效果建立威脅圖。新作自行定義擴散與重算政策，並明定評估與提交成本是否一致，不宣稱還原原生實作。",
+   "design_note_ref": "戰鬥規模與地圖；機甲結構；部位打壞的後果與傳到駕駛員；架構",
+   "recommendation": "改造",
+   "why": "空間威脅可服務接敵與撤離，但來源只證明輸入與用途，不能借名補完熱量系統。",
+   "open_question": "哪些 AI 行為需要讀空間威脅圖：接敵、撤離，還是兩者都要？"
+  }
+ ]
+}

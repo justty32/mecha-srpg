@@ -1,0 +1,62 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "candidate",
+  "first_render_ms",
+  "turn_update_ms",
+  "headless_verification",
+  "runs_locally",
+  "maintenance_cost",
+  "data_driven_friendliness",
+  "risk",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "candidate": "純 TypeScript＋Vite（無框架）",
+   "first_render_ms": "65.8（中位數，5 次 62.0–71.0；領導重跑 66.1）",
+   "turn_update_ms": "30.9（中位數，含兩次 rAF）",
+   "headless_verification": "node --test＋happy-dom 1 test pass；Playwright 1.64 beta headless chromium 2 斷言 pass",
+   "runs_locally": "是（node 24.14.1、npm、~/.cache/ms-playwright chromium-1248 直接用）",
+   "maintenance_cost": "最低依賴（4 個 devDep、node_modules 約 104 MB），但 UI 增減要自己寫 DOM 同步碼，營運層選單多了會變成手刻框架",
+   "data_driven_friendliness": "好：狀態與 DOM 分開，邏輯可在 node 純跑；新增地形改 1 處資料表",
+   "risk": "DOM 更新全靠手寫，規模大後易出不同步 bug；120×120 以上地圖（全量 DOM 節點）未測",
+   "evidence": "/tmp/lead-techstack-spike/logs/vanilla-perf.log, vanilla-nodetest.log, vanilla-playwright.log"
+  },
+  {
+   "candidate": "Lit 3＋Vite（TypeScript，web components）",
+   "first_render_ms": "96.9（中位數，5 次 95.0–104.5）",
+   "turn_update_ms": "25.0（中位數，含兩次 rAF）",
+   "headless_verification": "node --test＋happy-dom 1 test（2 PASS 斷言）pass；Playwright headless 2 斷言 pass",
+   "runs_locally": "是",
+   "maintenance_cost": "低：一個執行期依賴（lit），模板宣告式；node_modules 約 110 MB",
+   "data_driven_friendliness": "好：元件吃資料物件，可與純 TS 邏輯層解耦；選單式營運層寫起來比無框架省事",
+   "risk": "shadow DOM 讓測試選取器要穿透；全量重渲 14400 格靠 lit diff，未做細粒度子元件；大地圖未測",
+   "evidence": "/tmp/lead-techstack-spike/logs/lit-perf.log, lit-nodetest.log, lit-playwright.log"
+  },
+  {
+   "candidate": "Svelte 5＋Vite（TypeScript，runes）",
+   "first_render_ms": "321.8（中位數，5 次 298.1–344.5）",
+   "turn_update_ms": "30.7（中位數，含兩次 rAF）",
+   "headless_verification": "node --test（tap）＋happy-dom 2 pass；Playwright headless 2 斷言 pass",
+   "runs_locally": "是",
+   "maintenance_cost": "中：需編譯器外掛（vite-plugin-svelte），6 個 devDep、node_modules 約 112 MB；.svelte 檔對 agent 讀寫友善度略低於純 TS",
+   "data_driven_friendliness": "好：$state 響應式，資料改了畫面自動跟；邏輯仍可抽成純 TS",
+   "risk": "首次渲染是其他網頁候選的 3–5 倍（14400 個 keyed button）；格子用 button＋20px 與其他線口徑略不同",
+   "evidence": "/tmp/lead-techstack-spike/logs/svelte-perf.log, svelte-nodetest.log, svelte-playwright.log"
+  },
+  {
+   "candidate": "Godot-mono 4.7.2 headless（GDScript UI＋C# 邏輯可編）",
+   "first_render_ms": "114.5（中位數，建 14400 個 ColorRect＋2 幀；dummy renderer 不真的畫）",
+   "turn_update_ms": "13.8（中位數，含 2 幀；C# 純邏輯一回合 0.122 ms）",
+   "headless_verification": "godot-mono --headless -s spike.gd：3 PASS（含 push_input 真實點擊管線）exit 0；C# dotnet build（net10.0、本機 nupkgs 離線）＋headless 跑 CS_PASS",
+   "runs_locally": "是（godot-mono 4.7.2、dotnet 10.0.111）",
+   "maintenance_cost": "中高：場景樹＋GDScript／C# 兩語言、.csproj 與 Godot 版本綁定；不是網頁，與「網頁遊戲」目標相背",
+   "data_driven_friendliness": "中：Resource／JSON 皆可，但 UI 節點與邏輯容易寫在一起，要靠紀律解耦",
+   "risk": "headless 用 dummy renderer，無法驗證畫面像素；ms 與瀏覽器口徑不可直接比（幀不鎖 vsync）；網頁匯出未測",
+   "evidence": "/tmp/lead-techstack-spike/logs/godot-spike.log, godot-cs.log"
+  }
+ ]
+}
