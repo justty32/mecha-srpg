@@ -1,0 +1,235 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "term",
+  "meaning",
+  "where"
+ ],
+ "link_columns": [
+  "where"
+ ],
+ "rows": [
+  {
+   "term": "人物 Person",
+   "meaning": "駕駛員或機魂；同一型別，kind 只分流成長欄位",
+   "where": "data-model-people.md#persondef內容檔與-personstate存檔"
+  },
+  {
+   "term": "機魂 soul",
+   "meaning": "機械系 AI，是人物不是部件；靠科研方向與陪伴點天賦樹",
+   "where": "rules-people.md#機魂成長與控制權"
+  },
+  {
+   "term": "意志軸 Will",
+   "meaning": "人物上的信念、承擔、共鳴、天賦樹欄位組；三用法共用",
+   "where": "data-model-people.md#意志軸-willdefwillstate三用法同一欄位組"
+  },
+  {
+   "term": "共鳴 resonance",
+   "meaning": "人物與古代機體／部件的契合度 0..1；是神異能力的門檻與加成",
+   "where": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權"
+  },
+  {
+   "term": "承擔 burden",
+   "meaning": "生物機體／部件每回合壓到指令權者的狂暴意志量；愈高愈強、超限失控",
+   "where": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權"
+  },
+  {
+   "term": "失控 berserk",
+   "meaning": "承擔超限：單位移到 berserk slot、AI 接管、敵我不分",
+   "where": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權"
+  },
+  {
+   "term": "機體 Frame",
+   "meaning": "一種機甲型號；古代機甲每台一個 FrameDef；指向 body plan",
+   "where": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part"
+  },
+  {
+   "term": "body plan",
+   "meaning": "部位佈局：部位清單、各部位的層序列、槽、功能、後果與傳導",
+   "where": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part"
+  },
+  {
+   "term": "部位 Part",
+   "meaning": "body plan 的一個節點；沒有獨立 HP，HP 全在層上；功能標籤決定能做什麼",
+   "where": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part"
+  },
+  {
+   "term": "層 Layer",
+   "meaning": "部位內由外到內的一段：類型、HP、ablative、抗性、穿透、是否結構層",
+   "where": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part"
+  },
+  {
+   "term": "結構層 structural",
+   "meaning": "歸零即部位毀損的層",
+   "where": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part"
+  },
+  {
+   "term": "ablative",
+   "meaning": "true＝擋下即扣 HP（BB 護甲）；false＝不消耗的減傷（ToME 護甲／力場）",
+   "where": "rules-attack-resolution.md#4-沿層序列核心演算法"
+  },
+  {
+   "term": "傳導 conduct",
+   "meaning": "層／部位事件對座位人物掛效果的規則（傷勢、承擔、共鳴變動）",
+   "where": "rules-attack-resolution.md#56-毀損鉤子與傳導"
+  },
+  {
+   "term": "部件 Component",
+   "meaning": "插進部位槽的裝備；可帶池、貢獻、能力、層、意志要求；本身是一層",
+   "where": "data-model-mech.md#部件-componentdef"
+  },
+  {
+   "term": "資源池 Pool",
+   "meaning": "有 min/max/regen/帶 的計量；機體、部件、人物都能宣告；AP、疲勞、HP、熱量、承擔皆是池",
+   "where": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告"
+  },
+  {
+   "term": "hard／soft 上限",
+   "meaning": "hard 夾限；soft 允許超載進超載帶",
+   "where": "rules-resources-effects.md#資源池實例與求值"
+  },
+  {
+   "term": "反向池 inverted",
+   "meaning": "越高越糟的池（熱量、疲勞、承擔）；成本是加不是減",
+   "where": "rules-resources-effects.md#成本與產出"
+  },
+  {
+   "term": "閾值帶 band",
+   "meaning": "池值區間→互斥效果；用 whileSource 時鐘自動切換",
+   "where": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻"
+  },
+  {
+   "term": "能力 Ability",
+   "meaning": "唯一的主動動詞來源：模式、成本、產出、目標、傷害包、效果、AI 權重",
+   "where": "data-model-abilities-effects.md#abilitydef"
+  },
+  {
+   "term": "傷害包 DamagePacket",
+   "meaning": "一筆有類型的傷害；可過濾層、帶穿透與傳導加成",
+   "where": "data-model-abilities-effects.md#abilitydef"
+  },
+  {
+   "term": "效果 Effect",
+   "meaning": "有 scope、時鐘、疊加政策、貢獻、鉤子的狀態；傷勢、士氣、帶、特質全是效果",
+   "where": "data-model-abilities-effects.md#effectdef-與-effectinstance"
+  },
+  {
+   "term": "鉤子動詞 HookAction",
+   "meaning": "程式提供的封閉動詞集合（damage/pool/apply/remove/setControl/moraleCheck/spawn/emit）",
+   "where": "data-model-abilities-effects.md#effectdef-與-effectinstance"
+  },
+  {
+   "term": "貢獻 Contribution",
+   "meaning": "對某 path 的可撤回加減乘；屬性當前值＝底值＋貢獻",
+   "where": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻"
+  },
+  {
+   "term": "NumExpr",
+   "meaning": "結構化數值運算式（number／ref／sum／product／pick）；無字串 DSL",
+   "where": "data-model-abilities-effects.md#data-model-abilities-effects--能力效果numexpr"
+  },
+  {
+   "term": "指令權者",
+   "meaning": "本回合替單位下指令的人物，由 controlMode 決定；AP 從他的池扣",
+   "where": "rules-turn-and-actions.md#名詞"
+  },
+  {
+   "term": "controlMode",
+   "meaning": "pilot／soul／shared／contested／berserk／none／disabled",
+   "where": "data-model-people.md#座艙關係-seatrole-與控制模式"
+  },
+  {
+   "term": "輪 round／回合 turn",
+   "meaning": "輪＝全員各動一次；回合＝一個單位的行動段",
+   "where": "rules-turn-and-actions.md#名詞"
+  },
+  {
+   "term": "Wait",
+   "meaning": "保留 AP 移到隊尾，每輪一次",
+   "where": "rules-turn-and-actions.md#一個回合的流程"
+  },
+  {
+   "term": "reaction",
+   "meaning": "由事件觸發的能力模式：機會攻擊、反擊、掩護、自動開盾",
+   "where": "rules-turn-and-actions.md#反應能力-reaction"
+  },
+  {
+   "term": "全局修正表",
+   "meaning": "sourceTag×targetTag→倍率；十分之一規則住在這裡",
+   "where": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈"
+  },
+  {
+   "term": "derelict",
+   "meaning": "棄機後留場的無人機甲單位；可被占、戰後可回收",
+   "where": "rules-battle-flow.md#棄機-eject"
+  },
+  {
+   "term": "infantry",
+   "meaning": "棄機後徒步駕駛員的 frame",
+   "where": "rules-battle-flow.md#棄機-eject"
+  },
+  {
+   "term": "捕捉 capture",
+   "meaning": "對條件達成的 kaiju 用拘束能力→轉為生物 frame",
+   "where": "rules-battle-flow.md#rules-battle-flow--部署撤離棄機捕捉勝負戰後"
+  },
+  {
+   "term": "族 Species／個體 Monster",
+   "meaning": "怪獸族＝body plan＋等級範圍＋可選行為；個體＝命名變體",
+   "where": "data-model-world.md#data-model-world--地形地圖勢力怪獸族與個體情境"
+  },
+  {
+   "term": "spawner／molt／territorial／telegraph",
+   "meaning": "族的可選行為：生子體／蛻皮／擴散地形／意圖宣告",
+   "where": "data-model-world.md#data-model-world--地形地圖勢力怪獸族與個體情境"
+  },
+  {
+   "term": "FactionSlot",
+   "meaning": "一場戰鬥裡的陣營位（player／enemy／berserk…）；FactionDef 是世界勢力",
+   "where": "data-model-world.md#勢力-factiondef世界圖上的任何集團"
+  },
+  {
+   "term": "FactionKnowledge",
+   "meaning": "陣營共享的已知資訊；AI 與玩家 UI 都只讀它",
+   "where": "ai.md#知識模型ai-05-不採用全知名單"
+  },
+  {
+   "term": "Strategy／Agent／Policy",
+   "meaning": "AI 三層：陣營分工／單位記憶／可插拔選招邏輯",
+   "where": "ai.md#三層strategy陣營-agent單位-policy可插拔"
+  },
+  {
+   "term": "want",
+   "meaning": "AI 的需求分（survive／kill／disable…），乘上能力 ai.tactics",
+   "where": "ai.md#回合流程通用-tactical-policy"
+  },
+  {
+   "term": "事件 Event",
+   "meaning": "每個狀態變化一筆；UI、文字、測試的唯一來源",
+   "where": "architecture.md#狀態與事件"
+  },
+  {
+   "term": "重播 replay",
+   "meaning": "seed＋指令序列→逐位元相同日誌",
+   "where": "architecture.md#決定性與重播"
+  },
+  {
+   "term": "ContentDB",
+   "meaning": "載入所有 pack 後的唯讀內容庫；後載入可覆寫同 id",
+   "where": "content-format.md#content-format--資料夾佈局id-命名json-範例新增-x-要改哪些檔"
+  },
+  {
+   "term": "registries",
+   "meaning": "內容包的列舉登記（屬性、層類型、傷害類型、功能、槽、移動方式、戰術）",
+   "where": "content-format.md#content-format--資料夾佈局id-命名json-範例新增-x-要改哪些檔"
+  },
+  {
+   "term": "ViewModel",
+   "meaning": "ui-adapter 對 DOM 的契約：viewport、cell、dirty、unit、text、commands",
+   "where": "architecture.md#ui-adapter-的介面契約"
+  }
+ ]
+}

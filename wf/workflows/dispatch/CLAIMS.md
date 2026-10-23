@@ -9,7 +9,6 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `plan-world-v2`（Fable 規劃線）| `wf/workflows/planning/specs/world/`（原地修訂）、`wf/workflows/dispatch/handoffs/plan-world-v2/` | 其餘全部唯讀；`specs/core/` 禁區；不 commit | 2026-10-24 00:05 |
-| `plan-spec`（Fable 規劃線）| `wf/workflows/planning/specs/core/`、`wf/workflows/dispatch/handoffs/plan-spec/` | 其餘全部唯讀；不 commit | 2026-10-23 23:45 |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -21,6 +20,6 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
+2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`（`handoffs/done/2026-10-24/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
 
 收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。

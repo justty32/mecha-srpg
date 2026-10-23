@@ -1,0 +1,1067 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-23",
+ "columns": [
+  "id",
+  "volume",
+  "status",
+  "spec_section",
+  "note",
+  "table_path"
+ ],
+ "link_columns": [
+  "spec_section",
+  "table_path"
+ ],
+ "rows": [
+  {
+   "id": "CMB-01",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-turn-and-actions.md#一輪的順序cmb-01-採用",
+   "note": "輪始全局→排序→逐單位→輪末；排序每輪一次",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-02",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-turn-and-actions.md#一個回合的流程",
+   "note": "Wait 保留 AP 移隊尾、不再跑 TurnStart 更新、每輪一次",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-03",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "AP／疲勞皆為人物池；疲勞回復固定量不裁切",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-04",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "原作重扣 bug；成本一次求值、預覽與實扣共用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-05",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "③ 前失敗不扣、④ 後失敗不退費",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-06",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "逐格結算、不足整步不扣；尋路偏好與實扣分離",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-07",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#反應能力-reaction",
+   "note": "機會攻擊是 reaction 能力、挑 AP 最低近戰、免費",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-08",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#反應能力-reaction",
+   "note": "反擊 oncePer:action 防重複觸發",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-09",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "門檻＋上下限夾；不做防禦重擲",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-10",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "盾不另擲骰，盾是層",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-11",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "保留遮擋換目標，不做散射",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-12",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "rules-attack-resolution.md#3-選部位",
+   "note": "不用頭／身二分；改暴露權重抽部位",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-13",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#4-沿層序列核心演算法",
+   "note": "HP 傷與甲傷統一為沿層 ablative；穿透改走 passThrough",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-14",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "節點固定、內容在資料；加全局修正表",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-15",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#鉤子分派順序",
+   "note": "order→id 字典序分派",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-16",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "不全重算；派生值局部重算（採 TM-34）",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-17",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "預覽在複製狀態上跑、無副作用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-18",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#鉤子分派順序",
+   "note": "pending／garbage 延後安裝回收；新加者不補跑",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-19",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "部件授予能力綁來源；來源消失連帶撤除（whileSource）",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-20",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "統一時鐘種類表取代效果自管時鐘",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-21",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "與 TM-29 合成 stack.policy 五種",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CMB-22",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "DOT 走 HookAction damage，不經攻擊入口",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-01",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "data-model-people.md#persondef內容檔與-personstate存檔",
+   "note": "特質／perk／傷勢皆為人物容器裡的效果；底值＋貢獻",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-02",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-people.md#成長來源",
+   "note": "生成區間修正交營運層；引擎只讀 attrsBase",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-04",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "data-model-people.md#成長來源",
+   "note": "預骰在生成時決定，引擎不重抽",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-06",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-people.md#成長來源",
+   "note": "levelDice 預骰；升級在營運層",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-08",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-people.md#成長來源",
+   "note": "perk 點依層級；機魂改用 research／companionship 兩種點",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-10",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權",
+   "note": "傷勢為效果 injury:temporary、days 時鐘",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-11",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權",
+   "note": "永久傷只能被 cleanse 效果移除",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-12",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權",
+   "note": "士氣檢定修正走效果 contribs，檢定事件在資料",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-13",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-battle-flow.md#battleresult交給營運層的唯一介面",
+   "note": "戰後心情交營運層，引擎只給 BattleResult",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-15",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-battle-flow.md#撤離-retreat整機",
+   "note": "個別單位各自撤離，不要求全員在邊",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-16",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-people.md#戰後延續",
+   "note": "清疲勞／士氣／uses；不補 HP、不清永久傷",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-17",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#8-後續",
+   "note": "擊殺即發 XP：擊殺者 60%、其餘平分同 slot 在場",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-18",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "rules-attack-resolution.md#8-後續",
+   "note": "原作 return 中斷分配 bug，不沿用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "CHR-21",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-battle-flow.md#rules-battle-flow--部署撤離棄機捕捉勝負戰後",
+   "note": "結束只進一次：BattleEnd 事件後拒絕任何指令",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-01",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "ai.md#三層strategy陣營-agent單位-policy可插拔",
+   "note": "Strategy（陣營）＋Agent（單位）",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-02",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "候選評分為純函式、無副作用；分工走 Assignment",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-03",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "前段 band 加權抽選；band 可調成 1",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-04",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "AI 與玩家同一 tryCommand",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-05",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "ai.md#知識模型ai-05-不採用全知名單",
+   "note": "不用全知名單；FactionKnowledge＋lastSeen 過期",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-06",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#三層strategy陣營-agent單位-policy可插拔",
+   "note": "攻守短路鏈改成 Strategy 單一 stance 值",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-07",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "ai.md#三層strategy陣營-agent單位-policy可插拔",
+   "note": "被風箏判斷依賴座標界線，不通用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-08",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "targetValue 用 previewCommand 在知識狀態上估",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-09",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "能力×目標×站位全枚舉後評分，不先抽技能",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-10",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "原作 Bow 評分混用問題，不沿用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-11",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#範圍攻擊與友傷ai-11-改造",
+   "note": "敵價值−友價值×懲罰；berserk 懲罰 0",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-12",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "尋路與本回合可達前段分離；失敗不沿用舊路徑",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-13",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "站位粗篩再尋路前 N 個",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-14",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "遠程站位含危險與可見性",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-15",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#三層strategy陣營-agent單位-policy可插拔",
+   "note": "接敵登記由 Strategy 的 Assignment 承接",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-16",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-people.md#rules-people--士氣傷勢共鳴承擔與失控機魂成長控制權",
+   "note": "fleeing 由 flee Policy 接管，玩家單位亦然",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-17",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "retreat 需求由兵力比與士氣求值",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "AI-18",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "危險圖（heat map）接敵與撤退共用",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-01",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "結算順序固定寫在 tryCommand，不靠 hook 回傳值",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-02",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "預覽無副作用是硬規定",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-03",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "content-format.md#content-format--資料夾佈局id-命名json-範例新增-x-要改哪些檔",
+   "note": "Def（唯讀 ContentDB）與 State 分離",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-04",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#機甲實例-mechstate",
+   "note": "單位強持有部件與效果容器",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-06",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "不採全重算，見 TM-34",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-07",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "architecture.md#存檔格式",
+   "note": "存檔以指令序列為真相、snapshot 可選",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-09",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-battle-flow.md#戰鬥生命週期",
+   "note": "戰鬥時間與營運層時間分離；BattleResult 單一出口",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-11",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "architecture.md#模組與允許的依賴只能往下",
+   "note": "暫停／速度屬 ui-adapter，引擎無時間概念",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "DAT-14",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "architecture.md#決定性與重播",
+   "note": "seed 全程保存在 BattleState.rng，不以 real time 重設",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-01",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "不做精神指令（decisions 第 7 題）",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-02",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "「下一次」型效果用 uses 時鐘表達",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-03",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "不做氣力；事件推高、平時衰減的池用 decayCurve 可表達",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-04",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "門檻解鎖＝池帶效果；加成＝contribs",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-05",
+   "volume": "BB",
+   "status": "採用",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "武器資料欄對應 AbilityDef：射程、命中、彈數（ammoPool）、EN（costs）、傷害類型",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-06",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "合體技＝require 含友軍相鄰條件＋costs 多方；留第二版",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-07",
+   "volume": "BB",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#3-選部位",
+   "note": "瞄準部位使其失能→部位 onBroken 效果；俘獲→捕捉規則",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "SRW-08",
+   "volume": "BB",
+   "status": "不採用",
+   "spec_section": "rules-attack-resolution.md#3-選部位",
+   "note": "單一 HP 模型不採",
+   "table_path": "../../../dispatch/handoffs/lead-combat-ref/mechanics.json"
+  },
+  {
+   "id": "TM-01",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "PoolDecl 即 defineResource；池 id 在 registries 外開放宣告",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-02",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "池掛機體／部件；部件毀→max 重算、超出依 capKind",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-03",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "min/max/inverted 分別宣告；max 可 null",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-04",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#資源池實例與求值",
+   "note": "統一在該單位 TurnStart 再生（decisions ToME 第 3 題）",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-05",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "decayCurve toward baseline，選用",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-06",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "costs 為池→NumExpr 映射；可引用 self/target 狀態",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-07",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#成本與產出",
+   "note": "全部成本一次判；soft＋allowOverload 可超載",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-08",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "失敗政策：③ 前不扣、④ 後不退",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-09",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "反噬＝反向池超載帶的 onTurnStart damage 動作（古代不穩定度池）",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-10",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#成本與產出",
+   "note": "sustain.lock 鎖 max",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-11",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#成本與產出",
+   "note": "drain 在 TurnEnd 扣",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-12",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#資源池實例與求值",
+   "note": "removeOnZero 在 onDepleted 處理",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-13",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "mode: activated/sustained/passive/reaction",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-14",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "AP 是 costs 清單裡的一筆、owner:person",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-15",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "cooldown 為 NumExpr，TurnStart −1",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-16",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "require: Cond[] 條件資料化",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-17",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "TargetSpec kind: ball/cone/line/part",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-18",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "require 檢查無副作用",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-19",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "mode 分派；sustained 安裝走 pending",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-20",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "部件能力等級以 Contribution 對 ability path 加成表達，不另設等級欄",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-21",
+   "volume": "ToME",
+   "status": "不採用",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "不等機率抽招",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-22",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "AI 與玩家同入口",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-23",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "候選自帶目標，評估與執行同一目標",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-24",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "tactics 權重×want×targetValue",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-25",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "want 需求分由 profile NumExpr 求值",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-26",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "ai.md#回合流程通用-tactical-policy",
+   "note": "混合：排序後前段加權抽（BB）而非先選類別取最高（ToME）",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-27",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "type/subtype 改用 tags 開放字串",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-28",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "EffectRef.params 參數化套用",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-29",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "merge 政策＋mergeOp，與 CMB-21 合成",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-30",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "統一時鐘表；預設 ownerTurns 非全局 rounds",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-31",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "hooks.onApply／onExpire",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-32",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "activate/deactivate 由 contribs 自動成對",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-33",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "onTick＝onTurnStart 鉤子",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-34",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "Contribution 帶 id、按 id 撤回（decisions ToME 另）",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-35",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "rules-resources-effects.md#rules-resources-effects--資源更新時機閾值帶效果時鐘疊加屬性貢獻",
+   "note": "同 source 連帶撤除",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-36",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "save: {attr, dc}",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-37",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "immuneTags",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-38",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#effectdef-與-effectinstance",
+   "note": "remove 動作按 tags 清除",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-39",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "content-format.md#content-format--資料夾佈局id-命名json-範例新增-x-要改哪些檔",
+   "note": "damage-types.json 登記",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-40",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "傷害類型轉換留作攻方 onHit contribs 的選項；第一版不實作",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-41",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#4-沿層序列核心演算法",
+   "note": "層 resist 相乘",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-42",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#4-沿層序列核心演算法",
+   "note": "resistPen 與 armorPen 分開",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-43",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part",
+   "note": "親和（吸收傷害回血）用層 resist>1 的負傷害表達，不另設欄",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-44",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part",
+   "note": "護盾＝ablative 層＋regen",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-45",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "incomingReduce 節點",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-46",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#56-毀損鉤子與傳導",
+   "note": "傷害轉移＝ConductRule 的 damage 動作到座位人物",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-47",
+   "volume": "ToME",
+   "status": "不採用",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "不採攻防差曲線，採 BB 門檻",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-48",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part",
+   "note": "ablative=false 層即 ToME 式護甲",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-49",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-attack-resolution.md#rules-attack-resolution--命中部位層序列傳導傷害修正鏈",
+   "note": "crit 機率×critFactor",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-50",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "attrMods 為 Contribution，裝卸成對",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-51",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "詞綴＝部件 tags 與名稱模板，營運層生成時組合",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-52",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-resources-effects.md#鉤子分派順序",
+   "note": "on-hit 類鉤子依 order＋id 分派",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-53",
+   "volume": "ToME",
+   "status": "採用",
+   "spec_section": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part",
+   "note": "古代機甲每台一個 FrameDef＝unique 定義",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-54",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "rules-turn-and-actions.md#rules-turn-and-actions--回合結構速度排序ap-與移動行動入口",
+   "note": "與 CMB-05／TM-08 合成同一失敗政策",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-55",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "部件授予能力，可要求部件自身池（ammoPool）",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-56",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#資源池-pooldecl機體部件人物三處都能宣告",
+   "note": "部件專屬充能＝部件宣告的池",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-57",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-abilities-effects.md#abilitydef",
+   "note": "命中附帶效果走 effects on:hit＋chance；oncePer 防再觸發",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-58",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "穿脫成對＝contribs 與 whileSource 效果",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-59",
+   "volume": "ToME",
+   "status": "改造",
+   "spec_section": "data-model-mech.md#部件-componentdef",
+   "note": "套裝效果留第二版：以 require 含「某部件已裝」條件表達",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  },
+  {
+   "id": "TM-60",
+   "volume": "ToME",
+   "status": "不採用",
+   "spec_section": "data-model-mech.md#五層資料frame--bodyplan--part--layercomponent-插進-part",
+   "note": "不以隨機拼接決定唯一機體能力",
+   "table_path": "../../../dispatch/handoffs/lead-tome4-ref/mechanics-tome4.json"
+  }
+ ]
+}

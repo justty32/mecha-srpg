@@ -65,3 +65,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `plan-spec`，團隊無（直屬頂層）。你是 Claude 子 agent，不走 inbox：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。不要用結束回合當等待；不要問使用者問題，想問的寫進「替使用者做掉的決定清單」。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `specs/core/README.md` 含 Mermaid 模組圖與導航；12 子檔 4,958–7,668 bytes。2. `constraints.json` 57 列（欄：source／constraint／spec_section），design-notes 26 個粗體段皆對應。3. `adoption.json` 131 列（BB 71＋ToME 60），欄含 volume／status／spec_section。4. `content-format.md` 有「新增機甲／部件／駕駛員或機魂／地形／怪獸族」五條與 5 個 JSON 範例。5. `wf-lint.sh --strict .` 對 core 目錄 0 錯；收線當下全 repo 的 3 條 BROKEN 皆為 `specs/world/`（plan-world-v2 現役線）寫到一半的 `machine-souls.md`。6. REPORT 含「5 個設計決定」「替使用者做掉的決定」「建議的實作切線」。

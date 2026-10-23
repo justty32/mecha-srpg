@@ -12,8 +12,8 @@
 ## 最新進度
 
 - [dispatch] 現役 Fable 規劃線 `plan-world-v2`（套用使用者今晚的推翻與補充，原地修訂 `specs/world/`）→ 收線後世界觀告一段落
-- [dispatch] 現役 Fable 規劃線 `plan-spec`（核心引擎 spec：資料模型／規則／AI／內容格式／架構 → `planning/specs/core/`）→ 收線後 SPEC.md 改指向新 spec，依其「建議的實作切線」開實作團隊
 - [planning] 專案重做為網頁文字 SRPG（[decisions](workflows/decisions.md)）；舊 Python 版 open 項已作廢 → spec 定案後封存 `src/`／`cpp/`／`docs/` 為 legacy
+- [planning] 核心引擎 spec v1 已收線（[specs/core](workflows/planning/specs/core/README.md)，含 9 條實作切線建議）→ world v2 收線後 SPEC.md 改指向、開實作團隊
 - [planning] 四條調查／規劃線已收線（技術棧、BB 卷、ToME 卷、世界觀 v1），證據在 `workflows/dispatch/handoffs/done/2026-10-23/`
 
 ## 各工作流 session-log
