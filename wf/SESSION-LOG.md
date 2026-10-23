@@ -12,6 +12,7 @@
 ## 最新進度
 
 - [planning] 2026-10-23 專案重做為網頁文字 SRPG（決定見 [decisions](workflows/decisions.md)）；舊程式碼四條 open（介面統一／pytest／mtcore／HTML 導覽）隨之作廢已刪 → 等使用者世界觀／戰鬥系統輸入後由 Fable 寫 spec
+- [dispatch] 現役 Opus 領導線 `lead-tome4-ref`（ToME4 資源／天賦／效果／AI → 機制表第二卷）→ 收線後與 BB 卷合併進 spec
 - [dispatch] 現役 Fable 規劃線 `plan-world`（世界觀＋營運層；已改令 SS／SSS 先不設計）→ 收線後把三份結論整理給使用者，Fable 寫 spec
 - [planning] 已收線：`lead-techstack`（建議純 TS＋Vite，備案 Lit）、`lead-combat-ref`（107 列機制表）→ 結論待使用者拍板（見 handoffs/done/2026-10-23/）
 

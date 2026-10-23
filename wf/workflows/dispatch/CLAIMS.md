@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| `lead-tome4-ref`（Opus 領導，團隊 `tome4ref`）| `wf/workflows/dispatch/handoffs/lead-tome4-ref/`、ROSTER 自己與工人那格、`wf/inbox/` | 其餘全部唯讀；`~/repo/moddings/tome4` 唯讀；不 commit | 2026-10-23 23:05 |
 | `plan-world`（Fable 規劃線）| `wf/workflows/planning/specs/world/`、`wf/workflows/dispatch/handoffs/plan-world/` | 其餘全部唯讀；不 commit | 2026-10-23 22:20 |
 
 ## 保留給調度者，任何線都不得寫
