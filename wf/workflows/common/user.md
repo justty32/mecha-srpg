@@ -14,12 +14,12 @@ agent 不用重猜的事。always-on 鐵律在 AGENTS.md，這裡是**這位使�
 | 項目 | 設定 |
 |------|------|
 | 語言 | 回覆與文件繁中；程式碼識別字英文（既有註解為中文，沿用） |
-| 分支慣例 | 2026-10-23 已 `git init -b main`：單分支 `main` 直接 commit；**不 push**（沒有 remote，將來要 push 也要使用者當場確認）|
+| 分支慣例 | 2026-10-23 已 `git init -b main`：單分支 `main` 直接 commit；**允許隨意 push**（2026-10-24 裁示；目前沒有 remote，有 remote 後 push 不用先問）|
 | 直接做、不用問 | 改文件、加測試、跑唯讀指令與 `wf-lint`；2026-10-24 已授權 `typescript` 為唯一 devDependency（只做型別檢查，不參與執行）|
-| 一定先問 | push、刪檔、安裝依賴（任何套件管理器的 install，含 npm／pnpm）、動到本專案以外的檔案（對外動作依鐵律 2）|
+| 一定先問 | 刪檔、安裝依賴（任何套件管理器的 install，含 npm／pnpm）、動到本專案以外的檔案（對外動作依鐵律 2）|
 | 回覆風格 | 通用風格見 [reply-style.md](reply-style.md)；這位使用者的例外：短、先結論；不要每段都 bullet；使用者問「要不要」時附**可執行判準**（門檻數字）與後果，讓他能改數字 |
 | 時區 | Asia/Taipei |
 
-**團隊與禁區（使用者 2026-10-23 定）**：團隊配置是頂層 Fable 5.1（主 session）→ 領導 Opus（Agent tool）→ 工人 codex gpt，規劃交給 Fable，細節見 [team-model](../team-model.md)。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 與刪檔一律先問。
+**團隊與禁區（使用者 2026-10-23 定）**：團隊配置是頂層 Fable 5.1（主 session）→ 領導 Opus（Agent tool）→ 工人 codex gpt，規劃交給 Fable，細節見 [team-model](../team-model.md)。2026-10-24 補充：主 session 派工時普通工作交給 Opus、簡單工作交給 Sonnet；隊伍數量無上限。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24），刪檔一律先問。
 
 領域詞彙常猜錯 → 開 `glossary.md`（見 [common/README](README.md)）。

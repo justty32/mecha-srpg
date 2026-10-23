@@ -28,7 +28,7 @@
 
 **實質工作的 agent 先親自讀 wf 規矩**（`AGENTS.md` → 本線用到的工作流入口與 [common/user](common/user.md)），不能只靠上層摘要；簡單工作與雜活例外。交接書範本的「先讀」行就是為此（[TEMPLATE.handoff](TEMPLATE.handoff.md)）。
 
-**硬禁區（全專案，每一層都適用）**：絕不碰鍵盤、螢幕、滑鼠；不開 GUI 視窗；Godot 只准 `godot-mono --headless`；不 push；刪除要使用者確認。
+**硬禁區（全專案，每一層都適用）**：絕不碰鍵盤、螢幕、滑鼠；不開 GUI 視窗；Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24）；刪除要使用者確認。
 
 **資源授權的源頭是使用者**——頂層只是代為分配，不能自己創造授權（見 [resources](resources.md)）。頂層對使用者說話要適合理解：初次出現的東西先用白話講一句；預設不必逐項翻譯。頂層可開**私人輔助者**（查資料、盤點），不算團隊 headcount，沒指定就默認兩個，優先用 codex 線。
 
