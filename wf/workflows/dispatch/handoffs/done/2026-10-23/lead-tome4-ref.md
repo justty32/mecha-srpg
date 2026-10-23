@@ -75,3 +75,8 @@ REPORT 四段（做了什麼／產出／沒做到或證據不足的／需要決�
 ## 完成／阻塞回報（必做）
 
 我是 `lead-tome4-ref`，團隊 `teams/tome4ref` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人（codex）走 inbox 回報給你。等工人時用前景 `wf/tools/inbox_poll.sh lead-tome4-ref --wait --timeout 540`，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-23 收線）
+
+1. REPORT.md 四段齊全。2. `mechanics-tome4.json` 60 列（資源 12／效果 12／傷害 11／物品 11／天賦 8／AI 6；採用 12／改造 46／不採用 2），`source` 皆為 `檔案:行號`、`recommendation` 無空值。3. 領導核 60/60，調度者再抽 5 列檔案皆存在於 tome4 repo。4. 五組各 ≥ 6 列、五條裁示皆有對應。5. wf-lint broken=0／residue=0／local=0。6. 無 codex 行程、團隊已 close、ROSTER 已標已收線。備註：交接書寫的 `modules/tome/class`、`modules/tome/ai` 實際在 `modules/tome/mod/` 下，表用實際路徑。

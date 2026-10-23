@@ -64,7 +64,7 @@
 - **訂閱主題**：無
 
 ### `lead-tome4-ref`
-- **狀態**：現役（2026-10-23 21:46 起）
+- **狀態**：已收線（2026-10-23 22:05）
 - **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出），把 ToME4 的資源／天賦／效果／傷害／物品與 AI 拆成機甲 SRPG「可選機制表」第二卷。
 - **團隊**：`teams/tome4ref`（領導；工人 `cx-tome-res`、`cx-tome-talent`、`cx-tome-effect`、`cx-tome-damage`、`cx-tome-item`，codex 沙箱寫不到本檔，由我代登記於此）
 - **上游**：頂層 `dispatcher`（行程內回傳，不走 inbox）

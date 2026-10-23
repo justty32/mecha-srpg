@@ -8,7 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-tome4-ref`（Opus 領導，團隊 `tome4ref`）| `wf/workflows/dispatch/handoffs/lead-tome4-ref/`、ROSTER 自己與工人那格、`wf/inbox/` | 其餘全部唯讀；`~/repo/moddings/tome4` 唯讀；不 commit | 2026-10-23 23:05 |
+| （目前無）| | | |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -20,6 +20,6 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
+2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
 
 收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。
