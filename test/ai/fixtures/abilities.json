@@ -1,0 +1,35 @@
+{
+  "stub:ability/claw": {
+    "id": "stub:ability/claw", "name": "爪擊", "mode": "activated",
+    "costs": [{"pool":"ap","owner":"mech","amount":1}], "produces": [], "require": [],
+    "target": {"kind":"unit","range":{"min":1,"max":1},"los":false,"friendly":"no"},
+    "partAim": {"allowed":true,"penalty":0},
+    "packets": [{"type":"physical","amount":25}], "effects": [], "tags": [],
+    "ai": {"tactics":{"attack":1,"disable":0.5},"targetPref":{"parts":["locomotion"]}}
+  },
+  "stub:ability/rifle": {
+    "id": "stub:ability/rifle", "name": "步槍", "mode": "activated",
+    "costs": [{"pool":"ap","owner":"mech","amount":2}], "produces": [], "require": [],
+    "target": {"kind":"unit","range":{"min":1,"max":4},"los":true,"friendly":"no"},
+    "accuracy": 10, "packets": [{"type":"physical","amount":30}], "effects": [], "tags": [],
+    "ai": {"tactics":{"attack":2}}
+  },
+  "stub:ability/scan": {
+    "id": "stub:ability/scan", "name": "偵察", "mode": "activated",
+    "costs": [{"pool":"ap","owner":"mech","amount":1}], "produces": [], "require": [],
+    "target": {"kind":"unit","range":{"min":0,"max":5},"los":true,"friendly":"no"},
+    "packets": [], "effects": [], "tags": ["scan"], "ai": {"tactics":{"scout":1}}
+  },
+  "stub:ability/mortar": {
+    "id": "stub:ability/mortar", "name": "迫擊砲", "mode": "activated",
+    "costs": [{"pool":"ap","owner":"mech","amount":2}], "produces": [], "require": [],
+    "target": {"kind":"ball","range":{"min":1,"max":5},"radius":1,"los":false,"friendly":"yes"},
+    "packets": [{"type":"physical","amount":35}], "effects": [], "tags": [], "ai": {"tactics":{"attackArea":2}}
+  },
+  "stub:ability/repair": {
+    "id": "stub:ability/repair", "name": "修復", "mode": "activated",
+    "costs": [{"pool":"ap","owner":"mech","amount":1}], "produces": [], "require": [],
+    "target": {"kind":"unit","range":{"min":0,"max":2},"los":false,"friendly":"only"},
+    "packets": [], "effects": [], "tags": [], "ai": {"tactics":{"heal":1}}
+  }
+}
