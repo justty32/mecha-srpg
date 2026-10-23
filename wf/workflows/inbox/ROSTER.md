@@ -41,35 +41,59 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/new/`（`inbox_mail.sh <我> --up …` 或 `--to dispatcher`）
 - **訂閱主題**：無
 
-### `lead-techstack`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；評估網頁技術棧 vs Godot headless，交選型報告。
-- **團隊**：`teams/techstack`
+### `lead-legacy-archive`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；把舊版 Python 專案封存進 `legacy/`，專案根與 wf 文件改指向網頁版 spec。
+- **團隊**：無（不開工人）
 - **上游**：dispatcher（行程內回傳，不走 inbox）
-- **領地**：`wf/workflows/dispatch/handoffs/lead-techstack/`（REPORT、matrix.json、子線交接書與其 REPORT）；spike 程式碼在 `/tmp/lead-techstack-spike/`
-- **答得出什麼**：各候選棧的實測渲染／更新 ms、headless 驗證路徑
-- **答不出什麼**：架構設計、資料模型、遊戲規則（歸頂層 spec）
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-techstack/`
+- **領地**：`legacy/`、根 `SPEC.md`／`PROJECT.md`／`README.md`、`AGENTS.md`、`.claude/commands/`、交接書列的 wf 文件、`wf/workflows/dispatch/handoffs/lead-legacy-archive/`
+- **答得出什麼**：舊檔搬到哪、哪些 wf 文件改了舊棧說法
+- **答不出什麼**：新程式碼、spec 內容
+- **怎麼找我**：無 inbox（行程內）
 - **訂閱主題**：無
 
-### `lead-combat-ref`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出），把 Battle Brothers 拆解消化成機甲 SRPG「可選機制表」。
-- **團隊**：`teams/combatref`（領導；工人 `cx-bb-combat`、`cx-bb-character`、`cx-bb-ai`、`cx-bb-ops`、`cx-bb-data`，codex 沙箱寫不到本檔，由我代登記於此）
-- **上游**：頂層 `dispatcher`（行程內回傳，不走 inbox）
-- **領地**：`wf/workflows/dispatch/handoffs/lead-combat-ref/` 與 `wf/workflows/dispatch/handoffs/lead-combat-ref.md` 的唯讀引用；工人各寫 `lead-combat-ref/cx-bb-<組>/`
-- **答得出什麼**：BB 戰鬥／人物／AI／營運／資料模型機制如何搬到機甲設定、建議採用與否
-- **答不出什麼**：世界觀、數值、程式碼、spec
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-combat-ref/`
+### `lead-impl-foundation`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；TS 地基（spec 切線 1＋2）：core 型別／RNG／NumExpr／事件日誌＋content 載入器與第一批資料。
+- **團隊**：`teams/foundation`（領導；工人 `cx-core-types`、`cx-core-rng-numexpr`、`cx-content`，codex 沙箱寫不到本檔，由我代登記於此）
+- **上游**：dispatcher（行程內回傳，不走 inbox）
+- **領地**：根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`、`content/base/`、`test/`、`wf/workflows/dispatch/handoffs/lead-impl-foundation/`
+- **答得出什麼**：core／content 的匯出介面、型別、loader 行為
+- **答不出什麼**：rules／ai／sim／ui（後續切線）
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-foundation/`
 - **訂閱主題**：無
 
-### `lead-tome4-ref`
-- **狀態**：已收線（2026-10-23 22:05）
-- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出），把 ToME4 的資源／天賦／效果／傷害／物品與 AI 拆成機甲 SRPG「可選機制表」第二卷。
-- **團隊**：`teams/tome4ref`（領導；工人 `cx-tome-res`、`cx-tome-talent`、`cx-tome-effect`、`cx-tome-damage`、`cx-tome-item`，codex 沙箱寫不到本檔，由我代登記於此）
-- **上游**：頂層 `dispatcher`（行程內回傳，不走 inbox）
-- **領地**：`wf/workflows/dispatch/handoffs/lead-tome4-ref/`；工人各寫 `lead-tome4-ref/cx-tome-<組>/`
-- **答得出什麼**：ToME4 資源池、天賦 schema 與 tactical AI、時效效果、傷害／抗性結算、ego／神器如何搬到機甲設定、建議採用與否
-- **答不出什麼**：世界觀、數值、程式碼、spec
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-tome4-ref/`
+### `cx-core-types`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/core/{ids,types-def,types-state,events,eventlog}.ts`＋`eventlog.test.ts`。
+- **團隊**：`teams/foundation`
+- **上游**：lead-impl-foundation
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-foundation/cx-core-types.md` 列的檔
+- **答得出什麼**：core 型別與事件日誌
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-core-types/`
 - **訂閱主題**：無
+
+### `cx-core-rng-numexpr`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/core/{rng,numexpr}.ts`＋測試。
+- **團隊**：`teams/foundation`
+- **上游**：lead-impl-foundation
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-foundation/cx-core-rng-numexpr.md` 列的檔
+- **答得出什麼**：PCG32 與 NumExpr 求值
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-core-rng-numexpr/`
+- **訂閱主題**：無
+
+### `cx-content`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/content/`、`schemas/`、`scripts/gen-schemas.ts`、`content/base/`。
+- **團隊**：`teams/foundation`
+- **上游**：lead-impl-foundation
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-foundation/cx-content.md` 列的檔
+- **答得出什麼**：內容載入、schema 驗證、base 內容包
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-content/`
+- **訂閱主題**：無
+
+已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)。
