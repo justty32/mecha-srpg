@@ -24,7 +24,7 @@
 | `codex exec -m gpt-6-astra -s workspace-write …`（配方見 `wf/workflows/dispatch/codex-exec.md`） | 可選：機械式改寫 wf 文件中的舊棧句子 |
 | `wf/tools/inbox_poll.sh lead-legacy-archive --wait --timeout 540` | 有開工人才需要 |
 | `python3 wf/tools/fix_moved_links.py` | 搬完後修 md 相對連結（先 `--help`） |
-| `bash wf/tools/wf-lint.sh --strict .` | 每批改完跑；最終要 broken=0（`specs/world/` 的在途連結除外） |
+| `bash wf/tools/wf-lint.sh --strict .` | 每批改完跑；最終要 broken=0（specs/world 的在途連結除外） |
 
 ## 資源與禁區
 

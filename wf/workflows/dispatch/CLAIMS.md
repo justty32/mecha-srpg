@@ -8,6 +8,8 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| `lead-legacy-archive`（Opus 領導）| `legacy/`（新建）、根 `SPEC.md`／`PROJECT.md`／`README.md`／`INTEGRATION_NOTES.md`／`pyproject.toml`／`CMakeLists.txt`／`requirements.txt`／`src/`／`cpp/`／`docs/`（搬走）、`AGENTS.md`、`.claude/commands/`、wf 文件（INDEX、code-map、conventions、dev-env、testing、planning、user、dispatch/README、TEMPLATE.handoff、tool-index、resources）、ROSTER 自己那格 | `specs/world/`、`specs/core/`、design-notes、decisions；可 commit `legacy: ` | 2026-10-24 00:40 |
+| `lead-impl-foundation`（Opus 領導，團隊 `foundation`）| 根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`、`content/base/`、`test/`、ROSTER 自己與工人那格 | 等 legacy 線搬完才寫 `src/`；`legacy/`、`wf/`（除 handoffs 自己目錄）禁；可 commit `foundation: `；不裝套件 | 2026-10-24 00:40 |
 | `plan-world-v2`（Fable 規劃線）| `wf/workflows/planning/specs/world/`（原地修訂）、`wf/workflows/dispatch/handoffs/plan-world-v2/` | 其餘全部唯讀；`specs/core/` 禁區；不 commit | 2026-10-24 00:05 |
 
 ## 保留給調度者，任何線都不得寫

@@ -31,7 +31,7 @@
 
 ## 資源與禁區
 
-- **可寫程式碼線**：只寫「範圍」列的路徑：根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`（只放 gen-schemas）、`content/base/`、`test/`、ROSTER 自己與工人那格、自己的 REPORT 與子線交接書（`wf/workflows/dispatch/handoffs/lead-impl-foundation/`）。可跑 `node`、`node --test`、`npm run <script>`（不含 install）。**可以 commit**：只加明確路徑，訊息開頭 `foundation: `；工人若 `-C` 專案根也可 commit 自己清單內的檔；**不得 `git add -A`、不得收進 `legacy/` 或 `specs/world/`**。
+- **可寫程式碼線**：只寫「範圍」列的路徑：根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`（只放 gen-schemas）、`content/base/`、`test/`、ROSTER 自己與工人那格、自己的 REPORT 與子線交接書（`wf/workflows/dispatch/handoffs/lead-impl-foundation/`）。可跑 `node`、`node --test`、`npm run NAME`（不含 install）。**可以 commit**：只加明確路徑，訊息開頭 `foundation: `；工人若 `-C` 專案根也可 commit 自己清單內的檔；**不得 `git add -A`、不得收進 `legacy/` 或 `specs/world/`**。
 
 共通禁區：不碰鍵盤、滑鼠、螢幕；不開 GUI；不 push、不建分支、不 rebase／reset 別人的 commit；**不 `npm install`／`pnpm add`／全域安裝**；不 `rm -rf`（暫存搬 `/tmp/lead-impl-foundation-trash/`）；不改 `~/.codex/config.toml`；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 `wf/workflows/dispatch/lessons.md`）；子代理上限 4 條 codex 工人＋1 個 Claude 子 agent；工人的 ROSTER 格由你代登記；量測或測試基準寫死在子線交接書（gpt-6-astra 會把上限當目標、會各自選不同基準，見 model-quirks）。分清錯誤來源：工具或環境出錯（node 跑不動 TS、沙箱拒寫）→ `BLOCKED`；工人寫的程式碼有 bug → 退回修，不算阻塞。
 
