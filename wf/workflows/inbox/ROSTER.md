@@ -41,48 +41,48 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/new/`（`inbox_mail.sh <我> --up …` 或 `--to dispatcher`）
 - **訂閱主題**：無
 
-### `lead-legacy-archive`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；把舊版 Python 專案封存進 `legacy/`，專案根與 wf 文件改指向網頁版 spec。
-- **團隊**：無（不開工人）
+### `lead-impl-rules`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；規則層（spec 切線 3＋4＋5）：`src/rules/`、情境與黃金測試。
+- **團隊**：`teams/rules`（領導；codex 工人格由我代登記於此）
 - **上游**：dispatcher（行程內回傳，不走 inbox）
-- **領地**：`legacy/`、根 `SPEC.md`／`PROJECT.md`／`README.md`、`AGENTS.md`、`.claude/commands/`、交接書列的 wf 文件、`wf/workflows/dispatch/handoffs/lead-legacy-archive/`
-- **答得出什麼**：舊檔搬到哪、哪些 wf 文件改了舊棧說法
-- **答不出什麼**：新程式碼、spec 內容
-- **怎麼找我**：無 inbox（行程內）
+- **領地**：`src/rules/`、`test/`、`content/base/`（新增為主）、`src/core/`／`src/content/`（只准新增）、`package.json`（只 scripts）、`wf/workflows/dispatch/handoffs/lead-impl-rules/`
+- **答得出什麼**：rules 層匯出介面、黃金情境、SPEC-GAP
+- **答不出什麼**：ai／sim／ui
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-rules/`
 - **訂閱主題**：無
 
-### `lead-impl-foundation`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；TS 地基（spec 切線 1＋2）：core 型別／RNG／NumExpr／事件日誌＋content 載入器與第一批資料。
-- **團隊**：`teams/foundation`（領導；工人 `cx-core`、`cx-content`，codex 沙箱寫不到本檔，由我代登記於此）
-- **上游**：dispatcher（行程內回傳，不走 inbox）
-- **領地**：根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`、`content/base/`、`test/`、`wf/workflows/dispatch/handoffs/lead-impl-foundation/`
-- **答得出什麼**：core／content 的匯出介面、型別、loader 行為
-- **答不出什麼**：rules／ai／sim／ui（後續切線）
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-foundation/`
-- **訂閱主題**：無
-
-### `cx-core`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/core/{rng,numexpr,eventlog}.ts`＋三支測試。
-- **團隊**：`teams/foundation`
-- **上游**：lead-impl-foundation
-- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-foundation/cx-core.md` 列的檔
-- **答得出什麼**：PCG32、NumExpr 求值、事件日誌與 hash
+### `cx-rules-core`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/rules/{state,contribs,pools,effects,hooks}.ts`＋測試。
+- **團隊**：`teams/rules`
+- **上游**：lead-impl-rules
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-rules/cx-rules-core.md` 列的檔
+- **答得出什麼**：本線檔案的實作細節
 - **答不出什麼**：其他
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-core/`
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-rules-core/`
 - **訂閱主題**：無
 
-### `cx-content`
-- **狀態**：已收線（2026-10-23）
-- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/content/`、`schemas/`、`content/base/`。
-- **團隊**：`teams/foundation`
-- **上游**：lead-impl-foundation
-- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-foundation/cx-content.md` 列的檔
-- **答得出什麼**：內容載入、schema 驗證、base 內容包
+### `cx-rules-combat`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/rules/{turn,movement,command,attack,layers,conduct}.ts`＋測試＋combat 情境。
+- **團隊**：`teams/rules`
+- **上游**：lead-impl-rules
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-rules/cx-rules-combat.md` 列的檔
+- **答得出什麼**：本線檔案的實作細節
 - **答不出什麼**：其他
-- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-content/`
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-rules-combat/`
+- **訂閱主題**：無
+
+### `cx-rules-people-flow`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/rules/{morale,injury,will,control,flow,objectives}.ts`＋測試＋people 情境。
+- **團隊**：`teams/rules`
+- **上游**：lead-impl-rules
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-rules/cx-rules-people-flow.md` 列的檔
+- **答得出什麼**：本線檔案的實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-rules-people-flow/`
 - **訂閱主題**：無
 
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)。

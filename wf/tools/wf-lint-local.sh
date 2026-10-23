@@ -12,7 +12,10 @@ while IFS= read -r f; do
   base=$(basename "$f"); rel=${f#"$dir"/}
   case "$base" in README.md|STATE.md|REPORT.md|*-REPORT.md|TEMPLATE*) continue ;; esac
   # 第二層只認 cx-*.md（領導派的子線）；contract.md、附件之類不是交接書
-  case "$rel" in */*) case "$base" in cx-*.md) ;; *) continue ;; esac ;; esac
+  case "$rel" in */*)
+    case "$base" in cx-*.md) ;; *) continue ;; esac
+    [[ -f "$dir/${rel%%/*}.md" ]] || continue   # 領導已收線（頂層交接書不在）→ 子線不再掃
+  ;; esac
   files+=("$f")
 done < <(find "$dir" -maxdepth 2 -name '*.md' -not -path '*/done/*' -not -path '*/superseded/*' -not -path '*/trash/*' | sort)
 [[ ${#files[@]} -eq 0 ]] && exit 0
