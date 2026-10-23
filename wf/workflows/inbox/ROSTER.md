@@ -42,7 +42,7 @@
 - **訂閱主題**：無
 
 ### `lead-legacy-archive`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-23）
 - **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；把舊版 Python 專案封存進 `legacy/`，專案根與 wf 文件改指向網頁版 spec。
 - **團隊**：無（不開工人）
 - **上游**：dispatcher（行程內回傳，不走 inbox）
