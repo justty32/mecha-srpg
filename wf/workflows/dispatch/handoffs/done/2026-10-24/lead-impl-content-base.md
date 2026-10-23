@@ -66,3 +66,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `lead-impl-content-base`，團隊 `teams/contentbase` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人走 inbox 回報給你。等工人用**前景**迴圈。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `npm run check` 0 errors：frame 7／bodyplan 7／component 7／person 7（human 4、soul 3）／terrain 6／species 4／scenario 2。2. 古代機甲「刑天」無資源池、兩個獨有能力；`burden` 出現在 5 檔、`resonance` 2 檔。3. 蟲族取自 monsters.json 的 D／C／A 三列（世界觀表無 B 級蟲族），巢母帶 `spawner`。4. 調度者把 `src/content/content.test.ts` 的件數等號改成下限後 `npm test` 162 過 0 敗（該線原卡於此，判 DONE）。5. wf-lint 本線無違規（ops spec 在途連結除外）。6. commit `31b83cc`、`a12bd83`、`78a2e11`，無殘留行程，團隊已 close。偏離：`biped-light`／`quadruped-beast` 保持單層（規則線測試依賴），另加 5 個多層 body plan；`terrain/plain` 補回 `content/base/`。

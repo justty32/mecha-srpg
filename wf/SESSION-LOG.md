@@ -11,7 +11,8 @@
 
 ## 最新進度
 
-- [dispatch] 並行現役：`lead-impl-content-base`（第一批內容包）、`lead-impl-ai`（AI 層，先用替身規則）、`plan-ops-spec`（營運層 spec，Fable）→ 四線收齊後開 sim；UI 線等使用者授權 vite／happy-dom／Playwright
+- [planning] 待辦：內容包的機械系名稱按 2026-10-24 命名規範化（系列＋型號＋前後綴、勢力命名慣例）；世界觀表補 B 級蟲族或改規則
+- [dispatch] 並行現役：`lead-impl-ai`（AI 層，先用替身規則）、`plan-ops-spec`（營運層 spec，Fable）→ 四線收齊後開 sim；UI 線等使用者授權 vite／happy-dom／Playwright
 - [dispatch] 現役實作線 `lead-impl-rules`（2026-10-24 上午重派，接手凌晨中止的半成品；切線 3＋4＋5）→ 收線後開 ai＋content-base，再 sim、ui-adapter
 - [feature-dev] 地基已落地（`src/core`、`src/content`、`content/base`，`npm test` 38 綠）；使用者 2026-10-24 已授權 `typescript` 為唯一 devDependency（已轉知 rules 線）
 - [planning] 舊版 Python 專案已封存 `legacy/`（2026-10-24）；SPEC.md 已改指 `specs/core/`＋`specs/world/`
