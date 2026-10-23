@@ -35,7 +35,7 @@ echo $! > "<log 目錄>/<線名>.pid"
 
 **沙箱與批准**。`-s workspace-write` **必給**：`~/.codex/config.toml` 預設 `sandbox_mode = "danger-full-access"`，不覆蓋就沒有沙箱（唯讀調查線用 `-s read-only`）。exec 模式的 approval 固定 `never`——沙箱外的寫入**直接失敗、不會停下來問**，所以可寫集合要一次給齊。`-c model_reasoning_effort='"high"'` 的值要是 TOML 字串（雙引號包在單引號裡；本機 config 已是 high，寫出來是為了不依賴 config）。**一律用 `-c` 單次覆蓋，`~/.codex/config.toml` 不得修改。**
 
-**可寫範圍**。`-C` 是主可寫根；`--add-dir` 追加可寫目錄（可重複）：回報要 `wf/inbox`。**兩者聯集不得超出領地表**（[dispatch](README.md#領地登記)）；沙箱另外自動放行 `/tmp`。`--skip-git-repo-check` 在工作目錄不是 git repo 時必加（如 `/tmp`），在 repo 內加了也無害。
+**可寫範圍**。`-C` 是主可寫根；`--add-dir` 追加可寫目錄（可重複）：回報要 `wf/inbox`。**兩者聯集不得超出領地表**（[dispatch](CLAIMS.md)）；沙箱另外自動放行 `/tmp`。`--skip-git-repo-check` 在工作目錄不是 git repo 時必加（如 `/tmp`），在 repo 內加了也無害。
 
 **輸出與其他**。`-o FILE`（`--output-last-message`）把最後一則訊息單獨寫到檔案，收線不用從 log 撈。**`< /dev/null` 必須保留**。`--ephemeral` 不落 session 檔，探路用，正式線不加（留 session 可 `codex exec resume`）。`--json` 改印 JSONL，要程式化解析才用。子代理上限寫進交接書（config 沒鎖數量）。
 

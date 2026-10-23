@@ -69,30 +69,14 @@
 
 ## 領地登記
 
-### 現役
-
-| 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
-|----|---------|------------|---------|
-| `lead-techstack`（Opus 領導，團隊 `techstack`）| `wf/workflows/dispatch/handoffs/lead-techstack/`、`/tmp/lead-techstack-spike/`、ROSTER 自己那格、`wf/inbox/` | 其餘全部唯讀；不 commit | 2026-10-23 21:40 |
-| `lead-combat-ref`（Opus 領導，團隊 `combatref`）| `wf/workflows/dispatch/handoffs/lead-combat-ref/`、ROSTER 自己那格、`wf/inbox/` | 其餘全部唯讀；`~/repo/moddings/battle-brothers` 唯讀；不 commit | 2026-10-23 21:40 |
-
-### 保留給調度者，任何線都不得寫
-
-| 目錄 | 理由 |
-|------|------|
-| `AGENTS.md`、`CLAUDE.md`、`.claude/`、`.gitignore` | 入口與適配層；多條線同時動會互相打架 |
-| 頂層 `SPEC.md`／`PROJECT.md`／`README.md` | 設計契約與對外說明；改動走頂層決策 |
-| `wf/`（含本表、`handoffs/`）| 線只能追加 ROSTER 與領地表自己那一格、寫自己的 REPORT |
-
-### 歷史
-
-收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。三張表膨脹到難讀就照 [STRUCTURE](../../STRUCTURE.md) 拆成 `CLAIMS.md`。
+現役線、保留給調度者的路徑、歷史，三張表在 [CLAIMS.md](CLAIMS.md)（活狀態，線只能追加自己那一格）。
 
 ## 內容
 
 | 檔案 | 內容 |
 |------|------|
 | [codex-exec.md](codex-exec.md) | `codex exec` 非互動式派 codex 線：實測旗標、smoke test、背景跑與判斷完成 |
+| [CLAIMS.md](CLAIMS.md) | 領地登記：現役線／保留路徑／歷史 |
 | [driving-cli-agents.md](driving-cli-agents.md) | 互動式（tmux）備選、監看三訊號、清理、收線七步 |
 | [tool-index.md](tool-index.md) | 任務類型 → 必用工具（交接書「必用工具」段從這裡抄）|
 | [lessons.md](lessons.md) | 派線踩過的坑 |
