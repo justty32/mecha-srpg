@@ -9,6 +9,7 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `lead-techstack`（Opus 領導，團隊 `techstack`）| `wf/workflows/dispatch/handoffs/lead-techstack/`、`/tmp/lead-techstack-spike/`、ROSTER 自己那格、`wf/inbox/` | 其餘全部唯讀；不 commit | 2026-10-23 21:40 |
+| `plan-world`（Fable 規劃線）| `wf/workflows/planning/specs/world/`、`wf/workflows/dispatch/handoffs/plan-world/` | 其餘全部唯讀；不 commit | 2026-10-23 22:20 |
 | `lead-combat-ref`（Opus 領導，團隊 `combatref`）| `wf/workflows/dispatch/handoffs/lead-combat-ref/`、ROSTER 自己那格、`wf/inbox/` | 其餘全部唯讀；`~/repo/moddings/battle-brothers` 唯讀；不 commit | 2026-10-23 21:40 |
 
 ## 保留給調度者，任何線都不得寫
