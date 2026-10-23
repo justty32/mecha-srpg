@@ -1,0 +1,14 @@
+{
+  "name": "mecha-srpg",
+  "version": "0.1.0",
+  "private": true,
+  "description": "2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript 戰術引擎（node 24 原生執行 .ts）",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --test --test-reporter=tap 'src/**/*.test.ts' 'test/**/*.test.ts'",
+    "check": "node src/content/loader.ts content/base"
+  }
+}
