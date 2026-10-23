@@ -32,7 +32,7 @@ tileset = tcod.tileset.load_truetype_font(  # 之一：自訂 TTF 路徑
 
 ### 中文字型注意事項（可選）
 
-我們的程式碼註解與字串是繁體中文（[`SPEC §10`](../SPEC.md)），但**畫到畫面上的字元**（地形 `.`/`#`/`~`、機甲符號）都是 ASCII/符號，預設字型即可。若你想在 HUD 顯示中文，依本 repo 既有分析（[`analysis/python-tcod/tutorial/cpp_libtcod_cookbook.md §13`](../../../pas/analysis/python-tcod/tutorial/cpp_libtcod_cookbook.md)）的結論：**需載入含 CJK 字形的 TTF（如 Noto Sans CJK），且 libtcod 把中文當單格寬度 1（已知的單格全形限制）**。本章先用預設字型，中文 HUD 留到 part10 視需要再處理。
+我們的程式碼註解與字串是繁體中文（[`SPEC §10`](../SPEC.md)），但**畫到畫面上的字元**（地形 `.`/`#`/`~`、機甲符號）都是 ASCII/符號，預設字型即可。若你想在 HUD 顯示中文，依本 repo 既有分析（[`analysis/python-tcod/tutorial/cpp_libtcod_cookbook.md §13`](../../../../pas/analysis/python-tcod/tutorial/cpp_libtcod_cookbook.md)）的結論：**需載入含 CJK 字形的 TTF（如 Noto Sans CJK），且 libtcod 把中文當單格寬度 1（已知的單格全形限制）**。本章先用預設字型，中文 HUD 留到 part10 視需要再處理。
 
 ## 1.2 建立 context 與 console
 

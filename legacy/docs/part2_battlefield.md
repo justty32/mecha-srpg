@@ -151,7 +151,7 @@ class Battlefield:
 
 ## 2.4 procgen：用雜訊生出一張戰場
 
-目標：給一個種子，產出 `self.tiles` 與雙方部署點。流程沿用本 repo 的 **world_gen cookbook**（[`analysis/python-tcod/tutorial/world_gen_cookbook.md`](../../../pas/analysis/python-tcod/tutorial/world_gen_cookbook.md)）的「種子 → 雜訊高度場 → 閾值切地形 → 灑特徵 → 取點」管線，但縮小到 40×30 的戰場尺度。
+目標：給一個種子，產出 `self.tiles` 與雙方部署點。流程沿用本 repo 的 **world_gen cookbook**（[`analysis/python-tcod/tutorial/world_gen_cookbook.md`](../../../../pas/analysis/python-tcod/tutorial/world_gen_cookbook.md)）的「種子 → 雜訊高度場 → 閾值切地形 → 灑特徵 → 取點」管線，但縮小到 40×30 的戰場尺度。
 
 ```mermaid
 graph LR

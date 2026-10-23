@@ -29,7 +29,7 @@
 |------|--------|------------------------------------------|
 | 技術棧選型：網頁（純文字 DOM／終端風）vs Godot-mono headless | 先開調查線比較，再由頂層與使用者定 | 會做→roadmap |
 | 戰鬥系統參考摘要（超級機器人大戰、Battle Brothers） | 整理可選機制清單給使用者挑，餵世界觀／戰鬥設計 | 會做→roadmap |
-| 舊 Python／tcod／C++ 程式碼與教學封存 `legacy/` | 新 spec 定案前不動 | 想想（等 spec）|
+| 舊版 Python 專案（程式碼與教學）封存 `legacy/` | spec v1 定案後原樣搬走，騰出 `src/` | 已做（2026-10-24，線 lead-legacy-archive）|
 
 ## roadmap（會做，何時）
 

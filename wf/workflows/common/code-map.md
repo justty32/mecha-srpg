@@ -6,21 +6,23 @@
 
 ## 領域表
 
+程式碼尚未落地的模組標「規劃中」，落地後把該列改成實際檔名與測試位置。模組邊界與允許的依賴方向以 spec 的 [architecture](../planning/specs/core/architecture.md) 為準。
+
 | 領域 | 檔案 | 職責 | 測試在哪 |
 |------|------|------|---------|
-| 入口／狀態機／UI | `src/mecha_srpg/{main,__main__,engine,game_states,input_handlers,ui}.py` | 主迴圈、狀態切換、輸入、渲染 | 無（尚未建測試）|
-| 回合與行動 | `src/mecha_srpg/{turn_manager,actions,movement}.py` | 回合／AP、行動物件、可達格與尋路 | 無 |
-| 戰鬥與視野 | `src/mecha_srpg/{combat,fov}.py` | 命中／傷害／熱量、FOV、視線、掩體 | 無 |
-| 敵方 AI | `src/mecha_srpg/ai.py` | 候選行動評分與選擇 | 無 |
-| 資料與生成 | `src/mecha_srpg/{entity,components,config,battlefield,procgen,rng}.py` | 單位、常數、戰場格、地圖生成、可重現亂數 | 無 |
-| C++ 熱點 | `cpp/*`、`CMakeLists.txt`、`pyproject.toml` | `mtcore` 加速 combat／ai 數學 | 無 |
+| core | `src/core/` | 型別（Def／State）、`Id`、`BattleState`、事件型別、seeded RNG、`EventLog`、NumExpr 求值器；不依賴任何模組 | `src/core/*.test.ts`（規劃中）|
+| content | `src/content/`、`schemas/`、`content/base/` | 載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema | `src/content/*.test.ts`（規劃中）|
+| rules | `src/rules/` | 回合、攻擊、資源、效果、人物、戰局結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | 規劃中 |
+| ai | `src/ai/` | 陣營知識、候選生成、估值、可插拔策略；只用 rules 的查詢與 preview | 規劃中 |
+| sim | `src/sim/` | headless 跑局、重播、存檔序列化、驗收模擬 | `test/scenarios/`（規劃中）|
+| ui-adapter | `src/ui-adapter/` | ViewModel、可視區、指令輸入、DOM 渲染（唯一碰 DOM 處）| 規劃中 |
 
 ## 真相層優先序
 
 各專案可以改自己的優先序，但必須明確。預設：
 
 ```text
-code/tests > SPEC.md > code map > docs（教學）> generated
+code/tests > spec（specs/core）> code map > docs > generated
 ```
 
 - 上層與下層衝突時，**以上層為準並修正下層**。

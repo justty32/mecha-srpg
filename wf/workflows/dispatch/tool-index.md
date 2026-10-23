@@ -21,7 +21,7 @@
 | 文檔檢查 | `bash wf/tools/wf-lint.sh --strict .` | 壞連結、超標檔、>1 KB 條列、佔位殘留 | 現役 |
 | inbox 腳本自測 | `bash wf/tools/test_inbox.sh` | 改過 inbox 腳本後跑 | 現役 |
 | Godot 驗證 | `godot-mono --headless --path <專案目錄> …`（版本 4.7.2.stable.mono） | 只准 headless；不開編輯器、不開視窗 | 新 |
-| Python 語法檢查 | `python3 -m compileall -q src` | 見 [testing](../testing.md) | 現役 |
+| 程式碼測試 | `node --test` | 確切指令見 [testing](../testing.md) | 現役 |
 | 收線核 commit | `git log --oneline`、`git status --short` | 核線的 commit 只含明確路徑、工作樹沒殘留 | 新 |
 
 本表膨脹到難讀就照 [STRUCTURE](../../STRUCTURE.md) 分層；加一支工具時同一天加一列並標狀態。

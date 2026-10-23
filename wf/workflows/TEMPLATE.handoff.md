@@ -32,7 +32,7 @@
 <三選一，刪掉另外兩個>
 
 - **唯讀調查線**：不寫任何既有檔，只寫自己的 REPORT 與 `dispatch/handoffs/<線名>/` 底下的附件；codex 用 `-s read-only`。
-- **可寫程式碼線**：只寫「範圍」列的路徑；可跑 `python3 -m compileall -q src` 與測試；commit 規則見下。
+- **可寫程式碼線**：只寫「範圍」列的路徑；可跑 testing 工作流列的驗證指令與測試；commit 規則見下。
 - **可跑 godot headless 線**：同「可寫程式碼線」，另可跑 `godot-mono --headless …`（只准 headless，不開編輯器、不開任何視窗）。
 
 **共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；commit 到 `main` 只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；不 `rm -rf`（暫存搬 `/tmp/<線名>-trash/`，KB 級文字搬 `dispatch/handoffs/<線名>/trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 [dispatch/lessons](dispatch/lessons.md)）；子代理上限 <N> 個，只准為推進正事開。

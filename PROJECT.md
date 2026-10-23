@@ -1,31 +1,17 @@
-# PROJECT — 回合制機甲戰旗（Mecha Tactics）
+# PROJECT — 潮獵（工作名）：2108 地月機甲戰爭網頁文字 SRPG
 
-## 衍生目標
-做一個**可運行的回合制機甲戰術 SRPG 起手專案 + 分段教學**，作為使用者「回家後丟給 AI agent 接著做」的種子。風格：Front Mission／Into the Breach／BattleTech 式的格狀回合制機甲戰鬥。
+## 定位
 
-## 核心定位（混合架構）
-- **Python 為主體**：遊戲流程、狀態機、UI、資料模型、輸入。
-- **C++ 為核心熱點**：命中/傷害數學、AI 候選評分、批次視線——以 pybind11 綁回 Python。
-- **python-tcod（libtcod）打底**：context/console 渲染、event、FOV、Dijkstra/A* 尋路、noise/heightmap 戰場生成、可重現亂數。
-- **漸進可玩**：未編譯 C++ 也能完整遊玩（純 Python fallback）；編譯後熱點自動換成 C++ 加速。
-
-## 參照素材
-- 結構參考：RogueBasin「Complete roguelike tutorial using C++ and libtcod」分章法，改編為 SRPG。
-- API 依據：[`analysis/python-tcod/`](../../pas/analysis/python-tcod/)（在 pas 工作區、本專案外：world_gen_cookbook、pcg_capabilities、cpp_libtcod_cookbook）。
-- 設計契約：本目錄 `SPEC.md`（唯一真實來源）。
+2108 年地月背景的回合制機甲戰術 SRPG，偏 MUD 的網頁文字呈現（無美術資源），戰場是真方格。戰鬥走 Battle Brothers 式「機甲即裝備」：部位×層序列、多資源池、資料驅動的效果與能力；駕駛員與機魂共用人物骨架。設計契約見 [SPEC.md](SPEC.md) → [specs/core/README.md](wf/workflows/planning/specs/core/README.md)。
 
 ## 技術棧
-Python 3.10+ / tcod / numpy；C++17 + pybind11 + scikit-build-core + CMake。
 
-## 交付物
-- `src/mecha_srpg/`：完整可跑的 Python 遊戲套件（見 SPEC §3）。
-- `cpp/`：C++ 核心 `mtcore` + pybind11 綁定（見 SPEC §4）。
-- `docs/`：11 章教學（part0–part10，見 SPEC §11）。
-- `pyproject.toml` / `CMakeLists.txt` / `requirements.txt`：建置設定。
-- `html/`：教學導覽層。
+純 TypeScript＋Vite、無框架；遊戲邏輯是純 TS、與 DOM 完全分離，可在 node 裡 headless 跑局與重播（seed＋指令序列 → 逐位元相同的事件日誌）。測試用 node 內建 test runner；DOM 與端對端見 spec 的 architecture。選型理由見 [decisions](wf/workflows/decisions.md)。
 
-## 完成定義
-見 `SPEC.md §12`。
+## 團隊
+
+頂層 Fable 規劃與決策、領導 Opus 帶線、工人 codex 實作，配置見 [team-model](wf/workflows/team-model.md)。
 
 ## 狀態
-- 2026-06-26 建立：SPEC 契約 + 10 並行代理產出全部教學與起手碼。
+
+2026-10-24：核心 spec v1 定案、世界觀提案第二版進行中；舊版 Python 專案已封存到 `legacy/`，實作從 `src/core`＋`src/content` 地基開始。

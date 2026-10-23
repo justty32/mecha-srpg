@@ -16,16 +16,16 @@
 
 | 驗證 | 指令 | 誰跑 |
 |------|------|------|
-| 快速驗證（改完必跑）| `python3 -m compileall -q src` | agent |
-| 完整驗證（commit 前）| 尚無測試套件；先跑快速驗證＋文件 lint，建了 `tests/` 後改填 `pytest` | agent |
+| 快速驗證（改完必跑）| `node --test`（確切 glob 與 npm script 待實作線補）| agent |
+| 完整驗證（commit 前）| 快速驗證＋情境黃金測試 `test/scenarios/`＋文件 lint（待實作線補）| agent |
 | 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
-| 實際遊玩（畫面、操作、敵方回合）| `PYTHONPATH=src python -m mecha_srpg` 玩一回合 | 使用者 → [WAIT_USER](../WAIT_USER.md) |
+| 實際遊玩（畫面、操作、敵方回合）| 瀏覽器開網頁版玩一回合（待實作線補啟動指令）| 使用者 → [WAIT_USER](../WAIT_USER.md) |
 
 「誰跑」只有兩種值：**agent**（本機跑得動）、**使用者 → WAIT_USER**（要實機、外部服務、帳號、付費、目視）。判不準就當後者。
 
 ## 測試分類
 
-「實際遊玩」需要圖形環境與已安裝的 `tcod`，agent 只做到 `compileall`；畫面、手感、敵方回合是否真的動，交給使用者確認。
+邏輯層與 DOM 都能在 node 裡 headless 驗（策略見 spec 的 [architecture](planning/specs/core/architecture.md)「headless 測試策略」）；畫面、手感是否真的對，交給使用者確認。
 
 - `fast`：本專案自己的 unit／source gate；每次小改都跑。
 - `contract`：跨元件的真實 CLI／process 邊界；改 producer、consumer 或協定時跑。

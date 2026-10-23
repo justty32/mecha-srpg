@@ -1,8 +1,8 @@
 # 教學索引 — 回合制機甲戰旗（Mecha Tactics）
 
 > 一套用 **Python（主體）+ C++（核心熱點）+ python-tcod（打底）** 做回合制機甲戰術 SRPG 的分段教學。
-> 設計契約見上層 [`../SPEC.md`](../SPEC.md)；專案目標見 [`../PROJECT.md`](../PROJECT.md)。
-> 程式碼起手在 [`../src/mecha_srpg/`](../src/mecha_srpg/)，C++ 核心在 [`../cpp/`](../cpp/)。
+> 設計契約見上層 [`../SPEC.md`](../SPEC.md)；專案目標見 [`../PROJECT.md`](../../PROJECT.md)。
+> 程式碼起手在 [`../src/mecha_srpg/`](../src/mecha_srpg)，C++ 核心在 [`../cpp/`](../cpp)。
 
 ## 怎麼讀
 - **只想先跑起來**：照 [`../README.md`](../README.md) 的「純 Python 路線」，`pip install tcod numpy` 後 `python -m mecha_srpg`，再回來逐章對照原始碼。

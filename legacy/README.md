@@ -1,3 +1,5 @@
+> 封存 2026-10-24，由 wf/workflows/planning/specs/core/README.md 取代（專案重做為網頁版，見 wf/workflows/decisions.md）
+
 # 回合制機甲戰旗（Mecha Tactics）
 
 一個 **Python（主體）+ C++（核心熱點）+ python-tcod（打底）** 的回合制機甲戰術 SRPG 起手專案 + 分段教學。風格近 Front Mission／Into the Breach／BattleTech：格狀戰場、雙方機甲、移動範圍、視野/掩體、命中/傷害/熱量、敵方戰術 AI。
