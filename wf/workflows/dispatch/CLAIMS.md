@@ -8,7 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-impl-rules`（Opus，`rules`）| `src/rules/`、`test/`、`content/base/`（新增為主）、`src/core/`／`src/content/`（只准新增匯出）、`package.json`（只 scripts）| `src/ai/`、`src/sim/`、`wf/`（除 handoffs 自己目錄）；可 commit `rules: `；不裝套件 | 2026-10-24 02:10 |
+| `lead-impl-rules`（Opus，`rules`）**中止，待重派，領地保留** | `src/rules/`、`test/`、`content/base/`（新增為主）、`src/core/`／`src/content/`（只准新增匯出）、`package.json`（只 scripts）| `src/ai/`、`src/sim/`、`wf/`（除 handoffs 自己目錄）；可 commit `rules: `；不裝套件 | 2026-10-24 02:10 |
 
 ## 保留給調度者，任何線都不得寫
 

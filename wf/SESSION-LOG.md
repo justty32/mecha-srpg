@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 現役實作線 `lead-impl-rules`（spec 切線 3＋4＋5：規則核心／戰鬥結算／人物與流程，黃金日誌）→ 收線後開 ai＋content-base，再 sim、ui-adapter
+- [dispatch] `lead-impl-rules` 於 2026-10-24 凌晨依使用者指示**中止**（工人半成品在工作樹、未驗收），續行點與工作樹現況見 [handoffs/STATE.md](workflows/dispatch/handoffs/STATE.md) → 明天重派同一份交接書
 - [feature-dev] 地基已落地（`src/core`、`src/content`、`content/base`，`npm test` 38 綠）；使用者 2026-10-24 已授權 `typescript` 為唯一 devDependency（已轉知 rules 線）
 - [planning] 舊版 Python 專案已封存 `legacy/`（2026-10-24）；SPEC.md 已改指 `specs/core/`＋`specs/world/`
 - [planning] 四條調查／規劃線已收線（技術棧、BB 卷、ToME 卷、世界觀 v1），證據在 `workflows/dispatch/handoffs/done/2026-10-23/`
