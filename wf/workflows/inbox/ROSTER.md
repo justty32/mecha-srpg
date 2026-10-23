@@ -85,4 +85,81 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-rules-people-flow/`
 - **訂閱主題**：無
 
+### `lead-impl-content-base`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；第一批內容包 `content/base/`（spec 切線 9）。
+- **團隊**：`teams/contentbase`（領導；codex 工人格由我代登記於此）
+- **上游**：dispatcher（行程內回傳，不走 inbox）
+- **領地**：`content/base/`（新增為主，既有檔只追加 registries 條目）、`content/README.md`、`wf/workflows/dispatch/handoffs/lead-impl-content-base/`
+- **答得出什麼**：base 內容 id 命名表、跨檔引用、SPEC-GAP
+- **答不出什麼**：src／schema／規則實作
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-content-base/`
+- **訂閱主題**：無
+
+### `lead-impl-ai`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出）；AI 層（spec 切線 6）：`src/ai/`、`test/ai/`。
+- **團隊**：`teams/ai`（領導；codex 工人格由我代登記於此）
+- **上游**：dispatcher（行程內回傳，不走 inbox）
+- **領地**：`src/ai/`、`test/ai/`、`package.json`（只 scripts）、`wf/workflows/dispatch/handoffs/lead-impl-ai/`
+- **答得出什麼**：`RulesQuery` 介面、Policy 登記、FactionKnowledge 更新規則
+- **答不出什麼**：rules／sim／ui 實作
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-ai/`
+- **訂閱主題**：無
+
+### `cx-content-mechs`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 content/base 的 bodyplan／frame／component／ability／effect 31 檔。
+- **團隊**：`teams/contentbase`
+- **上游**：lead-impl-content-base
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-content-base/cx-content-mechs.md` 列的檔
+- **答得出什麼**：本線檔案的內容細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-content-mechs/`
+- **訂閱主題**：無
+
+### `cx-content-world`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 content/base 的 species／monster／aiprofile／terrain／effect／soultree／person／faction 31 檔。
+- **團隊**：`teams/contentbase`
+- **上游**：lead-impl-content-base
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-content-base/cx-content-world.md` 列的檔
+- **答得出什麼**：本線檔案的內容細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-content-world/`
+- **訂閱主題**：無
+
+### `cx-ai-knowledge-score`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ai/{knowledge,danger,score}.ts`＋`test/ai/stub-rules.ts`＋測試。
+- **團隊**：`teams/ai`
+- **上游**：lead-impl-ai
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ai/cx-ai-knowledge-score.md` 列的檔
+- **答得出什麼**：本線檔案的實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ai-knowledge-score/`
+- **訂閱主題**：無
+
+### `cx-ai-policies`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ai/{strategy,agent,index}.ts`＋`src/ai/policies/` 六檔＋測試。
+- **團隊**：`teams/ai`
+- **上游**：lead-impl-ai
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ai/cx-ai-policies.md` 列的檔
+- **答得出什麼**：本線檔案的實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ai-policies/`
+- **訂閱主題**：無
+
+### `cx-content-scenarios`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 content/base 兩張地圖、兩個情境與 content/README.md。
+- **團隊**：`teams/contentbase`
+- **上游**：lead-impl-content-base
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-content-base/cx-content-scenarios.md` 列的檔
+- **答得出什麼**：本線檔案的內容細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-content-scenarios/`
+- **訂閱主題**：無
+
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)。
