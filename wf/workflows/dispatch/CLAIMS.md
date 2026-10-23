@@ -8,7 +8,10 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-impl-rules`（Opus，`rules`）| `src/rules/`、`test/`、`content/base/`（新增為主）、`src/core/`／`src/content/`（只准新增匯出）、`package.json`（只 scripts）| `src/ai/`、`src/sim/`、`wf/`（除 handoffs 自己目錄）；可 commit `rules: `；不裝套件 | 2026-10-24 02:10 |
+| `lead-impl-content-base`（Opus，`contentbase`）| `content/base/`、`content/README.md` | `src/`、`schemas/`、`test/` 禁；可 commit `content: ` | 2026-10-24 10:30 |
+| `lead-impl-ai`（Opus，`ai`）| `src/ai/`、`test/ai/`、`package.json`（只 scripts）| `src/rules/`、`src/core/`、`src/content/`、`content/base/` 禁；可 commit `ai: ` | 2026-10-24 10:30 |
+| `plan-ops-spec`（Fable 規劃）| `wf/workflows/planning/specs/ops/` | 其餘唯讀；不 commit | 2026-10-24 10:30 |
+| `lead-impl-rules`（Opus，`rules`）| `src/rules/`、`test/`、`test/scenarios/pack/`（情境內容，不碰 `content/base/`）、`src/core/`／`src/content/`（只准新增匯出）、`package.json`（只 scripts）| `src/ai/`、`src/sim/`、`wf/`（除 handoffs 自己目錄）；可 commit `rules: `；不裝套件 | 2026-10-24 02:10 |
 
 ## 保留給調度者，任何線都不得寫
 
