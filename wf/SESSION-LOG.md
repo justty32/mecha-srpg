@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 並行現役：`lead-impl-ai`（AI 層，先用替身規則）、`plan-ops-spec`（營運層 spec，Fable）→ rules 已收線（164 測試綠）；ai 收線後開 sim；UI 線等使用者授權 vite／happy-dom／Playwright
+- [dispatch] 2026-10-24 使用者重開程式前全停：ai 已收線；`plan-ops-spec` 中止、半成品在 `specs/ops/`；續行點 [handoffs/STATE.md](workflows/dispatch/handoffs/STATE.md)
 
 ## 各工作流 session-log
 

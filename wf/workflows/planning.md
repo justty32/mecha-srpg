@@ -35,12 +35,9 @@
 
 | 事項 | 何時 / 順序 | 前提 |
 |------|------------|---------|
-| 安裝 team（multi-agent）工作流到 `wf/` | 2026-10-23 進行中（線 `wf-team-install`） | — |
-| 技術棧調查線：網頁純文字呈現格狀戰場、headless 測試、資料驅動解耦架構、AI 介面；Godot headless 備案 | team 工作流裝好後第一批 | 安裝完成 |
-| 戰鬥系統參考摘要線：SRW 機制、Battle Brothers（`~/repo/moddings/battle-brothers`）→ 候選機制表 | 與技術棧調查並行 | 安裝完成 |
 | 世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工 | 已完成（core v1、world v2，2026-10-24） | — |
-| 內容包機械系名稱按命名規範化；世界觀表補 B 級蟲族；base 補 13 個常數鍵與步兵／士氣／失控內容（現靠 `test/scenarios/pack/`） | 內容包第二批（sim 線之後） | 命名裁示（design-notes/mechs）、rules REPORT |
-| 規則補完：reaction 反擊／掩護／自動開盾、sustained 池見底撤除 | sim 線跑出需求後 | rules REPORT「沒做到」 |
+| 內容第二批：機械系命名規範化、補 B 級蟲族、base 補常數與步兵／士氣／失控內容 | sim 線之後 | rules REPORT |
+| 規則補完：其餘 reaction、sustained 撤除 | sim 後 | rules REPORT |
 
 ## 交接
 

@@ -67,3 +67,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `lead-impl-ai`，團隊 `teams/ai` 的領導。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。工人走 inbox 回報給你。等工人用**前景**迴圈。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `npm test` 164 過 0 敗（AI 42 項含在內）。2. `src/ai/` 7 主檔＋`rules-query.ts`＋6 policy＋`adapters/rules-adapter.ts`；rules import 只在 adapters。3. stub 與真規則下 AI 對 AI 不拋錯、同 seed 決策序列一致（領導核）。4. constraints 的 5 條 AI 列皆有測試引用。5. wf-lint broken=0／residue=0／local=0；無 dependencies。6. commit `ai: ` 五筆至 `1bd6e21`；無殘留行程；團隊已 close；ROSTER 已標已收線。待整合缺口交下一條線：無駕駛員怪獸 controlMode `none` 不行動、13 個常數只在測試包、`aiprofile/pack-hunter` 指到不存在的 policy、評分係數為佔位。
