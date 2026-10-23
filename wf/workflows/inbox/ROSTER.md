@@ -74,4 +74,37 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ai-policies/`
 - **訂閱主題**：無
 
+### `lead-impl-sim`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent）；整合＋模擬器（spec 切線 7）。
+- **團隊**：`teams/sim`（領導；工人格由我代登記）
+- **上游**：頂層主 session
+- **領地**：見 CLAIMS `lead-impl-sim` 列
+- **答得出什麼**：sim 介面、三個整合缺口的裁定（`handoffs/lead-impl-sim/contract.md`）
+- **答不出什麼**：營運層、UI
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-sim/`
+- **訂閱主題**：無
+
+### `cx-sim-engine`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/sim/` 與 `test/sim/`。
+- **團隊**：`teams/sim`
+- **上游**：lead-impl-sim
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-sim/cx-sim-engine.md` 列的檔
+- **答得出什麼**：sim 實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-sim-engine/`
+- **訂閱主題**：無
+
+### `cx-sim-gaps`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），補本能控制、常數回 base、pack-hunter。
+- **團隊**：`teams/sim`
+- **上游**：lead-impl-sim
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-sim/cx-sim-gaps.md` 列的檔
+- **答得出什麼**：三個缺口的實作與黃金 diff
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-sim-gaps/`
+- **訂閱主題**：無
+
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)、[archive/ROSTER-2026-10-24.md](archive/ROSTER-2026-10-24.md)。

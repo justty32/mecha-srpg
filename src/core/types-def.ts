@@ -26,7 +26,8 @@ export const GRADES: readonly Grade[] = ["D", "C", "B", "A", "S", "SS", "SSS"];
 export type FrameClass = "mechanical" | "bio" | "ancient";
 export type PersonKind = "human" | "soul";
 export type SeatRole = "pilot" | "soul" | "passenger";
-export type ControlMode = "pilot" | "soul" | "shared" | "contested" | "none" | "disabled" | "berserk";
+// "instinct"：無座位人物的怪獸由本能驅動（lead-impl-sim 2026-10-24 追加；SPEC-GAP，spec 只列七值）。
+export type ControlMode = "pilot" | "soul" | "shared" | "contested" | "none" | "disabled" | "berserk" | "instinct";
 export type MoraleStage = "steady" | "shaken" | "breaking" | "fleeing";
 export type AttrRole = "accuracy" | "evasion" | "resolve" | "initiative" | "perception" | "control";
 export type Cell = { x: number; y: number };

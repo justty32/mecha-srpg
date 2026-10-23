@@ -12,6 +12,7 @@
 ## 最新進度
 
 - [dispatch] 2026-10-24 使用者重開程式前全停：ai 已收線；`plan-ops-spec` 中止、半成品在 `specs/ops/`；續行點 [handoffs/STATE.md](workflows/dispatch/handoffs/STATE.md)
+- [dispatch] 2026-10-24 `lead-impl-sim` 開工：sim 模組＋三個整合缺口，工人 cx-sim-engine／cx-sim-gaps → [handoffs/lead-impl-sim/](workflows/dispatch/handoffs/lead-impl-sim/contract.md)
 
 ## 各工作流 session-log
 
