@@ -24,7 +24,9 @@
 | cx-rules-people-flow | `morale.ts` `injury.ts` `will.ts` `control.ts` `flow.ts` `objectives.ts` |
 | 領導 | `index.ts`（彙總匯出＋side-effect import 全部模組，讓登記生效）、`test/golden.test.ts` |
 
-測試檔：與被測檔同目錄 `src/rules/<檔>.test.ts`，用 `node:test`＋`node:assert/strict`；測試用 `loadContentDirs(["content/base"]).db` 取真內容，或自組最小 `Ctx`。
+測試檔：與被測檔同目錄 `src/rules/<檔>.test.ts`，用 `node:test`＋`node:assert/strict`；測試用 `loadContentDirs(["content/base", "test/scenarios/pack"]).db` 取真內容，或自組最小 `Ctx`。
+
+**內容放哪（2026-10-24 調度者改令）**：`content/base/` 歸 `lead-impl-content-base` 線，rules 線一律不寫。rules 需要的常數鍵與情境內容放測試包 `test/scenarios/pack/`（pack id `rtest`，`depends: ["base"]`）：`rules/constants.json` 補上 §0 列的常數鍵（base 的同名鍵之後若補上，以後載入者覆寫）、`terrains/plain.json`、`frame/infantry` 等。包內引用 base 內容寫 `base:` 前綴；`db.get` 的無前綴查詢會從後載入的包先找。**正式內容包要在 base 補齊這些常數鍵與 `frame/infantry`、`effect/morale-*`、`effect/berserk`，rules 才能只靠 base 跑**（寫進 REPORT 交 content-base 線）。
 
 ## 2. core 線匯出（`state.ts`）
 
@@ -240,4 +242,12 @@ export function evaluateObjectives(ctx: Ctx, atRoundEnd: boolean): BattleOutcome
 
 ## 7. 情境與黃金檔（領導寫執行器 `test/golden.test.ts`）
 
-情境檔 `test/scenarios/<id>.json`：`{ "id", "seed", "setup": BattleSetup, "commands": [Command | {"cmd": Command, "reject": RejectCode}], "expect": { "sequence": [事件型別…], "minCounts": {型別: 次數}, "outcome": {"winner": slot|null} 可省 } }`。執行器：`createBattle(db, setup, seed)` → `startBattle` → 逐條 `tryCommand`（非 reject 項必須 ok）→ `hashLog(s.log)` 與 `test/golden/<id>.hash`（一行 16 hex）比對；`expect.sequence` 必須是 `typeSequence` 的子序列；`GOLDEN_UPDATE=1` 時改為寫 hash 檔。hash 算法＝`src/core/eventlog.ts` 的 `hashLog`（fnv1a64(canonicalJson(events))），不得另造。
+情境檔 `test/scenarios/<id>.json`：`{ "id", "seed", "setup": BattleSetup, "commands": [Command | {"cmd": Command, "reject": RejectCode}], "expect": { "sequence": [事件型別…], "minCounts": {型別: 次數}, "outcome": {"winner": slot|null} 可省 } }`。執行器：`loadContentDirs(["content/base", "test/scenarios/pack"])` → `createBattle(db, setup, seed)` → `startBattle` → 逐條 `tryCommand`（非 reject 項必須 ok）→ `hashLog(s.log)` 與 `test/golden/<id>.hash`（一行 16 hex）比對；`expect.sequence` 必須是 `typeSequence` 的子序列；`GOLDEN_UPDATE=1` 時改為寫 hash 檔。hash 算法＝`src/core/eventlog.ts` 的 `hashLog`（fnv1a64(canonicalJson(events))），不得另造。
+
+## 8. 給 ai 線的查詢／預覽介面（一律從 `src/rules/index.ts` import）
+
+- 指令合法性：`checkAbility(ctx, unitId, abilityId, target?)`（①②③，無副作用，回 `Rejection | null`）、`abilitiesOf(ctx, unitId)`、`resolveCosts(ctx, unitId, abilityId)`、`canPay(...)`。
+- 移動可達：`reachable(ctx, unitId)`（AP 內可達格→成本，無副作用）、`stepCost`、`locomotionOf`。
+- 攻擊預覽：`hitChance(ctx, actor, abilityId, target, part?)`、`modifiedAmount(...)`、`runLayers(layers, packet)`（純函式）；整條指令試跑用 `previewCommand(ctx, cmd)`（structuredClone 後跑，`ctx.s` 不變，回 `{result, state}`）。
+- 回合狀態：`currentActor(s)`、`computeOrder(ctx)`、`initiativeOf(ctx, unitId)`、`commanderOf(ctx, unitId)`、`isActive(ctx, unitId)`、`hostile(ctx, a, b)`、`distance(a, b)`。
+- 以上名稱與簽名以本契約 §2、§3、§5 為準；收線時若有變動，由領導改本檔並寫進 REPORT。

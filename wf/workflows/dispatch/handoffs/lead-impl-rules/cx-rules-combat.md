@@ -12,8 +12,8 @@ rules 核心（狀態、貢獻值、池、效果、登記表）已交付。另�
 
 只做下面列出的事；沒列的一律不做，遇到「順手也該做」的寫進 REPORT 的「需要決定的事」。
 
-- 只做：(a) 新建 `src/rules/{turn,movement,command,attack,layers,conduct}.ts` 與同名 `.test.ts` 六支；(b) 新建 `test/scenarios/combat-*.json` 恰好 3 個與對應 `test/golden/combat-*.hash`；(c) 情境需要而缺的內容，**只准新增**檔名以 `cb-` 開頭的檔（id 形如 `frame/cb-lancer`），放在 `content/base/{frames,bodyplans,components,abilities,effects,terrains,species}/`；(d) 你的 REPORT。
-- 不做：core 五檔、people-flow 六檔、`index.ts`、`test/golden.test.ts`（領導寫）；改任何既有檔（含 `content/base/` 既有檔、`src/core/`、`src/content/`、`schemas/`、`package.json`）；`src/ai/`、`src/sim/`；安裝套件；新增 contract 以外的匯出。
+- 只做：(a) 新建 `src/rules/{turn,movement,command,attack,layers,conduct}.ts` 與同名 `.test.ts` 六支；(b) 新建 `test/scenarios/combat-*.json` 恰好 3 個與對應 `test/golden/combat-*.hash`；(c) 情境需要而缺的內容，**只准新增**檔名以 `cb-` 開頭的檔（id 形如 `frame/cb-lancer`），放在 `test/scenarios/pack/{frames,bodyplans,components,abilities,effects,terrains,species}/`——**測試內容包** `test/scenarios/pack/`（pack id `rtest`，依賴 `base`；`content/base/` 歸另一條線 `lead-impl-content-base`，本線一律不寫）。包內檔案引用 base 的內容要寫 `base:` 前綴（例 `base:bodyplan/biped-light`），引用包內的不加前綴；`frame/infantry` 這類無前綴查詢會先找到包內的。測試載入一律用 `loadContentDirs(["content/base", "test/scenarios/pack"])`；包裡已有 `rules/constants.json`（contract §0 列的常數鍵）與 `terrains/plain.json`，不要改它們；(d) 你的 REPORT。
+- 不做：core 五檔、people-flow 六檔、`index.ts`、`test/golden.test.ts`（領導寫）；寫 `content/base/`（任何檔）；改任何既有檔（含 `test/scenarios/pack/` 既有檔、`src/core/`、`src/content/`、`schemas/`、`package.json`）；`src/ai/`、`src/sim/`；安裝套件；新增 contract 以外的匯出。
 - 件數 gate：新檔超過 24 個就停下回報；容量 gate：新檔合計超過 200 KB 就停下回報。
 
 ## 測試（寫死條數；`node:test`＋`node:assert/strict`）
@@ -26,7 +26,7 @@ rules 核心（狀態、貢獻值、池、效果、登記表）已交付。另�
 
 `combat-layers`：一擊打穿外層、事件有 `LayerDamaged`→`LayerBroken`→`PartBroken`；`combat-conduct`：座艙殼層受擊觸發 `Conducted`（用你新增的 `cb-` 機體，其部位 `conduct` 規則對 pilot 掛 `cb-` 效果）；`combat-tenth`：`conventional-arms` 能力打 `kaiju` 單位、傷害為十分之一。每個 2–4 單位、地圖 ≤ 8×8、地形用 `terrain/plain`、指令 ≤ 30 條。產生 hash：領導的執行器 `test/golden.test.ts` 若已存在，跑 `GOLDEN_UPDATE=1 node --test test/golden.test.ts`；若還不存在，hash 檔先寫 `0000000000000000` 並在 REPORT 註明，由領導產生。people 線的模組不在時，事件裡不會有士氣／傷勢——這是預期，hash 由領導合併後重產。
 
-跑法（沙箱內計數會不準，見下）：專案根 `node --test --test-isolation=none --test-reporter=tap 'src/rules/*.test.ts'`；型別檢查用 `npm run typecheck`（`tsc --noEmit`；typescript 已由領導裝為唯一 devDependency，node 內建模組型別由 `test/types/node-shim.d.ts` 提供，只用其中宣告的 API，缺的寫進 REPORT 不要自己補）。`src/content/content.test.ts` 的內容件數斷言會因新增內容檔變紅，這是預期，由領導合併時改，你不要改、不算你的失敗。
+跑法（沙箱內計數會不準，見下）：專案根 `node --test --test-isolation=none --test-reporter=tap 'src/rules/*.test.ts'`；型別檢查用 `npm run typecheck`（`tsc --noEmit`；typescript 已由領導裝為唯一 devDependency，node 內建模組型別由 `test/types/node-shim.d.ts` 提供，只用其中宣告的 API，缺的寫進 REPORT 不要自己補）。
 
 ## 必用工具
 
@@ -34,7 +34,7 @@ rules 核心（狀態、貢獻值、池、效果、登記表）已交付。另�
 |---|---|
 | `wf/tools/inbox_poll.sh` | 每完成一個檔對跑一次 `wf/tools/inbox_poll.sh cx-rules-combat --once` 讀 orders |
 | `wf/tools/inbox_mail.sh` | 上線 PROGRESS 與終局回報（正文給你的 REPORT 檔） |
-| `npm run check` | 新增內容檔後驗載入 0 錯誤 |
+| `node src/content/loader.ts content/base test/scenarios/pack` | 新增內容檔後驗載入 0 錯誤 |
 
 ## 資源與禁區
 
@@ -49,7 +49,7 @@ rules 核心（狀態、貢獻值、池、效果、登記表）已交付。另�
 1. `layers.ts`、`conduct.ts`＋測試，跑綠；`inbox_poll --once`。
 2. `attack.ts`、`movement.ts`＋測試，跑綠；`inbox_poll --once`。
 3. `turn.ts`、`command.ts`＋測試，跑綠（`npm test` 全綠）；`inbox_poll --once`。
-4. 新增 `cb-` 內容、3 個情境與 hash；`npm run check` 0 錯誤。
+4. 新增 `cb-` 內容、3 個情境與 hash；`node src/content/loader.ts content/base test/scenarios/pack` 0 錯誤。
 5. 寫 REPORT 並回報。
 
 ## 交付
@@ -60,7 +60,7 @@ rules 核心（狀態、貢獻值、池、效果、登記表）已交付。另�
 |------|----------------|
 | 程式與測試 | `/home/lorkhan/repo/game_dev/mecha-srpg/src/rules/{turn,movement,command,attack,layers,conduct}.ts` 與同名 `.test.ts` |
 | 情境與黃金 | `/home/lorkhan/repo/game_dev/mecha-srpg/test/scenarios/combat-*.json`、`/home/lorkhan/repo/game_dev/mecha-srpg/test/golden/combat-*.hash` |
-| 新內容 | `/home/lorkhan/repo/game_dev/mecha-srpg/content/base/*/cb-*.json` |
+| 新內容 | `/home/lorkhan/repo/game_dev/mecha-srpg/test/scenarios/pack/*/cb-*.json` |
 | REPORT | `/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-impl-rules/cx-rules-combat/REPORT.md` |
 
 REPORT 四段（做了什麼／產出（全部新檔清單）／沒做到或證據不足的／需要決定的事），加「SPEC-GAP 清單」，末尾加「以後交接書該點名的工具」（沒有就寫「無」）。
@@ -70,7 +70,7 @@ REPORT 四段（做了什麼／產出（全部新檔清單）／沒做到或證�
 1. 沙箱外 `npm test` exit 0、`# fail 0`，且本線 6 支測試檔恰好 26 個 `test()`，`npm run typecheck` 輸出中本線檔案 0 錯誤（由領導重跑）。
 2. 六個實作檔的匯出名與 contract §5 完全一致（不多不少），且不 import people-flow 六檔。
 3. 3 個 `combat-*.json` 存在；合計事件有 `LayerBroken`、`PartBroken`、`Conducted` 各至少一筆。
-4. 8 個 constraints id 都 grep 得到於 `src/rules/*.test.ts`；`npm run check` 0 錯誤。
+4. 8 個 constraints id 都 grep 得到於 `src/rules/*.test.ts`；`node src/content/loader.ts content/base test/scenarios/pack` 0 錯誤。
 5. REPORT 存在且有四段＋SPEC-GAP 清單。
 
 不要為了「更保險」加驗其他東西。
