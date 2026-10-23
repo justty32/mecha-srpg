@@ -1,0 +1,191 @@
+{
+  "id": "scenario/rift-edge-nest",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            },
+            {
+              "id": "person/unit-07",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/ancient-rearguard",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ]
+    },
+    "ally": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ash",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": "zone"
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/nestmother-landlord",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/nestmother-landlord"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "seed": 2109,
+  "rounds": 30
+}
