@@ -63,3 +63,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `plan-world-v2`，團隊無（直屬頂層）。你是 Claude 子 agent，不走 inbox：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。不要用結束回合當等待；不要問使用者問題，想問的寫進「替使用者做掉的決定清單」。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `grep 相位／十二台／蛻皮而來／副腦部件` 0 筆。2. 「機魂」出現在 7 檔（含 mech-lifecycles 與新子檔 machine-souls）；「十分之一／十分律」24 處。3. `monsters.json` 12 列 D–A，四族各 3。4. README 無覆蓋註記、簡史 2089-03-14 潮與殼同夜；10 個 md 皆 ≤ 8,191 bytes、每檔「我的提案」≥ 1。5. `wf-lint.sh --strict .` 全綠（TOTAL 全 0）。6. REPORT 含三段。新增子檔 1 個（machine-souls.md，gate 內）。

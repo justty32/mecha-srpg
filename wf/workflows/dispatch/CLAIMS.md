@@ -9,7 +9,6 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `lead-impl-foundation`（Opus，`foundation`）| 根 `package.json`／`tsconfig.json`／`.nvmrc`、`src/core/`、`src/content/`、`schemas/`、`scripts/`、`content/base/`、`test/` | 等 legacy 搬完才寫 `src/`；`legacy/`、`wf/` 禁；可 commit `foundation: `；不裝套件 | 2026-10-24 00:40 |
-| `plan-world-v2`（Fable 規劃線）| `wf/workflows/planning/specs/world/`（原地修訂）、`wf/workflows/dispatch/handoffs/plan-world-v2/` | 其餘全部唯讀；`specs/core/` 禁區；不 commit | 2026-10-24 00:05 |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -21,6 +20,6 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`（`handoffs/done/2026-10-24/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
+2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`、`plan-world-v2`（`handoffs/done/2026-10-24/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
 
 收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。

@@ -12,7 +12,6 @@
 ## 最新進度
 
 - [dispatch] 現役實作線 `lead-impl-foundation`（spec 切線 1＋2：core 型別／RNG／事件／內容載入器，node 24 原生 TS、零依賴）→ 收線後開切線 3–5（rules）
-- [dispatch] 現役 Fable 規劃線 `plan-world-v2`（套用使用者今晚的推翻與補充，原地修訂 `specs/world/`）→ 收線後世界觀告一段落
 - [planning] 舊版 Python 專案已封存 `legacy/`（2026-10-24）；SPEC.md 已改指 `specs/core/`＋`specs/world/`
 - [planning] 四條調查／規劃線已收線（技術棧、BB 卷、ToME 卷、世界觀 v1），證據在 `workflows/dispatch/handoffs/done/2026-10-23/`
 
