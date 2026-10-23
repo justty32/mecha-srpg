@@ -1,55 +1,79 @@
 {
- "contract": "wf-table/1",
- "source": "speed.md",
- "extracted": "2026-10-23",
- "columns": [
-  "model",
-  "quirk",
-  "static",
-  "dynamic"
- ],
- "rows": [
-  {
-   "model": "gpt-sol（含 gpt-6-sol）",
-   "quirk": "每做一小事就去驗證、一直寫測試；會為了「更保險」開 subagent 做複查（skyrim 2026-08-30）",
-   "static": "驗收條數寫死、不留「其他必要驗證」開口；交接書寫「子代理只准為推進正事開」",
-   "dynamic": "經常提醒它專注在真正重要的事，無關緊要的小事先別管（orders 或 tmux）"
-  },
-  {
-   "model": "gpt-sol",
-   "quirk": "範圍詞遞移展開：「與 X 相關的」被忠實展開成依賴閉包，件數漲一個數量級（skyrim 2026-08-29，226 件／19 GB）",
-   "static": "範圍用排除法寫死，件數 gate 與容量 gate 並列",
-   "dynamic": "件數或容量接近 gate 就要它先停下回報"
-  },
-  {
-   "model": "gpt-sol",
-   "quirk": "能力足以整條線自己完成並自我驗證；被當 Sonnet 微管理會燒光 Claude 額度（skyrim 2026-08-20）",
-   "static": "一次給整條線，不拆批等派；不重算它已附證據的數字",
-   "dynamic": "不主動輪詢畫面；靠終局信或 `cx_watch.sh` 事件"
-  },
-  {
-   "model": "Opus（當領導）",
-   "quirk": "用「結束回合＋背景 watcher」當等待，結束回合後收不到後續訊息而卡死（skyrim 2026-09-06，卡兩小時）",
-   "static": "交接書寫死「等待一律前景 `inbox_poll.sh --wait --timeout 540`／`cx_watch.sh`，逾時再跑一輪」",
-   "dynamic": "頂層看到 STATE 超過 20 分鐘沒動就停掉它、開新領導接手"
-  },
-  {
-   "model": "Opus（當領導）",
-   "quirk": "要開平行工人時若沒先凍結介面，各線互相等或互相覆寫（skyrim 2026-09-02）",
-   "static": "領導先凍結可執行契約（型別／介面／schema）再切工，契約列進驗收",
-   "dynamic": "—"
-  },
-  {
-   "model": "gpt-6-astra",
-   "quirk": "（待累積）",
-   "static": "",
-   "dynamic": ""
-  },
-  {
-   "model": "Sonnet",
-   "quirk": "（待累積）",
-   "static": "",
-   "dynamic": ""
-  }
- ]
+  "contract": "wf-table/1",
+  "source": "speed.md",
+  "extracted": "2026-10-23",
+  "columns": [
+    "model",
+    "quirk",
+    "static",
+    "dynamic"
+  ],
+  "rows": [
+    {
+      "model": "gpt-sol（含 gpt-6-sol）",
+      "quirk": "每做一小事就去驗證、一直寫測試；會為了「更保險」開 subagent 做複查（skyrim 2026-08-30）",
+      "static": "驗收條數寫死、不留「其他必要驗證」開口；交接書寫「子代理只准為推進正事開」",
+      "dynamic": "經常提醒它專注在真正重要的事，無關緊要的小事先別管（orders 或 tmux）"
+    },
+    {
+      "model": "gpt-sol",
+      "quirk": "範圍詞遞移展開：「與 X 相關的」被忠實展開成依賴閉包，件數漲一個數量級（skyrim 2026-08-29，226 件／19 GB）",
+      "static": "範圍用排除法寫死，件數 gate 與容量 gate 並列",
+      "dynamic": "件數或容量接近 gate 就要它先停下回報"
+    },
+    {
+      "model": "gpt-sol",
+      "quirk": "能力足以整條線自己完成並自我驗證；被當 Sonnet 微管理會燒光 Claude 額度（skyrim 2026-08-20）",
+      "static": "一次給整條線，不拆批等派；不重算它已附證據的數字",
+      "dynamic": "不主動輪詢畫面；靠終局信或 `cx_watch.sh` 事件"
+    },
+    {
+      "model": "Opus（當領導）",
+      "quirk": "用「結束回合＋背景 watcher」當等待，結束回合後收不到後續訊息而卡死（skyrim 2026-09-06，卡兩小時）",
+      "static": "交接書寫死「等待一律前景 `inbox_poll.sh --wait --timeout 540`／`cx_watch.sh`，逾時再跑一輪」",
+      "dynamic": "頂層看到 STATE 超過 20 分鐘沒動就停掉它、開新領導接手"
+    },
+    {
+      "model": "Opus（當領導）",
+      "quirk": "要開平行工人時若沒先凍結介面，各線互相等或互相覆寫（skyrim 2026-09-02）",
+      "static": "領導先凍結可執行契約（型別／介面／schema）再切工，契約列進驗收",
+      "dynamic": "—"
+    },
+    {
+      "model": "gpt-6-astra",
+      "quirk": "（待累積）",
+      "static": "",
+      "dynamic": ""
+    },
+    {
+      "model": "Sonnet",
+      "quirk": "（待累積）",
+      "static": "",
+      "dynamic": ""
+    },
+    {
+      "model": "gpt-6-astra",
+      "quirk": "很快且自查扎實：五條工人線約 5 分鐘全交 DONE，自報數字與領導重算一致（2026-10-23，2026-10-23 lead-combat-ref REPORT）",
+      "static": "可放心給大任務、驗收條數寫死即可",
+      "dynamic": "不必微管理"
+    },
+    {
+      "model": "gpt-6-astra",
+      "quirk": "把件數 gate 上限當目標填滿（22／21／18／22／16）（2026-10-23，2026-10-23 lead-combat-ref REPORT）",
+      "static": "要精簡就直接給目標數，不給區間",
+      "dynamic": "—"
+    },
+    {
+      "model": "gpt-6-astra",
+      "quirk": "多選標籤傾向全掛（design_note_ref「架構」佔 74%）（2026-10-23，2026-10-23 lead-combat-ref REPORT）",
+      "static": "要求「最多兩個、第一個是主對應」",
+      "dynamic": "—"
+    },
+    {
+      "model": "gpt-6-astra",
+      "quirk": "spike 工人各自選了不同的格子尺寸與元素（24px div vs 20px button），量測可比性下降（2026-10-23，2026-10-23 lead-techstack REPORT）",
+      "static": "量測類交接書要寫死基準（尺寸、元素、取樣次數、取中位數）",
+      "dynamic": "—"
+    }
+  ]
 }

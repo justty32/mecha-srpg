@@ -37,7 +37,7 @@ echo $! > "<log 目錄>/<線名>.pid"
 
 **可寫範圍**。`-C` 是主可寫根；`--add-dir` 追加可寫目錄（可重複）：回報要 `wf/inbox`。**兩者聯集不得超出領地表**（[dispatch](CLAIMS.md)）；沙箱另外自動放行 `/tmp`。`--skip-git-repo-check` 在工作目錄不是 git repo 時必加（如 `/tmp`），在 repo 內加了也無害。
 
-**輸出與其他**。`-o FILE`（`--output-last-message`）把最後一則訊息單獨寫到檔案，收線不用從 log 撈。**`< /dev/null` 必須保留**。`--ephemeral` 不落 session 檔，探路用，正式線不加（留 session 可 `codex exec resume`）。`--json` 改印 JSONL，要程式化解析才用。子代理上限寫進交接書（config 沒鎖數量）。
+**輸出與其他**。`-o FILE`（`--output-last-message`）把最後一則訊息單獨寫到檔案，收線不用從 log 撈。**`< /dev/null` 必須保留**。`--ephemeral` 不落 session 檔，探路用，正式線不加（留 session 可 `codex exec resume`）。`--json` 改印 JSONL，要程式化解析才用。子代理上限寫進交接書（config 沒鎖數量）。**ROSTER 由領導代登記**：工人的可寫集合不含 `wf/workflows/inbox/`，交接書別要求它自己登記（2026-10-23 兩條領導線實證）。
 
 ## git 與禁區
 

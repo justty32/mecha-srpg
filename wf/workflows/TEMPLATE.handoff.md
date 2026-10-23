@@ -69,10 +69,12 @@ REPORT 四段（做了什麼／產出／沒做到或證據不足的／需要決�
 
 ## 完成／阻塞回報（必做）
 
-- 我是誰：`<線名>`。本線團隊：`teams/<TEAM>`（沒有就寫「無」）。codex 線上線先在 `wf/workflows/inbox/ROSTER.md` 追加自己一格並發 `PROGRESS`。
+- 我是誰：`<線名>`。本線團隊：`teams/<TEAM>`（沒有就寫「無」）。上線先發 `PROGRESS`。
 - 終局：`wf/tools/inbox_mail.sh <線名> --up <STATUS> '<一句自足結論>' <正文檔>`（沒有正文檔就加 `< /dev/null`）——它會依團隊名冊自動送到你的領導，你不需要知道上游叫什麼。Claude 子 agent 不走 inbox，直接在回覆給 5 行摘要＋REPORT 路徑。
 - 結束時必發終局 STATUS 之一：`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED`；**卡住超過 10 分鐘先發 `BLOCKED`**（需使用者決定用 `NEEDS-USER`），不可無聲等待。
 - **等別人時用前景** `wf/tools/inbox_poll.sh <線名> --wait --timeout 540`（逾時再跑一輪），**不要用結束回合當等待**。
 - 標題要是自足的一句結論，不可只寫「完成」「報告」。完整契約：[inbox/PROTOCOL.md](inbox/PROTOCOL.md)。
+
+codex 工人的 ROSTER 格由**領導代登記**：沙箱只放 `-C` 與 `wf/inbox`，工人寫不到 `wf/workflows/inbox/ROSTER.md`（2026-10-23 實證）。
 
 > 送出前對照一次「背景與唯一目標」和「工作」有沒有互相矛盾——衝突處要寫死哪個為準。
