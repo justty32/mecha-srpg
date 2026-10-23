@@ -54,17 +54,33 @@
   },
   "commands": [
     {
-      "kind": "useAbility",
+      "kind": "move",
       "actor": "a",
+      "path": [
+        {
+          "x": 1,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "end",
+      "actor": "a"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "b",
       "ability": "ability/cb-shot",
       "target": {
-        "unit": "b",
+        "unit": "a",
         "part": "core"
       }
     }
   ],
   "expect": {
     "sequence": [
+      "Moved",
+      "TurnEnd",
       "AbilityUsed",
       "Hit",
       "LayerDamaged",
@@ -72,8 +88,9 @@
       "PartBroken"
     ],
     "minCounts": {
+      "Moved": 1,
       "LayerDamaged": 2,
-      "Conducted": 1,
+      "LayerBroken": 2,
       "PartBroken": 1
     }
   }

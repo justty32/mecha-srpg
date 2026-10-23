@@ -1,0 +1,33 @@
+{
+  "id": "effect/morale-breaking",
+  "name": "breaking",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -20,
+      "source": "effect/morale-breaking"
+    },
+    {
+      "path": "self.pools.ap.max",
+      "op": "add",
+      "value": -2,
+      "source": "effect/morale-breaking"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "morale",
+    "morale:breaking"
+  ],
+  "ui": {
+    "badge": "breaking"
+  }
+}

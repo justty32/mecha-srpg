@@ -1,0 +1,109 @@
+{
+  "id": "people-capture",
+  "seed": 3,
+  "setup": {
+    "id": "people-capture",
+    "map": {
+      "width": 5,
+      "height": 5,
+      "fill": "terrain/plain",
+      "exits": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "units": [
+      {
+        "id": "hunter",
+        "owner": "player",
+        "pos": {
+          "x": 1,
+          "y": 1
+        },
+        "frame": "frame/pp-capture-rig",
+        "persons": [
+          {
+            "id": "hunter-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      },
+      {
+        "id": "wolf",
+        "owner": "enemy",
+        "pos": {
+          "x": 2,
+          "y": 1
+        },
+        "monster": {
+          "species": "species/pp-tidewolf",
+          "grade": "C"
+        }
+      }
+    ],
+    "objectives": [],
+    "maxRounds": 10
+  },
+  "commands": [
+    {
+      "kind": "useAbility",
+      "actor": "hunter",
+      "ability": "ability/pp-break-limb",
+      "target": {
+        "unit": "wolf",
+        "part": "front-left"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "hunter",
+      "ability": "ability/pp-break-limb",
+      "target": {
+        "unit": "wolf",
+        "part": "front-right"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "hunter",
+      "ability": "ability/pp-break-limb",
+      "target": {
+        "unit": "wolf",
+        "part": "rear-left"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "hunter",
+      "ability": "ability/pp-break-limb",
+      "target": {
+        "unit": "wolf",
+        "part": "rear-right"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "hunter",
+      "ability": "ability/pp-restrain",
+      "target": {
+        "unit": "wolf"
+      }
+    }
+  ],
+  "expect": {
+    "sequence": [
+      "BattleStart",
+      "PartBroken",
+      "Captured"
+    ],
+    "minCounts": {
+      "Captured": 1
+    }
+  }
+}

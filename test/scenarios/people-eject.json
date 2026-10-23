@@ -1,0 +1,75 @@
+{
+  "id": "people-eject",
+  "seed": 42,
+  "setup": {
+    "id": "people-eject",
+    "map": {
+      "width": 5,
+      "height": 5,
+      "fill": "terrain/plain",
+      "exits": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "units": [
+      {
+        "id": "pilot",
+        "owner": "player",
+        "pos": {
+          "x": 1,
+          "y": 1
+        },
+        "frame": "frame/pp-capture-rig",
+        "persons": [
+          {
+            "id": "pilot-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      },
+      {
+        "id": "enemy",
+        "owner": "enemy",
+        "pos": {
+          "x": 4,
+          "y": 4
+        },
+        "frame": "frame/infantry",
+        "persons": [
+          {
+            "id": "enemy-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      }
+    ],
+    "objectives": [],
+    "maxRounds": 10
+  },
+  "commands": [
+    {
+      "kind": "eject",
+      "actor": "pilot"
+    }
+  ],
+  "expect": {
+    "sequence": [
+      "BattleStart",
+      "Ejected"
+    ],
+    "minCounts": {
+      "Ejected": 1
+    }
+  }
+}

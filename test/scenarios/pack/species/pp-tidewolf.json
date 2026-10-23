@@ -1,0 +1,45 @@
+{
+  "id": "species/pp-tidewolf",
+  "name": "潮狼",
+  "family": "beast",
+  "bodyPlan": "bodyplan/pp-tidewolf",
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 6
+    },
+    "C": {
+      "initiative": 9,
+      "perception": 6
+    },
+    "B": {
+      "initiative": 10,
+      "perception": 7
+    }
+  },
+  "pools": [],
+  "abilities": [],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/pp-restrain",
+    "frame": "frame/pp-capture-rig"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "base:aiprofile/pack-hunter",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

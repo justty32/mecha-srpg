@@ -1,0 +1,68 @@
+{
+  "id": "people-berserk",
+  "seed": 42,
+  "setup": {
+    "id": "people-berserk",
+    "map": {
+      "width": 5,
+      "height": 5,
+      "fill": "terrain/plain",
+      "exits": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    "units": [
+      {
+        "id": "bio",
+        "owner": "player",
+        "pos": {
+          "x": 1,
+          "y": 1
+        },
+        "frame": "frame/pp-capture-rig",
+        "persons": [
+          {
+            "id": "bio-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ]
+      },
+      {
+        "id": "enemy",
+        "owner": "enemy",
+        "pos": {
+          "x": 4,
+          "y": 4
+        },
+        "frame": "frame/infantry",
+        "persons": [
+          {
+            "id": "enemy-pilot",
+            "def": "person/pp-burden-pilot",
+            "seat": "pilot"
+          }
+        ],
+        "pools": {
+          "burden": 0
+        }
+      }
+    ],
+    "objectives": [],
+    "maxRounds": 10
+  },
+  "commands": [],
+  "expect": {
+    "sequence": [
+      "BattleStart",
+      "TurnStart",
+      "ControlChanged"
+    ],
+    "minCounts": {
+      "ControlChanged": 1
+    }
+  }
+}

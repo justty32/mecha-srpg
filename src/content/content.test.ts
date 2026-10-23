@@ -23,13 +23,14 @@ test("base 內容包載入零錯誤", () => {
   assert.deepEqual(base.errors, []);
 });
 
-test("指定內容種類件數正確", () => {
+test("指定內容種類件數不低於地基範例", () => {
+  // 內容包會長大（content 線起），只驗下限，不寫死等號。
   const counts = base.db.counts();
-  assert.equal(counts.frame, 2);
-  assert.equal(counts.component, 1);
-  assert.equal(counts.person, 2);
-  assert.equal(counts.terrain, 1);
-  assert.equal(counts.species, 1);
+  assert.ok(counts.frame >= 2);
+  assert.ok(counts.component >= 1);
+  assert.ok(counts.person >= 2);
+  assert.ok(counts.terrain >= 1);
+  assert.ok(counts.species >= 1);
 });
 
 test("DB 定義內的參照補上 pack 前綴", () => {

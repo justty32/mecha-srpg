@@ -1,0 +1,33 @@
+{
+  "id": "effect/morale-fleeing",
+  "name": "fleeing",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -30,
+      "source": "effect/morale-fleeing"
+    },
+    {
+      "path": "self.pools.ap.max",
+      "op": "add",
+      "value": -3,
+      "source": "effect/morale-fleeing"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "morale",
+    "morale:fleeing"
+  ],
+  "ui": {
+    "badge": "fleeing"
+  }
+}

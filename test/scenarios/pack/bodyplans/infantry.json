@@ -1,0 +1,44 @@
+{
+  "id": "bodyplan/infantry",
+  "name": "徒步人物",
+  "parts": [
+    {
+      "id": "body",
+      "name": "身體",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "flesh",
+          "hp": 60,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "core",
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot",
+            "passenger"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    }
+  ]
+}

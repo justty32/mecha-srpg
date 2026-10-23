@@ -1,0 +1,33 @@
+{
+  "id": "effect/morale-shaken",
+  "name": "shaken",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/morale-shaken"
+    },
+    {
+      "path": "self.pools.ap.max",
+      "op": "add",
+      "value": -1,
+      "source": "effect/morale-shaken"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "morale",
+    "morale:shaken"
+  ],
+  "ui": {
+    "badge": "shaken"
+  }
+}
