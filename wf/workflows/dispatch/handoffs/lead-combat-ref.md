@@ -41,8 +41,10 @@
 1. 讀完先讀清單；在 `wf/workflows/inbox/ROSTER.md` 追加自己那格；開團隊。
 2. 先讀 BB 拆解的 `wf/workflows/investigations/README.md` 與 `replication-design.md` 建立全貌，把主題分 3–5 組，每組一份子線交接書 `wf/workflows/dispatch/handoffs/lead-combat-ref/cx-bb-GROUP.md`（照 `wf/workflows/TEMPLATE.handoff.md`、brief_lint 過），要工人輸出第 5 步欄位的 json 片段＋REPORT；派出。同時開 1 個 Claude 子 agent 查 SRW 三件事。
 3. 前景等信；收到終局信逐條核證據（每條機制的出處要能在 BB 拆解檔 grep 到），`inbox_ack.sh` 歸檔。
-4. 合併成 `mechanics.json`（wf-table/1；欄位固定：`id`、`domain`（戰鬥／人物／AI／營運／資料）、`bb_mechanic`、`source`（拆解檔路徑＋段名）、`mecha_adaptation`、`design_note_ref`、`recommendation`（採用／改造／不採用）、`why`、`open_question`），用 `tabledb.py` 驗。
+4. 合併成 `mechanics.json`（欄位見下），用 `tabledb.py` 驗。
 5. REPORT：全貌一段、七條裁示各一段對應、最該先拍板的 10 個 `open_question`；關團隊；回傳。
+
+`mechanics.json` 契約 wf-table/1，欄位固定：`id`、`domain`（戰鬥／人物／AI／營運／資料）、`bb_mechanic`、`source`（拆解檔路徑＋段名）、`mecha_adaptation`、`design_note_ref`、`recommendation`（採用／改造／不採用）、`why`、`open_question`。
 
 ## 交付
 
