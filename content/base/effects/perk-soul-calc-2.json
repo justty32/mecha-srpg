@@ -1,0 +1,26 @@
+{
+  "id": "effect/perk-soul-calc-2",
+  "name": "算・戰場預判",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/perk-soul-calc-2"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk"
+  ],
+  "ui": {
+    "badge": "算・戰場預判"
+  }
+}

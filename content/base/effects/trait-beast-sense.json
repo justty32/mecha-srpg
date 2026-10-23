@@ -1,0 +1,26 @@
+{
+  "id": "effect/trait-beast-sense",
+  "name": "獸感",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "effect/trait-beast-sense"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "獸感"
+  }
+}

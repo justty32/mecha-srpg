@@ -1,0 +1,27 @@
+{
+  "id": "effect/rooted",
+  "name": "根系纏縛",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "effect/rooted"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "根系纏縛"
+  }
+}

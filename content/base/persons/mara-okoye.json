@@ -1,0 +1,82 @@
+{
+  "id": "person/mara-okoye",
+  "name": "瑪拉・奧可耶",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 55,
+    "evasion": 10,
+    "resolve": 50,
+    "initiative": 7,
+    "perception": 5,
+    "control": 45
+  },
+  "traits": [
+    "effect/trait-steady-hands"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "protect-kin"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "id": "species/mite",
+  "name": "蝕蟲",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-mite",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 4
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mite-swarm-bite"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-mite"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/swarm-mite",
+  "tags": [
+    "kaiju",
+    "insect",
+    "spawned"
+  ]
+}

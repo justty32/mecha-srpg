@@ -1,0 +1,26 @@
+{
+  "id": "effect/perk-soul-heart-1",
+  "name": "心・守望",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/perk-soul-heart-1"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk"
+  ],
+  "ui": {
+    "badge": "心・守望"
+  }
+}

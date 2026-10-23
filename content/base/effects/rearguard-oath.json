@@ -1,0 +1,34 @@
+{
+  "id": "effect/rearguard-oath",
+  "name": "殿後之誓",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/rearguard-oath"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 3,
+      "source": "effect/rearguard-oath"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "殿後之誓"
+  }
+}

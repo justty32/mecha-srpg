@@ -1,0 +1,34 @@
+{
+  "id": "ability/nest-birth",
+  "name": "巢母孵生",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/nest-birth"
+      ]
+    }
+  ],
+  "tags": [
+    "spawn"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  }
+}

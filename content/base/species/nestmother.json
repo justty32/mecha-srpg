@@ -1,0 +1,56 @@
+{
+  "id": "species/nestmother",
+  "name": "巢母",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-nestmother",
+  "gradeRange": [
+    "A"
+  ],
+  "baseAttrsByGrade": {
+    "A": {
+      "initiative": 3,
+      "perception": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/nest-birth",
+    "ability/root-drag"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-nestmother"
+  },
+  "behaviors": {
+    "telegraph": true,
+    "spawner": {
+      "child": "species/mite",
+      "cadence": 3,
+      "max": 6,
+      "tether": "dieWithParent"
+    }
+  },
+  "aiProfile": "aiprofile/nest-anchor",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}

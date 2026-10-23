@@ -1,0 +1,26 @@
+{
+  "id": "effect/trait-steady-hands",
+  "name": "穩手",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 5,
+      "source": "effect/trait-steady-hands"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "穩手"
+  }
+}

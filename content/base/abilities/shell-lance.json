@@ -1,0 +1,49 @@
+{
+  "id": "ability/shell-lance",
+  "name": "殼光之槍",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 32
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

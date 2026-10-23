@@ -1,0 +1,34 @@
+{
+  "id": "frame/bio-mite",
+  "name": "生物機甲・蝕蟲",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/insect-mite",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 4
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mite-swarm-bite"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 2
+}

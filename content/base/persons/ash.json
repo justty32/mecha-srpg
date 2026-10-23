@@ -1,0 +1,69 @@
+{
+  "id": "person/ash",
+  "name": "灰",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 50,
+    "evasion": 10,
+    "resolve": 50,
+    "initiative": 6,
+    "perception": 6,
+    "control": 45
+  },
+  "traits": [],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "calc",
+      "name": "算力",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "protect-kin"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "tree": "soultree/moji-std",
+    "researchPerDirection": {
+      "heart": 5
+    },
+    "companionshipRate": 1.5
+  },
+  "tags": [
+    "soul",
+    "wild"
+  ]
+}

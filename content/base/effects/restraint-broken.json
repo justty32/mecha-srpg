@@ -1,0 +1,28 @@
+{
+  "id": "effect/restraint-broken",
+  "name": "節鎖斷裂",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "instinct",
+        "delta": 30
+      }
+    ]
+  },
+  "tags": [
+    "restraint"
+  ],
+  "ui": {
+    "badge": "節鎖斷裂"
+  }
+}

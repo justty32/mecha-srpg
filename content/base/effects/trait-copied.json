@@ -1,0 +1,26 @@
+{
+  "id": "effect/trait-copied",
+  "name": "被複製過",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -5,
+      "source": "effect/trait-copied"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "被複製過"
+  }
+}

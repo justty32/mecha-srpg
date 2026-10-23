@@ -1,0 +1,51 @@
+{
+  "id": "ability/rearguard-oath",
+  "name": "殿後之誓",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "fatigue",
+      "owner": "person",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/rearguard-oath"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "protect": 1
+    }
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "id": "person/ilse-brandt",
+  "name": "伊爾瑟・布蘭特",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 52,
+    "evasion": 8,
+    "resolve": 60,
+    "initiative": 6,
+    "perception": 5,
+    "control": 45
+  },
+  "traits": [],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "never-retreat",
+      "bring-them-home"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human"
+  ]
+}

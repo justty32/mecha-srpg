@@ -1,0 +1,125 @@
+{
+  "id": "bodyplan/insect-mite",
+  "name": "蝕蟲體",
+  "parts": [
+    {
+      "id": "body",
+      "name": "腹身",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 10,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 10,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 15,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 1
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "legs",
+      "name": "六節肢",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 5,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 10,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "mouth",
+      "name": "口器",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 5,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 5,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "manipulator"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

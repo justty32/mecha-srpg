@@ -1,0 +1,40 @@
+{
+  "id": "ability/root-drag",
+  "name": "根系拖纏",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 10
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/rooted"
+      ]
+    }
+  ],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "debuff": 1
+    }
+  }
+}

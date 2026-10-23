@@ -1,0 +1,51 @@
+{
+  "id": "species/reaper",
+  "name": "鐮肢",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-reaper",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/reaper-cleave",
+    "ability/reaper-charge"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-reaper"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/reaper-vanguard",
+  "tags": [
+    "kaiju",
+    "insect",
+    "spawned"
+  ]
+}

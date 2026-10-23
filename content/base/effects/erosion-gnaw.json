@@ -1,0 +1,38 @@
+{
+  "id": "effect/erosion-gnaw",
+  "name": "蝕地侵蝕",
+  "scope": "layer",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onTick": [
+      {
+        "do": "damage",
+        "packets": [
+          {
+            "type": "acid",
+            "amount": 2,
+            "layerFilter": [
+              "armor",
+              "component"
+            ]
+          }
+        ],
+        "target": "self"
+      }
+    ]
+  },
+  "tags": [
+    "acid",
+    "rift"
+  ],
+  "ui": {
+    "badge": "蝕地"
+  }
+}

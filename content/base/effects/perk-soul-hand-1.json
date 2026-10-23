@@ -1,0 +1,26 @@
+{
+  "id": "effect/perk-soul-hand-1",
+  "name": "手・精準操控",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "effect/perk-soul-hand-1"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk"
+  ],
+  "ui": {
+    "badge": "手・精準操控"
+  }
+}

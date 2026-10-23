@@ -1,0 +1,29 @@
+{
+  "id": "effect/nest-birth",
+  "name": "囊口孵生",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "spawn",
+        "species": "species/mite",
+        "grade": "D",
+        "at": "adjacent"
+      }
+    ]
+  },
+  "tags": [
+    "spawn"
+  ],
+  "ui": {
+    "badge": "囊口孵生"
+  }
+}
