@@ -62,3 +62,14 @@
 - **答不出什麼**：世界觀、數值、程式碼、spec
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-combat-ref/`
 - **訂閱主題**：無
+
+### `lead-tome4-ref`
+- **狀態**：現役（2026-10-23 21:46 起）
+- **我是誰**：Opus 領導線（Claude 子 agent，頂層用 Agent tool 派出），把 ToME4 的資源／天賦／效果／傷害／物品與 AI 拆成機甲 SRPG「可選機制表」第二卷。
+- **團隊**：`teams/tome4ref`（領導；工人 `cx-tome-res`、`cx-tome-talent`、`cx-tome-effect`、`cx-tome-damage`、`cx-tome-item`，codex 沙箱寫不到本檔，由我代登記於此）
+- **上游**：頂層 `dispatcher`（行程內回傳，不走 inbox）
+- **領地**：`wf/workflows/dispatch/handoffs/lead-tome4-ref/`；工人各寫 `lead-tome4-ref/cx-tome-<組>/`
+- **答得出什麼**：ToME4 資源池、天賦 schema 與 tactical AI、時效效果、傷害／抗性結算、ego／神器如何搬到機甲設定、建議採用與否
+- **答不出什麼**：世界觀、數值、程式碼、spec
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-tome4-ref/`
+- **訂閱主題**：無

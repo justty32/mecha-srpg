@@ -63,3 +63,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `plan-world`，團隊無（直屬頂層）。你是 Claude 子 agent，不走 inbox：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。不要用結束回合當等待；不要問使用者問題，想問的寫進「我替使用者做掉的決定清單」。
+
+
+## 完成證據（調度者 2026-10-23 收線）
+
+1. `planning/specs/world/` README＋8 子檔皆存在，最大 mech-lifecycles 8,044 bytes。2. `monsters.json` 10 列（D 2／C 3／B 3／A 2），欄位含 parent／children／territory，無 S／SS／SSS。3. 每子檔「我的提案」「使用者裁示」各 ≥ 1（調度者逐檔 grep）。4. `wf-lint.sh --strict .` exit 0。5. REPORT 含「最想請使用者看的 5 個提案」與「我替使用者做掉的決定清單」。三道中途改令（SS／SSS 留白、古代異能與多資源、人機關係與 AI 提案）皆已吃進。

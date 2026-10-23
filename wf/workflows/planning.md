@@ -21,7 +21,7 @@
 | **詳規** | 怎麼做？ | 開發：**spec**（方案）→ **plan**（動工前詳規），各一檔放 `planning/specs/`、`planning/plans/`，第一份出現時升級成資料夾型。非開發：接 plan-a-thing（knowledge 包）|
 | **執行** | — | 開發：feature-dev；非開發：plan-a-thing 的執行段 |
 
-使用者的原始設計裁示（spec 前）→ [planning/design-notes.md](planning/design-notes.md)。
+使用者的原始設計裁示（spec 前）→ [planning/design-notes.md](planning/design-notes.md)；世界觀與營運層第一版提案 → [planning/specs/world/](planning/specs/world/README.md)。
 
 ## 想法（要不要做）
 
