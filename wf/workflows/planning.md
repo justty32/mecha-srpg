@@ -38,7 +38,8 @@
 | 安裝 team（multi-agent）工作流到 `wf/` | 2026-10-23 進行中（線 `wf-team-install`） | — |
 | 技術棧調查線：網頁純文字呈現格狀戰場、headless 測試、資料驅動解耦架構、AI 介面；Godot headless 備案 | team 工作流裝好後第一批 | 安裝完成 |
 | 戰鬥系統參考摘要線：SRW 機制、Battle Brothers（`~/repo/moddings/battle-brothers`）→ 候選機制表 | 與技術棧調查並行 | 安裝完成 |
-| 世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工 | 使用者想法到位後 | 使用者輸入、兩條調查線結論 |
+| 世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工 | 已完成（core v1、world v2，2026-10-24） | — |
+| 內容包機械系名稱按命名規範化；世界觀表補 B 級蟲族 | 內容包第二批時 | 命名裁示（design-notes/mechs） |
 
 ## 交接
 
