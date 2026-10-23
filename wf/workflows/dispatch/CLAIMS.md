@@ -8,7 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| （目前無）| | | |
+| `plan-spec`（Fable 規劃線）| `wf/workflows/planning/specs/core/`、`wf/workflows/dispatch/handoffs/plan-spec/` | 其餘全部唯讀；不 commit | 2026-10-23 23:45 |
 
 ## 保留給調度者，任何線都不得寫
 

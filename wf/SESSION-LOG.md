@@ -11,6 +11,7 @@
 
 ## 最新進度
 
+- [dispatch] 現役 Fable 規劃線 `plan-spec`（核心引擎 spec：資料模型／規則／AI／內容格式／架構 → `planning/specs/core/`）→ 收線後 SPEC.md 改指向新 spec，依其「建議的實作切線」開實作團隊
 - [planning] 2026-10-23 專案重做為網頁文字 SRPG（決定見 [decisions](workflows/decisions.md)）；舊程式碼四條 open（介面統一／pytest／mtcore／HTML 導覽）隨之作廢已刪 → 等使用者世界觀／戰鬥系統輸入後由 Fable 寫 spec
 - [planning] 已收線：`lead-tome4-ref`（ToME4 機制表第二卷 60 列）、`plan-world`（世界觀《潮獵》第一版提案，入口 [specs/world](workflows/planning/specs/world/README.md)，15 條代決待使用者推翻或默認）、`lead-techstack`（建議純 TS＋Vite，備案 Lit）、`lead-combat-ref`（107 列機制表）→ 四線結論齊，下一步 Fable 寫 spec（見 handoffs/done/2026-10-23/）
 
