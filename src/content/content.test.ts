@@ -28,7 +28,7 @@ test("指定內容種類件數正確", () => {
   assert.equal(counts.frame, 2);
   assert.equal(counts.component, 1);
   assert.equal(counts.person, 2);
-  assert.equal(counts.terrain, 1);
+  assert.equal(counts.terrain, 2);
   assert.equal(counts.species, 1);
 });
 

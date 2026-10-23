@@ -7,6 +7,7 @@ import type {
   AttrId, PoolId, PartId, SlotId, SeatId, SeatRole, ControlMode, MoraleStage, Cell, Dir,
   FactionSlot, Contribution, EffectScope, LayerType,
 } from "./types-def.ts";
+import type { Grade, Objective } from "./types-def.ts";
 import type { EventLog } from "./events.ts";
 
 // ---------- RNG（core/rng 的 PCG32） ----------
@@ -80,6 +81,28 @@ export type BattleState = {
   rng: RngState;
   pending: EffectInstance[];
   log: EventLog;
+  rt?: RulesRuntime;                  // rules 層的執行期簿記（lead-impl-rules 新增；createBattle 一定會填）
+};
+
+// ---------- rules 層執行期簿記（lead-impl-rules 新增；只放純資料） ----------
+export type UnitStatus = "active" | "dead" | "retreated" | "derelict" | "captured";
+export type BattleOutcome = { winner: FactionSlot | null; reason: string };
+export type RulesRuntime = {
+  nextUid: number;                    // 下一個 EffectInstance.uid
+  nextContrib: number;                // 下一個 contribution id 的序號（id = "c" + 序號）
+  actionSeq: number;                  // 每次 tryCommand 成功 +1（reaction oncePer:"action" 用）
+  active: Id | null;                  // 目前回合的單位
+  acted: Id[]; waited: Id[]; waitUsed: Id[];   // 本輪已行動／Wait 到隊尾／本輪已用過 Wait
+  reactUsed: Record<string, number>;  // reaction 觸發計數，鍵由 command.ts 定
+  commander: Record<Id, Id | null>;   // 單位 → 本回合握指令權的人物（control.ts 寫）
+  unitStatus: Record<Id, UnitStatus>;
+  monsters: Record<Id, { species: Id; grade: Grade }>;   // 怪獸單位：MechState.frame 填 species id
+  moraleStreak: Record<Id, number>;   // 人物連續士氣檢定成功次數
+  berserkFrom: Record<Id, FactionSlot>; // 失控單位的原 slot
+  xpGained: Record<Id, number>;
+  fieldEffects: EffectInstance[];     // scope = cell／faction／battle 的效果
+  objectives: Objective[]; maxRounds: number | null; exits: Cell[]; noRetreat: boolean;
+  outcome: BattleOutcome | null;
 };
 
 // ---------- 指令（rules-turn-and-actions：Move | UseAbility | Wait | End | Eject | Retreat） ----------

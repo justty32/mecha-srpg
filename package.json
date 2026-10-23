@@ -9,6 +9,10 @@
   },
   "scripts": {
     "test": "node --test --test-reporter=tap 'src/**/*.test.ts' 'test/**/*.test.ts'",
-    "check": "node src/content/loader.ts content/base"
+    "check": "node src/content/loader.ts content/base",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "typescript": "7.0.2"
   }
 }

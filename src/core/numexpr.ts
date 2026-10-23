@@ -18,9 +18,9 @@ export function evalNum(expr: NumExpr, ctx: EvalCtx): number {
     if (expr.min !== undefined) value = Math.max(value, expr.min);
     if (expr.max !== undefined) value = Math.min(value, expr.max);
   } else if ("sum" in expr) {
-    value = expr.sum.reduce((sum, item) => sum + evalNum(item, ctx), 0);
+    value = expr.sum.reduce<number>((sum, item) => sum + evalNum(item, ctx), 0);
   } else if ("product" in expr) {
-    value = expr.product.reduce((product, item) => product * evalNum(item, ctx), 1);
+    value = expr.product.reduce<number>((product, item) => product * evalNum(item, ctx), 1);
   } else {
     value = evalNum(evalCond(expr.pick.if, ctx) ? expr.pick.then : expr.pick.else, ctx);
   }
