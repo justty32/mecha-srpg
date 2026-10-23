@@ -66,3 +66,8 @@
 ## 完成／阻塞回報（必做）
 
 我是 `lead-legacy-archive`，團隊 `teams/legacy`（若開工人）或無。你是 Claude 子 agent，不走 inbox 向上回報：終局直接在回覆裡給 5 行摘要＋REPORT 路徑＋STATUS（`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED` 之一），第一行要是自足的一句結論。等工人時用前景 `inbox_poll.sh --wait`，不要用結束回合當等待。
+
+
+## 完成證據（調度者 2026-10-24 收線）
+
+1. `src/mecha_srpg`、`cpp`、`docs` 已不在根；`legacy/` 下三者齊，`legacy/README.md` 首行為封存註記。2. 根 `SPEC.md` 991 B／`PROJECT.md` 1,148 B／`README.md` 1,018 B，皆連到 `specs/core/README.md`。3. 六個 wf 檔 grep 舊棧識別字 0 筆。4. wf-lint broken=0／residue=0／local=0（唯一 OVERSIZE 是 `specs/world/mech-lifecycles.md`，現役線 plan-world-v2 的在途檔）。5. commit `2ad701b`、`d981186`（`legacy: `）；搬移本身被調度者的 `291587e` 因共用 index 一併收走（內容正確、不含 specs/world）——已記進 lessons。6. 無殘留行程，ROSTER 已標已收線。

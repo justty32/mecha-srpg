@@ -40,6 +40,13 @@
 1. **整檔改寫一律用單一 Update 操作**（一次完成、原子）。
 2. **每個批次邊界跑 `git status --short | grep -E '^(D |.D)'`，要零命中**（本專案 2026-10-23 起是 git repo，這條可直接用）。 成本近乎零，上面那次就是這道檢查抓到的。
 
+## 5. 多條線共用同一個 git index：commit 一律 `git commit -- <路徑>`
+
+2026-10-24 實例：封存線用 `git mv` 把 40 個檔搬進 `legacy/` 後還沒 commit，調度者同時 `git add 幾個檔 && git commit`，結果把那 40 個 rename 一起收走——`git commit` 預設提交**整個 index**，不只你剛 add 的。內容沒錯但歸屬亂了、訊息前綴也錯。
+
+**防呆**：同一 repo 有多條線時，所有人 commit 都用 `git commit -- <明列路徑>`（只提交那些路徑，不管 index 裡還有誰的東西），或先 `git status --short` 看 index 乾不乾淨。交接書的「可以 commit」段照此寫。
+
+
 ## 交接
 
 - 派線流程 → [dispatch](README.md)；怎麼驅動外部 CLI 線 → [driving-cli-agents](driving-cli-agents.md)。

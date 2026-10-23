@@ -11,10 +11,9 @@
 
 ## 最新進度
 
-- [dispatch] 現役實作線：`lead-legacy-archive`（舊版封存進 `legacy/`、根檔與 wf 文件改指新 spec）→ 完成後 `lead-impl-foundation`（spec 切線 1＋2：core 型別／RNG／事件／內容載入器，node 24 原生 TS、零依賴）開寫 `src/`
+- [dispatch] 現役實作線 `lead-impl-foundation`（spec 切線 1＋2：core 型別／RNG／事件／內容載入器，node 24 原生 TS、零依賴）→ 收線後開切線 3–5（rules）
 - [dispatch] 現役 Fable 規劃線 `plan-world-v2`（套用使用者今晚的推翻與補充，原地修訂 `specs/world/`）→ 收線後世界觀告一段落
-- [planning] 專案重做為網頁文字 SRPG（[decisions](workflows/decisions.md)）；舊 Python 版 open 項已作廢 → spec 定案後封存 `src/`／`cpp/`／`docs/` 為 legacy
-- [planning] 核心引擎 spec v1 已收線（[specs/core](workflows/planning/specs/core/README.md)，含 9 條實作切線建議）→ world v2 收線後 SPEC.md 改指向、開實作團隊
+- [planning] 舊版 Python 專案已封存 `legacy/`（2026-10-24）；SPEC.md 已改指 `specs/core/`＋`specs/world/`
 - [planning] 四條調查／規劃線已收線（技術棧、BB 卷、ToME 卷、世界觀 v1），證據在 `workflows/dispatch/handoffs/done/2026-10-23/`
 
 ## 各工作流 session-log

@@ -41,7 +41,7 @@ echo $! > "<log 目錄>/<線名>.pid"
 
 ## git 與禁區
 
-線**可以 commit 到 `main`**，只加明確路徑（`git add <檔>`，禁 `git add -A`）；**不 push、不建分支、不 rebase／reset 別人的 commit**。注意 `-s workspace-write` 下 `.git/` 要在可寫範圍內才 commit 得了——`-C` 指專案根以外的子目錄時，commit 交給調度者做，線只回報改了哪些檔。共通禁區（不碰鍵鼠螢幕、不開 GUI、Godot 只 `godot-mono --headless`、不 `rm -rf`、不裝依賴）照 [TEMPLATE.handoff](../TEMPLATE.handoff.md) 寫進交接書。
+線**可以 commit 到 `main`**，只加明確路徑並用 `git commit -- <檔…>` 提交（index 共用，見 [lessons](lessons.md)；禁 `git add -A`）；**不 push、不建分支、不 rebase／reset 別人的 commit**。注意 `-s workspace-write` 下 `.git/` 要在可寫範圍內才 commit 得了——`-C` 指專案根以外的子目錄時，commit 交給調度者做，線只回報改了哪些檔。共通禁區（不碰鍵鼠螢幕、不開 GUI、Godot 只 `godot-mono --headless`、不 `rm -rf`、不裝依賴）照 [TEMPLATE.handoff](../TEMPLATE.handoff.md) 寫進交接書。
 
 ## 背景跑與等它結束
 

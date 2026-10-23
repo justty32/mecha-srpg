@@ -35,7 +35,7 @@
 - **可寫程式碼線**：只寫「範圍」列的路徑；可跑 testing 工作流列的驗證指令與測試；commit 規則見下。
 - **可跑 godot headless 線**：同「可寫程式碼線」，另可跑 `godot-mono --headless …`（只准 headless，不開編輯器、不開任何視窗）。
 
-**共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；commit 到 `main` 只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；不 `rm -rf`（暫存搬 `/tmp/<線名>-trash/`，KB 級文字搬 `dispatch/handoffs/<線名>/trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 [dispatch/lessons](dispatch/lessons.md)）；子代理上限 <N> 個，只准為推進正事開。
+**共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；commit 到 `main` 只加明確路徑，且**用 `git commit -- <檔…>` 只提交那些路徑**（index 是多條線共用的；禁 `git add -A`／目錄級 add）；不 `rm -rf`（暫存搬 `/tmp/<線名>-trash/`，KB 級文字搬 `dispatch/handoffs/<線名>/trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 [dispatch/lessons](dispatch/lessons.md)）；子代理上限 <N> 個，只准為推進正事開。
 
 **分清錯誤來源**：工具或環境出錯（指令不存在、權限被擋、沙箱拒寫）→ 停下發 `BLOCKED`；你自己寫的臨時腳本出錯 → 自己修，不算阻塞。
 
