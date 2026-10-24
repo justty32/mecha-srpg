@@ -169,3 +169,15 @@ test("大地圖 160×160：快捷鍵與滾輪捲動可視區，只渲染可視�
   await expect(board.locator(`[data-x="${p2.x}"][data-y="${p2.y}"]`)).toHaveCount(1);
   expect(errors).toEqual([]);
 });
+
+test("觀戰：?spectate=1&anim=off 載入後經 settle 回合或事件有前進、無頁面錯誤", async ({ page }) => {
+  const errors = watchErrors(page);
+  await page.goto("/?spectate=1&anim=off");
+  await expect(page.locator('[data-ui="board"]')).toBeVisible();
+  const first = await snap(page);
+  expect(first.playerTurn).toBe(false);
+  for (let i = 0; i < 3; i++) { await settle(page); await page.waitForTimeout(50); }
+  const after = await snap(page) as Snap & { log: unknown[]; outcome: unknown };
+  expect(after.round > first.round || after.log.length > 0 || after.outcome !== null).toBe(true);
+  expect(errors).toEqual([]);
+});

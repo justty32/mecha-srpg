@@ -8,7 +8,7 @@
 
 程式碼尚未落地的模組標「規劃中」，落地後把該列改成實際檔名與測試位置。模組邊界與允許的依賴方向以 spec 的 [architecture](../planning/specs/core/architecture.md) 為準。
 
-已抽到 [code-map.json](code-map.json)（8 列：core、content、rules、ai、sim、ops、ui-adapter、ui-ops）。
+已抽到 [code-map.json](code-map.json)（9 列：core、content、rules、ai、sim、ops、ui-adapter、ui-ops、mcp）。
 
 欄位：`領域`（模組領域）、`檔案`（路徑）、`職責`（做什麼、對外介面）、`測試在哪`。查法見資料檔說明（[data-files](data-files.md)）。
 

@@ -338,8 +338,8 @@ export class BattleController {
   }
 }
 
-export function controllerForScenario(db: ContentDB, scenario: Id, seed: number, opts?: { viewport?: { w: number; h: number } }): BattleController {
+export function controllerForScenario(db: ContentDB, scenario: Id, seed: number, opts?: { viewport?: { w: number; h: number }; spectate?: boolean }): BattleController {
   // SPEC-GAP：ScenarioDef 沒有 name，標題採內容 id，不在程式寫死情境名稱。
-  return new BattleController({ session: new BattleSession({ db, sim: scenarioToSetup(db, scenario, seed), seed, autoAdvance: false }),
+  return new BattleController({ session: new BattleSession({ db, sim: scenarioToSetup(db, scenario, seed), seed, autoAdvance: false, ...(opts?.spectate ? { spectate: true } : {}) }),
     title: scenarioTitle(db.require("scenario", scenario).id), viewport: opts?.viewport });
 }

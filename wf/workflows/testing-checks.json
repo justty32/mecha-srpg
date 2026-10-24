@@ -47,6 +47,11 @@
    "驗證": "實際遊玩（畫面、操作、敵方回合）",
    "指令": "`npm run dev` 開網頁玩一回合（[dev-env](dev-env.md)）",
    "誰跑": "使用者 → [WAIT_USER](../WAIT_USER.md)"
+  },
+  {
+   "驗證": "MCP server（改 `src/mcp/` 必跑）",
+   "指令": "`node --test 'src/mcp/*.test.ts'`（Node 24 要 glob，不能只給目錄；已含在 `npm test`）：協定層、每個工具、stdio 端對端 hash＝`runBattle`、socket CLI、headless 截圖；手動：`node src/mcp/cli.ts serve --socket m.sock` 背景跑，再 `node src/mcp/cli.ts call --socket m.sock TOOL 'JSON'`（socket 路徑要短）",
+   "誰跑": "agent"
   }
  ]
 }

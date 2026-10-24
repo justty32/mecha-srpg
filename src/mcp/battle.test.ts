@@ -1,0 +1,83 @@
+import { test } from "node:test";
+import assert from "node:assert/strict";
+import { mkdirSync } from "node:fs";
+import { createEnv } from "./tool.ts";
+import { createBattleTools } from "./battle.ts";
+import { createServer } from "./protocol.ts";
+import { BattleView } from "./battle-view.ts";
+import { createSession } from "../sim/session.ts";
+import { scenarioToSetup } from "../sim/run.ts";
+
+const scenario = "scenario/skirmish-whitegloves";
+test("所有戰鬥工具：動作、AI、觀察、事件、檔案與字串重播、關閉", async () => {
+  const server = createServer({ tools: createBattleTools(createEnv()), name: "battle", version: "1" });
+  const call = async (name: string, args: object = {}, error = false) => {
+    const reply = JSON.parse((await server.handle(JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name, arguments: args } })))!);
+    assert.equal(!!reply.result.isError, error, JSON.stringify(reply)); lastText = reply.result.content[0]?.text ?? ""; return reply.result.structuredContent;
+  };
+  let lastText = "";
+  const moveTo = (cell: string) => { const [x, y] = cell.split(":")[0]!.split(",").map(Number); return { kind: "move", to: { x, y } }; };
+  assert.ok((await call("battle_list_scenarios")).scenarios.some((s: { id: string }) => s.id.endsWith(scenario)));
+  const initial = await call("battle_new", { scenario, seed: 1, rounds: 3, autoAdvance: false }), id = initial.id;
+  assert.ok(initial.current.playerTurn);
+  const full = await call("battle_observe", { id, detail: "full", map: true });
+  assert.ok(full.units[0].parts[0].layers[0].max > 0); assert.ok(lastText.split("\n").some(line => /^ *\d* +[^ ]*\?/u.test(line)));
+  // summary 與 ascii 只出現在 text，不在 JSON 重複。
+  assert.ok(full.units.every((u: object) => !("summary" in u))); assert.ok(!("ascii" in full.map)); assert.ok(full.map.legend.length);
+  assert.ok(full.units.every((u: { owner: string }) => u.owner === "player"));
+  const legal = await call("battle_legal_actions", { id });
+  assert.ok(legal.moves.length); assert.ok(legal.abilities.length);
+  assert.ok(legal.moves.every((m: unknown) => typeof m === "string" && /^\d+,\d+:\d+$/u.test(m)));
+  // 沒有目標的能力要說明射程與最近已知敵方。
+  assert.ok(legal.abilities.filter((a: { targets: unknown[] }) => !a.targets.length).every((a: { reason: string }) => /射程 \d+–\d+/u.test(a.reason)));
+  const moved = await call("battle_act", { id, action: moveTo(legal.moves[0]) });
+  assert.equal(moved.command.kind, "move"); assert.ok(moved.command.path.length);
+  await call("battle_act", { id, action: { kind: "move", to: { x: 9999, y: 9999 } } }, true);
+  await call("battle_act", { id, action: { kind: "useAbility" } }, true);
+  await call("battle_act", { id, action: { kind: "end" } });
+  const stepped = await call("battle_step_ai", { id, until: "unit", max: 10 });
+  assert.ok(stepped.commands >= 0);
+  const events = await call("battle_events", { id, limit: 1 }); assert.equal(events.events.length, 1);
+  const more = await call("battle_events", { id, since: events.next });
+  assert.ok(more.events.every((e: { seq: number }) => e.seq >= events.next));
+  const saved = await call("battle_save", { id });
+  const restored = await call("battle_load", { save: saved.save });
+  assert.notEqual(restored.id, id); assert.equal(restored.hash, saved.hash);
+  assert.deepEqual((await call("battle_observe", { id: restored.id, detail: "full" })).units, (await call("battle_observe", { id, detail: "full" })).units);
+  const damaged = JSON.parse(saved.save); damaged.hash = "bad";
+  await call("battle_load", { save: JSON.stringify(damaged) }, true);
+  await call("battle_load", {}, true);
+  mkdirSync("/tmp/cx-mcp-core", { recursive: true });
+  const path = "/tmp/cx-mcp-core/battle-test-save.json";
+  await call("battle_save", { id, path });
+  assert.equal((await call("battle_load", { path })).hash, saved.hash);
+  const auto = await call("battle_auto", { scenario, seed: 1, rounds: 1 }); assert.equal(auto.stopped, "outcome");
+  const watching = await call("battle_new", { scenario, seed: 1, rounds: 1, spectate: true, autoAdvance: false });
+  assert.ok(watching.units.some((u: { owner: string }) => u.owner !== "player"));
+  assert.equal((await call("battle_step_ai", { id: watching.id, until: "command" })).commands, 1);
+  const aiSaved = await call("battle_save", { id: watching.id });
+  const aiCopy = await call("battle_load", { save: aiSaved.save });
+  const ended = await call("battle_step_ai", { id: watching.id, until: "end" });
+  assert.ok(ended.outcome); assert.equal(ended.hash, (await call("battle_step_ai", { id: aiCopy.id, until: "end" })).hash);
+  const automatic = await call("battle_new", { scenario, rounds: 1, spectate: true }); assert.ok(automatic.outcome);
+  await call("battle_close", { id }); await call("battle_observe", { id }, true);
+  assert.equal((await call("battle_observe", { id: restored.id })).hash, saved.hash);
+});
+
+test("不可見敵人只提供最後所見快照；大地圖窗口最多 40 格", () => {
+  const db = createEnv().battleDb(), sim = scenarioToSetup(db, scenario, 1), session = createSession({ db, sim, seed: 1, human: ["player"] });
+  const view = new BattleView(session, "player", false), state = session.state;
+  const enemy = Object.keys(state.units).find(id => state.units[id]!.owner !== "player")!, unit = state.units[enemy]!;
+  state.knowledge.player!.visible = [enemy];
+  state.knowledge.player!.lastSeen[enemy] = { cell: { ...unit.pos }, round: 1 };
+  view.capture();
+  const old = view.units("full").find(u => u.id === enemy)!;
+  state.knowledge.player!.visible = [];
+  unit.pos = { x: 0, y: 0 }; Object.values(unit.parts)[0]!.layers[0]!.hp = 0;
+  const hidden = view.units("full").find(u => u.id === enemy)!;
+  assert.equal(hidden.stale, true); assert.deepEqual(hidden.pos, old.pos); assert.equal(hidden.hpPercent, old.hpPercent);
+  assert.match(hidden.summary, /最後所見第 1 輪/u);
+  state.map.width = 80; state.map.height = 60; state.map.terrain = Array<string>(4800).fill(state.map.terrain[0]!);
+  const map = view.map({ x: 75, y: 50, w: 100, h: 100 });
+  assert.deepEqual(map.window, { x: 40, y: 20, w: 40, h: 40 }); assert.equal(map.ascii.split("\n").length, 41);
+});

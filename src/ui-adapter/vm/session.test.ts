@@ -6,7 +6,7 @@ import { replay } from "../../sim/replay.ts";
 import { hashLog } from "../../core/eventlog.ts";
 import { runBattle } from "../../sim/run.ts";
 import { BattleSession } from "./session.ts";
-import { BattleController } from "./controller.ts";
+import { BattleController, controllerForScenario } from "./controller.ts";
 
 const { db } = loadContentDirs(["content/base"]);
 const sim = scenarioToSetup(db, "scenario/skirmish-whitegloves", 1);
@@ -52,4 +52,13 @@ test("session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與
   const expected = runBattle({ db, sim: sim3, seed: 1 });
   assert.equal(hashLog(s.state.log), expected.hash);
   assert.deepEqual(s.commands, expected.commands);
+});
+
+test("controllerForScenario：spectate 選項建出全 AI controller，step 後有輸出", () => {
+  const c = controllerForScenario(db, "scenario/skirmish-whitegloves", 1, { spectate: true });
+  assert.equal(c.session.spectate, true); assert.equal(c.snapshot().playerTurn, false); assert.ok(c.snapshot().busy);
+  const before = c.session.commands.length;
+  for (let i = 0; i < 4; i++) c.dispatch({ type: "step" });
+  assert.ok(c.session.commands.length > before, "step 應推進 AI");
+  assert.ok(c.snapshot().log.length > 0);
 });

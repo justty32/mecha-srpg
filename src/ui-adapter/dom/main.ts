@@ -1,5 +1,5 @@
 // ui-adapter/dom/main — 瀏覽器入口（唯一接線處）：載內容 → 建 controller → 掛 DOM。
-// URL 參數：?scenario=<id 或 debug-big>&seed=<n>&size=<大地圖邊長>；預設 scenario/skirmish-whitegloves、seed 1。
+// URL 參數：?scenario=<id 或 debug-big>&seed=<n>&size=<大地圖邊長>&spectate=1（全 AI 觀戰）；預設 scenario/skirmish-whitegloves、seed 1。
 import "./style.css";
 import "./shell.css";
 import { loadBrowserContent } from "../content-browser.ts";
@@ -41,7 +41,7 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
     const size = Math.max(121, Number(params.get("size") ?? 160) || 160);
     const session = new BattleSession({ db, sim: bigMapSim(db, size, seed), seed, autoAdvance: false });
     controller = new BattleController({ session, title: `大地圖測試 ${size}×${size}` });
-  } else controller = controllerForScenario(db, scenario, seed);
+  } else controller = controllerForScenario(db, scenario, seed, { spectate: params.get("spectate") === "1" });
   root.textContent = "";
   let anim: AnimMode = animationSetting(params.get("anim")) ?? animationSetting(readSetting("mecha-srpg.ui.anim")) ?? "on";
   const storedZoom = readSetting("mecha-srpg.ui.zoom");

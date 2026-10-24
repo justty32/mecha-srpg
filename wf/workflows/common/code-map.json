@@ -56,6 +56,12 @@
    "檔案": "`src/ui-adapter/ops/{vm,dom}/`",
    "職責": "營運網頁畫面：vm `OpsController`（`controller.ts`）把 `CampaignState`＋ops `render` 轉 `OpsSnapshot`（凍結契約 `vm/types.ts`）；指令只經 ops `applyCommand`；按鈕＝`Screen.actions`＋vm 補的接約／談判／航向／市場／招募；快捷鍵 `content/base/world/keymap-ops.json`＋`vm/keymap-ui.json`；世界圖排版 `vm/layout.ts`＋DOM `dom/world-map.ts`（可替換，大地圖改方格時整組換）；出戰兩段式：`sortieBattleSetup`（ops 唯讀查詢）→ 戰鬥 vm `BattleController`（`dom/battle-host.ts`）→ `battleDone` 以 `applySortieResult` 回寫並出戰果報告；`dom/main.ts` 的 `mountOpsPage` 由殼在 `#/ops` 懶載入；存檔 localStorage `mecha-srpg.ops.save`",
    "測試在哪": "同目錄 `*.test.ts`、`e2e/ops-campaign.spec.ts`"
+  },
+  {
+   "領域": "mcp",
+   "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`＋`battle-view.ts`、`campaign.ts`＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
+   "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`",
+   "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`）"
   }
  ]
 }
