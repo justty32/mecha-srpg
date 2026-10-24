@@ -2,7 +2,7 @@ import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx, RiftState } from "../state/types.ts";
 import type { ForceState, ForceUnit } from "./types.ts";
 import { factionModelPool, replenishWeight } from "./rnd.ts";
-import { locNode } from "./loc.ts";
+import { placeAt } from "./loc.ts";
 const powers = new WeakMap<OpsCtx["world"], Record<string, number>>();
 export function modelPower(ctx: Pick<OpsCtx, "world">): Record<string, number> {
   const cached = powers.get(ctx.world); if (cached) return cached;
@@ -15,7 +15,7 @@ export function strength(force: ForceState, power: Record<string, number>): numb
 }
 export function riftStrength(s: CampaignState, ctx: OpsCtx, r: RiftState): number {
   const cfg = ctx.world.all("forces")[0]!;
-  const depth = s.nodes[r.node]?.blight?.depth;
+  const depth = s.places[r.site]?.blight?.depth;
   return cfg.gp[r.width] * cfg.rift.width + (depth === "core" ? 3 : depth === "deep" ? 2 : 1) * cfg.rift.depth + r.anchorAge * cfg.rift.age;
 }
 export function mergeUnits(force: ForceState, units: ForceUnit[]): void {
@@ -33,7 +33,7 @@ export function forcesDaily(s: CampaignState, ctx: OpsCtx): void {
   const cfg = ctx.world.all("forces")[0]; if (!cfg) return;
   for (const id of Object.keys(s.factions).sort()) {
     const f = s.factions[id]!, force = f.forces; if (!force || !f.alive) continue;
-    if (f.territoryNow.includes(locNode(force.pos))) force.supply = Math.min(100, force.supply + cfg.homeSupply);
+    if (f.territoryNow.includes((placeAt(s, ctx, force.pos) ?? ""))) force.supply = Math.min(100, force.supply + cfg.homeSupply);
     if (s.clock.dom !== 1) continue;
     for (const u of force.units) u.readiness = Math.min(1, u.readiness + cfg.readiness);
     let budget = cfg.replenish[f.scaleNow] ?? 0;

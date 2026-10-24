@@ -1,3 +1,4 @@
+import { placeLoc } from "../war/loc.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { checkLedger } from "../state/ledger.ts";
@@ -6,7 +7,7 @@ import { fixture, day } from "./test-support.ts";
 test("market：基價乘狀態、聲望及節點局勢；弦月固定 seed 刷新", () => {
   const { s, ctx } = fixture(), market = ctx.world.require("market", "market/dhaka"), item = market.lists[0]!.items[0]!;
   s.factions[ctx.world.require("faction-ops", "faction-ops/migrant-crew").id]!.rep = 50;
-  s.nodes[market.node]!.flags.push("besieged"); assert.equal(marketPrice(s, ctx, market, item, 0.5), 300 * 0.5 * 0.9 * 1.5);
+  s.places[market.place]!.flags.push("besieged"); assert.equal(marketPrice(s, ctx, market, item, 0.5), 300 * 0.5 * 0.9 * 1.5);
   const a = fixture(), b = fixture();
   for (const f of [a, b]) { day(f.s, f.ctx, 6); marketsDaily7(f.s, f.ctx); }
   assert.deepEqual(a.s, b.s); const before = structuredClone(a.s); marketsDaily7(a.s, a.ctx); assert.deepEqual(a.s, before);
@@ -45,7 +46,7 @@ test("market：篩選器排除未開放機型，流出後刷新可售且不改�
 });
 test("market：新型上市一潮月內乘 1.5，之後回到基價", () => {
   const { s, ctx } = fixture(), model = ctx.world.require("model", "model/bulwark-i");
-  s.ship.at = ctx.world.require("market", "market/war-armory").node;
+  s.ship.pos = placeLoc(s, ctx, ctx.world.require("market", "market/war-armory").place);
   s.models![model.id] = { def: model.id, by: "generic", releasedDay: 1 };
   day(s, ctx, 1); s.ledger.balances.cash = 5000;
   const before = s.ledger.balances.cash;
@@ -59,7 +60,7 @@ test("market：restricted 機甲轉賣成功才流出，maker rep 扣 15，拒�
   for (const latest of [false, true]) {
   const { s, ctx } = fixture(), model = ctx.world.require("model", "model/union-fr7"), newer = ctx.world.require("model", "model/union-fr8"), id = "resale-test";
   if (latest) s.models![newer.id] = { def: newer.id, releasedDay: 1, by: model.maker };
-  s.ship.at = ctx.world.require("market", "market/war-armory").node;
+  s.ship.pos = placeLoc(s, ctx, ctx.world.require("market", "market/war-armory").place);
   s.mechs[id] = instantiateMech(ctx.db, id, model.frame); s.inventory.mechs.push(id); s.hangar.bays.push(id);
   const maker = factionId(s, ctx, model.maker)!, rep = s.factions[maker]!.rep, before = structuredClone(s);
   assert.equal(cmdTrade(s, ctx, { v: "trade", market: "market/war-armory", sell: [id], buy: ["missing"] }).ok, false);
@@ -72,7 +73,7 @@ test("market：restricted 機甲轉賣成功才流出，maker rep 扣 15，拒�
   }
 });
 test("market：護航補貨並解除加價、scarcity 一潮月、封港停止交易刷新", () => {
-  const { s, ctx } = fixture(), market = ctx.world.require("market", "market/dhaka"), node = s.nodes[market.node]!;
+  const { s, ctx } = fixture(), market = ctx.world.require("market", "market/dhaka"), node = s.places[market.place]!;
   marketsDaily7(s, ctx); const stock = (s as MarketState).markets![market.id]!.stock;
   stock["stock:fuel"] = 0; node.flags.push("war-supplied", "besieged"); marketsDaily7(s, ctx);
   assert.equal((s as MarketState).markets![market.id]!.stock["stock:fuel"], 120);
@@ -90,12 +91,12 @@ test("market：護航補貨並解除加價、scarcity 一潮月、封港停止�
 test("market：trade 互列夥伴已釋出可售機型並折價，restricted 不因條約外流", () => {
   const { s, ctx } = fixture(), market = ctx.world.require("market", "market/war-armory"), model = ctx.world.require("model", "model/union-at12");
   const maker = factionId(s, ctx, model.maker)!, owner = Object.keys(s.factions).find(id => id !== maker && s.factions[id]!.forces)!;
-  s.nodes[market.node]!.ownerOverride = ctx.world.require("faction-ops", owner).faction;
+  s.places[market.place]!.ownerOverride = ctx.world.require("faction-ops", owner).faction;
   s.relations![relationKey(owner, maker)] = { a: owner, b: maker, value: 0, baseline: 0, state: "neutral", since: 0, weariness: 0, grievances: [],
     treaties: [{ def: ctx.world.require("treaty", "treaty/trade").id, signedDay: 0, endDay: 168 }] };
   marketsDaily7(s, ctx); assert.equal((s as MarketState).markets![market.id]!.stock[model.frame], undefined);
   leakModel(s, ctx, model.id); delete (s as MarketState).markets![market.id]; marketsDaily7(s, ctx);
-  s.ship.at = market.node; s.ledger.balances.cash = 5000; s.factions[owner]!.rep = 0;
+  s.ship.pos = placeLoc(s, ctx, market.place); s.ledger.balances.cash = 5000; s.factions[owner]!.rep = 0;
   assert.equal(cmdTrade(s, ctx, { v: "trade", market: market.id, buy: [model.frame] }).ok, true);
   assert.equal(s.ledger.balances.cash, 4100);
 });

@@ -2,7 +2,16 @@
   "start": "default",
   "seed": 1,
   "setup": {
-    "ship": { "at": "base:node/delta" },
+    "ship": {
+      "pos": {
+        "map": "base:map/longland",
+        "region": "tide-scar",
+        "cell": {
+          "x": 130,
+          "y": 100
+        }
+      }
+    },
     "loan": {
       "id": "loan-golden",
       "contract": "contract-golden-loan",
@@ -11,10 +20,28 @@
     }
   },
   "commands": [
-    { "v": "trade", "market": "base:market/war-armory", "sell": ["loan-golden"] },
-    { "v": "wait", "days": 1 },
-    { "v": "choose", "choice": 1 },
-    { "v": "choose", "choice": 1 },
-    { "v": "wait", "days": 5 }
+    {
+      "v": "trade",
+      "market": "base:market/war-armory",
+      "sell": [
+        "loan-golden"
+      ]
+    },
+    {
+      "v": "wait",
+      "days": 1
+    },
+    {
+      "v": "choose",
+      "choice": 1
+    },
+    {
+      "v": "choose",
+      "choice": 1
+    },
+    {
+      "v": "wait",
+      "days": 5
+    }
   ]
 }

@@ -2,17 +2,17 @@ import type { Id } from "../../core/ids.ts";
 import type { Cond, NumExpr, Grade, Cell } from "../../core/types-def.ts";
 import type { OpsEffect, ObjectiveTemplate } from "../state/types.ts";
 
-export type Loc = { map: Id; region: Id; cell?: Cell };
+export type Loc = { map: Id; region: Id; cell: Cell };
 export type ForceUnit = { model: Id; count: number; readiness: number };
-export type ForceState = { units: ForceUnit[]; supply: number; morale: number; pos: Loc; path?: Loc[]; speed: number;
-  /** 節點版的行軍剩餘天數，只由 loc.ts 存取。 */ marchDays?: number };
+export type ForceState = { units: ForceUnit[]; supply: number; morale: number; pos: Loc; path?: Cell[]; speed: number;
+  /** 連續行軍尚未用掉的移動點。 */ mpCarry?: number };
 export type Phase = "muster" | "march" | "engage" | "resolve" | "aftermath";
 export type OperationKind = "clear" | "assault" | "contain" | "escort" | "seize" | "raid" | "siege" | "relief" | "relic-hunt" | "blockade";
 export type SupplyTier = "none" | "field" | "full" | "arsenal";
 export type JoinTerms = { command: "independent" | "attached" | "mixed"; supply: SupplyTier; share: NumExpr; base: NumExpr;
   orders: ObjectiveTemplate[]; exclusive: boolean; minStrength: NumExpr; loan?: { models: Id[]; max: number } };
 export type OperationDef = { id: Id; kind: OperationKind; actorScales: string[]; valid: Cond; weight: NumExpr;
-  targetSel: "shallow-node" | "rift-core" | "route" | "enemy-node" | "ruin-shell" | "port"; commit: NumExpr;
+  targetSel: "shallow-place" | "rift-core" | "lane" | "enemy-place" | "ruin-shell" | "port"; commit: NumExpr;
   phases: { phase: Phase; days: NumExpr; objective?: ObjectiveTemplate }[];
   merc?: { minRep: number; share: NumExpr; supply: SupplyTier; slots: number; sides: "actor" | "both" }; covert?: boolean;
   onSuccess: OpsEffect[]; onFail: OpsEffect[]; onAbort: OpsEffect[]; requiresRelation?: RelState };
@@ -20,7 +20,7 @@ export type OperationState = { id: Id; def: Id; actor: Id; coActors: Id[]; targe
   phase: Phase | "done" | "failed" | "aborted"; startDay: number; phaseEnd: number; force: ForceState; enemyStr: number; progress: number;
   engagesLeft: number; mercSlots: { contract: Id; side: "actor" | "target" }[]; exposed: boolean; log: { day: number; kind: string; v: number }[];
   // SPEC-GAP：純結算不能查 DB；開局凍結 gp 表與初始戰力，返還時保留各出資者。
-  power?: Record<Id, number>; initialStr?: number; contributions?: Record<Id, ForceUnit[]>; reliefOf?: Id; containedNodes?: Id[] };
+  power?: Record<Id, number>; initialStr?: number; contributions?: Record<Id, ForceUnit[]>; reliefOf?: Id; containedPlaces?: Id[] };
 export type ShellState = { id: Id; frame: Id; holder: Id | "player" | { ruin: Id }; awakened: boolean; knownBy: Id[] };
 export type RelState = "war" | "hostile" | "tense" | "neutral" | "friendly" | "allied";
 export type Relation = { a: Id; b: Id; value: number; state: RelState; baseline: number; treaties: TreatyState[];

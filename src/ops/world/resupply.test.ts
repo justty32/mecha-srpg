@@ -35,7 +35,7 @@ test("現金不足時只補可支付的發數且現金非負", () => {
 test("航行途中不補彈且 state 不變", () => {
   const { s, ctx } = fixture();
   Object.values(s.mechs)[0]!.pools["ammo-30"]!.cur = 0;
-  s.ship.route = { to: "node/chittagong", daysLeft: 2 };
+  s.ship.path = { to: { place: "place/chittagong" }, cells: [], legs: [], via: [] };
   const before = structuredClone(s);
   resupplyDaily7(s, ctx);
   assert.deepEqual(s, before);

@@ -1,3 +1,5 @@
+import { placeAt, placeLoc } from "../war/loc.ts";
+import { placeDef } from "../world/places.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { CampaignState, CampaignEvent, OpsCommand, OpsCtx, Sortie } from "../state/types.ts";
 import type { WorldDB } from "../content/worlddb.ts";
@@ -23,7 +25,7 @@ const fail = (error: string): CmdResult => ({ ok: false, error });
 function choose(s: CampaignState, ctx: TickCtx, cmd: Extract<OpsCommand, { v: "choose" }>): CmdResult {
   const prompt = s.pendingChoices[0], index = cmd.choice - 1, choice = prompt?.choices[index];
   if (!Number.isInteger(index) || !prompt || !choice) return fail("invalid-choice");
-  const scope = { node: s.ship.at, ...(prompt.person ? { person: prompt.person } : {}) };
+  const scope = { node: (placeAt(s, ctx, s.ship.pos) ?? ""), ...(prompt.person ? { person: prompt.person } : {}) };
   if (choice.requires && !evalOpsCond(s, ctx, choice.requires, scope)) return fail("choice-disabled");
   const naming = (prompt as Partial<crew.NamingPrompt>).naming;
   // SPEC-GAP：數字 choose 無文字欄；自填保留給 applyName，不捏造名稱。
@@ -47,7 +49,7 @@ function textCommand(s: TextState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "g
     (s.text ??= {}).room = room; return ok;
   }
   if (cmd.v === "look") {
-    if (!cmd.target || roomDefinition(cmd.target, ctx.world) || s.roster.persons[cmd.target] || s.mechs[cmd.target] || s.contracts[cmd.target] || ctx.world.get("node", cmd.target)) return ok;
+    if (!cmd.target || roomDefinition(cmd.target, ctx.world) || s.roster.persons[cmd.target] || s.mechs[cmd.target] || s.contracts[cmd.target] || placeDef(s, ctx, cmd.target)) return ok;
     return fail("unknown-target");
   }
   const person = s.roster.persons[cmd.who];
@@ -67,7 +69,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
       if (!Number.isSafeInteger(cmd.days) || cmd.days < 1 || !Number.isSafeInteger(s.pendingTicks + cmd.days)) return fail("invalid-days");
       advanceDays(s, ctx, cmd.days); return ok;
     case "choose": return choose(s, ctx, cmd);
-    case "sail": { const result = worldCommands.cmdSail(s, ctx, cmd); if (result.ok) advanceDays(s, ctx, 0); return result; }
+    case "sail": return worldCommands.cmdSail(s, ctx, cmd);
     case "map": return worldCommands.cmdMap(s, ctx, cmd);
     case "dock": return worldCommands.cmdDock(s, ctx, cmd);
     case "drift": return worldCommands.cmdDrift(s, ctx, cmd);
@@ -90,7 +92,8 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
     case "sortie": {
       if (!opts.battle) return fail("no-battle-runner");
       const input = { ...s.pendingBattle, ...cmd.sortie };
-      const sortie: Sortie = { id: input.id ?? nextId(s, "sortie"), day: s.clock.day, node: input.node ?? s.ship.at,
+      const sortie: Sortie = { id: input.id ?? nextId(s, "sortie"), day: s.clock.day, loc: input.loc ?? (input.place ? placeLoc(s, ctx, input.place) : structuredClone(s.ship.pos)),
+        place: input.place ?? placeAt(s, ctx, s.ship.pos),
         trigger: input.trigger ?? (input.contract ? "contract" : "ambush"), units: input.units ?? [],
         supplies: input.supplies ?? { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: input.injected ?? [],
         ...(input.contract ? { contract: input.contract } : {}), ...(input.rift ? { rift: input.rift } : {}),

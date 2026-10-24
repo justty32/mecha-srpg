@@ -1,34 +1,42 @@
+import type { Cell } from "../../core/types-def.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import type { ForceState, Loc } from "./types.ts";
-import { shortestPath } from "../world/travel.ts";
-export function nodeLoc(ctx: Pick<OpsCtx, "world">, node: string): Loc {
-  const def = ctx.world.require("node", node);
-  return { map: def.body === "moon" ? "map/lunar" : "map/longland", region: def.id };
+import { cellKey, findPath, footprintOf, gridOf, idx, stepCost } from "../world/grid.ts";
+import { allPlaces, requirePlace, worldRules } from "../world/places.ts";
+export function locAt(ctx: Pick<OpsCtx, "world">, mapId: string, cell: Cell): Loc {
+  const map = gridOf(ctx.world, mapId);
+  return { map: map.id, region: map.regionKeys[map.region[idx(map, cell)]!] ?? "", cell: { ...cell } };
 }
-export function locNode(loc: Loc): string { return loc.region; }
+export function placeLoc(s: CampaignState, ctx: Pick<OpsCtx, "world">, place: string): Loc {
+  const def = requirePlace(s, ctx, place);
+  return locAt(ctx, def.map, def.at);
+}
+export function placeAt(s: CampaignState, ctx: Pick<OpsCtx, "world">, loc: Loc): string | undefined {
+  return allPlaces(s, ctx).find(p => p.map === loc.map && footprintOf(p).some(c => c.x === loc.cell.x && c.y === loc.cell.y))?.id;
+}
 export function sameRegion(a: Loc, b: Loc): boolean { return a.map === b.map && a.region === b.region; }
-const paths = new WeakMap<OpsCtx["world"], Map<string, Loc[] | undefined>>();
-export function marchPath(s: CampaignState, ctx: OpsCtx, from: Loc, to: Loc): Loc[] | undefined {
+const paths = new WeakMap<OpsCtx["world"], Map<string, Cell[] | undefined>>();
+export function marchPath(_s: CampaignState, ctx: OpsCtx, from: Loc, to: Loc): Cell[] | undefined {
   if (from.map !== to.map) return undefined;
   let cache = paths.get(ctx.world); if (!cache) { cache = new Map(); paths.set(ctx.world, cache); }
-  const key = `${from.map}|${locNode(from)}|${locNode(to)}`;
-  if (cache.has(key)) return cache.get(key)?.map(loc => ({ ...loc }));
-  // 部隊可進入蝕域；航船的燃料、船體、封路不影響常備軍行軍。
-  const travel = { ...s, ship: { ...s.ship, hull: { ...s.ship.hull, cur: 1 } },
-    nodes: Object.fromEntries(Object.entries(s.nodes).map(([id, n]) => [id, { ...n, blight: undefined }])) };
-  const path = shortestPath(travel, ctx, locNode(from), locNode(to));
-  const result = path?.nodes.map(id => nodeLoc(ctx, id));
-  const valid = result?.every(loc => loc.map === from.map) ? result : undefined;
-  cache.set(key, valid); return valid?.map(loc => ({ ...loc }));
+  const key = `${from.map}|${cellKey(from.cell)}|${cellKey(to.cell)}`;
+  if (!cache.has(key)) {
+    // 本波常備軍無視暫掛地點的蝕域；只依地面地形行軍。
+    cache.set(key, findPath(gridOf(ctx.world, from.map), from.cell, to.cell, { layer: "ground", mp: worldRules(ctx).grid.groundMp })?.cells);
+  }
+  return cache.get(key)?.map(cell => ({ ...cell }));
 }
-export function marchStep(s: CampaignState, ctx: OpsCtx, force: ForceState): boolean {
-  const to = force.path?.[0];
-  if (!to) return true;
-  if (to.map !== force.pos.map) throw new Error("war-cross-map");
-  const a = locNode(force.pos), b = locNode(to);
-  const edge = ctx.world.all("route").filter(r => r.kind !== "ferry" && (r.a === a && r.b === b || r.b === a && r.a === b)).sort((x, y) => x.days - y.days)[0];
-  if (!edge) return false;
-  force.marchDays ??= Math.max(1, Math.ceil(edge.days / force.speed));
-  if (--force.marchDays <= 0) { force.pos = to; force.path!.shift(); delete force.marchDays; }
-  return !force.path?.length;
+export function marchStep(_s: CampaignState, ctx: OpsCtx, force: ForceState): boolean {
+  if (!force.path?.length) { force.mpCarry = 0; return true; }
+  // SPEC-GAP：保留既有 speed 數值，作為 groundMp 倍率而非每日 MP。
+  const mover = { layer: "ground" as const, mp: worldRules(ctx).grid.groundMp * force.speed };
+  const map = gridOf(ctx.world, force.pos.map);
+  let mp = mover.mp + (force.mpCarry ?? 0);
+  while (force.path.length) {
+    const next = force.path[0]!, cost = stepCost(map, mover, force.pos.cell, next);
+    if (cost === undefined || cost > mp) break;
+    mp -= cost; force.pos = locAt(ctx, force.pos.map, next); force.path.shift();
+  }
+  force.mpCarry = force.path.length ? mp : 0;
+  return force.path.length === 0;
 }

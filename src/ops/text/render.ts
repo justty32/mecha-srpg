@@ -5,11 +5,14 @@ import { evalOpsCond } from "../content/cond.ts";
 import { currentRoom, describeRoom } from "./rooms.ts";
 import { eventLog } from "./templates.ts";
 import { entityName } from "./parse.ts";
-import { shortestPath } from "../world/travel.ts";
+import { shortestPath } from "../world/move.ts";
+import { allPlaces } from "../world/places.ts";
+import { placeAt } from "../war/loc.ts";
 import { registerTextDB } from "./names.ts";
 
-export function render(state: CampaignState, events: CampaignEvent[], world: WorldDB, db: ContentDB): Screen {
+export function render(state: CampaignState, events: CampaignEvent[], world: WorldDB, db: ContentDB, showMap = false): Screen {
   registerTextDB(world, db);
+  const ctx = { db, world, emit: () => { throw new Error("唯讀查詢"); } };
   const room = describeRoom(currentRoom(state), state, world, db);
   const usedKeys = new Set<string>();
   const action = (label: string, cmd: OpsCommand, disabled?: string): Screen["actions"][number] => {
@@ -23,12 +26,17 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
     return { id: `${specific}:${JSON.stringify(cmd)}`, label, cmd, group, ...(key ? { key } : {}), tooltip: `${label}${key ? `（${key}）` : ""}${disabled ? `：${disabled}` : ""}`, ...(disabled ? { disabled } : {}) };
   };
   const screen: Screen = { room, log: events.map(event => eventLog(event, state, world)), panels: {
+    ...(showMap ? { map: allPlaces(state, ctx).map(place => {
+      const path = shortestPath(state, ctx, state.ship.pos, place.id);
+      return { id: place.id, name: place.name, map: place.map, x: place.at.x, y: place.at.y,
+        days: path?.days ?? null, travel: path ? `${path.days} 天` : "無法抵達" };
+    }) } : {}),
     ledger: ["cash", "debt", "stock:flesh", "stock:fuel"].map(account => ({ account, balance: state.ledger.balances[account as keyof typeof state.ledger.balances] ?? 0 })),
     roster: Object.keys(state.roster.persons).sort().map(id => ({ id, name: entityName(id, state, world),
       role: state.roster.employment[id]?.role ?? "", owed: state.roster.employment[id]?.owed ?? 0 })),
-    rifts: Object.keys(state.rifts).sort().map(id => ({ id, node: state.rifts[id]!.node, phase: state.rifts[id]!.phase, width: state.rifts[id]!.width })),
+    rifts: Object.keys(state.rifts).sort().map(id => ({ id, place: state.rifts[id]!.site, map: state.rifts[id]!.at.map, x: state.rifts[id]!.at.cell.x, y: state.rifts[id]!.at.cell.y, phase: state.rifts[id]!.phase, width: state.rifts[id]!.width })),
     queue: [...state.jobs].sort((a, b) => a.priority - b.priority || a.id.localeCompare(b.id)).map(j => ({ id: j.id, kind: j.kind, target: j.target, done: j.doneHours, need: j.needHours, priority: j.priority })),
-    ship: [{ at: state.ship.at, destination: state.ship.route?.to ?? null, daysLeft: state.ship.route?.daysLeft ?? 0, fuel: state.ship.fuel.cur, hull: state.ship.hull.cur }],
+    ship: [{ place: placeAt(state, ctx, state.ship.pos) ?? null, map: state.ship.pos.map, x: state.ship.pos.cell.x, y: state.ship.pos.cell.y, destination: state.ship.path ? JSON.stringify(state.ship.path.to) : null, daysLeft: state.ship.path ? state.pendingTicks : 0, fuel: state.ship.fuel.cur, hull: state.ship.hull.cur }],
   }, actions: [action("環顧四周", { v: "look" }), action("存檔", { v: "save" }), action("指令說明", { v: "help" })] };
   const pending = state.pendingChoices[0];
   if (pending) {
@@ -50,7 +58,7 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
       const contract = state.contracts[id]!;
       screen.actions.push(action(`查看${entityName(id, state, world)}`, { v: "board", contract: id }));
       if (contract.status === "offered") screen.actions.push(action(`承接${entityName(id, state, world)}`, { v: "accept", contract: id },
-        shortestPath(state, { db, world, emit: () => { throw new Error("唯讀查詢"); } }, state.ship.at, contract.target.node) ? undefined : "沒有可抵達目標的航線"));
+        shortestPath(state, { db, world, emit: () => { throw new Error("唯讀查詢"); } }, state.ship.pos, contract.target.place) ? undefined : "沒有可抵達目標的航線"));
     }
   }
   if (room.id === "hangar") for (const id of [...state.hangar.bays, ...state.hangar.dormant].filter((id): id is string => id !== null).sort()) {
@@ -76,6 +84,6 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
     }
     for (const carcass of state.restraint.carcasses) screen.actions.push(action("改裝整屍", { v: "queue", job: { kind: "mount", target: carcass.id } }, state.jobs.some(j => j.kind === "mount" && j.target === carcass.id) ? "已排入工時佇列" : undefined));
   }
-  screen.actions.push(action(state.ship.route ? "航行一天" : "等待一天", { v: "wait", days: 1 }));
+  screen.actions.push(action(state.ship.path ? "航行一天" : "等待一天", { v: "wait", days: 1 }));
   return screen;
 }

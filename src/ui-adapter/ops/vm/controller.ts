@@ -92,8 +92,8 @@ export class OpsController {
     const cashDelta = after.ledger.balances.cash - before.ledger.balances.cash;
     const lines = [`現金變化：${cashDelta >= 0 ? "+" : ""}${cashDelta}`];
     for (const c of Object.values(after.contracts)) if (c.status !== before.contracts[c.id]?.status)
-      lines.push(`${name(c.target.node)}契約：${label(c.status)}`);
-    for (const r of Object.values(after.rifts)) if (r.phase !== before.rifts[r.id]?.phase) lines.push(`${name(r.node)}裂縫：${label(r.phase)}`);
+      lines.push(`${name(c.target.place)}契約：${label(c.status)}`);
+    for (const r of Object.values(after.rifts)) if (r.phase !== before.rifts[r.id]?.phase) lines.push(`${name(r.site)}裂縫：${label(r.phase)}`);
     for (const u of result.units) lines.push(`${before.mechs[u.id] ? name(u.id) : name(u.state.frame)}：${label(u.status)}`);
     for (const p of result.persons) lines.push(`${before.roster.persons[p.id] ? name(p.id) : name(p.state.def)}：${label(p.status)}`);
     lines.push(`戰利品：${result.loot.length} 筆`);
@@ -121,7 +121,7 @@ export class OpsController {
     if (!captured.setup || !captured.sortie) {
       this.ui.message = output.result.ok ? "無法建立戰場" : rejection(output.result.error); return;
     }
-    const title = `${displayName(before, this.opts.db, this.opts.world, draft.node)}出戰`;
+    const title = `${draft.place ? displayName(before, this.opts.db, this.opts.world, draft.place) : `${draft.loc.cell.x},${draft.loc.cell.y}`}出戰`;
     const session = new BattleSession({ db: this.opts.db, sim: captured.setup.sim, seed: captured.setup.seed, autoAdvance: false, spectate: this.opts.spectate });
     this.live = { controller: new BattleController({ session, title }), session, sortie: captured.sortie, cmd, title };
     this.ui.battle = { title, spectate: !!this.opts.spectate };

@@ -12,7 +12,7 @@ export type OpsTab = "ship" | "world" | "contracts" | "roster" | "mechs" | "ledg
 
 /** 按鈕：DOM 畫成 <button data-action-id=id>，標上 key、tooltip；enabled false 時灰掉、tooltip 末行寫 reason。 */
 export type OpsButton = {
-  id: string;                       // 穩定 id（測試與 e2e 用），例 "tab:world"、"advance:event"、"accept:contract-18"、"sail:base:node/ridge"
+  id: string;                       // 穩定 id（測試與 e2e 用），例 "tab:world"、"advance:event"、"accept:contract-18"、"sail:base:place/ridge"
   label: string;                    // 中文按鈕字
   group: string;                    // 分組：tabs／rooms／room／time／world／contract／sortie／prompt／market／system…
   key?: string;                     // 顯示用快捷鍵（keymap 取得；例 "W"、"F2"、"1"、"Esc"）
@@ -28,7 +28,7 @@ export type OpsUiAction =
   | { type: "cmd"; cmd: OpsCommand }                       // 任何 ops 指令（經 ops applyCommand 送出；按鈕、快捷鍵、文字形式結果恆等）
   | { type: "tab"; tab: OpsTab }
   | { type: "advance"; until: "day" | "event" }            // 推進一天／到下個事件（連續 wait 1，遇 prompt、新契約、抵達、裂縫變化、戰鬥待命或上限日數停）
-  | { type: "selectNode"; node: string }                   // 世界圖點節點（顯示詳情與航行按鈕）
+  | { type: "selectNode"; node: string }                   // 世界圖點地點（顯示詳情與航行按鈕）
   | { type: "selectContract"; contract: string }
   | { type: "selectMech"; mech: string }
   | { type: "selectPerson"; person: string }
@@ -49,14 +49,14 @@ export type OpsHeader = {
   phase: "spring" | "neap" | "ordinary"; phaseName: string;   // 大潮／小潮／平潮
   dateText: string;                 // 例「第 1 潮月 第 15 日（大潮）」
   cash: number; debt: number;
-  location: string;                 // 所在節點名（航行中為「航行中 → 目的地」）
+  location: string;                 // 所在地點名（航行中為「航行中 → 目的地」）
   route: { to: string; toName: string; daysLeft: number } | null;
   docked: boolean;                  // 停泊（進城）或懸停
   pressure: number;                 // 潮壓
   fuel: { cur: number; max: number }; hull: { cur: number; max: number };
 };
 
-/** 世界圖。座標 0..1（vm 決定性排版；NodeDef 沒有座標＝SPEC-GAP）。 */
+/** 世界圖。座標 0..1（vm 決定性排版；依地點座標縮放）。 */
 export type WorldNodeView = {
   id: string; name: string; x: number; y: number;
   body: "earth" | "moon"; kind: string; kindName: string;
@@ -69,7 +69,7 @@ export type WorldNodeView = {
 export type WorldRouteView = { id: string; a: string; b: string; days: number; kind: string; open: boolean; onPath: boolean };
 export type WorldView = {
   nodes: WorldNodeView[]; routes: WorldRouteView[];
-  selected: { id: string; name: string; lines: string[]; buttons: OpsButton[] } | null;   // 選取節點詳情：所有權、服務、蝕域、裂縫、航程天數與燃料
+  selected: { id: string; name: string; lines: string[]; buttons: OpsButton[] } | null;   // 選取地點詳情：所有權、服務、蝕域、裂縫、航程天數與燃料
 };
 
 /** 船艙房間（ops Screen.room）。 */

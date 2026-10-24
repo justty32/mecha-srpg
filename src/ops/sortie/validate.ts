@@ -1,19 +1,22 @@
+import { placeAt } from "../war/loc.ts";
 import type { CampaignState, OpsCtx, Sortie } from "../state/types.ts";
 import type { CmdResult, CrewState } from "../crew/index.ts";
 import { joinForce, joinOperation } from "../war/merc.ts";
-import { nodeLoc, sameRegion } from "../war/loc.ts";
+import { sameRegion } from "../war/loc.ts";
 
 export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): CmdResult {
   const fail = (error: string): CmdResult => ({ ok: false, error });
-  if (!s.nodes[sortie.node]) return fail("unknown-node");
+  if (!ctx.world.get("map", sortie.loc.map) || sortie.place && !s.places[sortie.place]) return fail("unknown-place");
   if (!sortie.units.length) return fail("empty-sortie");
   if (sortie.trigger === "operation") {
     const c = s.contracts[sortie.contract ?? ""], op = c && joinOperation(s, c);
     if (!c || !op || c.status !== "active" || op.phase !== "engage" || sortie.operation !== op.id) return fail("inactive-operation");
-    if (s.ship.route || !sameRegion(nodeLoc(ctx, s.ship.at), joinForce(s, c, op).pos) || !sameRegion(nodeLoc(ctx, sortie.node), joinForce(s, c, op).pos)) return fail("operation-not-present");
+    if (s.ship.path || !sameRegion(s.ship.pos, joinForce(s, c, op).pos) || !sameRegion(sortie.loc, joinForce(s, c, op).pos)) return fail("operation-not-present");
     if (s.pendingBattle?.id !== sortie.id || s.pendingBattle.contract !== c.id) return fail("operation-not-pending");
   }
-  if (sortie.supplies.shipOverhead && (s.ship.at !== sortie.node || s.ship.route)) return fail("ship-not-overhead");
+  const overhead = s.ship.pos.map === sortie.loc.map && s.ship.pos.cell.x === sortie.loc.cell.x && s.ship.pos.cell.y === sortie.loc.cell.y ||
+    !!sortie.place && placeAt(s, ctx, s.ship.pos) === sortie.place;
+  if (sortie.supplies.shipOverhead && (!overhead || s.ship.path && sortie.trigger !== "ambush")) return fail("ship-not-overhead");
   for (const [requested, available] of [[sortie.supplies.airstrikeTickets, s.inventory.tickets.airstrike], [sortie.supplies.restraintRounds, s.inventory.tickets.restraint]]) {
     if (!Number.isInteger(requested) || requested! < 0 || requested! > available!) return fail("insufficient-supplies");
   }
@@ -21,7 +24,7 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
     const c = s.contracts[sortie.contract];
     if (!c || !["active", "stage"].includes(c.status)) return fail("inactive-contract");
     if (c.operation && sortie.trigger !== "operation") return fail("operation-required");
-    if (sortie.trigger !== "operation" && (c.target.node !== sortie.node || sortie.rift && c.target.rift !== sortie.rift)) return fail("wrong-target");
+    if (sortie.trigger !== "operation" && (c.target.place !== sortie.place || sortie.rift && c.target.rift !== sortie.rift)) return fail("wrong-target");
   }
   const people = new Set<string>(), mechs = new Set<string>();
   for (const unit of sortie.units) {

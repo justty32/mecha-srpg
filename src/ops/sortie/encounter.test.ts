@@ -28,11 +28,11 @@ function humanFixture() {
   return { ...f, encounter, template };
 }
 
-test("怪獸遭遇與改前情境及 RNG 逐位元指紋相同", () => {
+test("方格地形生成的怪獸遭遇與 RNG 保持固定指紋", () => {
   const { s, ctx, sortie } = fixture();
   s.rng = { state: "0522a486b3bda0d1", inc: "000000000000006d" };
   const sc = generateScenario(s, ctx, sortie);
-  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "ad61107c8bdab823");
+  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "a91345e21c6f3583");
 });
 
 test("契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊", () => {
@@ -70,11 +70,11 @@ test("同契約從候選遭遇穩定挑一份，不受 RNG 位置影響", () => 
   assert.equal(first.slots.enemy!.faction, second.slots.enemy!.faction);
 });
 
-test("只有 target.node 的契約由節點蝕域與第一裂縫族回退", () => {
+test("只有 target.place 的契約由節點蝕域與第一裂縫族回退", () => {
   for (const blighted of [true, false]) {
     const { s, ctx, sortie, contract } = fixture();
-    delete sortie.rift; contract.target = { node: sortie.node };
-    if (!blighted) delete s.nodes[sortie.node]!.blight;
+    delete sortie.rift; contract.target = { place: sortie.place! };
+    if (!blighted) delete s.places[sortie.place!]!.blight;
     const sc = generateScenario(s, ctx, sortie);
     const family = blighted ? "insect" : ctx.world.all("rift")[0]!.family;
     assert.ok(sc.slots.enemy!.units.every(u => ctx.db.require("species", ctx.db.require("monster", u.monster!).species).family === family));

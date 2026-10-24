@@ -27,7 +27,7 @@ export function runCampaign(options: CampaignOptions): { state: CampaignState; c
   if (!Number.isSafeInteger(target)) throw new RangeError("invalid-months");
   const commands: CampaignCommand[] = [], summary: MonthSummary[] = [];
   const verify = (s: CampaignState) => {
-    const errors = checkInvariants(s);
+    const errors = checkInvariants(s, world);
     if (errors.length) throw new Error(`seed=${seed} day=${s.clock.day}: ${errors.join("; ")}`);
   };
   verify(state);

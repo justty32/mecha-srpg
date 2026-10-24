@@ -1,3 +1,6 @@
+import { cmdSail } from "../world/move.ts";
+import { requirePlace } from "../world/places.ts";
+import type { TimeState } from "./tick.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { canonicalJson, fnv1a64 } from "../../core/eventlog.ts";
@@ -12,10 +15,10 @@ const hash = (s: CampaignState) => fnv1a64(canonicalJson(s));
 
 test("tick：同一天八段事件按序，八段都有觀測點", () => {
   const { s, ctx } = fixture(); day(s, ctx, 13); s.pendingEvents.push(ctx.world.require("event", "event/funeral").id);
-  const node = ctx.world.require("node", "node/chittagong").id;
-  s.ship.route = { to: node, via: [node], daysLeft: 1 };
+  const node = requirePlace(s, ctx, "place/chittagong").id;
+  cmdSail(s, ctx, { v: "sail", to: node });
   const rift = addRift(s, ctx);
-  const contract = offerContract(s, ctx, "contract/clear", ctx.world.all("faction-ops").find(f => f.contractKinds.includes(ctx.world.require("contract", "contract/clear").id))!.id, { node: rift.node, rift: rift.id });
+  const contract = offerContract(s, ctx, "contract/clear", ctx.world.all("faction-ops").find(f => f.contractKinds.includes(ctx.world.require("contract", "contract/clear").id))!.id, { place: rift.site, rift: rift.id });
   assert(contract); contract.deadlineDay = 13;
   const mech = s.mechs[s.hangar.bays[0]!]!, part = Object.keys(mech.parts).sort()[0]!;
   s.jobs.push({ id: "job-order", kind: "repair", target: mech.id, part, layer: 0, needHours: 1, doneHours: 0, materials: {}, paid: true, priority: 0 });
@@ -44,10 +47,10 @@ test("wait 7 與七次 wait 1 的事件型別及完整 state hash 相同", () =>
 test("pendingChoices 凍結 day、保留 pendingTicks，choose 續跑當日與餘日", () => {
   const { s, ctx } = fixture();
   let state = applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state;
-  assert.equal(state.clock.day, 1); assert.equal(state.pendingTicks, 6);
+  assert.equal(state.clock.day, 1); assert.equal((state as TimeState).waitRemaining, 6);
   const before = structuredClone(state); tick(state, createOpsCtx(state, ctx.db, ctx.world)); assert.deepEqual(state, before);
   state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
-  assert.equal(state.clock.day, 1); assert.equal(state.pendingTicks, 6); assert.equal(state.pendingChoices.length, 1);
+  assert.equal(state.clock.day, 1); assert.equal((state as TimeState).waitRemaining, 6); assert.equal(state.pendingChoices.length, 1);
   state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
   assert.equal(state.clock.day, 7); assert.equal(state.pendingTicks, 0);
   assert.equal(state.log.filter(e => e.type === "DaySummary").length, 7);

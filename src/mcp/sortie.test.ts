@@ -58,7 +58,7 @@ async function setup() {
         const sail = enabled.find(c => c.v === "sail" && c.to === contract?.target);
         const ship = view.panels.ship[0];
         // actions 未列航行時，依結構化契約目標組命令；航行中逐日等待。
-        if (contract && ship.at !== contract.target && !ship.destination) command = sail ?? { v: "sail", to: contract.target };
+        if (contract && ship.place !== contract.target && !ship.destination) command = sail ?? { v: "sail", to: contract.target };
       }
       data(await call("campaign_act", { id, command }));
     }

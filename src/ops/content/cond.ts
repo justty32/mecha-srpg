@@ -1,3 +1,5 @@
+import { placeAt } from "../war/loc.ts";
+import { requirePlace } from "../world/places.ts";
 import { strength, modelPower } from "../war/forces.ts";
 import { relation } from "../war/relations.ts";
 import { evalCond, evalNum, NumExprError, objectRefs } from "../../core/numexpr.ts";
@@ -6,15 +8,15 @@ import { GRADES } from "../../core/types-def.ts";
 import type { Cond, NumExpr } from "../../core/types-def.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 
-export const OPS_REF_ROOTS = ["campaign", "rift", "faction", "person", "mech", "node", "calendar", "debt", "ledger", "inventory", "ship", "restraint", "contract", "flags", "operation", "relation", "targetFaction"] as const;
-export type OpsScope = { operation?: string; targetFaction?: string; rift?: string; faction?: string; person?: string; mech?: string; node?: string; contract?: string; tags?: string[] };
+export const OPS_REF_ROOTS = ["campaign", "rift", "faction", "person", "mech", "place", "calendar", "debt", "ledger", "inventory", "ship", "restraint", "contract", "flags", "operation", "relation", "targetFaction"] as const;
+export type OpsScope = { operation?: string; targetFaction?: string; rift?: string; faction?: string; person?: string; mech?: string; node?: string; place?: string; contract?: string; tags?: string[] };
 export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, scope: OpsScope = {}): EvalCtx {
   const cal = ctx.world.require("calendar", s.calendar);
   const rift = scope.rift ? s.rifts[scope.rift] : undefined;
   const faction = scope.faction ? s.factions[scope.faction] : undefined;
   const person = scope.person ? s.roster.persons[scope.person] : undefined;
   const mech = scope.mech ? s.mechs[scope.mech] : undefined;
-  const node = s.nodes[scope.node ?? s.ship.at];
+  const node = s.places[scope.place ?? scope.node ?? placeAt(s, ctx, s.ship.pos) ?? ""];
   const debt = s.ledger.balances.debt;
   // SPEC-GAP：ratio 以第一筆開局本金為分母；無本金時為 0。下一大潮指嚴格晚於今日。
   const principal = s.ledger.entries.find(e => e.account === "debt")?.delta ?? 0;
@@ -27,10 +29,10 @@ export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, 
     rift: rift ? { ...rift, widthIndex: GRADES.indexOf(rift.width) + 1 } : undefined,
     faction: faction ? { ...faction, ...(faction.forces ? { strength: strength(faction.forces, modelPower(ctx as OpsCtx)), supply: faction.forces.supply, operationCount: faction.ops?.length ?? 0 } : {}), threatNearby: Object.keys(s.rifts).sort().filter(id => faction.territoryNow.some(n => s.rifts[id]!.zones.includes(n))).length } : undefined,
     person: person ? { ...person, attrs: person.attrsBase, mood: s.roster.employment[person.id]?.mood ?? 0 } : undefined,
-    mech, node, contract: scope.contract ? s.contracts[scope.contract] : undefined,
+    mech, node, place: node, contract: scope.contract ? s.contracts[scope.contract] : undefined,
   };
   const tags = new Set(scope.tags ?? []);
-  if (node) { node.flags.forEach(t => tags.add(t)); ctx.world.require("node", node.def).tags.forEach(t => tags.add(t)); }
+  if (node) { node.flags.forEach(t => tags.add(t)); requirePlace(s, ctx, node.def).tags.forEach(t => tags.add(t)); }
   if (person) ctx.db.require("person", person.def).tags.forEach(t => tags.add(t));
   if (mech) ctx.db.require("frame", mech.frame).tags.forEach(t => tags.add(t));
   for (const id of Object.keys(s.flags).sort()) if (s.flags[id]) tags.add(id);

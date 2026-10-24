@@ -17,7 +17,7 @@ test("六 seed × idle/random/merc × 六潮月：逐日戰爭不變量", { time
   for (const policy of ["idle", "random", "merc"] as const) for (const seed of seeds) {
     let metrics = initialWarMetrics(fixture(seed).s);
     const result = runCampaign({ ...ctx, start: "default", seed, months: 6, policy, continueAfterEnd: true,
-      ...(policy === "merc" ? { battle: () => ({ ok: true as const }) } : {}),
+      ...(policy === "merc" ? { battle: (state: CampaignState) => { delete state.pendingBattle; return { ok: true as const }; } } : {}),
       onDay(s) { assert.deepEqual(checkInvariants(s, ctx.world), [], `${policy}/${seed}/day${s.clock.day}`); metrics = updateWarMetrics(metrics, s); } });
     assert.equal(result.summary.length, 6);
     assert.deepEqual(metrics.errors, [], `${policy}/${seed}`);

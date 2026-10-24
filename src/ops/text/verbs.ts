@@ -3,11 +3,11 @@ import type { OpsCommand } from "../state/types.ts";
 export type Verb = OpsCommand["v"];
 // 每列只宣告一個動詞；複合參數以 JSON 保留完整的型別化編成／工作。
 export const VERBS = [
-  { v: "look", zh: "看", grammar: "[房間|人|機甲|契約|節點]" },
+  { v: "look", zh: "看", grammar: "[房間|人|機甲|契約|地點]" },
   { v: "talk", zh: "談", grammar: "人物 [話題]" },
   { v: "go", zh: "走", grammar: "房間" },
   { v: "map", zh: "圖", grammar: "" },
-  { v: "sail", zh: "航", grammar: "節點 [經 節點…]" },
+  { v: "sail", zh: "航", grammar: "地點|x,y|@行動者 [經 地點|x,y…]" },
   { v: "dock", zh: "泊", grammar: "" },
   { v: "drift", zh: "懸", grammar: "" },
   { v: "wait", zh: "等", grammar: "天數" },

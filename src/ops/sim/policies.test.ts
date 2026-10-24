@@ -4,11 +4,28 @@ import { fixture, result } from "../sortie/test-support.ts";
 import { applyBattleResult } from "../sortie/apply.ts";
 import { applyCommand } from "../time/index.ts";
 import { createOpsCtx } from "../content/start.ts";
-import { greedy } from "./policies.ts";
+import { placeLoc } from "../war/loc.ts";
+import { greedy, merc } from "./policies.ts";
+
+test("merc 履約航行遇伏擊且無可戰單位時撤離，不等待同一天", () => {
+  const { s, ctx, sortie, contract } = fixture();
+  contract.operation = "operation-test";
+  s.hangar.bays = [];
+  s.ship.path = { cells: [sortie.loc.cell], legs: [{ map: sortie.loc.map, cells: [sortie.loc.cell] }], to: { place: contract.target.place }, via: [] };
+  s.pendingBattle = { ...sortie, loc: structuredClone(s.ship.pos), trigger: "ambush", units: [] };
+  const command = merc(s, ctx);
+  assert.deepEqual(command, { v: "drift" });
+  const escaped = applyCommand(s, ctx.db, ctx.world, command);
+  assert.equal(escaped.result.ok, true);
+  assert.equal(escaped.state.pendingBattle, undefined);
+  assert.equal(escaped.state.ship.path, undefined);
+  const resumed = applyCommand(escaped.state, ctx.db, ctx.world, { v: "wait", days: 1 });
+  assert.equal(resumed.state.clock.day, s.clock.day + 1);
+});
 
 test("greedy 同契約連續兩次平手後 drop，一次平手仍可出戰", () => {
   const { s, ctx, sortie, contract } = fixture(), battle = result();
-  s.ship.at = contract.target.node;
+  s.ship.pos = placeLoc(s, ctx, contract.target.place);
   battle.winner = null; battle.reason = "timeout";
   applyBattleResult(s, ctx, sortie, battle);
   assert.equal(contract.consecutiveDraws, 1);
@@ -27,7 +44,7 @@ test("greedy 同契約連續兩次平手後 drop，一次平手仍可出戰", ()
 test("greedy 不派出戰會注入 morale-shaken 的乘員，mood 零仍可派", () => {
   for (const mood of [-2, -1, 0]) {
     const { s, ctx, contract } = fixture();
-    s.ship.at = contract.target.node;
+    s.ship.pos = placeLoc(s, ctx, contract.target.place);
     for (const employment of Object.values(s.roster.employment)) employment.mood = mood;
     const before = structuredClone(s), cmd = greedy(s, ctx);
     assert.deepEqual(s, before);
@@ -38,7 +55,7 @@ test("greedy 不派出戰會注入 morale-shaken 的乘員，mood 零仍可派",
 test("greedy 單機結構層剩半血不出戰，超過半血仍可派", () => {
   for (const ratio of [0.5, 0.51]) {
     const { s, ctx, contract, mech } = fixture();
-    s.ship.at = contract.target.node; s.hangar.bays = [mech];
+    s.ship.pos = placeLoc(s, ctx, contract.target.place); s.hangar.bays = [mech];
     const unit = s.mechs[mech]!, body = ctx.db.require("bodyplan", ctx.db.require("frame", unit.frame).bodyPlan);
     const part = body.parts.find(p => p.layers.some(l => l.structural))!;
     const layer = part.layers.findIndex(l => l.structural);
@@ -53,7 +70,7 @@ test("greedy 單機結構層剩半血不出戰，超過半血仍可派", () => {
 test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的機甲就等待", () => {
   for (const damage of ["torso", "legs", "right-arm", "weapon", "ammo", "empty", "working"] as const) {
     const { s, ctx, mech, contract } = fixture();
-    s.ship.at = contract.target.node;
+    s.ship.pos = placeLoc(s, ctx, contract.target.place);
     const unit = s.mechs[mech]!;
     // 開局機體自帶內建頭吼（innateAbilities）；本案只驗部件武器，故此處清空內建能力。
     if (damage === "right-arm" || damage === "weapon" || damage === "ammo" || damage === "empty") {

@@ -1,11 +1,13 @@
+import { isDocked } from "../world/move.ts";
+import { placeAt } from "../war/loc.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { eventRef } from "../state/events.ts";
 import { post } from "../state/ledger.ts";
 import { marketPrice } from "./market.ts";
 
 export function resupplyDaily7(s: CampaignState, ctx: OpsCtx): void {
-  if (s.ship.route || (s as CampaignState & { drifting?: boolean }).drifting) return;
-  const market = ctx.world.all("market").filter(item => item.node === s.ship.at)
+  if (!isDocked(s, ctx)) return;
+  const market = ctx.world.all("market").filter(item => item.place === (placeAt(s, ctx, s.ship.pos) ?? ""))
     .sort((a, b) => a.id.localeCompare(b.id))[0];
   if (!market) return;
   const prices = new Map(market.lists.filter(list => list.kind === "ammo")

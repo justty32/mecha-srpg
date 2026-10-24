@@ -9,7 +9,7 @@
     "all": []
   },
   "weight": 1,
-  "targetSel": "enemy-node",
+  "targetSel": "enemy-place",
   "commit": 0.7,
   "phases": [
     {
@@ -42,8 +42,8 @@
   },
   "onSuccess": [
     {
-      "transferNode": {
-        "node": "$node",
+      "transferPlace": {
+        "place": "$node",
         "to": "$actor"
       }
     }

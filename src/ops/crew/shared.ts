@@ -8,7 +8,7 @@ export type Command<V extends OpsCommand["v"]> = Extract<OpsCommand, { v: V }>;
 export const ok: CmdResult = { ok: true };
 export const fail = (error: string): CmdResult => ({ ok: false, error });
 export const compareId = (a: string, b: string): number => a < b ? -1 : a > b ? 1 : 0;
-export type Candidate = { id: string; pool: string; node: string; background: string; culture: string; person: PersonState; fee: number; wage: number; traits: string[] };
+export type Candidate = { id: string; pool: string; place: string; background: string; culture: string; person: PersonState; fee: number; wage: number; traits: string[] };
 // SPEC-GAP：地基缺少這些存檔欄位；只在 crew 定義交集，不改共用 types.ts。
 export type CrewRuntime = {
   candidates: Record<string, Candidate>; recruitDays: Record<string, number>; cultures: Record<string, string>;

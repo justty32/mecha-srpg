@@ -1,3 +1,4 @@
+import { requirePlace } from "../world/places.ts";
 import { startOperation } from "../war/operations.ts";
 import { changeRelation, declareWar, factionId } from "../war/relations.ts";
 import { signTreaty } from "../war/treaties.ts";
@@ -73,9 +74,9 @@ function applyCoreEffect(s: CampaignState, ctx: OpsCtx, input: Extract<OpsEffect
 }
 
 export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect, scope: OpsScope = {}): boolean {
-  // SPEC-GAP：模板效果用 $actor/$target/$node/$rift/$shell/$operation 綁定作戰脈絡。
+  // SPEC-GAP：模板效果用 $actor/$target/$place/$rift/$shell/$operation 綁定作戰脈絡。
   const op = scope.operation ? s.operations?.[scope.operation] : undefined;
-  const bindings: Record<string, string | undefined> = { $actor: scope.faction, $target: scope.targetFaction, $node: scope.node, $rift: scope.rift, $shell: op?.target.shell, $operation: scope.operation };
+  const bindings: Record<string, string | undefined> = { $actor: scope.faction, $target: scope.targetFaction, $node: scope.place ?? scope.node, $place: scope.place ?? scope.node, $rift: scope.rift, $shell: op?.target.shell, $operation: scope.operation };
   function bind(value: unknown): unknown {
     if (typeof value === "string" && Object.hasOwn(bindings, value)) {
       if (!bindings[value]) throw new Error(`missing war binding: ${value}`);
@@ -102,15 +103,15 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     const loss = Math.min(1, Math.max(0, num(e.fraction)));
     for (const u of target.units) { u.count = Math.max(0, Math.round(u.count * (1 - loss))); u.readiness *= 1 - loss; } return true;
   }
-  if ("transferNode" in effect) {
-    const node = ctx.world.require("node", effect.transferNode.node).id, to = factionId(s, ctx, effect.transferNode.to);
-    if (!to || !s.nodes[node]) return false;
+  if ("transferPlace" in effect) {
+    const node = requirePlace(s, ctx, effect.transferPlace.place).id, to = factionId(s, ctx, effect.transferPlace.to);
+    if (!to || !s.places[node]) return false;
     const from = Object.keys(s.factions).sort().find(id => s.factions[id]!.territoryNow.includes(node)) ?? "none";
     for (const f of Object.values(s.factions)) f.territoryNow = f.territoryNow.filter(id => id !== node);
     s.factions[to]!.territoryNow.push(node); s.factions[to]!.territoryNow.sort();
-    s.nodes[node]!.ownerOverride = ctx.world.require("faction-ops", to).faction;
-    delete s.nodes[node]!.blight;
-    ctx.emit("NodeTransferred", { node, from, to }); return true;
+    s.places[node]!.ownerOverride = ctx.world.require("faction-ops", to).faction;
+    delete s.places[node]!.blight;
+    ctx.emit("PlaceTransferred", { node, from, to }); return true;
   }
   if ("transferShell" in effect) {
     const shell = s.shells?.[effect.transferShell.shell], to = effect.transferShell.to === "player" ? "player" : factionId(s, ctx, effect.transferShell.to);
@@ -154,14 +155,14 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     const def = ctx.world.require("contract", effect.spawnContract);
     s.pendingContracts.push({ template: def.id, ...(effect.near ? { near: effect.near } : {}) });
   } else if ("spawnEvent" in effect) s.pendingEvents.push(ctx.world.require("event", effect.spawnEvent).id);
-  else if ("setNode" in effect) {
-    const id = ctx.world.require("node", effect.setNode.id).id, node = s.nodes[id];
+  else if ("setPlace" in effect) {
+    const id = requirePlace(s, ctx, effect.setPlace.id).id, node = s.places[id];
     if (!node) throw new Error(`缺少節點狀態：${id}`);
-    Object.assign(node, structuredClone(effect.setNode.patch), { def: node.def });
-    if (effect.setNode.clearBlight) {
+    Object.assign(node, structuredClone(effect.setPlace.patch), { def: node.def });
+    if (effect.setPlace.clearBlight) {
       const rift = node.blight?.rift; delete node.blight;
       if (rift && s.rifts[rift]) s.rifts[rift]!.zones = s.rifts[rift]!.zones.filter(n => n !== id);
-      ctx.emit("NodeReclaimed", { node: id, ...(rift ? { rift } : {}) });
+      ctx.emit("PlaceReclaimed", { node: id, ...(rift ? { rift } : {}) });
     }
   } else if ("setRift" in effect) {
     const rift = entity(s.rifts, effect.setRift.id);
@@ -191,7 +192,7 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
       ctx.emit("Suppressed", { mech: input.mech });
     }
   } else if ("salvage" in effect) {
-    const { node, loot, carcass, keep } = effect.salvage;
+    const { place: node, loot, carcass, keep } = effect.salvage;
     if (keep) {
       const slot = s.restraint.slots.indexOf(null); if (slot < 0) return false;
       s.restraint.slots[slot] = carcass.id; s.restraint.carcasses.push({ ...structuredClone(carcass), slot });
@@ -205,7 +206,7 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
         if (stored) post(s, ctx, { account, delta: stored, reason: "carcass-salvage", ref });
         if (stored < amount) overflow.materials[account] = amount - stored;
       }
-      if (overflow.components.length || Object.keys(overflow.materials).length) s.nodes[node]!.wreckage.push(overflow);
+      if (overflow.components.length || Object.keys(overflow.materials).length) s.places[node]?.wreckage.push(overflow);
     }
   } else if ("applyEffect" in effect) applyCoreEffect(s, ctx, effect.applyEffect, scope);
   else throw new Error("未知 OpsEffect");

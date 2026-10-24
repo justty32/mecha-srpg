@@ -85,12 +85,12 @@ test("世界圖：SVG 節點與航線，點節點送 selectNode，詳情按鈕�
   const { q, click, actions, root } = setup(t, opsFixture("world"));
   assert.ok(q('svg[data-ui="world-map"]'));
   assert.equal(root.querySelectorAll('[data-ui="world-map"] [data-node]').length, 3);
-  assert.equal(root.querySelectorAll('[data-ui="world-map"] line.world-route').length, 2);
-  assert.ok(root.querySelector('[data-ui="world-map"] .world-node.here [data-node="node/ridge"]'));
+  assert.equal(root.querySelectorAll('[data-ui="world-map"] line.world-route').length, 0);
+  assert.ok(root.querySelector('[data-ui="world-map"] .world-node.here [data-node="place/ridge"]'));
   assert.ok(root.querySelector('[data-ui="world-map"] .world-blight.depth-deep'));
-  click('[data-node="node/marsh"]');
-  click('button[data-action-id="sail:node/marsh"]');
-  assert.deepEqual(actions, [{ type: "selectNode", node: "node/marsh" }, { type: "cmd", cmd: { v: "sail", to: "node/marsh" } }]);
+  click('[data-node="place/marsh"]');
+  click('button[data-action-id="sail:place/marsh"]');
+  assert.deepEqual(actions, [{ type: "selectNode", node: "place/marsh" }, { type: "cmd", cmd: { v: "sail", to: "place/marsh" } }]);
 });
 
 test("列表選取：契約、機甲、名冊", t => {

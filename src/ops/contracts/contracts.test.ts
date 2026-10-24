@@ -11,10 +11,10 @@ import { tallyHeads, settleContract } from "./tally.ts";
 
 test("contracts：offered 快照獨立、並行接受、到期與取消追回預付", () => {
   const { s, ctx } = fixture(), r = addRift(s, ctx, { phase: "anchored" });
-  const c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
+  const c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { place: r.site, rift: r.id })!;
   const snapshot = structuredClone(c.target.snapshot); r.width = "B"; r.anchorAge = 9; r.phase = "unanchored";
   assert.deepEqual(c.target.snapshot, snapshot);
-  const second = offerContract(s, ctx, "contract/seal", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
+  const second = offerContract(s, ctx, "contract/seal", "faction-ops/migrant-crew", { place: r.site, rift: r.id })!;
   c.terms.advance = 200;
   assert.equal(cmdAccept(s, ctx, { v: "accept", contract: c.id }).ok, true); assert.equal(cmdAccept(s, ctx, { v: "accept", contract: second.id }).ok, true);
   post(s, ctx, { account: "cash", delta: -s.ledger.balances.cash + 50, reason: "test-spend", ref: eventRef(ctx.emit("OpsEffectApplied")) });
@@ -25,7 +25,7 @@ test("contracts：offered 快照獨立、並行接受、到期與取消追回預
   assert.ok(Object.keys(f.s.contracts).length > 0); assert.equal(f.s.pendingContracts.length, 0);
 });
 test("contracts：談判成功／失敗、厭煩撤回與純函式 RNG", () => {
-  const { s, ctx } = fixture(), r = addRift(s, ctx), c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
+  const { s, ctx } = fixture(), r = addRift(s, ctx), c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { place: r.site, rift: r.id })!;
   const policy = negotiationPolicy(ctx), rng = createRng(7), before = structuredClone({ c, rng });
   const state = { contract: c, issuerRep: 100, advanceMax: 0.3, annoyanceMax: 3, policy };
   const success = negotiate(state, "total", rng); assert.equal(success.success, true); assert.equal(success.state.contract.annoyance, 1); assert.equal(success.state.contract.terms.total, c.terms.total * 1.1);
@@ -34,7 +34,7 @@ test("contracts：談判成功／失敗、厭煩撤回與純函式 RNG", () => {
   assert.deepEqual({ c, rng }, before);
 });
 test("contracts：同一單位一頭、部分成功半額、付款與 rep 只結一次", () => {
-  const { s, ctx } = fixture(), r = addRift(s, ctx), c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
+  const { s, ctx } = fixture(), r = addRift(s, ctx), c = offerContract(s, ctx, "contract/clear", "faction-ops/migrant-crew", { place: r.site, rift: r.id })!;
   cmdAccept(s, ctx, { v: "accept", contract: c.id }); c.terms.perHead = 10;
   const dead = { type: "UnitDied", payload: { unit: "enemy-1" } };
   assert.equal(tallyHeads(c, [dead, dead, { type: "Captured", payload: { unit: "enemy-2" } }]), 1);

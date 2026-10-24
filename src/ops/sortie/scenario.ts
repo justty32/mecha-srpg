@@ -1,3 +1,6 @@
+import { blightAt } from "../world/blight.ts";
+import { gridOf, neighbors, terrainAt } from "../world/grid.ts";
+import { requirePlace } from "../world/places.ts";
 import type { Cell, EffectRef, MapDef, Objective, UnitSpawn } from "../../core/types-def.ts";
 import type { DynamicScenario } from "../../sim/run.ts";
 import type { PersonState } from "../../core/types-state.ts";
@@ -77,21 +80,21 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   const selected = explicit?.length ? ctx.world.require("encounter", explicit[hash % explicit.length]!) : undefined;
   const rift = selected ? undefined : s.rifts[sortie.rift ?? contract?.target.rift ?? ""];
   // SPEC-GAP：只有節點的契約借用節點蝕域裂縫族，再退回第一族的 shallow 配方。
-  const fallbackRift = !rift && !selected ? s.rifts[s.nodes[sortie.node]?.blight?.rift ?? ""] : undefined;
+  const fallbackRift = !rift && !selected ? s.rifts[blightAt(s, ctx, sortie.loc)?.rift ?? ""] : undefined;
   const sourceRift = rift ?? fallbackRift;
   const riftDef = sourceRift ? ctx.world.get("rift", sourceRift.family) ?? ctx.world.all("rift").find(d => d.family === sourceRift.family) : ctx.world.all("rift")[0];
-  const node = ctx.world.require("node", sortie.node);
+  const grid = gridOf(ctx.world, sortie.loc.map);
   const snapshot: EnemySnapshot = selected ? { family: selected.family, width: "D", depth: selected.depth, anchorAge: 0 } : contract?.target.snapshot ?? { family: riftDef?.family ?? ctx.world.all("encounter")[0]!.family,
-    width: sourceRift?.width ?? "D", depth: rift || fallbackRift ? s.nodes[sortie.node]?.blight?.depth ?? "shallow" : "shallow", anchorAge: sourceRift?.anchorAge ?? 0,
+    width: sourceRift?.width ?? "D", depth: rift || fallbackRift ? blightAt(s, ctx, sortie.loc)?.depth ?? "shallow" : "shallow", anchorAge: sourceRift?.anchorAge ?? 0,
     ...(riftDef?.monsters ? { monsters: riftDef.monsters } : {}) };
   const templates = ctx.world.all("encounter").filter(e => e.family === snapshot.family);
   // SPEC-GAP：base 缺 core 遭遇，沿用同族 deep（再 shallow）的地圖配方，仍生成錨本體。
   const encounter = selected ?? templates.find(e => e.depth === snapshot.depth) ?? templates.find(e => e.depth === "deep") ?? templates[0];
   if (!encounter) throw new Error(`missing encounter: ${snapshot.family}/${snapshot.depth}`);
-  const scope = { node: sortie.node, ...(rift ? { rift: rift.id } : {}) };
+  const scope = { place: sortie.place, node: sortie.place, ...(rift ? { rift: rift.id } : {}) };
   const width = Math.max(4, Math.floor(evalOpsNum(s, ctx, encounter.size.w, scope))), height = Math.max(1, Math.floor(evalOpsNum(s, ctx, encounter.size.h, scope)));
   const mix = encounter.terrainMix.flatMap(entry => entry.terrain === "$node"
-    ? node.terrainPool.map(terrain => ({ terrain, w: entry.w / node.terrainPool.length })) : [entry]);
+    ? [sortie.loc.cell, ...neighbors(grid, sortie.loc.cell)].flatMap((cell, i) => { const pool = terrainAt(grid, cell).battlePool; return pool.map(terrain => ({ terrain, w: entry.w * (i === 0 ? 1 : 0.5) / pool.length })); }) : [entry]);
   const terrains = [...new Set(mix.map(e => ctx.db.require("terrain", e.terrain).id))].sort();
   const glyph = (id: string) => String.fromCodePoint(0xE000 + terrains.indexOf(ctx.db.require("terrain", id).id));
   const map: MapDef = encounter.map ? structuredClone(ctx.db.require("map", encounter.map)) : {

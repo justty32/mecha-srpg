@@ -1,13 +1,58 @@
 {
   "id": "market/chittagong",
-  "node": "node/chittagong",
+  "place": "place/chittagong",
   "lists": [
-    { "kind": "fuel", "items": [{ "def": "stock:fuel", "weight": 1, "stockMax": 120, "basePrice": 2 }] },
-    { "kind": "material", "items": [{ "def": "stock:scrap", "weight": 1, "stockMax": 40, "basePrice": 8 }] },
-    { "kind": "component", "items": [{ "def": "component/autocannon-30", "weight": 1, "stockMax": 2, "basePrice": 300 }] },
-    { "kind": "ammo", "items": [{ "def": "ammo-30", "weight": 1, "stockMax": 120, "basePrice": 2 }] }
+    {
+      "kind": "fuel",
+      "items": [
+        {
+          "def": "stock:fuel",
+          "weight": 1,
+          "stockMax": 120,
+          "basePrice": 2
+        }
+      ]
+    },
+    {
+      "kind": "material",
+      "items": [
+        {
+          "def": "stock:scrap",
+          "weight": 1,
+          "stockMax": 40,
+          "basePrice": 8
+        }
+      ]
+    },
+    {
+      "kind": "component",
+      "items": [
+        {
+          "def": "component/autocannon-30",
+          "weight": 1,
+          "stockMax": 2,
+          "basePrice": 300
+        }
+      ]
+    },
+    {
+      "kind": "ammo",
+      "items": [
+        {
+          "def": "ammo-30",
+          "weight": 1,
+          "stockMax": 120,
+          "basePrice": 2
+        }
+      ]
+    }
   ],
-  "priceMods": [{ "tag": "besieged", "mult": 1.5 }],
+  "priceMods": [
+    {
+      "tag": "besieged",
+      "mult": 1.5
+    }
+  ],
   "refreshOn": "quarter",
   "buysBack": true
 }

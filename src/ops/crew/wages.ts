@@ -1,3 +1,6 @@
+import { isDocked } from "../world/move.ts";
+import { placeAt } from "../war/loc.ts";
+import { placeDef } from "../world/places.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { expense, fail, monthDays, mood, ok, peekCrew, rules } from "./shared.ts";
 import type { CmdResult, Command } from "./shared.ts";
@@ -15,8 +18,8 @@ export function ledgerDaily6(s: CampaignState, ctx: OpsCtx): void {
     else if (e.wage > 0) mood(s, id, 1);
   }
   const rt = peekCrew(s);
-  const node = ctx.world.get("node", s.ship.at);
-  if (!s.ship.route && node && ["city", "ferry-port", "lunar-base"].includes(node.kind)) expense(s, ctx, "cash", cfg.dockFee * (s.debtState?.arrears && s.debtState.arrears >= 3 ? cfg.sanctionFeeMult : 1), "DockFee", { node: node.id });
+  const node = placeDef(s, ctx, (placeAt(s, ctx, s.ship.pos) ?? ""));
+  if (isDocked(s, ctx) && node && ["city", "port", "lunar-base"].includes(node.kind)) expense(s, ctx, "cash", cfg.dockFee * (s.debtState?.arrears && s.debtState.arrears >= 3 ? cfg.sanctionFeeMult : 1), "DockFee", { node: node.id });
   if (s.clock.dom === 1) {
     for (const id of Object.keys(rt?.rentals ?? {}).sort()) expense(s, ctx, "cash", rt!.rentals[id]!, "SoulRent", { person: id });
     if (s.clock.phase === "spring") debtMonth(s, ctx);

@@ -4,7 +4,9 @@ import type { BattleResult, sortieBattleSetup } from "../ops/sortie/index.ts";
 import { render, eventLog, entityName, VERBS, describeRoom, roomDefinition } from "../ops/text/index.ts";
 import type { McpEnv } from "./tool.ts";
 import { createOpsCtx } from "../ops/content/start.ts";
-import { shortestPath } from "../ops/world/travel.ts";
+import { placeAt } from "../ops/war/loc.ts";
+import { allPlaces, placeDef } from "../ops/world/places.ts";
+import { isDocked, shortestPath } from "../ops/world/move.ts";
 import { instantiateMech } from "../ops/content/instantiate.ts";
 import { evalOpsCond } from "../ops/content/cond.ts";
 import type { CrewState } from "../ops/crew/index.ts";
@@ -93,12 +95,12 @@ export function commandInfo(env: McpEnv, state: CampaignState, cmd: OpsCommand):
     if (p) return `${personName(env, state, p.id)}｜職能 ${e?.role ?? "未指派"}｜等級 ${p.level}｜士氣 ${p.morale}\n` +
       `薪資 ${money(e?.wage ?? 0)}；欠薪 ${money(e?.owed ?? 0)}；${Object.entries(p.pools).map(([k, v]) => `${k} ${v.cur}/${v.max}`).join("；")}\n屬性：${JSON.stringify(p.attrsBase)}`;
     if (roomDefinition(cmd.target, world)) return describeRoom(cmd.target, state, world, db).desc.join("\n");
-    const node = world.get("node", cmd.target);
+    const node = placeDef(state, { world }, cmd.target);
     if (node) return `${node.name}｜${node.kind}｜服務：${node.services.join("、")}`;
   }
   const contract = cmd.v === "board" ? cmd.contract : cmd.v === "look" && cmd.target && state.contracts[cmd.target] ? cmd.target : undefined;
   if (cmd.v === "board" || contract) return `契約板：\n${Object.values(state.contracts).filter(c => !contract || c.id === contract).map(c =>
-    `${c.id} ${c.status} → ${campaignName(env, state, c.target.node)}｜酬 ${money(c.terms.total)} 預付 ${money(c.terms.advance)} 每頭 ${money(c.terms.perHead)}｜期限 day ${c.deadlineDay}｜${world.get("contract", c.template)?.objectives.map(o => o.kind).join("、") ?? c.template}`
+    `${c.id} ${c.status} → ${campaignName(env, state, c.target.place)}｜酬 ${money(c.terms.total)} 預付 ${money(c.terms.advance)} 每頭 ${money(c.terms.perHead)}｜期限 day ${c.deadlineDay}｜${world.get("contract", c.template)?.objectives.map(o => o.kind).join("、") ?? c.template}`
   ).join("\n") || "目前無契約"}`;
   return "";
 }
@@ -124,7 +126,7 @@ export function sortiePreview(env: McpEnv, state: CampaignState, sortie: Sortie,
   const family = rift && (world.get("rift", rift.family) ?? world.all("rift").find(d => d.family === rift.family));
   const anchor = rift && db.get("monster", rift.anchor ?? family?.anchor ?? "");
   // 動態 MapDef 沒有 name；以出戰地點命名，不捏造靜態地圖名稱。
-  const map = { id: scenario.map, name: `${world.require("node", sortie.node).name}戰場`, width: scenario.ops.map.width, height: scenario.ops.map.height };
+  const map = { id: scenario.map, name: `${sortie.place ? campaignName(env, state, sortie.place) : `${sortie.loc.cell.x},${sortie.loc.cell.y}`}戰場`, width: scenario.ops.map.width, height: scenario.ops.map.height };
   const riftInfo = rift ? { id: rift.id, phase: rift.phase, anchor: anchor?.name ?? (anchor ? db.require("species", anchor.species).name : null), anchorGrade: anchor?.grade ?? null } : null;
   const objective = objectives.join("；") + "。";
   const summary = `${map.name} ${map.width}×${map.height}｜敵方：${enemies.map(e => `${e.name} ${e.grade}級×${e.count}`).join("、")}\n目標：${objective} 輪數上限 ${scenario.rounds}。\n` +
@@ -136,9 +138,9 @@ export function battleReport(env: McpEnv, before: CampaignState, after: Campaign
   const { db } = env.world(), name = (id: string) => campaignName(env, before, id);
   const cashDelta = after.ledger.balances.cash - before.ledger.balances.cash;
   const contracts = Object.values(after.contracts).filter(c => c.status !== before.contracts[c.id]?.status)
-    .map(c => ({ id: c.id, node: name(c.target.node), before: before.contracts[c.id]?.status ?? "無", after: c.status }));
+    .map(c => ({ id: c.id, node: name(c.target.place), before: before.contracts[c.id]?.status ?? "無", after: c.status }));
   const rifts = Object.values(after.rifts).filter(r => r.phase !== before.rifts[r.id]?.phase)
-    .map(r => ({ id: r.id, node: name(r.node), before: before.rifts[r.id]?.phase ?? "無", after: r.phase }));
+    .map(r => ({ id: r.id, node: name(r.site), before: before.rifts[r.id]?.phase ?? "無", after: r.phase }));
   const status = (s: string) => ({ alive: "存活", dead: "陣亡", retreated: "撤退存活", captured: "被捕獲", "derelict-lost": "機甲流失", "derelict-recovered": "棄機回收" }[s] ?? s);
   const mechs = sortie.units.map(u => {
     const entry = result.units.find(e => e.id === u.mech), frame = db.get("frame", before.mechs[u.mech]?.frame ?? "");
@@ -169,8 +171,8 @@ export function campaignCatalog(env: McpEnv, state: CampaignState) {
     role?: string; wage?: number; fee?: number; requires?: string[]; cost?: object; hint?: string };
   const market: Item[] = [], recruits: Item[] = [], research: Item[] = [];
   const blocked = state.pendingChoices.length ? "要先 choose" : state.pendingBattle ? "先處理待出戰" : undefined;
-  const docked = !state.ship.route && !(state as CampaignState & { drifting?: boolean }).drifting;
-  if (docked) for (const m of world.all("market").filter(m => m.node === state.ship.at)) for (const list of m.lists) for (const item of list.items) {
+  const docked = isDocked(state, { world });
+  if (docked) for (const m of world.all("market").filter(m => m.place === placeAt(state, { world }, state.ship.pos))) for (const list of m.lists) for (const item of list.items) {
     const price = marketPrice(state, ctx, m, item), name = campaignName(env, state, item.def);
     const stock = (state as MarketState).markets?.[m.id]?.stock[item.def] ?? item.stockMax;
     const supported = item.basePrice !== undefined && (["component", "frame"].includes(list.kind) || item.def.startsWith("stock:"));
@@ -191,7 +193,7 @@ export function campaignCatalog(env: McpEnv, state: CampaignState) {
       market.push({ id, name, market: m.id, mode: "sell", price, cmd, label: `賣 ${name}（${id}）${money(price)} 幣` });
     }
   }
-  if (!state.ship.route) for (const c of Object.values((state as CrewState).crew?.candidates ?? {}).filter(c => c.node === state.ship.at)) {
+  if (!state.ship.path) for (const c of Object.values((state as CrewState).crew?.candidates ?? {}).filter(c => c.place === placeAt(state, { world }, state.ship.pos))) {
     const name = db.get("person", c.person.def)?.name ?? world.get("background", c.background)?.name ?? c.id;
     const disabled = blocked ?? (Object.keys(state.roster.persons).length >= state.ship.capacity.berths ? "沒有床位" : undefined);
     recruits.push({ id: c.id, name, role: "pilot", wage: c.wage, fee: c.fee,
@@ -213,11 +215,11 @@ export function availableIds(env: McpEnv, state: CampaignState, text: string): s
   const verb = VERBS.find(v => v.v === word || v.zh === word)?.v;
   let ids: string[];
   if (verb === "trade" || word === "買" || word === "賣") {
-    const markets = world.all("market").filter(m => m.node === state.ship.at);
+    const markets = world.all("market").filter(m => m.place === placeAt(state, { world }, state.ship.pos));
     ids = [...markets.map(m => m.id), ...markets.flatMap(m => m.lists.flatMap(l => l.items.map(i => i.def))), ...state.inventory.components.map(c => c.id)];
-  } else if (verb === "hire") ids = Object.values((state as CrewState).crew?.candidates ?? {}).filter(c => c.node === state.ship.at).map(c => c.id);
+  } else if (verb === "hire") ids = Object.values((state as CrewState).crew?.candidates ?? {}).filter(c => c.place === placeAt(state, { world }, state.ship.pos)).map(c => c.id);
   else if (word === "研" || verb === "queue") ids = world.all("research").map(r => r.id);
-  else if (verb === "sail" || verb === "explore") ids = world.all("node").map(n => n.id);
+  else if (verb === "sail" || verb === "explore") ids = allPlaces(state, { world }).map(n => n.id);
   else if (verb === "board" || verb === "accept" || verb === "drop") ids = Object.keys(state.contracts);
   else if (verb === "go") ids = world.all("room").map(r => r.id);
   else ids = [...Object.keys(state.mechs), ...Object.keys(state.roster.persons), ...Object.keys(state.contracts)];
@@ -226,10 +228,10 @@ export function availableIds(env: McpEnv, state: CampaignState, text: string): s
 
 /** brief：省略房間描述散文（act 結果房間沒變時用），JSON 一律不重複描述。 */
 export function campaignView(env: McpEnv, id: string, state: CampaignState, events: CampaignEvent[], limit = 20, brief = false, showMap = false) {
-  const { db, world } = env.world(), screen = render(state, events, world, db);
-  // ops 的 map 指令沒有輸出（DOM 自己畫世界圖）；MCP 這裡補上可達節點的天數與燃料，sail 才有依據。
-  const ctx = createOpsCtx(state, db, world), here = state.ship.at;
-  const travel = (node: string) => { const p = shortestPath(state, ctx, here, node); return p ? { days: p.days, fuel: p.fuel } : null; };
+  const { db, world } = env.world(), screen = render(state, events, world, db, showMap);
+  // ops 的 map 指令沒有輸出（DOM 自己畫世界圖）；MCP 這裡補上可達地點的天數與燃料，sail 才有依據。
+  const ctx = createOpsCtx(state, db, world), here = placeAt(state, { world }, state.ship.pos);
+  const travel = (node: string) => { const p = shortestPath(state, ctx, state.ship.pos, node); return p ? { days: p.days, fuel: p.fuel } : null; };
   // ops 沒寫文案的事件只會顯示「未登錄事件：X」，對決策沒資訊；併成一行計數，不佔 log 名額。
   const rows = events.map(e => eventLog(e, state, world)), unlogged: Record<string, number> = {};
   const useful = rows.filter(r => { const m = /^未登錄事件：(.+)。$/u.exec(r.text); if (m) unlogged[m[1]!] = (unlogged[m[1]!] ?? 0) + 1; return !m; });
@@ -237,9 +239,9 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const omitted = useful.length - log.length;
   const panels: Record<string, object[]> = Object.fromEntries(Object.entries(screen.panels).filter(([, rows]) => rows.length));
   const contracts = Object.values(state.contracts).filter(c => ["offered", "active", "stage"].includes(c.status)).map(c => ({
-    id: c.id, status: c.status, template: c.template, issuer: c.issuer, target: c.target.node, total: c.terms.total,
+    id: c.id, status: c.status, template: c.template, issuer: c.issuer, target: c.target.place, total: c.terms.total,
     advance: c.terms.advance, perHead: c.terms.perHead, deadlineDay: c.deadlineDay,
-    travel: c.target.node === here ? { days: 0, fuel: 0 } : travel(c.target.node),
+    travel: c.target.place === here ? { days: 0, fuel: 0 } : travel(c.target.place),
   }));
   if (contracts.length) panels.contracts = contracts;
   const hangar = [...new Set([...state.hangar.bays, ...state.hangar.dormant, ...state.restraint.slots])]
@@ -248,12 +250,12 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const roster = Object.keys(state.roster.persons).sort().map(id => ({ id, name: personName(env, state, id),
     role: state.roster.employment[id]?.role ?? "未指派", wage: state.roster.employment[id]?.wage ?? 0, owed: state.roster.employment[id]?.owed ?? 0 }));
   panels.roster = roster;
-  const worldMap = showMap ? world.all("node").filter(n => n.id !== here).flatMap(n => {
-    const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, ...t }] : [];
+  const worldMap = showMap ? allPlaces(state, { world }).filter(n => n.id !== here).flatMap(n => {
+    const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, map: n.map, cell: n.at, ...t }] : [];
   }).sort((a, b) => a.days - b.days || a.id.localeCompare(b.id)) : [];
   if (showMap) panels.worldMap = worldMap;
   const pendingBattle = state.pendingBattle && {
-    id: state.pendingBattle.id, node: state.pendingBattle.node, trigger: state.pendingBattle.trigger,
+    id: state.pendingBattle.id, place: state.pendingBattle.place, loc: state.pendingBattle.loc, trigger: state.pendingBattle.trigger,
     contract: state.pendingBattle.contract, units: structuredClone(state.pendingBattle.units),
     hint: "可送 sortie；若 units 為空，請在 sortie.units 提供機甲、seats 與 controlMode。",
   };
@@ -265,7 +267,7 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
     `${id}｜潮月 ${state.clock.month} 第 ${state.clock.dom} 天（day=${state.clock.day}）｜${screen.room.title}`,
     ...(brief ? [] : screen.room.desc), `現金 ${money(state.ledger.balances.cash)}；債務 ${money(state.ledger.balances.debt)}；人數 ${Object.keys(state.roster.persons).length}。`,
     ...hangar.map(mechText), `人員：${roster.map(p => `${p.name} ${p.role} 薪資 ${money(p.wage)} 欠薪 ${money(p.owed)}`).join("；")}`,
-    showMap ? `世界圖（自 ${here}；天數／燃料）：${worldMap.map(n => `${n.id} ${n.name} ${n.days}天/${n.fuel}`).join("；") || "沒有可達節點"}` : "",
+    showMap ? `世界圖（自 ${here ?? `${state.ship.pos.cell.x},${state.ship.pos.cell.y}`}；天數／燃料）：${worldMap.map(n => `${n.id} ${n.name} (${n.cell.x},${n.cell.y}) ${n.days} 天/${n.fuel}`).join("；") || "沒有可達地點"}` : "",
     contracts.length ? `契約：${contracts.map(c => `${c.id} ${c.status} ${c.template.replace(/^.*\//u, "")}（${c.issuer.replace(/^.*\//u, "")}）→ ${c.target} 酬 ${c.total}${c.advance ? ` 預付 ${c.advance}` : ""}${c.perHead ? ` 每頭 ${c.perHead}` : ""} 期限 day ${c.deadlineDay}${c.travel ? `（${c.travel.days}天/燃料${c.travel.fuel}）` : "（無航線）"}`).join("；")}` : "",
     pendingBattle ? `待出戰：${pendingBattle.trigger}，${pendingBattle.hint}` : "",
     ...log.map(row => `[第 ${row.day} 天] ${row.text}`), omitted ? `另有 ${omitted} 行較早紀錄未顯示。` : "",

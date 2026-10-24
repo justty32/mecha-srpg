@@ -1,3 +1,4 @@
+import { placeDef } from "../world/places.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDB } from "../content/worlddb.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
@@ -36,12 +37,12 @@ export function entityName(id: string, state: TextState, world: WorldDB): string
   const rift = state.rifts[id];
   if (rift) {
     const family = world.get("rift", rift.family)?.family ?? rift.family;
-    return `${entityName(rift.node, state, world)}的${labels[family] ?? "異界"}裂縫`;
+    return `${entityName(rift.site, state, world)}的${labels[family] ?? "異界"}裂縫`;
   }
   const contract = state.contracts[id];
   if (contract) {
     const template = world.get("contract", contract.template);
-    return template?.name ?? `${labels[template?.kind ?? ""] ?? "委託"}：${entityName(contract.target.node, state, world)}`;
+    return template?.name ?? `${labels[template?.kind ?? ""] ?? "委託"}：${entityName(contract.target.place, state, world)}`;
   }
   const job = state.jobs.find(j => j.id === id);
   if (job) return `${labels[job.kind] ?? "工作"}：${job.target === id ? "指定對象" : entityName(job.target, state, world)}`;
@@ -51,11 +52,13 @@ export function entityName(id: string, state: TextState, world: WorldDB): string
   if (model) return db?.get("frame", model.frame)?.name ?? `${entityName(model.lineage, state, world)} ${model.mark} 型`;
   const operation = state.operations?.[id];
   if (operation) return entityName(operation.def, state, world);
-  for (const kind of ["node", "room", "research", "background", "model", "lineage", "operation", "market", "contract"] as const) {
+  const place = placeDef(state, { world }, id);
+  if (place) return place.name;
+  for (const kind of ["map", "room", "research", "background", "model", "lineage", "operation", "market", "contract"] as const) {
     const def = world.get(kind, id);
     if (def && "name" in def && typeof def.name === "string" && def.name.trim()) return def.name;
     if (def && "title" in def && typeof def.title === "string") return def.title;
-    if (kind === "market" && def && "node" in def) return `${entityName(def.node, state, world)}市場`;
+    if (kind === "market" && def && "place" in def) return `${entityName(def.place, state, world)}市場`;
     if (kind === "contract" && def && "kind" in def) return `${labels[def.kind] ?? "委託"}契約`;
   }
   for (const kind of ["person", "frame", "component", "faction", "species", "monster"] as const) {
@@ -64,6 +67,6 @@ export function entityName(id: string, state: TextState, world: WorldDB): string
   // 舊存檔／已移除實體只留可讀類別與序號，不能把內部路徑顯示給玩家。
   if (/\p{Script=Han}/u.test(id)) return id.replaceAll("/", "・").trim() || "未具名對象";
   const kind = id.replace(/^[^:]+:/, "").split(/[/-]/)[0] ?? "";
-  const short: Record<string, string> = { person: "船員", candidate: "應徵者", mech: "機甲", frame: "機型", faction: "勢力", node: "地點", rift: "裂縫", contract: "契約", job: "工作", model: "機型", operation: "作戰", lineage: "血統", treaty: "條約", action: "勢力行動", component: "部件" };
+  const short: Record<string, string> = { person: "船員", candidate: "應徵者", mech: "機甲", frame: "機型", faction: "勢力", place: "地點", rift: "裂縫", contract: "契約", job: "工作", model: "機型", operation: "作戰", lineage: "血統", treaty: "條約", action: "勢力行動", component: "部件" };
   return `${id.startsWith("stock:") ? "庫存" : short[kind] ?? "未具名對象"}${id.match(/\d+$/)?.[0] ? ` ${id.match(/\d+$/)![0]} 號` : ""}`;
 }

@@ -1,9 +1,21 @@
 import type { CampaignState } from "../state/types.ts";
 import type { WorldDB } from "../content/worlddb.ts";
+import { gridOf, inBounds, terrainAt } from "../world/grid.ts";
 import { checkLedger } from "../state/ledger.ts";
 
 export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
   const errors = checkLedger(s);
+  if (world) {
+    if (!world.get("map", s.ship.pos.map)) errors.push(`missing ship map: ${s.ship.pos.map}`);
+    else {
+      const map = gridOf(world, s.ship.pos.map);
+      if (!inBounds(map, s.ship.pos.cell)) errors.push("ship outside map");
+      else {
+        const terrain = terrainAt(map, s.ship.pos.cell);
+        if ((s.ship.hull.cur > 0 ? terrain.airCost : terrain.groundCost) === null) errors.push("ship on impassable cell");
+      }
+    }
+  }
   const sources = new Map(s.log.map(e => [`event-${e.seq}`, e.type]));
   for (const entry of s.ledger.entries) if (["faction-supply", "join-pay", "loan-loss"].includes(entry.reason) &&
     (!entry.ref || !["OperationResolved", "AllySupplied"].includes(sources.get(entry.ref) ?? ""))) errors.push(`war ledger source: ${entry.seq}`);
@@ -41,12 +53,12 @@ export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
   }
   for (const o of Object.values(s.operations ?? {})) {
     if (!Number.isFinite(o.progress) || o.progress < 0 || o.progress > 1) errors.push(`operation progress: ${o.id}`);
-    if (!s.nodes[o.target.loc.region] || !["map/longland", "map/lunar"].includes(o.target.loc.map)) errors.push(`missing operation target: ${o.id}`);
+    if (world && !world.get("map", o.target.loc.map)) errors.push(`missing operation target: ${o.id}`);
     for (const u of o.force.units) if (u.count < 0 || !Number.isInteger(u.count) || u.readiness < 0 || u.readiness > 1) errors.push(`force out of range: ${o.id}`);
     for (const slot of o.mercSlots) if (!s.contracts[slot.contract]) errors.push(`missing operation contract: ${slot.contract}`);
   }
   for (const shell of Object.values(s.shells ?? {})) if (shell.holder !== "player" &&
-    !(typeof shell.holder === "string" ? s.factions[shell.holder] : s.nodes[shell.holder.ruin])) errors.push(`missing shell holder: ${shell.id}`);
+    !(typeof shell.holder === "string" ? s.factions[shell.holder] : s.places[shell.holder.ruin])) errors.push(`missing shell holder: ${shell.id}`);
   if (world) for (const model of Object.values(s.models ?? {})) if (!world.get("model", model.def)) errors.push(`missing model def: ${model.def}`);
   return errors;
 }

@@ -1,3 +1,4 @@
+import { placeAt } from "../war/loc.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readPackDir } from "../../content/loader.ts";
@@ -31,7 +32,7 @@ function setup(family?: "alien" | "mycelium") {
 test("捕獲入拘束艙並登記，A 級沿用野生二名", () => {
   for (const [frame, epithet] of [["frame/bio-mite", undefined], ["frame/bio-nestmother", "千囊房東"]] as const) {
     const { s, ctx } = setup(), battle = result(), captured = instantiateMech(ctx.db, "enemy-0", frame);
-    const sortie: Sortie = { id: "capture-test", day: 0, node: s.ship.at, trigger: "ambush", units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] };
+    const sortie: Sortie = { id: "capture-test", day: 0, place: placeAt(s, ctx, s.ship.pos), loc: structuredClone(s.ship.pos), trigger: "ambush", units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] };
     battle.units.push({ id: captured.id, status: "captured", state: captured });
     applyBattleResult(s, ctx, sortie, battle);
     const id = s.restraint.slots[0]!, beast = s.restraint.beasts[id]!;
@@ -88,16 +89,16 @@ test("mount 無核不開工，扣核與 scrap 後完成 corpse 機體；整屍�
   assert.equal(ctx.db.require("frame", s.mechs[id]!.frame).burden, 0); assert(s.log.some(e => e.type === "Mounted")); assert.deepEqual(checkLedger(s), []);
   const battle = result(), dead = instantiateMech(ctx.db, "enemy-0", "frame/bio-mite"); dead.owner = "enemy";
   battle.units.push({ id: dead.id, state: dead, status: "dead" }); battle.loot.push({ fromUnit: dead.id, components: [], materials: { flesh: 1 } });
-  applyBattleResult(s, ctx, { id: "dead-test", day: 0, node: s.ship.at, trigger: "ambush", units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] }, battle);
+  applyBattleResult(s, ctx, { id: "dead-test", day: 0, place: placeAt(s, ctx, s.ship.pos), loc: structuredClone(s.ship.pos), trigger: "ambush", units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] }, battle);
   assert.equal(s.pendingChoices[0]!.choices[0]!.text, "拆");
   assert(applyOpsEffects(s, ctx, s.pendingChoices[0]!.choices[1]!.effects)); assert.equal(s.restraint.carcasses.length, 1);
 });
 test("異形 tide-soak 蝕化或同節點 anchored 回滿，錯過減 20", () => {
   const { s, ctx, add, day } = setup("alien"), beast = add("frame/bio-tidewolf");
-  beast.vitality = 60; s.nodes[s.ship.at]!.blight = { rift: "test-rift", depth: "shallow", sinceDay: 0 };
+  beast.vitality = 60; s.places[placeAt(s, ctx, s.ship.pos)!]!.blight = { rift: "test-rift", depth: "shallow", sinceDay: 0 };
   day(28); restraintDaily5(s, ctx); assert.equal(beast.vitality, 100);
-  delete s.nodes[s.ship.at]!.blight; day(56); restraintDaily5(s, ctx); assert.equal(beast.vitality, 80);
-  s.rifts.test = { id: "test", node: s.ship.at, family: "alien", width: "D", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 0 };
+  delete s.places[placeAt(s, ctx, s.ship.pos)!]!.blight; day(56); restraintDaily5(s, ctx); assert.equal(beast.vitality, 80);
+  s.rifts.test = { id: "test", site: placeAt(s, ctx, s.ship.pos)!, at: structuredClone(s.ship.pos), family: "alien", width: "D", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 0 };
   day(84); restraintDaily5(s, ctx); assert.equal(beast.vitality, 100);
 });
 test("菌房每潮月排 prune，未完成 layers 增長；keymap 重鍵載入拒絕", () => {

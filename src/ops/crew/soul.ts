@@ -24,6 +24,7 @@ export function openSoulNode(s: CampaignState, ctx: OpsCtx, soul: string, node: 
 export function cmdAccompany(s: CampaignState, ctx: OpsCtx, cmd: Command<"accompany">): CmdResult {
   const soul = s.roster.persons[cmd.soul], by = s.roster.persons[cmd.by];
   if (!soul?.will.soulTree || !by || cmd.by === cmd.soul) return fail("invalid-companions");
+  // SPEC-GAP：依交接書把命令鍵改為 place，值仍指既有靈魂樹節點，並非大地圖地點。
   const node = cmd.node ?? soul.will.soulTree.nodes[0];
   if (!node || !soul.will.soulTree.nodes.includes(node) || !soulNodes(s, ctx, cmd.soul).some(n => n.id === node)) return fail("node-not-open");
   const rt = peekCrew(s);

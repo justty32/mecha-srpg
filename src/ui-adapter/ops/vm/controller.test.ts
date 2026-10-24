@@ -1,3 +1,5 @@
+import { placeAt } from "../../../ops/war/loc.ts";
+import { allPlaces } from "../../../ops/world/places.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "../../../ops/content/load.ts";
@@ -27,7 +29,7 @@ function verifySnapshot(c: OpsController, s: OpsSnapshot = c.snapshot()): void {
   if (s.prompt) for (const b of allButtons(s)) if (!(b.action.type === "cmd" && b.action.cmd.v === "choose")) {
     assert.equal(b.enabled, false); assert.equal(b.reason, "先回應事件");
   }
-  assert.equal(s.world.nodes.length, world.all("node").length);
+  assert.equal(s.world.nodes.length, allPlaces(c.state, { world }).length);
   assert.equal(s.calendar.days.length, s.calendar.daysPerMonth);
 }
 function prompts(c: OpsController): void {
@@ -47,10 +49,10 @@ function prepared(): { c: OpsController; contract: string } {
   const contract = Object.values(c.state.contracts).find(c => c.status === "offered"); assert.ok(contract);
   c.dispatch({ type: "selectContract", contract: contract.id }); verifySnapshot(c);
   const accepted = c.dispatch({ type: "cmd", cmd: { v: "accept", contract: contract.id } }); assert.equal(accepted.message, null);
-  c.dispatch({ type: "cmd", cmd: { v: "sail", to: contract.target.node } });
-  for (let i = 0; c.state.ship.route && i < 30; i++) { prompts(c); c.dispatch({ type: "advance", until: "event" }); }
-  prompts(c); assert.equal(c.state.ship.at, contract.target.node);
-  c.dispatch({ type: "selectNode", node: contract.target.node }); verifySnapshot(c);
+  c.dispatch({ type: "cmd", cmd: { v: "sail", to: contract.target.place } });
+  for (let i = 0; c.state.ship.path && i < 30; i++) { prompts(c); c.dispatch({ type: "advance", until: "event" }); }
+  prompts(c); assert.equal(placeAt(c.state, { world }, c.state.ship.pos), contract.target.place);
+  c.dispatch({ type: "selectNode", node: contract.target.place }); verifySnapshot(c);
   const s = c.dispatch({ type: "sortieOpen", contract: contract.id });
   assert.ok(s.sortie); assert.equal(s.sortie.error, null); assert.ok(s.sortie.units.some(u => u.included)); verifySnapshot(c, s);
   return { c, contract: contract.id };

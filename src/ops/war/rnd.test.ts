@@ -1,3 +1,4 @@
+import { requirePlace } from "../world/places.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { createRng, pickWeighted } from "../../core/rng.ts";
@@ -14,7 +15,7 @@ import { initRnd, rndIncome, rndCandidates, rndMonthly2f, modelAvailable, factio
 import { syncLineages } from "./lineages.ts";
 import { relation } from "./relations.ts";
 import { signTreaty, treatiesDaily } from "./treaties.ts";
-import { nodeLoc } from "./loc.ts";
+import { placeLoc } from "./loc.ts";
 import type { ModelDef, OperationState } from "./types.ts";
 
 const loaded = loadWorldDirs(["content/base"]), { db, world } = loaded;
@@ -36,7 +37,7 @@ function setup(overrides: Partial<ModelDef>[] = [], edit?: (tables: WorldTables)
 }
 function day(x: ReturnType<typeof setup>, n: number) { x.s.clock = clock(n, x.ctx.world.require("calendar", x.s.calendar)); }
 function operation(x: ReturnType<typeof setup>): OperationState {
-  const pos = nodeLoc(x.ctx, "node/dhaka");
+  const pos = placeLoc(x.s, x.ctx, "place/dhaka");
   return { id: "rnd-op", def: world.require("operation", "operation/clear").id, actor: league, coActors: [], target: { loc: pos },
     phase: "resolve", startDay: 0, phaseEnd: 0, force: { pos, units: [{ model: modelId("union-at12"), count: 10, readiness: 1 }], supply: 100, morale: 0, speed: 1 },
     enemyStr: 0, progress: 1, engagesLeft: 0, mercSlots: [], exposed: true, log: [], contributions: { [league]: [] } };
@@ -124,7 +125,7 @@ test("重新取得殼仍需兩潮月，不能立即解除停研", () => {
   assert(!x.s.factions[league]!.rnd!.stalled.includes(lineage));
 });
 test("流出改campaign覆寫與市場可見性，不改不可變內容；所有勢力取得通用型", () => {
-  const x = setup(), model = world.require("model", "model/union-fr7"), node = world.require("node", "node/dhaka").id;
+  const x = setup(), model = world.require("model", "model/union-fr7"), node = requirePlace(x.s, x.ctx, "place/dhaka").id;
   assert(!modelVisibleAt(x.s, x.ctx, model, node)); leakModel(x.s, x.ctx, model.id, tide);
   assert(modelVisibleAt(x.s, x.ctx, model, node)); assert.equal(model.generic, false); assert.equal(model.exportPolicy, "restricted");
   assert.equal(x.s.models![model.id]!.genericSince, x.s.clock.day);
@@ -133,7 +134,7 @@ test("流出改campaign覆寫與市場可見性，不改不可變內容；所有
 });
 test("licensed 友好可見、restricted 只maker、未釋出不可見", () => {
   const id = modelId("union-fr7"), x = setup([{ id, exportPolicy: "licensed" }]), m = x.ctx.world.require("model", id);
-  const node = x.ctx.world.require("node", "node/dhaka").id; x.s.nodes[node]!.ownerOverride = x.ctx.world.require("faction-ops", tide).faction;
+  const node = requirePlace(x.s, x.ctx, "place/dhaka").id; x.s.places[node]!.ownerOverride = x.ctx.world.require("faction-ops", tide).faction;
   const r = relation(x.s, league, tide)!; r.state = "neutral"; assert(!modelVisibleAt(x.s, x.ctx, m, node));
   r.state = "friendly"; assert(modelVisibleAt(x.s, x.ctx, m, node));
   assert(!modelVisibleAt(x.s, x.ctx, { ...m, exportPolicy: "restricted" }, node));
@@ -142,7 +143,7 @@ test("licensed 友好可見、restricted 只maker、未釋出不可見", () => {
 test("玩家轉賣 restricted 機：成交才 TechLeaked 與 maker rep -15", () => {
   const x = setup(), model = x.ctx.world.require("model", "model/union-fr7"), id = "sale-rnd";
   x.s.mechs[id] = instantiateMech(db, id, model.frame); x.s.inventory.mechs.push(id); x.s.hangar.bays.push(id);
-  const market = x.ctx.world.require("market", "market/war-armory"); x.s.ship.at = market.node;
+  const market = x.ctx.world.require("market", "market/war-armory"); x.s.ship.pos = placeLoc(x.s, x.ctx, market.place);
   const before = structuredClone(x.s); assert.equal(cmdTrade(x.s, x.ctx, { v: "trade", market: market.id, sell: [id], buy: ["bad"] }).ok, false); assert.deepEqual(x.s, before);
   assert.deepEqual(cmdTrade(x.s, x.ctx, { v: "trade", market: market.id, sell: [id] }), { ok: true });
   assert.equal(x.s.factions[league]!.rep, -15); assert(!x.s.mechs[id]);
@@ -184,10 +185,10 @@ test("毀約不產生條約流出", () => {
   day(x, 168); treatiesDaily(x.s, x.ctx); assert.equal(x.s.models![id]!.genericSince, undefined);
 });
 test("成功襲擾maker工坊才擲技術流出，使用warRng並驅動宿怨", () => {
-  const node = world.require("node", "node/dhaka").id;
+  const base = setup(), node = requirePlace(base.s, base.ctx, "place/dhaka").id;
   let leaked = 0;
   for (let seed = 1; seed <= 12; seed++) {
-    const x = setup([], tables => tables.node![node]!.tags.push("workshop")), op = operation(x);
+    const x = setup([], tables => tables.place![node]!.tags.push("workshop")), op = operation(x);
     op.actor = tide; op.target.faction = league; op.def = world.require("operation", "operation/raid").id;
     op.force.units = []; x.s.warRng = createRng(seed); const rng = { ...x.s.rng };
     onOperationSuccess(x.s, x.ctx, op); assert.deepEqual(x.s.rng, rng);

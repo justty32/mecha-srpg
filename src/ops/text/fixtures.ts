@@ -9,7 +9,7 @@ export function fixture() {
   const state: TextState = newCampaign(db, world, "start/default", 7);
   state.text = { names: { "person-1": "阿九", "person-2": "阿金", "mech-8": "犬一", "mech-9": "犬二" } };
   state.contracts["contract-20"] = { id: "contract-20", template: "base:contract/clear", issuer: "base:faction-ops/selene-whitegloves",
-    target: { node: "base:node/dhaka" }, status: "offered", terms: { total: 100, advance: 20, perHead: 5 }, paidAdvance: false,
+    target: { place: "base:place/dhaka" }, status: "offered", terms: { total: 100, advance: 20, perHead: 5 }, paidAdvance: false,
     heads: {}, offeredDay: 0, deadlineDay: 10, stageIdx: 0, annoyance: 0 };
   state.jobs.push({ id: "job-21", kind: "repair", target: "mech-8", needHours: 10, doneHours: 0, materials: {}, paid: false, priority: 0 });
   return { db, world, state };
@@ -19,7 +19,7 @@ export const examples: { zh: string; cmd: OpsCommand }[] = [
   { zh: "談 阿九 達卡", cmd: { v: "talk", who: "person-1", topic: "達卡" } },
   { zh: "走 機庫", cmd: { v: "go", room: "hangar" } },
   { zh: "圖", cmd: { v: "map" } },
-  { zh: "航 達卡 經 吉大港", cmd: { v: "sail", to: "base:node/dhaka", via: ["base:node/chittagong"] } },
+  { zh: "航 達卡 經 吉大港", cmd: { v: "sail", to: "base:place/dhaka", via: ["base:place/chittagong"] } },
   { zh: "泊", cmd: { v: "dock" } }, { zh: "懸", cmd: { v: "drift" } },
   { zh: "等 3", cmd: { v: "wait", days: 3 } },
   { zh: "板 contract-20", cmd: { v: "board", contract: "contract-20" } },
@@ -34,7 +34,7 @@ export const examples: { zh: string; cmd: OpsCommand }[] = [
   { zh: "買賣 達卡 買 stock:flesh 賣 stock:scrap", cmd: { v: "trade", market: "base:market/dhaka", buy: ["stock:flesh"], sell: ["stock:scrap"] } },
   { zh: "招 candidate-1", cmd: { v: "hire", candidate: "candidate-1" } },
   { zh: "解 阿九", cmd: { v: "fire", person: "person-1" } },
-  { zh: "探 base:node/old-array 阿九", cmd: { v: "explore", ruin: "base:node/old-array", party: ["person-1"] } },
+  { zh: "探 base:place/old-array 阿九", cmd: { v: "explore", ruin: "base:place/old-array", party: ["person-1"] } },
   { zh: "喚 犬一 阿九", cmd: { v: "wake", shell: "mech-8", by: "person-1" } },
   { zh: "選 2", cmd: { v: "choose", choice: 2 } },
   { zh: "付 債 500", cmd: { v: "pay", account: "debt", amount: 500 } },

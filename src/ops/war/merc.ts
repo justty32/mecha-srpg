@@ -7,7 +7,7 @@ import { evalOpsNum } from "../content/cond.ts";
 import { nextId } from "../state/ids.ts";
 import { eventRef } from "../state/events.ts";
 import { post } from "../state/ledger.ts";
-import { locNode, nodeLoc, sameRegion } from "./loc.ts";
+import { placeAt, sameRegion } from "./loc.ts";
 import { modelPower, strength } from "./forces.ts";
 import { allies, drive } from "./drivers.ts";
 import { changeRelation, factionId } from "./relations.ts";
@@ -57,15 +57,15 @@ export function onMuster(s: CampaignState, ctx: OpsCtx, op: OperationState): voi
     const id = nextId(s, "contract"), rift = s.rifts[op.target.rift ?? ""];
     const family = rift && (ctx.world.get("rift", rift.family) ?? ctx.world.all("rift").find(f => f.family === rift.family));
     const c: ContractState = { id, template: template.id, issuer, operation: op.id, side, loans: [], violations: 0,
-      target: { node: locNode(op.target.loc), ...(rift ? { rift: rift.id, snapshot: { family: family?.family ?? rift.family, width: rift.width,
-        depth: s.nodes[locNode(op.target.loc)]?.blight?.depth ?? "shallow", anchorAge: rift.anchorAge, phase: rift.phase, monsters: family?.monsters } } : {}) },
+      target: { place: (placeAt(s, ctx, op.target.loc) ?? ""), ...(rift ? { rift: rift.id, snapshot: { family: family?.family ?? rift.family, width: rift.width,
+        depth: s.places[(placeAt(s, ctx, op.target.loc) ?? "")]?.blight?.depth ?? "shallow", anchorAge: rift.anchorAge, phase: rift.phase, monsters: family?.monsters } } : {}) },
       status: "offered", terms: { total: evalOpsNum(s, ctx, template.pay.base, { faction: issuer }), advance: 0, perHead: 0 },
       paidAdvance: false, heads: {}, offeredDay: s.clock.day,
       deadlineDay: op.startDay + (ctx.world.all("forces")[0]?.maxDays ?? 45) + 1, stageIdx: 0, annoyance: 0,
       merc: { terms: { ...structuredClone(template.join), share: merc.share }, initialEnemy: side === "actor" ? op.enemyStr : strength(op.force, modelPower(ctx)),
         playerHeads: 0, enemyPower: 0, battles: 0, attachedLoss: 0, loans: {} } };
     s.contracts[id] = c; op.mercSlots.push({ contract: id, side });
-    ctx.emit("ContractOffered", { contract: id, issuer, node: c.target.node, operation: op.id, kind: "join", side });
+    ctx.emit("ContractOffered", { contract: id, issuer, node: c.target.place, operation: op.id, kind: "join", side });
   }
 }
 export function joinRejection(s: CampaignState, ctx: OpsCtx, c: ContractState): string | undefined {
@@ -132,11 +132,11 @@ export function mercDaily(s: CampaignState, ctx: OpsCtx): void {
   for (const c of Object.values(s.contracts).sort((a, b) => a.id.localeCompare(b.id))) if (c.operation && c.status === "active") supplyDaily(s, ctx, c);
 }
 export function playerEngages(s: CampaignState, ctx: OpsCtx, op: OperationState): boolean {
-  if (op.phase !== "engage" || s.ship.route) return false;
+  if (op.phase !== "engage" || s.ship.path) return false;
   const c = op.mercSlots.map(slot => s.contracts[slot.contract]!).find(c => c.status === "active");
-  if (!c || !sameRegion(nodeLoc(ctx, s.ship.at), joinForce(s, c, op).pos)) return false;
+  if (!c || !sameRegion(s.ship.pos, joinForce(s, c, op).pos)) return false;
   if (s.pendingBattle) return s.pendingBattle.operation === op.id;
-  const sortie: Sortie = { id: nextId(s, "sortie"), day: s.clock.day, node: locNode(joinForce(s, c, op).pos), trigger: "operation",
+  const sortie: Sortie = { id: nextId(s, "sortie"), day: s.clock.day, loc: structuredClone(joinForce(s, c, op).pos), place: placeAt(s, ctx, joinForce(s, c, op).pos), trigger: "operation",
     operation: op.id, contract: c.id, rift: op.target.rift, units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] };
   supplyBattle(s, ctx, c, sortie); s.pendingBattle = sortie;
   ctx.emit("OperationEngaged", { operation: op.id, contract: c.id, sortie: sortie.id, player: 1 });

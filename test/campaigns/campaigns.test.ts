@@ -1,3 +1,5 @@
+import { placeAt } from "../../src/ops/war/loc.ts";
+import type { Loc } from "../../src/ops/war/types.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
@@ -12,7 +14,7 @@ import { applyCommand } from "../../src/ops/time/index.ts";
 import { marketListings } from "../../src/ops/world/market.ts";
 
 type Golden = { start: string; seed: number; commands: CampaignCommand[];
-  setup?: { factions?: Record<string, { rep: number }>; ship?: { at: string };
+  setup?: { factions?: Record<string, { rep: number }>; ship?: { pos: Loc };
     loan?: { id: string; contract: string; model: string; issuer: string } } };
 type Step = { type: string; field?: string; value?: string };
 const warOnly = new Set(["OperationStarted", "OperationEngaged", "OperationResolved", "RiftPhase", "ShellSeized", "LineageOpened", "ModelReleased",
@@ -34,16 +36,16 @@ const sequences: Record<string, Step[]> = {
   ],
   "ops-merc-join": [
     { type: "ContractAccepted", field: "contract", value: "contract-27" },
-    { type: "Arrived", field: "node", value: "base:node/delta" },
+    { type: "Arrived", field: "place", value: "base:place/salt-flat" },
     { type: "BattleResolved", field: "operation", value: "operation-2" },
     { type: "OperationResolved", field: "operation", value: "operation-2" },
     { type: "JoinSettled", field: "contract", value: "contract-27" },
   ],
   "ops-betrayal": [
-    { type: "ContractAccepted", field: "contract", value: "contract-27" },
-    { type: "ContractCancelled", field: "contract", value: "contract-27" },
-    { type: "ContractAccepted", field: "contract", value: "contract-30" },
-    { type: "Betrayed", field: "contract", value: "contract-27" },
+    { type: "ContractAccepted", field: "contract", value: "contract-14" },
+    { type: "ContractCancelled", field: "contract", value: "contract-14" },
+    { type: "ContractAccepted", field: "contract", value: "contract-29" },
+    { type: "Betrayed", field: "contract", value: "contract-14" },
   ],
   "ops-leak": [
     { type: "MechLoaned", field: "model", value: "base:model/union-fr7" },
@@ -66,7 +68,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
     replayCampaign(ctx.db, ctx.world, input.start, input.seed, input.commands);
   if (input.setup) {
     for (const [id, patch] of Object.entries(input.setup.factions ?? {})) state.factions[id]!.rep = patch.rep;
-    if (input.setup.ship) state.ship.at = input.setup.ship.at;
+    if (input.setup.ship) state.ship.pos = structuredClone(input.setup.ship.pos);
     if (input.setup.loan) {
       const { id, contract, model, issuer } = input.setup.loan;
       const definition = ctx.world.require("model", model);
@@ -80,7 +82,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
       state.inventory.mechs.push(id);
       const template = ctx.world.require("contract", "contract/op-join-arsenal");
       const loanHp = Object.values(mech.parts).reduce((n, part) => n + part.layers.reduce((sum, layer) => sum + layer.hp, 0), 0);
-      const record: ContractState = { id: contract, template: template.id, issuer, loans: [id], target: { node: state.ship.at },
+      const record: ContractState = { id: contract, template: template.id, issuer, loans: [id], target: { place: placeAt(state, ctx, state.ship.pos)! },
         status: "active", terms: { total: 0, advance: 0, perHead: 0 }, paidAdvance: true, heads: {}, offeredDay: state.clock.day,
         deadlineDay: state.clock.day + 45, stageIdx: 0, annoyance: 0,
         merc: { terms: { ...structuredClone(template.join!), loan: { models: [model], max: 1 } }, initialEnemy: 0,

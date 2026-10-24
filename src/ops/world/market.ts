@@ -1,11 +1,14 @@
+import { isDocked } from "../world/move.ts";
+import { placeAt } from "../war/loc.ts";
+import { requirePlace } from "../world/places.ts";
 import { nextInt, pickWeighted } from "../../core/rng.ts";
 import type { Account, CampaignState, MarketDef, OpsCommand, OpsCtx } from "../state/types.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import { instantiateMech } from "../content/instantiate.ts";
 import { nextId } from "../state/ids.ts";
 import { isAccount, post } from "../state/ledger.ts";
-import { worldRules } from "./nodes.ts";
-import type { CmdResult } from "./nodes.ts";
+import { worldRules } from "./places.ts";
+import type { CmdResult } from "./places.ts";
 import type { ModelDef } from "../war/types.ts";
 import { factionId, hasTreaty } from "../war/relations.ts";
 import { isModelGeneric, leakModel, modelVisibleAt } from "../war/rnd.ts";
@@ -17,8 +20,8 @@ type Listing = { kind: MarketDef["lists"][number]["kind"]; item: FixedItem };
 // SPEC-GAP：市場庫存與刷新日未入 CampaignState，採延遲初始化、可 JSON 化的局部擴充。
 export type MarketState = CampaignState & { markets?: Record<string, { refreshedDay: number; stock: Record<string, number>; dynamic?: Listing[] }> };
 function tradePartners(s: CampaignState, ctx: OpsCtx, market: MarketDef): string[] {
-  const raw = s.nodes[market.node]?.ownerOverride ?? ctx.world.require("node", market.node).owner;
-  const owner = raw ? factionId(s, ctx, raw) : Object.keys(s.factions).find(id => s.factions[id]!.territoryNow.includes(market.node));
+  const raw = s.places[market.place]?.ownerOverride ?? requirePlace(s, ctx, market.place).owner;
+  const owner = raw ? factionId(s, ctx, raw) : Object.keys(s.factions).find(id => s.factions[id]!.territoryNow.includes(market.place));
   return Object.values(s.relations ?? {}).filter(r => (r.a === owner || r.b === owner) && hasTreaty(s, ctx, r, "trade"))
     .map(r => r.a === owner ? r.b : r.a).sort();
 }
@@ -33,7 +36,7 @@ function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = fal
   for (const list of market.lists) {
     for (const item of list.items) result.push({ kind: list.kind, item });
     if (list.kind !== "frame") continue;
-    for (const item of list.filters ?? []) for (const model of ctx.world.all("model")) if (matches(ctx, model, item) && (resale || modelVisibleAt(s, ctx, model, market.node))) {
+    for (const item of list.filters ?? []) for (const model of ctx.world.all("model")) if (matches(ctx, model, item) && (resale || modelVisibleAt(s, ctx, model, market.place))) {
       result.push({ kind: "frame", item: { def: model.frame, weight: item.weight, stockMax: item.stockMax, ...(item.basePrice === undefined ? {} : { basePrice: item.basePrice }), model: model.id } });
     }
   }
@@ -55,7 +58,7 @@ function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = fal
 export function marketListings(s: CampaignState, ctx: OpsCtx, market: MarketDef): Listing[] {
   const old = (s as MarketState).markets?.[market.id];
   if (!old) return listings(s, ctx, market);
-  const dynamic = (old.dynamic ?? []).filter(l => !l.item.model || modelVisibleAt(s, ctx, ctx.world.require("model", l.item.model), market.node));
+  const dynamic = (old.dynamic ?? []).filter(l => !l.item.model || modelVisibleAt(s, ctx, ctx.world.require("model", l.item.model), market.place));
   const dynamicIds = new Set(dynamic.map(l => l.item.def));
   return [...market.lists.flatMap(list => list.items.filter(item => !dynamicIds.has(item.def)).map(item => ({ kind: list.kind, item }))), ...dynamic]
     .sort((a, b) => a.item.def < b.item.def ? -1 : a.item.def > b.item.def ? 1 : 0);
@@ -65,8 +68,8 @@ function dynamicState(items: Listing[]): { dynamic?: Listing[] } {
   return dynamic.length ? { dynamic } : {};
 }
 export function marketPrice(s: CampaignState, ctx: OpsCtx, market: MarketDef, item: MarketItem, condition = 1): number {
-  if (s.nodes[market.node]?.flags.includes("blockaded")) return Infinity;
-  const cfg = worldRules(ctx).market, node = s.nodes[market.node], def = ctx.world.require("node", market.node);
+  if (s.places[market.place]?.flags.includes("blockaded")) return Infinity;
+  const cfg = worldRules(ctx).market, node = s.places[market.place], def = requirePlace(s, ctx, market.place);
   const owner = node?.ownerOverride ?? def.owner;
   const faction = ctx.world.all("faction-ops").find(f => f.faction === owner);
   const rep = faction ? s.factions[faction.id]?.rep ?? 0 : 0;
@@ -75,7 +78,7 @@ export function marketPrice(s: CampaignState, ctx: OpsCtx, market: MarketDef, it
   if (releasedDay !== undefined && releasedDay > 0 && s.clock.day - releasedDay < ctx.world.require("calendar", s.calendar).daysPerMonth) price *= 1.5;
   // SPEC-GAP：trade 折價與 scarcity 減貨未定量；借用既有市場最低倍率作折減比例（目前九折）。
   if (resolved.imported) price *= 1 - cfg.minimumMultiplier;
-  for (const mod of market.priceMods) if (node?.flags.includes(mod.tag)) price *= evalOpsNum(s, ctx, mod.mult, { node: market.node, ...(faction ? { faction: faction.id } : {}) });
+  for (const mod of market.priceMods) if (node?.flags.includes(mod.tag)) price *= evalOpsNum(s, ctx, mod.mult, { node: market.place, ...(faction ? { faction: faction.id } : {}) });
   return Math.max(0, price);
 }
 function defaultStock(items: Listing[]): Record<string, number> {
@@ -84,20 +87,20 @@ function defaultStock(items: Listing[]): Record<string, number> {
 export function marketsDaily7(s: CampaignState, ctx: OpsCtx): void {
   const state = s as MarketState;
   const scarcityStarted = new Set<string>(), supplied = new Set<string>();
-  for (const node of Object.values(s.nodes)) {
+  for (const node of Object.values(s.places)) {
     const key = `market-scarcity:${node.def}`;
     if (node.flags.includes("war-supplied") && !node.flags.includes("blockaded")) supplied.add(node.def);
     if (node.flags.includes("scarcity") && s.flags[key] === undefined) { s.flags[key] = s.clock.day + ctx.world.require("calendar", s.calendar).daysPerMonth; scarcityStarted.add(node.def); }
     if (s.flags[key] !== undefined && (s.flags[key]! <= s.clock.day || supplied.has(node.def))) { node.flags = node.flags.filter(f => f !== "scarcity"); delete s.flags[key]; }
   }
   for (const market of ctx.world.all("market")) {
-    const node = s.nodes[market.node];
+    const node = s.places[market.place];
     if (node?.flags.includes("blockaded")) continue;
-    const restock = supplied.has(market.node), scarce = node?.flags.includes("scarcity");
+    const restock = supplied.has(market.place), scarce = node?.flags.includes("scarcity");
     if (restock && node) node.flags = node.flags.filter(f => !market.priceMods.some(m => m.tag === f));
     const old = state.markets?.[market.id];
     if (old && !restock && (s.clock.phase !== "neap" || old.refreshedDay === s.clock.day)) {
-      if (scarce && scarcityStarted.has(market.node)) for (const id of Object.keys(old.stock)) old.stock[id] = Math.floor(old.stock[id]! * (1 - worldRules(ctx).market.minimumMultiplier));
+      if (scarce && scarcityStarted.has(market.place)) for (const id of Object.keys(old.stock)) old.stock[id] = Math.floor(old.stock[id]! * (1 - worldRules(ctx).market.minimumMultiplier));
       continue;
     }
     const items = listings(s, ctx, market), stock = defaultStock(items);
@@ -118,7 +121,7 @@ export function marketsDaily7(s: CampaignState, ctx: OpsCtx): void {
     if (scarce) for (const id of Object.keys(stock)) stock[id] = Math.floor(stock[id]! * (1 - worldRules(ctx).market.minimumMultiplier));
     (state.markets ??= {})[market.id] = { refreshedDay: s.clock.day, stock, ...dynamicState(items) };
   }
-  for (const id of supplied) s.nodes[id]!.flags = s.nodes[id]!.flags.filter(f => f !== "war-supplied");
+  for (const id of supplied) s.places[id]!.flags = s.places[id]!.flags.filter(f => f !== "war-supplied");
 }
 function physicalCondition(s: CampaignState, ctx: OpsCtx, id: string): number {
   const component = s.inventory.components.find(c => c.id === id);
@@ -137,9 +140,9 @@ export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand,
   const market = ctx.world.get("market", cmd.market);
   if (!market) return { ok: false, error: "unknown-market" };
   if ((cmd.buy?.length ?? 0) > 0 && (s.debtState?.arrears ?? 0) >= 3 &&
-    ctx.world.require("faction-ops", "faction-ops/selene-whitegloves").territory.includes(market.node)) return { ok: false, error: "selene-embargo" };
-  if (s.nodes[market.node]?.flags.includes("blockaded")) return { ok: false, error: "blockaded" };
-  if (s.ship.at !== market.node || s.ship.route || (s as CampaignState & { drifting?: boolean }).drifting) return { ok: false, error: "not-docked" };
+    ctx.world.require("faction-ops", "faction-ops/selene-whitegloves").territory.includes(market.place)) return { ok: false, error: "selene-embargo" };
+  if (s.places[market.place]?.flags.includes("blockaded")) return { ok: false, error: "blockaded" };
+  if (!isDocked(s, ctx, market.place)) return { ok: false, error: "not-docked" };
   if (s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
   if ((cmd.sell?.length ?? 0) && !market.buysBack) return { ok: false, error: "no-buyback" };
   const items = marketListings(s, ctx, market), resale = listings(s, ctx, market, true), state = s as MarketState;

@@ -6,11 +6,12 @@ export type ParseError = { error: string; candidates?: string[] };
 import { entityName, textContext } from "./names.ts";
 import type { TextState } from "./names.ts";
 import { marketListings } from "../world/market.ts";
+import { allPlaces, placeDef } from "../world/places.ts";
 import { peekCrew } from "../crew/shared.ts";
 export { entityName } from "./names.ts";
 export type { TextState } from "./names.ts";
 type Candidate = { id: string; names: string[] };
-type Domain = "room" | "person" | "mech" | "node" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "all";
+type Domain = "room" | "person" | "mech" | "place" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "all";
 
 function candidates(domain: Domain, state: TextState, world: WorldDB): Candidate[] {
   const result: Candidate[] = [];
@@ -19,15 +20,15 @@ function candidates(domain: Domain, state: TextState, world: WorldDB): Candidate
   if (include("room")) for (const def of world.all("room")) add(def.id.split("/").at(-1)!, def.id, def.title, `room/${def.id.split("/").at(-1)!}`);
   if (include("person")) for (const id of Object.keys(state.roster.persons).sort()) add(id, state.roster.persons[id]!.def);
   if (include("mech")) for (const id of Object.keys(state.mechs).sort()) add(id, state.mechs[id]!.frame.split("/").at(-1)!);
-  if (include("node")) for (const def of world.all("node")) add(def.id, def.name);
+  if (include("place")) for (const def of allPlaces(state, { world })) add(def.id, def.name);
   if (include("contract")) for (const id of Object.keys(state.contracts).sort()) {
     const c = state.contracts[id]!;
-    add(id, c.template.split("/").at(-1)!, world.get("node", c.target.node)?.name ?? "");
+    add(id, c.template.split("/").at(-1)!, placeDef(state, { world }, c.target.place)?.name ?? "");
   }
   if (include("job")) for (const job of state.jobs) add(job.id);
   const ctx = textContext(world);
   if (include("candidate")) for (const c of Object.values(peekCrew(state)?.candidates ?? {})) add(c.id, ctx?.db.get("person", c.person.def)?.name ?? "應徵者");
-  if (include("market")) for (const def of world.all("market")) add(def.id, world.get("node", def.node)?.name ?? "");
+  if (include("market")) for (const def of world.all("market")) add(def.id, placeDef(state, { world }, def.place)?.name ?? "");
   if (include("research")) for (const def of world.all("research")) add(def.id, def.name);
   if (include("item")) {
     for (const item of state.inventory.components) add(item.id, item.def);
@@ -83,14 +84,14 @@ function structured<T>(text: string, kind: "job" | "sortie"): T {
   const value: unknown = JSON.parse(text);
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("需要 JSON 物件");
   const allowed = kind === "job" ? ["id", "kind", "target", "needHours", "doneHours", "materials", "paid", "priority", "part", "layer", "component"]
-    : ["id", "day", "contract", "node", "rift", "trigger", "units", "supplies", "injected"];
+    : ["id", "day", "contract", "loc", "place", "rift", "trigger", "units", "supplies", "injected"];
   for (const key of Object.keys(value)) if (!allowed.includes(key)) throw new Error(`未知欄位 ${key}`);
   const v = value as Record<string, unknown>;
-  for (const key of ["id", "target", "part", "component", "contract", "node", "rift"]) if (key in v && typeof v[key] !== "string") throw new Error(`${key} 必須是 id／文字`);
+  for (const key of ["id", "target", "part", "component", "contract", "place", "rift"]) if (key in v && typeof v[key] !== "string") throw new Error(`${key} 必須是 id／文字`);
   for (const key of ["needHours", "doneHours", "priority", "layer", "day"]) if (key in v && (typeof v[key] !== "number" || !Number.isFinite(v[key]))) throw new Error(`${key} 必須是有限數字`);
   if ("kind" in v && !jobKinds.includes(v.kind as string)) throw new Error("未知工作種類");
   if ("paid" in v && typeof v.paid !== "boolean") throw new Error("paid 必須是布林值");
-  if ("trigger" in v && !["contract", "ambush", "defend", "ruin-exit", "collection"].includes(v.trigger as string)) throw new Error("未知出戰來源");
+  if ("trigger" in v && !["contract", "ambush", "defend", "ruin-exit", "collection", "intercept", "operation"].includes(v.trigger as string)) throw new Error("未知出戰來源");
   // 複合編成的遊戲規則由執行端驗證；此處只允許有限、純 JSON 資料。
   const visit = (x: unknown): void => {
     if (typeof x === "number" && !Number.isFinite(x)) throw new Error("數字必須有限");
@@ -120,7 +121,22 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
       case "look": cmd = args.length ? { v, target: id("all") } : { v }; break;
       case "talk": { const who = id("person"); cmd = { v, who, ...(args.length ? { topic: args.splice(0).join(" ") } : {}) }; break; }
       case "go": cmd = { v, room: id("room") }; break;
-      case "sail": { const to = id("node"); cmd = { v, to }; if (args.length) { if (!["經", "via"].includes(take())) throw new Error("航點前要寫經／via"); cmd.via = args.splice(0).map(a => resolve(a, "node", state, world)); } break; }
+      case "sail": {
+        const waypoint = (word: string) => {
+          if (/^\d+,\d+$/.test(word)) {
+            const [x, y] = word.split(",").map(Number);
+            if (!Number.isSafeInteger(x) || !Number.isSafeInteger(y)) throw new Error("座標須為整數");
+            return { x: x!, y: y! };
+          }
+          return resolve(word, "place", state, world);
+        };
+        const target = take();
+        const to = target.startsWith("@") ? { actor: target.slice(1) } : waypoint(target);
+        if (typeof to === "object" && "actor" in to && !to.actor) throw new Error("缺少行動者名稱");
+        cmd = { v, to };
+        if (args.length) { if (!["經", "via"].includes(take())) throw new Error("航點前要寫經／via"); cmd.via = args.splice(0).map(waypoint); }
+        break;
+      }
       case "wait": cmd = { v, days: num(1) }; break;
       case "board": cmd = args.length ? { v, contract: id("contract") } : { v }; break;
       case "accept": case "drop": {
@@ -165,7 +181,7 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
       }
       case "hire": cmd = { v, candidate: id("candidate") }; break;
       case "fire": cmd = { v, person: id("person") }; break;
-      case "explore": { const ruin = id("node"); cmd = { v, ruin, party: args.splice(0).map(a => resolve(a, "person", state, world)) }; break; }
+      case "explore": { const ruin = id("place"); cmd = { v, ruin, party: args.splice(0).map(a => resolve(a, "person", state, world)) }; break; }
       case "wake": cmd = { v, shell: id("mech"), by: id("person") }; break;
       case "choose": cmd = { v, choice: num(1) }; break;
       case "pay": { const account = ["債", "debt"].includes(args[0]!) ? (take(), "debt") : id("person"); cmd = { v, account, amount: num(1) }; break; }

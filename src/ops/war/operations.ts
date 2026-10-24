@@ -1,10 +1,11 @@
-import { adjacentNodes } from "../world/nodes.ts";
+import { placeDef, allPlaces } from "../world/places.ts";
+import { nearbyPlaces } from "../world/places.ts";
 import { nextFloat, pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import type { OperationDef, OperationState, Phase, ForceUnit } from "./types.ts";
 import { evalOpsCond, evalOpsNum } from "../content/cond.ts";
 import { applyOpsEffects } from "../content/opseffect.ts";
-import { locNode, marchPath, marchStep, nodeLoc, sameRegion } from "./loc.ts";
+import { placeAt, marchPath, marchStep, placeLoc, sameRegion } from "./loc.ts";
 import { mergeUnits, modelPower, riftStrength, strength } from "./forces.ts";
 import { resolveEngage } from "./resolve.ts";
 import { factionId, hasTreaty, relation, relationRank } from "./relations.ts";
@@ -15,41 +16,42 @@ import { onMuster, onOperationEnd, playerEngages } from "./merc-hook.ts";
 import { onOperationSuccess } from "./rnd.ts";
 import { mercDaily } from "./merc.ts";
 export function activeOperation(op: OperationState): boolean { return !["done", "failed", "aborted"].includes(op.phase); }
-export function nodeOwner(s: CampaignState, ctx: OpsCtx, node: string): string | undefined {
-  const raw = s.nodes[node]?.ownerOverride ?? ctx.world.get("node", node)?.owner;
+export function placeOwner(s: CampaignState, ctx: OpsCtx, node: string): string | undefined {
+  const raw = s.places[node]?.ownerOverride ?? placeDef(s, ctx, node)?.owner;
   return raw ? factionId(s, ctx, raw) : Object.keys(s.factions).sort().find(id => s.factions[id]!.territoryNow.includes(node));
 }
 export function operationTargets(s: CampaignState, ctx: OpsCtx, actor: string, def: OperationDef): OperationState["target"][] {
   const targets: OperationState["target"][] = [];
   if (def.kind === "relief") {
     for (const op of Object.values(s.operations ?? {})) if (activeOperation(op) && ["siege", "assault"].includes(ctx.world.require("operation", op.def).kind)) {
-      const owner = op.target.faction ?? nodeOwner(s, ctx, locNode(op.target.loc)), r = owner ? relation(s, actor, owner) : undefined;
+      const owner = op.target.faction ?? placeOwner(s, ctx, (placeAt(s, ctx, op.target.loc) ?? "")), r = owner ? relation(s, actor, owner) : undefined;
       if (owner === actor || r && (r.state === "allied" || r.state === "friendly" && hasTreaty(s, ctx, r, "alliance"))) targets.push({ ...op.target, faction: owner });
     }
     return targets;
   }
   if (def.targetSel === "ruin-shell") {
-    for (const shell of Object.values(s.shells ?? {}).sort((a, b) => a.id.localeCompare(b.id))) if (typeof shell.holder === "object") targets.push({ loc: nodeLoc(ctx, shell.holder.ruin), shell: shell.id });
+    for (const shell of Object.values(s.shells ?? {}).sort((a, b) => a.id.localeCompare(b.id))) if (typeof shell.holder === "object") targets.push({ loc: placeLoc(s, ctx, shell.holder.ruin), shell: shell.id });
   } else if (def.targetSel === "rift-core") {
-    for (const r of Object.values(s.rifts).sort((a, b) => a.id.localeCompare(b.id))) if (r.phase === "anchored") targets.push({ loc: nodeLoc(ctx, r.node), rift: r.id });
-  } else if (def.targetSel === "shallow-node" || def.kind === "contain") {
-    for (const id of Object.keys(s.nodes).sort()) {
-      const n = s.nodes[id]!, blight = n.blight;
-      if (blight && (def.kind === "contain" ? blight.depth !== "core" : blight.depth === "shallow")) targets.push({ loc: nodeLoc(ctx, id), rift: blight.rift });
+    for (const r of Object.values(s.rifts).sort((a, b) => a.id.localeCompare(b.id))) if (r.phase === "anchored") targets.push({ loc: placeLoc(s, ctx, r.site), rift: r.id });
+  } else if (def.targetSel === "shallow-place" || def.kind === "contain") {
+    for (const id of Object.keys(s.places).sort()) {
+      const n = s.places[id]!, blight = n.blight;
+      if (blight && (def.kind === "contain" ? blight.depth !== "core" : blight.depth === "shallow")) targets.push({ loc: placeLoc(s, ctx, id), rift: blight.rift });
     }
-  } else if (def.targetSel === "enemy-node" || def.targetSel === "port") {
-    for (const n of ctx.world.all("node")) {
-      const owner = nodeOwner(s, ctx, n.id), r = owner ? relation(s, actor, owner) : undefined;
+  } else if (def.targetSel === "enemy-place" || def.targetSel === "port") {
+    for (const n of allPlaces(s, ctx)) {
+      const owner = placeOwner(s, ctx, n.id), r = owner ? relation(s, actor, owner) : undefined;
       if (!owner || !r || owner === actor || !s.factions[owner]?.alive) continue;
-      if (def.targetSel === "port" && n.kind !== "ferry-port") continue;
+      if (def.targetSel === "port" && n.kind !== "port") continue;
       if (def.kind === "siege" && n.kind !== "city") continue;
       if (def.requiresRelation && relationRank[r.state] > relationRank[def.requiresRelation]) continue;
       if (hasTreaty(s, ctx, r, "ceasefire")) continue;
-      targets.push({ loc: nodeLoc(ctx, n.id), faction: owner });
+      targets.push({ loc: placeLoc(s, ctx, n.id), faction: owner });
     }
   } else {
-    for (const route of ctx.world.all("route")) if (s.factions[actor]!.territoryNow.includes(route.a) || s.factions[actor]!.territoryNow.includes(route.b)) {
-      targets.push({ loc: nodeLoc(ctx, route.b), lane: [nodeLoc(ctx, route.a), nodeLoc(ctx, route.b)] });
+    // SPEC-GAP：本波護送維持同圖地盤地點間的抽象格路線，未綁第三波商隊行動者。
+    for (const home of [...s.factions[actor]!.territoryNow].sort()) for (const destination of nearbyPlaces(s, ctx, home)) {
+      targets.push({ loc: placeLoc(s, ctx, destination), lane: [placeLoc(s, ctx, home), placeLoc(s, ctx, destination)] });
     }
   }
   return targets;
@@ -66,7 +68,7 @@ export function targetStrength(s: CampaignState, ctx: OpsCtx, target: OperationS
 export function operationAllowed(s: CampaignState, ctx: OpsCtx, actor: string, def: OperationDef, target: OperationState["target"]): boolean {
   const f = s.factions[actor], force = f?.forces;
   if (!s.warRng || !f?.alive || !force || !def.actorScales.includes(f.scaleNow) || force.supply < 40 || (f.ops?.length ?? 0) >= (f.scaleNow === "state" ? 2 : 1)) return false;
-  if (!evalOpsCond(s, ctx, def.valid, { faction: actor, targetFaction: target.faction, node: locNode(target.loc), rift: target.rift })) return false;
+  if (!evalOpsCond(s, ctx, def.valid, { faction: actor, targetFaction: target.faction, node: (placeAt(s, ctx, target.loc) ?? ""), rift: target.rift })) return false;
   if (def.kind === "contain" && nextSpring(s, ctx) - s.clock.day > 5) return false;
   if (def.requiresRelation && target.faction) {
     const r = relation(s, actor, target.faction);
@@ -108,7 +110,7 @@ export function startOperation(s: CampaignState, ctx: OpsCtx, actorInput: string
   s.operations[opId] = op; (s.factions[actor]!.ops ??= []).push(opId);
   const rel = target.faction ? relation(s, actor, target.faction) : undefined;
   if (rel && ["seize", "siege", "blockade"].includes(def.kind)) for (const treaty of rel.treaties) if (["nonaggression", "alliance"].includes(ctx.world.require("treaty", treaty.def).kind)) breakTreaty(s, ctx, rel, treaty, actor);
-  ctx.emit("OperationStarted", { operation: op.id, actor, def: def.id, kind: def.kind, node: locNode(target.loc) }); onMuster(s, ctx, op); return op;
+  ctx.emit("OperationStarted", { operation: op.id, actor, def: def.id, kind: def.kind, node: (placeAt(s, ctx, target.loc) ?? "") }); onMuster(s, ctx, op); return op;
 }
 function phaseDays(s: CampaignState, ctx: OpsCtx, def: OperationDef, phase: Phase, actor: string): number {
   return Math.max(1, Math.ceil(evalOpsNum(s, ctx, def.phases.find(p => p.phase === phase)?.days ?? 1, { faction: actor })));
@@ -140,14 +142,14 @@ export function endOperation(s: CampaignState, ctx: OpsCtx, op: OperationState, 
     op.exposed = nextFloat(s.warRng) < 0.3 || op.exposed;
     if (op.exposed) drive(s, ctx, "op-success-against", op.actor, op.target.faction);
   }
-  if (outcome !== "done") applyOpsEffects(s, ctx, outcome === "failed" ? def.onFail : def.onAbort, operationScope(op));
+  if (outcome !== "done") applyOpsEffects(s, ctx, outcome === "failed" ? def.onFail : def.onAbort, operationScope(s, ctx, op));
   op.phase = outcome; op.phaseEnd = s.clock.day;
   ctx.emit(outcome === "done" ? "OperationResolved" : outcome === "failed" ? "OperationFailed" : "OperationAborted", { operation: op.id, actor: op.actor, days: s.clock.day - op.startDay });
   returnForces(s, op); onOperationEnd(s, ctx, op);
   // 已結束的作戰不再需要結算快照；避免每次指令複製所有歷史作戰的機型表與出資副本。
   delete op.power; delete op.contributions; delete op.force.path;
 }
-export function operationScope(op: OperationState) { return { operation: op.id, faction: op.actor, targetFaction: op.target.faction, node: locNode(op.target.loc), rift: op.target.rift }; }
+export function operationScope(s: CampaignState, ctx: OpsCtx, op: OperationState) { return { operation: op.id, faction: op.actor, targetFaction: op.target.faction, node: (placeAt(s, ctx, op.target.loc) ?? ""), rift: op.target.rift }; }
 export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
   if (!s.operations || !s.warRng) return;
   mercDaily(s, ctx);
@@ -162,11 +164,11 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
       if (arrived && (def.kind !== "contain" || s.clock.phase === "spring")) setPhase(s, ctx, op, "engage");
     }
     if (op.phase === "engage") {
-      if (def.kind === "contain" && s.clock.phase === "spring") op.containedNodes = s.log.filter(e => e.day === s.clock.day && e.type === "NodeBlighted" && e.payload.rift === op.target.rift).map(e => String(e.payload.node));
+      if (def.kind === "contain" && s.clock.phase === "spring") op.containedPlaces = s.log.filter(e => e.day === s.clock.day && e.type === "PlaceBlighted" && e.payload.rift === op.target.rift).map(e => String(e.payload.place));
       if (def.kind === "siege") for (const faction of Object.keys(s.factions).sort()) {
         if (faction === op.actor || faction === op.target.faction) continue;
-        if (s.factions[faction]!.territoryNow.some(n => adjacentNodes(ctx, locNode(op.target.loc)).includes(n)))
-          applyOpsEffects(s, ctx, [{ relation: { a: op.actor, b: faction, delta: -1, reason: "siege-trade" } }], operationScope(op));
+        if (s.factions[faction]!.territoryNow.some(n => nearbyPlaces(s, ctx, (placeAt(s, ctx, op.target.loc) ?? "")).includes(n)))
+          applyOpsEffects(s, ctx, [{ relation: { a: op.actor, b: faction, delta: -1, reason: "siege-trade" } }], operationScope(s, ctx, op));
       }
       if (op.target.rift && s.clock.phase === "spring") { const r = s.rifts[op.target.rift]; if (r && r.phase === "anchored") op.enemyStr = Math.max(op.enemyStr, riftStrength(s, ctx, r)); }
       if (playerEngages(s, ctx, op)) continue;
@@ -180,9 +182,9 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
     }
     if (op.phase === "resolve" && s.clock.day >= op.phaseEnd) {
       if (def.covert && !op.log.some(e => e.kind === "player-exposure")) op.exposed = nextFloat(s.warRng) < 0.3 || op.exposed;
-      applyOpsEffects(s, ctx, def.onSuccess.filter(e => !("transferShell" in e && s.shells?.[op.target.shell ?? ""]?.holder === "player")), operationScope(op));
-      if (def.kind === "contain") for (const node of op.containedNodes ?? []) if (s.nodes[node]?.blight?.rift === op.target.rift)
-        applyOpsEffects(s, ctx, [{ setNode: { id: node, patch: {}, clearBlight: true } }], operationScope(op));
+      applyOpsEffects(s, ctx, def.onSuccess.filter(e => !("transferShell" in e && s.shells?.[op.target.shell ?? ""]?.holder === "player")), operationScope(s, ctx, op));
+      if (def.kind === "contain") for (const node of op.containedPlaces ?? []) if (s.places[node]?.blight?.rift === op.target.rift)
+        applyOpsEffects(s, ctx, [{ setPlace: { id: node, patch: {}, clearBlight: true } }], operationScope(s, ctx, op));
       if (def.covert && op.exposed && op.target.faction) {
         const r = relation(s, op.actor, op.target.faction);
         if (r) for (const t of r.treaties) if (ctx.world.require("treaty", t.def).kind === "nonaggression") breakTreaty(s, ctx, r, t, op.actor);

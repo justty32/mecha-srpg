@@ -1,3 +1,4 @@
+import { placeDef } from "../world/places.ts";
 import type { Id } from "../../core/ids.ts";
 import { nextFloat, pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
@@ -5,7 +6,7 @@ import type { ModelDef, OperationState, Relation, TreatyState } from "./types.ts
 import { factionId, hasTreaty, relation, relationRank } from "./relations.ts";
 import { drive } from "./drivers.ts";
 import { heldLineages, monthDays, syncLineages } from "./lineages.ts";
-import { locNode } from "./loc.ts";
+import { placeAt } from "./loc.ts";
 
 export function initRnd(s: CampaignState, ctx: OpsCtx, ids: string[]): void {
   for (const id of ids) {
@@ -23,7 +24,7 @@ export function isModelGeneric(s: CampaignState, model: ModelDef): boolean {
 export function modelVisibleAt(s: CampaignState, ctx: OpsCtx, model: ModelDef, node: string): boolean {
   if (model.role === "captain" || s.models?.[model.id]?.releasedDay === undefined) return false;
   if (isModelGeneric(s, model) || model.exportPolicy === "open") return true;
-  const raw = s.nodes[node]?.ownerOverride ?? ctx.world.get("node", node)?.owner;
+  const raw = s.places[node]?.ownerOverride ?? placeDef(s, ctx, node)?.owner;
   const owner = raw ? factionId(s, ctx, raw) : Object.keys(s.factions).find(id => s.factions[id]!.territoryNow.includes(node));
   const maker = factionId(s, ctx, model.maker);
   if (!owner || !maker) return false;
@@ -125,7 +126,7 @@ export function onOperationSuccess(s: CampaignState, ctx: OpsCtx, op: OperationS
       ctx.emit("CaptainCreated", { operation: op.id, faction: op.actor, model: model.id, count: 1, name: ctx.db.require("frame", model.frame).name });
     }
   }
-  const kind = ctx.world.require("operation", op.def).kind, node = ctx.world.get("node", locNode(op.target.loc));
+  const kind = ctx.world.require("operation", op.def).kind, node = placeDef(s, ctx, (placeAt(s, ctx, op.target.loc) ?? ""));
   if (!["seize", "raid"].includes(kind) || !node?.tags.includes("workshop") || !op.target.faction) return;
   for (const model of ctx.world.all("model")) if (!isModelGeneric(s, model) && model.exportPolicy !== "open" && s.models?.[model.id]?.releasedDay !== undefined &&
     factionId(s, ctx, model.maker) === op.target.faction && nextFloat(s.warRng) < 0.3 / Math.sqrt(ctx.world.all("forces")[0]?.gp[model.tier] ?? 1)) leakModel(s, ctx, model.id, op.actor);

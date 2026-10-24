@@ -145,7 +145,7 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   // 節點委託可能就在船所在地（already-there），此時不必航行。
   const sailed = await call("campaign_act", { id, command: { v: "sail", to: active.target } });
   if (sailed.isError) assert.match(JSON.stringify(sailed.structuredContent), /already-there/);
-  const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: { contract: active.id, node: active.target, units } } }));
+  const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: { contract: active.id, place: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);
   assert.ok(Array.isArray(battle.battle.losses.mechs));
   assert.ok(Array.isArray(battle.battle.losses.persons));

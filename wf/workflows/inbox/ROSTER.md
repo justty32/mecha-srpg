@@ -247,3 +247,14 @@
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-lc-field.md`
 - **訂閱主題**：無
+
+### `cx-tune-multi`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：多方混戰情境（crater-three-way、delta-four-way）timeout 根因與修正。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-multi` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-multi.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-multi.md`
+- **訂閱主題**：無

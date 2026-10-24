@@ -1,6 +1,5 @@
 import { loadWorldDirs } from "../content/load.ts";
 import { createOpsCtx, newCampaign } from "../content/start.ts";
-import { nodeLoc } from "./loc.ts";
 import { onMuster, playerEngages } from "./merc.ts";
 import { cmdAccept } from "../contracts/lifecycle.ts";
 import type { OperationState } from "./types.ts";
@@ -9,7 +8,7 @@ const { db, world } = loadWorldDirs(["content/base"]);
 export function mercFixture(tier: "none" | "field" | "full" | "arsenal" = "full") {
   const s = newCampaign(db, world, "start/default", 3), ctx = createOpsCtx(s, db, world);
   const actor = world.require("faction-ops", "faction-ops/residual-league").id, target = world.require("faction-ops", "faction-ops/tide-faith").id;
-  const model = world.require("model", "model/bulwark-i").id, pos = nodeLoc(ctx, s.ship.at);
+  const model = world.require("model", "model/bulwark-i").id, pos = structuredClone(s.ship.pos);
   const force = { units: [{ model, count: 12, readiness: 1 }], supply: 100, morale: 0, pos, speed: 1 };
   s.factions[target]!.forces = structuredClone(force); s.factions[actor]!.rep = 40; s.factions[target]!.rep = 40;
   const op: OperationState = { id: "merc-op", def: world.require("operation", "operation/seize").id, actor, coActors: [], target: { loc: pos, faction: target },

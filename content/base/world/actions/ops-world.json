@@ -1,17 +1,86 @@
 {
   "id": "action/ops-world",
   "actor": "world",
-  "valid": { "not": {} },
+  "valid": {
+    "not": {}
+  },
   "weight": 0,
   "cooldownDays": 0,
   "effects": [],
   "rules": {
-    "grid": { "shipMp": 100, "groundMp": 60, "diagonal": 1.4, "blightCost": { "shallow": 12, "deep": 20, "core": 25 }, "contact": { "air": 2, "ground": 1 }, "sight": 5, "uplinkSight": 6 },
-    "pressure": { "daily": 1, "sealedRelief": 12, "blightPerMonth": 1, "poissonScale": 0.025, "adjacentChance": 0.7, "cityBiasPerPressure": 0.01, "widthStep": 30, "widths": ["D", "C", "B", "A", "S"] },
-    "nodes": { "deepMonths": 2, "insectOwner": "faction/rift-insects" },
-    "rifts": { "openingDays": 4 },
-    "travel": { "fuelPerDay": 1, "daysMultiplier": 1, "shallowEncounterChance": 0.5, "retreatFuel": 2, "partyMin": 2, "partyMax": 4 },
-    "market": { "repDiscount": 0.002, "minimumMultiplier": 0.1, "frameReadiness": 1 },
-    "negotiation": { "annoyancePenalty": 10, "annoyanceMax": 3, "totalRaise": 0.1, "advanceRaise": 0.1, "perHeadShare": 0.1, "withdrawRep": 3 }
+    "grid": {
+      "shipMp": 100,
+      "groundMp": 60,
+      "diagonal": 1.4,
+      "blightCost": {
+        "shallow": 12,
+        "deep": 20,
+        "core": 25
+      },
+      "contact": {
+        "air": 2,
+        "ground": 1
+      },
+      "sight": 5,
+      "uplinkSight": 6,
+      "hulkMp": 40,
+      "mpMods": {
+        "damaged": 0.75,
+        "spring": 0.9,
+        "neap": 1.1
+      },
+      "interimZoneRadius": 4,
+      "interimAdjacency": 12,
+      "nearbyRadius": 20,
+      "blightEncounter": {
+        "shallow": 0.25,
+        "deep": 0.6,
+        "core": 1.0
+      }
+    },
+    "pressure": {
+      "daily": 1,
+      "sealedRelief": 12,
+      "blightPerMonth": 1,
+      "poissonScale": 0.025,
+      "adjacentChance": 0.7,
+      "cityBiasPerPressure": 0.01,
+      "widthStep": 30,
+      "widths": [
+        "D",
+        "C",
+        "B",
+        "A",
+        "S"
+      ]
+    },
+    "places": {
+      "deepMonths": 2,
+      "insectOwner": "faction/rift-insects"
+    },
+    "rifts": {
+      "openingDays": 4
+    },
+    "travel": {
+      "fuelPerDay": 1,
+      "daysMultiplier": 1,
+      "shallowEncounterChance": 0.5,
+      "retreatFuel": 2,
+      "partyMin": 2,
+      "partyMax": 4
+    },
+    "market": {
+      "repDiscount": 0.002,
+      "minimumMultiplier": 0.1,
+      "frameReadiness": 1
+    },
+    "negotiation": {
+      "annoyancePenalty": 10,
+      "annoyanceMax": 3,
+      "totalRaise": 0.1,
+      "advanceRaise": 0.1,
+      "perHeadShare": 0.1,
+      "withdrawRep": 3
+    }
   }
 }

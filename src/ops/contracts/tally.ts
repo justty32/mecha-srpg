@@ -15,7 +15,7 @@ export function tallyHeads(contract: ContractState, unitDiedEvents: readonly Uni
 export function settleContract(s: CampaignState, ctx: OpsCtx, id: string, outcome: "done" | "failed" | "partial", rewardFactor = 1): void {
   const c = s.contracts[id];
   if (!c || c.settled || !["active", "stage"].includes(c.status)) return;
-  const template = ctx.world.require("contract", c.template), scope = { contract: id, faction: c.issuer, node: c.target.node, ...(c.target.rift ? { rift: c.target.rift } : {}) };
+  const template = ctx.world.require("contract", c.template), scope = { contract: id, faction: c.issuer, node: c.target.place, ...(c.target.rift ? { rift: c.target.rift } : {}) };
   const stage = template.stages?.[c.stageIdx];
   if (outcome === "done" && stage && c.stageIdx + 1 < template.stages!.length) {
     applyOpsEffects(s, ctx, stage.effects ?? [], scope);

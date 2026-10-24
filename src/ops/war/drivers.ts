@@ -1,7 +1,7 @@
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import type { OperationState, Relation } from "./types.ts";
 import { changeRelation, relation } from "./relations.ts";
-import { adjacentNodes } from "../world/nodes.ts";
+import { nearbyPlaces } from "../world/places.ts";
 export function diplomacyRules(ctx: OpsCtx) { return ctx.world.all("affinity")[0]!.rules; }
 export function allies(s: CampaignState, id: string): string[] {
   return Object.values(s.relations ?? {}).filter(r => r.state === "allied" && [r.a, r.b].includes(id)).map(r => r.a === id ? r.b : r.a).sort();
@@ -59,12 +59,12 @@ export function dailyDrivers(s: CampaignState, ctx: OpsCtx): void {
     if (s.clock.dom === 1) for (const kind of ["drift", "grievance-decay", "alliance-burden"]) drive(s, ctx, kind, r.a, r.b);
     drive(s, ctx, "war-weariness", r.a, r.b);
     if (s.clock.phase !== "spring") continue;
-    const touches = (id: string, node: string) => s.factions[id]!.territoryNow.some(n => n === node || adjacentNodes(ctx, n).includes(node));
+    const touches = (id: string, node: string) => s.factions[id]!.territoryNow.some(n => n === node || nearbyPlaces(s, ctx, n).includes(node));
     for (const rift of Object.values(s.rifts).sort((a, b) => a.id.localeCompare(b.id))) {
       if (rift.phase !== "anchored") continue;
-      if (touches(r.a, rift.node) && touches(r.b, rift.node)) drive(s, ctx, "shared-threat", r.a, r.b);
+      if (touches(r.a, rift.site) && touches(r.b, rift.site)) drive(s, ctx, "shared-threat", r.a, r.b);
       for (const [a, b] of [[r.a, r.b], [r.b, r.a]] as const) {
-        if (s.factions[b]!.territoryNow.includes(rift.node) && s.factions[a]!.territoryNow.some(n => s.nodes[n]?.blight?.rift === rift.id)) drive(s, ctx, "border-blight", a, b);
+        if (s.factions[b]!.territoryNow.includes(rift.site) && s.factions[a]!.territoryNow.some(n => s.places[n]?.blight?.rift === rift.id)) drive(s, ctx, "border-blight", a, b);
       }
     }
   }

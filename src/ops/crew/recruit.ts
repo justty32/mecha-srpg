@@ -1,3 +1,6 @@
+import { isDocked } from "../world/move.ts";
+import { placeAt } from "../war/loc.ts";
+import { requirePlace } from "../world/places.ts";
 import { pickWeighted, rollInt } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { instantiatePerson } from "../content/instantiate.ts";
@@ -23,7 +26,7 @@ export function recruitsDaily7(s: CampaignState, ctx: OpsCtx): void {
       used.add(person.def);
       for (let j = sources.length - 1; j >= 0; j--) if (ctx.db.require("person", sources[j]!.def.person!).id === person.def) sources.splice(j, 1);
       for (const attr of Object.keys(bg.attrRanges).sort()) { const [lo, hi] = bg.attrRanges[attr]!; person.attrsBase[attr] = rollInt(s.rng, lo, hi); }
-      rt.candidates[id] = { id, pool: pool.id, node: ctx.world.require("node", pool.node).id, background: bg.id, culture: bg.culture, person,
+      rt.candidates[id] = { id, pool: pool.id, place: requirePlace(s, ctx, pool.place).id, background: bg.id, culture: bg.culture, person,
         fee: evalOpsNum(s, ctx, bg.hireFee), wage: rules(ctx).wageBase * evalOpsNum(s, ctx, bg.wageMult), traits: [...(bg.traits ?? [])] };
     }
     rt.recruitDays[pool.id] = s.clock.day;
@@ -32,7 +35,7 @@ export function recruitsDaily7(s: CampaignState, ctx: OpsCtx): void {
 export function cmdHire(s: CampaignState, ctx: OpsCtx, cmd: Command<"hire">): CmdResult {
   const candidate = peekCrew(s)?.candidates[cmd.candidate];
   if (!candidate) return fail("unknown-candidate");
-  if (s.ship.route || candidate.node !== s.ship.at) return fail("not-docked");
+  if (!isDocked(s, ctx, candidate.place)) return fail("not-docked");
   if (Object.keys(s.roster.persons).length >= s.ship.capacity.berths) return fail("no-berth");
   if (candidate.fee < 0 || candidate.wage < 0 || !Number.isFinite(candidate.fee + candidate.wage)) return fail("invalid-terms");
   if (s.ledger.balances.cash < candidate.fee) return fail("insufficient-cash");

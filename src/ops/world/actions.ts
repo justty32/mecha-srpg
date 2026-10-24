@@ -10,7 +10,7 @@ export function actionsDaily2(s: CampaignState, ctx: OpsCtx): void {
   const state = s as ActionsState;
   const actors: { id: string; kind: WorldActionDef["actor"]; scope: OpsScope }[] = [
     ...Object.keys(s.factions).sort().filter(id => s.factions[id]!.alive && (ctx.world.require("faction-ops", s.factions[id]!.def).actionLanes?.includes("world") ?? true)).map(id => ({ id, kind: "faction" as const, scope: { faction: id } })),
-    ...(s.clock.phase === "spring" ? Object.keys(s.rifts).sort().filter(id => !["closed", "sealed", "receding"].includes(s.rifts[id]!.phase)).map(id => ({ id, kind: "rift" as const, scope: { rift: id, node: s.rifts[id]!.node } })) : []),
+    ...(s.clock.phase === "spring" ? Object.keys(s.rifts).sort().filter(id => !["closed", "sealed", "receding"].includes(s.rifts[id]!.phase)).map(id => ({ id, kind: "rift" as const, scope: { rift: id, node: s.rifts[id]!.site } })) : []),
     { id: "world", kind: "world" as const, scope: {} },
   ].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   for (const actor of actors) {
@@ -23,7 +23,7 @@ export function actionsDaily2(s: CampaignState, ctx: OpsCtx): void {
     applyOpsEffects(s, ctx, card.effects, actor.scope);
     for (const request of s.pendingContracts.slice(firstRequest)) {
       // 保留來源，交由段 2 的 contractsDaily2 建立 offered 快照；world 不跨入 contracts。
-      Object.assign(request, actor.scope.faction ? { issuer: actor.scope.faction } : {}, actor.scope.rift ? { rift: actor.scope.rift, node: actor.scope.node } : {});
+      Object.assign(request, actor.scope.faction ? { issuer: actor.scope.faction } : {}, actor.scope.rift ? { rift: actor.scope.rift, place: actor.scope.place ?? actor.scope.node } : {});
     }
     (state.actionCooldowns ??= {})[`${actor.id}|${card.id}`] = s.clock.day + card.cooldownDays;
     ctx.emit("WorldAction", { actor: actor.id, action: card.id });

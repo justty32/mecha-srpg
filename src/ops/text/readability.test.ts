@@ -2,6 +2,8 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "../content/load.ts";
 import { newCampaign, createOpsCtx } from "../content/start.ts";
+import { placeAt, placeLoc } from "../war/loc.ts";
+import { requirePlace } from "../world/places.ts";
 import { entityName, parse } from "./parse.ts";
 import { eventLog, templateEntries } from "./templates.ts";
 import { runCampaign } from "../sim/campaign.ts";
@@ -15,11 +17,11 @@ test("名冊與名稱解析：無重名、九類名稱都有中文，七態及�
   const names = Object.keys(s.roster.persons).map(id => entityName(id, s, world));
   assert.equal(new Set(names).size, names.length);
   for (const name of [...names, ...Object.keys(s.mechs).map(id => entityName(id, s, world))]) assert.match(name, /\p{Script=Han}/u);
-  s.rifts["rift-test"] = { id: "rift-test", node: world.require("node", "node/salt-flat").id, family: "beast", width: "C", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 14 };
+  s.rifts["rift-test"] = { id: "rift-test", site: requirePlace(s, ctx, "place/salt-flat").id, at: placeLoc(s, ctx, "place/salt-flat"), family: "beast", width: "C", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 14 };
   s.pendingContracts.push({ template: "contract/escort-sealed-convoy", near: "territory" }); contractsDaily2(s, ctx);
   s.jobs.push({ id: "job-test", kind: "repair", target: "mech-8", needHours: 1, doneHours: 0, paid: false, materials: {}, priority: 0 });
   delete s.roster.names["mech-8"];
-  const cases = ["person-1", "faction-ops/migrant-crew", "node/dhaka", "rift-test", Object.keys(s.contracts)[0]!, "job-test", "anchored", "cash", "mech-8", s.mechs["mech-8"]!.frame, "model/bulwark-i"];
+  const cases = ["person-1", "faction-ops/migrant-crew", "place/dhaka", "rift-test", Object.keys(s.contracts)[0]!, "job-test", "anchored", "cash", "mech-8", s.mechs["mech-8"]!.frame, "model/bulwark-i"];
   for (const id of cases) { const name = entityName(id, s, world); assert.match(name, /\p{Script=Han}/u, id); assert.ok(!name.includes("/"), id); }
   assert.match(entityName("rift-test", s, world), /鹽灘.*獸族裂縫/);
   for (const id of ["opening", "anchored", "unanchored", "sealing", "sealed", "receding", "closed", "debt", "stock:flesh", "stock:fuel", "stock:scrap"]) assert.match(entityName(id, s, world), /\p{Script=Han}/u, id);
@@ -36,7 +38,7 @@ test("log：seed 1 的 30 天沒有空佔位、id 斜線與浮點尾數", () => 
 });
 test("動態商品：snapshot 與 parse 候選一致且解析不更動狀態", () => {
   const s = newCampaign(db, world, "start/default", 1) as MarketState, ctx = createOpsCtx(s, db, world);
-  const market = world.all("market").find(m => m.node === s.ship.at)!;
+  const market = world.all("market").find(m => m.place === placeAt(s, ctx, s.ship.pos))!;
   const frame = db.all("frame").find(f => !market.lists.some(l => l.items.some(i => i.def === f.id)))!;
   s.markets = { [market.id]: { refreshedDay: 1, stock: { [frame.id]: 2 }, dynamic: [{ kind: "frame", item: { def: frame.id, imported: true, stockMax: 2, weight: 1, basePrice: 100 } }] } };
   const before = structuredClone(s);

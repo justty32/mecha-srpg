@@ -6,11 +6,11 @@ import type { WorldDefByKind, WorldKind } from "../state/types.ts";
 import { createWorldDB, keymapErrors } from "./worlddb.ts";
 import type { WorldDB, WorldTables } from "./worlddb.ts";
 
-export const WORLD_FOLDERS = { operations: "operation", treaties: "treaty", lineages: "lineage", models: "model", forces: "forces", nodes: "node", routes: "route", rifts: "rift", encounters: "encounter", "factions-ops": "faction-ops",
+export const WORLD_FOLDERS = { operations: "operation", treaties: "treaty", lineages: "lineage", models: "model", forces: "forces", rifts: "rift", encounters: "encounter", "factions-ops": "faction-ops",
   maps: "map", places: "place", lanes: "lane", regions: "regions", wterrains: "wterrain",
   contracts: "contract", actions: "action", markets: "market", services: "service", "recruit-pools": "recruit", backgrounds: "background",
   beasts: "beasts", research: "research", jobs: "job", names: "names", events: "event", dialogues: "dialogue", rooms: "room", templates: "templates", "campaign-start": "start" } as const;
-export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ferry", "ship", "keymap", "affinity", ...Object.values(WORLD_FOLDERS)];
+export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ship", "keymap", "affinity", ...Object.values(WORLD_FOLDERS)];
 export type WorldLoadResult = { db: ContentDB; world: WorldDB; errors: LoadIssue[]; warnings: LoadIssue[] };
 
 function normalize(value: unknown, pack: string, field = ""): unknown {
@@ -36,12 +36,13 @@ export function loadWorldPacks(packs: PackFiles[]): WorldLoadResult {
       const file = `${source.root}/${relative}`;
       const parts = relative.slice(6).split("/");
       const single = parts.length === 1 ? parts[0]!.replace(/\.json$/, "") : undefined;
-      const kind = single === "keymap-ops" ? "keymap" : single && ["calendar", "ferry", "ship", "affinity"].includes(single) ? single as WorldKind
+      const kind = single === "keymap-ops" ? "keymap" : single && ["calendar", "ship", "affinity"].includes(single) ? single as WorldKind
         : parts.length === 2 ? WORLD_FOLDERS[parts[0] as keyof typeof WORLD_FOLDERS] : undefined;
       if (!kind) { errors.push({ file, path: "$", message: "unknown world path" }); continue; }
       const value = source.files[relative];
       if (!value || typeof value !== "object" || Array.isArray(value)) { errors.push({ file, path: "$", message: "world definition must be an object" }); continue; }
       const raw = structuredClone(value) as Record<string, unknown>;
+      if (kind === "event") { if (raw.where === "node") raw.where = "place"; if (raw.where === "route") raw.where = "field"; }
       // SPEC-GAP：勢力、對白、模板範例省略 id；以檔名補；裸模板表包成 entries。
       const basename = parts.at(-1)!.replace(/\.json$/, "");
       if (kind === "templates" && !raw.entries) {

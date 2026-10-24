@@ -4,13 +4,14 @@ import type { WorldDB } from "../content/worlddb.ts";
 // 使用完整 id 避開重名；JSON 字串保留空白、引號與換行。
 export function formatCommand(cmd: OpsCommand, _state: CampaignState, _world: WorldDB): string {
   const q = (value: string) => JSON.stringify(value);
+  const waypoint = (value: string | { x: number; y: number } | { actor: string }) => q(typeof value === "string" ? value : "actor" in value ? `@${value.actor}` : `${value.x},${value.y}`);
   const list = (values: string[]) => values.map(q).join(" ");
   let args = "";
   switch (cmd.v) {
     case "look": args = cmd.target === undefined ? "" : q(cmd.target); break;
     case "talk": args = `${q(cmd.who)}${cmd.topic === undefined ? "" : ` ${q(cmd.topic)}`}`; break;
     case "go": args = q(cmd.room); break;
-    case "sail": args = `${q(cmd.to)}${cmd.via === undefined ? "" : ` via ${list(cmd.via)}`}`; break;
+    case "sail": args = `${waypoint(cmd.to)}${cmd.via === undefined ? "" : ` via ${cmd.via.map(waypoint).join(" ")}`}`; break;
     case "wait": args = String(cmd.days); break;
     case "board": args = cmd.contract === undefined ? "" : q(cmd.contract); break;
     case "accept": args = `${q(cmd.contract)}${cmd.ask === undefined ? "" : ` ${cmd.ask}`}`; break;

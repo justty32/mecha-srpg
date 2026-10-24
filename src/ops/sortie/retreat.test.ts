@@ -1,3 +1,4 @@
+import { placeAt } from "../war/loc.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { applyBattleResult } from "./apply.ts";
@@ -82,7 +83,7 @@ for (const side of ["actor", "target"] as const) test(`作戰發起方撤退：�
     assert(cmdAccept(s, ctx, { v: "accept", contract: other.id }).ok);
     // fixture 的出戰 helper 只預設 actor；沿用其編隊、換成已選 target 契約。
     c.status = "expired";
-    so = { id: "target-sortie", day: s.clock.day, node: s.ship.at, trigger: "operation" as const,
+    so = { id: "target-sortie", day: s.clock.day, place: placeAt(s, ctx, s.ship.pos), loc: structuredClone(s.ship.pos), trigger: "operation" as const,
       operation: op.id, contract: other.id, units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] };
     op.phase = "engage";
   }

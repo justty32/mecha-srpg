@@ -63,8 +63,10 @@ function detachMech(s: CampaignState, id: string): void {
   }
 }
 function stash(s: CampaignState, sortie: Sortie, bundle: LootBundle): void {
-  s.nodes[sortie.node]!.wreckage.push({ ...bundle, day: s.clock.day });
+  // SPEC-GAP：本波殘骸仍掛地點；蝕域野戰的溢出戰利品暫寄該裂縫 site。
+  s.places[lootPlace(s, sortie)]?.wreckage.push({ ...bundle, day: s.clock.day });
 }
+function lootPlace(s: CampaignState, sortie: Sortie): string { return sortie.place ?? s.rifts[sortie.rift ?? ""]?.site ?? ""; }
 function cargoUsed(s: CampaignState): number {
   // SPEC-GAP：cargo 未定重量，實物每件一格、材料每單位一格；燃料由船池計。
   return s.inventory.components.length + s.inventory.relics.length + Object.keys(s.ledger.balances).sort()
@@ -109,7 +111,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
         s.flags[`grudge:${before.id}`] = 1; mech.controlMode = "none";
       } else if (entry.status === "dead" || entry.status === "derelict-lost") {
         detachMech(s, before.id);
-        if (entry.status === "derelict-lost") ctx.emit("LostMech", { mech: before.id, node: sortie.node });
+        if (entry.status === "derelict-lost") ctx.emit("LostMech", { mech: before.id, node: sortie.place });
         else {
           const items: ComponentInstance[] = [];
           for (const part of Object.keys(mech.parts).sort()) for (const slot of Object.keys(mech.parts[part]!.components).sort()) {
@@ -160,8 +162,8 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
         const grade = ctx.db.get("monster", entry.state.frame)?.grade ?? ctx.db.require("frame", species.capture.frame).grade;
         const carcass = { id: nextId(s, "carcass"), species: species.id, grade, parts: structuredClone(entry.state.parts), decayPerDay: cfg.decay, slot: -1 };
         s.pendingChoices.push({ text: `${species.name} 的屍體如何處理？`, choices: [
-          { text: "拆", effects: [{ salvage: { node: sortie.node, loot, carcass, keep: false } }] },
-          { text: "留整屍", requires: { cmp: { a: { ref: "restraint.freeSlots" }, op: ">", b: 0 } }, effects: [{ salvage: { node: sortie.node, loot, carcass, keep: true } }] },
+          { text: "拆", effects: [{ salvage: { place: lootPlace(s, sortie), loot, carcass, keep: false } }] },
+          { text: "留整屍", requires: { cmp: { a: { ref: "restraint.freeSlots" }, op: ">", b: 0 } }, effects: [{ salvage: { place: lootPlace(s, sortie), loot, carcass, keep: true } }] },
         ] });
       }
     }

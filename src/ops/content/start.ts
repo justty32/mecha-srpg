@@ -1,3 +1,5 @@
+import { allPlaces, requirePlace } from "../world/places.ts";
+import { locAt } from "../war/loc.ts";
 import { initWar } from "../war/state.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import { createRng } from "../../core/rng.ts";
@@ -23,21 +25,21 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
   const start = world.require("start", startId), ship = world.require("ship", start.ship);
   const calendar = start.calendar ? world.require("calendar", start.calendar) : world.all("calendar")[0];
   if (!calendar) throw new Error("缺少開局曆");
-  const node = world.require("node", start.node);
+  const node = requirePlace({ places: {} }, { world }, start.place);
   const pools = instantiatePools([shipPool("fuel", ship.fuel), shipPool("hull", ship.hull)], {});
   if (start.persons.length > ship.capacity.berths || start.mechs.length > ship.capacity.mechBays) throw new Error("開局超出船容量");
-  const s: CampaignState = { version: 1, clock: clock(start.day, calendar), rng: createRng(seed), pressure: start.pressure ?? 0,
-    nodes: {}, rifts: {}, factions: {}, ship: { frame: ship.id, at: node.id, rooms: Object.fromEntries(ship.rooms.map(room => [room, { persons: [], items: [] }])),
+  const s: CampaignState = { version: 2, clock: clock(start.day, calendar), rng: createRng(seed), pressure: start.pressure ?? 0,
+    places: {}, maps: Object.fromEntries(world.all("map").map(m => [m.id, { blight: {}, known: {} }])), patches: {}, actors: {}, rifts: {}, factions: {}, ship: { frame: ship.id, pos: locAt({ world }, node.map, node.at), mpCarry: 0, drifting: false, rooms: Object.fromEntries(ship.rooms.map(room => [room, { persons: [], items: [] }])),
       capacity: { ...ship.capacity }, fuel: pools.fuel!, hull: pools.hull!, upgrades: [] },
     roster: { persons: {}, employment: {}, trust: {}, mastery: {}, names: {}, dead: [] }, hangar: { bays: Array.from({ length: ship.capacity.mechBays }, () => null), dormant: [] },
     restraint: { slots: Array(ship.capacity.restraintSlots).fill(null), beasts: {}, carcasses: [] }, mechs: {}, inventory: { components: [], mechs: [], relics: [], tickets: { airstrike: start.tickets.airstrike ?? 0, restraint: start.tickets.restraint ?? 0 } },
     ledger: { entries: [], balances: { cash: 0, debt: 0 } }, research: {}, jobs: [], contracts: {}, pendingChoices: [], pendingTicks: 0,
     lore: [], flags: Object.fromEntries(start.flags.map(flag => [flag, 1])), log: [], idCounter: 0, effectCounter: 0, calendar: calendar.id, techHours: 0, pendingContracts: [], pendingEvents: [] };
-  for (const def of world.all("node")) s.nodes[def.id] = { def: def.id, wreckage: [], flags: [], ...(def.id === node.id ? { lastVisit: start.day } : {}) };
+  for (const def of allPlaces(s, { world })) s.places[def.id] = { def: def.id, wreckage: [], flags: [], ...(def.id === node.id ? { lastVisit: start.day } : {}) };
   for (const def of world.all("faction-ops")) s.factions[def.id] = { def: def.id, rep: 0, scaleNow: def.scale, territoryNow: [...def.territory], alive: true, memory: [] };
   for (const def of world.all("research")) s.research[def.id] = { def: def.id, hoursDone: 0, coinPaid: false, done: false };
   for (const rift of start.rifts ?? []) {
-    if (!s.nodes[rift.node]) throw new Error(`開局裂縫節點不存在：${rift.node}`);
+    if (!s.places[rift.site]) throw new Error(`開局裂縫節點不存在：${rift.site}`);
     s.rifts[rift.id] = structuredClone(rift);
   }
   for (const entry of start.persons) {

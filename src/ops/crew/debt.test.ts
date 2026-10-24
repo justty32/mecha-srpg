@@ -1,3 +1,5 @@
+import { requirePlace } from "../world/places.ts";
+import { placeAt, placeLoc } from "../war/loc.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "../content/load.ts";
@@ -68,9 +70,9 @@ test("debt：二級扣押最高價可用機甲，市值六成抵債並清空席�
 
 test("debt：扣押避開待出戰與契約借用機甲", () => {
   const { s, ctx } = fixture(), [loan, pending, available] = s.inventory.mechs;
-  s.contracts.fixture = { id: "fixture", template: "fixture", issuer: "fixture", target: { node: s.ship.at }, status: "active", stageIdx: 0,
+  s.contracts.fixture = { id: "fixture", template: "fixture", issuer: "fixture", target: { place: placeAt(s, ctx, s.ship.pos)! }, status: "active", stageIdx: 0,
     offeredDay: 0, deadlineDay: 100, loans: [loan!] } as typeof s.contracts[string];
-  s.pendingBattle = { id: "fixture", day: s.clock.day, node: s.ship.at, trigger: "ambush", units: [{ mech: pending!, seats: {}, controlMode: "none" }],
+  s.pendingBattle = { id: "fixture", day: s.clock.day, place: placeAt(s, ctx, s.ship.pos), loc: structuredClone(s.ship.pos), trigger: "ambush", units: [{ mech: pending!, seats: {}, controlMode: "none" }],
     supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: false }, injected: [] };
   s.debtState = { arrears: 1, due: 100, paid: 0, seized: [] }; cash(s, 0);
   debtMonth(s, ctx);
@@ -82,7 +84,7 @@ test("debt：扣押避開待出戰與契約借用機甲", () => {
 
 test("debt：三級拒售、港費加倍，補繳後解除；四級通牒與次期扣船", () => {
   const { s, ctx } = fixture();
-  s.ship.at = world.require("node", "node/singapore").id;
+  s.ship.pos = placeLoc(s, ctx, requirePlace(s, ctx, "place/singapore").id);
   s.debtState = { arrears: 3, due: 100, paid: 0, seized: [] };
   const market = world.require("market", "market/singapore").id;
   assert.deepEqual(cmdTrade(s, ctx, { v: "trade", market, buy: ["stock:fuel"] }), { ok: false, error: "selene-embargo" });

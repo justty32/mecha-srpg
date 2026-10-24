@@ -1,4 +1,5 @@
 import type { CampaignState, OpsCtx, Sortie } from "../../../ops/state/types.ts";
+import { placeAt, placeLoc } from "../../../ops/war/loc.ts";
 import { peekCrew } from "../../../ops/crew/shared.ts";
 import { validateSortie } from "../../../ops/sortie/validate.ts";
 import { displayName, label, rejection } from "./labels.ts";
@@ -64,7 +65,8 @@ export function draftSortie(s: CampaignState, ctx: OpsCtx, contract?: string): S
   const active = contract ? s.contracts[contract] : Object.values(s.contracts).find(c => ["active", "stage"].includes(c.status));
   const draft: Sortie = s.pendingBattle ? structuredClone(s.pendingBattle) : {
     // 預覽 id 不消耗流水號；實際 sortie 指令會自行分配。
-    id: "ui-draft", day: s.clock.day, node: active?.target.node ?? s.ship.at, trigger: active ? "contract" : "ambush",
+    id: "ui-draft", day: s.clock.day, place: active?.target.place ?? placeAt(s, ctx, s.ship.pos),
+    loc: active && active.target.place !== placeAt(s, ctx, s.ship.pos) ? placeLoc(s, ctx, active.target.place) : structuredClone(s.ship.pos), trigger: active ? "contract" : "ambush",
     ...(active ? { contract: active.id, ...(active.target.rift ? { rift: active.target.rift } : {}) } : {}),
     units: [], supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: [],
   };
@@ -73,7 +75,7 @@ export function draftSortie(s: CampaignState, ctx: OpsCtx, contract?: string): S
     for (const id of [...new Set([...s.hangar.bays, ...s.restraint.slots].filter((id): id is string => !!id))].sort()) {
       if (!ready(s, ctx, id)) continue;
       const unit = defaultUnit(s, ctx, id, used);
-      if (unit.controlMode !== "none" && validateSortie(s, ctx, { ...draft, contract: undefined, rift: undefined, node: s.ship.at, supplies: { ...draft.supplies, shipOverhead: false }, units: [unit] }).ok) draft.units.push(unit);
+      if (unit.controlMode !== "none" && validateSortie(s, ctx, { ...draft, contract: undefined, rift: undefined, place: placeAt(s, ctx, s.ship.pos), loc: s.ship.pos, supplies: { ...draft.supplies, shipOverhead: false }, units: [unit] }).ok) draft.units.push(unit);
       else for (const person of Object.values(unit.seats)) if (person) used.delete(person);
     }
   }
@@ -87,7 +89,7 @@ export function draftError(s: CampaignState, ctx: OpsCtx, draft: Sortie): string
 }
 export function formationView(s: CampaignState, ctx: OpsCtx, draft: Sortie): SortieView {
   const name = (id: string) => displayName(s, ctx.db, ctx.world, id);
-  return { contract: draft.contract ?? null, title: "出戰編成", nodeName: name(draft.node), error: draftError(s, ctx, draft), buttons: [],
+  return { contract: draft.contract ?? null, title: "出戰編成", nodeName: draft.place ? name(draft.place) : `${draft.loc.cell.x},${draft.loc.cell.y}`, error: draftError(s, ctx, draft), buttons: [],
     units: [...new Set([...s.hangar.bays, ...s.restraint.slots, ...s.hangar.dormant].filter((id): id is string => !!id))].sort().filter(id => s.mechs[id]).map(id => {
       const unit = draft.units.find(u => u.mech === id), preview = unit ?? defaultUnit(s, ctx, id, new Set(draft.units.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id))));
       const valid = validateSortie(s, ctx, { ...draft, units: [preview] });

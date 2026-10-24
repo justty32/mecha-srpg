@@ -10,7 +10,7 @@
 
 只做下面列出的事；**沒列的一律不做**，遇到「順手也該改」的東西寫進 REPORT 的「需要決定的事」，不要動手。
 
-- 只做（可寫路徑清單）：`src/ops/**`；`src/mcp/campaign.ts`、`src/mcp/campaign-view.ts` 與其測試；`src/ui-adapter/ops/**`（最小適配，見下）；`test/campaigns/**`（指令改 id、黃金用 `GOLDEN_UPDATE=1` 重產）；`test/e2e/ops-campaign.spec.ts`；`content/base/world/` 下這些檔的**結構鍵與 id 引用**（不動任何文字欄）：`places/`、`lanes/`、`campaign-start/`、`markets/`、`recruit-pools/`、`factions-ops/`、`forces/`、`operations/`、`actions/`、`templates/default.json`（只改事件型別鍵名）；`src/ops/content/check.ts` 對舊鍵的檢查；REPORT 目錄 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-migrate/`。
+- 只做（可寫路徑清單）：`src/ops/**`；`src/mcp/campaign.ts`、`src/mcp/campaign-view.ts` 與其測試；`src/ui-adapter/ops/**`（最小適配，見下）；`test/campaigns/**`（指令改 id、黃金用 `GOLDEN_UPDATE=1` 重產）；`e2e/ops-campaign.spec.ts`；`content/base/world/` 下這些檔的**結構鍵與 id 引用**（不動任何文字欄）：`places/`、`lanes/`、`campaign-start/`、`markets/`、`recruit-pools/`、`factions-ops/`、`forces/`、`operations/`、`actions/`、`templates/default.json`（只改事件型別鍵名）；`src/ops/content/check.ts` 對舊鍵的檢查；REPORT 目錄 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-migrate/`。
 - 不做：蝕塊、行動者、迷霧、遭遇四選、`GridView`／大地圖面板（第三波）；`src/ai/`、`src/rules/`、`src/core/`、`src/content/`、`src/sim/`（戰鬥 sim）、`src/ui-adapter/` 的 `ops/` 以外目錄；`content/` 任何文字欄（name／text／title／flavor／lines…）與 `content/lore/`；`content/base/world/events/`（`where:"node"／"route"` 由程式相容，不改檔）；`wf/`（除 REPORT 目錄）；`package.json`。
 - 件數 gate：改＋新增檔超過 120 件就停下回報；容量 gate：單一新檔超過 60 KB 就停下回報。任一觸發都停。
 
@@ -22,7 +22,7 @@
 
 **蝕域暫掛地點**：`blightAt(s, ctx, loc)`（新檔 `world/blight.ts`，第三波會重寫內部）回傳 footprint 外擴 `rules.grid.interimZoneRadius`（4）格內最近一個有 `blight` 的地點的 `{ rift, depth }`；`moveDaily3` 用它：通行成本取 `max(地形, rules.grid.blightCost[depth])`，當天走過蝕格就擲一次遭遇（`rules.grid.blightEncounter`：shallow 0.25、deep 0.6、core 1.0），中了照現行 `ambush` 寫 `pendingBattle`。`world/nodes.ts` 改名 `world/places.ts`；`adjacentNodes` 改成 `nearbyPlaces(ctx, place)`＝同圖、footprint 切比雪夫距離 ≤ `rules.grid.interimAdjacency`（12）的地點；`rifts.ts`／`pressure.ts` 只做最小替換（新裂縫落在非月面、`riftRate > 0` 圖上的地點，`site` 指它、`at` 取其 `at`）。
 
-**其餘模組**：`war/loc.ts` 是唯一知道地點↔`Loc` 對照的檔（`placeLoc`、`placeAt(loc)`）；常備軍行軍改 `findPath`（ground、無視蝕域），`ForceState.speed` 當 `rules.grid.groundMp` 的倍率（標 `SPEC-GAP`），`path` 存格序。契約：`target.place`，可達性用尋路，`nearby` 改「在地盤地點或距地盤地點 ≤ `rules.grid.nearbyRadius`（20）格」。ScenarioGen：`terrainMix` 的 `"$node"`（保留此字面）＝該格與八鄰格地形 `battlePool` 的加權聯集（鄰格權重 ½），蝕深用 `blightAt`。文字層：`航 達卡`／`航 120,44`／`航 @名`／`航 靜海市 經 新加坡` 往返一致；名稱解析與地圖面板改列地點（含座標與「N 天」）。`sim` 政策 greedy／random／merc 改用路程天數；不變量加「船永不在不可進格、`pos.map` 是存在的圖」。MCP 營運視圖改出地點與座標。ui-ops 最小適配：`vm/layout.ts` 依地點座標縮放擺位、`dom/world-map.ts` 照畫圓點與標籤（不畫路線）、其餘照舊；`test/e2e/ops-campaign.spec.ts` 必要時改選擇器。
+**其餘模組**：`war/loc.ts` 是唯一知道地點↔`Loc` 對照的檔（`placeLoc`、`placeAt(loc)`）；常備軍行軍改 `findPath`（ground、無視蝕域），`ForceState.speed` 當 `rules.grid.groundMp` 的倍率（標 `SPEC-GAP`），`path` 存格序。契約：`target.place`，可達性用尋路，`nearby` 改「在地盤地點或距地盤地點 ≤ `rules.grid.nearbyRadius`（20）格」。ScenarioGen：`terrainMix` 的 `"$node"`（保留此字面）＝該格與八鄰格地形 `battlePool` 的加權聯集（鄰格權重 ½），蝕深用 `blightAt`。文字層：`航 達卡`／`航 120,44`／`航 @名`／`航 靜海市 經 新加坡` 往返一致；名稱解析與地圖面板改列地點（含座標與「N 天」）。`sim` 政策 greedy／random／merc 改用路程天數；不變量加「船永不在不可進格、`pos.map` 是存在的圖」。MCP 營運視圖改出地點與座標。ui-ops 最小適配：`vm/layout.ts` 依地點座標縮放擺位、`dom/world-map.ts` 照畫圓點與標籤（不畫路線）、其餘照舊；`e2e/ops-campaign.spec.ts` 必要時改選擇器。
 
 ## 必用工具
 

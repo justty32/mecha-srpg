@@ -12,21 +12,30 @@ test("load/check：base world 零錯且 pack 覆寫順序一致", () => {
   const result = loadWorldDirs(["content/base"]);
   assert.deepEqual(result.errors, []);
   assert.deepEqual(checkWorld(result.db, result.world), { errors: [], warnings: [] });
-  assert.equal(result.world.all("node").length, 8);
-  const original = result.world.require("node", "node/dhaka");
+  assert.equal(result.world.all("place").length, 9);
+  const original = result.world.require("place", "place/dhaka");
   assert.ok(Object.isFrozen(original));
   const mod = { root: "/tmp/cx-ops-foundation/mod", files: { "pack.json": { id: "mod", version: "1", depends: ["base"] },
-    "world/nodes/dhaka.json": { ...original, name: "覆寫達卡" } } };
+    "world/places/dhaka.json": { ...original, name: "覆寫達卡" } } };
   const merged = loadWorldPacks([mod, readPackDir("content/base")]);
   assert.deepEqual(merged.errors, []);
-  assert.equal(merged.world.require("node", "base:node/dhaka").name, "覆寫達卡");
+  assert.equal(merged.world.require("place", "base:place/dhaka").name, "覆寫達卡");
   assert.equal(original.name, "達卡");
 });
-test("check：壞路線端點被抓", () => {
+test("check：壞航道端點被抓", () => {
   const pack = readPackDir("content/base");
-  (pack.files["world/routes/dhaka-delta.json"] as { b: string }).b = "node/missing";
+  (pack.files["world/lanes/selene.json"] as { b: string }).b = "place/missing";
   const { db, world } = loadWorldPacks([pack]);
-  assert.match(checkWorld(db, world).errors.join(), /missing reference base:node\/missing/);
+  assert.match(checkWorld(db, world).errors.join(), /missing reference base:place\/missing/);
+});
+test("check：舊地點鍵與引用拒絕，修回 place 後通過", () => {
+  const pack = readPackDir("content/base");
+  const start = pack.files["world/campaign-start/default.json"] as Record<string, unknown>;
+  const place = start.place; delete start.place; start.node = "node/dhaka";
+  let loaded = loadWorldPacks([pack]);
+  assert(checkWorld(loaded.db, loaded.world).errors.some(e => e.includes("obsolete")));
+  delete start.node; start.place = place; loaded = loadWorldPacks([pack]);
+  assert.deepEqual(checkWorld(loaded.db, loaded.world).errors, []);
 });
 test("check：事件 next 斷點被抓", () => {
   const pack = readPackDir("content/base");

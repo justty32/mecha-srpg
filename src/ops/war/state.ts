@@ -1,6 +1,7 @@
+import { requirePlace } from "../world/places.ts";
 import { createRng } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
-import { nodeLoc } from "./loc.ts";
+import { placeLoc } from "./loc.ts";
 import { factionModelPool, initRnd } from "./rnd.ts";
 import { factionId, nextRelationState, relationKey } from "./relations.ts";
 export function warFactionIds(s: CampaignState, ctx: OpsCtx): string[] {
@@ -17,12 +18,12 @@ export function initWar(s: CampaignState, ctx: OpsCtx, seed: number): void {
   for (const id of ids) {
     const f = s.factions[id]!, def = ctx.world.require("faction-ops", id), pool = factionModelPool(s, ctx, id);
     const home = f.territoryNow[0]; if (!home) continue;
-    for (const node of f.territoryNow) if (!ctx.world.require("node", node).owner) s.nodes[node]!.ownerOverride = def.faction;
+    for (const node of f.territoryNow) if (!requirePlace(s, ctx, node).owner) s.places[node]!.ownerOverride = def.faction;
     const units = (def.roster ?? []).flatMap(u => {
       const model = "model" in u ? ctx.world.get("model", u.model) : ctx.world.all("model").find(m => m.frame === u.frame);
       return model && pool.includes(model.id) ? [{ model: model.id, count: u.count, readiness: 1 }] : [];
     });
-    f.forces = { units, supply: cfg.initialSupply, morale: 0, pos: nodeLoc(ctx, home), speed: cfg.speed }; f.shells = []; f.ops = []; f.prestige = 0;
+    f.forces = { units, supply: cfg.initialSupply, morale: 0, pos: placeLoc(s, ctx, home), speed: cfg.speed }; f.shells = []; f.ops = []; f.prestige = 0;
   }
   for (const shell of cfg.shells) {
     const copy = structuredClone(shell);

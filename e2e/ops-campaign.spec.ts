@@ -52,7 +52,14 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   const accepted = (await ops(page)).contracts.find(c => c.status === "active");
   expect(accepted).toBeTruthy();
   await pane.locator(`button[data-action-id="sail:contract:${accepted!.id}"]`).click();
-  await expect(pane.locator(`button[data-action-id="sortieOpen:${accepted!.id}"]`)).toBeEnabled();
+  const sortieButton = pane.locator(`button[data-action-id="sortieOpen:${accepted!.id}"]`);
+  // 起航只排路徑；逐日推進到目標，期間照常回應事件。
+  for (let i = 0; i < 30 && !await sortieButton.isEnabled(); i++) {
+    const s = await ops(page);
+    if (s.prompt) await page.keyboard.press(String(s.prompt.choices.find(c => c.enabled)!.n));
+    else await page.keyboard.press("w");
+  }
+  await expect(sortieButton).toBeEnabled();
 
   await page.keyboard.press("k");
   await expect(root.locator('[data-tab="mechs"] .ops-detail')).toBeVisible();

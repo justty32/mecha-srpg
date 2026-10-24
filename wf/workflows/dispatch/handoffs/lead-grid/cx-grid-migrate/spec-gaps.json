@@ -1,0 +1,372 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "file",
+  "line",
+  "note"
+ ],
+ "rows": [
+  {
+   "file": "src/ops/content/cond.ts",
+   "line": 21,
+   "note": "// SPEC-GAP：ratio 以第一筆開局本金為分母；無本金時為 0。下一大潮指嚴格晚於今日。"
+  },
+  {
+   "file": "src/ops/content/load.ts",
+   "line": 46,
+   "note": "// SPEC-GAP：勢力、對白、模板範例省略 id；以檔名補；裸模板表包成 entries。"
+  },
+  {
+   "file": "src/ops/content/opseffect.ts",
+   "line": 67,
+   "note": "// SPEC-GAP：營運只預掛效果實例與貢獻，不執行戰場鉤子；日數時鐘交給 crew。"
+  },
+  {
+   "file": "src/ops/content/opseffect.ts",
+   "line": 77,
+   "note": "// SPEC-GAP：模板效果用 $actor/$target/$place/$rift/$shell/$operation 綁定作戰脈絡。"
+  },
+  {
+   "file": "src/ops/content/opseffect.ts",
+   "line": 184,
+   "note": "// SPEC-GAP：硬壓立即生效，技師工時記成優先欠工，次日先償還。"
+  },
+  {
+   "file": "src/ops/contracts/lifecycle.ts",
+   "line": 16,
+   "note": "// SPEC-GAP：行動牌生成請求需保留 actor 脈絡；地基原佇列只有 template/near。"
+  },
+  {
+   "file": "src/ops/contracts/lifecycle.ts",
+   "line": 64,
+   "note": "// SPEC-GAP：world 不依賴 contracts；段 2 在 actionsDaily2 之後呼叫此函式，消化契約部分，事件佇列留段 4。"
+  },
+  {
+   "file": "src/ops/crew/restraint.ts",
+   "line": 47,
+   "note": "// SPEC-GAP：core 層狀態無永久上限；以可選 maxHp 保存腐化上限，修理也尊重此值。"
+  },
+  {
+   "file": "src/ops/crew/restraint.ts",
+   "line": 81,
+   "note": "// SPEC-GAP：現有族行為內容以 frame 變體表達 partsOverride。"
+  },
+  {
+   "file": "src/ops/crew/shared.ts",
+   "line": 12,
+   "note": "// SPEC-GAP：地基缺少這些存檔欄位；只在 crew 定義交集，不改共用 types.ts。"
+  },
+  {
+   "file": "src/ops/crew/shared.ts",
+   "line": 25,
+   "note": "// SPEC-GAP：可調營運數值放 service/crew 的擴充欄位，與既有 WorldDB 載入器相容。"
+  },
+  {
+   "file": "src/ops/crew/soul.ts",
+   "line": 27,
+   "note": "// SPEC-GAP：依交接書把命令鍵改為 place，值仍指既有靈魂樹節點，並非大地圖地點。"
+  },
+  {
+   "file": "src/ops/sim/campaign.ts",
+   "line": 13,
+   "note": "// SPEC-GAP：戰果附在指令紀錄；RNG／效果流水號保存情境生成消耗，重播不再生成情境。"
+  },
+  {
+   "file": "src/ops/sim/campaign.ts",
+   "line": 66,
+   "note": "// SPEC-GAP：零耗日指令或假 runner 不得形成無限迴圈；每次策略行動後至少推進一天。"
+  },
+  {
+   "file": "src/ops/sim/policies.ts",
+   "line": 47,
+   "note": "// SPEC-GAP：營運沒有補彈指令；只檢查現有彈藥，不自動補滿或假設能採買。"
+  },
+  {
+   "file": "src/ops/sim/policies.ts",
+   "line": 98,
+   "note": "// SPEC-GAP：validateSortie 尚未拒絕全空座位；無可控制機體時等待，避免反覆跑到 battle-maxSteps。"
+  },
+  {
+   "file": "src/ops/sim/policies.ts",
+   "line": 146,
+   "note": "// SPEC-GAP（lead-impl-war 12:18）：不擴充 Sortie.ai，違令由真實 AI 戰果自然判定。"
+  },
+  {
+   "file": "src/ops/sortie/apply.ts",
+   "line": 66,
+   "note": "// SPEC-GAP：本波殘骸仍掛地點；蝕域野戰的溢出戰利品暫寄該裂縫 site。"
+  },
+  {
+   "file": "src/ops/sortie/apply.ts",
+   "line": 71,
+   "note": "// SPEC-GAP：cargo 未定重量，實物每件一格、材料每單位一格；燃料由船池計。"
+  },
+  {
+   "file": "src/ops/sortie/apply.ts",
+   "line": 119,
+   "note": "// SPEC-GAP：BattleResult 沒有 component instance HP，保留所在層最小 HP，不造滿血零件。"
+  },
+  {
+   "file": "src/ops/sortie/apply.ts",
+   "line": 208,
+   "note": "// SPEC-GAP：部分目標進度未回傳，只有明示 partial 才付半額，失敗有擊殺不自動視為部分成功。"
+  },
+  {
+   "file": "src/ops/sortie/apply.ts",
+   "line": 238,
+   "note": "// SPEC-GAP：world 的 defended 只接受大潮；一般 seal 情境勝利仍依戰鬥契約進 sealing。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 44,
+   "note": "// SPEC-GAP：缺地圖專屬戰略地標，取最靠近中線且可達的格為中心，再取半徑 2 格群。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 82,
+   "note": "// SPEC-GAP：只有節點的契約借用節點蝕域裂縫族，再退回第一族的 shallow 配方。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 91,
+   "note": "// SPEC-GAP：base 缺 core 遭遇，沿用同族 deep（再 shallow）的地圖配方，仍生成錨本體。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 119,
+   "note": "// SPEC-GAP：budgetByGrade 沒有單價與 anchorAge 係數，採各級名額，不按玩家強弱縮放。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 174,
+   "note": "// SPEC-GAP：活捕按本線契約無人物座位，bond 只存營運資料，沒有 burdenLimit 注入目標。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 184,
+   "note": "// SPEC-GAP：trust 未定映射係數／效果 id，保留營運資料，不能臆造 contested 平衡值。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 190,
+   "note": "// SPEC-GAP：opening 期還沒有錨與核區可守，殺光先鋒即關閉裂縫（rifts.ts vanguard-killed）；此時任何契約的戰場目標都改為殲滅先鋒。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 205,
+   "note": "// SPEC-GAP：現有內容無運輸機，使用沒有固有武器與預設配裝的徒步 frame 代表被護送人員。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 210,
+   "note": "// SPEC-GAP：內容包沒有非戰鬥單位時，僅要求存活至戰場時限。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 245,
+   "note": "// SPEC-GAP：明示敵軍勝利條件，避免玩家全滅後 clear 目標永遠無法結束。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 250,
+   "note": "// SPEC-GAP：encounter／contract 沒有 rounds 欄；營運戰鬥統一使用內容常數。"
+  },
+  {
+   "file": "src/ops/sortie/scenario.ts",
+   "line": 258,
+   "note": "// SPEC-GAP：支援沒有 conventional-arms frame／能力內容；不憑空造可攻擊的船或砲台。"
+  },
+  {
+   "file": "src/ops/state/events.ts",
+   "line": 9,
+   "note": "// SPEC-GAP：CampaignEvent 無 id；帳本來源統一為 event-<seq>，不占實體 idCounter。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 34,
+   "note": "// SPEC-GAP：遺物、殘骸與房間索引未展開；採可序列化的最小資料形狀。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 55,
+   "note": "// SPEC-GAP：船的 pool 範例只有 max/initial；缺省 regen=0，其餘池語意為 hard、非反向。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 69,
+   "note": "// SPEC-GAP：stage／敵軍快照未展開；快照在 offered 時由契約模組凍結。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 114,
+   "note": "// SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 137,
+   "note": "// SPEC-GAP：開局未指定僱用條件；允許人物列帶 role/wage，裸 id 使用檔內 defaults。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 154,
+   "note": "// SPEC-GAP：Prompt/Row 原 spec 未展開；選項保留效果以支援存檔續選。"
+  },
+  {
+   "file": "src/ops/state/types.ts",
+   "line": 166,
+   "note": "// SPEC-GAP：共用遞增 id、效果 uid、待生成佇列與工時池為後續模組的序列化簿記。"
+  },
+  {
+   "file": "src/ops/text/parse.ts",
+   "line": 47,
+   "note": "// SPEC-GAP：招募候選池及 core 物品 DB 不在 parse 簽名內；明確 id 留給執行端驗存在。"
+  },
+  {
+   "file": "src/ops/text/render.ts",
+   "line": 50,
+   "note": "// SPEC-GAP：pendingBattle 是 Sortie 而非 ScenarioDef；handoff 留給階段 3 產生戰場。"
+  },
+  {
+   "file": "src/ops/time/commands.ts",
+   "line": 31,
+   "note": "// SPEC-GAP：數字 choose 無文字欄；自填保留給 applyName，不捏造名稱。"
+  },
+  {
+   "file": "src/ops/time/commands.ts",
+   "line": 44,
+   "note": "// SPEC-GAP：text 只提供 parse/render；缺少的三個 cmd 在編排邊界做最小處理。"
+  },
+  {
+   "file": "src/ops/time/tick.ts",
+   "line": 10,
+   "note": "// SPEC-GAP：用可序列化續點區分「當日後半」與尚未開始的 pendingTicks。"
+  },
+  {
+   "file": "src/ops/time/tick.ts",
+   "line": 28,
+   "note": "// SPEC-GAP：next 的目標只由鏈進入，避免催收續篇每天獨立抽到。"
+  },
+  {
+   "file": "src/ops/war/loc.ts",
+   "line": 31,
+   "note": "// SPEC-GAP：保留既有 speed 數值，作為 groundMp 倍率而非每日 MP。"
+  },
+  {
+   "file": "src/ops/war/merc.ts",
+   "line": 18,
+   "note": "/** SPEC-GAP：戰果簿記與平衡係數放 join 模板及可選存檔欄；不擴充核心實體。 */"
+  },
+  {
+   "file": "src/ops/war/merc.ts",
+   "line": 252,
+   "note": "// SPEC-GAP：規模係數以本場擊破／剩餘敵戰力折算，上限 1，單場最多推進 0.4。"
+  },
+  {
+   "file": "src/ops/war/merc.ts",
+   "line": 270,
+   "note": "// 核心沒有攜物欄；尋殼 reachExit 的玩家單位即搬運者（SPEC-GAP）。"
+  },
+  {
+   "file": "src/ops/war/operations.ts",
+   "line": 52,
+   "note": "// SPEC-GAP：本波護送維持同圖地盤地點間的抽象格路線，未綁第三波商隊行動者。"
+  },
+  {
+   "file": "src/ops/war/rnd.ts",
+   "line": 38,
+   "note": "// SPEC-GAP：規格未定 cult，按 city；其餘數值照研發公式，待獨立研發設定表。"
+  },
+  {
+   "file": "src/ops/war/rnd.ts",
+   "line": 49,
+   "note": "// SPEC-GAP：milestone 與 event 首次登場共用旗標；事件必須已選結束，僅 offered 不算。"
+  },
+  {
+   "file": "src/ops/war/rnd.ts",
+   "line": 104,
+   "note": "// SPEC-GAP：規格倒數公式與驗收「舊多新少」相反，沿前線採機齡正比；tierMult 取內容 gp 倒數。"
+  },
+  {
+   "file": "src/ops/war/types.ts",
+   "line": 22,
+   "note": "// SPEC-GAP：純結算不能查 DB；開局凍結 gp 表與初始戰力，返還時保留各出資者。"
+  },
+  {
+   "file": "src/ops/world/actions.ts",
+   "line": 7,
+   "note": "// SPEC-GAP：冷卻按 actor/card 分開保存；drawDays 防止同一日重入抽第二張。"
+  },
+  {
+   "file": "src/ops/world/blight.ts",
+   "line": 5,
+   "note": "// SPEC-GAP：本波蝕域仍掛地點；第三波改由 maps.blight 查蝕塊。"
+  },
+  {
+   "file": "src/ops/world/explore.ts",
+   "line": 9,
+   "note": "// SPEC-GAP：Prompt 未保留隊伍／層數；以可序列化的探索脈絡供 choose 編排續鏈。"
+  },
+  {
+   "file": "src/ops/world/market.ts",
+   "line": 20,
+   "note": "// SPEC-GAP：市場庫存與刷新日未入 CampaignState，採延遲初始化、可 JSON 化的局部擴充。"
+  },
+  {
+   "file": "src/ops/world/market.ts",
+   "line": 45,
+   "note": "// SPEC-GAP：條約沒有專屬報價；沿用內容中第一份可售的 frame 篩選器報價與庫存。"
+  },
+  {
+   "file": "src/ops/world/market.ts",
+   "line": 79,
+   "note": "// SPEC-GAP：trade 折價與 scarcity 減貨未定量；借用既有市場最低倍率作折減比例（目前九折）。"
+  },
+  {
+   "file": "src/ops/world/market.ts",
+   "line": 163,
+   "note": "// SPEC-GAP：有身分的實物不在存量帳；以零數量 stock:inventory 對帳，實體仍只存 Inventory。"
+  },
+  {
+   "file": "src/ops/world/move.ts",
+   "line": 151,
+   "note": "// SPEC-GAP：carriesShip:false 本波仍攜船過圖，第三波再分離載具。"
+  },
+  {
+   "file": "src/ops/world/places.ts",
+   "line": 6,
+   "note": "// SPEC-GAP：地基未定義世界係數登記檔，暫存於不參與抽牌的 action/ops-world.rules。"
+  },
+  {
+   "file": "src/ops/world/places.ts",
+   "line": 62,
+   "note": "// SPEC-GAP：目前 core 只有蟲族裂獸勢力；新增族須另提供 owner 對照。"
+  },
+  {
+   "file": "src/ops/world/rifts.ts",
+   "line": 9,
+   "note": "// SPEC-GAP：記錄最後守住的大潮，避免同一天重複戰果跳過第二次防守。"
+  },
+  {
+   "file": "src/ops/world/rifts.ts",
+   "line": 54,
+   "note": "// SPEC-GAP：跳過最近一次待處理大潮；同潮重打不疊加延後，錨與 phase 保留。"
+  },
+  {
+   "file": "src/ops/world/rifts.ts",
+   "line": 87,
+   "note": "// SPEC-GAP：段 2 早於當天戰鬥；有就位的封裂契約時先派防守戰，戰果決定轉移。"
+  },
+  {
+   "file": "src/ui-adapter/ops/vm/controller.ts",
+   "line": 209,
+   "note": "// SPEC-GAP：自填命名沒有可重播的 OpsCommand，因此此後明確拒絕序列化。"
+  },
+  {
+   "file": "src/ui-adapter/ops/vm/formation.ts",
+   "line": 87,
+   "note": "// SPEC-GAP：ops 驗證允許空控制機體；UI 明確要求可控制或本能出戰，避免無法結束的戰鬥。"
+  }
+ ]
+}

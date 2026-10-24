@@ -32,32 +32,32 @@ export function opsFixture(tab: OpsTab = "ship"): OpsSnapshot {
     ],
     world: {
       nodes: [
-        { id: "node/ridge", name: "嶺口", x: .2, y: .3, body: "earth", kind: "city", kindName: "城邦", owner: "fac/union", ownerName: "聯合", blight: null, rift: null,
+        { id: "place/ridge", name: "嶺口", x: .2, y: .3, body: "earth", kind: "city", kindName: "城邦", owner: "fac/union", ownerName: "聯合", blight: null, rift: null,
           here: true, destination: false, selected: true, contracts: 1 },
-        { id: "node/marsh", name: "沼原", x: .6, y: .5, body: "earth", kind: "wild", kindName: "荒野", owner: null, ownerName: null,
+        { id: "place/marsh", name: "沼原", x: .6, y: .5, body: "earth", kind: "wild", kindName: "荒野", owner: null, ownerName: null,
           blight: { depth: "deep", depthName: "深層" }, rift: { id: "rift/1", phase: "open", phaseName: "張開", width: "中" },
           here: false, destination: true, selected: false, contracts: 0 },
-        { id: "node/luna", name: "靜海站", x: .9, y: .1, body: "moon", kind: "port", kindName: "港", owner: "fac/lunar", ownerName: "月港", blight: null, rift: null,
+        { id: "place/luna", name: "靜海站", x: .9, y: .1, body: "moon", kind: "port", kindName: "港", owner: "fac/lunar", ownerName: "月港", blight: null, rift: null,
           here: false, destination: false, selected: false, contracts: 0 },
       ],
       routes: [
-        { id: "r1", a: "node/ridge", b: "node/marsh", days: 3, kind: "陸路", open: true, onPath: true },
-        { id: "r2", a: "node/marsh", b: "node/luna", days: 6, kind: "渡輪", open: false, onPath: false },
+        { id: "r1", a: "place/ridge", b: "place/marsh", days: 3, kind: "陸路", open: true, onPath: true },
+        { id: "r2", a: "place/marsh", b: "place/luna", days: 6, kind: "渡輪", open: false, onPath: false },
       ],
-      selected: { id: "node/ridge", name: "嶺口", lines: ["聯合所屬城邦", "服務：市場、酒館、登記處"], buttons: [
-        btn("sail:node/marsh", "航向沼原", "world", { type: "cmd", cmd: { v: "sail", to: "node/marsh" } }, { key: "S" }),
-        btn("dock:node/ridge", "停泊", "world", { type: "cmd", cmd: { v: "dock" } }, { enabled: false, reason: "已經停泊" }),
+      selected: { id: "place/ridge", name: "嶺口", lines: ["聯合所屬城邦", "服務：市場、酒館、登記處"], buttons: [
+        btn("sail:place/marsh", "航向沼原", "world", { type: "cmd", cmd: { v: "sail", to: "place/marsh" } }, { key: "S" }),
+        btn("dock:place/ridge", "停泊", "world", { type: "cmd", cmd: { v: "dock" } }, { enabled: false, reason: "已經停泊" }),
       ] },
     },
     contracts: [
-      { id: "contract-18", title: "清剿：沼原", kind: "clear", kindName: "清剿", issuerName: "聯合", nodeId: "node/marsh", nodeName: "沼原",
+      { id: "contract-18", title: "清剿：沼原", kind: "clear", kindName: "清剿", issuerName: "聯合", nodeId: "place/marsh", nodeName: "沼原",
         status: "offered", statusName: "可接", total: 18000, advance: 4000, perHead: 300, deadlineDay: 30, daysLeft: 15,
         enemy: "犬族・中寬・深層・張開", selected: true, buttons: [
           btn("accept:contract-18", "接約", "contract", { type: "cmd", cmd: { v: "accept", contract: "contract-18" } }, { key: "A", tone: "primary" }),
           btn("drop:contract-18", "放棄", "contract", { type: "cmd", cmd: { v: "drop", contract: "contract-18" } }, { tone: "danger", enabled: false, reason: "尚未接約" }),
           btn("sortie:contract-18", "出戰", "contract", { type: "sortieOpen", contract: "contract-18" }, { key: "B", enabled: false, reason: "不在目標地點" }),
         ] },
-      { id: "contract-19", title: "護送：靜海站", kind: "escort", kindName: "護送", issuerName: "月港", nodeId: "node/luna", nodeName: "靜海站",
+      { id: "contract-19", title: "護送：靜海站", kind: "escort", kindName: "護送", issuerName: "月港", nodeId: "place/luna", nodeName: "靜海站",
         status: "active", statusName: "進行中", total: 9000, advance: 0, perHead: 0, deadlineDay: 40, daysLeft: 25, enemy: null, selected: false, buttons: [] },
     ],
     roster: [

@@ -2,9 +2,9 @@ import type { CampaignState, OpsCtx, OpsCommand, Sortie } from "../../../ops/sta
 import { applyCommand } from "../../../ops/time/index.ts";
 import { render } from "../../../ops/text/render.ts";
 import { clock } from "../../../ops/state/clock.ts";
-import { routeOpen } from "../../../ops/world/nodes.ts";
-import { shortestPath } from "../../../ops/world/travel.ts";
-import type { TravelState } from "../../../ops/world/travel.ts";
+import { placeAt } from "../../../ops/war/loc.ts";
+import { allPlaces, requirePlace } from "../../../ops/world/places.ts";
+import { isDocked, shortestPath } from "../../../ops/world/move.ts";
 import { marketPrice, marketListings } from "../../../ops/world/market.ts";
 import type { MarketState } from "../../../ops/world/market.ts";
 import { peekCrew } from "../../../ops/crew/shared.ts";
@@ -38,39 +38,42 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     } }).result;
     return button(id, "出戰編成", group, { type: "sortieOpen", ...(contract ? { contract } : {}) }, !result.ok ? result.error === "pending-choice" ? rejection(result.error) : result.error : undefined);
   };
-  const route = s.ship.route, docked = !route && !(s as TravelState).drifting;
+  const pathState = s.ship.path, here = placeAt(s, ctx, s.ship.pos), docked = isDocked(s, ctx);
+  const destination = pathState?.to;
+  const targetPlace = destination && "place" in destination ? destination.place : undefined;
+  const targetName = destination ? "place" in destination ? name(destination.place) : "actor" in destination ? name(destination.actor) : `${destination.cell.x},${destination.cell.y}` : "";
+  const route = pathState ? { to: targetPlace ?? targetName, toName: targetName, daysLeft: s.pendingTicks } : undefined;
   const roomButtons = screen.actions.map(a => cmdButton(a.id, a.label, a.group, a.cmd, a.disabled));
   roomButtons.push(cmdButton("dock", "停泊", "world", { v: "dock" }), cmdButton("drift", "懸停", "world", { v: "drift" }));
   roomButtons.push(openButton("sortieOpen", "sortie", ui.contract ?? undefined));
   if (ui.showHelp || ui.report) roomButtons.push(button("cancel", "關閉", "system", { type: "cancel" }));
-  for (const c of Object.values(peekCrew(s)?.candidates ?? {}).filter(c => c.node === s.ship.at))
+  for (const c of Object.values(peekCrew(s)?.candidates ?? {}).filter(c => c.place === here))
     roomButtons.push(cmdButton(`hire:${c.id}`, `招募${db.require("person", c.person.def).name}（${c.fee}，月薪${c.wage}）`, "market", { v: "hire", candidate: c.id }));
-  const nodes = world.all("node"), routes = world.all("route"), points = layoutNodes(nodes, routes);
+  const nodes = allPlaces(s, ctx), points = layoutNodes(nodes);
   const contracts = Object.values(s.contracts).sort((a, b) => a.id.localeCompare(b.id)).map(c => {
     const kind = world.require("contract", c.template).kind, target = c.target.snapshot;
     const buttons = [cmdButton(`accept:${c.id}`, "接約", "contract", { v: "accept", contract: c.id }),
       ...(["total", "advance", "perHead"] as const).map((ask, i) => cmdButton(`ask:${c.id}:${ask}`, ["談總價", "談預付", "談按頭"][i]!, "contract", { v: "accept", contract: c.id, ask })),
       cmdButton(`drop:${c.id}`, "放棄", "contract", { v: "drop", contract: c.id }),
-      cmdButton(`sail:contract:${c.id}`, "航向目標", "contract", { v: "sail", to: c.target.node }),
+      cmdButton(`sail:contract:${c.id}`, "航向目標", "contract", { v: "sail", to: c.target.place }),
       openButton(`sortieOpen:${c.id}`, "contract", c.id)];
-    return { id: c.id, title: `${label(kind)}：${name(c.target.node)}`, kind, kindName: label(kind), issuerName: name(c.issuer), nodeId: c.target.node,
-      nodeName: name(c.target.node), status: c.status, statusName: label(c.status), ...c.terms, deadlineDay: c.deadlineDay,
+    return { id: c.id, title: `${label(kind)}：${name(c.target.place)}`, kind, kindName: label(kind), issuerName: name(c.issuer), nodeId: c.target.place,
+      nodeName: name(c.target.place), status: c.status, statusName: label(c.status), ...c.terms, deadlineDay: c.deadlineDay,
       daysLeft: Math.max(0, c.deadlineDay - s.clock.day), enemy: target ? `${label(target.family)}／${target.width}／${label(target.depth)}${target.phase ? `／${label(target.phase)}` : ""}` : null,
       selected: ui.contract === c.id, buttons };
   });
   const worldNodes = nodes.map(n => {
-    const current = s.nodes[n.id], owner = current?.ownerOverride ?? n.owner ?? null;
-    const rift = Object.values(s.rifts).find(r => r.node === n.id && r.phase !== "closed");
-    return { id: n.id, name: n.name, ...points.get(n.id)!, body: n.body, kind: n.kind, kindName: label(n.kind), owner, ownerName: owner ? name(owner) : null,
+    const current = s.places[n.id], owner = current?.ownerOverride ?? n.owner ?? null;
+    const rift = Object.values(s.rifts).find(r => r.site === n.id && r.phase !== "closed");
+    return { id: n.id, name: n.name, ...points.get(n.id)!, body: n.kind === "lunar-base" ? "moon" as const : "earth" as const, kind: n.kind, kindName: label(n.kind), owner, ownerName: owner ? name(owner) : null,
       blight: current?.blight ? { depth: current.blight.depth, depthName: label(current.blight.depth) } : null,
       rift: rift ? { id: rift.id, phase: rift.phase, phaseName: label(rift.phase), width: rift.width } : null,
-      here: n.id === s.ship.at, destination: n.id === route?.to, selected: n.id === ui.node,
+      here: n.id === here, destination: n.id === targetPlace, selected: n.id === ui.node,
       contracts: contracts.filter(c => c.nodeId === n.id && ["offered", "active", "stage"].includes(c.status)).length };
   });
-  const selected = worldNodes.find(n => n.selected), selectedDef = selected && world.require("node", selected.id);
-  const path = selected && shortestPath(s, ctx, s.ship.at, selected.id);
-  const pathNodes = [s.ship.at, ...(route?.via ?? (route ? [route.to] : []))];
-  const market = world.all("market").find(m => m.node === s.ship.at);
+  const selected = worldNodes.find(n => n.selected), selectedDef = selected && requirePlace(s, ctx, selected.id);
+  const path = selected && shortestPath(s, ctx, s.ship.pos, selected.id);
+  const market = world.all("market").find(m => m.place === here);
   const marketReason = route ? "航行中" : !market ? "此地沒有市場" : !docked ? "須先停泊" : null;
   const marketItems: OpsSnapshot["market"]["items"] = market ? marketListings(s, ctx, market).map(({ kind, item }) => ({
     id: item.def, name: name(item.def), kind, kindName: label(kind), price: marketPrice(s, ctx, market, item),
@@ -108,16 +111,15 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     naming: (pending as Partial<NamingPrompt>)?.naming ? { placeholder: "請輸入名字" } : null } : null;
   const snapshot: OpsSnapshot = {
     header: { ...s.clock, daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 潮月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
-      cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, location: route ? `航行中 → ${name(route.to)}` : name(s.ship.at),
-      route: route ? { to: route.to, toName: name(route.to), daysLeft: route.daysLeft } : null, docked, pressure: s.pressure,
+      cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, location: route ? `航行中 → ${targetName}` : here ? name(here) : `${s.ship.pos.cell.x},${s.ship.pos.cell.y}`,
+      route: route ?? null, docked, pressure: s.pressure,
       fuel: { cur: s.ship.fuel.cur, max: s.ship.fuel.max }, hull: { cur: s.ship.hull.cur, max: s.ship.hull.max } },
     tab: ui.tab, tabs: (["ship", "world", "contracts", "roster", "mechs", "ledger", "market", "calendar"] as const).map(tab => ({ ...button(`tab:${tab}`, label(tab), "tabs", { type: "tab", tab }), active: tab === ui.tab })),
     timeButtons: [button("advance:day", "推進一天", "time", { type: "advance", until: "day" }), button("advance:event", "到下個事件", "time", { type: "advance", until: "event" })],
     room: { id: screen.room.id, title: screen.room.title, desc: screen.room.desc }, roomButtons,
-    world: { nodes: worldNodes, routes: routes.map(r => ({ id: r.id, a: r.a, b: r.b, days: r.days, kind: r.kind, open: routeOpen(s, r),
-      onPath: pathNodes.some((id, i) => i > 0 && (id === r.a && pathNodes[i - 1] === r.b || id === r.b && pathNodes[i - 1] === r.a)) })),
+    world: { nodes: worldNodes, routes: [],
       selected: selected ? { id: selected.id, name: selected.name,
-        lines: [`所有權：${selected.ownerName ?? "無"}`, `服務：${selectedDef!.services.map(id => world.get("room", world.get("service", id)?.room ?? id)?.title ?? label(id)).join("、") || "無"}`,
+        lines: [`座標：${name(selectedDef!.map)} ${selectedDef!.at.x},${selectedDef!.at.y}`, `所有權：${selected.ownerName ?? "無"}`, `服務：${selectedDef!.services.map(id => world.get("room", world.get("service", id)?.room ?? id)?.title ?? label(id)).join("、") || "無"}`,
           `蝕域：${selected.blight?.depthName ?? "無"}`, `裂縫：${selected.rift ? `${selected.rift.phaseName}／${selected.rift.width}` : "無"}`, path ? `航程 ${path.days} 天／燃料 ${path.fuel}` : "沒有可通行航線"],
         buttons: [cmdButton(`sail:${selected.id}`, "航向此地", "world", { v: "sail", to: selected.id })] } : null },
     contracts, mechs,
@@ -129,12 +131,12 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     }),
     ledger: { accounts: Object.entries(s.ledger.balances).map(([account, balance]) => ({ account, name: label(account), balance })),
       recent: s.ledger.entries.slice(-30).reverse().map(e => ({ day: e.day, account: e.account, name: label(e.account), delta: e.delta, reason: label(e.reason) })) },
-    market: { available: !marketReason, reason: marketReason, name: market ? `${name(market.node)}市場` : null, items: marketItems },
+    market: { available: !marketReason, reason: marketReason, name: market ? `${name(market.place)}市場` : null, items: marketItems },
     calendar: { dom: s.clock.dom, daysPerMonth: cal.daysPerMonth, month: s.clock.month, days,
       nextSpringIn: Array.from({ length: cal.daysPerMonth }, (_, i) => i).find(i => clock(s.clock.day + i, cal).phase === "spring") ?? cal.daysPerMonth,
       upcoming: [...contracts.filter(c => ["active", "stage"].includes(c.status)).map(c => ({ day: c.deadlineDay, text: `${c.title}到期` })),
         { day: s.clock.day + cal.daysPerMonth - s.clock.dom + 1, text: "新潮月：薪資結算" }].sort((a, b) => a.day - b.day) },
-    panels: { rifts: Object.values(s.rifts).map(r => ({ id: r.id, nodeName: name(r.node), phaseName: label(r.phase), width: r.width })),
+    panels: { rifts: Object.values(s.rifts).map(r => ({ id: r.id, nodeName: name(r.site), phaseName: label(r.phase), width: r.width })),
       queue: s.jobs.map(j => ({ id: j.id, text: `${label(j.kind)}：${name(j.target)} ${j.doneHours}/${j.needHours}`, progress: j.needHours ? Math.min(1, j.doneHours / j.needHours) : 1 })) },
     log: screen.log, prompt, sortie, battle: ui.battle, report: ui.report, message: ui.message, keyHints: [], showHelp: ui.showHelp, over,
   };

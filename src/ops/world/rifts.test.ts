@@ -1,3 +1,5 @@
+import { requirePlace } from "./places.ts";
+import { placeLoc } from "../war/loc.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { createWorldDB } from "../content/worlddb.ts";
@@ -12,7 +14,7 @@ test("rifts：大潮轉移表與非大潮不轉移", () => {
   for (const [initial, n, expected] of rows) {
     const { s, ctx } = fixture(), r = addRift(s, ctx, { phase: initial }); day(s, ctx, n);
     riftsDaily2(s, ctx); assert.equal(r.phase, expected, `${initial}@${n}`);
-    if (expected === "anchored" && initial === "opening") assert.ok(s.nodes[r.node]!.blight);
+    if (expected === "anchored" && initial === "opening") assert.ok(s.places[r.site]!.blight);
   }
 });
 test("rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次", () => {
@@ -25,20 +27,20 @@ test("rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次", () => {
 });
 test("rifts：兩次大潮防守封印、潮月退區到 closed", () => {
   const { s, ctx } = fixture(), r = addRift(s, ctx, { phase: "unanchored" }); s.pressure = 100;
-  s.nodes[r.node]!.blight = { rift: r.id, depth: "core", sinceDay: 0 }; r.zones = [r.node];
-  const other = ctx.world.require("node", "node/reed-marsh").id;
-  s.nodes[other]!.blight = { rift: r.id, depth: "shallow", sinceDay: 0 }; r.zones.push(other);
+  s.places[r.site]!.blight = { rift: r.id, depth: "core", sinceDay: 0 }; r.zones = [r.site];
+  const other = requirePlace(s, ctx, "place/reed-marsh").id;
+  s.places[other]!.blight = { rift: r.id, depth: "shallow", sinceDay: 0 }; r.zones.push(other);
   day(s, ctx, 14); onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealing");
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealing");
   day(s, ctx, 28);
-  const defense = offerContract(s, ctx, "contract/seal", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
-  s.ship.at = r.node;
+  const defense = offerContract(s, ctx, "contract/seal", "faction-ops/migrant-crew", { place: r.site, rift: r.id })!;
+  s.ship.pos = placeLoc(s, ctx, r.site);
   cmdAccept(s, ctx, { v: "accept", contract: defense.id });
   riftsDaily2(s, ctx); assert.equal(s.pendingBattle?.rift, r.id);
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealed"); assert.equal(s.pressure, 88);
   day(s, ctx, 42); riftsDaily2(s, ctx); assert.equal(r.phase, "sealed");
-  day(s, ctx, 56); riftsDaily2(s, ctx); assert.equal(r.phase, "receding"); assert.equal(s.nodes[r.node]!.blight, undefined);
-  day(s, ctx, 84); riftsDaily2(s, ctx); assert.equal(r.phase, "closed"); assert.equal(s.nodes[other]!.blight, undefined);
+  day(s, ctx, 56); riftsDaily2(s, ctx); assert.equal(r.phase, "receding"); assert.equal(s.places[r.site]!.blight, undefined);
+  day(s, ctx, 84); riftsDaily2(s, ctx); assert.equal(r.phase, "closed"); assert.equal(s.places[other]!.blight, undefined);
 });
 test("rifts：selfClose 一個大潮後關閉，不產生錨", () => {
   const { s, ctx } = fixture(), original = ctx.world.require("rift", "rift/insect");

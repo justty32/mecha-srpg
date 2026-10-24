@@ -1,6 +1,8 @@
 // session 與指令歷史各自封存在工具組中；不依賴協定層。
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
+import { placeAt } from "../ops/war/loc.ts";
+import type { WorldDB } from "../ops/content/worlddb.ts";
 import { newCampaign, createOpsCtx } from "../ops/content/start.ts";
 import type { CampaignState, OpsCommand } from "../ops/state/types.ts";
 import { applyCommand } from "../ops/time/index.ts";
@@ -26,12 +28,12 @@ const seedSchema: JsonSchema = { type: "integer", minimum: 0, maximum: Number.MA
 const startSchema: JsonSchema = { type: "string", default: "default" };
 
 // actions 與省略 sortie 的 begin 共用同一份候選，避免選到不同編成。
-function sortieOptions(state: CampaignState): { sortie: Extract<OpsCommand, { v: "sortie" }>["sortie"]; label: string; disabled?: string }[] {
+function sortieOptions(state: CampaignState, world: WorldDB): { sortie: Extract<OpsCommand, { v: "sortie" }>["sortie"]; label: string; disabled?: string }[] {
   if (state.pendingBattle) return [{ sortie: {}, label: "出戰" }];
   const units = state.hangar.bays.flatMap(m => { const mech = m ? state.mechs[m] : undefined;
     return mech?.seats.pilot ? [{ mech: mech.id, seats: { ...mech.seats }, controlMode: "pilot" as const }] : []; });
-  return Object.values(state.contracts).filter(c => ["active", "stage"].includes(c.status) && c.target.node === state.ship.at).map(c => ({
-    sortie: { contract: c.id, node: c.target.node, units }, label: `出戰契約 ${c.id}（${units.length} 台）`,
+  return Object.values(state.contracts).filter(c => ["active", "stage"].includes(c.status) && c.target.place === placeAt(state, { world }, state.ship.pos)).map(c => ({
+    sortie: { contract: c.id, place: c.target.place, loc: state.ship.pos, units }, label: `出戰契約 ${c.id}（${units.length} 台）`,
     ...(!units.length ? { disabled: "機庫沒有已派駕駛的機甲；先 assign" } : {}),
   }));
 }
@@ -133,7 +135,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
   const sortieInput = (s: Session, value: unknown): Extract<OpsCommand, { v: "sortie" }> => {
     let input = value;
     if (input === undefined) {
-      const options = sortieOptions(s.state).filter(o => !o.disabled);
+      const options = sortieOptions(s.state, env.world().world).filter(o => !o.disabled);
       if (options.length !== 1) throw new ToolError(options.length > 1 ? "有多個可出戰契約，請明給 sortie。" : "沒有可出戰項目，請查看 campaign_actions 或明給 sortie。");
       input = options[0]!.sortie;
     }
@@ -188,7 +190,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
       for (const contract of Object.values(s.state.contracts).filter(c => c.status === "offered")) actions.push({
         label: `承接契約 ${contract.id}`, cmd: { v: "accept", contract: contract.id }, ...(screen.prompt ? { disabled: "要先 choose" } : {}),
       });
-      for (const option of sortieOptions(s.state)) {
+      for (const option of sortieOptions(s.state, env.world().world)) {
         const disabled = screen.prompt ? "要先 choose" : option.disabled;
         const info = preview(s, { v: "sortie", sortie: option.sortie });
         actions.push({ label: `${option.label}（AI 自動結算）`, cmd: { v: "sortie", sortie: option.sortie }, preview: info, ...(disabled ? { disabled } : {}) },

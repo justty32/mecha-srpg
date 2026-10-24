@@ -13,13 +13,13 @@ import { buildGridMap, cellKey, footprintOf, idx, inBounds, terrainAt } from "..
 import type { GridMap } from "../world/grid.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
-const EFFECT_KEYS = ["startOperation", "opProgress", "transferNode", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
+const EFFECT_KEYS = ["startOperation", "opProgress", "transferPlace", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setPlace", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
 const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
   operation: ["actorScales", "phases", "onSuccess", "onFail", "onAbort"], treaty: ["terms", "onExpire"], lineage: ["tags"], model: ["requires", "tags"], forces: ["shells"], affinity: ["pairs"],
-  node: ["services", "terrainPool", "tags"], route: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
+  place: ["services", "tags"], lane: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
   "faction-ops": ["territory", "contractKinds", "services", "reputationTiers", "tags"], contract: ["issuerKinds", "gradeRange", "objectives", "onComplete", "onFail", "onCancel"],
   action: ["effects"], market: ["lists", "priceMods"], recruit: ["sources"], research: ["requires", "unlocks"], names: ["names", "epithets"],
-  event: ["choices"], dialogue: ["topics"], room: ["base", "exits", "phrases"], start: ["mechs", "persons", "flags"], ship: ["rooms"], ferry: ["ports", "departDays", "requires"], calendar: ["spring", "neap", "special"],
+  event: ["choices"], dialogue: ["topics"], room: ["base", "exits", "phrases"], start: ["mechs", "persons", "flags"], ship: ["rooms"], calendar: ["spring", "neap", "special"],
 };
 function object(value: unknown): value is Record<string, unknown> { return value !== null && typeof value === "object" && !Array.isArray(value); }
 
@@ -39,6 +39,7 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if (typeof value === "number" && !Number.isFinite(value)) errors.push(`${at}: non-finite number`);
     if (typeof value === "string") {
       const parsed = parseId(value);
+      if (parsed && ["node", "route", "ferry"].includes(parsed.kind)) errors.push(`${at}: obsolete world reference ${value}`);
       if (parsed && (isContentKind(parsed.kind) || WORLD_KINDS.includes(parsed.kind as WorldKind))) reference(value, at,
         (kind === "place" || kind === "regions") && field === "map" ? "map" : undefined, kind === "faction-ops" && field === "faction");
       if (["account", "counter"].includes(field) && !isAccount(value)) errors.push(`${at}: invalid account ${value}`);
@@ -69,6 +70,10 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   };
   for (const kind of WORLD_KINDS) for (const def of world.all(kind)) {
     const raw = def as unknown as Record<string, unknown>;
+    if (["start", "market", "recruit"].includes(kind)) {
+      reference(raw.place, `${def.id}.place`, "place");
+      if ("node" in raw) errors.push(`${def.id}.node: obsolete key; use place`);
+    }
     for (const key of REQUIRED_ARRAYS[kind] ?? []) if (!Array.isArray(raw[key])) errors.push(`${def.id}.${key}: expected array`);
     walk(def, def.id, kind);
   }
@@ -105,9 +110,10 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   for (const def of world.all("map")) if ((def.fog === "dark" || def.darkRects?.length) && grids.has(def.id) && !charted.has(def.id)) {
     errors.push(`${def.id}: dark map requires a place on a charted cell`);
   }
-  for (const lane of world.all("lane")) { reference(lane.a, `${lane.id}.a`, "place"); reference(lane.b, `${lane.id}.b`, "place"); }
-  for (const route of world.all("route")) { reference(route.a, `${route.id}.a`, "node"); reference(route.b, `${route.id}.b`, "node"); if (!(route.days > 0)) errors.push(`${route.id}.days: must be positive`); }
-  for (const node of world.all("node")) for (const terrain of node.terrainPool ?? []) reference(terrain, `${node.id}.terrainPool`, "terrain");
+  for (const lane of world.all("lane")) {
+    reference(lane.a, `${lane.id}.a`, "place"); reference(lane.b, `${lane.id}.b`, "place");
+    if (!Number.isInteger(lane.days) || lane.days <= 0) errors.push(`${lane.id}.days: must be positive integer`);
+  }
   for (const encounter of world.all("encounter")) {
     if (encounter.faction !== undefined) reference(encounter.faction, `${encounter.id}.faction`, "faction");
     for (const [i, unit] of (encounter.units ?? []).entries()) {
@@ -173,7 +179,7 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   for (const cfg of world.all("forces")) for (const shell of cfg.shells ?? []) {
     reference(shell.frame, `${shell.id}.frame`, "frame");
     if (db.get("frame", shell.frame)?.cls !== "ancient") errors.push(`${shell.id}: shell frame must be ancient`);
-    if (typeof shell.holder === "object") reference(shell.holder.ruin, `${shell.id}.holder.ruin`, "node");
+    if (typeof shell.holder === "object") reference(shell.holder.ruin, `${shell.id}.holder.ruin`, "place");
     else if (shell.holder !== "player" && !liveFaction(shell.holder)) errors.push(`${shell.id}.holder: must be live faction`);
   }
   const templates = new Set(world.all("templates").flatMap(t => Object.keys(t.entries ?? {})));

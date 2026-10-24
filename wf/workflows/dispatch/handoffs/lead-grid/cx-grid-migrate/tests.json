@@ -1,0 +1,52 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "category",
+  "name",
+  "file"
+ ],
+ "rows": [
+  {
+   "category": "連續移動天數",
+   "name": "move：連續航行總天數等於 ceil(Σcost/mp)，sail 不耗 tick 或燃料",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "分段不會更快",
+   "name": "move：直達不慢於中途懸停一天再走，停船清空 carry",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "每日燃料守恆",
+   "name": "move：每個移動日恰扣一次燃料，經過深蝕格當日乘二",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "等7等同七次等1",
+   "name": "move：航行中等7與七次等1事件序列相同",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "遭遇與選項凍結位置",
+   "name": "move：pendingBattle與pendingChoices凍結位置與燃料",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "不進不可進格",
+   "name": "move：船永不進不可進格，不能到達時不改狀態",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "跨圖包含等船",
+   "name": "move：跨圖航道估計包含等船天數，到站收票價",
+   "file": "src/ops/world/travel.test.ts"
+  },
+  {
+   "category": "sail三型往返",
+   "name": "sail 三型與 via：parse(formatCommand()) 往返一致",
+   "file": "src/ops/text/format.test.ts"
+  }
+ ]
+}

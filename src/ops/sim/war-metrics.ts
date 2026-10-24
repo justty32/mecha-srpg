@@ -47,7 +47,7 @@ export function updateWarMetrics(previous: WarMetrics, s: CampaignState): WarMet
 export function warStatistics(m: WarMetrics, events: readonly CampaignEvent[]) {
   return { enteredWar: events.filter(e => e.type === "RelationChanged" && e.payload.to === "war").length,
     ceasefires: events.filter(e => e.type === "TreatySigned" && e.payload.kind === "ceasefire").length,
-    NodeTransferred: events.filter(e => e.type === "NodeTransferred").length,
+    PlaceTransferred: events.filter(e => e.type === "PlaceTransferred").length,
     OperationResolved: events.filter(e => e.type === "OperationResolved").length,
     maxOperations: m.maxOperations, maxDays: m.maxDays, maxWarRatio: m.maxWarRatio, maxAlliedRatio: m.maxAlliedRatio,
     maxWarStreakDays: m.maxWarStreakDays, minMajorStates: m.minMajorStates, minPowerRatio: m.minPowerRatio, errors: m.errors };
