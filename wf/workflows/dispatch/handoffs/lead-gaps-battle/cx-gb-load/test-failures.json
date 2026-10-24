@@ -1,0 +1,127 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "run",
+  "test",
+  "location",
+  "reason"
+ ],
+ "rows": [
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/mcp/batch.test.ts",
+   "location": "src/mcp/batch.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/mcp/campaign.test.ts",
+   "location": "src/mcp/campaign.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/mcp/cli.test.ts",
+   "location": "src/mcp/cli.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/mcp/e2e.test.ts",
+   "location": "src/mcp/e2e.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/content/cond.test.ts",
+   "location": "src/ops/content/cond.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/crew/crew.test.ts",
+   "location": "src/ops/crew/crew.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/sim/golden.test.ts",
+   "location": "src/ops/sim/golden.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/sim/war-invariants.test.ts",
+   "location": "src/ops/sim/war-invariants.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/sortie/entry.test.ts",
+   "location": "src/ops/sortie/entry.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "src/ops/world/rifts.test.ts",
+   "location": "src/ops/world/rifts.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "test/sim/cli.test.ts",
+   "location": "test/sim/cli.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "npm test（隔離、檔級）",
+   "test": "test/sim/seams.test.ts",
+   "location": "test/sim/seams.test.ts",
+   "reason": "runner 僅提供 exitCode 1／test failed；此模式沒有內部斷言詳情，見非隔離結果（若有）。"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "批次 observe 與 battle_observe 相同，情境 name／brief 有則顯示、無則省略",
+   "location": "src/mcp/batch.test.ts:33:1",
+   "reason": "\"Cannot assign to read only property 'name' of object '#<Object>'\""
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "批次到 AI／戰鬥結束即停；until=player 推進到人類且遵守 max",
+   "location": "src/mcp/batch.test.ts:67:1",
+   "reason": "assert.ok(batch.outcome) 為假"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "campaign_act sortie：真實 AI 戰果與記錄可存檔重播",
+   "location": "src/mcp/campaign.test.ts:120:1",
+   "reason": "營運指令回 already-there，isError true"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "socket CLI：serve、call 共用 session；list 與錯誤 exit 1",
+   "location": "src/mcp/cli.test.ts:6:1",
+   "reason": "啟動階段斷言失敗：expected true、actual false；無額外錯誤字串"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "stdio 端對端：agent 玩三輪，玩家成功指令重播 hash 等於 runBattle",
+   "location": "src/mcp/e2e.test.ts:44:1",
+   "reason": "'server 提前退出 0：'"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "stdio 端對端：battle_auto hash 等於直接 runBattle",
+   "location": "src/mcp/e2e.test.ts:72:1",
+   "reason": "'server 提前退出 0：'"
+  },
+  {
+   "run": "test-isolation=none",
+   "test": "jobs 1 與 2 結果逐字相同，記憶體內容可跨 worker",
+   "location": "test/sim/probe.test.ts:59:1",
+   "reason": "jobs 1／2 的 burst-30 使用總數 8／16（每 seed 4／8），輸出不相同"
+  }
+ ]
+}

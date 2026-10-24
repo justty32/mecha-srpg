@@ -1,0 +1,104 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "counts": {
+  "content-load": 34,
+  "band-evasion": 1,
+  "soft-overflow-band": 1,
+  "band-damage": 1,
+  "mechanical-unarmed": 1
+ },
+ "columns": [
+  "ruleId",
+  "file",
+  "field",
+  "message"
+ ],
+ "rows": [
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[0].layers",
+   "message": "capture layer HP differs: heart-shrine"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[1].layers",
+   "message": "capture layer HP differs: crown"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[2].layers",
+   "message": "capture layer HP differs: left-wing"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[3].layers",
+   "message": "capture layer HP differs: right-wing"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[4].layers",
+   "message": "capture layer HP differs: sting"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/lancewing-b.json",
+   "field": "$.partsOverride[5].layers",
+   "message": "capture layer HP differs: lantern"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/mirror-a.json",
+   "field": "$.partsOverride[0].layers",
+   "message": "capture layer HP differs: mirror-side"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/mirror-a.json",
+   "field": "$.partsOverride[1].layers",
+   "message": "capture layer HP differs: bare-side"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/mirror-a.json",
+   "field": "$.partsOverride[2].layers",
+   "message": "capture layer HP differs: hidden-core"
+  },
+  {
+   "ruleId": "content-load",
+   "file": "content/base/monsters/mirror-a.json",
+   "field": "$.partsOverride[3].layers",
+   "message": "capture layer HP differs: folded-limb"
+  },
+  {
+   "ruleId": "band-evasion",
+   "file": "content/base/effects/mx-faded.json",
+   "field": "$.contribs[0].value",
+   "message": "value 25 exceeds upper limit 22; source numeric-bands.json rows[18]"
+  },
+  {
+   "ruleId": "soft-overflow-band",
+   "file": "content/base/species/tidewolf.json",
+   "field": "$.pools[1].bands",
+   "message": "instinct: no band covers values above max"
+  },
+  {
+   "ruleId": "band-damage",
+   "file": "content/base/abilities/kx-tide-crush.json",
+   "field": "$.packets",
+   "message": "value 28 exceeds upper limit 26; source numeric-bands.json rows[7]"
+  },
+  {
+   "ruleId": "mechanical-unarmed",
+   "file": "content/base/frames/infantry.json",
+   "field": "$.defaultLoadout",
+   "message": "mechanical frame has no defaultLoadout or innate attack"
+  }
+ ]
+}

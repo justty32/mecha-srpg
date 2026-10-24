@@ -1,0 +1,181 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "kind",
+  "name",
+  "result",
+  "details"
+ ],
+ "rows": [
+  {
+   "kind": "measurement",
+   "name": "targeted",
+   "result": "22 passed / 0 failed",
+   "details": "node --test --test-isolation=none test/rules/monster-def.test.ts src/content/content.test.ts"
+  },
+  {
+   "kind": "measurement",
+   "name": "typecheck",
+   "result": "exit 0",
+   "details": "npm run typecheck"
+  },
+  {
+   "kind": "measurement",
+   "name": "check",
+   "result": "OK 0 errors, 38 warnings",
+   "details": "34 capture HP warnings + 4 other-line lint warnings"
+  },
+  {
+   "kind": "measurement",
+   "name": "ops-check",
+   "result": "OK 0 errors, 38 warnings",
+   "details": "node src/ops/content/check.ts content/base"
+  },
+  {
+   "kind": "measurement",
+   "name": "fuzz",
+   "result": "100/100, hardRuns 0",
+   "details": "ai 34 / random 33 / scenario 33; jobs 4; 326742 ms; Captured covered in 4 trials"
+  },
+  {
+   "kind": "measurement",
+   "name": "npm-test",
+   "result": "110 passed / 15 failed files",
+   "details": "sandbox isolated output counts files, not test cases; failure diagnostics below"
+  },
+  {
+   "kind": "measurement",
+   "name": "bench-before",
+   "result": "4.55 ms/step",
+   "details": "264 ms; 58 commands; ae17e5c3a88e7a67"
+  },
+  {
+   "kind": "measurement",
+   "name": "bench-initial-after",
+   "result": "38.53 ms/step",
+   "details": "2312 ms; 60 commands; 7dcff3308145c454"
+  },
+  {
+   "kind": "measurement",
+   "name": "bench-frame-cache",
+   "result": "25.11 ms/step",
+   "details": "1507 ms; 60 commands; 7dcff3308145c454"
+  },
+  {
+   "kind": "measurement",
+   "name": "bench-final",
+   "result": "FAIL 29 ms/step > 5.46 limit",
+   "details": "1740 ms; 60 commands; 7dcff3308145c454; 6.37x opening; global load observed 38–62"
+  },
+  {
+   "kind": "measurement",
+   "name": "legacy-UnitInit",
+   "result": "659804c7a60fdc98 unchanged",
+   "details": "full initial state hash captured before implementation; +1 HP negative control differs"
+  },
+  {
+   "kind": "measurement",
+   "name": "battle-golden",
+   "result": "6 hashes unchanged",
+   "details": "combat-conduct, combat-layers, combat-tenth, people-berserk, people-capture, people-eject"
+  },
+  {
+   "kind": "measurement",
+   "name": "ops-golden",
+   "result": "hash changed",
+   "details": "expected ff0f5a61ffac4a93 / 295 events; actual 50b3d36561c422f6 / 358 events; day31; concurrent ops changes, not battle golden"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/mcp/batch.test.ts",
+   "result": "recheck PASS",
+   "details": "4/4; original isolated failure did not reproduce after concurrent work"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/mcp/campaign.test.ts",
+   "result": "FAIL",
+   "details": "sortie setup travel command returns already-there"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/mcp/cli.test.ts",
+   "result": "FAIL",
+   "details": "child exits before socket ready; stderr empty; exact cause unproven"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/mcp/e2e.test.ts",
+   "result": "FAIL",
+   "details": "both stdio tests: server exits early with code 0, empty stderr"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/content/cond.test.ts",
+   "result": "recheck PASS",
+   "details": "original isolated failure did not reproduce after concurrent work"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/crew/crew.test.ts",
+   "result": "FAIL",
+   "details": "recruit test line121 expects ok:true but receives false"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/sim/golden.test.ts",
+   "result": "FAIL",
+   "details": "fixed campaign log expected ff0f5a61ffac4a93 /295 events, actual 50b3d36561c422f6 /358 events"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/sim/war-invariants.test.ts",
+   "result": "recheck PASS",
+   "details": "original isolated failure did not reproduce after concurrent work"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/sortie/entry.test.ts",
+   "result": "FAIL",
+   "details": "JSON roundtrip removes undefined rift and effect.owner.part/layer keys"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/ops/world/rifts.test.ts",
+   "result": "FAIL",
+   "details": "pendingSortie.rift undefined instead of rift-test"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/rules/effects.test.ts",
+   "result": "FAIL",
+   "details": "fixture ability pp-break-limb rejected by other-line attack-cost lint"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/rules/hooks.test.ts",
+   "result": "FAIL",
+   "details": "fixture ability pp-break-limb rejected by other-line attack-cost lint"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "src/rules/pools.test.ts",
+   "result": "FAIL",
+   "details": "fixture ability pp-break-limb rejected by other-line attack-cost lint"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "test/golden.test.ts",
+   "result": "FAIL precondition only",
+   "details": "fixture ability pp-break-limb rejected; all 6 battle hash assertions pass"
+  },
+  {
+   "kind": "npm-test failure",
+   "name": "test/sim/seams.test.ts",
+   "result": "FAIL",
+   "details": "map/globals fixture ability pp-break-limb rejected by other-line attack-cost lint"
+  }
+ ]
+}
