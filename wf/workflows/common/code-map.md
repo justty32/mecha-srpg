@@ -10,11 +10,11 @@
 
 | 領域 | 檔案 | 職責 | 測試在哪 |
 |------|------|------|---------|
-| core | `src/core/` | 型別（Def／State）、`Id`、`BattleState`、事件型別、seeded RNG、`EventLog`、NumExpr 求值器；不依賴任何模組 | `src/core/*.test.ts`（已落地 2026-10-24）|
-| content | `src/content/`、`schemas/`、`content/base/` | 載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema | `src/content/*.test.ts`（已落地 2026-10-24）|
-| rules | `src/rules/` | 回合、攻擊、資源、效果、人物、戰局結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | 規劃中 |
-| ai | `src/ai/` | 陣營知識、候選生成、估值、可插拔策略；只用 rules 的查詢與 preview | 規劃中 |
-| sim | `src/sim/` | headless 跑局、重播、存檔序列化、驗收模擬 | `test/scenarios/`（規劃中）|
+| core | `src/core/` | 型別（Def／State）、`Id`、`BattleState`、事件型別、seeded RNG、`EventLog`、NumExpr 求值器；不依賴任何模組 | `src/core/*.test.ts`|
+| content | `src/content/`、`schemas/`、`content/base/` | 載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema | `src/content/*.test.ts`|
+| rules | `src/rules/`（17 模組＋`index.ts`）| 全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | `src/rules/*.test.ts`、黃金 `test/golden.test.ts` |
+| ai | `src/ai/`（含 `policies/`、`adapters/`）| 知識、估值、可插拔策略；只經 adapter 接 rules | `test/ai/` |
+| sim | `src/sim/{run,replay,save,cli}.ts` | 跑局、重播、存檔、`npm run sim` | `test/sim/` |
 | ui-adapter | `src/ui-adapter/` | ViewModel、可視區、指令輸入、DOM 渲染（唯一碰 DOM 處）| 規劃中 |
 
 ## 真相層優先序

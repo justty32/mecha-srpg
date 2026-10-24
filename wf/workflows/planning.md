@@ -36,7 +36,9 @@
 | 事項 | 何時 / 順序 | 前提 |
 |------|------------|---------|
 | 世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工 | 已完成（core v1、world v2，2026-10-24） | — |
-| 內容第二批：機械系命名規範化、補 B 級蟲族、base 補常數與步兵／士氣／失控內容 | sim 線之後 | rules REPORT |
+| 內容第二批：機械系命名規範化、補 B 級蟲族（base 常數與步兵／士氣／失控內容已由 sim 線補回）| 隨時 | rules REPORT |
+| 平衡與 AI 手感：skirmish 20 輪多數回合 Wait、命中 3／19；tactical 係數佔位 | sim 線之後 | sim REPORT |
+| 情境接縫：faction 外交（ally 不是同盟）、`killTarget` 參數鍵、map globals／feature hp | sim 線之後 | sim REPORT |
 | 規則補完：其餘 reaction、sustained 撤除 | sim 後 | rules REPORT |
 
 ## 交接

@@ -75,7 +75,7 @@
 - **訂閱主題**：無
 
 ### `lead-impl-sim`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：Opus 領導線（Claude 子 agent）；整合＋模擬器（spec 切線 7）。
 - **團隊**：`teams/sim`（領導；工人格由我代登記）
 - **上游**：頂層主 session
@@ -86,7 +86,7 @@
 - **訂閱主題**：無
 
 ### `cx-sim-engine`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/sim/` 與 `test/sim/`。
 - **團隊**：`teams/sim`
 - **上游**：lead-impl-sim
@@ -97,7 +97,7 @@
 - **訂閱主題**：無
 
 ### `cx-sim-gaps`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人（gpt-6-astra，`codex exec`），補本能控制、常數回 base、pack-hunter。
 - **團隊**：`teams/sim`
 - **上游**：lead-impl-sim
