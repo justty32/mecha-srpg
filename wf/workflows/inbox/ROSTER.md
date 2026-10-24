@@ -126,24 +126,9 @@
 - **我是誰**：八條長線、十節點、年表掛線、潮差表（design-notes/world/history-lines、tide-range）。
 - **團隊**：`teams/hl`；**上游**：`lead-history-lines`（頂層之下）
 
-### `lead-settle`
+### `lead-settle`（含代登記工人 `cx-st-01`／`cx-st-02`／`cx-st-spec`／`cx-st-lines`）
 - **狀態**：現役（2026-10-24）
-- **我是誰**：Opus 領導，頂層之下：第 15 條數字 v2 定案、世界觀暫定題改已定並落地、lead-reconcile 列的九項 lore 矛盾小修。
-- **團隊**：`teams/st`
-- **上游**：頂層 `dispatcher`
-- **領地**：見 CLAIMS「lead-settle」列
-- **答得出什麼**：哪些暫定已改已定、哪些題沒有暫定答案、polish 批次 st-* 的內容
-- **答不出什麼**：引擎與 src（不改）、孤兒表填充
-- **怎麼找我**：行程內（Agent tool 回傳）；工人信 `wf/inbox/mail/lead-settle/`
-- **訂閱主題**：無
-
-### `cx-st-01`／`cx-st-02`／`cx-st-spec`／`cx-st-lines`
-- **狀態**：現役（領導 `lead-settle` 代登記，2026-10-24；交接書在 `wf/workflows/dispatch/handoffs/lead-settle/`）
-- **我是誰**：codex 工人：st-01 lore 矛盾 polish、st-02 新增聖馬洛地點、spec 落地（specs/world）、history-lines 暫值改已定。
-- **團隊**：`teams/st`
-- **上游**：`lead-settle`
-- **領地**：各自交接書「範圍」（隔離 worktree）
-- **答得出什麼**：各自 REPORT
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/<線名>.md`
-- **訂閱主題**：無
+- **我是誰**：Opus 領導：數字 v2 定案、暫定題改已定、九項 lore 矛盾；工人是 codex。
+- **團隊**：`teams/st`；**上游**：`dispatcher`（工人的上游是 `lead-settle`）
+- **領地**：CLAIMS「lead-settle」列；工人照各自交接書（`handoffs/lead-settle/`）
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
