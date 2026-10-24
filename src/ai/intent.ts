@@ -106,6 +106,24 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
   if (memory.commander && (s.rt?.unitStatus[memory.commander] === "dead"
     || memory.leaderPerson && s.log.events.some(e => e.type === "PersonDied" && e.payload.person === memory.leaderPerson))) memory.leaderLost = true;
   const hpOf = (id: string) => Object.values(view.units[id]?.parts ?? {}).reduce((n, part) => n + part.layers.reduce((n, l) => n + l.hp, 0), 0);
+  const lethalHpOf = (id: string): number => {
+    // 所有 core 毀損即死；只計打穿最後一個未毀 structural 層所需的層 HP。
+    // 只讀可見快照（未知內層已遮成公開最大值），缺部位情報則沿用全身估算。
+    const cores = q.partDefs(view, id).filter(part => part.functions.includes("core"));
+    if (!cores.length) return hpOf(id);
+    let hp = 0;
+    for (const core of cores) {
+      const part = view.units[id]?.parts[core.id];
+      if (!part) return hpOf(id);
+      if (part.broken) continue;
+      const layers = q.layerDefs(view, id, core.id);
+      if (!layers.some(layer => layer.structural) || layers.length !== part.layers.length) return hpOf(id);
+      const last = layers.findLastIndex((layer, i) => layer.structural && !part.layers[i]!.broken);
+      hp += part.layers.slice(0, last + 1).reduce((sum, layer, i) =>
+        sum + (!layer.broken && layers[i]!.ablative ? Math.max(0, layer.hp) : 0), 0);
+    }
+    return hp;
+  };
   if (memory.lastRound !== s.round) {
     // 只比較仍可見的同一單位；增援、視野進出不當作傷害或抵消傷害。
     const damage = enemies.reduce((sum, id) => sum + Math.max(0, (memory.previousHp?.[id] ?? hpOf(id)) - hpOf(id)), 0);
@@ -127,7 +145,8 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
     if ((kind === "killTarget" || kind === "capture") && targets.some(id => !view.units[id])) return false;
     const relevant = kind === "killTarget" || kind === "capture" ? targets : enemies.filter(id =>
       !Array.isArray(o?.params.slots) || o.params.slots.includes(view.units[id]!.owner));
-    const hp = relevant.filter(id => q.isActive(view, id)).reduce((sum, id) => sum + hpOf(id), 0);
+    const hp = relevant.filter(id => q.isActive(view, id)).reduce((sum, id) =>
+      sum + (kind === "killTarget" || kind === "capture" ? lethalHpOf(id) : hpOf(id)), 0);
     let needed = hp === 0 ? 0 : damage > 0 ? hp / damage : (memory.stalled ?? 0) >= p.intentStallRounds ? Infinity : 0;
     if (kind === "survive") needed = Math.max(0, Number(o?.params.rounds ?? 0) - s.round);
     if (kind === "guardNest") needed = 0;

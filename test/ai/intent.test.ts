@@ -241,3 +241,51 @@ test("profile params 可覆寫個體撤退觀察輪數並傳到 fleeing 策略�
   assert.equal(individualRetreat(next.ctx, "a"), true);
   assert.ok(takeTurn({ ...next.ctx, exec: next.rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"));
 });
+
+test("致死 HP：斬首與捕獲只估所有核心到最後結構層，殲滅仍估全身", () => {
+  for (const kind of ["killTarget", "capture"] as const) {
+    const enemy = unit("e", "e", 6);
+    enemy.parts = [
+      { id: "core", functions: ["core"], layers: [
+        { type: "armor", hp: 12 }, { type: "structure", hp: 14 },
+        { type: "structure", hp: 16 }, { type: "component", hp: 200 },
+      ] },
+      { id: "trunk", functions: [], layers: [{ type: "structure", hp: 1000 }] },
+    ];
+    const { ctx, plans } = fixture([unit("a", "p", 2), enemy]);
+    ctx.s.round = 8; ctx.s.rt!.maxRounds = 13;
+    ctx.params = { intentGiveUpRatio: 0, intentImpossibleRatio: 100 };
+    ctx.s.rt!.objectives = [{ kind, for: "p", params: { unit: "e" }, onComplete: "win" }];
+    const decide = () => {
+      const a = plans(); planIntent(ctx, { lastRound: 8, damageRate: 15 }, a);
+      return a[0]!.intentMode;
+    };
+    assert.notEqual(decide(), "retreat", kind);
+    ctx.s.rt!.objectives[0]!.kind = "eliminate";
+    assert.equal(decide(), "retreat", "非斬首／捕獲保留全身估算");
+  }
+});
+
+test("致死 HP：多核心合計、已毀核心略過，缺部位情報退回原估算", () => {
+  const enemy = unit("e", "e", 6);
+  enemy.parts = [
+    { id: "first", functions: ["core"], layers: [{ type: "structure", hp: 20 }] },
+    { id: "second", functions: ["core"], layers: [{ type: "structure", hp: 20 }] },
+    { id: "trunk", functions: [], layers: [{ type: "structure", hp: 1000 }] },
+  ];
+  const { ctx, plans } = fixture([unit("a", "p", 2), enemy]);
+  ctx.s.round = 8; ctx.s.rt!.maxRounds = 13;
+  ctx.params = { intentGiveUpRatio: 0, intentImpossibleRatio: 100 };
+  ctx.s.rt!.objectives = [{ kind: "killTarget", for: "p", params: { units: ["e"] }, onComplete: "win" }];
+  ctx.view = structuredClone(ctx.s);
+  const decide = (damageRate: number) => {
+    const a = plans(); planIntent(ctx, { lastRound: 8, damageRate }, a);
+    return a[0]!.intentMode;
+  };
+  assert.notEqual(decide(15), "retreat", "40 HP 可在三輪內打完");
+  assert.equal(decide(10), "retreat", "必須合計兩核，不只取其中一核");
+  ctx.view.units.e!.parts.first!.broken = true;
+  assert.notEqual(decide(10), "retreat", "只讀 view 的已毀核心，不讀 s 的完整核心");
+  delete ctx.view.units.e!.parts.second;
+  assert.equal(decide(15), "retreat", "缺核心快照時退回全身 HP");
+});
