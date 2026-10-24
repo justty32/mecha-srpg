@@ -32,6 +32,8 @@ function settleContacts(state: CampaignState, ctx: OpsCtx): CampaignState {
 
 test("tick：同一天八段事件按序，八段都有觀測點", () => {
   const { s, ctx } = fixture(); day(s, ctx, 13); s.pendingEvents.push(ctx.world.require("event", "event/funeral").id);
+  // 這個 fixture 只量同一天八段；隔離會額外推進一天的路上迴避。
+  s.actors = {}; s.flags.actorPopulationDay = 14;
   const node = requirePlace(s, ctx, "place/chittagong").id;
   cmdSail(s, ctx, { v: "sail", to: node });
   const rift = addRift(s, ctx);

@@ -7,6 +7,7 @@ import { createOpsCtx } from "../content/start.ts";
 import { placeLoc } from "../war/loc.ts";
 import { greedy, merc, random } from "./policies.ts";
 import { checkActorContacts } from "../world/encounter.ts";
+import type { MarketState } from "../world/market.ts";
 
 test("greedy 在野外且沒有契約或待戰時不憑空出戰；低油在市場用交易補給", () => {
   const { s, ctx } = fixture(); s.contracts = {}; s.pendingChoices = []; delete s.pendingBattle;
@@ -17,6 +18,17 @@ test("greedy 在野外且沒有契約或待戰時不憑空出戰；低油在市�
   const command = greedy(s, ctx); assert.equal(command.v, "trade");
   const next = applyCommand(s, ctx.db, ctx.world, command); assert.equal(next.result.ok, true);
   assert.ok(next.state.ship.fuel.cur > 2); assert.ok(next.state.ledger.balances.cash < s.ledger.balances.cash);
+});
+
+test("random 有補給時隨機航行、航程中等待，政策不改寫狀態", () => {
+  const { s, ctx } = fixture(); s.contracts = {}; s.pendingChoices = []; delete s.pendingBattle;
+  s.ship.pos = placeLoc(s, ctx, "place/dhaka"); s.ship.drifting = false;
+  s.ship.fuel.cur = s.ship.fuel.max; s.ledger.balances["stock:fuel"] = s.ship.fuel.max;
+  const before = structuredClone(s), cmd = random(s, ctx);
+  assert.deepEqual(s, before); assert.equal(cmd.v, "sail");
+  const voyage = applyCommand(s, ctx.db, ctx.world, cmd);
+  assert.equal(voyage.result.ok, true); assert.ok(voyage.state.ship.path);
+  assert.deepEqual(random(voyage.state, createOpsCtx(voyage.state, ctx.db, ctx.world)), { v: "wait", days: 1 });
 });
 
 test("merc 履約航行遇伏擊且無可戰單位時撤離，不等待同一天", () => {
@@ -112,6 +124,7 @@ test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的�
 
 test("random 沒有 battle runner 時僅選交涉或迴避，待戰以付費 drift 處理", () => {
   const { s, ctx, sortie } = fixture(); s.actors = {};
+  s.ship.drifting = true;
   const noBattle = Object.assign(ctx, { battleAvailable: false });
   s.actors.test = { id: "test", kind: "swarm", faction: "enemy", pos: structuredClone(s.ship.pos), mp: 60, str: 10,
     goal: { type: "idle" }, stance: "hostile", born: 0, flags: [] };
@@ -121,8 +134,10 @@ test("random 沒有 battle runner 時僅選交涉或迴避，待戰以付費 dri
   const command = random(s, noBattle); assert.equal(command.v, "choose");
   if (command.v === "choose") assert.ok([1, 3].includes(command.choice));
   const ready = { ...ctx, battleAvailable: true };
-  s.actors.test.str = 0; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 4 });
-  s.actors.test.str = Number.MAX_SAFE_INTEGER; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 1 });
+  s.actors.test.str = 0; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 3 });
+  s.actors.test.str = Number.MAX_SAFE_INTEGER; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 3 });
+  s.actors.test.kind = "swarm"; s.actors.test.str = 1;
+  assert.deepEqual(greedy(s, ready), { v: "choose", choice: 1 }, "低 str 也不代表鄰近裂獸群能安全獲利");
   delete s.pendingEncounter; s.pendingBattle = { ...sortie, trigger: "intercept", actors: ["test"] };
   assert.deepEqual(random(s, noBattle), { v: "drift" });
   const escaped = applyCommand(s, ctx.db, ctx.world, random(s, noBattle));
@@ -138,6 +153,7 @@ test("greedy 對受損層排 repair／rebuild，交給既有 queue 計價且不�
     s.hangar.bays = [mech];
     s.mechs[mech]!.parts.legs!.layers[0]!.hp = hp;
     s.mechs[mech]!.parts.legs!.broken = hp === 0;
+    s.contracts = {};
     const before = structuredClone(s), cmd = greedy(s, ctx);
     assert.deepEqual(s, before);
     assert.deepEqual(cmd, { v: "queue", job: { kind: hp === 0 ? "rebuild" : "repair", target: mech, part: "legs", layer: 0 } });
@@ -148,4 +164,36 @@ test("greedy 對受損層排 repair／rebuild，交給既有 queue 計價且不�
     assert.ok(Object.values(queued.state.jobs[0]!.materials).some(n => n! > 0));
     assert.notEqual(greedy(queued.state, createOpsCtx(queued.state, ctx.db, ctx.world)).v, "queue");
   }
+});
+
+test("greedy 維修缺料會用現金在市場買料，政策不直接改帳本", () => {
+  const { s, ctx, mech } = fixture(); s.contracts = {}; delete s.pendingBattle;
+  s.ship.pos = placeLoc(s, ctx, "place/chittagong"); s.ship.drifting = false;
+  s.mechs[mech]!.parts.legs!.layers[0]!.hp -= 10;
+  const queued = applyCommand(s, ctx.db, ctx.world, { v: "queue", job: { kind: "repair", target: mech, part: "legs", layer: 0 } }).state;
+  queued.ledger.balances["stock:scrap"] = 0;
+  const before = structuredClone(queued), command = greedy(queued, createOpsCtx(queued, ctx.db, ctx.world));
+  assert.deepEqual(queued, before); assert.equal(command.v, "trade");
+  if (command.v === "trade") assert.ok(command.buy?.every(id => id === "stock:scrap"));
+  const out = applyCommand(queued, ctx.db, ctx.world, command);
+  assert.equal(out.result.ok, true);
+  assert.ok(out.state.ledger.balances.cash < queued.ledger.balances.cash);
+  assert.ok(out.state.ledger.balances["stock:scrap"]! > 0);
+  const empty = structuredClone(queued) as MarketState;
+  empty.markets = { "base:market/chittagong": { refreshedDay: empty.clock.day, stock: { "stock:fuel": 120, "stock:scrap": 0 } } };
+  const procurement = greedy(empty, createOpsCtx(empty, ctx.db, ctx.world));
+  assert.equal(procurement.v, "sail", "長期缺貨時去有貨的市場，不能無限等待");
+  assert.equal(applyCommand(empty, ctx.db, ctx.world, procurement).result.ok, true);
+  const restocking = structuredClone(empty);
+  restocking.clock.dom = ctx.world.require("calendar", empty.calendar).neap[0]! - 1;
+  assert.deepEqual(greedy(restocking, createOpsCtx(restocking, ctx.db, ctx.world)), { v: "wait", days: 1 }, "明天補貨比航程快，留港等待");
+  // 近港缺料、只能遠航買料時，先買足往返燃料，避免採購把船困在野外。
+  const far = structuredClone(queued) as MarketState;
+  far.ship.pos = placeLoc(far, ctx, "place/dhaka"); far.ship.fuel.cur = 12; far.ledger.balances["stock:fuel"] = 12;
+  far.markets = Object.fromEntries(ctx.world.all("market").map(m => [m.id, { refreshedDay: far.clock.day,
+    stock: Object.fromEntries(m.lists.flatMap(list => list.items).map(item => [item.def,
+      item.def === "stock:scrap" && !m.id.endsWith("/old-array") ? 0 : item.stockMax])) }]));
+  const supply = greedy(far, createOpsCtx(far, ctx.db, ctx.world));
+  assert.equal(supply.v, "trade");
+  if (supply.v === "trade") assert.ok(supply.buy?.every(id => id === "stock:fuel"));
 });

@@ -145,7 +145,9 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   const normalAccept = (actions: Screen["actions"]) => actions.find(a => {
     if (a.cmd.v !== "accept" || a.disabled) return false;
     const id = a.cmd.contract, contract = view.panels.contracts.find((c: { id: string }) => c.id === id);
-    return contract && world.require("contract", contract.template).kind !== "join";
+    // 承接時仍在期限內，不代表航行後能履約；保留兩日給途中事件。
+    return contract && world.require("contract", contract.template).kind !== "join" && contract.travel
+      && view.clock.day + contract.travel.days + 2 <= contract.deadlineDay;
   });
   let accept = normalAccept(await actionsNow());
   for (let i = 0; !accept && i < 60; i++) {
@@ -167,6 +169,8 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
       : resail ? { id, command: { v: "sail", to: active.target } } : { id, days: 1 })).view;
   }
 
+  if (!view.pendingBattle) assert.ok(view.panels.contracts.some((c: { id: string; status: string }) =>
+    c.id === active.id && c.status === "active"), `抵達時契約已失效：${active.id} day=${view.clock.day}`);
   const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: view.pendingBattle
     ? { units } : { contract: active.id, place: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);

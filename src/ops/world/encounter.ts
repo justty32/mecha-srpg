@@ -10,7 +10,7 @@ import { factionId, relation } from "../war/relations.ts";
 import { locAt, placeAt } from "../war/loc.ts";
 import { blightAt } from "./blight.ts";
 import { cellsWithin, chebyshev, findPath, gridOf, neighbors, stepCost } from "./grid.ts";
-import { availableFuel, shipMover, spendFuel } from "./move.ts";
+import { availableFuel, isSafelyDocked, recordShipMovement, shipMover, spendFuel } from "./move.ts";
 import { worldRules } from "./places.ts";
 
 function encounterRules(ctx: OpsCtx) {
@@ -18,9 +18,12 @@ function encounterRules(ctx: OpsCtx) {
 }
 
 export function actorHostile(s: CampaignState, ctx: OpsCtx, actor: ActorState): boolean {
-  if (actor.kind === "swarm" || actor.stance === "hostile") return true;
+  if (actor.kind === "swarm") return true;
+  if (actor.kind === "caravan" || actor.kind === "band") return actor.stance === "hostile";
   const faction = factionId(s, ctx, actor.faction), player = factionId(s, ctx, "faction/migrant-crew");
   const rel = faction && player ? relation(s, faction, player) : undefined;
+  if (actor.kind === "patrol") return (faction ? s.factions[faction]?.rep ?? 0 : 0) <= -30 || rel?.state === "war";
+  if (actor.stance === "hostile") return true;
   return (faction ? s.factions[faction]?.rep ?? 0 : 0) <= -30 || !!rel && ["hostile", "war"].includes(rel.state);
 }
 export function estimateShipStrength(s: CampaignState, ctx: OpsCtx): number {
@@ -84,6 +87,7 @@ export function inShipContact(s: CampaignState, ctx: OpsCtx, actor: ActorState):
   return actor.pos.map === s.ship.pos.map && chebyshev(actor.pos.cell, s.ship.pos.cell) <= Math.max(worldRules(ctx).grid.contact[shipMover(s, ctx).layer], actorContact(ctx, actor));
 }
 export function checkActorContacts(s: CampaignState, ctx: OpsCtx, actorId?: string): void {
+  if (isSafelyDocked(s, ctx)) return;
   if (s.log.some(event => event.type === "CampaignEnd")) return;
   if (s.pendingEncounter || s.pendingBattle || s.pendingChoices.length || s.ship.path?.lane) return;
   for (const actor of Object.values(s.actors)) if (!inShipContact(s, ctx, actor)) actor.flags = actor.flags.filter(flag => flag !== "ship-contact");
@@ -94,7 +98,8 @@ export function checkActorContacts(s: CampaignState, ctx: OpsCtx, actorId?: stri
     if (entered) actor.flags.push("ship-contact");
     const pursued = !!s.ship.path && "actor" in s.ship.path.to && s.ship.path.to.actor === actor.id;
     if (actor.lastContactDay === s.clock.day || !entered && !pursued) continue;
-    if (!pursued && !actorHostile(s, ctx, actor) && actor.stance !== "wary") {
+    // SPEC-GAP：依 cx-grid-verify 交接書，wary 擦身只報 Sighted，不再停船。
+    if (!pursued && !actorHostile(s, ctx, actor)) {
       if (actor.lastSightedDay !== s.clock.day) { actor.lastSightedDay = s.clock.day; ctx.emit("Sighted", { actor: actor.id, loc: actor.pos }); }
       continue;
     }
@@ -151,7 +156,7 @@ function escapeContact(s: CampaignState, ctx: OpsCtx, actor: ActorState): void {
     });
     if (!path || path.cost > moving.mp) continue;
     for (const step of path.cells) {
-      s.ship.pos = locAt(ctx, map.id, step); checkActorContacts(s, ctx);
+      s.ship.pos = locAt(ctx, map.id, step); recordShipMovement(s); checkActorContacts(s, ctx);
       if (s.pendingEncounter || s.flags.lastPlunderDay === s.clock.day) break;
     }
     return;

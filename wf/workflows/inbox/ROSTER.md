@@ -126,6 +126,28 @@
 - **我是誰**：八條長線、十節點、年表掛線、潮差表（design-notes/world/history-lines、tide-range）。
 - **團隊**：`teams/hl`；**上游**：`lead-history-lines`（頂層之下）
 
+### `cx-grid-verify`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-verify.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：遭遇手感修正、24 潮月調參、grid-health 量測。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：調參紀錄與量測
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-verify.md`
+- **訂閱主題**：無
+
+### `cx-grid-verify2`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-verify2.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：接續 cx-grid-verify，修紅測試、遭遇率、24 潮月不終局。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：調參紀錄與量測
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-verify2.md`
+- **訂閱主題**：無
+
 ### `lead-settle`（含代登記工人 `cx-st-01`／`cx-st-02`／`cx-st-spec`／`cx-st-lines`）
 - **狀態**：現役（2026-10-24）
 - **我是誰**：Opus 領導：數字 v2 定案、暫定題改已定、九項 lore 矛盾；工人是 codex。

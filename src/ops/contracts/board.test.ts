@@ -9,6 +9,16 @@ import { cmdAccept, contractsDaily2 } from "./lifecycle.ts";
 import { render } from "../text/render.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
 
+test("契約板：失守領地不吃掉發包機會，改由仍有可用領地的勢力發包", () => {
+  const s = newCampaign(db, world, "start/default", 1), ctx = createOpsCtx(s, db, world);
+  for (const place of ["place/dhaka", "place/chittagong"]) s.places[world.require("place", place).id]!.flags.push("blight-lost");
+  s.pendingContracts.push({ template: "contract/escort-sealed-convoy", near: "territory" });
+  contractsDaily2(s, ctx);
+  const c = Object.values(s.contracts)[0]!;
+  assert.ok(c); assert.equal(c.target.place, world.require("place", "place/singapore").id);
+  contractsDaily2(s, ctx); assert.equal(c.status, "offered");
+});
+
 test("契約板：seed 1–5 在第 14 天前至少兩份可達委託", () => {
   for (let seed = 1; seed <= 5; seed++) {
     let maximum = 0;

@@ -1,0 +1,1117 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "stage",
+  "knob",
+  "old",
+  "new",
+  "results",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "stage": "baseline",
+   "knob": "none",
+   "old": "unchanged",
+   "new": "unchanged",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "baseline12",
+   "knob": "none",
+   "old": "unchanged",
+   "new": "unchanged",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "pressure01",
+   "knob": "rules.pressure.blightPerMonth",
+   "old": "1",
+   "new": "0.1",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "pressure0",
+   "knob": "rules.pressure.blightPerMonth",
+   "old": "0.1",
+   "new": "0",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "insect01",
+   "knob": "rift.insect.spreadPerTide.anchorAge",
+   "old": "0.25",
+   "new": "0.1",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "materials",
+   "knob": "greedy.repairMaterials",
+   "old": "disabled",
+   "new": "paid-market-trade",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "repairfuel",
+   "knob": "greedy.repairMaterials.fuelReserve",
+   "old": "missing",
+   "new": "round-trip",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "parley",
+   "knob": "greedy.humanEncounter",
+   "old": "fight-or-evade",
+   "new": "parley",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "saferoutes",
+   "knob": "greedy.supplyRoute",
+   "old": "nearest",
+   "new": "safe-market-lowest-blight",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "liveboard",
+   "knob": "contract.nonRiftTarget",
+   "old": "include-lost",
+   "new": "exclude-lost",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "swarm40",
+   "knob": "swarm.spawn.perRift (structure 修正前)",
+   "old": "20",
+   "new": "40",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "structure",
+   "knob": "19:48 orders 修補 structure 付料重建及略過已毀機體工單（非旋鈕）",
+   "old": "missing",
+   "new": "hours=1; scrap=2; material=stock:scrap",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "contact6",
+   "knob": "swarm.contact",
+   "old": "2",
+   "new": "6",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "evade",
+   "knob": "greedy 路上優先迴避，避免以單一 actor.str 忽略整群敵人",
+   "old": "fight-if-weaker",
+   "new": "evade",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "contact2",
+   "knob": "swarm.contact",
+   "old": "6",
+   "new": "2",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "swarm20",
+   "knob": "swarm.spawn.perRift",
+   "old": "40",
+   "new": "20",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "restock",
+   "knob": "greedy 安全材料港缺貨時等待補貨",
+   "old": "航向其他市場",
+   "new": "等待1日",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "wander40",
+   "knob": "swarm.behavior.wanderRadius",
+   "old": "12",
+   "new": "40",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "missionfirst",
+   "knob": "greedy 已接且可出戰契約優先履行，期限需留2日餘裕",
+   "old": "maintenance-first",
+   "new": "mission-first",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "daily1",
+   "knob": "rules.actors.maxEncountersPerDay",
+   "old": "2",
+   "new": "1",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "wander12",
+   "knob": "swarm.behavior.wanderRadius",
+   "old": "40",
+   "new": "12",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "nearestport",
+   "knob": "補給優先最近仍開放港，蝕格不直接等同失守",
+   "old": "排除中心蝕格；少蝕格路優先",
+   "new": "排除失守封鎖；近港優先",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "scout2",
+   "knob": "board-scout-rift-margin.cooldownDays",
+   "old": "8",
+   "new": "2",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "scoutpay",
+   "knob": "contract/scout-rift-margin.pay.base",
+   "old": "1800",
+   "new": "3600",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "contact3",
+   "knob": "actor/swarm.contact",
+   "old": "2",
+   "new": "3",
+   "results": "前線結果見原表同 stage",
+   "evidence": "../cx-grid-verify/tuning.json"
+  },
+  {
+   "stage": "verify2-baseline",
+   "knob": "encounter denominator / criteria",
+   "old": "active calendar days; year2 cash slope",
+   "new": "actual sailing days; greedy >=3; cash24>0",
+   "results": "\n> mecha-srpg@0.1.0 sim:grid-health\n> node src/ops/sim/health.ts\n\nidle seed=1 months=12 end=168 blight12=5.44% maxGrowth12=0.38% maxGrowth13..24=0.00% actors=63..112 encounters=6/6=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\nidle seed=2 months=12 end=168 blight12=5.18% maxGrowth12=0.34% maxGrowth13..24=0.00% actors=48..114 encounters=11/11=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\nidle seed=3 months=12 end=168 blight12=5.21% maxGrowth12=0.45% maxGrowth13..24=0.00% actors=47..112 encounters=9/9=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\ngreedy seed=1 months=12 end=none blight12=5.40% maxGrowth12=0.40% maxGrowth13..24=0.00% actors=63..112 encounters=5/27=0.1852/sailing-day maxDaily=1 cash=1200.00->15703.25 cashMean13..24=0.00 PASS\ngreedy seed=2 months=12 end=none blight12=5.69% maxGrowth12=0.48% maxGrowth13..24=0.00% actors=91..152 encounters=0/10=0.0000/sailing-day maxDaily=0 cash=1200.00->22312.02 cashMean13..24=0.00 FAIL (encounters-outside-0.1..0.4,greedy-encounters<3)\ngreedy seed=3 months=12 end=none blight12=6.18% maxGrowth12=0.57% maxGrowth13..24=0.00% actors=47..123 encounters=0/4=0.0000/sailing-day maxDaily=0 cash=1200.00->0.00 cashMean13..24=0.00 FAIL (encounters-outside-0.1..0.4,greedy-encounters<3)\nrandom seed=1 months=12 end=168 blight12=5.16% maxGrowth12=0.35% maxGrowth13..24=0.00% actors=47..112 encounters=5/16=0.3125/sailing-day maxDaily=1 cash=1200.00->1200.00 cashMean13..24=0.00 PASS\nrandom seed=2 months=12 end=308 blight12=5.09% maxGrowth12=0.47% maxGrowth13..24=0.00% actors=80..136 encounters=27/47=0.5745/sailing-day maxDaily=1 cash=1200.00->1340.17 cashMean13..24=0.00 FAIL (encounters-outside-0.1..0.4)\nrandom seed=3 months=12 end=252 blight12=5.39% maxGrowth12=0.47% maxGrowth13..24=0.00% actors=46..126 encounters=19/55=0.3455/sailing-day maxDaily=1 cash=1200.00->-562.00 cashMean13..24=0.00 PASS\n",
+   "evidence": "/tmp/cx-grid-verify2/baseline-health.log; /tmp/cx-grid-verify2/baseline-greedy3.log"
+  },
+  {
+   "stage": "verify2-restock",
+   "knob": "greedy.repairMaterials wait",
+   "old": "empty local market always wait",
+   "new": "wait only when restock arrives before stocked market voyage",
+   "results": {
+    "policy": "greedy",
+    "seed": 3,
+    "months": 24,
+    "endDay": 504,
+    "days": 672,
+    "land": 16300,
+    "blight12": 855,
+    "blightFinal": 1813,
+    "maxGrowth12": 73,
+    "maxGrowthYear2": 108,
+    "actorsMin": 46,
+    "actorsMax": 112,
+    "encounters": 49,
+    "sailingDays": 112,
+    "maxEncounters": 1,
+    "cashFirst": 1200,
+    "cashLast": -1072,
+    "cashYear2Mean": -129.05416666667642,
+    "monthly": [
+     {
+      "month": 1,
+      "blight": 385,
+      "cash": 9268.000000000075
+     },
+     {
+      "month": 2,
+      "blight": 417,
+      "cash": 10013.5280000001
+     },
+     {
+      "month": 3,
+      "blight": 454,
+      "cash": 7639.62400000012
+     },
+     {
+      "month": 4,
+      "blight": 487,
+      "cash": 9457.736000000117
+     },
+     {
+      "month": 5,
+      "blight": 526,
+      "cash": 7731.736000000117
+     },
+     {
+      "month": 6,
+      "blight": 556,
+      "cash": 5705.736000000117
+     },
+     {
+      "month": 7,
+      "blight": 590,
+      "cash": 3712.736000000117
+     },
+     {
+      "month": 8,
+      "blight": 628,
+      "cash": 1920.7360000001172
+     },
+     {
+      "month": 9,
+      "blight": 671,
+      "cash": 1108.8900000001158
+     },
+     {
+      "month": 10,
+      "blight": 727,
+      "cash": 618.8900000001158
+     },
+     {
+      "month": 11,
+      "blight": 782,
+      "cash": 2307.650000000117
+     },
+     {
+      "month": 12,
+      "blight": 855,
+      "cash": 476.65000000011696
+     },
+     {
+      "month": 13,
+      "blight": 939,
+      "cash": -8
+     },
+     {
+      "month": 14,
+      "blight": 1001,
+      "cash": -64
+     },
+     {
+      "month": 15,
+      "blight": 1056,
+      "cash": -120
+     },
+     {
+      "month": 16,
+      "blight": 1119,
+      "cash": -176
+     },
+     {
+      "month": 17,
+      "blight": 1213,
+      "cash": -288
+     },
+     {
+      "month": 18,
+      "blight": 1301,
+      "cash": -400
+     },
+     {
+      "month": 19,
+      "blight": 1381,
+      "cash": -512
+     },
+     {
+      "month": 20,
+      "blight": 1468,
+      "cash": -624
+     },
+     {
+      "month": 21,
+      "blight": 1539,
+      "cash": -736
+     },
+     {
+      "month": 22,
+      "blight": 1605,
+      "cash": -848
+     },
+     {
+      "month": 23,
+      "blight": 1713,
+      "cash": -960
+     },
+     {
+      "month": 24,
+      "blight": 1813,
+      "cash": -1072
+     }
+    ]
+   },
+   "evidence": "/tmp/cx-grid-verify2/restock-greedy3.log"
+  },
+  {
+   "stage": "verify2-contact2",
+   "knob": "swarm.contact",
+   "old": 3,
+   "new": 2,
+   "results": [
+    {
+     "policy": "greedy",
+     "seed": 3,
+     "months": 24,
+     "endDay": 308,
+     "days": 672,
+     "land": 16300,
+     "blight12": 823,
+     "blightFinal": 1893,
+     "maxGrowth12": 93,
+     "maxGrowthYear2": 144,
+     "actorsMin": 46,
+     "actorsMax": 120,
+     "encounters": 26,
+     "sailingDays": 88,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 0,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "greedy",
+     "seed": 2,
+     "months": 12,
+     "endDay": null,
+     "days": 336,
+     "land": 16300,
+     "blight12": 847,
+     "blightFinal": 847,
+     "maxGrowth12": 56,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 114,
+     "encounters": 24,
+     "sailingDays": 95,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 67043.03199999988,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 308,
+     "days": 336,
+     "land": 16300,
+     "blight12": 849,
+     "blightFinal": 849,
+     "maxGrowth12": 62,
+     "maxGrowthYear2": 0,
+     "actorsMin": 48,
+     "actorsMax": 114,
+     "encounters": 15,
+     "sailingDays": 28,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -190,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "greedy",
+     "seed": 1,
+     "months": 12,
+     "endDay": null,
+     "days": 336,
+     "land": 16300,
+     "blight12": 949,
+     "blightFinal": 949,
+     "maxGrowth12": 90,
+     "maxGrowthYear2": 0,
+     "actorsMin": 79,
+     "actorsMax": 122,
+     "encounters": 45,
+     "sailingDays": 117,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 10816.876000000062,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/contact2-*.log"
+  },
+  {
+   "stage": "verify2-random-voyage",
+   "knob": "random active voyage",
+   "old": "redraw drift/destination daily",
+   "new": "finish voyage before random next command",
+   "results": [
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 308,
+     "days": 336,
+     "land": 16300,
+     "blight12": 895,
+     "blightFinal": 895,
+     "maxGrowth12": 79,
+     "maxGrowthYear2": 0,
+     "actorsMin": 80,
+     "actorsMax": 114,
+     "encounters": 39,
+     "sailingDays": 26,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 17.229551704604468,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": 252,
+     "days": 336,
+     "land": 16300,
+     "blight12": 833,
+     "blightFinal": 833,
+     "maxGrowth12": 61,
+     "maxGrowthYear2": 0,
+     "actorsMin": 47,
+     "actorsMax": 112,
+     "encounters": 17,
+     "sailingDays": 41,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -96,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 1016,
+     "blightFinal": 1016,
+     "maxGrowth12": 120,
+     "maxGrowthYear2": 0,
+     "actorsMin": 63,
+     "actorsMax": 161,
+     "encounters": 3,
+     "sailingDays": 18,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -440,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/voyage-random*.log"
+  },
+  {
+   "stage": "verify2-safe-procurement",
+   "knob": "greedy.repairMaterials route ordering",
+   "old": "days then blight exposure",
+   "new": "blight exposure then days",
+   "results": [
+    {
+     "policy": "greedy",
+     "seed": 3,
+     "months": 24,
+     "endDay": 560,
+     "days": 672,
+     "land": 16300,
+     "blight12": 861,
+     "blightFinal": 2470,
+     "maxGrowth12": 60,
+     "maxGrowthYear2": 223,
+     "actorsMin": 47,
+     "actorsMax": 112,
+     "encounters": 10,
+     "sailingDays": 114,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 0,
+     "cashYear2Mean": -348.85033333333473
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/safe-greedy3.log"
+  },
+  {
+   "stage": "verify2-voyage-revert",
+   "knob": "random active voyage",
+   "old": "finish voyage",
+   "new": "redraw as before",
+   "results": "reverted: random2 1.5, random3 0.4146 exceed upper limit",
+   "evidence": "/tmp/cx-grid-verify2/voyage-random*.log"
+  },
+  {
+   "stage": "verify2-random-no-drift",
+   "knob": "random candidates",
+   "old": "includes aimless drift",
+   "new": "omit aimless drift; preserve battle escape",
+   "results": [
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": null,
+     "days": 336,
+     "land": 16300,
+     "blight12": 857,
+     "blightFinal": 857,
+     "maxGrowth12": 61,
+     "maxGrowthYear2": 0,
+     "actorsMin": 46,
+     "actorsMax": 112,
+     "encounters": 34,
+     "sailingDays": 65,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -94.82400000000028,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 252,
+     "days": 336,
+     "land": 16300,
+     "blight12": 1019,
+     "blightFinal": 1019,
+     "maxGrowth12": 110,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 153,
+     "encounters": 0,
+     "sailingDays": 18,
+     "maxEncounters": 0,
+     "cashFirst": 1200,
+     "cashLast": -732,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 795,
+     "blightFinal": 795,
+     "maxGrowth12": 53,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 112,
+     "encounters": 3,
+     "sailingDays": 14,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -1026,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/no-drift-random*.log"
+  },
+  {
+   "stage": "safe-revert",
+   "knob": "greedy.procurement",
+   "old": "exposure first",
+   "new": "days first; safe failed rate 0.0877/end560",
+   "results": "已撤回；失敗原因列於 new，後續試驗以恢復值為基線。",
+   "evidence": "/tmp/cx-grid-verify2/safe-revert-*.log"
+  },
+  {
+   "stage": "drift-revert",
+   "knob": "random.candidates",
+   "old": "omit drift",
+   "new": "restore drift; failed random2 zero and random3 0.5231",
+   "results": "已撤回；失敗原因列於 new，後續試驗以恢復值為基線。",
+   "evidence": "/tmp/cx-grid-verify2/drift-revert-*.log"
+  },
+  {
+   "stage": "peaceful",
+   "knob": "random.encounterChoice",
+   "old": "all legal",
+   "new": "evade/parley if legal; fight only if trapped",
+   "results": [
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": null,
+     "days": 336,
+     "land": 16300,
+     "blight12": 879,
+     "blightFinal": 879,
+     "maxGrowth12": 68,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 152,
+     "encounters": 16,
+     "sailingDays": 50,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -114.14890373437561,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 308,
+     "days": 336,
+     "land": 16300,
+     "blight12": 955,
+     "blightFinal": 955,
+     "maxGrowth12": 117,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 162,
+     "encounters": 19,
+     "sailingDays": 37,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -186.6400000000001,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 869,
+     "blightFinal": 869,
+     "maxGrowth12": 82,
+     "maxGrowthYear2": 0,
+     "actorsMin": 63,
+     "actorsMax": 112,
+     "encounters": 6,
+     "sailingDays": 9,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -1020,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/peaceful-*.log"
+  },
+  {
+   "stage": "escort6400",
+   "knob": "contract.escort-sealed-convoy.pay.base",
+   "old": "3200",
+   "new": "6400",
+   "results": [
+    {
+     "policy": "greedy",
+     "seed": 2,
+     "months": 24,
+     "endDay": null,
+     "days": 672,
+     "land": 16300,
+     "blight12": 847,
+     "blightFinal": 2179,
+     "maxGrowth12": 56,
+     "maxGrowthYear2": 170,
+     "actorsMin": 91,
+     "actorsMax": 114,
+     "encounters": 24,
+     "sailingDays": 95,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 94909.9600000003,
+     "cashYear2Mean": -77.75599999999515
+    },
+    {
+     "policy": "greedy",
+     "seed": 1,
+     "months": 24,
+     "endDay": null,
+     "days": 672,
+     "land": 16300,
+     "blight12": 949,
+     "blightFinal": 2367,
+     "maxGrowth12": 90,
+     "maxGrowthYear2": 147,
+     "actorsMin": 79,
+     "actorsMax": 122,
+     "encounters": 45,
+     "sailingDays": 117,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 2123.246857142901,
+     "cashYear2Mean": -724.4690952380967
+    },
+    {
+     "policy": "greedy",
+     "seed": 3,
+     "months": 24,
+     "endDay": null,
+     "days": 672,
+     "land": 16300,
+     "blight12": 861,
+     "blightFinal": 2680,
+     "maxGrowth12": 79,
+     "maxGrowthYear2": 221,
+     "actorsMin": 46,
+     "actorsMax": 120,
+     "encounters": 25,
+     "sailingDays": 112,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 10676.83400000006,
+     "cashYear2Mean": -83.54733333333722
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/escort6400-*.log"
+  },
+  {
+   "stage": "peaceful-revert",
+   "knob": "random.encounterChoice",
+   "old": "evade/parley only",
+   "new": "restore all legal; seeds1/2 above upper limit",
+   "results": "已撤回；失敗原因列於 new，後續試驗以恢復值為基線。",
+   "evidence": "/tmp/cx-grid-verify2/peaceful-revert-*.log"
+  },
+  {
+   "stage": "swarm10",
+   "knob": "swarm.spawn.perRift",
+   "old": "20",
+   "new": "10",
+   "results": [
+    {
+     "policy": "greedy",
+     "seed": 2,
+     "months": 24,
+     "endDay": null,
+     "days": 672,
+     "land": 16300,
+     "blight12": 885,
+     "blightFinal": 2136,
+     "maxGrowth12": 101,
+     "maxGrowthYear2": 131,
+     "actorsMin": 81,
+     "actorsMax": 101,
+     "encounters": 8,
+     "sailingDays": 90,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 69074.99600000073,
+     "cashYear2Mean": -1987.2429999999792
+    },
+    {
+     "policy": "greedy",
+     "seed": 1,
+     "months": 24,
+     "endDay": 364,
+     "days": 672,
+     "land": 16300,
+     "blight12": 986,
+     "blightFinal": 2932,
+     "maxGrowth12": 90,
+     "maxGrowthYear2": 225,
+     "actorsMin": 75,
+     "actorsMax": 115,
+     "encounters": 181,
+     "sailingDays": 38,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 0,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "greedy",
+     "seed": 3,
+     "months": 24,
+     "endDay": 392,
+     "days": 672,
+     "land": 16300,
+     "blight12": 838,
+     "blightFinal": 1778,
+     "maxGrowth12": 62,
+     "maxGrowthYear2": 112,
+     "actorsMin": 67,
+     "actorsMax": 92,
+     "encounters": 13,
+     "sailingDays": 118,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -1410,
+     "cashYear2Mean": -112
+    },
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 308,
+     "days": 336,
+     "land": 16300,
+     "blight12": 895,
+     "blightFinal": 895,
+     "maxGrowth12": 63,
+     "maxGrowthYear2": 0,
+     "actorsMin": 51,
+     "actorsMax": 98,
+     "encounters": 16,
+     "sailingDays": 46,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -309.98082812500036,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 196,
+     "days": 336,
+     "land": 16300,
+     "blight12": 934,
+     "blightFinal": 934,
+     "maxGrowth12": 80,
+     "maxGrowthYear2": 0,
+     "actorsMin": 60,
+     "actorsMax": 94,
+     "encounters": 6,
+     "sailingDays": 12,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -916,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 827,
+     "blightFinal": 827,
+     "maxGrowth12": 66,
+     "maxGrowthYear2": 0,
+     "actorsMin": 32,
+     "actorsMax": 92,
+     "encounters": 6,
+     "sailingDays": 13,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -846.1980000000002,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/swarm10-*.log"
+  },
+  {
+   "stage": "swarm10-revert",
+   "knob": "swarm.spawn.perRift",
+   "old": "10",
+   "new": "20; random population32 and rates0.5/0.4615 failed",
+   "results": "已撤回；失敗原因列於 new，後續試驗以恢復值為基線。",
+   "evidence": "/tmp/cx-grid-verify2/swarm10-revert-*.log"
+  },
+  {
+   "stage": "random-voyages",
+   "knob": "random.navigation",
+   "old": "random query/accept/drift/sail",
+   "new": "random affordable voyage; finish route; otherwise original random commands",
+   "results": [
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 308,
+     "days": 336,
+     "land": 16300,
+     "blight12": 954,
+     "blightFinal": 954,
+     "maxGrowth12": 78,
+     "maxGrowthYear2": 0,
+     "actorsMin": 79,
+     "actorsMax": 153,
+     "encounters": 12,
+     "sailingDays": 72,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": 1184.6999999999998,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 841,
+     "blightFinal": 841,
+     "maxGrowth12": 66,
+     "maxGrowthYear2": 0,
+     "actorsMin": 46,
+     "actorsMax": 112,
+     "encounters": 31,
+     "sailingDays": 76,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -768,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 852,
+     "blightFinal": 852,
+     "maxGrowth12": 63,
+     "maxGrowthYear2": 0,
+     "actorsMin": 63,
+     "actorsMax": 113,
+     "encounters": 7,
+     "sailingDays": 47,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -954,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/random-voyages-*.log"
+  },
+  {
+   "stage": "voyage-peaceful",
+   "knob": "random.encounterChoice",
+   "old": "all legal during voyage policy",
+   "new": "evade/parley if legal; fight only if trapped",
+   "results": [
+    {
+     "policy": "random",
+     "seed": 2,
+     "months": 12,
+     "endDay": 280,
+     "days": 336,
+     "land": 16300,
+     "blight12": 834,
+     "blightFinal": 834,
+     "maxGrowth12": 71,
+     "maxGrowthYear2": 0,
+     "actorsMin": 55,
+     "actorsMax": 115,
+     "encounters": 18,
+     "sailingDays": 65,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -225.6500000000001,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 3,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 871,
+     "blightFinal": 871,
+     "maxGrowth12": 73,
+     "maxGrowthYear2": 0,
+     "actorsMin": 89,
+     "actorsMax": 128,
+     "encounters": 15,
+     "sailingDays": 101,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -748,
+     "cashYear2Mean": 0
+    },
+    {
+     "policy": "random",
+     "seed": 1,
+     "months": 12,
+     "endDay": 168,
+     "days": 336,
+     "land": 16300,
+     "blight12": 888,
+     "blightFinal": 888,
+     "maxGrowth12": 83,
+     "maxGrowthYear2": 0,
+     "actorsMin": 91,
+     "actorsMax": 112,
+     "encounters": 13,
+     "sailingDays": 45,
+     "maxEncounters": 1,
+     "cashFirst": 1200,
+     "cashLast": -276,
+     "cashYear2Mean": 0
+    }
+   ],
+   "evidence": "/tmp/cx-grid-verify2/voyage-peaceful-*.log"
+  },
+  {
+   "stage": "verify2-final",
+   "knob": "none; final acceptance",
+   "old": "baseline fails",
+   "new": "12-month all PASS; greedy24 all PASS",
+   "results": {
+    "health12": "\n> mecha-srpg@0.1.0 sim:grid-health\n> node src/ops/sim/health.ts\n\nidle seed=1 months=12 end=168 blight12=5.54% maxGrowth12=0.50% maxGrowth13..24=0.00% actors=63..112 encounters=4/4=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\nidle seed=2 months=12 end=168 blight12=5.08% maxGrowth12=0.36% maxGrowth13..24=0.00% actors=79..114 encounters=6/6=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\nidle seed=3 months=12 end=168 blight12=5.19% maxGrowth12=0.40% maxGrowth13..24=0.00% actors=47..112 encounters=4/4=1.0000/sailing-day maxDaily=1 cash=1200.00->0.00 cashMean13..24=0.00 PASS\ngreedy seed=1 months=12 end=none blight12=5.82% maxGrowth12=0.55% maxGrowth13..24=0.00% actors=79..122 encounters=45/117=0.3846/sailing-day maxDaily=1 cash=1200.00->10816.88 cashMean13..24=0.00 PASS\ngreedy seed=2 months=12 end=none blight12=5.20% maxGrowth12=0.34% maxGrowth13..24=0.00% actors=91..114 encounters=24/95=0.2526/sailing-day maxDaily=1 cash=1200.00->95843.03 cashMean13..24=0.00 PASS\ngreedy seed=3 months=12 end=none blight12=5.28% maxGrowth12=0.48% maxGrowth13..24=0.00% actors=46..120 encounters=25/112=0.2232/sailing-day maxDaily=1 cash=1200.00->11679.40 cashMean13..24=0.00 PASS\nrandom seed=1 months=12 end=168 blight12=5.45% maxGrowth12=0.51% maxGrowth13..24=0.00% actors=91..112 encounters=13/45=0.2889/sailing-day maxDaily=1 cash=1200.00->-276.00 cashMean13..24=0.00 PASS\nrandom seed=2 months=12 end=280 blight12=5.12% maxGrowth12=0.44% maxGrowth13..24=0.00% actors=55..115 encounters=18/65=0.2769/sailing-day maxDaily=1 cash=1200.00->-225.65 cashMean13..24=0.00 PASS\nrandom seed=3 months=12 end=168 blight12=5.34% maxGrowth12=0.45% maxGrowth13..24=0.00% actors=89..128 encounters=15/101=0.1485/sailing-day maxDaily=1 cash=1200.00->-748.00 cashMean13..24=0.00 PASS\n",
+    "greedy24": [
+     {
+      "seed": 1,
+      "endDay": null,
+      "cashLast": 2123.246857142901,
+      "land": 16300,
+      "blightFinal": 2367,
+      "maxGrowthYear2": 147
+     },
+     {
+      "seed": 2,
+      "endDay": null,
+      "cashLast": 94909.9600000003,
+      "land": 16300,
+      "blightFinal": 2179,
+      "maxGrowthYear2": 170
+     },
+     {
+      "seed": 3,
+      "endDay": null,
+      "cashLast": 10676.83400000006,
+      "land": 16300,
+      "blightFinal": 2680,
+      "maxGrowthYear2": 221
+     }
+    ]
+   },
+   "evidence": "/tmp/cx-grid-verify2/final-health12.log; /tmp/cx-grid-verify2/final-campaign1.log; /tmp/cx-grid-verify2/final-campaign2.log; /tmp/cx-grid-verify2/final-campaign3.log"
+  },
+  {
+   "stage": "verify2-movement-telemetry",
+   "knob": "sailing-day instrumentation",
+   "old": "ShipMoved event",
+   "new": "shipMovedDay internal flag, sampled at completed day; no player log event",
+   "results": "readability 3/3; movement 8/8; golden 2/2; numeric knobs unchanged",
+   "evidence": "/tmp/cx-grid-verify2/readability-fixed.log; /tmp/cx-grid-verify2/final-movement.log"
+  }
+ ]
+}

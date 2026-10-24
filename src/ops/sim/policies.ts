@@ -1,11 +1,12 @@
 import { encounterOptions, estimateShipStrength } from "../world/encounter.ts";
 import { nextInt } from "../../core/rng.ts";
-import type { CampaignState, OpsCommand, OpsCtx, Sortie } from "../state/types.ts";
+import type { Account, CampaignState, OpsCommand, OpsCtx, Sortie } from "../state/types.ts";
 import { evalOpsCond } from "../content/cond.ts";
 import { shortestPath } from "../world/index.ts";
 import { applyCommand } from "../time/index.ts";
 import { joinForce, joinOperation, joinRejection } from "../war/merc.ts";
 import { placeAt } from "../war/loc.ts";
+import { blightAt } from "../world/blight.ts";
 import { availableFuel, isDocked } from "../world/move.ts";
 import { marketListings, marketPrice } from "../world/market.ts";
 import type { MarketState } from "../world/market.ts";
@@ -20,8 +21,12 @@ function encounterChoice(s: CampaignState, ctx: OpsCtx, policy: "idle" | "greedy
   if (!legal.length) throw new Error("encounter-without-resolvable-choice");
   const target = s.actors[s.pendingEncounter.actor];
   const canFight = battleAvailable(ctx) && allUnits(s, ctx).length > 0;
-  const preferred = policy === "random" ? legal[nextInt({ ...s.rng }, legal.length)]!.n
-    : policy === "greedy" && canFight && target && target.str < estimateShipStrength(s, ctx) ? 4
+  const peaceful = legal.filter(c => c.n === 1 || c.n === 3);
+  const randomChoices = peaceful.length ? peaceful : legal;
+  const preferred = policy === "random" ? randomChoices[nextInt({ ...s.rng }, randomChoices.length)]!.n
+    : policy === "greedy" && target?.kind !== "swarm" && legal.some(c => c.n === 3) ? 3
+    // 路上接觸可能拉入鄰近整群；單一 actor.str 不能當作可獲利戰鬥的保證。
+    : policy === "greedy" && legal.some(c => c.n === 1) ? 1
     : (policy === "idle" || !canFight || !legal.some(c => c.n === 1)) && target?.kind !== "swarm" && legal.some(c => c.n === 3) ? 3 : 1;
   return { v: "choose", choice: legal.find(c => c.n === preferred)?.n ?? legal[0]!.n };
 }
@@ -31,17 +36,24 @@ function choice(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
   if (index < 0) throw new Error("prompt-without-legal-choice");
   return { v: "choose", choice: index + 1 };
 }
-function fuelSupply(s: CampaignState, ctx: OpsCtx, returnToSafety = false): OpsCommand | undefined {
+function supplyMarket(s: CampaignState, ctx: OpsCtx, place: string): boolean {
+  // 蝕格覆蓋城中心不等於城市已失守；仍開放的港口可以停泊補給。
+  return !s.places[place]?.flags.some(f => ["recovering", "blight-lost", "blockaded"].includes(f));
+}
+function routeExposure(s: CampaignState, ctx: OpsCtx, path: NonNullable<ReturnType<typeof shortestPath>>): number {
+  return path.legs.reduce((n, leg) => n + leg.cells.filter(cell => blightAt(s, ctx, { map: leg.map, cell, region: "" })).length, 0);
+}
+function fuelSupply(s: CampaignState, ctx: OpsCtx, returnToSafety = false, requiredFuel = 0): OpsCommand | undefined {
   if (s.ship.hull.cur <= 0 || s.pendingBattle || s.ship.path?.lane) return;
   const travel = worldRules(ctx).travel, fuel = availableFuel(s), reserve = travel.retreatFuel * 2 + travel.fuelPerDay;
-  const candidates = ctx.world.all("market").filter(m => !s.places[m.place]?.flags.some(f => ["recovering", "blight-lost", "blockaded"].includes(f)))
+  const candidates = ctx.world.all("market").filter(m => supplyMarket(s, ctx, m.place))
     .filter(m => !returnToSafety || ["city", "port", "lunar-base"].includes(placeDef(s, ctx, m.place)?.kind ?? ""))
     .flatMap(market => {
       const item = marketListings(s, ctx, market).find(i => i.item.def === "stock:fuel")?.item;
       if (!item || ((s as MarketState).markets?.[market.id]?.stock["stock:fuel"] ?? item.stockMax) <= 0) return [];
       const path = item && shortestPath(s, ctx, s.ship.pos, market.place);
-      return item && path ? [{ market, item, path }] : [];
-    }).sort((a, b) => a.path.fuel - b.path.fuel || a.market.id.localeCompare(b.market.id));
+      return item && path && (path.fuel <= fuel || placeAt(s, ctx, s.ship.pos) === market.place) ? [{ market, item, path, exposure: routeExposure(s, ctx, path) }] : [];
+    }).sort((a, b) => a.path.fuel - b.path.fuel || a.exposure - b.exposure || a.market.id.localeCompare(b.market.id));
   const nearest = candidates[0]; if (!nearest) return;
   const active = Object.values(s.contracts).find(c => ["active", "stage"].includes(c.status));
   const mission = active ? shortestPath(s, ctx, s.ship.pos, active.target.place) : undefined;
@@ -49,7 +61,7 @@ function fuelSupply(s: CampaignState, ctx: OpsCtx, returnToSafety = false): OpsC
   const missionReserve = mission && homeward ? 2 * (mission.fuel + homeward.fuel)
     + travel.retreatFuel * 2 * (mission.days + homeward.days) + reserve : reserve;
   const returnReserve = nearest.path.fuel * 2 + travel.retreatFuel * 2 * nearest.path.days + reserve;
-  if ((!returnToSafety || isDocked(s, ctx, nearest.market.place)) && fuel > returnReserve && fuel >= missionReserve) return;
+  if ((!returnToSafety || isDocked(s, ctx, nearest.market.place)) && fuel > returnReserve && fuel >= Math.max(missionReserve, requiredFuel)) return;
   if (!isDocked(s, ctx, nearest.market.place)) {
     const at = placeAt(s, ctx, s.ship.pos);
     if (at === nearest.market.place) return { v: "dock" };
@@ -125,6 +137,59 @@ function repairJob(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
   return undefined;
 }
 
+/** 維修已排隊卻缺料時，依既有市場價格購買；不替政策生成免費材料。 */
+function repairMaterials(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
+  if (s.pendingBattle || s.ship.path?.lane) return;
+  const required = new Map<Account, number>();
+  for (const job of s.jobs.filter(j => s.mechs[j.target] && !j.paid && (j.kind === "repair" || j.kind === "rebuild"))) {
+    for (const [account, count] of Object.entries(job.materials)) if (account.startsWith("stock:")) {
+      const id = account as Account; required.set(id, (required.get(id) ?? 0) + count!);
+    }
+  }
+  for (const [account, total] of [...required].sort(([a], [b]) => a.localeCompare(b))) {
+    const missing = Math.ceil(total - (s.ledger.balances[account] ?? 0));
+    if (missing <= 0) continue;
+    // 比較下次補貨與航程；稀少材料不能讓政策整年停在空市場。
+    const local = ctx.world.all("market").find(m => isDocked(s, ctx, m.place) && supplyMarket(s, ctx, m.place)
+      && marketListings(s, ctx, m).some(i => i.item.def === account && i.item.stockMax > 0));
+    const calendar = ctx.world.require("calendar", s.calendar);
+    const restockDays = local && ((s as MarketState).markets?.[local.id]?.stock[account] ?? 1) <= 0
+      ? Math.min(...calendar.neap.map(dom => (dom - s.clock.dom + calendar.daysPerMonth - 1) % calendar.daysPerMonth + 1)) : Infinity;
+    const candidates = ctx.world.all("market").filter(m => supplyMarket(s, ctx, m.place))
+      .flatMap(market => {
+        const item = marketListings(s, ctx, market).find(i => i.item.def === account)?.item;
+        if (!item) return [];
+        const stock = (s as MarketState).markets?.[market.id]?.stock[account] ?? item.stockMax;
+        const price = marketPrice(s, ctx, market, item);
+        const count = Math.floor(Math.min(missing, stock, price > 0 ? s.ledger.balances.cash / price : missing));
+        const path = count > 0 ? shortestPath(s, ctx, s.ship.pos, market.place) : undefined;
+        return path ? [{ market, count, path, exposure: routeExposure(s, ctx, path) }] : [];
+      }).sort((a, b) => a.path.days - b.path.days || a.exposure - b.exposure || a.market.id.localeCompare(b.market.id));
+    for (const { market, count, path } of candidates) {
+      if (restockDays <= path.days) return { v: "wait", days: 1 };
+      const travel = worldRules(ctx).travel;
+      const homeward = ctx.world.all("market").filter(m => marketListings(s, ctx, m).some(i => i.item.def === "stock:fuel") &&
+        supplyMarket(s, ctx, m.place))
+        .flatMap(m => { const route = shortestPath(s, ctx, market.place, m.place); return route ? [route] : []; })
+        .sort((a, b) => a.fuel - b.fuel)[0];
+      if (!homeward) continue;
+      const reserve = 2 * (path.fuel + homeward.fuel) + 2 * travel.retreatFuel * (path.days + homeward.days + 1) + travel.fuelPerDay;
+      if (reserve > s.ship.fuel.max) continue;
+      if (availableFuel(s) < reserve) {
+        const fuel = fuelSupply(s, ctx, false, reserve);
+        if (fuel) return fuel;
+        continue;
+      }
+      const cmd: OpsCommand = isDocked(s, ctx, market.place) ? { v: "trade", market: market.id, buy: Array<string>(count).fill(account) }
+        : placeAt(s, ctx, s.ship.pos) === market.place ? { v: "dock" }
+        : s.ship.path && "place" in s.ship.path.to && s.ship.path.to.place === market.place ? { v: "wait", days: 1 }
+        : { v: "sail", to: market.place };
+      if (applyCommand(s, ctx.db, ctx.world, cmd).result.ok) return cmd;
+    }
+  }
+  return undefined;
+}
+
 function allUnits(s: CampaignState, ctx: OpsCtx, requireSteadyCrew = false): Sortie["units"] {
   const available = Object.keys(s.roster.persons).sort().filter(id => !s.roster.dead.some(d => d.person === id) && s.roster.persons[id]!.pools.hp?.cur !== 0
     // 與 scenario 的 morale-shaken 注入門檻一致；僅 greedy 啟用。
@@ -151,13 +216,16 @@ export const greedy: Policy = (s, ctx) => {
     const units = allUnits(s, ctx);
     return battleAvailable(ctx) && units.length ? { v: "sortie", sortie: { ...s.pendingBattle, units } } : { v: "drift" };
   }
-  const fuel = fuelSupply(s, ctx, !allUnits(s, ctx, true).length); if (fuel) return fuel;
+  const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => !c.operation && ["active", "stage"].includes(c.status));
+  const missionReady = active && allUnits(s, ctx, true).length > 0;
+  const unpaidRepair = s.jobs.some(j => s.mechs[j.target] && !j.paid && (j.kind === "repair" || j.kind === "rebuild"));
+  const fuel = fuelSupply(s, ctx, !allUnits(s, ctx, true).length && !unpaidRepair); if (fuel) return fuel;
+  const materials = !missionReady && repairMaterials(s, ctx); if (materials) return materials;
   const drawn = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c =>
     !c.operation && ["active", "stage"].includes(c.status) && (c.consecutiveDraws ?? 0) >= 2);
   if (drawn) return { v: "drop", contract: drawn.id };
-  const repair = repairJob(s, ctx); if (repair) return repair;
+  const repair = !missionReady && repairJob(s, ctx); if (repair) return repair;
   if (s.ship.path && !s.pendingBattle) return { v: "wait", days: 1 };
-  const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => !c.operation && ["active", "stage"].includes(c.status));
   const units = allUnits(s, ctx, true);
   // SPEC-GAP：validateSortie 尚未拒絕全空座位；無可控制機體時等待，避免反覆跑到 battle-maxSteps。
   if (!units.length) return s.pendingBattle?.trigger === "ambush" ? { v: "drift" } : { v: "wait", days: 1 };
@@ -175,7 +243,8 @@ export const greedy: Policy = (s, ctx) => {
   } };
   if (active) return { v: "sail", to: active.target.place };
   const offers = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).filter(c => !c.operation && c.status === "offered")
-    .map(c => ({ c, path: shortestPath(s, ctx, s.ship.pos, c.target.place) })).filter(item => item.path)
+    .map(c => ({ c, path: shortestPath(s, ctx, s.ship.pos, c.target.place) }))
+    .filter(item => item.path && s.clock.day + item.path.days + 2 <= item.c.deadlineDay && supplyMarket(s, ctx, item.c.target.place))
     .sort((a, b) => a.path!.days - b.path!.days || (a.c.id < b.c.id ? -1 : 1));
   for (const { c } of offers) {
     const cmd: OpsCommand = { v: "accept", contract: c.id };
@@ -202,6 +271,7 @@ export const random: Policy = (s, ctx) => {
     const drop: OpsCommand = { v: "drop", contract: s.pendingBattle.contract };
     if (applyCommand(s, ctx.db, ctx.world, drop).result.ok) return drop;
   }
+  if (s.ship.path) return { v: "wait", days: 1 };
   const candidates: OpsCommand[] = [{ v: "wait", days: 1 }, { v: "map" }, { v: "dock" }, { v: "drift" }, { v: "board" }];
   for (const id of Object.keys(s.contracts).sort()) {
     if (s.contracts[id]!.status === "offered") candidates.push({ v: "accept", contract: id });
@@ -214,7 +284,12 @@ export const random: Policy = (s, ctx) => {
     .filter(entry => entry.path && entry.path.days > 0 && availableFuel(s) >= 2 * (entry.path.fuel + travel.fuelPerDay) + travel.retreatFuel)
     .sort((a, b) => a.path!.days - b.path!.days || a.id.localeCompare(b.id));
   // 補給現金不足時留在安全港，避免隨機遠航後無錢補油。
-  if (affordVoyage) for (const { id } of journeys) candidates.push({ v: "sail", to: id });
+  if (affordVoyage && journeys.length) {
+    // 有往返補給時隨機選下一段航程；到站後再抽目的地，不以零耗日查詢取代航行。
+    const voyages = journeys.map(({ id }): OpsCommand => ({ v: "sail", to: id }))
+      .filter(cmd => applyCommand(s, ctx.db, ctx.world, cmd).result.ok);
+    if (voyages.length) return voyages[nextInt({ ...s.rng }, voyages.length)]!;
+  }
   const legal = candidates.filter(cmd => applyCommand(s, ctx.db, ctx.world, cmd).result.ok);
   // 政策只讀 RNG 快照：抽籤不改營運 state，記錄的指令即可完整重播。
   return legal[nextInt({ ...s.rng }, legal.length)]!;

@@ -30,6 +30,20 @@ function ancient(s: CampaignState) {
 }
 function soul(s: CampaignState) { return Object.keys(s.roster.persons).sort().find(id => s.roster.persons[id]!.will.soulTree)!; }
 
+test("workqueue：structure 層歸零的機甲手臂可排 rebuild 並付料修復", () => {
+  const { s, ctx } = setup(), target = "mech-9", part = s.mechs[target]!.parts["right-arm"]!;
+  part.layers[1]!.hp = 0; part.layers[1]!.broken = true; part.broken = true;
+  const config = world.require("job", "job/repair"), hp = 35;
+  const cost = hp * config.perHp!.structure! * config.rebuildMult!.material;
+  balance(s, "stock:scrap", cost);
+  assert.equal(cmdQueue(s, ctx, { v: "queue", job: { kind: "rebuild", target, part: "right-arm", layer: 1 } }).ok, true);
+  const job = s.jobs[0]!;
+  assert.equal(job.needHours, hp * config.hoursPerHp!.structure! * config.rebuildMult!.hours);
+  for (let day = 0; day < Math.ceil(job.needHours / config.technicianHours!); day++) workqueueDaily5(s, ctx);
+  assert.equal(part.layers[1]!.hp, hp); assert.equal(part.broken, false);
+  assert.equal(s.ledger.balances["stock:scrap"], 0); assert.deepEqual(checkLedger(s), []);
+});
+
 test("wages：全團等比例欠薪、mood −1 且不受名冊順序影響", () => {
   const { s, ctx } = setup(), due = Object.values(s.roster.employment).reduce((sum, e) => sum + e.wage / 28, 0);
   balance(s, "cash", due / 2); const other = structuredClone(s);

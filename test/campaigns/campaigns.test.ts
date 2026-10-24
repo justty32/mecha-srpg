@@ -34,17 +34,17 @@ const sequences: Record<string, Step[]> = {
     { type: "ModelReleased", field: "model", value: "base:model/old-array-ii" },
   ],
   "ops-merc-join": [
-    { type: "ContractAccepted", field: "contract", value: "contract-67" },
+    { type: "ContractAccepted", field: "contract", value: "contract-68" },
     { type: "Arrived", field: "place", value: "base:place/salt-flat" },
     { type: "BattleResolved", field: "operation", value: "operation-2" },
     { type: "OperationResolved", field: "operation", value: "operation-2" },
-    { type: "JoinSettled", field: "contract", value: "contract-67" },
+    { type: "JoinSettled", field: "contract", value: "contract-68" },
   ],
   "ops-betrayal": [
-    { type: "ContractAccepted", field: "contract", value: "contract-71" },
-    { type: "ContractCancelled", field: "contract", value: "contract-71" },
-    { type: "ContractAccepted", field: "contract", value: "contract-74" },
-    { type: "Betrayed", field: "contract", value: "contract-71" },
+    { type: "ContractAccepted", field: "contract", value: "contract-57" },
+    { type: "ContractCancelled", field: "contract", value: "contract-57" },
+    { type: "ContractAccepted", field: "contract", value: "contract-73" },
+    { type: "Betrayed", field: "contract", value: "contract-57" },
   ],
   "ops-leak": [
     { type: "MechLoaned", field: "model", value: "base:model/union-fr7" },
@@ -105,7 +105,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
   }
   assert(containsInOrder(state.log, sequence), `${name} 事件子序列缺失`);
   if (name === "ops-merc-join") {
-    assert(state.contracts["contract-67"]?.merc?.attachedLoss && state.contracts["contract-67"]!.merc!.attachedLoss > 0);
+    assert(state.contracts["contract-68"]?.merc?.attachedLoss && state.contracts["contract-68"]!.merc!.attachedLoss > 0);
     assert(state.ledger.entries.some(e => e.reason === "join-pay" && e.ref));
   }
   if (name === "ops-betrayal") {

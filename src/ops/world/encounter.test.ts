@@ -15,11 +15,38 @@ import { fixture as battleFixture, result as battleResult } from "../sortie/test
 import { parse } from "../text/parse.ts";
 import { render } from "../text/render.ts";
 import { greedy, random } from "../sim/policies.ts";
-import { locAt } from "../war/loc.ts";
-import { fixture } from "./test-support.ts";
+import { locAt, placeAt } from "../war/loc.ts";
+import { planActor } from "./actors.ts";
+import { relationKey, factionId } from "../war/relations.ts";
+import { chebyshev } from "./grid.ts";
+import { addRift, fixture } from "./test-support.ts";
 import { checkActorContacts, chooseEncounter, encounterOptions, estimateShipStrength, settleEncounterActors, speedCheck } from "./encounter.ts";
 import { cmdSail, moveDaily3, shipMover } from "./move.ts";
 import type { WorldRules } from "./places.ts";
+
+test("停泊安全：敵對接觸不開遭遇且 AI 不追船，失守城例外", () => {
+  const { s, ctx } = fixture(3), place = placeAt(s, ctx, s.ship.pos)!;
+  const actor = Object.values(s.actors).find(a => a.kind === "band")!;
+  actor.stance = "hostile"; actor.pos = structuredClone(s.ship.pos); actor.str = 10000;
+  actor.goal = { type: "hunt", target: structuredClone(s.ship.pos) }; actor.flags = ["hunting-player"];
+  actor.lastPlanDay = undefined; s.actors = { [actor.id]: actor };
+  checkActorContacts(s, ctx); assert.equal(s.pendingEncounter, undefined);
+  assert.equal(planActor(actor, s, ctx, structuredClone(s.rng)).flags.includes("hunting-player"), false);
+  // 當天曾移過蝕格、最後進港，也不能在 Arrived 後擲野群。
+  const destination = structuredClone(s.ship.pos);
+  const riftAt = locAt(ctx, destination.map, { x: destination.cell.x - 2, y: destination.cell.y });
+  addRift(s, ctx, { site: place, at: riftAt });
+  s.ship.pos.cell.x -= 3; s.actors = {};
+  const cells = [riftAt.cell, { x: destination.cell.x - 1, y: destination.cell.y }];
+  s.ship.path = { cells, legs: [{ map: destination.map, cells }], to: { place }, via: [] };
+  const rng = structuredClone(s.rng); moveDaily3(s, ctx);
+  assert.equal(s.ship.path, undefined); assert.equal(s.pendingEncounter, undefined);
+  assert.deepEqual(s.rng, rng); assert.equal(s.flags.blightEncounterDay, undefined);
+  s.actors = { [actor.id]: actor };
+  s.places[place]!.ownerOverride = ctx.db.require("faction", "faction/rift-insects").id;
+  checkActorContacts(s, ctx); assert.equal((s as CampaignState).pendingEncounter?.actor, actor.id);
+  assert.equal(planActor(actor, s, ctx, structuredClone(s.rng)).flags.includes("hunting-player"), true);
+});
 
 function setup() {
   const { s, ctx: base } = fixture();
@@ -33,8 +60,35 @@ function setup() {
   const actor: ActorState = { id: "actor-test", kind: "patrol", faction: world.require("faction-ops", "faction-ops/migrant-crew").id,
     pos: locAt(ctx, s.ship.pos.map, { x: 6, y: 1 }), mp: 60, str: 10, goal: { type: "idle" }, stance: "hostile", born: 0, flags: [], contact: 1, layer: "ground" };
   s.actors[actor.id] = actor;
+  s.factions[actor.faction]!.rep = -30;
   return { s, ctx, actor };
 }
+test("巡邏敵意：初始聲望與 hostile 外交不停船，rep −30 或 war 才攔截", () => {
+  for (const [rep, diplomacy, hostile] of [[0, "neutral", false], [-29, "hostile", false], [-30, "neutral", true], [0, "war", true]] as const) {
+    const { s, ctx, actor } = setup();
+    const player = factionId(s, ctx, "faction/migrant-crew")!;
+    actor.faction = Object.keys(s.factions).find(id => id !== player)!;
+    s.factions[actor.faction]!.rep = rep;
+    s.relations![relationKey(actor.faction, player)] = { a: actor.faction, b: player, state: diplomacy,
+      value: 0, baseline: 0, treaties: [], grievances: [], weariness: 0, since: 0 };
+    actor.pos = structuredClone(s.ship.pos); checkActorContacts(s, ctx);
+    assert.equal(!!s.pendingEncounter, hostile, `${rep}/${diplomacy}`);
+    assert.equal(s.log.some(e => e.type === "Sighted" && e.payload.actor === actor.id), !hostile);
+  }
+});
+test("wary 只發 Sighted：商隊與獵團依 stance、不停船且 AI 繞船", () => {
+  for (const kind of ["caravan", "band"] as const) {
+    const { s, ctx, actor } = setup(); actor.kind = kind; actor.stance = "wary";
+    actor.pos.cell = { x: 3, y: 1 }; s.ship.drifting = true;
+    checkActorContacts(s, ctx); assert.equal(s.pendingEncounter, undefined);
+    assert.equal(s.log.filter(e => e.type === "Sighted" && e.payload.actor === actor.id).length, 1);
+    const planned = planActor(actor, s, ctx, structuredClone(s.rng));
+    assert.equal(planned.goal.type, "flee"); assert.ok(planned.path?.length);
+    assert.ok(planned.path!.every(c => chebyshev(c, s.ship.pos.cell) > 2));
+    actor.stance = "hostile"; actor.flags = [];
+    checkActorContacts(s, ctx); assert.equal((s as CampaignState).pendingEncounter?.actor, actor.id);
+  }
+});
 test("actors：逐格接觸停船，pendingEncounter 凍結 pos 並保留 pendingTicks，同一對一天只一次", () => {
   const { s, ctx, actor } = setup();
   assert.equal(cmdSail(s, ctx, { v: "sail", to: { x: 35, y: 1 } }).ok, true);

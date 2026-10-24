@@ -2,10 +2,13 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import { pressureDaily2, poisson } from "./pressure.ts";
 import { fixture, day, addRift } from "./test-support.ts";
+import { worldRules } from "./places.ts";
 test("pressure：每日與蝕域月累積；平日不開裂縫", () => {
-  const { s, ctx } = fixture(), r = addRift(s, ctx);
+  const { s, ctx } = fixture(); addRift(s, ctx);
   day(s, ctx, 2); const rng = structuredClone(s.rng); pressureDaily2(s, ctx);
-  assert.equal(s.pressure, 1 + 1 / 28); assert.equal(Object.keys(s.rifts).length, 1); assert.deepEqual(s.rng, rng);
+  const rules = worldRules(ctx).pressure;
+  assert.equal(s.pressure, rules.daily + rules.blightPerMonth / ctx.world.require("calendar", s.calendar).daysPerMonth);
+  assert.equal(Object.keys(s.rifts).length, 1); assert.deepEqual(s.rng, rng);
   assert.equal(poisson(s.rng, 0), 0); assert.throws(() => poisson(s.rng, -1));
 });
 test("pressure：大潮泊松與落點可重播、落點不重疊", () => {

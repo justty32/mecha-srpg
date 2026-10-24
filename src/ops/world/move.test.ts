@@ -63,6 +63,10 @@ test("move：每個移動日恰扣一次燃料，經過深蝕格當日乘二", (
     const entries = s.ledger.entries.slice(before).filter(e => e.reason === "travel");
     assert.equal(entries.length, 1); assert.equal(entries[0]!.delta, deep ? -2 : -1);
     assert.equal(s.ship.fuel.cur, fuel - (deep ? 2 : 1)); assert.deepEqual(checkLedger(s), []);
+    const movedDay = s.clock.day;
+    assert.equal(s.flags.shipMovedDay, movedDay);
+    s.clock.day++; moveDaily3(s, ctx); // 已抵達的等待不增加移動日。
+    assert.equal(s.flags.shipMovedDay, movedDay);
   }
 });
 test("move：航行中等7與七次等1事件序列相同", () => {
@@ -99,10 +103,14 @@ test("move：跨圖航道估計包含等船天數，到站收票價", () => {
   const { s, ctx } = sea(); s.ship.pos = locAt(ctx, "base:map/test-move", { x: 2, y: 2 });
   const target = "base:place/test-exit", path = shortestPath(s, ctx, s.ship.pos, target)!;
   assert.equal(path.days, 8); assert.deepEqual(cmdSail(s, ctx, { v: "sail", to: target }), { ok: true });
-  let days = 0;
-  while (s.ship.path && days < 20) { days++; s.clock = clock(days, ctx.world.require("calendar", s.calendar)); moveDaily3(s, ctx); }
+  let days = 0, sailingDays = 0;
+  while (s.ship.path && days < 20) {
+    days++; s.clock = clock(days, ctx.world.require("calendar", s.calendar)); moveDaily3(s, ctx);
+    if (s.flags.shipMovedDay === days) sailingDays++;
+  }
   assert.equal(days, path.days); assert.equal(s.ship.pos.map, "base:map/test-other");
   assert.equal(s.log.filter(e => e.type === "Waiting").length, 5);
+  assert.equal(sailingDays, 3);
   assert.equal(s.ledger.entries.filter(e => e.reason === "lane-fare").at(-1)?.delta, -10);
   assert.deepEqual(cmdDock(s, ctx, { v: "dock" }), { ok: true });
 });
@@ -111,4 +119,5 @@ test("move：燃料不足與未知行動者拒絕，野外不能停泊", () => {
   assert.deepEqual(cmdSail(s, ctx, { v: "sail", to: { x: 25, y: 2 } }), { ok: false, error: "insufficient-fuel" });
   assert.deepEqual(cmdSail(s, ctx, { v: "sail", to: { actor: "missing" } }), { ok: false, error: "unknown-actor" });
   assert.deepEqual(cmdDock(s, ctx, { v: "dock" }), { ok: false, error: "no-place" });
+  assert.equal(s.flags.shipMovedDay, undefined);
 });

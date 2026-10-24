@@ -9,7 +9,8 @@ import { modelPower, strength } from "../war/forces.ts";
 import { allPlaces, worldRules } from "./places.ts";
 import { blightAt, patchDepth } from "./blight.ts";
 import { cellKey, cellsWithin, chebyshev, findPath, gridOf, inBounds, neighbors, parseCellKey, stepCost, terrainAt } from "./grid.ts";
-import { actorHostile, checkActorContacts, estimateShipStrength } from "./encounter.ts";
+import { actorContact, actorHostile, checkActorContacts, estimateShipStrength } from "./encounter.ts";
+import { isSafelyDocked } from "./move.ts";
 
 export type ActorRules = { max: number; min: number; minPopulation: number; maxTopUp: number; evadeSpeedRatio: number; evadeBase: number; deepPenalty: number; maxEncountersPerDay: number };
 export function actorRules(ctx: OpsCtx): ActorRules { return (worldRules(ctx) as ReturnType<typeof worldRules> & { actors: ActorRules }).actors; }
@@ -205,8 +206,8 @@ function localGoal(actor: ActorState, s: CampaignState, ctx: OpsCtx, rng: RngSta
 export function planActor(actor: ActorState, s: CampaignState, ctx: OpsCtx, rng: RngState): ActorState {
   const a = structuredClone(actor), def = actorDefinition(ctx, a), day = s.clock.day;
   if (a.lastPlanDay === day) return a;
-  const playerActive = !s.log.some(e => e.type === "CampaignEnd");
-  if (!playerActive && a.flags.includes("hunting-player")) {
+  const playerActive = !s.log.some(e => e.type === "CampaignEnd") && !isSafelyDocked(s, ctx);
+  if ((!playerActive || !actorHostile(s, ctx, a)) && a.flags.includes("hunting-player")) {
     a.goal = { type: "return", target: a.home }; a.path = [];
     a.flags = a.flags.filter(f => f !== "hunting-player");
   }
@@ -215,7 +216,15 @@ export function planActor(actor: ActorState, s: CampaignState, ctx: OpsCtx, rng:
   let target = typeof a.goal.target === "string" ? s.actors[a.goal.target]?.pos : a.goal.target;
   const arrived = target && distance(a.pos, target) === 0;
   const stale = day - (a.lastMoveDay ?? a.born) >= def.behavior.maxIdleDays;
-  if (a.kind === "force") {
+  // SPEC-GAP：wary 的繞船規則也適用商隊與非敵對巡邏，不把停泊船當攔截目標。
+  const avoidShip = playerActive && a.stance === "wary" && !actorHostile(s, ctx, a) && a.pos.map === s.ship.pos.map;
+  const contact = Math.max(actorContact(ctx, a), worldRules(ctx).grid.contact.air);
+  if (avoidShip && distance(a.pos, s.ship.pos) <= contact) {
+    const away = cellsWithin(gridOf(ctx.world, a.pos.map), a.pos.cell, def.behavior.wanderRadius)
+      .filter(c => actorPassable(s, ctx, a, c))
+      .sort((x, y) => chebyshev(y, s.ship.pos.cell) - chebyshev(x, s.ship.pos.cell) || x.y - y.y || x.x - y.x)[0];
+    target = away ? locAt(ctx, a.pos.map, away) : a.pos; a.goal = { type: "flee", target };
+  } else if (a.kind === "force") {
     const op = s.operations?.[a.operation ?? ""];
     if (op) { a.str = strength(op.force, op.power ?? modelPower(ctx)); a.goal = { type: op.phase === "march" ? "goto" : "idle", target: op.target.loc }; }
     if (op?.phase !== "march") { a.path = []; a.lastPlanDay = day; return a; }
@@ -291,10 +300,13 @@ export function planActor(actor: ActorState, s: CampaignState, ctx: OpsCtx, rng:
   }
   if (a.kind === "force") a.destination = structuredClone(target);
   const sameTarget = actor.path?.at(-1) && cellKey(actor.path.at(-1)!) === cellKey(target.cell);
-  if (sameTarget && !stale && actor.path!.every(c => actorPassable(s, ctx, a, c))) return a;
-  a.path = actorPath(s, ctx, a, target);
+  if (!avoidShip && sameTarget && !stale && actor.path!.every(c => actorPassable(s, ctx, a, c))) return a;
+  const outsideContact = (c: Cell) => chebyshev(c, s.ship.pos.cell) > Math.min(contact, distance(a.pos, s.ship.pos));
+  const cost = actorCost(s, ctx, a);
+  a.path = avoidShip ? findPath(map, a.pos.cell, target.cell, { layer, mp: a.mp },
+    (c, base) => cellKey(c) === cellKey(a.pos.cell) || outsideContact(c) ? cost(c, base) : undefined)?.cells ?? [] : actorPath(s, ctx, a, target);
   if (!a.path.length && distance(a.pos, target) > 0 && a.kind !== "force") {
-    const candidates = neighbors(map, a.pos.cell).filter(c => actorPassable(s, ctx, a, c));
+    const candidates = neighbors(map, a.pos.cell).filter(c => actorPassable(s, ctx, a, c) && (!avoidShip || outsideContact(c)));
     if (candidates.length) { const cell = candidates[nextInt(rng, candidates.length)]!; a.path = [cell]; a.goal = { type: "goto", target: locAt(ctx, a.pos.map, cell) }; }
   }
   return a;

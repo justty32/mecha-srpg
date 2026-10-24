@@ -79,7 +79,7 @@ export function contractsDaily2(s: CampaignState, ctx: OpsCtx): void {
       const needsRift = ["clear", "seal", "reclaim"].includes(template.kind);
       const rift = request.rift || needsRift ? targets[0] : undefined;
       const node = rift?.site ?? explicitNode ?? (!needsRift ? s.factions[issuer]!.territoryNow
-        .filter(id => shortestPath(s, ctx, s.ship.pos, id)).sort()[0] : undefined);
+        .filter(id => !s.places[id]?.flags.includes("blight-lost") && shortestPath(s, ctx, s.ship.pos, id)).sort()[0] : undefined);
       if (!node || !rift && needsRift || template.kind === "join") continue;
       const duplicate = Object.keys(s.contracts).sort().some(id => { const c = s.contracts[id]!; return c.template === template.id && c.issuer === issuer && c.target.place === node && ["offered", "active", "stage"].includes(c.status); });
       if (!duplicate && offerContract(s, ctx, template.id, issuer, { place: node, ...(rift ? { rift: rift.id } : {}) })) break;

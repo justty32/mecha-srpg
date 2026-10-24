@@ -19,6 +19,12 @@ export function isDocked(s: CampaignState, ctx: Pick<OpsCtx, "world">, place?: s
   const here = placeAt(s, ctx, s.ship.pos);
   return !s.ship.path && !s.ship.drifting && !!here && (!place || placeDef(s, ctx, place)?.id === here);
 }
+/** 失守地點不提供停泊保護；一般停泊狀態仍供服務與航行判斷使用。 */
+export function isSafelyDocked(s: CampaignState, ctx: OpsCtx): boolean {
+  if (!isDocked(s, ctx)) return false;
+  const here = placeAt(s, ctx, s.ship.pos)!;
+  return s.places[here]?.ownerOverride !== ctx.db.require("faction", worldRules(ctx).places.insectOwner).id;
+}
 export function shipMover(s: CampaignState, ctx: OpsCtx) {
   const cfg = worldRules(ctx).grid;
   return { layer: s.ship.hull.cur <= 0 ? "ground" as const : "air" as const,
@@ -71,6 +77,10 @@ export function spendFuel(s: CampaignState, ctx: OpsCtx, amount: number): void {
   const ref = eventRef(ctx.emit("FuelUsed", { loc: s.ship.pos, amount }));
   post(s, ctx, { account: "stock:fuel", delta: -amount, reason: "travel", ref });
   s.ship.fuel.cur -= amount;
+}
+/** 航行、航道與成功迴避共用；同一天走多段仍只算一個實際移動日。 */
+export function recordShipMovement(s: CampaignState): void {
+  s.flags.shipMovedDay = s.clock.day;
 }
 function overload(s: CampaignState, ctx: OpsCtx): boolean {
   const cargo = s.inventory.components.reduce((sum, c) => sum + ctx.db.require("component", c.def).size, 0);
@@ -131,6 +141,7 @@ function arrived(s: CampaignState, ctx: OpsCtx): void {
   stop(s); ctx.emit("Arrived", { ...(place ? { place, node: place } : {}), cell: s.ship.pos.cell, loc: s.ship.pos });
 }
 function wildEncounter(s: CampaignState, ctx: OpsCtx, depth?: "shallow" | "deep" | "core", rift?: string): void {
+  if (isSafelyDocked(s, ctx)) return;
   if (s.log.some(event => event.type === "CampaignEnd")) return;
   if (s.pendingEncounter || !depth || !rift || s.flags.blightEncounterDay === s.clock.day) return;
   s.flags.blightEncounterDay = s.clock.day;
@@ -163,6 +174,7 @@ export function moveDaily3(s: CampaignState, ctx: OpsCtx): void {
     const fuel = lane.fuelPerDay ?? 0;
     if (availableFuel(s) < fuel) { stop(s); s.ship.drifting = true; return; }
     path.lane ??= { id: lane.id, daysLeft: lane.days };
+    recordShipMovement(s);
     spendFuel(s, ctx, fuel); path.lane.daysLeft--; s.ship.mpCarry = 0;
     if (path.lane.daysLeft <= 0) {
       // SPEC-GAP：carriesShip:false 本波仍攜船過圖，第三波再分離載具。
@@ -184,11 +196,14 @@ export function moveDaily3(s: CampaignState, ctx: OpsCtx): void {
     const b = blightAt(s, ctx, locAt(ctx, leg.map, cell)), fuel = dailyFuel * (depth && depth !== "shallow" || b && b.depth !== "shallow" ? 2 : 1);
     if (availableFuel(s) < fuel) { stop(s); s.ship.drifting = true; break; }
     mp -= cost; s.ship.pos = locAt(ctx, leg.map, cell); leg.cells.shift(); moved = true;
+    recordShipMovement(s);
     while (path.via[0]?.map === s.ship.pos.map && cellKey(path.via[0].cell) === cellKey(cell)) path.via.shift();
     if (b && (!depth || worldRules(ctx).grid.blightEncounter[b.depth] > worldRules(ctx).grid.blightEncounter[depth])) { depth = b.depth; rift = b.rift; }
+    if (path.legs.length === 1 && !path.via.length && "place" in path.to && placeAt(s, ctx, s.ship.pos) === path.to.place) {
+      arrived(s, ctx); checkActorContacts(s, ctx); break;
+    }
     checkActorContacts(s, ctx);
     if (s.pendingEncounter || !s.ship.path) break;
-    if (path.legs.length === 1 && !path.via.length && "place" in path.to && placeAt(s, ctx, s.ship.pos) === path.to.place) { leg.cells.length = 0; break; }
   }
   if (moved) spendFuel(s, ctx, dailyFuel * (depth && depth !== "shallow" ? 2 : 1));
   if (s.ship.path && !s.pendingEncounter) {
