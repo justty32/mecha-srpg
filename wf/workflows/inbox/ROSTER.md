@@ -44,7 +44,7 @@
 （現役：dispatcher 與下列 `lead-codex-pilot` 代登記的工人格；已收線成員原格見 `archive/`。）
 
 ### `cx-pilot-iron`
-- **狀態**：現役（領導 `lead-codex-pilot` 代登記，2026-10-24）
+- **狀態**：已收線（領導 `lead-codex-pilot` 代登記，2026-10-24；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-codex-pilot/`）
 - **我是誰**：codex 工人，`lead-codex-pilot` 底下：通用系列鐵劍（batch pilot-mech-02，新增模式）。
 - **團隊**：`teams/codex-pilot`
 - **上游**：`lead-codex-pilot`

@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-codex-pilot`（工人 codex `cx-pilot-*`，只在 scratchpad worktree 寫）| `wf/tools/content_*`、`content/INDEX.json`、`content/batches/`、試點新增的內容檔（`content/base/{frames,components,abilities,effects}/cx3-*`、`content/lore/{characters,events}/` 新檔）、`wf/workflows/content/README.md` 與 `content/README.md` 相關段、`wf/workflows/dispatch/handoffs/lead-codex-pilot/`、dev-env／testing 資料檔相應列、`package.json` scripts | `src/`、既有內容檔、spec、`content/base/world/` | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
