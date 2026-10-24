@@ -1,4 +1,4 @@
-# content/lore — 《潮獵》世界觀資料（wiki 用，不被遊戲載入器讀）
+# content/lore — 《蝕潮獵團》世界觀資料（wiki 用，不被遊戲載入器讀）
 
 與遊戲內容包 `content/base/` 並列的世界觀資料夾：勢力、人物、大事件、地點、時代、年表。給 wiki 頁面（`lead-wiki`）讀，也給寫內容的人查設定。**不是**遊戲資料——遊戲只讀 `content/base/`；兩邊用 `gameRefs` 單向連結（lore → base）。
 
@@ -38,7 +38,7 @@
 |---|---|
 | `places` | `place/…` 陣列：總部與主要地盤 |
 | `ancientMech` | 藍本古代機 `{ "name", "foundAt": "place/…", "foundDate", "pilot": "character/…"｜null, "gameRef": "base:frame/…"｜null, "doctrine": 研發特色一句 }` |
-| `mechSeries` | 代表摹機系列（命名照 design-notes：D 代號／A–C 系列＋型號／高階愈中二） |
+| `mechSeries` | 代表衍型機系列（命名照 design-notes：D 代號／A–C 系列＋型號／高階愈中二） |
 | `mercPolicy` | `{ "generosity": 1–5（1 苛刻 5 大方）, "reliability": 1–5（1 會出賣 5 守約）, "note" }` |
 
 ### characters/<name>.json
@@ -49,7 +49,7 @@
 |---|---|
 | `died` | 有才填 |
 | `kind` | `human`／`soul`／`other`（機魂 `soul`；古代機當先民本人寫時 `other`） |
-| `mech` | 所駕機甲名（古代機神話名、摹機系列名、生物系登記號） |
+| `mech` | 所駕機甲名（古代機神話名、衍型機系列名、生物系登記號） |
 
 ### events/<name>.json
 
@@ -73,7 +73,7 @@
 
 ```json
 { "contract": "lore-timeline/1",
-  "entries": [ { "date": "2089-03-14", "title": "第一次潮", "summary": "…",
+  "entries": [ { "date": "2089-03-14", "title": "第一次蝕潮", "summary": "…",
                  "event": "event/first-tide", "era": "era/first-tide",
                  "factions": ["faction/…"], "tags": ["tide"] } ] }
 ```

@@ -237,6 +237,18 @@ class GateCase(unittest.TestCase):
         self.edit('content/base/world/events/ev-a.json', lambda d: d['lines'].__setitem__(0, '壹'))
         self.assertIn('POLISH-FIELD', self.run_gate(m)[0])
 
+    def test_polish_prose_fields_opt_in(self):
+        m = {'mode': 'polish', 'allow': {'polishFiles': ['content/base/world/events/*.json'], 'proseFields': ['tags']}}
+        self.edit('content/base/world/events/ev-a.json', lambda d: d['tags'].__setitem__(0, '蝕盛'))
+        codes, approved, _ = self.run_gate(m)
+        self.assertEqual(codes, set())
+        self.assertEqual(approved, ['content/base/world/events/ev-a.json'])
+
+    def test_polish_prose_fields_unknown_ignored(self):
+        m = {'mode': 'polish', 'allow': {'polishFiles': ['content/base/world/events/*.json'], 'proseFields': ['id']}}
+        self.edit('content/base/world/events/ev-a.json', lambda d: d.update(id='event/ev-z'))
+        self.assertIn('POLISH-FIELD', self.run_gate(m)[0])
+
     def test_polish_no_add(self):
         self.write('content/base/world/events/ev-new.json', {'id': 'event/ev-new'})
         self.assertIn('ADD', self.run_gate(self.POLISH)[0])

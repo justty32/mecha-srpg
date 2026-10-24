@@ -22,6 +22,7 @@
   - 新舊 JSON 結構逐節點比對：鍵集合、陣列長度、型別必須相同；值不同的葉子，
     其路徑上最近的物件鍵必須在文字欄白名單內（`allow.textFields` 可縮小），且新舊皆為字串、
     都不像 id 引用。id、數值、tags、引用、結構任何變動都拒絕。
+    例外：`allow.proseFields` 明列的敘述欄（取自內建 PROSE_FIELDS 子集，含 lore 的 tags）也放行。
 兩種模式共通：`maxFiles` 件數上限；`--carry` 只把通過的檔複製回目的 repo——
 新增模式目的地已存在同名檔就拒絕；潤飾模式目的地檔必須仍等於 base 版本（防蓋掉別線的改動）。
 
@@ -41,6 +42,12 @@ from pathlib import Path
 DEFAULT_TEXT_FIELDS = (
     'name', 'title', 'summary', 'body', 'desc', 'description', 'text', 'label', 'brief',
     'lines', 'phrase', 'phrases', 'badge', 'note', 'aka', 'epithet', 'flavor',
+)
+# 敘述性但預設不開的欄（lore 的結果／信條／規模、名表詞庫…）：manifest `allow.proseFields`
+# 明列才放行，且只能取這個清單的子集（2026-10-24 lead-rename 全庫改名用）。
+PROSE_FIELDS = (
+    'consequences', 'role', 'scale', 'doctrine', 'ideology', 'silhouette', 'status2108',
+    'region', 'hq', 'mechSeries', 'relation', 'epithets', 'names', 'tags',
 )
 # 像 id 引用的字串：`kind/name`、`pack:kind/name`。
 ID_LIKE = re.compile(r'^(?:[a-z0-9-]+:)?[a-z][a-z0-9-]*/[a-z0-9][a-z0-9-]*$')
@@ -169,6 +176,7 @@ def check(wt, manifest, base):
     modify = {m['path']: m.get('rule', 'superset') for m in allow.get('modify', [])}
     polish_globs = allow.get('polishFiles', [])
     fields = set(allow.get('textFields') or DEFAULT_TEXT_FIELDS) & set(DEFAULT_TEXT_FIELDS)
+    fields |= set(allow.get('proseFields') or ()) & set(PROSE_FIELDS)
     name_prefix = allow.get('namePrefix', {})
     prefix_cache = {}
     head = git(wt, 'rev-parse', 'HEAD').decode().strip()
