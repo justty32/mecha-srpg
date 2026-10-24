@@ -142,3 +142,10 @@ test("MonsterDef 捕捉 HP 上限不同只警告", () => {
   assert.deepEqual(result.errors, []);
   assert.ok(result.warnings.some(e => e.message.includes("capture layer HP differs")));
 });
+test("MonsterDef 捕捉 HP 不同的警告每隻怪獸只一條、列出全部部位", () => {
+  const { files, monster } = monsterPack();
+  for (const part of monster.partsOverride) part.layers[0]!.hp += 10;
+  const warnings = loadPacks([files]).warnings.filter(e => e.file.includes("loader-test") && e.message.includes("capture layer HP differs"));
+  assert.equal(warnings.length, 1);
+  for (const part of monster.partsOverride) assert.ok(warnings[0]!.message.includes(part.id!), part.id);
+});

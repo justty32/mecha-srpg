@@ -184,6 +184,7 @@ function checkMonsterOverridesAndSoulGrade(db: ContentDB, definitions: Map<strin
       override.id === part.id ? { ...merged, ...override } : merged, part));
     if (!parts.some(p => p.functions.includes("core"))) error("$.partsOverride", "monster requires a core part");
     const frame = db.get("frame", species!.capture.frame), capturePlan = frame ? db.get("bodyplan", frame.bodyPlan) : undefined;
+    const hpDiffers: string[] = [];
     for (const part of parts) {
       const index = monster.partsOverride.findIndex(p => p.id === part.id);
       const path = index < 0 ? "$.partsOverride" : `$.partsOverride[${index}].layers`;
@@ -191,10 +192,10 @@ function checkMonsterOverridesAndSoulGrade(db: ContentDB, definitions: Map<strin
       if (!capturePlan) continue;
       const captured = capturePlan.parts.find(p => p.id === part.id);
       if (!captured || captured.layers.length !== part.layers.length) error(path, `capture layer count differs: ${part.id}`);
-      else if (part.layers.some((layer, i) => layer.hp !== captured.layers[i]!.hp)) {
-        warnings.push({ file, path, message: `capture layer HP differs: ${part.id}` });
-      }
+      else if (part.layers.some((layer, i) => layer.hp !== captured.layers[i]!.hp)) hpDiffers.push(part.id);
     }
+    // 捕捉後層 HP 不同是常態（等級調血），每隻怪獸只報一條，列出所有部位。
+    if (hpDiffers.length) warnings.push({ file, path: "$.partsOverride", message: `capture layer HP differs: ${hpDiffers.join(", ")}` });
   }
 }
 
