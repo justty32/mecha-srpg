@@ -20,7 +20,7 @@ content/<pack>/
 
 **機甲（frame）** `frames/hound-mk2.json`
 ```json
-{"id":"frame/hound-mk2","name":"獵犬 Mk2","cls":"mechanical","grade":"C","bodyPlan":"bodyplan/biped-light",
+{"id":"frame/hound-mk2","name":"獵犬-II型","cls":"mechanical","grade":"C","bodyPlan":"bodyplan/biped-light",
  "baseAttrs":{"initiative":6,"perception":5},"pools":[{"id":"heat","name":"燼","min":0,"max":100,"capKind":"soft",
  "inverted":true,"initial":0,"regen":-15,"bands":[{"from":100,"to":125,"effects":["effect/overheat-1"]},{"from":125,"to":null,"effects":["effect/overheat-2"]}]}],
  "innateAbilities":[],"repairPolicy":"repair-or-replace","tags":["mech","human"]}
