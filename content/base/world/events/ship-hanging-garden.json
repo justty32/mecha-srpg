@@ -1,0 +1,67 @@
+{
+  "id": "event/ship-hanging-garden",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你側身穿過舷窗前的木箱，濕土味貼著艙壁，滴水聲跟著船身搖晃。船員把菜苗搬到光幕照不到的地方，葉尖仍慢慢朝亮處偏。他們量著箱腳，想用廢鐵做個能掛起來的架子；廚子只把空菜籃放在門邊，沒有催。",
+  "choices": [
+    {
+      "text": "把木箱挪回不擋路的位置",
+      "effects": [
+        {
+          "flag": "noted-ship-hanging-garden"
+        }
+      ]
+    },
+    {
+      "text": "拿廢鐵替菜苗做吊架",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-ship-hanging-garden"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "helped-ship-hanging-garden"
+        }
+      ]
+    }
+  ]
+}

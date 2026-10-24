@@ -1,0 +1,67 @@
+{
+  "id": "event/ship-mended-coats",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你把磨破的外套放進補衣籃，皂角味蓋過衣領的汗。剪刀喀嚓一聲，船員從舊袖子剪下整塊好布，補到另一件肩頭；鎧甲架旁掛滿等著乾的衣服。輪值牌壓在籃底，補衣的人拿針指指它，請你替還沒睡的人作主。",
+  "choices": [
+    {
+      "text": "收起衣籃照輪值休息",
+      "effects": [
+        {
+          "flag": "noted-ship-mended-coats"
+        }
+      ]
+    },
+    {
+      "text": "買布料請醒著的人接手",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 90
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -90,
+            "reason": "event-ship-mended-coats"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "helped-ship-mended-coats"
+        }
+      ]
+    }
+  ]
+}

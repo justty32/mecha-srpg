@@ -1,0 +1,65 @@
+{
+  "id": "dialogue/chen-xiaohai-watch-rain",
+  "person": "person/chen-xiaohai",
+  "name": "陳小海",
+  "topics": [
+    {
+      "topic": "聽雨的地方",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 7
+            }
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-chen-xiaohai-watch-rain"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你在走廊停下，小海正挪接漏盆。「這裡少一拍。」",
+        "「岸上的雨我認得。船上的，現在也認得了。」",
+        "你把盆往旁邊移，他伸出手指，等下一滴落下。"
+      ],
+      "choices": [
+        {
+          "text": "陪他聽完這陣雨。",
+          "effects": [
+            {
+              "flag": "dlg-chen-xiaohai-watch-rain"
+            },
+            {
+              "mood": {
+                "person/chen-xiaohai": 0
+              }
+            }
+          ]
+        },
+        {
+          "text": "照他的拍子敲敲盆沿。",
+          "effects": [
+            {
+              "flag": "dlg-chen-xiaohai-watch-rain"
+            },
+            {
+              "mood": {
+                "person/chen-xiaohai": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

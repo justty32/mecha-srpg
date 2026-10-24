@@ -1,0 +1,65 @@
+{
+  "id": "event/rival-practice-banner",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你在船側看見同業吊起一面破旗，旗上沒有獸首，只有歪斜的退路。松脂味從新補的旗杆飄來，敲碗聲隔空催你看仔細。對面的衍型機缺了半截護板，旗手卻堅稱這趟最值錢的戰利品，是全員都能回來吹噓。",
+  "choices": [
+    {
+      "text": "向破旗回個禮",
+      "effects": [
+        {
+          "flag": "noted-rival-practice-banner"
+        }
+      ]
+    },
+    {
+      "text": "買下他們的撤退紀錄",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 160
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -160,
+            "reason": "event-rival-practice-banner"
+          }
+        },
+        {
+          "techHours": 8
+        },
+        {
+          "flag": "helped-rival-practice-banner"
+        }
+      ]
+    }
+  ]
+}

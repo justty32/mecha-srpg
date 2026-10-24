@@ -1,0 +1,67 @@
+{
+  "id": "event/eclipse-silent-bell",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你看著交班鐘左右搖晃，耳邊卻只有杯蓋的喀響。冷掉的酸茶味塞滿艦橋，浮芯的光沿地板爬到鞋尖。值夜的人隔著門比手勢，接班的人把鐘槌攥住，等你開口才肯鬆手；大家都在看彼此的嘴。",
+  "choices": [
+    {
+      "text": "用手勢照表交班",
+      "effects": [
+        {
+          "flag": "noted-eclipse-silent-bell"
+        }
+      ]
+    },
+    {
+      "text": "添錢讓兩班一起喝熱茶",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 80
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -80,
+            "reason": "event-eclipse-silent-bell"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "helped-eclipse-silent-bell"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "event/eclipse-ash-tray",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你端著接灰盤守在排燼口下，燼卻一粒粒往上落，貼滿盤底。濕鐵味鑽進衣領，懸著的螺帽叮響不停。技師不肯伸手，隔著玻璃比畫新的接盤；值班的人把袖口紮緊，連打呵欠也背過身去。",
+  "choices": [
+    {
+      "text": "封存這班的觀察紀錄",
+      "effects": [
+        {
+          "flag": "noted-eclipse-ash-tray"
+        }
+      ]
+    },
+    {
+      "text": "拿廢料做隔窗接盤",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-eclipse-ash-tray"
+          }
+        },
+        {
+          "techHours": 6
+        },
+        {
+          "flag": "helped-eclipse-ash-tray"
+        }
+      ]
+    }
+  ]
+}

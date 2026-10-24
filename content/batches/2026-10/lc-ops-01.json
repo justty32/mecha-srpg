@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-ops-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "營運事件與對話：中後期隨機事件系列（每系列 ≥3 件）＋必要的事件鏈後續、對既有人物的新話題對白；效果白名單、第一選項無 requires；不動營運黃金",
  "author": {
   "agent": "codex",
@@ -53,5 +53,116 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "files": [
+  "content/base/world/dialogues/chen-xiaohai-watch-rain.json",
+  "content/base/world/dialogues/mara-okoye-watch-lamp.json",
+  "content/base/world/events/eclipse-ash-tray.json",
+  "content/base/world/events/eclipse-shadow-cloth.json",
+  "content/base/world/events/eclipse-silent-bell.json",
+  "content/base/world/events/rival-open-account.json",
+  "content/base/world/events/rival-practice-banner.json",
+  "content/base/world/events/rival-tool-surety.json",
+  "content/base/world/events/ship-hanging-garden.json",
+  "content/base/world/events/ship-mended-coats.json",
+  "content/base/world/events/ship-rain-rehearsal.json"
+ ],
+ "ids": [
+  "dialogue/chen-xiaohai-watch-rain",
+  "dialogue/mara-okoye-watch-lamp",
+  "event/eclipse-ash-tray",
+  "event/eclipse-shadow-cloth",
+  "event/eclipse-silent-bell",
+  "event/rival-open-account",
+  "event/rival-practice-banner",
+  "event/rival-tool-surety",
+  "event/ship-hanging-garden",
+  "event/ship-mended-coats",
+  "event/ship-rain-rehearsal"
+ ],
+ "summary": "中後期營運事件 9 件（蝕潮異象、同業獵團、船上生活三系列各 3 件，when 皆含 calendar.month>=7 以保營運黃金不變）＋既有人物新話題對白 2 則；閘門 0 違規、驗收一輪全綠；沙箱內 MCP 測試 EPERM 2 fail 屬沙箱現象（領導沙箱外重跑 811/811）；領導實測 greedy 11 潮月 4 seed 新事件各被抽到 6–10 次",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-ops-01/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "event/eclipse-shadow-cloth",
+    "nameEn": "Vigil under a Borrowed Sky",
+    "meaning": "蝕壓下靠遮光布守夜",
+    "nameZh": "遮住第二片天",
+    "method": "意譯"
+   },
+   {
+    "id": "event/eclipse-ash-tray",
+    "nameEn": "Cinders against the Fall",
+    "meaning": "蝕壓使燼逆向落下，收集觀察要耗材料",
+    "nameZh": "往上落的灰",
+    "method": "意譯"
+   },
+   {
+    "id": "event/eclipse-silent-bell",
+    "nameEn": "Vigil without a Bell",
+    "meaning": "蝕壓裡鐘聲被吞，船員靠手勢交班",
+    "nameZh": "聽不見的交班鐘",
+    "method": "意譯"
+   },
+   {
+    "id": "event/rival-practice-banner",
+    "nameEn": "The Banner of a Narrow Escape",
+    "meaning": "同業拿撤退時破掉的旗誇耀活命本事",
+    "nameZh": "破旗上的勝仗",
+    "method": "意譯"
+   },
+   {
+    "id": "event/rival-tool-surety",
+    "nameEn": "Surety in Iron",
+    "meaning": "同行只信能握在手裡的材料抵押",
+    "nameZh": "借鉗先押鐵",
+    "method": "意譯"
+   },
+   {
+    "id": "event/rival-open-account",
+    "nameEn": "No Names in the Margin",
+    "meaning": "同業互通補給價卻遮住客戶名冊",
+    "nameZh": "遮住名字的價單",
+    "method": "意譯"
+   },
+   {
+    "id": "event/ship-mended-coats",
+    "nameEn": "The Mend before Dawn",
+    "meaning": "縫衣把夜班與眾人的袖口連起來",
+    "nameZh": "夜班的補衣籃",
+    "method": "意譯"
+   },
+   {
+    "id": "event/ship-hanging-garden",
+    "nameEn": "A Garden between Watches",
+    "meaning": "船員把日常的綠意留在狹窄艙內",
+    "nameZh": "舷窗前的菜苗",
+    "method": "意譯"
+   },
+   {
+    "id": "event/ship-rain-rehearsal",
+    "nameEn": "A Rehearsal for Rain",
+    "meaning": "下雨時船員把接漏盆敲成臨時合奏",
+    "nameZh": "接漏盆的合奏",
+    "method": "意譯"
+   },
+   {
+    "id": "dialogue/mara-okoye-watch-lamp",
+    "nameEn": "The Lamp after the Watch",
+    "meaning": "交班後仍留燈卻不強撐的默契",
+    "nameZh": "交班後的燈",
+    "method": "意譯"
+   },
+   {
+    "id": "dialogue/chen-xiaohai-watch-rain",
+    "nameEn": "Rain beyond the Watch",
+    "meaning": "熟悉船上的雨聲使陌生生活有了歸屬",
+    "nameZh": "聽雨的地方",
+    "method": "意譯"
+   }
+  ]
+ }
 }

@@ -1,0 +1,67 @@
+{
+  "id": "event/eclipse-shadow-cloth",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你拉開艦橋的遮光布，窗外的裂縫倒映在杯底，杯子倒扣後仍亮著。焦布味從窗框邊飄過，布環輕撞，值夜的人拿外套蒙住靈目旁的小窗。技師把剪好的厚布壓在桌角，等你決定要不要替每張鋪位也留一塊。",
+  "choices": [
+    {
+      "text": "把亮痕記進交班簿",
+      "effects": [
+        {
+          "flag": "noted-eclipse-shadow-cloth"
+        }
+      ]
+    },
+    {
+      "text": "買厚布遮住鋪位",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-eclipse-shadow-cloth"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "helped-eclipse-shadow-cloth"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "event/rival-tool-surety",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你接住鄰船遞來的長鉗，桐油味還新，鉗口卻卡嗒亂響。對方技師指著你們拆下的拘束矢，示意這把正好能鬆開歪掉的扣環。他不收欠條，只要一小堆廢鐵作抵；身後的同伴伸手催他，自己的修理也還沒完。",
+  "choices": [
+    {
+      "text": "把長鉗交回去道謝",
+      "effects": [
+        {
+          "flag": "noted-rival-tool-surety"
+        }
+      ]
+    },
+    {
+      "text": "押廢鐵借鉗整理扣環",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 3
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -3,
+            "reason": "event-rival-tool-surety"
+          }
+        },
+        {
+          "techHours": 10
+        },
+        {
+          "flag": "helped-rival-tool-surety"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "id": "event/ship-rain-rehearsal",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你抱著接漏盆走進走廊，濕木味裡有人拿匙敲起盆沿，叮噹聲一節接一節。艦橋的天網還在播雇主的告示，走廊卻先合上了拍。廚子把唯一沒凹的盆留給你，等著看團長是把它放到漏水處，還是敲得比雨更響。",
+  "choices": [
+    {
+      "text": "接好漏水替大家打拍子",
+      "effects": [
+        {
+          "flag": "noted-ship-rain-rehearsal"
+        }
+      ]
+    },
+    {
+      "text": "添錢買些乾點心開唱",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 70
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -70,
+            "reason": "event-ship-rain-rehearsal"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "helped-ship-rain-rehearsal"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "dialogue/mara-okoye-watch-lamp",
+  "person": "person/mara-okoye",
+  "name": "瑪拉・奧可耶",
+  "topics": [
+    {
+      "topic": "交班後的燈",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 7
+            }
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-mara-okoye-watch-lamp"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你看著瑪拉收起工具。「燈留著，人去睡。」",
+        "她把交班簿推給你。「船會撐，別叫人也硬撐。」",
+        "你壓住翻起的紙角，等她把最後一項寫完。"
+      ],
+      "choices": [
+        {
+          "text": "替她壓好交班簿。",
+          "effects": [
+            {
+              "flag": "dlg-mara-okoye-watch-lamp"
+            },
+            {
+              "mood": {
+                "person/mara-okoye": 0
+              }
+            }
+          ]
+        },
+        {
+          "text": "接過燈，送她回艙。",
+          "effects": [
+            {
+              "flag": "dlg-mara-okoye-watch-lamp"
+            },
+            {
+              "mood": {
+                "person/mara-okoye": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

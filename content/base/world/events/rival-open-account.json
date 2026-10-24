@@ -1,0 +1,65 @@
+{
+  "id": "event/rival-open-account",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 7
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      }
+    ]
+  },
+  "weight": 3,
+  "text": "你在貨艙門口接過同行的補給價單，菸草味黏在紙上，翻頁沙沙作響。裂晶與護具的價錢都寫得清楚，買主姓名卻被墨塗住。送單的人說可以分攤一筆抄錄費，把整份留下；他按住末頁，先等你答應不刮那層墨。",
+  "choices": [
+    {
+      "text": "看完價單原樣奉還",
+      "effects": [
+        {
+          "flag": "noted-rival-open-account"
+        }
+      ]
+    },
+    {
+      "text": "分攤抄錄費留作比價",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 120
+        }
+      },
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -120,
+            "reason": "event-rival-open-account"
+          }
+        },
+        {
+          "techHours": 6
+        },
+        {
+          "flag": "helped-rival-open-account"
+        }
+      ]
+    }
+  ]
+}
