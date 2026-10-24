@@ -6,7 +6,7 @@
 
 古代機是先民「一個人、一隻獸、一層裝甲」的終點，死了一萬年還會動。所以**每台一個 FrameDef、獨一無二、不可量產、不可拆部件**：`cls:"ancient"`、`grade:"S"`、`repairPolicy:"repair-only"`、tags 含 `ancient`（會飛加 `flight`）、`innateAbilities` 2–3 條、`resonance:{beliefs:[兩個], threshold:0.5, deeds:[一個]}`。總層 HP 550–750（刑天 610 對照）、4–6 部位、層序 `resonant-shell→flesh→organ`、baseAttrs 各 4–10。檔名 `frames/ancient-<代號>.json`、能力 `abilities/ax-<代號>-<招>.json`、效果 `effects/ax-<代號>-<名>.json`、池 id `ax-<名>`。
 
-**神異能力**：每台一到兩個「只有牠會」的招，用效果系統逐台定義——不經部件、不可移植、不可學。好的異能改變**戰場規則的一小塊**（叫起屍體當肉盾、傷害借給一萬年前的自己、讓一格十分律失效、假繫子體），不是「更大的砲」。寫法：`require` 放 `{"cmp":{"a":{"ref":"self.resonance"},"op":">=","b":0.5}}`；**每台留一個無共鳴要求的基本攻擊**（24–34 傷、4 AP），讓未認主者也能動。招牌單體 ≤48、範圍 ≤26／目標、buff 2–3 回合 +5～+20，強招配 `usesPerBattle 1–3` 或 `cooldown 3–4`。
+**神異能力**：每台一到兩個「只有牠會」的招，用效果系統逐台定義——不經部件、不可移植、不可學。好的異能改變**戰場規則的一小塊**（叫起屍體當肉盾、傷害借給一萬年前的自己、讓一格抵抗性失效、假繫子體），不是「更大的砲」。寫法：`require` 放 `{"cmp":{"a":{"ref":"self.resonance"},"op":">=","b":0.5}}`；**每台留一個無共鳴要求的基本攻擊**（24–34 傷、4 AP），讓未認主者也能動。招牌單體 ≤48、範圍 ≤26／目標、buff 2–3 回合 +5～+20，強招配 `usesPerBattle 1–3` 或 `cooldown 3–4`。
 
 **多不產燼**：古代機通常**無 heat 池**（pools 為空或只有自己的池：怒、卡、鹹水、天穹之重…各自定義 min/max/regen 與帶）。所以：古代能力不 produces heat；古代機裝不了 produces heat 的衍式部件（EF-04）；有限資源用「initial 高、regen 0」的池（卡、鹹水、甘露）表達「用一點少一點」；唯一積燼的是佩倫（雷橡血統的來源），不要再加第二台。資源也可以吃駕駛員：costs `{"pool":"hp","owner":"person"}`（庫丘林）或 `fatigue`。
 
@@ -24,7 +24,7 @@
 
 ## 機魂：另一個駕駛員，個性限 S 級以上
 
-`kind:"soul"`、池 `ap`／`fatigue`／`calc`（算力，5–10）、`growth:{tree:"soultree/…", researchPerDirection, companionshipRate}`、無 hp 池（魂核毀才死）。**一般機魂照本宣科、沒有鮮明人格**：traits 0–1、名字是登錄號或物件名（七號、手套、算盤）。**S 級以上才有個性**（節點開滿、陪伴夠久、出過事）：口頭禪、怪癖、對某人的執念、會替招式取名；目前以 tags `soul-grade-s` 與 soultree 節點數表達，機魂等級欄待引擎缺口線。寫有個性的機魂時在 lore 點明「這很罕見」。天賦樹 `soultrees/<dir>.json` 4 節點、方向 `calc`／`hand`／`heart`（算／手／心），要獨駕必含 `research` 鍵 `autonomy` 的節點；perk 是 `effects/perk-soul-*.json`。白手套＝同一個機魂「手套」的複本：全節點、零陪伴、有禮貌得可怕。古代機**不認機魂**（古代機不看沒有肉的東西）。
+`kind:"soul"`、池 `ap`／`fatigue`／`calc`（算力，5–10）、`growth:{tree:"soultree/…", researchPerDirection, companionshipRate}`、無 hp 池（魂核毀才死）。**一般機魂照本宣科、沒有鮮明人格**：traits 0–1、名字是登錄號或物件名（七號、手套、算盤）。**S 級以上才有個性**（節點開滿、陪伴夠久、出過事）：口頭禪、怪癖、對某人的執念、會替招式取名；目前以 tags `soul-grade-s` 與 soultree 節點數表達，機魂等級欄待引擎缺口線。寫有個性的機魂時在 lore 點明「這很罕見」。天賦樹 `soultrees/<dir>.json` 4 節點、方向 `calc`／`hand`／`heart`（算／手／心）；**機魂不能獨駕、不可複製**（2026-10-24 晚裁示；引擎現行的 `autonomy` 獨駕節點待 engine-backlog 移除，新內容不要再寫要獨駕的樹）；perk 是 `effects/perk-soul-*.json`。白手套不是機魂、也不是機甲：是塞勒涅沒有精粹核的無人鐵偶，只打得了人；「手套」是塞勒涅唯一的催收機魂（一個人，不是複本）。古代機**不認機魂**（古代機不看沒有肉的東西）。
 
 ## 常見錯誤
 

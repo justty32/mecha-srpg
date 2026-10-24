@@ -1,4 +1,4 @@
-# numeric-bands — 數值帶：觀察值、建議區間、硬上限、十分律的影響
+# numeric-bands — 數值帶：觀察值、建議區間、硬上限、抵抗性的影響
 
 [content README](README.md)｜規則出處 [rules-attack-resolution](../planning/specs/core/rules-attack-resolution.md)、[rules-resources-effects](../planning/specs/core/rules-resources-effects.md)
 
@@ -16,14 +16,14 @@
 
 **傷害／AP 是主旋鈕**：基準 6。單體超過 8 要有限制（usesPerBattle、cooldown≥3、自傷或流光成本）；低於 3 要有強效果或範圍。範圍招每目標＝單體 ×0.6–0.7。**命中夾 5–95**：人物 accuracy 45–62、怪獸 evasion 5–12、cover 0–35——能力 `accuracy` 加值 ±15 已經很大，不要用 +30 補命中感。**三個硬上限**：armorPen ≤0.5（它是比例）、evasion 加值 ≤+22 且 ≤2 回合、resist ≤0.8 且每族至少一型 0。
 
-## 十分律怎麼影響兩類武器
+## 抵抗性怎麼影響兩類武器
 
-全局修正表只有一列：`conventional-arms × kaiju → ×0.1`。所以同一把武器對人全額、對獸一成。設計上分成兩類武器寫：
+世界觀：十分律已廢（2026-10-24 晚），改為異次元能量對本次元武器的**抵抗性**——沒有精粹的**凡鐵**對獸只刮外甲、碰不到核（見 design-notes/world/essence；暫值「每低一級減半、凡鐵只刮外甲層一成、內層與核為零」待引擎，見 engine-backlog）。**引擎現行**仍是全局修正表一列 `conventional-arms × kaiju → ×0.1`（標記與類別鍵不改），所以在引擎改版前數值照下面寫；敘述文字一律不寫「十分律／十分之一」。設計上分成兩類武器寫：
 
-- **凡兵**（tags 含 `conventional-arms`，名字帶「凡」）：便宜、多矢、對人類機甲全額。數值可以比衍式武器**高 1.2–1.5 倍單發**（凡鐵連吼 8×3 矢、墜星吼砲），因為它的「代價」已經由十分律付掉——對 D 怪一發只剩 1–2 點，對 A 怪形同撓癢。寫凡兵時問自己：這把對白手套（人類敵）夠不夠凶？對怪獸就當它是壓制與補刀。
-- **衍式／裂晶兵器**（不帶 tag）：對獸全額，所以是打怪的主力；單發照數值帶，代價放在 heat／charge 成本與矢數少。衍型機的「對獸能力」＝不帶 conventional-arms 的武器數，情境配裝至少一把。
+- **凡兵**（tags 含 `conventional-arms`，名字帶「凡」）：便宜、多矢、對人類機甲全額。數值可以比衍式武器**高 1.2–1.5 倍單發**（凡鐵連吼 8×3 矢、墜星吼砲），因為它的「代價」已經由抵抗性付掉——對 D 怪一發只剩 1–2 點，對 A 怪形同撓癢。寫凡兵時問自己：這把對白手套（人類敵）夠不夠凶？對怪獸就當它是壓制與補刀。
+- **精粹兵器**（衍式／裂晶，不帶 tag）：對獸全額，所以是打怪的主力；單發照數值帶，代價放在 heat／charge 成本與矢數少。衍型機的「對獸能力」＝不帶 conventional-arms 的武器數，情境配裝至少一把。
 - **怪獸與古代能力永不帶 conventional-arms**；species／bio frame tags 必含 `kaiju`，否則凡兵對牠全額（也會讓世界規則破洞）。
-- 情境可用 `rules.conventionalFactor` 覆蓋 0.1，只在「古代異能讓一格十分律失效」這類劇情用，一般情境不要動。
+- 情境可用 `rules.conventionalFactor` 覆蓋 0.1，只在「古代異能讓一格抵抗性失效」這類劇情用，一般情境不要動。
 
 ## 已知的量級事實（寫數字前先知道）
 

@@ -1,6 +1,6 @@
-# world-pillars／world／tone-and-rules — 基調、兩條鐵律、2108 舞台（W1–W3）
+# world-pillars／world／tone-and-rules — 基調、兩條鐵律、2108 舞台、群像（W1–W3、W10）
 
-[world](../world.md)｜[world-pillars 入口](../../world-pillars.md)｜裁示原文 [design-notes/world/rules](../../../planning/design-notes/world/rules.md)、[world/setting](../../../planning/design-notes/world/setting.md)、[design-notes/mechanics](../../../planning/design-notes/mechanics.md)｜用語 [style.md](../../../../../content/lore/style.md)
+[world](../world.md)｜[world-pillars 入口](../../world-pillars.md)｜裁示原文 [design-notes/world/rules](../../../planning/design-notes/world/rules.md)、[world/essence](../../../planning/design-notes/world/essence.md)、[world/scale](../../../planning/design-notes/world/scale.md)、[world/setting](../../../planning/design-notes/world/setting.md)、[design-notes/mechanics](../../../planning/design-notes/mechanics.md)｜用語 [style.md](../../../../../content/lore/style.md)
 
 ### W1 太空歌劇，不要硬科幻，不要太過現實，敢中二
 
@@ -9,12 +9,12 @@
 **不做**：禁用詞（電磁、口徑、mm、瓦、雷達、衛星、量子…照 style.md 換詞）；用真實物理解釋設定；數字進敘述；寫成純搞笑或純寫實軍武。
 → [world「風格：太空歌劇，不要硬科幻」](../../../planning/design-notes/world/rules.md)
 
-### W2 兩條世界鐵律不解釋：十分律與「人類就是喜歡機甲」
+### W2 兩條世界鐵律不解釋：抵抗性（為何需要機甲）與夢召（為何愛機甲）
 
-**為什麼**：「飛機與戰鬥機也可以傷害怪獸，但傷害是十分之一，這是世界規則」；為何 2108 還用機甲——「就當作是古代遺跡給所有人洗腦了，並且世界規則也讓大家都喜歡機甲」。
-**做**：十分律**擴讀定案**（「十分律按照擴讀，反正大家都要用機甲！」）——凡非機甲兵器（鐵翼空襲、鐵龜、船尾吼砲、砲台、地雷）對獸只值一成，當昂貴的輔助火力；凡兵 tag、怪獸 tag `kaiju` 照 numeric-bands；機甲中心主義當作世界常識寫，不找藉口。
-**不做**：給十分律補科學解釋；寫出不吃十分律的傳統兵器；「相位說」（裂獸半在另一相位）已被推翻（「太糟糕」），不要再出現。
-→ [world「為何 2108 還用機甲」「推翻相位說」「十分律採擴讀」](../../../planning/design-notes/world/rules.md)
+**為什麼**：「十分律實在太...機械降神了...幫我改成異次元能量對現有的各類武器的抵抗性吧，這是次元級別的定律。所以不管是任何機甲，哪怕是機械機甲，其核心也是用怪獸血肉煉製或古代遺跡產出的精粹制作的……夢召倒是可以有。」「精粹也有分等級，並且『量』不可以代替『質』，除非有祕法（但是有限制）。」為何 2108 還用機甲——「就當作是古代遺跡給所有人洗腦了，並且世界規則也讓大家都喜歡機甲」。
+**做**：**十分律已廢**（2026-10-24 晚）。異次元能量對本次元武器有**抵抗性**，打得穿它的是**精粹**（單一、通用、分等級，煉自獸血肉或墟出、煉法學自古代機）：所有機甲（含衍型機）的核心是精粹；精粹當消耗品不划算，所以機甲近戰為主、遠程是能量武器（精粹裝槍、矢帶附魔），精粹矢貴；量不換質（祕法例外、最多升一級、到不了 S）。沒有精粹的**凡鐵**（鐵翼空襲、鐵龜、船尾吼砲、砲台、地雷）對獸只刮外甲、碰不到核、殺不了獸，打人照樣有效；凡兵 tag、怪獸 tag `kaiju` 照 numeric-bands（數值暫照現行，抵抗性每低一級減半的暫值待引擎）。機甲中心主義當作世界常識寫，不找藉口。
+**不做**：「十分律」「十分之一」這兩個詞與它的推論（傳統兵器打一成、空援能殺獸）；給抵抗性或夢召補科學解釋；低級精粹堆量打穿高級；「相位說」（裂獸半在另一相位）已被推翻（「太糟糕」），不要再出現。
+→ [world/essence「廢十分律」「精粹」「凡鐵只刮外甲」](../../../planning/design-notes/world/essence.md)、[world/rules「為何 2108 還用機甲」](../../../planning/design-notes/world/rules.md)
 
 ### W3 2108 地月舞台；遺跡與怪獸同一夜出現；機械系的源頭是古代機
 
@@ -22,3 +22,10 @@
 **做**：地球為主、月球為次（遺跡大多在地球、有些在月球；怪獸主要在地球）；年表錨點（2089-03-14 第一次蝕潮、2089-05 夸父認主、2091 衍一…見 lore-text）不動；衍型機能嫁接古代部件有這條脈絡。
 **不做**：人類在蝕潮之前就有機甲；遺跡早於裂縫千年才被挖出；把月球寫成主戰場。
 → [world「時代與舞台」](../../../planning/design-notes/world/setting.md)、[「為何 2108 還用機甲」](../../../planning/design-notes/world/rules.md)
+
+### W10 群像，不指定臉孔：傳奇的單位是「某地某夜叫出一個名字」
+
+**為什麼**：「指定臉孔這件事，是太過依賴 MW 的後果。沒必要指定臉孔。地球上每個地方都有自己的傳奇，但如果要說整個地球的傳奇故事，那就是群像。」
+**做**：每座城、每片蝕域、每支獵團都可以有自己的傳奇；寫成「某地某夜叫出一個名字」（白夜、千面獨禱、九闕喪鐘那種；怪獸二名已是範例），人與勢力照寫；格局是地球尺度——勢力分全球級／洲級／地方級，局勢每洲每區各一盤。
+**不做**：全球主角、跨所有契約反覆出現的固定臉孔、唯一主線反派；把整個地球寫成一座城。
+→ [world/scale「群像，不指定臉孔」「格局放大到地球尺度」](../../../planning/design-notes/world/scale.md)

@@ -1,6 +1,6 @@
 # world-pillars／world／factions-and-sandbox — 獵團與勢力、外交、沙盒、方格大地圖（W4–W7）
 
-[world](../world.md)｜[world-pillars 入口](../../world-pillars.md)｜裁示原文 [design-notes/world/factions-and-map](../../../planning/design-notes/world/factions-and-map.md)、[world/setting](../../../planning/design-notes/world/setting.md)
+[world](../world.md)｜[world-pillars 入口](../../world-pillars.md)｜裁示原文 [design-notes/world/factions-and-map](../../../planning/design-notes/world/factions-and-map.md)、[world/scale](../../../planning/design-notes/world/scale.md)、[world/setting](../../../planning/design-notes/world/setting.md)
 
 ### W4 獵團＝自營傭兵；勢力自己打仗，傭兵去參戰、享補給
 
@@ -11,9 +11,9 @@
 
 ### W5 勢力大大小小很多；勢力間有外交，也會衝突
 
-**為什麼**：「勢力可以大大小小，很多」（推翻「六個勢力」）；「勢力之間也可能有衝突」「勢力與勢力之間會有外交關係」。
-**做**：城邦、公司、教派、小獵團都是勢力；`relations` 同盟／友好／中立／緊張／敵對反映 2108 當下，變化寫成事件（背盟、結盟）；勢力間交火是作戰類型之一，傭兵可被雙方雇用、選邊有聲望後果；人類機甲敵人（白手套、競爭獵團）存在。
-**不做**：只有六大勢力各一章；勢力只共同對抗裂獸、永不互打；關係寫死永恆不變。
+**為什麼**：「勢力可以大大小小，很多」（推翻「六個勢力」）；「勢力之間也可能有衝突」「勢力與勢力之間會有外交關係」；2026-10-24 晚：「把層級稍微降低，一大堆啊」「各有一把傘」。
+**做**：城邦、公司、教派、小獵團都是勢力；`relations` 同盟／友好／中立／緊張／敵對反映 2108 當下，變化寫成事件（背盟、結盟）；勢力間交火是作戰類型之一，傭兵可被雙方雇用、選邊有聲望後果；人類敵人存在（競爭獵團、解拘者；白手套是沒有精粹核的無人鐵偶，只打得了人）；勢力分全球級／洲級／地方級三層，各洲一把傘（殘聯「31 城邦」是一把傘的頂層，不是地球總數；殘聯歸哪把傘未定）。
+**不做**：只有六大勢力各一章；把殘聯寫成全球唯一的傘；勢力只共同對抗裂獸、永不互打；關係寫死永恆不變。
 → [world「勢力可以大大小小」「勢力間衝突與外交」](../../../planning/design-notes/world/factions-and-map.md)
 
 ### W6 沙盒：開著船去自己想去的地方；世界自己在動

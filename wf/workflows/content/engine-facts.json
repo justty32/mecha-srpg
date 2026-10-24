@@ -2,29 +2,161 @@
  "contract": "wf-table/1",
  "source": "abilities-effects.md",
  "extracted": "2026-10-24",
- "columns": ["id", "事實", "出處", "怎麼寫才有效", "狀態"],
  "link_columns": [],
+ "columns": [
+  "id",
+  "事實",
+  "出處",
+  "怎麼寫才有效",
+  "狀態"
+ ],
  "rows": [
-  {"id": "EF-01", "事實": "`armorPen` 是 0–1 的**比例**（夾在 0–1），不是傷害值；它把該比例的命中傷害改走 passThrough。", "出處": "src/rules/layers.ts:23", "怎麼寫才有效": "寫 0.15–0.35；破甲招最高 0.5。寫 10 等於寫 1＝全穿，會失衡。", "狀態": "現行"},
-  {"id": "EF-02", "事實": "`mode:\"passive\"` 被 tryCommand 直接拒用，是死資料。", "出處": "src/rules/command.ts:63", "怎麼寫才有效": "要「被動」就寫成池的 `bands`（閾值帶掛效果）、部件的 `attrMods`、或 `clock:whileSource` 的特質效果。", "狀態": "現行"},
-  {"id": "EF-03", "事實": "`reaction` 只支援 `trigger.event:\"enemyLeavesAdjacent\"` 且 tags 含 `melee`（機會攻擊）；其他事件名不會觸發。", "出處": "src/rules/movement.ts:43", "怎麼寫才有效": "反應技只做近戰機會攻擊，costs 可留空（有觸發與每回合一次限制）；其他「反擊／自動開盾」改成 activated 或池帶。", "狀態": "現行"},
-  {"id": "EF-04", "事實": "沒有該池＝付不起；`produces` 指向不存在的池也讓能力不可用。", "出處": "src/rules/pools.ts；commit 494a3aa", "怎麼寫才有效": "部件能力若 produces `heat`，裝到無 heat 池的機體（古代機、生物機）就永遠灰掉——異系部件改 produces 到自己宣告的池，或不產出。", "狀態": "現行"},
-  {"id": "EF-05", "事實": "反向池（`inverted:true`，如 heat／instinct／burden）付成本＝**加值**；超過 max 就付不起，除非 soft 池＋`allowOverload`。", "出處": "src/rules/pools.ts:92", "怎麼寫才有效": "排燼寫成 `produces` heat 負值；「燃燼招」寫 costs heat 正值＋`allowOverload:true` 才能超載。", "狀態": "現行"},
-  {"id": "EF-06", "事實": "`self`／`friendly:\"only\"` 能力不擲命中骰（必中），不再同時寫 Miss 與效果。", "出處": "src/rules/attack.ts:22；ISS-012", "怎麼寫才有效": "友方增益一律 `friendly:\"only\"`；`friendly:\"yes\"` 會對敵我都擲骰且可能打到自己人。", "狀態": "現行"},
-  {"id": "EF-07", "事實": "AI 現在會提出 `unit`／`self`／`cell`／`ball`／`line`／`cone` 候選、會開 `sustained`（已開的不再提）、會算友方範圍增益（預覽受影響單位）與純減益價值。", "出處": "src/ai/policies/tactical.ts:51–93；commit 8f3d70e", "怎麼寫才有效": "line／cone／sustained 現在可用；但每個能力仍要 `ai.tactics` 給對的鍵：單體傷害 attack、範圍傷害 attackArea、自身／友方增益 buff／protect、純減益 debuff／disable、偵察 scout、撤退 escape、拘束 capture。鍵錯＝AI 估值 0。", "狀態": "現行（修正線 2026-10-24 落地）"},
-  {"id": "EF-08", "事實": "`scope:\"person\"` 效果打到無人物的單位（野生怪獸、無人機）會被略過，不再拋錯中斷整場。", "出處": "commit 494a3aa", "怎麼寫才有效": "減益若要對怪獸有效，`scope:\"mech\"` 並改 contribs 到 `self.attrs.*`（機體與人物屬性相加）；person-scope 只用於傷勢、士氣、特質。", "狀態": "現行"},
-  {"id": "EF-09", "事實": "`do:\"pool\"` 對沒有該池的單位略過（不拋錯）。", "出處": "commit 5d59141", "怎麼寫才有效": "補給碑、灌本能類效果可以安全掛，但對缺池者等於沒效果——別把它當唯一機制。", "狀態": "現行"},
-  {"id": "EF-10", "事實": "HookAction 動詞封閉：damage／pool／apply／remove／setControl／moraleCheck／spawn／emit；**沒有治療動詞**，回血只能靠層 `regen`（護盾類）或負向 damage 不成立。", "出處": "src/core/types-def.ts HOOK_VERBS", "怎麼寫才有效": "「治療」寫成 layer `regen`（可綁 `regenPool`）、或 `pool` delta 給人物 hp 池；AI `heal` 戰術目前只對有 regen／pool 效果的能力有意義。", "狀態": "現行"},
-  {"id": "EF-11", "事實": "`setControl` 無法自動復原（除承擔 berserk 流程外），掛了就卡住。", "出處": "lead-content-ancient design.md 一", "怎麼寫才有效": "內容不用 `setControl`；要「停機」用 heat 池帶沿用 `effect/overheat-2`。", "狀態": "現行"},
-  {"id": "EF-12", "事實": "死亡＝所有 functions 含 `core` 的部位都 broken；部位 broken＝其 `structural:true` 層全破；沒有 core 部位的單位永遠不死。", "出處": "src/rules/state.ts；lead-content-monster design.md 一", "怎麼寫才有效": "每個 bodyplan 至少一個 core 部位、每部位最後一層 `structural:true`；多核＝全毀才死（蝕錨用）。", "狀態": "現行"},
-  {"id": "EF-13", "事實": "怪獸血量只來自 species.bodyPlan；`grade` 只換 `baseAttrsByGrade`。`MonsterDef.attrMods`／`extraAbilities`／`partsOverride` **未實作**。", "出處": "src/rules/state.ts frameView", "怎麼寫才有效": "同族不同級要不同血量＝各自一個 species＋bodyplan（如 hound C／bulwark B）；monster 檔只寫 id／species／grade／name／epithet／tags。", "狀態": "待引擎缺口線（partsOverride）"},
-  {"id": "EF-14", "事實": "`UnitSpawn.components`（整組取代）與 `FrameDef.defaultLoadout`（未指定時套用）已進 HEAD；但 content 裡尚無任何 frame 填 defaultLoadout。", "出處": "src/core/types-def.ts；commit 3049172", "怎麼寫才有效": "新衍型機一律填 `defaultLoadout`（slot id→component id，slot 型別要相符、只限 mechanical）；情境要特別配裝才寫 `components`。沒填＝空手只剩內建能力。", "狀態": "現行；補既有 frame 的 defaultLoadout 是內容線任務"},
-  {"id": "EF-15", "事實": "捕捉條件：`requireIntact`／`requireBroken` 列的 function 在 bodyplan 必須存在，否則永不成立；寫互斥（core 同時 intact 與 broken）＝不可捕。`capture.frame` 必須一族一台專屬 bio frame，且 grade 要等於該族某個 monster 的 grade。", "出處": "src/rules/flow.ts canCapture；ops 反查", "怎麼寫才有效": "新族必配：species＋bodyplan＋frames/bio-*（同 grade）＋至少一個 monster；不可捕族仍要 bio frame（tags `harvest-only`）。", "狀態": "現行"},
-  {"id": "EF-16", "事實": "十分律是全局修正表一列 `conventional-arms × kaiju → 0.1`。", "出處": "content/base/rules/damage-modifiers.json", "怎麼寫才有效": "凡兵部件的能力 tags 加 `conventional-arms`；每個 species／bio frame tags 必含 `kaiju`；怪獸與古代能力**不要**帶 conventional-arms。", "狀態": "現行"},
-  {"id": "EF-17", "事實": "NumExpr `ref` 只支援 self|target 的 `.attrs.<六屬性>`、`.pools.<id>.cur|max|regen`、`.grade`（D=0…S=4）、`.resonance`；`battle.round|light|tide`。contribs path 只支援 `self.attrs.*`、`self.pools.*.max|regen`。", "出處": "src/core/numexpr.ts；lead-content-ancient design.md", "怎麼寫才有效": "別引用層、部位、距離；要「隨目標等級加傷」寫 `{\"ref\":\"target.grade\",\"mul\":6,\"add\":12}`。", "狀態": "現行"},
-  {"id": "EF-18", "事實": "killTarget 用 def id（frame／monster），同 def 全部單位死亡才達成；玩家自己的同 frame 也算進去。", "出處": "specs/core data-model-world；ISS-024", "怎麼寫才有效": "斬首目標用唯一的 monster 或唯一 frame；雙方都有的 frame 不能當目標。", "狀態": "現行"},
-  {"id": "EF-19", "事實": "`escort`／`reachExit` 需執行期單位，契約模板寫不出；戰鬥情境可寫（以 frame 指定會比對到多台）。", "出處": "ISS-006；lead-content-world engine-rules 四", "怎麼寫才有效": "情境護送對象用專屬 frame 一台一種；契約模板只用 eliminate／survive／hold。", "狀態": "待引擎缺口線（人類對手編成、單位 id）"},
-  {"id": "EF-20", "事實": "營運事件每天必抽一張 `when` 為真者；`when` 恆真會讓每天跳選擇框，自動模擬就不打仗。", "出處": "src/ops/time/tick.ts；engine-rules 一", "怎麼寫才有效": "隨機事件 when 必含 `calendar.month>=1` 與 `calendar.dom==5/12/19/26` 之一；第一個選項無 requires、不賺不賠。", "狀態": "現行"},
-  {"id": "EF-21", "事實": "frame 無別名欄、機魂無等級欄、情境無 name／brief 欄、模板名稱解析缺（裂縫／契約／勢力名）。", "出處": "lead-content-ancient／battle／world REPORT 需要決定", "怎麼寫才有效": "別名寫進 lore `aka`；機魂等級用 tags `soul-grade-s`＋soultree 節點數表達；情境名寫在 catalog；落地後回填欄位。", "狀態": "待引擎缺口線"}
+  {
+   "id": "EF-01",
+   "事實": "`armorPen` 是 0–1 的**比例**（夾在 0–1），不是傷害值；它把該比例的命中傷害改走 passThrough。",
+   "出處": "src/rules/layers.ts:23",
+   "怎麼寫才有效": "寫 0.15–0.35；破甲招最高 0.5。寫 10 等於寫 1＝全穿，會失衡。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-02",
+   "事實": "`mode:\"passive\"` 被 tryCommand 直接拒用，是死資料。",
+   "出處": "src/rules/command.ts:63",
+   "怎麼寫才有效": "要「被動」就寫成池的 `bands`（閾值帶掛效果）、部件的 `attrMods`、或 `clock:whileSource` 的特質效果。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-03",
+   "事實": "`reaction` 只支援 `trigger.event:\"enemyLeavesAdjacent\"` 且 tags 含 `melee`（機會攻擊）；其他事件名不會觸發。",
+   "出處": "src/rules/movement.ts:43",
+   "怎麼寫才有效": "反應技只做近戰機會攻擊，costs 可留空（有觸發與每回合一次限制）；其他「反擊／自動開盾」改成 activated 或池帶。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-04",
+   "事實": "沒有該池＝付不起；`produces` 指向不存在的池也讓能力不可用。",
+   "出處": "src/rules/pools.ts；commit 494a3aa",
+   "怎麼寫才有效": "部件能力若 produces `heat`，裝到無 heat 池的機體（古代機、生物機）就永遠灰掉——異系部件改 produces 到自己宣告的池，或不產出。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-05",
+   "事實": "反向池（`inverted:true`，如 heat／instinct／burden）付成本＝**加值**；超過 max 就付不起，除非 soft 池＋`allowOverload`。",
+   "出處": "src/rules/pools.ts:92",
+   "怎麼寫才有效": "排燼寫成 `produces` heat 負值；「燃燼招」寫 costs heat 正值＋`allowOverload:true` 才能超載。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-06",
+   "事實": "`self`／`friendly:\"only\"` 能力不擲命中骰（必中），不再同時寫 Miss 與效果。",
+   "出處": "src/rules/attack.ts:22；ISS-012",
+   "怎麼寫才有效": "友方增益一律 `friendly:\"only\"`；`friendly:\"yes\"` 會對敵我都擲骰且可能打到自己人。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-07",
+   "事實": "AI 現在會提出 `unit`／`self`／`cell`／`ball`／`line`／`cone` 候選、會開 `sustained`（已開的不再提）、會算友方範圍增益（預覽受影響單位）與純減益價值。",
+   "出處": "src/ai/policies/tactical.ts:51–93；commit 8f3d70e",
+   "怎麼寫才有效": "line／cone／sustained 現在可用；但每個能力仍要 `ai.tactics` 給對的鍵：單體傷害 attack、範圍傷害 attackArea、自身／友方增益 buff／protect、純減益 debuff／disable、偵察 scout、撤退 escape、拘束 capture。鍵錯＝AI 估值 0。",
+   "狀態": "現行（修正線 2026-10-24 落地）"
+  },
+  {
+   "id": "EF-08",
+   "事實": "`scope:\"person\"` 效果打到無人物的單位（野生怪獸、無人機）會被略過，不再拋錯中斷整場。",
+   "出處": "commit 494a3aa",
+   "怎麼寫才有效": "減益若要對怪獸有效，`scope:\"mech\"` 並改 contribs 到 `self.attrs.*`（機體與人物屬性相加）；person-scope 只用於傷勢、士氣、特質。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-09",
+   "事實": "`do:\"pool\"` 對沒有該池的單位略過（不拋錯）。",
+   "出處": "commit 5d59141",
+   "怎麼寫才有效": "補給碑、灌本能類效果可以安全掛，但對缺池者等於沒效果——別把它當唯一機制。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-10",
+   "事實": "HookAction 動詞封閉：damage／pool／apply／remove／setControl／moraleCheck／spawn／emit；**沒有治療動詞**，回血只能靠層 `regen`（護盾類）或負向 damage 不成立。",
+   "出處": "src/core/types-def.ts HOOK_VERBS",
+   "怎麼寫才有效": "「治療」寫成 layer `regen`（可綁 `regenPool`）、或 `pool` delta 給人物 hp 池；AI `heal` 戰術目前只對有 regen／pool 效果的能力有意義。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-11",
+   "事實": "`setControl` 無法自動復原（除承擔 berserk 流程外），掛了就卡住。",
+   "出處": "lead-content-ancient design.md 一",
+   "怎麼寫才有效": "內容不用 `setControl`；要「停機」用 heat 池帶沿用 `effect/overheat-2`。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-12",
+   "事實": "死亡＝所有 functions 含 `core` 的部位都 broken；部位 broken＝其 `structural:true` 層全破；沒有 core 部位的單位永遠不死。",
+   "出處": "src/rules/state.ts；lead-content-monster design.md 一",
+   "怎麼寫才有效": "每個 bodyplan 至少一個 core 部位、每部位最後一層 `structural:true`；多核＝全毀才死（蝕錨用）。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-13",
+   "事實": "怪獸血量只來自 species.bodyPlan；`grade` 只換 `baseAttrsByGrade`。`MonsterDef.attrMods`／`extraAbilities`／`partsOverride` **未實作**。",
+   "出處": "src/rules/state.ts frameView",
+   "怎麼寫才有效": "同族不同級要不同血量＝各自一個 species＋bodyplan（如 hound C／bulwark B）；monster 檔只寫 id／species／grade／name／epithet／tags。",
+   "狀態": "待引擎缺口線（partsOverride）"
+  },
+  {
+   "id": "EF-14",
+   "事實": "`UnitSpawn.components`（整組取代）與 `FrameDef.defaultLoadout`（未指定時套用）已進 HEAD；但 content 裡尚無任何 frame 填 defaultLoadout。",
+   "出處": "src/core/types-def.ts；commit 3049172",
+   "怎麼寫才有效": "新衍型機一律填 `defaultLoadout`（slot id→component id，slot 型別要相符、只限 mechanical）；情境要特別配裝才寫 `components`。沒填＝空手只剩內建能力。",
+   "狀態": "現行；補既有 frame 的 defaultLoadout 是內容線任務"
+  },
+  {
+   "id": "EF-15",
+   "事實": "捕捉條件：`requireIntact`／`requireBroken` 列的 function 在 bodyplan 必須存在，否則永不成立；寫互斥（core 同時 intact 與 broken）＝不可捕。`capture.frame` 必須一族一台專屬 bio frame，且 grade 要等於該族某個 monster 的 grade。",
+   "出處": "src/rules/flow.ts canCapture；ops 反查",
+   "怎麼寫才有效": "新族必配：species＋bodyplan＋frames/bio-*（同 grade）＋至少一個 monster；不可捕族仍要 bio frame（tags `harvest-only`）。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-16",
+   "事實": "引擎現行：抵抗性（原十分律，2026-10-24 晚已廢其名）在引擎仍是全局修正表一列 `conventional-arms × kaiju → 0.1`；抵抗性每低一級減半的暫值待 engine-backlog。",
+   "出處": "content/base/rules/damage-modifiers.json",
+   "怎麼寫才有效": "凡兵部件的能力 tags 加 `conventional-arms`；每個 species／bio frame tags 必含 `kaiju`；怪獸與古代能力**不要**帶 conventional-arms。",
+   "狀態": "現行（世界觀已改，待引擎缺口線）"
+  },
+  {
+   "id": "EF-17",
+   "事實": "NumExpr `ref` 只支援 self|target 的 `.attrs.<六屬性>`、`.pools.<id>.cur|max|regen`、`.grade`（D=0…S=4）、`.resonance`；`battle.round|light|tide`。contribs path 只支援 `self.attrs.*`、`self.pools.*.max|regen`。",
+   "出處": "src/core/numexpr.ts；lead-content-ancient design.md",
+   "怎麼寫才有效": "別引用層、部位、距離；要「隨目標等級加傷」寫 `{\"ref\":\"target.grade\",\"mul\":6,\"add\":12}`。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-18",
+   "事實": "killTarget 用 def id（frame／monster），同 def 全部單位死亡才達成；玩家自己的同 frame 也算進去。",
+   "出處": "specs/core data-model-world；ISS-024",
+   "怎麼寫才有效": "斬首目標用唯一的 monster 或唯一 frame；雙方都有的 frame 不能當目標。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-19",
+   "事實": "`escort`／`reachExit` 需執行期單位，契約模板寫不出；戰鬥情境可寫（以 frame 指定會比對到多台）。",
+   "出處": "ISS-006；lead-content-world engine-rules 四",
+   "怎麼寫才有效": "情境護送對象用專屬 frame 一台一種；契約模板只用 eliminate／survive／hold。",
+   "狀態": "待引擎缺口線（人類對手編成、單位 id）"
+  },
+  {
+   "id": "EF-20",
+   "事實": "營運事件每天必抽一張 `when` 為真者；`when` 恆真會讓每天跳選擇框，自動模擬就不打仗。",
+   "出處": "src/ops/time/tick.ts；engine-rules 一",
+   "怎麼寫才有效": "隨機事件 when 必含 `calendar.month>=1` 與 `calendar.dom==5/12/19/26` 之一；第一個選項無 requires、不賺不賠。",
+   "狀態": "現行"
+  },
+  {
+   "id": "EF-21",
+   "事實": "frame 無別名欄、機魂無等級欄、情境無 name／brief 欄、模板名稱解析缺（裂縫／契約／勢力名）。",
+   "出處": "lead-content-ancient／battle／world REPORT 需要決定",
+   "怎麼寫才有效": "別名寫進 lore `aka`；機魂等級用 tags `soul-grade-s`＋soultree 節點數表達；情境名寫在 catalog；落地後回填欄位。",
+   "狀態": "待引擎缺口線"
+  }
  ]
 }

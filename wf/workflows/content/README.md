@@ -4,7 +4,7 @@
 
 在**不改引擎、不改 spec 架構**的前提下，新增遊戲資料（機甲、部件、怪獸、古代機、人物、能力、地形、情境、營運事件…）與世界觀資料（lore），以及把既有文字改得更像人寫的。本工作流給的是**設計原則＋數值帶＋驗收規程**；格式欄位去讀 spec，不在這重抄。
 
-**先讀** [world-pillars](world-pillars.md)：世界觀設計支柱 31 條（太空歌劇、獵團＝傭兵、怪獸不是畜牲、機魂個性限 S、意圖受挫撤退…）與最常見的違反——動筆與潤飾前過一遍。
+**先讀** [world-pillars](world-pillars.md)：世界觀設計支柱 32 條（太空歌劇、抵抗性與精粹、群像、獵團＝傭兵、怪獸不是畜牲、機魂不可複製且個性限 S、意圖受挫撤退…）與最常見的違反——動筆與潤飾前過一遍。
 
 **何時用**：「填內容」「新增機甲／怪獸／事件／情境」「補 defaultLoadout」「潤飾文案」「改名統一用語」。
 **何時不用**：要加欄位、改載入器、改 AI 行為 → feature-dev；數值表本身要改結構 → planning；只是查一個 id 怎麼寫 → 直接看範本檔。
@@ -36,7 +36,7 @@
 <!-- wf-nav -->
 | 檔案 | 內容 |
 |------|------|
-| [numeric-bands.md](numeric-bands.md)＋[numeric-bands.json](numeric-bands.json) | 各級 HP／層／抗性／AP／傷害／射程／成本／池上限的觀察值與建議區間、十分律對數值設計的影響 |
+| [numeric-bands.md](numeric-bands.md)＋[numeric-bands.json](numeric-bands.json) | 各級 HP／層／抗性／AP／傷害／射程／成本／池上限的觀察值與建議區間、抵抗性（原十分律）對數值設計的影響 |
 | [engine-facts.json](engine-facts.json) | 引擎事實 21 條：哪些欄位死資料、AI 會用什麼、每條「怎麼寫才有效」 |
 | [templates.json](templates.json) | 每類內容的範本檔路徑、必配套、常見錯誤 |
 | [mechs.md](mechs.md) | 機械系：三段命名、藍本血統、通用系列、世代演進、建議配裝、角色定位矩陣 |

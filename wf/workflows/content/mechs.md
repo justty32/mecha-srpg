@@ -49,7 +49,7 @@
 - **裝甲／光幕**＝`layersAdd` 往 torso 插層（armor 25–55 HP，resist ≤0.25；shield 用 `ablative:false`＋`reduce`＋`regen`）。
 - **系統**（排燼 produces heat 負值、靈目 attrMods perception、流光槽 poolMods charge max）。
 - **異系部件**：生物件填 `burden`、古代件填 `resonance`（共鳴條件目前寫不進能力門檻，只擋 attrMods／abilities 啟用——標待引擎缺口線）。
-- 部件 `hp` 12–24，打壞即該能力不可用；凡兵名帶「凡」且 tags `conventional-arms`。
+- 部件 `hp` 12–24，打壞即該能力不可用；凡兵（凡鐵，沒有精粹）名帶「凡」且 tags `conventional-arms`。
 
 ## 常見錯誤
 
