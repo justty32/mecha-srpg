@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rc-01",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "待和解表照建議裁示落地（lead-reconcile）：年表與詞彙表；只改文字欄，不用潮差＝威脅概念",
  "author": {
   "agent": "codex",
@@ -58,5 +58,52 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T19:35:32",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rc-01",
+  "round": 1,
+  "at": "2026-10-24T19:35:32",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/timeline.json"
+ ],
+ "ids": [],
+ "gateRejections": [],
+ "summary": "待和解照建議裁示落地 polish：1/2 檔改文字欄；閘門 0 違規、check／lore／typecheck／test 綠"
 }
