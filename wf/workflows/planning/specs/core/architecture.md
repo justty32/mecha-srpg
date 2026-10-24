@@ -13,7 +13,7 @@
 | `rules` | 所有結算：turn／attack／resources／effects／people／flow；對外只暴露 `tryCommand`、`previewCommand`、查詢函式 | core, content |
 | `ai` | Strategy／Agent／Policy、知識模型、估值 | core, rules（只用查詢與 preview） |
 | `sim` | `runBattle(scenario, content, seed, players)`、重播、存檔序列化、headless 驗收腳本 | core, content, rules, ai |
-| `ui-adapter` | `ViewModel`、可視區、指令輸入解析、DOM 渲染（唯一碰 DOM 處） | core, sim |
+| `ui-adapter` | `ViewModel`、可視區、keymap、按鈕／面板／tooltip 的 DOM 渲染（唯一碰 DOM 處） | core, sim（經 `BattleSession`） |
 
 `rules` 內部再分檔對應各 spec 子檔；`BattleState` 是純資料（可 structuredClone），**所有改動只經 `rules` 的函式**；`ai` 與 `ui-adapter` 拿到的是唯讀視圖。ESLint 規則或 `tsconfig` paths 強制依賴方向。
 
@@ -72,7 +72,7 @@ interface ViewModel {
 }
 ```
 
-DOM 層只做：把 `dirty()` 的格重畫（每格一個 `div`，CSS class 表示地形／單位／意圖）、把事件文字推進訊息區、把點擊與指令列文字轉成 `Command`。無框架、無虛擬 DOM；視窗捲動改 `viewport` 後全量重畫可視區。
+呈現方針（使用者 2026-10-24 裁示）：一般網頁遊戲的標準元件——**按鈕、列表、面板、tooltip**，不做文字指令列、不走 MUD 風；每個主要操作有**快捷鍵**，鍵位在資料檔 `keymap.json`（`{ action, keys[], label }`，可改綁），按鈕上標鍵、tooltip 末行寫鍵；`CommandOption` 帶 `key`、`tooltip`（成本、射程、不可用原因）、`disabled`，按鈕分移動／能力／回合／系統四組。DOM 層只做：把 `dirty()` 的格重畫（每格一個 `div`，CSS class 表示地形／單位／意圖）、把事件文字推進「戰鬥記錄」列表面板、把點格、按鈕點擊與按鍵轉成 `Command`。無框架、無虛擬 DOM；視窗捲動改 `viewport` 後全量重畫可視區。逐步互動：`sim` 應提供 `BattleSession`（逐指令推進、AI 回合自動跑）給 ui-adapter，使其不直接依賴 `rules`／`ai`（實作現況 `vm/session.ts` 暫時直呼，日後搬進 `sim`）。
 
 ## 替使用者做掉的決定
 

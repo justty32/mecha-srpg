@@ -52,11 +52,11 @@ type RiftState = { id: Id; node: Id; family: Id /*SpeciesDef.family*/; width: Gr
 ```ts
 type ShipState = { frame: Id /*ShipDef*/; at: Id /*node*/; route?: { to: Id; daysLeft: number };
   rooms: Record<RoomId, RoomState>;                           // bridge/hangar/stable/medbay/galley/cargo/mycelium…
-  capacity: { mechBays: number; stablePens: number; berths: number; cargo: number };
+  capacity: { mechBays: number; restraintSlots: number; berths: number; cargo: number };
   fuel: PoolState; hull: PoolState; upgrades: Id[] };
 ```
 
-船是基地也是容器：機庫位、獸欄位、鋪位、貨艙體積是硬限制，超載不能起航。`fuel`／`hull` 用 core 的 `PoolDecl` 機制（`inverted:false`）；每段路線扣燃料，穿越淺蝕節點必擲遭遇、深蝕不可通行。`hull` 歸零＝船毀，全團在當前節點變「徒步」flag，只能走 ground 路線到最近城邦。房間是 MUD 的場景，`RoomState` 只存「這房裡有誰、有什麼」的索引，描述由 text 層組（[text-ui-contract](text-ui-contract.md)）。
+船是基地也是容器：機庫位、拘束位、鋪位、貨艙體積是硬限制，超載不能起航。`fuel`／`hull` 用 core 的 `PoolDecl` 機制（`inverted:false`）；每段路線扣燃料，穿越淺蝕節點必擲遭遇、深蝕不可通行。`hull` 歸零＝船毀，全團在當前節點變「徒步」flag，只能走 ground 路線到最近城邦。房間是營運畫面的面板單位，`RoomState` 只存「這房裡有誰、有什麼」的索引，描述、列表與按鈕由 text 層組（[text-ui-contract](text-ui-contract.md)）。
 
 ## 遺跡探勘入口
 
@@ -76,5 +76,5 @@ type FerryDef = { id: Id; ports: Id[]; departDays: number[] /*[7,21]*/; transit:
 1. **蝕域是節點狀態不是節點種類**：蔓延＝改鄰節點的 flag，收復＝退 flag；城邦失守不用換節點。
 2. **裂縫狀態機只在大潮日與戰果回寫時轉移**：玩家能算得出「哪天該在哪」，也讓測試只需斷言兩類時點。
 3. **潮壓用泊松抽新裂縫數**：讓「潮壓高」直覺地變成「開得多」，而非改機率表。
-4. **遺跡探勘＝逐層事件鏈**（非地城戰鬥）：純文字最擅長的形式，也省一套戰鬥模式。
+4. **遺跡探勘＝逐層事件鏈**（非地城戰鬥）：事件文字加兩三個選項是最省的形式，也省一套戰鬥模式。
 5. **世界圖量級 120＋15 節點**：夠讓「繞路」有意義、又能在一個潮月內橫跨一洲；數字可調。

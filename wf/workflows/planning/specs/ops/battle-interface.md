@@ -13,7 +13,7 @@ type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };   // 營運→戰場的狀態注入（mood、同調、欠薪…）
 ```
 
-合法性由營運層檢查（純函式 `validateSortie`）：機甲在機庫或獸欄且 `tamed`、不在修理佇列中「開工」狀態（排隊中可拉出，但 job 退回佇列尾）；座位人物活著、未 `withering`；古代機甲座位必是認主者；生物機甲要載人必須至少一個拘束裝置已 `install`；沒有拘束的 `tamed` 獸只能**無座位出戰**（`seats` 全空、`controlMode:"none"`，由 core 的本能控制規則交 AI，與野生裂獸同一套——牠是不可控的援軍，text 層要警告）；`shipOverhead` 需船在該節點。**出戰不耗 tick**。注入清單把營運狀態翻成 core Effect（全是 contribution／起始值，core 零修改）：`mood<0 → 起始 shaken`、`bond → burdenLimit contribution`、`hunger ≥ 50 → instinct 起始值 +`、`RosterState.trust[soul][pilot] → contested 檢定修正`、`RosterState.mastery[soul][node] → 該節點 perk 貢獻 × mastery`（未練熟＝乘數 <1）。
+合法性由營運層檢查（純函式 `validateSortie`）：機甲在機庫或拘束艙、不在修理佇列中「開工」狀態（排隊中可拉出，但 job 退回佇列尾）；活捕獸 `wear < 100`、不在蛻皮窗口、不是整屍；座位人物活著、未 `withering`；古代機甲座位必是認主者；活捕獸要載人必須至少一個拘束裝置已 `install`；沒有拘束的活捕獸只能**無座位出戰**（`seats` 全空、`controlMode:"instinct"`，由 core 的本能控制交 AI，與野生裂獸同一套——牠是不可控的援軍，Screen 要警告）；屍體改裝機與摹機同規則；`shipOverhead` 需船在該節點。**出戰不耗 tick**。注入清單把營運狀態翻成 core Effect（全是 contribution／起始值，core 零修改）：`mood<0 → 起始 shaken`、`bond → burdenLimit contribution`、`wear ≥ 50 → instinct 起始值 + (wear−50)/2`、`vitality < 50 → 速度／AP contribution −`、`RosterState.trust[soul][pilot] → contested 檢定修正`、`RosterState.mastery[soul][node] → 該節點 perk 貢獻 × mastery`（未練熟＝乘數 <1）。
 
 ## 二、情境生成 ScenarioGen
 
@@ -23,7 +23,7 @@ type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger
 
 `applyBattleResult(campaign, sortie, result: BattleResult) → (campaign', CampaignEvent[])`，純函式。**回寫欄位**共八組，逐組如下。
 
-**`units[].status`／`state`**：`alive` → `MechState.parts`／`pools`（戰鬥限定池不存在於機甲；`heat` 等依 `PoolDecl.decayCurve` 歸基線）原樣寫回機庫；`dead` → 殘骸：拆成 `LootBundle`（可回收部件保留層 HP、材料進帳本），古代機甲 `dead` 改為 `dormant`＋`grudge`；`retreated` → 同 alive；`derelict-recovered` → 回機庫，座位清空；`derelict-lost` → 從機庫移除、寫 `LostMech` 事件（勢力記憶：競爭獵團可能撿去）；`captured` → 新 `PenState(taming:"wild")`，獸欄無空位則留在節點 `wreckage` 一天。
+**`units[].status`／`state`**：`alive` → `MechState.parts`／`pools`（戰鬥限定池不存在於機甲；`heat` 等依 `PoolDecl.decayCurve` 歸基線）原樣寫回機庫；`dead` → 殘骸：拆成 `LootBundle`（可回收部件保留層 HP、材料進帳本），古代機甲 `dead` 改為 `dormant`＋`grudge`；`retreated` → 同 alive；`derelict-recovered` → 回機庫，座位清空；`derelict-lost` → 從機庫移除、寫 `LostMech` 事件（勢力記憶：競爭獵團可能撿去）；`captured` → 新 `BeastState(kind:"live", wear:0)`，拘束艙無空位則留在節點 `wreckage` 一天；可拘束族的 `dead` 可改選**留整屍**（`CarcassState`，占一位，供屍體改裝）。
 
 **`persons[].status`／`state`／`xpGained`**：`alive` → 原樣寫回（傷勢、hp 池、共鳴、`burden` 依內容包衰減或歸零、soulTree 不變）；`xpGained` 已含在 state 的 `xp`，營運層只在回船時結升級；`dead` → `RosterState.dead`、全團 mood −1、該人 `boundTo` 部件留下、認主機甲 `dormant`。
 
@@ -41,12 +41,12 @@ type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger
 
 ## 與 core 的差異（提出，不改 core）
 
-(1) `UnitSpawn` 需要 `effects?: EffectRef[]` 以承接注入——建議 core 加這一欄（REPORT 列為衝突建議）；在它加入前，營運層改以暫時 `PersonState.effects` 預掛再傳入 persons。(2) `BattleResult.units[].status` 沒有「古代機甲 dead 轉 dormant」的區別——由營運層看 `FrameDef.cls` 判斷，core 不需改。(3) 空援券次數要能傳進情境：用 `ScenarioDef.slots[player].units` 加一個 `conventional-arms` 虛擬單位、其能力池 `max = tickets`，不需要新欄位。(4) 無座位的 `tamed` 獸出戰依賴 core「`controlMode:"none"` 的裂獸由本能控制交 AI」——sim 線整合中的缺口，ops 只假設它成立。
+(1) `UnitSpawn` 需要 `effects?: EffectRef[]` 以承接注入——建議 core 加這一欄（REPORT 列為衝突建議）；在它加入前，營運層改以暫時 `PersonState.effects` 預掛再傳入 persons。(2) `BattleResult.units[].status` 沒有「古代機甲 dead 轉 dormant」的區別——由營運層看 `FrameDef.cls` 判斷，core 不需改。(3) 空援券次數要能傳進情境：用 `ScenarioDef.slots[player].units` 加一個 `conventional-arms` 虛擬單位、其能力池 `max = tickets`，不需要新欄位。(4) 無座位的活捕獸出戰用 core 的 `controlMode:"instinct"`（sim 線 2026-10-24 已實作：無座位人物的怪獸由本能驅動交 AI，人物成本改扣機體同名池；棄機空機體仍是 `none`）。
 
 ## 替使用者做掉的決定
 
 1. **出戰不耗 tick、戰鬥在一天之內**：讓「大潮當天連打兩場」成立，也避免時間在兩層之間重複結算。
-2. **營運→戰場的狀態全走 Effect 注入**：心情、同調、飢餓、信任都不進 core 型別，core 零修改（只提一欄建議）。
+2. **營運→戰場的狀態全走 Effect 注入**：心情、同調、拘束器磨損、活性、信任都不進 core 型別，core 零修改（只提一欄建議）。
 3. **戰場用獨立 seed、由營運 RNG 抽出**：campaign 重播只需營運指令序列，戰鬥重播各自獨立。
 4. **殘骸留一天可取、再過一天消失**：給「容量不夠先回船卸貨再來」一次機會，又不讓世界圖堆垃圾。
 5. **有效戰果以單位死亡計、部位不算頭**：OPS-16 的多部位重複領賞問題直接封死。

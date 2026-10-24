@@ -7,13 +7,13 @@
 ## 帳本 Ledger（唯一改錢與存量的路徑）
 
 ```ts
-type Account = "cash" | "debt" | `stock:${string}`;              // stock:core / stock:flesh / stock:chitin / stock:scrap / stock:mycelium / stock:feed / stock:fuel / stock:ammo-30…
+type Account = "cash" | "debt" | `stock:${string}`;              // stock:core-<grade> / stock:flesh / stock:chitin / stock:scrap / stock:mycelium / stock:fuel / stock:ammo-30…
 type LedgerEntry = { seq: number; day: number; account: Account; delta: number;
   reason: string; ref?: Id /*contract／event／sale／repair job*/; counter?: Account };
 type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
 ```
 
-規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每潮月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是摹機通用料；`feed`（質量，餵獸）；`fuel`（氦與電合併成一池，簡化）。
+規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每潮月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是摹機通用料，也是拘束器維護與屍體改裝的材料；`flesh` 兼作蟲族／獸族吞屍的屍體（不另設帳）；`fuel`（氦與電合併成一池，簡化）。
 
 ## 實物庫存 Inventory（有身分的東西不進帳本）
 
@@ -22,11 +22,11 @@ type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
 ## 市場 MarketDef 與價格
 
 ```ts
-type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "feed" | "fuel" | "material" | "ticket" | "soul-rental"; items: { def: Id; weight: number; stockMax: number }[] }[];
+type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental"; items: { def: Id; weight: number; stockMax: number }[] }[];
   priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter" /*弦月*/; buysBack: boolean };
 ```
 
-價格＝`basePrice × 狀態折價（部件按剩餘層 HP 比例、機甲按各部位加總＋機體整備係數）× 勢力 rep 折扣 × 節點局勢（`NodeState.flags` 查 `priceMods`）`。弦月刷新：清庫存、以當天 seed 重抽；玩家賣出的實物不保留（BB OPS-10 原意，簡單）。核的售價隨等級指數上升（D 數十、C 百餘、A 數千幣量級）；核同時是古代機甲的修理材料——這是「賣還是餵」的衝突點。
+價格＝`basePrice × 狀態折價（部件按剩餘層 HP 比例、機甲按各部位加總＋機體整備係數）× 勢力 rep 折扣 × 節點局勢（`NodeState.flags` 查 `priceMods`）`。弦月刷新：清庫存、以當天 seed 重抽；玩家賣出的實物不保留（BB OPS-10 原意，簡單）。核的售價隨等級指數上升（D 數十、C 百餘、A 數千幣量級）；核同時是古代機甲的修理材料與屍體改裝的動力——這是「賣、修、還是裝屍」三方的衝突點；`carcass` 列賣整屍（黑市，供屍體改裝）。
 
 ## 債 Debt 與塞勒涅催收
 

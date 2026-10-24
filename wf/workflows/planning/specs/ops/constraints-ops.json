@@ -17,9 +17,9 @@
   {
    "id": "DN-M-01",
    "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
-   "constraint": "形態：網頁遊戲、無美術、偏 MUD；SRPG 戰場也用網頁；技術棧隨意",
+   "constraint": "形態：網頁遊戲、無美術；SRPG 戰場也用網頁；技術棧隨意（UI 形式見 USR-09：一般網頁遊戲元件＋快捷鍵，不走 MUD 風）",
    "spec_section": "text-ui-contract.md#原則",
-   "note": "營運畫面純文字、Screen 是純資料"
+   "note": "Screen 是純資料：面板、列表、按鈕（帶鍵與 tooltip）"
   },
   {
    "id": "DN-M-02",
@@ -53,8 +53,8 @@
    "id": "DN-W-01",
    "source": "../../design-notes/mechs.md",
    "constraint": "三類機甲：機械（製造／採購）、生物（戰場捕捉＋改裝）、古代（遺跡唯一掉落、不可量產）",
-   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
-   "note": "三種取得路徑各有營運入口：市場／獸欄／遺跡"
+   "spec_section": "data-model-beasts.md#拘束艙-restraintbay取代第一版的畜欄概念",
+   "note": "三種取得路徑各有營運入口：市場／拘束艙（活捕、屍體改裝）／遺跡"
   },
   {
    "id": "DN-W-02",
@@ -130,7 +130,7 @@
    "id": "DN-W-12",
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
    "constraint": "B 級不是 C 級蛻變而來；生物系養成另找規則",
-   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "spec_section": "data-model-beasts.md#活捕拘束磨損失控",
    "note": "養成三條不動等級：同調、移植、族行為"
   },
   {
@@ -144,7 +144,7 @@
    "id": "DN-W-14",
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
    "constraint": "母體／子體與蛻皮只是某些族的設定（spawner／molt 類可選行為）",
-   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "spec_section": "data-model-beasts.md#活捕拘束磨損失控",
    "note": "brood 只蟲族、molt 只獸族、mutate 只異形"
   },
   {
@@ -166,7 +166,7 @@
    "source": "../../design-notes.md#尚未裁示--2026-10-23-使用者裁示都隨意讓-fable-去規劃",
    "constraint": "BB 式細節沿用程度、營運層範圍（契約、金錢、修理、招募）、文字互動深度由規劃線決定",
    "spec_section": "text-ui-contract.md#最小動詞集合v1-共-27-個",
-   "note": "全要＋潮；27 個動詞（23 遊戲＋4 系統）兩層並存"
+   "note": "全要＋潮；27 個動詞（23 遊戲＋4 系統）是指令語意層，呈現為按鈕＋快捷鍵"
   },
   {
    "id": "WV-01",
@@ -178,7 +178,7 @@
   {
    "id": "WV-02",
    "source": "../world/operations.md#世界圖與浮船",
-   "constraint": "世界圖是節點圖不是方格；浮船是基地也是容器（機庫、獸欄、醫務艙、酒艙、艦橋、艦砲）；容量硬限制；船會壞",
+   "constraint": "世界圖是節點圖不是方格；浮船是基地也是容器（機庫、拘束艙、醫務艙、酒艙、艦橋、艦砲）；容量硬限制；船會壞",
    "spec_section": "data-model-world-map.md#浮船-shipstate",
    "note": "hull 歸零＝徒步"
   },
@@ -199,15 +199,15 @@
   {
    "id": "WV-05",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "一天一 tick、二十八天一潮月；戰鬥不占營運時間；馴化以天計、修理以工時計、傷勢以潮月計；認主只在大潮之夜；一局無終點",
+   "constraint": "一天一 tick、二十八天一潮月；戰鬥不占營運時間；拘束器磨損以天計、修理以工時計、傷勢以潮月計；認主只在大潮之夜；一局無終點",
    "spec_section": "time-and-tick.md#曆-calendar",
    "note": ""
   },
   {
    "id": "WV-06",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "指令列為主、每畫面給可點選單；對話選項式；BB 式事件兩三個選擇；房間描述隨狀態變；不做多人與即時",
-   "spec_section": "text-ui-contract.md#房間-room-與描述",
+   "constraint": "（2026-10-24 已被 USR-09 修正）原提案指令列為主＋可點選單；現為按鈕、列表、面板＋快捷鍵；對話選項式；BB 式事件兩三個選擇；房間描述隨狀態變；不做多人與即時",
+   "spec_section": "text-ui-contract.md#快捷鍵-keymap",
    "note": ""
   },
   {
@@ -289,15 +289,15 @@
   },
   {
    "id": "WV-18",
-   "source": "../world/mech-lifecycles.md#生物系捕馴裝同調承擔暴走養成",
-   "constraint": "捕、馴（獸欄花天數與飼料）、裝（拘束與駕駛艙是部件）、同調、承擔、暴走、餵是日常；養成三條：同調、移植、族行為",
-   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "source": "../world/bio-mechs.md#生物系活捕與屍體改裝兩條路",
+   "constraint": "活捕：捕、裝（拘束與駕駛艙是部件）、同調、承擔、暴走，無馴化；屍體改裝：無意識、吃核當動力、不會成長；養成三條：同調、移植、族行為",
+   "spec_section": "data-model-beasts.md#活捕拘束磨損失控",
    "note": ""
   },
   {
    "id": "WV-19",
    "source": "../world/mech-lifecycles.md#古代系找認養修",
-   "constraint": "古代系沒有部件可換、壞了只能修、修法是餵裂獸的核（與能源收入競爭）；認主後不能換機、離開會衰弱；駕駛員死機甲睡、再叫醒帶怨",
+   "constraint": "古代系沒有部件可換、壞了只能修、修法是吃裂獸的核（與能源收入競爭）；認主後不能換機、離開會衰弱；駕駛員死機甲睡、再叫醒帶怨",
    "spec_section": "data-model-roster-repair.md#工時佇列-workqueue修理科研移植育魂共用",
    "note": "repair-only 材料固定 stock:core-*"
   },
@@ -375,8 +375,8 @@
    "id": "CORE-03",
    "source": "../core/rules-battle-flow.md#捕捉-capture",
    "constraint": "捕捉成功的單位轉為 captured、frame 改成 capture.frame、各層 HP 原樣帶走；戰後進營運層再裝部件",
-   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
-   "note": "captured → PenState(wild)"
+   "spec_section": "data-model-beasts.md#活捕拘束磨損失控",
+   "note": "captured → BeastState(kind:\"live\", wear:0)"
   },
   {
    "id": "USR-01",
@@ -398,6 +398,48 @@
    "constraint": "機械系命名分階段：代號（D）→系列＋型號／前後綴（A–C）→愈高階愈中二，依開發勢力喜好；隊長機＝冠名-系列",
    "spec_section": "data-model-factions-contracts.md#勢力營運側-factionopsdef不改-core-的-factiondef",
    "note": "2026-10-24 補充裁示，已記在 design-notes/mechs.md；屬內容規範，spec 只在 FactionOpsDef 留 naming 欄；content/base 現名規範化排在 roadmap「內容第二批」"
+  },
+  {
+   "id": "USR-04",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "生物系分兩類：屍體改裝（無意識、把屍體當裝甲＋大量機械接入神經、安全但開銷大、通常只用於高級怪獸、不會成長）與活捕（有意識、同調／承擔／暴走保留）",
+   "spec_section": "data-model-beasts.md#屍體改裝-mount",
+   "note": "2026-10-24 裁示；mount job 吃一顆同級核當動力（Fable 代決）"
+  },
+  {
+   "id": "USR-05",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "活捕拿掉「馴」：捕到直接裝拘束器硬壓，怪獸意識始終對抗、不會被馴服；怪獸意識不算人物，以機體側資料表達",
+   "spec_section": "data-model-beasts.md#活捕拘束磨損失控",
+   "note": "2026-10-24 裁示；無座位出戰用 core controlMode instinct"
+  },
+  {
+   "id": "USR-06",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "沒有餵養：不設飼料、飢餓、畜欄等畜牧式系統；族別例外：蟲族、獸族吞屍保持活性；異形、菌絲另定",
+   "spec_section": "data-model-beasts.md#族別維持-sustain不是餵養一潮月一次的族行為",
+   "note": "2026-10-24 裁示；飢餓→拘束器磨損、異形潮浸、菌絲修剪是 Fable 代決（../../../decisions/2026-10-24-bio-ui.md#2026-10-24-生物系兩類沒有餵養ui-走一般網頁遊戲元件使用者裁示fable-代決）"
+  },
+  {
+   "id": "USR-07",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "三類機甲營運主軸：機械＝改裝保養＋培養機魂；古代＝駕駛員心智成長；生物＝改裝保養＋對抗怪獸、防止失控（拘束器維護、失控風險管理）",
+   "spec_section": "data-model-roster-repair.md#名冊-rosterstate",
+   "note": "2026-10-24 裁示；生物系細則在 data-model-beasts"
+  },
+  {
+   "id": "USR-08",
+   "source": "../world/bio-mechs.md#生物系的名字",
+   "constraint": "生物系命名三層＋二名：登記號（不用畜欄類字眼）、用久了的小名、外人給的凶名；A 級以上的二名野生即有、捕獲後沿用",
+   "spec_section": "data-model-beasts.md#生物系的命名",
+   "note": "2026-10-24 裁示；沿用 RosterState.names 多稱號結構，加 kind 欄"
+  },
+  {
+   "id": "USR-09",
+   "source": "../../../decisions/2026-10-24-bio-ui.md#2026-10-24-生物系兩類沒有餵養ui-走一般網頁遊戲元件使用者裁示fable-代決",
+   "constraint": "UI 不走純文字／MUD 風：一般網頁遊戲標準（按鈕、列表、面板、選單、tooltip）；主要操作配快捷鍵（鍵位資料驅動、可改綁、按鈕與 tooltip 顯示鍵）；戰場仍是 DOM／CSS 真方格、無美術",
+   "spec_section": "text-ui-contract.md#原則",
+   "note": "2026-10-24 裁示；27 動詞保留為語意層，parse 只給測試與除錯"
   }
  ]
 }

@@ -11,13 +11,13 @@
 | `ops/state` | CampaignState／Event／OpsCommand 型別、RNG、Ledger | core |
 | `ops/content` | 載入 `world/`、schema、WorldDB、Cond／OpsEffect 詞彙 | core, content |
 | `ops/world` | 節點、路線、裂縫、潮壓、行動牌、市場 | state, content |
-| `ops/crew` | 名冊、薪水、招募、醫務、佇列、機庫、獸欄、科研、練熟 | state, content |
+| `ops/crew` | 名冊、薪水、招募、醫務、佇列、機庫、拘束艙、科研、練熟 | state, content |
 | `ops/contracts` | 契約生命週期、談判、計功 | state, content |
 | `ops/time` | `tick()` 八段編排（只呼叫純函式） | 上列全部 |
 | `ops/sortie` | validateSortie、generateScenario、applyBattleResult | 上列＋`sim` |
-| `ops/text` | parse、render(Screen)、模板；無 DOM | state, content |
+| `ops/text` | OpsCommand 語意層、render(Screen)、模板、keymap；parse 只給測試；無 DOM | state, content |
 | `ops/sim` | runCampaign、重播、不變量、存檔序列化 | 上列全部 |
-| `ui-ops` | DOM：畫 Screen、收輸入、切到 core ViewModel 再切回 | text, sim, ui-adapter |
+| `ui-ops` | DOM：畫 Screen（面板／按鈕）、收點擊與快捷鍵、切到 core ViewModel 再切回 | text, sim, ui-adapter |
 
 表中依賴欄省略 `ops/` 前綴；`ops/sortie` 對 `sim` 只用 `runBattle` 與 `BattleResult`。依賴只能往下；`ops/*` **不得** import `rules`／`ai`（戰鬥內部），只經 `sim`。`CampaignState` 純資料、可 `structuredClone`，所有改動只經各模組的 `(state, input) → (state', events)`。
 
@@ -26,14 +26,14 @@
 ```ts
 type CampaignState = { version: 1; clock: Clock; rng: RngState; pressure: number;
   nodes: Record<Id, NodeState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>;
-  ship: ShipState; roster: RosterState; hangar: HangarState; stable: StableState; mechs: Record<Id, MechState>;
+  ship: ShipState; roster: RosterState; hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>;
   inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>; jobs: Job[];
   contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie;
   lore: string[]; flags: Record<string, number>; log: CampaignEvent[] };
 type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
 ```
 
-事件類型（節選）：`DayStart`、`DaySummary`、`RiftPhase`、`NodeBlighted`、`NodeReclaimed`、`Arrived`、`Encounter`、`EventOffered`、`Chosen`、`JobDone`、`Tamed`、`Molted`、`Brooded`, `Mutated`、`Accompanied`、`NodeMastered`、`WagePaid`、`WageOwed`、`InterestPosted`、`Posted`（每筆帳）、`ContractOffered/Accepted/Done/Failed/Cancelled/Expired`、`Hired`、`Left`、`Died`、`BattleResolved`、`Woken`、`Named`、`CampaignEnd`。payload 只放 id 與數字；文字由 `ops/text` 組。
+事件類型（節選）：`DayStart`、`DaySummary`、`RiftPhase`、`NodeBlighted`、`NodeReclaimed`、`Arrived`、`Encounter`、`EventOffered`、`Chosen`、`JobDone`、`WearWarning`、`BrokeLoose`、`Sustained`、`Stiffened`、`Mounted`、`Molted`、`Brooded`, `Mutated`、`Accompanied`、`NodeMastered`、`WagePaid`、`WageOwed`、`InterestPosted`、`Posted`（每筆帳）、`ContractOffered/Accepted/Done/Failed/Cancelled/Expired`、`Hired`、`Left`、`Died`、`BattleResolved`、`Woken`、`Named`、`CampaignEnd`。payload 只放 id 與數字；文字由 `ops/text` 組。
 
 ## 決定性與重播
 
@@ -53,9 +53,9 @@ type CampaignEvent = { seq: number; day: number; type: string; payload: Record<s
 
 **(4) 黃金戰役**：`test/campaigns/*.json`（固定開局、固定指令 30–60 條、固定 seed）→ 事件日誌 hash 與關鍵事件序列（例：`ContractAccepted → Arrived → BattleResolved → RiftPhase(unanchored) → RiftPhase(anchored, fedCount=1)` 證明養裂）存黃金檔。
 
-**(5) 指令列／選單恆等**：對每個 `Screen.actions` 的按鈕，找一行能 `parse` 成同一 `OpsCommand` 的文字，兩路執行比對 state hash。
+**(5) 按鈕／快捷鍵／文字形式恆等**：對每個 `Screen.actions` 的按鈕，`parse(formatCommand(cmd))` 必等於 `cmd`；按鈕點擊與其 `key` 觸發兩路執行比對 state hash；keymap 無同 context 同鍵衝突。
 
-**(6) DOM**（happy-dom）：`Screen` → DOM 的房間、log、按鈕；Playwright 只跑一條端對端（開局→接約→航行→進戰場→回營運）。
+**(6) DOM**（happy-dom）：`Screen` → DOM 的房間面板、記錄列表、按鈕組（標鍵、tooltip、disabled 原因）；Playwright 只跑一條端對端（開局→接約→航行→進戰場→回營運，以快捷鍵操作）。
 
 ## 替使用者做掉的決定
 
@@ -63,4 +63,4 @@ type CampaignEvent = { seq: number; day: number; type: string; payload: Record<s
 2. **重播不重跑戰鬥**：營運重播秒級完成；戰鬥各自有 hash 可單獨驗。
 3. **兩個內建 policy 當模擬驅動**：`idle` 測世界自己會不會壞、`greedy` 測迴圈會不會卡。
 4. **帳本守恆寫成三條不變量**：折疊相等、外源有來源、存量非負——比「錢對得上」可斷言。
-5. **ui-ops 與 ui-adapter 分開**：營運畫面與方格戰場是兩個 DOM 模組，互不 import，只在 `sortie` 交接。
+5. **ui-ops 與 ui-adapter 分開**：營運畫面與方格戰場是兩個 DOM 模組，互不 import，只在 `sortie` 交接；兩者共用 keymap 檔格式與載入器。
