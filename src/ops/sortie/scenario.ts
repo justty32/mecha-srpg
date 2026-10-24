@@ -107,7 +107,11 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
   });
   const template = contract ? ctx.world.require("contract", contract.template) : undefined;
   const objectives = (template?.stages?.[contract!.stageIdx]?.objectives ?? template?.objectives ?? [{ kind: "eliminate" as const, params: {} }]).map(o => ({
-    kind: o.kind, params: structuredClone(o.params), for: "player", onComplete: o.optional ? "continue" as const : "win" as const }));
+    kind: o.kind, params: {
+      ...structuredClone(o.params),
+      // SPEC-GAP：核區以敵方部署區代表；anchor 也必須推進佔區，不能只在原地存活。
+      ...(o.kind === "hold" && o.params.zone === undefined ? { zone: structuredClone(map.deployZones.enemy) } : {}),
+    }, for: "player", onComplete: o.optional ? "continue" as const : "win" as const }));
   // SPEC-GAP：明示敵軍勝利條件，避免玩家全滅後 clear 目標永遠無法結束。
   objectives.push({ kind: "eliminate", params: {}, for: "enemy", onComplete: "win" });
   const playerFaction = ctx.db.require("faction", "faction/migrant-crew").id;

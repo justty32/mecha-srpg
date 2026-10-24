@@ -13,10 +13,60 @@ function choice(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
 }
 export const idle: Policy = (s, ctx) => choice(s, ctx) ?? { v: "wait", days: 1 };
 
+function combatReady(s: CampaignState, ctx: OpsCtx, id: string): boolean {
+  const mech = s.mechs[id]; if (!mech) return false;
+  const frame = ctx.db.require("frame", mech.frame), body = ctx.db.require("bodyplan", frame.bodyPlan);
+  if (body.parts.some(p => (p.functions.includes("core") || p.functions.includes("locomotion"))
+    && (!mech.parts[p.id] || mech.parts[p.id]!.broken))) return false;
+  if (s.jobs.some(j => j.target === id && (j.paid || j.doneHours > 0) && j.doneHours < j.needHours)) return false;
+  const abilities = [...frame.innateAbilities];
+  for (const part of body.parts) {
+    const state = mech.parts[part.id]; if (!state || state.broken) continue;
+    const components = Object.keys(state.components).sort().flatMap(slot => {
+      const id = state.components[slot];
+      const def = id && ctx.db.get("component", s.inventory.components.find(c => c.id === id)?.def ?? id);
+      return def ? [def] : [];
+    });
+    // 營運實例把有 HP 的部件層接在部位層尾，順序與槽位一致。
+    let layerIndex = state.layers.length - components.filter(c => c.hp !== undefined).length;
+    for (const component of components) {
+      const layer = component.hp === undefined ? undefined : state.layers[layerIndex++];
+      if (component.hp !== undefined && (!layer || layer.broken || layer.hp <= 0)) continue;
+      abilities.push(...component.abilities);
+    }
+  }
+  return abilities.some(id => {
+    const ability = ctx.db.require("ability", id);
+    if (ability.mode !== "activated") return false;
+    const ammo = new Set([...(ability.ammoPool ? [ability.ammoPool] : []),
+      ...ability.costs.filter(c => c.pool.startsWith("ammo")).map(c => c.pool)]);
+    // SPEC-GAP：營運沒有補彈指令；只檢查現有彈藥，不自動補滿或假設能採買。
+    return [...ammo].every(pool => (mech.pools[pool]?.cur ?? 0) > 0);
+  });
+}
+
+function repairJob(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
+  for (const id of [...new Set(s.hangar.bays.filter((id): id is string => !!id))].sort()) {
+    const mech = s.mechs[id]; if (!mech) continue;
+    const body = ctx.db.require("bodyplan", ctx.db.require("frame", mech.frame).bodyPlan);
+    for (const part of [...body.parts].sort((a, b) => a.id < b.id ? -1 : 1)) {
+      for (const [layer, def] of part.layers.entries()) {
+        const state = mech.parts[part.id]?.layers[layer];
+        if (!state || state.hp >= def.hp || s.jobs.some(j => j.target === id && j.part === part.id && j.layer === layer
+          && (j.kind === "repair" || j.kind === "rebuild"))) continue;
+        const cmd: OpsCommand = { v: "queue", job: { kind: def.structural && state.hp <= 0 ? "rebuild" : "repair", target: id, part: part.id, layer } };
+        // 工時與材料沿用既有 queue 計價；無支援配方就略過，避免每天重送非法 job。
+        if (applyCommand(s, ctx.db, ctx.world, cmd).result.ok) return cmd;
+      }
+    }
+  }
+  return undefined;
+}
+
 function allUnits(s: CampaignState, ctx: OpsCtx): Sortie["units"] {
   const available = Object.keys(s.roster.persons).sort().filter(id => !s.roster.dead.some(d => d.person === id) && s.roster.persons[id]!.pools.hp?.cur !== 0);
   const used = new Set<string>();
-  return [...new Set(s.hangar.bays.filter((id): id is string => !!id))].sort().filter(id => !s.hangar.dormant.includes(id)).map(id => {
+  return [...new Set(s.hangar.bays.filter((id): id is string => !!id))].sort().filter(id => !s.hangar.dormant.includes(id) && combatReady(s, ctx, id)).map(id => {
     const mech = s.mechs[id]!, frame = ctx.db.require("frame", mech.frame);
     const captured = s.flags[`captured:${id}`] === 1 || ctx.db.all("species").some(sp => sp.capture.frame === frame.id);
     const seats: Record<string, string | null> = {};
@@ -32,6 +82,7 @@ function allUnits(s: CampaignState, ctx: OpsCtx): Sortie["units"] {
 }
 export const greedy: Policy = (s, ctx) => {
   const pending = choice(s, ctx); if (pending) return pending;
+  const repair = repairJob(s, ctx); if (repair) return repair;
   if (s.ship.route && !s.pendingBattle) return { v: "wait", days: 1 };
   const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => ["active", "stage"].includes(c.status));
   const units = allUnits(s, ctx);

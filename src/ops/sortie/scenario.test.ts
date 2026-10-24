@@ -4,6 +4,7 @@ import { scenarioToSetup } from "../../sim/index.ts";
 import { createOpsCtx } from "../content/start.ts";
 import { generateScenario } from "./scenario.ts";
 import { fixture } from "./test-support.ts";
+import { createWorldDB } from "../content/worlddb.ts";
 
 test("接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入", () => {
   const { s, ctx, sortie } = fixture();
@@ -20,4 +21,23 @@ test("同 state 與 rng 生成深相等情境", () => {
   assert.deepEqual(generateScenario(s, ctx, sortie), generateScenario(copy, other, sortie));
   assert.deepEqual(s.rng, copy.rng);
   assert.notDeepEqual(s.rng, before);
+});
+
+test("hold 缺 zone（含 anchor 與階段目標）展開敵方部署區，明列 zone 保留", () => {
+  for (const params of [{ rounds: 5 }, { rounds: 5, role: "anchor" }, { rounds: 5, zone: [{ x: 2, y: 1 }] }]) {
+    for (const staged of [false, true]) {
+      const { s, ctx, sortie, contract } = fixture();
+      const template = structuredClone(ctx.world.require("contract", "contract/seal"));
+      template.objectives = [{ kind: "hold", params }];
+      if (staged) template.stages = [{ objectives: template.objectives }];
+      const overlay = createWorldDB(ctx.world.packs, { contract: { [template.id]: template } }), original = ctx.world;
+      ctx.world = { ...original, require: (kind, id) => overlay.get(kind, id) ?? original.require(kind, id) };
+      contract.template = template.id; contract.stageIdx = 0;
+      const scenario = generateScenario(s, ctx, sortie);
+      const hold = scenario.objectives.find(o => o.kind === "hold")!;
+      assert.deepEqual(hold.params.zone, params.zone ?? scenario.ops.map.deployZones.enemy);
+      assert.equal(hold.params.rounds, 5);
+      assert.deepEqual(template.objectives[0]!.params, params);
+    }
+  }
 });
