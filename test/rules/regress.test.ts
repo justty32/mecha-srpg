@@ -199,3 +199,15 @@ test("回歸：一擊殺死最後敵人時，該指令的後續結算（produces
   }
   assert.ok(checked > 0, "40 個 seed 都沒有一擊定局");
 });
+
+test("回歸：UnitInit.pools 匯入值超出 hard 池範圍時夾到 [min,max]（soft 池只夾 min）", () => {
+  const { frame, seat } = pilotedFrame();
+  const setup: BattleSetup = { id: "regress-init-pools", map: { width: 3, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] },
+    objectives: [], maxRounds: 2, units: [
+      { id: "a", owner: "player", pos: { x: 0, y: 0 }, frame, persons: [{ id: "pa", def: humans[0]!, seat }], pools: { hp: 99999, ap: -50 } },
+      { id: "b", owner: "enemy", pos: { x: 2, y: 0 }, frame }] };
+  const s = createBattle(db, setup, 1), p = s.persons.pa!;
+  assert.ok(p.pools.hp && p.pools.ap, "測試人物需有 hp 與 ap 池");
+  assert.ok(p.pools.hp.cur <= p.pools.hp.max, `hp ${p.pools.hp.cur} > ${p.pools.hp.max}`);
+  assert.ok(p.pools.ap.cur >= 0, `ap ${p.pools.ap.cur} < min`);
+});

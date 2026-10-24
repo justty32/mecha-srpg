@@ -14,7 +14,7 @@ import { aiDeterminism, aiLegal, checkState, errorText, groupKey, legalEnum, new
 import type { Add, Issue } from "./invariants.ts";
 
 export type Finding = Issue & { seed: number; mode: Mode; step: number; round?: number; command?: Command };
-export type Trial = { seed: number; mode: Mode; scenario: string | null; steps: number; round: number; issues: Finding[]; midSaveStep: number | null };
+export type Trial = { seed: number; mode: Mode; scenario: string | null; steps: number; round: number; issues: Finding[]; midSaveStep: number | null; events?: Record<string, number> };
 export const MAX_STEPS = 4000;
 
 /** 與 session 同順序；大圖只枚舉射程方框，存活目標仍交 checkAbility 判定。 */
@@ -125,7 +125,13 @@ export function runTrial(db: ContentDB, seed: number, mode: Mode): Trial {
           for (const kind of ["wait", "end", "retreat", "eject"] as const) if (legal[kind]) candidates.push({ kind, actor });
         }
         if (!candidates.length) { add("legal-rejected", `no legal actions for actor ${actor}`); return false; }
-        command = candidates[nextInt(rng, candidates.length)]!;
+        // 先抽類別再抽候選：能力 60%、移動 25%、wait／end 13%、retreat／eject 2%，讓隨機玩家真的打起來（均勻抽時多半在走路、棄機）。
+        const buckets = [candidates.filter(c => c.kind === "useAbility"), candidates.filter(c => c.kind === "move"),
+          candidates.filter(c => c.kind === "wait" || c.kind === "end"), candidates.filter(c => c.kind === "retreat" || c.kind === "eject")];
+        const weights = [60, 25, 13, 2].map((w, i) => buckets[i]!.length ? w : 0);
+        let roll = nextInt(rng, weights.reduce((a, b) => a + b, 0)), bucket = 0;
+        while (roll >= weights[bucket]!) roll -= weights[bucket++]!;
+        command = buckets[bucket]![nextInt(rng, buckets[bucket]!.length)]!;
         if (command.kind === "move") {
           const target = command.path[0]!, path = session.rulesQuery.pathTo(state!, actor, target);
           if (!path) { add("legal-rejected", `reachable destination has no path ${actor} ${target.x},${target.y}`); return false; }
@@ -143,6 +149,9 @@ export function runTrial(db: ContentDB, seed: number, mode: Mode): Trial {
     commands = [...session.commands];
   }
   command = undefined;
+  // 覆蓋率：本場事件種類計數（CLI 彙總，證明 fuzz 真的打到層、部位、死亡、傳導等路徑）。
+  trial.events = {};
+  for (const e of state.log.events) trial.events[e.type] = (trial.events[e.type] ?? 0) + 1;
   // 比預定步數更早結束的場，使用最後一個非終局前綴，仍與終局存檔分開驗。
   saveMidway();
   if (!rt(state).outcome) add("no-termination", `battle did not terminate round=${state.round} steps=${trial.steps} limit=${MAX_STEPS}`);

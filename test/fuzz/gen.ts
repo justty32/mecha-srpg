@@ -1,6 +1,7 @@
 import type { ContentDB } from "../../src/content/contentdb.ts";
 import { createRng, nextInt } from "../../src/core/rng.ts";
 import type { BattleSetup, UnitInit } from "../../src/rules/index.ts";
+import { createBattle, layerDefs, partDefs } from "../../src/rules/index.ts";
 import { scenarioToSetup } from "../../src/sim/run.ts";
 import type { SimSetup } from "../../src/sim/run.ts";
 
@@ -64,6 +65,7 @@ export function generate(db: ContentDB, seed: number, mode: Mode): SimSetup {
       units.push({ id, owner, pos, frame: frame.id, components: installed, persons: crew });
     }
   }
+  stress(db, seed, units);
   const maxRounds = int(3, 20), objectives: BattleSetup["objectives"] = [];
   if (int(0, 1)) for (let i = 0, n = int(1, 2); i < n; i++) {
     const kind = pick(["eliminate", "survive", "reachExit", "killTarget"] as const);
@@ -79,4 +81,38 @@ export function generate(db: ContentDB, seed: number, mode: Mode): SimSetup {
   const unitPolicies: SimSetup["unitPolicies"] = Object.fromEntries(slots.map(s => [s, {}]));
   for (const u of units) if (u.monster) unitPolicies[u.owner]![u.id] = db.require("aiprofile", db.require("species", u.monster.species).aiProfile).policy;
   return { scenario: null, setup, slotProfiles: Object.fromEntries(slots.map(s => [s, { policy: "tactical", params: {} }])), unitPolicies };
+}
+
+/**
+ * 壓力旋鈕（獨立 RNG stream，不擾動上面的抽樣）：約 30% 場對部分單位預先打壞非核心部位的層、
+ * 並把隨機資源池（熱量、承擔、本能…）推到高檔，讓失控、停機、捕捉、部位毀損傳導等路徑在短局內出現。
+ * 核心部位一律不動（開局即死亡不是合法情境）。
+ */
+function stress(db: ContentDB, seed: number, units: UnitInit[]): void {
+  const rng = createRng(seed, 803), int = (lo: number, hi: number) => lo + nextInt(rng, hi - lo + 1);
+  if (int(1, 100) > 30) return;
+  const poolIds = [...new Set([...db.all("frame").flatMap(f => f.pools), ...db.all("component").flatMap(c => c.pools),
+    ...db.all("person").flatMap(p => p.pools), ...db.all("species").flatMap(s => s.pools)].map(p => p.id))].sort();
+  for (const u of units) {
+    if (int(1, 100) > 40) continue;
+    if (poolIds.length) {
+      const pools: Record<string, number> = {};
+      for (let i = 0, n = int(1, 2); i < n; i++) pools[poolIds[nextInt(rng, poolIds.length)]!] = int(0, 300);
+      u.pools = pools;
+    }
+    const probe = createBattle(db, { id: "fuzz-stress-probe", map: { width: 1, height: 1, fill: db.ids("terrain")[0]!, exits: [] },
+      units: [{ ...u, pos: { x: 0, y: 0 }, persons: [] }], objectives: [] }, 1), ctx = { db, s: probe };
+    const parts: NonNullable<UnitInit["parts"]> = {};
+    for (const part of partDefs(ctx, u.id)) {
+      if (part.functions.includes("core") || int(0, 1) === 0) continue;
+      const defs = layerDefs(ctx, u.id, part.id);
+      const layers = defs.map(d => {
+        const hp = int(0, 3) === 0 ? 0 : Math.floor(d.hp * int(1, 100) / 100);
+        return { hp, broken: hp <= 0 };
+      });
+      const structural = defs.map((d, i) => d.structural ? i : -1).filter(i => i >= 0);
+      parts[part.id] = { layers, broken: structural.length > 0 && structural.every(i => layers[i]!.broken) };
+    }
+    if (Object.keys(parts).length) u.parts = parts;
+  }
 }

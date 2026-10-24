@@ -73,8 +73,10 @@ export async function runCli(args: string[] = process.argv.slice(2)) {
   const scenarios: Record<string, number> = {}, invariantRuns: Record<string, number> = Object.fromEntries([...NAMES, "gen-error", "setup-rejected", "legal-rejected", "no-termination", "ai-rejected"].map(n => [n, 0]));
   const findings: Finding[] = [], groups = new Map<string, { invariant: string; message: string; runs: number; example: Finding }>();
   let completed = 0, hardRuns = 0;
+  const coverage: Record<string, number> = {};
   for (const trial of trials) {
     completed++; counts[trial.mode]++;
+    for (const [type, n] of Object.entries(trial.events ?? {})) if (n > 0) coverage[type] = (coverage[type] ?? 0) + 1;
     if (trial.scenario) scenarios[trial.scenario] = (scenarios[trial.scenario] ?? 0) + 1;
     if (trial.issues.some(x => !x.warning)) hardRuns++;
     for (const invariant of new Set(trial.issues.map(x => x.invariant))) invariantRuns[invariant] = (invariantRuns[invariant] ?? 0) + 1;
@@ -87,11 +89,12 @@ export async function runCli(args: string[] = process.argv.slice(2)) {
   }
   const elapsedMs = Date.now() - started, grouped = [...groups.values()];
   const summary = { requested: runs, completed, counts, elapsedMs, maxMs: Number.isFinite(maxMs) ? maxMs : null,
-    jobs: workers.length, modeMs, hardRuns, invariantRuns, scenarios, contentCounts, groups: grouped, findings,
+    jobs: workers.length, modeMs, hardRuns, invariantRuns, coverage, scenarios, contentCounts, groups: grouped, findings,
     trials: trials.map(t => ({ seed: t.seed, mode: t.mode, steps: t.steps, midSaveStep: t.midSaveStep })) };
   console.log(`場數 ${completed}/${runs}; 模式 ${JSON.stringify(counts)}; 耗時 ${elapsedMs} ms; 硬違規場數 ${hardRuns}`);
   console.log(`耗時明細 jobs=${workers.length}; 各模式累計 ms ${JSON.stringify(modeMs)}`);
   console.log(`不變量違規場數 ${JSON.stringify(invariantRuns)}`);
+  console.log(`事件覆蓋（出現該事件的場數） ${JSON.stringify(Object.fromEntries(Object.entries(coverage).sort(([a], [b]) => a < b ? -1 : 1)))}`);
   console.log(`違規分組 ${grouped.length} 組（同不變量＋訊息首行去數字；count 為場數）`);
   for (const g of grouped) console.log(`${g.invariant} | ${g.runs} | ${g.message} | seed=${g.example.seed} mode=${g.example.mode}`);
   console.log("前 20 筆違規：");

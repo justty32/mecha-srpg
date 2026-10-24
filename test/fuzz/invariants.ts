@@ -50,6 +50,8 @@ export function poolBounds(ctx: Ctx, add: Add): void {
     const declarations = poolDecls(ctx, owner);
     for (const [id, pool] of Object.entries(container.pools)) {
       const decl = declarations.find(d => d.id === id) ?? fallback.find(d => d.id === id);
+      // 捕獲會把 frame 換成 capture.frame、池原樣帶走（rules-battle-flow §捕捉）；被捕單位不再行動，舊物種池無宣告屬預期。
+      if (!decl && "unit" in owner && rt(ctx.s).unitStatus[owner.unit] === "captured") continue;
       if (!decl) { add("pool-bounds", `missing pool declaration ${container.id}.${id}`); continue; }
       for (const key of ["cur", "max", "regen"] as const) {
         if (typeof pool[key] !== "number" || Number.isNaN(pool[key]) || (key !== "max" && !Number.isFinite(pool[key])))

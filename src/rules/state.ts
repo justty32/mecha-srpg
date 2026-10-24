@@ -2,12 +2,13 @@ import type { ContentDB } from "../content/contentdb.ts";
 import type { Id } from "../core/ids.ts";
 import { GRADES } from "../core/types-def.ts";
 import type { Cell, Dir, FactionSlot, FrameDef, Grade, LayerDef, PartDef, PartId, PoolDecl, PoolId, SeatId, SeatRole, SlotId, TerrainDef } from "../core/types-def.ts";
-import type { BattleState, MechState, PersonState, RulesRuntime } from "../core/types-state.ts";
+import type { BattleState, MechState, PersonState, PoolState, RulesRuntime } from "../core/types-state.ts";
 import type { EventPayload, EventType, GameEvent } from "../core/events.ts";
 import { appendEvent } from "../core/eventlog.ts";
 import { evalNum, NumExprError } from "../core/numexpr.ts";
 import type { EvalCtx } from "../core/numexpr.ts";
 import { personAttr, unitAttr } from "./contribs.ts";
+import { poolDecls } from "./pools.ts";
 
 export type Ctx = { db: ContentDB; s: BattleState };
 export type RejectCode = "battle-over" | "not-active" | "bad-actor" | "no-commander" | "unknown-ability" | "require-failed"
@@ -217,9 +218,14 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   }
   const seats = seatsOf(ctx, u.id);
   u.controlMode = seats.some(s => s.role === "pilot") ? "pilot" : seats.some(s => s.role === "soul") ? "soul" : init.monster ? "instinct" : "none";
+  // 匯入值依宣告夾限（hard 夾 [min,max]、soft 只夾 min），與池更新的夾限政策一致。
+  const clampTo = (owner: { unit: Id } | { person: Id }, pool: PoolState, id: PoolId, value: number): void => {
+    const d = poolDecls(ctx, owner).find(decl => decl.id === id);
+    pool.cur = !d ? value : Math.max(d.min, d.capKind === "hard" ? Math.min(pool.max, value) : value);
+  };
   for (const id of Object.keys(init.pools ?? {}).sort()) {
-    if (u.pools[id]) u.pools[id]!.cur = init.pools![id]!;
-    for (const seat of seats) if (person(ctx, seat.person).pools[id]) person(ctx, seat.person).pools[id]!.cur = init.pools![id]!;
+    if (u.pools[id]) clampTo({ unit: u.id }, u.pools[id]!, id, init.pools![id]!);
+    for (const seat of seats) if (person(ctx, seat.person).pools[id]) clampTo({ person: seat.person }, person(ctx, seat.person).pools[id]!, id, init.pools![id]!);
   }
   // 現況優先於預設值與舊版 pools 捷徑，所有容器皆複製以免回寫呼叫端。
   for (const [id, state] of Object.entries(init.parts ?? {})) {

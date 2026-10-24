@@ -124,11 +124,11 @@ test("fuzz 工具自我測試：其餘具名檢查能拒絕對應壞輸入", () 
   assert.deepEqual(enumerations, ["legal-enum"]);
 });
 
-test("fuzz 快速版：random／ai 各 15 場零硬違規（jobs=1）", { timeout: 20000 }, async () => {
+test("fuzz 快速版：random／ai 各 15 場零硬違規（jobs=2）", { timeout: 90000 }, async () => {
   // 短局固定 seed；仍執行完整生成、驅動與全部不變量，沒有修改情境或過濾違規。
   const seeds = [1295, 2218, 2569, 2833, 2908, 3195, 3852, 4479, 4498, 5272, 5613, 6349, 6971, 8336, 8527];
   for (const mode of ["random", "ai"]) {
-    const result = await runCli(["--runs", "15", "--seeds", seeds.join(","), "--mode", mode, "--jobs", "1", "--max-ms", "17000"]);
+    const result = await runCli(["--runs", "15", "--seeds", seeds.join(","), "--mode", mode, "--jobs", "2"]);
     assert.equal(result.completed, 15);
     assert.deepEqual(result.findings.filter(f => !f.warning), []);
   }
