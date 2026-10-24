@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -19,7 +19,7 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -41,10 +41,10 @@
       "faction": "faction/bay-seventh-post",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -54,10 +54,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -67,7 +67,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ash",
@@ -80,7 +80,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ilse-brandt",
@@ -119,7 +119,7 @@
           "mech": "frame/infantry",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
@@ -185,9 +185,23 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "escort",
       "params": {
-        "target": "frame/infantry"
+        "units": [
+          "convoy-0",
+          "convoy-1"
+        ]
       },
       "for": "player",
       "onComplete": "win"
@@ -195,10 +209,18 @@
     {
       "kind": "killTarget",
       "params": {
-        "target": "frame/infantry"
+        "target": "convoy-0"
       },
-      "for": "enemy",
-      "onComplete": "win"
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "convoy-1"
+      },
+      "for": "player",
+      "onComplete": "lose"
     }
   ],
   "rounds": 20,

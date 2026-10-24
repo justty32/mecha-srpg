@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -15,11 +15,11 @@
           ],
           "at": {
             "x": 13,
-            "y": 17
+            "y": 5
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -28,7 +28,7 @@
           ],
           "at": {
             "x": 16,
-            "y": 17
+            "y": 5
           }
         }
       ],
@@ -47,33 +47,33 @@
           ],
           "at": {
             "x": 13,
-            "y": 19
+            "y": 1
           }
         },
         {
           "mech": "frame/infantry",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
             "x": 15,
-            "y": 19
+            "y": 1
           }
         },
         {
           "mech": "frame/infantry",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
             "x": 17,
-            "y": 19
+            "y": 1
           }
         }
       ],
@@ -144,9 +144,23 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "escort",
       "params": {
-        "target": "frame/infantry"
+        "units": [
+          "convoy-0",
+          "convoy-1",
+          "convoy-2"
+        ]
       },
       "for": "player",
       "onComplete": "win"
@@ -154,7 +168,23 @@
     {
       "kind": "killTarget",
       "params": {
-        "target": "frame/infantry"
+        "target": "convoy-0"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "convoy-1"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "convoy-2"
       },
       "for": "player",
       "onComplete": "lose"

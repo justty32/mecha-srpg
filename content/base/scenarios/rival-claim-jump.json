@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -14,12 +14,12 @@
             }
           ],
           "at": {
-            "x": 7,
+            "x": 8,
             "y": 24
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -28,20 +28,20 @@
           ],
           "at": {
             "x": 7,
-            "y": 26
+            "y": 23
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 9,
-            "y": 25
+            "x": 7,
+            "y": 24
           }
         }
       ],
@@ -54,12 +54,12 @@
           "mech": "frame/hound-mk2",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 12,
+            "x": 22,
             "y": 24
           }
         },
@@ -67,25 +67,25 @@
           "mech": "frame/moji-tern",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 12,
-            "y": 26
+            "x": 22,
+            "y": 23
           }
         },
         {
           "mech": "frame/hound-mk2",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 13,
+            "x": 22,
             "y": 25
           }
         }
@@ -98,22 +98,22 @@
         {
           "monster": "monster/reaper-c",
           "at": {
-            "x": 12,
-            "y": 30
+            "x": 16,
+            "y": 38
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 10,
-            "y": 30
+            "x": 15,
+            "y": 37
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 14,
-            "y": 30
+            "x": 15,
+            "y": 38
           }
         }
       ],
@@ -121,6 +121,16 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "eliminate",
       "params": {},
@@ -140,6 +150,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2117
 }

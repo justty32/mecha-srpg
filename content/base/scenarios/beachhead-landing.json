@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -19,7 +19,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -38,10 +38,10 @@
       "faction": "faction/bay-seventh-post",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -51,10 +51,10 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -64,10 +64,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
@@ -77,10 +77,10 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
@@ -90,10 +90,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/batbayar-erdene",
               "seat": "pilot"
             }
           ],
@@ -159,9 +159,20 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "killTarget",
       "params": {
-        "target": "monster/reaper-c"
+        "target": "enemy-0"
       },
       "for": "player",
       "onComplete": "win"
@@ -173,6 +184,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2115
 }

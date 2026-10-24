@@ -14,7 +14,7 @@
             }
           ],
           "at": {
-            "x": 27,
+            "x": 17,
             "y": 17
           }
         },
@@ -27,7 +27,7 @@
             }
           ],
           "at": {
-            "x": 27,
+            "x": 17,
             "y": 19
           }
         }
@@ -46,7 +46,7 @@
             }
           ],
           "at": {
-            "x": 30,
+            "x": 23,
             "y": 17
           }
         },
@@ -54,12 +54,12 @@
           "mech": "frame/selene-crescent-g5",
           "persons": [
             {
-              "id": "person/glove",
+              "id": "person/abacus-of-ashes",
               "seat": "soul"
             }
           ],
           "at": {
-            "x": 30,
+            "x": 23,
             "y": 19
           }
         }
@@ -68,6 +68,16 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "reachExit",
       "params": {

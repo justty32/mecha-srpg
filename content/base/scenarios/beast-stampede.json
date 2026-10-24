@@ -14,8 +14,8 @@
             }
           ],
           "at": {
-            "x": 26,
-            "y": 18
+            "x": 22,
+            "y": 14
           }
         },
         {
@@ -27,8 +27,8 @@
             }
           ],
           "at": {
-            "x": 26,
-            "y": 21
+            "x": 21,
+            "y": 13
           }
         }
       ],
@@ -49,73 +49,73 @@
             }
           ],
           "at": {
-            "x": 28,
-            "y": 16
+            "x": 22,
+            "y": 26
           }
         },
         {
           "mech": "frame/bulwark-ii-rivet",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 28,
-            "y": 17
+            "x": 21,
+            "y": 25
           }
         },
         {
           "mech": "frame/bulwark-ii-rivet",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 28,
-            "y": 18
+            "x": 21,
+            "y": 26
           }
         },
         {
           "mech": "frame/union-fr7",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 28,
-            "y": 20
+            "x": 21,
+            "y": 27
           }
         },
         {
           "mech": "frame/bulwark-ii-rivet",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 28,
-            "y": 21
+            "x": 22,
+            "y": 25
           }
         },
         {
-          "mech": "frame/longspear-v4",
+          "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/batbayar-erdene",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 28,
-            "y": 22
+            "x": 22,
+            "y": 27
           }
         }
       ],
@@ -130,36 +130,37 @@
         {
           "monster": "monster/cliffjaw-red-eye",
           "at": {
-            "x": 32,
+            "x": 36,
+            "y": 20
+          },
+          "grade": "B"
+        },
+        {
+          "monster": "monster/tidewolf-c",
+          "at": {
+            "x": 35,
             "y": 19
           }
         },
         {
           "monster": "monster/tidewolf-c",
           "at": {
-            "x": 31,
-            "y": 16
-          }
-        },
-        {
-          "monster": "monster/tidewolf-c",
-          "at": {
-            "x": 31,
-            "y": 18
-          }
-        },
-        {
-          "monster": "monster/tidewolf-d",
-          "at": {
-            "x": 31,
+            "x": 35,
             "y": 20
           }
         },
         {
           "monster": "monster/tidewolf-d",
           "at": {
-            "x": 31,
-            "y": 22
+            "x": 35,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/tidewolf-d",
+          "at": {
+            "x": 36,
+            "y": 19
           }
         }
       ],
@@ -168,9 +169,20 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "killTarget",
       "params": {
-        "target": "monster/cliffjaw-red-eye"
+        "target": "enemy-0"
       },
       "for": "player",
       "onComplete": "win"
@@ -182,6 +194,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2110
 }

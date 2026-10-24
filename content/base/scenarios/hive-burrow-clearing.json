@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -19,7 +19,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -40,10 +40,10 @@
       "faction": "faction/residual-league",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -53,10 +53,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -66,7 +66,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/unit-07",
@@ -79,7 +79,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ilse-brandt",
@@ -148,6 +148,17 @@
   "objectives": [
     {
       "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
       "params": {},
       "for": "player",
       "onComplete": "win"
@@ -159,6 +170,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2108
 }

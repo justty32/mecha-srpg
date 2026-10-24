@@ -70,20 +70,36 @@
   },
   "objectives": [
     {
-      "kind": "survive",
+      "kind": "eliminate",
       "params": {
-        "rounds": 10
+        "slots": [
+          "player"
+        ]
       },
       "for": "player",
-      "onComplete": "win"
+      "onComplete": "lose"
     },
     {
       "kind": "eliminate",
       "params": {},
       "for": "enemy",
       "onComplete": "win"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 4,
+        "zone": [
+          {
+            "x": 13,
+            "y": 12
+          }
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
     }
   ],
-  "rounds": 10,
+  "rounds": 30,
   "seed": 2110
 }

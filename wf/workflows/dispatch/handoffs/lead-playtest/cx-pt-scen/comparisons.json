@@ -1,0 +1,1486 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "link_columns": [
+  "file_path"
+ ],
+ "columns": [
+  "scenario",
+  "file_path",
+  "before",
+  "after",
+  "after_rounds",
+  "timeout_reason",
+  "convoy_movement",
+  "path_evidence"
+ ],
+ "rows": [
+  {
+   "scenario": "badlands-sweep",
+   "file_path": "../../../../../../content/base/scenarios/badlands-sweep.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "30 輪仍有敵方存活；多方分散與內建近戰輸出不足，未擅加時間到自動勝利。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "beachhead-landing",
+   "file_path": "../../../../../../content/base/scenarios/beachhead-landing.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    12,
+    10,
+    14,
+    11,
+    15
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "beast-stampede",
+   "file_path": "../../../../../../content/base/scenarios/beast-stampede.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "enemy": 1,
+    "player": 3,
+    "draw": 1
+   },
+   "after_rounds": [
+    26,
+    18,
+    30,
+    16,
+    25
+   ],
+   "timeout_reason": "崖牙目標降 B 級仍有厚重多部位生命；30 輪近戰未必能擊毀，待武器裝配。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "breach-defense",
+   "file_path": "../../../../../../content/base/scenarios/breach-defense.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "timeout_reason": "城門守區遭敵佔據，連續守區無法成立；玩家＋盟軍未全滅也不判敗。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "convoy-run",
+   "file_path": "../../../../../../content/base/scenarios/convoy-run.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [
+    {
+     "name": "convoy-run",
+     "seed": 1,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 46,
+        "y": 9
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 46,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 3
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "convoy-run",
+     "seed": 2,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 46,
+        "y": 9
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 46,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 3
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "convoy-run",
+     "seed": 3,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 46,
+        "y": 9
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 46,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 3
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "convoy-run",
+     "seed": 4,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 46,
+        "y": 9
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 46,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 3
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "convoy-run",
+     "seed": 5,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 46,
+        "y": 9
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 46,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 3
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    }
+   ],
+   "path_evidence": [
+    {
+     "name": "convoy-run",
+     "unit": "convoy-0",
+     "from": {
+      "x": 46,
+      "y": 9
+     },
+     "minExitDistance": 33,
+     "reachable": true,
+     "pathSteps": 33,
+     "exit": {
+      "x": 79,
+      "y": 1
+     }
+    },
+    {
+     "name": "convoy-run",
+     "unit": "convoy-1",
+     "from": {
+      "x": 46,
+      "y": 11
+     },
+     "minExitDistance": 33,
+     "reachable": true,
+     "pathSteps": 33,
+     "exit": {
+      "x": 79,
+      "y": 1
+     }
+    }
+   ]
+  },
+  {
+   "scenario": "crater-three-way",
+   "file_path": "../../../../../../content/base/scenarios/crater-three-way.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "第三方生物機與屍骸機仍存活；30 輪全殲條件未完成，低命中與多方拉扯。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "delta-four-way",
+   "file_path": "../../../../../../content/base/scenarios/delta-four-way.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "三個敵對群體分開出生後，30 輪仍無全殲；仍需武器裝配改善輸出與 AI 接敵。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "dream-bed-burn",
+   "file_path": "../../../../../../content/base/scenarios/dream-bed-burn.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "菌床雖降 C 級，仍具多部位生命，近戰未能在 30 輪斬首，待武器裝配。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "glade-spore-hold",
+   "file_path": "../../../../../../content/base/scenarios/glade-spore-hold.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "timeout_reason": "敵方持續佔據守區，連續 8 輪 hold 無法成立；守軍仍有存活。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "hive-burrow-clearing",
+   "file_path": "../../../../../../content/base/scenarios/hive-burrow-clearing.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    19,
+    17,
+    17,
+    18,
+    18
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "lunar-blockade-run",
+   "file_path": "../../../../../../content/base/scenarios/lunar-blockade-run.json",
+   "before": {
+    "player": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    5,
+    5,
+    5,
+    5,
+    5
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "mirror-choir-vigil",
+   "file_path": "../../../../../../content/base/scenarios/mirror-choir-vigil.json",
+   "before": {
+    "player": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "mirror-survive",
+   "file_path": "../../../../../../content/base/scenarios/mirror-survive.json",
+   "before": {
+    "player": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    10,
+    10,
+    10,
+    10,
+    10
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "nest-core-assault",
+   "file_path": "../../../../../../content/base/scenarios/nest-core-assault.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "player": 4,
+    "draw": 1
+   },
+   "after_rounds": [
+    23,
+    27,
+    30,
+    29,
+    30
+   ],
+   "timeout_reason": "巢母降 B 級仍有增殖與厚重多部位生命，30 輪未必能斬首；待武器裝配。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "overpass-wager",
+   "file_path": "../../../../../../content/base/scenarios/overpass-wager.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 4,
+    "player": 1
+   },
+   "after_rounds": [
+    30,
+    26,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "玩家＋同盟 third 的明確全滅條件已補，仍存活但未全殲敵人時保留 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "quarry-duel",
+   "file_path": "../../../../../../content/base/scenarios/quarry-duel.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 3,
+    "player": 2
+   },
+   "after_rounds": [
+    30,
+    30,
+    16,
+    30,
+    16
+   ],
+   "timeout_reason": "若有 timeout：enemy-0 的核心層未清完；已單一斬首與 30 輪，狙擊確認有實際開火。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "rift-edge-nest",
+   "file_path": "../../../../../../content/base/scenarios/rift-edge-nest.json",
+   "before": {
+    "player": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "交接書禁止改動；既有資料與人物重複保留。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "rival-claim-jump",
+   "file_path": "../../../../../../content/base/scenarios/rival-claim-jump.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "三方中仍有多方殘存；玩家已換抗 kaiju 近戰，enemy 不換機。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "shell-excavation-escort",
+   "file_path": "../../../../../../content/base/scenarios/shell-excavation-escort.json",
+   "before": {
+    "draw": 2,
+    "player": 3
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [
+    {
+     "name": "shell-excavation-escort",
+     "seed": 1,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 13,
+        "y": 1
+       },
+       "to": {
+        "x": 15,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 15,
+        "y": 1
+       },
+       "to": {
+        "x": 1,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-2",
+       "from": {
+        "x": 17,
+        "y": 1
+       },
+       "to": {
+        "x": 16,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 9,
+     "firstHit": 2
+    },
+    {
+     "name": "shell-excavation-escort",
+     "seed": 2,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 13,
+        "y": 1
+       },
+       "to": {
+        "x": 1,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 15,
+        "y": 1
+       },
+       "to": {
+        "x": 1,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-2",
+       "from": {
+        "x": 17,
+        "y": 1
+       },
+       "to": {
+        "x": 1,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 12,
+     "firstHit": 1
+    },
+    {
+     "name": "shell-excavation-escort",
+     "seed": 3,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 13,
+        "y": 1
+       },
+       "to": {
+        "x": 15,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 15,
+        "y": 1
+       },
+       "to": {
+        "x": 9,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-2",
+       "from": {
+        "x": 17,
+        "y": 1
+       },
+       "to": {
+        "x": 16,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 9,
+     "firstHit": 1
+    },
+    {
+     "name": "shell-excavation-escort",
+     "seed": 4,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 13,
+        "y": 1
+       },
+       "to": {
+        "x": 23,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 15,
+        "y": 1
+       },
+       "to": {
+        "x": 9,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-2",
+       "from": {
+        "x": 17,
+        "y": 1
+       },
+       "to": {
+        "x": 17,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 9,
+     "firstHit": 1
+    },
+    {
+     "name": "shell-excavation-escort",
+     "seed": 5,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 13,
+        "y": 1
+       },
+       "to": {
+        "x": 16,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 15,
+        "y": 1
+       },
+       "to": {
+        "x": 1,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-2",
+       "from": {
+        "x": 17,
+        "y": 1
+       },
+       "to": {
+        "x": 17,
+        "y": 29
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 9,
+     "firstHit": 1
+    }
+   ],
+   "path_evidence": [
+    {
+     "name": "shell-excavation-escort",
+     "unit": "convoy-0",
+     "from": {
+      "x": 13,
+      "y": 1
+     },
+     "minExitDistance": 28,
+     "reachable": true,
+     "pathSteps": 28,
+     "exit": {
+      "x": 1,
+      "y": 29
+     }
+    },
+    {
+     "name": "shell-excavation-escort",
+     "unit": "convoy-1",
+     "from": {
+      "x": 15,
+      "y": 1
+     },
+     "minExitDistance": 28,
+     "reachable": true,
+     "pathSteps": 28,
+     "exit": {
+      "x": 1,
+      "y": 29
+     }
+    },
+    {
+     "name": "shell-excavation-escort",
+     "unit": "convoy-2",
+     "from": {
+      "x": 17,
+      "y": 1
+     },
+     "minExitDistance": 28,
+     "reachable": true,
+     "pathSteps": 28,
+     "exit": {
+      "x": 1,
+      "y": 29
+     }
+    }
+   ]
+  },
+  {
+   "scenario": "siege-beetle-convoy",
+   "file_path": "../../../../../../content/base/scenarios/siege-beetle-convoy.json",
+   "before": {
+    "player": 3,
+    "draw": 2
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [
+    {
+     "name": "siege-beetle-convoy",
+     "seed": 1,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 51,
+        "y": 10
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 51,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 5
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 13,
+     "firstHit": 1
+    },
+    {
+     "name": "siege-beetle-convoy",
+     "seed": 2,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 51,
+        "y": 10
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 51,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 5
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 13,
+     "firstHit": 1
+    },
+    {
+     "name": "siege-beetle-convoy",
+     "seed": 3,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 51,
+        "y": 10
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 51,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 5
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 9,
+     "firstHit": 1
+    },
+    {
+     "name": "siege-beetle-convoy",
+     "seed": 4,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 51,
+        "y": 10
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 51,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 5
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 12,
+     "firstHit": 1
+    },
+    {
+     "name": "siege-beetle-convoy",
+     "seed": 5,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 51,
+        "y": 10
+       },
+       "to": {
+        "x": 79,
+        "y": 9
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 51,
+        "y": 11
+       },
+       "to": {
+        "x": 79,
+        "y": 5
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 8,
+     "firstHit": 1
+    }
+   ],
+   "path_evidence": [
+    {
+     "name": "siege-beetle-convoy",
+     "unit": "convoy-0",
+     "from": {
+      "x": 51,
+      "y": 10
+     },
+     "minExitDistance": 28,
+     "reachable": true,
+     "pathSteps": 28,
+     "exit": {
+      "x": 79,
+      "y": 1
+     }
+    },
+    {
+     "name": "siege-beetle-convoy",
+     "unit": "convoy-1",
+     "from": {
+      "x": 51,
+      "y": 11
+     },
+     "minExitDistance": 28,
+     "reachable": true,
+     "pathSteps": 28,
+     "exit": {
+      "x": 79,
+      "y": 1
+     }
+    }
+   ]
+  },
+  {
+   "scenario": "skirmish-whitegloves",
+   "file_path": "../../../../../../content/base/scenarios/skirmish-whitegloves.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "draw": 5
+   },
+   "after_rounds": [
+    20,
+    20,
+    20,
+    20,
+    20
+   ],
+   "timeout_reason": "交接書禁止改動；既有資料與人物重複保留。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "tidal-flat-evac",
+   "file_path": "../../../../../../content/base/scenarios/tidal-flat-evac.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    4,
+    4,
+    4,
+    4,
+    4
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [
+    {
+     "name": "tidal-flat-evac",
+     "seed": 1,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 31,
+        "y": 15
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 33,
+        "y": 16
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "tidal-flat-evac",
+     "seed": 2,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 31,
+        "y": 15
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 33,
+        "y": 16
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "tidal-flat-evac",
+     "seed": 3,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 31,
+        "y": 15
+       },
+       "to": {
+        "x": 17,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 33,
+        "y": 16
+       },
+       "to": {
+        "x": 23,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "tidal-flat-evac",
+     "seed": 4,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 31,
+        "y": 15
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 33,
+        "y": 16
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    },
+    {
+     "name": "tidal-flat-evac",
+     "seed": 5,
+     "result": {
+      "winner": "player",
+      "reason": "escort"
+     },
+     "r": 4,
+     "units": [
+      {
+       "id": "convoy-0",
+       "from": {
+        "x": 31,
+        "y": 15
+       },
+       "to": {
+        "x": 17,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      },
+      {
+       "id": "convoy-1",
+       "from": {
+        "x": 33,
+        "y": 16
+       },
+       "to": {
+        "x": 22,
+        "y": 0
+       },
+       "moves": 4,
+       "status": "retreated"
+      }
+     ],
+     "shots": 0
+    }
+   ],
+   "path_evidence": [
+    {
+     "name": "tidal-flat-evac",
+     "unit": "convoy-0",
+     "from": {
+      "x": 31,
+      "y": 15
+     },
+     "minExitDistance": 15,
+     "reachable": true,
+     "pathSteps": 15,
+     "exit": {
+      "x": 16,
+      "y": 0
+     }
+    },
+    {
+     "name": "tidal-flat-evac",
+     "unit": "convoy-1",
+     "from": {
+      "x": 33,
+      "y": 16
+     },
+     "minExitDistance": 16,
+     "reachable": true,
+     "pathSteps": 16,
+     "exit": {
+      "x": 17,
+      "y": 0
+     }
+    }
+   ]
+  },
+  {
+   "scenario": "unbound-raid",
+   "file_path": "../../../../../../content/base/scenarios/unbound-raid.json",
+   "before": {
+    "draw": 5
+   },
+   "after": {
+    "enemy": 1,
+    "draw": 4
+   },
+   "after_rounds": [
+    30,
+    30,
+    30,
+    30,
+    30
+   ],
+   "timeout_reason": "三方全殲在 30 輪未完成；待武器與接敵改善，未新增人工時間勝負。",
+   "convoy_movement": [],
+   "path_evidence": []
+  },
+  {
+   "scenario": "waste-encirclement",
+   "file_path": "../../../../../../content/base/scenarios/waste-encirclement.json",
+   "before": {
+    "player": 5
+   },
+   "after": {
+    "player": 5
+   },
+   "after_rounds": [
+    12,
+    12,
+    12,
+    12,
+    12
+   ],
+   "timeout_reason": "無 timeout。",
+   "convoy_movement": [],
+   "path_evidence": []
+  }
+ ]
+}

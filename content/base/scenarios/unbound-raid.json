@@ -14,12 +14,12 @@
             }
           ],
           "at": {
-            "x": 13,
-            "y": 21
+            "x": 12,
+            "y": 24
           }
         },
         {
-          "mech": "frame/longspear-v4",
+          "mech": "frame/longspear-v1-guild",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -27,7 +27,7 @@
             }
           ],
           "at": {
-            "x": 13,
+            "x": 11,
             "y": 23
           }
         }
@@ -49,47 +49,47 @@
             }
           ],
           "at": {
-            "x": 15,
-            "y": 21
+            "x": 12,
+            "y": 12
           }
         },
         {
           "mech": "frame/union-fr7",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 15,
-            "y": 22
+            "x": 11,
+            "y": 12
           }
         },
         {
           "mech": "frame/bulwark-ii-rivet",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 15,
-            "y": 23
+            "x": 11,
+            "y": 13
           }
         },
         {
           "mech": "frame/union-fr7",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 15,
-            "y": 24
+            "x": 12,
+            "y": 11
           }
         }
       ],
@@ -110,34 +110,34 @@
             }
           ],
           "at": {
-            "x": 18,
-            "y": 21
+            "x": 26,
+            "y": 18
           }
         },
         {
           "mech": "frame/tidefaith-redeemer-3",
           "persons": [
             {
-              "id": "person/chen-xiaohai",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 18,
-            "y": 23
+            "x": 25,
+            "y": 17
           }
         },
         {
           "mech": "frame/bio-tidewolf",
           "persons": [
             {
-              "id": "person/chen-xiaohai",
+              "id": "person/batbayar-erdene",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 19,
-            "y": 22
+            "x": 25,
+            "y": 18
           }
         }
       ],
@@ -149,22 +149,22 @@
         {
           "monster": "monster/siegebeetle-b",
           "at": {
-            "x": 21,
-            "y": 21
+            "x": 26,
+            "y": 34
           }
         },
         {
           "monster": "monster/lancewing-c",
           "at": {
-            "x": 21,
-            "y": 23
+            "x": 25,
+            "y": 33
           }
         },
         {
           "monster": "monster/lancewing-c",
           "at": {
-            "x": 22,
-            "y": 22
+            "x": 25,
+            "y": 34
           }
         }
       ],
@@ -172,6 +172,17 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "eliminate",
       "params": {},
@@ -191,6 +202,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2110
 }

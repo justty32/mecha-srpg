@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -14,12 +14,12 @@
             }
           ],
           "at": {
-            "x": 14,
-            "y": 18
+            "x": 9,
+            "y": 15
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -27,8 +27,8 @@
             }
           ],
           "at": {
-            "x": 14,
-            "y": 19
+            "x": 8,
+            "y": 14
           }
         }
       ]
@@ -45,21 +45,21 @@
             }
           ],
           "at": {
-            "x": 19,
-            "y": 18
+            "x": 23,
+            "y": 15
           }
         },
         {
           "mech": "frame/moji-tern",
           "persons": [
             {
-              "id": "person/glove",
+              "id": "person/abacus-of-ashes",
               "seat": "soul"
             }
           ],
           "at": {
-            "x": 20,
-            "y": 18
+            "x": 22,
+            "y": 14
           }
         }
       ],
@@ -77,8 +77,8 @@
             }
           ],
           "at": {
-            "x": 17,
-            "y": 21
+            "x": 16,
+            "y": 28
           }
         },
         {
@@ -90,21 +90,21 @@
             }
           ],
           "at": {
-            "x": 18,
-            "y": 22
+            "x": 15,
+            "y": 27
           }
         },
         {
           "mech": "frame/bio-mite",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 16,
-            "y": 21
+            "x": 15,
+            "y": 28
           }
         }
       ],
@@ -112,6 +112,16 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "eliminate",
       "params": {},
@@ -131,6 +141,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2108
 }

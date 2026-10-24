@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -19,7 +19,7 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -41,10 +41,10 @@
       "faction": "faction/dhaka-weavers",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -54,10 +54,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -67,7 +67,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ash",
@@ -80,7 +80,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ilse-brandt",
@@ -147,6 +147,17 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "hold",
       "params": {

@@ -69,7 +69,7 @@
           "mech": "frame/corpse-reaper",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -82,7 +82,7 @@
           "mech": "frame/corpse-reaper",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -95,7 +95,7 @@
           "mech": "frame/corpse-reaper",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
@@ -108,7 +108,7 @@
           "mech": "frame/corpse-reaper",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
@@ -194,9 +194,24 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "killTarget",
       "params": {
-        "target": "monster/reaper-c"
+        "units": [
+          "enemy-0",
+          "enemy-1",
+          "enemy-2"
+        ]
       },
       "for": "player",
       "onComplete": "win"

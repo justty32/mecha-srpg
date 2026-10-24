@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -14,12 +14,12 @@
             }
           ],
           "at": {
-            "x": 22,
-            "y": 17
+            "x": 20,
+            "y": 22
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -27,8 +27,8 @@
             }
           ],
           "at": {
-            "x": 22,
-            "y": 19
+            "x": 19,
+            "y": 21
           }
         }
       ],
@@ -38,55 +38,55 @@
       "faction": "faction/dhaka-weavers",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 23,
-            "y": 14
+            "x": 20,
+            "y": 10
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 25,
-            "y": 14
+            "x": 20,
+            "y": 9
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 27,
-            "y": 14
+            "x": 20,
+            "y": 11
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 29,
-            "y": 14
+            "x": 21,
+            "y": 9
           }
         }
       ],
@@ -101,43 +101,43 @@
         {
           "monster": "monster/reaper-c",
           "at": {
-            "x": 32,
-            "y": 17
-          }
-        },
-        {
-          "monster": "monster/mite-d",
-          "at": {
-            "x": 32,
-            "y": 19
-          }
-        },
-        {
-          "monster": "monster/mite-d",
-          "at": {
             "x": 34,
-            "y": 18
-          }
-        },
-        {
-          "monster": "monster/reaper-c",
-          "at": {
-            "x": 35,
-            "y": 20
-          }
-        },
-        {
-          "monster": "monster/mite-d",
-          "at": {
-            "x": 35,
-            "y": 21
+            "y": 16
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
             "x": 33,
-            "y": 21
+            "y": 15
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 33,
+            "y": 16
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 33,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 34,
+            "y": 15
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 34,
+            "y": 17
           }
         }
       ],
@@ -155,8 +155,8 @@
             }
           ],
           "at": {
-            "x": 24,
-            "y": 22
+            "x": 32,
+            "y": 34
           }
         },
         {
@@ -168,21 +168,21 @@
             }
           ],
           "at": {
-            "x": 26,
-            "y": 22
+            "x": 31,
+            "y": 33
           }
         },
         {
           "mech": "frame/bio-mite",
           "persons": [
             {
-              "id": "person/chen-xiaohai",
+              "id": "person/batbayar-erdene",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 24,
-            "y": 24
+            "x": 31,
+            "y": 34
           }
         }
       ],
@@ -190,6 +190,17 @@
     }
   },
   "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
     {
       "kind": "eliminate",
       "params": {},
@@ -209,6 +220,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2111
 }

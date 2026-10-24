@@ -14,7 +14,7 @@
             }
           ],
           "at": {
-            "x": 68,
+            "x": 50,
             "y": 10
           }
         },
@@ -27,7 +27,7 @@
             }
           ],
           "at": {
-            "x": 68,
+            "x": 50,
             "y": 12
           }
         }
@@ -50,7 +50,7 @@
             }
           ],
           "at": {
-            "x": 70,
+            "x": 51,
             "y": 10
           }
         },
@@ -58,12 +58,12 @@
           "mech": "frame/anvil-ii",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 70,
+            "x": 51,
             "y": 11
           }
         }
@@ -78,41 +78,41 @@
       "faction": "faction/salt-gull-hunters",
       "units": [
         {
-          "mech": "frame/longspear-v4-saltgull",
+          "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 69,
+            "x": 51,
             "y": 7
           }
         },
         {
-          "mech": "frame/longspear-v4-saltgull",
+          "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 69,
+            "x": 51,
             "y": 8
           }
         },
         {
-          "mech": "frame/longspear-v4-saltgull",
+          "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 69,
+            "x": 51,
             "y": 12
           }
         }
@@ -129,29 +129,29 @@
         {
           "monster": "monster/siegebeetle-b",
           "at": {
-            "x": 73,
-            "y": 10
+            "x": 46,
+            "y": 7
           }
         },
         {
           "monster": "monster/siegebeetle-b",
           "at": {
-            "x": 73,
-            "y": 12
+            "x": 46,
+            "y": 13
           }
         },
         {
           "monster": "monster/lancewing-c",
           "at": {
-            "x": 73,
+            "x": 48,
             "y": 7
           }
         },
         {
           "monster": "monster/lancewing-c",
           "at": {
-            "x": 74,
-            "y": 9
+            "x": 48,
+            "y": 13
           }
         }
       ],
@@ -160,9 +160,23 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "escort",
       "params": {
-        "target": "frame/anvil-ii"
+        "units": [
+          "convoy-0",
+          "convoy-1"
+        ]
       },
       "for": "player",
       "onComplete": "win"
@@ -170,10 +184,18 @@
     {
       "kind": "killTarget",
       "params": {
-        "target": "frame/anvil-ii"
+        "target": "convoy-0"
       },
-      "for": "enemy",
-      "onComplete": "win"
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "convoy-1"
+      },
+      "for": "player",
+      "onComplete": "lose"
     }
   ],
   "rounds": 20,

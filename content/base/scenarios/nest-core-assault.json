@@ -14,8 +14,8 @@
             }
           ],
           "at": {
-            "x": 40,
-            "y": 35
+            "x": 35,
+            "y": 30
           }
         },
         {
@@ -27,8 +27,8 @@
             }
           ],
           "at": {
-            "x": 40,
-            "y": 37
+            "x": 34,
+            "y": 29
           }
         }
       ],
@@ -38,7 +38,7 @@
       "faction": "faction/residual-league",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -46,12 +46,12 @@
             }
           ],
           "at": {
-            "x": 42,
-            "y": 35
+            "x": 35,
+            "y": 42
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -59,60 +59,60 @@
             }
           ],
           "at": {
-            "x": 42,
-            "y": 36
+            "x": 34,
+            "y": 41
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 42,
-            "y": 37
+            "x": 34,
+            "y": 42
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 44,
-            "y": 35
+            "x": 34,
+            "y": 43
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 44,
-            "y": 36
+            "x": 35,
+            "y": 41
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/ren-kasai",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
           "at": {
-            "x": 44,
-            "y": 37
+            "x": 35,
+            "y": 43
           }
         }
       ],
@@ -129,48 +129,49 @@
           "at": {
             "x": 49,
             "y": 36
-          }
+          },
+          "grade": "B"
         },
         {
           "monster": "monster/reaper-c",
           "at": {
-            "x": 47,
+            "x": 48,
             "y": 35
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 47,
-            "y": 37
+            "x": 48,
+            "y": 36
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 49,
-            "y": 34
+            "x": 48,
+            "y": 37
           }
         },
         {
           "monster": "monster/reaper-c",
           "at": {
             "x": 49,
-            "y": 38
-          }
-        },
-        {
-          "monster": "monster/mite-d",
-          "at": {
-            "x": 51,
             "y": 35
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 51,
+            "x": 49,
             "y": 37
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 50,
+            "y": 35
           }
         }
       ],
@@ -179,9 +180,20 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "killTarget",
       "params": {
-        "target": "monster/nestmother-landlord"
+        "target": "enemy-0"
       },
       "for": "player",
       "onComplete": "win"
@@ -193,6 +205,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2113
 }

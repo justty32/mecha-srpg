@@ -57,7 +57,7 @@
           "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -70,7 +70,7 @@
           "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -83,7 +83,7 @@
           "mech": "frame/longspear-v1-guild",
           "persons": [
             {
-              "id": "person/ilse-brandt",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
@@ -106,7 +106,8 @@
           "at": {
             "x": 18,
             "y": 21
-          }
+          },
+          "grade": "C"
         },
         {
           "monster": "monster/rotwarden-b",
@@ -135,9 +136,20 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "killTarget",
       "params": {
-        "target": "monster/bed-bellless-dream"
+        "target": "enemy-0"
       },
       "for": "player",
       "onComplete": "win"
@@ -149,6 +161,6 @@
       "onComplete": "win"
     }
   ],
-  "rounds": 20,
+  "rounds": 30,
   "seed": 2110
 }

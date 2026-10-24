@@ -6,7 +6,7 @@
       "faction": "faction/migrant-crew",
       "units": [
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/ren-kasai",
@@ -19,7 +19,7 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/unit-07",
@@ -38,7 +38,7 @@
       "faction": "faction/bay-seventh-post",
       "units": [
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
               "id": "person/mara-okoye",
@@ -51,10 +51,10 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/adewale-balogun",
               "seat": "pilot"
             }
           ],
@@ -64,10 +64,10 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/altantsetseg-bolormaa",
               "seat": "pilot"
             }
           ],
@@ -77,10 +77,10 @@
           }
         },
         {
-          "mech": "frame/moji-tern",
+          "mech": "frame/moji-tern-guard",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/anjali-nair",
               "seat": "pilot"
             }
           ],
@@ -100,10 +100,10 @@
       "faction": "faction/bay-seventh-post",
       "units": [
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/arun-velan",
               "seat": "pilot"
             }
           ],
@@ -113,10 +113,10 @@
           }
         },
         {
-          "mech": "frame/hound-mk2",
+          "mech": "frame/thirdblade-swordfish-iii",
           "persons": [
             {
-              "id": "person/mara-okoye",
+              "id": "person/batbayar-erdene",
               "seat": "pilot"
             }
           ],
@@ -138,43 +138,43 @@
         {
           "monster": "monster/reaper-c",
           "at": {
-            "x": 56,
+            "x": 40,
             "y": 7
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 57,
+            "x": 40,
             "y": 13
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 62,
-            "y": 8
+            "x": 42,
+            "y": 7
           }
         },
         {
           "monster": "monster/reaper-c",
           "at": {
-            "x": 63,
-            "y": 12
+            "x": 42,
+            "y": 13
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 70,
+            "x": 44,
             "y": 7
           }
         },
         {
           "monster": "monster/mite-d",
           "at": {
-            "x": 72,
-            "y": 12
+            "x": 44,
+            "y": 13
           }
         }
       ],
@@ -183,9 +183,23 @@
   },
   "objectives": [
     {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "ally"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
       "kind": "escort",
       "params": {
-        "target": "frame/hound-mk2"
+        "units": [
+          "convoy-0",
+          "convoy-1"
+        ]
       },
       "for": "player",
       "onComplete": "win"
@@ -193,7 +207,15 @@
     {
       "kind": "killTarget",
       "params": {
-        "target": "frame/hound-mk2"
+        "target": "convoy-0"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "convoy-1"
       },
       "for": "player",
       "onComplete": "lose"

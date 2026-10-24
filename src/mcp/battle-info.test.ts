@@ -14,7 +14,8 @@ function harness() {
     return { text: result.content.filter(c => c.type === "text").map(c => c.text)[0]!, data: result.structuredContent as any };
   };
   const start = async (scenario: string) => {
-    const result = await call("battle_new", { scenario: `scenario/${scenario}`, seed: 1, autoAdvance: false });
+    // autoAdvance：AI 推進到第一次輪到玩家，測試不依賴情境的先攻順序。
+    const result = await call("battle_new", { scenario: `scenario/${scenario}`, seed: 1 });
     return { ...result, id: result.data.id as string, battle: hub.get(result.data.id) };
   };
   return { hub, call, start };
@@ -29,7 +30,8 @@ test("三情境的執行期目標：hold 區域與進度、killTarget 剩餘、e
   const info = observed.data.objectives.find((o: any) => o.kind === "hold");
   assert.deepEqual({ current: info.progress.current, required: info.progress.required, cells: info.progress.zone.length }, { current: 3, required: 8, cells: 16 });
   assert.match(observed.text, /目前 3／8/u);
-  assert.ok(observed.text.indexOf("我方勝") < observed.text.indexOf("ally-0"));
+  // 目標行在單位列表之前（單位行以「slot-序號 」開頭）。
+  assert.ok(observed.text.indexOf("我方勝") >= 0 && observed.text.indexOf("我方勝") < observed.text.search(/^[a-z]+-\d+ /mu));
 
   const kill = await h.start("waste-encirclement"), ks = kill.battle.session.state;
   const ko = kill.data.objectives.find((o: any) => o.kind === "killTarget");
@@ -90,7 +92,12 @@ test("ASCII 單位與地形符號不相交，出口穿透迷霧，地形與全�
 });
 
 test("nearestEnemy 只選敵對，非當前敵方不洩漏能力；conventional-arms 對蟲的估算 ×0.1", async () => {
-  const h = harness(), { id, battle } = await h.start("glade-spore-hold"), s = battle.session, state = s.state, actor = s.currentActor()!;
+  const h = harness(), { id, battle } = await h.start("glade-spore-hold"), s = battle.session, state = s.state;
+  // 輪到持有 conventional-arms 能力的我方機為止（情境換機後先攻順序可能不同）。
+  const conventional = (unit: string) => s.rulesQuery.abilitiesOf(state, unit).some(a => s.rulesQuery.abilityDef(a).tags.includes("conventional-arms"));
+  for (let i = 0; i < 8 && !conventional(s.currentActor()!); i++) await h.call("battle_act", { id, action: { kind: "end" } });
+  const actor = s.currentActor()!;
+  assert.ok(conventional(actor));
   const u = state.units[actor]!, enemy = state.units["enemy-0"]!;
   // 固定射線與敵方距離，避免此測試依賴地形遮蔽或命中 RNG。
   const plain = env.battleDb().all("terrain").find(t => !t.blocksLos && t.moveCost.leg === 1)!;
@@ -133,7 +140,13 @@ test("顯示小數不改 state；事件／單位中文與工具錯誤、游標",
   await assert.rejects(h.call("battle_load", { save: "garbage" }), /存檔不是合法 JSON/u);
   await assert.rejects(h.call("battle_new", { scenario: "scenario/glade-spore-hold", playerSlot: "missing" }), /可選 slot：ally、enemy、player/u);
   await assert.rejects(h.call("battle_act", { id, action: { kind: "move", to: { x: 999, y: 999 } } }), /不可達/u);
-  await assert.rejects(h.call("battle_act", { id, action: { kind: "move", to: state.units["ally-0"]!.pos } }), /目標格被佔/u);
+  // 把盟軍放到行動者身旁的可走格，再移動過去：應回「目標格被佔」而非不可達。
+  const plainCell = env.battleDb().all("terrain").find(t => !t.blocksLos && t.moveCost.leg === 1)!;
+  const beside = { x: unit.pos.x + (unit.pos.x + 1 < state.map.width ? 1 : -1), y: unit.pos.y };
+  state.map.terrain[beside.y * state.map.width + beside.x] = plainCell.id;
+  for (const other of Object.values(state.units)) if (other.id !== "ally-0" && other.pos.x === beside.x && other.pos.y === beside.y) other.pos = { x: 0, y: 0 };
+  state.units["ally-0"]!.pos = { ...beside };
+  await assert.rejects(h.call("battle_act", { id, action: { kind: "move", to: beside } }), /目標格被佔/u);
   const legal = await h.call("battle_legal_actions", { id }), [x, y] = legal.data.moves[0].split(":")[0].split(",").map(Number);
   state.persons[commander]!.pools.ap!.cur = 0;
   const hash = s.hash();
