@@ -194,7 +194,7 @@
 - **訂閱主題**：無
 
 ### `cx-intrigue-ref`
-- **狀態**：現役（規劃線 `plan-intrigue` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/plan-intrigue/cx-intrigue-ref.md`）
+- **狀態**：已收線（2026-10-24 DONE；規劃線 `plan-intrigue` 代登記；交接書 `wf/workflows/dispatch/handoffs/plan-intrigue/cx-intrigue-ref.md`）
 - **我是誰**：codex 工人（唯一開網路搜尋的線）：查 18 部參考作品的「局勢／掙扎」手法，寫 `references.json`。
 - **團隊**：無
 - **上游**：`plan-intrigue`（回報 `--to plan-intrigue`）
