@@ -4,6 +4,7 @@ import type { Cell, FactionSlot } from "../core/types-def.ts";
 import type { BattleState, FactionKnowledge } from "../core/types-state.ts";
 import type { RulesQuery } from "./rules-query.ts";
 import type { DangerMap } from "./policy.ts";
+import { isHostileSlot } from "./hostility.ts";
 
 // 契約查詢簽名沒有 ctx.params，這些係數依 §3 固定。
 const DEFAULTS = { zoc: 0.5, lastSeenRadius: 2, lastSeenDanger: 1 };
@@ -31,7 +32,7 @@ export function dangerMap(q: RulesQuery, view: BattleState, slot: FactionSlot, k
   }
   for (const id of Object.keys(view.units).sort()) {
     const unit = view.units[id]!;
-    if (unit.owner === slot || !q.isActive(view, id)) continue;
+    if (!isHostileSlot(q, view, slot, unit.owner) || !q.isActive(view, id)) continue;
     const attacks = [...q.abilitiesOf(view, id)].sort().filter(ability => {
       const t = q.abilityDef(ability).ai.tactics;
       return q.evalNum(view, t.attack ?? 0, id) > 0 || q.evalNum(view, t.attackArea ?? 0, id) > 0;

@@ -6,11 +6,12 @@ import { createRng } from "../core/rng.ts";
 import type { RulesQuery } from "./rules-query.ts";
 import type { AiCtx, Agent, Candidate } from "./policy.ts";
 import { dangerAt, threatOf } from "./danger.ts";
+import { isHostileSlot } from "./hostility.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
-  retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, reposition: 0.3, waitScore: 0.02, endScore: 0.01,
-  ejectBelow: 0.15, moveCost: 0.01, dangerK: 0.05, band: 0.8,
+  retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, reposition: 0.3, waitScore: 0, endScore: 0.01,
+  ejectBelow: 0.15, moveCost: 0.01, dangerK: 0.01, band: 0.8,
   tries: 3, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
 };
 
@@ -75,7 +76,7 @@ export function targetValue(q: RulesQuery, view: BattleState, target: Id, focus?
 
 export function forceRatio(q: RulesQuery, s: BattleState, view: BattleState, slot: FactionSlot): number {
   const force = (state: BattleState, own: boolean): number => Object.keys(state.units).sort()
-    .filter(id => (state.units[id]!.owner === slot) === own && q.isActive(state, id))
+    .filter(id => !isHostileSlot(q, state, slot, state.units[id]!.owner) === own && q.isActive(state, id))
     .reduce((sum, id) => sum + threatOf(q, state, id) * hpFraction(q, state, id), 0);
   return force(s, true) / Math.max(DEFAULTS.forceFloor, force(view, false));
 }
@@ -103,10 +104,13 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   if (cmd.kind === "retreat") return needs.retreat! * 10;
   if (cmd.kind === "eject") return hpFraction(q, ctx.s, agent.unit) < p.ejectBelow && ctx.assignment?.allowRetreat ? needs.survive! * 5 : 0;
   const destination = c.move ?? (cmd.kind === "move" ? cmd.path.at(-1) : undefined) ?? actor.pos;
-  const danger = p.dangerK * dangerAt(ctx.danger, destination);
+  // 原地等待也承受現有威脅；只扣移動增加的危險，避免原地攻擊被無條件壓成負分。
+  const danger = p.dangerK * Math.max(0, dangerAt(ctx.danger, destination) - dangerAt(ctx.danger, actor.pos));
   if (cmd.kind === "move") {
-    const enemies = Object.keys(view.units).sort().filter(id => view.units[id]!.owner !== ctx.slot && q.isActive(view, id));
-    const nearest = (cell: Cell): number => enemies.length ? Math.min(...enemies.map(id => q.distance(cell, view.units[id]!.pos))) : 0;
+    const enemies = Object.keys(view.units).sort().filter(id => isHostileSlot(q, view, ctx.slot, view.units[id]!.owner) && q.isActive(view, id));
+    // 尚未接敵時朝公開地圖中央偵察，不讀取視野外單位的位置。
+    const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
+    const nearest = (cell: Cell): number => enemies.length ? Math.min(...enemies.map(id => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
     return p.reposition * (nearest(actor.pos) - nearest(destination)) - danger;
   }
   let state = view, steps = 0;

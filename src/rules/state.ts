@@ -22,7 +22,7 @@ export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
   pools?: Record<PoolId, number> };
 
 export function newRuntime(): RulesRuntime {
-  return { nextUid: 0, nextContrib: 0, actionSeq: 0, active: null,
+  return { allies: {}, globals: {}, nextUid: 0, nextContrib: 0, actionSeq: 0, active: null,
     acted: [], waited: [], waitUsed: [], reactUsed: {}, commander: {}, unitStatus: {}, monsters: {},
     moraleStreak: {}, berserkFrom: {}, xpGained: {}, fieldEffects: [], objectives: [], maxRounds: null,
     exits: [], noRetreat: false, outcome: null };
@@ -110,8 +110,13 @@ export function inBounds(s: BattleState, cell: Cell): boolean {
 }
 export function distance(a: Cell, b: Cell): number { return Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)); }
 export function hostile(ctx: Ctx, a: Id, b: Id): boolean {
-  const x = unit(ctx, a).owner, y = unit(ctx, b).owner;
-  return x === "berserk" || y === "berserk" || x !== y;
+  return hostileSlots(ctx, unit(ctx, a).owner, unit(ctx, b).owner);
+}
+export function hostileSlots(ctx: Ctx, a: FactionSlot, b: FactionSlot): boolean {
+  if (a === "berserk" || b === "berserk") return true;
+  if (a === b || rt(ctx.s).allies?.[a]?.includes(b)) return false;
+  // SPEC-GAP：世界 neutral 在戰場仍敵對；舊存檔沒有 allies 時視為空。
+  return true;
 }
 export function commanderOf(ctx: Ctx, unitId: Id): Id | null {
   const commanders = rt(ctx.s).commander;
@@ -123,6 +128,14 @@ export function evalCtxFor(ctx: Ctx, self: Subject, target?: Subject): EvalCtx {
   return {
     ref(path) {
       if (path === "battle.round") return ctx.s.round;
+      // SPEC-GAP：未宣告的地圖全局值（含舊存檔）以 0 求值。
+      if (path === "battle.light") return rt(ctx.s).globals?.light ?? 0;
+      if (path === "battle.tide") return evalNum(rt(ctx.s).globals?.tide ?? 0, {
+        ref(globalPath) {
+          if (globalPath === "battle.round") return ctx.s.round;
+          throw new NumExprError(`不支援路徑：${globalPath}`);
+        },
+      });
       const [root, kind, key, field, ...rest] = path.split(".");
       const subject = root === "self" ? self : root === "target" ? target : undefined;
       if (!subject || rest.length) throw new NumExprError(`不支援路徑：${path}`);

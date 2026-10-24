@@ -12,7 +12,11 @@ import { changePool } from "./pools.ts";
 export type HookCtx = { inst: EffectInstance | null; self: EffectTarget; source: Id };
 export type VerbHandler = (ctx: Ctx, action: HookAction, hc: HookCtx) => void;
 const verbs = new Map<HookAction["do"], VerbHandler>();
-export function registerVerb(verb: HookAction["do"], h: VerbHandler): void { verbs.set(verb, h); }
+export function registerVerb(verb: HookAction["do"], h: VerbHandler): VerbHandler | undefined {
+  const previous = verbs.get(verb);
+  verbs.set(verb, h);
+  return previous;
+}
 export function runActions(ctx: Ctx, actions: readonly HookAction[], hc: HookCtx): void {
   for (const action of actions) {
     const handler = verbs.get(action.do);

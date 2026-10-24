@@ -16,8 +16,9 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   if (!self || !q.isActive(view, actor)) return [];
   const others = Object.keys(view.units).sort().filter((id) => id !== actor && q.isActive(view, id));
   const enemies = others.filter((id) => opts?.hostileOnly === false || q.hostile(view, actor, id));
+  const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
   const nearest = (cell: Cell): number => enemies.length
-    ? Math.min(...enemies.map((id) => q.distance(cell, view.units[id]!.pos))) : 0;
+    ? Math.min(...enemies.map((id) => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
   const moves = Object.keys(q.reachable(view, actor)).sort().map((key) => {
     const [x, y] = key.split(",").map(Number);
     return { x: x!, y: y! };

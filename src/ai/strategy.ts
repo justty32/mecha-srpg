@@ -6,6 +6,7 @@ import type { RulesQuery } from "./rules-query.ts";
 import type { AiParams, Assignment } from "./policy.ts";
 import { ownUnits } from "./knowledge.ts";
 import { forceRatio, hpFraction, targetValue } from "./score.ts";
+import { isHostileSlot } from "./hostility.ts";
 
 const DEFAULTS = { attackRatio: 0.8, holdRatio: 0.4, maxEngage: 3, focusDistance: 2 };
 
@@ -24,7 +25,7 @@ export function createDefaultStrategy(): Strategy {
     roundPlan(ctx) {
       const { q, s, view, slot, params } = ctx;
       const own = ownUnits(q, s, slot);
-      const enemies = Object.keys(view.units).sort().filter((id) => view.units[id]!.owner !== slot && q.isActive(view, id));
+      const enemies = Object.keys(view.units).sort().filter((id) => isHostileSlot(q, view, slot, view.units[id]!.owner) && q.isActive(view, id));
       const ratio = forceRatio(q, s, view, slot);
       const holdRatio = params.holdRatio ?? DEFAULTS.holdRatio;
       const stance = ratio >= (params.attackRatio ?? DEFAULTS.attackRatio) ? "attack" : ratio >= holdRatio ? "defend" : "hold";

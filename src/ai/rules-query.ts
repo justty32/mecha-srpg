@@ -6,6 +6,7 @@
 // 凍結契約：lead-impl-ai 寫死；改簽名要同時改 adapter、stub 與全部呼叫點。
 
 import type { Id, CellKey } from "../core/ids.ts";
+import type { FactionSlot } from "../core/types-def.ts";
 import type { AbilityDef, Cell, Grade, LayerDef, NumExpr, PartDef, PartId } from "../core/types-def.ts";
 import type { BattleState, Command } from "../core/types-state.ts";
 import type { GameEvent } from "../core/events.ts";
@@ -26,6 +27,7 @@ export interface RulesQuery {
   isActive(s: BattleState, unitId: Id): boolean;
   /** owner 不同即敵對；owner "berserk" 對誰都敵對。 */
   hostile(s: BattleState, a: Id, b: Id): boolean;
+  hostileSlots?(s: BattleState, a: FactionSlot, b: FactionSlot): boolean;
   commanderOf(s: BattleState, unitId: Id): Id | null;
   /** 兩格中心連線不被地形擋（不含兩端；單位不擋線）。 */
   los(s: BattleState, from: Cell, to: Cell): boolean;

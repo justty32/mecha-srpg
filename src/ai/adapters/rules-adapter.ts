@@ -40,6 +40,7 @@ export function createRulesQuery(db: ContentDB): RulesQuery {
     unitAt: (s, cell) => R.unitAt(c(s), cell),
     isActive: (s, id) => !!s.units[id] && R.isActive(c(s), id),
     hostile: (s, a, b) => R.hostile(c(s), a, b),
+    hostileSlots: (s, a, b) => R.hostileSlots(c(s), a, b),
     commanderOf: (s, id) => R.commanderOf(c(s), id),
     los: (s, from, to) => los(c(s), from, to),
     perception: (s, id) => R.roleAttr(c(s), subjectOf(c(s), id), "perception"),

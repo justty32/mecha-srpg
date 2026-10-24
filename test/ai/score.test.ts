@@ -150,8 +150,8 @@ test("tacticWeights 求值 NumExpr；hpFraction 加總全部層並限制 0..1", 
 test("scoreCandidate 移動、支援、偵察及結束候選依固定公式估值", () => {
   const ctx = context();
   ctx.danger = { "1,0": 2 };
-  assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "move", actor: "a", path: [{ x: 1, y: 0 }] } }), 0.3 - 0.05 * 2);
-  assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "wait", actor: "a" } }), 0.02);
+  assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "move", actor: "a", path: [{ x: 1, y: 0 }] } }), 0.3 - 0.01 * 2);
+  assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "wait", actor: "a" } }), 0);
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "end", actor: "a" } }), 0.01);
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "retreat", actor: "a" } }), 0);
   const repair: Command = { kind: "useAbility", actor: "a", ability: "stub:ability/repair", target: { unit: "a" } };

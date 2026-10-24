@@ -32,13 +32,15 @@ test("鉤子依 order→id→uid 排序，onHit/onBeingHit 消費 uses", () => {
   const ctx = setup(defs);
   for (const name of ["b", "a", "z", "a", "uses"]) applyEffect(ctx, `effect/${name}`, { unit: "u" }, "source");
   const seen: number[] = [];
-  registerVerb("spawn", (_c, _a, hc) => { seen.push(hc.inst!.uid); });
-  dispatchHook(ctx, "onTurnStart", { unit: "u" });
-  assert.deepEqual(ctx.s.log.events.filter(e => ["a", "b", "z"].includes(e.type)).map(e => e.type), ["z", "a", "a", "b"]);
-  const uses = effectsOf(ctx, { unit: "u" }).find(e => e.effect.endsWith("/uses"))!;
-  dispatchHook(ctx, "onHit", { unit: "u" }); assert.equal(uses.remaining, 1);
-  dispatchHook(ctx, "onBeingHit", { unit: "u" }); assert.equal(effectsOf(ctx, { unit: "u" }).includes(uses), false);
-  assert.equal(ctx.s.pending.length, 0);
+  const previous = registerVerb("spawn", (_c, _a, hc) => { seen.push(hc.inst!.uid); });
+  try {
+    dispatchHook(ctx, "onTurnStart", { unit: "u" });
+    assert.deepEqual(ctx.s.log.events.filter(e => ["a", "b", "z"].includes(e.type)).map(e => e.type), ["z", "a", "a", "b"]);
+    const uses = effectsOf(ctx, { unit: "u" }).find(e => e.effect.endsWith("/uses"))!;
+    dispatchHook(ctx, "onHit", { unit: "u" }); assert.equal(uses.remaining, 1);
+    dispatchHook(ctx, "onBeingHit", { unit: "u" }); assert.equal(effectsOf(ctx, { unit: "u" }).includes(uses), false);
+    assert.equal(ctx.s.pending.length, 0);
+  } finally { registerVerb("spawn", previous ?? (() => {})); }
 });
 
 test("鉤子新增效果進 pending、同鍵忽略且本次不補跑", () => {
@@ -48,18 +50,21 @@ test("鉤子新增效果進 pending、同鍵忽略且本次不補跑", () => {
     effect("child", { hooks: { onApply: [{ do: "emit", event: "ChildApplied" }], onTurnStart: [{ do: "emit", event: "ChildTick" }] } }),
   ]);
   let pending = 0, installed = 0;
-  registerVerb("spawn", (c) => {
+  // 同一行程跑全套時，測試結束須恢復正式 spawn 的全域登記。
+  const previous = registerVerb("spawn", (c) => {
     pending = c.s.pending.filter(e => e.uid >= 0 && e.effect.endsWith("/child")).length;
     installed = effectsOf(c, { unit: "u" }).filter(e => e.effect.endsWith("/child")).length;
   });
-  applyEffect(ctx, "effect/parent", { unit: "u" }, "source");
-  dispatchHook(ctx, "onTurnStart", { unit: "u" });
-  assert.equal(pending, 1); assert.equal(installed, 0); assert.equal(ctx.s.pending.length, 0);
-  assert.equal(effectsOf(ctx, { unit: "u" }).length, 2);
-  assert.equal(ctx.s.log.events.filter(e => e.type === "ChildApplied").length, 1);
-  assert.equal(ctx.s.log.events.filter(e => e.type === "ChildTick").length, 0);
-  dispatchHook(ctx, "onTurnStart", { unit: "u" });
-  assert.equal(ctx.s.log.events.filter(e => e.type === "ChildTick").length, 1);
+  try {
+    applyEffect(ctx, "effect/parent", { unit: "u" }, "source");
+    dispatchHook(ctx, "onTurnStart", { unit: "u" });
+    assert.equal(pending, 1); assert.equal(installed, 0); assert.equal(ctx.s.pending.length, 0);
+    assert.equal(effectsOf(ctx, { unit: "u" }).length, 2);
+    assert.equal(ctx.s.log.events.filter(e => e.type === "ChildApplied").length, 1);
+    assert.equal(ctx.s.log.events.filter(e => e.type === "ChildTick").length, 0);
+    dispatchHook(ctx, "onTurnStart", { unit: "u" });
+    assert.equal(ctx.s.log.events.filter(e => e.type === "ChildTick").length, 1);
+  } finally { registerVerb("spawn", previous ?? (() => {})); }
 });
 
 test("未登記動詞寫 HookSkipped；內建 pool/apply/remove/emit 與指令覆寫", () => {

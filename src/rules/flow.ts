@@ -1,6 +1,7 @@
 import type { ContentDB } from "../content/contentdb.ts";
 import type { Id } from "../core/ids.ts";
-import type { Cell, FactionSlot, Objective } from "../core/types-def.ts";
+import { cellKey } from "../core/ids.ts";
+import type { Cell, FactionSlot, NumExpr, Objective } from "../core/types-def.ts";
 import type { BattleState, MechState, PersonState } from "../core/types-state.ts";
 import { createRng } from "../core/rng.ts";
 import { createLog, hashLog } from "../core/eventlog.ts";
@@ -12,7 +13,9 @@ import { killPerson } from "./injury.ts";
 import { setControl } from "./control.ts";
 
 export type BattleSetup = { id: string;
-  map: { width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id }[]; exits: Cell[] };
+  allies?: Record<FactionSlot, FactionSlot[]>; factions?: Record<FactionSlot, Id>;
+  map: { width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id; hp?: number }[]; exits: Cell[];
+    globals?: { tide?: NumExpr; light?: number } };
   units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean };
 export type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number;
   units: { id: Id; status: "alive" | "dead" | "retreated" | "derelict-recovered" | "derelict-lost" | "captured"; state: MechState }[];
@@ -29,13 +32,25 @@ export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): B
   runtime.maxRounds = setup.maxRounds ?? null;
   runtime.noRetreat = setup.noRetreat ?? false;
   runtime.exits = structuredClone(setup.map.exits);
+  runtime.globals = structuredClone(setup.map.globals ?? {});
+  for (const [slot, allies] of Object.entries(setup.allies ?? {})) for (const ally of allies) {
+    runtime.allies[slot] = [...new Set([...(runtime.allies[slot] ?? []), ally])].sort();
+    runtime.allies[ally] = [...new Set([...(runtime.allies[ally] ?? []), slot])].sort();
+  }
+  const featureHp: Record<string, number | undefined> = {};
   for (const c of setup.map.cells ?? []) {
     if (!inBounds(s, c.at)) throw new Error("地形座標超出地圖");
     s.map.terrain[c.at.y * s.map.width + c.at.x] = db.require("terrain", c.terrain).id;
+    featureHp[cellKey(c.at.x, c.at.y)] = c.hp;
   }
-  for (const slot of [...new Set([...setup.units.map(u => u.owner), ...setup.objectives.map(o => o.for)])].sort()) {
-    // SPEC-GAP：BattleSetup 沒有 faction Def 對照；以 slot 作為識別。
-    s.factions[slot] = { faction: slot, retreated: [], lost: [], captured: [] };
+  for (const [index, terrain] of s.map.terrain.entries()) {
+    const destructible = db.require("terrain", terrain).destructible;
+    if (!destructible) continue;
+    const key = cellKey(index % s.map.width, Math.floor(index / s.map.width));
+    s.map.featureHp[key] = featureHp[key] ?? destructible.hp;
+  }
+  for (const slot of [...new Set([...Object.keys(setup.factions ?? {}), ...setup.units.map(u => u.owner), ...setup.objectives.map(o => o.for)])].sort()) {
+    s.factions[slot] = { faction: setup.factions?.[slot] ?? slot, retreated: [], lost: [], captured: [] };
     s.knowledge[slot] = { visible: [], lastSeen: {}, revealed: {} };
   }
   for (const init of setup.units) {

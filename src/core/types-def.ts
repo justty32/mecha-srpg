@@ -250,7 +250,7 @@ export type Objective = {
 };
 export type ScenarioDef = {
   id: Id; map: Id;
-  slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id }>;
+  slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id; allies?: FactionSlot[] /* 情境層同盟（lead-fix-scenario-ai 新增） */ }>;
   objectives: Objective[]; rounds?: number;
   rules?: { conventionalFactor?: number }; seed?: number;
 };

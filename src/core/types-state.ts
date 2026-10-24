@@ -8,6 +8,7 @@ import type {
   FactionSlot, Contribution, EffectScope, LayerType,
 } from "./types-def.ts";
 import type { Grade, Objective } from "./types-def.ts";
+import type { NumExpr } from "./types-def.ts";
 import type { EventLog } from "./events.ts";
 
 // ---------- RNG（core/rng 的 PCG32） ----------
@@ -88,6 +89,8 @@ export type BattleState = {
 export type UnitStatus = "active" | "dead" | "retreated" | "derelict" | "captured";
 export type BattleOutcome = { winner: FactionSlot | null; reason: string };
 export type RulesRuntime = {
+  globals: { tide?: NumExpr; light?: number };
+  allies: Record<FactionSlot, FactionSlot[]>;
   nextUid: number;                    // 下一個 EffectInstance.uid
   nextContrib: number;                // 下一個 contribution id 的序號（id = "c" + 序號）
   actionSeq: number;                  // 每次 tryCommand 成功 +1（reaction oncePer:"action" 用）

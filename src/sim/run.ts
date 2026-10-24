@@ -37,12 +37,12 @@ function mapCells(map: MapDef): NonNullable<BattleSetup["map"]["cells"]> {
     if (consumed !== encoded) throw new Error("非法 RLE");
   }
   if (glyphs.length !== map.width * map.height) throw new Error("地圖格數不符");
-  const cells = glyphs.map((glyph, i) => {
+  const cells: NonNullable<BattleSetup["map"]["cells"]> = glyphs.map((glyph, i) => {
     const terrain = map.legend[glyph];
     if (!terrain) throw new Error(`未知地圖 glyph：${glyph}`);
     return { at: { x: i % map.width, y: Math.floor(i / map.width) }, terrain };
   });
-  // SPEC-GAP：BattleSetup 只有 terrain 覆蓋，feature.hp 無接收欄位；保留 feature 物件供日後規則支援。
+  // feature 後覆蓋 glyph 地形，hp 一併交規則層初始化；未指定則用地形預設。
   cells.push(...structuredClone(map.features ?? []));
   return cells;
 }
@@ -60,8 +60,16 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | ScenarioDef, seed:
     occupied.add(key);
   }
   const units: UnitInit[] = [], slotProfiles: SimSetup["slotProfiles"] = {}, unitPolicies: SimSetup["unitPolicies"] = {};
+  const factions: Record<FactionSlot, Id> = {}, allies: Record<FactionSlot, FactionSlot[]> = {};
   for (const slot of Object.keys(sc.slots).sort()) {
     const entry = sc.slots[slot]!;
+    const faction = db.require("faction", entry.faction);
+    factions[slot] = faction.id;
+    allies[slot] = [...new Set([...(entry.allies ?? []), ...Object.keys(sc.slots).filter(other => {
+      if (other === slot) return false;
+      const peer = db.require("faction", sc.slots[other]!.faction);
+      return faction.relations[peer.id] === "ally" || peer.relations[faction.id] === "ally";
+    })])].sort();
     const profile = entry.ai ? db.require("aiprofile", entry.ai) : undefined;
     slotProfiles[slot] = { policy: profile?.policy ?? "tactical", params: { ...profile?.params } };
     unitPolicies[slot] = {};
@@ -93,9 +101,21 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | ScenarioDef, seed:
       }
     });
   }
-  // SPEC-GAP：沿用 BattleSetup 支援的欄位；faction 對照、globals、情境規則覆蓋尚無規則層入口。
-  const setup: BattleSetup = { id: sc.id, map: { width: map.width, height: map.height,
-    fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits) }, units, objectives: structuredClone(sc.objectives) };
+  // 內容 target 保留供作者辨識；規則只消費執行期 unit／units。
+  const objectives = structuredClone(sc.objectives);
+  for (const objective of objectives) {
+    const target = objective.params.target;
+    if (typeof target !== "string") continue;
+    const matches = Object.keys(sc.slots).flatMap(slot => sc.slots[slot]!.units.flatMap((spawn, index) =>
+      spawn.mech === target || spawn.monster === target ? [`${slot}-${index}`] : [])).sort();
+    if (matches.length) objective.params.units = matches;
+    else if (units.some(u => u.id === target)) objective.params.unit = target;
+    else throw new Error(`objective 目標不存在：${target}`);
+  }
+  // SPEC-GAP：情境規則覆蓋尚無規則層入口。
+  const setup: BattleSetup = { id: sc.id, factions, allies, map: { width: map.width, height: map.height,
+    fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits),
+    ...(map.globals ? { globals: structuredClone(map.globals) } : {}) }, units, objectives };
   const rounds = opts?.rounds ?? sc.rounds;
   if (rounds !== undefined) {
     if (!Number.isInteger(rounds) || rounds < 1) throw new Error("rounds 必須是正整數");

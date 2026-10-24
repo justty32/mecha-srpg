@@ -1,7 +1,7 @@
 import type { Objective } from "../core/types-def.ts";
 import type { BattleOutcome } from "../core/types-state.ts";
 import type { Ctx } from "./state.ts";
-import { distance, emit, isActive, rt, unit } from "./state.ts";
+import { distance, emit, hostileSlots, isActive, rt, unit } from "./state.ts";
 import { onSignal } from "./hooks.ts";
 
 export function objectiveDone(ctx: Ctx, o: Objective): boolean {
@@ -10,11 +10,15 @@ export function objectiveDone(ctx: Ctx, o: Objective): boolean {
     case "eliminate": {
       const slots = Array.isArray(o.params.slots) ? o.params.slots : undefined;
       return !Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && unit(ctx, id).owner !== "berserk"
-        && (slots ? slots.includes(unit(ctx, id).owner) : unit(ctx, id).owner !== o.for));
+        && (slots ? slots.includes(unit(ctx, id).owner) : hostileSlots(ctx, o.for, unit(ctx, id).owner)));
     }
     case "survive": return typeof o.params.rounds === "number" && ctx.s.round >= o.params.rounds;
     case "capture": return !!target && runtime.unitStatus[target] === "captured" && unit(ctx, target).owner === o.for;
-    case "killTarget": return !!target && runtime.unitStatus[target] === "dead";
+    case "killTarget": {
+      const targets = new Set([...(Array.isArray(o.params.units)
+        ? o.params.units.filter((id): id is string => typeof id === "string") : []), ...(target ? [target] : [])]);
+      return targets.size > 0 && [...targets].every(id => runtime.unitStatus[id] === "dead");
+    }
     case "reachExit": return !!target && !!ctx.s.units[target] && unit(ctx, target).owner === o.for
       && (runtime.unitStatus[target] === "retreated" || (isActive(ctx, target) && runtime.exits.some(c => distance(c, unit(ctx, target).pos) === 0)));
     // SPEC-GAP：hold／escort 的區域、進度與護送完成條件未定，永不自動完成。

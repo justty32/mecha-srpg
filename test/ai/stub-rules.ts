@@ -33,7 +33,8 @@ export function makeStubBattle(spec: StubBattle, seed: number): BattleState {
       terrain: Array<string>(spec.width * spec.height).fill("stub:plain"), featureHp: {} },
     rt: { nextUid: 1, nextContrib: 1, actionSeq: 0, active: null, acted: [], waited: [], waitUsed: [], reactUsed: {},
       commander: {}, unitStatus: {}, monsters: {}, moraleStreak: {}, berserkFrom: {}, xpGained: {}, fieldEffects: [],
-      objectives: [], maxRounds: null, exits: structuredClone(spec.exits ?? []), noRetreat: false, outcome: null },
+      objectives: [], maxRounds: null, exits: structuredClone(spec.exits ?? []), noRetreat: false, outcome: null,
+      allies: {}, globals: {} },
     stub: { units: {}, walls: structuredClone(spec.walls ?? []) },
   };
   for (const u of [...spec.units].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
