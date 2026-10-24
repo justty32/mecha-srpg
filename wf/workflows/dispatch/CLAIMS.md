@@ -10,6 +10,7 @@
 |----|---------|------------|---------|
 | `plan-ops-spec`（Fable 規劃）**中止（使用者重開程式），待重派，領地保留** | `wf/workflows/planning/specs/ops/` | 其餘唯讀；不 commit | 2026-10-24 10:30 |
 | `lead-impl-sim`（Opus 領導；工人 `cx-sim-engine`、`cx-sim-gaps`） | `src/sim/`、`src/rules/`、`src/ai/`、`content/base/`、`test/`、`package.json`（只加 `sim` script）、`src/core/types-def.ts`＋`schemas/content.schema.json`（只追加 ControlMode `instinct`）、`wf/workflows/dispatch/handoffs/lead-impl-sim/` | specs 唯讀；其餘唯讀 | 2026-10-24 |
+| `lead-impl-ops`（Opus 領導；工人 `cx-ops-*`） | `src/ops/`、`content/base/world/`、`src/content/loader.ts`（只加一行略過 `world/`）、`wf/workflows/dispatch/handoffs/lead-impl-ops/`、code-map／testing 的 ops 段 | core 型別、`package.json`、`test/`、`content/base/`（world/ 以外）唯讀 | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 

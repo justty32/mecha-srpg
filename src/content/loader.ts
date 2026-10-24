@@ -158,6 +158,8 @@ export function loadPacks(packs: PackFiles[]): LoadResult {
   for (const { source, def: pack } of sorted) {
     for (const relative of Object.keys(source.files).sort()) {
       if (relative === "pack.json") continue;
+      // 營運層內容（specs/ops content-format-ops）住在同 pack 的 world/，由 src/ops/content 載入；core 載入器略過。
+      if (relative.startsWith("world/")) continue;
       const file = `${source.root}/${relative}`, value = source.files[relative];
       const match = /^([^/]+)\/([^/]+)\.json$/.exec(relative);
       if (!match) { errors.push({ file, path: "$", message: "invalid content file path" }); continue; }

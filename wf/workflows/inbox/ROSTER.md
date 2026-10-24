@@ -107,4 +107,26 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-sim-gaps/`
 - **訂閱主題**：無
 
+### `lead-impl-ops`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent）；營運層 `src/ops/` 實作。
+- **團隊**：`teams/ops`（領導；工人格由我代登記）
+- **上游**：dispatcher
+- **領地**：見 CLAIMS `lead-impl-ops` 列
+- **答得出什麼**：ops 佈局與慣例（`handoffs/lead-impl-ops/contract.md`）
+- **答不出什麼**：戰鬥規則、sim、UI
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-ops/`
+- **訂閱主題**：無
+
+### `cx-ops-foundation`
+- **狀態**：現役
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/state`、`src/ops/content`、`content/base/world/`。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-foundation.md` 列的檔
+- **答得出什麼**：ops 型別、帳本、載入器
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-foundation/`
+- **訂閱主題**：無
+
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)、[archive/ROSTER-2026-10-24.md](archive/ROSTER-2026-10-24.md)。
