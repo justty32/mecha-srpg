@@ -15,6 +15,7 @@
 | rules | `src/rules/`（17 模組＋`index.ts`）| 全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | `src/rules/*.test.ts`、黃金 `test/golden.test.ts` |
 | ai | `src/ai/`（含 `policies/`、`adapters/`）| 知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）| `test/ai/`（平衡回歸 `balance.test.ts`）|
 | sim | `src/sim/{run,replay,save,cli,measure}.ts` | 跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp）；`measure.ts` AI 平衡量測 | `test/sim/`（接縫 `seams.test.ts`）|
+| ops | `src/ops/`、`content/base/world/` | 營運層：tick、帳本、世界、契約、船務、文字層、出戰、戰役 CLI（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）| `src/ops/**/*.test.ts` |
 | ui-adapter | `src/ui-adapter/{vm,dom}/` | vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM | 同目錄 `*.test.ts`、`e2e/` |
 
 **ui-adapter 細節**（2026-10-24 落地）：`vm/types.ts` 是 vm↔dom 凍結契約；`vm/session.ts` 逐步跑局（唯一直接呼叫 rules／ai 處）、`viewmodel.ts`、`controller.ts`（`UiAction`→`UiSnapshot`）、`keymap.json`＋`keymap.ts`（資料驅動快捷鍵）、`text.ts`（事件→中文）、`labels.ts`、`debug-maps.ts`（>120×120 大地圖）；`content-browser.ts` 在瀏覽器載內容。`dom/render.ts`（`mountBattle`）、`board.ts`、`panels.ts`、`tooltip.ts`、`style.css`、`main.ts`（入口與接線）；dom 只 import `vm/types.ts` 的型別（main.ts 例外）。根目錄 `index.html`、`vite.config.ts`、`playwright.config.ts`、`tsconfig.ui.json`。
