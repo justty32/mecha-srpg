@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-13",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（效果與身形）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "957f1d99c143f9a0f13dbaa184b660f2efa0fb9f",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-13",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-13/REPORT.md",
@@ -60,5 +60,79 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:27:10",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-13",
+  "round": 1,
+  "at": "2026-10-24T16:27:10",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/bodyplans/ancient-colossus.json",
+   "content/base/bodyplans/ancient-hound.json",
+   "content/base/bodyplans/ancient-serpent.json",
+   "content/base/bodyplans/ancient-slender.json",
+   "content/base/bodyplans/ancient-warden.json",
+   "content/base/bodyplans/ancient-winged.json",
+   "content/base/effects/ax-bg-tide-refugee.json",
+   "content/base/effects/ax-injury-shell-migraine.json",
+   "content/base/effects/perk-soul-calc-1.json",
+   "content/base/effects/shard-marked.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/bodyplans/ancient-colossus.json",
+  "content/base/bodyplans/ancient-hound.json",
+  "content/base/bodyplans/ancient-serpent.json",
+  "content/base/bodyplans/ancient-slender.json",
+  "content/base/bodyplans/ancient-warden.json",
+  "content/base/bodyplans/ancient-winged.json",
+  "content/base/effects/ax-bg-tide-refugee.json",
+  "content/base/effects/ax-injury-shell-migraine.json",
+  "content/base/effects/perk-soul-calc-1.json",
+  "content/base/effects/shard-marked.json"
+ ],
+ "ids": [
+  "bodyplan/ancient-colossus",
+  "bodyplan/ancient-hound",
+  "bodyplan/ancient-serpent",
+  "bodyplan/ancient-slender",
+  "bodyplan/ancient-warden",
+  "bodyplan/ancient-winged",
+  "effect/ax-bg-tide-refugee",
+  "effect/ax-injury-shell-migraine",
+  "effect/perk-soul-calc-1",
+  "effect/shard-marked"
+ ],
+ "summary": "效果與身形換詞（含 agy 第 2 輪專名）；閘門 0 違規、check／typecheck 綠、黃金不變；test 綠",
+ "gateRejections": []
 }
