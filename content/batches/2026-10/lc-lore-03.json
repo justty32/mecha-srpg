@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-lore-03",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "A 級以上怪獸二名的由來：為既有 A／S 級具名怪獸各寫一件「牠做過的事」lore 事件 5–8 件＋年表純插入（二名本身不改，引用既有 name／epithet）",
  "author": {
   "agent": "codex",
@@ -55,5 +55,152 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "files": [
+  "content/lore/events/bellless-dawn.json",
+  "content/lore/events/mirror-vigil.json",
+  "content/lore/events/moon-drowned.json",
+  "content/lore/events/nine-gates.json",
+  "content/lore/events/rust-banner.json",
+  "content/lore/events/wreck-crown.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/bellless-dawn",
+  "event/mirror-vigil",
+  "event/moon-drowned",
+  "event/nine-gates",
+  "event/rust-banner",
+  "event/wreck-crown"
+ ],
+ "summary": "A／S 級怪獸二名由來事件 6 件（借火催曉／無鐘長夢、葬月之夜／五聲葬月、照面無歸／千面獨禱、鏽旗出殯／鏽誓葬騎、九門同喪／九闕喪鐘、沉船加冕／萬潮葬王）＋年表插入 6（領導純插入合併）；交接書誤要 events 填 gameRefs（lore 契約 event 無此欄、check 警告），領導在 worktree 移除 6 處後收件；閘門 0 違規、驗收全綠",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-03/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "event/bellless-dawn",
+    "nameEn": "Vigil without Matins",
+    "meaning": "Matins 是晨禱；守夜者等不到晨鐘，只能借火把同伴叫醒。",
+    "nameZh": "借火催曉",
+    "method": "意譯"
+   },
+   {
+    "id": "event/bellless-dawn#human-move",
+    "nameEn": "Reclaim the Dawn",
+    "meaning": "駕駛員以焚燒菌毯開路，喊出向長夜討還黎明的誓言。",
+    "nameZh": "還我天明",
+    "method": "意譯"
+   },
+   {
+    "id": "event/moon-drowned",
+    "nameEn": "Requiem for the Reflected Moon",
+    "meaning": "Requiem 是安魂曲；群喉震碎水中月影，撤退者將那一刻記成月亮的葬禮。",
+    "nameZh": "葬月之夜",
+    "method": "意譯"
+   },
+   {
+    "id": "event/moon-drowned#human-move",
+    "nameEn": "Return the Moon",
+    "meaning": "護送者以光矢壓住喉口，向吞沒月影的怪獸喊出討還之辭。",
+    "nameZh": "把月還來",
+    "method": "意譯"
+   },
+   {
+    "id": "event/mirror-vigil",
+    "nameEn": "The Last Face at Vespers",
+    "meaning": "Vespers 是晚禱；無數反光裡只剩一名活人，他被自己的跪影困住。",
+    "nameZh": "照面無歸",
+    "method": "意譯"
+   },
+   {
+    "id": "event/mirror-vigil#human-move",
+    "nameEn": "Ignis through the Looking Glass",
+    "meaning": "Ignis 是火；以燃燒拖痕逼異形翻身，從裸側旁奪回退路。",
+    "nameZh": "焚鏡開途",
+    "method": "意譯"
+   },
+   {
+    "id": "event/rust-banner",
+    "nameEn": "Funeral beneath the Rusted Vow",
+    "meaning": "誓言留在鏽旗與護送約據上，菌絲披著舊甲將護送隊拖進泥裡。",
+    "nameZh": "鏽旗出殯",
+    "method": "意譯"
+   },
+   {
+    "id": "event/rust-banner#human-move",
+    "nameEn": "Sever the Funeral Standard",
+    "meaning": "斬斷腐衛拖曳的鏽旗，讓活人的送葬路與怪獸分開。",
+    "nameZh": "斷旗送葬",
+    "method": "意譯"
+   },
+   {
+    "id": "event/nine-gates",
+    "nameEn": "The Night of Nine Knells",
+    "meaning": "Knell 是喪鐘；接連失守的舊拱門傳出鐘響，守軍只救出最後的撤離隊。",
+    "nameZh": "九門同喪",
+    "method": "意譯"
+   },
+   {
+    "id": "event/nine-gates#human-move",
+    "nameEn": "One Gate for the Living",
+    "meaning": "以倒塌的舊牆截斷追擊，留住人能通過的出口。",
+    "nameZh": "截城留門",
+    "method": "意譯"
+   },
+   {
+    "id": "event/wreck-crown",
+    "nameEn": "Coronation among the Wrecks",
+    "meaning": "Coronation 是加冕；沉船的肋骨卡上獸脊，倖存者將葬送船墳的巨獸叫作王。",
+    "nameZh": "沉船加冕",
+    "method": "意譯"
+   },
+   {
+    "id": "event/wreck-crown#human-move",
+    "nameEn": "A Shore against the Crown",
+    "meaning": "把機甲釘在岸邊借力出刃，求的是截住巨獸掃擊、救回拖船。",
+    "nameZh": "借岸斬王",
+    "method": "意譯"
+   }
+  ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "ok": true,
+   "steps": {
+    "worker": "DONE（沙箱內 src/mcp 兩檔 EPERM 照交接書不算阻塞）",
+    "lead": "移除 events 的 gameRefs（交接書錯誤）後跑 content_accept"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T16:26:59",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T16:26:59",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
+ }
 }
