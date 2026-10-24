@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-hushed",
+  "name": "寂滅干擾",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -12,
+      "source": "effect/mx-hushed"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -3,
+      "source": "effect/mx-hushed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "hush"
+  ],
+  "ui": {
+    "badge": "寂滅干擾"
+  }
+}

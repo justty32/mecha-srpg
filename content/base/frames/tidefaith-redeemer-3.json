@@ -1,0 +1,51 @@
+{
+  "id": "frame/tidefaith-redeemer-3",
+  "name": "贖垢者-三型",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5,
+    "accuracy": -3,
+    "resolve": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 150,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 187.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 150
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 187.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-unbind-rite"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-tide-robe",
+    "faction-tidefaith",
+    "mech",
+    "human"
+  ]
+}

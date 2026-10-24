@@ -1,0 +1,51 @@
+{
+  "id": "ability/mx-radiant-shot",
+  "name": "光矢連吼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 22
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "energy"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 7
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

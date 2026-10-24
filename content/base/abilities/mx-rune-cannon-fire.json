@@ -1,0 +1,52 @@
+{
+  "id": "ability/mx-rune-cannon-fire",
+  "name": "吼砲轟擊",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "rune-shell",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 22
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 36,
+      "armorPen": 0.18
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "shellwork"
+  ],
+  "ammoPool": "rune-shell",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 9
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1.2
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "frame/union-futu",
+  "name": "幽冥鐵騎-浮屠",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-fortress-a",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "accuracy": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 130,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 162.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 130
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 162.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-futu-charge"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-xingtian",
+    "faction-union",
+    "mech",
+    "human"
+  ]
+}

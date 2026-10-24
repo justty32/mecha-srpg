@@ -1,0 +1,52 @@
+{
+  "id": "ability/mx-shard-lob",
+  "name": "碎鐵拋矢",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "shard-grenade",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 6
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 14
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ammoPool": "shard-grenade",
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 2,
+      "max": 5
+    },
+    "los": false,
+    "friendly": "no",
+    "radius": 1
+  },
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  }
+}

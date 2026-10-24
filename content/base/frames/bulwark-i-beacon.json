@@ -1,0 +1,52 @@
+{
+  "id": "frame/bulwark-i-beacon",
+  "name": "堅盾-I「哨火」改",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-d",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 5,
+    "accuracy": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 90,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 112.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 90
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 112.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan",
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "faction-post7",
+    "mech",
+    "human"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "ability/mx-molten-cut",
+  "name": "熔齒切割",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 18
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 18,
+      "armorPen": 0.12
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-burning"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "thermal"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

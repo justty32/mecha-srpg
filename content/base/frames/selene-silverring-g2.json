@@ -1,0 +1,61 @@
+{
+  "id": "frame/selene-silverring-g2",
+  "name": "銀環-G2",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 6,
+    "accuracy": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 90,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 112.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 90
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 112.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "soul-driven",
+    "mech"
+  ]
+}

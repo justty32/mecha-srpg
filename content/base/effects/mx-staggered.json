@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-staggered",
+  "name": "失衡",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -4,
+      "source": "effect/mx-staggered"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -8,
+      "source": "effect/mx-staggered"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "stagger"
+  ],
+  "ui": {
+    "badge": "失衡"
+  }
+}

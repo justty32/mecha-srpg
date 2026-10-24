@@ -1,0 +1,42 @@
+{
+  "id": "ability/mx-anvil-roar",
+  "name": "赤鉚號令",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/mx-rivet-rally"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "captain"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "usesPerBattle": 1
+}

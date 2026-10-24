@@ -1,0 +1,44 @@
+{
+  "id": "ability/mx-frame-strike",
+  "name": "鐵拳",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 14
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.7
+    }
+  }
+}

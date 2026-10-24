@@ -1,0 +1,33 @@
+{
+  "id": "component/mx-rune-rifle",
+  "name": "紋刻連吼",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "rune-round",
+      "name": "殼矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-rune-shot"
+  ],
+  "hp": 18,
+  "tags": [
+    "ranged",
+    "kinetic",
+    "shellwork"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "ability/mx-bind-shot",
+  "name": "拘束矢",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "bind-spike",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 5
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 4
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "restraint",
+    "capture"
+  ],
+  "ammoPool": "bind-spike",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": -5,
+  "ai": {
+    "tactics": {
+      "disable": 1.2,
+      "capture": 0.6
+    }
+  }
+}

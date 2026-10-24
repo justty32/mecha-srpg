@@ -1,0 +1,51 @@
+{
+  "id": "ability/mx-iron-burst",
+  "name": "凡鐵點吼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "iron-round",
+      "owner": "mech",
+      "amount": 2
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 16
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ammoPool": "iron-round",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

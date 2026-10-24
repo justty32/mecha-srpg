@@ -1,0 +1,45 @@
+{
+  "id": "ability/mx-head-vulcan",
+  "name": "凡鐵頭吼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 5
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 8
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.6
+    }
+  }
+}

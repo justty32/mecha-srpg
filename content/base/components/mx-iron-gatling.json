@@ -1,0 +1,33 @@
+{
+  "id": "component/mx-iron-gatling",
+  "name": "凡鐵掃吼",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "iron-belt",
+      "name": "凡鐵矢鏈",
+      "min": 0,
+      "max": 30,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 30,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-iron-sweep"
+  ],
+  "hp": 18,
+  "tags": [
+    "ranged",
+    "kinetic",
+    "conventional-arms"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

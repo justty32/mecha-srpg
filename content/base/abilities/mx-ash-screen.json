@@ -1,0 +1,48 @@
+{
+  "id": "ability/mx-ash-screen",
+  "name": "灰霧",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    },
+    {
+      "pool": "ash-incense",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/mx-ash-veiled"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "support"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1,
+      "buff": 0.6
+    }
+  },
+  "ammoPool": "ash-incense"
+}

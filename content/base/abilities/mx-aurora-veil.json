@@ -1,0 +1,43 @@
+{
+  "id": "ability/mx-aurora-veil",
+  "name": "極光帷幕",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/mx-aurora-veiled"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "veil"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "protect": 0.8
+    }
+  },
+  "cooldown": 3
+}

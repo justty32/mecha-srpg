@@ -1,0 +1,63 @@
+{
+  "id": "ability/mx-hunter-launch",
+  "name": "獵甲追矢",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "hunter-dart",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 34,
+      "armorPen": 0.25
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ammoPool": "hunter-dart",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 3,
+      "max": 9
+    },
+    "los": false,
+    "friendly": "no"
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1.2
+    },
+    "targetPref": {
+      "grades": [
+        "C",
+        "B",
+        "A"
+      ]
+    }
+  }
+}

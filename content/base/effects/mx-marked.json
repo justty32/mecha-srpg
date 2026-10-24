@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-marked",
+  "name": "千目所視",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -12,
+      "source": "effect/mx-marked"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "marked"
+  ],
+  "ui": {
+    "badge": "千目所視"
+  }
+}

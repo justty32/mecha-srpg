@@ -1,0 +1,52 @@
+{
+  "id": "frame/anvil-crimson-rivet",
+  "name": "赤鉚-鐵砧",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-heavy",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5,
+    "accuracy": 4
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike",
+    "ability/mx-anvil-roar"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "captain",
+    "mech",
+    "human"
+  ]
+}

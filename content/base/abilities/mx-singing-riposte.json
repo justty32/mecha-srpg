@@ -1,0 +1,43 @@
+{
+  "id": "ability/mx-singing-riposte",
+  "name": "回身鳴刃",
+  "mode": "reaction",
+  "costs": [],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 6
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 12
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee",
+    "reaction"
+  ],
+  "trigger": {
+    "event": "enemyLeavesAdjacent",
+    "oncePer": "turn"
+  },
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 0.5
+    }
+  }
+}

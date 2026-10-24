@@ -1,0 +1,65 @@
+{
+  "id": "ability/mx-stake-drive",
+  "name": "斷臂一樁",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "stake-wedge",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 44,
+      "armorPen": 0.3
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-staggered"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "shellwork"
+  ],
+  "ammoPool": "stake-wedge",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "cooldown": 1,
+  "ai": {
+    "tactics": {
+      "attack": 1.4
+    },
+    "targetPref": {
+      "parts": [
+        "core"
+      ]
+    }
+  }
+}

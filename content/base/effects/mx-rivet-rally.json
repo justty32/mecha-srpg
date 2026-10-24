@@ -1,0 +1,33 @@
+{
+  "id": "effect/mx-rivet-rally",
+  "name": "赤鉚號令",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 8,
+      "source": "effect/mx-rivet-rally"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/mx-rivet-rally"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "赤鉚號令"
+  }
+}

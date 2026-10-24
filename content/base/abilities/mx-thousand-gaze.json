@@ -1,0 +1,41 @@
+{
+  "id": "ability/mx-thousand-gaze",
+  "name": "千目標定",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 10
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-marked"
+      ]
+    }
+  ],
+  "tags": [
+    "scout"
+  ],
+  "ai": {
+    "tactics": {
+      "scout": 1,
+      "debuff": 0.6
+    }
+  }
+}

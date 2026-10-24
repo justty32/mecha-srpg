@@ -1,0 +1,48 @@
+{
+  "id": "ability/mx-white-night-fade",
+  "name": "白夜隱沒",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/mx-faded"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "stealth"
+  ],
+  "ai": {
+    "tactics": {
+      "escape": 1,
+      "buff": 0.6
+    }
+  },
+  "cooldown": 3
+}

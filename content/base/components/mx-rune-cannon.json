@@ -1,0 +1,34 @@
+{
+  "id": "component/mx-rune-cannon",
+  "name": "紋刻吼砲",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 5,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "rune-shell",
+      "name": "重殼矢",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-rune-cannon-fire"
+  ],
+  "hp": 22,
+  "tags": [
+    "ranged",
+    "kinetic",
+    "shellwork",
+    "heavy"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

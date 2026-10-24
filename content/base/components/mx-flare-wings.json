@@ -1,0 +1,42 @@
+{
+  "id": "component/mx-flare-wings",
+  "name": "疾焰背翼",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "flare-fuel",
+      "name": "焰芯",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-flare-dodge"
+  ],
+  "tags": [
+    "propulsion"
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "component/mx-flare-wings"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 3,
+      "source": "component/mx-flare-wings"
+    }
+  ],
+  "hp": 12
+}

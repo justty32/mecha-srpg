@@ -1,0 +1,54 @@
+{
+  "id": "ability/mx-flare-dodge",
+  "name": "疾焰閃身",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 1
+    },
+    {
+      "pool": "flare-fuel",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/mx-flaring"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "propulsion"
+  ],
+  "ai": {
+    "tactics": {
+      "escape": 1,
+      "buff": 0.5
+    }
+  },
+  "ammoPool": "flare-fuel"
+}

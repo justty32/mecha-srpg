@@ -1,0 +1,61 @@
+{
+  "id": "frame/selene-crescent-g5",
+  "name": "銀環-G5「弦月」",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8,
+    "accuracy": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 90,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 112.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 90
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 112.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 100,
+      "regen": 18,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "soul-driven",
+    "mech"
+  ]
+}

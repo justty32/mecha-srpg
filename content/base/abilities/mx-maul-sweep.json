@@ -1,0 +1,56 @@
+{
+  "id": "ability/mx-maul-sweep",
+  "name": "戰錘橫掃",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 12
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 18
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        {
+          "effect": "effect/mx-staggered",
+          "chance": 0.3
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "melee"
+  ],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "ai": {
+    "tactics": {
+      "attackArea": 0.8,
+      "attack": 0.6
+    }
+  }
+}

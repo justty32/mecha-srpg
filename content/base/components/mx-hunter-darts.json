@@ -1,0 +1,33 @@
+{
+  "id": "component/mx-hunter-darts",
+  "name": "凡鐵追矢匣",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "hunter-dart",
+      "name": "追矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-hunter-launch"
+  ],
+  "hp": 14,
+  "tags": [
+    "ranged",
+    "missile",
+    "conventional-arms"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

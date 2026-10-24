@@ -1,0 +1,33 @@
+{
+  "id": "component/mx-iron-repeater",
+  "name": "凡鐵連吼",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "iron-round",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 20,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 20,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-iron-burst"
+  ],
+  "hp": 15,
+  "tags": [
+    "ranged",
+    "kinetic",
+    "conventional-arms"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

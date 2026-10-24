@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-ash-veiled",
+  "name": "灰霧掩護",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 12,
+      "source": "effect/mx-ash-veiled"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "cover"
+  ],
+  "ui": {
+    "badge": "灰霧掩護"
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "id": "ability/mx-old-city-wall",
+  "name": "老城不倒",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/mx-old-city"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "captain"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1.5,
+      "buff": 1
+    }
+  },
+  "usesPerBattle": 1
+}

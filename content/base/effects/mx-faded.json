@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-faded",
+  "name": "隱沒",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 25,
+      "source": "effect/mx-faded"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "stealth"
+  ],
+  "ui": {
+    "badge": "隱沒"
+  }
+}

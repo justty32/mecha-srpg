@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-burning",
+  "name": "燃燒",
+  "scope": "layer",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onTick": [
+      {
+        "do": "damage",
+        "packets": [
+          {
+            "type": "thermal",
+            "amount": 4
+          }
+        ],
+        "target": "self"
+      }
+    ]
+  },
+  "tags": [
+    "fire",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "燃燒"
+  }
+}

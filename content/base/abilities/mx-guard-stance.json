@@ -1,0 +1,42 @@
+{
+  "id": "ability/mx-guard-stance",
+  "name": "盾陣",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/mx-guarding"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "protect": 1.5
+    }
+  },
+  "cooldown": 2
+}

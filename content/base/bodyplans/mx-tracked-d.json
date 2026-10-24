@@ -1,0 +1,160 @@
+{
+  "id": "bodyplan/mx-tracked-d",
+  "name": "履帶砲車（D）",
+  "parts": [
+    {
+      "id": "hull",
+      "name": "車體",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "slots": [
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        },
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        },
+        {
+          "id": "armor-mount",
+          "type": "armorMount",
+          "size": 1
+        },
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 60,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 54,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turret",
+      "name": "砲塔",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [
+        {
+          "id": "main-gun",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "back-1",
+          "type": "backMount",
+          "size": 2
+        },
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "weaponMount",
+        "sensor"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 42,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 42,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "tracks",
+      "name": "履帶",
+      "exposure": 1.2,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 48,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 54,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "symmetry": "bilateral"
+}

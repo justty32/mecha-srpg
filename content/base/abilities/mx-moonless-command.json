@@ -1,0 +1,48 @@
+{
+  "id": "ability/mx-moonless-command",
+  "name": "無月指令",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 8
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/mx-moonless-link"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "captain",
+    "soul"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1.5
+    }
+  },
+  "cooldown": 3
+}

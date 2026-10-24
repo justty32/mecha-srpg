@@ -1,0 +1,64 @@
+{
+  "id": "ability/mx-hush-burst",
+  "name": "寂滅",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 35
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 14,
+      "layerFilter": [
+        "shield",
+        "component"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-hushed"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "hush"
+  ],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "cooldown": 2,
+  "ai": {
+    "tactics": {
+      "attackArea": 0.8,
+      "disable": 1
+    }
+  }
+}

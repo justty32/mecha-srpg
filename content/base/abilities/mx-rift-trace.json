@@ -1,0 +1,41 @@
+{
+  "id": "ability/mx-rift-trace",
+  "name": "裂晶追蹤",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 9
+    },
+    "los": false,
+    "friendly": "no"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-rift-traced"
+      ]
+    }
+  ],
+  "tags": [
+    "scout",
+    "rift"
+  ],
+  "ai": {
+    "tactics": {
+      "scout": 1
+    }
+  }
+}

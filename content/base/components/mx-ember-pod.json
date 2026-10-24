@@ -1,0 +1,33 @@
+{
+  "id": "component/mx-ember-pod",
+  "name": "凡火矢莢",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "ember-rocket",
+      "name": "火矢",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/mx-ember-salvo"
+  ],
+  "hp": 12,
+  "tags": [
+    "ranged",
+    "explosive",
+    "conventional-arms"
+  ],
+  "onBroken": [
+    "effect/weapon-jammed"
+  ]
+}

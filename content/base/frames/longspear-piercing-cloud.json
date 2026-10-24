@@ -1,0 +1,65 @@
+{
+  "id": "frame/longspear-piercing-cloud",
+  "name": "穿雲-長槍",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 9,
+    "accuracy": 8,
+    "evasion": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 110,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 110,
+      "regen": 18,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan",
+    "ability/mx-cloud-piercer"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "captain",
+    "faction-saltgull",
+    "mech",
+    "human"
+  ]
+}

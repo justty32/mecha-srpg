@@ -1,0 +1,45 @@
+{
+  "id": "ability/mx-cold-vent",
+  "name": "寒泉洩燼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 1
+    },
+    {
+      "pool": "cold-spring",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": -40
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [],
+  "tags": [
+    "cooling"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 0.6
+    }
+  },
+  "ammoPool": "cold-spring"
+}

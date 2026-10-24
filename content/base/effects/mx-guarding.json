@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-guarding",
+  "name": "盾陣",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 12,
+      "source": "effect/mx-guarding"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "guard"
+  ],
+  "ui": {
+    "badge": "盾陣"
+  }
+}

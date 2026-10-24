@@ -1,0 +1,62 @@
+{
+  "id": "ability/mx-unbind-rite",
+  "name": "解拘禱焰",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": false,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 18,
+      "armorPen": 0.15
+    },
+    {
+      "type": "thermal",
+      "amount": 8,
+      "layerFilter": [
+        "component"
+      ]
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-burning"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "thermal",
+    "unbind"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "disable": 0.5
+    }
+  }
+}

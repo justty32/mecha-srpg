@@ -1,0 +1,54 @@
+{
+  "id": "ability/mx-cloud-piercer",
+  "name": "穿雲一擲",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 4,
+      "max": 14
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 42,
+      "armorPen": 0.25,
+      "crit": 0.2
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "captain"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1.4
+    }
+  },
+  "usesPerBattle": 2,
+  "accuracy": 15
+}

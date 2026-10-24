@@ -1,0 +1,62 @@
+{
+  "id": "frame/backside-white-night",
+  "name": "白夜",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 9,
+    "accuracy": 6,
+    "evasion": 14
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 90,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 112.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 90
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 112.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 100,
+      "regen": 18,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-white-night-fade"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-backside",
+    "mech",
+    "human"
+  ]
+}

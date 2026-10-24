@@ -1,0 +1,51 @@
+{
+  "id": "frame/bulwark-i",
+  "name": "堅盾-I型",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-d",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike",
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "mech",
+    "human"
+  ]
+}

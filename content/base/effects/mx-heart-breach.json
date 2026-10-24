@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-heart-breach",
+  "name": "心爐破裂",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "ignore"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "heat",
+        "delta": 40
+      }
+    ]
+  },
+  "tags": [
+    "hazard"
+  ],
+  "ui": {
+    "badge": "心爐破裂"
+  }
+}

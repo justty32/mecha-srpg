@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-rift-traced",
+  "name": "裂晶追蹤",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -8,
+      "source": "effect/mx-rift-traced"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -1,
+      "source": "effect/mx-rift-traced"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "marked"
+  ],
+  "ui": {
+    "badge": "裂晶追蹤"
+  }
+}

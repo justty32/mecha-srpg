@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-airborne",
+  "name": "滯空",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/mx-airborne"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 5,
+      "source": "effect/mx-airborne"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "airborne"
+  ],
+  "ui": {
+    "badge": "滯空"
+  }
+}

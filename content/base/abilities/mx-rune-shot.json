@@ -1,0 +1,51 @@
+{
+  "id": "ability/mx-rune-shot",
+  "name": "紋刻一吼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "rune-round",
+      "owner": "mech",
+      "amount": 2
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 12
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 20
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "shellwork"
+  ],
+  "ammoPool": "rune-round",
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

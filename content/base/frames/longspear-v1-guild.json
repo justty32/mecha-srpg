@@ -1,0 +1,62 @@
+{
+  "id": "frame/longspear-v1-guild",
+  "name": "長槍-V1 公會型",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-d",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "control": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "faction-dhaka",
+    "mech",
+    "human"
+  ]
+}

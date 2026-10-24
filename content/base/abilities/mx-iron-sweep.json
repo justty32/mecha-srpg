@@ -1,0 +1,60 @@
+{
+  "id": "ability/mx-iron-sweep",
+  "name": "壓制掃吼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "iron-belt",
+      "owner": "mech",
+      "amount": 5
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 12
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-suppressed"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ammoPool": "iron-belt",
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "ai": {
+    "tactics": {
+      "attackArea": 1,
+      "debuff": 0.5
+    }
+  }
+}

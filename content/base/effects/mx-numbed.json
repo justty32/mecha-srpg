@@ -1,0 +1,34 @@
+{
+  "id": "effect/mx-numbed",
+  "name": "弧光麻痺",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "effect/mx-numbed"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -5,
+      "source": "effect/mx-numbed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "numb"
+  ],
+  "ui": {
+    "badge": "弧光麻痺"
+  }
+}

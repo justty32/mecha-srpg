@@ -1,0 +1,49 @@
+{
+  "id": "ability/mx-tide-leap-up",
+  "name": "躍潮",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/mx-airborne"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "propulsion"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 0.8,
+      "escape": 0.6
+    }
+  },
+  "cooldown": 2
+}

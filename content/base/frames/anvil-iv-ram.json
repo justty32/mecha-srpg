@@ -1,0 +1,51 @@
+{
+  "id": "frame/anvil-iv-ram",
+  "name": "鐵砧-IV「破城槌」",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-heavy",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "accuracy": 3,
+    "evasion": -3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 120
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 150.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "mech",
+    "human"
+  ]
+}

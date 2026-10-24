@@ -1,0 +1,61 @@
+{
+  "id": "frame/selene-aurora",
+  "name": "極光",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 9,
+    "accuracy": 4,
+    "evasion": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 150,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 150,
+      "regen": 25,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-aurora-veil"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "mech"
+  ]
+}

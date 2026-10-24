@@ -1,0 +1,64 @@
+{
+  "id": "frame/longspear-v4-saltgull",
+  "name": "長槍-V4「鹽鷗」型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-hover-c",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 7,
+    "accuracy": 3,
+    "evasion": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "faction-saltgull",
+    "mech",
+    "human",
+    "hover"
+  ]
+}

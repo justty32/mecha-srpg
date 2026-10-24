@@ -1,0 +1,62 @@
+{
+  "id": "frame/selene-valkyrie",
+  "name": "女武神",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-winged-a",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 7,
+    "accuracy": 5,
+    "evasion": 12
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 120,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 120,
+      "regen": 20,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-valkyrie-dive"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "mech",
+    "flight"
+  ]
+}

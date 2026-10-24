@@ -1,0 +1,29 @@
+{
+  "id": "effect/mx-netted",
+  "name": "縛網",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -15,
+      "source": "effect/mx-netted"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "immobilized",
+    "restraint"
+  ],
+  "ui": {
+    "badge": "縛網"
+  }
+}

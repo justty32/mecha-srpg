@@ -1,0 +1,63 @@
+{
+  "id": "frame/union-at12",
+  "name": "AT-12",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-tracked-d",
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 5,
+    "accuracy": 3,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 120
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 150.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-xingtian",
+    "faction-union",
+    "mech",
+    "human",
+    "track"
+  ]
+}

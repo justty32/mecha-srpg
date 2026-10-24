@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-suppressed",
+  "name": "壓制",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/mx-suppressed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "suppressed"
+  ],
+  "ui": {
+    "badge": "壓制"
+  }
+}

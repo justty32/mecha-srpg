@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-flaring",
+  "name": "疾焰",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 15,
+      "source": "effect/mx-flaring"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "boost"
+  ],
+  "ui": {
+    "badge": "疾焰"
+  }
+}

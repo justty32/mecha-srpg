@@ -1,0 +1,65 @@
+{
+  "id": "frame/bulwark-old-city",
+  "name": "老城-堅盾",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-fortress-a",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 6,
+    "accuracy": 3,
+    "evasion": -6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 120
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 150.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 70,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 70,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance",
+    "ability/mx-old-city-wall"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "captain",
+    "faction-dhaka",
+    "mech",
+    "human"
+  ]
+}

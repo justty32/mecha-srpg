@@ -1,0 +1,274 @@
+{
+  "id": "bodyplan/mx-selene-s",
+  "name": "塞勒涅客製骨架（S）",
+  "parts": [
+    {
+      "id": "torso",
+      "name": "軀幹",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "shield",
+          "hp": 51,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false,
+          "regen": 10,
+          "regenPool": "charge"
+        },
+        {
+          "type": "armor",
+          "hp": 89,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 95,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        },
+        {
+          "id": "armor-mount",
+          "type": "armorMount",
+          "size": 1
+        },
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        },
+        {
+          "id": "system-2",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "allSeats",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "seats": [
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        },
+        {
+          "id": "soul-2",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "name": "頭部",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 38,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 44,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "left-arm",
+      "name": "左臂",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 57,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 70,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "left-weapon",
+          "type": "weaponMount",
+          "size": 3
+        }
+      ],
+      "functions": [
+        "manipulator",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "right-arm",
+      "name": "右臂",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 57,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 70,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "right-weapon",
+          "type": "weaponMount",
+          "size": 3
+        }
+      ],
+      "functions": [
+        "manipulator",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "legs",
+      "name": "雙腿",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 70,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 83,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "halo",
+      "name": "背環",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [
+        {
+          "id": "back-1",
+          "type": "backMount",
+          "size": 2
+        },
+        {
+          "id": "back-2",
+          "type": "backMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "weaponMount"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 44,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 52,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "symmetry": "bilateral"
+}

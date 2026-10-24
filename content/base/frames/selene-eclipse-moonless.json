@@ -1,0 +1,63 @@
+{
+  "id": "frame/selene-eclipse-moonless",
+  "name": "蝕光-無月",
+  "cls": "mechanical",
+  "grade": "S",
+  "bodyPlan": "bodyplan/mx-selene-s",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 10,
+    "accuracy": 8,
+    "evasion": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -25,
+      "bands": [
+        {
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 120
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 150.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 200,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 200,
+      "regen": 30,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-moonless-command",
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "soul-driven",
+    "mech"
+  ]
+}

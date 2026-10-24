@@ -1,0 +1,32 @@
+{
+  "id": "component/mx-moonveil",
+  "name": "月輝光幕",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [],
+  "abilities": [],
+  "tags": [
+    "shield"
+  ],
+  "hp": 10,
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "shield",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+          "energy": 0.2
+        },
+        "passThrough": {},
+        "structural": false,
+        "regen": 8,
+        "regenPool": "charge"
+      }
+    }
+  ]
+}

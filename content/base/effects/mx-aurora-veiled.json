@@ -1,0 +1,28 @@
+{
+  "id": "effect/mx-aurora-veiled",
+  "name": "極光帷幕",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 15,
+      "source": "effect/mx-aurora-veiled"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "veil"
+  ],
+  "ui": {
+    "badge": "極光帷幕"
+  }
+}

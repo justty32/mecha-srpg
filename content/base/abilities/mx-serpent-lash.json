@@ -1,0 +1,58 @@
+{
+  "id": "ability/mx-serpent-lash",
+  "name": "弧光蛇擊",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 14
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-numbed"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "energy"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 0.8,
+      "disable": 0.6
+    }
+  }
+}

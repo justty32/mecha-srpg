@@ -1,0 +1,58 @@
+{
+  "id": "ability/mx-starscar-shot",
+  "name": "星痕貫射",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 38,
+      "armorPen": 0.22,
+      "crit": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "sniper"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 3,
+      "max": 12
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 10,
+  "cooldown": 1,
+  "partAim": {
+    "allowed": true,
+    "penalty": 15
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1.2
+    }
+  }
+}

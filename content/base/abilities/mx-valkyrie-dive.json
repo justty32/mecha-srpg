@@ -1,0 +1,52 @@
+{
+  "id": "ability/mx-valkyrie-dive",
+  "name": "女武神俯衝",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 30,
+      "crit": 0.2
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee",
+    "flight"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1.2
+    }
+  },
+  "cooldown": 2
+}
