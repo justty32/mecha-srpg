@@ -12,8 +12,7 @@
 ## 最新進度
 
 - [dispatch] 2026-10-24 使用者重開程式前全停：ai 已收線；`plan-ops-spec` 中止、半成品在 `specs/ops/`；續行點 [handoffs/STATE.md](workflows/dispatch/handoffs/STATE.md)
-- [dispatch] 2026-10-24 `lead-impl-ops` 開工：營運層 `src/ops/` 實作，工人 cx-ops-* → [handoffs/lead-impl-ops/](workflows/dispatch/handoffs/lead-impl-ops/contract.md)
-- [dispatch] 2026-10-24 `lead-impl-ui` 開工：ui-adapter（ViewModel／DOM／Vite 殼／e2e），工人 cx-ui-* → [handoffs/lead-impl-ui/](workflows/dispatch/handoffs/lead-impl-ui/contract.md)
+- [dispatch] 2026-10-24 `lead-ui-fix` 開工：使用者試玩回饋九項（ui-adapter 手感）→ [handoffs/lead-ui-fix/](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)
 
 ## 各工作流 session-log
 

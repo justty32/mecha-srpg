@@ -108,7 +108,7 @@
 - **訂閱主題**：無
 
 ### `lead-impl-ops`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：Opus 領導線（Claude 子 agent）；營運層 `src/ops/` 實作。
 - **團隊**：`teams/ops`（領導；工人格由我代登記）
 - **上游**：dispatcher
@@ -119,7 +119,7 @@
 - **訂閱主題**：無
 
 ### `cx-ops-foundation`
-- **狀態**：現役
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/state`、`src/ops/content`、`content/base/world/`。
 - **團隊**：`teams/ops`
 - **上游**：lead-impl-ops
@@ -129,7 +129,95 @@
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-foundation/`
 - **訂閱主題**：無
 
+### `cx-ops-world`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/world`、`src/ops/contracts`。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-world.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-world/`
+- **訂閱主題**：無
+
+### `cx-ops-crew`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/crew`。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-crew.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-crew/`
+- **訂閱主題**：無
+
+### `cx-ops-text`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/text`（無 DOM）。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-text.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-text/`
+- **訂閱主題**：無
+
+### `cx-ops-sortie`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/sortie`。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-sortie.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-sortie/`
+- **訂閱主題**：無
+
+### `cx-ops-time`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ops/time`、`src/ops/sim`。
+- **團隊**：`teams/ops`
+- **上游**：lead-impl-ops
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ops/cx-ops-time.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ops-time/`
+- **訂閱主題**：無
+
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)、[archive/ROSTER-2026-10-24.md](archive/ROSTER-2026-10-24.md)。
+
+### `lead-impl-ui`
+- **狀態**：現役
+- **我是誰**：Opus 領導線（Claude 子 agent）；ui-adapter 與網頁殼（戰鬥畫面先）。
+- **團隊**：`teams/ui`（領導；工人格由我代登記）
+- **上游**：dispatcher
+- **領地**：見 CLAIMS `lead-impl-ui` 列
+- **答得出什麼**：ViewModel／DOM 契約（`src/ui-adapter/vm/types.ts`、`handoffs/lead-impl-ui/contract.md`）
+- **答不出什麼**：規則、sim、ops 邏輯
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-impl-ui/`
+- **訂閱主題**：無
+
+### `cx-ui-vm`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ui-adapter/vm/`（ViewModel、controller、keymap、事件文字）。
+- **團隊**：`teams/ui`
+- **上游**：lead-impl-ui
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ui/cx-ui-vm.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ui-vm/`
+- **訂閱主題**：無
+
+### `cx-ui-dom`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），寫 `src/ui-adapter/dom/`（DOM 渲染、CSS、happy-dom 測試）。
+- **團隊**：`teams/ui`
+- **上游**：lead-impl-ui
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-impl-ui/cx-ui-dom.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-ui-dom/`
+- **訂閱主題**：無
 
 ### `lead-fix-scenario-ai`
 - **狀態**：收線（2026-10-24）
@@ -163,3 +251,6 @@
 - **答不出什麼**：其他
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-fix-ai/`
 - **訂閱主題**：無
+
+### `cx-uifix-vm`／`cx-uifix-dom`
+- **狀態**：現役（2026-10-24）；codex 工人（gpt-6-astra），`teams/uifix`，上游 lead-ui-fix；領地見各自交接書 `handoffs/lead-ui-fix/<線名>.md`；信箱 `wf/inbox/mail/<線名>/`
