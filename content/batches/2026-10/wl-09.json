@@ -1,0 +1,133 @@
+{
+ "contract": "content-batch/1",
+ "id": "wl-09",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "talk-world 裁示落地：十分律→抵抗性／精粹、機魂不可複製不能獨駕、白手套改讀、殘翼口號、租賃機魂、例行大潮→漲潮、情境簡報對齊 lead-tune 新數值；只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-wl-09",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-world-land",
+ "date": "2026-10-24",
+ "base": "fb576a6494895d9f84d9707503f222478b79ca58",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-world-land/wl-09",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-world-land/wl-09/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/world/essence.md",
+   "wf/workflows/planning/design-notes/world/scale.md",
+   "wf/workflows/dispatch/handoffs/lead-world-land/guide.md"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "polishFiles": [
+   "content/base/scenarios/siege-beetle-convoy.json",
+   "content/base/scenarios/shell-excavation-escort.json",
+   "content/base/scenarios/mirror-choir-vigil.json",
+   "content/base/scenarios/crater-three-way.json",
+   "content/base/scenarios/lunar-blockade-run.json",
+   "content/base/scenarios/quarry-duel.json",
+   "content/base/scenarios/rift-edge-nest.json",
+   "content/base/scenarios/skirmish-whitegloves.json",
+   "content/base/world/encounters/tide-unshacklers.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T17:53:06",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "wl-09",
+  "round": 1,
+  "at": "2026-10-24T17:53:06",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/base/scenarios/mirror-choir-vigil.json",
+   "content/base/scenarios/quarry-duel.json",
+   "content/base/scenarios/rift-edge-nest.json",
+   "content/base/scenarios/shell-excavation-escort.json",
+   "content/base/scenarios/siege-beetle-convoy.json",
+   "content/base/scenarios/skirmish-whitegloves.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/scenarios/mirror-choir-vigil.json",
+  "content/base/scenarios/quarry-duel.json",
+  "content/base/scenarios/rift-edge-nest.json",
+  "content/base/scenarios/shell-excavation-escort.json",
+  "content/base/scenarios/siege-beetle-convoy.json",
+  "content/base/scenarios/skirmish-whitegloves.json"
+ ],
+ "ids": [
+  "scenario/mirror-choir-vigil",
+  "scenario/quarry-duel",
+  "scenario/rift-edge-nest",
+  "scenario/shell-excavation-escort",
+  "scenario/siege-beetle-convoy",
+  "scenario/skirmish-whitegloves"
+ ],
+ "testWaiver": "npm test 唯一 fail（content/index 一致性：_summary.json、base-place.json 過時）與 base fb576a6 完全相同，領導在 base worktree 重跑確認；本批只改文字欄，索引於帶回時重產",
+ "summary": "talk-world 裁示落地 polish：6/9 檔改文字欄；閘門 0 違規、check／lore／typecheck 綠、黃金不變"
+}

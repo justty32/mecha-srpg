@@ -1,0 +1,165 @@
+{
+ "contract": "content-batch/1",
+ "id": "wl-01",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "talk-world 裁示落地：十分律→抵抗性／精粹、機魂不可複製不能獨駕、白手套改讀、殘翼口號、租賃機魂、例行大潮→漲潮；只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-wl-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-world-land",
+ "date": "2026-10-24",
+ "base": "fb576a6494895d9f84d9707503f222478b79ca58",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-world-land/wl-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-world-land/wl-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/world/essence.md",
+   "wf/workflows/planning/design-notes/world/scale.md",
+   "wf/workflows/dispatch/handoffs/lead-world-land/guide.md"
+  ]
+ },
+ "maxFiles": 16,
+ "allow": {
+  "polishFiles": [
+   "content/lore/timeline.json",
+   "content/lore/glossary.json",
+   "content/lore/eras/first-tide.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/eras/yoke-years.json",
+   "content/lore/factions/remnant-wings.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/nameless-souls.json",
+   "content/lore/factions/unbinders.json",
+   "content/lore/factions/ground-union.json",
+   "content/lore/factions/migrant-crew.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T17:36:39",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "wl-01",
+  "round": 1,
+  "at": "2026-10-24T17:36:39",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/eras/first-tide.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/eras/yoke-years.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/ground-union.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/migrant-crew.json",
+   "content/lore/factions/nameless-souls.json",
+   "content/lore/factions/remnant-wings.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/glossary.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/eras/first-tide.json",
+  "content/lore/eras/forerunners.json",
+  "content/lore/eras/league.json",
+  "content/lore/eras/tide-line.json",
+  "content/lore/eras/yoke-years.json",
+  "content/lore/factions/backside.json",
+  "content/lore/factions/ground-union.json",
+  "content/lore/factions/league.json",
+  "content/lore/factions/migrant-crew.json",
+  "content/lore/factions/nameless-souls.json",
+  "content/lore/factions/remnant-wings.json",
+  "content/lore/factions/selene.json",
+  "content/lore/factions/whitegloves.json",
+  "content/lore/glossary.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "era/first-tide",
+  "era/forerunners",
+  "era/league",
+  "era/tide-line",
+  "era/yoke-years",
+  "faction/backside",
+  "faction/ground-union",
+  "faction/league",
+  "faction/migrant-crew",
+  "faction/nameless-souls",
+  "faction/remnant-wings",
+  "faction/selene",
+  "faction/whitegloves"
+ ],
+ "testWaiver": "npm test 唯一 fail（content/index 一致性：_summary.json、base-place.json 過時）與 base fb576a6 完全相同，領導在 base worktree 重跑確認；本批只改文字欄，索引於帶回時重產",
+ "summary": "talk-world 裁示落地 polish：15/16 檔改文字欄；閘門 0 違規、check／lore／typecheck 綠、黃金不變"
+}
