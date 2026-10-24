@@ -6,7 +6,7 @@ import { validateSortie } from "./validate.ts";
 import { generateScenario } from "./scenario.ts";
 import type { SortieScenario } from "./scenario.ts";
 import { applyBattleResult } from "./apply.ts";
-import type { BattleResult, SortieBattleResult } from "./apply.ts";
+import type { BattleResult } from "./apply.ts";
 
 type BattleSetup = SimSetup["setup"];
 
@@ -27,8 +27,10 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
       if (!pid) throw new Error(`missing sortie seat: ${person.seat}`);
       person.id = pid;
     }
-    // 非傷勢機體池可帶入；hp 與人物 hp 留滿值供 apply 差分。controlMode 尚無 UnitInit 入口。
-    unit.pools = Object.fromEntries(Object.keys(mech.pools).sort().filter(id => id !== "hp").map(id => [id, mech.pools[id]!.cur]));
+    unit.parts = Object.fromEntries(Object.entries(mech.parts).map(([id, part]) => [id, structuredClone({ layers: part.layers, broken: part.broken })]));
+    unit.controlMode = selected.controlMode;
+    unit.effects = structuredClone(mech.effects);
+    unit.pools = Object.fromEntries(Object.keys(mech.pools).sort().map(id => [id, mech.pools[id]!.cur]));
   }
   for (const slot of Object.keys(sim.unitPolicies).sort()) sim.unitPolicies[slot] = Object.fromEntries(
     Object.keys(sim.unitPolicies[slot]!).sort().map(id => [ids.get(id) ?? id, sim.unitPolicies[slot]![id]!]));
@@ -42,9 +44,9 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
 export function runSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie, opts: { maxSteps?: number } = {}): CmdResult & { result?: BattleResult } {
   const valid = validateSortie(s, ctx, sortie); if (!valid.ok) return valid;
   if (opts.maxSteps !== undefined && (!Number.isInteger(opts.maxSteps) || opts.maxSteps < 0)) return { ok: false, error: "invalid-max-steps" };
-  const oldRng = structuredClone(s.rng), oldCounter = s.effectCounter, oldDB = ctx.db;
+  const oldRng = structuredClone(s.rng), oldCounter = s.effectCounter;
   try {
-    const scenario = generateScenario(s, ctx, sortie) as SortieScenario;
+    const scenario = generateScenario(s, ctx, sortie);
     const sim = scenarioToSetup(ctx.db, scenario, scenario.seed!);
     prepareSetup(s, ctx, sortie, scenario, sim);
     const run = runBattle({ db: ctx.db, sim, seed: scenario.seed!, maxSteps: opts.maxSteps,
@@ -53,27 +55,24 @@ export function runSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie, opts: {
       s.rng = oldRng; s.effectCounter = oldCounter;
       return { ok: false, error: `battle-${run.stopped}` };
     }
-    // 成功指令才會出現在 commands；不碰戰鬥內部 state，保留 BattleResult 作為狀態出口。
-    const result: SortieBattleResult = { ...run.result, events: run.commands.flatMap(cmd => cmd.kind === "useAbility"
-      ? [{ type: "AbilityUsed", payload: { unit: cmd.actor, ability: cmd.ability } }] : []) };
-    // 臨時內容 id 不流出戰鬥入口；回傳的人物與活捕機體仍用營運原始 Def。
-    for (const person of result.persons) {
-      const original = s.roster.persons[person.id];
-      if (original) person.state.def = original.def;
-    }
+    const result = run.result;
     for (const unit of result.units) {
       const original = s.mechs[unit.id];
       if (original && sortie.units.some(u => u.mech === unit.id && u.controlMode === "instinct")) unit.state.frame = original.frame;
     }
-    // 排隊中可出戰，成功跑完才退至尾端，失敗的指令不能改佇列。
-    const selected = new Set(sortie.units.map(u => u.mech));
-    let priority = Math.max(0, ...s.jobs.map(j => j.priority));
-    for (const job of [...s.jobs].sort((a, b) => a.id < b.id ? -1 : 1)) if (selected.has(job.target) && !job.paid && job.doneHours === 0) job.priority = ++priority;
-    ctx.db = oldDB;
-    applyBattleResult(s, ctx, sortie, result);
+    applySortieResult(s, ctx, sortie, result);
     return { ok: true, result };
   } catch (error) {
     s.rng = oldRng; s.effectCounter = oldCounter;
     throw error;
-  } finally { ctx.db = oldDB; }
+  }
+}
+
+// 正常出戰與營運重播共用戰後入口，確保排隊與回寫次序一致。
+export function applySortieResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
+  if (s.log.some(e => e.type === "BattleResolved" && e.payload.sortie === sortie.id)) return;
+  const selected = new Set(sortie.units.map(u => u.mech));
+  let priority = Math.max(0, ...s.jobs.map(j => j.priority));
+  for (const job of [...s.jobs].sort((a, b) => a.id < b.id ? -1 : 1)) if (selected.has(job.target) && !job.paid && job.doneHours === 0) job.priority = ++priority;
+  applyBattleResult(s, ctx, sortie, result);
 }

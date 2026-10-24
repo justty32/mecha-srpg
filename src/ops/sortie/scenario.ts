@@ -1,6 +1,5 @@
-import type { ContentDB } from "../../content/contentdb.ts";
-import type { ContentKind } from "../../core/ids.ts";
-import type { DefByKind, EffectRef, MapDef, PersonDef, ScenarioDef, UnitSpawn } from "../../core/types-def.ts";
+import type { EffectRef, MapDef, UnitSpawn } from "../../core/types-def.ts";
+import type { DynamicScenario } from "../../sim/run.ts";
 import type { PersonState } from "../../core/types-state.ts";
 import { GRADES } from "../../core/types-def.ts";
 import { chance, nextInt, nextU32, pickWeighted } from "../../core/rng.ts";
@@ -8,28 +7,7 @@ import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import type { CampaignState, EnemySnapshot, OpsCtx, Sortie } from "../state/types.ts";
 
-// SPEC-GAP：ScenarioDef 僅有 map id，UnitSpawn 無完整人物入口；附純資料快照並在 ctx.db 掛只讀 overlay。
-export type SortieScenario = ScenarioDef & { ops: { map: MapDef; persons: Record<string, PersonState>; personDefs: PersonDef[]; unitIds: string[] } };
-export function scenarioDB(db: ContentDB, scenario: SortieScenario): ContentDB {
-  const get = <K extends ContentKind>(kind: K, id: string): DefByKind[K] | undefined => {
-    if (kind === "map" && id === scenario.map) return scenario.ops.map as DefByKind[K];
-    if (kind === "person") {
-      const def = scenario.ops.personDefs.find(p => p.id === id);
-      if (def) return def as DefByKind[K];
-    }
-    return db.get(kind, id);
-  };
-  return { ...db, get, require<K extends ContentKind>(kind: K, id: string): DefByKind[K] {
-    const value = get(kind, id); if (!value) throw new Error(`missing ${kind}: ${id}`); return value;
-  }, all<K extends ContentKind>(kind: K): DefByKind[K][] {
-    const ids = new Set(db.ids(kind));
-    if (kind === "map") ids.add(scenario.map);
-    if (kind === "person") scenario.ops.personDefs.forEach(p => ids.add(p.id));
-    return [...ids].sort().map(id => get(kind, id)!);
-  }, ids(kind) { return this.all(kind).map(d => d.id); }, counts() {
-    const counts = db.counts(); counts.map = this.ids("map").length; counts.person = this.ids("person").length; return counts;
-  } };
-}
+export type SortieScenario = DynamicScenario & { ops: { map: MapDef; unitIds: string[] } };
 
 function inject(s: CampaignState, ctx: OpsCtx, person: PersonState, effectRef: EffectRef, source: string): void {
   const ref = typeof effectRef === "string" ? { effect: effectRef } : effectRef;
@@ -48,32 +26,7 @@ function inject(s: CampaignState, ctx: OpsCtx, person: PersonState, effectRef: E
     magnitude: evalNum(def.magnitude ?? 1, ev), stacks: 1, params, contribIds: ids });
 }
 
-function effective(person: PersonState, path: string, base: number): number {
-  const ev = { ref: objectRefs({ self: { attrs: person.attrsBase, pools: person.pools } }), hasTag: () => false };
-  const cs = person.contribs.filter(c => c.path === path).map(c => ({ ...c, n: evalNum(c.value, ev) }));
-  let n = base;
-  for (const c of cs) if (c.op === "set") n = c.n;
-  n += cs.filter(c => c.op === "add").reduce((v, c) => v + c.n, 0);
-  n *= cs.filter(c => c.op === "mul").reduce((v, c) => v * c.n, 1);
-  for (const c of cs) if (c.op === "min") n = Math.min(n, c.n); else if (c.op === "max") n = Math.max(n, c.n);
-  return n;
-}
-
-function personDefinition(ctx: OpsCtx, p: PersonState, id: string): PersonDef {
-  const def = structuredClone(ctx.db.require("person", p.def)); def.id = id;
-  // SPEC-GAP：sim 不接 PersonState；以暫時 Def 傳屬性／池貢獻，hooks、士氣狀態與意志仍待完整入口。
-  def.attrs = { ...p.attrsBase };
-  for (const c of p.contribs) if (c.path.startsWith("self.attrs.")) def.attrs[c.path.slice("self.attrs.".length)] ??= 0;
-  for (const attr of Object.keys(def.attrs).sort()) def.attrs[attr] = effective(p, `self.attrs.${attr}`, def.attrs[attr]!);
-  const ev = { ref: objectRefs({ self: { attrs: def.attrs, pools: p.pools } }), hasTag: (tag: string) => def.tags.includes(tag) };
-  for (const pool of def.pools) {
-    if (pool.max !== null) pool.max = effective(p, `self.pools.${pool.id}.max`, evalNum(pool.max, ev));
-    pool.regen = effective(p, `self.pools.${pool.id}.regen`, evalNum(pool.regen, ev));
-  }
-  return def;
-}
-
-export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): ScenarioDef {
+export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): SortieScenario {
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;
   const rift = s.rifts[sortie.rift ?? contract?.target.rift ?? ""];
   const riftDef = rift ? ctx.world.get("rift", rift.family) ?? ctx.world.all("rift").find(d => d.family === rift.family) : undefined;
@@ -117,7 +70,7 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
   }
   if ((snapshot.depth === "core" || encounter.anchorHere) && familyDef?.anchor) enemy.push({ monster: familyDef.anchor, at: "zone" });
   if (!enemy.length) throw new Error("empty encounter budget");
-  const persons: Record<string, PersonState> = {}, personDefs: PersonDef[] = [];
+  const persons: Record<string, PersonState> = {};
   const ordered = [...sortie.units].sort((a, b) => a.mech < b.mech ? -1 : 1);
   const player: UnitSpawn[] = ordered.map(unit => {
     const mech = s.mechs[unit.mech]!, frame = ctx.db.require("frame", mech.frame);
@@ -147,9 +100,8 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
         for (const c of p.contribs.slice(before)) c.value = { product: [c.value, mastery] };
       }
       // SPEC-GAP：trust 未定映射係數／效果 id，保留營運資料，不能臆造 contested 平衡值。
-      const defId = `ops:person/${sortie.id}-${pid}`;
-      persons[pid] = p; personDefs.push(personDefinition(ctx, p, defId));
-      spawn.persons!.push({ id: defId, seat: p.seat.role });
+      persons[pid] = p;
+      spawn.persons!.push({ id: pid, seat: p.seat.role });
     }
     return spawn;
   });
@@ -167,8 +119,7 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
   const scenario: SortieScenario = { id: `ops:scenario/${sortie.id}`, map: map.id, slots: {
     player: { faction: playerFaction, units: player }, enemy: { faction: enemyFaction.id, units: enemy } }, objectives,
     rounds, rules: { conventionalFactor: ctx.db.rules.constants.conventionalFactor ?? 0.1 }, seed: nextU32(s.rng),
-    ops: { map, persons, personDefs, unitIds: ordered.map(u => u.mech) } };
+    mapDef: map, personStates: persons, ops: { map, unitIds: ordered.map(u => u.mech) } };
   // SPEC-GAP：支援沒有 conventional-arms frame／能力內容；不憑空造可攻擊的船或砲台。
-  ctx.db = scenarioDB(ctx.db, scenario);
   return scenario;
 }

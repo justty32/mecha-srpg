@@ -18,7 +18,10 @@ export type Result = { ok: true; events: GameEvent[] } | { ok: false; rejection:
 export type Subject = { unit?: Id; person?: Id };
 export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
   frame?: Id; monster?: { species: Id; grade: Grade };
-  components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId }[];
+  components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId;
+    state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level">> }[];
+  parts?: Record<PartId, Pick<MechState["parts"][string], "layers" | "broken">>;
+  controlMode?: MechState["controlMode"]; effects?: MechState["effects"];
   pools?: Record<PoolId, number> };
 
 export function newRuntime(): RulesRuntime {
@@ -217,6 +220,21 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   for (const id of Object.keys(init.pools ?? {}).sort()) {
     if (u.pools[id]) u.pools[id]!.cur = init.pools![id]!;
     for (const seat of seats) if (person(ctx, seat.person).pools[id]) person(ctx, seat.person).pools[id]!.cur = init.pools![id]!;
+  }
+  // 現況優先於預設值與舊版 pools 捷徑，所有容器皆複製以免回寫呼叫端。
+  for (const [id, state] of Object.entries(init.parts ?? {})) {
+    if (!u.parts[id]) throw new Error(`缺少部位：${id}`);
+    Object.assign(u.parts[id]!, structuredClone(state));
+  }
+  if (init.controlMode !== undefined) u.controlMode = init.controlMode;
+  if (init.effects) u.effects = structuredClone(init.effects);
+  for (const entry of init.persons ?? []) {
+    if (entry.state) Object.assign(person(ctx, entry.id), structuredClone(entry.state));
+  }
+  // 匯入效果的流水號不能與戰鬥內新產生的效果／貢獻撞號。
+  for (const state of [u, ...(init.persons ?? []).map(p => person(ctx, p.id))]) {
+    for (const effect of state.effects) rt(ctx.s).nextUid = Math.max(rt(ctx.s).nextUid, effect.uid + 1);
+    for (const c of state.contribs) if (/^c\d+$/.test(c.id)) rt(ctx.s).nextContrib = Math.max(rt(ctx.s).nextContrib, Number(c.id.slice(1)) + 1);
   }
   return u;
 }

@@ -1,7 +1,6 @@
 import type { RunResult } from "../../sim/index.ts";
-import type { GameEvent } from "../../core/events.ts";
 import type { MechState, PersonState, PoolState } from "../../core/types-state.ts";
-import type { LayerDef, PoolDecl } from "../../core/types-def.ts";
+import type { PoolDecl } from "../../core/types-def.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import type { CampaignState, ComponentInstance, LootBundle, OpsCtx, Sortie } from "../state/types.ts";
 import { nextId } from "../state/ids.ts";
@@ -12,18 +11,8 @@ import { onBattleRift, nextSpring } from "../world/index.ts";
 import { registerDeath, rosterReturn } from "../crew/index.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
-// SPEC-GAP：core 只回 log hash/count；可選事件由呼叫端補上，run 僅補已成功執行的耗材指令。
-export type SortieBattleResult = BattleResult & { events?: Pick<GameEvent, "type" | "payload">[] };
+export type SortieBattleResult = BattleResult;
 
-function fullLayers(ctx: OpsCtx, before: MechState, part: string): LayerDef[] {
-  const body = ctx.db.require("bodyplan", ctx.db.require("frame", before.frame).bodyPlan);
-  const layers = structuredClone(body.parts.find(p => p.id === part)?.layers ?? []);
-  for (const key of Object.keys(before.parts).sort()) for (const slot of Object.keys(before.parts[key]!.components).sort()) {
-    const id = before.parts[key]!.components[slot]; if (!id) continue;
-    for (const add of ctx.db.require("component", id).layersAdd ?? []) if (add.part === part) layers.splice(add.insertAt, 0, structuredClone(add.layer));
-  }
-  return layers;
-}
 function cleanPool(pool: PoolState): PoolState {
   return { ...pool, max: Number.isFinite(pool.max) ? pool.max : Number.MAX_SAFE_INTEGER };
 }
@@ -34,43 +23,28 @@ function persistPools(before: Record<string, PoolState>, after: Record<string, P
     result[id] = cleanPool(after[id]!);
     const decay = decls.find(d => d.id === id)?.decayCurve;
     if (decay) result[id]!.cur = Math.max(0, evalNum(decay.baseline, ev));
-    if (id === "hp") result[id]!.cur = Math.max(0, before[id]!.cur - (after[id]!.max - after[id]!.cur));
   }
   return result;
 }
 function mechAfter(ctx: OpsCtx, before: MechState, after: MechState): MechState {
   const mech = structuredClone(after), frame = ctx.db.require("frame", before.frame);
   mech.id = before.id; mech.frame = before.frame; mech.owner = before.owner;
-  // SPEC-GAP：UnitInit 帶不進戰前層損傷，差分回寫不能把舊傷補滿。
-  for (const part of Object.keys(before.parts).sort()) {
-    const old = before.parts[part]!, next = mech.parts[part]; if (!next) { mech.parts[part] = structuredClone(old); continue; }
-    const full = fullLayers(ctx, before, part);
-    next.layers = old.layers.map((layer, i) => {
-      const hp = Math.max(0, layer.hp - ((full[i]?.hp ?? layer.hp) - (next.layers[i]?.hp ?? 0)));
-      return { hp, broken: hp === 0 };
-    });
-    next.broken = old.broken || next.layers.some((l, i) => l.hp === 0 && full[i]?.structural);
-  }
   const decls = [...frame.pools];
   for (const part of Object.keys(before.parts).sort()) for (const slot of Object.keys(before.parts[part]!.components).sort()) {
     const id = before.parts[part]!.components[slot]; if (id) decls.push(...ctx.db.require("component", id).pools);
   }
   mech.pools = persistPools(before.pools, after.pools, decls, frame.baseAttrs);
   mech.contribs = structuredClone(before.contribs);
-  mech.effects = [...structuredClone(before.effects), ...mech.effects.filter(e => !before.effects.some(old => old.effect === e.effect))];
   mech.cooldowns = {}; mech.sustained = [];
   return mech;
 }
 function personAfter(ctx: OpsCtx, before: PersonState, after: PersonState, xpGained: number): PersonState {
   const p = structuredClone(after), def = ctx.db.require("person", before.def);
   p.id = before.id; p.def = before.def;
-  // SPEC-GAP：人物同樣以滿值減戰果值計損傷；暫時 Def 不得覆蓋永久屬性、等級與意志。
+  // 戰鬥已承接現況，池與效果直接寫回，僅按內容宣告衰減戰鬥池。
   p.pools = persistPools(before.pools, after.pools, def.pools, before.attrsBase);
-  p.attrsBase = structuredClone(before.attrsBase); p.level = before.level;
   p.xp = Math.max(after.xp, before.xp + xpGained); // state 已有總 XP 時不再重加。
-  p.will = { ...structuredClone(before.will), resonance: { ...before.will.resonance, ...after.will.resonance }, burden: p.pools.burden?.cur ?? 0 };
-  p.contribs = [...structuredClone(before.contribs), ...p.contribs.filter(c => !before.contribs.some(old => old.id === c.id))];
-  p.effects = [...structuredClone(before.effects), ...p.effects.filter(e => !before.effects.some(old => old.effect === e.effect))];
+  p.will.burden = p.pools.burden?.cur ?? 0;
   return p;
 }
 function detachMech(s: CampaignState, id: string): void {
@@ -108,7 +82,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   const enemy = result.units.filter(u => !ownId(u.id));
   const personalIds = new Set(ordered.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)));
 
-  // 一、機體：活著／撤退差分寫回，古代死亡休眠，其餘殘骸與流失。
+  // 一、機體：活著／撤退現況寫回，古代死亡休眠，其餘殘骸與流失。
   for (const entry of [...result.units].sort((a, b) => a.id < b.id ? -1 : 1)) {
     const id = ownId(entry.id), before = id ? s.mechs[id] : undefined;
     if (before) {
@@ -169,11 +143,11 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
       if (stored < amount) stash(s, sortie, { components: [], materials: { [account]: amount - stored } });
     }
   }
-  // 四、契約：唯一出口只有最後狀態，將敵軍 dead 轉成有效死亡事件；加 sortie id 跨場去重。
+  // 四、契約：只認原始 UnitDied 事件，加 sortie id 跨場去重。
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;
   if (contract) {
-    const deaths = enemy.filter(u => u.status === "dead");
-    tallyHeads(contract, deaths.map(u => ({ type: "UnitDied", payload: { unit: `${sortie.id}/${u.id}` } })));
+    const deaths = (result.events ?? []).filter(e => e.type === "UnitDied" && enemy.some(u => u.id === e.payload.unit));
+    tallyHeads(contract, deaths.map(e => ({ ...e, payload: { ...e.payload, unit: `${sortie.id}/${e.payload.unit}` } })));
     // SPEC-GAP：部分目標進度未回傳，只有明示 partial 才付半額，失敗有擊殺不自動視為部分成功。
     settleContract(s, ctx, contract.id, result.winner === "player" ? "done" : result.reason === "partial" ? "partial" : "failed");
   }
@@ -198,8 +172,8 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
     } else if (result.winner !== "player") onBattleRift(s, ctx, rift.id, "lost");
   }
   // 六、聲望：契約 onComplete/onFail 已由 settleContract 套用；設施誤傷事件／幅度 core 未回傳，不臆扣。
-  // 七、耗材：只計成功 AbilityUsed（或 run 的成功 useAbility 指令），不因攜帶而扣除。
-  for (const event of (result as SortieBattleResult).events ?? []) {
+  // 七、耗材：只計原始 AbilityUsed 事件，不因攜帶而扣除。
+  for (const event of result.events ?? []) {
     if (event.type !== "AbilityUsed" || typeof event.payload.ability !== "string") continue;
     const unit = typeof event.payload.unit === "string" ? event.payload.unit : "";
     if (!ownId(unit)) continue;

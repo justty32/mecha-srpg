@@ -2,7 +2,7 @@ import type { ContentDB } from "../content/contentdb.ts";
 import type { Id } from "../core/ids.ts";
 import { cellKey } from "../core/ids.ts";
 import type { Cell, FactionSlot, MapDef, ScenarioDef } from "../core/types-def.ts";
-import type { BattleState, Command } from "../core/types-state.ts";
+import type { BattleState, Command, PersonState } from "../core/types-state.ts";
 import { createRng, nextInt } from "../core/rng.ts";
 import { hashLog } from "../core/eventlog.ts";
 import { createBattle, startBattle, currentActor, rt, battleResult } from "../rules/index.ts";
@@ -47,9 +47,11 @@ function mapCells(map: MapDef): NonNullable<BattleSetup["map"]["cells"]> {
   return cells;
 }
 
-export function scenarioToSetup(db: ContentDB, scenario: Id | ScenarioDef, seed: number, opts?: { rounds?: number }): SimSetup {
-  const sc = typeof scenario === "string" ? db.require("scenario", scenario) : scenario;
-  const map = db.require("map", sc.map), cells = mapCells(map), rng = createRng(seed);
+export type DynamicScenario = ScenarioDef & { mapDef?: MapDef; personStates?: Record<Id, PersonState> };
+
+export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, seed: number, opts?: { rounds?: number }): SimSetup {
+  const sc: DynamicScenario = typeof scenario === "string" ? db.require("scenario", scenario) : scenario;
+  const map = sc.mapDef ?? db.require("map", sc.map), cells = mapCells(map), rng = createRng(seed);
   const occupied = new Set<string>();
   const valid = (at: Cell): boolean => Number.isInteger(at.x) && Number.isInteger(at.y)
     && at.x >= 0 && at.y >= 0 && at.x < map.width && at.y < map.height;
@@ -91,7 +93,11 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | ScenarioDef, seed:
         if (!seat) throw new Error(`缺少 ${person.seat} 座位：${id}`);
         used.add(seat.id);
         // SPEC-GAP：同一人物 Def 可重複出場，實例以單位＋座位識別。
-        return { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
+        const state = sc.personStates?.[person.id];
+        return state ? { id: state.id, def: state.def, seat: seat.id,
+          state: structuredClone({ pools: state.pools, effects: state.effects, contribs: state.contribs,
+            morale: state.morale, will: state.will, attrsBase: state.attrsBase, xp: state.xp, level: state.level }) }
+          : { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
       });
       units.push({ id, owner: slot, pos, persons,
         ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade } } : { frame: spawn.mech! }) });
@@ -174,5 +180,7 @@ export function runBattle(opts: RunOptions): RunResult {
     stopped = "maxSteps";
   }
   if (rt(state).outcome) stopped = "outcome";
-  return { state, commands, rejected, stopped, result: battleResult({ db, s: state }), hash: hashLog(state.log) };
+  const result = battleResult({ db, s: state });
+  if (result) result.events = structuredClone(state.log.events);
+  return { state, commands, rejected, stopped, result, hash: hashLog(state.log) };
 }

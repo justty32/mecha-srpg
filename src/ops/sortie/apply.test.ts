@@ -5,16 +5,16 @@ import { instantiateMech } from "../content/instantiate.ts";
 import { checkLedger } from "../state/ledger.ts";
 import { fixture, result } from "./test-support.ts";
 
-test("alive 機甲以差分保留戰前損傷，不補滿", () => {
+test("alive 機甲與人物直接寫回已含舊傷的戰果", () => {
   const { s, ctx, sortie, mech, person } = fixture(), battle = result();
   const full = structuredClone(s.mechs[mech]!), part = Object.keys(full.parts).sort()[0]!;
   const max = full.parts[part]!.layers[0]!.hp;
   s.mechs[mech]!.parts[part]!.layers[0]!.hp = max - 7;
-  full.parts[part]!.layers[0]!.hp = max - 3;
+  full.parts[part]!.layers[0]!.hp = max - 10;
   battle.units.push({ id: mech, status: "alive", state: full });
   const p = structuredClone(s.roster.persons[person]!);
   s.roster.persons[person]!.pools.hp!.cur -= 4;
-  p.pools.hp!.cur -= 2;
+  p.pools.hp!.cur -= 6;
   battle.persons.push({ id: person, status: "alive", state: p, xpGained: 0 });
   applyBattleResult(s, ctx, sortie, battle);
   assert.equal(s.mechs[mech]!.parts[part]!.layers[0]!.hp, max - 10);
@@ -26,6 +26,7 @@ test("敵方 anchor dead 使裂縫 unanchored，契約同一單位只算一次",
   const anchor = instantiateMech(ctx.db, "anchor-unit", "frame/bio-nestmother"); anchor.owner = "enemy";
   const dead = { id: anchor.id, status: "dead" as const, state: anchor };
   battle.units.push(dead, structuredClone(dead));
+  battle.events = [0, 1].map(seq => ({ seq, round: 1, type: "UnitDied", payload: { unit: anchor.id } }));
   applyBattleResult(s, ctx, sortie, battle);
   assert.equal(s.rifts[sortie.rift!]!.phase, "unanchored");
   assert.equal(Object.values(contract.heads).reduce((a, b) => a + b, 0), 1);
