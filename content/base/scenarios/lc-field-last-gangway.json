@@ -1,0 +1,98 @@
+{
+  "id": "scenario/lc-field-last-gangway",
+  "name": "解纜之前",
+  "brief": "渡蝕港的繫纜還沒鬆開，碼頭上的鐮肢已經響成一片。獵團須撐過十八輪，等船離岸便撤；蟲群想吞掉留在岸上的機甲，沒有追進海面的打算。",
+  "map": "map/lc-field-homeward-quay",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern-guard",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/spitter-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 18
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 24,
+  "seed": 2108
+}

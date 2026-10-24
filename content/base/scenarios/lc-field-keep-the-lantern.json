@@ -1,0 +1,135 @@
+{
+  "id": "scenario/lc-field-keep-the-lantern",
+  "name": "餘燈未熄",
+  "brief": "城郊最後一座補給碑仍亮著，蟲群正沿斷街逼近。獵團須奪回補給碑並連守八輪，讓守軍搬走備矢。蟲群若佔住街口，這批補給就得放棄。",
+  "map": "map/lc-field-vigil-outskirts",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern-guard",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-burst-scale",
+            "left-weapon": "component/mx-singing-blade"
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/spitter-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 14,
+            "y": 12
+          },
+          {
+            "x": 15,
+            "y": 12
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 14,
+            "y": 12
+          },
+          {
+            "x": 15,
+            "y": 12
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 24,
+  "seed": 2108
+}

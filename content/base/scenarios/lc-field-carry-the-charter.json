@@ -1,0 +1,104 @@
+{
+  "id": "scenario/lc-field-carry-the-charter",
+  "name": "帶著盟書走",
+  "brief": "盟書封在領隊機的座艙裡，蝕水漫過泊舟長堤，追兵正截住西岸。帶領隊沿西岸越過斷牆缺口，向北方出口撤離，其餘機甲掩護。失去領隊就失去這場和談；追兵只要截下盟書便會收隊。",
+  "map": "map/lc-field-long-berth",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/moji-tern-guard",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/spitter-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/hound-mk2"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "reachExit",
+      "params": {
+        "unit": "player-0"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/hound-mk2"
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 24,
+  "seed": 2108
+}

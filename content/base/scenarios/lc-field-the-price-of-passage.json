@@ -1,0 +1,126 @@
+{
+  "id": "scenario/lc-field-the-price-of-passage",
+  "name": "過路的代價",
+  "brief": "兩支獵團為餘燈街的補給份額翻了臉。擊毀對方領隊的長槍，逼他們讓出街口；對手也盯著你的領隊。備矢有限，任何一方都不值得為這座碑陪葬。十八輪後對方就會運走補給，這份委託也隨之作廢。",
+  "map": "map/lc-field-vigil-outskirts",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern-guard",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-singing-blade",
+            "armor-mount": "component/mx-burst-scale"
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "right-weapon": "component/mx-singing-blade",
+            "left-weapon": "component/mx-rune-rifle"
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-singing-blade",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/longspear-v4",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/irina-sokolova",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/moji-tern",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern",
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/longspear-v4"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/moji-tern-guard"
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 18
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 24,
+  "seed": 2108
+}

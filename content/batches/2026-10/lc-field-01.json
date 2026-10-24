@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-field-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "地圖與情境：新戰場 3–4 張（各有中央目標地物）、必要時 0–2 種新地形、情境 5–8 個（守住／撤離／斬首／參戰型／人對人為主，少用全殲）；部署相距 ≥10、玩家 lose 條件、輪數 20–30",
  "author": {
   "agent": "codex",
@@ -73,5 +73,130 @@
   "required": 3,
   "file": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/mcp-log"
+ },
+ "files": [
+  "content/base/maps/lc-field-homeward-quay.json",
+  "content/base/maps/lc-field-last-vow-pass.json",
+  "content/base/maps/lc-field-long-berth.json",
+  "content/base/maps/lc-field-vigil-outskirts.json",
+  "content/base/scenarios/lc-field-break-the-standard.json",
+  "content/base/scenarios/lc-field-carry-the-charter.json",
+  "content/base/scenarios/lc-field-keep-the-lantern.json",
+  "content/base/scenarios/lc-field-last-gangway.json",
+  "content/base/scenarios/lc-field-the-price-of-passage.json"
+ ],
+ "ids": [
+  "map/lc-field-homeward-quay",
+  "map/lc-field-last-vow-pass",
+  "map/lc-field-long-berth",
+  "map/lc-field-vigil-outskirts",
+  "scenario/lc-field-break-the-standard",
+  "scenario/lc-field-carry-the-charter",
+  "scenario/lc-field-keep-the-lantern",
+  "scenario/lc-field-last-gangway",
+  "scenario/lc-field-the-price-of-passage"
+ ],
+ "summary": "地圖 4 張（餘燈碼頭、末誓山口、長泊岸、守夜城郊；MapDef 無 name 欄，地名存命名表與情境 brief）＋情境 5 個（守區 40%、存活 80%、撤離 80%、參戰斬首 40%、人對人 80%；平手與例外 0），全殲主目標 0；無新地形；MCP 3 場（1 手打）；閘門 0 違規、驗收一輪全綠",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "map/lc-field-vigil-outskirts",
+    "nameEn": "Vigil at the Last Light",
+    "meaning": "Vigil 取守夜意；城郊尚有一盞補給燈未熄。",
+    "nameZh": "餘燈街",
+    "method": "意譯"
+   },
+   {
+    "id": "map/lc-field-homeward-quay",
+    "nameEn": "Homeward Quay",
+    "meaning": "離港之前仍能回望家園的一段碼頭。",
+    "nameZh": "歸帆埠",
+    "method": "意譯"
+   },
+   {
+    "id": "map/lc-field-last-vow-pass",
+    "nameEn": "The Forsaken Vow",
+    "meaning": "山口見過失約的守軍；後來者要決定是否再守一次。",
+    "nameZh": "斷誓隘",
+    "method": "意譯"
+   },
+   {
+    "id": "map/lc-field-long-berth",
+    "nameEn": "The Long Berth",
+    "meaning": "泊位伸入遠岸，斷牆缺口與蝕水隔開登船路。",
+    "nameZh": "泊舟長堤",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/lc-field-keep-the-lantern",
+    "nameEn": "Keep the Vigil",
+    "meaning": "守住補給碑的光，爭取搬走備矢的時間。",
+    "nameZh": "餘燈未熄",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/lc-field-last-gangway",
+    "nameEn": "Before the Last Mooring Falls",
+    "meaning": "最後一道繫纜鬆開前，留在岸上的人仍須迎戰。",
+    "nameZh": "解纜之前",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/lc-field-carry-the-charter",
+    "nameEn": "Salvus Pactum",
+    "meaning": "借 salvus 的平安歸來與 pactum 的盟約意涵，帶盟書活著撤走。",
+    "nameZh": "帶著盟書走",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/lc-field-break-the-standard",
+    "nameEn": "Break the Standard",
+    "meaning": "擊倒指揮者如同折斷軍旗，使封鎖失去維繫。",
+    "nameZh": "隘口折旗",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/lc-field-the-price-of-passage",
+    "nameEn": "The Price of Passage",
+    "meaning": "補給與通行都有代價，這回索價的是另一支獵團。",
+    "nameZh": "過路的代價",
+    "method": "意譯"
+   }
+  ]
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:46:40",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T16:46:40",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
  }
 }

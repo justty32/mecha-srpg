@@ -1,0 +1,260 @@
+{
+  "id": "scenario/lc-field-break-the-standard",
+  "name": "隘口折旗",
+  "brief": "殘聯已向高原山口進軍，獵團受邀從側翼參戰。擊毀領頭的銀環指揮機，迫使封鎖隊放棄補給碑；盟軍會協同進攻。銀環若截住隘口，兩支部隊就得退回山下。十八輪內若未擊毀指揮機，敵方援軍便會封死山路。",
+  "map": "map/lc-field-last-vow-pass",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern-guard",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/adewale-balogun",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/altantsetseg-bolormaa",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/anjali-nair",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/arun-velan",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/selene-silverring-g2",
+          "at": "zone",
+          "persons": [
+            {
+              "id": "person/irina-sokolova",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/selene-silverring-g2"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/selene-silverring-g2"
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 12,
+            "y": 10
+          },
+          {
+            "x": 13,
+            "y": 10
+          },
+          {
+            "x": 14,
+            "y": 10
+          },
+          {
+            "x": 15,
+            "y": 10
+          },
+          {
+            "x": 12,
+            "y": 11
+          },
+          {
+            "x": 13,
+            "y": 11
+          },
+          {
+            "x": 14,
+            "y": 11
+          },
+          {
+            "x": 15,
+            "y": 11
+          },
+          {
+            "x": 12,
+            "y": 12
+          },
+          {
+            "x": 13,
+            "y": 12
+          },
+          {
+            "x": 14,
+            "y": 12
+          },
+          {
+            "x": 15,
+            "y": 12
+          },
+          {
+            "x": 12,
+            "y": 13
+          },
+          {
+            "x": 13,
+            "y": 13
+          },
+          {
+            "x": 14,
+            "y": 13
+          },
+          {
+            "x": 15,
+            "y": 13
+          },
+          {
+            "x": 12,
+            "y": 14
+          },
+          {
+            "x": 13,
+            "y": 14
+          },
+          {
+            "x": 14,
+            "y": 14
+          },
+          {
+            "x": 15,
+            "y": 14
+          }
+        ],
+        "rounds": 5
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 18
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 24,
+  "seed": 2108
+}
