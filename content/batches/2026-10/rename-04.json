@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-04",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -73,5 +73,105 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:03:46",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-04",
+  "round": 1,
+  "at": "2026-10-24T16:03:46",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/events/antarctic-shell.json",
+   "content/lore/events/bay-of-bengal-campaign.json",
+   "content/lore/events/busan-returned-seal.json",
+   "content/lore/events/chittagong-unbinding.json",
+   "content/lore/events/credit-accord.json",
+   "content/lore/events/dark-quay-surety.json",
+   "content/lore/events/dhaka-north-rift.json",
+   "content/lore/events/dhaka-unbinding.json",
+   "content/lore/events/equator-ports-accord.json",
+   "content/lore/events/first-hunting-bands.json",
+   "content/lore/events/first-registered-soul.json",
+   "content/lore/events/first-return-offensive.json",
+   "content/lore/events/first-tide.json",
+   "content/lore/events/fleshless-declaration.json",
+   "content/lore/events/forerunners-seal.json",
+   "content/lore/events/golmud-split.json",
+   "content/lore/events/green-line-purge.json",
+   "content/lore/events/gui-funeral.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/events/antarctic-shell.json",
+  "content/lore/events/bay-of-bengal-campaign.json",
+  "content/lore/events/busan-returned-seal.json",
+  "content/lore/events/chittagong-unbinding.json",
+  "content/lore/events/credit-accord.json",
+  "content/lore/events/dark-quay-surety.json",
+  "content/lore/events/dhaka-north-rift.json",
+  "content/lore/events/dhaka-unbinding.json",
+  "content/lore/events/equator-ports-accord.json",
+  "content/lore/events/first-hunting-bands.json",
+  "content/lore/events/first-registered-soul.json",
+  "content/lore/events/first-return-offensive.json",
+  "content/lore/events/first-tide.json",
+  "content/lore/events/fleshless-declaration.json",
+  "content/lore/events/forerunners-seal.json",
+  "content/lore/events/golmud-split.json",
+  "content/lore/events/green-line-purge.json",
+  "content/lore/events/gui-funeral.json"
+ ],
+ "ids": [
+  "event/antarctic-shell",
+  "event/bay-of-bengal-campaign",
+  "event/busan-returned-seal",
+  "event/chittagong-unbinding",
+  "event/credit-accord",
+  "event/dark-quay-surety",
+  "event/dhaka-north-rift",
+  "event/dhaka-unbinding",
+  "event/equator-ports-accord",
+  "event/first-hunting-bands",
+  "event/first-registered-soul",
+  "event/first-return-offensive",
+  "event/first-tide",
+  "event/fleshless-declaration",
+  "event/forerunners-seal",
+  "event/golmud-split",
+  "event/green-line-purge",
+  "event/gui-funeral"
+ ],
+ "summary": "lore 事件 18 檔換詞；閘門 0 違規、check／lore／typecheck／test 813 綠、黃金不變；殘留皆潮汐／獸甲本義",
+ "gateRejections": []
 }
