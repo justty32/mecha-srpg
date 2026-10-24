@@ -1,0 +1,87 @@
+{
+  "id": "event/restraint-night-knocks",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastWear"
+          },
+          "op": ">=",
+          "b": 50
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你被拘束架的撞擊聲叫醒，艙門上的鹽霜一片片落下。技師指著磨白的扣環，沒有說還能撐多久。柵後的影子每撞一次，值夜的人就把手往斷繫栓移近一點；誰也不把這當成牠在打招呼。",
+  "choices": [
+    {
+      "text": "記錄警訊交班提醒維護",
+      "effects": [
+        {
+          "flag": "restraint-knocks-noted",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添護板護住值夜位置",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -3,
+            "reason": "event-restraint-night-knocks"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "restraint-watch-shielded",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 3
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "id": "market/singapore",
+  "node": "node/singapore",
+  "lists": [
+    {
+      "kind": "component",
+      "items": [
+        {
+          "def": "component/soul-core-std",
+          "weight": 2,
+          "stockMax": 1,
+          "basePrice": 720
+        },
+        {
+          "def": "component/arc-emitter",
+          "weight": 2,
+          "stockMax": 2,
+          "basePrice": 660
+        },
+        {
+          "def": "component/composite-plate",
+          "weight": 3,
+          "stockMax": 2,
+          "basePrice": 450
+        }
+      ]
+    },
+    {
+      "kind": "fuel",
+      "items": [
+        {
+          "def": "stock:fuel",
+          "weight": 3,
+          "stockMax": 100,
+          "basePrice": 3
+        }
+      ]
+    },
+    {
+      "kind": "material",
+      "items": [
+        {
+          "def": "stock:scrap",
+          "weight": 1,
+          "stockMax": 20,
+          "basePrice": 12
+        }
+      ]
+    },
+    {
+      "kind": "ammo",
+      "items": [
+        {
+          "def": "ammo-30",
+          "weight": 3,
+          "stockMax": 100,
+          "basePrice": 3
+        }
+      ]
+    }
+  ],
+  "priceMods": [
+    {
+      "tag": "besieged",
+      "mult": 1.5
+    }
+  ],
+  "refreshOn": "quarter",
+  "buysBack": true
+}

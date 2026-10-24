@@ -1,0 +1,77 @@
+{
+  "id": "dialogue/kojo-mensah-last-tool",
+  "person": "person/kojo-mensah",
+  "name": "科喬・門薩",
+  "topics": [
+    {
+      "topic": "先找座艙",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-kojo-mensah-last-tool"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你把一件回收工具放到科喬面前。他沒問價，只翻過來看握柄上的刻字。",
+        "「鐵砧教我先挑值錢的。後來我改了：先找座艙。人若還在喘，價目表就閉嘴。」"
+      ],
+      "choices": [
+        {
+          "text": "陪他把刻字抄進返港簿。",
+          "effects": [
+            {
+              "flag": "dlg-kojo-mensah-last-tool"
+            }
+          ]
+        },
+        {
+          "text": "用團款託港口替工具尋親。",
+          "effects": [
+            {
+              "ledger": {
+                "account": "cash",
+                "delta": -120,
+                "reason": "event-kojo-mensah-last-tool"
+              }
+            },
+            {
+              "flag": "dlg-kojo-mensah-last-tool"
+            },
+            {
+              "mood": {
+                "person/kojo-mensah": 1
+              }
+            }
+          ],
+          "requires": {
+            "cmp": {
+              "a": {
+                "ref": "ledger.balances.cash"
+              },
+              "op": ">=",
+              "b": 120
+            }
+          }
+        }
+      ]
+    },
+    {
+      "topic": "先找座艙・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-kojo-mensah-last-tool"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你看見科喬在回收清單前加了一欄。他把筆遞給你。「有沒有找人。這欄，別空著。」"
+      ]
+    }
+  ]
+}

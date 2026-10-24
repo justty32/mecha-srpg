@@ -1,0 +1,60 @@
+{
+  "id": "contract/seal-anchor-watch",
+  "kind": "seal",
+  "issuerKinds": [
+    "guild",
+    "league",
+    "militia"
+  ],
+  "requiresRep": 0,
+  "gradeRange": [
+    "C",
+    "B",
+    "A"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 6
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        3600,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.35,
+  "deadlineDays": {
+    "ref": "calendar.daysToNextSpring"
+  },
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

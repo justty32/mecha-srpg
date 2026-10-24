@@ -1,0 +1,58 @@
+{
+  "id": "contract/defend-citywall",
+  "kind": "defend",
+  "issuerKinds": [
+    "guild",
+    "city",
+    "militia"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        3400,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2
+}

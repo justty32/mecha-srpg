@@ -1,0 +1,64 @@
+{
+  "id": "dialogue/ilse-brandt-return-knot",
+  "person": "person/ilse-brandt",
+  "name": "伊爾瑟・布蘭特",
+  "topics": [
+    {
+      "topic": "返航結",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-ilse-brandt-return-knot"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你看見伊爾瑟把救生繩纏在掌上，結打得像握緊的拳。「上去時誰都能喊不退。」",
+        "她把繩頭交給你。「難的是撤的時候，還肯回頭接人。」"
+      ],
+      "choices": [
+        {
+          "text": "照她的手勢把結打好。",
+          "effects": [
+            {
+              "flag": "dlg-ilse-brandt-return-knot"
+            }
+          ]
+        },
+        {
+          "text": "請她多教一班返航拖帶。",
+          "effects": [
+            {
+              "flag": "dlg-ilse-brandt-return-knot"
+            },
+            {
+              "techHours": 2
+            },
+            {
+              "mood": {
+                "person/ilse-brandt": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "返航結・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-ilse-brandt-return-knot"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你試著解開返航結，伊爾瑟按住繩頭。「別解。這個留到有人拉你回來。」"
+      ]
+    }
+  ]
+}

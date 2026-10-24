@@ -1,0 +1,64 @@
+{
+  "id": "dialogue/glove-copy-address",
+  "person": "person/glove",
+  "name": "手套",
+  "topics": [
+    {
+      "topic": "錯置的港名",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-glove-copy-address"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你報出候鳥號的名字。魂核平直地應答：「靜海市保全泊位，登錄完成。」",
+        "你再報一次。它停頓，重念：「候鳥號。前項為複製紀錄殘留，請以本次為準。」"
+      ],
+      "choices": [
+        {
+          "text": "照本次登錄，把船名念給它聽。",
+          "effects": [
+            {
+              "flag": "dlg-glove-copy-address"
+            }
+          ]
+        },
+        {
+          "text": "請它反覆核對舊紀錄與現泊位。",
+          "effects": [
+            {
+              "flag": "dlg-glove-copy-address"
+            },
+            {
+              "techHours": 2
+            },
+            {
+              "mood": {
+                "person/glove": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "錯置的港名・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-glove-copy-address"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你問目前登錄地。手套回答：「候鳥號。舊泊位保留於來源紀錄，不作導航依據。」"
+      ]
+    }
+  ]
+}

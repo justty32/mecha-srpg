@@ -1,0 +1,57 @@
+{
+  "id": "contract/escort-sealed-convoy",
+  "kind": "escort",
+  "issuerKinds": [
+    "company",
+    "guild"
+  ],
+  "requiresRep": 0,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 6
+      }
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "role": "convoy"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3200
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 10,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

@@ -1,0 +1,67 @@
+{
+  "id": "contract/reclaim-blight-line",
+  "kind": "reclaim",
+  "issuerKinds": [
+    "guild",
+    "city",
+    "league"
+  ],
+  "requiresRep": 5,
+  "gradeRange": [
+    "C",
+    "B",
+    "A"
+  ],
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "tags": [
+          "kaiju"
+        ]
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        3200,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 12,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    },
+    {
+      "ledger": {
+        "account": "cash",
+        "delta": 240,
+        "reason": "contract-reclaim-blight-line-bonus"
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

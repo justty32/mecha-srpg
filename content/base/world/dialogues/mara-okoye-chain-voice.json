@@ -1,0 +1,38 @@
+{
+  "id": "dialogue/mara-okoye-chain-voice",
+  "person": "person/mara-okoye",
+  "name": "瑪拉・奧可耶",
+  "topics": [
+    {
+      "topic": "鎖鏈喊疼",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastWear"
+          },
+          "op": ">=",
+          "b": 50
+        }
+      },
+      "lines": [
+        "你聽見拘束架深處的細響。瑪拉攔住艙門。「牠還沒吼，是鎖鏈先喊了。」",
+        "她把工具纏在腕上。「去叫人。別讓修理單長成訃聞。」"
+      ]
+    },
+    {
+      "topic": "空架也要擦",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你看著瑪拉擦空拘束架。「現在擦，是除鏽。」她把髒布丟給你。「等住了東西再擦，就叫拿手換鐵。」"
+      ]
+    }
+  ]
+}

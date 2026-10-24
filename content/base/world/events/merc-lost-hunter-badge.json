@@ -1,0 +1,107 @@
+{
+  "id": "event/merc-lost-hunter-badge",
+  "where": "route",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-merc-lost-hunter-badge"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你從候鳥號的繫索上取下一枚獵牌，鹽已把名字吃掉，鹽鷗獵團的鳥徽卻還在。下面的野地沒有呼救。隨船的舊收購單寫著：有人專買死人的牌，好讓活人換個乾淨名字。",
+  "choices": [
+    {
+      "text": "封存獵牌等人認領",
+      "effects": [
+        {
+          "flag": "hunter-badge-kept",
+          "value": 1
+        },
+        {
+          "flag": "seen-merc-lost-hunter-badge",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "出錢託信使送還",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-merc-lost-hunter-badge"
+          }
+        },
+        {
+          "flag": "hunter-badge-sent",
+          "value": 1
+        },
+        {
+          "flag": "seen-merc-lost-hunter-badge",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      },
+      "next": "event/merc-badge-receipt"
+    },
+    {
+      "text": "賣給換名的掮客",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": 160,
+            "reason": "event-merc-lost-hunter-badge"
+          }
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "flag": "hunter-badge-sold",
+          "value": 1
+        },
+        {
+          "flag": "seen-merc-lost-hunter-badge",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

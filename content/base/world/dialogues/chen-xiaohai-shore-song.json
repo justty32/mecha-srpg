@@ -1,0 +1,37 @@
+{
+  "id": "dialogue/chen-xiaohai-shore-song",
+  "person": "person/chen-xiaohai",
+  "name": "陳小海",
+  "topics": [
+    {
+      "topic": "不唱完的船歌",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "person.mood"
+          },
+          "op": "<",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你在艙梯聽見小海哼歌，唱到岸邊就停。「後面都是地名。」他搓著袖口。「現在唱了，像在叫死人起床。」"
+      ]
+    },
+    {
+      "topic": "船歌的尾巴",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "person.mood"
+          },
+          "op": ">=",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你跟著他哼到岸邊。小海拿腳跟打拍子。「後面忘了也行。等咱們回去，現編。」"
+      ]
+    }
+  ]
+}

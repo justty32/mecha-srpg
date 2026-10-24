@@ -1,0 +1,52 @@
+{
+  "id": "event/ship-locker-debt",
+  "where": "ship",
+  "when": {},
+  "weight": 2,
+  "text": "你從信封裡抽出一張畫歪的船，背面寫著「等海安靜就回來」。收信處是一間替獵團照看遺屬的港口小屋。欠條倒寫得清清楚楚：賒的是屋頂，不是酒。技師把玩笑收回嘴裡，替你壓平紙角。",
+  "choices": [
+    {
+      "text": "託天網轉交原信",
+      "effects": [
+        {
+          "flag": "ship-letter-sent",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "連補屋頂的錢一起寄",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -240,
+            "reason": "event-ship-locker-debt"
+          }
+        },
+        {
+          "flag": "ship-letter-sent",
+          "value": 1
+        },
+        {
+          "flag": "ship-roof-paid",
+          "value": 1
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 240
+        }
+      }
+    }
+  ]
+}

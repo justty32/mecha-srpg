@@ -1,0 +1,61 @@
+{
+  "id": "event/restraint-empty-rack",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你走進空拘束艙，垂下的鐵鏈安靜得像一場還沒響的喪鐘。有人提議把吊床搬進來，說這裡終於不打呼。技師把斷繫栓擦亮：「可以睡，先想好醒來時想看見什麼。」你聞到的只有鐵鏽和潮氣。",
+  "choices": [
+    {
+      "text": "維持空艙讓大家散去",
+      "effects": [
+        {
+          "flag": "restraint-empty-visited",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "開個清點工班趕修繕",
+      "effects": [
+        {
+          "techHours": 3
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        }
+      ]
+    }
+  ]
+}

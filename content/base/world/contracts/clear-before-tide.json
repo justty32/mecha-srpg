@@ -1,0 +1,62 @@
+{
+  "id": "contract/clear-before-tide",
+  "kind": "clear",
+  "issuerKinds": [
+    "guild",
+    "city",
+    "league"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "tags": [
+          "kaiju"
+        ]
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        2800,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.3,
+  "deadlineDays": {
+    "ref": "calendar.daysToNextSpring"
+  },
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

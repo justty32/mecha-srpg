@@ -1,0 +1,78 @@
+{
+  "id": "event/crew-seat-dispute",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.crew-card-dispute"
+          },
+          "op": ">",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在機庫又聽見那場牌局的舊帳。這回爭的是誰先試坐新整理的座艙，輸贏被說成駕駛本事，旁人也開始站邊。技師拿布蓋住椅子：「它現在最厲害的能力，是讓沒上戰場的人先打起來。」",
+  "choices": [
+    {
+      "text": "先記爭議照原排班走",
+      "effects": [
+        {
+          "flag": "crew-seat-deferred",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添練習護具安排輪流試坐",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-crew-seat-dispute"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "crew-seat-rotation",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

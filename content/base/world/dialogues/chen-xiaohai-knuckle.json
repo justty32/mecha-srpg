@@ -1,0 +1,77 @@
+{
+  "id": "dialogue/chen-xiaohai-knuckle",
+  "person": "person/chen-xiaohai",
+  "name": "陳小海",
+  "topics": [
+    {
+      "topic": "鐵門外的手",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-chen-xiaohai-knuckle"
+              },
+              "op": "==",
+              "b": 0
+            }
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "restraint.beastCount"
+              },
+              "op": ">",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你看見小海把手收進袖口。拘束門內傳來刮擦聲，他離門又遠了些。",
+        "「牠安靜，不是答應我們。」他看著你。「團長，別把手伸進去。」"
+      ],
+      "choices": [
+        {
+          "text": "站在門外陪他聽。",
+          "effects": [
+            {
+              "flag": "dlg-chen-xiaohai-knuckle"
+            }
+          ]
+        },
+        {
+          "text": "請他多留一班，整理撞門紀錄。",
+          "effects": [
+            {
+              "flag": "dlg-chen-xiaohai-knuckle"
+            },
+            {
+              "techHours": 2
+            },
+            {
+              "mood": {
+                "person/chen-xiaohai": -1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "鐵門外的手・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-chen-xiaohai-knuckle"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你走到拘束艙門外，小海先看你站的位置。「對，就那裡。讓牠的牙碰不到你。」"
+      ]
+    }
+  ]
+}

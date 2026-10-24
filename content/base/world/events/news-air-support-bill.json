@@ -1,0 +1,113 @@
+{
+  "id": "event/news-air-support-bill",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-air-support-bill"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你走過契約板，達卡紡織公會與孟加拉灣第七哨的人正各扯一角空援帳單。昨日還共用壕溝，今日已扣住彼此的補給。兩邊都把筆遞給你。「簽個見證，別讓死人再欠一次。」",
+  "choices": [
+    {
+      "text": "只見證帳單原件",
+      "effects": [
+        {
+          "flag": "air-bill-witness",
+          "value": 1
+        },
+        {
+          "flag": "seen-news-air-support-bill",
+          "value": 1
+        }
+      ],
+      "next": "event/news-air-support-truce"
+    },
+    {
+      "text": "替公會墊付並站台",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -180,
+            "reason": "event-news-air-support-bill"
+          }
+        },
+        {
+          "flag": "sided-weavers",
+          "value": 1
+        },
+        {
+          "flag": "seen-news-air-support-bill",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 180
+        }
+      },
+      "next": "event/news-air-support-truce"
+    },
+    {
+      "text": "替哨兵墊付並站台",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -180,
+            "reason": "event-news-air-support-bill"
+          }
+        },
+        {
+          "flag": "sided-seventh-post",
+          "value": 1
+        },
+        {
+          "flag": "seen-news-air-support-bill",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 180
+        }
+      },
+      "next": "event/news-air-support-truce"
+    }
+  ]
+}

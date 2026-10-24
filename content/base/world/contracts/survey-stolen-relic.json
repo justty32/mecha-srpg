@@ -1,0 +1,58 @@
+{
+  "id": "contract/survey-stolen-relic",
+  "kind": "survey",
+  "issuerKinds": [
+    "guild",
+    "scholars",
+    "company"
+  ],
+  "requiresRep": 10,
+  "gradeRange": [
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {}
+    },
+    {
+      "kind": "reachExit",
+      "params": {
+        "role": "relic-carrier"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 4600
+  },
+  "advanceMax": 0.3,
+  "deadlineDays": 12,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    },
+    {
+      "flag": "stolen-relic-contract-cleared"
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

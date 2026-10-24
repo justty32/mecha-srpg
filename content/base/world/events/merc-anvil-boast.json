@@ -1,0 +1,63 @@
+{
+  "id": "event/merc-anvil-boast",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你走進酒館，鐵砧獵團正吹噓活捕了高階裂獸，拘束索比酒館還粗。有人追問戰利品，他們拿出一塊甲片；有人追問船，他們叫大家喝酒。你聞到酒氣，也聞到新漆遮不住的血味。",
+  "choices": [
+    {
+      "text": "聽完笑話就離席",
+      "effects": [
+        {
+          "flag": "anvil-boast-heard",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "買酒換拘束傷口圖",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -110,
+            "reason": "event-merc-anvil-boast"
+          }
+        },
+        {
+          "techHours": 3
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 110
+        }
+      }
+    }
+  ]
+}

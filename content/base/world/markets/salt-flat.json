@@ -1,0 +1,60 @@
+{
+  "id": "market/salt-flat",
+  "node": "node/salt-flat",
+  "lists": [
+    {
+      "kind": "component",
+      "items": [
+        {
+          "def": "component/autocannon-30",
+          "weight": 3,
+          "stockMax": 1,
+          "basePrice": 240
+        },
+        {
+          "def": "component/composite-plate",
+          "weight": 2,
+          "stockMax": 1,
+          "basePrice": 250
+        },
+        {
+          "def": "component/reaper-scythe-graft",
+          "weight": 1,
+          "stockMax": 1,
+          "basePrice": 330
+        }
+      ]
+    },
+    {
+      "kind": "material",
+      "items": [
+        {
+          "def": "stock:scrap",
+          "weight": 4,
+          "stockMax": 48,
+          "basePrice": 7
+        },
+        {
+          "def": "stock:flesh",
+          "weight": 3,
+          "stockMax": 18,
+          "basePrice": 12
+        },
+        {
+          "def": "stock:chitin",
+          "weight": 2,
+          "stockMax": 16,
+          "basePrice": 10
+        }
+      ]
+    }
+  ],
+  "priceMods": [
+    {
+      "tag": "besieged",
+      "mult": 1.5
+    }
+  ],
+  "refreshOn": "quarter",
+  "buysBack": true
+}

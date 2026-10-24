@@ -1,0 +1,59 @@
+{
+  "id": "market/old-array",
+  "node": "node/old-array",
+  "lists": [
+    {
+      "kind": "component",
+      "items": [
+        {
+          "def": "component/shell-shard-lens",
+          "weight": 3,
+          "stockMax": 1,
+          "basePrice": 690
+        },
+        {
+          "def": "component/composite-plate",
+          "weight": 1,
+          "stockMax": 1,
+          "basePrice": 360
+        }
+      ]
+    },
+    {
+      "kind": "material",
+      "items": [
+        {
+          "def": "stock:chitin",
+          "weight": 3,
+          "stockMax": 20,
+          "basePrice": 14
+        },
+        {
+          "def": "stock:scrap",
+          "weight": 1,
+          "stockMax": 12,
+          "basePrice": 9
+        }
+      ]
+    },
+    {
+      "kind": "fuel",
+      "items": [
+        {
+          "def": "stock:fuel",
+          "weight": 1,
+          "stockMax": 32,
+          "basePrice": 3
+        }
+      ]
+    }
+  ],
+  "priceMods": [
+    {
+      "tag": "besieged",
+      "mult": 1.5
+    }
+  ],
+  "refreshOn": "quarter",
+  "buysBack": true
+}

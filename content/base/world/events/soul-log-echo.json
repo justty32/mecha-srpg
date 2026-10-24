@@ -1,0 +1,44 @@
+{
+  "id": "event/soul-log-echo",
+  "where": "ship",
+  "when": {},
+  "weight": 2,
+  "text": "你看著技師重讀那段回航紀錄。每逢「門別關」，魂核架下的空椅就輕輕一震；停止重讀，震動便消失。沒有人坐上去。一般機魂不會這樣留話，野魂的殘跡卻可能藏在任何一次舊刻裡。",
+  "choices": [
+    {
+      "text": "把異常記入封存簿",
+      "effects": [
+        {
+          "flag": "soul-echo-sealed",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添隔片後再追查來處",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-soul-log-echo"
+          }
+        },
+        {
+          "flag": "soul-echo-screened",
+          "value": 1
+        }
+      ],
+      "next": "event/soul-log-address",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

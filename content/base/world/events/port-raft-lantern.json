@@ -1,0 +1,94 @@
+{
+  "id": "event/port-raft-lantern",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.refugee-aid-received"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      {
+        "tag": "coastal"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-raft-lantern"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在沿岸碼頭看見同樣的布鳥，綁在一盞收容所的燈上。看燈的人把曾受候鳥號接濟的筏隊消息遞給你：人上岸了，床位還欠著。名單背面，已經有人開始畫下一艘筏。",
+  "choices": [
+    {
+      "text": "把平安消息帶回船",
+      "effects": [
+        {
+          "flag": "refugee-landfall-known",
+          "value": 1
+        },
+        {
+          "flag": "seen-port-raft-lantern",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "補上欠著的床位錢",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -180,
+            "reason": "event-port-raft-lantern"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-raft-lantern",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 180
+        }
+      }
+    }
+  ]
+}

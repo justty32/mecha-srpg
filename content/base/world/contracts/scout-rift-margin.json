@@ -1,0 +1,50 @@
+{
+  "id": "contract/scout-rift-margin",
+  "kind": "scout",
+  "issuerKinds": [
+    "guild",
+    "league",
+    "scholars"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 3
+      }
+    }
+  ],
+  "pay": {
+    "base": 1800
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 5,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4
+}

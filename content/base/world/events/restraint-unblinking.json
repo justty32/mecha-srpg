@@ -1,0 +1,74 @@
+{
+  "id": "event/restraint-unblinking",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": ">",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你發現新輪值的人抱著杯子坐到天亮。他說拘束艙裡的獸一直盯著他，閉眼也看得見。廚子兼醫官沒有笑，只把椅子轉向門口：「牠想掙出去，你想活著。別替牠的眼神編好聽的理由。」",
+  "choices": [
+    {
+      "text": "陪輪值者把經過說完",
+      "effects": [
+        {
+          "flag": "restraint-stare-noted",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添遮板擋住休息處視線",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-restraint-unblinking"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

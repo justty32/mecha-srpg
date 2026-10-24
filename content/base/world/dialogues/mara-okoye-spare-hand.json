@@ -1,0 +1,77 @@
+{
+  "id": "dialogue/mara-okoye-spare-hand",
+  "person": "person/mara-okoye",
+  "name": "瑪拉・奧可耶",
+  "topics": [
+    {
+      "topic": "替你空出的手",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-mara-okoye-spare-hand"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你捧著裂開的工具匣站在工檯邊。瑪拉把匣子拖過去，先摸你的指節。",
+        "「匣子能補。你這隻手，別逼我拿廢料試。」"
+      ],
+      "choices": [
+        {
+          "text": "把匣子放下，讓她看你的手。",
+          "effects": [
+            {
+              "flag": "dlg-mara-okoye-spare-hand"
+            }
+          ]
+        },
+        {
+          "text": "用團款補齊工檯上的護具。",
+          "effects": [
+            {
+              "ledger": {
+                "account": "cash",
+                "delta": -100,
+                "reason": "event-mara-okoye-spare-hand"
+              }
+            },
+            {
+              "flag": "dlg-mara-okoye-spare-hand"
+            },
+            {
+              "mood": {
+                "person/mara-okoye": 1
+              }
+            }
+          ],
+          "requires": {
+            "cmp": {
+              "a": {
+                "ref": "ledger.balances.cash"
+              },
+              "op": ">=",
+              "b": 100
+            }
+          }
+        }
+      ]
+    },
+    {
+      "topic": "替你空出的手・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-mara-okoye-spare-hand"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你再走近工檯，瑪拉先指指護具，再指你的手。「兩樣都帶著，才准說開工。」"
+      ]
+    }
+  ]
+}

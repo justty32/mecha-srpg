@@ -1,0 +1,77 @@
+{
+  "id": "dialogue/irina-sokolova-toolbox",
+  "person": "person/irina-sokolova",
+  "name": "伊琳娜・索科洛娃",
+  "topics": [
+    {
+      "topic": "贖回的工具箱",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-irina-sokolova-toolbox"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你看見伊琳娜拿布包著扳手，動作比擦獵牌還仔細。「測試場退下來，箱子還押在渡輪那邊。」",
+        "「他們說是公司的。我握久了，連凹痕都像我的手。」"
+      ],
+      "choices": [
+        {
+          "text": "替她在乾燥的架上留個位置。",
+          "effects": [
+            {
+              "flag": "dlg-irina-sokolova-toolbox"
+            }
+          ]
+        },
+        {
+          "text": "用團款付工具箱的寄存欠款。",
+          "effects": [
+            {
+              "ledger": {
+                "account": "cash",
+                "delta": -160,
+                "reason": "event-irina-sokolova-toolbox"
+              }
+            },
+            {
+              "flag": "dlg-irina-sokolova-toolbox"
+            },
+            {
+              "mood": {
+                "person/irina-sokolova": 1
+              }
+            }
+          ],
+          "requires": {
+            "cmp": {
+              "a": {
+                "ref": "ledger.balances.cash"
+              },
+              "op": ">=",
+              "b": 160
+            }
+          }
+        }
+      ]
+    },
+    {
+      "topic": "贖回的工具箱・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-irina-sokolova-toolbox"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你看見那塊布折在架邊。伊琳娜拿起扳手。「月面教我怎麼落地。這艘船最好教我怎麼留下。」"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "event/merc-empty-berth-toast",
+  "where": "route",
+  "when": {},
+  "weight": 2,
+  "text": "你在天網上聽見鹽鷗獵團舉杯。有人唸錯死者的凶名，沒有人糾正。候鳥號的杯沿也輕輕碰在一起，船底拖著長長的雲影。技師等祝酒結束，才把一張待修清單翻過來。",
+  "choices": [
+    {
+      "text": "安靜聽完這杯酒",
+      "effects": [
+        {
+          "flag": "salt-gull-toast-heard",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "散席趕完待修清單",
+      "effects": [
+        {
+          "techHours": 4
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        }
+      ]
+    }
+  ]
+}

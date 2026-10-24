@@ -1,185 +1,317 @@
 {
   "id": "templates/default",
   "entries": {
+    "CampaignStarted": {
+      "kind": "info",
+      "text": "候鳥號解開纜繩。老桂的船，現在是你的了。"
+    },
+    "CampaignEnd": {
+      "kind": "warn",
+      "text": "最後一盞艙燈熄了。候鳥號的名字從殘聯名冊上劃掉。"
+    },
     "DayStart": {
       "kind": "info",
-      "text": "DayStart。"
+      "text": "第 {day} 天，潮月第 {dom} 日。氣囊在晨風裡鼓起來。"
     },
     "DaySummary": {
       "kind": "info",
-      "text": "DaySummary。"
+      "text": "日結：帳上 {cash} 幣，船上 {persons} 人，拘束艙 {beasts} 隻。"
     },
     "RiftPhase": {
-      "kind": "info",
-      "text": "RiftPhase。"
+      "kind": "warn",
+      "text": "天網傳來潮訊：一道裂縫的潮相翻了一頁。"
     },
     "NodeBlighted": {
-      "kind": "info",
-      "text": "NodeBlighted。"
+      "kind": "warn",
+      "text": "{node.name}被蝕線吞進去了，地貌開始長出裏側的顏色。"
     },
     "NodeReclaimed": {
       "kind": "info",
-      "text": "NodeReclaimed。"
+      "text": "{node.name}的蝕線退了一區，有人在廢墟上插回第一面旗。"
+    },
+    "CityLost": {
+      "kind": "blood",
+      "text": "{node.name}失守。城牆上的燈，一盞一盞熄了。"
+    },
+    "NodeTransferred": {
+      "kind": "warn",
+      "text": "{node.name}換了旗子；碼頭上的人還在數自己的貨。"
     },
     "Arrived": {
       "kind": "info",
-      "text": "Arrived。"
+      "text": "候鳥號下錨{node.name}，纜繩甩上碼頭。"
+    },
+    "Sailed": {
+      "kind": "info",
+      "text": "候鳥號離開{node.name}，船頭轉向{to.name}，預計 {days} 天。"
+    },
+    "TravelBlocked": {
+      "kind": "warn",
+      "text": "往{to.name}的航路被蝕霧截斷，船只能懸在{node.name}上空。"
+    },
+    "FuelUsed": {
+      "kind": "info",
+      "text": "浮芯吞下 {amount} 份燃料，船身輕輕一沉又浮起。"
+    },
+    "DockFee": {
+      "kind": "money",
+      "text": "泊在{node.name}，港務官收走泊位費，順手蓋了個戳。"
     },
     "Encounter": {
-      "kind": "info",
-      "text": "Encounter。"
+      "kind": "warn",
+      "text": "{node.name}前方的蝕霧裡有東西在動——警報把所有人叫上甲板。"
     },
     "EventOffered": {
       "kind": "info",
-      "text": "EventOffered。"
+      "text": "有件事等你拍板。"
     },
     "Chosen": {
       "kind": "info",
-      "text": "Chosen。"
+      "text": "你做了決定，船上的人照做。"
+    },
+    "JobStarted": {
+      "kind": "info",
+      "text": "技師捲起袖子開工，材料先從帳上劃掉。"
     },
     "JobDone": {
       "kind": "info",
-      "text": "JobDone。"
+      "text": "機庫裡的焊光熄了：一件工作完成，技師把工具掛回架上。"
     },
-    "Molted": {
-      "kind": "info",
-      "text": "Molted。"
-    },
-    "Brooded": {
-      "kind": "info",
-      "text": "Brooded。"
-    },
-    "Mutated": {
-      "kind": "info",
-      "text": "Mutated。"
-    },
-    "Accompanied": {
-      "kind": "info",
-      "text": "Accompanied。"
-    },
-    "NodeMastered": {
-      "kind": "info",
-      "text": "NodeMastered。"
-    },
-    "WagePaid": {
-      "kind": "money",
-      "text": "WagePaid。"
-    },
-    "WageOwed": {
-      "kind": "money",
-      "text": "WageOwed。"
-    },
-    "InterestPosted": {
-      "kind": "money",
-      "text": "InterestPosted。"
-    },
-    "Posted": {
-      "kind": "money",
-      "text": "{account} 變動 {delta}。"
-    },
-    "Resupplied": {
-      "kind": "money",
-      "text": "{mech} 的 {pool} 補了 {rounds} 發，花費 {cost} 幣。"
-    },
-    "ContractOffered": {
-      "kind": "info",
-      "text": "ContractOffered。"
-    },
-    "ContractAccepted": {
-      "kind": "info",
-      "text": "ContractAccepted。"
-    },
-    "ContractDone": {
-      "kind": "info",
-      "text": "ContractDone。"
-    },
-    "ContractFailed": {
-      "kind": "info",
-      "text": "ContractFailed。"
-    },
-    "ContractCancelled": {
-      "kind": "info",
-      "text": "ContractCancelled。"
-    },
-    "ContractExpired": {
-      "kind": "info",
-      "text": "ContractExpired。"
-    },
-    "Hired": {
-      "kind": "info",
-      "text": "Hired。"
-    },
-    "Left": {
-      "kind": "info",
-      "text": "Left。"
-    },
-    "Died": {
-      "kind": "info",
-      "text": "Died。"
-    },
-    "BattleResolved": {
-      "kind": "info",
-      "text": "BattleResolved。"
-    },
-    "Woken": {
-      "kind": "info",
-      "text": "Woken。"
-    },
-    "Named": {
-      "kind": "info",
-      "text": "機甲 {mech} 新增一個稱號。"
-    },
-    "CampaignEnd": {
-      "kind": "info",
-      "text": "CampaignEnd。"
-    },
-    "LostMech": {
-      "kind": "info",
-      "text": "LostMech。"
-    },
-    "CampaignStarted": {
-      "kind": "info",
-      "text": "候鳥號的新航程開始。"
-    },
-    "OpsEffectApplied": {
-      "kind": "info",
-      "text": "OpsEffectApplied。"
+    "GraftRejected": {
+      "kind": "blood",
+      "text": "嫁接的肉拒絕了{mech}，縫線一夜全開。"
     },
     "WearWarning": {
       "kind": "warn",
-      "text": "拘束器磨損已到警戒線。"
+      "text": "{mech}的拘束器磨到 {wear}，扣環上的漆已經白了。"
     },
     "BrokeLoose": {
+      "kind": "blood",
+      "text": "{mech}掙脫了！拘束艙的鐵鍊甩在艙壁上，像一聲吼砲。"
+    },
+    "Suppressed": {
       "kind": "warn",
-      "text": "怪獸掙脫拘束，必須立刻處置。"
+      "text": "技師把{mech}硬壓回拘束架上，手背上多了一道齒痕。"
     },
     "Sustained": {
       "kind": "info",
-      "text": "本潮月的族別維持已完成。"
+      "text": "{mech}這個潮月的維持做完了；牠安靜下來，但眼睛沒閉上。"
+    },
+    "Devoured": {
+      "kind": "blood",
+      "text": "{mech}吞下 {amount} 份屍料，骨頭碎裂的聲音傳遍船艙。"
     },
     "Stiffened": {
-      "kind": "info",
-      "text": "活性耗盡，機體僵死成整屍。"
+      "kind": "blood",
+      "text": "{mech}的活性耗盡，僵成一具整屍。拘束艙忽然很安靜。"
     },
     "Mounted": {
       "kind": "info",
-      "text": "屍體改裝完成。"
+      "text": "屍體改裝完成：{mech}的神經接上了機械，殼底下不再有誰在看你。"
     },
     "MyceliumOvergrown": {
       "kind": "warn",
-      "text": "菌絲蔓延，修剪工時增加。"
-    },
-    "Suppressed": {
-      "kind": "info",
-      "text": "技師硬壓住了掙脫的機體。"
-    },
-    "Devoured": {
-      "kind": "info",
-      "text": "投入的屍體已被吞噬。"
+      "text": "菌房又長厚了一層（共 {layers} 層），再不修剪就要長進通風管。"
     },
     "MoltStarted": {
+      "kind": "warn",
+      "text": "{mech}開始蛻皮，舊殼裂開，拘束器扣不住新長出來的東西。"
+    },
+    "Molted": {
+      "kind": "blood",
+      "text": "{mech}褪下舊殼，新皮還在滲著源潮的光。"
+    },
+    "Brooded": {
+      "kind": "blood",
+      "text": "拘束艙裡多了一道呼吸：{mech}生了。"
+    },
+    "Mutated": {
+      "kind": "blood",
+      "text": "{mech}的輪廓變了，像是裏側在牠身上重新落筆。"
+    },
+    "Accompanied": {
+      "kind": "soul",
+      "text": "{by.name}陪{soul.name}坐了一個時段。魂核的光比平常穩一點。"
+    },
+    "NodeMastered": {
+      "kind": "soul",
+      "text": "{soul.name}把一道術式練熟了——這次不是照本宣科。"
+    },
+    "SoulNodeOpened": {
+      "kind": "soul",
+      "text": "{soul.name}的魂核刻下一道新術式。會了，還沒熟。"
+    },
+    "Withering": {
+      "kind": "soul",
+      "text": "{person.name}離殼太久，那具殼在機庫裡慢慢暗下去。"
+    },
+    "Woken": {
+      "kind": "soul",
+      "text": "大潮之夜，殼醒了。它看了{by.name}很久，然後認了。"
+    },
+    "Named": {
+      "kind": "soul",
+      "text": "{by.name}叫它「{name}」。"
+    },
+    "ResearchDone": {
       "kind": "info",
-      "text": "蛻皮開始，拘束裝置失效。"
+      "text": "鍛研完成：{research.name}。圖紙釘上了機庫的牆。"
+    },
+    "WagePaid": {
+      "kind": "money",
+      "text": "{person.name}薪水入帳 {amount} 幣。"
+    },
+    "WageOwed": {
+      "kind": "warn",
+      "text": "{person.name}還欠著 {amount} 幣薪水；酒艙裡的話越來越少。"
+    },
+    "SoulRent": {
+      "kind": "money",
+      "text": "{person.name}的魂核租金照付，塞勒涅準時得像潮汐。"
+    },
+    "InterestPosted": {
+      "kind": "money",
+      "text": "塞勒涅的債息滾進帳本：{amount} 幣。手套說它不急。"
+    },
+    "Posted": {
+      "kind": "money",
+      "text": "帳本記下一筆：{delta}。"
+    },
+    "OpsEffectApplied": {
+      "kind": "money",
+      "text": "一筆計畫外的帳落了下來。"
+    },
+    "Resupplied": {
+      "kind": "money",
+      "text": "機庫替{mech}補了 {rounds} 矢，帳上扣 {cost} 幣。"
+    },
+    "ContractOffered": {
+      "kind": "info",
+      "text": "艦橋終端亮起：{node.name}掛出一份新契約。"
+    },
+    "ContractAccepted": {
+      "kind": "money",
+      "text": "你在契約上按了指印。殘聯的章蓋得很用力。"
+    },
+    "ContractStage": {
+      "kind": "info",
+      "text": "契約進入下一段，委託人換了新的指令。"
+    },
+    "ContractDone": {
+      "kind": "money",
+      "text": "契約結清，酬金入帳。終端說：「合作愉快。」"
+    },
+    "ContractFailed": {
+      "kind": "warn",
+      "text": "契約失敗。終端沒有多說一句，只把評等往下調了一格。"
+    },
+    "ContractCancelled": {
+      "kind": "warn",
+      "text": "你撕毀了一份契約；委託人會記得。"
+    },
+    "ContractExpired": {
+      "kind": "warn",
+      "text": "一份契約過期了，終端上的字自己褪掉。"
+    },
+    "Hired": {
+      "kind": "info",
+      "text": "{person.name}把行李拖上舷梯，在名冊上簽了名。"
+    },
+    "Left": {
+      "kind": "warn",
+      "text": "{person.name}帶走了行李，沒回頭。"
+    },
+    "Levelled": {
+      "kind": "info",
+      "text": "{person.name}又活過一場，手更穩了（第 {level} 級）。"
+    },
+    "Died": {
+      "kind": "blood",
+      "text": "{person.name}的名字移到了名冊最後一頁。"
+    },
+    "Talked": {
+      "kind": "info",
+      "text": "你和{person.name}聊了幾句。"
+    },
+    "Assigned": {
+      "kind": "info",
+      "text": "{person.name}換了崗位。"
+    },
+    "BattleResolved": {
+      "kind": "blood",
+      "text": "戰鬥在第 {rounds} 回合落幕，硝煙和源潮的光一起散去。"
+    },
+    "LostMech": {
+      "kind": "blood",
+      "text": "{mech}沒有回來。"
+    },
+    "LoadRequested": {
+      "kind": "info",
+      "text": "你翻開舊航海日誌。"
+    },
+    "WorldAction": {
+      "kind": "info",
+      "text": "天網上又多了幾則勢力動向。"
+    },
+    "OperationStarted": {
+      "kind": "warn",
+      "text": "{node.name}一帶，有勢力的部隊開拔了——傭兵們開始打聽誰在付錢。"
+    },
+    "OperationPhase": {
+      "kind": "info",
+      "text": "遠方的一場作戰換了階段。"
+    },
+    "OperationEngaged": {
+      "kind": "warn",
+      "text": "前線交火，作戰推進到 {progress}。"
+    },
+    "RelationChanged": {
+      "kind": "info",
+      "text": "勢力之間的關係變了，酒館裡的話題跟著換了。"
+    },
+    "TreatySigned": {
+      "kind": "info",
+      "text": "兩個勢力簽了約，天網上一片祝酒詞。"
+    },
+    "TreatyBroken": {
+      "kind": "warn",
+      "text": "一紙盟約被撕了。下一場戰爭的價碼已經在碼頭流傳。"
+    },
+    "TreatyExpired": {
+      "kind": "info",
+      "text": "一紙盟約到期，雙方都沒人提續約。"
+    },
+    "WarDeclared": {
+      "kind": "blood",
+      "text": "宣戰了。天網上的星哨一顆顆轉向同一個方向。"
+    },
+    "ShellSeized": {
+      "kind": "warn",
+      "text": "一具殼被人奪走了——殼學會的人在罵，塞勒涅沒說話。"
+    },
+    "TechLeaked": {
+      "kind": "info",
+      "text": "某個型號的圖紙被公刻上天網，從今天起誰都能摹。"
+    },
+    "SaveRequested": {
+      "kind": "info",
+      "text": "你把今天寫進航海日誌，墨跡還沒乾。"
+    },
+    "OperationResolved": {
+      "kind": "info",
+      "text": "遠方一場作戰收兵，打了 {days} 天；天網上有人在算戰功。"
+    },
+    "OperationFailed": {
+      "kind": "warn",
+      "text": "一場作戰潰了，{days} 天的推進一夜退回原點。"
+    },
+    "OperationAborted": {
+      "kind": "info",
+      "text": "一場作戰半途撤了，部隊默默拔營。"
+    },
+    "ContractNegotiated": {
+      "kind": "money",
+      "text": "你在條款上又磨了一輪，委託人的臉色變了一點。"
     }
   }
 }

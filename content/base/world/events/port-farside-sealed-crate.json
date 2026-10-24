@@ -1,0 +1,71 @@
+{
+  "id": "event/port-farside-sealed-crate",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "coastal"
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭遇見「背面」的熟面孔，密封艙型錄壓著野魂的價單。他說某獵團的魂曾替駕整場，連逃跑都不肯；這種稀罕到一輩子遇不上幾回的事，被他算進每顆魂核的價。箱裡只傳出制式問候。",
+  "choices": [
+    {
+      "text": "記下價單先不接貨",
+      "effects": [
+        {
+          "flag": "farside-prices-known",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "付錢拓下密封艙刻紋",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -190,
+            "reason": "event-port-farside-sealed-crate"
+          }
+        },
+        {
+          "techHours": 4
+        },
+        {
+          "rep": {
+            "faction-ops/selene-whitegloves": -1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 190
+        }
+      }
+    }
+  ]
+}

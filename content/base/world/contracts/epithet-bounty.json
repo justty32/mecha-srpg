@@ -1,0 +1,71 @@
+{
+  "id": "contract/epithet-bounty",
+  "kind": "clear",
+  "issuerKinds": [
+    "guild",
+    "company",
+    "league"
+  ],
+  "requiresRep": 35,
+  "gradeRange": [
+    "A",
+    "S"
+  ],
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "tags": [
+          "kaiju"
+        ]
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "tags": [
+          "epithet"
+        ]
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        7200,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.25,
+  "deadlineDays": 14,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    },
+    {
+      "flag": "epithet-bounty-contract-cleared"
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2
+}

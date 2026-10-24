@@ -1,0 +1,63 @@
+{
+  "id": "event/route-tide-storm",
+  "where": "route",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你眼前的航標忽然全向上漂，源潮風暴把候鳥號推離雲道，又吐回舊航標旁。浮芯在艙底亮得像一輪月。技師用靴子壓住亂飛的圖紙：「船回來了，魂還在路上，別急著開工。」",
+  "choices": [
+    {
+      "text": "扶正航圖等光退去",
+      "effects": [
+        {
+          "flag": "tide-storm-marked",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "拆廢料架收集潮紋",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -3,
+            "reason": "event-route-tide-storm"
+          }
+        },
+        {
+          "techHours": 6
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 3
+        }
+      }
+    }
+  ]
+}

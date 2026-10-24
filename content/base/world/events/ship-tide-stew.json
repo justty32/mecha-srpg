@@ -1,0 +1,74 @@
+{
+  "id": "event/ship-tide-stew",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.ship-child-story"
+          },
+          "op": ">",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你掀開鍋蓋，廚子兼醫官端出「潮汐燉菜」：菜葉像蝕線，油花像裂縫。他還記得那個把空碗當行李的孩子，於是宣布今晚不准拿飯打賭。有人問這算醫囑還是菜單；他把兩張紙翻過來，背面是同一張欠條。",
+  "choices": [
+    {
+      "text": "照常分飯聽完菜名",
+      "effects": [
+        {
+          "flag": "ship-stew-served",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添香料讓菜配得上名字",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -70,
+            "reason": "event-ship-tide-stew"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 70
+        }
+      }
+    }
+  ]
+}

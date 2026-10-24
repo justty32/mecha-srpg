@@ -1,0 +1,77 @@
+{
+  "id": "dialogue/yusuf-demir-exit-map",
+  "person": "person/yusuf-demir",
+  "name": "優素福・德米爾",
+  "topics": [
+    {
+      "topic": "寫在背面的出口",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-yusuf-demir-exit-map"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你翻開優素福的野外筆記，殼紋背面全是退路。「導師說我不像來找真相的。」",
+        "他揉著額角，把紙扶正。「真相若不肯留門，我就先替大家畫一扇。」"
+      ],
+      "choices": [
+        {
+          "text": "讓他把筆記合上休息。",
+          "effects": [
+            {
+              "flag": "dlg-yusuf-demir-exit-map"
+            }
+          ]
+        },
+        {
+          "text": "用團款添置耐潮紙與遮光布。",
+          "effects": [
+            {
+              "ledger": {
+                "account": "cash",
+                "delta": -80,
+                "reason": "event-yusuf-demir-exit-map"
+              }
+            },
+            {
+              "flag": "dlg-yusuf-demir-exit-map"
+            },
+            {
+              "mood": {
+                "person/yusuf-demir": 1
+              }
+            }
+          ],
+          "requires": {
+            "cmp": {
+              "a": {
+                "ref": "ledger.balances.cash"
+              },
+              "op": ">=",
+              "b": 80
+            }
+          }
+        }
+      ]
+    },
+    {
+      "topic": "寫在背面的出口・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-yusuf-demir-exit-map"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你把筆記還給優素福。他先摸紙邊，再看你。「出口也抄一份給你。別只讓我知道。」"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "id": "event/ship-letter-receipt",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.ship-letter-sent"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-ship-letter-receipt"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你收到港口小屋的回信，封面畫著和前任置物櫃裡一樣的長明燈。信裡沒有問他什麼時候回來，只說孩子們終於知道那張船畫是寄給誰的。廚子把信放到酒艙牆上，避開潮斑，問今晚要不要留盞燈。",
+  "choices": [
+    {
+      "text": "把回信貼好留燈到交班",
+      "effects": [
+        {
+          "flag": "ship-letter-remembered",
+          "value": 1
+        },
+        {
+          "flag": "seen-ship-letter-receipt",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "添些乾糧隨覆信寄回",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-ship-letter-receipt"
+          }
+        },
+        {
+          "flag": "ship-letter-remembered",
+          "value": 1
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-ship-letter-receipt",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

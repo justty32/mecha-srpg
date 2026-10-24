@@ -1,0 +1,49 @@
+{
+  "id": "event/ship-stowaway-berth",
+  "where": "ship",
+  "when": {},
+  "weight": 2,
+  "text": "你把空碗放上桌，孩子仍站在門邊，不肯讓背後露給任何人。廚子兼醫官說可以借他乾燥的角落，卻不肯替你答應下一趟航程。候鳥號會飛，並不表示每個上船的人都該跟著去打仗。",
+  "choices": [
+    {
+      "text": "陪他等港口尋親員",
+      "effects": [
+        {
+          "flag": "ship-child-referred",
+          "value": 1
+        }
+      ],
+      "next": "event/ship-stowaway-shore"
+    },
+    {
+      "text": "買張毯子留宿等親人",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -80,
+            "reason": "event-ship-stowaway-berth"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "ship-child-sheltered",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 80
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "id": "dialogue/salim-haddad-closed-mouth",
+  "person": "person/salim-haddad",
+  "name": "薩利姆・哈達德",
+  "topics": [
+    {
+      "topic": "沒有出口的禱詞",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-salim-haddad-closed-mouth"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你聽見薩利姆念到半截便咬住的禱詞。「以前我替他們看門。有顆魂核在裡面求饒。」",
+        "他看向你。「會求饒的機魂很罕見。他們說那更該砸。我把門打開了。」"
+      ],
+      "choices": [
+        {
+          "text": "讓他自己把這句話說完。",
+          "effects": [
+            {
+              "flag": "dlg-salim-haddad-closed-mouth"
+            }
+          ]
+        },
+        {
+          "text": "告訴他這裡不把求饒當罪。",
+          "effects": [
+            {
+              "flag": "dlg-salim-haddad-closed-mouth"
+            },
+            {
+              "mood": {
+                "person/salim-haddad": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "沒有出口的禱詞・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-salim-haddad-closed-mouth"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你經過時，薩利姆把禱詞嚥回去。「不用替我找新的。先讓我把舊的忘掉。」"
+      ]
+    }
+  ]
+}

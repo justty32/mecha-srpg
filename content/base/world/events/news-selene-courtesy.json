@@ -1,0 +1,80 @@
+{
+  "id": "event/news-selene-courtesy",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你收到塞勒涅白手套的例行通話，問候、型錄、償還意願，連停頓都和上次相同。新摹機的殼甲亮得像從未有人死過。對方說這是關懷，帳房把「關懷」寫在一張空白收據上，等你填價。",
+  "choices": [
+    {
+      "text": "確認收到本期型錄",
+      "effects": [
+        {
+          "flag": "selene-catalog-received",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "付諮詢費維持往來",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-selene-courtesy"
+          }
+        },
+        {
+          "rep": {
+            "faction-ops/selene-whitegloves": 2
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    },
+    {
+      "text": "把催款聲當笑話播放",
+      "effects": [
+        {
+          "rep": {
+            "faction-ops/selene-whitegloves": -2
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ]
+    }
+  ]
+}

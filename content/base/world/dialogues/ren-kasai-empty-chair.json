@@ -1,0 +1,61 @@
+{
+  "id": "dialogue/ren-kasai-empty-chair",
+  "person": "person/ren-kasai",
+  "name": "葛西 蓮",
+  "topics": [
+    {
+      "topic": "空椅子的名字",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-ren-kasai-empty-chair"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "lines": [
+        "你把濕外套搭上空椅。蓮伸手攔住你。「留著。等回港再收。」",
+        "「他若回不來呢？」你問。蓮盯著椅背。「那就輪到我們把名字帶回來。」"
+      ],
+      "choices": [
+        {
+          "text": "把外套掛回自己身後。",
+          "effects": [
+            {
+              "flag": "dlg-ren-kasai-empty-chair"
+            }
+          ]
+        },
+        {
+          "text": "請他陪你核對返航名冊。",
+          "effects": [
+            {
+              "flag": "dlg-ren-kasai-empty-chair"
+            },
+            {
+              "mood": {
+                "person/ren-kasai": 1
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "topic": "空椅子的名字・後話",
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.dlg-ren-kasai-empty-chair"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      "lines": [
+        "你經過那張空椅，椅背擦得很乾淨。蓮把返航名冊合上。「還沒到收椅子的時候。」"
+      ]
+    }
+  ]
+}

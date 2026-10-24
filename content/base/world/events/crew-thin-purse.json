@@ -1,0 +1,91 @@
+{
+  "id": "event/crew-thin-purse",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": "<=",
+          "b": 600
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你把帳本搬到酒艙，船員們看著薄薄的錢袋，沒有人先碰杯子。「下次欠薪，能不能先告訴我們？」有人問。另一個人把獵牌推回你面前：「我還沒說要走。我只是想知道，留在船上的人值多少。」",
+  "choices": [
+    {
+      "text": "攤開帳目承認手頭緊",
+      "effects": [
+        {
+          "flag": "crew-cash-explained",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "自掏慰勞金先穩人心",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -120,
+            "reason": "event-crew-thin-purse"
+          }
+        },
+        {
+          "mood": {
+            "all": 2
+          }
+        },
+        {
+          "flag": "crew-cash-comfort",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 120
+        }
+      }
+    },
+    {
+      "text": "用額外工班撐住修繕",
+      "effects": [
+        {
+          "techHours": 4
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        }
+      ]
+    }
+  ]
+}

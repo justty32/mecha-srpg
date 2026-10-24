@@ -1,0 +1,67 @@
+{
+  "id": "event/route-winged-maw",
+  "where": "route",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你聽見船底傳來刮擦，會飛的裂獸正追著候鳥號咬，翅上拖著雨幕。船尾吼砲慢慢轉向，牠卻盯住氣囊上的破補丁。舵手把船帶進雲影，問你要保住舊鐵皮，還是讓那張嘴先忙別的。",
+  "choices": [
+    {
+      "text": "沿雲影避開牠的嘴",
+      "effects": [
+        {
+          "flag": "winged-maw-sighted",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "拋廢料引牠偏頭取甲",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-route-winged-maw"
+          }
+        },
+        {
+          "ledger": {
+            "account": "stock:chitin",
+            "delta": 2,
+            "reason": "event-route-winged-maw"
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

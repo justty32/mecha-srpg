@@ -1,0 +1,44 @@
+{
+  "id": "event/news-air-support-truce",
+  "where": "node",
+  "when": {},
+  "weight": 2,
+  "text": "你看著雙方把槍口壓回桌下。達卡紡織公會願意先放修理布，孟加拉灣第七哨答應讓傷員通行；空援的舊帳照吵。信使掏出募款碗，碗底寫著「停火不含晚飯」。",
+  "choices": [
+    {
+      "text": "收好臨時停火抄件",
+      "effects": [
+        {
+          "flag": "air-truce-recorded",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "付掉信使的晚飯",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -90,
+            "reason": "event-news-air-support-truce"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 90
+        }
+      }
+    }
+  ]
+}

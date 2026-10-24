@@ -1,0 +1,83 @@
+{
+  "id": "event/ruin-coordinate-sale",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-ruin-coordinate-sale"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在雨棚下遇見殼學會的測繪員。他把殼的座標藏在濕透的袖口，另一邊街上，塞勒涅白手套正在逐攤問價。「他們買的是封口，」他說，「你買的是入口。」紙背的刻痕還在發亮。",
+  "choices": [
+    {
+      "text": "只看公開的拓本",
+      "effects": [
+        {
+          "flag": "shell-rubbing-seen",
+          "value": 1
+        },
+        {
+          "flag": "seen-ruin-coordinate-sale",
+          "value": 1
+        }
+      ],
+      "next": "event/ruin-empty-shell-rubbing"
+    },
+    {
+      "text": "買下藏起的座標",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -240,
+            "reason": "event-ruin-coordinate-sale"
+          }
+        },
+        {
+          "flag": "shell-coordinates",
+          "value": 1
+        },
+        {
+          "flag": "seen-ruin-coordinate-sale",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 240
+        }
+      },
+      "next": "event/ruin-empty-shell-rubbing"
+    }
+  ]
+}

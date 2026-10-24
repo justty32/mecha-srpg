@@ -1,0 +1,69 @@
+{
+  "id": "event/ship-helium-leak",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你走過氣囊下方，聽見細長的嘶聲，像候鳥號在替帳本嘆氣。技師已把鬆脫的邊縫夾住，手上還捏著補片。「也可以全船一起憋氣。」廚子說。你看著他；他把補片接過去，表示醫官不推薦剛才的療法。",
+  "choices": [
+    {
+      "text": "先記下夾住的邊縫",
+      "effects": [
+        {
+          "flag": "ship-seam-marked",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "拿廢料壓好補片",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-ship-helium-leak"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "ship-seam-patched",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "id": "event/restraint-broken-chain",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": ">",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你踩到一截斷鏈，另一端還掛在拘束艙的外側護門上。獸仍被主拘束器壓著，卻正朝這個聲音偏頭。技師用粉筆圈住斷口：「這次只是門鏈。」他把「這次」說得很輕，所有人都聽見了。",
+  "choices": [
+    {
+      "text": "封住外側走道並登記",
+      "effects": [
+        {
+          "flag": "restraint-door-cordoned",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "換好外門鏈恢復通行",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -3,
+            "reason": "event-restraint-broken-chain"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "restraint-door-chain-replaced",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 3
+        }
+      }
+    }
+  ]
+}

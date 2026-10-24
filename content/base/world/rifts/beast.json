@@ -1,0 +1,58 @@
+{
+  "id": "rift/beast",
+  "family": "beast",
+  "anchor": "monster/cliffjaw-red-eye",
+  "vanguard": [
+    "species/tidewolf",
+    "species/hound"
+  ],
+  "monsters": [
+    "monster/tidewolf-d",
+    "monster/tidewolf-c",
+    "monster/hound-c",
+    "monster/tidewolf-b",
+    "monster/bulwark-b",
+    "monster/cliffjaw-red-eye"
+  ],
+  "spreadPerTide": {
+    "sum": [
+      1,
+      {
+        "product": [
+          0.5,
+          {
+            "ref": "rift.anchorAge"
+          }
+        ]
+      }
+    ]
+  },
+  "selfClose": false,
+  "tether": false,
+  "gradeByWidth": {
+    "D": [
+      "D"
+    ],
+    "C": [
+      "D",
+      "C"
+    ],
+    "B": [
+      "D",
+      "C",
+      "B"
+    ],
+    "A": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ],
+    "S": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ]
+  }
+}

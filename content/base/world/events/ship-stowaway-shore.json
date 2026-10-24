@@ -1,0 +1,48 @@
+{
+  "id": "event/ship-stowaway-shore",
+  "where": "ship",
+  "when": {},
+  "weight": 2,
+  "text": "你在舷梯邊看著港口尋親員接過那隻空碗。孩子把餅屑還給廚子，像交還一筆船債。廚子把手藏到身後。岸上的燈照不到蝕線，至少照得到今晚睡覺的門；你得決定還要留下什麼。",
+  "choices": [
+    {
+      "text": "留下候鳥號的聯絡處",
+      "effects": [
+        {
+          "flag": "ship-child-ashore",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "替臨時住處添些被褥",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-ship-stowaway-shore"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "ship-child-ashore",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

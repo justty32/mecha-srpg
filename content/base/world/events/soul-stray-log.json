@@ -1,0 +1,83 @@
+{
+  "id": "event/soul-stray-log",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-soul-stray-log"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在租賃魂核的例行抄錄裡看見一段陌生的回航紀錄。航線穿過早已淪陷的燈塔，末尾只剩「門別關」。終端照常念完待命條款，沒有語氣。技師指著空白的登錄欄：這段痕跡不屬於這份複本。",
+  "choices": [
+    {
+      "text": "封存異常紀錄待查",
+      "effects": [
+        {
+          "flag": "soul-stray-record",
+          "value": 1
+        },
+        {
+          "flag": "seen-soul-stray-log",
+          "value": 1
+        }
+      ],
+      "next": "event/soul-log-echo"
+    },
+    {
+      "text": "買份舊航圖交叉核對",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-soul-stray-log"
+          }
+        },
+        {
+          "flag": "soul-stray-record",
+          "value": 1
+        },
+        {
+          "flag": "seen-soul-stray-log",
+          "value": 1
+        }
+      ],
+      "next": "event/soul-log-address",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "id": "contract/join-faction-front",
+  "kind": "defend",
+  "issuerKinds": [
+    "guild",
+    "company",
+    "league"
+  ],
+  "requiresRep": 10,
+  "gradeRange": [
+    "C",
+    "B",
+    "A"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 6
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        4200,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    },
+    "perHead": 320,
+    "bonus": [
+      {
+        "cond": {
+          "cmp": {
+            "a": {
+              "ref": "ship.hull.cur"
+            },
+            "op": ">=",
+            "b": 60
+          }
+        },
+        "amount": 600
+      }
+    ]
+  },
+  "advanceMax": 0.5,
+  "deadlineDays": 14,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3,
+  "stages": [
+    {
+      "objectives": [
+        {
+          "kind": "hold",
+          "params": {
+            "rounds": 3
+          }
+        }
+      ],
+      "days": 4,
+      "effects": [
+        {
+          "flag": "frontline-mustered"
+        }
+      ]
+    },
+    {
+      "objectives": [
+        {
+          "kind": "eliminate",
+          "params": {}
+        }
+      ],
+      "days": 5,
+      "effects": [
+        {
+          "flag": "frontline-breach-cleared"
+        }
+      ]
+    },
+    {
+      "objectives": [
+        {
+          "kind": "hold",
+          "params": {
+            "rounds": 4
+          }
+        }
+      ],
+      "days": 5,
+      "effects": [
+        {
+          "flag": "frontline-position-held"
+        }
+      ]
+    }
+  ]
+}

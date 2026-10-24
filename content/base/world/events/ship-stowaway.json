@@ -1,0 +1,88 @@
+{
+  "id": "event/ship-stowaway",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-ship-stowaway"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你掀開貨艙的防水布，裡頭有個孩子抱著空碗。他說自己是壓艙貨，不領薪水。廚子兼醫官蹲下來，先查他有沒有傷，再問壓艙貨為什麼會偷餅。孩子看著艙門：「岸上沒有我的位置。」",
+  "choices": [
+    {
+      "text": "先讓孩子把話說完",
+      "effects": [
+        {
+          "flag": "ship-child-story",
+          "value": 1
+        },
+        {
+          "flag": "seen-ship-stowaway",
+          "value": 1
+        }
+      ],
+      "next": "event/ship-stowaway-berth"
+    },
+    {
+      "text": "付錢託港口尋親",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -120,
+            "reason": "event-ship-stowaway"
+          }
+        },
+        {
+          "flag": "ship-child-story",
+          "value": 1
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-ship-stowaway",
+          "value": 1
+        }
+      ],
+      "next": "event/ship-stowaway-shore",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 120
+        }
+      }
+    }
+  ]
+}

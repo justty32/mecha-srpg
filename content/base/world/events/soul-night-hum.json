@@ -1,0 +1,78 @@
+{
+  "id": "event/soul-night-hum",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.soul-stray-record"
+          },
+          "op": ">",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你值夜時又聽見魂核低鳴，節奏與封存的回航紀錄相同。終端卻只顯示例行待命，連停頓都照著租賃條款走。值班的人問是不是它在唱歌。你翻開異常簿，把這個說法記在問號後面。",
+  "choices": [
+    {
+      "text": "記下低鳴等天亮再說",
+      "effects": [
+        {
+          "flag": "soul-hum-recorded",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "買隔音襯讓值班者睡好",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -90,
+            "reason": "event-soul-night-hum"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "soul-hum-screened",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 90
+        }
+      }
+    }
+  ]
+}

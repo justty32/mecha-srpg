@@ -1,0 +1,52 @@
+{
+  "id": "contract/smuggle-moonbound",
+  "kind": "smuggle",
+  "issuerKinds": [
+    "company",
+    "guild"
+  ],
+  "requiresRep": 15,
+  "gradeRange": [
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 5
+      }
+    }
+  ],
+  "pay": {
+    "base": 5200
+  },
+  "advanceMax": 0.5,
+  "deadlineDays": 10,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    },
+    {
+      "flag": "moonbound-smuggling-contract-cleared"
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2
+}

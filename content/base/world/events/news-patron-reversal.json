@@ -1,0 +1,91 @@
+{
+  "id": "event/news-patron-reversal",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "any": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.sided-weavers"
+              },
+              "op": ">",
+              "b": 0
+            }
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.sided-seventh-post"
+              },
+              "op": ">",
+              "b": 0
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你收到達卡紡織公會與孟加拉灣第七哨聯署的新通告：兩邊又合兵清剿了。上次替誰說話的獵團，這次都得證明自己沒有偏心。信尾附著同一張空援帳單，連茶漬都沒換位置。",
+  "choices": [
+    {
+      "text": "存檔等正式委託",
+      "effects": [
+        {
+          "flag": "air-alliance-noted",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "捐修理布換句好話",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-news-patron-reversal"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "air-alliance-sponsor",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

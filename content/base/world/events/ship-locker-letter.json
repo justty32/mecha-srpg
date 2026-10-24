@@ -1,0 +1,88 @@
+{
+  "id": "event/ship-locker-letter",
+  "where": "ship",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-ship-locker-letter"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你拉開前任團長留下的置物櫃，潮氣把欠條黏成了一塊。最裡面卻有封乾燥的信，沒有署名，只畫著港口的長明燈。技師拿著剪鉗等你開口：「拆鎖不算工錢，替死人守秘密另計。」",
+  "choices": [
+    {
+      "text": "攤開信封看看地址",
+      "effects": [
+        {
+          "flag": "ship-locker-found",
+          "value": 1
+        },
+        {
+          "flag": "seen-ship-locker-letter",
+          "value": 1
+        }
+      ],
+      "next": "event/ship-locker-debt"
+    },
+    {
+      "text": "付技師整理遺物的工錢",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -60,
+            "reason": "event-ship-locker-letter"
+          }
+        },
+        {
+          "flag": "ship-locker-found",
+          "value": 1
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-ship-locker-letter",
+          "value": 1
+        }
+      ],
+      "next": "event/ship-locker-debt",
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 60
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "id": "event/route-refugee-guiding-light",
+  "where": "route",
+  "when": {},
+  "weight": 2,
+  "text": "你看著吊索升回來，索頭綁了小小的布鳥。筏上有人把收到的物資壓進船底，另一人舉燈照向岸邊；那點光薄得像指甲，卻不再往裂縫那邊漂。艦橋問，要不要替他們付沿岸引路人的費用。",
+  "choices": [
+    {
+      "text": "記下布鳥的回信",
+      "effects": [
+        {
+          "flag": "refugee-aid-received",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "再付沿岸引路費",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -120,
+            "reason": "event-route-refugee-guiding-light"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "refugee-aid-received",
+          "value": 1
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 120
+        }
+      }
+    }
+  ]
+}
