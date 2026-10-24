@@ -24,7 +24,7 @@
   {
    "序": "2",
    "優先": "P1",
-   "項目": "玩家第 1 輪就撤退",
+   "項目": "已完成（lead-tune，`77ea5bb`）：玩家第 1 輪就撤退——根因是營運帶入低士氣（mood<0 注入 morale-shaken）進場即 breaking、個體撤退立即觸發；AI 加 `individualRetreatMinRound`=3 觀察期，greedy seed 1–5 首輪撤 48/89→0",
    "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "greedy seed 1 全年撤 19 次、12 次首輪；anchored 凍結 7 場 0 勝 6 場首輪撤；營運體驗像打不起來",
    "建議做法": "查 `src/ai/intent.ts` 玩家陣營（全 AI 代打）的評估：首輪資訊不足時不應判達不到；`intentMinRound` 對玩家 slot 生效與否；配 `anchored-tally.ts` 量",
@@ -33,7 +33,7 @@
   {
    "序": "3",
    "優先": "P1",
-   "項目": "anchored（巢母）打不下來",
+   "項目": "已完成（lead-tune，`45f33ab`）：anchored 打不下來——killTarget 可達性改用致死 HP（核心部位），巢母核心 105→42；凍結 anchored 9/26→14/26",
    "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)",
    "影響": "實際選招加權期望命中 42 >40；greedy anchored 0/4；清剿核心契約形同死約",
    "建議做法": "核心 HP 再降（≈99）或給弧光系加可瞄部位的單體能力；先查新營運路徑只派 4 場 anchored 的派遣邏輯",
@@ -42,7 +42,7 @@
   {
    "序": "4",
    "優先": "P1",
-   "項目": "營運出戰數減半、撤得晚損失大",
+   "項目": "已查清（lead-tune）：營運出戰數減半——不是戰鬥問題：greedy 336 天裡『無進行中契約』等待佔 141–255 天（約 75%），舊數字含撤退→重打的灌水；出戰數由契約供給決定，併入第 5 列在大地圖上重調（工具 `handoffs/lead-tune/tools/day-tally.ts`）",
    "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)",
    "影響": "非裂縫出戰 169→83、勝 87→35（意圖調校後）",
    "建議做法": "調 `intentGiveUpLoss`／`intentMinRound` 時一併跑 sweep 與 `anchored-tally.ts`，對照出戰數",
@@ -60,7 +60,7 @@
   {
    "序": "6",
    "優先": "P1",
-   "項目": "`src/rules/effects.ts` 寫出 `part:undefined`",
+   "項目": "已完成（lead-tune，`b95dcd4`）：`src/rules/effects.ts` 寫出 `part:undefined`（ops 端的 JSON 正規化繞法仍在，lead-grid 可擇期移除）",
    "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "存檔前靠 JSON 正規化繞過；回放與存讀檔潛在不一致",
    "建議做法": "在 effects 產生事件處補 part 或省略欄位，加回歸測試",
@@ -69,7 +69,7 @@
   {
    "序": "7",
    "優先": "P2",
-   "項目": "人類遭遇偏難（6 份測試全敗）",
+   "項目": "已完成（lead-tune，`2948c52`）：人類遭遇偏難——default 全機庫 seed 1–10 玩家勝 16/60→37/60；解拘者暫用通用長槍 V1（教團機為 B 級太強），白手套暫借 IX-01，待 lc-mech-01 人類對手機體落地後換回勢力機",
    "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "人類對手契約幾乎必敗；走私 A×4、解拘者 B×5 為湊 `budgetByGrade`",
    "建議做法": "內容平衡（改既有數值，非 codex 範圍）：預算表、編成下修；無走私者勢力暫借鹽鷗→待正式勢力內容",
@@ -78,7 +78,7 @@
   {
    "序": "8",
    "優先": "P2",
-   "項目": "戰鬥剩餘 timeout 10 場",
+   "項目": "已完成（lead-tune，`7937da5`＋`a8d30f4`）：戰鬥剩餘 timeout——多方局根因是 berserk 追不能攻擊的友軍、設定檔 berserk 無視撤退，修後 crater 6/10→1/10、delta 9/10→0/10；護送四情境＋月面＋碎鏡不再 4 輪速勝；全 sweep 平手 7.7%→3.8%",
    "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)、[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)",
    "影響": "多方局 7、badlands／dream-bed-burn／nest-core-assault 各 1；護送四情境太易（ISS-043）、敵方 120 場只勝 2（ISS-045）",
    "建議做法": "多方局擊退判定與盟軍撤退時機；情境平衡第 2 輪（含 6 個 AI 設定只調 2 個）",

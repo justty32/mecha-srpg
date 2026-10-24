@@ -43,39 +43,6 @@
 
 （現役：dispatcher 與下列 `lead-codex-pilot` 代登記的工人格；已收線成員原格見 `archive/`。）
 
-### `lead-tune`
-- **狀態**：現役（2026-10-24）
-- **我是誰**：Opus 領導，engine-backlog P1 戰鬥／營運後期調校（玩家首輪撤退、anchored、出戰數減半、`part:undefined`）。
-- **團隊**：`teams/tune`（第一行）
-- **上游**：dispatcher（行程內 Agent tool 回傳）
-- **領地**：見 `wf/workflows/dispatch/CLAIMS.md` 的 lead-tune 列（`src/ai/`、`src/rules/effects.ts`、平衡數值）
-- **答得出什麼**：AI 意圖／撤退、平衡量測工具（`handoffs/lead-tune/tools/`）
-- **答不出什麼**：`src/ops/` 方格地圖（lead-grid）
-- **怎麼找我**：`wf/inbox/teams/tune/`、`wf/inbox/mail/lead-tune/`
-- **訂閱主題**：無
-
-### `cx-tune-part`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：`src/rules/effects.ts` 去除 `part: undefined`。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-part` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-part.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-part.md`
-- **訂閱主題**：無
-
-### `cx-tune-intent`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：營運玩家首輪撤退根因與 `src/ai/` 修正。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-intent` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-intent.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-intent.md`
-- **訂閱主題**：無
-
 ### `cx-grid-core`
 - **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-core.md`）
 - **我是誰**：codex 工人，`lead-grid` 底下：方格大地圖 grid 核心、載入器新資料夾、check 驗證、40×40 測試圖。
@@ -98,17 +65,6 @@
 - **怎麼找我**：`wf/inbox/orders/cx-grid-maps.md`
 - **訂閱主題**：無
 
-### `cx-tune-human`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：六份人類遭遇編成下修（平衡）。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-human` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-human.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-human.md`
-- **訂閱主題**：無
-
 ### `cx-grid-migrate`
 - **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-migrate.md`）
 - **我是誰**：codex 工人，`lead-grid` 底下：營運層節點→地點、逐格移動、航道的大遷移。
@@ -118,39 +74,6 @@
 - **答得出什麼**：遷移後的型別與 move.ts 語意
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-grid-migrate.md`
-- **訂閱主題**：無
-
-### `cx-tune-anchor`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：營運 anchored（巢母）戰場可打性（AI 瞄核心／巢母數值）。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-anchor` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-anchor.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-anchor.md`
-- **訂閱主題**：無
-
-### `cx-tune-scen`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：護送／突圍六情境過易的數值調整。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-scen` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-scen.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-scen.md`
-- **訂閱主題**：無
-
-### `cx-tune-multi`
-- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
-- **我是誰**：codex 工人：多方混戰情境（crater-three-way、delta-four-way）timeout 根因與修正。
-- **團隊**：`teams/tune`
-- **上游**：`lead-tune`
-- **領地**：只在 worktree `scratchpad/wt-multi` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-multi.md`）
-- **答得出什麼**：本件細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-tune-multi.md`
 - **訂閱主題**：無
 
 ### `cx-grid-blight`
@@ -174,3 +97,17 @@
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-grid-ui.md`
 - **訂閱主題**：無
+
+### `cx-grid-actors`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-actors.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：大地圖行動者、遭遇四選、迷霧、部隊影子。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-actors.md`
+- **訂閱主題**：無
+
+### `lead-tune` 與工人 `cx-tune-{part,intent,human,anchor,scen,multi}`
+- **狀態**：已收線（2026-10-24）；Opus 領導＋六條 codex 工人，團隊 `teams/tune` 已關（紀錄在 `wf/inbox/done/2026-10-24/teams/tune/`）；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-tune/`。

@@ -11,8 +11,9 @@
 
 ## 最新進度
 
+- [content] lead-world-land 進行中（2026-10-24）：talk-world 裁示落地（design-notes／spec／pillars／style／terms＋codex polish 批次＋engine-backlog）→ [handoffs/lead-world-land](workflows/dispatch/handoffs/lead-world-land/)
 - [content] lead-rename 已收線（2026-10-24）：全庫改名 18＋3 批收件、定案表 `design-notes/terms-rename.json`；待頂層代存 REPORT 並裁示「需要決定」4 項（src 顯示字串、刪兩份 residuals.json、lc-field-01 收件後再掃、全面翻譯腔重審）→ [handoffs/lead-rename](workflows/dispatch/handoffs/lead-rename/)
-- [feature-dev] lead-tune 進行中（2026-10-24）：P1 首輪撤退／anchored／出戰數＋`part:undefined`（已 commit `b95dcd4`）；工人 cx-tune-intent、cx-tune-human 在跑 → [lead-tune](workflows/dispatch/handoffs/lead-tune/)
+- [feature-dev] lead-tune 已收線（2026-10-24）：首輪撤退、anchored、人類遭遇、多方 timeout、過易情境、`part:undefined`，6 個 commit `b95dcd4`…`a8d30f4`；REPORT 待頂層代存為 `handoffs/lead-tune/REPORT.md` → [lead-tune](workflows/dispatch/handoffs/lead-tune/)
 - [feature-dev] lead-grid：方格大地圖實作（engine-backlog P1）進行中，第一波 grid 核心＋長陸／月面樣本已 commit；第二波 cx-grid-migrate 跑中（`world/nodes/`→`places/`、`ferry.json`→`lanes/`、`routes/` 移出 content；lead-rename 若要改這些檔請等第二波 commit 後在新路徑改） → [handoffs/lead-grid](workflows/dispatch/handoffs/lead-grid/PLAN.md)
 - [dispatch] 2026-10-24 段落收尾：lead-codex-pilot 已收線（REPORT 在 handoffs/lead-codex-pilot/）；現役 lead-wrapup（等第二階段寫 codex-handover）；新 session 從交棒書讀起 → [handoffs/STATE](workflows/dispatch/handoffs/STATE.md)
 
