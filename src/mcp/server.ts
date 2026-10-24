@@ -1,13 +1,14 @@
 import { createEnv } from "./tool.ts";
 import type { McpEnv } from "./tool.ts";
 import { createServer } from "./protocol.ts";
-import { createBattleTools } from "./battle.ts";
+import { createBattleHub, createBattleTools } from "./battle.ts";
 import { createCampaignTools } from "./campaign.ts";
 import { createUiTools, closeUi } from "./ui.ts";
 
 export function createMcpServer(env: McpEnv = createEnv()) {
+  const hub = createBattleHub(env);
   return createServer({ name: "mecha-srpg", version: "0.1.0",
-    tools: [...createBattleTools(env), ...createCampaignTools(env), ...createUiTools(env)] });
+    tools: [...createBattleTools(env, hub), ...createCampaignTools(env, hub), ...createUiTools(env)] });
 }
 
 if (import.meta.main) {

@@ -50,7 +50,7 @@
   },
   {
    "驗證": "MCP server（改 `src/mcp/` 必跑）",
-   "指令": "`node --test 'src/mcp/*.test.ts'`（Node 24 要 glob，不能只給目錄；已含在 `npm test`）：協定層、每個工具、stdio 端對端 hash＝`runBattle`、socket CLI、headless 截圖；手動：`node src/mcp/cli.ts serve --socket m.sock` 背景跑，再 `node src/mcp/cli.ts call --socket m.sock TOOL 'JSON'`（socket 路徑要短）",
+   "指令": "`node --test 'src/mcp/*.test.ts'`（Node 24 要 glob，不能只給目錄；已含在 `npm test`）：協定層、每個工具、stdio 端對端 hash＝`runBattle`、互動出戰 hash＝AI 自動出戰（`sortie.test.ts`）、socket CLI、headless 截圖；手動：`node src/mcp/cli.ts serve --socket m.sock` 背景跑，再 `node src/mcp/cli.ts call --socket m.sock TOOL 'JSON'`（socket 路徑要短）",
    "誰跑": "agent"
   }
  ]

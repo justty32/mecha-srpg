@@ -9,15 +9,35 @@ import { render, parse, VERBS, currentRoom } from "../ops/text/index.ts";
 import { defaultBattleRunner, runCampaign, campaignHash, createCampaignBlob, serializeCampaign, parseCampaign, loadCampaign } from "../ops/sim/index.ts";
 import { dailySummary } from "../ops/time/tick.ts";
 import type { CampaignCommand } from "../ops/sim/campaign.ts";
+import { canonicalJson } from "../core/eventlog.ts";
+import { sortieBattleSetup, validateSortie, generateScenario } from "../ops/sortie/index.ts";
+import { applySortieResult } from "../ops/sortie/run.ts";
+import { createBattleHub } from "./battle.ts";
+import type { BattleHub } from "./battle.ts";
 import { campaignView } from "./campaign-view.ts";
 import { okResult, errorResult, ToolError } from "./tool.ts";
 import type { McpEnv, ToolDef, ToolResult, JsonSchema } from "./tool.ts";
 
-type Session = { id: string; start: string; seed: number; state: CampaignState; commands: CampaignCommand[]; viewed: number };
+type Session = { id: string; start: string; seed: number; state: CampaignState; commands: CampaignCommand[]; viewed: number;
+  pending?: { battle: string; cmd: Extract<OpsCommand, { v: "sortie" }>; sortie: BattleRecord["sortie"] } };
 type BattleRecord = NonNullable<CampaignCommand["battle"]>;
 const idSchema: JsonSchema = { type: "string", description: "campaign_new／load 回傳的 id" };
 const seedSchema: JsonSchema = { type: "integer", minimum: 0, maximum: Number.MAX_SAFE_INTEGER };
 const startSchema: JsonSchema = { type: "string", default: "default" };
+
+// actions 與省略 sortie 的 begin 共用同一份候選，避免選到不同編成。
+function sortieOptions(state: CampaignState): { sortie: Extract<OpsCommand, { v: "sortie" }>["sortie"]; label: string; disabled?: string }[] {
+  if (state.pendingBattle) return [{ sortie: {}, label: "出戰" }];
+  const units = state.hangar.bays.flatMap(m => { const mech = m ? state.mechs[m] : undefined;
+    return mech?.seats.pilot ? [{ mech: mech.id, seats: { ...mech.seats }, controlMode: "pilot" as const }] : []; });
+  return Object.values(state.contracts).filter(c => ["active", "stage"].includes(c.status) && c.target.node === state.ship.at).map(c => ({
+    sortie: { contract: c.id, node: c.target.node, units }, label: `出戰契約 ${c.id}（${units.length} 台）`,
+    ...(!units.length ? { disabled: "機庫沒有已派駕駛的機甲；先 assign" } : {}),
+  }));
+}
+function requireIdle(s: Session): void {
+  if (s.pending) throw new ToolError("出戰進行中：先 campaign_sortie_finish 或 campaign_sortie_cancel");
+}
 
 function integer(value: unknown, label: string, min = 0): number {
   if (typeof value !== "number" || !Number.isSafeInteger(value) || value < min) throw new ToolError(`${label} 必須是不小於 ${min} 的安全整數。`);
@@ -42,9 +62,9 @@ function explain(code: string): string {
 }
 
 // 與 runCampaign 相同：記錄生成後 RNG、戰果與效果流水號，重播不重新抽戰鬥。
-function recordingBattle(record: CampaignCommand): BattleRunner {
+function recordingBattle(record: CampaignCommand, runner: BattleRunner = defaultBattleRunner): BattleRunner {
   return (state, ctx, sortie) => {
-    const outcome = defaultBattleRunner(state, ctx, sortie) as CmdResult & { result?: BattleRecord["result"] };
+    const outcome = runner(state, ctx, sortie) as CmdResult & { result?: BattleRecord["result"] };
     const result = outcome.ok && outcome.result ? structuredClone(outcome.result) : undefined;
     if (result) for (const entry of [...result.units, ...result.persons]) for (const pool of Object.values(entry.state.pools)) {
       if (pool.max === Infinity) pool.max = Number.MAX_SAFE_INTEGER;
@@ -66,7 +86,7 @@ function battleSummary(record: CampaignCommand) {
       persons: result.persons.filter(p => people.has(p.id) && (p.status === "dead" || p.state.pools.hp?.cur === 0)).map(p => p.id) } };
 }
 
-export function createCampaignTools(env: McpEnv): ToolDef[] {
+export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHub(env)): ToolDef[] {
   const sessions = new Map<string, Session>();
   let serial = 0;
   const session = (id: unknown): Session => {
@@ -81,12 +101,13 @@ export function createCampaignTools(env: McpEnv): ToolDef[] {
   const view = (s: Session, limit = 20, map = false): ToolResult => {
     const output = campaignView(env, s.id, s.state, s.state.log.slice(s.viewed), limit, false, map);
     s.viewed = s.state.log.length;
-    return okResult(output.summary, output.data);
+    return okResult(output.summary + (s.pending ? `\n出戰進行中：戰鬥 ${s.pending.battle}` : ""),
+      { ...output.data, ...(s.pending ? { sortieBattle: s.pending.battle } : {}) });
   };
-  const execute = (s: Session, cmd: OpsCommand, advance = false): ToolResult => {
+  const execute = (s: Session, cmd: OpsCommand, advance = false, runner?: BattleRunner): ToolResult => {
     const { db, world } = env.world(), beforeDay = s.state.clock.day, beforeRoom = currentRoom(s.state);
     const record: CampaignCommand = structuredClone(cmd);
-    const output = applyCommand(s.state, db, world, cmd, { battle: recordingBattle(record) });
+    const output = applyCommand(s.state, db, world, cmd, { battle: recordingBattle(record, runner) });
     s.state = output.state;
     s.commands.push(record);
     if (!output.result.ok) return errorResult(`${output.result.error}：${explain(output.result.error)}`, { error: output.result.error });
@@ -117,32 +138,94 @@ export function createCampaignTools(env: McpEnv): ToolDef[] {
     define("campaign_view", "看畫面與自上次 view 以來的新 log；log 為最多行數（預設 20），較早的省略行數另列；map=true 附世界圖（航行天數／燃料）。", {
       id: idSchema, log: { type: "integer", minimum: 0, default: 20 }, map: { type: "boolean", description: "附世界圖：可達節點的航行天數與燃料" },
     }, ["id"], args => view(session(args.id), args.log === undefined ? 20 : integer(args.log, "log"), args.map === true)),
-    define("campaign_actions", "列出可原樣傳給 campaign_act.command 的 cmd；verbs=true 另附文字指令動詞表。", { id: idSchema, verbs: { type: "boolean" } }, ["id"], args => {
+    define("campaign_actions", "列出 cmd（傳 campaign_act.command）或 tool＋args（呼叫指定工具）；verbs=true 另附文字指令動詞表。", { id: idSchema, verbs: { type: "boolean" } }, ["id"], args => {
       const s = session(args.id), { db, world } = env.world(), screen = render(s.state, [], world, db);
-      const actions = screen.actions.map(({ label, cmd, key, disabled }) => ({ label, cmd, ...(key ? { key } : {}), ...(disabled ? { disabled } : {}) }));
+      if (s.pending) {
+        const actions = [
+          { label: "回寫戰果（campaign_sortie_finish）", tool: "campaign_sortie_finish", args: { id: s.id } },
+          { label: "取消出戰（campaign_sortie_cancel）", tool: "campaign_sortie_cancel", args: { id: s.id } },
+        ];
+        return okResult(`出戰進行中：戰鬥 ${s.pending.battle}\n${actions.map(a => a.label).join("\n")}\n請用 tool 指定的工具傳入 args。`, { id: s.id, actions });
+      }
+      const actions: { label: string; cmd?: OpsCommand; key?: string; disabled?: string; tool?: string; args?: Record<string, unknown> }[] =
+        screen.actions.map(({ label, cmd, key, disabled }) => ({ label, cmd, ...(key ? { key } : {}), ...(disabled ? { disabled } : {}) }));
       for (const contract of Object.values(s.state.contracts).filter(c => c.status === "offered")) actions.push({
         label: `承接契約 ${contract.id}`, cmd: { v: "accept", contract: contract.id }, ...(screen.prompt ? { disabled: "要先 choose" } : {}),
       });
-      // 已承接且船在目標節點的契約：直接給可出戰的 sortie cmd（機庫裡已派駕駛的機甲全上）。
-      const crewed = s.state.hangar.bays.flatMap(m => { const mech = m ? s.state.mechs[m] : undefined;
-        return mech?.seats.pilot ? [{ mech: mech.id, seats: { ...mech.seats }, controlMode: "pilot" as const }] : []; });
-      for (const contract of Object.values(s.state.contracts).filter(c => ["active", "stage"].includes(c.status) && c.target.node === s.state.ship.at && !s.state.pendingBattle)) {
-        const disabled = screen.prompt ? "要先 choose" : !crewed.length ? "機庫沒有已派駕駛的機甲；先 assign" : undefined;
-        actions.push({ label: `出戰契約 ${contract.id}（${crewed.length} 台，AI 自動結算）`,
-          cmd: { v: "sortie", sortie: { contract: contract.id, node: contract.target.node, units: crewed } } as OpsCommand, ...(disabled ? { disabled } : {}) });
+      for (const option of sortieOptions(s.state)) {
+        const disabled = screen.prompt ? "要先 choose" : option.disabled;
+        actions.push({ label: `${option.label}（AI 自動結算）`, cmd: { v: "sortie", sortie: option.sortie }, ...(disabled ? { disabled } : {}) },
+          { label: `互動${option.label}（campaign_sortie_begin）`, tool: "campaign_sortie_begin", args: { id: s.id, sortie: option.sortie }, ...(disabled ? { disabled } : {}) });
       }
-      if (s.state.pendingBattle) actions.push({ label: "出戰（AI 自動結算）", cmd: { v: "sortie", sortie: {} },
-        ...(screen.prompt ? { disabled: "要先 choose" } : {}) });
       // text 列出每項（序號、標籤、停用原因），JSON 給 cmd；動詞表 1 KB 以上，只在 verbs=true 時附。
       const lines = actions.map((a, i) => `${i + 1}. ${a.label}${a.disabled ? `（停用：${a.disabled}）` : ""}`);
-      return okResult(`${screen.prompt ? "要先 choose。\n" : ""}${lines.join("\n")}\n將 actions[序號-1].cmd 原樣傳給 campaign_act.command；其他指令可用 text 文字送（verbs=true 看動詞表）。出戰編成若為空，需補 sortie.units。`,
+      return okResult(`${screen.prompt ? "要先 choose。\n" : ""}${lines.join("\n")}\n有 cmd 的項目將 cmd 傳給 campaign_act.command；有 tool 的項目呼叫該工具並傳入 args（互動出戰用 campaign_sortie_begin）。其他指令可用 text 文字送（verbs=true 看動詞表）。出戰編成若為空，需補 sortie.units。`,
         { id: s.id, actions, ...(args.verbs === true ? { verbs: VERBS.map(v => ({ ...v })) } : {}) });
+    }),
+    define("campaign_sortie_begin", "建立戰役互動出戰；用 battle_* 指揮，結束後 campaign_sortie_finish 回寫，或 campaign_sortie_cancel 取消。", {
+      id: idSchema, sortie: { type: "object" }, spectate: { type: "boolean" }, autoAdvance: { type: "boolean", default: true },
+    }, ["id"], args => {
+      const s = session(args.id); requireIdle(s);
+      let input = args.sortie;
+      if (input === undefined) {
+        const options = sortieOptions(s.state).filter(o => !o.disabled);
+        if (options.length !== 1) throw new ToolError(options.length > 1 ? "有多個可出戰契約，請明給 sortie。" : "沒有可出戰項目，請查看 campaign_actions 或明給 sortie。");
+        input = options[0]!.sortie;
+      }
+      if (!input || typeof input !== "object" || Array.isArray(input)) throw new ToolError("sortie 必須是出戰物件。");
+      const cmd: Extract<OpsCommand, { v: "sortie" }> = { v: "sortie", sortie: structuredClone(input) }, { db, world } = env.world();
+      const captured: { setup?: Extract<ReturnType<typeof sortieBattleSetup>, { ok: true }>; sortie?: BattleRecord["sortie"] } = {};
+      const output = applyCommand(s.state, db, world, cmd, { battle: (state, ctx, sortie) => {
+        const setup = sortieBattleSetup(state, ctx, sortie); if (!setup.ok) return setup;
+        captured.setup = setup; captured.sortie = structuredClone(sortie);
+        return { ok: false, error: "mcp-deferred" };
+      } });
+      if (!captured.setup || !captured.sortie) {
+        const error = output.result.ok ? "無法建立戰場" : output.result.error;
+        return errorResult(`${error}：${explain(error)}`, { error });
+      }
+      const b = hub.build(captured.setup.sim, captured.setup.seed, "player", args.spectate === true, args.autoAdvance !== false);
+      b.campaign = true;
+      if (b.autoAdvance) hub.advance(b, "human", Number.MAX_SAFE_INTEGER);
+      const observed = hub.register(b), battle = observed.structuredContent!.id as string;
+      s.pending = { battle, cmd, sortie: captured.sortie };
+      return okResult(`戰役 ${s.id} 互動出戰：${battle}\n${(observed.content[0] as { text: string }).text}`,
+        { ...observed.structuredContent, campaign: s.id, battle, sortie: structuredClone(captured.sortie) });
+    }),
+    define("campaign_sortie_finish", "把已結束的互動出戰戰果回寫戰役，保留戰鬥供 battle_events 查閱。", { id: idSchema }, ["id"], args => {
+      const s = session(args.id), pending = s.pending;
+      if (!pending) throw new ToolError("沒有進行中的互動出戰；已回寫的戰鬥不能再次 finish。");
+      const b = hub.find(pending.battle);
+      if (!b) throw new ToolError(`戰鬥 ${pending.battle} 已關閉；請 campaign_sortie_cancel 解除出戰。`);
+      if (b.applied) throw new ToolError("此戰鬥已回寫，不能再次 finish。");
+      if (!b.session.outcome()) throw new ToolError(`戰鬥尚未結束：第 ${b.session.state.round} 輪，輪到 ${b.session.currentActor() ?? "無"}（${b.session.isHumanTurn() ? "玩家" : "AI"}）。`);
+      const result = b.session.result();
+      if (!result) throw new ToolError("戰果尚未產生。");
+      const output = execute(s, pending.cmd, false, (state, ctx, sortie) => {
+        if (canonicalJson(sortie) !== canonicalJson(pending.sortie)) return { ok: false, error: "sortie-mismatch" };
+        const valid = validateSortie(state, ctx, sortie); if (!valid.ok) return valid;
+        generateScenario(state, ctx, sortie);
+        const copy = structuredClone(result);
+        // runBattle 額外附上完整事件；營運戰後處理也會消費它，需保持同一戰果格式。
+        copy.events = structuredClone(b.session.state.log.events);
+        for (const unit of copy.units) if (state.mechs[unit.id] && sortie.units.some(u => u.mech === unit.id && u.controlMode === "instinct")) unit.state.frame = state.mechs[unit.id]!.frame;
+        applySortieResult(state, ctx, sortie, copy);
+        return { ok: true, result: copy };
+      });
+      if (!output.isError) { b.applied = true; delete s.pending; }
+      return output;
+    }),
+    define("campaign_sortie_cancel", "取消互動出戰並關閉戰鬥，戰役狀態不變。", { id: idSchema }, ["id"], args => {
+      const s = session(args.id);
+      if (!s.pending) throw new ToolError("沒有進行中的互動出戰。");
+      const battle = s.pending.battle; hub.close(battle); delete s.pending;
+      return okResult(`已取消 ${battle}；戰役 ${s.id} 狀態不變。`, { id: s.id, battle, cancelled: true });
     }),
     define("campaign_act", "送 command 或 text，二擇一；出戰由 AI 結算並保存重播紀錄。", {
       id: idSchema, command: { type: "object", properties: { v: { type: "string", enum: VERBS.map(v => v.v) } }, required: ["v"] },
       text: { type: "string" },
     }, ["id"], args => {
-      const s = session(args.id);
+      const s = session(args.id); requireIdle(s);
       if ((args.command !== undefined) === (args.text !== undefined)) throw new ToolError("command 與 text 必須二擇一。");
       let cmd: OpsCommand;
       if (args.text !== undefined) {
@@ -161,7 +244,10 @@ export function createCampaignTools(env: McpEnv): ToolDef[] {
     }),
     define("campaign_advance", "等待 days 天；遇待選事件暫停，choose 後接續剩餘天數。", {
       id: idSchema, days: { type: "integer", minimum: 1 },
-    }, ["id", "days"], args => execute(session(args.id), { v: "wait", days: integer(args.days, "days", 1) }, true)),
+    }, ["id", "days"], args => {
+      const s = session(args.id); requireIdle(s);
+      return execute(s, { v: "wait", days: integer(args.days, "days", 1) }, true);
+    }),
     define("campaign_auto", "全自動跑 N 潮月，回每月摘要、最終帳本與 hash；不建立互動 session。", {
       seed: seedSchema, months: { type: "integer", minimum: 0 },
       policy: { type: "string", enum: ["idle", "greedy", "random"] }, start: startSchema,

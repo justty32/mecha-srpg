@@ -59,9 +59,9 @@
   },
   {
    "領域": "mcp",
-   "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`＋`battle-view.ts`、`campaign.ts`＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
-   "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`",
-   "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`）"
+   "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`（含共用戰鬥表 `createBattleHub`）＋`battle-view.ts`、`campaign.ts`＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
+   "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API（`campaign_sortie_begin`／`finish`／`cancel` 兩段式互動出戰：begin 用唯讀 `sortieBattleSetup` 建戰鬥 session，finish 以同一筆 sortie 指令回寫，語意同 UI `battleDone`）、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`",
+   "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`；`sortie.test.ts` 證互動觀戰出戰與 AI 自動出戰 campaignHash 相同）"
   }
  ]
 }

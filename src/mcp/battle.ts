@@ -47,7 +47,7 @@ function turnLine(b: Battle): string {
   }).join("、") : "";
   return `輪到 ${actor ?? "無"} ${status.current?.name ?? ""}（${status.current?.playerTurn ? "玩家" : "AI"}${ap ? `，ap ${ap}` : ""}）`;
 }
-type Battle = { session: BattleSession; view: BattleView; sim: SimSetup; seed: number; playerSlot: string; spectate: boolean; autoAdvance: boolean };
+type Battle = { session: BattleSession; view: BattleView; sim: SimSetup; seed: number; playerSlot: string; spectate: boolean; autoAdvance: boolean; campaign?: boolean; applied?: boolean };
 const turnKey = (s: BattleSession) => `${s.currentActor()}:${s.state.log.events.findLast(e => e.type === "TurnStart")?.seq}`;
 
 function advance(b: Battle, until = "human", max = 2000): number {
@@ -62,19 +62,14 @@ function advance(b: Battle, until = "human", max = 2000): number {
   return s.commands.length - before;
 }
 
-export function createBattleTools(env: McpEnv): ToolDef[] {
+/** 一個 server 共用流水號與 session；獨立工具組仍可各自建立 hub。 */
+export function createBattleHub(env: McpEnv) {
   const battles = new Map<string, Battle>();
   let nextId = 1;
   const get = (id: unknown): Battle => {
     const b = battles.get(String(id));
     if (!b) throw new ToolError(`找不到戰鬥 ${String(id)}；請先呼叫 battle_new。`);
     return b;
-  };
-  const scenario = (name: string, seed?: number, rounds?: number) => {
-    const db = env.battleDb(), def = db.get("scenario", name);
-    if (!def) throw new ToolError(`找不到情境 ${name}；請呼叫 battle_list_scenarios。`);
-    const actualSeed = seed ?? def.seed ?? 1;
-    return { seed: actualSeed, sim: scenarioToSetup(db, def, actualSeed, { rounds }) };
   };
   const build = (sim: SimSetup, seed: number, playerSlot: string, spectate: boolean, autoAdvance: boolean): Battle => {
     const session = createSession({ db: env.battleDb(), sim, seed, human: spectate ? [] : [playerSlot], maxSteps: Number.MAX_SAFE_INTEGER });
@@ -90,6 +85,19 @@ export function createBattleTools(env: McpEnv): ToolDef[] {
       + (data.map ? `\n${data.map.ascii}\n${data.map.key}\n${data.map.legend.map(u => `${u.glyph}=${u.id} ${u.name}`).join("；")}` : ""), json);
   };
   const register = (b: Battle) => { const id = `b${nextId++}`; battles.set(id, b); return observation(id, b); };
+  return { get, build, observation, register, advance,
+    find: (id: string) => battles.get(id), close: (id: string) => battles.delete(id) };
+}
+export type BattleHub = ReturnType<typeof createBattleHub>;
+
+export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(env)): ToolDef[] {
+  const { get, build, observation, register } = hub;
+  const scenario = (name: string, seed?: number, rounds?: number) => {
+    const db = env.battleDb(), def = db.get("scenario", name);
+    if (!def) throw new ToolError(`找不到情境 ${name}；請呼叫 battle_list_scenarios。`);
+    const actualSeed = seed ?? def.seed ?? 1;
+    return { seed: actualSeed, sim: scenarioToSetup(db, def, actualSeed, { rounds }) };
+  };
   const activity = (id: string, b: Battle, from: number, extra: Record<string, unknown> = {}) => {
     // 事件行只放 text（逐格移動併成一行）；JSON 只給計數與游標，完整事件用 battle_events。
     const lines = mergeMoves(b.view.events.filter(e => e.seq >= from)), events = lines.slice(0, 40), omitted = lines.length - events.length;
@@ -196,7 +204,9 @@ export function createBattleTools(env: McpEnv): ToolDef[] {
         { outcome, winner: outcome?.winner ?? null, reason: outcome?.reason ?? null, rounds: state.round, stopped: run.stopped, alive, eventCounts, commands: run.commands.length, hash: run.hash });
     }),
     tool("battle_save", "保存戰鬥。path 相對專案根或絕對；省略則回存檔字串。", { id: str, path: str }, ["id"], a => {
-      const b = get(a.id), save = createSave(env.battleDb(), { scenario: b.sim.scenario, seed: b.seed, commands: [...b.session.commands], setup: b.sim.setup });
+      const b = get(a.id);
+      if (b.campaign) throw new ToolError("戰役出戰的戰鬥請用 campaign_save 存整個戰役");
+      const save = createSave(env.battleDb(), { scenario: b.sim.scenario, seed: b.seed, commands: [...b.session.commands], setup: b.sim.setup });
       const text = JSON.stringify({ format: "mecha-srpg-mcp-battle/1", playerSlot: b.playerSlot, spectate: b.spectate,
         autoAdvance: b.autoAdvance, rounds: b.sim.setup.maxRounds ?? null, hash: b.session.hash(), save: JSON.parse(serializeSave(save)) });
       if (a.path !== undefined) {
@@ -241,7 +251,7 @@ export function createBattleTools(env: McpEnv): ToolDef[] {
       return okResult(events.map(e => `[${e.seq}] 第${e.round}輪 ${e.text}`).join("\n") || "沒有新事件。", { events, next });
     }),
     tool("battle_close", "關閉戰鬥並釋放 session。", { id: str }, ["id"], a => {
-      get(a.id); battles.delete(a.id as string); return okResult(`已關閉 ${a.id}`, { id: a.id, closed: true });
+      get(a.id); hub.close(a.id as string); return okResult(`已關閉 ${a.id}`, { id: a.id, closed: true });
     }),
   ];
 }

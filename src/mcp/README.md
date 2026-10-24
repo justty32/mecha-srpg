@@ -18,12 +18,16 @@ stdio MCP server（JSON-RPC 2.0，一行一則；協定版本 `2025-06-18`，也
 
 **畫面**：`ui_screenshot(query?, width?, height?, steps?, settleMs?, rebuild?)` 用 headless Chromium 截網頁版戰場（PNG）；`query` 例 `scenario=scenario/skirmish-whitegloves&seed=1&spectate=1`（`spectate=1` 為全 AI 觀戰，`steps` 讓演出往下跑）。
 
+**戰役互動出戰**：`campaign_sortie_begin(id, sortie?, spectate?, autoAdvance?)` 回傳共用的戰鬥 id `bN`；省略 sortie 時採待出戰事件或唯一可出戰契約與已派駕駛的機甲，多個契約需明給。`campaign_sortie_finish(id)` 在戰鬥結束後回寫戰果並記錄可重播存檔；`campaign_sortie_cancel(id)` 關閉戰鬥、解除出戰，戰役維持 begin 前狀態。出戰期間 act／advance／再次 begin 會拒絕，view 可看狀態，actions 只列 finish／cancel。這類戰鬥請在 finish 後用 `campaign_save` 保存戰役；`battle_save` 會拒絕，尚未回寫的戰鬥進度不包含在戰役存檔中。
+
 ## 典型流程
 
 1. `battle_new {scenario:"scenario/skirmish-whitegloves", seed:1}` → `b1`。
 2. `battle_observe {id:"b1", map:true}` 看地圖與單位。
 3. `battle_legal_actions {id:"b1"}` → 挑一個 `action` → `battle_act {id:"b1", action}`；重複到 `outcome` 非 null。
 4. 回歸測試直接 `battle_auto`／`campaign_auto` 比 hash。
+
+戰役流程：`campaign_actions {id:"c1"}` 找互動出戰項，將其 `args` 傳給 `tool` 指定的 `campaign_sortie_begin`；取得 `battle:"bN"` 後，用 `battle_observe`／`battle_legal_actions`／`battle_act` 指揮直到 outcome 出現，再送 `campaign_sortie_finish {id:"c1"}`。全 AI 可用 `spectate:true, autoAdvance:false` 開始，再 `battle_step_ai {id:"bN", until:"end"}` 到結束。finish 後仍可查 `battle_events`，不能重複回寫；若先 `battle_close`，請用 `campaign_sortie_cancel` 解除戰役鎖。
 
 ## 檔案
 
