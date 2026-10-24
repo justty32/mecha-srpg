@@ -1,0 +1,84 @@
+{
+ "contract": "wf-table/1",
+ "source": "omen-effects.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "類",
+  "內容線現在能不能寫",
+  "引擎現況",
+  "要做什麼",
+  "規模"
+ ],
+ "rows": [
+  {
+   "類": "曆與旗（`calendar.tide/stage`、`omen:*` tag）",
+   "內容線現在能不能寫": "不能（無此根與旗）",
+   "引擎現況": "`cond.ts` 已有 `calendar` 根與 `daysToNextSpring`；tags 由 `flags` 推",
+   "要做什麼": "加三個純函式、每 tick 段 1 寫 `flags.omen:*`、`calendar` 根加欄",
+   "規模": "小"
+  },
+  {
+   "類": "`ops`（白名單 OpsEffect）",
+   "內容線現在能不能寫": "能寫事件效果，但沒有「天象觸發」",
+   "引擎現況": "`applyOpsEffect` 全有",
+   "要做什麼": "天象窗 start／end／eachSpring 時呼叫",
+   "規模": "小"
+  },
+  {
+   "類": "`event`（事件表切換、注入、話題）",
+   "內容線現在能不能寫": "能——事件 `when` 寫 `{\"tag\":\"omen/…\"}` 即可",
+   "引擎現況": "`EventDef.when` 是 Cond",
+   "要做什麼": "第一版不需新碼；`weightMul`／`inject` 之後再加",
+   "規模": "無→小"
+  },
+  {
+   "類": "`unitEffect`（戰鬥狀態）",
+   "內容線現在能不能寫": "玩家側能（`applyEffect` 走 EffectDef `clock:days`）；敵方不能",
+   "引擎現況": "營運只預掛 contribs；ScenarioGen 有 `attrMods`／`extraAbilities` 注入點；`battle.tide` 已可讀",
+   "要做什麼": "ScenarioGen 依 target 給敵方單位掛 EffectRef、設 `globals.tide`",
+   "規模": "中"
+  },
+  {
+   "類": "`spawn`（等級上限、倍率、二名個體）",
+   "內容線現在能不能寫": "不能",
+   "引擎現況": "`scenario.ts` 用 `budgetByGrade` 固定名額（SPEC-GAP 已註無係數）",
+   "要做什麼": "名額 × `countMul`、`gradeByWidth` 查表位移、`named` 注入",
+   "規模": "中"
+  },
+  {
+   "類": "`tide`（潮級）",
+   "內容線現在能不能寫": "不能",
+   "引擎現況": "`Clock.phase` 三值",
+   "要做什麼": "併入曆函式",
+   "規模": "小"
+  },
+  {
+   "類": "`blight`（蝕塊、新裂縫）",
+   "內容線現在能不能寫": "不能",
+   "引擎現況": "`pressure.ts`／`rifts.ts` 正被 lead-grid 第三波重寫",
+   "要做什麼": "等 `cx-grid-blight` 落地後加 `spreadDelta`／`newRiftMul`／`anchorInstant` 三個位",
+   "規模": "中（排在 lead-grid 後）"
+  },
+  {
+   "類": "`rule`（開關）",
+   "內容線現在能不能寫": "不能",
+   "引擎現況": "每個開關是一處分支：認主、拘束磨損、蛻皮、育、telegraph、視野、渡月船、墟露出",
+   "要做什麼": "每個開關一條小改；第一版只做 6 個（anchorInstant、sealFast、restraintCalm／Restless、awakenBonus、telegraphDim、broodBoost）",
+   "規模": "每個小"
+  },
+  {
+   "類": "`faction`（好戰、停戰、報酬）",
+   "內容線現在能不能寫": "不能",
+   "引擎現況": "`war/drivers.ts` 大潮日抽行動牌；契約 `pay` 是 NumExpr",
+   "要做什麼": "權重 × `aggressionMul`；`pay` 可直接引用 `calendar.tide`／tag",
+   "規模": "小"
+  },
+  {
+   "類": "蝕曆面板與潮信行",
+   "內容線現在能不能寫": "—",
+   "引擎現況": "無",
+   "要做什麼": "text 層 `DaySummary` 加一行（小）；ui-adapter 面板（中）",
+   "規模": "小＋中"
+  }
+ ]
+}
