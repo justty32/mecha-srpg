@@ -9,6 +9,8 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | lead-tune（Opus 領導；工人 codex `cx-tune-*`） | `src/ai/`（全目錄）；`src/rules/effects.ts`＋`effects.test.ts`；平衡用既有數值：`content/base/` 下的 `aiprofile/`、`monster/nestmother-*`、人類遭遇編成與 `budgetByGrade` 所在檔（動前逐檔查本表與 lead-rename 是否持有）；黃金／hash 重產（若被 AI 改動牽動，在 commit 說明）；`wf/workflows/dispatch/handoffs/lead-tune/` | **不寫 `src/ops/`**（lead-grid 領地，只讀；營運派遣邏輯若要改先發信協調）；不寫 lead-rename／lead-content 持有的 content 檔；文字潤飾不做 | 2026-10-24 |
+| lead-content（Opus 領導；工人 codex `cx-lc-*`） | **只新增檔**：`content/base/{frames,components,abilities,effects,scenarios}/`、`content/base/world/{events,templates,dialogues,rooms}/`、`content/lore/{factions,characters,events,places}/` 下的新檔；例外檔 `content/lore/timeline.json` **只插入新條目**（動前查 lead-rename）；`content/batches/2026-10/lc-*.json`；`content/index/`（重產分片，只 commit 自己批次牽動的）；`engine-backlog.json` 追加列；`wf/workflows/dispatch/handoffs/lead-content/` | 不改任何既有 content 檔的文字或數值（lead-rename／lead-tune 持有）；不寫 `src/`、`schemas/`、`test/`、`world/lineages`、`world/models`、registries；codex 只在隔離 worktree 寫 | 2026-10-24 |
+| lead-rename（Opus 領導；工人 codex `cx-rn-*`） | `content/base/**`、`content/lore/**` **既有檔的文字欄**（潤飾改名；lead-tune 持有的 `aiprofile/`、數值檔與 lead-content 進行中批次的檔延後到對方收件後）；`content/lore/glossary.json`、`content/lore/style.md`；`content/batches/2026-10/rename-*.json`；`content/index/`（重產，與各線共用）；`wf/tools/content_gate.py`＋`test_content_gate.py`（文字欄白名單擴充）；`wf/workflows/planning/specs/**`、`wf/workflows/content/**`、`wf/workflows/planning/design-notes/terms.md` 的用語文字；頂層 `README.md`／`PROJECT.md` 只改工作名；`wf/workflows/dispatch/handoffs/lead-rename/` | 不寫 `src/`（顯示字串記 REPORT）；不改 id、數值、引用、tags 以外結構；不寫 design-notes 其他子檔、`decisions/`、`handoffs/done/`、inbox 歷史 | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
