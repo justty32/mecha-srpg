@@ -19,7 +19,7 @@ type RosterState = { persons: Record<Id, PersonState>;        // core 型別原�
 
 ## 招募 RecruitPoolDef
 
-`{ id; node: Id; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" }`。弦月刷新；背景（`persons/backgrounds/*.json`：退役機甲師、難民孩子、殼學會學生、潮信會叛教者……）給屬性範圍、起始特質、聘金與薪水倍率（生成時抽一次保存，CHR-03）。難民營出高 `獸緣`、殘聯名冊出有傷的老手。**機魂不在池裡**：租（塞勒涅 `soul-rental` 市場列）、育（佇列）、或黑市野魂（事件）。
+`{ id; place: Id /*原 node*/; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" }`。弦月刷新；背景（`persons/backgrounds/*.json`：退役機甲師、難民孩子、殼學會學生、潮信會叛教者……）給屬性範圍、起始特質、聘金與薪水倍率（生成時抽一次保存，CHR-03）。難民營出高 `獸緣`、殘聯名冊出有傷的老手。**機魂不在池裡**：租（塞勒涅 `soul-rental` 市場列）、育（佇列）、或黑市野魂（事件）。
 
 ## 工時佇列 WorkQueue（修理、科研、移植、育魂、拘束維護共用）
 

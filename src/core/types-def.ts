@@ -139,6 +139,8 @@ export type FrameDef = {
   resonance?: ResonanceReq; burden?: NumExpr;
   repairPolicy: "repair-or-replace" | "repair-only";
   tags: string[];
+  /** 機體預設配裝：slot id → component id；情境 UnitSpawn 未給 components 時套用（ISS-001，lead-rules-fuzz 2026-10-24）。 */
+  defaultLoadout?: Record<SlotId, Id>;
 };
 export type ComponentDef = {
   id: Id; name: string; slot: SlotType; size: number; mass: number;
@@ -243,7 +245,9 @@ export type MonsterDef = {
   id: Id; species: Id; grade: Grade; name?: string; epithet?: string;
   attrMods?: Contribution[]; extraAbilities?: Id[]; partsOverride?: Partial<PartDef>[]; tags: string[];
 };
-export type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number> };
+export type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
+  /** 情境替機甲裝部件：slot id → component id；給了就整組取代 FrameDef.defaultLoadout（ISS-001）。 */
+  components?: Record<SlotId, Id> };
 export type Objective = {
   kind: "eliminate" | "survive" | "hold" | "escort" | "capture" | "reachExit" | "killTarget";
   params: Record<string, unknown>; for: FactionSlot; onComplete: "win" | "lose" | "continue";

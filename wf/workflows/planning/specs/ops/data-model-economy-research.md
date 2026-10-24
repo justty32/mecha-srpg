@@ -13,7 +13,7 @@ type LedgerEntry = { seq: number; day: number; account: Account; delta: number;
 type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
 ```
 
-規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每潮月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是摹機通用料，也是拘束器維護與屍體改裝的材料；`flesh` 兼作蟲族／獸族吞屍的屍體（不另設帳）；`fuel`（氦與電合併成一池，簡化）。
+規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每潮月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是摹機通用料，也是拘束器維護與屍體改裝的材料；`flesh` 兼作蟲族／獸族吞屍的屍體（不另設帳）；`fuel`（船的燃料：浮芯要吃的裂晶渣與氣囊的氦合成一池，風格名**浮料**，簡化）；`ammo-*` 是機甲矢池的補給存量（`ammo-30`＝殼矢），停泊時補滿。
 
 ## 實物庫存 Inventory（有身分的東西不進帳本）
 
@@ -22,11 +22,11 @@ type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
 ## 市場 MarketDef 與價格
 
 ```ts
-type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental"; items: { def: Id; weight: number; stockMax: number }[] }[];
+type MarketDef = { id: Id; place: Id /*原 node*/; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "ammo" | "material" | "ticket" | "soul-rental"; items: { def: Id; weight: number; stockMax: number }[] }[];
   priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter" /*弦月*/; buysBack: boolean };
 ```
 
-價格＝`basePrice × 狀態折價（部件按剩餘層 HP 比例、機甲按各部位加總＋機體整備係數）× 勢力 rep 折扣 × 節點局勢（`NodeState.flags` 查 `priceMods`）`。弦月刷新：清庫存、以當天 seed 重抽；玩家賣出的實物不保留（BB OPS-10 原意，簡單）。核的售價隨等級指數上升（D 數十、C 百餘、A 數千幣量級）；核同時是古代機甲的修理材料與屍體改裝的動力——這是「賣、修、還是裝屍」三方的衝突點；`carcass` 列賣整屍（黑市，供屍體改裝）。
+價格＝`basePrice × 狀態折價（部件按剩餘層 HP 比例、機甲按各部位加總＋機體整備係數）× 勢力 rep 折扣 × 地點局勢（`PlaceState.flags` 查 `priceMods`）`。**`ammo` 列**（2026-10-24 補）：`items[].def` 是矢池 id（`ammo-30`…）、價是每矢單價；船停泊在有此列的地點時，tick 第 7 段把機庫所有機甲的 `ammo*` 池補滿、按單價 `post`，付不起補到付得起，只經 `post`（實作 `resupply.ts`）；沒有 `ammo` 列的地點不補。弦月刷新：清庫存、以當天 seed 重抽；玩家賣出的實物不保留（BB OPS-10 原意，簡單）。核的售價隨等級指數上升（D 數十、C 百餘、A 數千幣量級）；核同時是古代機甲的修理材料與屍體改裝的動力——這是「賣、修、還是裝屍」三方的衝突點；`carcass` 列賣整屍（黑市，供屍體改裝）。
 
 ## 債 Debt 與塞勒涅催收
 
@@ -51,6 +51,6 @@ core 的 `SoulTreeDef` 節點有 `cost.research`／`cost.companionship`；營運
 
 1. **單一 Ledger、balances 是折疊**：守恆測試只需重算；BB 的「帳本與倉庫分流」保留為 `stock:*` 與 `Inventory` 的分界——有身分的進 Inventory，可數的進帳本。
 2. **部件回收保留戰損、不加隨機折損**：少一個玩家看不見的骰子。
-3. **氦與電合併成一個 fuel 池**：兩種燃料只會讓採買選單變長。
+3. **浮芯用料與氦合併成一個 fuel 池**：兩種燃料只會讓採買選單變長；顯示名「浮料」，id 不改。
 4. **mastery 乘在貢獻上、不另造機制**：「開了不等於熟」用 core 既有的 contribution 乘法表達。
 5. **科研無分支鎖、只有前置**：天賦樹的「選方向」在機魂節點上，摹機科研保持扁平好讀。

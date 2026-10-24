@@ -42,7 +42,7 @@ type SupplyTier = "none" | "field" | "full" | "arsenal";
 
 ## 作戰情境生成（ScenarioGen 擴充）
 
-`Sortie.trigger:"operation"` 時 `generateScenario` 多做：(1) 地圖：目標區域的 `terrainPool`＋蝕化深度（對裂獸）或城邦地形（對人）；`engage_objective` 查作戰種類表定目標。(2) 敵方：裂獸由 `rift` 快照；人類由目標勢力分遣隊 `ForceUnit` 按戰力預算抽 `UnitSpawn`（機型即其已釋出 `ModelDef`，人物臨時生成）。(3) 友軍：依 `command` 填 `ally` slot 或塞進 `player` slot；友軍規模＝分遣隊 `str × 0.3..0.6`（別讓 AI 搶光頭）。(4) 目標：玩家 `win` 目標＋`orders` optional＋敵方 `eliminate`。(5) 補給注入。回寫：`ally` 單位 `dead` → 分遣隊折損；進度 `+0.4×規模係數`；殼在誰手上寫 `ShellState`。**依賴**：`BattleResult.units` 需涵蓋所有 slot（含 `ally`）——core 若只回玩家 slot，列為 core 建議。
+`Sortie.trigger:"operation"` 時 `generateScenario` 多做：(1) 地圖：目標格與八鄰的 `battle_pool`＋蝕深（對裂獸）或城邦地點模板（對人），同 battle-interface 第 (1) 步；`engage_objective` 查作戰種類表定目標。(2) 敵方：裂獸由 `rift` 快照；人類由目標勢力分遣隊 `ForceUnit` 按戰力預算抽 `UnitSpawn`（機型即其已釋出 `ModelDef`，人物臨時生成）。(3) 友軍：依 `command` 填 `ally` slot 或塞進 `player` slot；友軍規模＝分遣隊 `str × 0.3..0.6`（別讓 AI 搶光頭）。(4) 目標：玩家 `win` 目標＋`orders` optional＋敵方 `eliminate`。(5) 補給注入。回寫：`ally` 單位 `dead` → 分遣隊折損；進度 `+0.4×規模係數`；殼在誰手上寫 `ShellState`。**依賴**：`BattleResult.units` 需涵蓋所有 slot（含 `ally`）——core 若只回玩家 slot，列為 core 建議。
 
 ## 替使用者做掉的決定
 

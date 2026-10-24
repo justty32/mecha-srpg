@@ -10,7 +10,7 @@
 
 ## 潮月模擬（每個 seed 24 潮月不拋錯）
 
-`idle` 政策看世界自己：每天作戰數 ∈ [0, 15]、單場 ≤ 45 天；24 潮月內**至少**發生 1 次 `war`、1 次 `ceasefire`、1 次 `ModelReleased`、1 次 `NodeTransferred`（世界在動）。新政策 `merc`：接最近的 `join`、跟到目標區域、全員出戰（`ai-vs-ai`）、違令隨機——證明參戰迴圈能跑完 `aftermath` 並結算。每潮月印一行：作戰數、`war` 對數、`allied` 對數、釋出機型數、玩家 join 次數。
+`idle` 政策看世界自己：每天作戰數 ∈ [0, 15]、單場 ≤ 45 天；24 潮月內**至少**發生 1 次 `war`、1 次 `ceasefire`、1 次 `ModelReleased`、1 次 `PlaceTransferred`（原 `NodeTransferred`；世界在動）。新政策 `merc`：接最近的 `join`、跟到目標區域、全員出戰（`ai-vs-ai`）、違令隨機——證明參戰迴圈能跑完 `aftermath` 並結算。每潮月印一行：作戰數、`war` 對數、`allied` 對數、釋出機型數、玩家 join 次數。
 
 ## 不變量（隨機 policy × 隨機 seed × 6 潮月）
 

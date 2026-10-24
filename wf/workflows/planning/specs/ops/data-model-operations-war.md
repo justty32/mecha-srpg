@@ -7,10 +7,10 @@
 ## 部隊 ForceState（勢力的常備軍）
 
 ```ts
-type Loc = { map: Id /*大洲或月面一張圖*/; region: Id /*區域：今＝節點 id，方格版＝格群 id*/; cell?: Cell };
+type Loc = { map: Id /*六張圖之一*/; region: Id /*區域層的格群 id（world-grid map-and-terrain）*/; cell?: Cell /*真位置*/ };
 type ForceUnit = { model: Id /*ModelDef→FrameDef*/; count: number; readiness: number /*0..1*/ };
 type ForceState = { units: ForceUnit[]; supply: number /*0..100*/; morale: number /*−2..+2*/;
-  pos: Loc; path?: Loc[]; speed: number /*格／天*/ };   // 分遣隊＝world-grid 的 ActorState（地圖上會動）
+  pos: Id /*ActorState id：分遣隊在圖上的影子，march 建立、aftermath 刪除*/; speed: number /*＝ActorState.mp*/ };
 // FactionState 加：forces: ForceState; shells: Id[] /*持有的古代殼 ShellState*/; ops: Id[] /*進行中作戰*/; prestige: number
 ```
 
@@ -20,7 +20,7 @@ type ForceState = { units: ForceUnit[]; supply: number /*0..100*/; morale: numbe
 
 ```ts
 type OperationDef = { id: Id; kind: OperationKind; actorScales: string[]; valid: Cond; weight: NumExpr;
-  targetSel: "shallow-node" | "rift-core" | "route" | "enemy-node" | "ruin-shell" | "port";
+  targetSel: "blight-edge" | "rift-core" | "lane" | "enemy-place" | "ruin-shell" | "port";   // 原 shallow-node／route／enemy-node
   commit: NumExpr /*投入 forces 比例 0.2..0.8*/; phases: { phase: Phase; days: NumExpr; objective?: ObjectiveTemplate }[];
   merc?: { minRep: number; share: NumExpr; supply: SupplyTier; slots: number; sides: "actor" | "both" }; covert?: boolean;
   onSuccess: OpsEffect[]; onFail: OpsEffect[]; onAbort: OpsEffect[]; requiresRelation?: RelState /*對目標勢力的最低敵意*/ };
@@ -31,15 +31,15 @@ type OperationState = { id: Id; def: Id; actor: Id; coActors: Id[]; target: { lo
   engagesLeft: number; mercSlots: { contract: Id; side: "actor" | "target" }[]; exposed: boolean; log: { day: number; kind: string; v: number }[] };
 ```
 
-十種作戰（清剿、攻堅、圍堵、護航、奪點、襲擾、圍城、解圍、尋殼、封港）已抽到 [operations-kinds.json](operations-kinds.json)（10 列）。欄位：`kind`／`name`／`actor` 可發起的規模／`target`／`enemy`／`engage_objective` 戰術目標／`success`／`fail` 後果／`merc` 傭兵條款量級／`diplomacy` 外交後果／`note`。
+十種作戰已抽到 [operations-kinds.json](operations-kinds.json)（10 列）。欄位：`kind`／`name`／`actor` 可發起的規模／`target`／`enemy`／`engage_objective`／`success`／`fail`／`merc` 傭兵條款量級／`diplomacy` 外交後果／`note`。
 
 **發起**：作戰是一張世界行動牌（效果 `startOperation`），每天與其他牌一起抽；`valid` 通常要戰力 ≥ `enemyStr × 0.8`、`supply ≥ 40`、同時進行數 < 上限（state 2、其他 1）、對人作戰要 `requiresRelation`（奪點／圍城需 `war`，襲擾 ≥ `tense`）。約 40 勢力下任一天約 5–10 場作戰在進行。
 
-**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以 `speed` 在同一張大洲圖上移到目標區域（途中是可被遭遇、追擊、迴避的地圖物件；跨洲作戰要先走渡輪／航線，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個潮月上下；圍堵固定在大潮日 engage。
+**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以移動點沿格走到目標區域（途中是可被遭遇、追擊、迴避的 `ActorState{kind:"force"}`；跨洲作戰要先走航道，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個潮月上下；圍堵固定在大潮日 engage。
 
 ## 抽象結算（沒人參戰的那幾天）
 
-每個 engage 日：`r = str(force) / enemyStr`（含傭兵加入的戰力與補給修正）。`progress += clamp(0.25 × √r × m, 0.05, 0.6)`，`m` 為 0.7–1.3 的擲值；己方 `readiness` 全體 ×(1 − clamp(0.12 / r, 0.03, 0.25))、`count` 依比例折損成整數；敵方 `enemyStr ×= (1 − clamp(0.2 × r, 0.05, 0.4))`；`supply −10`。終止：`progress ≥ 1` → `resolve` 成功；`str < 0.3 × 初值` 或 `morale ≤ −2` → `failed`；`supply ≤ 0` → `aborted`（退兵，後果輕）。裂獸目標的 `enemyStr` 在大潮日回補（出巢）。全是純函式 `(op, rng) → op'`，可表格測試。**位置只經 `Loc`**：不依賴節點圖——今天 `region` 填節點 id，方格大地圖（[world-grid](world-grid/README.md)，每大洲一張）落地後填區域 id＋格，邏輯不改。
+每個 engage 日：`r = str(force) / enemyStr`（含傭兵加入的戰力與補給修正）。`progress += clamp(0.25 × √r × m, 0.05, 0.6)`，`m` 為 0.7–1.3 的擲值；己方 `readiness` 全體 ×(1 − clamp(0.12 / r, 0.03, 0.25))、`count` 依比例折損成整數；敵方 `enemyStr ×= (1 − clamp(0.2 × r, 0.05, 0.4))`；`supply −10`。終止：`progress ≥ 1` → `resolve` 成功；`str < 0.3 × 初值` 或 `morale ≤ −2` → `failed`；`supply ≤ 0` → `aborted`（退兵，後果輕）。裂獸目標的 `enemyStr` 在大潮日回補（出巢）。全是純函式 `(op, rng) → op'`，可表格測試。**位置只經 `Loc`**（[world-grid](world-grid/README.md) 已定死 `map`／`region`／`cell`）；實作過渡期 `region` 可先填舊節點 id，邏輯不改。
 
 ## 玩家參戰的那一場
 
@@ -51,7 +51,7 @@ type OperationState = { id: Id; def: Id; actor: Id; coActors: Id[]; target: { lo
 
 ## 後果詞彙（OpsEffect 新增）
 
-`startOperation`、`opProgress`、`transferNode`、`transferShell`、`relation { a; b; delta; reason }`、`treaty`、`leakModel`、`forceLoss`。事件：`OperationStarted/Phase/Engaged/Resolved/Failed/Aborted`、`ShellSeized`、`NodeTransferred`。`onSuccess` 只是這些詞彙的組合：清剿退蝕化、攻堅 `setRift`、奪點 `transferNode`、尋殼 `transferShell`、踩到對方工坊區域擲 `leakModel`。
+`startOperation`、`opProgress`、`transferPlace`（原 `transferNode`，2026-10-24 改名）、`transferShell`、`relation { a; b; delta; reason }`、`treaty`、`leakModel`、`forceLoss`。事件：`OperationStarted/Phase/Engaged/Resolved/Failed/Aborted`、`ShellSeized`、`PlaceTransferred`（原 `NodeTransferred`）。`onSuccess` 只是這些詞彙的組合：清剿退蝕塊、攻堅 `setRift`、奪點 `transferPlace`、尋殼 `transferShell`、踩到對方工坊區域擲 `leakModel`。
 
 ## 古代殼的爭奪 ShellState
 
@@ -63,8 +63,8 @@ type ShellState = { id: Id; frame: Id /*ancient FrameDef*/; holder: Id /*faction
 
 ## 替使用者做掉的決定
 
-1. **作戰是行動牌的一種效果、不是新調度器**：沿用抽牌，程式只多一個狀態機。
-2. **戰力用每級 ×3 的點數、交手用 √ 比例**：弱方拖得久、強方贏得慢，玩家一場能改 0.4 進度，不能一人定乾坤。
-3. **補給歸零＝退兵而非潰敗**：讓「圍久了自己走」成立，也給解圍作戰時間窗。
-4. **殼是世界物件 ShellState**：古代機的爭奪才有「誰拿著」可查，研發血統與外交都掛它。
+1. **作戰是行動牌的一種效果、不是新調度器**：沿用抽牌，只多一個狀態機。
+2. **戰力用每級 ×3 的點數、交手用 √ 比例**：弱方拖得久、強方贏得慢，玩家一場改 0.4 進度，不能一人定乾坤。
+3. **補給歸零＝退兵而非潰敗**：「圍久了自己走」成立，也給解圍時間窗。
+4. **殼是世界物件 ShellState**：古代機的爭奪才有「誰拿著」可查，血統與外交都掛它。
 5. **玩家缺席的日子照抽象推進**：沙盒不等人，參戰是搭上正在開的船。

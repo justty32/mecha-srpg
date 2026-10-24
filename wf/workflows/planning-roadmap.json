@@ -42,6 +42,11 @@
    "事項": "UI 遷到 `src/sim/session.ts`（`stepAi` 逐指令播放敵方回合）；hold 核區＝敵方部署區、timeout 預設判負補進 spec",
    "何時 / 順序": "UI 線／spec 同步線",
    "前提": "同上"
+  },
+  {
+   "事項": "world-grid 方格大地圖實作：七段切線（content＋grid 40×40 測試圖 → move／places／tick 段 3 → 蝕塊 → actors／fog／遭遇 → scenario／contracts／text 收尾 → 內容線六張正式圖產生器＋地點座標＋航道 → ui-ops 大地圖面板 GridView 共用）；驗收 `npm run sim:campaign -- --months 12`＋六組測試，退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
+   "何時 / 順序": "lead-impl-war 收線後；(1)–(5) 一線、(6) 內容線、(7) ui-ops 線",
+   "前提": "[plan-world-grid REPORT](dispatch/handoffs/plan-world-grid/REPORT.md)；spec 整合已完成 2026-10-24（plan-spec-integrate，REPORT 由頂層代存）"
   }
  ]
 }

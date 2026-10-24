@@ -27,7 +27,7 @@ type CarcassState = { id: Id; species: Id; grade: Grade; parts: MechState["parts
 
 **蟲族、獸族 `devour`**：每潮月一次把屍體丟給牠——動詞 `投 <獸> <數>` 扣 `stock:flesh`（量級 D 1、C 2、B 4、A 8）；到期未投 `vitality −25`；`sustainDue` 重設到下個大潮。
 
-**異形 `tide-soak`（替使用者做掉的決定）**：牠靠裏側的潮而不靠肉——大潮日船停在蝕化節點（淺蝕以上）或與 `anchored` 裂縫相鄰，`vitality → 100`、當潮月可變異；錯過一個大潮 `vitality −20`。於是帶著異形就得定期開進危險的地方。
+**異形 `tide-soak`（替使用者做掉的決定）**：牠靠裏側的潮而不靠肉——大潮日船停在蝕化格（淺蝕以上）或與 `anchored` 裂縫的核相鄰，`vitality → 100`、當潮月可變異；錯過一個大潮 `vitality −20`。於是帶著異形就得定期開進危險的地方。
 
 **菌絲 `prune`（替使用者做掉的決定）**：共生層與菌房不需任何補給、自己會長；維持＝**修剪**：每潮月一個 `prune` job（工時小、無材料），不剪則共生層往駕駛艙部位 `layersAdd`（傳導傷到人）、菌房兩潮月不剪蔓延到機庫（事件、工時損失）。
 

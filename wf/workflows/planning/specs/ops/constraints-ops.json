@@ -95,8 +95,8 @@
    "id": "DN-W-07",
    "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
    "constraint": "2108 年、地球＋月球；遺跡大多在地球、有些在月球；怪物從裂縫出現、占地盤、衍生子體、主要在地球",
-   "spec_section": "data-model-world-map.md#節點-nodedef-與路線-routedef內容檔",
-   "note": "body: earth|moon；蝕域是節點狀態"
+   "spec_section": "world-grid/README.md#一句話模型",
+   "note": "body: earth|moon；蝕域是節點狀態；2026-10-24 節點圖已被 USR-11 推翻，世界圖見 world-grid/"
   },
   {
    "id": "DN-W-08",
@@ -178,16 +178,16 @@
   {
    "id": "WV-02",
    "source": "../world/operations.md#世界圖與浮船",
-   "constraint": "世界圖是節點圖不是方格；浮船是基地也是容器（機庫、拘束艙、醫務艙、酒艙、艦橋、艦砲）；容量硬限制；船會壞",
+   "constraint": "（2026-10-24 節點圖部分已被 USR-11 推翻：世界圖是方格大地圖、每大洲一張）浮船是基地也是容器（機庫、拘束艙、醫務艙、酒艙、艦橋、艦砲）；容量硬限制；船會壞",
    "spec_section": "data-model-world-map.md#浮船-shipstate",
-   "note": "hull 歸零＝徒步"
+   "note": "hull 歸零＝地面行動者徒步；world/operations.md 已改寫"
   },
   {
    "id": "WV-03",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "地月只有塞勒涅軌道渡輪：三赤道港、弦月開船、單程三天、一班四機八人、浮船上不去、多數生物系要密封艙",
-   "spec_section": "data-model-world-map.md#地月渡輪-ferrydef",
-   "note": ""
+   "constraint": "地月只有塞勒涅渡潮船：三赤道港、弦月開船、單程三天、一班四機八人、浮船上不去、多數生物系要密封艙；燃料為「浮料」單一池",
+   "spec_section": "world-grid/map-and-terrain.md#航道-lanedef取代-routedef-與-ferrydef",
+   "note": "FerryDef 併入 LaneDef kind:\"orbital\"（2026-10-24）；風格名見 core README 對照表"
   },
   {
    "id": "WV-04",
@@ -227,9 +227,9 @@
   {
    "id": "WV-09",
    "source": "../world/rifts-and-territory.md#rifts-and-territory--裂縫與地盤規則",
-   "constraint": "蝕域是裂縫周圍一圈圈的區：淺蝕／深蝕／核；深蝕不能通行；戰場地圖由深度與主族生成；擴到城邦邊城邦失守",
-   "spec_section": "data-model-world-map.md#節點狀態-nodestate存檔與蝕域",
-   "note": ""
+   "constraint": "蝕域是裂縫周圍的區（方格版＝7–12 格蝕塊）：淺蝕／深蝕／核；深蝕地面不可通行、船可飛過但貴且必遭遇；戰場地圖由深度與主族生成；擴到城邦 footprint 城邦失守",
+   "spec_section": "world-grid/rifts-on-grid.md#蝕塊-blightpatch取代節點的-blight-狀態",
+   "note": "2026-10-24 world-grid 決定 2：深蝕船可飛過（待使用者裁示）"
   },
   {
    "id": "WV-10",
@@ -255,9 +255,9 @@
   {
    "id": "WV-13",
    "source": "../world/factions.md#factions--玩家組織勢力的開放結構與代表樣本人類機甲敵人",
-   "constraint": "玩家是持殘聯獵牌的獵團＋浮船候鳥號；開局繼承船、三台 D 級摹機、五個駕駛員、一個技師、一個租來的機魂、一筆船債；收入三條支出三條",
-   "spec_section": "content-format-ops.md#content-format-ops--contentworld-佈局id-命名每種資料一個-json-範例",
-   "note": "campaign-start/default.json"
+   "constraint": "玩家是持殘聯獵牌的獵團＋浮船候鳥號；開局繼承船、三台 C 級摹機（兩台犁改燕鷗攻堅型、一台拼裝獵犬-II型，與 campaign-start/default.json 一致）、五個駕駛員、一個技師、一個租來的機魂、一筆船債；收入三條支出三條",
+   "spec_section": "content-format-ops.md#content-format-ops--contentpackworld-佈局id-命名驗證新增-x-要改哪些檔",
+   "note": "campaign-start/default.json；2026-10-24 由 D 級改 C 級對齊實作與 lore"
   },
   {
    "id": "WV-14",
@@ -312,7 +312,7 @@
    "id": "WV-21",
    "source": "../world/monsters.md#monsters--裂獸生態四族與拘束方案da-等級觀sssss-待裁示",
    "constraint": "等級＝裂縫寬度放得過來的尺寸；寬度 D 只過 D；獸族蛻皮是唯一例外",
-   "spec_section": "content-format-ops.md#content-format-ops--contentworld-佈局id-命名每種資料一個-json-範例",
+   "spec_section": "content-format-ops.md#content-format-ops--contentpackworld-佈局id-命名驗證新增-x-要改哪些檔",
    "note": "rifts/<family>.json 的 gradeByWidth"
   },
   {
@@ -382,8 +382,8 @@
    "id": "USR-01",
    "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
    "constraint": "沙盒遊戲：玩家可以開著飛船去自己想去的地方；世界圖開放、無線性關卡；契約與事件是可選機會；壓力來自世界自己在動",
-   "spec_section": "data-model-world-map.md#節點-nodedef-與路線-routedef內容檔",
-   "note": "2026-10-24 補充裁示，已記在 design-notes/world.md「沙盒」段；另見 time-and-tick 航行與潮月、text-ui 航／泊／懸"
+   "spec_section": "world-grid/README.md#一句話模型",
+   "note": "2026-10-24 補充裁示，已記在 design-notes/world.md「沙盒」段；方格版的自由移動在 world-grid/movement.md；另見 time-and-tick 航行與潮月、text-ui 航／泊／懸"
   },
   {
    "id": "USR-02",
@@ -481,14 +481,28 @@
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
    "constraint": "基調太空歌劇、不要硬科幻：科技帶神秘與奇幻色彩，不以真實物理為設定與命名依據；少工程術語；數值機制可保留但換風格化名字",
    "spec_section": "data-model-faction-rnd.md#血統-lineagedeflineagesidjson",
-   "note": "本線新檔照此；既有 spec 待風格改寫線（REPORT 列清單）"
+   "note": "spec 層風格改寫 2026-10-24 完成（plan-spec-integrate）：機制識別字不改，顯示名與敘述換風格名，對照表在 ../core/README.md；內容與 lore 照 content/lore/style.md"
   },
   {
    "id": "USR-11",
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
    "constraint": "營運大地圖改方格式、可自由行動（船在格上移動、時間隨移動流逝；城市／裂縫／遺跡／據點是位置；作戰部隊是地圖上移動的物件，可野外遭遇／追擊／迴避）；可每大洲一張圖、月面另一張，洲際走渡輪／航線",
    "spec_section": "data-model-operations-war.md#部隊-forcestate勢力的常備軍",
-   "note": "本線以 Loc 抽象相容；world-map 改寫另派線"
+   "note": "plan-ops-war 以 Loc 抽象相容；plan-world-grid 寫成 world-grid/ 九檔；plan-spec-integrate 2026-10-24 已把既有 ops 檔整合（節點／路線標取代、transferNode→transferPlace）"
+  },
+  {
+   "id": "USR-12",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "大地圖本身是方格、每大洲一張（五洲＋月面共六張；南極只在 lore）；地形永遠可見只有物件與蝕域有迷霧；洲際不自己飛、走航道（陸橋／洋航／渡潮船）",
+   "spec_section": "world-grid/map-and-terrain.md#六張圖與尺度",
+   "note": "2026-10-24 裁示「可以每大洲一張地圖」；南極只在 lore、迷霧模式、月面不開新裂縫是 Fable 代決（待使用者裁示）"
+  },
+  {
+   "id": "USR-13",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "船（獵團）在格上自由移動、時間隨移動流逝（移動點制、八方向、每天 tick 第 3 段沿格走）；城市／港／裂縫／遺跡／據點是格上地點、作戰部隊／巡邏／商隊／裂獸群／別的獵團是會動的行動者；可野外遭遇、追擊、迴避、交涉；不加新動詞",
+   "spec_section": "world-grid/movement.md#與-tick-的銜接",
+   "note": "遭遇四選在 world-grid/actors-and-encounters.md#接觸與遭遇；追擊＝sail 到行動者、迴避＝drift 是 Fable 代決"
   }
  ]
 }

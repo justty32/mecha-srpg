@@ -1,6 +1,6 @@
 # time-and-tick — 潮月 28 天、每日結算順序、大潮與弦月、時間推進政策
 
-[ops README](README.md)｜世界觀來源 [world/rifts-and-territory](../world/rifts-and-territory.md)、[world/operations](../world/operations.md)｜裂縫狀態機在 [data-model-world-map](data-model-world-map.md)
+[ops README](README.md)｜世界觀來源 [world/rifts-and-territory](../world/rifts-and-territory.md)、[world/operations](../world/operations.md)｜裂縫狀態機在 [data-model-world-map](data-model-world-map.md)｜移動與遭遇在 [world-grid](world-grid/README.md)
 
 裁示：一局時長不限；營運層一天一 tick、二十八天一潮月、第 1 與 15 天大潮、第 7 與 21 天弦月、一場戰鬥不占營運時間、認主只在大潮之夜（world 暫定裁示）。BB 的日結順序問題（OPS-02／DAT-12／DAT-13）在此用「先算全團、再按政策分配、跳轉逐日補算」回答。
 
@@ -18,25 +18,25 @@ type Clock = { day: number /*自開局起 0..*/; month: number /*floor(day/28)*/
 每個 `tick()` 依序跑八段，每段是 `(state) → (state', CampaignEvent[])`，段內再按 id 字典序迭代以保決定性：
 
 1. **曆與旗標**：`day++`、算 `phase`；大潮日開 `anchorable` 旗。
-2. **世界**：裂縫狀態機與新裂縫（大潮日）、潮壓、蝕域深度；勢力行動牌（每天）。
-3. **移動**：船／渡輪／徒步 `daysLeft−−`；到達；淺蝕節點擲遭遇。
-4. **事件**：節點／路線／船上事件抽牌；有待選者 tick **暫停**。
+2. **世界**：裂縫狀態機與新裂縫（大潮日）、潮壓、蝕塊深度；外交、作戰、行動牌、研發；**行動者 AI**（巡邏、商隊、裂獸群、別的獵團選目標與路徑，分遣隊目標由作戰給）。
+3. **移動**：船與行動者各拿移動點沿格走（航道段 `daysLeft−−`）；到站；每進一格查**接觸**（遭遇寫 `pendingEncounter`、tick 暫停）；蝕格擲遭遇；段末重算視野。
+4. **事件**：地點／野外（地形 × 蝕深）／航道／船上事件抽牌；有待選者 tick **暫停**。
 5. **船務**：工時灌佇列；拘束艙（磨損、族別維持到期、掙脫）；陪伴；醫務；燃料與船體。
 6. **帳本**：薪水、泊費、租金、利息；所有 `post` 集中於此。
 7. **契約與市場**：到期；弦月刷新；渡輪開船；rep 回歸。
 8. **摘要**：`DaySummary` 事件。
 
-細則：第 2 段內部順序固定 2a 裂縫狀態機（大潮日）→ 2b 外交日結 → 2c 作戰推進（抽象結算或寫 `pendingBattle`）→ 2d 行動牌（天天抽，可發起新作戰、宣戰、簽約）→ 2e 新裂縫與潮壓（大潮日）→ 2f 勢力研發（每潮月第 1 天），理由見 [data-model-operations-war](data-model-operations-war.md)；第 3 段途經淺蝕節點的遭遇寫成 `pendingBattle`，玩家可付燃料撤退；第 4 段事件是 BB 式兩三個選項，寫入 `pendingChoices`，等玩家選完才續後段；第 5 段依序跑工時產出與佇列、拘束艙的磨損累加／族別維持到期／活性／掙脫事件／族行為日程、陪伴時段（mastery、trust）、醫務（hp 回復、傷勢時鐘 −1）、燃料與船體維護；第 6 段先算全團應付薪水再等比例付或欠，大潮第 1 天把利息入 `debt`，失敗政策只在這一段明示；第 7 段到期契約轉 `expired`／`failed`，弦月刷新市場與招募池、判定渡輪開船，勢力 rep 朝 0 每潮月回歸 1 點；第 8 段的 `DaySummary` 是錢、人、獸、裂縫四行，text 層只讀它組「今日」訊息。
+細則：第 2 段內部順序固定 2a 裂縫狀態機（大潮日）→ 2b 外交日結 → 2c 作戰推進（抽象結算或寫 `pendingBattle`）→ 2d 行動牌（天天抽，可發起新作戰、宣戰、簽約）→ 2e 新裂縫與潮壓（大潮日）→ 2f 勢力研發（每潮月第 1 天）→ 2g 行動者 AI（每種 kind 查自己的表，一天最多重算一次路徑，見 [world-grid/actors-and-encounters](world-grid/actors-and-encounters.md)），理由見 [data-model-operations-war](data-model-operations-war.md)；第 3 段的接觸是四選 `prompt`（迴避／追擊／交涉／開打），開打才寫 `pendingBattle`，蝕格的野群遭遇同此；第 4 段事件是 BB 式兩三個選項，寫入 `pendingChoices`，等玩家選完才續後段；第 5 段依序跑工時產出與佇列、拘束艙的磨損累加／族別維持到期／活性／掙脫事件／族行為日程、陪伴時段（mastery、trust）、醫務（hp 回復、傷勢時鐘 −1）、燃料與船體維護；第 6 段先算全團應付薪水再等比例付或欠，大潮第 1 天把利息入 `debt`，失敗政策只在這一段明示；第 7 段到期契約轉 `expired`／`failed`，弦月刷新市場與招募池、判定渡輪開船，勢力 rep 朝 0 每潮月回歸 1 點；第 8 段的 `DaySummary` 是錢、人、獸、裂縫四行，text 層只讀它組「今日」訊息。
 
 跨多日（`等 7`）**逐日執行全部八段**，不合併（DAT-13 答案：補算每個結算點）。段 4 暫停時，剩餘天數保留在 `pendingTicks`，選完自動續跑。
 
 ## 航行與潮月
 
-航行只是「連續 N 個 tick 且船在路線上」：`航 <節點>` 把路徑換成 `ship.route`，每個 tick 第 3 段推進一天，途中每天照常跑八段（事件、佇列、帳本都在走）。所以航程是用時間買距離：橫跨一洲約一潮月的量級，趕下個大潮封新裂縫要算天數，弦月要人在赤道港才搭得上渡輪。玩家隨時可 `航` 到別處改道（路徑從當前位置重算），或 `泊` 在任一節點等；沒有任何節點要求先完成什麼才能去——沙盒的自由由路線、燃料與深蝕三件事約束，不由關卡。
+航行只是「連續 N 個 tick 且船在路上」：`航 <地點｜格｜@行動者>` 把 A\* 路徑寫進 `ship.path`，每個 tick 第 3 段用當天的移動點沿格走幾格（船一天約 10 格、橫跨一洲約一潮月），途中每天照常跑八段（事件、佇列、帳本都在走）。所以航程是用時間買距離：趕下個大潮封新裂縫要算天數，弦月要人在赤道港才搭得上渡潮船。玩家隨時可 `航` 到別處改道（從當前格重算）、`懸` 在野外、或 `泊` 進任一地點等；沒有任何地點要求先完成什麼才能去——沙盒的自由由尋路成本、燃料與蝕深三件事約束，不由關卡。追擊＝航向會動的目標、每天重算；細則在 [world-grid/movement](world-grid/movement.md)。
 
 ## 大潮日的特別事項
 
-大潮日段 2 會：(a) 每個 `anchored` 裂縫蝕化鄰節點、`anchorAge++`；(b) `unanchored` 無守軍 → 回 `anchored`、`fedCount++`（養裂）；有守軍（玩家接了 `seal` 契約並在當天勝）→ `sealing`；(c) `sealing` 守第二次 → `sealed`；(d) 以潮壓抽新裂縫；(e) 大潮之夜：`dormant` 殼可被 `喚`；蟲族 `brood`；異形潮浸判定（船在蝕化節點才回活性）；族別維持 `sustainDue` 重設；蟲族裂縫子體出巢（野地事件表切換成「大潮版」兩天）。所以大潮當天出門是收成也是災難，前一天是備戰。弦月：渡輪開船、市場與招募刷新、世界最安靜（事件表凶險檔 −1）。
+大潮日段 2 會：(a) 每個 `anchored` 裂縫從蝕域邊緣長出 `1 + floor(anchorAge/2)` 個蝕塊、`anchorAge++`；(b) `unanchored` 無守軍 → 回 `anchored`、`fedCount++`（養裂）；有守軍（玩家接了 `seal` 契約並在當天勝）→ `sealing`；(c) `sealing` 守第二次 → `sealed`；(d) 以潮壓抽新裂縫；(e) 大潮之夜：`dormant` 殼可被 `喚`；蟲族 `brood`；異形潮浸判定（船停在蝕化格或與 `anchored` 核相鄰才回活性）；族別維持 `sustainDue` 重設；蟲族裂縫放出 `swarm` 行動者出巢（野地事件表切換成「大潮版」兩天）。所以大潮當天出門是收成也是災難，前一天是備戰。弦月：渡輪開船、市場與招募刷新、世界最安靜（事件表凶險檔 −1）。
 
 ## 長程時鐘的量級（寫在內容包，這裡只給尺）
 
