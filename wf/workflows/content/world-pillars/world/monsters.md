@@ -1,4 +1,4 @@
-# world-pillars／world／monsters — 怪獸族與等級（W8–W9）
+# world-pillars／world／monsters — 怪獸族、等級與來處（W8–W9、W11）
 
 [world](../world.md)｜[world-pillars 入口](../../world-pillars.md)｜裁示原文 [design-notes/world/rules](../../../planning/design-notes/world/rules.md)、[world/setting](../../../planning/design-notes/world/setting.md)
 
@@ -15,3 +15,10 @@
 **做**：內容寫 D–A；S 只寫定位（每個大型蝕域一隻、人取名「XX 的那隻」）；留「蝕壓有源頭」一句當接口。
 **不做**：自行發明四天王名單、最終 boss、SS 級衍型機或機魂（古代機例外，無上限見 M6）；把 S 寫成可量產。
 → [world「等級」](../../../planning/design-notes/world/setting.md)
+
+### W11 怪獸多從海洋來、環太平洋為主、內陸少；與潮汐相應，不由潮汐決定
+
+**為什麼**：「我會希望怪獸盡量從海洋來，跟隨潮汐。...對，環太平洋。內陸盡量少。」「潮差就是威脅...不要用這個概念」「潮汐只是有關聯而已。」（2026-10-24）
+**做**：裂縫多在海岸與通海河口，墟在內陸高處（第一次蝕潮同夜不同處）；蝕線＝海岸線，港口最險也最值錢；內陸只有兩種例外——沿河口上溯、菌絲族走淡水；時間上隨潮而動（漲潮獸上岸、大潮夜抬級）；一地凶不凶讀成離大洋遠近加上歷年大潮夜抬級的累積。
+**不做**：用潮差、潮高等潮汐物理量推算或解釋某地的威脅、裂縫開不開（「潮差大所以凶」）；內陸常態性獸災；替內陸獸另發明第三種來源。
+→ [world/history-lines「海洋與潮汐」「裁示」](../../../planning/design-notes/world/history-lines.md)

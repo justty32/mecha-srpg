@@ -12,11 +12,11 @@
 | 系列＋型號 | C–B（A 也可） | `<系列>-<羅馬／V 數字>型` 或 `<系列>-<代號>` | 堅盾-II型、長槍-V4、劍魚-III |
 | 冠名／中二 | A–S | 系列名本身就華麗，或「冠名-系列」表隊長機 | 幽冥鐵騎-浮屠、極光、偷天、連星-劍魚、老城-堅盾 |
 
-規矩：系列名偏器物、鳥獸、神話（`world/names/mech-series.json` 有 16 個系列詞可抽）；**勢力各有一套語感**——塞勒涅型錄體＋希臘神話（銀環-G1、弦月、極光）、殘聯軍械庫字母數字（FR-7）、鐵砧金工（鐵砧-II型、赤鉚）、第三刃魚名（劍魚）、沐蝕會佛語（贖垢者-三型）、稽古學會測繪體（LS-3、測墟-B）、背面江湖味（偷天）。顯示名統一「-II型」「-V4」寫法（「Mk2」不用）。型號數字只表迭代，不表口徑；名字裡不出現 mm、kW。
+規矩：系列名偏器物、鳥獸、神話（`world/names/mech-series.json` 有 16 個系列詞可抽）；**勢力各有一套語感**——塞勒涅型錄體＋希臘神話（銀環-G1、弦月、極光）、殘聯軍械庫字母數字（FR-7）、鐵砧金工（鐵砧-II型、赤鉚）、第三刃魚名（劍魚）、沐蝕會佛語（贖垢者-三型）、稽古學會測繪體（LS-3、測墟-B）、月之暗面江湖味（偷天）。顯示名統一「-II型」「-V4」寫法（「Mk2」不用）。型號數字只表迭代，不表口徑；名字裡不出現 mm、kW。
 
 ## 藍本血統與通用系列
 
-每台衍型機 tags 必含一個 `lineage-*` 與（若屬系列）`series-*`；血統對照：殘聯／堅盾／燕鷗／獵犬＝`lineage-kuafu`（夸父，經衍一）、塞勒涅＝`lineage-jinghai`（靜海）、鐵砧＝`lineage-broken-arm`（斷臂）、第三刃＝`lineage-tide-fin`（潮鰭）、沐蝕會＝`lineage-tide-robe`、稽古學會＝`lineage-many-eyes`、背面＝`lineage-jinghai-stolen`、長槍＝`lineage-xingtian`（刑天刻痕）。血統決定**設計語彙**：partsBias（厚哪個部位）、慣用池（鐵砧發熱、塞勒涅流光多）、能力 tags（guard／pierce／veil）、輪廓一句（`world/lineages/*.json` 的 `traits.silhouette`）。同血統的機彼此像、不同血統差很多——新機先讀它血統的 lineage 檔再動筆。
+每台衍型機 tags 必含一個 `lineage-*` 與（若屬系列）`series-*`；血統對照：殘聯／堅盾／燕鷗／獵犬＝`lineage-kuafu`（夸父，經衍一）、塞勒涅＝`lineage-jinghai`（靜海）、鐵砧＝`lineage-broken-arm`（斷臂）、第三刃＝`lineage-tide-fin`（潮鰭）、沐蝕會＝`lineage-tide-robe`、稽古學會＝`lineage-many-eyes`、月之暗面＝`lineage-jinghai-stolen`、長槍＝`lineage-xingtian`（刑天刻痕）。血統決定**設計語彙**：partsBias（厚哪個部位）、慣用池（鐵砧發熱、塞勒涅流光多）、能力 tags（guard／pierce／veil）、輪廓一句（`world/lineages/*.json` 的 `traits.silhouette`）。同血統的機彼此像、不同血統差很多——新機先讀它血統的 lineage 檔再動筆。
 
 **通用系列**（tags `universal`）至少堅盾、長槍兩條：各勢力都能造、市場都買得到、`world/models` 的 `generic:true`、`exportPolicy:"open"`。新通用系列要有「為什麼大家都會」的一句（開源、逆向、流出、年代早）寫進 lore 事件；專屬系列 `exportPolicy` 不開放。
 

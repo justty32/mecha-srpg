@@ -21,4 +21,4 @@
 ## 2026-10-24 晚：主線劇情層（八條長線、十節點；提案）
 
 → [world/history-lines.md](world/history-lines.md)：照「先節點、再線、最後填充」把十個節點與八條長線串成從先民封蝕到開局後第 40 蝕月的因果；附年表 127 條掛線、孤兒條目與待和解表（lead-history-lines）。
-→ [world/tide-range.md](world/tide-range.md)：主要沿海城市實測潮差與全球 M2 分佈，校準「怪獸從海洋來、潮差＝威脅」用（真實資料，不是設定）。
+→ [world/tide-range.md](world/tide-range.md)：主要沿海城市實測潮差與全球 M2 分佈（真實資料，不是設定；**不作威脅判準**，使用者 2026-10-24：「潮汐只是有關聯而已。」）。

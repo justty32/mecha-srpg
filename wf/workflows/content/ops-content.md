@@ -10,7 +10,7 @@
 
 **選項**：2–4 個；**第一個無 `requires`、溫和不賺不賠**（模擬政策永遠選第一個成立的）；至少一個真取捨。效果白名單：`ledger cash`（|N|≤600，扣錢必 `requires ledger.balances.cash >= N`）、`stock:scrap`（≤8，同理）、`stock:flesh/chitin` 只准 +1～+6、`debt` 只准加、`rep` 只准 `faction-ops/selene-whitegloves` ±5、`flag`、`mood ±2`、`techHours +1～+24`。不准 spawnEvent／spawnContract／setNode／setRift／applyEffect／nameMech／salvage／燃料帳。可讀 ref：`ledger.balances.*`、`debt.ratio|balance`、`restraint.beastCount|beastWear|freeSlots`、`ship.hull.cur|fuel.cur`、`campaign.pressure|techHours`、`calendar.month|dom`、`inventory.tickets.*`、`flags.*`；`{"tag":"coastal"}` 判沿海。
 
-**文字**：`text` 60–160 字、第二人稱現在式、不插值 `{…}`、不寫具名人物（人會死）——用身分（技師、廚子兼醫官、新來的駕駛員、機魂、團長）。選項文字是動作不是解釋（「記錄警訊交班提醒維護」）。每事件一個氣味、一個聲音、一個不解釋的名詞。系列：拘束艙（磨損、夜撞、掙脫演習）、機魂異常（低鳴、錯置紀錄——不是個性）、港口（手套催收、背面密箱）、航路（難民筏、蝕暴）、遺跡（刻痕、座標買賣）、同業（鐵砧吹噓、鹽鷗撿屍）、船（漏氦、偷渡客）；每系列 ≥3 件才像世界在動。
+**文字**：`text` 60–160 字、第二人稱現在式、不插值 `{…}`、不寫具名人物（人會死）——用身分（技師、廚子兼醫官、新來的駕駛員、機魂、團長）。選項文字是動作不是解釋（「記錄警訊交班提醒維護」）。每事件一個氣味、一個聲音、一個不解釋的名詞。系列：拘束艙（磨損、夜撞、掙脫演習）、機魂異常（低鳴、錯置紀錄——不是個性）、港口（手套催收、暗面密箱）、航路（難民筏、蝕暴）、遺跡（刻痕、座標買賣）、同業（鐵砧吹噓、鹽鷗撿屍）、船（漏氦、偷渡客）；每系列 ≥3 件才像世界在動。
 
 ## 契約 contract
 
