@@ -1,0 +1,158 @@
+import type { ContentDB } from "../content/contentdb.ts";
+import type { Id } from "../core/ids.ts";
+import { cellKey } from "../core/ids.ts";
+import type { Cell, FactionSlot, MapDef, ScenarioDef } from "../core/types-def.ts";
+import type { BattleState, Command } from "../core/types-state.ts";
+import { createRng, nextInt } from "../core/rng.ts";
+import { hashLog } from "../core/eventlog.ts";
+import { createBattle, startBattle, currentActor, rt, battleResult } from "../rules/index.ts";
+import type { BattleSetup, BattleResult, UnitInit } from "../rules/index.ts";
+import { createFactionAI, startRound, runUnitTurn, observeEvents } from "../ai/index.ts";
+import type { AiParams, FactionAI } from "../ai/index.ts";
+import { createRulesQuery, createRulesExec } from "../ai/adapters/rules-adapter.ts";
+
+export type PlayerSpec = { kind: "ai"; policy?: Id; params?: AiParams } | { kind: "script"; commands: Command[] };
+export type SimSetup = { scenario: Id | null; setup: BattleSetup;
+  slotProfiles: Record<FactionSlot, { policy: Id; params: AiParams }>;
+  unitPolicies: Record<FactionSlot, Record<Id, Id>> };
+export type RunOptions = { db: ContentDB; sim: SimSetup; seed: number;
+  players?: Partial<Record<FactionSlot, PlayerSpec>>; maxSteps?: number };
+export type RunResult = { state: BattleState; commands: Command[]; rejected: number;
+  stopped: "outcome" | "stalled" | "maxSteps"; result: BattleResult | null; hash: string };
+
+function mapCells(map: MapDef): NonNullable<BattleSetup["map"]["cells"]> {
+  let glyphs: string[];
+  if (typeof map.cells === "string") glyphs = [...map.cells];
+  else {
+    // SPEC-GAP：RLE 文法未定，採「正整數＋單一 glyph」，空白分隔可省略。
+    glyphs = [];
+    const encoded = map.cells.rle.replace(/\s+/gu, "");
+    let consumed = "";
+    for (const match of encoded.matchAll(/([1-9][0-9]*)([^0-9])/gu)) {
+      consumed += match[0];
+      const count = Number(match[1]);
+      if (glyphs.length + count > map.width * map.height) throw new Error("RLE 超出地圖大小");
+      glyphs.push(...Array<string>(count).fill(match[2]!));
+    }
+    if (consumed !== encoded) throw new Error("非法 RLE");
+  }
+  if (glyphs.length !== map.width * map.height) throw new Error("地圖格數不符");
+  const cells = glyphs.map((glyph, i) => {
+    const terrain = map.legend[glyph];
+    if (!terrain) throw new Error(`未知地圖 glyph：${glyph}`);
+    return { at: { x: i % map.width, y: Math.floor(i / map.width) }, terrain };
+  });
+  // SPEC-GAP：BattleSetup 只有 terrain 覆蓋，feature.hp 無接收欄位；保留 feature 物件供日後規則支援。
+  cells.push(...structuredClone(map.features ?? []));
+  return cells;
+}
+
+export function scenarioToSetup(db: ContentDB, scenario: Id | ScenarioDef, seed: number, opts?: { rounds?: number }): SimSetup {
+  const sc = typeof scenario === "string" ? db.require("scenario", scenario) : scenario;
+  const map = db.require("map", sc.map), cells = mapCells(map), rng = createRng(seed);
+  const occupied = new Set<string>();
+  const valid = (at: Cell): boolean => Number.isInteger(at.x) && Number.isInteger(at.y)
+    && at.x >= 0 && at.y >= 0 && at.x < map.width && at.y < map.height;
+  for (const slot of Object.keys(sc.slots).sort()) for (const spawn of sc.slots[slot]!.units) {
+    if (spawn.at === "zone") continue;
+    const key = cellKey(spawn.at.x, spawn.at.y);
+    if (!valid(spawn.at) || occupied.has(key)) throw new Error("非法固定部署格");
+    occupied.add(key);
+  }
+  const units: UnitInit[] = [], slotProfiles: SimSetup["slotProfiles"] = {}, unitPolicies: SimSetup["unitPolicies"] = {};
+  for (const slot of Object.keys(sc.slots).sort()) {
+    const entry = sc.slots[slot]!;
+    const profile = entry.ai ? db.require("aiprofile", entry.ai) : undefined;
+    slotProfiles[slot] = { policy: profile?.policy ?? "tactical", params: { ...profile?.params } };
+    unitPolicies[slot] = {};
+    entry.units.forEach((spawn, index) => {
+      const id = `${slot}-${index}`;
+      let pos: Cell;
+      if (spawn.at === "zone") {
+        const available = (map.deployZones[slot] ?? []).filter(at => valid(at) && !occupied.has(cellKey(at.x, at.y)));
+        if (!available.length) throw new Error(`部署區格數不足：${slot}`);
+        pos = { ...available[nextInt(rng, available.length)]! };
+        occupied.add(cellKey(pos.x, pos.y));
+      } else pos = { ...spawn.at };
+      const monster = spawn.monster ? db.require("monster", spawn.monster) : undefined;
+      const body = monster ? db.require("species", monster.species).bodyPlan : db.require("frame", spawn.mech!).bodyPlan;
+      const seats = db.require("bodyplan", body).parts.flatMap(part => part.seats ?? []);
+      const used = new Set<string>();
+      const persons = (spawn.persons ?? []).map(person => {
+        const seat = seats.find(s => s.accepts.includes(person.seat) && !used.has(s.id));
+        if (!seat) throw new Error(`缺少 ${person.seat} 座位：${id}`);
+        used.add(seat.id);
+        // SPEC-GAP：同一人物 Def 可重複出場，實例以單位＋座位識別。
+        return { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
+      });
+      units.push({ id, owner: slot, pos, persons,
+        ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade } } : { frame: spawn.mech! }) });
+      if (monster) {
+        const species = db.require("species", monster.species);
+        unitPolicies[slot]![id] = db.require("aiprofile", species.aiProfile).policy;
+      }
+    });
+  }
+  // SPEC-GAP：沿用 BattleSetup 支援的欄位；faction 對照、globals、情境規則覆蓋尚無規則層入口。
+  const setup: BattleSetup = { id: sc.id, map: { width: map.width, height: map.height,
+    fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits) }, units, objectives: structuredClone(sc.objectives) };
+  const rounds = opts?.rounds ?? sc.rounds;
+  if (rounds !== undefined) {
+    if (!Number.isInteger(rounds) || rounds < 1) throw new Error("rounds 必須是正整數");
+    setup.maxRounds = rounds;
+  }
+  return { scenario: sc.id, setup, slotProfiles, unitPolicies };
+}
+
+export function runBattle(opts: RunOptions): RunResult {
+  const { db, sim, seed } = opts, maxSteps = opts.maxSteps ?? 10000;
+  if (!Number.isInteger(maxSteps) || maxSteps < 0) throw new Error("maxSteps 必須是非負整數");
+  const state = createBattle(db, sim.setup, seed), q = createRulesQuery(db), exec = createRulesExec(db);
+  const commands: Command[] = [], ais = new Map<string, FactionAI>(), cursors = new Map<string, number>();
+  let rejected = 0, attempts = 0, round = -1;
+  const limit = Symbol("maxSteps");
+  const recording: typeof exec = (s, cmd) => {
+    if (attempts >= maxSteps) throw limit;
+    attempts++;
+    const result = exec(s, cmd);
+    if (result.ok) commands.push(structuredClone(cmd));
+    else rejected++;
+    return result;
+  };
+  let stopped: RunResult["stopped"] = "stalled";
+  startBattle({ db, s: state });
+  try {
+    while (!rt(state).outcome) {
+      if (attempts >= maxSteps) { stopped = "maxSteps"; break; }
+      const actor = currentActor(state);
+      if (actor === null) break;
+      for (const slot of Object.keys(state.factions).sort()) {
+        if (ais.has(slot) || opts.players?.[slot]?.kind === "script") continue;
+        const player = opts.players?.[slot], profile = sim.slotProfiles[slot];
+        const ai = createFactionAI({ slot, seed, policy: player?.policy ?? profile?.policy,
+          params: { ...profile?.params, ...player?.params }, unitPolicies: sim.unitPolicies[slot] });
+        ais.set(slot, ai);
+        if (round === state.round) startRound(ai, q, state);
+      }
+      if (round !== state.round) {
+        round = state.round;
+        for (const ai of ais.values()) startRound(ai, q, state);
+      }
+      const slot = state.units[actor]!.owner, player = opts.players?.[slot];
+      const from = state.log.events.length, before = commands.length;
+      if (player?.kind === "script") {
+        const cursor = cursors.get(slot) ?? 0;
+        const cmd = player.commands[cursor] ?? { kind: "end", actor };
+        cursors.set(slot, cursor + 1);
+        recording(state, cmd);
+      } else runUnitTurn(ais.get(slot)!, q, state, actor, recording);
+      for (const [otherSlot, ai] of ais) if (otherSlot !== slot) observeEvents(ai, q, state, state.log.events.slice(from));
+      if (commands.length === before && currentActor(state) === actor) break;
+    }
+  } catch (error) {
+    if (error !== limit) throw error;
+    stopped = "maxSteps";
+  }
+  if (rt(state).outcome) stopped = "outcome";
+  return { state, commands, rejected, stopped, result: battleResult({ db, s: state }), hash: hashLog(state.log) };
+}
