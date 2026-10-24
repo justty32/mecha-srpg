@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-11",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 勢力與時代）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "2f667e4b5e5124633eacc7d33d42e61e6a3b72ad",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-11",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-11/REPORT.md",
@@ -73,5 +73,106 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:29:38",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-11",
+  "round": 1,
+  "at": "2026-10-24T16:29:38",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/factions/mumbai-returners.json",
+   "content/lore/factions/nairobi.json",
+   "content/lore/factions/nameless-souls.json",
+   "content/lore/factions/orbital-post.json",
+   "content/lore/factions/quito.json",
+   "content/lore/factions/remnant-wings.json",
+   "content/lore/factions/rift-beasts.json",
+   "content/lore/factions/ring-caravan.json",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/shell-society.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/factions/singapore-exchange.json",
+   "content/lore/factions/sydney.json",
+   "content/lore/factions/third-blade.json",
+   "content/lore/factions/tide-creed.json",
+   "content/lore/factions/unbinders.json",
+   "content/lore/factions/whitegloves.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "testWaiver": "npm test 的 fail 與 base 完全相同：worldgen.test.ts 兩項（讀 lead-grid 未進版控的 handoffs/lead-grid/stage/ 檔，乾淨 worktree 必 ENOENT）；本批只改文字欄，與這些失敗無關（領導在 base worktree 重跑確認）",
+ "files": [
+  "content/lore/factions/mumbai-returners.json",
+  "content/lore/factions/nairobi.json",
+  "content/lore/factions/nameless-souls.json",
+  "content/lore/factions/orbital-post.json",
+  "content/lore/factions/quito.json",
+  "content/lore/factions/remnant-wings.json",
+  "content/lore/factions/rift-beasts.json",
+  "content/lore/factions/ring-caravan.json",
+  "content/lore/factions/salt-gull.json",
+  "content/lore/factions/selene.json",
+  "content/lore/factions/shell-society.json",
+  "content/lore/factions/shell-wardens.json",
+  "content/lore/factions/singapore-exchange.json",
+  "content/lore/factions/sydney.json",
+  "content/lore/factions/third-blade.json",
+  "content/lore/factions/tide-creed.json",
+  "content/lore/factions/unbinders.json",
+  "content/lore/factions/whitegloves.json"
+ ],
+ "ids": [
+  "faction/mumbai-returners",
+  "faction/nairobi",
+  "faction/nameless-souls",
+  "faction/orbital-post",
+  "faction/quito",
+  "faction/remnant-wings",
+  "faction/rift-beasts",
+  "faction/ring-caravan",
+  "faction/salt-gull",
+  "faction/selene",
+  "faction/shell-society",
+  "faction/shell-wardens",
+  "faction/singapore-exchange",
+  "faction/sydney",
+  "faction/third-blade",
+  "faction/tide-creed",
+  "faction/unbinders",
+  "faction/whitegloves"
+ ],
+ "summary": "lore 勢力與時代 18 檔換詞（含逆蝕之息）；閘門 0 違規、check／lore／typecheck 綠、黃金不變；test 失敗與 base 相同（見 testWaiver）",
+ "gateRejections": []
 }
