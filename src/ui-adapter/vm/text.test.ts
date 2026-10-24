@@ -2,12 +2,12 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { loadContentDirs } from "../../content/loader.ts";
 import { scenarioToSetup } from "../../sim/run.ts";
-import { createBattle } from "../../rules/index.ts";
+import { createSession } from "../../sim/session.ts";
 import type { GameEvent } from "../../core/events.ts";
 import { eventText, unitName } from "./text.ts";
 
 const { db } = loadContentDirs(["content/base"]);
-const state = createBattle(db, scenarioToSetup(db, "scenario/skirmish-whitegloves", 1).setup, 1);
+const state = createSession({ db, sim: scenarioToSetup(db, "scenario/skirmish-whitegloves", 1), seed: 1 }).state;
 const id = "player-0", u = state.units[id]!, person = Object.values(u.seats).find(x => x)!;
 const frame = db.require("frame", u.frame), ability = db.all("ability")[0]!;
 const part = db.require("bodyplan", frame.bodyPlan).parts[0]!, effect = db.all("effect")[0]!;

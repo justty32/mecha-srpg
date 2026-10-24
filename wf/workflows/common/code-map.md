@@ -12,7 +12,7 @@
 
 欄位：`領域`（模組領域）、`檔案`（路徑）、`職責`（做什麼、對外介面）、`測試在哪`。查法見資料檔說明（[data-files](data-files.md)）。
 
-**ui-adapter 細節**（2026-10-24 落地；同日 lead-ui-fix 依試玩回饋改版）：`vm/types.ts` 是 vm↔dom 凍結契約；`vm/session.ts` 逐步跑局（唯一直接呼叫 rules／ai 處；`autoAdvance`、`stepAi` 一次一台 AI）、`viewmodel.ts`（含敵方部件即時／最後所見快照）、`controller.ts`（`UiAction`→`UiSnapshot`；演出佇列 busy／step／skip、浮出選單、結束回合確認、選部位）、`presentation.ts`（可見事件篩選、log 合併、fx 產生）、`keymap.json`＋`keymap.ts`（資料驅動快捷鍵）、`text.ts`（事件→中文）、`labels.ts`（含層種類中文對照）、`debug-maps.ts`（>120×120 大地圖）；`content-browser.ts` 在瀏覽器載內容。`dom/render.ts`（`mountBattle`；三欄佈局、固定指令面板）、`board.ts`、`panels.ts`、`menus.ts`（浮出選單／選部位／確認框）、`fx.ts`（戰場演出疊層）、`zoom.ts`（自動貼合與縮放純函式）、`tooltip.ts`、`style.css`、`main.ts`（入口與接線；localStorage 設定、演出計時）；dom 只 import `vm/types.ts` 的型別（main.ts 例外）。根目錄 `index.html`、`vite.config.ts`、`playwright.config.ts`、`tsconfig.ui.json`。
+**ui-adapter 細節**（2026-10-24 落地；同日 lead-ui-fix 依試玩回饋改版）：`vm/types.ts` 是 vm↔dom 凍結契約；`vm/session.ts`（sim `BattleSession` 的薄包裝，2026-10-24 lead-ui-session 遷移；`autoAdvance`、`stepAi` 一次一台 AI、`spectate` 全 AI 觀戰；`batches`／observers 給演出與敵方快照）、`vm/boundary.test.ts`（靜態檢查 ui-adapter 不 import rules／ai）、`viewmodel.ts`（含敵方部件即時／最後所見快照）、`controller.ts`（`UiAction`→`UiSnapshot`；演出佇列 busy／step／skip、浮出選單、結束回合確認、選部位）、`presentation.ts`（可見事件篩選、log 合併、fx 產生）、`keymap.json`＋`keymap.ts`（資料驅動快捷鍵）、`text.ts`（事件→中文）、`labels.ts`（含層種類中文對照）、`debug-maps.ts`（>120×120 大地圖）；`content-browser.ts` 在瀏覽器載內容。`dom/render.ts`（`mountBattle`；三欄佈局、固定指令面板）、`board.ts`、`panels.ts`、`menus.ts`（浮出選單／選部位／確認框）、`fx.ts`（戰場演出疊層）、`zoom.ts`（自動貼合與縮放純函式）、`tooltip.ts`、`style.css`、`main.ts`（入口與接線；localStorage 設定、演出計時）；dom 只 import `vm/types.ts` 的型別（main.ts 例外）。根目錄 `index.html`、`vite.config.ts`、`playwright.config.ts`、`tsconfig.ui.json`。
 
 ## 真相層優先序
 

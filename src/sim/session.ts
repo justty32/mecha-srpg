@@ -11,6 +11,7 @@ import { createFactionAI, observeEvents, runUnitTurn, startRound } from "../ai/i
 import type { FactionAI, RulesQuery } from "../ai/index.ts";
 import { createRulesQuery } from "../ai/adapters/rules-adapter.ts";
 import type { SimSetup } from "./run.ts";
+import { emptyKnowledge, observe as observeKnowledge, updateKnowledge } from "../ai/index.ts";
 
 export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; human?: FactionSlot[]; maxSteps?: number };
 export type AbilityTarget = NonNullable<Extract<Command, { kind: "useAbility" }>["target"]>;
@@ -19,6 +20,8 @@ export type LegalActions = { actor: Id | null; reachable: Record<string, number>
 export type SessionStep = { actor: Id; cmd: Command; events: GameEvent[] };
 export type SessionSubmitResult = Result | { ok: false; rejection: { code: "max-steps" | "busy" } };
 export type SessionObserver = (step: SessionStep) => void;
+/** 查詢介面（給 ui-adapter 等不直接依賴 ai／rules 的呼叫端）。 */
+export type SessionQuery = RulesQuery;
 type PendingTurn = { actor: Id; slot: FactionSlot; from: number;
   entries: { cmd: Command; ok: boolean }[]; index: number; limited: boolean };
 
@@ -187,6 +190,24 @@ export class BattleSession {
       if (this.pending) this.finishTurn(pending);
       return null;
     } finally { this.busy = false; }
+  }
+
+  /** 內容資料庫（唯讀）。欄位 `db` 為既有 private，故以此名公開。 */
+  get contentDb(): ContentDB { return this.db; }
+  /** 規則查詢介面；同上，既有 private `query` 以此名公開。 */
+  get rulesQuery(): SessionQuery { return this.query; }
+
+  /**
+   * 為某陣營維護 state.knowledge[slot]：立即以全部既有事件更新一次，之後每個成功指令
+   * （submit 與 stepAi）先於之後註冊的 observer 更新。knowledge 不進 hashLog、AI 不讀它。
+   */
+  trackKnowledge(slot: FactionSlot): () => void {
+    const refresh = (events: readonly GameEvent[]): void => {
+      const s = this.s, q = this.query;
+      s.knowledge[slot] = observeKnowledge(q, s, updateKnowledge(q, s, slot, s.knowledge[slot] ?? emptyKnowledge()), slot, events);
+    };
+    refresh(this.s.log.events);
+    return this.observe(step => refresh(step.events));
   }
 
   runAiUntilHuman(): number {

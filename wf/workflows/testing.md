@@ -18,7 +18,7 @@
 
 欄位：`驗證`（名稱與何時跑）、`指令`、`誰跑`（agent，或 使用者 → WAIT_USER）。查法見 [data-files](common/data-files.md)。
 
-**改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless 7 條：載入、行動後浮出選單、結束回合確認、縮放與記住設定、小地圖自動貼合、跳過動畫、大地圖捲動；自動 build＋preview 在 4174 埠；URL `?anim=off` 讓演出不延遲，`window.__battle.settle()` 跳過演出）。
+**改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM＋模組邊界 `vm/boundary.test.ts`＋全 AI 觀戰 hash 等於 `runBattle`，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless 7 條：載入、行動後浮出選單、結束回合確認、縮放與記住設定、小地圖自動貼合、跳過動畫、大地圖捲動；自動 build＋preview 在 4174 埠；URL `?anim=off` 讓演出不延遲，`window.__battle.settle()` 跳過演出）。
 
 「誰跑」只有兩種值：**agent**（本機跑得動）、**使用者 → WAIT_USER**（要實機、外部服務、帳號、付費、目視）。判不準就當後者。
 

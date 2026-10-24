@@ -4,120 +4,105 @@ import type { FactionSlot } from "../../core/types-def.ts";
 import type { GameEvent } from "../../core/events.ts";
 import type { BattleOutcome, BattleState, Command } from "../../core/types-state.ts";
 import type { SimSetup } from "../../sim/run.ts";
-import { createBattle, startBattle, currentActor, tryCommand, rt } from "../../rules/index.ts";
-import type { Result } from "../../rules/index.ts";
-import { createFactionAI, startRound, runUnitTurn, observeEvents, updateKnowledge, observe, emptyKnowledge } from "../../ai/index.ts";
-import type { FactionAI, RulesQuery } from "../../ai/index.ts";
-import { createRulesQuery } from "../../ai/adapters/rules-adapter.ts";
+import { createSession } from "../../sim/session.ts";
+import type { BattleSession as SimSession, SessionQuery, SessionStep, SessionSubmitResult } from "../../sim/session.ts";
 
-export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; playerSlot?: FactionSlot; autoAdvance?: boolean };
+/** spectate：全 AI 對戰（sim 無人類陣營），playerSlot 只當視角。 */
+export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; playerSlot?: FactionSlot; autoAdvance?: boolean; spectate?: boolean };
 
-// SPEC-GAP：互動逐步 API 尚未進 sim；本檔集中所有規則與 AI 存取。
+// sim BattleSession 的薄包裝：所有推進只經 sim 的 submit／stepAi；本層只負責 batches、observers 與玩家視角。
 export class BattleSession {
   readonly db: ContentDB;
   readonly state: BattleState;
   readonly playerSlot: FactionSlot;
-  readonly commands: Command[] = [];
   readonly autoAdvance: boolean;
+  readonly spectate: boolean;
   readonly batches: { command: Command; events: GameEvent[]; visible: Id[] }[] = [];
+  /** 每個成功指令前後各呼叫一次（前一次讓 viewmodel 拍敵方部件快照）。 */
   readonly observers = new Set<() => void>();
-  readonly query: RulesQuery;
-  private readonly sim: SimSetup;
-  private readonly seed: number;
-  private readonly ais = new Map<FactionSlot, FactionAI>();
-  private round = -1;
+  readonly query: SessionQuery;
+  private readonly inner: SimSession;
+  private last: SessionStep | null = null;
 
   constructor(opts: SessionOptions) {
-    this.db = opts.db; this.sim = opts.sim; this.seed = opts.seed;
+    this.db = opts.db;
     this.playerSlot = opts.playerSlot ?? "player";
     this.autoAdvance = opts.autoAdvance ?? true;
-    this.state = createBattle(opts.db, opts.sim.setup, opts.seed);
-    this.query = createRulesQuery(opts.db);
-    startBattle({ db: this.db, s: this.state });
-    this.refreshKnowledge(0);
+    this.spectate = opts.spectate ?? false;
+    this.inner = createSession({ db: opts.db, sim: opts.sim, seed: opts.seed,
+      human: this.spectate ? [] : [this.playerSlot], maxSteps: Number.MAX_SAFE_INTEGER });
+    // sim 對外給 Readonly；ui-adapter 沿用既有可寫型別（測試會直接改 knowledge 模擬視野）。
+    this.state = this.inner.state as BattleState;
+    this.query = this.inner.rulesQuery;
+    this.inner.trackKnowledge(this.playerSlot);
+    this.inner.observe(step => { this.last = step; });
     if (this.autoAdvance) this.advanceAi();
   }
 
-  activeUnit(): Id | null { return currentActor(this.state); }
-  isPlayerTurn(): boolean {
-    const actor = this.activeUnit();
-    return !this.outcome() && actor !== null && this.state.units[actor]?.owner === this.playerSlot;
-  }
-  outcome(): BattleOutcome | null { return rt(this.state).outcome; }
+  /** 成功指令序列（僅供讀取；型別沿用舊介面）。 */
+  get commands(): Command[] { return this.inner.commands as Command[]; }
+  activeUnit(): Id | null { return this.inner.currentActor(); }
+  isPlayerTurn(): boolean { return this.inner.isHumanTurn(); }
+  outcome(): BattleOutcome | null { return this.inner.outcome(); }
 
-  private refreshKnowledge(from: number): void {
-    // SPEC-GAP：規則層不維護陣營知識；沿用 AI 的觀測器更新玩家知識，不改事件或 RNG。
-    const s = this.state, q = this.query;
-    s.knowledge[this.playerSlot] = observe(q, s,
-      updateKnowledge(q, s, this.playerSlot, s.knowledge[this.playerSlot] ?? emptyKnowledge()),
-      this.playerSlot, s.log.events.slice(from));
-  }
-
-  private execute(cmd: Command): Result {
-    const from = this.state.log.events.length, slot = this.state.units[cmd.actor]?.owner;
+  /** 包一次 sim 推進：前 observer → 推進 → 若有成功指令則推 batch、後 observer。 */
+  private track<T>(advance: () => T): T {
     for (const observer of this.observers) observer();
-    const visible = this.state.knowledge[this.playerSlot]?.visible ?? [];
-    const result = tryCommand({ db: this.db, s: this.state }, cmd);
-    if (result.ok) {
-      this.commands.push(structuredClone(cmd));
-      this.refreshKnowledge(from);
-      this.batches.push({ command: this.commands.at(-1)!, events: result.events,
-        visible: [...new Set([...visible, ...this.state.knowledge[this.playerSlot]!.visible])] });
+    const visible = [...(this.state.knowledge[this.playerSlot]?.visible ?? [])];
+    this.last = null;
+    const result = advance();
+    const step = this.last as SessionStep | null;
+    if (step) {
+      this.batches.push({ command: this.inner.commands.at(-1)!, events: step.events,
+        visible: [...new Set([...visible, ...(this.state.knowledge[this.playerSlot]?.visible ?? [])])] });
       for (const observer of this.observers) observer();
-      for (const [other, ai] of this.ais) if (other !== slot) observeEvents(ai, this.query, this.state, result.events);
     }
     return result;
   }
 
-  submit(cmd: Command): Result {
+  private stepOnce(): SessionStep | null { return this.track(() => this.inner.stepAi()); }
+
+  private turnKey(): string {
+    const actor = this.activeUnit();
+    return `${actor}:${this.state.log.events.findLast(e => e.type === "TurnStart" && e.payload.unit === actor)?.seq}`;
+  }
+
+  submit(cmd: Command): SessionSubmitResult {
     if (this.outcome()) return { ok: false, rejection: { code: "battle-over" } };
     if (!this.isPlayerTurn()) return { ok: false, rejection: { code: "not-active" } };
-    const result = this.execute(cmd);
+    const result = this.track(() => this.inner.submit(cmd));
     if (result.ok && this.autoAdvance) this.advanceAi();
     return result;
   }
 
+  /** 跑完一台 AI 的單位回合（行動者換人、分勝負或 sim 停下為止）。 */
   stepAi(): { actor: Id | null; events: GameEvent[] } {
-    return this.runAiTurn(cmd => this.execute(cmd));
-  }
-
-  private runAiTurn(execute: (cmd: Command) => Result): { actor: Id | null; events: GameEvent[] } {
     const actor = this.activeUnit();
     if (this.outcome() || this.isPlayerTurn() || actor === null) return { actor: null, events: [] };
-    for (const slot of Object.keys(this.state.factions).sort()) {
-      if (slot === this.playerSlot || this.ais.has(slot)) continue;
-      const profile = this.sim.slotProfiles[slot];
-      const ai = createFactionAI({ slot, seed: this.seed, policy: profile?.policy,
-        params: profile?.params, unitPolicies: this.sim.unitPolicies[slot] });
-      this.ais.set(slot, ai);
-      if (this.round === this.state.round) startRound(ai, this.query, this.state);
+    const key = this.turnKey(), from = this.state.log.events.length;
+    let progressed = false, retried = false;
+    for (;;) {
+      if (!this.stepOnce()) {
+        // sim 在收掉上一回合殘留的失敗指令時會回一次 null；沒進展才再試一次。
+        if (progressed || retried) break;
+        retried = true; continue;
+      }
+      progressed = true;
+      if (this.outcome() || this.turnKey() !== key) break;
     }
-    if (this.round !== this.state.round) {
-      this.round = this.state.round;
-      for (const ai of this.ais.values()) startRound(ai, this.query, this.state);
-    }
-    const from = this.state.log.events.length, slot = this.state.units[actor]!.owner;
-    runUnitTurn(this.ais.get(slot)!, this.query, this.state, actor, (_s, cmd) => execute(cmd));
     return { actor, events: this.state.log.events.slice(from) };
   }
 
+  /** 連續跑 AI 直到輪到玩家或分勝負；maxSteps 為本次最多成功指令數。 */
   advanceAi(maxSteps = 10000): number {
     if (!Number.isSafeInteger(maxSteps) || maxSteps < 0) throw new Error("maxSteps 必須是非負整數");
-    const before = this.commands.length, limit = Symbol("AI 步數上限");
-    let attempts = 0;
-    try {
-      while (!this.outcome() && !this.isPlayerTurn() && attempts < maxSteps) {
-        const actor = this.activeUnit();
-        if (actor === null) break;
-        const count = this.commands.length;
-        this.runAiTurn(cmd => {
-          if (attempts >= maxSteps) throw limit;
-          attempts++;
-          return this.execute(cmd);
-        });
-        if (this.commands.length === count && this.activeUnit() === actor) break;
-      }
-    } catch (error) { if (error !== limit) throw error; }
+    const before = this.commands.length;
+    let retried = false;
+    while (!this.outcome() && !this.isPlayerTurn() && this.activeUnit() !== null && this.commands.length - before < maxSteps) {
+      if (this.stepOnce()) retried = false;
+      else if (retried) break;
+      else retried = true;
+    }
     return this.commands.length - before;
   }
 }

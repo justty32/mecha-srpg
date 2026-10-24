@@ -36,7 +36,7 @@
   {
    "領域": "sim",
    "檔案": "`src/sim/{run,session,replay,save,cli,measure}.ts`",
-   "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`，UI 之後從 `vm/session.ts` 遷入）；`measure.ts` AI 平衡量測",
+   "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`；`trackKnowledge(slot)` 維護陣營知識、`contentDb`／`rulesQuery`（型別 `SessionQuery`）供 ui-adapter 查詢；UI 的 `vm/session.ts` 已改走它）；`measure.ts` AI 平衡量測",
    "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）"
   },
   {
@@ -48,7 +48,7 @@
   {
    "領域": "ui-adapter",
    "檔案": "`src/ui-adapter/{vm,dom}/`",
-   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM",
+   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM；只依賴 core＋sim（`vm/boundary.test.ts` 守：不得 import rules／ai）",
    "測試在哪": "同目錄 `*.test.ts`、`e2e/`"
   }
  ]

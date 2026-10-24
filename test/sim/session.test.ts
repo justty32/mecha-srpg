@@ -105,3 +105,39 @@ test("結束後 submit／stepAi 拒絕推進且 result 非 null", () => {
   assert.equal(canonicalJson(session.state), before);
   assert.equal(session.commands.length, count);
 });
+
+test("trackKnowledge：成功指令後更新該 slot 的 visible／lastSeen，不影響 hash；取消後不再更新", () => {
+  const sim = setup(), session = createSession({ db, sim, seed: 1 });
+  const stop = session.trackKnowledge("player");
+  let seenAt = -1;
+  for (let i = 0; session.stepAi(); i++) if (seenAt < 0 && session.state.knowledge.player!.visible.length > 0) seenAt = i;
+  assert.ok(seenAt >= 0, "全場應至少看見一台敵機");
+  assert.ok(Object.keys(session.state.knowledge.player!.lastSeen).length > 0);
+  assert.deepEqual(session.state.knowledge.enemy!.visible, [], "未追蹤的 slot 不更新");
+  assert.equal(session.hash(), runBattle({ db, sim, seed: 1 }).hash);
+  stop();
+  const other = createSession({ db, sim, seed: 1 }), unsubscribe = other.trackKnowledge("player");
+  unsubscribe();
+  while (other.stepAi()) { /* 跑到結束。 */ }
+  assert.deepEqual(other.state.knowledge.player!.visible, []);
+});
+
+test("trackKnowledge 先於之後註冊的 observer 更新", () => {
+  const session = createSession({ db, sim: setup(), seed: 1 });
+  session.trackKnowledge("player");
+  const fresh: boolean[] = [];
+  session.observe(() => {
+    const k = session.state.knowledge.player!;
+    fresh.push(k.visible.every(id => k.lastSeen[id]?.round === session.state.round));
+  });
+  while (session.stepAi()) { /* 跑到結束。 */ }
+  assert.ok(fresh.length > 0 && fresh.every(Boolean));
+});
+
+test("contentDb／rulesQuery：公開唯讀內容與查詢介面", () => {
+  const session = createSession({ db, sim: setup(), seed: 1 }), actor = session.currentActor()!;
+  assert.equal(session.contentDb, db);
+  assert.ok(session.contentDb.require("frame", session.state.units[actor]!.frame));
+  assert.ok(Object.keys(session.rulesQuery.reachable(session.state, actor)).length > 0);
+  assert.ok(session.rulesQuery.abilitiesOf(session.state, actor).length > 0);
+});
