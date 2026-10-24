@@ -235,7 +235,7 @@
    "id": "WV-10",
    "source": "../world/rifts-and-territory.md#潮錨與繫各族怎麼撐開裂縫",
    "constraint": "每族的錨不同：蟲族巢母（唯一母體、子體有繫）、獸族崖牙（不生不繫）、菌絲菌床（就是地盤）、異形無錨；殺或捕錨裂縫進入可封狀態",
-   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "spec_section": "battle-interface/apply-result.md#三戰果回寫-applybattleresult",
    "note": "anchor dead/captured → unanchored"
   },
   {
@@ -333,14 +333,14 @@
    "id": "DEC-02",
    "source": "../../../decisions.md#2026-10-23-戰鬥系統十題的預設fable-代決使用者可逐條推翻",
    "constraint": "多份契約並行有時限；敵軍接約前依裂縫地盤固定、不隨玩家戰力縮放",
-   "spec_section": "data-model-factions-contracts.md#契約-contracttemplate-與-contractstate",
+   "spec_section": "data-model-factions-contracts/contracts.md#契約-contracttemplate-與-contractstate",
    "note": "decisions 戰鬥十題 (10)；敵方編成在 offered 時快照"
   },
   {
    "id": "DEC-03",
    "source": "../../../decisions.md#2026-10-23-戰鬥系統十題的預設fable-代決使用者可逐條推翻",
    "constraint": "整機到地圖邊緣撤離、另支援棄機逃生；機甲留場可能被占或事後回收",
-   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "spec_section": "battle-interface/apply-result.md#三戰果回寫-applybattleresult",
    "note": "derelict-recovered／lost 的回寫"
   },
   {
@@ -361,7 +361,7 @@
    "id": "CORE-01",
    "source": "../core/rules-battle-flow.md#battleresult交給營運層的唯一介面",
    "constraint": "BattleResult 是戰鬥引擎對營運層的唯一出口；營運層不可直接讀戰鬥內部狀態",
-   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "spec_section": "battle-interface/apply-result.md#三戰果回寫-applybattleresult",
    "note": "ops/* 不 import rules／ai"
   },
   {

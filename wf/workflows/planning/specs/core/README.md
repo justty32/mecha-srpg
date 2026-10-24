@@ -37,7 +37,7 @@ flowchart LR
 | [data-model-people.md](data-model-people.md) | 人物骨架（駕駛員／機魂共用）、屬性、特質、傷勢、士氣、意志軸三用法、座艙關係 |
 | [data-model-mech.md](data-model-mech.md) | 機體、body plan、部位、層序列、資源池、部件、機甲實例 |
 | [data-model-abilities-effects.md](data-model-abilities-effects.md) | 能力（成本／冷卻／目標／傷害包／效果／AI 權重）、效果（scope／時鐘／疊加／傳導）、NumExpr |
-| [data-model-world.md](data-model-world.md) | 地形、地圖、勢力、怪獸族與個體（spawner／molt 可選行為）、情境 |
+| [data-model-world.md](data-model-world.md) | 地形、地圖、勢力、怪獸族與個體（spawner／molt 可選行為）、情境；子檔 [monsters](data-model-world/monsters.md)（怪獸族與個體）、[scenario](data-model-world/scenario.md)（情境） |
 | [rules-turn-and-actions.md](rules-turn-and-actions.md) | 回合結構、速度排序、Wait、AP 與移動、行動入口與失敗政策 |
 | [rules-attack-resolution.md](rules-attack-resolution.md) | 命中、部位選擇、層序列結算、傳導、十分之一規則、傷害修正鏈 |
 | [rules-resources-effects.md](rules-resources-effects.md) | 資源更新時機、閾值帶、效果時鐘、疊加、屬性貢獻與撤回 |

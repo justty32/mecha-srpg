@@ -26,7 +26,7 @@ type Clock = { day: number /*自開局起 0..*/; month: number /*floor(day/28)*/
 7. **契約與市場**：到期；弦月刷新；渡輪開船；rep 回歸。
 8. **摘要**：`DaySummary` 事件。
 
-細則：第 2 段內部順序固定 2a 裂縫狀態機（大潮日）→ 2b 外交日結 → 2c 作戰推進（抽象結算或寫 `pendingBattle`）→ 2d 行動牌（天天抽，可發起新作戰、宣戰、簽約）→ 2e 新裂縫與潮壓（大潮日）→ 2f 勢力研發（每潮月第 1 天）→ 2g 行動者 AI（每種 kind 查自己的表，一天最多重算一次路徑，見 [world-grid/actors-and-encounters](world-grid/actors-and-encounters.md)），理由見 [data-model-operations-war](data-model-operations-war.md)；第 3 段的接觸是四選 `prompt`（迴避／追擊／交涉／開打），開打才寫 `pendingBattle`，蝕格的野群遭遇同此；第 4 段事件是 BB 式兩三個選項，寫入 `pendingChoices`，等玩家選完才續後段；第 5 段依序跑工時產出與佇列、拘束艙的磨損累加／族別維持到期／活性／掙脫事件／族行為日程、陪伴時段（mastery、trust）、醫務（hp 回復、傷勢時鐘 −1）、燃料與船體維護；第 6 段先算全團應付薪水再等比例付或欠，大潮第 1 天把利息入 `debt`，失敗政策只在這一段明示；第 7 段到期契約轉 `expired`／`failed`，弦月刷新市場與招募池、判定渡輪開船，勢力 rep 朝 0 每潮月回歸 1 點；第 8 段的 `DaySummary` 是錢、人、獸、裂縫四行，text 層只讀它組「今日」訊息。
+細則：第 2 段內部順序固定 2a 裂縫狀態機（大潮日）→ 2b 外交日結 → 2c 作戰推進（抽象結算或寫 `pendingBattle`）→ 2d 行動牌（天天抽，可發起新作戰、宣戰、簽約）→ 2e 新裂縫與潮壓（大潮日）→ 2f 勢力研發（每潮月第 1 天）→ 2g 行動者 AI（每種 kind 查自己的表，一天最多重算一次路徑，見 [world-grid/actors-and-encounters](world-grid/actors-and-encounters.md)），理由見 [data-model-operations-war／resolution](data-model-operations-war/resolution.md#tick-第-2-段的順序補-time-and-tick)；第 3 段的接觸是四選 `prompt`（迴避／追擊／交涉／開打），開打才寫 `pendingBattle`，蝕格的野群遭遇同此；第 4 段事件是 BB 式兩三個選項，寫入 `pendingChoices`，等玩家選完才續後段；第 5 段依序跑工時產出與佇列、拘束艙的磨損累加／族別維持到期／活性／掙脫事件／族行為日程、陪伴時段（mastery、trust）、醫務（hp 回復、傷勢時鐘 −1）、燃料與船體維護；第 6 段先算全團應付薪水再等比例付或欠，大潮第 1 天把利息入 `debt`，失敗政策只在這一段明示；第 7 段到期契約轉 `expired`／`failed`，弦月刷新市場與招募池、判定渡輪開船，勢力 rep 朝 0 每潮月回歸 1 點；第 8 段的 `DaySummary` 是錢、人、獸、裂縫四行，text 層只讀它組「今日」訊息。
 
 跨多日（`等 7`）**逐日執行全部八段**，不合併（DAT-13 答案：補算每個結算點）。段 4 暫停時，剩餘天數保留在 `pendingTicks`，選完自動續跑。
 

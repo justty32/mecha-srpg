@@ -431,21 +431,21 @@
    "id": "FIX-01",
    "source": "../../../dispatch/handoffs/done/2026-10-24/lead-fix-scenario-ai/REPORT.md",
    "constraint": "情境 slot 可選 allies，與 FactionDef ally 關係取聯集、對稱，存 RulesRuntime.allies；敵對只經 hostileSlots()；eliminate 只計敵對 slot；世界 neutral 在戰場算敵對（頂層代決）",
-   "spec_section": "data-model-world.md#同盟敵對與全局值2026-10-24-修正線已實作",
+   "spec_section": "data-model-world/scenario.md#同盟敵對與全局值2026-10-24-修正線已實作",
    "note": "2026-10-24 修正線實作；core 型別新增 ScenarioDef.slots[].allies?、RulesRuntime.allies"
   },
   {
    "id": "FIX-02",
    "source": "../../../dispatch/handoffs/done/2026-10-24/lead-fix-scenario-ai/REPORT.md",
    "constraint": "killTarget 參數 target＝def id，scenarioToSetup 翻成單位 id；同 def 多單位要全死；未知目標在組裝期報錯",
-   "spec_section": "data-model-world.md#同盟敵對與全局值2026-10-24-修正線已實作",
+   "spec_section": "data-model-world/scenario.md#同盟敵對與全局值2026-10-24-修正線已實作",
    "note": "2026-10-24 修正線實作"
   },
   {
    "id": "FIX-03",
    "source": "../../../dispatch/handoffs/done/2026-10-24/lead-fix-scenario-ai/REPORT.md",
    "constraint": "RulesRuntime.globals：battle.tide／battle.light 可求值；destructible 格依 feature hp 初始化（無則地形預設）；地物受損機制由 spec 提案一版",
-   "spec_section": "data-model-world.md#地物受損提案待實作",
+   "spec_section": "data-model-world/scenario.md#地物受損提案待實作",
    "note": "2026-10-24；地物受損是 Fable 提案，待實作線"
   }
  ]
