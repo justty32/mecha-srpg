@@ -19,6 +19,7 @@ function setup(): TurnEnv {
 
 test("policyFor：berserk 與 fleeing 接管，失控優先", () => {
   const { q, s } = setup();
+  s.round = 3;
   assert.equal(policyFor(q, s, "a", "sentinel"), "sentinel");
   s.persons.pilot!.morale = "fleeing";
   assert.equal(policyFor(q, s, "a", "sentinel"), "flee");

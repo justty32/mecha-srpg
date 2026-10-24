@@ -7,6 +7,7 @@ import { candidateKey, getPolicy, selectCandidate } from "./policy.ts";
 import { maskedState, observe, updateKnowledge } from "./knowledge.ts";
 import { dangerMap } from "./danger.ts";
 import { individualRetreat, mobile } from "./intent.ts";
+import { individualRetreatReady } from "./retreat.ts";
 
 const DEFAULTS = { maxActions: 8, maxRetries: 3, maxPureMoves: 1, band: 0.8 };
 
@@ -17,10 +18,10 @@ export function createAgent(unit: Id, policy: Id, memory?: Record<string, unknow
   return { unit, policy, memory: structuredClone(memory ?? {}) };
 }
 
-export function policyFor(q: RulesQuery, s: BattleState, unitId: Id, fallback: Id): Id {
+export function policyFor(q: RulesQuery, s: BattleState, unitId: Id, fallback: Id, params: AiParams = {}): Id {
   if (s.units[unitId]?.controlMode === "berserk") return "berserk";
   const commander = q.commanderOf(s, unitId);
-  if (commander && s.persons[commander]?.morale === "fleeing") return "flee";
+  if (commander && s.persons[commander]?.morale === "fleeing" && individualRetreatReady(q, s, unitId, params)) return "flee";
   return fallback;
 }
 
@@ -59,7 +60,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
   for (let action = 0; action < maxActions; action++) {
     if (over()) return commands;
     let ctx = context();
-    const base = policyFor(q, s, agent.unit, agent.policy);
+    const base = policyFor(q, s, agent.unit, agent.policy, ctx.params);
     const mode = ctx.assignment?.intentMode;
     const withdraw = mobile(q, s, agent.unit) && !s.rt?.noRetreat
       && (mode === "retreat" || individualRetreat(ctx, agent.unit));

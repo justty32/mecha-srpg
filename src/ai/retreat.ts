@@ -1,11 +1,29 @@
 import type { MoraleStage } from "../core/types-def.ts";
-import type { AiCtx } from "./policy.ts";
+import type { BattleState } from "../core/types-state.ts";
+import type { AiCtx, AiParams } from "./policy.ts";
+import type { RulesQuery } from "./rules-query.ts";
 import { isHostileSlot } from "./hostility.ts";
+
+export const DEFAULTS = { individualRetreatMinRound: 3 };
+
+export function individualRetreatReady(q: RulesQuery, s: BattleState, id: string, params: AiParams): boolean {
+  if (s.round >= (params.individualRetreatMinRound ?? DEFAULTS.individualRetreatMinRound)) return true;
+  const person = q.commanderOf(s, id);
+  // SPEC-GAP：進場帶傷／低士氣先觀察；本場自己受火、受創或士氣惡化即可提早撤離。
+  return s.log.events.some(e => e.round > 0 && (
+    e.type === "LayerDamaged" && e.payload.unit === id && Number(e.payload.amount) > 0
+    || e.type === "MoraleChanged" && person && e.payload.person === person
+      && e.payload.from !== e.payload.to && ["breaking", "fleeing"].includes(String(e.payload.to))
+    || ["Hit", "Miss"].includes(e.type) && e.payload.target === id
+      && typeof e.payload.unit === "string" && !!s.units[e.payload.unit]
+      && isHostileSlot(q, s, s.units[id]!.owner, s.units[e.payload.unit]!.owner)
+  ));
+}
 
 type RetreatParams = { retreatForceRatio: number; retreatMinRound: number; retreatDamage: number };
 
-export function shouldRetreat(ctx: AiCtx, morale: MoraleStage | undefined, ratio: number, params: RetreatParams): boolean {
-  if (morale === "breaking" || morale === "fleeing") return true;
+export function shouldRetreat(ctx: AiCtx, morale: MoraleStage | undefined, ratio: number, params: RetreatParams, unit: string): boolean {
+  if (morale === "breaking" || morale === "fleeing") return individualRetreatReady(ctx.q, ctx.s, unit, ctx.params);
   if (ctx.s.round < params.retreatMinRound) return false;
   const friendly = (id: string): boolean => !!ctx.s.units[id]
     && !isHostileSlot(ctx.q, ctx.s, ctx.slot, ctx.s.units[id]!.owner);

@@ -5,9 +5,10 @@ import type { RulesQuery } from "./rules-query.ts";
 import type { StrategyCtx } from "./strategy.ts";
 import { forceRatio, hpFraction } from "./score.ts";
 import { isHostileSlot } from "./hostility.ts";
-import { shouldRetreat } from "./retreat.ts";
+import { DEFAULTS as RETREAT_DEFAULTS, individualRetreatReady, shouldRetreat } from "./retreat.ts";
 
 export const DEFAULTS = {
+  ...RETREAT_DEFAULTS,
   intentGiveUpRatio: 0.45, intentGiveUpLoss: 0.7, intentMinRound: 8,
   intentStallRounds: 5, intentTravelPerRound: 4, intentExitReserve: 1,
   intentImpossibleRatio: 1, intentDamageAlpha: 0.4,
@@ -175,8 +176,9 @@ export function individualRetreat(ctx: AiCtx, id: string): boolean {
   const { q, s } = ctx;
   if (s.rt?.noRetreat || !mobile(q, s, id) || s.units[id]!.controlMode === "berserk") return false;
   const p = { ...DEFAULTS, ...q.speciesIntent?.(s, id)?.params, ...ctx.params };
+  if (!individualRetreatReady(q, s, id, p)) return false;
   const pid = q.commanderOf(s, id), morale = pid ? s.persons[pid]?.morale : undefined;
   if (monster(q, s, id)) return hpFraction(q, s, id) < p.individualFleeHp;
   return !!pid && (hpFraction(q, s, id) < p.pilotFleeHp
-    || (morale === "breaking" || morale === "fleeing") && shouldRetreat(ctx, morale, 1, p));
+    || (morale === "breaking" || morale === "fleeing") && shouldRetreat(ctx, morale, 1, p, id));
 }

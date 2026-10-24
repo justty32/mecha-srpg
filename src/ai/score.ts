@@ -109,7 +109,7 @@ export function want(ctx: AiCtx, unitId: Id, target?: Id): Record<string, number
     capture: p.capture + (target && objectiveInfo(ctx.q, ctx.view, ctx.slot).spare.includes(target) ? p.objCapture : 0),
     protect: ctx.assignment?.protect ? p.protect : 0, heal: p.heal, buff: p.buff,
     scout: ctx.know.visible.length === 0 ? p.scout : p.scout * 0.2, escape: survive,
-    retreat: shouldRetreat(ctx, morale, forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot), p) ? p.retreat : 0,
+    retreat: shouldRetreat(ctx, morale, forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot), p, unitId) ? p.retreat : 0,
   };
 }
 

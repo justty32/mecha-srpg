@@ -180,5 +180,8 @@ test("撤離要已交戰且達指定輪數；雙方 miss 算交戰，單向攻�
   scaleHp(ctx.s, "a", 0.5); ctx.params.retreatDamage = 0.4;
   assert.equal(want(ctx, "a").retreat, 1);
   const breaking = context([{ id: "a", owner: "p", pos: { x: 0, y: 0 }, abilities: [], commander: { id: "pilot", morale: "breaking" } }]);
+  breaking.s.round = 1;
+  assert.equal(want(breaking, "a").retreat, 0);
+  breaking.params.individualRetreatMinRound = 1;
   assert.equal(want(breaking, "a").retreat, 1);
 });

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { createRng } from "../../src/core/rng.ts";
 import { createAgent, emptyKnowledge, takeTurn, getPolicy } from "../../src/ai/index.ts";
 import type { AiCtx, Assignment } from "../../src/ai/policy.ts";
+import type { GameEvent } from "../../src/core/events.ts";
 import { inferIntent, individualRetreat, mobile, planIntent, selectCommander } from "../../src/ai/intent.ts";
 import type { IntentMemory } from "../../src/ai/intent.ts";
 import { createStubRules, makeStubBattle } from "./stub-rules.ts";
@@ -195,4 +196,48 @@ test("profile params 覆寫不可達戰力門檻與傷害平滑權重生效", ()
   };
   assert.equal(decision(0), undefined, "保留上一輪傷害後仍有機會");
   assert.equal(decision(1), "retreat", "只看單輪零傷害且達自訂停滯門檻時放棄");
+});
+
+test("進場重傷與低士氣首輪未受壓時不自行撤離，護送出口仍有效", () => {
+  for (const morale of ["steady", "breaking", "fleeing"] as const) {
+    const { ctx, rules } = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+    ctx.s.round = 1; hurt(ctx, "a", 0.1);
+    ctx.s.persons["a-pilot"]!.morale = morale;
+    assert.equal(individualRetreat(ctx, "a"), false, morale);
+    assert.equal(takeTurn({ ...ctx, exec: rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"), false, morale);
+  }
+  const { ctx, rules } = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+  ctx.s.round = 1;
+  ctx.s.rt!.objectives = [{ kind: "escort", for: "p", params: { unit: "a" }, onComplete: "win" }];
+  assert.ok(takeTurn({ ...ctx, exec: rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"));
+});
+
+test("首輪實際受火、受創或士氣惡化仍能撤；友軍出手不算自身受壓", () => {
+  const events: Pick<GameEvent, "type" | "payload">[] = [
+    { type: "Miss", payload: { unit: "e", target: "a" } },
+    { type: "LayerDamaged", payload: { unit: "a", amount: 10 } },
+    { type: "MoraleChanged", payload: { person: "a-pilot", from: "shaken", to: "breaking" } },
+  ];
+  for (const event of events) {
+    const { ctx, rules } = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+    ctx.s.round = 1; hurt(ctx, "a", 0.1); ctx.s.persons["a-pilot"]!.morale = "breaking";
+    ctx.s.log.events.push({ seq: 1, round: 1, type: "Miss", payload: { unit: "a", target: "e" } });
+    assert.equal(individualRetreat(ctx, "a"), false);
+    ctx.s.log.events.push({ seq: 2, round: 1, ...event });
+    assert.equal(individualRetreat(ctx, "a"), true, event.type);
+    assert.ok(takeTurn({ ...ctx, exec: rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"), event.type);
+  }
+});
+
+test("profile params 可覆寫個體撤退觀察輪數並傳到 fleeing 策略與撤退評分", () => {
+  const { ctx, rules } = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+  ctx.s.round = 3; ctx.s.persons["a-pilot"]!.morale = "fleeing";
+  ctx.params.individualRetreatMinRound = 4;
+  assert.equal(individualRetreat(ctx, "a"), false);
+  assert.equal(takeTurn({ ...ctx, exec: rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"), false);
+  const next = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+  next.ctx.s.round = 1; next.ctx.s.persons["a-pilot"]!.morale = "fleeing";
+  next.ctx.params.individualRetreatMinRound = 1;
+  assert.equal(individualRetreat(next.ctx, "a"), true);
+  assert.ok(takeTurn({ ...next.ctx, exec: next.rules.exec }, createAgent("a", "tactical")).some(c => c.kind === "retreat"));
 });
