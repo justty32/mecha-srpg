@@ -8,6 +8,8 @@ import type { AiCtx, Agent, Candidate } from "./policy.ts";
 import { dangerAt, threatOf } from "./danger.ts";
 import { isHostileSlot } from "./hostility.ts";
 import { shouldRetreat } from "./retreat.ts";
+import { OBJECTIVE_DEFAULTS, objectiveInfo, objectiveMoveValue, objectiveTargetFactor } from "./objectives.ts";
+import type { AiParams } from "./policy.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
@@ -66,14 +68,14 @@ export function previewOutcome(q: RulesQuery, view: BattleState, cmd: Command, m
   return outcome;
 }
 
-function valueWithFocus(q: RulesQuery, view: BattleState, target: Id, focus: Id | undefined, bonus: number): number {
+function valueWithFocus(q: RulesQuery, view: BattleState, target: Id, focus: Id | undefined, bonus: number, factor = 1): number {
   return (1 + GRADES.indexOf(q.unitGrade(view, target))) * (1 + threatOf(q, view, target)) *
-    (1.5 - hpFraction(q, view, target)) * (target === focus ? bonus : 1);
+    (1.5 - hpFraction(q, view, target)) * (target === focus ? bonus : 1) * factor;
 }
 
-export function targetValue(q: RulesQuery, view: BattleState, target: Id, focus?: Id): number {
-  // SPEC-GAP：公開簽名沒有 params，獨立查詢用預設值；候選評分由私有 helper 帶入 profile.focusBonus。
-  return valueWithFocus(q, view, target, focus, DEFAULTS.focusBonus);
+export function targetValue(q: RulesQuery, view: BattleState, target: Id, focus?: Id, objective?: { slot: FactionSlot; params: AiParams }): number {
+  return valueWithFocus(q, view, target, focus, objective?.params.focusBonus ?? DEFAULTS.focusBonus,
+    objective ? objectiveTargetFactor(objectiveInfo(q, view, objective.slot), target, objective.params) : 1);
 }
 
 export function forceRatio(q: RulesQuery, s: BattleState, view: BattleState, slot: FactionSlot): number {
@@ -103,9 +105,12 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const needs = want(ctx, agent.unit);
   if (cmd.kind === "wait") return p.waitScore;
   if (cmd.kind === "end") return p.endScore;
-  if (cmd.kind === "retreat") return needs.retreat! * 10;
+  if (cmd.kind === "retreat") return objectiveInfo(q, view, ctx.slot).exitUnits.includes(agent.unit)
+    && view.rt?.exits.some(c => q.distance(c, actor.pos) === 0)
+    ? Math.max(needs.retreat! * 10, (ctx.params.objExit ?? OBJECTIVE_DEFAULTS.objExit) * 10) : needs.retreat! * 10;
   if (cmd.kind === "eject") return hpFraction(q, ctx.s, agent.unit) < p.ejectBelow && ctx.assignment?.allowRetreat ? needs.survive! * 5 : 0;
   const destination = c.move ?? (cmd.kind === "move" ? cmd.path.at(-1) : undefined) ?? actor.pos;
+  const objectiveMove = objectiveMoveValue(ctx, agent.unit, actor.pos, destination);
   // 原地等待也承受現有威脅；只扣移動增加的危險，避免原地攻擊被無條件壓成負分。
   const danger = p.dangerK * Math.max(0, dangerAt(ctx.danger, destination) - dangerAt(ctx.danger, actor.pos));
   if (cmd.kind === "move") {
@@ -113,7 +118,7 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     // 尚未接敵時朝公開地圖中央偵察，不讀取視野外單位的位置。
     const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
     const nearest = (cell: Cell): number => enemies.length ? Math.min(...enemies.map(id => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
-    return p.reposition * (nearest(actor.pos) - nearest(destination)) - danger;
+    return p.reposition * (nearest(actor.pos) - nearest(destination)) - danger + objectiveMove;
   }
   let state = view, steps = 0;
   if (c.move) {
@@ -129,9 +134,10 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const hit = target ? q.hitChance(state, agent.unit, cmd.ability, target, cmd.target?.part) / 100 : 1;
   const damageValue = (id: Id): number => {
     if (!state.units[id]) return 0;
-    const value = valueWithFocus(q, state, id, ctx.assignment?.target, p.focusBonus);
+    const info = objectiveInfo(q, view, ctx.slot);
+    const value = valueWithFocus(q, state, id, ctx.assignment?.target, p.focusBonus, objectiveTargetFactor(info, id, ctx.params));
     return value * Math.min(2, (outcome.damage[id] ?? 0) / Math.max(1, remainingHp(q, state, id))) +
-      (outcome.killed.includes(id) ? value : 0);
+      (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0);
   };
   let score = 0;
   for (const tactic of Object.keys(weights).sort()) {
@@ -155,5 +161,5 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     }
     score += weights[tactic]! * (needs[tactic] ?? 0) * value * hit;
   }
-  return score - p.moveCost * steps - danger;
+  return score - p.moveCost * steps - danger + objectiveMove;
 }

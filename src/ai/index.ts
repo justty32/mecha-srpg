@@ -3,6 +3,7 @@ export * from "./policy.ts";
 export * from "./knowledge.ts";
 export * from "./danger.ts";
 export * from "./score.ts";
+export * from "./objectives.ts";
 export * from "./strategy.ts";
 export * from "./agent.ts";
 

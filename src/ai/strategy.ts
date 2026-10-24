@@ -32,7 +32,7 @@ export function createDefaultStrategy(): Strategy {
       const priority = (id: Id): number => {
         const parts = view.units[id]!.parts;
         const hp = Object.keys(parts).sort().reduce((sum, key) => sum + parts[key]!.layers.reduce((n, layer) => n + layer.hp, 0), 0);
-        return targetValue(q, view, id) / Math.max(1, hp);
+        return targetValue(q, view, id, undefined, { slot, params }) / Math.max(1, hp);
       };
       const focus = [...enemies].sort((a, b) => priority(b) - priority(a) || (a < b ? -1 : a > b ? 1 : 0))[0];
       engagements = {};

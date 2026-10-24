@@ -4,6 +4,7 @@ import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
 import { scoreCandidate } from "../score.ts";
+import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
 
 const DEFAULTS = { maxMoves: 8 };
 // 經 AiCtx 取 RulesQuery 的目標型別（policies 不直接 import rules-query，讓「rules 只在 adapters/」的 grep 乾淨）。
@@ -19,12 +20,20 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
   const nearest = (cell: Cell): number => enemies.length
     ? Math.min(...enemies.map((id) => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
-  const moves = Object.keys(q.reachable(view, actor)).sort().map((key) => {
+  const reachable = Object.keys(q.reachable(view, actor)).sort().map((key) => {
     const [x, y] = key.split(",").map(Number);
     return { x: x!, y: y! };
-  }).sort((a, b) => nearest(a) - nearest(b) || dangerAt(ctx.danger, a) - dangerAt(ctx.danger, b)
+  });
+  const moves = [...reachable].sort((a, b) => nearest(a) - nearest(b) || dangerAt(ctx.danger, a) - dangerAt(ctx.danger, b)
     || a.x - b.x || a.y - b.y)
     .slice(0, Math.max(0, Math.floor(opts?.maxMoves ?? ctx.params.maxMoves ?? DEFAULTS.maxMoves)));
+  // berserk 共用候選產生器，但仍維持只追敵的原有行為。
+  if (agent.policy !== "berserk" && opts?.hostileOnly !== false) {
+    const objectiveMoves = reachable.map(cell => ({ cell, value: objectiveMoveValue(ctx, actor, self.pos, cell) }))
+      .filter(c => c.value > 0).sort((a, b) => b.value - a.value || a.cell.x - b.cell.x || a.cell.y - b.cell.y)
+      .slice(0, Math.max(0, Math.floor(ctx.params.objMoves ?? OBJECTIVE_DEFAULTS.objMoves)));
+    for (const { cell } of objectiveMoves) if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
+  }
   const candidates: Candidate[] = [];
   for (const move of [undefined, ...moves]) {
     let state = view;
