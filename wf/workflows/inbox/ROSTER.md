@@ -86,3 +86,25 @@
 - **答不出什麼**：情境、單位
 - **怎麼找我**：`wf/inbox/orders/cx-bat-field.md`
 - **訂閱主題**：無
+
+### `cx-bat-scen-a`
+- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **我是誰**：codex 工人，戰鬥情境 8 個（a 組）
+- **團隊**：`teams/content-battle`
+- **上游**：`lead-content-battle`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-battle/cx-bat-scen-a.md`「範圍」
+- **答得出什麼**：本組情境的配置與 measure 結果
+- **答不出什麼**：地形、地圖、單位
+- **怎麼找我**：`wf/inbox/orders/cx-bat-scen-a.md`
+- **訂閱主題**：無
+
+### `cx-bat-scen-b`
+- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **我是誰**：codex 工人，戰鬥情境 8 個（b 組）
+- **團隊**：`teams/content-battle`
+- **上游**：`lead-content-battle`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-battle/cx-bat-scen-b.md`「範圍」
+- **答得出什麼**：本組情境的配置與 measure 結果
+- **答不出什麼**：地形、地圖、單位
+- **怎麼找我**：`wf/inbox/orders/cx-bat-scen-b.md`
+- **訂閱主題**：無

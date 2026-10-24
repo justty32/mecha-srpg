@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| `lead-content-battle`（工人 `cx-bat-field`、`cx-bat-scen*`）| `content/base/terrains/`、`content/base/maps/`、`content/base/scenarios/`、`content/base/aiprofiles/`（只新增）、`content/base/effects/bf-*`、`wf/workflows/dispatch/handoffs/lead-content-battle/` | `src/`、`content/base/world/`、單位內容、既有 `skirmish-*`／`rift-edge-*`、spec | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
