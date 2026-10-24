@@ -109,6 +109,10 @@
 - **怎麼找我**：`wf/inbox/orders/cx-grid-actors.md`
 - **訂閱主題**：無
 
+### `lead-reconcile` 與工人 `cx-rc-*`
+- **狀態**：現役（2026-10-24）；團隊 `teams/rc`；上游頂層；交接書在 `wf/workflows/dispatch/handoffs/lead-reconcile/`。
+- **怎麼找我**：`wf/inbox/orders/<線名>.md`
+
 ### `lead-tune` 與工人 `cx-tune-{part,intent,human,anchor,scen,multi}`
 - **狀態**：已收線（2026-10-24）；Opus 領導＋六條 codex 工人，團隊 `teams/tune` 已關（紀錄在 `wf/inbox/done/2026-10-24/teams/tune/`）；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-tune/`。
 
