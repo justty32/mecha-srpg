@@ -145,6 +145,24 @@ function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSource
     }
   };
   for (const source of [...definitions.values(), ...ruleSources]) visit(source.value, source.path, source.file);
+  // ISS-001 配裝相容性：槽必須存在於機體 body plan，部件的 slot 型別要相符；只有機甲 spawn 能帶 components。
+  const loadout = (frameId: string, record: Record<string, string>, file: string, at: string): void => {
+    const frame = db.get("frame", frameId), plan = frame ? db.get("bodyplan", frame.bodyPlan) : undefined;
+    if (!plan) return;
+    const slots = new Map(plan.parts.flatMap(p => p.slots).map(s => [s.id, s]));
+    for (const id of Object.keys(record).sort()) {
+      const slot = slots.get(id), component = db.get("component", record[id]!);
+      if (!slot) errors.push({ file, path: `${at}.${id}`, message: `unknown slot ${id} on ${frame!.id}` });
+      else if (component && component.slot !== slot.type) errors.push({ file, path: `${at}.${id}`, message: `slot type ${slot.type} does not accept ${component.id} (${component.slot})` });
+    }
+  };
+  for (const frame of db.all("frame")) if (frame.defaultLoadout) loadout(frame.id, frame.defaultLoadout, definitions.get(frame.id)?.file ?? frame.id, "$.defaultLoadout");
+  for (const scenario of db.all("scenario")) for (const slot of Object.keys(scenario.slots).sort()) scenario.slots[slot]!.units.forEach((spawn, index) => {
+    if (!spawn.components) return;
+    const file = definitions.get(scenario.id)?.file ?? scenario.id, at = `$.slots.${slot}.units[${index}].components`;
+    if (!spawn.mech) errors.push({ file, path: at, message: "components only allowed on mech spawns" });
+    else loadout(spawn.mech, spawn.components, file, at);
+  });
 }
 
 export function loadPacks(packs: PackFiles[]): LoadResult {

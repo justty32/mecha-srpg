@@ -99,7 +99,11 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
             morale: state.morale, will: state.will, attrsBase: state.attrsBase, xp: state.xp, level: state.level }) }
           : { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
       });
+      // ISS-001：情境給 components 就整組取代機體 defaultLoadout；id 一律解析成完整 id。
+      const loadout = monster ? undefined : spawn.components ?? db.require("frame", spawn.mech!).defaultLoadout;
+      const components = loadout ? Object.fromEntries(Object.keys(loadout).sort().map(s => [s, db.require("component", loadout[s]!).id])) : undefined;
       units.push({ id, owner: slot, pos, persons, ...(spawn.pools ? { pools: structuredClone(spawn.pools) } : {}),
+        ...(components ? { components } : {}),
         ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade } } : { frame: spawn.mech! }) });
       if (monster) {
         const species = db.require("species", monster.species);
