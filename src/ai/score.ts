@@ -1,6 +1,6 @@
 import type { Id } from "../core/ids.ts";
 import { GRADES } from "../core/types-def.ts";
-import type { Cell, FactionSlot } from "../core/types-def.ts";
+import type { AbilityDef, Cell, FactionSlot } from "../core/types-def.ts";
 import type { BattleState, Command } from "../core/types-state.ts";
 import { createRng } from "../core/rng.ts";
 import type { RulesQuery } from "./rules-query.ts";
@@ -13,10 +13,12 @@ import type { AiParams } from "./policy.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
-  retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, reposition: 0.3, waitScore: 0, endScore: 0.01,
+  retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, enemyBuffPenalty: 1, reposition: 0.3, waitScore: 0, endScore: 0.01,
   ejectBelow: 0.15, moveCost: 0.01, dangerK: 0.01, band: 0.8,
   tries: 3, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
   retreatForceRatio: 0.5, retreatMinRound: 3, retreatDamage: 0.35,
+  objCapture: 2, captureValue: 1, debuffControl: 0.5, debuffAttr: 0.02, debuffMark: 0.25,
+  objHpScale: 200,
 };
 
 export const TACTICS: readonly string[] = ["attack", "attackArea", "disable", "heal", "buff", "debuff", "escape", "protect", "capture", "scout"];
@@ -37,7 +39,8 @@ export function hpFraction(q: RulesQuery, s: BattleState, unitId: Id): number {
 
 export type PreviewOutcome = { damage: Record<Id, number>; killed: Id[]; hitRuns: number; runs: number };
 
-export function previewOutcome(q: RulesQuery, view: BattleState, cmd: Command, move?: Cell, tries: number = DEFAULTS.tries): PreviewOutcome {
+export function previewOutcome(q: RulesQuery, view: BattleState, cmd: Command, move?: Cell, tries: number = DEFAULTS.tries,
+  inspect?: (preview: ReturnType<RulesQuery["previewCommand"]>, before: BattleState) => void): PreviewOutcome {
   const outcome: PreviewOutcome = { damage: {}, killed: [], hitRuns: 0, runs: 0 };
   let state = view;
   if (move) {
@@ -49,9 +52,11 @@ export function previewOutcome(q: RulesQuery, view: BattleState, cmd: Command, m
   }
   const killed = new Set<Id>();
   for (let i = 0; i < tries; i++) {
-    const { result } = q.previewCommand({ ...state, rng: createRng(DEFAULTS.previewSeed + i, DEFAULTS.previewStream) }, cmd);
+    const preview = q.previewCommand({ ...state, rng: createRng(DEFAULTS.previewSeed + i, DEFAULTS.previewStream) }, cmd);
+    const { result } = preview;
     outcome.runs++;
     if (!result.ok) continue;
+    inspect?.(preview, state);
     const hit = result.events.some(e => e.type === "Hit");
     if (hit) outcome.hitRuns++;
     for (const event of result.events) {
@@ -85,24 +90,67 @@ export function forceRatio(q: RulesQuery, s: BattleState, view: BattleState, slo
   return force(s, true) / Math.max(DEFAULTS.forceFloor, force(view, false));
 }
 
-export function want(ctx: AiCtx, unitId: Id): Record<string, number> {
+export function want(ctx: AiCtx, unitId: Id, target?: Id): Record<string, number> {
   // SPEC-GAP：profile params 僅允許數值，以契約固定公式套用係數。
   const p = { ...DEFAULTS, ...ctx.params }, survive = (1 - hpFraction(ctx.q, ctx.s, unitId)) * p.survive;
   const commander = ctx.q.commanderOf(ctx.s, unitId);
   const morale = commander ? ctx.s.persons[commander]?.morale : undefined;
   return {
-    survive, attack: p.attack, attackArea: p.attack, disable: p.disable, debuff: p.debuff, capture: p.capture,
+    survive, attack: p.attack, attackArea: p.attack, disable: p.disable, debuff: p.debuff,
+    capture: p.capture + (target && objectiveInfo(ctx.q, ctx.view, ctx.slot).spare.includes(target) ? p.objCapture : 0),
     protect: ctx.assignment?.protect ? p.protect : 0, heal: p.heal, buff: p.buff,
     scout: ctx.know.visible.length === 0 ? p.scout : p.scout * 0.2, escape: survive,
     retreat: shouldRetreat(ctx, morale, forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot), p) ? p.retreat : 0,
   };
 }
 
+// RulesQuery 不暴露 EffectDef：由真預覽安裝的 contribs 與 unitTags 讀取其公開效果。
+// refresh／ignore 不產生新實例或 stacks，重複價值為零；merge／stack 仍計新增部分。
+function debuffValues(q: RulesQuery, before: BattleState, after: BattleState, actor: Id, def: AbilityDef,
+  p: typeof DEFAULTS, targets: Set<Id>): Record<Id, number> {
+  const refs = new Set(def.effects.filter(g => g.on === "hit" || g.on === "always")
+    .flatMap(g => g.apply.map(r => typeof r === "string" ? r : r.effect)));
+  const values: Record<Id, number> = {};
+  for (const id of targets) {
+    const u = after.units[id];
+    if (!u) continue;
+    const owners = [u, ...Object.values(u.seats).flatMap(pid => pid && after.persons[pid] ? [after.persons[pid]!] : [])];
+    const old = [before.units[id]!, ...Object.values(before.units[id]!.seats)
+      .flatMap(pid => pid && before.persons[pid] ? [before.persons[pid]!] : [])].flatMap(o => o.effects);
+    const baseline = { ...after, units: { ...after.units, [id]: { ...u, effects: [] } } };
+    const baseTags = q.unitTags(baseline, id);
+    for (const owner of owners) for (const inst of owner.effects) {
+      if (inst.source !== actor || !refs.has(inst.effect)) continue;
+      const previous = old.find(e => e.uid === inst.uid);
+      if (previous && inst.stacks <= previous.stacks) continue;
+      const isolated = { ...after, units: { ...after.units, [id]: { ...u, effects: [inst] } } };
+      const tags = q.unitTags(isolated, id).filter(t => !baseTags.includes(t));
+      let value = tags.reduce((sum, tag) => sum + (tag === "marked" ? p.debuffMark
+        : ["stagger", "suppressed", "jammed", "numb", "restraint"].includes(tag) ? p.debuffControl : 0), 0);
+      for (const c of owner.contribs.filter(c => inst.contribIds.includes(c.id) && c.path.includes(".attrs."))) {
+        const n = q.evalNum(after, c.value, id);
+        const loss = c.op === "add" ? -n : c.op === "mul" ? 1 - n
+          : c.op === "min" || c.op === "set" ? q.evalNum(before, { ref: c.path }, id) - n : 0;
+        value += p.debuffAttr * Math.max(0, loss);
+      }
+      values[id] = (values[id] ?? 0) + value;
+    }
+  }
+  return values;
+}
+
+function captureProximity(q: RulesQuery, view: BattleState, id: Id): number {
+  const parts = q.partDefs(view, id).filter(p => p.functions.includes("locomotion"));
+  const max = parts.reduce((n, p) => n + q.layerDefs(view, id, p.id).reduce((n, l) => n + l.hp, 0), 0);
+  const hp = parts.reduce((n, p) => n + (view.units[id]!.parts[p.id]?.layers ?? []).reduce((n, l) => n + l.hp, 0), 0);
+  return max > 0 ? Math.max(0, Math.min(1, 1 - hp / max)) : 0;
+}
+
 export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const { q, view } = ctx, p = { ...DEFAULTS, ...ctx.params }, cmd = c.cmd;
   const actor = view.units[agent.unit];
   if (!actor) return -Infinity;
-  const needs = want(ctx, agent.unit);
+  const needs = want(ctx, agent.unit, cmd.kind === "useAbility" ? cmd.target?.unit : undefined);
   if (cmd.kind === "wait") return p.waitScore;
   if (cmd.kind === "end") return p.endScore;
   if (cmd.kind === "retreat") return objectiveInfo(q, view, ctx.slot).exitUnits.includes(agent.unit)
@@ -129,14 +177,29 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     if (!moved.result.ok) return -Infinity;
     state = moved.state;
   }
-  const outcome = previewOutcome(q, state, cmd), weights = tacticWeights(q, state, agent.unit, cmd.ability);
   const def = q.abilityDef(cmd.ability), target = cmd.target?.unit ?? (def.target.kind === "self" ? agent.unit : undefined);
+  const areaTargets = new Set<Id>(), effects: Record<Id, number> = {}, hits: Record<Id, number> = {};
+  const inspectEffects = def.effects.length > 0 && (def.ai.tactics.debuff !== undefined || def.ai.tactics.disable !== undefined);
+  const outcome = previewOutcome(q, state, cmd, undefined, DEFAULTS.tries, ({ result, state: after }, before) => {
+    if (!result.ok) return;
+    const affected = new Set<Id>();
+    for (const e of result.events) if ((e.type === "Hit" || e.type === "Miss") && e.payload.unit === cmd.actor
+      && e.payload.ability === cmd.ability && typeof e.payload.target === "string") {
+      areaTargets.add(e.payload.target); affected.add(e.payload.target);
+      if (e.type === "Hit") hits[e.payload.target] = (hits[e.payload.target] ?? 0) + 1;
+    }
+    if (inspectEffects) for (const [id, value] of Object.entries(debuffValues(q, before, after, agent.unit, def, p, affected))) {
+      effects[id] = (effects[id] ?? 0) + value;
+    }
+  }), weights = tacticWeights(q, state, agent.unit, cmd.ability);
   const hit = target ? q.hitChance(state, agent.unit, cmd.ability, target, cmd.target?.part) / 100 : 1;
   const damageValue = (id: Id): number => {
     if (!state.units[id]) return 0;
     const info = objectiveInfo(q, view, ctx.slot);
-    const value = valueWithFocus(q, state, id, ctx.assignment?.target, p.focusBonus, objectiveTargetFactor(info, id, ctx.params));
-    return value * Math.min(2, (outcome.damage[id] ?? 0) / Math.max(1, remainingHp(q, state, id))) +
+    const factor = objectiveTargetFactor(info, id, ctx.params);
+    const value = valueWithFocus(q, state, id, ctx.assignment?.target, p.focusBonus, factor);
+    const damage = outcome.damage[id] ?? 0, ratio = damage / Math.max(1, remainingHp(q, state, id));
+    return value * Math.min(2, factor > 1 ? Math.max(ratio, damage / Math.max(1, p.objHpScale)) : ratio) +
       (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0);
   };
   let score = 0;
@@ -144,6 +207,19 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     let value = 0;
     if (["attack", "disable", "debuff", "capture"].includes(tactic)) {
       value = target ? damageValue(target) : 0;
+      if (tactic === "capture" && target && state.units[target]) {
+        value += p.captureValue * captureProximity(q, state, target) * targetValue(q, state, target,
+          ctx.assignment?.target, { slot: ctx.slot, params: ctx.params });
+      }
+      if (tactic === "debuff" || tactic === "disable") {
+        for (const id of target ? [target] : [...areaTargets]) {
+          if (!state.units[id]) continue;
+          const effect = (effects[id] ?? 0) / Math.max(1, hits[id] ?? 0) * targetValue(q, state, id,
+            ctx.assignment?.target, { slot: ctx.slot, params: ctx.params });
+          value += (effect + (target ? 0 : damageValue(id))) * (target ? 1 : q.hitChance(state, agent.unit, cmd.ability, id) / 100)
+            * (q.hostile(state, agent.unit, id) ? 1 : -p.friendlyFirePenalty);
+        }
+      }
       if (tactic === "disable" && target && cmd.target?.part) {
         const part = q.partDefs(state, target).find(part => part.id === cmd.target!.part);
         if (part?.functions.some(f => def.ai.targetPref?.parts?.includes(f))) value *= 1.5;
@@ -153,7 +229,11 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
         value += damageValue(id) * (q.hostile(state, agent.unit, id) ? 1 : -p.friendlyFirePenalty);
       }
     } else if (["heal", "buff", "protect"].includes(tactic)) {
-      if (target && state.units[target] && !q.hostile(state, agent.unit, target)) value = 1.5 - hpFraction(q, state, target);
+      if (["ball", "line", "cone"].includes(def.target.kind)) {
+        for (const id of areaTargets) if (state.units[id]) {
+          value += (1.5 - hpFraction(q, state, id)) * (q.hostile(state, agent.unit, id) ? -p.enemyBuffPenalty : 1);
+        }
+      } else if (target && state.units[target] && !q.hostile(state, agent.unit, target)) value = 1.5 - hpFraction(q, state, target);
     } else if (tactic === "scout") {
       value = 1 + Object.keys(ctx.know.lastSeen).sort().filter(id => !ctx.know.visible.includes(id)).length;
     } else if (tactic === "escape") {

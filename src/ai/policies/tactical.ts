@@ -48,12 +48,15 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
     }
     for (const ability of [...q.abilitiesOf(state, actor)].sort()) {
       const def = q.abilityDef(ability);
-      if (def.mode !== "activated") continue;
+      if (def.mode !== "activated" && def.mode !== "sustained") continue;
+      if (def.mode === "sustained" && state.units[actor]!.sustained.includes(ability)) continue;
       const targets: AbilityTarget[] = [];
       if (def.target.kind === "self") targets.push({ unit: actor });
-      else if (def.target.kind === "cell" || def.target.kind === "ball") {
+      else if (["cell", "ball", "line", "cone"].includes(def.target.kind)) {
         const seen = new Set<string>();
-        for (const id of enemies) {
+        const friends = def.target.kind !== "cell" && def.target.friendly !== "no"
+          ? Object.keys(state.units).sort().filter(id => q.isActive(state, id) && !q.hostile(state, actor, id)) : [];
+        for (const id of [...enemies, ...friends]) {
           const cell = state.units[id]!.pos;
           const key = cellKey(cell.x, cell.y);
           if (!seen.has(key)) targets.push({ cell: { ...cell } });

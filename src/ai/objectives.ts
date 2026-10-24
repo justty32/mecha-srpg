@@ -9,6 +9,8 @@ export const OBJECTIVE_DEFAULTS = {
   objKill: 4, objSpawner: 3, objZoneClear: 2, objIntercept: 3, objSpare: 4,
   objExit: 4, objHold: 2, objHoldStay: 4, objContest: 1,
   objEscort: 2, escortRange: 2, objBlock: 1, objNoBlock: 8, objMoves: 4,
+  // 正值在凍結 rift 量測增加我方死亡；保守預設關閉，profile 可啟用。
+  objHunt: 0,
 };
 type Bonus = "objKill" | "objSpawner" | "objZoneClear" | "objIntercept";
 export type ObjectiveInfo = {
@@ -80,6 +82,11 @@ export function objectiveMoveValue(ctx: Pick<AiCtx, "q" | "view" | "slot" | "par
   const progress = (zone: Cell[]): number => zone.length ? distance(from, zone) - distance(to, zone) : 0;
   const at = (c: Cell, zone: Cell[]): number => Number(zone.some(b => q.distance(c, b) === 0));
   let value = 0;
+  const hunt = Object.keys(info.bonusReasons).filter(id => view.units[id] && q.isActive(view, id)
+    && isHostileSlot(q, view, slot, view.units[id]!.owner)
+    && info.bonusReasons[id]!.some(reason => reason === "objKill" || reason === "objSpawner"))
+    .sort((a, b) => q.distance(from, view.units[a]!.pos) - q.distance(from, view.units[b]!.pos) || a.localeCompare(b))[0];
+  if (hunt) value += p.objHunt * (q.distance(from, view.units[hunt]!.pos) - q.distance(to, view.units[hunt]!.pos));
   if (info.exitUnits.includes(unit)) value += p.objExit * progress(exits);
   else {
     for (const zone of info.holdZones) value += p.objHold * progress(zone) + p.objHoldStay * (at(to, zone) - at(from, zone));
