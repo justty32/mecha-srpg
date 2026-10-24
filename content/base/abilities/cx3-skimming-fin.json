@@ -1,0 +1,46 @@
+{
+  "id": "ability/cx3-skimming-fin",
+  "name": "掠潮飛鰭",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 5
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 9
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "shellwork",
+    "lineage-tide-fin"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

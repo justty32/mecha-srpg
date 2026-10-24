@@ -15,7 +15,7 @@
 ## 流程
 
 <!-- wf-nav -->
-1. **socket 與暫存放 `/tmp/<線名>/`**，不放 worktree（閘門會把 worktree 裡的任何雜檔記成越界）：`node src/mcp/cli.ts serve --socket /tmp/<線名>/s.sock` 背景跑，之後 `node src/mcp/cli.ts call --socket /tmp/<線名>/s.sock <工具> '<JSON>'`；收工 kill 自己的 pid。scratch pack（煙霧情境）也放 `/tmp/<線名>/pack/`。
+1. **MCP 走 stdio、暫存放 `/tmp/<線名>/`**，不放 worktree（閘門會把 worktree 裡的任何雜檔記成越界）。codex 沙箱禁止 Unix socket listen（`cli.ts serve --socket` 回 EPERM，2026-10-24 實證），改用 `node src/mcp/server.ts` 的 stdio：照 `src/mcp/e2e.test.ts` 的 `withServer` 寫 driver，或 `mkfifo` 讓一個背景 server 常駐、逐行寫請求以便一步步手打；收工結束自己的行程。沙箱外的 agent 仍可用 socket CLI。scratch pack（煙霧情境）也放 `/tmp/<線名>/pack/`。
 2. **probe 先跑**：新 frame／monster／ability／scenario 各 `--n 5`；同時跑 `probe.reference`。2026-10-24 的引擎現況：1 對 1 常因 AI 撤退判負（既有劍魚-III 對堅盾-II 0% 勝），所以**新單位的勝率要對參照比，不是對絕對門檻比**。
 3. **MCP 試玩**：每個新單位至少進一場；至少 1 場手打（`battle_legal_actions`→`battle_act`），其餘可 `battle_auto`／`spectate`。每場把完整 call 輸出存 `mcp-log/<場次>.txt`（scratch 情境的 JSON 貼在開頭）。
 4. **記 `playtest.json`**：欄位 `scenario seed rounds winner reason mode ourLosses enemyLosses newAbilityUses aiUsed log`，`link_columns:["log"]`；`mode` ∈ `mcp-manual`／`mcp-auto`／`mcp-spectate`；`log` 相對 playtest.json。

@@ -1,0 +1,57 @@
+{
+  "id": "frame/cx3-flyingfish-ii",
+  "name": "飛魚-II型",
+  "aka": [{"faction": "faction/migrant-crew", "name": "Flyingfish II"}],
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-hover-c",
+  "defaultLoadout": {
+    "right-weapon": "component/cx3-crest-blade",
+    "left-weapon": "component/mx-singing-blade"
+  },
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 5,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-tide-leap-up"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "series-flyingfish",
+    "hover"
+  ]
+}

@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "pilot-mech-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "author": {
   "agent": "codex",
   "model": "gpt-6-astra",
@@ -12,7 +12,7 @@
  },
  "lead": "lead-codex-pilot",
  "date": "2026-10-24",
- "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "base": "9c3b286efa731f189f42303bd257d305d0201557",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/REPORT.md",
@@ -36,10 +36,303 @@
    "content/base/world/lineages/tide-fin.json"
   ]
  },
- "files": [],
- "ids": [],
- "acceptance": {},
- "rounds": [],
+ "files": [
+  "content/base/abilities/cx3-call-the-tide.json",
+  "content/base/abilities/cx3-crest-cut.json",
+  "content/base/abilities/cx3-skimming-fin.json",
+  "content/base/components/cx3-crest-blade.json",
+  "content/base/components/cx3-skimming-fin.json",
+  "content/base/effects/cx3-following-tide.json",
+  "content/base/frames/cx3-flyingfish-d.json",
+  "content/base/frames/cx3-flyingfish-ii.json",
+  "content/base/frames/cx3-flyingfish-iv.json",
+  "content/base/scenarios/cx3-flyingfish-shoal.json"
+ ],
+ "ids": [
+  "ability/cx3-call-the-tide",
+  "ability/cx3-crest-cut",
+  "ability/cx3-skimming-fin",
+  "component/cx3-crest-blade",
+  "component/cx3-skimming-fin",
+  "effect/cx3-following-tide",
+  "frame/cx3-flyingfish-d",
+  "frame/cx3-flyingfish-ii",
+  "frame/cx3-flyingfish-iv",
+  "scenario/cx3-flyingfish-shoal"
+ ],
+ "acceptance": {
+  "batch": "pilot-mech-01",
+  "round": 3,
+  "at": "2026-10-24T14:43:18",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/abilities/cx3-call-the-tide.json",
+   "content/base/abilities/cx3-crest-cut.json",
+   "content/base/abilities/cx3-skimming-fin.json",
+   "content/base/components/cx3-crest-blade.json",
+   "content/base/components/cx3-skimming-fin.json",
+   "content/base/effects/cx3-following-tide.json",
+   "content/base/frames/cx3-flyingfish-d.json",
+   "content/base/frames/cx3-flyingfish-ii.json",
+   "content/base/frames/cx3-flyingfish-iv.json",
+   "content/base/scenarios/cx3-flyingfish-shoal.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "ability/cx3-call-the-tide",
+     "matchesReference": true
+    },
+    {
+     "id": "ability/cx3-call-the-tide",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 4.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "ability/cx3-call-the-tide",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 80% 敗 20% 平 0% 輪 4.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "摹機總層 HP 285 < C 級下限 300",
+     "key": "band:base:frame/cx3-flyingfish-ii:摹機總層 HP",
+     "id": "ability/cx3-crest-cut",
+     "waived": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 20%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "low",
+     "id": "ability/cx3-crest-cut",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 20%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "low",
+     "id": "ability/cx3-crest-cut",
+     "matchesReference": true
+    },
+    {
+     "id": "ability/cx3-crest-cut",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "ability/cx3-crest-cut",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 20%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "ability/cx3-skimming-fin",
+     "waived": "載體即 FF-3，同上"
+    },
+    {
+     "id": "ability/cx3-skimming-fin",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "ability/cx3-skimming-fin",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 80% 敗 20% 平 0% 輪 5.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 20%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "frame/cx3-flyingfish-d",
+     "waived": "D 偵察機 1 對 1 對 bulwark-i 20%（n=20 亦 20%），與既有同級偵察機 shellsoc-ls3 同條件 20% 持平；對 mite-d n=20 75%"
+    },
+    {
+     "id": "frame/cx3-flyingfish-d",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/cx3-flyingfish-d",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 80% 敗 20% 平 0% 輪 5.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "摹機總層 HP 285 < C 級下限 300",
+     "key": "band:base:frame/cx3-flyingfish-ii:摹機總層 HP",
+     "id": "frame/cx3-flyingfish-ii",
+     "waived": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 20%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "low",
+     "id": "frame/cx3-flyingfish-ii",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 20%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "low",
+     "id": "frame/cx3-flyingfish-ii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/cx3-flyingfish-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/cx3-flyingfish-ii",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 20% 敗 80% 平 0% 輪 4.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/cx3-flyingfish-iv",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/cx3-flyingfish-iv",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 4.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/cx3-flyingfish-iv",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 80% 敗 20% 平 0% 輪 4.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "摹機總層 HP 285 < C 級下限 300",
+     "key": "band:base:frame/cx3-flyingfish-ii:摹機總層 HP",
+     "id": "scenario/cx3-flyingfish-shoal",
+     "waived": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+    },
+    {
+     "flag": "winrate",
+     "detail": "base:scenario/cx3-flyingfish-shoal 勝率 20%",
+     "key": "winrate:base:scenario/cx3-flyingfish-shoal",
+     "side": "low",
+     "id": "scenario/cx3-flyingfish-shoal",
+     "waived": "展示情境 AI 對 AI 玩家 n=20 勝 10%，結算全為 eliminate:repelled（平均 5 輪），屬引擎 AI 早撤現況（lead-gaps-battle 需要決定 #2，lead-tune-battle 調整中）；情境供 MCP 手打用，MCP 手打紀錄見 playtest.json"
+    },
+    {
+     "id": "scenario/cx3-flyingfish-shoal",
+     "flag": "stat",
+     "detail": "base:scenario/cx3-flyingfish-shoal n=5 勝 20% 敗 80% 平 0% 輪 5.0 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 4,
+   "rows": 4,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 17,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "at": "2026-10-24T14:16",
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：交接書指定的 sweep.ts 不支援逗號雙包，工人依停止條款停下；已產 9 檔、check 0 錯",
+    "lead": "改交接書：煙霧改用 content:probe、允許 1–2 個 cx3- 展示情境供 MCP 試玩"
+   }
+  },
+  {
+   "round": "0b",
+   "at": "2026-10-24T14:22",
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED（正確）：沙箱禁止 Unix socket listen，MCP socket CLI 起不來；10 檔、probe 已完成",
+    "lead": "交接書改用 MCP stdio（driver 或 FIFO），重派"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T14:32:11",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T14:41:46",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 3,
+   "at": "2026-10-24T14:43:18",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
  "gateRejections": [],
  "goal": "第三刃獵團（潮鰭殼血統 lineage-tide-fin）新摹機小系列：3 台 frame（D／C／B 三級、同系列）＋所需 components／abilities／effects，前綴 cx3-，含 defaultLoadout，照 numeric-bands",
  "maxFiles": 20,
@@ -48,7 +341,8 @@
    "base/frames",
    "base/components",
    "base/abilities",
-   "base/effects"
+   "base/effects",
+   "base/scenarios"
   ],
   "namePrefix": {
    "base/*": "cx3-"
@@ -71,11 +365,48 @@
    "frame/thirdblade-swordfish-iii",
    "frame/thirdblade-swordfish-v5"
   ],
-  "waivers": []
+  "waivers": [
+   {
+    "id": "frame/cx3-flyingfish-ii",
+    "flag": "band",
+    "reason": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+   },
+   {
+    "id": "ability/cx3-crest-cut",
+    "flag": "band",
+    "reason": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+   },
+   {
+    "id": "scenario/cx3-flyingfish-shoal",
+    "flag": "band",
+    "reason": "C 機總層 HP 285 < 300：沿用既有 bodyplan/mx-hover-c（與劍魚-III 相同），本批不新增 bodyplan；probe 表現不劣於劍魚-III"
+   },
+   {
+    "id": "frame/cx3-flyingfish-d",
+    "flag": "winrate",
+    "reason": "D 偵察機 1 對 1 對 bulwark-i 20%（n=20 亦 20%），與既有同級偵察機 shellsoc-ls3 同條件 20% 持平；對 mite-d n=20 75%"
+   },
+   {
+    "id": "ability/cx3-skimming-fin",
+    "flag": "winrate",
+    "reason": "載體即 FF-3，同上"
+   },
+   {
+    "id": "scenario/cx3-flyingfish-shoal",
+    "flag": "winrate",
+    "reason": "展示情境 AI 對 AI 玩家 n=20 勝 10%，結算全為 eliminate:repelled（平均 5 輪），屬引擎 AI 早撤現況（lead-gaps-battle 需要決定 #2，lead-tune-battle 調整中）；情境供 MCP 手打用，MCP 手打紀錄見 playtest.json"
+   }
+  ]
  },
  "playtest": {
   "required": 3,
   "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/mcp-log"
- }
+ },
+ "namingReview": {
+  "reviewer": "agy gemini-4-argon-high",
+  "input": "wf/workflows/dispatch/handoffs/lead-codex-pilot/naming-review/pilot-mech-01-names.txt",
+  "result": "10 名中 8 可；掠潮鰭吼建議改器物中心語；FF-3 建議漢字化（與 mechs.md D 級代號規則衝突，保留）"
+ },
+ "summary": "第三刃飛魚系列：FF-3（D 偵察）、飛魚-II型（C 突擊，mx-hover-c）、飛魚-IV型（B）＋2 部件 3 能力 1 效果 1 展示情境，共 10 檔；閘門 0 違規；check 0 錯 0 新警告；npm test 732/732；MCP stdio 試玩 4 場；退回 1 輪（FF-3 偏弱、部件名改器物中心語）；probe 豁免 4 條（C 機 HP 沿用 bodyplan、D 偵察與既有 ls3 持平、展示情境受 AI 早撤影響）；world/models 與 lore mechSeries 未補（需另批）"
 }

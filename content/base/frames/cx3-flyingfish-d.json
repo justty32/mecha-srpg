@@ -1,0 +1,56 @@
+{
+  "id": "frame/cx3-flyingfish-d",
+  "name": "FF-3",
+  "aka": [{"faction": "faction/migrant-crew", "name": "Flyingfish D"}],
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-scout",
+  "defaultLoadout": {
+    "right-weapon": "component/cx3-skimming-fin"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-rift-trace",
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "series-flyingfish"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "scenario/cx3-flyingfish-shoal",
+  "name": "飛魚試刃・退潮留名",
+  "brief": "Flyingfish Shoal。第三刃把飛魚系列借給候鳥號試刃。鹽霜覆著鰭刃，對岸的鐮肢正在渡潮；先看清牠的裂口，再吼出招式名，帶同伴收刃回船。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {"mech": "frame/cx3-flyingfish-d", "persons": [{"id": "person/chen-xiaohai", "seat": "pilot"}], "at": "zone"},
+        {"mech": "frame/cx3-flyingfish-ii", "persons": [{"id": "person/ren-kasai", "seat": "pilot"}], "at": "zone"},
+        {"mech": "frame/cx3-flyingfish-iv", "persons": [{"id": "person/mara-okoye", "seat": "pilot"}], "at": "zone"}
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {"monster": "monster/reaper-c", "at": "zone"},
+        {"monster": "monster/reaper-c", "at": "zone"},
+        {"monster": "monster/reaper-c", "at": "zone"}
+      ]
+    }
+  },
+  "objectives": [
+    {"kind": "eliminate", "params": {"slots": ["player"]}, "for": "player", "onComplete": "lose"},
+    {"kind": "eliminate", "params": {"slots": ["enemy"]}, "for": "player", "onComplete": "win"}
+  ],
+  "rounds": 30,
+  "seed": 1
+}

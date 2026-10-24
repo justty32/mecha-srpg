@@ -1,0 +1,54 @@
+{
+  "id": "ability/cx3-call-the-tide",
+  "name": "同潮齊刃",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/cx3-following-tide"
+      ]
+    }
+  ],
+  "tags": [
+    "buff",
+    "command",
+    "lineage-tide-fin"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 3
+}

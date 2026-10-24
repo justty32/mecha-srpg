@@ -30,10 +30,13 @@ echo $! > $S/logs/<線名>.pid
 可寫集合只有三處：worktree、`wf/inbox`、該批報告目錄（`<reportDir>`）；沙箱另放行 `/tmp`。主工作樹的其他路徑 codex 寫不到。
 
 ## 交接書必寫（在 TEMPLATE.handoff 之上）
+<!-- wf-nav -->
 
 - 「先讀」行列**完整路徑**：`AGENTS.md`、`wf/workflows/common/user.md`、`wf/workflows/content/` 全部、`content/lore/style.md`、該類原則檔與範本；並要求 REPORT 第一段「已讀清單」逐行列出——驗收腳本拿 manifest `report.mustRead` 逐條比對。
 - 範圍寫死允許目錄與檔名前綴（與 manifest `allow` 一致）；明寫「worktree 內不要留任何其他檔」。
 - 子代理：「可以再派子 agent，模型隨意（量大呆板用 gpt-6-luna），上限 N；子 agent 做實質工作也要親讀 AGENTS.md 與 `wf/workflows/content/`，受同一閘門約束；REPORT 記成本與品質」。
+- 命名要求：照 [content/polish](../content/polish.md)「首要標準」——英文原名兩步命名（frame 放 `aka`，其餘寫 `naming.json` 命名表）、新詞（原鞘／衍型機／鎧甲／靈目／矢）、概念詞忌直譯。
+- MCP 走 **stdio**（沙箱禁止 Unix socket listen，`cli.ts serve --socket` 會 EPERM）：driver 腳本或 FIFO 常駐，放 `/tmp/<線名>/`。
 - 戰鬥內容另寫 MCP 試玩要求與 `playtest.json` 格式（見 [content/playtest](../content/playtest.md)）。
 
 ## 2026-10-24 試點踩到的坑

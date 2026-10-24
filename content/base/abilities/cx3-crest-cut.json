@@ -1,0 +1,48 @@
+{
+  "id": "ability/cx3-crest-cut",
+  "name": "破浪收鰭",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "require": [],
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 20,
+      "armorPen": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee",
+    "pierce",
+    "lineage-tide-fin"
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "accuracy": 5
+}
