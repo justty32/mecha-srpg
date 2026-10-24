@@ -194,6 +194,7 @@ export type HumanGrowth = { xpCurve: Id; levelDice: Record<AttrId, number[]>; pe
 export type SoulGrowth = { tree: Id; researchPerDirection: Record<string, number>; companionshipRate: NumExpr };
 export type PersonDef = {
   id: Id; name: string; kind: PersonKind;
+  soulGrade?: Grade; // 只允許 kind=soul，由載入器檢查
   attrs: Record<AttrId, number>;
   traits: Id[]; perks: Id[];
   pools: PoolDecl[];

@@ -104,7 +104,7 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
       const components = loadout ? Object.fromEntries(Object.keys(loadout).sort().map(s => [s, db.require("component", loadout[s]!).id])) : undefined;
       units.push({ id, owner: slot, pos, persons, ...(spawn.pools ? { pools: structuredClone(spawn.pools) } : {}),
         ...(components ? { components } : {}),
-        ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade } } : { frame: spawn.mech! }) });
+        ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade, def: monster.id } } : { frame: spawn.mech! }) });
       if (monster) {
         const species = db.require("species", monster.species);
         unitPolicies[slot]![id] = db.require("aiprofile", species.aiProfile).policy;

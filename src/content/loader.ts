@@ -3,15 +3,16 @@ import * as path from "node:path";
 import { CONTENT_KINDS, KIND_FOLDERS, isContentKind, parseId, qualifyId } from "../core/ids.ts";
 import type { ContentKind, Id } from "../core/ids.ts";
 import { REGISTRY_KINDS, RULE_FILES } from "../core/types-def.ts";
-import type { DefByKind, PackDef, RegistryKind, RegistryFile, RulesConstants, DamageModifiersFile, MoraleEventsFile, InjuriesFile } from "../core/types-def.ts";
+import type { DefByKind, PackDef, PartDef, RegistryKind, RegistryFile, RulesConstants, DamageModifiersFile, MoraleEventsFile, InjuriesFile } from "../core/types-def.ts";
 import { emptyRegistries, mergeRegistry, hasEntry } from "./registry.ts";
 import type { Registries } from "./registry.ts";
 import { createContentDB } from "./contentdb.ts";
 import type { ContentDB, RulesTables } from "./contentdb.ts";
 import { validateAgainst } from "./schema.ts";
 import type { SchemaName } from "./schema.ts";
+import { lintContent } from "./lint.ts";
 
-export type LoadIssue = { file: string; path: string; message: string };
+export type LoadIssue = { file: string; path: string; message: string; ruleId?: string };
 export type PackFiles = { root: string; files: Record<string, unknown> };
 export type LoadResult = { db: ContentDB; errors: LoadIssue[]; warnings: LoadIssue[] };
 type ObjectValue = Record<string, unknown>;
@@ -90,7 +91,7 @@ function sortedPacks(packs: PackFiles[], errors: LoadIssue[]): { source: PackFil
   return result;
 }
 
-function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSources: Source[], errors: LoadIssue[]): void {
+function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSources: Source[], errors: LoadIssue[], warnings: LoadIssue[]): void {
   const pools = new Set<string>();
   for (const kind of ["frame", "component", "person", "species"] as const) {
     for (const def of db.all(kind)) for (const pool of def.pools) pools.add(pool.id);
@@ -163,6 +164,38 @@ function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSource
     if (!spawn.mech) errors.push({ file, path: at, message: "components only allowed on mech spawns" });
     else loadout(spawn.mech, spawn.components, file, at);
   });
+  checkMonsterOverridesAndSoulGrade(db, definitions, errors, warnings);
+}
+
+function checkMonsterOverridesAndSoulGrade(db: ContentDB, definitions: Map<string, Source>, errors: LoadIssue[], warnings: LoadIssue[]): void {
+  for (const person of db.all("person")) if (person.kind === "human" && person.soulGrade !== undefined) {
+    errors.push({ file: definitions.get(person.id)?.file ?? person.id, path: "$.soulGrade", message: "soulGrade only allowed on souls" });
+  }
+  for (const monster of db.all("monster")) {
+    if (!monster.partsOverride) continue;
+    const species = db.get("species", monster.species), plan = species ? db.get("bodyplan", species.bodyPlan) : undefined;
+    if (!plan) continue;
+    const file = definitions.get(monster.id)?.file ?? monster.id;
+    const error = (path: string, message: string) => errors.push({ file, path, message });
+    monster.partsOverride.forEach((override, index) => {
+      if (!plan.parts.some(p => p.id === override.id)) error(`$.partsOverride[${index}].id`, `unknown monster part ${override.id}`);
+    });
+    const parts = plan.parts.map(part => monster.partsOverride!.reduce<PartDef>((merged, override) =>
+      override.id === part.id ? { ...merged, ...override } : merged, part));
+    if (!parts.some(p => p.functions.includes("core"))) error("$.partsOverride", "monster requires a core part");
+    const frame = db.get("frame", species!.capture.frame), capturePlan = frame ? db.get("bodyplan", frame.bodyPlan) : undefined;
+    for (const part of parts) {
+      const index = monster.partsOverride.findIndex(p => p.id === part.id);
+      const path = index < 0 ? "$.partsOverride" : `$.partsOverride[${index}].layers`;
+      if (part.layers.at(-1)?.structural !== true) error(path, `last monster layer must be structural: ${part.id}`);
+      if (!capturePlan) continue;
+      const captured = capturePlan.parts.find(p => p.id === part.id);
+      if (!captured || captured.layers.length !== part.layers.length) error(path, `capture layer count differs: ${part.id}`);
+      else if (part.layers.some((layer, i) => layer.hp !== captured.layers[i]!.hp)) {
+        warnings.push({ file, path, message: `capture layer HP differs: ${part.id}` });
+      }
+    }
+  }
 }
 
 export function loadPacks(packs: PackFiles[]): LoadResult {
@@ -222,7 +255,7 @@ export function loadPacks(packs: PackFiles[]): LoadResult {
     }
   }
   const db = createContentDB(sorted.map(({ def }) => def), registries, rules, defs);
-  checkMerged(db, definitions, ruleSources, errors);
+  checkMerged(db, definitions, ruleSources, errors, warnings);
   return { db, errors, warnings };
 }
 
@@ -237,6 +270,7 @@ if (import.meta.main) {
   const dirs = process.argv.length > 2 ? process.argv.slice(2) : ["content/base"];
   const packs = dirs.map(readPackDir);
   const { db, errors, warnings } = loadPacks(packs);
+  lintContent(db, packs, errors, warnings);
   errors.unshift(...packs.flatMap(pack => pack.errors));
   for (const pack of db.packs) console.log(`pack ${pack.id} ${pack.version}`);
   const counts = db.counts();
@@ -248,8 +282,8 @@ if (import.meta.main) {
   }
   console.log(`registries: ${REGISTRY_KINDS.filter(kind => Object.keys(db.registries[kind]).length > 0).length}/7`);
   console.log(`rules: ${RULE_FILES.filter(name => packs.some(pack => Object.hasOwn(pack.files, `rules/${name}.json`))).length}/4`);
-  for (const warning of warnings) console.log(`WARNING ${warning.file} ${warning.path} ${warning.message}`);
-  for (const error of errors) console.log(`ERROR ${error.file} ${error.path} ${error.message}`);
+  for (const warning of warnings) console.log(`WARNING [${warning.ruleId ?? "content-load"}] ${warning.file} ${warning.path} ${warning.message}`);
+  for (const error of errors) console.log(`ERROR [${error.ruleId ?? "content-load"}] ${error.file} ${error.path} ${error.message}`);
   if (errors.length) { console.log(`FAIL ${errors.length} errors`); process.exitCode = 1; }
   else console.log(`OK 0 errors, ${warnings.length} warnings`);
 }

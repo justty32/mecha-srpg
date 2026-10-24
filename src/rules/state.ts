@@ -7,7 +7,7 @@ import type { EventPayload, EventType, GameEvent } from "../core/events.ts";
 import { appendEvent } from "../core/eventlog.ts";
 import { evalNum, NumExprError } from "../core/numexpr.ts";
 import type { EvalCtx } from "../core/numexpr.ts";
-import { personAttr, unitAttr } from "./contribs.ts";
+import { addContrib, personAttr, unitAttr } from "./contribs.ts";
 import { poolDecls } from "./pools.ts";
 
 export type Ctx = { db: ContentDB; s: BattleState };
@@ -18,7 +18,7 @@ export type Rejection = { code: RejectCode; detail?: string };
 export type Result = { ok: true; events: GameEvent[] } | { ok: false; rejection: Rejection };
 export type Subject = { unit?: Id; person?: Id };
 export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
-  frame?: Id; monster?: { species: Id; grade: Grade };
+  frame?: Id; monster?: { species: Id; grade: Grade; def?: Id };
   components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId;
     state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level">> }[];
   parts?: Record<PartId, Pick<MechState["parts"][string], "layers" | "broken">>;
@@ -63,16 +63,43 @@ export function personTags(ctx: Ctx, personId: Id): string[] {
   return [...new Set([...ctx.db.require("person", p.def).tags,
     ...p.effects.flatMap(e => ctx.db.require("effect", e.effect).tags)])].sort();
 }
+const monsterFrames = new WeakMap<ContentDB, Map<string, FrameDef>>();
 export function frameView(ctx: Ctx, unitId: Id): FrameDef {
   const u = unit(ctx, unitId), monster = rt(ctx.s).monsters[unitId];
   if (!monster) return ctx.db.require("frame", u.frame);
   const species = ctx.db.require("species", monster.species);
+  const def = monster.def ? ctx.db.require("monster", monster.def) : undefined;
+  let cache = monsterFrames.get(ctx.db);
+  const key = `${def?.id}:${species.id}:${monster.grade}`;
+  if (def) {
+    if (!cache) { cache = new Map(); monsterFrames.set(ctx.db, cache); }
+    const cached = cache.get(key);
+    if (cached) return cached;
+  }
   // SPEC-GAP：怪獸沒有修復政策，採生物機體的 repair-or-replace。
-  return { id: species.id, name: species.name, cls: "bio", grade: monster.grade,
+  const frame: FrameDef = { id: species.id, name: species.name, cls: "bio", grade: monster.grade,
     bodyPlan: species.bodyPlan, baseAttrs: species.baseAttrsByGrade[monster.grade] ?? {},
-    pools: species.pools, innateAbilities: species.abilities, repairPolicy: "repair-or-replace", tags: species.tags };
+    pools: species.pools, innateAbilities: def ? [...new Set([...species.abilities, ...(def.extraAbilities ?? [])])].sort() : species.abilities,
+    repairPolicy: "repair-or-replace", tags: def ? [...new Set([...species.tags, ...def.tags])].sort() : species.tags };
+  if (def) cache!.set(key, frame);
+  return frame;
 }
+// ContentDB 不變；合成部位與它同壽命，避免熱路徑反覆合併。
+const monsterParts = new WeakMap<ContentDB, Map<Id, PartDef[]>>();
 export function partDefs(ctx: Ctx, unitId: Id): PartDef[] {
+  const monster = rt(ctx.s).monsters[unitId];
+  if (monster?.def) {
+    let cache = monsterParts.get(ctx.db);
+    if (!cache) { cache = new Map(); monsterParts.set(ctx.db, cache); }
+    const def = ctx.db.require("monster", monster.def);
+    let parts = cache.get(def.id);
+    if (!parts) {
+      parts = ctx.db.require("bodyplan", ctx.db.require("species", monster.species).bodyPlan).parts.map(part =>
+        (def.partsOverride ?? []).reduce<PartDef>((merged, override) => override.id === part.id ? { ...merged, ...override } : merged, part));
+      cache.set(def.id, parts);
+    }
+    return parts;
+  }
   return ctx.db.require("bodyplan", frameView(ctx, unitId).bodyPlan).parts;
 }
 export function layerDefs(ctx: Ctx, unitId: Id, partId: PartId): LayerDef[] {
@@ -194,7 +221,8 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
     controlMode: "none", cooldowns: {}, sustained: [] };
   ctx.s.units[init.id] = u;
   rt(ctx.s).unitStatus[init.id] = "active";
-  if (init.monster) rt(ctx.s).monsters[init.id] = { species: frame, grade: init.monster.grade };
+  if (init.monster) rt(ctx.s).monsters[init.id] = { species: frame, grade: init.monster.grade,
+    ...(init.monster.def ? { def: ctx.db.require("monster", init.monster.def).id } : {}) };
   for (const p of partDefs(ctx, u.id)) {
     u.parts[p.id] = { layers: [], broken: false, components: {} };
     for (const slot of [...p.slots].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
@@ -209,6 +237,10 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
     .map(slot => ({ slot, id: u.parts[p]!.components[slot] }))).sort((a, b) => a.slot < b.slot ? -1 : a.slot > b.slot ? 1 : 0);
   for (const c of components) if (c.id) declarations.push(...ctx.db.require("component", c.id).pools);
   initializePools(ctx, { unit: u.id }, declarations);
+  if (init.monster?.def) {
+    const def = ctx.db.require("monster", init.monster.def);
+    for (const c of def.attrMods ?? []) addContrib(ctx, { unit: u.id }, { ...c, source: def.id });
+  }
   for (const entry of init.persons ?? []) {
     const seat = partDefs(ctx, u.id).flatMap(p => p.seats ?? []).find(s => s.id === entry.seat);
     if (!seat?.accepts[0]) throw new Error(`缺少座位：${entry.seat}`);

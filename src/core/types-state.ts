@@ -99,7 +99,9 @@ export type RulesRuntime = {
   reactUsed: Record<string, number>;  // reaction 觸發計數，鍵由 command.ts 定
   commander: Record<Id, Id | null>;   // 單位 → 本回合握指令權的人物（control.ts 寫）
   unitStatus: Record<Id, UnitStatus>;
-  monsters: Record<Id, { species: Id; grade: Grade }>;   // 怪獸單位：MechState.frame 填 species id
+  spawnParents?: Record<Id, Id>;     // spawn 子單位 → 母體；舊存檔可省略
+  monsters: Record<Id, { species: Id; grade: Grade; def?: Id }>;   // 怪獸單位：MechState.frame 填 species id
+  capturedMonsters?: Record<Id, Id>; // 捕捉轉換 frame 後仍保留 MonsterDef id
   moraleStreak: Record<Id, number>;   // 人物連續士氣檢定成功次數
   berserkFrom: Record<Id, FactionSlot>; // 失控單位的原 slot
   xpGained: Record<Id, number>;

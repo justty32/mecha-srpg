@@ -90,13 +90,15 @@ export function createBattleHub(env: McpEnv) {
     return { session, sim, seed, playerSlot, spectate, autoAdvance, view: new BattleView(session, playerSlot, spectate) };
   };
   const observation = (id: string, b: Battle, detail: "brief" | "full" = "brief", map = false, window?: { x: number; y: number; w: number; h: number }) => {
-    const data = { id, playerSlot: b.playerSlot, spectate: b.spectate, autoAdvance: b.autoAdvance,
+    const sc = b.sim.scenario ? env.battleDb().get("scenario", b.sim.scenario) : undefined;
+    const metadata = { ...(sc?.name !== undefined ? { name: sc.name } : {}), ...(sc?.brief !== undefined ? { brief: sc.brief } : {}) };
+    const data = { id, ...metadata, playerSlot: b.playerSlot, spectate: b.spectate, autoAdvance: b.autoAdvance,
       ...b.view.status(), objectives: b.view.objectives(), globals: b.view.globals(), units: b.view.units(detail), ...(map ? { map: b.view.map(window) } : {}) };
     const turn = turnLine(b);
     // 每台的 summary 只放 text；JSON 不重複整段字串（也不重複 ascii 地圖），省一半 token。
     const json = { ...data, units: data.units.map(({ summary: _, ...u }) => u), ...(data.map ? { map: { window: data.map.window, legend: data.map.legend, terrainLegend: data.map.terrainLegend, cellWidth: data.map.cellWidth } } : {}) };
     const globals = Object.entries(data.globals).map(([key, value]) => `${key === "tide" ? "潮汐" : "光照"} ${value}`).join("；") || "無";
-    return okResult(`${id} 第 ${data.round}/${data.rounds ?? "∞"} 輪；${turn}\n${data.objectives.map(o => o.text).join("\n")}\n全域效果：${globals}\n${data.units.map(u => u.summary).join("\n")}`
+    return okResult(`${sc?.name !== undefined ? `${sc.name}\n` : ""}${sc?.brief !== undefined ? `${sc.brief}\n` : ""}${id} 第 ${data.round}/${data.rounds ?? "∞"} 輪；${turn}\n${data.objectives.map(o => o.text).join("\n")}\n全域效果：${globals}\n${data.units.map(u => u.summary).join("\n")}`
       + (data.map ? `\n${data.map.ascii}\n${data.map.key}\n${data.map.legend.map(u => `${u.glyph}=${u.id} ${u.name}`).join("；")}` : ""), json);
   };
   const register = (b: Battle) => { const id = `b${nextId++}`; battles.set(id, b); return observation(id, b); };
@@ -122,16 +124,83 @@ export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(
   };
   const tool = (name: string, description: string, properties: Record<string, JsonSchema>, required: string[], handler: ToolDef["handler"]): ToolDef =>
     ({ name, title: description.split("。")[0], description, inputSchema: object(properties, required), handler });
+  const legalActions = (b: Battle, unit: string | null, maxMoves = Infinity, maxTargets = Infinity) => {
+    const s = b.session, q = s.rulesQuery, state = s.state;
+    if (unit && !state.units[unit]) throw new ToolError(`找不到單位：${unit}`);
+    if (unit && !b.view.known(unit)) throw new ToolError("無法查詢不可見敵方的動作。");
+    if (unit && unit !== s.currentActor() && !b.view.friendly(state.units[unit]!.owner)) {
+      return okResult(`${unit}：不是此單位的回合；不提供敵方戰術細節。`, { actor: unit, playerTurn: false, moves: [], nearestEnemy: null, abilities: [], options: [] });
+    }
+    const legal = s.legalActions(unit);
+    // 可達格壓成 "x,y:cost"（依 y、x 排序），送 battle_act 時套 moveAction 範本填 to。
+    const allMoves = Object.entries(legal.reachable).map(([key, cost]) => { const [x, y] = key.split(",").map(Number); return { x: x!, y: y!, cost }; })
+      .sort((a, b) => a.y - b.y || a.x - b.x).map(m => `${m.x},${m.y}:${m.cost}`);
+    const moves = allMoves.slice(0, maxMoves);
+    // 已知敵方（看得到的用現位置，看不到的用最後所見）中最近的一台，供「0 目標」說明。
+    const nearest = unit ? b.view.units("brief").filter(u => q.hostile(state, unit, u.id) && (u.stale || q.isActive(state, u.id))).flatMap(u => {
+      return [{ id: u.id, name: u.name, distance: q.distance(state.units[unit]!.pos, u.pos), stale: u.stale }];
+    }).sort((a, b) => a.distance - b.distance)[0] ?? null : null;
+    const noTarget = (range: { min: number; max: number }) => !nearest ? `射程 ${range.min}–${range.max}；尚未發現敵方`
+      : `射程 ${range.min}–${range.max}；最近敵方 ${nearest.id} ${nearest.stale ? "最後所見" : ""}距離 ${nearest.distance}`
+        + (nearest.distance > range.max ? "，需再接近" : nearest.distance < range.min ? "，太近" : "，射程內但視線受阻或目標條件不符");
+    let targetsOmitted = 0;
+    const abilities = unit ? q.abilitiesOf(state, unit).map(id => {
+      const def = q.abilityDef(id), rejected = q.checkAbility(state, unit, id), range = q.abilityRange(state, unit, id);
+      const visibleTargets = (legal.abilities.find(v => v.ability === id)?.targets ?? []).filter(t => !t.unit || b.view.known(t.unit));
+      targetsOmitted += Math.max(0, visibleTargets.length - maxTargets);
+      const targets = visibleTargets.slice(0, maxTargets).map(target => ({
+        target, name: target.unit ? b.view.name(target.unit) : "地圖格", partName: target.unit && target.part ? q.partDefs(state, target.unit).find(p => p.id === target.part)?.name : undefined,
+        distance: q.distance(state.units[unit]!.pos, target.cell ?? state.units[target.unit ?? unit]!.pos),
+        hitChance: target.unit ? displayNumber(q.hitChance(state, unit, id, target.unit, target.part)) : null,
+        ...(target.unit ? { damageIfHit: displayNumber(def.packets.reduce((sum, packet) => {
+          const sourceTags = [...q.unitTags(state, unit), ...def.tags], targetTags = q.unitTags(state, target.unit!);
+          const factor = env.battleDb().rules.damageModifiers.filter(row => sourceTags.includes(row.sourceTag) && targetTags.includes(row.targetTag))
+            .reduce((value, row) => value * row.factor, 1);
+          return sum + Math.max(0, q.evalNum(state, packet.amount, unit, target.unit) * factor);
+        }, 0)) } : {}),
+        action: { kind: "useAbility", actor: unit, ability: id, target },
+      }));
+      const reason = def.mode === "passive" || def.mode === "reaction" ? "自動觸發能力"
+        : unit !== s.currentActor() ? "不是此單位的回合" : !targets.length ? (rejected ? `${rejectionText(rejected.code)}${state.units[unit]!.cooldowns[id] ? `（剩 ${state.units[unit]!.cooldowns[id]}）` : ""}` : `沒有合法目標：${noTarget(range)}`) : null;
+      // 能力效果一行：傷害包（類型 數值）與施加效果名，讓 agent 不必翻內容檔。
+      const effectName = (ref: string | { effect: string }) => b.view.contentName("effect", typeof ref === "string" ? ref : ref.effect);
+      const does = [...def.packets.map(p => `${p.type} ${displayNumber(typeof p.amount === "number" ? p.amount : q.evalNum(state, p.amount, unit))}`),
+        ...def.effects.map(e => `${{ hit: "命中", miss: "未中", self: "自身", cell: "地格", always: "必定" }[e.on]}：${e.apply.map(effectName).join("、")}`)].join("；");
+      return { id, name: b.view.contentName("ability", id), does, costs: def.costs.map(c => ({ pool: c.pool, owner: c.owner, amount: displayNumber(q.evalNum(state, c.amount, unit)) })),
+        range, cooldown: state.units[unit]!.cooldowns[id] ?? 0, reason, targets };
+    }) : [];
+    const options = (["wait", "end", "retreat", "eject"] as const).filter(k => legal[k]).map(kind => ({ action: { kind, actor: unit! }, irreversible: kind === "retreat" || kind === "eject" }));
+    return okResult(`${unit ?? "無行動者"}：${moves.length} 個可達格；${abilities.length ? abilities.map(v => `${v.name} ${v.targets.length}目標${v.reason ? `（${v.reason}）`
+      : v.targets.length ? `：${v.targets.slice(0, 4).map(t => `${t.target.unit ?? `${t.target.cell?.x},${t.target.cell?.y}`}${t.partName ? `/${t.partName}` : ""}${t.hitChance === null ? "" : ` 命中 ${t.hitChance}%／約 ${t.damageIfHit}`}`).join("、")}${v.targets.length > 4 ? "…" : ""}` : ""}`).join("；") : "無能力"}；${options.map(o => `${o.action.kind}${o.irreversible ? "（不可逆）" : ""}`).join("、")}\n傷害為估算：傷害包 × 全域修正，未計部位減傷、抗性與暴擊。`,
+      displayValues({ actor: unit, playerTurn: unit === s.currentActor() && s.isHumanTurn(), moves, ...(Number.isFinite(maxMoves) ? { movesTotal: allMoves.length, movesOmitted: allMoves.length - moves.length } : {}),
+        ...(Number.isFinite(maxTargets) ? { targetsOmitted } : {}), moveAction: '{"kind":"move","to":{"x":X,"y":Y}}', nearestEnemy: nearest, abilities, options,
+        damageEstimate: "傷害包 × 全域修正，未計部位減傷、抗性與暴擊" }));
+  };
+  const submitAction = (b: Battle, raw: Record<string, unknown>): Command => {
+    const s = b.session, ended = s.outcome();
+    if (ended) throw new ToolError(`戰鬥已結束：${ended.winner ? b.view.slotName(ended.winner) : "平局"}（${ended.reason}）；可 battle_save 或 battle_close。`);
+    const actor = (raw.actor as string | undefined) ?? s.currentActor();
+    if (!actor || !s.state.units[actor]) throw new ToolError(`${rejectionText("bad-actor")}；請呼叫 battle_legal_actions。`);
+    let cmd: Command;
+    if (raw.kind === "move" && raw.to) {
+      const path = s.rulesQuery.pathTo(s.state, actor, raw.to as Cell);
+      if (!path) throw new ToolError(`${moveFailure(s, actor, raw.to as Cell)}；請呼叫 battle_legal_actions。`);
+      cmd = { kind: "move", actor, path };
+    } else cmd = { ...raw, actor } as Command;
+    const result = b.view.track(() => s.submit(cmd));
+    if (!result.ok) throw new ToolError(`${cmd.kind === "move" && ["bad-path", "no-locomotion"].includes(result.rejection.code) ? "不可達：路徑或移動部位不允許" : rejectionText(result.rejection.code)}；請呼叫 battle_legal_actions。`);
+    return cmd;
+  };
   return [
     tool("battle_list_scenarios", "列出戰鬥情境、地圖、陣營與目標。", {}, [], () => {
       const db = env.battleDb();
       const scenarios = db.all("scenario").map(sc => {
         const map = db.require("map", sc.map);
-        return { id: sc.id, map: { width: map.width, height: map.height },
+        return { id: sc.id, ...(sc.name !== undefined ? { name: sc.name } : {}), ...(sc.brief !== undefined ? { brief: sc.brief } : {}), map: { width: map.width, height: map.height },
           slots: Object.entries(sc.slots).map(([slot, v]) => ({ slot, faction: v.faction, units: v.units.length })),
           rounds: sc.rounds ?? null, objectives: sc.objectives.map(o => o.kind) };
       });
-      return okResult(scenarios.map(s => `${s.id} ${s.map.width}×${s.map.height} ${s.slots.map(v => `${v.slot}:${v.units}台`).join(" ")}`).join("\n"), { scenarios });
+      return okResult(scenarios.map(s => `${s.id}${s.name !== undefined ? ` ${s.name}` : ""}${s.brief !== undefined ? `：${s.brief}` : ""} ${s.map.width}×${s.map.height} ${s.slots.map(v => `${v.slot}:${v.units}台`).join(" ")}`).join("\n"), { scenarios });
     }),
     tool("battle_new", "建立戰鬥。預設玩家 player、自動推進 AI；spectate 為全 AI 觀戰。", { scenario: str, seed: integer, playerSlot: str, spectate: bool, rounds: positive, autoAdvance: bool }, ["scenario"], args => {
       const { sim, seed } = scenario(args.scenario as string, args.seed as number | undefined, args.rounds as number | undefined);
@@ -146,71 +215,65 @@ export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(
     tool("battle_observe", "觀察戰況。brief 每台一行，full 含部位層；map 顯示 ASCII 地圖，未知格為 ?。", {
       id: str, detail: { enum: ["brief", "full"] }, map: bool, window: object({ x: integer, y: integer, w: positive, h: positive }, ["x", "y", "w", "h"]),
     }, ["id"], a => observation(a.id as string, get(a.id), a.detail as "brief" | "full" | undefined, a.map as boolean | undefined, a.window as { x: number; y: number; w: number; h: number } | undefined)),
-    tool("battle_legal_actions", "列出可執行動作。moves 是可達格 \"x,y:AP成本\"，移動送 {kind:\"move\",to:{x,y}}；能力目標與 options 的 action 可原樣送給 battle_act。", { id: str, unit: str }, ["id"], a => {
-      const b = get(a.id), s = b.session, q = s.rulesQuery, state = s.state, unit = (a.unit as string | undefined) ?? s.currentActor();
-      if (unit && !state.units[unit]) throw new ToolError(`找不到單位：${unit}`);
-      if (unit && !b.view.known(unit)) throw new ToolError("無法查詢不可見敵方的動作。");
-      if (unit && unit !== s.currentActor() && !b.view.friendly(state.units[unit]!.owner)) {
-        return okResult(`${unit}：不是此單位的回合；不提供敵方戰術細節。`, { actor: unit, playerTurn: false, moves: [], nearestEnemy: null, abilities: [], options: [] });
-      }
-      const legal = s.legalActions(unit);
-      // 可達格壓成 "x,y:cost"（依 y、x 排序），送 battle_act 時套 moveAction 範本填 to。
-      const moves = Object.entries(legal.reachable).map(([key, cost]) => { const [x, y] = key.split(",").map(Number); return { x: x!, y: y!, cost }; })
-        .sort((a, b) => a.y - b.y || a.x - b.x).map(m => `${m.x},${m.y}:${m.cost}`);
-      // 已知敵方（看得到的用現位置，看不到的用最後所見）中最近的一台，供「0 目標」說明。
-      const nearest = unit ? b.view.units("brief").filter(u => q.hostile(state, unit, u.id) && (u.stale || q.isActive(state, u.id))).flatMap(u => {
-        return [{ id: u.id, name: u.name, distance: q.distance(state.units[unit]!.pos, u.pos), stale: u.stale }];
-      }).sort((a, b) => a.distance - b.distance)[0] ?? null : null;
-      const noTarget = (range: { min: number; max: number }) => !nearest ? `射程 ${range.min}–${range.max}；尚未發現敵方`
-        : `射程 ${range.min}–${range.max}；最近敵方 ${nearest.id} ${nearest.stale ? "最後所見" : ""}距離 ${nearest.distance}`
-          + (nearest.distance > range.max ? "，需再接近" : nearest.distance < range.min ? "，太近" : "，射程內但視線受阻或目標條件不符");
-      const abilities = unit ? q.abilitiesOf(state, unit).map(id => {
-        const def = q.abilityDef(id), rejected = q.checkAbility(state, unit, id), range = q.abilityRange(state, unit, id);
-        const targets = (legal.abilities.find(v => v.ability === id)?.targets ?? []).filter(t => !t.unit || b.view.known(t.unit)).map(target => ({
-          target, name: target.unit ? b.view.name(target.unit) : "地圖格", partName: target.unit && target.part ? q.partDefs(state, target.unit).find(p => p.id === target.part)?.name : undefined,
-          distance: q.distance(state.units[unit]!.pos, target.cell ?? state.units[target.unit ?? unit]!.pos),
-          hitChance: target.unit ? displayNumber(q.hitChance(state, unit, id, target.unit, target.part)) : null,
-          ...(target.unit ? { damageIfHit: displayNumber(def.packets.reduce((sum, packet) => {
-            const sourceTags = [...q.unitTags(state, unit), ...def.tags], targetTags = q.unitTags(state, target.unit!);
-            const factor = env.battleDb().rules.damageModifiers.filter(row => sourceTags.includes(row.sourceTag) && targetTags.includes(row.targetTag))
-              .reduce((value, row) => value * row.factor, 1);
-            return sum + Math.max(0, q.evalNum(state, packet.amount, unit, target.unit) * factor);
-          }, 0)) } : {}),
-          action: { kind: "useAbility", actor: unit, ability: id, target },
-        }));
-        const reason = def.mode === "passive" || def.mode === "reaction" ? "自動觸發能力"
-          : unit !== s.currentActor() ? "不是此單位的回合" : !targets.length ? (rejected ? `${rejectionText(rejected.code)}${state.units[unit]!.cooldowns[id] ? `（剩 ${state.units[unit]!.cooldowns[id]}）` : ""}` : `沒有合法目標：${noTarget(range)}`) : null;
-        // 能力效果一行：傷害包（類型 數值）與施加效果名，讓 agent 不必翻內容檔。
-        const effectName = (ref: string | { effect: string }) => b.view.contentName("effect", typeof ref === "string" ? ref : ref.effect);
-        const does = [...def.packets.map(p => `${p.type} ${displayNumber(typeof p.amount === "number" ? p.amount : q.evalNum(state, p.amount, unit))}`),
-          ...def.effects.map(e => `${{ hit: "命中", miss: "未中", self: "自身", cell: "地格", always: "必定" }[e.on]}：${e.apply.map(effectName).join("、")}`)].join("；");
-        return { id, name: b.view.contentName("ability", id), does, costs: def.costs.map(c => ({ pool: c.pool, owner: c.owner, amount: displayNumber(q.evalNum(state, c.amount, unit)) })),
-          range, cooldown: state.units[unit]!.cooldowns[id] ?? 0, reason, targets };
-      }) : [];
-      const options = (["wait", "end", "retreat", "eject"] as const).filter(k => legal[k]).map(kind => ({ action: { kind, actor: unit! }, irreversible: kind === "retreat" || kind === "eject" }));
-      return okResult(`${unit ?? "無行動者"}：${moves.length} 個可達格；${abilities.length ? abilities.map(v => `${v.name} ${v.targets.length}目標${v.reason ? `（${v.reason}）`
-        : v.targets.length ? `：${v.targets.slice(0, 4).map(t => `${t.target.unit ?? `${t.target.cell?.x},${t.target.cell?.y}`}${t.partName ? `/${t.partName}` : ""}${t.hitChance === null ? "" : ` 命中 ${t.hitChance}%／約 ${t.damageIfHit}`}`).join("、")}${v.targets.length > 4 ? "…" : ""}` : ""}`).join("；") : "無能力"}；${options.map(o => `${o.action.kind}${o.irreversible ? "（不可逆）" : ""}`).join("、")}\n傷害為估算：傷害包 × 全域修正，未計部位減傷、抗性與暴擊。`,
-        displayValues({ actor: unit, playerTurn: unit === s.currentActor() && s.isHumanTurn(), moves, moveAction: '{"kind":"move","to":{"x":X,"y":Y}}', nearestEnemy: nearest, abilities, options,
-          damageEstimate: "傷害包 × 全域修正，未計部位減傷、抗性與暴擊" }));
+    tool("battle_legal_actions", "列出可執行動作；unit=all 列本輪尚可輪到的玩家單位，非當前單位尚無合法動作。maxMoves／maxTargets 限制每台可達格／每能力目標數。", {
+      id: str, unit: str, maxMoves: { ...integer, maximum: 4096 }, maxTargets: { ...positive, maximum: 256 },
+    }, ["id"], a => {
+      const b = get(a.id), s = b.session;
+      if (a.unit !== "all") return legalActions(b, (a.unit as string | undefined) ?? s.currentActor(), a.maxMoves as number | undefined, a.maxTargets as number | undefined);
+      const maxMoves = (a.maxMoves as number | undefined) ?? 64, maxTargets = (a.maxTargets as number | undefined) ?? 32;
+      const ids = b.spectate || s.outcome() ? [] : [...new Set([...s.state.order, ...(s.state.rt?.waited ?? [])])].filter(id => {
+        const u = s.state.units[id];
+        return u?.owner === b.playerSlot && s.rulesQuery.isActive(s.state, id) && !["none", "disabled"].includes(u.controlMode)
+          && (!s.state.rt?.acted.includes(id) || id === s.currentActor() || s.state.rt.waited.includes(id));
+      });
+      const results = ids.map(id => legalActions(b, id, maxMoves, maxTargets));
+      return okResult(results.map(r => (r.content[0] as { text: string }).text).join("\n") || "本輪沒有待行動的玩家單位。", {
+        id: a.id, ...b.view.status(), maxMoves, maxTargets, units: results.map(r => r.structuredContent),
+      });
     }),
     tool("battle_act", "執行 action。actor 可省略；move 可用 to 座標簡寫。", { id: str, action: actionSchema }, ["id", "action"], a => {
-      const b = get(a.id), s = b.session, raw = a.action as Record<string, unknown>, ended = s.outcome();
-      if (ended) throw new ToolError(`戰鬥已結束：${ended.winner ? b.view.slotName(ended.winner) : "平局"}（${ended.reason}）；可 battle_save 或 battle_close。`);
-      const actor = (raw.actor as string | undefined) ?? s.currentActor();
-      if (!actor || !s.state.units[actor]) throw new ToolError(`${rejectionText("bad-actor")}；請呼叫 battle_legal_actions。`);
-      let cmd: Command;
-      if (raw.kind === "move" && raw.to) {
-        const path = s.rulesQuery.pathTo(s.state, actor, raw.to as Cell);
-        if (!path) throw new ToolError(`${moveFailure(s, actor, raw.to as Cell)}；請呼叫 battle_legal_actions。`);
-        cmd = { kind: "move", actor, path };
-      } else cmd = { ...raw, actor } as Command;
-      const from = s.state.log.events.length, result = b.view.track(() => s.submit(cmd));
-      if (!result.ok) throw new ToolError(`${cmd.kind === "move" && ["bad-path", "no-locomotion"].includes(result.rejection.code) ? "不可達：路徑或移動部位不允許" : rejectionText(result.rejection.code)}；請呼叫 battle_legal_actions。`);
+      const b = get(a.id), from = b.session.state.log.events.length;
+      const cmd = submitAction(b, a.action as Record<string, unknown>);
       const aiCommands = b.autoAdvance ? advance(b, "human", Number.MAX_SAFE_INTEGER) : 0;
       return activity(a.id as string, b, from, { command: cmd, aiCommands });
     }),
-    tool("battle_step_ai", "推進 AI：command 一指令、unit 一台、human 到玩家、end 到結束（遇玩家仍停止）。", {
-      id: str, until: { enum: ["command", "unit", "human", "end"] }, max: positive,
+    tool("battle_act_many", "依序執行 actions；預設拒絕即停，遇戰鬥結束或非人類回合必停。observe=true 附精簡戰況。", {
+      id: str, actions: { type: "array", items: actionSchema }, stopOnReject: { ...bool, default: true }, observe: { ...bool, default: false },
+    }, ["id", "actions"], a => {
+      const b = get(a.id), s = b.session, from = s.state.log.events.length;
+      const results: { index: number; ok: boolean; command?: Command; reason?: string; since: number; next: number }[] = [];
+      let stopped: "complete" | "rejected" | "battle-over" | "not-player" = "complete";
+      for (const [index, raw] of (a.actions as Record<string, unknown>[]).entries()) {
+        if (s.outcome()) { stopped = "battle-over"; break; }
+        if (!s.isHumanTurn()) { stopped = "not-player"; break; }
+        const since = s.state.log.events.length;
+        try {
+          const command = submitAction(b, raw);
+          results.push({ index, ok: true, command, since, next: s.state.log.events.length });
+        } catch (error) {
+          if (!(error instanceof ToolError)) throw error;
+          results.push({ index, ok: false, reason: error.message, since, next: s.state.log.events.length });
+          if (a.stopOnReject !== false) { stopped = "rejected"; break; }
+        }
+      }
+      if (stopped === "complete") {
+        if (s.outcome()) stopped = "battle-over";
+        else if (!s.isHumanTurn()) stopped = "not-player";
+      }
+      // 先停止玩家批次，再按既有設定推 AI；不會跨過 AI 後繼續消化 actions。
+      const aiSince = s.state.log.events.length;
+      const aiCommands = b.autoAdvance ? advance(b, "human", Number.MAX_SAFE_INTEGER) : 0;
+      const aiLines = mergeMoves(b.view.events.filter(e => e.seq >= aiSince));
+      const observed = a.observe === true ? observation(a.id as string, b) : undefined;
+      const result = activity(a.id as string, b, from, { results, stopped, remaining: (a.actions as unknown[]).length - results.length,
+        aiCommands, aiEvents: aiLines.slice(0, 40), aiEventsOmitted: Math.max(0, aiLines.length - 40),
+        ...(observed ? { observation: observed.structuredContent } : {}) });
+      if (result.content[0]?.type === "text") result.content[0].text = results.map(r => `第 ${r.index + 1} 步：${r.ok ? "成功" : r.reason}`).join("\n")
+        + "\n" + result.content[0].text + (observed ? `\n${(observed.content[0] as { text: string }).text}` : "");
+      return result;
+    }),
+    tool("battle_step_ai", "推進 AI：command 一指令、unit 一台、human／player 到玩家、end 到結束（遇玩家仍停止）。", {
+      id: str, until: { enum: ["command", "unit", "human", "player", "end"] }, max: positive,
     }, ["id"], a => {
       const b = get(a.id), from = b.session.state.log.events.length;
       const commands = advance(b, a.until as string | undefined, a.max as number | undefined);

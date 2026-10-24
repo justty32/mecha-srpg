@@ -10,6 +10,7 @@ import { isHostileSlot } from "./hostility.ts";
 import { shouldRetreat } from "./retreat.ts";
 import { OBJECTIVE_DEFAULTS, objectiveInfo, objectiveMoveValue, objectiveTargetFactor } from "./objectives.ts";
 import type { AiParams } from "./policy.ts";
+import { pursuitCells } from "./knowledge.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
@@ -162,10 +163,8 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   // 原地等待也承受現有威脅；只扣移動增加的危險，避免原地攻擊被無條件壓成負分。
   const danger = p.dangerK * Math.max(0, dangerAt(ctx.danger, destination) - dangerAt(ctx.danger, actor.pos));
   if (cmd.kind === "move") {
-    const enemies = Object.keys(view.units).sort().filter(id => isHostileSlot(q, view, ctx.slot, view.units[id]!.owner) && q.isActive(view, id));
-    // 尚未接敵時朝公開地圖中央偵察，不讀取視野外單位的位置。
-    const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
-    const nearest = (cell: Cell): number => enemies.length ? Math.min(...enemies.map(id => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
+    const targets = pursuitCells(ctx, agent.unit);
+    const nearest = (cell: Cell): number => Math.min(...targets.map(target => q.distance(cell, target)));
     return p.reposition * (nearest(actor.pos) - nearest(destination)) - danger + objectiveMove;
   }
   let state = view, steps = 0;

@@ -38,10 +38,7 @@ registerPolicy({
       }
       return candidates;
     }
-    return proposeTactical(ctx, agent).filter((c) => {
-      const cell = c.move ?? (c.cmd.kind === "move" ? c.cmd.path.at(-1) : undefined) ?? pos;
-      return ctx.q.distance(cell, home) <= leash;
-    });
+    return proposeTactical(ctx, agent, { allowMove: cell => ctx.q.distance(cell, home) <= leash });
   },
   score(ctx, agent, c) {
     const parent = parentOf(ctx, agent);

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { loadContentDirs, loadPacks } from "./loader.ts";
+import { loadContentDirs, loadPacks, readPackDir } from "./loader.ts";
 import type { PackFiles } from "./loader.ts";
 import { validateAgainst } from "./schema.ts";
 
@@ -103,4 +103,42 @@ test("schema 同時抓到缺必填欄與多餘欄", () => {
     { path: "$.name", message: "required property missing" },
     { path: "$.extra", message: "additional property not allowed" },
   ]);
+});
+
+// 個體覆寫用完整 base 作合法對照，再每次只破壞一條規則。
+function monsterPack() {
+  const files = readPackDir("content/base");
+  const species = base.db.require("species", "species/hound");
+  const body = base.db.require("bodyplan", species.bodyPlan);
+  const monster = { id: "monster/loader-test", species: species.id, grade: "C", tags: [],
+    partsOverride: body.parts.map(part => ({ id: part.id, layers: structuredClone(part.layers), functions: [...part.functions] })) };
+  files.files["monsters/loader-test.json"] = monster;
+  return { files, monster };
+}
+for (const [name, mutate, message] of [
+  ["部位 id 不存在", (m: ReturnType<typeof monsterPack>["monster"]) => { m.partsOverride[0]!.id = "missing"; }, "unknown monster part"],
+  ["最內層不是結構層", (m: ReturnType<typeof monsterPack>["monster"]) => { m.partsOverride[0]!.layers.at(-1)!.structural = false; }, "last monster layer must be structural"],
+  ["沒有核心", (m: ReturnType<typeof monsterPack>["monster"]) => { for (const p of m.partsOverride) p.functions = p.functions.filter(f => f !== "core"); }, "monster requires a core part"],
+  ["捕捉後層數不符", (m: ReturnType<typeof monsterPack>["monster"]) => { m.partsOverride[0]!.layers.shift(); }, "capture layer count differs"],
+] as const) test(`MonsterDef 載入檢查：${name}`, () => {
+  const { files, monster } = monsterPack();
+  assert.deepEqual(loadPacks([files]).errors, []);
+  mutate(monster);
+  assert.ok(loadPacks([files]).errors.some(e => e.message.includes(message)));
+});
+test("soulGrade 只允許機魂，合法機魂通過、人類拒絕", () => {
+  const files = readPackDir("content/base");
+  const soul = Object.values(files.files).find(v => typeof v === "object" && v !== null && "kind" in v && v.kind === "soul") as Record<string, unknown>;
+  soul.soulGrade = "S";
+  assert.deepEqual(loadPacks([files]).errors, []);
+  const human = Object.values(files.files).find(v => typeof v === "object" && v !== null && "kind" in v && v.kind === "human") as Record<string, unknown>;
+  human.soulGrade = "C";
+  assert.ok(loadPacks([files]).errors.some(e => e.message === "soulGrade only allowed on souls"));
+});
+test("MonsterDef 捕捉 HP 上限不同只警告", () => {
+  const { files, monster } = monsterPack();
+  monster.partsOverride[0]!.layers[0]!.hp += 10;
+  const result = loadPacks([files]);
+  assert.deepEqual(result.errors, []);
+  assert.ok(result.warnings.some(e => e.message.includes("capture layer HP differs")));
 });

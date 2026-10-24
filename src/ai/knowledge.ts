@@ -4,11 +4,27 @@ import type { BattleState, FactionKnowledge, LayerKnowledge } from "../core/type
 import type { GameEvent } from "../core/events.ts";
 import { cloneBattleState } from "../core/clone-state.ts";
 import type { RulesQuery } from "./rules-query.ts";
+import type { AiCtx } from "./policy.ts";
+import { isHostileSlot } from "./hostility.ts";
 
 const DEFAULTS = { ttl: 3 };
 
 export function emptyKnowledge(): FactionKnowledge {
   return { visible: [], lastSeen: {}, revealed: {} };
+}
+
+// 追敵候選與評分共用：可見敵人優先，其次最後所見，完全無情報才探索中央。
+export function pursuitCells(ctx: AiCtx, actor: Id, hostileOnly = true) {
+  const { q, view, know } = ctx;
+  const visible = Object.keys(view.units).sort().filter(id => id !== actor && q.isActive(view, id)
+    && (!hostileOnly || q.hostile(view, actor, id))).map(id => view.units[id]!.pos);
+  if (visible.length) return visible;
+  const remembered = Object.keys(know.lastSeen).sort().filter(id => {
+    // 陣營是公開資料；位置只取情報快照，絕不回讀 s.units[id].pos。
+    const owner = ctx.s.units[id]?.owner;
+    return !know.visible.includes(id) && (!hostileOnly || (owner !== undefined && isHostileSlot(q, view, ctx.slot, owner)));
+  }).map(id => know.lastSeen[id]!.cell);
+  return remembered.length ? remembered : [{ x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) }];
 }
 
 export function ownUnits(q: RulesQuery, s: BattleState, slot: FactionSlot): Id[] {

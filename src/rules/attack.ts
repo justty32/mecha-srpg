@@ -55,6 +55,14 @@ export function modifiedAmount(ctx: Ctx, actor: Id | null, abilityId: Id | null,
   return Math.max(0, amount);
 }
 
+export function killUnit(ctx: Ctx, id: Id, killer: Id | null): void {
+  if (!isActive(ctx, id)) return;
+  rt(ctx.s).unitStatus[id] = "dead";
+  emit(ctx, "UnitDied", { unit: id, killer });
+  signal(ctx, "unitDied", { unit: id, killer });
+  signal(ctx, "unitRemoved", { unit: id, status: "dead" });
+}
+
 export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { unit?: Id; cell?: Cell; part?: PartId }): void {
   const ability = ctx.db.require("ability", abilityId), self = subject(ctx, actor, abilityId);
   const center = target.cell ?? (target.unit ? unit(ctx, target.unit).pos : unit(ctx, actor).pos);
@@ -103,10 +111,7 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
     apply(hit ? "hit" : "miss", location);
     apply("always", location);
     if (isActive(ctx, id) && isDead(ctx, id)) {
-      rt(ctx.s).unitStatus[id] = "dead";
-      emit(ctx, "UnitDied", { unit: id, killer: actor });
-      signal(ctx, "unitDied", { unit: id, killer: actor });
-      signal(ctx, "unitRemoved", { unit: id, status: "dead" });
+      killUnit(ctx, id, actor);
     }
     signal(ctx, "abilityResolved", { actor, ability: ability.id, target: id, hit });
   }

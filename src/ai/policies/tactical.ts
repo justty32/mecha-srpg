@@ -5,26 +5,26 @@ import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
 import { scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
+import { pursuitCells } from "../knowledge.ts";
 
 const DEFAULTS = { maxMoves: 8 };
 // 經 AiCtx 取 RulesQuery 的目標型別（policies 不直接 import rules-query，讓「rules 只在 adapters/」的 grep 乾淨）。
 type AbilityTarget = NonNullable<Parameters<AiCtx["q"]["checkAbility"]>[3]>;
 
-export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: number; hostileOnly?: boolean }): Candidate[] {
+export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: number; hostileOnly?: boolean; allowMove?: (cell: Cell) => boolean }): Candidate[] {
   const { q, view } = ctx;
   const actor = agent.unit;
   const self = view.units[actor];
   if (!self || !q.isActive(view, actor)) return [];
   const others = Object.keys(view.units).sort().filter((id) => id !== actor && q.isActive(view, id));
   const enemies = others.filter((id) => opts?.hostileOnly === false || q.hostile(view, actor, id));
-  const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
-  const nearest = (cell: Cell): number => enemies.length
-    ? Math.min(...enemies.map((id) => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
+  const targets = pursuitCells(ctx, actor, opts?.hostileOnly !== false);
+  const nearest = (cell: Cell): number => Math.min(...targets.map(target => q.distance(cell, target)));
   const reachCosts = q.reachable(view, actor);
   const reachable = Object.keys(reachCosts).sort().map((key) => {
     const [x, y] = key.split(",").map(Number);
     return { x: x!, y: y! };
-  });
+  }).filter(cell => !opts?.allowMove || opts.allowMove(cell));
   const moves = [...reachable].sort((a, b) => nearest(a) - nearest(b) || dangerAt(ctx.danger, a) - dangerAt(ctx.danger, b)
     || a.x - b.x || a.y - b.y)
     .slice(0, Math.max(0, Math.floor(opts?.maxMoves ?? ctx.params.maxMoves ?? DEFAULTS.maxMoves)));
@@ -38,11 +38,12 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   for (const ability of [...q.abilitiesOf(view, actor)].sort().filter(isAttack)) {
     if (firingMoves.length >= moveLimit) break;
     const def = q.abilityDef(ability), range = q.abilityRange(view, actor, ability);
-    if (def.target.kind !== "unit") continue;
+    if (!["unit", "ball", "line", "cone"].includes(def.target.kind)) continue;
     for (const id of enemies) {
       if (firingMoves.length >= moveLimit) break;
-      if (q.checkAbility(view, actor, ability, { unit: id }) === null) continue;
       const target = view.units[id]!.pos;
+      const aim = def.target.kind === "unit" ? { unit: id } : { cell: target };
+      if (q.checkAbility(view, actor, ability, aim) === null) continue;
       const cell = reachable.filter(c => {
         const d = q.distance(c, target);
         return d >= range.min && d <= range.max && (!def.target.los || q.los(view, c, target));

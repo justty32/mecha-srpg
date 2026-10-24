@@ -1,0 +1,82 @@
+{
+  "source": "wf/workflows/content/playtest-baselines.json",
+  "date": "2026-10-24",
+  "notes": "依領導 order：每級取來源列第一台機與第一隻怪獸；components 明寫，來源未指定則固定開發時 defaultLoadout。",
+  "map": "map/lunar-quarry-16",
+  "playerAt": {
+    "x": 3,
+    "y": 2
+  },
+  "enemyAt": {
+    "x": 11,
+    "y": 2
+  },
+  "monsterOpponents": 2,
+  "playerFaction": "faction/migrant-crew",
+  "enemyFaction": "faction/selene-whitegloves",
+  "fallbackSoul": "person/glove",
+  "grades": {
+    "D": {
+      "frame": "frame/bulwark-i",
+      "components": {
+        "left-weapon": "component/mx-iron-repeater"
+      },
+      "person": "person/chen-xiaohai",
+      "seat": "pilot",
+      "monster": "monster/mite-d",
+      "sourceRow": 0
+    },
+    "C": {
+      "frame": "frame/bulwark-ii",
+      "components": {
+        "left-weapon": "component/mx-rune-rifle",
+        "right-weapon": "component/mx-iron-repeater"
+      },
+      "person": "person/chen-xiaohai",
+      "seat": "pilot",
+      "monster": "monster/reaper-c",
+      "sourceRow": 1
+    },
+    "B": {
+      "frame": "frame/bulwark-iv-rampart",
+      "components": {
+        "left-weapon": "component/mx-scatter-rune",
+        "right-weapon": "component/mx-xingtian-replica",
+        "armor-mount": "component/mx-runeweave-plate",
+        "back-1": "component/mx-ash-mist",
+        "back-2": "component/mx-falling-star-mortar",
+        "system-1": "component/mx-frost-fins",
+        "system-2": "component/mx-essence-cell"
+      },
+      "person": "person/chen-xiaohai",
+      "seat": "pilot",
+      "monster": "monster/siegebeetle-b",
+      "sourceRow": 2
+    },
+    "A": {
+      "frame": "frame/selene-aurora",
+      "components": {
+        "right-weapon": "component/mx-hush-pulse",
+        "left-weapon": "component/mx-radiant-rifle",
+        "sensor-mount": "component/mx-thousand-eye",
+        "back-1": "component/mx-ash-mist",
+        "back-2": "component/mx-tide-leap",
+        "armor-mount": "component/mx-moonveil",
+        "system-1": "component/mx-essence-cell",
+        "system-2": "component/mx-rift-heart"
+      },
+      "person": "person/chen-xiaohai",
+      "seat": "pilot",
+      "monster": "monster/cliffjaw-red-eye",
+      "sourceRow": 3
+    },
+    "S": {
+      "frame": "frame/ancient-rearguard",
+      "components": {},
+      "person": "person/arun-velan",
+      "seat": "pilot",
+      "monster": "monster/tidespine-chittagong",
+      "sourceRow": 4
+    }
+  }
+}

@@ -12,6 +12,7 @@ import { canPay, pay } from "./pools.ts";
 import { onSignal, registerCommand, registerVerb, signal } from "./hooks.ts";
 import { killPerson } from "./injury.ts";
 import { setControl } from "./control.ts";
+import { killUnit } from "./attack.ts";
 
 export type BattleSetup = { id: string;
   allies?: Record<FactionSlot, FactionSlot[]>; factions?: Record<FactionSlot, Id>;
@@ -20,7 +21,7 @@ export type BattleSetup = { id: string;
   units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean };
 export type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number;
   events?: GameEvent[];
-  units: { id: Id; status: "alive" | "dead" | "retreated" | "derelict-recovered" | "derelict-lost" | "captured"; state: MechState }[];
+  units: { id: Id; monster?: Id; status: "alive" | "dead" | "retreated" | "derelict-recovered" | "derelict-lost" | "captured"; state: MechState }[];
   persons: { id: Id; status: "alive" | "dead"; state: PersonState; xpGained: number }[];
   loot: { fromUnit: Id; components: Id[]; materials: Record<string, number> }[]; log: { events: number; hash: string } };
 
@@ -138,6 +139,8 @@ export function capture(ctx: Ctx, actor: Id, target: Id): void {
   runtime.unitStatus[target] = "captured";
   u.owner = unit(ctx, actor).owner;
   u.frame = frame;
+  const monsterId = runtime.monsters[target]!.def;
+  if (monsterId) (runtime.capturedMonsters ??= {})[target] = monsterId;
   delete runtime.monsters[target];
   ctx.s.factions[u.owner]?.captured.push(target);
   emit(ctx, "Captured", { unit: target, by: actor, frame });
@@ -151,7 +154,8 @@ export function battleResult(ctx: Ctx): BattleResult | null {
     const u = unit(ctx, id), status = runtime.unitStatus[id];
     const recovered = status === "derelict" && outcome.winner !== null && Object.keys(ctx.s.units).sort().some(other =>
       isActive(ctx, other) && unit(ctx, other).owner === outcome.winner && distance(u.pos, unit(ctx, other).pos) <= constant(ctx, "derelictRecoverRange"));
-    return { id, status: status === "derelict" ? recovered ? "derelict-recovered" : "derelict-lost" : status === "active" || status === undefined ? "alive" : status,
+    const monster = runtime.monsters[id]?.def ?? runtime.capturedMonsters?.[id];
+    return { id, ...(monster ? { monster } : {}), status: status === "derelict" ? recovered ? "derelict-recovered" : "derelict-lost" : status === "active" || status === undefined ? "alive" : status,
       state: structuredClone(u) };
   });
   const persons: BattleResult["persons"] = Object.keys(ctx.s.persons).sort().map(id => ({ id,
@@ -176,7 +180,17 @@ registerVerb("spawn", (ctx, action, hc) => {
   while (ctx.s.units[`${stem}${n}`]) n++;
   const spawned = makeUnit(ctx, { id: `${stem}${n}`, owner: uid ? unit(ctx, uid).owner : hc.self.faction ?? "berserk", pos,
     monster: { species: action.species, grade: action.grade } });
+  if (uid) (rt(ctx.s).spawnParents ??= {})[spawned.id] = uid;
   ctx.s.order.push(spawned.id);
+});
+onSignal("unitDied", "flow.spawn-tether", 0, (ctx, p) => {
+  if (typeof p.unit !== "string") return;
+  const runtime = rt(ctx.s), parent = runtime.monsters[p.unit];
+  if (!parent || ctx.db.require("species", parent.species).behaviors?.spawner?.tether !== "dieWithParent") return;
+  // 母體先死、子單位依 id 深度優先；共用死亡事件與移除通知，避免重複結算。
+  for (const child of Object.keys(runtime.spawnParents ?? {}).sort()) {
+    if (runtime.spawnParents![child] === p.unit) killUnit(ctx, child, typeof p.killer === "string" ? p.killer : null);
+  }
 });
 onSignal("abilityResolved", "people.flow.capture", 0, (ctx, p) => {
   if (p.hit === true && typeof p.actor === "string" && typeof p.target === "string" && typeof p.ability === "string"
