@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-10",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 勢力與時代）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "67e4d50956644a5aeb2bb0c21ee28745db0bc5c4",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-10",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-10/REPORT.md",
@@ -74,5 +74,109 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:22:30",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-10",
+  "round": 1,
+  "at": "2026-10-24T16:22:30",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/eras/first-tide.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/mimic-dawn.json",
+   "content/lore/eras/old-world.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/eras/yoke-years.json",
+   "content/lore/factions/accra.json",
+   "content/lore/factions/anvil.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/busan.json",
+   "content/lore/factions/chittagong-breakers.json",
+   "content/lore/factions/dhaka-weavers.json",
+   "content/lore/factions/green-line.json",
+   "content/lore/factions/ground-union.json",
+   "content/lore/factions/league-armory.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/migrant-crew.json",
+   "content/lore/factions/mimic-works.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "testWaiver": "npm test 的 fail 與 base 完全相同：worldgen.test.ts 兩項（讀 lead-grid 未進版控的 handoffs/lead-grid/stage/ 檔，乾淨 worktree 必 ENOENT）；本批只改文字欄，與這些失敗無關（領導在 base worktree 重跑確認）",
+ "files": [
+  "content/lore/eras/first-tide.json",
+  "content/lore/eras/forerunners.json",
+  "content/lore/eras/league.json",
+  "content/lore/eras/mimic-dawn.json",
+  "content/lore/eras/old-world.json",
+  "content/lore/eras/tide-line.json",
+  "content/lore/eras/yoke-years.json",
+  "content/lore/factions/accra.json",
+  "content/lore/factions/anvil.json",
+  "content/lore/factions/backside.json",
+  "content/lore/factions/busan.json",
+  "content/lore/factions/chittagong-breakers.json",
+  "content/lore/factions/dhaka-weavers.json",
+  "content/lore/factions/green-line.json",
+  "content/lore/factions/ground-union.json",
+  "content/lore/factions/league-armory.json",
+  "content/lore/factions/league.json",
+  "content/lore/factions/migrant-crew.json",
+  "content/lore/factions/mimic-works.json"
+ ],
+ "ids": [
+  "era/first-tide",
+  "era/forerunners",
+  "era/league",
+  "era/mimic-dawn",
+  "era/old-world",
+  "era/tide-line",
+  "era/yoke-years",
+  "faction/accra",
+  "faction/anvil",
+  "faction/backside",
+  "faction/busan",
+  "faction/chittagong-breakers",
+  "faction/dhaka-weavers",
+  "faction/green-line",
+  "faction/ground-union",
+  "faction/league-armory",
+  "faction/league",
+  "faction/migrant-crew",
+  "faction/mimic-works"
+ ],
+ "summary": "lore 勢力與時代 換詞；閘門 0 違規、check／lore／typecheck 綠、黃金不變；test 失敗與 base 相同（見 testWaiver）",
+ "gateRejections": []
 }
