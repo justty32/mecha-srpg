@@ -2,11 +2,11 @@
 
 [handoffs](README.md)｜交棒 [STATE](STATE.md)｜下次整理 [next-tidy](next-tidy.md)
 
-2026-10-24 段落收尾時從各線 REPORT「剩餘工作／需要決定」彙整去重。**codex 只做新增內容與文字潤飾**；本表是那兩件事以外、要開 Opus 領導線（feature-dev／planning）做的事。已抽到 [engine-backlog.json](engine-backlog.json)（25 列）。
+2026-10-24 段落收尾時從各線 REPORT「剩餘工作／需要決定」彙整去重。**codex 只做新增內容與文字潤飾**；本表是那兩件事以外、要開 Opus 領導線（feature-dev／planning）做的事。已抽到 [engine-backlog.json](engine-backlog.json)（27 列）。
 
 欄位：`序`（建議順序）、`優先`（P1 先做／P2 接著做／P3 有空再做）、`項目`、`來源`（REPORT 連結）、`影響`（不做會怎樣）、`建議做法`、`規模`（小＝一條 codex 工人、中＝一位領導帶 1–3 工人、大＝多段切線）。查法見資料檔說明。
 
-統計：P1 6 列、P2 12 列、P3 7 列（第 25 列鐵劍 models 為 2026-10-24 pilot 收線後追加）。
+統計：P1 6 列、P2 13 列、P3 8 列（第 25 列鐵劍 models 為 2026-10-24 pilot 收線後追加；第 26–27 列 lead-content 追加）。
 
 ## 怎麼排
 

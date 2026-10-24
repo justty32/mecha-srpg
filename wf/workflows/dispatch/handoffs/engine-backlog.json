@@ -236,6 +236,24 @@
    "影響": "鐵劍只有戰鬥 frame，世界研發／市場不出鐵劍；飛魚無 models；新血統會改 5 條黃金戰役與 MCP 戰役 hash",
    "建議做法": "先修 `src/ops/war` 新血統 undefined（重現：放入 `lead-codex-pilot/pilot-mech-02/deferred/world/` 原檔跑 war 測試），再入庫 models ×5＋lineage ×1、補飛魚 models，重產黃金並在 commit 說明",
    "規模": "小–中"
+  },
+  {
+   "序": "26",
+   "優先": "P2",
+   "項目": "lc-mech-01 七台人類對手機入營運：world/models、人類遭遇編成、市場；維拉科查／恩凱／埃吉爾專屬血統",
+   "來源": "[lc-mech-01](lead-content/lc-mech-01/REPORT.md)",
+   "影響": "新機只在兩個展示情境出現；基多／奈洛比／鹽鷗在營運仍用別家機；血統 tag 暫借 kuafu／jinghai／xingtian",
+   "建議做法": "models 照 bulwark-* 範本（tier＝grade、requires 前代）；遭遇編成由平衡線決定是否換入（人類遭遇難度 lead-tune 剛下修）；新血統要先修研發模擬讀新血統 undefined（序 鐵劍 models 同源）；另 lore 安地斯壁「堅盾之祖」與堅盾公刻 2093 年代先後待規劃線釐清",
+   "規模": "中（非 codex：models／lineages 不歸 codex）"
+  },
+  {
+   "序": "27",
+   "優先": "P3",
+   "項目": "lore 事件允許 gameRefs（連到 base:monster 等）",
+   "來源": "[lc-lore-03](lead-content/lc-lore-03/REPORT.md)",
+   "影響": "lore README 規定 event 無 gameRefs，check.ts 對它警告「未登記欄位」；二名由來事件無法機器連到怪獸，百科交叉連結缺一條",
+   "建議做法": "content/lore/check.ts 與 README 把 gameRefs 列為 event 可選欄（格式驗證已存在），百科 event 頁顯示連結；之後由內容批次補 lc-lore-03 六件的 gameRefs",
+   "規模": "小"
   }
  ]
 }

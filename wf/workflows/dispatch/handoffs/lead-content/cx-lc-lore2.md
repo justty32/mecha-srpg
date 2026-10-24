@@ -21,7 +21,7 @@
 - **命名兩步**（`wf/workflows/content/polish.md`「首要標準」）：每個新名字先取英文原名（可帶拉丁／古典語根），想清楚意涵，再意譯（概念詞）或音譯（專有名詞）；不逐字直譯，寫完自問「這是不是英文詞換成漢字」。**英文原名不放 `aka`**（`aka` 只放中文別名）；英文原名與意涵寫進命名表 `naming.json`（見交付）。
 - 不做：修改或刪除任何既有檔（`content/lore/timeline.json` 純插入除外）；`src/`、`schemas/`、`test/`、`wf/`（除交付的報告目錄）、`content/index/`、`content/batches/`、`package.json`、`content/base/world/lineages/`、`content/base/world/models/`、registries 一律不碰；不 commit。
 - worktree 內**不要留任何其他檔**（driver、FIFO、筆記、log 一律放 `/tmp/cx-lc-lore2/`）——閘門會把非允許路徑的新檔或改動記成越界。
-- 件數 gate：新增／修改檔超過 9 件就停下回報；容量 gate：單檔超過 16 KB 或全部產物超過 1 MB 就停下回報。任一觸發都停。
+- 件數 gate：新增／修改檔超過 9 件就停下回報；容量 gate：**你新增的**單檔超過 16 KB，或你新增／插入的內容合計超過 1 MB 就停下回報（既有例外檔 `content/lore/timeline.json` 本身已約 35 KB，不算觸發；只看你插入的量）。任一觸發都停。
 
 ## 必用工具
 

@@ -49,5 +49,6 @@
 | 2026-10-24 | `lead-gaps-battle` | 戰鬥側框架缺口、意圖撤退與指揮者 | [lead-gaps-battle/](2026-10-24/lead-gaps-battle/REPORT.md) |
 | 2026-10-24 | `lead-gaps-ops` | 營運側重大問題與框架缺口 | [lead-gaps-ops/](2026-10-24/lead-gaps-ops/REPORT.md) |
 | 2026-10-24 | `lead-tune-battle` | AI 撤退時機調校、瞄核心、check 降噪 | [lead-tune-battle/](2026-10-24/lead-tune-battle/REPORT.md) |
+| 2026-10-24 | `lead-content` | codex 新增內容七批＋草稿併入一批（人類對手機 7、營運事件 9＋對白 2、lore 17 件＋年表 15 條、地圖 4＋情境 5、勢力四小節 20 節），全過 content_accept | [lead-content/](../lead-content/)（各批 manifest 報告路徑指向該處，故留原處；總 REPORT 待頂層代存為 lead-content/REPORT.md） |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。

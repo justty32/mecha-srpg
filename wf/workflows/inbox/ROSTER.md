@@ -43,17 +43,6 @@
 
 （現役：dispatcher 與下列 `lead-codex-pilot` 代登記的工人格；已收線成員原格見 `archive/`。）
 
-### `cx-pilot-iron`
-- **狀態**：已收線（領導 `lead-codex-pilot` 代登記，2026-10-24；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-codex-pilot/`）
-- **我是誰**：codex 工人，`lead-codex-pilot` 底下：通用系列鐵劍（batch pilot-mech-02，新增模式）。
-- **團隊**：`teams/codex-pilot`
-- **上游**：`lead-codex-pilot`
-- **領地**：只在隔離 worktree `scratchpad/codex-pilot/wt-pilot-mech-02` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-codex-pilot/cx-pilot-iron.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-pilot-iron.md`
-- **訂閱主題**：無
-
 ### `lead-tune`
 - **狀態**：現役（2026-10-24）
 - **我是誰**：Opus 領導，engine-backlog P1 戰鬥／營運後期調校（玩家首輪撤退、anchored、出戰數減半、`part:undefined`）。
@@ -74,61 +63,6 @@
 - **答得出什麼**：本件細節
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-tune-part.md`
-- **訂閱主題**：無
-
-### `lead-content`
-- **狀態**：現役（2026-10-24）
-- **我是誰**：Opus 領導，codex 新增內容批次（人類對手機體、營運事件與對話、各勢力 lore、第三刃／背面 lore）。
-- **團隊**：`teams/lead-content`（第一行）
-- **上游**：dispatcher（行程內 Agent tool 回傳）
-- **領地**：見 `wf/workflows/dispatch/CLAIMS.md` 的 lead-content 列（只新增 content 檔）
-- **答得出什麼**：各批 manifest、進度、驗收結果
-- **答不出什麼**：既有檔改名（lead-rename）、引擎
-- **怎麼找我**：`wf/inbox/teams/lead-content/`、`wf/inbox/mail/lead-content/`
-- **訂閱主題**：無
-
-### `cx-lc-mech`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：人類對手機體與配裝（batch lc-mech-01，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-mech-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-mech.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-mech.md`
-- **訂閱主題**：無
-
-### `cx-lc-ops`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：營運事件與對話（batch lc-ops-01，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-ops-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-ops.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-ops.md`
-- **訂閱主題**：無
-
-### `cx-lc-lore`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：各勢力 lore（batch lc-lore-01，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-lore.md`
-- **訂閱主題**：無
-
-### `cx-lc-lore2`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：第三刃／背面 lore（batch lc-lore-02，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-02` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore2.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-lore2.md`
 - **訂閱主題**：無
 
 ### `cx-tune-intent`
@@ -175,13 +109,6 @@
 - **怎麼找我**：`wf/inbox/orders/cx-tune-human.md`
 - **訂閱主題**：無
 
-### `lead-rename`
-- **狀態**：已收線（2026-10-24）
-- **我是誰**：Opus 領導：全庫用語改名＋翻譯腔重審（codex-batches 第 1 批）。
-- **團隊**：`teams/lead-rename`（成員 `cx-rn-01`…`cx-rn-17`，各一批 polish，交接書 `wf/workflows/dispatch/handoffs/lead-rename/cx-rn-NN.md`，只在隔離 worktree `scratchpad/rename/wt-rename-NN` 內寫；領導代登記，不逐格列）
-- **領地**：見 CLAIMS 的 lead-rename 列
-- **怎麼找我**：`wf/inbox/teams/lead-rename/`、`wf/inbox/mail/lead-rename/`
-
 ### `cx-grid-migrate`
 - **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-migrate.md`）
 - **我是誰**：codex 工人，`lead-grid` 底下：營運層節點→地點、逐格移動、航道的大遷移。
@@ -191,17 +118,6 @@
 - **答得出什麼**：遷移後的型別與 move.ts 語意
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-grid-migrate.md`
-- **訂閱主題**：無
-
-### `cx-intrigue-ref`
-- **狀態**：已收線（2026-10-24 DONE；規劃線 `plan-intrigue` 代登記；交接書 `wf/workflows/dispatch/handoffs/plan-intrigue/cx-intrigue-ref.md`）
-- **我是誰**：codex 工人（唯一開網路搜尋的線）：查 18 部參考作品的「局勢／掙扎」手法，寫 `references.json`。
-- **團隊**：無
-- **上游**：`plan-intrigue`（回報 `--to plan-intrigue`）
-- **領地**：只寫 `handoffs/plan-intrigue/references.json` 與 `handoffs/plan-intrigue/cx-intrigue-ref/REPORT.md`
-- **答得出什麼**：各參考作品的來源連結與手法摘要
-- **答不出什麼**：本專案設定
-- **怎麼找我**：`wf/inbox/orders/cx-intrigue-ref.md`
 - **訂閱主題**：無
 
 ### `cx-tune-anchor`
@@ -215,17 +131,6 @@
 - **怎麼找我**：`wf/inbox/orders/cx-tune-anchor.md`
 - **訂閱主題**：無
 
-### `cx-lc-lore3`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：A 級以上怪獸二名由來 lore（batch lc-lore-03，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-03` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore3.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-lore3.md`
-- **訂閱主題**：無
-
 ### `cx-tune-scen`
 - **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
 - **我是誰**：codex 工人：護送／突圍六情境過易的數值調整。
@@ -237,17 +142,6 @@
 - **怎麼找我**：`wf/inbox/orders/cx-tune-scen.md`
 - **訂閱主題**：無
 
-### `cx-lc-field`
-- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
-- **我是誰**：codex 工人：地圖與情境（batch lc-field-01，新增模式）。
-- **團隊**：`teams/lead-content`
-- **上游**：`lead-content`
-- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-field-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-field.md`）
-- **答得出什麼**：本批內容細節
-- **答不出什麼**：別線領地
-- **怎麼找我**：`wf/inbox/orders/cx-lc-field.md`
-- **訂閱主題**：無
-
 ### `cx-tune-multi`
 - **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
 - **我是誰**：codex 工人：多方混戰情境（crater-three-way、delta-four-way）timeout 根因與修正。
@@ -257,4 +151,26 @@
 - **答得出什麼**：本件細節
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-tune-multi.md`
+- **訂閱主題**：無
+
+### `cx-grid-blight`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-blight.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：蝕塊擴散／收縮、新裂縫落格、裂縫口動態地點、城邦失守、孟買蝕核城。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-blight.md`
+- **訂閱主題**：無
+
+### `cx-grid-ui`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-ui.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：共用 GridView 與營運大地圖面板、map 快捷鍵、e2e。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-ui.md`
 - **訂閱主題**：無
