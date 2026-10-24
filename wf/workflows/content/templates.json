@@ -1,0 +1,28 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-24",
+ "columns": ["類別", "原則檔", "範本檔", "必配套", "常見錯誤"],
+ "link_columns": ["原則檔"],
+ "rows": [
+  {"類別": "摹機 frame", "原則檔": "mechs.md", "範本檔": "content/base/frames/bulwark-ii.json（C 通用）、longspear-v4.json（射手）、bulwark-old-city.json（隊長機）、selene-aurora.json（A）", "必配套": "bodyplans/mx-*、defaultLoadout 指向既有 components、tags series-*／lineage-*、world/models/<同名>.json、lore faction mechSeries", "常見錯誤": "沒填 defaultLoadout 變空手；pool name 寫熱量／電能（要燼／流光）；D 級取中二名；tags 漏 mech／human"},
+  {"類別": "部件 component", "原則檔": "mechs.md", "範本檔": "components/mx-iron-repeater.json（凡兵）、mx-rune-rifle.json（摹式）、mx-burst-scale.json（裝甲 layersAdd）、mx-binding-harpoon.json（拘束矢）", "必配套": "abilities/mx-*、effects/mx-*、slot 型別在 registries/slot-types", "常見錯誤": "能力 produces heat 但目標機體無 heat 池；凡兵漏 conventional-arms；ammo 池 initial≠max"},
+  {"類別": "能力 ability", "原則檔": "abilities-effects.md", "範本檔": "abilities/mx-cloud-piercer.json（單體遠程）、kx-ground-stomp.json（ball）、kx-star-howl.json（友方增益）、ax-riastrad-gae-bolg.json（古代近戰）、mx-bind-shot.json（capture）", "必配套": "ai.tactics 必填；效果檔存在；costs 池存在於使用者", "常見錯誤": "armorPen 寫 10；tactics 鍵選錯；friendly yes 當友方增益；AP 成本 0 的主動招"},
+  {"類別": "效果 effect", "原則檔": "abilities-effects.md", "範本檔": "effects/mx-airborne.json（短增益）、kx-deep-wound.json（持續傷）、rooted.json（控制）、trait-vengeful.json（特質）、injury-concussion.json（傷勢）", "必配套": "ui.badge 中文 2–4 字；source 填自己 id", "常見錯誤": "person scope 用在對怪獸減益；contribs path 寫 target.*；永久 buff 無 whileSource"},
+  {"類別": "怪獸族 species＋bodyplan＋bio frame＋monster", "原則檔": "bio-monsters.md", "範本檔": "species/cliffjaw.json、bodyplans/quadruped-cliffjaw.json、frames/bio-cliffjaw.json、monsters/cliffjaw-red-eye.json；菌絲看 species/bed.json", "必配套": "四檔一組；abilities/kx-*；aiprofile；world/beasts/<family> 已有；world/rifts 若要出現在營運", "常見錯誤": "family 拼錯（只准 insect／beast／alien／mycelium）；capture.frame 共用；B 以下寫二名；tags 漏 kaiju"},
+  {"類別": "屍體改裝 corpse frame", "原則檔": "bio-monsters.md", "範本檔": "frames/corpse-cliffjaw.json", "必配套": "同族 species 存在", "常見錯誤": "寫 instinct 池或 burden>0（屍體無意識）"},
+  {"類別": "古代機 ancient", "原則檔": "ancient-people.md", "範本檔": "frames/ancient-rearguard.json（刑天）、ancient-thunderoak.json（唯一積燼）、abilities/ax-*、effects/ax-*、bodyplans/ancient-warden.json", "必配套": "resonance（兩信念＋一 deed，threshold 0.5）、一個無共鳴要求的基本攻擊、repair-only、grade S、lore characters（先民）可選", "常見錯誤": "能力 produces heat 但無 heat 池；寫 setControl；名字不是神話；加 conventional-arms"},
+  {"類別": "人物 person（駕駛員／技師／科研）", "原則檔": "ancient-people.md", "範本檔": "persons/ren-kasai.json、ilse-brandt.json；特質 effects/ax-trait-*.json", "必配套": "ap／fatigue／hp 三池；will.beliefs 用信念字典；特質有利有弊", "常見錯誤": "與既有人物同名；屬性超出 40–70；缺 hp 池 onDepleted"},
+  {"類別": "機魂 soul＋soultree", "原則檔": "ancient-people.md", "範本檔": "persons/glove.json、soultrees/ax-sentinel.json、effects/perk-soul-*.json", "必配套": "kind soul、池 ap／fatigue／calc、growth.tree 指向樹", "常見錯誤": "低級機魂寫鮮明個性（只限 S 級以上）；樹無 autonomy 卻要獨駕"},
+  {"類別": "地形 terrain", "原則檔": "battle-field.md", "範本檔": "terrains/acid-marsh.json、ruin-wall.json（可破壞）", "必配套": "moveCost 五鍵齊全；效果檔；地圖 legend 用到", "常見錯誤": "缺 locomotion 鍵；cover 超過 50；glyph 用大寫（單位專用）"},
+  {"類別": "地圖 map", "原則檔": "battle-field.md", "範本檔": "maps/skirmish-20.json、rift-edge-60.json、tidal-flat-40x30.json（潮汐 globals）", "必配套": "cells 長度＝w×h；legend 全在 terrains；deployZones 每 slot；exits", "常見錯誤": "部署區與敵方相距 <10 格；出口在迷霧死角；glyph 撞字"},
+  {"類別": "情境 scenario", "原則檔": "battle-field.md", "範本檔": "scenarios/rift-edge-nest.json（參戰型）、quarry-duel.json（killTarget）、breach-defense.json（hold）、convoy-run.json（escort）", "必配套": "每 slot faction 存在；玩家 lose 條件；rounds 20–30；allies 顯式", "常見錯誤": "killTarget 用雙方共有 frame；同一具名人物多台；缺玩家落敗條件→timeout 平手；第三方貼玩家出生"},
+  {"類別": "AI 設定 aiprofile", "原則檔": "battle-field.md", "範本檔": "aiprofiles/focus-fire.json、guerrilla.json、sniper-perch.json、convoy-runner.json", "必配套": "policy ∈ tactical／sentinel／swarm／berserk／flee／scripted", "常見錯誤": "參數鍵拼錯（無驗證，靜默用預設）"},
+  {"類別": "營運事件 event", "原則檔": "ops-content.md", "範本檔": "world/events/restraint-night-knocks.json、ship-stowaway.json（鏈）", "必配套": "when 閘門；第一選項無 requires；效果白名單", "常見錯誤": "when 恆真；扣錢無 requires；text 用 {佔位} 或具名人物"},
+  {"類別": "契約 contract", "原則檔": "ops-content.md", "範本檔": "world/contracts/clear.json、join-clear.json", "必配套": "發包勢力 contractKinds 列它＋actions 牌（否則休眠）", "常見錯誤": "主目標用 escort／killTarget；pay 用 rift.* 但契約無裂縫"},
+  {"類別": "名表 names", "原則檔": "ops-content.md", "範本檔": "world/names/epithet-beast.json、mythic-bengal.json、mech-series.json", "必配套": "culture 值不與其他表撞；≥12 條", "常見錯誤": "改既有 nick-* 四檔；culture 撞 mythic-*"},
+  {"類別": "科研／市場／招募／背景／對白", "原則檔": "ops-content.md", "範本檔": "world/research/restraint.json、markets/singapore.json、recruit-pools/*.json、backgrounds/refugee.json、dialogues/ren-kasai-empty-chair.json", "必配套": "引用物已 commit；背景 culture 有 mythic 表；對白 id 排在既有之後", "常見錯誤": "解鎖不存在的部件；市場賣未 commit 的 frame；對白搶第一話題"},
+  {"類別": "機型 model／血統 lineage", "原則檔": "mechs.md", "範本檔": "world/models/bulwark-ii.json、lineages/jinghai.json、universal-bulwark.json", "必配套": "frame 存在且 mechanical；requires 無環；holder 是活勢力", "常見錯誤": "tier 與 frame.grade 不一致；cost 不照 5／15／40／100／300"},
+  {"類別": "lore 勢力／人物／事件／地點／年表", "原則檔": "lore-text.md", "範本檔": "content/lore/factions/anvil.json、characters/ren-kasai.json、events/antarctic-shell.json、places/*.json、timeline.json", "必配套": "node content/lore/check.ts 0 錯；gameRefs 格式 base:kind/name", "常見錯誤": "引用不存在的 id；大勢力缺四小節；2108 後條目無 rumor；禁用詞"}
+ ]
+}

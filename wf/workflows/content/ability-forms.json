@@ -1,0 +1,22 @@
+{
+ "contract": "wf-table/1",
+ "source": "abilities-effects.md",
+ "extracted": "2026-10-24",
+ "columns": ["想做的事", "寫法", "ai.tactics 鍵", "注意"],
+ "link_columns": [],
+ "rows": [
+  {"想做的事": "單體攻擊", "寫法": "`mode activated`、`target.kind unit`、`friendly no`、packets", "ai.tactics 鍵": "attack", "注意": "基本招無 cooldown；可 `partAim`"},
+  {"想做的事": "範圍攻擊", "寫法": "`kind ball`（radius 1–2，以目標格為心）、`line`、`cone`", "ai.tactics 鍵": "attackArea", "注意": "每目標 ×0.6–0.7；friendly no 只打敵對"},
+  {"想做的事": "自身增益", "寫法": "`kind self`、`effects on:\"self\"`", "ai.tactics 鍵": "buff／protect", "注意": "必中；效果 scope mech"},
+  {"想做的事": "友方增益", "寫法": "`kind ball`／`unit`、`friendly only`、`range 0–0`（自身為心）或 1–4", "ai.tactics 鍵": "buff／protect", "注意": "必中不擲骰；AI 用預覽算受益友方數；只對已存在的友方有價值"},
+  {"想做的事": "純減益／控制", "寫法": "packets 空、`effects on:\"hit\"` 掛 debuff", "ai.tactics 鍵": "debuff／disable", "注意": "效果 scope **mech**、contribs 負值或 tags stagger／suppressed／jammed／numb／restraint／marked 才被估值"},
+  {"想做的事": "偵察標記", "寫法": "unit 遠程、無傷、on hit 掛 `marked`", "ai.tactics 鍵": "scout＋debuff", "注意": "標記效果 tags 含 `marked`"},
+  {"想做的事": "位移／逃脫", "寫法": "self、掛 evasion／initiative 短增益", "ai.tactics 鍵": "escape", "注意": "AI 在危險高時才選"},
+  {"想做的事": "維持型", "寫法": "`mode sustained`＋`sustain:{lock,drain,removeOnZero}`", "ai.tactics 鍵": "buff", "注意": "AI 會開、已開不再提；drain 池要存在"},
+  {"想做的事": "反應", "寫法": "`mode reaction`、`trigger.event enemyLeavesAdjacent`、tags `melee`", "ai.tactics 鍵": "attack", "注意": "只有這一種觸發；costs 可 0"},
+  {"想做的事": "拘束／捕捉", "寫法": "unit、tags `capture`、矢池", "ai.tactics 鍵": "capture", "注意": "目標需 kaiju 且 species.capture 條件接近"},
+  {"想做的事": "召喚", "寫法": "self、效果 onApply `spawn`（species／grade／adjacent）", "ai.tactics 鍵": "buff＋tags spawn", "注意": "usesPerBattle 或有限池"},
+  {"想做的事": "治療", "寫法": "層 `regen`（可 `regenPool`）或 `pool` delta 給 hp", "ai.tactics 鍵": "heal", "注意": "沒有治療動詞"},
+  {"想做的事": "被動", "寫法": "**不要寫 passive**；用池 `bands`、部件 `attrMods`、永久特質", "ai.tactics 鍵": "—", "注意": "passive 被 tryCommand 拒用"}
+ ]
+}
