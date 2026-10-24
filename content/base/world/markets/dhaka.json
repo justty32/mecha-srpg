@@ -1,0 +1,47 @@
+{
+  "id": "market/dhaka",
+  "node": "node/dhaka",
+  "lists": [
+    {
+      "kind": "component",
+      "items": [
+        {
+          "weight": 3,
+          "stockMax": 2,
+          "basePrice": 300,
+          "def": "component/autocannon-30"
+        }
+      ]
+    },
+    {
+      "kind": "feed",
+      "items": [
+        {
+          "weight": 1,
+          "stockMax": 40,
+          "basePrice": 5,
+          "def": "stock:feed"
+        }
+      ]
+    },
+    {
+      "kind": "fuel",
+      "items": [
+        {
+          "weight": 1,
+          "stockMax": 120,
+          "basePrice": 2,
+          "def": "stock:fuel"
+        }
+      ]
+    }
+  ],
+  "priceMods": [
+    {
+      "tag": "besieged",
+      "mult": 1.5
+    }
+  ],
+  "refreshOn": "quarter",
+  "buysBack": true
+}

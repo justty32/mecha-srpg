@@ -1,0 +1,128 @@
+import type { Id } from "../../core/ids.ts";
+import type { Cond, NumExpr, Grade, ControlMode, SeatId, EffectRef, Objective, ScenarioDef, PoolDecl } from "../../core/types-def.ts";
+import type { MechState, PersonState, PoolState, RngState } from "../../core/types-state.ts";
+import type { ContentDB } from "../../content/contentdb.ts";
+import type { WorldDB } from "../content/worlddb.ts";
+
+export type RoomId = string;
+export type ServiceId = string;
+export type Clock = { day: number; month: number; dom: number; phase: "spring" | "neap" | "ordinary" };
+export type CalendarDef = { id: Id; daysPerMonth: number; spring: number[]; neap: number[]; special: { dom: number; month: number; event: Id }[] };
+export type Account = "cash" | "debt" | `stock:${string}`;
+export type LedgerEntry = { seq: number; day: number; account: Account; delta: number; reason: string; ref?: Id; counter?: Account };
+export type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
+export type ComponentInstance = { id: Id; def: Id; layerHp?: number; origin: "loot" | "bought" | "made"; boundTo?: Id };
+// SPEC-GAP：遺物、殘骸與房間索引未展開；採可序列化的最小資料形狀。
+export type RelicInstance = { id: Id; def: Id; flags: string[] };
+export type LootBundle = { components: ComponentInstance[]; materials: Partial<Record<Account, number>>; relics?: RelicInstance[]; day?: number; mechs?: Id[] };
+export type Inventory = { components: ComponentInstance[]; mechs: Id[]; relics: RelicInstance[]; tickets: { airstrike: number; restraint: number } };
+export type NodeDef = { id: Id; name: string; body: "earth" | "moon"; kind: "city" | "wild" | "ruin" | "ferry-port" | "lunar-base";
+  owner?: Id; pop?: number; services: ServiceId[]; terrainPool: Id[]; ruin?: { depth: number; seedTable: Id; discovered: boolean }; tags: string[] };
+export type NodeState = { def: Id; blight?: { rift: Id; depth: "shallow" | "deep" | "core"; sinceDay: number }; ownerOverride?: Id; wreckage: LootBundle[]; lastVisit?: number; flags: string[] };
+export type RouteDef = { id: Id; a: Id; b: Id; days: number; kind: "air" | "ground" | "ferry"; hazards: Id[]; tags: string[] };
+export type RiftState = { id: Id; node: Id; family: Id; width: Grade; phase: "opening" | "anchored" | "unanchored" | "sealing" | "sealed" | "receding" | "closed";
+  openedDay: number; anchorAge: number; anchor?: Id; zones: Id[]; fedCount: number; nextCheck: number };
+export type RiftDef = { id: Id; family: string; anchor?: Id; vanguard: Id[]; spreadPerTide: NumExpr; selfClose: boolean; tether: boolean;
+  gradeByWidth: Partial<Record<Grade, Grade[]>>; monsters?: Id[] };
+export type EncounterDef = { id: Id; family: string; depth: "shallow" | "deep" | "core"; size: { w: NumExpr; h: NumExpr };
+  terrainMix: { terrain: Id | "$node"; w: number }[]; budgetByGrade: Partial<Record<Grade, number>>; anchorHere: boolean; map?: Id };
+export type RoomState = { persons: Id[]; items: Id[] };
+export type ShipCapacity = { mechBays: number; stablePens: number; berths: number; cargo: number };
+// SPEC-GAP：船的 pool 範例只有 max/initial；缺省 regen=0，其餘池語意為 hard、非反向。
+export type ShipPoolDecl = Pick<PoolDecl, "max" | "initial"> & Partial<Pick<PoolDecl, "regen" | "min" | "capKind">>;
+export type ShipDef = { id: Id; rooms: RoomId[]; capacity: ShipCapacity; fuel: ShipPoolDecl; hull: ShipPoolDecl; gun?: { shotsPerBattle: number } };
+export type ShipState = { frame: Id; at: Id; route?: { to: Id; daysLeft: number; via?: Id[] }; rooms: Record<RoomId, RoomState>; capacity: ShipCapacity;
+  fuel: PoolState; hull: PoolState; upgrades: Id[] };
+export type FerryDef = { id: Id; ports: Id[]; departDays: number[]; transit: number; capacity: { mechs: number; persons: number }; fare: NumExpr; returnFare: NumExpr; requires: Id[] };
+export type FactionOpsDef = { id: Id; faction: Id; scale: string; territory: Id[]; stance: { player: number; bio: number; ancient: number; soul: number; league: number };
+  contractKinds: Id[]; services: ServiceId[]; reputationTiers: { at: number; grants: Id[]; name: string }[];
+  lifecycle?: { growOn?: Cond; shrinkOn?: Cond; absorbedBy?: Id };
+  naming?: { mechStages: { grade: Grade[]; pattern: string }[]; ancient: string; flavor: string }; tags: string[];
+  roster?: { frame: Id; count: number }[] };
+export type FactionState = { def: Id; rep: number; scaleNow: string; territoryNow: Id[]; alive: boolean; memory: { day: number; kind: string; ref?: Id }[] };
+export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?: boolean };
+// SPEC-GAP：stage／敵軍快照未展開；快照在 offered 時由契約模組凍結。
+export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
+export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[] };
+export type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle";
+  issuerKinds: string[]; requiresRep: number; gradeRange: Grade[]; objectives: ObjectiveTemplate[];
+  pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] }; advanceMax: number; deadlineDays: NumExpr;
+  supplies?: Id[]; onComplete: OpsEffect[]; onFail: OpsEffect[]; onCancel: OpsEffect[]; stages?: StageTemplate[]; annoyanceMax?: number };
+export type ContractState = { id: Id; template: Id; issuer: Id; target: { node: Id; rift?: Id; snapshot?: EnemySnapshot };
+  status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
+  paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
+export type WorldActionDef = { id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
+export type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "feed" | "fuel" | "material" | "ticket" | "soul-rental";
+  items: { def: Id; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
+export type ServiceDef = { id: Id; room: RoomId; hpRegenMult?: number; cleanse?: { whitelist: Id[]; price: NumExpr }; price?: NumExpr; effects?: OpsEffect[] };
+export type RecruitPoolDef = { id: Id; node: Id; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" };
+export type BackgroundDef = { id: Id; name: string; culture: string; attrRanges: Record<string, [number, number]>; hireFee: NumExpr; wageMult: NumExpr; traits?: Id[]; person?: Id };
+export type ResearchDef = { id: Id; name: string; direction: string; cost: { coin: number; techHours: number }; requires: Id[]; consumes?: Partial<Record<Account, number>>;
+  unlocks: { kind: "component" | "modification" | "service" | "soul-node"; id: Id }[] };
+export type ResearchState = { def: Id; hoursDone: number; coinPaid: boolean; done: boolean };
+export type Job = { id: Id; kind: "repair" | "rebuild" | "research" | "graft" | "incubate" | "install" | "mod"; target: Id;
+  needHours: number; doneHours: number; materials: Partial<Record<Account, number>>; paid: boolean; priority: number; part?: string; layer?: number; component?: Id };
+export type JobDef = { id: Id; kind: Job["kind"]; hoursPerHp?: Record<string, number>; material?: Record<string, Account>; perHp?: Record<string, number>;
+  rebuildMult?: { hours: number; material: number }; technicianHours?: number; needHours?: number; coin?: number; person?: Id };
+export type NamesDef = { id: Id; culture: string; names: string[]; epithets: string[] };
+export type Employment = { since: number; wage: number; owed: number; mood: number; role: "pilot" | "technician" | "medic" | "crew"; seat?: Id };
+export type RosterState = { persons: Record<Id, PersonState>; employment: Record<Id, Employment>; trust: Record<Id, Record<Id, number>>;
+  mastery: Record<Id, Record<Id, number>>; names: Record<Id, { name: string; by: Id; day: number }[]>; dead: { person: Id; day: number; cause: string }[] };
+export type HangarState = { bays: (Id | null)[]; dormant: Id[] };
+export type PenState = { mech: Id; taming: "wild" | "taming" | "tamed"; tameDays: number; hunger: number; bond: Record<Id, number>; nextMolt?: number; nextMutate?: number; broodDay?: number };
+export type StableState = { pens: PenState[]; myceliumRoom?: { layers: number; growth: number } };
+export type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection";
+  units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
+  injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
+// SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。
+export type OpsEffect =
+  | { ledger: { account: Account; delta: NumExpr; reason: string; ref?: Id; counter?: Account } }
+  | { rep: Record<Id, NumExpr> } | { flag: string; value?: NumExpr } | { mood: Record<Id | "all", NumExpr> }
+  | { techHours: NumExpr } | { spawnContract: Id; near?: string } | { spawnEvent: Id }
+  | { setNode: { id: Id; patch: Partial<Omit<NodeState, "def">> } }
+  | { setRift: { id: Id; patch: Partial<Omit<RiftState, "id">> } }
+  | { nameMech: { mech: Id; name: string; by: Id } }
+  | { applyEffect: { target: "person" | "mech"; id: Id; effect: EffectRef; source?: Id } };
+export type Choice = { text: string; requires?: Cond; effects: OpsEffect[]; next?: Id };
+export type EventDef = { id: Id; where: "node" | "route" | "ship" | "ruin"; when: Cond; weight: NumExpr; text: string; choices: Choice[]; next?: Id };
+export type DialogueDef = { id: Id; person: Id; topics: { topic: string; when: Cond; lines: string[]; effects?: OpsEffect[]; choices?: Choice[] }[] };
+export type RoomDef = { id: Id; title: string; base: string[]; exits: RoomId[]; phrases: { when: Cond; text: string }[] };
+export type LogKind = "info" | "warn" | "money" | "blood" | "soul";
+export type TemplatesDef = { id: Id; entries: Record<string, { kind: LogKind; text: string }> };
+// SPEC-GAP：開局未指定僱用條件；允許人物列帶 role/wage，裸 id 使用檔內 defaults。
+export type StartPerson = Id | { def: Id; role: Employment["role"]; wage: number; soulNodes?: Id[] };
+export type StartDef = { id: Id; day: number; node: Id; ship: Id; calendar?: Id; cash: number; debt: number; mechs: Id[]; persons: StartPerson[];
+  stocks: Partial<Record<Account, number>>; tickets: Partial<Inventory["tickets"]>; flags: string[]; pressure?: number; rifts?: RiftState[];
+  employment?: { role: Employment["role"]; wage: number } };
+export type Ask = "total" | "advance" | "perHead";
+export type OpsCommand =
+  | { v: "look"; target?: Id | RoomId } | { v: "talk"; who: Id; topic?: string } | { v: "go"; room: RoomId }
+  | { v: "map" } | { v: "sail"; to: Id; via?: Id[] } | { v: "dock" } | { v: "drift" } | { v: "wait"; days: number }
+  | { v: "board"; contract?: Id } | { v: "accept"; contract: Id; ask?: Ask } | { v: "drop"; contract: Id }
+  | { v: "sortie"; sortie: Partial<Sortie> } | { v: "assign"; person: Id; seat?: { mech: Id; seat: SeatId }; role?: string }
+  | { v: "queue"; job: Partial<Job> } | { v: "reorder"; job: Id; priority: number } | { v: "feed"; pen: Id; amount: number }
+  | { v: "accompany"; soul: Id; by: Id; node?: Id } | { v: "trade"; market: Id; buy?: Id[]; sell?: Id[] }
+  | { v: "hire"; candidate: Id } | { v: "fire"; person: Id } | { v: "explore"; ruin: Id; party: Id[] }
+  | { v: "wake"; shell: Id; by: Id } | { v: "choose"; choice: number } | { v: "pay"; account: "debt" | Id; amount: number }
+  | { v: "save" } | { v: "load"; slot: number } | { v: "help"; v2?: string };
+// SPEC-GAP：Prompt/Row 原 spec 未展開；選項保留效果以支援存檔續選。
+export type Prompt = { text: string; choices: Choice[]; event?: Id; person?: Id };
+export type Row = Record<string, string | number | boolean | null>;
+export type Screen = { room: { id: RoomId; title: string; desc: string[]; exits: RoomId[] }; log: { day: number; text: string; kind: LogKind }[];
+  panels: Record<string, Row[]>; actions: { label: string; cmd: OpsCommand }[];
+  prompt?: { text: string; choices: { n: number; text: string; disabled?: string }[] }; handoff?: { battle: ScenarioDef } };
+export type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
+export type CampaignState = { version: 1; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
+  nodes: Record<Id, NodeState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>; ship: ShipState; roster: RosterState;
+  hangar: HangarState; stable: StableState; mechs: Record<Id, MechState>; inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>;
+  jobs: Job[]; contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
+  // SPEC-GAP：共用遞增 id、效果 uid、待生成佇列與工時池為後續模組的序列化簿記。
+  idCounter: number; effectCounter: number; calendar: Id; techHours: number;
+  pendingContracts: { template: Id; near?: string }[]; pendingEvents: Id[] };
+export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
+
+export type WorldDefByKind = { calendar: CalendarDef; ferry: FerryDef; ship: ShipDef; node: NodeDef; route: RouteDef; rift: RiftDef;
+  encounter: EncounterDef; "faction-ops": FactionOpsDef; contract: ContractTemplate; action: WorldActionDef; market: MarketDef; service: ServiceDef;
+  recruit: RecruitPoolDef; background: BackgroundDef; research: ResearchDef; job: JobDef; names: NamesDef; event: EventDef;
+  dialogue: DialogueDef; room: RoomDef; templates: TemplatesDef; start: StartDef };
+export type WorldKind = keyof WorldDefByKind;

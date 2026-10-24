@@ -1,0 +1,68 @@
+import { isContentKind, parseId, qualifyId } from "../../core/ids.ts";
+import { loadPacks, readPackDir } from "../../content/loader.ts";
+import type { LoadIssue, PackFiles } from "../../content/loader.ts";
+import type { ContentDB } from "../../content/contentdb.ts";
+import type { WorldDefByKind, WorldKind } from "../state/types.ts";
+import { createWorldDB } from "./worlddb.ts";
+import type { WorldDB, WorldTables } from "./worlddb.ts";
+
+export const WORLD_FOLDERS = { nodes: "node", routes: "route", rifts: "rift", encounters: "encounter", "factions-ops": "faction-ops",
+  contracts: "contract", actions: "action", markets: "market", services: "service", "recruit-pools": "recruit", backgrounds: "background",
+  research: "research", jobs: "job", names: "names", events: "event", dialogues: "dialogue", rooms: "room", templates: "templates", "campaign-start": "start" } as const;
+export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ferry", "ship", ...Object.values(WORLD_FOLDERS)];
+export type WorldLoadResult = { db: ContentDB; world: WorldDB; errors: LoadIssue[]; warnings: LoadIssue[] };
+
+function normalize(value: unknown, pack: string, field = ""): unknown {
+  // 文字與 ref 路徑不可當內容引用改寫；Record 的 id 鍵仍需補前綴。
+  if (["text", "name", "title", "topic", "pattern", "flavor", "ref", "base", "lines", "names", "epithets"].includes(field)) return value;
+  if (typeof value === "string") {
+    const parsed = parseId(value);
+    return parsed && (isContentKind(parsed.kind) || WORLD_KINDS.includes(parsed.kind as WorldKind)) ? qualifyId(value, pack) : value;
+  }
+  if (Array.isArray(value)) return value.map(item => normalize(item, pack));
+  if (value !== null && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([key, item]) => [normalize(key, pack) as string, normalize(item, pack, key)]));
+  return value;
+}
+
+export function loadWorldPacks(packs: PackFiles[]): WorldLoadResult {
+  // core 已依 pack.json depends 排序；營運層沿用同一順序，避免兩個 DB 覆寫結果分歧。
+  const core = loadPacks(packs), errors = [...core.errors], warnings = [...core.warnings];
+  const tables: WorldTables = {};
+  for (const pack of core.db.packs) {
+    const source = packs.find(p => (p.files["pack.json"] as { id?: string } | undefined)?.id === pack.id)!;
+    for (const relative of Object.keys(source.files).sort()) {
+      if (!relative.startsWith("world/")) continue;
+      const file = `${source.root}/${relative}`;
+      const parts = relative.slice(6).split("/");
+      const single = parts.length === 1 ? parts[0]!.replace(/\.json$/, "") : undefined;
+      const kind = single && ["calendar", "ferry", "ship"].includes(single) ? single as WorldKind
+        : parts.length === 2 ? WORLD_FOLDERS[parts[0] as keyof typeof WORLD_FOLDERS] : undefined;
+      if (!kind) { errors.push({ file, path: "$", message: "unknown world path" }); continue; }
+      const value = source.files[relative];
+      if (!value || typeof value !== "object" || Array.isArray(value)) { errors.push({ file, path: "$", message: "world definition must be an object" }); continue; }
+      const raw = structuredClone(value) as Record<string, unknown>;
+      // SPEC-GAP：勢力、對白、模板範例省略 id；以檔名補；裸模板表包成 entries。
+      const basename = parts.at(-1)!.replace(/\.json$/, "");
+      if (kind === "templates" && !raw.entries) {
+        const explicitId = raw.id;
+        const entries = Object.fromEntries(Object.entries(raw).filter(([key]) => key !== "id"));
+        Object.keys(raw).forEach(key => { delete raw[key]; });
+        raw.entries = entries;
+        if (explicitId !== undefined) raw.id = explicitId;
+      }
+      raw.id ??= `${kind}/${basename}`;
+      const parsed = typeof raw.id === "string" ? parseId(raw.id) : null;
+      if (!parsed || parsed.kind !== kind || !single && parsed.name !== basename) { errors.push({ file, path: "$.id", message: "id differs from world kind/filename" }); continue; }
+      const normalized = normalize(raw, pack.id) as WorldDefByKind[typeof kind];
+      const table = (tables as Partial<Record<WorldKind, Record<string, WorldDefByKind[WorldKind]>>>)[kind] ??= {};
+      if (Object.hasOwn(table, normalized.id)) warnings.push({ file, path: "$.id", message: `overrides ${normalized.id}` });
+      table[normalized.id] = normalized;
+    }
+  }
+  return { db: core.db, world: createWorldDB(core.db.packs, tables), errors, warnings };
+}
+export function loadWorldDirs(dirs: string[]): WorldLoadResult {
+  const packs = dirs.map(readPackDir), result = loadWorldPacks(packs);
+  result.errors.unshift(...packs.flatMap(pack => pack.errors));
+  return result;
+}

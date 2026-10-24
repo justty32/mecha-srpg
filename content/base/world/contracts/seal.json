@@ -1,0 +1,59 @@
+{
+  "id": "contract/seal",
+  "kind": "seal",
+  "issuerKinds": [
+    "guild",
+    "company"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 5,
+        "role": "anchor"
+      }
+    }
+  ],
+  "pay": {
+    "base": {
+      "product": [
+        400,
+        {
+          "ref": "rift.widthIndex"
+        }
+      ]
+    }
+  },
+  "advanceMax": 0.3,
+  "deadlineDays": {
+    "ref": "calendar.daysToNextSpring"
+  },
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3
+}

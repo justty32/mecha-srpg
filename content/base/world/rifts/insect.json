@@ -1,0 +1,57 @@
+{
+  "id": "rift/insect",
+  "family": "insect",
+  "anchor": "monster/nestmother-landlord",
+  "vanguard": [
+    "species/mite",
+    "species/reaper",
+    "species/nestmother"
+  ],
+  "monsters": [
+    "monster/mite-d",
+    "monster/reaper-c",
+    "monster/nestmother-landlord"
+  ],
+  "spreadPerTide": {
+    "sum": [
+      1,
+      {
+        "product": [
+          0.5,
+          {
+            "ref": "rift.anchorAge"
+          }
+        ]
+      }
+    ]
+  },
+  "selfClose": false,
+  "tether": true,
+  "gradeByWidth": {
+    "D": [
+      "D"
+    ],
+    "C": [
+      "D",
+      "C"
+    ],
+    "B": [
+      "D",
+      "C",
+      "B"
+    ],
+    "A": [
+      "D",
+      "C",
+      "B",
+      "A"
+    ],
+    "S": [
+      "D",
+      "C",
+      "B",
+      "A",
+      "S"
+    ]
+  }
+}

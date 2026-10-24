@@ -1,0 +1,25 @@
+{
+  "id": "room/stable",
+  "title": "獸欄",
+  "base": [
+    "獸欄內傳來候鳥號引擎的低鳴。"
+  ],
+  "exits": [
+    "medbay",
+    "hangar"
+  ],
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "stable.penCount"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "text": "獸欄的鐵鍊靜靜垂著。"
+    }
+  ]
+}
