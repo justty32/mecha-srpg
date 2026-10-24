@@ -25,7 +25,7 @@
 |--------|------|------|
 | 跑單一 TS 檔 | `node <檔>.ts` | node 24 原生 type stripping |
 | 跑測試 | `node --test` | 程式碼落地後的確切 glob 與 npm script 由實作線寫進 [testing](testing.md) |
-| 本機開網頁版 | `npm run dev`，瀏覽器開 `http://localhost:5173/`（`?scenario=<id>&seed=<n>`；大地圖 `?scenario=debug-big&size=160`）| vite 不自動開瀏覽器；agent 只准背景跑、不開 GUI |
+| 本機開網頁版 | `npm run dev`，瀏覽器開 `http://localhost:5173/`（`?scenario=<id>&seed=<n>`；大地圖 `?scenario=debug-big&size=160`；百科 `#/wiki`，快捷鍵 F1／Shift+W）| vite 不自動開瀏覽器；agent 只准背景跑、不開 GUI |
 | 打包／預覽 | `npm run build`（輸出 `dist/`）→ `npm run preview`（`http://localhost:4173/`）| `node:fs` 外部化警告無害（瀏覽器只用 `loadPacks`）|
 
 驗證與測試指令不列這裡——連同「誰跑」一起在 [testing](testing.md)。

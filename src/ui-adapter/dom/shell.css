@@ -1,0 +1,17 @@
+html, body { margin: 0; background: #0c121d; color: #e5edf8; font-family: system-ui, sans-serif; }
+[data-ui="app-nav"] {
+  height: 40px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  padding: 0 12px;
+  background: #151f2e;
+  border-bottom: 1px solid #35465d;
+}
+[data-ui="app-nav"] a { display: flex; align-items: center; padding: 0 12px; color: #acbcd1; text-decoration: none; }
+[data-ui="app-nav"] a[aria-current="page"] { color: #85c6ff; box-shadow: inset 0 -2px #85c6ff; }
+[data-ui="app-nav"] a:hover, [data-ui="app-nav"] a:focus-visible { color: #e5edf8; background: #35465d; }
+[data-page][hidden] { display: none !important; }
+[data-page="wiki"], [data-page="ops"] { min-height: calc(100dvh - 40px); }
+[data-page="ops"] { box-sizing: border-box; padding: 24px; color: #acbcd1; }

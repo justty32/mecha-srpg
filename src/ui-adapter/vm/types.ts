@@ -123,6 +123,7 @@ export type UiSnapshot = {
 };
 
 export type UiAction =
+  | { type: "navigate"; page: "battle" | "wiki" | "ops" }
   | { type: "clickCell"; x: number; y: number }   // 點格：idle＝選取／查看；move＝移動；target＝施放
   | { type: "hoverCell"; x: number; y: number }   // 滑鼠移入：游標移過去（不捲動）
   | { type: "cursor"; dx: number; dy: number }    // 鍵盤移游標，游標出可視區時 viewport 跟著捲

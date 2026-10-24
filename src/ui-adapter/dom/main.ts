@@ -1,10 +1,15 @@
 // ui-adapter/dom/main — 瀏覽器入口（唯一接線處）：載內容 → 建 controller → 掛 DOM。
 // URL 參數：?scenario=<id 或 debug-big>&seed=<n>&size=<大地圖邊長>；預設 scenario/skirmish-whitegloves、seed 1。
 import "./style.css";
+import "./shell.css";
 import { loadBrowserContent } from "../content-browser.ts";
 import { BattleController, BattleSession, bigMapSim, controllerForScenario } from "../vm/index.ts";
 import { DEFAULT_KEYMAP, resolveKey } from "../vm/keymap.ts";
-import type { AnimMode, UiAction } from "../vm/types.ts";
+import type { AnimMode, KeyInput, UiAction } from "../vm/types.ts";
+import type { AppRoute } from "../vm/wiki/types.ts";
+import { formatRoute } from "../vm/route.ts";
+import { mountShell } from "./shell.ts";
+import type { WikiMount } from "./wiki/mount.ts";
 import { mountBattle } from "./render.ts";
 import type { BattleView } from "./render.ts";
 
@@ -22,7 +27,7 @@ function animationSetting(value: string | null): AnimMode | null {
   return value === "on" || value === "fast" || value === "off" ? value : null;
 }
 
-function start(root: HTMLElement): void {
+function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyInput) => boolean) | undefined {
   const { db, errors } = loadBrowserContent(modules);
   if (errors.length) {
     root.textContent = `內容載入失敗：${errors.length} 個錯誤（第一個：${errors[0]!.file} ${errors[0]!.message}）`;
@@ -55,11 +60,21 @@ function start(root: HTMLElement): void {
     timer = window.setTimeout(() => { timer = null; send({ type: "step" }); }, Math.max(view?.fxBusyMs() ?? 0, pause));
   };
   const send = (action: UiAction): void => {
+    if (action.type === "navigate") {
+      navigate(formatRoute(action.page === "wiki" ? { page: "wiki", view: { v: "home" } } : { page: action.page }));
+      return;
+    }
     if (view?.apply(action)) return;
     if (action.type === "skip" || (latest.busy && (action.type === "cancel" || action.type === "confirm"))) view?.skipFx();
     latest = controller.dispatch(action);
     view?.render(latest);
     schedule();
+  };
+  const onKey = (key: KeyInput): boolean => {
+    const action = resolveKey(DEFAULT_KEYMAP, key);
+    if (!action) return false;
+    send(action);
+    return true;
   };
   view = mountBattle(root, {
     anim, zoom,
@@ -70,12 +85,7 @@ function start(root: HTMLElement): void {
       schedule();
     },
     onAction: send,
-    onKey: k => {
-      const action = resolveKey(DEFAULT_KEYMAP, k);
-      if (!action) return false;
-      send(action);
-      return true;
-    },
+    onKey,
   });
   view.render(latest);
   schedule();
@@ -83,10 +93,37 @@ function start(root: HTMLElement): void {
   (window as unknown as { __battle?: unknown }).__battle = {
     snapshot: () => controller.snapshot(), settle: () => send({ type: "skip" }),
   };
+  return onKey;
 }
 
 const root = document.getElementById("app");
 if (root) {
-  try { start(root); }
-  catch (e) { root.textContent = `啟動失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); }
+  let battleStarted = false;
+  let battleKey: ((key: KeyInput) => boolean) | undefined;
+  let wiki: WikiMount | null = null;
+  let loading: Promise<void> | null = null;
+  let latestRoute: AppRoute = { page: "battle" };
+  const shell = mountShell(root, {
+    getWiki: () => wiki,
+    onBattleKey: key => battleKey?.(key) ?? false,
+    onRoute: (route, pages) => {
+      latestRoute = route;
+      if (route.page === "battle" && !battleStarted) {
+        battleStarted = true;
+        try { battleKey = start(pages.battle, hash => shell.navigate(hash)); }
+        catch (e) { pages.battle.textContent = `啟動失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); }
+      }
+      if (route.page !== "wiki") return;
+      if (wiki) { wiki.show(route.view); return; }
+      if (loading) return;
+      pages.wiki.textContent = "百科載入中…";
+      loading = import("./wiki/boot.ts").then(({ bootWiki }) => {
+        wiki = bootWiki(pages.wiki, (hash, replace) => shell.navigate(hash, replace));
+        if (latestRoute.page === "wiki") wiki.show(latestRoute.view);
+      }).catch((e: unknown) => {
+        pages.wiki.textContent = `百科載入失敗：${e instanceof Error ? e.message : String(e)}`;
+        console.error(e);
+      });
+    },
+  });
 }

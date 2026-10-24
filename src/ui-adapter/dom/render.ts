@@ -212,6 +212,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     opts.onAction({ type: "scroll", dx: horizontal ? Math.sign(delta) * 3 : 0, dy: horizontal ? 0 : Math.sign(delta) * 3 });
   };
   const keydown = (event: KeyboardEvent): void => {
+    if (shell.closest("[hidden]")) return;
     const active = doc.activeElement;
     const target = event.target as HTMLElement | null;
     if (active?.matches("input, textarea") || target?.matches?.("input, textarea")) return;

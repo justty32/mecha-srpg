@@ -48,7 +48,7 @@
   {
    "領域": "ui-adapter",
    "檔案": "`src/ui-adapter/{vm,dom}/`",
-   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM；只依賴 core＋sim（`vm/boundary.test.ts` 守：不得 import rules／ai）",
+   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM；只依賴 core＋sim（`vm/boundary.test.ts` 守：不得 import rules／ai）；網頁殼 hash 路由（`vm/route.ts`、`dom/shell.ts`）切換戰鬥／百科／營運，百科 `vm/wiki/`（索引、搜尋、資料卡、年表、關係、markdown）＋`dom/wiki/`（`boot.ts` 懶載入）",
    "測試在哪": "同目錄 `*.test.ts`、`e2e/`"
   }
  ]

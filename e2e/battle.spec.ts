@@ -50,7 +50,13 @@ test("行動後浮出下一步選單：點可達格移動後仍選取同一台�
   expect(before.playerTurn).toBe(true);
   const reach = page.locator('[data-ui="board"] .highlight-reach');
   expect(await reach.count()).toBeGreaterThan(0);
-  await reach.nth(Math.floor((await reach.count()) / 2)).click();
+  // [lead-wiki] 殼導航列讓戰場矮 40px，格子位置會變；挑一個中心點沒被回合開始的浮出選單蓋住的可達格。
+  const open = await reach.evaluateAll(cells => cells.map((cell, i) => {
+    const r = cell.getBoundingClientRect();
+    return cell.contains(document.elementFromPoint(r.x + r.width / 2, r.y + r.height / 2)) ? i : -1;
+  }).filter(i => i >= 0));
+  expect(open.length).toBeGreaterThan(0);
+  await reach.nth(open[Math.floor(open.length / 2)]!).click();
   await expect(page.locator('[data-ui="quick-menu"]')).toBeVisible();
   await expect(page.locator('[data-ui="quick-menu"] button[data-cmd="standby"]')).toBeVisible();
   const after = await snap(page);

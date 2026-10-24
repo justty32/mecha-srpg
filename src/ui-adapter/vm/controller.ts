@@ -205,6 +205,7 @@ export class BattleController {
   }
 
   dispatch(a: UiAction): UiSnapshot {
+    if (a.type === "navigate") return this.snapshot();
     this.message = null;
     if (a.type !== "endTurn") this.confirmation = null;
     if (a.type === "skip" || (this.busy() && (a.type === "cancel" || a.type === "confirm"))) {

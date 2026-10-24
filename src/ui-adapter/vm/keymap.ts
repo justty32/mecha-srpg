@@ -17,6 +17,7 @@ function canonical(binding: string): string {
 export function parseAction(action: string): UiAction | null {
   const [type, value, extra] = action.split(":");
   if (extra !== undefined) return null;
+  if (type === "nav") return value === "battle" || value === "wiki" || value === "ops" ? { type: "navigate", page: value } : null;
   if (type === "cursor" || type === "scroll") {
     if (!value || !/^-?\d+,-?\d+$/u.test(value)) return null;
     const [dx, dy] = value.split(",").map(Number);

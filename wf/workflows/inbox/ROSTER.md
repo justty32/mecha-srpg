@@ -108,3 +108,14 @@
 - **答不出什麼**：地形、地圖、單位
 - **怎麼找我**：`wf/inbox/orders/cx-bat-scen-b.md`
 - **訂閱主題**：無
+
+### `cx-wiki-*`（7 條：index、md、cards、dom、shell、lore、polish）
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，網頁百科各模組；領導 `lead-wiki` 代登記
+- **團隊**：`teams/lead-wiki`（已收）
+- **上游**：`lead-wiki`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-wiki/cx-wiki-*.md`「範圍」
+- **答得出什麼**：見各自 REPORT
+- **答不出什麼**：戰鬥邏輯、營運
+- **怎麼找我**：已收線，看 REPORT
+- **訂閱主題**：無
