@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-lore-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "各勢力 lore：為缺「藍本古代機與研發路線／對傭兵態度與補給」的勢力補代表事件（研發、補給、背盟或結盟）5–8 件＋年表純插入；四小節草稿放報告目錄待改名批次後併入",
  "author": {
   "agent": "codex",
@@ -54,5 +54,129 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "files": [
+  "content/lore/events/accra-unbarred-gate.json",
+  "content/lore/events/kuafu-mountain-vigil.json",
+  "content/lore/events/ring-road-lanterns.json",
+  "content/lore/events/singapore-gate-oath.json",
+  "content/lore/events/southern-sky-vigil.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/accra-unbarred-gate",
+  "event/kuafu-mountain-vigil",
+  "event/ring-road-lanterns",
+  "event/singapore-gate-oath",
+  "event/southern-sky-vigil"
+ ],
+ "summary": "各勢力代表事件 5 件（阿克拉留門之戰、夸父負山之夜、環線燈火之戰、新加坡落閘之誓、南天守土之戰）＋年表插入 5 條（timeline 因 main 已含 lc-lore-02 插入，由領導以 merge_timeline 純插入合併）；五勢力缺節草稿 13 節在 faction-drafts/ 待改名批次後併入；閘門 0 違規、驗收全綠；殼守／殼學會等既有專名照原名，待改名線換詞",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-01/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "event/accra-unbarred-gate",
+    "nameEn": "Vigil of the Unbarred Gate",
+    "meaning": "城門為難民留開，守軍須以機甲接住關門本能；重點是守信而非攻城。",
+    "nameZh": "阿克拉留門之戰",
+    "method": "意譯"
+   },
+   {
+    "id": "move/let-the-living-pass",
+    "nameEn": "Passage for the Living",
+    "meaning": "以盾陣替尚活著的人留通道，把防守喊成一紙對死亡的抗辯。",
+    "nameZh": "眾生過門",
+    "method": "意譯"
+   },
+   {
+    "id": "event/kuafu-mountain-vigil",
+    "nameEn": "The Mountain Carried Home",
+    "meaning": "夸父護著窩口撤離的人，負山是目擊者對古代機肩抵崩壁的稱呼。",
+    "nameZh": "夸父負山之夜",
+    "method": "意譯"
+   },
+   {
+    "id": "event/ring-road-lanterns",
+    "nameEn": "Lanterns of the Unbroken Road",
+    "meaning": "補給耗在護車機甲身上，路邊人家的燈才得以繼續亮。",
+    "nameZh": "環線燈火之戰",
+    "method": "意譯"
+   },
+   {
+    "id": "move/lanterns-for-every-home",
+    "nameEn": "A Thousand Hearths",
+    "meaning": "連續接替的護送機火線，想像每一道光矢背後都有一戶等車的人。",
+    "nameZh": "萬家燈火",
+    "method": "意譯"
+   },
+   {
+    "id": "event/singapore-gate-oath",
+    "nameEn": "Oath at the Last Gate",
+    "meaning": "港務在封港前給受雇者一段退路，戰後用收費與履約邊界記住它。",
+    "nameZh": "新加坡落閘之誓",
+    "method": "意譯"
+   },
+   {
+    "id": "move/crescent-interdict",
+    "nameEn": "Crescent Interdict",
+    "meaning": "以弧形交錯火線截住入港獸群，月牙意象來自型錄機與港形。",
+    "nameZh": "裁月封門",
+    "method": "意譯"
+   },
+   {
+    "id": "event/southern-sky-vigil",
+    "nameEn": "Custody Beneath the Southern Cross",
+    "meaning": "守護土地與沉睡者的決定，以南方夜空命名，不宣稱已掌握彩虹蛇。",
+    "nameZh": "南天守土之戰",
+    "method": "意譯"
+   },
+   {
+    "id": "move/hold-the-southern-sky",
+    "nameEn": "Atlas of the Southern Sky",
+    "meaning": "凡人駕駛員替守土陣線負重，以撐住天空比喻輪替掩護。",
+    "nameZh": "南天不墜",
+    "method": "意譯"
+   }
+  ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "ok": false,
+   "steps": {
+    "worker": "容量 gate 誤判（年表 35 KB），領導以 orders 澄清後續跑；終局 BLOCKED：沙箱內 npm test 的 src/mcp 兩檔 EPERM",
+    "lead": "沙箱外 content_accept 全綠"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T16:08:10",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T16:08:10",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
+ }
 }
