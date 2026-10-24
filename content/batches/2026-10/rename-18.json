@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-18",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lead-content 新增檔與年表）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "c6ae7aa39564321986aee03fd2461b71ec8583ed",
+ "base": "832bf2753410b4be575cc1417b1817555222d77d",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-18",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-18/REPORT.md",
@@ -65,5 +65,76 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:37:26",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-18",
+  "round": 1,
+  "at": "2026-10-24T16:37:26",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/events/accra-unbarred-gate.json",
+   "content/lore/events/bellless-dawn.json",
+   "content/lore/events/hundred-lanterns.json",
+   "content/lore/events/kuafu-mountain-vigil.json",
+   "content/lore/events/nine-gates.json",
+   "content/lore/events/southern-sky-vigil.json",
+   "content/lore/events/wreck-crown.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "testWaiver": "npm test 的 2 項 fail 與 base 832bf27 完全相同（content/index 一致性、bands 記憶體內容檢出；皆來自 base 上其他線的提交），領導在 base worktree 重跑確認；本批只改文字欄",
+ "files": [
+  "content/lore/events/accra-unbarred-gate.json",
+  "content/lore/events/bellless-dawn.json",
+  "content/lore/events/hundred-lanterns.json",
+  "content/lore/events/kuafu-mountain-vigil.json",
+  "content/lore/events/nine-gates.json",
+  "content/lore/events/southern-sky-vigil.json",
+  "content/lore/events/wreck-crown.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/accra-unbarred-gate",
+  "event/bellless-dawn",
+  "event/hundred-lanterns",
+  "event/kuafu-mountain-vigil",
+  "event/nine-gates",
+  "event/southern-sky-vigil",
+  "event/wreck-crown",
+  "content/lore/timeline.json"
+ ],
+ "summary": "lead-content 新增檔與年表掃尾：蝕盛→大潮、舊專名照表換；閘門 0 違規、check／lore／typecheck 綠、黃金不變；test 失敗與 base 相同（見 testWaiver）",
+ "gateRejections": []
 }
