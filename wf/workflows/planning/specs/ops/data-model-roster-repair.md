@@ -19,7 +19,7 @@ type RosterState = { persons: Record<Id, PersonState>;        // core 型別原�
 
 ## 招募 RecruitPoolDef
 
-`{ id; place: Id /*原 node*/; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" }`。弦月刷新；背景（`persons/backgrounds/*.json`：退役機甲師、難民孩子、殼學會學生、潮信會叛教者……）給屬性範圍、起始特質、聘金與薪水倍率（生成時抽一次保存，CHR-03）。難民營出高 `獸緣`、殘聯名冊出有傷的老手。**機魂不在池裡**：租（塞勒涅 `soul-rental` 市場列）、育（佇列）、或黑市野魂（事件）。
+`{ id; place: Id /*原 node*/; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" }`。弦月刷新；背景（`persons/backgrounds/*.json`：退役機甲師、難民孩子、稽古學會學生、沐蝕會叛教者……）給屬性範圍、起始特質、聘金與薪水倍率（生成時抽一次保存，CHR-03）。難民營出高 `獸緣`、殘聯名冊出有傷的老手。**機魂不在池裡**：租（塞勒涅 `soul-rental` 市場列）、育（佇列）、或黑市野魂（事件）。
 
 ## 工時佇列 WorkQueue（修理、科研、移植、育魂、拘束維護共用）
 
@@ -33,16 +33,16 @@ type Job = { id: Id; kind: "repair" | "rebuild" | "research" | "graft" | "incuba
 ## 機庫 HangarState 與拘束艙
 
 ```ts
-type HangarState = { bays: (Id | null)[]; dormant: Id[] /*未認主的殼*/ };
+type HangarState = { bays: (Id | null)[]; dormant: Id[] /*未認主的古代機*/ };
 ```
 
-摹機與古代機甲占機庫位；生物系（活捕獸、屍體改裝機、整屍）占拘束艙位，狀態型別 `RestraintBay`／`BeastState`／`CarcassState` 與磨損、失控、族別維持、屍體改裝全在 [data-model-beasts](data-model-beasts.md)。死亡：屍體拆成 `stock:core-<grade>` 與材料，寫帳本；可拘束族的屍體可改留整屍。
+衍型機與古代機甲占機庫位；生物系（活捕獸、屍體改裝機、整屍）占拘束艙位，狀態型別 `RestraintBay`／`BeastState`／`CarcassState` 與磨損、失控、族別維持、屍體改裝全在 [data-model-beasts](data-model-beasts.md)。死亡：屍體拆成 `stock:core-<grade>` 與材料，寫帳本；可拘束族的屍體可改留整屍。
 
 ## 古代機甲的人與名
 
-認主後 `PersonState.will.resonance[frame]` 鎖定，該人物 `employment.seat` 不可改；離開該機 >1 潮月掛 `withering` 效果；駕駛員死亡 → 機甲 `dormant` 並掛 `grudge` flag（下個認主者多一條負面特質）。這些全是 Effect 與 flag，不是新規則。
+認主後 `PersonState.will.resonance[frame]` 鎖定，該人物 `employment.seat` 不可改；離開該機 >1 蝕月掛 `withering` 效果；駕駛員死亡 → 機甲 `dormant` 並掛 `grudge` flag（下個認主者多一條負面特質）。這些全是 Effect 與 flag，不是新規則。
 
-**古代機甲原始無名**（2026-10-24 裁示）：古代 `FrameDef.name` 在內容檔只是目錄代號（「青藏一號殼」）；人叫它的名字存在 `RosterState.names[mech]`（`kind:"title"`），可多個、可改。`喚` 成功當夜 `prompt`「給它一個名字」：三個候選從 `names/mythic-<culture>.json` 依認主者的 `culture` tag 抽（北歐、希臘、埃及、印度、中國、日本、兩河……各一表）＋一格自填；之後勢力事件可再加稱號（殼學會登錄名、潮信會聖名——`OpsEffect: nameMech`），顯示最新一個、`看` 列全部。改名是事件不是動詞。摹機也可用 `names`（隊長機冠名、綽號），預設仍顯示 `FrameDef.name`；機械系名字的分階段規範是內容包的事（[factions-contracts](data-model-factions-contracts.md) `naming` 欄），ops 不生成。生物系的登記號／小名／凶名／二名見 [data-model-beasts](data-model-beasts.md)。
+**古代機甲原始無名**（2026-10-24 裁示）：古代 `FrameDef.name` 在內容檔只是目錄代號（「青藏一號」）；人叫它的名字存在 `RosterState.names[mech]`（`kind:"title"`），可多個、可改。`喚` 成功當夜 `prompt`「給它一個名字」：三個候選從 `names/mythic-<culture>.json` 依認主者的 `culture` tag 抽（北歐、希臘、埃及、印度、中國、日本、兩河……各一表）＋一格自填；之後勢力事件可再加稱號（稽古學會登錄名、沐蝕會聖名——`OpsEffect: nameMech`），顯示最新一個、`看` 列全部。改名是事件不是動詞。衍型機也可用 `names`（隊長機冠名、綽號），預設仍顯示 `FrameDef.name`；機械系名字的分階段規範是內容包的事（[factions-contracts](data-model-factions-contracts.md) `naming` 欄），ops 不生成。生物系的登記號／小名／凶名／二名見 [data-model-beasts](data-model-beasts.md)。
 
 ## 替使用者做掉的決定
 
@@ -51,4 +51,4 @@ type HangarState = { bays: (Id | null)[]; dormant: Id[] /*未認主的殼*/ };
 3. **材料開工時一次扣、不夠不開工**：避免「修一半卡住」的半成品狀態。
 4. **同調只加承擔上限、不加屬性**：讓生物系的養成全落在意志軸上，與 core 一致。
 5. **離隊者帶走綁定部件、留下機甲**：人比機器貴——他的槍是他的，船上的機甲是團的。
-6. **稱號是營運狀態、不是 FrameDef 欄位**：古代殼無名、生物系預設只有登記號，名字跟著「誰叫過它」走；命名表進內容包，程式只抽。
+6. **稱號是營運狀態、不是 FrameDef 欄位**：古代機無名、生物系預設只有登記號，名字跟著「誰叫過它」走；命名表進內容包，程式只抽。

@@ -21,7 +21,7 @@ type FactionState = { def: Id; rep: number /*−100..100*/; scaleNow: string; te
   alive: boolean; memory: { day: number; kind: string; ref?: Id }[] /*最近 N 筆對玩家的記憶*/ };
 ```
 
-殘聯是傘：它自己是一個勢力（獵牌、評等、通緝），三十一座城邦各是一個勢力（各自發契約）。**聲望逐勢力**，無全局名聲；殘聯評等由 `rep` 分層決定契約級別與型錄摹機等級。`stance.bio`／`ancient`／`soul` 讓同一件事（你帶了一隻 B 級進城）對不同勢力產生不同 rep 變化——由事件表引用這些格子，不在程式裡分支。開局約 40 個勢力，5–8 個大。`naming` 是給內容與生成器用的慣例欄（2026-10-24 裁示）：機械系名稱分階段——代號→系列＋型號→愈高階愈中二，`pattern` 依開發勢力喜好；古代機甲原始無名，`ancient` 預設由發現者以神話命名。程式只在生成機甲名與事件文字時取用。
+殘聯是傘：它自己是一個勢力（獵牌、評等、通緝），三十一座城邦各是一個勢力（各自發契約）。**聲望逐勢力**，無全局名聲；殘聯評等由 `rep` 分層決定契約級別與型錄衍型機等級。`stance.bio`／`ancient`／`soul` 讓同一件事（你帶了一隻 B 級進城）對不同勢力產生不同 rep 變化——由事件表引用這些格子，不在程式裡分支。開局約 40 個勢力，5–8 個大。`naming` 是給內容與生成器用的慣例欄（2026-10-24 裁示）：機械系名稱分階段——代號→系列＋型號→愈高階愈中二，`pattern` 依開發勢力喜好；古代機甲原始無名，`ancient` 預設由發現者以神話命名。程式只在生成機甲名與事件文字時取用。
 
 **契約與談判**（ContractTemplate／EnemySnapshot／ContractState、生命週期與取消、敵軍編成快照、清剿打什麼、談判 Negotiation）→ [data-model-factions-contracts/contracts](data-model-factions-contracts/contracts.md)
 
@@ -36,7 +36,7 @@ type WorldActionDef = { id: Id; actor: "faction" | "rift" | "world"; valid: Cond
 
 ## 競爭獵團與人類敵人
 
-競爭獵團是 `scale:"band"` 的勢力，帶 `roster` 快照（幾台什麼等級的摹機，抽象預算，不逐台追蹤）；牌 `contestContract` 讓它們搶同一份契約（先到者得，玩家在途中會收到「鹽鷗接走了」的訊息）；牌 `ambush` 產生對人戰鬥（情境敵方由其 `roster` 預算生成，掉落摹機部件）。白手套只由「債務催收」事件鏈觸發；解拘者只在潮信會 `stance.player ≤ −1` 且玩家有生物機甲時出牌。人類敵人出現率由牌權重調到約兩成。
+競爭獵團是 `scale:"band"` 的勢力，帶 `roster` 快照（幾台什麼等級的衍型機，抽象預算，不逐台追蹤）；牌 `contestContract` 讓它們搶同一份契約（先到者得，玩家在途中會收到「鹽鷗接走了」的訊息）；牌 `ambush` 產生對人戰鬥（情境敵方由其 `roster` 預算生成，掉落衍型機部件）。白手套只由「債務催收」事件鏈觸發；解拘者只在沐蝕會 `stance.player ≤ −1` 且玩家有生物機甲時出牌。人類敵人出現率由牌權重調到約兩成。
 
 ## 替使用者做掉的決定
 

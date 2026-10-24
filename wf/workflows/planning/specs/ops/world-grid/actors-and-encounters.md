@@ -17,7 +17,7 @@ type ActorState = { id: Id; kind: "force" | "patrol" | "caravan" | "swarm" | "ba
 
 每種 kind 一張小表 `actors/<kind>.json`，程式只做「選目標→尋路→走→接觸」：
 
-**force** 的目標由作戰給：`march` 往目標區域、`engage` 停在那、`aftermath` 回最近己方城；途中遇敵對行動者強的就打、弱的繞。**patrol** 在 `territory` 內的 2–4 個地點間繞圈，看見敵對（含 `rep ≤ −30` 的玩家、蝕匪）且 `str` 占優就追 3 天，否則只回報（事件 `Sighted`）。**caravan** 從 A 城沿道走到 B 城、停 2 天再回，見敵對就 `flee` 往最近城，被打掉＝兩城市場缺貨、價格上漲；護送契約就是跟著它走。**swarm** 依族四種節拍：蟲族大潮日出巢 `raid` 往最近城／商隊、第 7 天 `return` 回蝕域（繫）；獸族 `hunt` 隨機遊走偏向有人的格、不回頭、殺光崖牙後散成小群；異形 `idle` 隨機漫步、每潮月換圖位；菌絲不產行動者（它只長地）。群離開蝕域每天 `str −5%`（蟲族）或不減（獸族）。**band** 挑最近、評等夠的契約去做（抽象：到站等 1–3 天後 `ContractContested`），遇玩家依 `stance`——`wary` 繞開、`hostile` 且 `str` 占優就攔。
+**force** 的目標由作戰給：`march` 往目標區域、`engage` 停在那、`aftermath` 回最近己方城；途中遇敵對行動者強的就打、弱的繞。**patrol** 在 `territory` 內的 2–4 個地點間繞圈，看見敵對（含 `rep ≤ −30` 的玩家、蝕匪）且 `str` 占優就追 3 天，否則只回報（事件 `Sighted`）。**caravan** 從 A 城沿道走到 B 城、停 2 天再回，見敵對就 `flee` 往最近城，被打掉＝兩城市場缺貨、價格上漲；護送契約就是跟著它走。**swarm** 依族四種節拍：蟲族大潮日出巢 `raid` 往最近城／商隊、第 7 天 `return` 回蝕域（繫）；獸族 `hunt` 隨機遊走偏向有人的格、不回頭、殺光崖牙後散成小群；異形 `idle` 隨機漫步、每蝕月換圖位；菌絲不產行動者（它只長地）。群離開蝕域每天 `str −5%`（蟲族）或不減（獸族）。**band** 挑最近、評等夠的契約去做（抽象：到站等 1–3 天後 `ContractContested`），遇玩家依 `stance`——`wary` 繞開、`hostile` 且 `str` 占優就攔。
 
 全部純函式 `(actor, world, rng) → actor'`，一天最多一次重算路徑；沒有迷霧（AI 讀真值）。
 
@@ -34,7 +34,7 @@ type ActorState = { id: Id; kind: "force" | "patrol" | "caravan" | "swarm" | "ba
 
 ## 從格生成戰場 ScenarioGen
 
-`generateScenario` 的第 (1) 步改為讀格：**地形池**＝該格與八鄰格 `base` 地形的 `battle_pool` 加權聯集（鄰格權重 ½）；**蝕深**＝該格 `blight.depth`（無蝕＝地球版）；**族**＝蝕塊所屬裂縫或 swarm 的 `family`；**地點**在 footprint 內則疊加地點模板（城牆、港岸、遺跡入口，`encounters/place-<kind>.json`）；`road` 格加一條道；月面圖一律用月面池。敵方單位：swarm 由 `grades` 與 `str` 換算預算；force 由 `ForceUnit[]` 直接展開；band 由 `roster` 預算。地圖尺寸仍由 encounter 模板給。情境 `globals.tide` 由當天潮相填。這一步取代 `node.terrainPool`——節點沒了，地形從格來。
+`generateScenario` 的第 (1) 步改為讀格：**地形池**＝該格與八鄰格 `base` 地形的 `battle_pool` 加權聯集（鄰格權重 ½）；**蝕深**＝該格 `blight.depth`（無蝕＝地球版）；**族**＝蝕塊所屬裂縫或 swarm 的 `family`；**地點**在 footprint 內則疊加地點模板（城牆、港岸、遺跡入口，`encounters/place-<kind>.json`）；`road` 格加一條道；月面圖一律用月面池。敵方單位：swarm 由 `grades` 與 `str` 換算預算；force 由 `ForceUnit[]` 直接展開；band 由 `roster` 預算。地圖尺寸仍由 encounter 模板給。情境 `globals.tide` 由當天蝕相填。這一步取代 `node.terrainPool`——節點沒了，地形從格來。
 
 ## 行動牌新增
 

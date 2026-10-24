@@ -26,7 +26,7 @@ id 沿用 `pack:kind/name`，kind＝資料夾名。schema 由 TS 型別產生；
 <!-- wf-nav -->
 | 檔 | 範例 |
 |---|---|
-| [content-format-ops/world.md](content-format-ops/world.md) | 曆、浮船、方格圖、區域、地點、航道（含渡潮船）、行動者 AI 表、裂縫族模板、戰場生成模板 |
+| [content-format-ops/world.md](content-format-ops/world.md) | 曆、浮船、方格圖、區域、地點、航道（含渡月船）、行動者 AI 表、裂縫族模板、戰場生成模板 |
 | [content-format-ops/factions-war.md](content-format-ops/factions-war.md) | 勢力營運側、契約（含參戰 `join`）、世界行動牌、作戰、條約、血統、機型、補員、親和基線 |
 | [content-format-ops/crew-text.md](content-format-ops/crew-text.md) | 市場（含 `ammo` 列）、服務、招募池、背景、科研、工種、命名表、族別、事件、房間片語、對白、事件文字模板、鍵位、開局 |
 

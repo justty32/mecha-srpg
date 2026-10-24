@@ -11,10 +11,10 @@ type Loc = { map: Id /*六張圖之一*/; region: Id /*區域層的格群 id（w
 type ForceUnit = { model: Id /*ModelDef→FrameDef*/; count: number; readiness: number /*0..1*/ };
 type ForceState = { units: ForceUnit[]; supply: number /*0..100*/; morale: number /*−2..+2*/;
   pos: Id /*ActorState id：分遣隊在圖上的影子，march 建立、aftermath 刪除*/; speed: number /*＝ActorState.mp*/ };
-// FactionState 加：forces: ForceState; shells: Id[] /*持有的古代殼 ShellState*/; ops: Id[] /*進行中作戰*/; prestige: number
+// FactionState 加：forces: ForceState; shells: Id[] /*持有的古代機 ShellState*/; ops: Id[] /*進行中作戰*/; prestige: number
 ```
 
-戰力點 `str(force) = Σ count × gp(grade) × readiness`，`gp`：D 1、C 3、B 9、A 27（每級 ×3）。開局由 `FactionOpsDef.roster` 展開；每潮月第 1 天依 `scale` 補員（`forces/replenish.json`：state +15 gp、city +6、company +10、guild +2 量級），機型從該勢力已釋出的 `ModelDef` 池抽（舊型多、新型少）。`readiness` 戰損後掉、每潮月回 0.25。`supply` 每場 engage −10、回地盤每日 +5。裂獸不是勢力軍：敵方戰力由 `RiftState`（寬度、深度、錨齡）算 `riftStr`，與現有 `EnemySnapshot` 同源。
+戰力點 `str(force) = Σ count × gp(grade) × readiness`，`gp`：D 1、C 3、B 9、A 27（每級 ×3）。開局由 `FactionOpsDef.roster` 展開；每蝕月第 1 天依 `scale` 補員（`forces/replenish.json`：state +15 gp、city +6、company +10、guild +2 量級），機型從該勢力已釋出的 `ModelDef` 池抽（舊型多、新型少）。`readiness` 戰損後掉、每蝕月回 0.25。`supply` 每場 engage −10、回地盤每日 +5。裂獸不是勢力軍：敵方戰力由 `RiftState`（寬度、深度、錨齡）算 `riftStr`，與現有 `EnemySnapshot` 同源。
 
 ## 作戰 OperationDef（模板，`operations/<kind>.json`）與 OperationState
 
@@ -35,22 +35,22 @@ type OperationState = { id: Id; def: Id; actor: Id; coActors: Id[]; target: { lo
 
 **發起**：作戰是一張世界行動牌（效果 `startOperation`），每天與其他牌一起抽；`valid` 通常要戰力 ≥ `enemyStr × 0.8`、`supply ≥ 40`、同時進行數 < 上限（state 2、其他 1）、對人作戰要 `requiresRelation`（奪點／圍城需 `war`，襲擾 ≥ `tense`）。約 40 勢力下任一天約 5–10 場作戰在進行。
 
-**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以移動點沿格走到目標區域（途中是可被遭遇、追擊、迴避的 `ActorState{kind:"force"}`；跨洲作戰要先走航道，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個潮月上下；圍堵固定在大潮日 engage。
+**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以移動點沿格走到目標區域（途中是可被遭遇、追擊、迴避的 `ActorState{kind:"force"}`；跨洲作戰要先走航道，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個蝕月上下；圍堵固定在大潮日 engage。
 
 **推進與結算**（抽象結算、玩家參戰的那一場、tick 第 2 段 2a–2f 順序、OpsEffect／事件後果詞彙）→ [data-model-operations-war/resolution](data-model-operations-war/resolution.md)
 
-## 古代殼的爭奪 ShellState
+## 古代機的爭奪 ShellState
 
 ```ts
 type ShellState = { id: Id; frame: Id /*ancient FrameDef*/; holder: Id /*faction*/ | "player" | { ruin: Id }; awakened: boolean; knownBy: Id[] };
 ```
 
-殼是世界物件：遺跡探勘 `ancientFound` 寫 `holder:{ruin}`；尋殼作戰搬成 `holder: faction`，2 潮月後 `LineageOpened`（研發檔）；失殼者對應血統 `stalled`。玩家取得寫 `holder:"player"`，`knownBy` 決定誰會來談、來買、來搶——殼是外交籌碼與作戰目標。
+古代機是世界物件：遺跡探勘 `ancientFound` 寫 `holder:{ruin}`；尋墟作戰搬成 `holder: faction`，2 蝕月後 `LineageOpened`（研發檔）；失古代機者對應血統 `stalled`。玩家取得寫 `holder:"player"`，`knownBy` 決定誰會來談、來買、來搶——古代機是外交籌碼與作戰目標。
 
 ## 替使用者做掉的決定
 
 1. **作戰是行動牌的一種效果、不是新調度器**：沿用抽牌，只多一個狀態機。
 2. **戰力用每級 ×3 的點數、交手用 √ 比例**：弱方拖得久、強方贏得慢，玩家一場改 0.4 進度，不能一人定乾坤。
 3. **補給歸零＝退兵而非潰敗**：「圍久了自己走」成立，也給解圍時間窗。
-4. **殼是世界物件 ShellState**：古代機的爭奪才有「誰拿著」可查，血統與外交都掛它。
+4. **古代機是世界物件 ShellState**：古代機的爭奪才有「誰拿著」可查，血統與外交都掛它。
 5. **玩家缺席的日子照抽象推進**：沙盒不等人，參戰是搭上正在開的船。

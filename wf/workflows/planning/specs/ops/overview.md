@@ -4,7 +4,7 @@
 
 ## 目標與非目標
 
-**目標**：(1) 一個純 TS、與 DOM 分離的回合制營運模擬——一天一 tick、二十八天一潮月，世界圖上的裂縫會長、勢力會動、債會到期；(2) 一切內容是資料：六張方格圖、地點、航道、裂縫模板、契約模板、事件鏈、對白、房間片語、科研、市場、開局全是 JSON；(3) 與戰鬥層只經 `Sortie → ScenarioDef → runBattle → BattleResult → applyBattleResult` 往來，core 零修改（一欄建議除外）；(4) `OpsCommand` 序列＋seed 可在 node 裡重播整場戰役、跑 N 個潮月不拋錯、帳本守恆可斷言；(5) 每個按鈕對應一個 `OpsCommand`，按鈕、快捷鍵與文字形式三路結果恆等。
+**目標**：(1) 一個純 TS、與 DOM 分離的回合制營運模擬——一天一 tick、二十八天一蝕月，世界圖上的裂縫會長、勢力會動、債會到期；(2) 一切內容是資料：六張方格圖、地點、航道、裂縫模板、契約模板、事件鏈、對白、房間片語、科研、市場、開局全是 JSON；(3) 與戰鬥層只經 `Sortie → ScenarioDef → runBattle → BattleResult → applyBattleResult` 往來，core 零修改（一欄建議除外）；(4) `OpsCommand` 序列＋seed 可在 node 裡重播整場戰役、跑 N 個蝕月不拋錯、帳本守恆可斷言；(5) 每個按鈕對應一個 `OpsCommand`，按鈕、快捷鍵與文字形式三路結果恆等。
 
 **非目標**：戰鬥規則（core）；數值平衡；程式碼；劇情文本（只給格式與樣例）；SS／SSS；改 world／core spec（衝突列 REPORT）。
 

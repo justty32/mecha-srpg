@@ -108,7 +108,7 @@
   {
    "id": "DN-W-09",
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
-   "constraint": "為何 2108 還用機甲：殼訊（遺跡洗腦＋世界規則）；遺跡與怪獸同時出現；機械系以古代機甲為藍本",
+   "constraint": "為何 2108 還用機甲：夢召（遺跡洗腦＋世界規則）；遺跡與怪獸同時出現；機械系以古代機甲為藍本",
    "spec_section": "data-model-world-map.md#遺跡探勘入口",
    "note": "大潮時新裂縫與新遺跡同步露出"
   },
@@ -138,7 +138,7 @@
    "source": "../../design-notes/mechs.md",
    "constraint": "古代機甲數量不限死（遺跡持續產出、黑市、月面）",
    "spec_section": "data-model-world-map.md#遺跡探勘入口",
-   "note": "約三分之一遺跡底下有殼；黑市列可售 dormant 殼"
+   "note": "約三分之一遺跡底下有古代機；黑市列可售 dormant 古代機"
   },
   {
    "id": "DN-W-14",
@@ -166,14 +166,14 @@
    "source": "../../design-notes.md#尚未裁示--2026-10-23-使用者裁示都隨意讓-fable-去規劃",
    "constraint": "BB 式細節沿用程度、營運層範圍（契約、金錢、修理、招募）、文字互動深度由規劃線決定",
    "spec_section": "text-ui-contract.md#最小動詞集合v1-共-27-個",
-   "note": "全要＋潮；27 個動詞（23 遊戲＋4 系統）是指令語意層，呈現為按鈕＋快捷鍵"
+   "note": "全要＋蝕潮；27 個動詞（23 遊戲＋4 系統）是指令語意層，呈現為按鈕＋快捷鍵"
   },
   {
    "id": "WV-01",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "營運迴圈：契約板與蝕域圖→移動→戰鬥→戰利品→船上處理→下一契約；兩個大潮是節拍；錢只有一種幣；開局背船債每潮月付息",
+   "constraint": "營運迴圈：契約板與蝕域圖→移動→戰鬥→戰利品→船上處理→下一契約；兩個大潮是節拍；錢只有一種幣；開局背船債每蝕月付息",
    "spec_section": "data-model-economy-research.md#債-debt-與塞勒涅催收",
-   "note": "利率每潮月 5% 量級；催收事件鏈"
+   "note": "利率每蝕月 5% 量級；催收事件鏈"
   },
   {
    "id": "WV-02",
@@ -185,21 +185,21 @@
   {
    "id": "WV-03",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "地月只有塞勒涅渡潮船：三赤道港、弦月開船、單程三天、一班四機八人、浮船上不去、多數生物系要密封艙；燃料為「浮料」單一池",
+   "constraint": "地月只有塞勒涅渡月船：三赤道港、弦月開船、單程三天、一班四機八人、浮船上不去、多數生物系要密封艙；燃料為「浮料」單一池",
    "spec_section": "world-grid/map-and-terrain.md#航道-lanedef取代-routedef-與-ferrydef",
    "note": "FerryDef 併入 LaneDef kind:\"orbital\"（2026-10-24）；風格名見 core README 對照表"
   },
   {
    "id": "WV-04",
    "source": "../world/operations.md#十分律空援昂貴的輔助火力",
-   "constraint": "空援三來源：城邦砲台（免費只及牆邊）、空援券（延遲一回合落地、一券一潮月薪水量級）、浮船艦砲（船停上空會被咬）",
+   "constraint": "空援三來源：城邦砲台（免費只及牆邊）、空援券（延遲一回合落地、一券一蝕月薪水量級）、浮船艦砲（船停上空會被咬）",
    "spec_section": "battle-interface.md#一出戰編成-sortie",
    "note": "supplies.airstrikeTickets／shipOverhead"
   },
   {
    "id": "WV-05",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "一天一 tick、二十八天一潮月；戰鬥不占營運時間；拘束器磨損以天計、修理以工時計、傷勢以潮月計；認主只在大潮之夜；一局無終點",
+   "constraint": "一天一 tick、二十八天一蝕月；戰鬥不占營運時間；拘束器磨損以天計、修理以工時計、傷勢以蝕月計；認主只在大潮之夜；一局無終點",
    "spec_section": "time-and-tick.md#曆-calendar",
    "note": ""
   },
@@ -213,14 +213,14 @@
   {
    "id": "WV-07",
    "source": "../world/rifts-and-territory.md#時鐘潮月大潮潮壓",
-   "constraint": "第 1、15 天大潮（裂縫活躍、新裂縫與新遺跡）；第 7、21 天弦月（渡輪）；隱藏量潮壓隨時間升、封裂縫降、蝕域升",
+   "constraint": "第 1、15 天大潮（裂縫活躍、新裂縫與新遺跡）；第 7、21 天弦月（渡輪）；隱藏量蝕壓隨時間升、封裂縫降、蝕域升",
    "spec_section": "time-and-tick.md#大潮日的特別事項",
    "note": ""
   },
   {
    "id": "WV-08",
    "source": "../world/rifts-and-territory.md#裂縫怎麼開開出什麼",
-   "constraint": "裂縫有寬度 D–S 與主族；新裂縫只在大潮開：七成蝕域旁、三成野地、極少城邦邊；前三天只有先鋒、第四天潮錨到；異形裂縫自閉無錨",
+   "constraint": "裂縫有寬度 D–S 與主族；新裂縫只在大潮開：七成蝕域旁、三成野地、極少城邦邊；前三天只有先鋒、第四天蝕錨到；異形裂縫自閉無錨",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "狀態機 opening→anchored"
   },
@@ -241,21 +241,21 @@
   {
    "id": "WV-11",
    "source": "../world/rifts-and-territory.md#封閉與收復",
-   "constraint": "能封不能滅：殺／捕錨後守核區到下一個大潮才封口；封口後每潮月退一區（菌絲要燒）；殘聯按退回的區付收復金；潮壓換岸不消失",
+   "constraint": "能封不能滅：殺／捕錨後守核區到下一個大潮才封口；封口後每蝕月退一區（菌絲要燒）；殘聯按退回的區付收復金；蝕壓換岸不消失",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "sealing→sealed→receding→closed"
   },
   {
    "id": "WV-12",
    "source": "../world/rifts-and-territory.md#灰色選擇養裂",
-   "constraint": "錨死不守則下個大潮送新錨，可當獵場；代價：蝕域照長、殘聯評等掉、兩潮月後罰款、再久通緝；潮信會喜歡你",
+   "constraint": "錨死不守則下個大潮送新錨，可當獵場；代價：蝕域照長、殘聯評等掉、兩蝕月後罰款、再久通緝；沐蝕會喜歡你",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "fedCount 驅動殘聯事件鏈"
   },
   {
    "id": "WV-13",
    "source": "../world/factions.md#factions--玩家組織勢力的開放結構與代表樣本人類機甲敵人",
-   "constraint": "玩家是持殘聯獵牌的獵團＋浮船候鳥號；開局繼承船、三台 C 級摹機（兩台犁改燕鷗攻堅型、一台拼裝獵犬-II型，與 campaign-start/default.json 一致）、五個駕駛員、一個技師、一個租來的機魂、一筆船債；收入三條支出三條",
+   "constraint": "玩家是持殘聯獵牌的獵團＋浮船候鳥號；開局繼承船、三台 C 級衍型機（兩台犁改燕鷗攻堅型、一台拼裝獵犬-II型，與 campaign-start/default.json 一致）、五個駕駛員、一個技師、一個租來的機魂、一筆船債；收入三條支出三條",
    "spec_section": "content-format-ops.md#content-format-ops--contentpackworld-佈局id-命名驗證新增-x-要改哪些檔",
    "note": "campaign-start/default.json；2026-10-24 由 D 級改 C 級對齊實作與 lore"
   },
@@ -383,7 +383,7 @@
    "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
    "constraint": "沙盒遊戲：玩家可以開著飛船去自己想去的地方；世界圖開放、無線性關卡；契約與事件是可選機會；壓力來自世界自己在動",
    "spec_section": "world-grid/README.md#一句話模型",
-   "note": "2026-10-24 補充裁示，已記在 design-notes/world.md「沙盒」段；方格版的自由移動在 world-grid/movement.md；另見 time-and-tick 航行與潮月、text-ui 航／泊／懸"
+   "note": "2026-10-24 補充裁示，已記在 design-notes/world.md「沙盒」段；方格版的自由移動在 world-grid/movement.md；另見 time-and-tick 航行與蝕月、text-ui 航／泊／懸"
   },
   {
    "id": "USR-02",
@@ -418,7 +418,7 @@
    "source": "../../design-notes/mechs.md",
    "constraint": "沒有餵養：不設飼料、飢餓、畜欄等畜牧式系統；族別例外：蟲族、獸族吞屍保持活性；異形、菌絲另定",
    "spec_section": "data-model-beasts.md#族別維持-sustain不是餵養一潮月一次的族行為",
-   "note": "2026-10-24 裁示；飢餓→拘束器磨損、異形潮浸、菌絲修剪是 Fable 代決（../../../decisions/2026-10-24-bio-ui.md#2026-10-24-生物系兩類沒有餵養ui-走一般網頁遊戲元件使用者裁示fable-代決）"
+   "note": "2026-10-24 裁示；飢餓→拘束器磨損、異形蝕浸、菌絲修剪是 Fable 代決（../../../decisions/2026-10-24-bio-ui.md#2026-10-24-生物系兩類沒有餵養ui-走一般網頁遊戲元件使用者裁示fable-代決）"
   },
   {
    "id": "USR-07",
@@ -460,7 +460,7 @@
    "source": "../../design-notes/mechs.md",
    "constraint": "各勢力依其挖掘出、保有的古代機甲不同，研發的機甲各有特色（藍本血統）；取得新古代機開新研發分支，失去則停滯；古代機的爭奪是勢力衝突與作戰目標之一",
    "spec_section": "data-model-faction-rnd.md#血統-lineagedeflineagesidjson",
-   "note": "殼的爭奪＝作戰 relic-hunt 與 ShellState（operations-war）"
+   "note": "古代機的爭奪＝作戰 relic-hunt 與 ShellState（operations-war）"
   },
   {
    "id": "DN-W-19",
@@ -493,7 +493,7 @@
   {
    "id": "USR-12",
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
-   "constraint": "大地圖本身是方格、每大洲一張（五洲＋月面共六張；南極只在 lore）；地形永遠可見只有物件與蝕域有迷霧；洲際不自己飛、走航道（陸橋／洋航／渡潮船）",
+   "constraint": "大地圖本身是方格、每大洲一張（五洲＋月面共六張；南極只在 lore）；地形永遠可見只有物件與蝕域有迷霧；洲際不自己飛、走航道（陸橋／洋航／渡月船）",
    "spec_section": "world-grid/map-and-terrain.md#六張圖與尺度",
    "note": "2026-10-24 裁示「可以每大洲一張地圖」；南極只在 lore、迷霧模式、月面不開新裂縫是 Fable 代決（待使用者裁示）"
   },

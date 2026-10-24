@@ -31,7 +31,7 @@ type OpsCommand =
   | { v: "trade"; market: Id; buy?: Id[]; sell?: Id[] }   // 買 / 賣
   | { v: "hire"; candidate: Id } | { v: "fire"; person: Id }  // 招 / 解
   | { v: "explore"; ruin: Id; party: Id[] }      // 探 遺跡 [人…]
-  | { v: "wake"; shell: Id; by: Id }             // 喚 殼 阿九 → 大潮之夜限定
+  | { v: "wake"; shell: Id; by: Id }             // 喚 古代機 阿九 → 大潮之夜限定
   | { v: "choose"; choice: number }              // 選 2 → 事件／對話／遭遇選項
   | { v: "pay"; account: "debt" | Id; amount: number }   // 付 債 500
   | { v: "save" } | { v: "load"; slot: number } | { v: "help"; v2?: string };

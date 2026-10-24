@@ -23,13 +23,13 @@ type TreatyDef = { id: Id; kind: "ceasefire" | "nonaggression" | "alliance" | "t
 type TreatyState = { def: Id; signedDay: number; endDay: number; broken?: { day: number; by: Id } };
 ```
 
-量級：停火 1–3 潮月（到期回 `hostile`，期間 `weariness` 每日 −2）；互不侵犯 3 潮月；同盟 6 潮月、自動續約直到任一方拒絕；貿易＝兩方市場互列對方可售機型與 `priceMods` 折價；進貢＝每潮月帳本流（弱方付、換 `nonaggression`）；殼約＝共享殼的研發（兩方都 `LineageOpened`，見研發檔）；代理＝A 出錢讓第三方（含玩家）打 B 的 `raid`，不曝光就不算戰爭行為。**背盟**：`breakIf` 成立（如 `nonaggression` 下對對方發起奪點）→ `TreatyBroken`、驅動表 `treaty-broken` 列、背者 `prestige −`。簽約與宣戰都是行動牌（`actor:"faction"`），`valid` 查 `relations`，所以一切變化仍走抽牌。
+量級：停火 1–3 蝕月（到期回 `hostile`，期間 `weariness` 每日 −2）；互不侵犯 3 蝕月；同盟 6 蝕月、自動續約直到任一方拒絕；貿易＝兩方市場互列對方可售機型與 `priceMods` 折價；進貢＝每蝕月帳本流（弱方付、換 `nonaggression`）；古約＝共享古代機的研發（兩方都 `LineageOpened`，見研發檔）；代理＝A 出錢讓第三方（含玩家）打 B 的 `raid`，不曝光就不算戰爭行為。**背盟**：`breakIf` 成立（如 `nonaggression` 下對對方發起奪點）→ `TreatyBroken`、驅動表 `treaty-broken` 列、背者 `prestige −`。簽約與宣戰都是行動牌（`actor:"faction"`），`valid` 查 `relations`，所以一切變化仍走抽牌。
 
 ## 變化驅動
 
-全部列在 [diplomacy-drivers.json](diplomacy-drivers.json)（17 列）。欄位：`id`／`trigger` 觸發時點／`delta` 數值變化（量級）／`decay` 是否進宿怨與衰減／`who` 作用對象／`note`。四類來源：**漂移**（每潮月朝 `baseline` 回 2、宿怨半衰）、**地圖**（鄰接區域被對方的裂縫蝕化、共享裂縫威脅、同一殼或裂縫的競爭）、**作戰結果**（奪點／圍城／曝光的襲擾、解圍、技術流出、取得新殼）、**玩家**（選邊參戰、背盟、持殼）。`baseline` 由內容 `affinity.json` 給每對（缺省 0；同文化 +10；內容標 `rivalry` 的宿敵對 −20），是世界不出事時的歸宿。
+全部列在 [diplomacy-drivers.json](diplomacy-drivers.json)（17 列）。欄位：`id`／`trigger` 觸發時點／`delta` 數值變化（量級）／`decay` 是否進宿怨與衰減／`who` 作用對象／`note`。四類來源：**漂移**（每蝕月朝 `baseline` 回 2、宿怨半衰）、**地圖**（鄰接區域被對方的裂縫蝕化、共享裂縫威脅、同一古代機或裂縫的競爭）、**作戰結果**（奪點／圍城／曝光的襲擾、解圍、技術流出、取得新古代機）、**玩家**（選邊參戰、背盟、持古代機）。`baseline` 由內容 `affinity.json` 給每對（缺省 0；同文化 +10；內容標 `rivalry` 的宿敵對 −20），是世界不出事時的歸宿。
 
-**防退化三道閘**：(1) 漂移回 `baseline` 讓無事件的對子回中立；(2) `weariness`：交戰每日 +1，≥ 40 後停火牌權重隨之放大，潮壓高檔時再 +5／大潮——沒有永久戰爭；(3) `alliance-burden`：同盟 ≥ 3 個的勢力再簽盟權重 ×0.2、漂移多 −1——沒有全員同盟。測試斷言見 [war-testing](war-testing.md)。
+**防退化三道閘**：(1) 漂移回 `baseline` 讓無事件的對子回中立；(2) `weariness`：交戰每日 +1，≥ 40 後停火牌權重隨之放大，蝕壓高檔時再 +5／大潮——沒有永久戰爭；(3) `alliance-burden`：同盟 ≥ 3 個的勢力再簽盟權重 ×0.2、漂移多 −1——沒有全員同盟。測試斷言見 [war-testing](war-testing.md)。
 
 ## 對作戰生成的影響
 
@@ -45,4 +45,4 @@ core 只認 `FactionDef.relations: ally|neutral|hostile`（靜態）與情境 `s
 2. **玩家不進關係表、只用 rep**：玩家是傭兵不是國家；選邊的後果全落在逐勢力聲望上，與既有設計一致。
 3. **防退化用漂移、厭戰、同盟負擔三道閘**，不用硬上限：世界可以短暫大戰或大結盟，但會自己退潮。
 4. **代理戰爭＝不曝光的襲擾**：給「被雙方雇用」一個規則化的灰色地帶，曝光機率吃玩家留下的痕跡。
-5. **殼與技術是外交籌碼**：取殼引覬覦、流出結宿怨，把研發線與外交線綁在一起。
+5. **古代機與技術是外交籌碼**：取古代機引覬覦、流出結宿怨，把研發線與外交線綁在一起。

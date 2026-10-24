@@ -2,7 +2,7 @@
 
 [ops README](README.md)｜世界觀來源 [world/mech-lifecycles](../world/mech-lifecycles.md)、[world/machine-souls](../world/machine-souls.md)｜人物資料在 [core/data-model-people](../core/data-model-people.md)
 
-裁示：機械系靠科研靠錢、吃營運能力；機魂天賦樹吃錢（科研方向）與時間（陪伴）；錢只有一種「幣」、開局背塞勒涅船債、每潮月付息（world 暫定裁示）。數值只給量級。
+裁示：機械系靠科研靠錢、吃營運能力；機魂天賦樹吃錢（科研方向）與時間（陪伴）；錢只有一種「幣」、開局背塞勒涅船債、每蝕月付息（world 暫定裁示）。數值只給量級。
 
 ## 帳本 Ledger（唯一改錢與存量的路徑）
 
@@ -13,7 +13,7 @@ type LedgerEntry = { seq: number; day: number; account: Account; delta: number;
 type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
 ```
 
-規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每潮月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是摹機通用料，也是拘束器維護與屍體改裝的材料；`flesh` 兼作蟲族／獸族吞屍的屍體（不另設帳）；`fuel`（船的燃料：浮芯要吃的裂晶渣與氣囊的氦合成一池，風格名**浮料**，簡化）；`ammo-*` 是機甲矢池的補給存量（`ammo-30`＝殼矢），停泊時補滿。
+規則：(1) **所有**幣與存量變動只能經 `post(entry)`；`balances` 是 `entries` 的折疊，測試重算必相等（帳本守恆）。(2) `cash` 可負（欠薪、欠港費）但 `stock:*` 不可負（`post` 拒絕並回傳失敗，由呼叫端決定政策）。(3) 進出對沖：買賣寫兩筆（`cash` 與 `stock`，互填 `counter`）；外部來源（契約金、戰利品）寫一筆、`reason` 必填來源事件 id——不變量測試檢查每筆外源都有對應 `CampaignEvent`。(4) `debt` 是負債帳：每蝕月第 1 天 `post(debt, +principal×rate)`；付款 `post(cash,−x)`＋`post(debt,−x)`。存量單位：裂晶「核」按等級分 `stock:core-D..A`；材料按族（`flesh`／`chitin`／`mycelium`）；`scrap` 是衍型機通用料，也是拘束器維護與屍體改裝的材料；`flesh` 兼作蟲族／獸族吞屍的屍體（不另設帳）；`fuel`（船的燃料：浮芯要吃的裂晶渣與氣囊的氦合成一池，風格名**浮料**，簡化）；`ammo-*` 是機甲矢池的補給存量（`ammo-30`＝矢），停泊時補滿。
 
 ## 實物庫存 Inventory（有身分的東西不進帳本）
 
@@ -30,7 +30,7 @@ type MarketDef = { id: Id; place: Id /*原 node*/; lists: { kind: "component" | 
 
 ## 債 Debt 與塞勒涅催收
 
-開局 `debt` 約 20 個潮月薪水量級、利率每潮月 5% 量級。利息日付不出：`debt += 利息`、塞勒涅 rep −；連續 2 潮月未付 → 世界行動牌 `collection-visit` 有效（白手套事件鏈：先談、再扣押一台機甲、最後是一場戰鬥）。還清債務不是終局，只是少一個雇主的耐心。
+開局 `debt` 約 20 個蝕月薪水量級、利率每蝕月 5% 量級。利息日付不出：`debt += 利息`、塞勒涅 rep −；連續 2 蝕月未付 → 世界行動牌 `collection-visit` 有效（白手套事件鏈：先談、再扣押一台機甲、最後是一場戰鬥）。還清債務不是終局，只是少一個雇主的耐心。
 
 ## 科研 ResearchDef（開節點、解鎖項目）
 
@@ -45,7 +45,7 @@ type ResearchState = { def: Id; hoursDone: number; coinPaid: boolean; done: bool
 
 ## 機魂天賦樹：開（科研）與練熟（陪伴）
 
-core 的 `SoulTreeDef` 節點有 `cost.research`／`cost.companionship`；營運層把它拆成兩個動作：**開**＝對應 `ResearchDef` 完成且付幣 → `soulTree.nodes.push(node)`，節點 perk 掛上但熟練 0；**練熟**＝每天一個「時段」由一位人物執行 `陪 <機魂>`，該機魂 `companionship += 1`，玩家指定正在練的節點（或預設最早開的）`mastery += 1/needHours`，到 1 為全額。`mastery`、`trust` 都是**營運層狀態**（`RosterState.mastery[soul][node]`、`RosterState.trust[soul][person]`，core 的 `WillState.soulTree` 沒有這兩欄、也不需要）：出戰時由 `Sortie.injected` 翻成 contribution——節點 perk 的貢獻 × mastery、`contested` 檢定加 trust 修正（[battle-interface](battle-interface.md)）。副作用：陪伴者 `trust += 1`；陪滿 N 時段有機率抽一條性格特質。塞勒涅租賃與複本機魂：所有節點 `mastery = 0`、`trust` 空；租金每潮月計入 `cash`。**育魂**＝一條特殊佇列：空魂核部件＋工時＋幣，一個潮月量級完成 → 新 `PersonDef(kind:"soul")` 實例，三根方向各一個根節點已開、零練熟。
+core 的 `SoulTreeDef` 節點有 `cost.research`／`cost.companionship`；營運層把它拆成兩個動作：**開**＝對應 `ResearchDef` 完成且付幣 → `soulTree.nodes.push(node)`，節點 perk 掛上但熟練 0；**練熟**＝每天一個「時段」由一位人物執行 `陪 <機魂>`，該機魂 `companionship += 1`，玩家指定正在練的節點（或預設最早開的）`mastery += 1/needHours`，到 1 為全額。`mastery`、`trust` 都是**營運層狀態**（`RosterState.mastery[soul][node]`、`RosterState.trust[soul][person]`，core 的 `WillState.soulTree` 沒有這兩欄、也不需要）：出戰時由 `Sortie.injected` 翻成 contribution——節點 perk 的貢獻 × mastery、`contested` 檢定加 trust 修正（[battle-interface](battle-interface.md)）。副作用：陪伴者 `trust += 1`；陪滿 N 時段有機率抽一條性格特質。塞勒涅租賃與複本機魂：所有節點 `mastery = 0`、`trust` 空；租金每蝕月計入 `cash`。**育魂**＝一條特殊佇列：空魂核部件＋工時＋幣，一個蝕月量級完成 → 新 `PersonDef(kind:"soul")` 實例，三根方向各一個根節點已開、零練熟。
 
 ## 替使用者做掉的決定
 
@@ -53,4 +53,4 @@ core 的 `SoulTreeDef` 節點有 `cost.research`／`cost.companionship`；營運
 2. **部件回收保留戰損、不加隨機折損**：少一個玩家看不見的骰子。
 3. **浮芯用料與氦合併成一個 fuel 池**：兩種燃料只會讓採買選單變長；顯示名「浮料」，id 不改。
 4. **mastery 乘在貢獻上、不另造機制**：「開了不等於熟」用 core 既有的 contribution 乘法表達。
-5. **科研無分支鎖、只有前置**：天賦樹的「選方向」在機魂節點上，摹機科研保持扁平好讀。
+5. **科研無分支鎖、只有前置**：天賦樹的「選方向」在機魂節點上，衍型機科研保持扁平好讀。

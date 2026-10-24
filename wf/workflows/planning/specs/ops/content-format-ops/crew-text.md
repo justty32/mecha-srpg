@@ -12,7 +12,7 @@
 {"id":"service/medbay","room":"medbay","hpRegenMult":3,"cleanse":{"whitelist":["effect/injury-scar-lung"],"price":1500}}
 ```
 
-**招募池**　**背景**（`beastKin` 獸緣、`shellKin` 殼緣目前是背景的屬性範圍，升格與否見規劃線 REPORT）
+**招募池**　**背景**（`beastKin` 獸緣、`shellKin` 古緣目前是背景的屬性範圍，升格與否見規劃線 REPORT）
 ```json
 {"id":"recruit/dhaka-camp","place":"place/dhaka","size":4,"refreshOn":"quarter","sources":[{"background":"background/refugee-kid","weight":5}]}
 ```
@@ -28,7 +28,7 @@
 {"id":"job/repair","kind":"repair","hoursPerHp":{"armor":0.5,"chitin":0.8,"flesh":1.2,"organ":2},"material":{"armor":"stock:scrap","chitin":"stock:chitin","flesh":"stock:flesh"},"rebuildMult":{"hours":3,"material":2}}
 ```
 ```json
-{"id":"names/mythic-norse","culture":"norse","names":["Sleipnir","Gungnir","Fenrir"],"epithets":["之殼"]}
+{"id":"names/mythic-norse","culture":"norse","names":["Sleipnir","Gungnir","Fenrir"],"epithets":["之軀"]}
 ```
 
 **族別拘束／維持**
@@ -56,7 +56,7 @@
 {"person":"person/a-jiu","topics":[{"topic":"達卡","when":{"all":[{"contractOffered":"contract/clear-nest"}]},"lines":["廠房窄，蟲會擠在一起……適合拘束。"],"effects":[{"mood":{"person/a-jiu":1}}]}]}
 ```
 ```json
-{"WageOwed":{"kind":"warn","text":"付不出薪水，全團欠 {amount} 幣（第 {days} 天）。"},"Named":{"kind":"soul","text":"{by.name} 叫它「{name}」。"},"Sighted":{"kind":"warn","text":"殼目看見 {actor.name}，在 {dir} 方 {dist} 格。"}}
+{"WageOwed":{"kind":"warn","text":"付不出薪水，全團欠 {amount} 幣（第 {days} 天）。"},"Named":{"kind":"soul","text":"{by.name} 叫它「{name}」。"},"Sighted":{"kind":"warn","text":"靈目看見 {actor.name}，在 {dir} 方 {dist} 格。"}}
 ```
 
 **鍵位**（與戰場 `keymap.json` 同文法，多 `context`：`room`／`prompt`／`map`）　**開局**（與 `content/base/world/campaign-start/default.json` 同形）

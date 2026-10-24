@@ -10,7 +10,7 @@
 
 ```ts
 type JoinTerms = { command: "independent" | "attached" | "mixed"; supply: SupplyTier; share: NumExpr /*作戰賞金分成 0.1..0.3*/;
-  base: NumExpr /*固定出場費，一潮月薪水量級*/; orders: ObjectiveTemplate[] /*軍令：optional 目標，違令計次*/;
+  base: NumExpr /*固定出場費，一蝕月薪水量級*/; orders: ObjectiveTemplate[] /*軍令：optional 目標，違令計次*/;
   exclusive: boolean; minStrength: NumExpr /*玩家出戰戰力點下限*/; loan?: { models: Id[]; max: number } };
 type SupplyTier = "none" | "field" | "full" | "arsenal";
 ```
@@ -38,11 +38,11 @@ type SupplyTier = "none" | "field" | "full" | "arsenal";
 
 ## 被雙方雇用、選邊、背叛
 
-`sides:"both"` 作戰的兩份 `join` 都在板上，接一份另一份立刻 `expired` 並記對方 `memory: refused-us`（不扣 rep——沒接不是罪）。**背叛**三種：接了 `exclusive` 又接對方（擋在 `accept` 檢查，不可能發生）；中途 `drop` 後 ≤ 7 天接對方 → 背叛；接了尋殼作戰的 `join`、戰場上自己把殼帶走（`reachExit` 時殼在玩家單位手上）→ **私吞**。背叛／私吞：被背者 `rep −40`、殘聯 `rep −15`（獵牌污點）、得利者 `rep +10`、flag `blacklist:<faction>` 3 潮月；被背者對得利者 `relation −6`。私吞的殼 `holder:"player"`、`knownBy` 含被背者——他們會來要。代理戰爭（雇主 `covert`）：玩家是曝光機率的主因（每個未撤退單位 +20%），曝光後對手把帳算在雇主與玩家兩邊。
+`sides:"both"` 作戰的兩份 `join` 都在板上，接一份另一份立刻 `expired` 並記對方 `memory: refused-us`（不扣 rep——沒接不是罪）。**背叛**三種：接了 `exclusive` 又接對方（擋在 `accept` 檢查，不可能發生）；中途 `drop` 後 ≤ 7 天接對方 → 背叛；接了尋墟作戰的 `join`、戰場上自己把古代機帶走（`reachExit` 時古代機在玩家單位手上）→ **私吞**。背叛／私吞：被背者 `rep −40`、殘聯 `rep −15`（獵牌污點）、得利者 `rep +10`、flag `blacklist:<faction>` 3 蝕月；被背者對得利者 `relation −6`。私吞的古代機 `holder:"player"`、`knownBy` 含被背者——他們會來要。代理戰爭（雇主 `covert`）：玩家是曝光機率的主因（每個未撤退單位 +20%），曝光後對手把帳算在雇主與玩家兩邊。
 
 ## 作戰情境生成（ScenarioGen 擴充）
 
-`Sortie.trigger:"operation"` 時 `generateScenario` 多做：(1) 地圖：目標格與八鄰的 `battle_pool`＋蝕深（對裂獸）或城邦地點模板（對人），同 battle-interface 第 (1) 步；`engage_objective` 查作戰種類表定目標。(2) 敵方：裂獸由 `rift` 快照；人類由目標勢力分遣隊 `ForceUnit` 按戰力預算抽 `UnitSpawn`（機型即其已釋出 `ModelDef`，人物臨時生成）。(3) 友軍：依 `command` 填 `ally` slot 或塞進 `player` slot；友軍規模＝分遣隊 `str × 0.3..0.6`（別讓 AI 搶光頭）。(4) 目標：玩家 `win` 目標＋`orders` optional＋敵方 `eliminate`。(5) 補給注入。回寫：`ally` 單位 `dead` → 分遣隊折損；進度 `+0.4×規模係數`；殼在誰手上寫 `ShellState`。**依賴**：`BattleResult.units` 需涵蓋所有 slot（含 `ally`）——core 若只回玩家 slot，列為 core 建議。
+`Sortie.trigger:"operation"` 時 `generateScenario` 多做：(1) 地圖：目標格與八鄰的 `battle_pool`＋蝕深（對裂獸）或城邦地點模板（對人），同 battle-interface 第 (1) 步；`engage_objective` 查作戰種類表定目標。(2) 敵方：裂獸由 `rift` 快照；人類由目標勢力分遣隊 `ForceUnit` 按戰力預算抽 `UnitSpawn`（機型即其已釋出 `ModelDef`，人物臨時生成）。(3) 友軍：依 `command` 填 `ally` slot 或塞進 `player` slot；友軍規模＝分遣隊 `str × 0.3..0.6`（別讓 AI 搶光頭）。(4) 目標：玩家 `win` 目標＋`orders` optional＋敵方 `eliminate`。(5) 補給注入。回寫：`ally` 單位 `dead` → 分遣隊折損；進度 `+0.4×規模係數`；古代機在誰手上寫 `ShellState`。**依賴**：`BattleResult.units` 需涵蓋所有 slot（含 `ally`）——core 若只回玩家 slot，列為 core 建議。
 
 ## 替使用者做掉的決定
 

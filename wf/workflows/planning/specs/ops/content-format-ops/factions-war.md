@@ -49,7 +49,7 @@
 
 **血統**　**機型**（`frame` 指既有 core `frames/`；`maker:"generic"`＝通用系列）
 ```json
-{"id":"lineage/universal-bulwark","name":"堅盾系列（通用）","source":"generic","traits":{"partsBias":["torso","shield"],"pools":["heat"],"abilityTags":["guard"],"silhouette":"矮、寬、肩上一面殼","naming":"league"},"tags":["generic"]}
+{"id":"lineage/universal-bulwark","name":"堅盾系列（通用）","source":"generic","traits":{"partsBias":["torso","shield"],"pools":["heat"],"abilityTags":["guard"],"silhouette":"矮、寬、肩上一面裝甲","naming":"league"},"tags":["generic"]}
 ```
 ```json
 {"id":"model/bulwark-ii","frame":"frame/bulwark-ii","lineage":"lineage/universal-bulwark","maker":"generic","series":"堅盾","mark":"II型","role":"line","tier":"C","cost":15,
