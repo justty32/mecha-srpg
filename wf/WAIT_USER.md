@@ -11,4 +11,4 @@
 ## 待使用者項
 
 - [planning] 世界觀與 BB 式細節／營運層範圍（已裁示的見 [design-notes](workflows/planning/design-notes.md)）→ Fable 寫 spec，再派線
-- [feature-dev] 請使用者 `npm run dev` 開 http://localhost:5173/ 試玩一回合，回饋手感、配色、字級 → 回饋後派 UI 修正線
+- [feature-dev] 請使用者 `npm run dev` 開 http://localhost:5173/ 試玩 lead-ui-fix 改版，九項逐條確認（見 [feedback](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)）→ 回饋後派下一輪 UI 修正
