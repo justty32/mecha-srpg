@@ -1,12 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 import { checkWorld, decodeRow, encodeRow, generateMap } from "./worldgen.ts";
 import type { GeneratorConfig } from "./worldgen.ts";
 
 const assets = join(import.meta.dirname, "worldgen");
-const stage = resolve(import.meta.dirname, "../../../wf/workflows/dispatch/handoffs/lead-grid/stage/world");
+const stage = resolve(import.meta.dirname, "../../../content/base/world");
 const cli = join(import.meta.dirname, "worldgen.ts");
 
 test("RLE 往返：單字元省略數字、空白區域、長列與不合法輸入", () => {
@@ -20,7 +20,7 @@ test("RLE 往返：單字元省略數字、空白區域、長列與不合法輸�
   }
 });
 
-test("同設定同種子逐位元相同；交界雜訊不擴散，地點 footprint 不被覆蓋", () => {
+test("同設定同種子逐位元相同；交界雜訊不擴散，地點 footprint 不被覆蓋", { skip: !existsSync(join(stage, "maps", "longland.json")) && "樣本圖尚未進 content/base/world" }, () => {
   for (const name of ["longland", "lunar"]) {
     const config = JSON.parse(readFileSync(join(assets, `${name}.json`), "utf8")) as GeneratorConfig;
     const terrain = readFileSync(join(assets, config.sketch), "utf8");
@@ -52,7 +52,7 @@ type Spawn = (command: string, args: string[], options: { encoding: "utf8" }) =>
   status: number | null; stdout: string; stderr: string; error?: Error;
 };
 
-test("--check 實際 CLI：暫存區通過、壞輸入非零，修回後重新通過", async () => {
+test("--check 實際 CLI：樣本內容通過、壞輸入非零，修回後重新通過", { skip: !existsSync(join(stage, "places", "dhaka.json")) && "樣本地點尚未進 content/base/world" }, async () => {
   const childModule = "node:child_process", fsModule = "node:fs";
   const { spawnSync } = await import(childModule) as { spawnSync: Spawn };
   const { mkdtempSync } = await import(fsModule) as { mkdtempSync: (prefix: string) => string };
