@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-16",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（機體、科研、背景）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "44b61ac1197ed4ebef7c0ba036346de35f72865c",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-16",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-16/REPORT.md",
@@ -56,5 +56,84 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:33:00",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-16",
+  "round": 1,
+  "at": "2026-10-24T16:33:00",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/frames/moji-tern-guard.json",
+   "content/base/frames/moji-tern.json",
+   "content/base/frames/shellsoc-surveyor-b.json",
+   "content/base/world/backgrounds/shell-field-student.json",
+   "content/base/world/backgrounds/shell-marsh-mortician.json",
+   "content/base/world/backgrounds/tide-apostate.json",
+   "content/base/world/research/forge-composite.json",
+   "content/base/world/research/forge-tide-lance.json",
+   "content/base/world/research/restraint.json",
+   "content/base/world/research/shell-translation.json",
+   "content/base/world/research/soul-calc-tide.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/frames/moji-tern-guard.json",
+  "content/base/frames/moji-tern.json",
+  "content/base/frames/shellsoc-surveyor-b.json",
+  "content/base/world/backgrounds/shell-field-student.json",
+  "content/base/world/backgrounds/shell-marsh-mortician.json",
+  "content/base/world/backgrounds/tide-apostate.json",
+  "content/base/world/research/forge-composite.json",
+  "content/base/world/research/forge-tide-lance.json",
+  "content/base/world/research/restraint.json",
+  "content/base/world/research/shell-translation.json",
+  "content/base/world/research/soul-calc-tide.json"
+ ],
+ "ids": [
+  "frame/moji-tern-guard",
+  "frame/moji-tern",
+  "frame/shellsoc-surveyor-b",
+  "background/shell-field-student",
+  "background/shell-marsh-mortician",
+  "background/tide-apostate",
+  "research/forge-composite",
+  "research/forge-tide-lance",
+  "research/restraint",
+  "research/shell-translation",
+  "research/soul-calc-tide"
+ ],
+ "summary": "機體、科研、背景換詞；閘門 0 違規、check／typecheck 綠、黃金不變；test 綠",
+ "gateRejections": []
 }
