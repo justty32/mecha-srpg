@@ -2,11 +2,25 @@
   "id": "room/bridge",
   "title": "艦橋",
   "base": [
-    "艦橋內傳來候鳥號引擎的低鳴。"
+    "艦橋內傳來候鳥號引擎的低鳴。",
+    "終端的綠光落在你的手背上；契約、世界圖與帳本擠在同一面螢幕。"
   ],
   "exits": [
     "hangar",
     "cargo"
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.debt"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      "text": "債務欄還亮著：{ledger.balances.debt} 幣。"
+    }
+  ]
 }

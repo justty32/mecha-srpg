@@ -2,11 +2,25 @@
   "id": "room/galley",
   "title": "酒艙",
   "base": [
-    "酒艙內傳來候鳥號引擎的低鳴。"
+    "酒艙內傳來候鳥號引擎的低鳴。",
+    "你推開酒艙門。湯鍋冒著白氣，杯底隨引擎震動輕敲桌面。"
   ],
   "exits": [
     "cargo",
     "medbay"
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": "<=",
+          "b": 1200
+        }
+      },
+      "text": "桌邊有人把薪水算了兩次，然後收起紙。"
+    }
+  ]
 }

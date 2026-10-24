@@ -1,0 +1,42 @@
+{
+  "id": "event/funeral",
+  "where": "ship",
+  "when": {
+    "cmp": {
+      "a": {
+        "ref": "flags.opening-funeral"
+      },
+      "op": ">",
+      "b": 0
+    }
+  },
+  "weight": 1,
+  "text": "你看著防火毯落進雲層。艙門合上時，終端亮了。",
+  "choices": [
+    {
+      "text": "替老桂說幾句話。",
+      "effects": [
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "opening-funeral",
+          "value": 0
+        }
+      ],
+      "next": "event/credit-call"
+    },
+    {
+      "text": "先去接終端。",
+      "effects": [
+        {
+          "flag": "opening-funeral",
+          "value": 0
+        }
+      ],
+      "next": "event/credit-call"
+    }
+  ]
+}

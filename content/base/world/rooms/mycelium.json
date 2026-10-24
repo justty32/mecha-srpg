@@ -1,0 +1,40 @@
+{
+  "id": "room/mycelium",
+  "title": "菌室",
+  "base": [
+    "你踏入遮光簾後。菌絲沿培養架攀爬，像一張不肯停筆的地圖。"
+  ],
+  "exits": [
+    "stable"
+  ],
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.mycelium-harvested"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      "text": "採回來的菌種仍帶著野地的泥味。"
+    }
+  ],
+  "requires": {
+    "any": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.mycelium-harvested"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      {
+        "tag": "mycelium-room"
+      }
+    ]
+  }
+}

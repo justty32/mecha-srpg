@@ -2,11 +2,25 @@
   "id": "room/hangar",
   "title": "機庫",
   "base": [
-    "機庫內傳來候鳥號引擎的低鳴。"
+    "機庫內傳來候鳥號引擎的低鳴。",
+    "你踩過油漬。固定架上的機甲沒有動，魂核架傳來細小的電流聲。"
   ],
   "exits": [
     "stable",
     "bridge"
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "inventory.tickets.restraint"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      "text": "工作台還留著 {inventory.tickets.restraint} 發拘束彈。"
+    }
+  ]
 }

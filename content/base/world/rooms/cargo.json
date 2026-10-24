@@ -2,11 +2,25 @@
   "id": "room/cargo",
   "title": "貨艙",
   "base": [
-    "貨艙內傳來候鳥號引擎的低鳴。"
+    "貨艙內傳來候鳥號引擎的低鳴。",
+    "你扶住艙壁；防火毯已收起，貨艙口的鎖扣留著一道新刮痕。"
   ],
   "exits": [
     "bridge",
     "galley"
   ],
-  "phrases": []
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "flags.opening-funeral"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      "text": "老桂留下的工具箱靠在牆邊，沒有人搬。"
+    }
+  ]
 }

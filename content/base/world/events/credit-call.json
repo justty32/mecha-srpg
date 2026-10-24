@@ -1,0 +1,25 @@
+{
+  "id": "event/credit-call",
+  "where": "ship",
+  "when": {},
+  "weight": 1,
+  "text": "女聲先說節哀，再念出欠款。你發現自己在算拆船能賣多少。",
+  "choices": [
+    {
+      "text": "確認會繼續還款。",
+      "effects": [
+        {
+          "flag": "credit-confirmed"
+        }
+      ]
+    },
+    {
+      "text": "把帳本打開。",
+      "effects": [
+        {
+          "flag": "debt-reviewed"
+        }
+      ]
+    }
+  ]
+}
