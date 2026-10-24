@@ -1,0 +1,33 @@
+{
+  "id": "effect/ax-injury-tendon-strain",
+  "name": "牽魂筋裂",
+  "scope": "person",
+  "clock": {
+    "kind": "days",
+    "n": 4
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": -6,
+      "source": "effect/ax-injury-tendon-strain"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-injury-tendon-strain"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:temporary"
+  ],
+  "ui": {
+    "badge": "牽魂筋裂"
+  }
+}

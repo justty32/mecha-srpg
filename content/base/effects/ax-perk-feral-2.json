@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-feral-2",
+  "name": "野・把不寫進指令",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-perk-feral-2"
+    },
+    {
+      "path": "self.pools.calc.max",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-perk-feral-2"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "feral"
+  ],
+  "ui": {
+    "badge": "野・把不寫進指令"
+  }
+}

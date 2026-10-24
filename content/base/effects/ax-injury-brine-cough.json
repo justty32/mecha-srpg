@@ -1,0 +1,33 @@
+{
+  "id": "effect/ax-injury-brine-cough",
+  "name": "鹹潮嗆傷",
+  "scope": "person",
+  "clock": {
+    "kind": "days",
+    "n": 5
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.fatigue.max",
+      "op": "add",
+      "value": -10,
+      "source": "effect/ax-injury-brine-cough"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-injury-brine-cough"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:temporary"
+  ],
+  "ui": {
+    "badge": "鹹潮嗆傷"
+  }
+}

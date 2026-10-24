@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-broken-leash",
+  "name": "咬斷牽繩",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 6,
+      "source": "effect/ax-trait-broken-leash"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-trait-broken-leash"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "咬斷牽繩"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": "effect/ax-injury-shell-migraine",
+  "name": "殼訊偏頭痛",
+  "scope": "person",
+  "clock": {
+    "kind": "days",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-injury-shell-migraine"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -4,
+      "source": "effect/ax-injury-shell-migraine"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:temporary"
+  ],
+  "ui": {
+    "badge": "殼訊偏頭痛"
+  }
+}

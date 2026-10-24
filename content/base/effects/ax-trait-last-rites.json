@@ -1,0 +1,38 @@
+{
+  "id": "effect/ax-trait-last-rites",
+  "name": "逐一叫回姓名",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-trait-last-rites"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-trait-last-rites"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -1,
+      "source": "effect/ax-trait-last-rites"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "逐一叫回姓名"
+  }
+}

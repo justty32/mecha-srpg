@@ -1,0 +1,76 @@
+{
+  "id": "person/empty-teacup",
+  "name": "空茶杯",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 55,
+    "evasion": 12,
+    "resolve": 54,
+    "initiative": 7,
+    "perception": 6,
+    "control": 58
+  },
+  "traits": [
+    "effect/ax-trait-empty-cockpit",
+    "effect/ax-trait-water-shy"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "calc",
+      "name": "算力",
+      "min": 0,
+      "max": 55,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 55,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "survive",
+      "bring-them-home"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 5
+    }
+  },
+  "growth": {
+    "tree": "soultree/ax-solo",
+    "researchPerDirection": {
+      "hand": 5
+    },
+    "companionshipRate": 1
+  },
+  "tags": [
+    "soul",
+    "selene-retired",
+    "registered",
+    "soul-grade:S"
+  ]
+}

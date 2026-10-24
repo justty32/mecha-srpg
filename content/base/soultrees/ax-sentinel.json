@@ -1,0 +1,49 @@
+{
+  "id": "soultree/ax-sentinel",
+  "name": "守燈人",
+  "nodes": [
+    {
+      "id": "sentinel-1",
+      "perk": "effect/ax-perk-sentinel-1",
+      "research": {
+        "heart": 5
+      },
+      "companionship": 5,
+      "requires": []
+    },
+    {
+      "id": "sentinel-2",
+      "perk": "effect/ax-perk-sentinel-2",
+      "research": {
+        "heart": 10,
+        "hand": 5
+      },
+      "companionship": 10,
+      "requires": [
+        "sentinel-1"
+      ]
+    },
+    {
+      "id": "sentinel-3",
+      "perk": "effect/ax-perk-sentinel-3",
+      "research": {
+        "heart": 20
+      },
+      "companionship": 20,
+      "requires": [
+        "sentinel-2"
+      ]
+    },
+    {
+      "id": "sentinel-4",
+      "perk": "effect/perk-soul-heart-1",
+      "research": {
+        "heart": 25
+      },
+      "companionship": 30,
+      "requires": [
+        "sentinel-3"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-salt-mourning",
+  "name": "替海守喪",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 7,
+      "source": "effect/ax-trait-salt-mourning"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-trait-salt-mourning"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "替海守喪"
+  }
+}

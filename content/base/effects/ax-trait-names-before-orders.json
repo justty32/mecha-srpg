@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-names-before-orders",
+  "name": "先問名字再接令",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-trait-names-before-orders"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -1,
+      "source": "effect/ax-trait-names-before-orders"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "先問名字再接令"
+  }
+}

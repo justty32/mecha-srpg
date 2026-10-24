@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-sentinel-3",
+  "name": "心・最後一個回港",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-perk-sentinel-3"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-perk-sentinel-3"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "sentinel"
+  ],
+  "ui": {
+    "badge": "心・最後一個回港"
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "id": "person/ronan-o-dalaigh",
+  "name": "羅南・歐達利",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 65,
+    "evasion": 10,
+    "resolve": 63,
+    "initiative": 9,
+    "perception": 5,
+    "control": 47
+  },
+  "traits": [
+    "effect/ax-trait-oathbound",
+    "effect/ax-trait-storm-temper"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 68,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 68,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "hunger-for-glory",
+      "keep-oaths"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 15
+    },
+    "resonanceAffinity": {
+      "keep-oaths": 0.1
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "accuracy": [
+        1,
+        2,
+        3
+      ],
+      "evasion": [
+        1,
+        2
+      ],
+      "resolve": [
+        1,
+        2,
+        3
+      ],
+      "initiative": [
+        0,
+        1
+      ],
+      "perception": [
+        0,
+        1
+      ],
+      "control": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "ancient-candidate",
+    "salt-gull"
+  ]
+}

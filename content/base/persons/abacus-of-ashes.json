@@ -1,0 +1,75 @@
+{
+  "id": "person/abacus-of-ashes",
+  "name": "灰燼算盤",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 57,
+    "evasion": 9,
+    "resolve": 48,
+    "initiative": 7,
+    "perception": 7,
+    "control": 47
+  },
+  "traits": [
+    "effect/trait-steady-hands"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "calc",
+      "name": "算力",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "keep-watch",
+      "revenge"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 0
+    }
+  },
+  "growth": {
+    "tree": "soultree/ax-hunter",
+    "researchPerDirection": {
+      "calc": 5
+    },
+    "companionshipRate": 1
+  },
+  "tags": [
+    "soul",
+    "iron-anvil",
+    "registered",
+    "soul-grade:B"
+  ]
+}

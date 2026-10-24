@@ -1,0 +1,51 @@
+{
+  "id": "soultree/ax-feral",
+  "name": "無主之手",
+  "nodes": [
+    {
+      "id": "feral-1",
+      "perk": "effect/ax-perk-feral-1",
+      "research": {
+        "heart": 5
+      },
+      "companionship": 5,
+      "requires": []
+    },
+    {
+      "id": "feral-2",
+      "perk": "effect/ax-perk-feral-2",
+      "research": {
+        "heart": 10,
+        "calc": 5
+      },
+      "companionship": 10,
+      "requires": [
+        "feral-1"
+      ]
+    },
+    {
+      "id": "feral-3",
+      "perk": "effect/ax-perk-feral-3",
+      "research": {
+        "hand": 15,
+        "heart": 20
+      },
+      "companionship": 20,
+      "requires": [
+        "feral-2"
+      ]
+    },
+    {
+      "id": "feral-4",
+      "perk": "effect/perk-soul-heart-1",
+      "research": {
+        "autonomy": 25,
+        "heart": 25
+      },
+      "companionship": 30,
+      "requires": [
+        "feral-3"
+      ]
+    }
+  ]
+}

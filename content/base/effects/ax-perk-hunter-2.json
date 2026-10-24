@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-hunter-2",
+  "name": "算・半拍之前",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-perk-hunter-2"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-perk-hunter-2"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "hunter"
+  ],
+  "ui": {
+    "badge": "算・半拍之前"
+  }
+}

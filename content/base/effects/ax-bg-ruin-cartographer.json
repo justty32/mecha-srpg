@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-bg-ruin-cartographer",
+  "name": "刻痕抄圖人",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-bg-ruin-cartographer"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-bg-ruin-cartographer"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "background"
+  ],
+  "ui": {
+    "badge": "刻痕抄圖人"
+  }
+}

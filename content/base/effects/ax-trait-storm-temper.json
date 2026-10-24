@@ -1,0 +1,38 @@
+{
+  "id": "effect/ax-trait-storm-temper",
+  "name": "雷比話快",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-trait-storm-temper"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "effect/ax-trait-storm-temper"
+    },
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": -4,
+      "source": "effect/ax-trait-storm-temper"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "雷比話快"
+  }
+}

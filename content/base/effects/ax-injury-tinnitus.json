@@ -1,0 +1,26 @@
+{
+  "id": "effect/ax-injury-tinnitus",
+  "name": "號角殘響",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-injury-tinnitus"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:permanent"
+  ],
+  "ui": {
+    "badge": "號角殘響"
+  }
+}

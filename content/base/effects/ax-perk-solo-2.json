@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-solo-2",
+  "name": "手・自問自答",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.calc.regen",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-perk-solo-2"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-perk-solo-2"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "solo"
+  ],
+  "ui": {
+    "badge": "手・自問自答"
+  }
+}

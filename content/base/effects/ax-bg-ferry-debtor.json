@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-bg-ferry-debtor",
+  "name": "渡輪債務戶",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 3,
+      "source": "effect/ax-bg-ferry-debtor"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -1,
+      "source": "effect/ax-bg-ferry-debtor"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "background"
+  ],
+  "ui": {
+    "badge": "渡輪債務戶"
+  }
+}

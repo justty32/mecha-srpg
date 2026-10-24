@@ -1,0 +1,50 @@
+{
+  "id": "soultree/ax-solo",
+  "name": "空座船長",
+  "nodes": [
+    {
+      "id": "solo-1",
+      "perk": "effect/ax-perk-solo-1",
+      "research": {
+        "hand": 5
+      },
+      "companionship": 5,
+      "requires": []
+    },
+    {
+      "id": "solo-2",
+      "perk": "effect/ax-perk-solo-2",
+      "research": {
+        "calc": 10
+      },
+      "companionship": 10,
+      "requires": [
+        "solo-1"
+      ]
+    },
+    {
+      "id": "solo-3",
+      "perk": "effect/ax-perk-solo-3",
+      "research": {
+        "hand": 20,
+        "heart": 10
+      },
+      "companionship": 20,
+      "requires": [
+        "solo-2"
+      ]
+    },
+    {
+      "id": "solo-4",
+      "perk": "effect/perk-soul-hand-1",
+      "research": {
+        "autonomy": 20,
+        "hand": 25
+      },
+      "companionship": 25,
+      "requires": [
+        "solo-3"
+      ]
+    }
+  ]
+}

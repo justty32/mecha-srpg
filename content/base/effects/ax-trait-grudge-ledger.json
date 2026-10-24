@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-grudge-ledger",
+  "name": "記仇到小數點",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 4,
+      "source": "effect/ax-trait-grudge-ledger"
+    },
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-trait-grudge-ledger"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "記仇到小數點"
+  }
+}

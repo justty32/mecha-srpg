@@ -1,0 +1,119 @@
+{
+  "id": "person/arun-velan",
+  "name": "阿倫・維蘭",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 60,
+    "evasion": 12,
+    "resolve": 65,
+    "initiative": 8,
+    "perception": 6,
+    "control": 53
+  },
+  "traits": [
+    "effect/ax-trait-broken-leash",
+    "effect/ax-trait-oathbound"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 64,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 64,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "devotion",
+      "break-chains"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 20
+    },
+    "resonanceAffinity": {
+      "devotion": 0.2
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "accuracy": [
+        1,
+        2,
+        3
+      ],
+      "evasion": [
+        1,
+        2
+      ],
+      "resolve": [
+        1,
+        2,
+        3
+      ],
+      "initiative": [
+        0,
+        1
+      ],
+      "perception": [
+        0,
+        1
+      ],
+      "control": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "ancient-candidate",
+    "remnant",
+    "mumbai",
+    "beast-kin"
+  ]
+}

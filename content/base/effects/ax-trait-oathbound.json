@@ -1,0 +1,38 @@
+{
+  "id": "effect/ax-trait-oathbound",
+  "name": "誓言重於骨",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 6,
+      "source": "effect/ax-trait-oathbound"
+    },
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-trait-oathbound"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-trait-oathbound"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "誓言重於骨"
+  }
+}

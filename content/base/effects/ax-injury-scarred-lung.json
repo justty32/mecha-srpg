@@ -1,0 +1,26 @@
+{
+  "id": "effect/ax-injury-scarred-lung",
+  "name": "肺上結殼",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.fatigue.max",
+      "op": "add",
+      "value": -15,
+      "source": "effect/ax-injury-scarred-lung"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:permanent"
+  ],
+  "ui": {
+    "badge": "肺上結殼"
+  }
+}

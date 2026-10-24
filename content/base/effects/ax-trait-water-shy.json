@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-water-shy",
+  "name": "怕水",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-trait-water-shy"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -4,
+      "source": "effect/ax-trait-water-shy"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "怕水"
+  }
+}

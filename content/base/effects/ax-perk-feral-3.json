@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-feral-3",
+  "name": "野・我的手不鬆開",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 6,
+      "source": "effect/ax-perk-feral-3"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-perk-feral-3"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "feral"
+  ],
+  "ui": {
+    "badge": "野・我的手不鬆開"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-solo-3",
+  "name": "手・自己簽返航單",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 4,
+      "source": "effect/ax-perk-solo-3"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-perk-solo-3"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "solo"
+  ],
+  "ui": {
+    "badge": "手・自己簽返航單"
+  }
+}

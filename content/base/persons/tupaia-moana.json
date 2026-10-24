@@ -1,0 +1,97 @@
+{
+  "id": "person/tupaia-moana",
+  "name": "圖派亞・莫阿納",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 48,
+    "evasion": 8,
+    "resolve": 45,
+    "initiative": 6,
+    "perception": 6,
+    "control": 47
+  },
+  "traits": [
+    "effect/ax-trait-fate-cheater"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 57,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 57,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "outwit-fate",
+      "survive"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 15
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "control": [
+        1,
+        2,
+        3
+      ],
+      "resolve": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "technician",
+    "far-side",
+    "salvage-diver"
+  ]
+}

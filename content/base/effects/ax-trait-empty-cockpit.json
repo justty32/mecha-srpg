@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-empty-cockpit",
+  "name": "空座仍繫安全帶",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 4,
+      "source": "effect/ax-trait-empty-cockpit"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-trait-empty-cockpit"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "空座仍繫安全帶"
+  }
+}

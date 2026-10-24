@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-borrowed-ages",
+  "name": "一萬年的孤獨",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 8,
+      "source": "effect/ax-trait-borrowed-ages"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -1,
+      "source": "effect/ax-trait-borrowed-ages"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "一萬年的孤獨"
+  }
+}

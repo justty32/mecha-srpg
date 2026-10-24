@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-second-birth",
+  "name": "第二次生日",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 3,
+      "source": "effect/ax-trait-second-birth"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -4,
+      "source": "effect/ax-trait-second-birth"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "第二次生日"
+  }
+}

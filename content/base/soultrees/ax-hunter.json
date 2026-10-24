@@ -1,0 +1,49 @@
+{
+  "id": "soultree/ax-hunter",
+  "name": "逐星獵手",
+  "nodes": [
+    {
+      "id": "hunter-1",
+      "perk": "effect/ax-perk-hunter-1",
+      "research": {
+        "calc": 5
+      },
+      "companionship": 0,
+      "requires": []
+    },
+    {
+      "id": "hunter-2",
+      "perk": "effect/ax-perk-hunter-2",
+      "research": {
+        "calc": 10
+      },
+      "companionship": 5,
+      "requires": [
+        "hunter-1"
+      ]
+    },
+    {
+      "id": "hunter-3",
+      "perk": "effect/ax-perk-hunter-3",
+      "research": {
+        "calc": 20,
+        "hand": 5
+      },
+      "companionship": 10,
+      "requires": [
+        "hunter-2"
+      ]
+    },
+    {
+      "id": "hunter-4",
+      "perk": "effect/perk-soul-calc-2",
+      "research": {
+        "calc": 25
+      },
+      "companionship": 15,
+      "requires": [
+        "hunter-3"
+      ]
+    }
+  ]
+}

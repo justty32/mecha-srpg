@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-watchful",
+  "name": "不數睡著的人",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "effect/ax-trait-watchful"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-trait-watchful"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "不數睡著的人"
+  }
+}

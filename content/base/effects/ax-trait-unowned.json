@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-trait-unowned",
+  "name": "拒絕所有權",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 6,
+      "source": "effect/ax-trait-unowned"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -4,
+      "source": "effect/ax-trait-unowned"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "拒絕所有權"
+  }
+}

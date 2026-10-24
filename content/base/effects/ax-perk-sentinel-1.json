@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-perk-sentinel-1",
+  "name": "心・逐名點燈",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 4,
+      "source": "effect/ax-perk-sentinel-1"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-perk-sentinel-1"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "perk",
+    "soul",
+    "sentinel"
+  ],
+  "ui": {
+    "badge": "心・逐名點燈"
+  }
+}

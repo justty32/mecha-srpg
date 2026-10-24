@@ -1,0 +1,76 @@
+{
+  "id": "person/rust-kite",
+  "name": "鏽鳶",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 51,
+    "evasion": 14,
+    "resolve": 66,
+    "initiative": 9,
+    "perception": 6,
+    "control": 60
+  },
+  "traits": [
+    "effect/ax-trait-unowned",
+    "effect/ax-trait-grudge-ledger"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "calc",
+      "name": "算力",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "break-chains",
+      "survive"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 15
+    }
+  },
+  "growth": {
+    "tree": "soultree/ax-feral",
+    "researchPerDirection": {
+      "heart": 5
+    },
+    "companionshipRate": 0.75
+  },
+  "tags": [
+    "soul",
+    "far-side",
+    "wild-soul",
+    "soul-grade:S"
+  ]
+}

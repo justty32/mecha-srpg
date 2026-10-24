@@ -1,0 +1,38 @@
+{
+  "id": "effect/ax-trait-fate-cheater",
+  "name": "跟命運賒帳",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 3,
+      "source": "effect/ax-trait-fate-cheater"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "effect/ax-trait-fate-cheater"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -5,
+      "source": "effect/ax-trait-fate-cheater"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "trait"
+  ],
+  "ui": {
+    "badge": "跟命運賒帳"
+  }
+}

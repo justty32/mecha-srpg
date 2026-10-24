@@ -1,0 +1,75 @@
+{
+  "id": "person/lantern-nine",
+  "name": "九號燈",
+  "kind": "soul",
+  "attrs": {
+    "accuracy": 49,
+    "evasion": 8,
+    "resolve": 40,
+    "initiative": 6,
+    "perception": 6,
+    "control": 40
+  },
+  "traits": [
+    "effect/ax-trait-watchful"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "calc",
+      "name": "算力",
+      "min": 0,
+      "max": 55,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 55,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "bring-them-home",
+      "protect-kin"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 10
+    }
+  },
+  "growth": {
+    "tree": "soultree/ax-sentinel",
+    "researchPerDirection": {
+      "heart": 5
+    },
+    "companionshipRate": 1.5
+  },
+  "tags": [
+    "soul",
+    "remnant",
+    "registered",
+    "soul-grade:C"
+  ]
+}

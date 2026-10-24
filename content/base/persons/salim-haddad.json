@@ -1,0 +1,114 @@
+{
+  "id": "person/salim-haddad",
+  "name": "薩利姆・哈達德",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 52,
+    "evasion": 12,
+    "resolve": 64,
+    "initiative": 7,
+    "perception": 5,
+    "control": 51
+  },
+  "traits": [
+    "effect/ax-trait-broken-leash"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "break-chains",
+      "protect-kin"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": 20
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "accuracy": [
+        1,
+        2,
+        3
+      ],
+      "evasion": [
+        1,
+        2
+      ],
+      "resolve": [
+        1,
+        2,
+        3
+      ],
+      "initiative": [
+        0,
+        1
+      ],
+      "perception": [
+        0,
+        1
+      ],
+      "control": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "cult-apostate",
+    "beast-kin"
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "id": "effect/ax-injury-phantom-limb",
+  "name": "缺肢仍痛",
+  "scope": "person",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": -5,
+      "source": "effect/ax-injury-phantom-limb"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "effect/ax-injury-phantom-limb"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury:permanent"
+  ],
+  "ui": {
+    "badge": "缺肢仍痛"
+  }
+}
