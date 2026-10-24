@@ -1,0 +1,89 @@
+{
+  "id": "scenario/mirror-choir-vigil",
+  "map": "map/shard-mirror-28",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 10,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/thirdblade-swordfish-v5",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 11,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/anvil-crimson-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 12,
+            "y": 14
+          }
+        }
+      ],
+      "ai": "aiprofile/bodyguard"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/mirror-b",
+          "at": {
+            "x": 16,
+            "y": 14
+          }
+        },
+        {
+          "monster": "monster/choir-a",
+          "at": {
+            "x": 18,
+            "y": 14
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 10
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 10,
+  "seed": 2110
+}

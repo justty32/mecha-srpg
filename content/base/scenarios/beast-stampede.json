@@ -1,0 +1,187 @@
+{
+  "id": "scenario/beast-stampede",
+  "map": "map/mineral-waste-64x40",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/thirdblade-swordfish-iii",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 26,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/anvil-ii",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 26,
+            "y": 21
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/union-fr7",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 16
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/union-fr7",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/cliffjaw-red-eye",
+          "at": {
+            "x": 32,
+            "y": 19
+          }
+        },
+        {
+          "monster": "monster/tidewolf-c",
+          "at": {
+            "x": 31,
+            "y": 16
+          }
+        },
+        {
+          "monster": "monster/tidewolf-c",
+          "at": {
+            "x": 31,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/tidewolf-d",
+          "at": {
+            "x": 31,
+            "y": 20
+          }
+        },
+        {
+          "monster": "monster/tidewolf-d",
+          "at": {
+            "x": 31,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/pack-hunter"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/cliffjaw-red-eye"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2110
+}

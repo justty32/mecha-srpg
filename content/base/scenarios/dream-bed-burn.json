@@ -1,0 +1,154 @@
+{
+  "id": "scenario/dream-bed-burn",
+  "map": "map/mycelium-glade-32",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/anvil-crimson-rivet",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/thirdblade-swordfish-iii",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 23
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/dhaka-weavers",
+      "units": [
+        {
+          "mech": "frame/longspear-v1-guild",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/longspear-v1-guild",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/longspear-v1-guild",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 22
+          }
+        },
+        {
+          "mech": "frame/longspear-v1-guild",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 23
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/bed-bellless-dream",
+          "at": {
+            "x": 18,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/rotwarden-b",
+          "at": {
+            "x": 18,
+            "y": 19
+          }
+        },
+        {
+          "monster": "monster/stalk-c",
+          "at": {
+            "x": 18,
+            "y": 23
+          }
+        },
+        {
+          "monster": "monster/pod-d",
+          "at": {
+            "x": 17,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/bed-bellless-dream"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2110
+}

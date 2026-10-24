@@ -1,0 +1,196 @@
+{
+  "id": "scenario/unbound-raid",
+  "map": "map/delta-ruins-56",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/thirdblade-swordfish-iii",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 23
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/bay-seventh-post",
+      "units": [
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/union-fr7",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 22
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 23
+          }
+        },
+        {
+          "mech": "frame/union-fr7",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 24
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/tide-faith",
+      "units": [
+        {
+          "mech": "frame/tidefaith-redeemer-3",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 18,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/tidefaith-redeemer-3",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 18,
+            "y": 23
+          }
+        },
+        {
+          "mech": "frame/bio-tidewolf",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 19,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/tide-cultist"
+    },
+    "third": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/siegebeetle-b",
+          "at": {
+            "x": 21,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/lancewing-c",
+          "at": {
+            "x": 21,
+            "y": 23
+          }
+        },
+        {
+          "monster": "monster/lancewing-c",
+          "at": {
+            "x": 22,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "third",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2110
+}

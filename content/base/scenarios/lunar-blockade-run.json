@@ -1,0 +1,94 @@
+{
+  "id": "scenario/lunar-blockade-run",
+  "map": "map/lunar-crater-36",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 27,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 27,
+            "y": 19
+          }
+        }
+      ],
+      "ai": "aiprofile/guerrilla"
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/selene-silverring-g2",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 30,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/selene-crescent-g5",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 30,
+            "y": 19
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "reachExit",
+      "params": {
+        "target": "player-0"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2110
+}

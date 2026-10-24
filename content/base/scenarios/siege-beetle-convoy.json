@@ -1,0 +1,181 @@
+{
+  "id": "scenario/siege-beetle-convoy",
+  "map": "map/convoy-road-80x20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/thirdblade-swordfish-iii",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 68,
+            "y": 10
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii-rivet",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 68,
+            "y": 12
+          }
+        }
+      ],
+      "ai": "aiprofile/bodyguard",
+      "allies": [
+        "convoy",
+        "ally"
+      ]
+    },
+    "convoy": {
+      "faction": "faction/anvil-hunters",
+      "units": [
+        {
+          "mech": "frame/anvil-ii",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 70,
+            "y": 10
+          }
+        },
+        {
+          "mech": "frame/anvil-ii",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 70,
+            "y": 11
+          }
+        }
+      ],
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player",
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/salt-gull-hunters",
+      "units": [
+        {
+          "mech": "frame/longspear-v4-saltgull",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 69,
+            "y": 7
+          }
+        },
+        {
+          "mech": "frame/longspear-v4-saltgull",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 69,
+            "y": 8
+          }
+        },
+        {
+          "mech": "frame/longspear-v4-saltgull",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 69,
+            "y": 12
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player",
+        "convoy"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/siegebeetle-b",
+          "at": {
+            "x": 73,
+            "y": 10
+          }
+        },
+        {
+          "monster": "monster/siegebeetle-b",
+          "at": {
+            "x": 73,
+            "y": 12
+          }
+        },
+        {
+          "monster": "monster/lancewing-c",
+          "at": {
+            "x": 73,
+            "y": 7
+          }
+        },
+        {
+          "monster": "monster/lancewing-c",
+          "at": {
+            "x": 74,
+            "y": 9
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "escort",
+      "params": {
+        "target": "frame/anvil-ii"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/anvil-ii"
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2110
+}
