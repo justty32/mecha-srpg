@@ -1,0 +1,403 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-24",
+ "link_columns": [
+  "source",
+  "spec_section"
+ ],
+ "columns": [
+  "id",
+  "source",
+  "constraint",
+  "spec_section",
+  "note"
+ ],
+ "rows": [
+  {
+   "id": "DN-M-01",
+   "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
+   "constraint": "形態：網頁遊戲、無美術、偏 MUD；SRPG 戰場也用網頁；技術棧隨意",
+   "spec_section": "text-ui-contract.md#原則",
+   "note": "營運畫面純文字、Screen 是純資料"
+  },
+  {
+   "id": "DN-M-02",
+   "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
+   "constraint": "一局時長不限；地圖有大有小",
+   "spec_section": "time-and-tick.md#終局",
+   "note": "無勝利終點；時間只由玩家推進"
+  },
+  {
+   "id": "DN-M-04",
+   "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
+   "constraint": "戰場之間可以有營運層；參考 Battle Brothers 傭兵團營運",
+   "spec_section": "README.md#一句話模型",
+   "note": "本 spec 的存在理由"
+  },
+  {
+   "id": "DN-M-05",
+   "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
+   "constraint": "BB 式：機甲就是裝備；駕駛員＝BB 的兄弟（人物、特質、傷勢、士氣、成長）",
+   "spec_section": "data-model-roster-repair.md#名冊-rosterstate",
+   "note": "薪水、mood、離隊、休養全掛人物"
+  },
+  {
+   "id": "DN-M-11",
+   "source": "../../design-notes/mechanics.md#2026-10-23-裁示含當晚多次補充",
+   "constraint": "架構盡量解耦；方便新增資料；要有 AI",
+   "spec_section": "architecture-ops.md#模組與允許的依賴",
+   "note": "ops/* 不 import rules／ai；內容全資料"
+  },
+  {
+   "id": "DN-W-01",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "三類機甲：機械（製造／採購）、生物（戰場捕捉＋改裝）、古代（遺跡唯一掉落、不可量產）",
+   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "note": "三種取得路徑各有營運入口：市場／獸欄／遺跡"
+  },
+  {
+   "id": "DN-W-02",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "人機關係：古代系機甲自己選主人（共鳴）；生物系看承擔；機械系裝異系部件也要承擔",
+   "spec_section": "data-model-roster-repair.md#古代機甲的人與名",
+   "note": "認主只在大潮之夜、離開會衰弱；承擔上限受同調影響"
+  },
+  {
+   "id": "DN-W-03",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "機魂是另一個駕駛員；AI 開發選方向像點天賦樹、吃營運；陪伴更好但花時間",
+   "spec_section": "data-model-economy-research.md#data-model-economy-research--帳本庫存市場債科研機魂天賦樹的開練熟",
+   "note": "開＝科研付幣；練熟＝每日陪伴時段"
+  },
+  {
+   "id": "DN-W-04",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "古代機甲神異能力每台獨一無二、多半不發熱",
+   "spec_section": "battle-interface.md#二情境生成-scenariogen",
+   "note": "營運層不碰異能；只負責認主與 dormant 狀態"
+  },
+  {
+   "id": "DN-W-05",
+   "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
+   "constraint": "敵人是怪獸（參考 Into the Breach 與環太平洋）",
+   "spec_section": "data-model-factions-contracts.md#競爭獵團與人類敵人",
+   "note": "人類敵人約兩成，其餘裂獸"
+  },
+  {
+   "id": "DN-W-06",
+   "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
+   "constraint": "等級 SSS–D 七級共用；SS／SSS 先不設計",
+   "spec_section": "data-model-world-map.md#潮壓-pressure全局隱藏量",
+   "note": "只留 pressureSource 欄位"
+  },
+  {
+   "id": "DN-W-07",
+   "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
+   "constraint": "2108 年、地球＋月球；遺跡大多在地球、有些在月球；怪物從裂縫出現、占地盤、衍生子體、主要在地球",
+   "spec_section": "data-model-world-map.md#節點-nodedef-與路線-routedef內容檔",
+   "note": "body: earth|moon；蝕域是節點狀態"
+  },
+  {
+   "id": "DN-W-08",
+   "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
+   "constraint": "尚未裁示項（敵對人類機甲、玩家組織、遺跡探索、裂縫規則、地月移動、同調暴走）由規劃線決定",
+   "spec_section": "README.md#讀法",
+   "note": "全部在本 spec 與 world 第二版落定；本列只提醒「未裁示＝由規劃線決定」"
+  },
+  {
+   "id": "DN-W-09",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "為何 2108 還用機甲：殼訊（遺跡洗腦＋世界規則）；遺跡與怪獸同時出現；機械系以古代機甲為藍本",
+   "spec_section": "data-model-world-map.md#遺跡探勘入口",
+   "note": "大潮時新裂縫與新遺跡同步露出"
+  },
+  {
+   "id": "DN-W-10",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "推翻相位說；飛機與戰鬥機可傷怪獸但十分之一，是世界規則",
+   "spec_section": "battle-interface.md#二情境生成-scenariogen",
+   "note": "空援券、艦砲、砲台都是 conventional-arms 單位，conventionalFactor 0.1"
+  },
+  {
+   "id": "DN-W-11",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "怪獸多種多樣：蟲族、獸族、異形、菌絲等",
+   "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
+   "note": "裂縫模板按族；encounters 按族×深度"
+  },
+  {
+   "id": "DN-W-12",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "B 級不是 C 級蛻變而來；生物系養成另找規則",
+   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "note": "養成三條不動等級：同調、移植、族行為"
+  },
+  {
+   "id": "DN-W-13",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "古代機甲數量不限死（遺跡持續產出、黑市、月面）",
+   "spec_section": "data-model-world-map.md#遺跡探勘入口",
+   "note": "約三分之一遺跡底下有殼；黑市列可售 dormant 殼"
+  },
+  {
+   "id": "DN-W-14",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "母體／子體與蛻皮只是某些族的設定（spawner／molt 類可選行為）",
+   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "note": "brood 只蟲族、molt 只獸族、mutate 只異形"
+  },
+  {
+   "id": "DN-W-15",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "勢力可以大大小小、很多；關係與聲望是逐勢力的表",
+   "spec_section": "data-model-factions-contracts.md#勢力營運側-factionopsdef不改-core-的-factiondef",
+   "note": "無全局名聲；殘聯評等只是殘聯那格"
+  },
+  {
+   "id": "DN-R-01",
+   "source": "../../design-notes.md#尚未裁示--2026-10-23-使用者裁示都隨意讓-fable-去規劃",
+   "constraint": "未裁示的都隨意，想看 AI 的創造力；拿不準自己決定並說明理由；與裁示衝突仍以裁示為準",
+   "spec_section": "README.md#讀法",
+   "note": "每子檔結尾列「替使用者做掉的決定」"
+  },
+  {
+   "id": "DN-R-02",
+   "source": "../../design-notes.md#尚未裁示--2026-10-23-使用者裁示都隨意讓-fable-去規劃",
+   "constraint": "BB 式細節沿用程度、營運層範圍（契約、金錢、修理、招募）、文字互動深度由規劃線決定",
+   "spec_section": "text-ui-contract.md#最小動詞集合v1-共-27-個",
+   "note": "全要＋潮；27 個動詞（23 遊戲＋4 系統）兩層並存"
+  },
+  {
+   "id": "WV-01",
+   "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
+   "constraint": "營運迴圈：契約板與蝕域圖→移動→戰鬥→戰利品→船上處理→下一契約；兩個大潮是節拍；錢只有一種幣；開局背船債每潮月付息",
+   "spec_section": "data-model-economy-research.md#債-debt-與塞勒涅催收",
+   "note": "利率每潮月 5% 量級；催收事件鏈"
+  },
+  {
+   "id": "WV-02",
+   "source": "../world/operations.md#世界圖與浮船",
+   "constraint": "世界圖是節點圖不是方格；浮船是基地也是容器（機庫、獸欄、醫務艙、酒艙、艦橋、艦砲）；容量硬限制；船會壞",
+   "spec_section": "data-model-world-map.md#浮船-shipstate",
+   "note": "hull 歸零＝徒步"
+  },
+  {
+   "id": "WV-03",
+   "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
+   "constraint": "地月只有塞勒涅軌道渡輪：三赤道港、弦月開船、單程三天、一班四機八人、浮船上不去、多數生物系要密封艙",
+   "spec_section": "data-model-world-map.md#地月渡輪-ferrydef",
+   "note": ""
+  },
+  {
+   "id": "WV-04",
+   "source": "../world/operations.md#十分律空援昂貴的輔助火力",
+   "constraint": "空援三來源：城邦砲台（免費只及牆邊）、空援券（延遲一回合落地、一券一潮月薪水量級）、浮船艦砲（船停上空會被咬）",
+   "spec_section": "battle-interface.md#一出戰編成-sortie",
+   "note": "supplies.airstrikeTickets／shipOverhead"
+  },
+  {
+   "id": "WV-05",
+   "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
+   "constraint": "一天一 tick、二十八天一潮月；戰鬥不占營運時間；馴化以天計、修理以工時計、傷勢以潮月計；認主只在大潮之夜；一局無終點",
+   "spec_section": "time-and-tick.md#曆-calendar",
+   "note": ""
+  },
+  {
+   "id": "WV-06",
+   "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
+   "constraint": "指令列為主、每畫面給可點選單；對話選項式；BB 式事件兩三個選擇；房間描述隨狀態變；不做多人與即時",
+   "spec_section": "text-ui-contract.md#房間-room-與描述",
+   "note": ""
+  },
+  {
+   "id": "WV-07",
+   "source": "../world/rifts-and-territory.md#時鐘潮月大潮潮壓",
+   "constraint": "第 1、15 天大潮（裂縫活躍、新裂縫與新遺跡）；第 7、21 天弦月（渡輪）；隱藏量潮壓隨時間升、封裂縫降、蝕域升",
+   "spec_section": "time-and-tick.md#大潮日的特別事項",
+   "note": ""
+  },
+  {
+   "id": "WV-08",
+   "source": "../world/rifts-and-territory.md#裂縫怎麼開開出什麼",
+   "constraint": "裂縫有寬度 D–S 與主族；新裂縫只在大潮開：七成蝕域旁、三成野地、極少城邦邊；前三天只有先鋒、第四天潮錨到；異形裂縫自閉無錨",
+   "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
+   "note": "狀態機 opening→anchored"
+  },
+  {
+   "id": "WV-09",
+   "source": "../world/rifts-and-territory.md#rifts-and-territory--裂縫與地盤規則",
+   "constraint": "蝕域是裂縫周圍一圈圈的區：淺蝕／深蝕／核；深蝕不能通行；戰場地圖由深度與主族生成；擴到城邦邊城邦失守",
+   "spec_section": "data-model-world-map.md#節點狀態-nodestate存檔與蝕域",
+   "note": ""
+  },
+  {
+   "id": "WV-10",
+   "source": "../world/rifts-and-territory.md#潮錨與繫各族怎麼撐開裂縫",
+   "constraint": "每族的錨不同：蟲族巢母（唯一母體、子體有繫）、獸族崖牙（不生不繫）、菌絲菌床（就是地盤）、異形無錨；殺或捕錨裂縫進入可封狀態",
+   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "note": "anchor dead/captured → unanchored"
+  },
+  {
+   "id": "WV-11",
+   "source": "../world/rifts-and-territory.md#封閉與收復",
+   "constraint": "能封不能滅：殺／捕錨後守核區到下一個大潮才封口；封口後每潮月退一區（菌絲要燒）；殘聯按退回的區付收復金；潮壓換岸不消失",
+   "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
+   "note": "sealing→sealed→receding→closed"
+  },
+  {
+   "id": "WV-12",
+   "source": "../world/rifts-and-territory.md#灰色選擇養裂",
+   "constraint": "錨死不守則下個大潮送新錨，可當獵場；代價：蝕域照長、殘聯評等掉、兩潮月後罰款、再久通緝；潮信會喜歡你",
+   "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
+   "note": "fedCount 驅動殘聯事件鏈"
+  },
+  {
+   "id": "WV-13",
+   "source": "../world/factions.md#factions--玩家組織勢力的開放結構與代表樣本人類機甲敵人",
+   "constraint": "玩家是持殘聯獵牌的獵團＋浮船候鳥號；開局繼承船、三台 D 級摹機、五個駕駛員、一個技師、一個租來的機魂、一筆船債；收入三條支出三條",
+   "spec_section": "content-format-ops.md#content-format-ops--contentworld-佈局id-命名每種資料一個-json-範例",
+   "note": "campaign-start/default.json"
+  },
+  {
+   "id": "WV-14",
+   "source": "../world/factions.md#勢力是什麼開放結構",
+   "constraint": "勢力六欄：規模、地盤（可空）、態度（對玩家／生物系／古代／殘聯／機魂）、契約來源、聲望、生滅；開局約四十個、五到八個大",
+   "spec_section": "data-model-factions-contracts.md#勢力營運側-factionopsdef不改-core-的-factiondef",
+   "note": ""
+  },
+  {
+   "id": "WV-15",
+   "source": "../world/factions.md#敵對人類機甲要但是少數",
+   "constraint": "約兩成戰鬥遇到人類機甲：解拘者、白手套、競爭獵團、城邦民兵；其餘八成裂獸",
+   "spec_section": "data-model-factions-contracts.md#競爭獵團與人類敵人",
+   "note": "由行動牌權重調到兩成"
+  },
+  {
+   "id": "WV-16",
+   "source": "../world/machine-souls.md#出生與成長科研是天賦樹陪伴是時間",
+   "constraint": "機魂出生是科研項目「育魂」；天賦樹三根算／手／心；科研開節點是「會」不是「熟」，陪伴才練熟；租賃機魂開了很多節點一個都沒練熟",
+   "spec_section": "data-model-economy-research.md#data-model-economy-research--帳本庫存市場債科研機魂天賦樹的開練熟",
+   "note": "mastery 乘在貢獻上"
+  },
+  {
+   "id": "WV-17",
+   "source": "../world/machine-souls.md#死亡搬家複本",
+   "constraint": "魂核毀＝機魂死；換機重練手；複本有全部節點零陪伴；野魂不能合法上殘聯契約",
+   "spec_section": "data-model-roster-repair.md#工時佇列-workqueue修理科研移植育魂共用",
+   "note": "魂核是部件走 repair"
+  },
+  {
+   "id": "WV-18",
+   "source": "../world/mech-lifecycles.md#生物系捕馴裝同調承擔暴走養成",
+   "constraint": "捕、馴（獸欄花天數與飼料）、裝（拘束與駕駛艙是部件）、同調、承擔、暴走、餵是日常；養成三條：同調、移植、族行為",
+   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "note": ""
+  },
+  {
+   "id": "WV-19",
+   "source": "../world/mech-lifecycles.md#古代系找認養修",
+   "constraint": "古代系沒有部件可換、壞了只能修、修法是餵裂獸的核（與能源收入競爭）；認主後不能換機、離開會衰弱；駕駛員死機甲睡、再叫醒帶怨",
+   "spec_section": "data-model-roster-repair.md#工時佇列-workqueue修理科研移植育魂共用",
+   "note": "repair-only 材料固定 stock:core-*"
+  },
+  {
+   "id": "WV-20",
+   "source": "../world/ruins-and-ancient.md#探勘遺跡怎麼找怎麼進有多少",
+   "constraint": "遺跡探勘是獨立文字子玩法：浮船停外面、派人徒步、以層計每層一天、擲特質；約三分之一底下有古代機甲",
+   "spec_section": "data-model-world-map.md#遺跡探勘入口",
+   "note": "事件鏈 events/ruin-*"
+  },
+  {
+   "id": "WV-21",
+   "source": "../world/monsters.md#monsters--裂獸生態四族與拘束方案da-等級觀sssss-待裁示",
+   "constraint": "等級＝裂縫寬度放得過來的尺寸；寬度 D 只過 D；獸族蛻皮是唯一例外",
+   "spec_section": "content-format-ops.md#content-format-ops--contentworld-佈局id-命名每種資料一個-json-範例",
+   "note": "rifts/<family>.json 的 gradeByWidth"
+  },
+  {
+   "id": "WV-22",
+   "source": "../world/setting.md#十分律傳統兵器打得到但只有十分之一",
+   "constraint": "十分律覆蓋一切非機甲傷害（含艦砲、地雷、砲台）；營運層當昂貴輔助火力",
+   "spec_section": "battle-interface.md#二情境生成-scenariogen",
+   "note": ""
+  },
+  {
+   "id": "DEC-01",
+   "source": "../../../decisions.md#2026-10-23-戰鬥系統十題的預設fable-代決使用者可逐條推翻",
+   "constraint": "戰後不補滿：部位與駕駛員 HP 延續；部位歸零可修（費時費錢）或換，古代只修不換",
+   "spec_section": "data-model-roster-repair.md#工時佇列-workqueue修理科研移植育魂共用",
+   "note": "decisions 戰鬥十題 (6)"
+  },
+  {
+   "id": "DEC-02",
+   "source": "../../../decisions.md#2026-10-23-戰鬥系統十題的預設fable-代決使用者可逐條推翻",
+   "constraint": "多份契約並行有時限；敵軍接約前依裂縫地盤固定、不隨玩家戰力縮放",
+   "spec_section": "data-model-factions-contracts.md#契約-contracttemplate-與-contractstate",
+   "note": "decisions 戰鬥十題 (10)；敵方編成在 offered 時快照"
+  },
+  {
+   "id": "DEC-03",
+   "source": "../../../decisions.md#2026-10-23-戰鬥系統十題的預設fable-代決使用者可逐條推翻",
+   "constraint": "整機到地圖邊緣撤離、另支援棄機逃生；機甲留場可能被占或事後回收",
+   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "note": "derelict-recovered／lost 的回寫"
+  },
+  {
+   "id": "DEC-04",
+   "source": "../../../decisions.md#2026-10-23-技術棧純-typescriptvite邏輯與-dom-分離",
+   "constraint": "純 TypeScript＋Vite、無框架；邏輯與 DOM 完全分離；node 內建 test runner＋happy-dom；Playwright 少量端對端",
+   "spec_section": "architecture-ops.md#architecture-ops--srcops-的模組邊界狀態與事件存檔headless-測試策略",
+   "note": ""
+  },
+  {
+   "id": "DEC-05",
+   "source": "../../../decisions.md#2026-10-23-tome4-卷八題的預設fable-代決使用者可逐條推翻",
+   "constraint": "暫時傷帶 days 時鐘由營運層遞減；永久傷只能被 cleanse 類效果移除",
+   "spec_section": "data-model-roster-repair.md#名冊-rosterstate",
+   "note": "醫務艙每日 −1；城邦 medbay 的 cleanse 服務"
+  },
+  {
+   "id": "CORE-01",
+   "source": "../core/rules-battle-flow.md#battleresult交給營運層的唯一介面",
+   "constraint": "BattleResult 是戰鬥引擎對營運層的唯一出口；營運層不可直接讀戰鬥內部狀態",
+   "spec_section": "battle-interface.md#三戰果回寫-applybattleresult",
+   "note": "ops/* 不 import rules／ai"
+  },
+  {
+   "id": "CORE-02",
+   "source": "../core/architecture.md#存檔格式",
+   "constraint": "存檔 campaignBlob 由營運層自己解讀，戰鬥引擎不解讀；指令序列是真相、snapshot 是快取",
+   "spec_section": "architecture-ops.md#architecture-ops--srcops-的模組邊界狀態與事件存檔headless-測試策略",
+   "note": ""
+  },
+  {
+   "id": "CORE-03",
+   "source": "../core/rules-battle-flow.md#捕捉-capture",
+   "constraint": "捕捉成功的單位轉為 captured、frame 改成 capture.frame、各層 HP 原樣帶走；戰後進營運層再裝部件",
+   "spec_section": "data-model-roster-repair.md#機庫-hangarstate-與獸欄-stablestate",
+   "note": "captured → PenState(wild)"
+  },
+  {
+   "id": "USR-01",
+   "source": "../../design-notes/world.md#2026-10-23-世界觀裁示第一版",
+   "constraint": "沙盒遊戲：玩家可以開著飛船去自己想去的地方；世界圖開放、無線性關卡；契約與事件是可選機會；壓力來自世界自己在動",
+   "spec_section": "data-model-world-map.md#節點-nodedef-與路線-routedef內容檔",
+   "note": "2026-10-24 補充裁示，已記在 design-notes/world.md「沙盒」段；另見 time-and-tick 航行與潮月、text-ui 航／泊／懸"
+  },
+  {
+   "id": "USR-02",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "古代機甲原始無名，名字是人取的、通常引用神話傳說；可改、可多個、認主或事件中可重新命名",
+   "spec_section": "data-model-roster-repair.md#古代機甲的人與名",
+   "note": "2026-10-24 補充裁示，已記在 design-notes/mechs.md；名存 RosterState.names，命名表 names/mythic-*.json"
+  },
+  {
+   "id": "USR-03",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "機械系命名分階段：代號（D）→系列＋型號／前後綴（A–C）→愈高階愈中二，依開發勢力喜好；隊長機＝冠名-系列",
+   "spec_section": "data-model-factions-contracts.md#勢力營運側-factionopsdef不改-core-的-factiondef",
+   "note": "2026-10-24 補充裁示，已記在 design-notes/mechs.md；屬內容規範，spec 只在 FactionOpsDef 留 naming 欄；content/base 現名規範化排在 roadmap「內容第二批」"
+  }
+ ]
+}
