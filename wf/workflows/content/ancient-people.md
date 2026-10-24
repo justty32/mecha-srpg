@@ -1,6 +1,6 @@
 # ancient-people — 古代機、人物與機魂的設計原則
 
-[content README](README.md)｜裁示 [design-notes/mechs](../planning/design-notes/mechs.md)｜世界觀 [ruins-and-ancient](../planning/specs/world/ruins-and-ancient.md)、[machine-souls](../planning/specs/world/machine-souls.md)｜規則 [rules-people](../planning/specs/core/rules-people.md)｜設計契約 `wf/workflows/dispatch/handoffs/lead-content-ancient/design.md`
+[content README](README.md)｜裁示 [design-notes/mechs](../planning/design-notes/mechs.md)｜世界觀 [ruins-and-ancient](../planning/specs/world/ruins-and-ancient.md)、[machine-souls](../planning/specs/world/machine-souls.md)｜規則 [rules-people](../planning/specs/core/rules-people.md)｜設計契約 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-ancient/design.md`
 
 ## 古代機：每台是一個人
 

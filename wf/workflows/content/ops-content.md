@@ -1,6 +1,6 @@
 # ops-content — 營運層內容：事件、契約、名表、科研、市場、遭遇、對白
 
-[content README](README.md)｜格式 [content-format-ops](../planning/specs/ops/content-format-ops.md)（三個範例子檔）｜護欄 `wf/workflows/dispatch/handoffs/lead-content-world/engine-rules.md`（領導實測，照做）｜檢查 `lint_world.py` 同目錄｜既有一覽 `lead-content-world/catalog.json`（139 列）
+[content README](README.md)｜格式 [content-format-ops](../planning/specs/ops/content-format-ops.md)（三個範例子檔）｜護欄 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-world/engine-rules.md`（領導實測，照做）｜檢查 `lint_world.py` 同目錄｜既有一覽 `lead-content-world/catalog.json`（139 列）
 
 營運內容在 `content/base/world/<kind>/`，驗證多一道 `node src/ops/content/check.ts content/base`，平衡用 `npm run sim:campaign`（greedy 12 潮月）與 MCP `campaign_auto`。這層最容易「寫對了但把模擬器卡死」——engine-rules 五節每條都是踩過的坑。
 

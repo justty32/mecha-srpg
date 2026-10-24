@@ -1,6 +1,6 @@
 # bio-monsters — 怪獸四族與生物系機甲的設計原則
 
-[content README](README.md)｜裁示 [design-notes/bio-mechs](../planning/design-notes/bio-mechs.md)｜世界觀 [monsters](../planning/specs/world/monsters.md)、[bio-mechs](../planning/specs/world/bio-mechs.md)｜營運 [data-model-beasts](../planning/specs/ops/data-model-beasts.md)｜設計契約 `wf/workflows/dispatch/handoffs/lead-content-monster/design.md`（引擎事實與各族表）
+[content README](README.md)｜裁示 [design-notes/bio-mechs](../planning/design-notes/bio-mechs.md)｜世界觀 [monsters](../planning/specs/world/monsters.md)、[bio-mechs](../planning/specs/world/bio-mechs.md)｜營運 [data-model-beasts](../planning/specs/ops/data-model-beasts.md)｜設計契約 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-monster/design.md`（引擎事實與各族表）
 
 怪獸是天氣也是神話。寫牠先寫**二名怎麼來的**，再寫數字；數字照 [numeric-bands](numeric-bands.md) 怪獸列。一族一組四檔：`species/`＋`bodyplans/`＋`frames/bio-*`＋`monsters/`，再加 `abilities/kx-*`、`effects/kx-*`；要出現在營運還要 `world/rifts/<family>`、`encounters/rift-<family>-*`、`world/beasts/<family>`（四族已有，新族才建）。
 

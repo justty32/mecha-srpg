@@ -1,6 +1,6 @@
 # battle-field — 地形、地圖、情境、AI 設定的設計原則
 
-[content README](README.md)｜型別 [data-model-world](../planning/specs/core/data-model-world.md)｜戰局 [rules-battle-flow](../planning/specs/core/rules-battle-flow.md)｜既有一覽 `wf/workflows/dispatch/handoffs/lead-content-battle/catalog.json`（73 列）｜試玩問題 `wf/workflows/dispatch/handoffs/lead-playtest/issues.json`
+[content README](README.md)｜型別 [data-model-world](../planning/specs/core/data-model-world.md)｜戰局 [rules-battle-flow](../planning/specs/core/rules-battle-flow.md)｜既有一覽 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-battle/catalog.json`（73 列）｜試玩問題 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/issues.json`
 
 情境是玩家真正碰到內容的地方；第 1 輪試玩 42 條問題裡一半是情境寫法（ISS-001／006／007／008／009／024／026／027）。寫情境先想「AI 對 AI 20 輪會發生什麼」。
 

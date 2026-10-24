@@ -10,7 +10,7 @@
 
 ## 待使用者項
 
-- [feature-dev] 請試玩**戰鬥** http://localhost:5173/（`npm run dev`；九項見 [feedback](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)，另有意圖撤退、擊退勝）→ 派戰鬥修正線
+- [feature-dev] 請試玩**戰鬥** http://localhost:5173/（`npm run dev`；九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)，另有意圖撤退、擊退勝）→ 派戰鬥修正線
 - [feature-dev] 請試玩**營運** `#/ops`：接約→航行→親自出戰→看戰果；回饋手感、記錄、世界圖、存讀檔、債務 → 派營運修正線
 - [feature-dev] 請試玩**百科** `#/wiki`（F1 進出、搜尋、交叉連結、年表）→ 派百科修正線
 - [content] 請定**新詞衍生詞**：「鞘」系作廢詞重擬版、潮信會、大潮小潮、工作名（見 [terms](workflows/planning/design-notes/terms.md)）；改名批次先擬一版給你 → 定案後全庫換

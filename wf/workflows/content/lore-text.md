@@ -1,6 +1,6 @@
 # lore-text — 世界觀資料（content/lore）與文字潤飾準則
 
-[content README](README.md)｜格式契約 [lore README](../../../content/lore/README.md)｜風格 [style.md](../../../content/lore/style.md)（用語表 glossary.json 23 列）｜既有 REPORT `wf/workflows/dispatch/handoffs/plan-lore/REPORT.md`（替使用者做掉的決定與衝突清單）
+[content README](README.md)｜格式契約 [lore README](../../../content/lore/README.md)｜風格 [style.md](../../../content/lore/style.md)（用語表 glossary.json 23 列）｜既有 REPORT `wf/workflows/dispatch/handoffs/done/2026-10-24/plan-lore/REPORT.md`（替使用者做掉的決定與衝突清單）
 
 **先讀** [world-pillars](world-pillars.md)（世界觀設計支柱 31 條與最常見的違反）——lore 與潤飾最常踩的就是那張清單。
 

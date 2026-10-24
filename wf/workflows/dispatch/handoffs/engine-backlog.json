@@ -16,7 +16,7 @@
    "序": "1",
    "優先": "P1",
    "項目": "方格大地圖實作（world-grid 七段切線）",
-   "來源": "[plan-world-grid](plan-world-grid/REPORT.md)、[plan-spec-integrate](plan-spec-integrate/REPORT.md)",
+   "來源": "[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)",
    "影響": "營運仍是節點圖：places／maps／lanes／regions／actors 與 `encounters/place-*` 填了不生效；沙盒、野外遭遇、追擊迴避、每洲一張圖都卡在這",
    "建議做法": "照 plan-world-grid 切線：(1) ops/content＋grid＋40×40 測試圖 →(2) move／places／tick 段 3 →(3) 蝕塊 →(4) actors／fog／遭遇 →(5) scenario／contracts／text →(6) 六張正式圖產生器＋地點座標＋航道 →(7) ui-ops 大地圖面板（GridView 共用）；驗收 `sim:campaign --months 12`＋六組測試、退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
    "規模": "大（Opus 領導＋3–5 codex，(1)–(5) 一線）"
@@ -25,7 +25,7 @@
    "序": "2",
    "優先": "P1",
    "項目": "玩家第 1 輪就撤退",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "greedy seed 1 全年撤 19 次、12 次首輪；anchored 凍結 7 場 0 勝 6 場首輪撤；營運體驗像打不起來",
    "建議做法": "查 `src/ai/intent.ts` 玩家陣營（全 AI 代打）的評估：首輪資訊不足時不應判達不到；`intentMinRound` 對玩家 slot 生效與否；配 `anchored-tally.ts` 量",
    "規模": "中"
@@ -34,7 +34,7 @@
    "序": "3",
    "優先": "P1",
    "項目": "anchored（巢母）打不下來",
-   "來源": "[lead-tune-battle](lead-tune-battle/REPORT.md)、[lead-ai-objective](lead-ai-objective/REPORT.md)",
+   "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)",
    "影響": "實際選招加權期望命中 42 >40；greedy anchored 0/4；清剿核心契約形同死約",
    "建議做法": "核心 HP 再降（≈99）或給弧光系加可瞄部位的單體能力；先查新營運路徑只派 4 場 anchored 的派遣邏輯",
    "規模": "小–中"
@@ -43,7 +43,7 @@
    "序": "4",
    "優先": "P1",
    "項目": "營運出戰數減半、撤得晚損失大",
-   "來源": "[lead-tune-battle](lead-tune-battle/REPORT.md)",
+   "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)",
    "影響": "非裂縫出戰 169→83、勝 87→35（意圖調校後）",
    "建議做法": "調 `intentGiveUpLoss`／`intentMinRound` 時一併跑 sweep 與 `anchored-tally.ts`，對照出戰數",
    "規模": "中"
@@ -52,7 +52,7 @@
    "序": "5",
    "優先": "P1",
    "項目": "第二年經濟崩",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)、[lead-impl-war](lead-impl-war/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)、[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)",
    "影響": "greedy 24 潮月現金 25.9k→5.0k；8 節點第 12 潮月前全被蝕化；勢力無現金與人口帳",
    "建議做法": "蝕域擴張速率與契約供應重調（大地圖落地後在格上重做）；收復地盤報酬；勢力帳本另議",
    "規模": "中"
@@ -61,7 +61,7 @@
    "序": "6",
    "優先": "P1",
    "項目": "`src/rules/effects.ts` 寫出 `part:undefined`",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "存檔前靠 JSON 正規化繞過；回放與存讀檔潛在不一致",
    "建議做法": "在 effects 產生事件處補 part 或省略欄位，加回歸測試",
    "規模": "小"
@@ -70,7 +70,7 @@
    "序": "7",
    "優先": "P2",
    "項目": "人類遭遇偏難（6 份測試全敗）",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "人類對手契約幾乎必敗；走私 A×4、解拘者 B×5 為湊 `budgetByGrade`",
    "建議做法": "內容平衡（改既有數值，非 codex 範圍）：預算表、編成下修；無走私者勢力暫借鹽鷗→待正式勢力內容",
    "規模": "小"
@@ -79,7 +79,7 @@
    "序": "8",
    "優先": "P2",
    "項目": "戰鬥剩餘 timeout 10 場",
-   "來源": "[lead-tune-battle](lead-tune-battle/REPORT.md)、[lead-playtest](lead-playtest/REPORT.md)",
+   "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)、[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)",
    "影響": "多方局 7、badlands／dream-bed-burn／nest-core-assault 各 1；護送四情境太易（ISS-043）、敵方 120 場只勝 2（ISS-045）",
    "建議做法": "多方局擊退判定與盟軍撤退時機；情境平衡第 2 輪（含 6 個 AI 設定只調 2 個）",
    "規模": "中"
@@ -106,7 +106,7 @@
    "序": "11",
    "優先": "P2",
    "項目": "`passive` 能力無作用",
-   "來源": "[lead-gaps-battle](lead-gaps-battle/REPORT.md)、[lead-ai-objective](lead-ai-objective/REPORT.md)",
+   "來源": "[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)",
    "影響": "內容寫了被動能力不生效（check 只警告）",
    "建議做法": "rules 加 passive 執行入口（掛 onBattleStart／常駐 contrib），AI 不需提出",
    "規模": "中"
@@ -115,7 +115,7 @@
    "序": "12",
    "優先": "P2",
    "項目": "`molt`（蛻皮）未實作",
-   "來源": "[lead-gaps-battle](lead-gaps-battle/REPORT.md)、[lead-content-monster](lead-content-monster/REPORT.md)",
+   "來源": "[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)、[lead-content-monster](done/2026-10-24/lead-content-monster/REPORT.md)",
    "影響": "獸族蛻皮設定無效",
    "建議做法": "照 world spec 族行為：營運層潮月計時＋換 species",
    "規模": "中"
@@ -124,7 +124,7 @@
    "序": "13",
    "優先": "P2",
    "項目": "`territorial` 散播未實作",
-   "來源": "[lead-gaps-battle](lead-gaps-battle/REPORT.md)",
+   "來源": "[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)",
    "影響": "菌絲族地形化行為無效",
    "建議做法": "rules 每輪改格（不經傷害），配不變量",
    "規模": "中"
@@ -133,7 +133,7 @@
    "序": "14",
    "優先": "P2",
    "項目": "戰鬥台詞 `barks/` 未接",
-   "來源": "[plan-spec-integrate](plan-spec-integrate/REPORT.md)、[lead-gaps-ops](lead-gaps-ops/REPORT.md)",
+   "來源": "[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)、[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)",
    "影響": "S 級以上機魂與 lore 人物無戰中台詞",
    "建議做法": "照提案 (c)：`barks/<person>.json`，ui-adapter 文字層挑句、以事件 seq 當 seed、不進 rules／存檔",
    "規模": "小–中"
@@ -142,7 +142,7 @@
    "序": "15",
    "優先": "P2",
    "項目": "獸緣／殼緣的營運接線",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)、[plan-spec-integrate](plan-spec-integrate/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)",
    "影響": "attrs `beastKin`／`shellKin` 只在 NumExpr 可引用；營運招募、遺跡、事件 ± 不生效",
    "建議做法": "ops 事件效果白名單加屬性增減、招募池與認主條件讀它",
    "規模": "小"
@@ -151,7 +151,7 @@
    "序": "16",
    "優先": "P2",
    "項目": "AI 剩餘：指揮者 tag 指定、補給／治療輪替、字串意圖欄",
-   "來源": "[lead-gaps-battle](lead-gaps-battle/REPORT.md)",
+   "來源": "[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)",
    "影響": "意圖只能用數字代碼 0–8；指揮者只能自動選",
    "建議做法": "aiprofile schema 加字串 `intent`、tag `commander`；輪替接補給",
    "規模": "小–中"
@@ -160,7 +160,7 @@
    "序": "17",
    "優先": "P2",
    "項目": "sustained 主動關閉、其餘 reaction",
-   "來源": "[lead-ai-objective](lead-ai-objective/REPORT.md)、[plan-content-guide](plan-content-guide/REPORT.md)",
+   "來源": "[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)、[plan-content-guide](done/2026-10-24/plan-content-guide/REPORT.md)",
    "影響": "reaction 只有 enemyLeavesAdjacent；sustained 無法關",
    "建議做法": "rules 補 reaction 觸發表與 sustained 撤除指令",
    "規模": "中"
@@ -169,7 +169,7 @@
    "序": "18",
    "優先": "P3",
    "項目": "fuzz 覆蓋：捕捉與超限承擔",
-   "來源": "[lead-rules-fuzz](lead-rules-fuzz/REPORT.md)",
+   "來源": "[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)",
    "影響": "捕捉、失控、傳導（1500 場只 11 場）幾乎沒被抽到",
    "建議做法": "`test/fuzz/gen.ts` `stress()` 補捕捉與承擔情境",
    "規模": "小"
@@ -178,7 +178,7 @@
    "序": "19",
    "優先": "P3",
    "項目": "效能：clone-state 佔 36%",
-   "來源": "[lead-rules-fuzz](lead-rules-fuzz/REPORT.md)",
+   "來源": "[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)",
    "影響": "真情境約 13 秒一場；merc 24 潮月 seed 2 3.5 分鐘",
    "建議做法": "AI 預覽改增量或結構共享",
    "規模": "中"
@@ -187,7 +187,7 @@
    "序": "20",
    "優先": "P3",
    "項目": "營運小項：封港只停市場與補彈、節點無 `workshop` 標籤、部件市場篩選器缺機型→部件對應、「違令隨機」spec 缺口",
-   "來源": "[lead-impl-war](lead-impl-war/REPORT.md)",
+   "來源": "[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)",
    "影響": "技術流出來源(1) 不觸發；部件市場列不準",
    "建議做法": "隨大地圖收尾線一起做",
    "規模": "小"
@@ -196,7 +196,7 @@
    "序": "21",
    "優先": "P3",
    "項目": "「採」系統（孢囊、菌床 `harvest-only`、`kx-overgrowth`）",
-   "來源": "[lead-content-monster](lead-content-monster/REPORT.md)",
+   "來源": "[lead-content-monster](done/2026-10-24/lead-content-monster/REPORT.md)",
    "影響": "菌絲族兩台佔位機體與效果無用",
    "建議做法": "規劃線定採集語意後實作",
    "規模": "中"
@@ -205,7 +205,7 @@
    "序": "22",
    "優先": "P3",
    "項目": "MCP：大地圖每台每回合 6–8 次呼叫；`src/mcp/ui.ts` 以 globalThis 繞型別",
-   "來源": "[lead-playtest](lead-playtest/REPORT.md)、[lead-mcp](lead-mcp/REPORT.md)",
+   "來源": "[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)、[lead-mcp](done/2026-10-24/lead-mcp/REPORT.md)",
    "影響": "agent 試玩大地圖成本高",
    "建議做法": "合併查詢工具；改用 `node-shim.d.ts`",
    "規模": "小"
@@ -214,7 +214,7 @@
    "序": "23",
    "優先": "P3",
    "項目": "Eject 滿血可棄機的確認框",
-   "來源": "[lead-rules-fuzz](lead-rules-fuzz/REPORT.md)",
+   "來源": "[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)",
    "影響": "規則維持，UI 無確認",
    "建議做法": "ui-adapter 加確認框",
    "規模": "小"
@@ -223,7 +223,7 @@
    "序": "24",
    "優先": "P3",
    "項目": "世界偏安靜",
-   "來源": "[lead-gaps-ops](lead-gaps-ops/REPORT.md)、[lead-impl-war](lead-impl-war/REPORT.md)",
+   "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)、[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)",
    "影響": "24 潮月 war 比例最高 4.4%、奪點 1–2",
    "建議做法": "大地圖與更多勢力內容後再調好戰參數",
    "規模": "小"

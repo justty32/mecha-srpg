@@ -1,6 +1,6 @@
 # acceptance-playtest — 每批內容的驗收清單與 MCP 試玩規程
 
-[content README](README.md)｜MCP 工具 [src/mcp/README.md](../../../src/mcp/README.md)｜試玩說明範本 `wf/workflows/dispatch/handoffs/lead-playtest/playtest-brief.md`｜基準表 [playtest-baselines.json](playtest-baselines.json)（6 列：D／C／B／A／S／營運）
+[content README](README.md)｜MCP 工具 [src/mcp/README.md](../../../src/mcp/README.md)｜試玩說明範本 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/playtest-brief.md`｜基準表 [playtest-baselines.json](playtest-baselines.json)（6 列：D／C／B／A／S／營運）
 
 ## 一、每批驗收清單（REPORT 逐條附證據）
 
@@ -20,7 +20,7 @@
 
 **兩種情境**：野怪場——敵方放你每個新 monster 至少一隻，玩家抄 `scenario/rift-edge-nest` 四台＋駕駛員並用 `components` 配好武器；我方場——玩家放每台新 frame／bio frame 各一、`person/chen-xiaohai` 座 pilot，敵方 `base:monster/reaper-c` ×3。古代機用 skirmish-whitegloves 把玩家一台換掉。
 
-**跑法**：`node wf/workflows/dispatch/handoffs/lead-playtest/sweep.ts --content content/base,<pack> --seeds 1,2,3,4,5 <scenario id…>`，每情境一行 JSON（勝方分布、輪數、死亡、hash）。看能力有沒被用：`node wf/workflows/dispatch/handoffs/lead-ai-objective/scenario-measure.ts <scenario> 1 2 3`，或自寫 runner 統計 `AbilityUsed` 事件的 ability id；單步查評分用 `getPolicy("tactical").propose/score`。
+**跑法**：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/sweep.ts --content content/base,<pack> --seeds 1,2,3,4,5 <scenario id…>`，每情境一行 JSON（勝方分布、輪數、死亡、hash）。看能力有沒被用：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ai-objective/scenario-measure.ts <scenario> 1 2 3`，或自寫 runner 統計 `AbilityUsed` 事件的 ability id；單步查評分用 `getPolicy("tactical").propose/score`。
 
 **判準**：5 seed 0 例外（任一 `error` 即不過）；每個新能力至少 1 次 AbilityUsed（反應技例外）；不得出現 5/5 timeout 且雙方 0 死亡（＝打不到，查配裝／部署／射程）。
 

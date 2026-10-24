@@ -20,12 +20,12 @@
   },
   {
    "驗證": "營運層（改 ops 必跑）",
-   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`、`--policy merc`：真戰鬥；2026-10-24 基準 idle 24 潮月約 8 秒、greedy 12 潮月約 12 秒、merc 24 潮月 25 秒–3.5 分鐘；末行 `war統計` 印 war／停火／奪點／作戰數與比例）；調平衡時跑 `node wf/workflows/dispatch/handoffs/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）；2026-10-24 起 idle 會因債務扣船在約第 6 潮月合法終局（CLI 印「終局 …」仍 `OK`），要量世界就加 `--continue-after-end`；黃金戰役 `node --test test/campaigns/campaigns.test.ts`、war 不變量 `node --test src/ops/sim/war-invariants.test.ts`（約 20 秒）；ops 黃金 hash 一律在乾淨 worktree 以 `GOLDEN_UPDATE=1` 重產",
+   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`、`--policy merc`：真戰鬥；2026-10-24 基準 idle 24 潮月約 8 秒、greedy 12 潮月約 12 秒、merc 24 潮月 25 秒–3.5 分鐘；末行 `war統計` 印 war／停火／奪點／作戰數與比例）；調平衡時跑 `node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）；2026-10-24 起 idle 會因債務扣船在約第 6 潮月合法終局（CLI 印「終局 …」仍 `OK`），要量世界就加 `--continue-after-end`；黃金戰役 `node --test test/campaigns/campaigns.test.ts`、war 不變量 `node --test src/ops/sim/war-invariants.test.ts`（約 20 秒）；ops 黃金 hash 一律在乾淨 worktree 以 `GOLDEN_UPDATE=1` 重產",
    "誰跑": "agent"
   },
   {
    "驗證": "戰鬥效能（改 rules／ai 熱路徑時跑）",
-   "指令": "`node wf/workflows/dispatch/handoffs/lead-integ-battle/bench-ops.ts 500`：印 ms／步與 hash；行為不變的優化 hash 必須不變（2026-10-24 基準 2.5 ms／步）",
+   "指令": "`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-integ-battle/bench-ops.ts 500`：印 ms／步與 hash；行為不變的優化 hash 必須不變（2026-10-24 基準 2.5 ms／步）",
    "誰跑": "agent"
   },
   {
@@ -40,7 +40,7 @@
   },
   {
    "驗證": "AI 平衡量測（改 `src/ai/` 評分時跑）",
-   "指令": "`node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）；目標意識：`node wf/workflows/dispatch/handoffs/lead-ai-objective/scenario-measure.ts <scenario> [--rounds N] [seed…]`（情境原輪數、目標命中數）、`node wf/workflows/dispatch/handoffs/lead-ai-objective/battle-bench.ts --capture OUT.json` 後 `battle-bench.ts OUT.json --phase anchored`（凍結營運戰場重打，勝場與對巢母命中 `nmHits`）",
+   "指令": "`node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）；目標意識：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ai-objective/scenario-measure.ts <scenario> [--rounds N] [seed…]`（情境原輪數、目標命中數）、`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ai-objective/battle-bench.ts --capture OUT.json` 後 `battle-bench.ts OUT.json --phase anchored`（凍結營運戰場重打，勝場與對巢母命中 `nmHits`）",
    "誰跑": "agent"
   },
   {

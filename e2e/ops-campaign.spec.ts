@@ -3,7 +3,7 @@
 import { test, expect, type Page } from "@playwright/test";
 
 // 截圖只在設了 OPS_SHOTS（輸出目錄）時才存，避免每次跑 e2e 都改到工作樹；例：
-// OPS_SHOTS=wf/workflows/dispatch/handoffs/lead-ui-ops/op-uops-dom/shots npx playwright test e2e/ops-campaign.spec.ts
+// OPS_SHOTS=wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ui-ops/op-uops-dom/shots npx playwright test e2e/ops-campaign.spec.ts
 const SHOTS = process.env.OPS_SHOTS;
 const shot = async (page: Page, name: string): Promise<void> => { if (SHOTS) await page.screenshot({ path: `${SHOTS}/${name}.png` }); };
 

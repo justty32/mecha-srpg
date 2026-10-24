@@ -1,6 +1,6 @@
 # mechs — 機械系（摹機）與部件的設計原則
 
-[content README](README.md)｜裁示 [design-notes/mechs](../planning/design-notes/mechs.md)｜世界觀 [mech-lifecycles](../planning/specs/world/mech-lifecycles.md)｜既有一覽 `wf/workflows/dispatch/handoffs/lead-content-mech/catalog.json`（157 列）
+[content README](README.md)｜裁示 [design-notes/mechs](../planning/design-notes/mechs.md)｜世界觀 [mech-lifecycles](../planning/specs/world/mech-lifecycles.md)｜既有一覽 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-mech/catalog.json`（157 列）
 
 機械系是基線：沒有驚喜、沒有感情、靠錢與科研。它的「個性」來自**血統**（源自哪台古代殼）、**系列**（迭代到第幾代）與**配裝**；數值照 [numeric-bands](numeric-bands.md)。
 

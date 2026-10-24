@@ -25,13 +25,13 @@
 
 各線 REPORT 在 `handoffs/<線名>/REPORT.md`，重點：
 
-戰鬥：[lead-gaps-battle](lead-gaps-battle/REPORT.md)（配裝、等級影響血量、check 強化、`content:probe`、意圖撤退與指揮者，平手 64%→2.5%）、[lead-tune-battle](lead-tune-battle/REPORT.md)（撤退時機、瞄核心、check 降噪）、[lead-ai-objective](lead-ai-objective/REPORT.md)（AI 目標意識、盟軍配合）、[lead-rules-fuzz](lead-rules-fuzz/REPORT.md)（約 1.6 萬場 fuzz、18 不變量、修 13 bug）、[lead-playtest](lead-playtest/REPORT.md)（MCP 試玩、互動出戰）。
+戰鬥：[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)（配裝、等級影響血量、check 強化、`content:probe`、意圖撤退與指揮者，平手 64%→2.5%）、[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)（撤退時機、瞄核心、check 降噪）、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)（AI 目標意識、盟軍配合）、[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)（約 1.6 萬場 fuzz、18 不變量、修 13 bug）、[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)（MCP 試玩、互動出戰）。
 
-營運：[lead-impl-war](lead-impl-war/REPORT.md)（勢力作戰、外交、傭兵參戰、研發）、[lead-gaps-ops](lead-gaps-ops/REPORT.md)（困船、無限刷、開局無約、債務、擊退回寫、人類遭遇）。
+營運：[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)（勢力作戰、外交、傭兵參戰、研發）、[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)（困船、無限刷、開局無約、債務、擊退回寫、人類遭遇）。
 
-介面與工具：[lead-wiki](lead-wiki/REPORT.md)、[lead-ui-ops](lead-ui-ops/REPORT.md)、[lead-mcp](lead-mcp/REPORT.md)。
+介面與工具：[lead-wiki](done/2026-10-24/lead-wiki/REPORT.md)、[lead-ui-ops](done/2026-10-24/lead-ui-ops/REPORT.md)、[lead-mcp](done/2026-10-24/lead-mcp/REPORT.md)。
 
-規劃與內容守則：[plan-world-grid](plan-world-grid/REPORT.md)（方格大地圖 spec）、[plan-spec-integrate](plan-spec-integrate/REPORT.md)（spec 整合與風格改寫）、[plan-content-guide](plan-content-guide/REPORT.md)（content 工作流）、[plan-world-pillars](plan-world-pillars/REPORT.md)（世界觀守則 31 條）。
+規劃與內容守則：[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)（方格大地圖 spec）、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)（spec 整合與風格改寫）、[plan-content-guide](done/2026-10-24/plan-content-guide/REPORT.md)（content 工作流）、[plan-world-pillars](done/2026-10-24/plan-world-pillars/REPORT.md)（世界觀守則 31 條）。
 
 收尾（lead-wrapup）：新裁示寫進 spec 與守則（古代機等級無上限、十分律擴讀定案、三條通用系列、用語過渡說明、意圖兩層 spec 標已實作）；本檔、engine-backlog、next-tidy、roadmap 狀態。
 
