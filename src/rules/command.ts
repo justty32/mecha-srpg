@@ -81,6 +81,11 @@ export function checkAbility(ctx: Ctx, unitId: Id, abilityId: Id, target?: { uni
     if (target?.part !== undefined && (!selected || !a.partAim?.allowed || !unit(ctx, selected).parts[target.part] || unit(ctx, selected).parts[target.part]!.broken)) return { code: "bad-part" };
   }
   if (!canPay(ctx, unitId, pid, resolveCosts(ctx, unitId, a.id))) return { code: "cannot-pay" };
+  // produces 的入池目標必須存在（例：無 heat 池的生物機體裝了會產熱的機械部件）；否則能力不可用，而非執行中拋錯。
+  for (const c of a.produces) {
+    const pools = c.owner === "mech" ? u.pools : pid ? person(ctx, pid).pools : undefined;
+    if (pools && !pools[c.pool]) return { code: "cannot-pay", detail: `produces:${c.pool}` };
+  }
   return null;
 }
 

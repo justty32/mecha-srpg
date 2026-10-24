@@ -50,7 +50,11 @@ function install(ctx: Ctx, inst: EffectInstance): void {
 }
 export function applyEffect(ctx: Ctx, ref: EffectRef, target: EffectTarget, source: Id): EffectInstance | null {
   const r = typeof ref === "string" ? { effect: ref } : ref;
-  const def = ctx.db.require("effect", r.effect), ev = evalCtxFor(ctx, target);
+  const def = ctx.db.require("effect", r.effect);
+  // 容器不存在就沒有承載者（例：person scope 打在無駕駛怪獸、mech scope 沒有單位）：靜默略過、不擲骰。
+  if (def.scope === "person" && (target.person === undefined || !ctx.s.persons[target.person])) return null;
+  if (["mech", "part", "layer"].includes(def.scope) && (target.unit === undefined || !ctx.s.units[target.unit])) return null;
+  const ev = evalCtxFor(ctx, target);
   if (r.chance !== undefined && !chance(ctx.s.rng, evalNum(r.chance, ev))) return null;
   const tags = target.person ? personTags(ctx, target.person) : target.unit ? unitTags(ctx, target.unit) : [];
   if (def.immuneTags?.some(tag => tags.includes(tag))) return null;

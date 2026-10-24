@@ -75,6 +75,8 @@ export function beginTurn(ctx: Ctx, unitId: Id, resumed: boolean): void {
 export function endTurn(ctx: Ctx): void {
   const runtime = rt(ctx.s), id = runtime.active;
   if (id === null) return;
+  // 戰局已定（撤離／死亡觸發勝負）後不再跑回合末鉤子或寫事件：BattleEnd 必為最後一筆。
+  if (runtime.outcome) { runtime.active = null; return; }
   const u = unit(ctx, id);
   dispatchHook(ctx, "onTurnEnd", { unit: id });
   for (const seat of seatsOf(ctx, id)) dispatchHook(ctx, "onTurnEnd", { person: seat.person });
@@ -115,7 +117,8 @@ export function advance(ctx: Ctx): void {
         signal(ctx, "roundEnd", { round: ctx.s.round });
         if (runtime.outcome) return;
         // SPEC-GAP：無可接受指令單位、且無人物線定局時停在輪末，避免無限遞迴空轉。
-        if (!Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && !["none", "disabled"].includes(unit(ctx, id).controlMode))) return;
+        // 有 maxRounds 時照輪推進（停機單位可能在自己 TurnStart 回穩，到上限必以 timeout 定局），只有無上限時才停。
+        if (rt(ctx.s).maxRounds === null && !Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && !["none", "disabled"].includes(unit(ctx, id).controlMode))) return;
         startRound(ctx);
         if (runtime.active !== null) return;
       }

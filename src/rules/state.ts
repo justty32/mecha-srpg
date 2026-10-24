@@ -231,6 +231,17 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   for (const entry of init.persons ?? []) {
     if (entry.state) Object.assign(person(ctx, entry.id), structuredClone(entry.state));
   }
+  // 匯入的 contrib 值型別是 NumExpr（營運層可能尚未求值）；貢獻在掛上時求值（rules-resources-effects），
+  // 匯入即掛上，故此處以人物自身為 self 一次求值。先求全部再寫回，避免同批貢獻互相引用時讀到物件值。
+  for (const entry of init.persons ?? []) {
+    const p = person(ctx, entry.id), pending = p.contribs.filter(c => typeof c.value !== "number");
+    if (!pending.length) continue;
+    const kept = p.contribs.filter(c => typeof c.value === "number"), all = p.contribs;
+    p.contribs = kept;
+    const values = pending.map(c => evalNum(c.value, evalCtxFor(ctx, { person: p.id })));
+    p.contribs = all;
+    pending.forEach((c, i) => { c.value = values[i]!; });
+  }
   // 匯入效果的流水號不能與戰鬥內新產生的效果／貢獻撞號。
   for (const state of [u, ...(init.persons ?? []).map(p => person(ctx, p.id))]) {
     for (const effect of state.effects) rt(ctx.s).nextUid = Math.max(rt(ctx.s).nextUid, effect.uid + 1);
