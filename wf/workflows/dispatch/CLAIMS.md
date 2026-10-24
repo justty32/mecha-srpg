@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| lead-tune（Opus 領導；工人 codex `cx-tune-*`） | `src/ai/`（全目錄）；`src/rules/effects.ts`＋`effects.test.ts`；平衡用既有數值：`content/base/` 下的 `aiprofile/`、`monster/nestmother-*`、人類遭遇編成與 `budgetByGrade` 所在檔（動前逐檔查本表與 lead-rename 是否持有）；黃金／hash 重產（若被 AI 改動牽動，在 commit 說明）；`wf/workflows/dispatch/handoffs/lead-tune/` | **不寫 `src/ops/`**（lead-grid 領地，只讀；營運派遣邏輯若要改先發信協調）；不寫 lead-rename／lead-content 持有的 content 檔；文字潤飾不做 | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
