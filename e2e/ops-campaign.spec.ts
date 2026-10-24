@@ -78,8 +78,10 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   const s = await ops(page);
   expect(s.battle).toBeNull();
   expect(s.report).not.toBeNull();
-  await expect(root.locator('[data-ui="ops-log"]')).toContainText("戰鬥結束");
-  expect(s.log.some(l => l.text.includes("戰鬥結束"))).toBe(true);
+  // 文案由內容模板決定（BattleEnded），只認「戰鬥…結束／落幕」的語意。
+  const battleEnded = /戰鬥(結束|在第 \d+ 回合落幕)/;
+  await expect(root.locator('[data-ui="ops-log"]')).toContainText(battleEnded);
+  expect(s.log.some(l => battleEnded.test(l.text))).toBe(true);
   // 戰後可能接著跳事件（例：屍體處理），先回應再用 Esc 關報告。
   for (let i = 0; i < 5; i++) {
     const p = (await ops(page)).prompt;
