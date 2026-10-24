@@ -166,6 +166,14 @@ export class BattleSession {
     this.pending = pending;
   }
 
+  private drainTail(pending: PendingTurn): void {
+    while (pending.index < pending.entries.length) {
+      const entry = pending.entries[pending.index++]!;
+      if (this.execute(entry.cmd).ok !== entry.ok) throw new Error("AI 佇列與真狀態不一致；state 僅供讀取");
+    }
+    this.finishTurn(pending);
+  }
+
   private finishTurn(pending: PendingTurn): void {
     // runBattle 在上限中斷 runUnitTurn 時也不會通知其他陣營。
     if (!pending.limited) this.observeOthers(pending.slot, pending.from);
@@ -184,8 +192,10 @@ export class BattleSession {
       while (pending.index < pending.entries.length) {
         const entry = pending.entries[pending.index++]!, result = this.execute(entry.cmd);
         if (result.ok !== entry.ok) throw new Error("AI 佇列與真狀態不一致；state 僅供讀取");
-        if (pending.index === pending.entries.length) this.finishTurn(pending);
-        if (result.ok) return this.notify(entry.cmd, result.events);
+        if (!result.ok) continue;
+        // 最後一個成功指令之後只剩被拒指令時一併消化並收尾，免得下一次呼叫空回一個 null。
+        if (!pending.entries.slice(pending.index).some(e => e.ok)) this.drainTail(pending);
+        return this.notify(entry.cmd, result.events);
       }
       if (this.pending) this.finishTurn(pending);
       return null;
