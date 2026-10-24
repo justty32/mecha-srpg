@@ -7,7 +7,7 @@
     python3 -I wf/tools/content_index.py refs <id>  # 即時算誰引用它（引用數會頻繁變動，不進分片）
     python3 -I wf/tools/content_index.py --root <repo> [--dir DIR]
 
-掃 `content/base/**`、`content/lore/**` 中 git 追蹤（含已 add）且有字串 `id` 的 JSON（registries、rules、timeline、
+掃 `content/base/**`、`content/lore/**` 在 git 索引（staged 版本）中、有字串 `id` 的 JSON（registries、rules、timeline、
 glossary 這類無 id 的表不列）。**按類別分片**：`content/index/<pack>-<kind>.json`（例 base-frame、
 base-monster、lore-character）；單片超過 SHARD_MAX_ROWS 列或 SHARD_MAX_BYTES 位元組時，按 grade
 二次分片 `<pack>-<kind>-<grade>.json`（無等級者 `-x`）。每列只放查詢必要欄：
@@ -94,27 +94,49 @@ def load_batches(root):
     return by_path, deprecated, counts
 
 
-def content_files(root, pack):
-    """git 追蹤中（含已 `git add` 未 commit）的檔，讀工作樹版本；別線還沒 add 的新檔不列，
-    免得它們讓索引檢查對所有人變紅。不是 git repo 時退回整個目錄。"""
-    out = subprocess.run(['git', '-C', str(root), 'ls-files', '-z', '--', f'content/{pack}'],
-                         capture_output=True)
-    if out.returncode != 0:
-        return sorted((root / 'content' / pack).rglob('*.json'))
-    paths = [p for p in out.stdout.decode('utf-8').split('\0') if p.endswith('.json')]
-    return sorted(root / p for p in paths if (root / p).is_file())
+def staged_files(root, ref=None):
+    """git 索引（staged）裡 content/base、content/lore 的 JSON：[(path, bytes)]。讀的是索引版本，
+    不是工作樹——別線還沒 `git add` 的改動與新檔不影響索引檢查，`git add` 之後再重產即可。
+    不是 git repo 時回傳 None。"""
+    cmd = ['ls-tree', '-r', '-z', ref] if ref else ['ls-files', '-s', '-z']
+    ls = subprocess.run(['git', '-C', str(root), *cmd, '--', *[f'content/{p}' for p in PACKS]],
+                        capture_output=True)
+    if ls.returncode != 0:
+        return None
+    items = []
+    for rec in ls.stdout.decode('utf-8').split('\0'):
+        if not rec:
+            continue
+        meta, path = rec.split('\t', 1)
+        if path.endswith('.json'):
+            items.append((path, meta.split()[2] if ref else meta.split()[1]))
+    if not items:
+        return []
+    cat = subprocess.run(['git', '-C', str(root), 'cat-file', '--batch'],
+                         input=''.join(f'{sha}\n' for _, sha in items).encode(), capture_output=True, check=True)
+    out, buf, pos = [], cat.stdout, 0
+    for path, _ in items:
+        nl = buf.index(b'\n', pos)
+        size = int(buf[pos:nl].split()[2])
+        out.append((path, buf[nl + 1:nl + 1 + size]))
+        pos = nl + 1 + size + 1
+    return sorted(out)
 
 
-def scan(root):
+def scan(root, ref=None):
+    files = staged_files(root, ref)
+    if files is None:
+        files = [(f.relative_to(root).as_posix(), f.read_bytes())
+                 for pack in PACKS for f in sorted((root / 'content' / pack).rglob('*.json'))]
     entries = []
-    for pack in PACKS:
-        for f in content_files(root, pack):
-            try:
-                d = json.loads(f.read_text(encoding='utf-8'))
-            except (json.JSONDecodeError, UnicodeDecodeError):
-                continue  # 壞檔交給 npm run check／lore check 報
-            if isinstance(d, dict) and isinstance(d.get('id'), str) and '/' in d['id']:
-                entries.append((pack, f.relative_to(root).as_posix(), d))
+    for rel, raw in files:
+        pack = rel.split('/')[1]
+        try:
+            d = json.loads(raw.decode('utf-8'))
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            continue  # 壞檔交給 npm run check／lore check 報
+        if isinstance(d, dict) and isinstance(d.get('id'), str) and '/' in d['id']:
+            entries.append((pack, rel, d))
     return entries
 
 
@@ -131,9 +153,9 @@ def refs_to(root, target):
     return hits
 
 
-def build(root):
+def build(root, ref=None):
     root = Path(root)
-    entries = scan(root)
+    entries = scan(root, ref)
     species = {d['id']: d for pack, _, d in entries if pack == 'base' and d['id'].startswith('species/')}
     species_family = {k: d.get('family', '') for k, d in species.items()}
     batches, deprecated, counts = load_batches(root)
@@ -229,8 +251,8 @@ def summary(rows, counts, files, kinds_of):
     return text
 
 
-def expected(root):
-    rows, counts = build(root)
+def expected(root, ref=None):
+    rows, counts = build(root, ref)
     files, kinds_of = shards(rows)
     files['_summary.json'] = summary(rows, counts, files, kinds_of)
     return files
@@ -257,6 +279,11 @@ def main(argv=None):
     if a.check:
         if not stale:
             print(f'OK {out} {len(want)} 分片與內容一致')
+            return 0
+        # 別線已 `git add` 未 commit 的改動不該讓所有人變紅：索引若與 HEAD 一致也算過。
+        head = expected(root, 'HEAD') if staged_files(root) is not None else None
+        if head is not None and all(head.get(n) == have.get(n) for n in set(head) | set(have)):
+            print(f'OK {out} 與 HEAD 一致（staged 改動 {len(stale)} 片待重產，commit 前跑 npm run content:index）')
             return 0
         for n in stale:
             what = '缺' if n not in have else '多餘' if n not in want else '過時'
