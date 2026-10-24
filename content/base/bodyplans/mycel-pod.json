@@ -1,0 +1,44 @@
+{
+  "id": "bodyplan/mycel-pod",
+  "name": "孢囊體",
+  "parts": [
+    {
+      "id": "pod",
+      "name": "眠囊",
+      "exposure": 2,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 25,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 45,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "core"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ]
+}

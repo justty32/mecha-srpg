@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-bed",
+  "name": "生物機甲・菌床",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mycel-bed",
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-knot-flare",
+    "ability/kx-pod-bloom"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "mycelium",
+    "kaiju",
+    "harvest-only"
+  ],
+  "burden": 12
+}
