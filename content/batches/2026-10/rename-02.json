@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-02",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 人物）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -74,5 +74,105 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:08:53",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-02",
+  "round": 1,
+  "at": "2026-10-24T16:08:53",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/characters/ines-huaman.json",
+   "content/lore/characters/irina-voronina.json",
+   "content/lore/characters/joao-ferreira.json",
+   "content/lore/characters/jonas-halvorsen.json",
+   "content/lore/characters/kim-haneul.json",
+   "content/lore/characters/kuafu.json",
+   "content/lore/characters/lobsang.json",
+   "content/lore/characters/m3.json",
+   "content/lore/characters/mara-okoye.json",
+   "content/lore/characters/markus-njoroge.json",
+   "content/lore/characters/mina-darzi.json",
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/characters/not-yet.json",
+   "content/lore/characters/nur.json",
+   "content/lore/characters/ogun-adeyemi.json",
+   "content/lore/characters/okamoto-mayu.json",
+   "content/lore/characters/old-man.json",
+   "content/lore/characters/old-pigeon.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/characters/ines-huaman.json",
+  "content/lore/characters/irina-voronina.json",
+  "content/lore/characters/joao-ferreira.json",
+  "content/lore/characters/jonas-halvorsen.json",
+  "content/lore/characters/kim-haneul.json",
+  "content/lore/characters/kuafu.json",
+  "content/lore/characters/lobsang.json",
+  "content/lore/characters/m3.json",
+  "content/lore/characters/mara-okoye.json",
+  "content/lore/characters/markus-njoroge.json",
+  "content/lore/characters/mina-darzi.json",
+  "content/lore/characters/molly-van-den-berg.json",
+  "content/lore/characters/not-yet.json",
+  "content/lore/characters/nur.json",
+  "content/lore/characters/ogun-adeyemi.json",
+  "content/lore/characters/okamoto-mayu.json",
+  "content/lore/characters/old-man.json",
+  "content/lore/characters/old-pigeon.json"
+ ],
+ "ids": [
+  "character/ines-huaman",
+  "character/irina-voronina",
+  "character/joao-ferreira",
+  "character/jonas-halvorsen",
+  "character/kim-haneul",
+  "character/kuafu",
+  "character/lobsang",
+  "character/m3",
+  "character/mara-okoye",
+  "character/markus-njoroge",
+  "character/mina-darzi",
+  "character/molly-van-den-berg",
+  "character/not-yet",
+  "character/nur",
+  "character/ogun-adeyemi",
+  "character/okamoto-mayu",
+  "character/old-man",
+  "character/old-pigeon"
+ ],
+ "summary": "lore 人物 1x 檔換詞；閘門 0 違規、check／lore／typecheck／test 綠、黃金不變",
+ "gateRejections": []
 }

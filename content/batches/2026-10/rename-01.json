@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-01",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 人物）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -74,5 +74,108 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:08:14",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-01",
+  "round": 1,
+  "at": "2026-10-24T16:08:14",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/characters/a-xiu.json",
+   "content/lore/characters/abacus.json",
+   "content/lore/characters/adebayo-oluwaseyi.json",
+   "content/lore/characters/aisha-the-yokeless.json",
+   "content/lore/characters/anil-chowdhury.json",
+   "content/lore/characters/aravind-pillai.json",
+   "content/lore/characters/babatunde.json",
+   "content/lore/characters/chen-xiaohai.json",
+   "content/lore/characters/choi-mugyeom.json",
+   "content/lore/characters/devika-rao.json",
+   "content/lore/characters/elena-petrova.json",
+   "content/lore/characters/esteban-quiroga.json",
+   "content/lore/characters/eugenia-ferrero.json",
+   "content/lore/characters/fatima-begum.json",
+   "content/lore/characters/greg-olsen.json",
+   "content/lore/characters/gui-hongfei.json",
+   "content/lore/characters/han-seorin.json",
+   "content/lore/characters/howard-ling.json",
+   "content/lore/characters/ilse-brandt.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/characters/a-xiu.json",
+  "content/lore/characters/abacus.json",
+  "content/lore/characters/adebayo-oluwaseyi.json",
+  "content/lore/characters/aisha-the-yokeless.json",
+  "content/lore/characters/anil-chowdhury.json",
+  "content/lore/characters/aravind-pillai.json",
+  "content/lore/characters/babatunde.json",
+  "content/lore/characters/chen-xiaohai.json",
+  "content/lore/characters/choi-mugyeom.json",
+  "content/lore/characters/devika-rao.json",
+  "content/lore/characters/elena-petrova.json",
+  "content/lore/characters/esteban-quiroga.json",
+  "content/lore/characters/eugenia-ferrero.json",
+  "content/lore/characters/fatima-begum.json",
+  "content/lore/characters/greg-olsen.json",
+  "content/lore/characters/gui-hongfei.json",
+  "content/lore/characters/han-seorin.json",
+  "content/lore/characters/howard-ling.json",
+  "content/lore/characters/ilse-brandt.json"
+ ],
+ "ids": [
+  "character/a-xiu",
+  "character/abacus",
+  "character/adebayo-oluwaseyi",
+  "character/aisha-the-yokeless",
+  "character/anil-chowdhury",
+  "character/aravind-pillai",
+  "character/babatunde",
+  "character/chen-xiaohai",
+  "character/choi-mugyeom",
+  "character/devika-rao",
+  "character/elena-petrova",
+  "character/esteban-quiroga",
+  "character/eugenia-ferrero",
+  "character/fatima-begum",
+  "character/greg-olsen",
+  "character/gui-hongfei",
+  "character/han-seorin",
+  "character/howard-ling",
+  "character/ilse-brandt"
+ ],
+ "summary": "lore 人物 1x 檔換詞；閘門 0 違規、check／lore／typecheck／test 綠、黃金不變",
+ "gateRejections": []
 }
