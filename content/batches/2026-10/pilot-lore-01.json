@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "pilot-lore-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "author": {
   "agent": "codex",
   "model": "gpt-6-astra",
@@ -12,7 +12,7 @@
  },
  "lead": "lead-codex-pilot",
  "date": "2026-10-24",
- "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "base": "9c3b286efa731f189f42303bd257d305d0201557",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-lore-01",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-lore-01/REPORT.md",
@@ -31,10 +31,80 @@
    "content/lore/factions/third-blade.json"
   ]
  },
- "files": [],
- "ids": [],
- "acceptance": {},
- "rounds": [],
+ "files": [
+  "content/lore/characters/choi-mugyeom.json",
+  "content/lore/characters/han-seorin.json",
+  "content/lore/characters/lu-zhaoyin.json",
+  "content/lore/characters/mina-darzi.json",
+  "content/lore/characters/shen-yanqiao.json",
+  "content/lore/events/busan-returned-seal.json",
+  "content/lore/events/dark-quay-surety.json"
+ ],
+ "ids": [
+  "lore:character/choi-mugyeom",
+  "lore:character/han-seorin",
+  "lore:character/lu-zhaoyin",
+  "lore:character/mina-darzi",
+  "lore:character/shen-yanqiao",
+  "lore:event/busan-returned-seal",
+  "lore:event/dark-quay-surety"
+ ],
+ "acceptance": {
+  "batch": "pilot-lore-01",
+  "round": 1,
+  "at": "2026-10-24T14:23:03",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/characters/choi-mugyeom.json",
+   "content/lore/characters/han-seorin.json",
+   "content/lore/characters/lu-zhaoyin.json",
+   "content/lore/characters/mina-darzi.json",
+   "content/lore/characters/shen-yanqiao.json",
+   "content/lore/events/busan-returned-seal.json",
+   "content/lore/events/dark-quay-surety.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 12,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "at": "2026-10-24T14:13",
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：把 tools/tabledb.py 打成相對 worktree 的錯路徑就依停止條款停下，0 改動",
+    "lead": "交接書補 tabledb 實際路徑與錯誤來源規則，重派"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T14:23:03",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
  "gateRejections": [],
  "goal": "lore 新增 5 個人物與 2 個事件（第三刃、月面背面相關），交叉引用正確",
  "maxFiles": 8,
@@ -57,5 +127,6 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "summary": "5 人物（第三刃 2、背面 3）＋2 事件（2107-06 暗埠留票、2107-07 釜山還印），交叉引用齊；未插 timeline（lore check 2 條警告）；閘門 0 違規、驗收全綠；第 0 輪 tabledb 路徑誤判 BLOCKED，重派 1 次通過；開 1 個子代理（繼承 GPT-6）做禁用詞與引用覆核"
 }
