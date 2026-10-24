@@ -9,7 +9,6 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | lead-grid（Opus 領導；工人 codex `cx-grid-*`） | `src/ops/`（全目錄）；`src/ui-adapter/ops/`、`src/ui-adapter/dom/board.ts` 與新抽的 `GridView` 共用檔（大地圖面板）；`src/mcp/campaign*.ts`（營運視圖跟著遷移）；`test/campaigns/`（黃金重產）、`e2e/ops-*.spec.ts`；`content/base/world/` 的**結構檔**：`nodes/`→`places/`（git mv＋改 id）、`routes/`、`ferry.json`→`lanes/`、新資料夾 `maps/` `places/` `lanes/` `regions/` `wterrains/` `actors/`、`actions/ops-world.json`、`campaign-start/`，以及 `markets/` `recruit-pools/` `factions-ops/` `forces/` `operations/` `actions/` `templates/default.json` 裡的**結構鍵與 id 引用**（`node/…`→`place/…`、`transferNode`→`transferPlace`、事件型別鍵改名；不動文字）；`package.json` 的 scripts（不加依賴）；`wf/workflows/dispatch/handoffs/lead-grid/` | `src/ai/`（lead-tune）；content 既有檔的文字欄（lead-rename；`nodes/*.json` 的 name 在第二段 git mv 前請先改或之後重套）；lead-content 新增的 events／templates 等新檔不改（`where:"node"／"route"` 由程式相容為 place／field）；`content/lore/` | 2026-10-24 |
-| lead-history-lines（Opus 領導；工人 codex `cx-hl-*`） | `wf/workflows/planning/design-notes/world/history-lines*`、`world/history-*.json`、`world/history-lines/`；`design-notes.md`／`design-notes/world.md` 分檔表各一列；`wf/workflows/dispatch/handoffs/lead-history-lines/` | spec、`content/`（含 lore）、`src/`、lead-grid 領地；`talk-world/HANDOVER.md` 只讀 | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 

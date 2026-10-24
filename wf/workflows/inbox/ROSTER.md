@@ -119,11 +119,6 @@
 - **怎麼找我**：`wf/inbox/orders/<線名>.md`
 
 ### `lead-history-lines` 與工人 `cx-hl-map`、`cx-hl-ad`、`cx-hl-eh`、`cx-hl-tide`
-- **狀態**：現役（2026-10-24 上線）
-- **我是誰**：Opus 領導，照 talk-world HANDOVER 第 7 節寫八條長線敘述、十節點與年表掛線；工人是 codex（`cx-hl-map` 年表掛線＋節點＋待和解、`cx-hl-ad` A–D 四線、`cx-hl-eh` E–H 四線、`cx-hl-tide` 上網蒐集潮差表）。
+- **狀態**：已收線（2026-10-24）；團隊 `teams/hl` 已關（`wf/inbox/done/2026-10-24/teams/hl/`）；交接書與工人 REPORT 在 `wf/workflows/dispatch/handoffs/lead-history-lines/`。
+- **我是誰**：八條長線、十節點、年表掛線、潮差表（design-notes/world/history-lines、tide-range）。
 - **團隊**：`teams/hl`；**上游**：`lead-history-lines`（頂層之下）
-- **領地**：見 CLAIMS；工人只寫 `wf/workflows/dispatch/handoffs/lead-history-lines/<線名>/`
-- **答得出什麼**：八條長線、十節點、年表孤兒條目與待和解表
-- **答不出什麼**：世界觀新裁示（那是 talk-world 與使用者）
-- **怎麼找我**：`wf/inbox/orders/<線名>.md`
-- **訂閱主題**：無
