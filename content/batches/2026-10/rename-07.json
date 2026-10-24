@@ -1,0 +1,75 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-07",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 地點）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-07",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-07",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-07/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 16,
+ "allow": {
+  "polishFiles": [
+   "content/lore/places/auckland.json",
+   "content/lore/places/bay-tide-line.json",
+   "content/lore/places/busan.json",
+   "content/lore/places/chittagong.json",
+   "content/lore/places/cold-tide-rift.json",
+   "content/lore/places/dark-quay.json",
+   "content/lore/places/delta.json",
+   "content/lore/places/dhaka.json",
+   "content/lore/places/endymion-vault.json",
+   "content/lore/places/farside-ruin-belt.json",
+   "content/lore/places/ferry-lane.json",
+   "content/lore/places/golmud-nest.json",
+   "content/lore/places/graveyard-belt.json",
+   "content/lore/places/great-lakes-mycelium.json",
+   "content/lore/places/green-line.json",
+   "content/lore/places/gyeongju-tombs.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

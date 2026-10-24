@@ -1,0 +1,77 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-03",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 人物）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-03",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "polishFiles": [
+   "content/lore/characters/park-incheol.json",
+   "content/lore/characters/patrick-oconnor.json",
+   "content/lore/characters/qin-wangshu.json",
+   "content/lore/characters/rajiv-saldanha.json",
+   "content/lore/characters/rashid-ironmouth.json",
+   "content/lore/characters/ren-kasai.json",
+   "content/lore/characters/ruth-callaghan.json",
+   "content/lore/characters/salt-crone.json",
+   "content/lore/characters/samir-khan.json",
+   "content/lore/characters/sayeed.json",
+   "content/lore/characters/shen-yanqiao.json",
+   "content/lore/characters/tenzin-dolma.json",
+   "content/lore/characters/tsai-mingzhu.json",
+   "content/lore/characters/unit-07.json",
+   "content/lore/characters/wanjiku-kamau.json",
+   "content/lore/characters/xingtian.json",
+   "content/lore/characters/yoon-seoyoung.json",
+   "content/lore/characters/zheng-weizhou.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

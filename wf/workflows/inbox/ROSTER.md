@@ -130,3 +130,54 @@
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-lc-lore2.md`
 - **訂閱主題**：無
+
+### `cx-tune-intent`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：營運玩家首輪撤退根因與 `src/ai/` 修正。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-intent` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-intent.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-intent.md`
+- **訂閱主題**：無
+
+### `cx-grid-core`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-core.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：方格大地圖 grid 核心、載入器新資料夾、check 驗證、40×40 測試圖。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：grid.ts 介面與測試
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-core.md`
+- **訂閱主題**：無
+
+### `cx-grid-maps`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-maps.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：大地圖產生器與長陸／靜海面樣本內容（暫存區）。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：產生器用法、樣本圖內容
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-maps.md`
+- **訂閱主題**：無
+
+### `cx-tune-human`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：六份人類遭遇編成下修（平衡）。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-human` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-human.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-human.md`
+- **訂閱主題**：無
+
+### `lead-rename`
+- **狀態**：現役（2026-10-24）
+- **我是誰**：Opus 領導：全庫用語改名＋翻譯腔重審（codex-batches 第 1 批）。
+- **團隊**：`teams/lead-rename`（成員 `cx-rn-01`…`cx-rn-17`，各一批 polish，交接書 `wf/workflows/dispatch/handoffs/lead-rename/cx-rn-NN.md`，只在隔離 worktree `scratchpad/rename/wt-rename-NN` 內寫；領導代登記，不逐格列）
+- **領地**：見 CLAIMS 的 lead-rename 列
+- **怎麼找我**：`wf/inbox/teams/lead-rename/`、`wf/inbox/mail/lead-rename/`

@@ -1,0 +1,77 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-11",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 勢力與時代）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-11",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-11",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-11/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "polishFiles": [
+   "content/lore/factions/mumbai-returners.json",
+   "content/lore/factions/nairobi.json",
+   "content/lore/factions/nameless-souls.json",
+   "content/lore/factions/orbital-post.json",
+   "content/lore/factions/quito.json",
+   "content/lore/factions/remnant-wings.json",
+   "content/lore/factions/rift-beasts.json",
+   "content/lore/factions/ring-caravan.json",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/shell-society.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/factions/singapore-exchange.json",
+   "content/lore/factions/sydney.json",
+   "content/lore/factions/third-blade.json",
+   "content/lore/factions/tide-creed.json",
+   "content/lore/factions/unbinders.json",
+   "content/lore/factions/whitegloves.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

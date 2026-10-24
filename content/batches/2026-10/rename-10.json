@@ -1,0 +1,78 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-10",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 勢力與時代）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-10",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-10",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-10/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 19,
+ "allow": {
+  "polishFiles": [
+   "content/lore/eras/first-tide.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/mimic-dawn.json",
+   "content/lore/eras/old-world.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/eras/yoke-years.json",
+   "content/lore/factions/accra.json",
+   "content/lore/factions/anvil.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/busan.json",
+   "content/lore/factions/chittagong-breakers.json",
+   "content/lore/factions/dhaka-weavers.json",
+   "content/lore/factions/green-line.json",
+   "content/lore/factions/ground-union.json",
+   "content/lore/factions/league-armory.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/migrant-crew.json",
+   "content/lore/factions/mimic-works.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

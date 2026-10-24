@@ -1,0 +1,77 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-05",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-05",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-05",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-05/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "polishFiles": [
+   "content/lore/events/gyeongju-contest.json",
+   "content/lore/events/hekate-secret.json",
+   "content/lore/events/hunter-license-act.json",
+   "content/lore/events/iron-wings-month.json",
+   "content/lore/events/kali-found.json",
+   "content/lore/events/kuafu-awakens.json",
+   "content/lore/events/lagos-night.json",
+   "content/lore/events/lance-v4.json",
+   "content/lore/events/league-founded.json",
+   "content/lore/events/longspear-leak.json",
+   "content/lore/events/lunar-blockade.json",
+   "content/lore/events/lunar-tide-and-shell.json",
+   "content/lore/events/migrant-split.json",
+   "content/lore/events/mimic-one.json",
+   "content/lore/events/moonbow-first-shot.json",
+   "content/lore/events/nairobi-port-incident.json",
+   "content/lore/events/nameless-founded.json",
+   "content/lore/events/old-array-dig.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

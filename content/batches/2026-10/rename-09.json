@@ -1,0 +1,74 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-09",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lore 地點）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-09",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-09",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-09/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 15,
+ "allow": {
+  "polishFiles": [
+   "content/lore/places/rift-valley-seat.json",
+   "content/lore/places/ring-road.json",
+   "content/lore/places/rotterdam-roost.json",
+   "content/lore/places/salt-flat.json",
+   "content/lore/places/sao-paulo-blight.json",
+   "content/lore/places/singapore.json",
+   "content/lore/places/skagerrak-shell.json",
+   "content/lore/places/surat.json",
+   "content/lore/places/sydney.json",
+   "content/lore/places/the-post.json",
+   "content/lore/places/titicaca-ruin.json",
+   "content/lore/places/tranquility-city.json",
+   "content/lore/places/uluru-heart.json",
+   "content/lore/places/yakutsk-bed.json",
+   "content/lore/places/yukon-shell.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

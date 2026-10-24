@@ -1,0 +1,63 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-15",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（情境與對話）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-15",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-15",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-15/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "polishFiles": [
+   "content/base/scenarios/beachhead-landing.json",
+   "content/base/scenarios/beast-stampede.json",
+   "content/base/scenarios/convoy-run.json",
+   "content/base/scenarios/crater-three-way.json",
+   "content/base/scenarios/cx3-flyingfish-shoal.json",
+   "content/base/scenarios/delta-four-way.json",
+   "content/base/scenarios/ix-common-road.json",
+   "content/base/scenarios/lunar-blockade-run.json",
+   "content/base/scenarios/mirror-survive.json",
+   "content/base/scenarios/rift-edge-nest.json",
+   "content/base/scenarios/shell-excavation-escort.json",
+   "content/base/scenarios/siege-beetle-convoy.json",
+   "content/base/scenarios/skirmish-whitegloves.json",
+   "content/base/scenarios/tidal-flat-evac.json",
+   "content/base/scenarios/unbound-raid.json",
+   "content/base/world/dialogues/ilse-brandt-hull-oath.json",
+   "content/base/world/dialogues/mitali-das-wake-call.json",
+   "content/base/world/dialogues/yusuf-demir-exit-map.json"
+  ],
+  "proseFields": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

@@ -1,0 +1,56 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-17",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（營運事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-17",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-17",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-17/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 11,
+ "allow": {
+  "polishFiles": [
+   "content/base/world/events/news-selene-courtesy.json",
+   "content/base/world/events/news-tide-street-sermon.json",
+   "content/base/world/events/restraint-empty-rack.json",
+   "content/base/world/events/route-tide-storm.json",
+   "content/base/world/events/ruin-before-tide-glow.json",
+   "content/base/world/events/ruin-coordinate-sale.json",
+   "content/base/world/events/ruin-empty-shell-rubbing.json",
+   "content/base/world/events/ruin-shared-dream.json",
+   "content/base/world/events/ship-letter-receipt.json",
+   "content/base/world/events/ship-locker-letter.json",
+   "content/base/world/events/ship-tide-stew.json"
+  ],
+  "proseFields": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

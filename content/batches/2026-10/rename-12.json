@@ -1,0 +1,65 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-12",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（能力與雜項）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-12",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-12",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-12/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 20,
+ "allow": {
+  "polishFiles": [
+   "content/base/abilities/ax-brinemother-tide.json",
+   "content/base/abilities/ax-watchhorn-far-sight.json",
+   "content/base/abilities/cx3-call-the-tide.json",
+   "content/base/abilities/cx3-skimming-fin.json",
+   "content/base/abilities/heat-lance-thrust.json",
+   "content/base/abilities/kx-carapace-brace.json",
+   "content/base/abilities/kx-tide-crush.json",
+   "content/base/abilities/mx-fin-flurry.json",
+   "content/base/abilities/mx-relic-fist.json",
+   "content/base/abilities/mx-tide-leap-up.json",
+   "content/base/abilities/shard-gaze.json",
+   "content/base/abilities/shell-lance.json",
+   "content/base/factions/shell-society.json",
+   "content/base/factions/tide-faith.json",
+   "content/base/monsters/tidespine-chittagong.json",
+   "content/base/soultrees/moji-std.json",
+   "content/base/species/tidespine.json",
+   "content/base/species/tidewolf.json",
+   "content/base/terrains/tidal-flat.json",
+   "content/base/terrains/tide-channel.json"
+  ],
+  "proseFields": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
