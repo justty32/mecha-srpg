@@ -6,6 +6,7 @@ import { dangerAt } from "../danger.ts";
 import { scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
 import { pursuitCells } from "../knowledge.ts";
+import { mobile } from "../intent.ts";
 
 const DEFAULTS = { maxMoves: 8 };
 // 經 AiCtx 取 RulesQuery 的目標型別（policies 不直接 import rules-query，讓「rules 只在 adapters/」的 grep 乾淨）。
@@ -124,7 +125,7 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   // 本輪已用過 Wait 就不提（真規則會拒絕 wait-used；stub 無 rt.waitUsed 簿記時照舊）。
   if (!view.rt?.waitUsed.includes(actor)) candidates.push({ cmd: { kind: "wait", actor } });
   candidates.push({ cmd: { kind: "end", actor } });
-  if (view.rt?.exits.some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
+  if (mobile(q, view, actor) && view.rt?.exits.some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
   // 沒有握指令權的人物（無人機、失去駕駛）不能棄機；不提出必被規則以 no-commander 拒絕的候選。
   if (q.commanderOf(view, actor) !== null) candidates.push({ cmd: { kind: "eject", actor } });
   return candidates;

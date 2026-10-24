@@ -57,7 +57,19 @@ export function evaluateObjectives(ctx: Ctx, atRoundEnd: boolean): BattleOutcome
     // SPEC-GAP：多人 lose 未指定勝方；採與敗方敵對、仍有 active 單位的 slot 字典序第一名（盟軍與敗方同敗）。
     const winner = o.onComplete === "win" ? o.for : slots.find(slot => slot !== o.for && hostileSlots(ctx, o.for, slot) && Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && unit(ctx, id).owner === slot)) ?? null;
     runtime.outcome = { winner, reason: o.kind };
+    const targets = Array.isArray(o.params.slots) ? o.params.slots : undefined;
+    if (o.kind === "eliminate" && Object.keys(ctx.s.units).some(id => runtime.unitStatus[id] === "retreated"
+      && (targets ? targets.includes(unit(ctx, id).owner) : hostileSlots(ctx, o.for, unit(ctx, id).owner)))) runtime.outcome.detail = "repelled";
     break;
+  }
+  // SPEC-GAP：多方同時符合時沿用既有字典序第一勝方；勝方須仍有 active，盟軍不算敵方。
+  if (!runtime.outcome) for (const slot of slots) {
+    const ids = Object.keys(ctx.s.units), enemies = ids.filter(id => hostileSlots(ctx, slot, unit(ctx, id).owner));
+    if (ids.some(id => unit(ctx, id).owner === slot && isActive(ctx, id))
+      && !enemies.some(id => isActive(ctx, id)) && enemies.some(id => runtime.unitStatus[id] === "retreated")) {
+      runtime.outcome = { winner: slot, reason: "repelled", detail: "repelled" };
+      break;
+    }
   }
   if (!runtime.outcome && atRoundEnd && runtime.maxRounds !== null && ctx.s.round >= runtime.maxRounds) runtime.outcome = { winner: null, reason: "timeout" };
   // 指令／開局結算中途（死亡／撤離）定局時，BattleEnd 延到該次結算收尾才寫，讓同一指令的後續結算都在它之前。

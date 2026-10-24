@@ -87,7 +87,7 @@ export type BattleState = {
 
 // ---------- rules 層執行期簿記（lead-impl-rules 新增；只放純資料） ----------
 export type UnitStatus = "active" | "dead" | "retreated" | "derelict" | "captured";
-export type BattleOutcome = { winner: FactionSlot | null; reason: string };
+export type BattleOutcome = { winner: FactionSlot | null; reason: string; detail?: "eliminated" | "repelled" };
 export type RulesRuntime = {
   globals: { tide?: NumExpr; light?: number };
   allies: Record<FactionSlot, FactionSlot[]>;

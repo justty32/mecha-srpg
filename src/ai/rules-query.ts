@@ -39,6 +39,8 @@ export interface RulesQuery {
   perception(s: BattleState, unitId: Id): number;
   unitGrade(s: BattleState, unitId: Id): Grade;
   unitTags(s: BattleState, unitId: Id): string[];
+  /** 物種既有行為與 profile 數值；只查己方單位，不擴充內容 schema。 */
+  speciesIntent?(s: BattleState, unitId: Id): { behaviors: string[]; params: Record<string, number> } | undefined;
   /** body plan 的部位，依宣告順序（公開情報）。 */
   partDefs(s: BattleState, unitId: Id): PartDef[];
   /** 實際層序列；與 MechState.parts[partId].layers 一一對應（公開情報：種類、順序、最大 HP）。 */

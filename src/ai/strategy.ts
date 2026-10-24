@@ -7,6 +7,8 @@ import type { AiParams, Assignment } from "./policy.ts";
 import { ownUnits } from "./knowledge.ts";
 import { forceRatio, hpFraction, targetValue } from "./score.ts";
 import { isHostileSlot } from "./hostility.ts";
+import { planIntent } from "./intent.ts";
+import type { IntentMemory } from "./intent.ts";
 
 const DEFAULTS = { attackRatio: 0.8, holdRatio: 0.4, maxEngage: 3, focusDistance: 2 };
 
@@ -16,6 +18,7 @@ export interface Strategy { id: Id; deploy(ctx: StrategyCtx): Deploy[]; roundPla
 
 export function createDefaultStrategy(): Strategy {
   let engagements: Record<Id, Id> = {};
+  const intent: IntentMemory = {};
   return {
     id: "default",
     deploy({ q, s, slot }) {
@@ -37,7 +40,7 @@ export function createDefaultStrategy(): Strategy {
       const focus = [...enemies].sort((a, b) => priority(b) - priority(a) || (a < b ? -1 : a > b ? 1 : 0))[0];
       engagements = {};
       const counts: Record<Id, number> = {};
-      return own.map((unit): Assignment => {
+      const plans = own.map((unit): Assignment => {
         const assignment: Assignment = { unit, stance, allowRetreat: ratio < holdRatio };
         const distance = (id: Id): number => q.distance(s.units[unit]!.pos, view.units[id]!.pos);
         const available = enemies.filter((id) => (counts[id] ?? 0) < (params.maxEngage ?? DEFAULTS.maxEngage))
@@ -57,6 +60,8 @@ export function createDefaultStrategy(): Strategy {
         }
         return assignment;
       });
+      planIntent(ctx, intent, plans);
+      return plans;
     },
     onEvent(ev) {
       if (ev.type !== "UnitDied" || typeof ev.payload.unit !== "string") return;

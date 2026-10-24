@@ -58,6 +58,12 @@ export function createRulesQuery(db: ContentDB, snapshot?: BattleState): RulesQu
     perception: (s, id) => R.roleAttr(c(s), subjectOf(c(s), id), "perception"),
     unitGrade: (s, id) => R.frameView(c(s), id).grade,
     unitTags: (s, id) => R.unitTags(c(s), id),
+    speciesIntent(s, id) {
+      const monster = s.rt?.monsters[id];
+      if (!monster) return undefined;
+      const species = db.require("species", monster.species);
+      return { behaviors: Object.keys(species.behaviors ?? {}), params: db.get("aiprofile", species.aiProfile)?.params ?? {} };
+    },
     partDefs: (s, id) => R.partDefs(c(s), id),
     layerDefs: (s, id, part) => R.layerDefs(c(s), id, part),
     reachable(s, id) {

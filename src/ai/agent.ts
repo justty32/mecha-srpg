@@ -6,6 +6,7 @@ import type { Agent, AiCtx, AiParams, Assignment, Candidate } from "./policy.ts"
 import { candidateKey, getPolicy, selectCandidate } from "./policy.ts";
 import { maskedState, observe, updateKnowledge } from "./knowledge.ts";
 import { dangerMap } from "./danger.ts";
+import { individualRetreat, mobile } from "./intent.ts";
 
 const DEFAULTS = { maxActions: 8, maxRetries: 3, maxPureMoves: 1, band: 0.8 };
 
@@ -57,8 +58,13 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
   let pureMoves = 0;
   for (let action = 0; action < maxActions; action++) {
     if (over()) return commands;
-    const policy = getPolicy(policyFor(q, s, agent.unit, agent.policy));
     let ctx = context();
+    const base = policyFor(q, s, agent.unit, agent.policy);
+    const mode = ctx.assignment?.intentMode;
+    const withdraw = mobile(q, s, agent.unit) && !s.rt?.noRetreat
+      && (mode === "retreat" || individualRetreat(ctx, agent.unit));
+    const policy = getPolicy(base === "berserk" ? base : withdraw ? "flee"
+      : mode === "regroup" ? "regroup" : mode === "instinct" ? "tactical" : mode === "gather" ? "swarm" : base);
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
     // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
     const limitMoves = ["tactical", "sentinel", "swarm"].includes(policy.id);

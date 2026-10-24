@@ -12,6 +12,7 @@ import "./policies/berserk.ts";
 import "./policies/swarm.ts";
 import "./policies/sentinel.ts";
 import "./policies/flee.ts";
+import "./policies/regroup.ts";
 import "./policies/scripted.ts";
 import type { Id } from "../core/ids.ts";
 import type { FactionSlot } from "../core/types-def.ts";

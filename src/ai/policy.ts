@@ -20,6 +20,7 @@ export type Assignment = {
   hold?: Cell;          // 要守的格
   protect?: Id;         // 要護的友方單位
   allowRetreat: boolean;
+  intentMode?: "retreat" | "regroup" | "instinct" | "gather";
 };
 
 /** aiprofile 的 params（AiProfileDef.params）。SPEC-GAP：spec 寫 want 是 NumExpr，型別只給 number，改為係數表。 */

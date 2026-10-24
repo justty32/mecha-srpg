@@ -111,7 +111,10 @@ export function retreat(ctx: Ctx, unitId: Id): Rejection | null {
   if (!isActive(ctx, unitId)) return { code: "not-active" };
   const runtime = rt(ctx.s), u = unit(ctx, unitId);
   if (runtime.noRetreat) return { code: "no-retreat" };
-  if (!runtime.exits.some(c => distance(c, u.pos) === 0)) return { code: "not-at-exit" };
+  // SPEC-GAP：無明列出口的地圖允許四邊撤離；有出口時仍限指定格。
+  const atExit = runtime.exits.length ? runtime.exits.some(c => distance(c, u.pos) === 0)
+    : inBounds(ctx.s, u.pos) && (u.pos.x === 0 || u.pos.y === 0 || u.pos.x === ctx.s.map.width - 1 || u.pos.y === ctx.s.map.height - 1);
+  if (!atExit) return { code: "not-at-exit" };
   runtime.unitStatus[unitId] = "retreated";
   ctx.s.factions[u.owner]?.retreated.push(unitId);
   emit(ctx, "Retreated", { unit: unitId });

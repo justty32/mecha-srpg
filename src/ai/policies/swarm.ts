@@ -12,6 +12,7 @@ function parentOf(ctx: AiCtx, agent: Agent): Id | undefined {
   if (!self) return undefined;
   const friends = Object.keys(view.units).sort().filter((id) => id !== agent.unit
     && view.units[id]!.owner === self.owner && q.isActive(view, id));
+  if (ctx.assignment?.intentMode === "gather" && ctx.assignment.protect && friends.includes(ctx.assignment.protect)) return ctx.assignment.protect;
   if (typeof agent.memory.parent === "string" && friends.includes(agent.memory.parent)) return agent.memory.parent;
   const spawners = friends.filter((id) => q.unitTags(view, id).includes("spawner"));
   return (spawners.length ? spawners : friends).sort((a, b) => q.distance(self.pos, view.units[a]!.pos)
