@@ -1,0 +1,106 @@
+{
+ "contract": "wf-table/1",
+ "source": "codex-handover.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "序",
+  "批次",
+  "模式",
+  "允許的 kind（相對 content/）",
+  "規模",
+  "注意",
+  "狀態"
+ ],
+ "rows": [
+  {
+   "序": "1",
+   "批次": "用語改名＋翻譯腔重審",
+   "模式": "polish",
+   "允許的 kind（相對 content/）": "全庫文字欄（`content/base/**`、`content/lore/**` 的 name／summary／body／text／lines…；含 lore glossary.json、style.md 由領導改）",
+   "規模": "分 10–20 檔一批、按類別切，3–4 批並行",
+   "注意": "依 design-notes/terms.md（古代機／裝甲、衍型、蝕潮系、鎧甲／靈目／矢）；飛魚與 lore 試點批的「潮」舊詞併入；agy 審查；「鞘」系衍生詞、潮信會、大潮小潮、工作名**先擬一版交使用者定**，定案前不換",
+   "狀態": "可開（第一批）"
+  },
+  {
+   "序": "2",
+   "批次": "第三刃、背面補成正式勢力（lore 與營運事件）",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`lore/factions`、`lore/characters`、`lore/events`、`base/world/events`、`templates`、`dialogues`、`names`",
+   "規模": "lore 5–8／營運 10–15",
+   "注意": "`factions-ops/` 新勢力會動作戰模擬與黃金 → 只寫 lore 與事件，勢力營運資料交引擎線",
+   "狀態": "可開（lore 部分）"
+  },
+  {
+   "序": "3",
+   "批次": "人類對手機體與配裝",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`base/frames`、`components`、`abilities`、`effects`、`scenarios`",
+   "規模": "10–15",
+   "注意": "每台 `defaultLoadout`、非凡兵武器；不寫 `world/models`；人類遭遇偏難待平衡線，不要靠新機變弱",
+   "狀態": "可開"
+  },
+  {
+   "序": "4",
+   "批次": "更多營運事件與對話",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`base/world/events`、`templates`、`dialogues`、`rooms`",
+   "規模": "10–15",
+   "注意": "事件效果白名單、月份與日子閘門、首選項無 requires",
+   "狀態": "可開"
+  },
+  {
+   "序": "5",
+   "批次": "各勢力 lore（藍本古代機與研發路線、對傭兵態度與補給）",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`lore/factions`、`lore/events`、`timeline.json`（例外檔純插入）",
+   "規模": "5–8",
+   "注意": "照 world-pillars 勢力四節；年表錨點不動",
+   "狀態": "可開"
+  },
+  {
+   "序": "6",
+   "批次": "A 級以上怪獸二名",
+   "模式": "polish／add",
+   "允許的 kind（相對 content/）": "`base/monsters` 的 name（polish）或 lore 條目",
+   "規模": "10–20",
+   "注意": "B 級以下不給；四字為主「做過的事＋樣子」",
+   "狀態": "可開"
+  },
+  {
+   "序": "7",
+   "批次": "地圖與情境",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`base/maps`、`terrains`、`scenarios`",
+   "規模": "10–15",
+   "注意": "部署相距 ≥10、玩家 lose 條件、輪數 20–30、主目標多用擊退／守住；`place-*` 遭遇不生效",
+   "狀態": "可開"
+  },
+  {
+   "序": "8",
+   "批次": "`aka` 填寫（別名、各勢力叫法）",
+   "模式": "polish",
+   "允許的 kind（相對 content/）": "frames `aka`、lore `aka`",
+   "規模": "10–20",
+   "注意": "只放中文別名；**英文原名不放 aka**",
+   "狀態": "可開"
+  },
+  {
+   "序": "9",
+   "批次": "英文原名命名表",
+   "模式": "add（只寫 manifest）",
+   "允許的 kind（相對 content/）": "批次 manifest 的命名表欄（不進 content）",
+   "規模": "10–20 名",
+   "注意": "`nameEn`／`etymology` 補欄前只放 manifest；補欄後另開批次搬進資料",
+   "狀態": "可開（只 manifest）"
+  },
+  {
+   "序": "10",
+   "批次": "新怪獸、古代機、機魂、人物",
+   "模式": "add",
+   "允許的 kind（相對 content/）": "`base/species`、`bodyplans`、`monsters`、`frames`、`persons`、`soultrees`、`abilities`、`effects`",
+   "規模": "10–15",
+   "注意": "古代機等級無上限可寫進化敘述，但進化機制未實作；機魂個性只限 S；passive／molt／territorial 不生效先不用",
+   "狀態": "可開"
+  }
+ ]
+}

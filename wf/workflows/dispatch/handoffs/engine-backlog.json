@@ -227,6 +227,15 @@
    "影響": "24 潮月 war 比例最高 4.4%、奪點 1–2",
    "建議做法": "大地圖與更多勢力內容後再調好戰參數",
    "規模": "小"
+  },
+  {
+   "序": "25",
+   "優先": "P2",
+   "項目": "鐵劍（與飛魚）world models＋lineage 入庫；新通用血統下研發模擬讀到 undefined",
+   "來源": "[lead-codex-pilot](lead-codex-pilot/REPORT.md)",
+   "影響": "鐵劍只有戰鬥 frame，世界研發／市場不出鐵劍；飛魚無 models；新血統會改 5 條黃金戰役與 MCP 戰役 hash",
+   "建議做法": "先修 `src/ops/war` 新血統 undefined（重現：放入 `lead-codex-pilot/pilot-mech-02/deferred/world/` 原檔跑 war 測試），再入庫 models ×5＋lineage ×1、補飛魚 models，重產黃金並在 commit 說明",
+   "規模": "小–中"
   }
  ]
 }

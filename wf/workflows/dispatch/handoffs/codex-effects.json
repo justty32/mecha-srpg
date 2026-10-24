@@ -1,0 +1,168 @@
+{
+ "contract": "wf-table/1",
+ "source": "codex-handover.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "類別",
+  "目錄／欄位",
+  "生效？",
+  "條件／備註",
+  "來源"
+ ],
+ "rows": [
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`frames/`＋`defaultLoadout`",
+   "生效？": "會",
+   "條件／備註": "check 驗槽；空手警告；每台至少一把非凡兵武器",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "frames `aka`",
+   "生效？": "只顯示",
+   "條件／備註": "放別名（勢力叫法）；**不放英文原名**",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`scenarios/` `components`／`name`／`brief`",
+   "生效？": "會／只顯示",
+   "條件／備註": "",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`components/`、`abilities/`、`effects/`",
+   "生效？": "會",
+   "條件／備註": "`passive` 無作用（check 警告）；reaction 只有 enemyLeavesAdjacent",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`species/`、`bodyplans/`",
+   "生效？": "會",
+   "條件／備註": "instinct 池為 hard",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`monsters/` `partsOverride`／`attrMods`／`extraAbilities`",
+   "生效？": "會",
+   "條件／備註": "情境與營運出戰都生效（gaps-ops 已接）",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)、[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "persons `soulGrade`",
+   "生效？": "只是資料",
+   "條件／備註": "",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "attrs `beastKin`／`shellKin`",
+   "生效？": "NumExpr 可引用",
+   "條件／備註": "缺值取 0；營運招募／遺跡不讀",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`aiprofiles/` `params`（含意圖門檻）",
+   "生效？": "會",
+   "條件／備註": "只能數字；意圖代碼 0–8",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`spawner.tether`、maps `exits`",
+   "生效？": "會",
+   "條件／備註": "exits 未寫則四邊可撤",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "戰鬥",
+   "目錄／欄位": "`molt`、`territorial` 散播、`barks/` 台詞",
+   "生效？": "不會",
+   "條件／備註": "引擎待辦（engine-backlog）",
+   "來源": "[gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/contracts/`",
+   "生效？": "會",
+   "條件／備註": "需勢力 `contractKinds` 列入且有 `actions/board-*.json`；`issuerKinds` 限 state／city／company／guild／band／cult；目標 kind 限 eliminate／killTarget／hold／survive／escort",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/actions/`、`events/`、`templates/`",
+   "生效？": "會",
+   "條件／備註": "事件效果白名單；新事件型別需 `templates/` 文案",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/encounters/` 怪獸",
+   "生效？": "會",
+   "條件／備註": "`family`＋`depth`、`budgetByGrade`",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/encounters/` 人類",
+   "生效？": "會",
+   "條件／備註": "`faction`、`units[]`（`frame` 必填）；等級湊滿 `budgetByGrade`；只經契約 `encounter` 欄選中",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/encounters/place-*`",
+   "生效？": "不會",
+   "條件／備註": "方格大地圖未實作",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`factions-ops/`、`operations/`、`treaties/`、`forces/`、`affinity.json`",
+   "生效？": "會",
+   "條件／備註": "",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`world/lineages/`、`world/models/`",
+   "生效？": "會，但**不歸 codex**",
+   "條件／備註": "新血統會改黃金戰役 hash，且研發模擬讀到 undefined（engine-backlog）",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)、[pilot](lead-codex-pilot/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`rifts/`、`research/`、`markets/`、`recruit-pools/`、`backgrounds/`、`names/`、`dialogues/`、`rooms/`、`jobs/`、`beasts/`、`services/`",
+   "生效？": "會",
+   "條件／備註": "rifts 無位置欄；`services/` 是常數（改既有數值不歸 codex）",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "`nodes/`、`routes/`、`ferry.json`、`ship.json`、`calendar.json`、`campaign-start/`",
+   "生效？": "會",
+   "條件／備註": "仍是節點圖；改它們會動黃金，不歸 codex",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "營運",
+   "目錄／欄位": "world-grid `places/`、`maps/`、`lanes/`、`regions/`、`actors/`",
+   "生效？": "不會",
+   "條件／備註": "載入器無此資料夾",
+   "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
+  },
+  {
+   "類別": "lore",
+   "目錄／欄位": "`content/lore/{characters,events,factions,places,eras}`、`timeline.json`",
+   "生效？": "百科會顯示",
+   "條件／備註": "`node content/lore/check.ts` 0 錯；`aka` 可填",
+   "來源": ""
+  }
+ ]
+}

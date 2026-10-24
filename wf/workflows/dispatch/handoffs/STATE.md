@@ -18,8 +18,8 @@
 
 ## 現役
 
-- **lead-codex-pilot**（進行中）：codex 內容填充試點與護欄——`wf/tools/content_*`（閘門、收件）、`content/index/`、`content/batches/`、`wf/workflows/content/{README,batch,polish,playtest}.md`。目錄 [lead-codex-pilot/](lead-codex-pilot/)。收線後由 lead-wrapup 第二階段寫 codex 接手指南 `handoffs/codex-handover.md`。
-- **lead-wrapup**（本線）：第一階段完成，等 pilot 收線做第二階段；REPORT 寫檔被工具擋下，全文在回傳頂層的回覆裡（頂層代存到 `handoffs/lead-wrapup/REPORT.md`）。
+- **lead-tidy**（進行中）：本段落末的搬移與拆檔（已收線目錄移 done、近 8 KB 檔拆子檔、收信殘檔歸檔）；進度看 [next-tidy](next-tidy.md) 與 `git log`。
+- **lead-codex-pilot** 已收線（2026-10-24，[REPORT](lead-codex-pilot/REPORT.md)；四份 manifest 指向該目錄，故留原處）。**lead-wrapup** 兩階段完成，REPORT 由頂層代存 `handoffs/lead-wrapup/REPORT.md`。
 
 ## 本段落（2026-10-24）做了什麼
 
@@ -33,15 +33,17 @@
 
 規劃與內容守則：[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)（方格大地圖 spec）、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)（spec 整合與風格改寫）、[plan-content-guide](done/2026-10-24/plan-content-guide/REPORT.md)（content 工作流）、[plan-world-pillars](done/2026-10-24/plan-world-pillars/REPORT.md)（世界觀守則 31 條）。
 
-收尾（lead-wrapup）：新裁示寫進 spec 與守則（古代機等級無上限、十分律擴讀定案、三條通用系列、用語過渡說明、意圖兩層 spec 標已實作）；本檔、engine-backlog、next-tidy、roadmap 狀態。
+內容試點：[lead-codex-pilot](lead-codex-pilot/REPORT.md)（閘門、驗收鏈、分片索引與批次帳本；四批：潤飾、lore、飛魚、鐵劍）。
+
+收尾（lead-wrapup）：新裁示寫進 spec 與守則（古代機等級無上限、十分律擴讀定案、三條通用系列、用語過渡說明、意圖兩層 spec 標已實作）；本檔、[engine-backlog](engine-backlog.md)、[next-tidy](next-tidy.md)、roadmap 狀態、[codex-handover](codex-handover.md)。
 
 ## 新 session 的第一步
 
 1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
-2. 讀本檔 → `handoffs/codex-handover.md`（第二階段寫成後才有）→ [engine-backlog](engine-backlog.md)。
-3. 確認 lead-codex-pilot 已收線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）；未收就先收。
-4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**）：第一批＝用語改名＋翻譯腔重審（依 `design-notes/terms.md`，agy 審查，衍生詞交使用者定）。
-5. 並行開 Opus 領導線做 engine-backlog P1（方格大地圖一線、戰鬥／營運調校一線）。
-6. 使用者試玩回饋（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應修正線。重構與 tidy 照 [next-tidy](next-tidy.md)，使用者說要做再開。
+2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
+3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）；lead-tidy 若未收先收。
+4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover：第一批＝用語改名＋翻譯腔重審（依 `design-notes/terms.md`，agy 審查，衍生詞先交使用者定）；其餘批次照 `codex-batches.json`，3–4 批並行。
+5. 並行開 Opus 領導線做 engine-backlog P1（方格大地圖一線、戰鬥／營運調校一線）；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
+6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
 
 > `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。
