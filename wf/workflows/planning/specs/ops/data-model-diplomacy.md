@@ -29,7 +29,7 @@ type TreatyState = { def: Id; signedDay: number; endDay: number; broken?: { day:
 
 全部列在 [diplomacy-drivers.json](diplomacy-drivers.json)（17 列）。欄位：`id`／`trigger` 觸發時點／`delta` 數值變化（量級）／`decay` 是否進宿怨與衰減／`who` 作用對象／`note`。四類來源：**漂移**（每蝕月朝 `baseline` 回 2、宿怨半衰）、**地圖**（鄰接區域被對方的裂縫蝕化、共享裂縫威脅、同一古代機或裂縫的競爭）、**作戰結果**（奪點／圍城／曝光的襲擾、解圍、技術流出、取得新古代機）、**玩家**（選邊參戰、背盟、持古代機）。`baseline` 由內容 `affinity.json` 給每對（缺省 0；同文化 +10；內容標 `rivalry` 的宿敵對 −20），是世界不出事時的歸宿。
 
-**防退化三道閘**：(1) 漂移回 `baseline` 讓無事件的對子回中立；(2) `weariness`：交戰每日 +1，≥ 40 後停火牌權重隨之放大，蝕壓高檔時再 +5／大潮——沒有永久戰爭；(3) `alliance-burden`：同盟 ≥ 3 個的勢力再簽盟權重 ×0.2、漂移多 −1——沒有全員同盟。測試斷言見 [war-testing](war-testing.md)。
+**防退化三道閘**：(1) 漂移回 `baseline` 讓無事件的對子回中立；(2) `weariness`：交戰每日 +1，≥ 40 後停火牌權重隨之放大，蝕壓高檔時再 +5／漲潮——沒有永久戰爭；(3) `alliance-burden`：同盟 ≥ 3 個的勢力再簽盟權重 ×0.2、漂移多 −1——沒有全員同盟。測試斷言見 [war-testing](war-testing.md)。
 
 ## 對作戰生成的影響
 

@@ -4,7 +4,7 @@
 
 ## 抽象結算（沒人參戰的那幾天）
 
-每個 engage 日：`r = str(force) / enemyStr`（含傭兵加入的戰力與補給修正）。`progress += clamp(0.25 × √r × m, 0.05, 0.6)`，`m` 為 0.7–1.3 的擲值；己方 `readiness` 全體 ×(1 − clamp(0.12 / r, 0.03, 0.25))、`count` 依比例折損成整數；敵方 `enemyStr ×= (1 − clamp(0.2 × r, 0.05, 0.4))`；`supply −10`。終止：`progress ≥ 1` → `resolve` 成功；`str < 0.3 × 初值` 或 `morale ≤ −2` → `failed`；`supply ≤ 0` → `aborted`（退兵，後果輕）。裂獸目標的 `enemyStr` 在大潮日回補（出巢）。全是純函式 `(op, rng) → op'`，可表格測試。**位置只經 `Loc`**（[world-grid](../world-grid/README.md) 已定死 `map`／`region`／`cell`）；實作過渡期 `region` 可先填舊節點 id，邏輯不改。
+每個 engage 日：`r = str(force) / enemyStr`（含傭兵加入的戰力與補給修正）。`progress += clamp(0.25 × √r × m, 0.05, 0.6)`，`m` 為 0.7–1.3 的擲值；己方 `readiness` 全體 ×(1 − clamp(0.12 / r, 0.03, 0.25))、`count` 依比例折損成整數；敵方 `enemyStr ×= (1 − clamp(0.2 × r, 0.05, 0.4))`；`supply −10`。終止：`progress ≥ 1` → `resolve` 成功；`str < 0.3 × 初值` 或 `morale ≤ −2` → `failed`；`supply ≤ 0` → `aborted`（退兵，後果輕）。裂獸目標的 `enemyStr` 在漲潮日回補（出巢）。全是純函式 `(op, rng) → op'`，可表格測試。**位置只經 `Loc`**（[world-grid](../world-grid/README.md) 已定死 `map`／`region`／`cell`）；實作過渡期 `region` 可先填舊節點 id，邏輯不改。
 
 ## 玩家參戰的那一場
 
@@ -12,7 +12,7 @@
 
 ## tick 第 2 段的順序（補 time-and-tick）
 
-2a 裂縫狀態機（大潮日）→ 2b 外交日結（漂移、條約到期、停火檢定）→ 2c **作戰推進**（每場依 `id` 序：階段倒數、engage 抽象結算或寫 `pendingBattle`、終止判定與後果）→ 2d 行動牌（可能發起新作戰、宣戰、簽約）→ 2e 新裂縫與蝕壓（大潮日）→ 2f 研發推進（每蝕月第 1 天）。先外交再作戰（作戰查最新 `RelState`），先作戰再行動牌（新作戰最快明天 `muster`）。
+2a 裂縫狀態機（漲潮日）→ 2b 外交日結（漂移、條約到期、停火檢定）→ 2c **作戰推進**（每場依 `id` 序：階段倒數、engage 抽象結算或寫 `pendingBattle`、終止判定與後果）→ 2d 行動牌（可能發起新作戰、宣戰、簽約）→ 2e 新裂縫與蝕壓（漲潮日）→ 2f 研發推進（每蝕月第 1 天）。先外交再作戰（作戰查最新 `RelState`），先作戰再行動牌（新作戰最快明天 `muster`）。
 
 ## 後果詞彙（OpsEffect 新增）
 

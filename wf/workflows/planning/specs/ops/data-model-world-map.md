@@ -15,14 +15,14 @@ type RiftState = { id: Id; at: Loc /*核心格*/; site: Id /*開裂時自動建�
   phase: "opening" | "anchored" | "unanchored" | "sealing" | "sealed" | "receding" | "closed";
   openedDay: number; anchorAge: number; anchor?: Id /*MechState 或 MonsterDef*/; patches: Id[] /*蝕塊 BlightPatch id，取代 zones*/;
   fedCount: number;                                            // 「養裂」計數：錨死後沒守、又被送新錨的次數
-  nextCheck: number };                                         // 下一個大潮日
+  nextCheck: number };                                         // 下一個漲潮日
 ```
 
-狀態機（轉移只在**大潮日**或戰果回寫時發生）：`opening`（開後 0–3 天只有先鋒；此期清剿殲滅先鋒即直接 `closed`，見 [data-model-factions-contracts](data-model-factions-contracts.md)）→ 第 4 天 `anchored`（錨到，核由 1 格長成 3×3，開始每大潮蝕化 `1 + floor(anchorAge/2)` 個相鄰**蝕塊**；菌床固定 2）→ 錨被殺／捕 → `unanchored`（倒數到下個大潮）→ 大潮日：核區有守軍（玩家接了防守情境並勝）→ `sealing` → 下一個大潮仍守住 → `sealed`→ 之後每蝕月 `receding` 退最年輕的一塊（LIFO；菌絲塊要先 `burned`）→ 無 patches → `closed`（`site` 變 `ruin` 或刪除）。`unanchored` 無人守 → 新錨到，回 `anchored`、`fedCount++`、`anchorAge` 不重置。異形族模板宣告 `selfClose: true`：開一個大潮後直接 `closed`、留一個 `beacon` 地點，無 `anchored`。殺遊蕩中的巢母游態（`swarm` 行動者）＝刪除一個尚未開出的 `opening` 候選。蝕塊怎麼長、深度怎麼算、城邦何時失守，在 [rifts-on-grid](world-grid/rifts-on-grid.md)。
+狀態機（轉移只在**漲潮日**或戰果回寫時發生）：`opening`（開後 0–3 天只有先鋒；此期清剿殲滅先鋒即直接 `closed`，見 [data-model-factions-contracts](data-model-factions-contracts.md)）→ 第 4 天 `anchored`（錨到，核由 1 格長成 3×3，開始每漲潮蝕化 `1 + floor(anchorAge/2)` 個相鄰**蝕塊**；菌床固定 2）→ 錨被殺／捕 → `unanchored`（倒數到下個漲潮）→ 漲潮日：核區有守軍（玩家接了防守情境並勝）→ `sealing` → 下一個漲潮仍守住 → `sealed`→ 之後每蝕月 `receding` 退最年輕的一塊（LIFO；菌絲塊要先 `burned`）→ 無 patches → `closed`（`site` 變 `ruin` 或刪除）。`unanchored` 無人守 → 新錨到，回 `anchored`、`fedCount++`、`anchorAge` 不重置。異形族模板宣告 `selfClose: true`：開一個漲潮後直接 `closed`、留一個 `beacon` 地點，無 `anchored`。殺遊蕩中的巢母游態（`swarm` 行動者）＝刪除一個尚未開出的 `opening` 候選。蝕塊怎麼長、深度怎麼算、城邦何時失守，在 [rifts-on-grid](world-grid/rifts-on-grid.md)。
 
 ## 蝕壓 Pressure（全局隱藏量）
 
-`pressure: number`（0..∞）。每天 `+base`；每個 `sealed` 事件 `−k1`；每多一塊蝕塊 `+k2`／蝕月（一塊約 10 格，量級與第一版一節點相當）。大潮日用它算：新裂縫數（泊松，均值 ∝ pressure，按各圖陸格數比例分配）、新裂縫寬度上限、開在城邦邊的機率、野地事件表的凶險檔。新裂縫落點：七成抽既有蝕域邊緣 ≤ 3 格的陸格（主族沿用）、三成離城 ≥ 6 格的野地（主族隨機），候選權重用地形 `rift_affinity`；月面不開新裂縫（內容開關 `continents.json.rift_rate`）。蝕壓**不會**因玩家變強而降，只會因封裂縫而換岸。SS／SSS 的「源頭」只留 `pressureSource?: Id` 欄位，不設計。
+`pressure: number`（0..∞）。每天 `+base`；每個 `sealed` 事件 `−k1`；每多一塊蝕塊 `+k2`／蝕月（一塊約 10 格，量級與第一版一節點相當）。漲潮日用它算：新裂縫數（泊松，均值 ∝ pressure，按各圖陸格數比例分配）、新裂縫寬度上限、開在城邦邊的機率、野地事件表的凶險檔。新裂縫落點：七成抽既有蝕域邊緣 ≤ 3 格的陸格（主族沿用）、三成離城 ≥ 6 格的野地（主族隨機），候選權重用地形 `rift_affinity`；月面不開新裂縫（內容開關 `continents.json.rift_rate`）。蝕壓**不會**因玩家變強而降，只會因封裂縫而換岸。SS／SSS 的「源頭」只留 `pressureSource?: Id` 欄位，不設計。
 
 ## 浮船 ShipState
 
@@ -38,7 +38,7 @@ type ShipState = { frame: Id /*ShipDef*/; pos: Loc; path?: { cells: Cell[]; lane
 
 ## 遺跡探勘入口
 
-遺跡是 `kind:"ruin"` 的**地點**；船停進其 `footprint` 後指令 `探 <遺跡>` 開一段**逐層文字事件鏈**（每層一天、派 2–4 人徒步、花補給、擲特質），結果寫回：遺物（`LootBundle`）、刻痕（`LoreFlag`，寫進 `CampaignState.lore`）、傷勢（人物 Effect）、或 `ancientFound: Id /*FrameDef*/`（同時建 `ShellState{holder:{ruin}}`，見 operations-war）。約三分之一遺跡的 `seedTable` 含古代機甲列；封口後的裂縫 `site` 也可能變成帶 `seedTable` 的遺跡。**認主**不在這裡：挖出的古代機進機庫為 `dormant` 機甲，只能在大潮之夜由共鳴 ≥ threshold 的人物 `喚 <古代機>`（走 core `ResonanceReq`）。本版探勘是事件鏈，不是地城，規則全在 `events/ruin-*.json`。
+遺跡是 `kind:"ruin"` 的**地點**；船停進其 `footprint` 後指令 `探 <遺跡>` 開一段**逐層文字事件鏈**（每層一天、派 2–4 人徒步、花補給、擲特質），結果寫回：遺物（`LootBundle`）、刻痕（`LoreFlag`，寫進 `CampaignState.lore`）、傷勢（人物 Effect）、或 `ancientFound: Id /*FrameDef*/`（同時建 `ShellState{holder:{ruin}}`，見 operations-war）。約三分之一遺跡的 `seedTable` 含古代機甲列；封口後的裂縫 `site` 也可能變成帶 `seedTable` 的遺跡。**認主**不在這裡：挖出的古代機進機庫為 `dormant` 機甲，只能在漲潮之夜由共鳴 ≥ threshold 的人物 `喚 <古代機>`（走 core `ResonanceReq`）。本版探勘是事件鏈，不是地城，規則全在 `events/ruin-*.json`。
 
 ## 地月渡月船（已併入航道 LaneDef）
 
@@ -47,7 +47,7 @@ type ShipState = { frame: Id /*ShipDef*/; pos: Loc; path?: { cells: Cell[]; lane
 ## 替使用者做掉的決定
 
 1. ~~蝕域是節點狀態不是節點種類~~ **作廢（2026-10-24）**：蝕域改為格群「蝕塊」，見 rifts-on-grid 決定 1。
-2. **裂縫狀態機只在大潮日與戰果回寫時轉移**：玩家能算得出「哪天該在哪」，也讓測試只需斷言兩類時點。
+2. **裂縫狀態機只在漲潮日與戰果回寫時轉移**：玩家能算得出「哪天該在哪」，也讓測試只需斷言兩類時點。
 3. **蝕壓用泊松抽新裂縫數**：讓「蝕壓高」直覺地變成「開得多」，而非改機率表。
 4. **遺跡探勘＝逐層事件鏈**（非地城戰鬥）：事件文字加兩三個選項是最省的形式，也省一套戰鬥模式。
 5. ~~世界圖量級 120＋15 節點~~ **作廢（2026-10-24）**：改六張方格圖、地點量級見 map-and-terrain。

@@ -26,7 +26,7 @@ type ResonanceReq = { beliefs: string[]; threshold: number; deeds?: string[]; re
 
 ## 機魂成長與控制權
 
-機魂天賦樹 `SoulTreeDef = { id; nodes: { id; perk: Id; cost: { research?: number; companionship?: number }; requires: Id[]; direction: string }[] }`。營運層每日累加 `research`（科研方向投入）與 `companionship`（駕駛員或科研人員陪伴時數，吃營運時間），解鎖是純資料檢查。節點的 `direction` 標籤（例：`autonomy`、`assist`、`tactical`）會影響：`controlMode:"contested"` 的控制檢定（autonomy 節點數加到機魂方）、機魂能否單獨駕駛（需至少一個 `autonomy` 節點）、`shared` 模式下機魂可代出手的能力集合。**控制檢定**：`d100 + pilot.control + contribs` 對 `d100 + soul.control + autonomyNodes × k`，贏者本回合握指令權；輸方仍可用自己的 `actorRole` 能力。失去駕駛員（死亡／棄機）時機魂若可單獨駕駛則自動接手，否則單位癱瘓。
+機魂天賦樹 `SoulTreeDef = { id; nodes: { id; perk: Id; cost: { research?: number; companionship?: number }; requires: Id[]; direction: string }[] }`。營運層每日累加 `research`（科研方向投入）與 `companionship`（駕駛員或科研人員陪伴時數，吃營運時間），解鎖是純資料檢查。節點的 `direction` 標籤（例：`autonomy`、`assist`、`tactical`）會影響：`controlMode:"contested"` 的控制檢定（autonomy 節點數加到機魂方）、機魂能否單獨駕駛（需至少一個 `autonomy` 節點）、`shared` 模式下機魂可代出手的能力集合。**控制檢定**：`d100 + pilot.control + contribs` 對 `d100 + soul.control + autonomyNodes × k`，贏者本回合握指令權；輸方仍可用自己的 `actorRole` 能力。失去駕駛員（死亡／棄機）時機魂若可單獨駕駛則自動接手，否則單位癱瘓。**2026-10-24 晚裁示：機魂不能獨駕、不可複製**（world spec `machine-souls.md`）——目標規則是失去駕駛員即癱瘓、`autonomy` 只留在控制檢定；引擎現行的單獨駕駛判定列在 engine-backlog，落地前內容不要再寫要獨駕的樹。
 
 ## 戰後延續
 

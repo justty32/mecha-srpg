@@ -2,7 +2,7 @@
 
 [ops README](README.md)｜core 出口 [core/rules-battle-flow](../core/rules-battle-flow.md)（`BattleResult`）｜情境資料 [core/data-model-world](../core/data-model-world.md)
 
-裁示：戰後不補滿；捕捉是生物系來源；撤離與棄機後機甲可能被占或回收；敵軍接約前固定不縮放；十分律兵器是昂貴輔助火力。**營運層只經 `sim.runBattle` 與 `BattleResult` 與戰鬥層往來**，不讀戰鬥內部狀態（core 的唯一出口裁示）。
+裁示：戰後不補滿；捕捉是生物系來源；撤離與棄機後機甲可能被占或回收；敵軍接約前固定不縮放；凡鐵兵器是破甲輔助火力（2026-10-24 晚：十分律改抵抗性，凡鐵殺不了獸）。**營運層只經 `sim.runBattle` 與 `BattleResult` 與戰鬥層往來**，不讀戰鬥內部狀態（core 的唯一出口裁示）。
 
 ## 一、出戰編成 Sortie
 
@@ -28,7 +28,7 @@ type Sortie = { id: Id; day: number; contract?: Id; loc: Loc /*原 node；格上
 
 ## 替使用者做掉的決定
 
-1. **出戰不耗 tick、戰鬥在一天之內**：「大潮當天連打兩場」成立，時間不在兩層間重複結算。
+1. **出戰不耗 tick、戰鬥在一天之內**：「漲潮當天連打兩場」成立，時間不在兩層間重複結算。
 2. **營運→戰場的狀態全走 Effect 注入**：心情、同調、磨損、活性、信任都不進 core 型別，core 零修改。
 3. **戰場用獨立 seed、由營運 RNG 抽出**：campaign 重播只需營運指令序列。
 4. **殘骸留一天可取、再過一天消失**：給「先回船卸貨再來」一次機會，又不讓地圖堆垃圾。

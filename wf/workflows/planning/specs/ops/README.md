@@ -26,7 +26,7 @@
 | [data-model-economy-research.md](data-model-economy-research.md) | 帳本（唯一入口、守恆）、庫存、市場與價格、債與催收、科研、機魂「開／練熟」、育魂 |
 | [data-model-roster-repair.md](data-model-roster-repair.md) | 名冊、薪水與 mood、招募、休養、工時佇列（修理／重建／移植／育魂／拘束維護）、機庫、古代機甲的認主與命名 |
 | [data-model-beasts.md](data-model-beasts.md) | 生物系營運：拘束艙、活捕（磨損、失控、同調、族行為）、族別維持（吞屍／蝕浸／修剪）、屍體改裝、登記號／小名／凶名／二名 |
-| [time-and-tick.md](time-and-tick.md) | 曆、tick 八段順序、大潮與弦月、跨日逐日補算、長程時鐘量級、終局 |
+| [time-and-tick.md](time-and-tick.md) | 曆、tick 八段順序、漲潮與弦月、跨日逐日補算、長程時鐘量級、終局 |
 | [battle-interface.md](battle-interface.md) | 出戰編成→情境生成→戰果回寫（回寫欄位清單）、與 core 的差異；子檔 [apply-result](battle-interface/apply-result.md)（戰果回寫） |
 | [text-ui-contract.md](text-ui-contract.md) | OpsCommand 語意層（27 個動詞）、快捷鍵 keymap、房間與狀態片語、對白與事件、`Screen` 按鈕／列表契約、戰場入口；子檔 [presentation](text-ui-contract/presentation.md)（房間、對話、`Screen`、戰場入口） |
 | [content-format-ops.md](content-format-ops.md) | `content/<pack>/world/` 佈局（含 maps／places／lanes／actors／lineages／models／operations／treaties）、「新增 X 要改哪些檔」；JSON 範例分三個子檔 |

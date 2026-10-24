@@ -23,7 +23,7 @@
 **區域**（一圖一檔：區域 id→名字與描述片語）
 ```json
 {"id":"regions/test40","map":"map/test40","regions":{"region/ganges-mouth":{"name":"恆河口","phrase":"泥與蘆葦，潮退時露出斷鐵路。"},
- "region/bay-tide-line":{"name":"孟加拉灣蝕線","phrase":"每個大潮往北推一塊。"}}}
+ "region/bay-tide-line":{"name":"孟加拉灣蝕線","phrase":"每個漲潮往北推一塊。"}}}
 ```
 
 **地點**（原 `nodes/`；`footprint` 省略＝只佔 `at`）

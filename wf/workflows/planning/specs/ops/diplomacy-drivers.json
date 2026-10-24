@@ -3,8 +3,8 @@
  "rows": [
   {"id": "drift", "trigger": "每蝕月第 1 天", "delta": "朝 baseline 移 2（baseline＝兩勢力 affinity 表，預設 0；同 tags 文化 +10、rivalry 對 −20）", "decay": "—", "who": "所有活勢力對", "note": "主要防退化手段：沒事發生就回到各自的本性"},
   {"id": "grievance-decay", "trigger": "每蝕月第 1 天", "delta": "grievances 權重 ×0.5", "decay": "半衰 1 蝕月", "who": "所有對", "note": "宿怨會淡、不會消失（最低留 1）"},
-  {"id": "border-blight", "trigger": "大潮日：A 地盤相鄰的蝕域由 B 的裂縫擴來（B 養裂或沒處理）", "delta": "A→B −4", "decay": "進 grievances", "who": "鄰接勢力", "note": "「你家的蝕潮淹到我家」"},
-  {"id": "shared-threat", "trigger": "A、B 地盤都鄰接同一 anchored 裂縫", "delta": "+2/大潮", "decay": "—", "who": "鄰接勢力", "note": "共同敵人拉近；裂縫封了就停"},
+  {"id": "border-blight", "trigger": "漲潮日：A 地盤相鄰的蝕域由 B 的裂縫擴來（B 養裂或沒處理）", "delta": "A→B −4", "decay": "進 grievances", "who": "鄰接勢力", "note": "「你家的蝕潮淹到我家」"},
+  {"id": "shared-threat", "trigger": "A、B 地盤都鄰接同一 anchored 裂縫", "delta": "+2/漲潮", "decay": "—", "who": "鄰接勢力", "note": "共同敵人拉近；裂縫封了就停"},
   {"id": "op-success-against", "trigger": "A 對 B 的 seize／siege／raid（曝光）成功", "delta": "B→A −20；B 的 allied 對 A −8；A 的 allied 對 B −4", "decay": "進 grievances", "who": "雙方及盟友", "note": "戰果擴散到盟友網"},
   {"id": "op-relief", "trigger": "A 對 B 的節點發起 relief 且成功", "delta": "B→A +10、A→B +4", "decay": "—", "who": "雙方", "note": "恩情"},
   {"id": "same-target", "trigger": "A、B 同時對同一古代機／裂縫發起 relic-hunt／assault", "delta": "−5；若已 ≥ friendly 則改為共同作戰（coActors）", "decay": "進 grievances", "who": "雙方", "note": "古代機爭奪的起點"},
@@ -14,7 +14,7 @@
   {"id": "treaty-broken", "trigger": "任一方違反條約（在 nonaggression 下發起 raid 曝光／seize）", "delta": "被背者→背者 −30；第三方對背者 −5", "decay": "進 grievances（權重 3）", "who": "全體", "note": "背盟代價全世界看見"},
   {"id": "war-weariness", "trigger": "state=war 每日", "delta": "weariness +1（雙方各自）；weariness ≥ 40 → 停火牌 weight ×(weariness/20)", "decay": "停火後每日 −2", "who": "交戰雙方", "note": "防全員永戰"},
   {"id": "alliance-burden", "trigger": "A 的 allied 數 ≥ 3", "delta": "再簽盟約 weight ×0.2；每多一盟 drift 多 −1（向 baseline 之下）", "decay": "—", "who": "A", "note": "防全員同盟"},
-  {"id": "pressure-truce", "trigger": "pressure 高檔（新裂縫數 ≥ 3/大潮）", "delta": "所有 war 對 weariness +5/大潮；殘聯發 ceasefire 牌", "decay": "—", "who": "全體", "note": "蝕潮大時人類會暫時放下刀"},
+  {"id": "pressure-truce", "trigger": "pressure 高檔（新裂縫數 ≥ 3/漲潮）", "delta": "所有 war 對 weariness +5/漲潮；殘聯發 ceasefire 牌", "decay": "—", "who": "全體", "note": "蝕潮大時人類會暫時放下刀"},
   {"id": "player-join", "trigger": "玩家接 join 契約站 A 打 B", "delta": "rep A +5..+15（依戰果）、rep B −10..−25；B 的 allied rep −5；A 的 allied rep +2", "decay": "B 的 memory 記 `fought-against`", "who": "玩家對各勢力", "note": "選邊的代價（rep，不是 relation）"},
   {"id": "player-betray", "trigger": "玩家違反 exclusivity／中途轉投／私吞古代機", "delta": "被背者 rep −40、殘聯 rep −15、得利者 rep +10；被背者→得利者 relation −6（怪雇主）", "decay": "flag blacklist:<faction> 3 蝕月", "who": "玩家與雙方", "note": "見 mercenary-contracts"},
   {"id": "player-shell", "trigger": "玩家喚醒／取得古代機且某勢力知情", "delta": "stance.ancient ≤ −1 的勢力 rep −10；塞勒涅與殘聯必知", "decay": "—", "who": "玩家對各勢力", "note": "沿用 roster 的「擁有一台，塞勒涅與殘聯都會知道」"}

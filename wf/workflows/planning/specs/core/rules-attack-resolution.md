@@ -2,7 +2,7 @@
 
 [core README](README.md)｜層與部位資料 [data-model-mech](data-model-mech.md)｜效果資料 [data-model-abilities-effects](data-model-abilities-effects.md)
 
-裁示：可指定部位（付依武器精準度的懲罰），不指定依暴露權重隨機；同一擊沿層序列結算、擊穿的層當下失效、再依部位與層的傳導效果結算駕駛員（decisions 第 3、4 題）；層 HP 預設磨損裝甲、可宣告 `ablative=false` 成不消耗減傷（ToME 第 6 題）；傳統兵器對怪獸傷害十分之一（世界規則）。
+裁示：可指定部位（付依武器精準度的懲罰），不指定依暴露權重隨機；同一擊沿層序列結算、擊穿的層當下失效、再依部位與層的傳導效果結算駕駛員（decisions 第 3、4 題）；層 HP 預設磨損裝甲、可宣告 `ablative=false` 成不消耗減傷（ToME 第 6 題）；傳統兵器對怪獸傷害十分之一（世界規則；**2026-10-24 晚已改為「抵抗性」**：沒有精粹的凡鐵只刮外甲、殺不了獸，暫值精粹等級每低一級減半，見 world spec `resistance.md`；引擎現行仍是下文的 0.1 一列，改版列在 engine-backlog）。
 
 ## 一次 UseAbility 的結算管線
 
@@ -25,7 +25,7 @@
 
 ## ④ 傷害修正鏈（CMB-14 改造，節點固定、內容在資料）
 
-對每個 packet 依序：`amount` 求值 → 攻方 `onHit` contribs（倍率）→ **全局修正表** `rules/damage-modifiers.json`（每列 `{sourceTag, targetTag, factor}`；內建一列 `conventional-arms × kaiju → 0.1`，即十分之一規則，不解釋）→ 暴擊（TM-49 改造：`crit` 機率成功則 ×critFactor）→ 守方 `incomingReduce` contribs（TM-45）→ 進入層序列。
+對每個 packet 依序：`amount` 求值 → 攻方 `onHit` contribs（倍率）→ **全局修正表** `rules/damage-modifiers.json`（每列 `{sourceTag, targetTag, factor}`；內建一列 `conventional-arms × kaiju → 0.1`，現行的抵抗性近似（原稱十分之一規則），不解釋）→ 暴擊（TM-49 改造：`crit` 機率成功則 ×critFactor）→ 守方 `incomingReduce` contribs（TM-45）→ 進入層序列。
 
 ## ④ 沿層序列（核心演算法）
 
@@ -65,4 +65,4 @@ if 本部位所有 structural 層 broken: part.broken = true；fire part.onBroke
 2. **不做未命中散射**：BB 的散射有 BusyStack 問題且對大規模戰場計算貴；留 `blocksLos` 遮擋換目標。
 3. **溢出傷害不傳到鄰接部位**：讓「打穿一個部位」有明確上限；想要貫穿效果用 `line` 目標型。
 4. **armorPen 統一成「改走 passThrough」**：一個旋鈕同時表達 BB 穿透與 ToME apr。
-5. **十分之一規則放在全局修正表而非程式**：使用者說「這是世界規則」，用一列資料表達，想改 0.1 改數字即可。
+5. **抵抗性（原十分之一規則）放在全局修正表而非程式**：使用者說「這是世界規則」，用一列資料表達，想改 0.1 改數字即可；「每低一級減半、凡鐵只刮外甲層」需要按層與精粹等級結算，超出一列倍率，見 engine-backlog。

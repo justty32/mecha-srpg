@@ -37,7 +37,7 @@ type WorldViewModel = GridSource & { map: Id; layers: Record<LayerId, boolean>; 
 
 ## 操作與快捷鍵（`keymap-ops.json` 新增 context `map`）
 
-游標與捲動沿用戰場鍵（方向鍵、Shift+方向鍵、`+`／`-`／`0`、`c` 回船）。大地圖專屬：`Enter` 對游標格下 `sail`（有地點就航向地點、有行動者就追擊）；`Tab`／`Shift+Tab` 在地點間跳；`g` 跳到座標或地點名（`prompt`）；`l` 圖層選單（`prompt` 1..9 切）；`t` 切圖（洲）選單；`m` 縮圖開關；`w` `wait 1`、`Shift+w` 等到下個大潮／弦月；`d` `dock`／`drift`；`Escape` 取消路徑預覽；`?` 鍵說明。滑鼠：點格移游標、雙擊＝Enter、拖曳捲動、滾輪縮放、hover 顯示 tooltip。所有按鈕在面板右側列：航／泊／懸／等／切圖／圖層／回船，標鍵、tooltip 寫成本與不可用原因（「燃料不足：缺 12 氦」「追不上：對方 8 格／天」）。
+游標與捲動沿用戰場鍵（方向鍵、Shift+方向鍵、`+`／`-`／`0`、`c` 回船）。大地圖專屬：`Enter` 對游標格下 `sail`（有地點就航向地點、有行動者就追擊）；`Tab`／`Shift+Tab` 在地點間跳；`g` 跳到座標或地點名（`prompt`）；`l` 圖層選單（`prompt` 1..9 切）；`t` 切圖（洲）選單；`m` 縮圖開關；`w` `wait 1`、`Shift+w` 等到下個漲潮／弦月；`d` `dock`／`drift`；`Escape` 取消路徑預覽；`?` 鍵說明。滑鼠：點格移游標、雙擊＝Enter、拖曳捲動、滾輪縮放、hover 顯示 tooltip。所有按鈕在面板右側列：航／泊／懸／等／切圖／圖層／回船，標鍵、tooltip 寫成本與不可用原因（「燃料不足：缺 12 氦」「追不上：對方 8 格／天」）。
 
 ## `sail` 參數擴充（不加動詞）
 

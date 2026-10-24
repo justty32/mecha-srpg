@@ -35,7 +35,7 @@ type OperationState = { id: Id; def: Id; actor: Id; coActors: Id[]; target: { lo
 
 **發起**：作戰是一張世界行動牌（效果 `startOperation`），每天與其他牌一起抽；`valid` 通常要戰力 ≥ `enemyStr × 0.8`、`supply ≥ 40`、同時進行數 < 上限（state 2、其他 1）、對人作戰要 `requiresRelation`（奪點／圍城需 `war`，襲擾 ≥ `tense`）。約 40 勢力下任一天約 5–10 場作戰在進行。
 
-**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以移動點沿格走到目標區域（途中是可被遭遇、追擊、迴避的 `ActorState{kind:"force"}`；跨洲作戰要先走航道，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個蝕月上下；圍堵固定在大潮日 engage。
+**階段與時程量級**：`muster` 3–5 天（傭兵契約在此期間掛契約板）→ `march`＝分遣隊從地盤出發、以移動點沿格走到目標區域（途中是可被遭遇、追擊、迴避的 `ActorState{kind:"force"}`；跨洲作戰要先走航道，v1 只有持港勢力會發）→ `engage` 1–10 天、每天一次交手 → `resolve` 1 天 → `aftermath` 2 天（後果生效、分贓、傭兵結算）。總長半個蝕月上下；圍堵固定在漲潮日 engage。
 
 **推進與結算**（抽象結算、玩家參戰的那一場、tick 第 2 段 2a–2f 順序、OpsEffect／事件後果詞彙）→ [data-model-operations-war/resolution](data-model-operations-war/resolution.md)
 

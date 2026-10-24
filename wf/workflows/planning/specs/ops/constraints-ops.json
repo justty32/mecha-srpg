@@ -61,7 +61,7 @@
    "source": "../../design-notes/mechs.md",
    "constraint": "人機關係：古代系機甲自己選主人（共鳴）；生物系看承擔；機械系裝異系部件也要承擔",
    "spec_section": "data-model-roster-repair.md#古代機甲的人與名",
-   "note": "認主只在大潮之夜、離開會衰弱；承擔上限受同調影響"
+   "note": "認主只在漲潮之夜、離開會衰弱；承擔上限受同調影響"
   },
   {
    "id": "DN-W-03",
@@ -110,14 +110,14 @@
    "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
    "constraint": "為何 2108 還用機甲：夢召（遺跡洗腦＋世界規則）；遺跡與怪獸同時出現；機械系以古代機甲為藍本",
    "spec_section": "data-model-world-map.md#遺跡探勘入口",
-   "note": "大潮時新裂縫與新遺跡同步露出"
+   "note": "漲潮時新裂縫與新遺跡同步露出"
   },
   {
    "id": "DN-W-10",
-   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
-   "constraint": "推翻相位說；飛機與戰鬥機可傷怪獸但十分之一，是世界規則",
+   "source": "../../design-notes/world/essence.md",
+   "constraint": "推翻相位說；十分律已廢改抵抗性：凡鐵（無精粹）對獸只刮外甲、殺不了獸，打人有效",
    "spec_section": "battle-interface.md#二情境生成-scenariogen",
-   "note": "空援券、艦砲、砲台都是 conventional-arms 單位，conventionalFactor 0.1"
+   "note": "空援券、艦砲、砲台都是 conventional-arms 單位；引擎現行 conventionalFactor 0.1，改版見 engine-backlog"
   },
   {
    "id": "DN-W-11",
@@ -171,7 +171,7 @@
   {
    "id": "WV-01",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "營運迴圈：契約板與蝕域圖→移動→戰鬥→戰利品→船上處理→下一契約；兩個大潮是節拍；錢只有一種幣；開局背船債每蝕月付息",
+   "constraint": "營運迴圈：契約板與蝕域圖→移動→戰鬥→戰利品→船上處理→下一契約；兩次漲潮是節拍（大潮＝末日級、每年兩三次）；錢只有一種幣；開局背船債每蝕月付息",
    "spec_section": "data-model-economy-research.md#債-debt-與塞勒涅催收",
    "note": "利率每蝕月 5% 量級；催收事件鏈"
   },
@@ -191,15 +191,15 @@
   },
   {
    "id": "WV-04",
-   "source": "../world/operations.md#十分律空援昂貴的輔助火力",
-   "constraint": "空援三來源：城邦砲台（免費只及牆邊）、空援券（延遲一回合落地、一券一蝕月薪水量級）、浮船艦砲（船停上空會被咬）",
+   "source": "../world/operations.md#凡鐵空援破甲不收命取代十分律空援",
+   "constraint": "空援三來源：城邦砲台（免費只及牆邊）、空援券（延遲一回合落地；凡鐵券破甲、精粹矢券貴一個量級）、浮船艦砲（船停上空會被咬）；破甲歸空援、收命歸機甲",
    "spec_section": "battle-interface.md#一出戰編成-sortie",
    "note": "supplies.airstrikeTickets／shipOverhead"
   },
   {
    "id": "WV-05",
    "source": "../world/operations.md#operations--營運層迴圈浮船與世界圖地月移動時間尺度空援文字互動深度",
-   "constraint": "一天一 tick、二十八天一蝕月；戰鬥不占營運時間；拘束器磨損以天計、修理以工時計、傷勢以蝕月計；認主只在大潮之夜；一局無終點",
+   "constraint": "一天一 tick、二十八天一蝕月；戰鬥不占營運時間；拘束器磨損以天計、修理以工時計、傷勢以蝕月計；認主只在漲潮之夜（是否限大潮待確認）；一局無終點、有時代",
    "spec_section": "time-and-tick.md#曆-calendar",
    "note": ""
   },
@@ -212,15 +212,15 @@
   },
   {
    "id": "WV-07",
-   "source": "../world/rifts-and-territory.md#時鐘蝕月大潮蝕壓",
-   "constraint": "第 1、15 天大潮（裂縫活躍、新裂縫與新遺跡）；第 7、21 天弦月（渡輪）；隱藏量蝕壓隨時間升、封裂縫降、蝕域升",
-   "spec_section": "time-and-tick.md#大潮日的特別事項",
+   "source": "../world/rifts-and-territory.md#時鐘蝕月漲潮與大潮蝕壓",
+   "constraint": "第 1、15 天漲潮（裂縫活躍、新裂縫與新遺跡；原稱大潮）；撞上迫月的少數漲潮是大潮（末日級）；第 7、21 天弦月（渡輪）；隱藏量蝕壓隨時間升、封裂縫降、蝕域升",
+   "spec_section": "time-and-tick.md#漲潮日的特別事項",
    "note": ""
   },
   {
    "id": "WV-08",
    "source": "../world/rifts-and-territory.md#裂縫怎麼開開出什麼",
-   "constraint": "裂縫有寬度 D–S 與主族；新裂縫只在大潮開：七成蝕域旁、三成野地、極少城邦邊；前三天只有先鋒、第四天蝕錨到；異形裂縫自閉無錨",
+   "constraint": "裂縫有寬度 D–S 與主族；新裂縫只在漲潮開：七成蝕域旁、三成野地、極少城邦邊；前三天只有先鋒、第四天蝕錨到；異形裂縫自閉無錨",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "狀態機 opening→anchored"
   },
@@ -241,14 +241,14 @@
   {
    "id": "WV-11",
    "source": "../world/rifts-and-territory.md#封閉與收復",
-   "constraint": "能封不能滅：殺／捕錨後守核區到下一個大潮才封口；封口後每蝕月退一區（菌絲要燒）；殘聯按退回的區付收復金；蝕壓換岸不消失",
+   "constraint": "能封不能滅：殺／捕錨後守核區到下一次漲潮才封口；封口後每蝕月退一區（菌絲要燒）；殘聯按退回的區付收復金；蝕壓換岸不消失",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "sealing→sealed→receding→closed"
   },
   {
    "id": "WV-12",
    "source": "../world/rifts-and-territory.md#灰色選擇養裂",
-   "constraint": "錨死不守則下個大潮送新錨，可當獵場；代價：蝕域照長、殘聯評等掉、兩蝕月後罰款、再久通緝；沐蝕會喜歡你",
+   "constraint": "錨死不守則下次漲潮送新錨，可當獵場；代價：蝕域照長、殘聯評等掉、兩蝕月後罰款、再久通緝；沐蝕會喜歡你",
    "spec_section": "data-model-world-map.md#裂縫-riftstate存檔模板在-riftsjson",
    "note": "fedCount 驅動殘聯事件鏈"
   },
@@ -269,21 +269,21 @@
   {
    "id": "WV-15",
    "source": "../world/factions.md#敵對人類機甲要但是少數",
-   "constraint": "約兩成戰鬥遇到人類機甲：解拘者、白手套、競爭獵團、城邦民兵；其餘八成裂獸",
+   "constraint": "約兩成戰鬥遇到人類敵人：解拘者、白手套（無精粹核的無人鐵偶，只打人）、競爭獵團、城邦民兵；其餘八成裂獸",
    "spec_section": "data-model-factions-contracts.md#競爭獵團與人類敵人",
    "note": "由行動牌權重調到兩成"
   },
   {
    "id": "WV-16",
    "source": "../world/machine-souls.md#出生與成長科研是天賦樹陪伴是時間",
-   "constraint": "機魂出生是科研項目「育魂」；天賦樹三根算／手／心；科研開節點是「會」不是「熟」，陪伴才練熟；租賃機魂開了很多節點一個都沒練熟",
+   "constraint": "機魂出生是科研項目「育魂」；天賦樹三根算／手／心；科研開節點是「會」不是「熟」，陪伴才練熟；租來的機魂是一個真的人，熟的是前一個團",
    "spec_section": "data-model-economy-research.md#data-model-economy-research--帳本庫存市場債科研機魂天賦樹的開練熟",
    "note": "mastery 乘在貢獻上"
   },
   {
    "id": "WV-17",
-   "source": "../world/machine-souls.md#死亡搬家複本",
-   "constraint": "魂核毀＝機魂死；換機重練手；複本有全部節點零陪伴；野魂不能合法上殘聯契約",
+   "source": "../world/machine-souls.md#死亡搬家不可複製",
+   "constraint": "魂核毀＝機魂死；換機重練手；機魂不可複製、不能獨駕（2026-10-24 晚）；野魂不能合法上殘聯契約",
    "spec_section": "data-model-roster-repair.md#工時佇列-workqueue修理科研移植育魂共用",
    "note": "魂核是部件走 repair"
   },
@@ -317,8 +317,8 @@
   },
   {
    "id": "WV-22",
-   "source": "../world/setting.md#十分律傳統兵器打得到但只有十分之一",
-   "constraint": "十分律覆蓋一切非機甲傷害（含艦砲、地雷、砲台）；營運層當昂貴輔助火力",
+   "source": "../world/resistance.md#抵抗性與精粹沒有精粹的兵器殺不了獸",
+   "constraint": "抵抗性覆蓋一切凡鐵（無精粹）傷害（含艦砲、地雷、砲台）：對獸只刮外甲；營運層當破甲輔助火力",
    "spec_section": "battle-interface.md#二情境生成-scenariogen",
    "note": ""
   },

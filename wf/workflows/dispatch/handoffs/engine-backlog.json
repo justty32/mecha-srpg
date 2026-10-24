@@ -254,6 +254,78 @@
    "影響": "lore README 規定 event 無 gameRefs，check.ts 對它警告「未登記欄位」；二名由來事件無法機器連到怪獸，百科交叉連結缺一條",
    "建議做法": "content/lore/check.ts 與 README 把 gameRefs 列為 event 可選欄（格式驗證已存在），百科 event 頁顯示連結；之後由內容批次補 lc-lore-03 六件的 gameRefs",
    "規模": "小"
+  },
+  {
+   "序": "28",
+   "優先": "P2",
+   "項目": "抵抗性結算取代十分律：精粹等級差每級減半、凡鐵只刮外甲層",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "影響": "世界觀已廢十分律；引擎仍是 rules/damage-modifiers.json 一列 conventional-arms × kaiju → 0.1，凡鐵還打得進內層與核、殺得死獸",
+   "建議做法": "武器／能力加精粹等級（缺省＝凡鐵）；對 kaiju 結算時 factor＝0.5^(目標等級−武器等級)（同級以上 1）；凡鐵對外甲層 0.1、內層與核 0；古代異能「一格抵抗性失效」沿用 rules.conventionalFactor 覆蓋；類別鍵與 conventional-arms tag 不改名；改後黃金重產",
+   "規模": "中（core rules＋content 標記，1 codex）"
+  },
+  {
+   "序": "29",
+   "優先": "P3",
+   "項目": "conventional-arms 標記改讀為「凡鐵」與精粹矢",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "影響": "tag 名保留但語意變成「無精粹」；精粹矢（殘翼空援券、高級矢）沒有對應標記與價格",
+   "建議做法": "tag id 不改；顯示名與 battle-info 說明改「凡鐵」；新增精粹矢的能力標記或 ammo 型別（例 essence-shot），空援券分凡鐵券／精粹矢券兩種 supplies",
+   "規模": "小"
+  },
+  {
+   "序": "30",
+   "優先": "P2",
+   "項目": "移除機魂獨駕：單獨駕駛判定、autonomy 節點、終局計數",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、specs/core/rules-people.md",
+   "影響": "引擎仍允許機魂在失去駕駛員時自動接手、終局把可獨駕機魂算作駕駛員；與「機魂不能獨駕、不可複製」相衝",
+   "建議做法": "失去駕駛員即癱瘓（保留駕駛員昏迷時的接手與替駕一回合）；autonomy 只留在控制檢定；CampaignEnd 只數人類駕駛員；soultrees 內容的 autonomy 節點改向；七號 2104 回港按 lore 唯一例外處理（待使用者確認）",
+   "規模": "小–中（src/rules＋src/ops 終局；後者等 lead-grid 收線）"
+  },
+  {
+   "序": "31",
+   "優先": "P2",
+   "項目": "tide-sky 潮候程式碼與漲潮命名",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/tide-sky（2026-10-24 晚改名）",
+   "影響": "UI 與文本仍把每月兩次的朔望叫「大潮」（src/ui-adapter/ops/vm/labels.ts、dom/tabs.ts、dom/fixtures.ts、not-spring-night 文案）；tide-sky 的 calendar.stage／tide 潮勢（枯潮＜漲潮＜大潮＜連珠潮）尚未實作",
+   "建議做法": "顯示字串 spring→「漲潮」、「須等到漲潮之夜」；識別字 spring 不改；實作 tide-sky spec-proposal 的 stage／tide 與大潮抬級（裂縫等級上限 +1、數量 ×1.4），大潮＝每年兩三次；src/ops 部分等 lead-grid 收線",
+   "規模": "中"
+  },
+  {
+   "序": "32",
+   "優先": "P3",
+   "項目": "numeric-bands 與凡兵數值帶重算（抵抗性落地後）",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、wf/workflows/content/numeric-bands.md「抵抗性怎麼影響兩類武器」",
+   "影響": "凡兵帶以 ×0.1 為前提（對人 1.2–1.5 倍單發）；改成「只刮外甲」後凡兵對獸的期望傷害改變，人打人便宜、打獸貴的兩套武器經濟沒有數值",
+   "建議做法": "第 28 列落地後跑 tools/stats.ts 重算；numeric-bands.json 類別鍵不改，只改建議區間；補精粹矢價格帶（暫值 D 一／C 十／B 百／A 千，待使用者確認）",
+   "規模": "小"
+  },
+  {
+   "序": "33",
+   "優先": "P3",
+   "項目": "constraints 數值列跟引擎改版核對",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "影響": "core DN-W-14、ops DN-W-10／WV-04／WV-22 已改寫成抵抗性，但 note 仍記 conventionalFactor 0.1 為現行",
+   "建議做法": "第 28 列落地後把 note 改成新結算、spec_section 指到新段落",
+   "規模": "小"
+  },
+  {
+   "序": "34",
+   "優先": "P3",
+   "項目": "全球產能曲線與「大潮後重洗」行動牌（時代）",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/world/scale",
+   "影響": "世界有時代、人與獸都爆產能（人類年產約五年翻倍）、大潮後重洗五步（失守與露出→人動→債動→傘動→古代機動）沒有引擎載體",
+   "建議做法": "全球產能曲線兩條（人類機甲、怪獸）＋大潮後的世界行動牌；數字為提案待使用者確認；等方格大地圖與 tide-sky 潮勢落地後做",
+   "規模": "中"
+  },
+  {
+   "序": "35",
+   "優先": "P3",
+   "項目": "白手套單位改讀為無精粹核的鐵偶",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "影響": "白手套在內容裡是衍型機 frame（IX-01 等）＋glove-line aiprofile；新設定下它們只打得了人、對獸無效，三方戰情境（crater-three-way 等）裡白手套打獸不合設定",
+   "建議做法": "需要決定：①保留衍型機 frame、只靠文案改讀；②給白手套單位加「凡鐵」標記（第 28 列後對獸只刮甲）；③新 kind 鐵偶。建議②，數值不動",
+   "規模": "小"
   }
  ]
 }
