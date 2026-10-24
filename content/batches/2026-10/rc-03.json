@@ -1,0 +1,80 @@
+{
+ "contract": "content-batch/1",
+ "id": "rc-03",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "待和解表照建議裁示落地（lead-reconcile）：海洋說：河口與內陸條目；只改文字欄，不用潮差＝威脅概念",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rc-03",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-reconcile",
+ "date": "2026-10-24",
+ "base": "9fa400ea46c427eb14c0daa15c68d131bd2d1bb1",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-reconcile/rc-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-reconcile/rc-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/world/essence.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/dispatch/handoffs/lead-reconcile/guide.md"
+  ]
+ },
+ "maxFiles": 20,
+ "allow": {
+  "polishFiles": [
+   "content/lore/events/dhaka-north-rift.json",
+   "content/lore/events/kuafu-mountain-vigil.json",
+   "content/lore/events/rift-valley-dig.json",
+   "content/lore/events/rust-banner.json",
+   "content/lore/factions/quito.json",
+   "content/lore/places/chittagong.json",
+   "content/lore/places/delta.json",
+   "content/lore/places/dhaka.json",
+   "content/lore/places/golmud-nest.json",
+   "content/lore/places/great-lakes-mycelium.json",
+   "content/lore/places/gyeongju-tombs.json",
+   "content/lore/places/hamburg.json",
+   "content/lore/places/mexico-city.json",
+   "content/lore/places/montreal.json",
+   "content/lore/places/old-array.json",
+   "content/lore/places/quito.json",
+   "content/lore/places/rhine-trench.json",
+   "content/lore/places/rift-valley-seat.json",
+   "content/lore/places/titicaca-ruin.json",
+   "content/lore/places/yakutsk-bed.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
