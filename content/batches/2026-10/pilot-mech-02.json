@@ -1,0 +1,503 @@
+{
+ "contract": "content-batch/1",
+ "id": "pilot-mech-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "第三條通用系列「鐵劍」（通用基本型：最普及、最平均、配裝彈性大、便宜好修的萬用底盤）：基型＋2–3 迭代＋1–2 勢力本地化改型＋1 台冠名隊長機，各附 defaultLoadout；新血統檔、機型檔；lore 新增「鐵劍公開／流出」事件與年表條目；新詞（原鞘／衍型／鎧甲／靈目／矢）；命名先英文原名再意譯／音譯",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-pilot-iron",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-codex-pilot",
+ "date": "2026-10-24",
+ "base": "567783473bc6f73a746aa07164b40d34e45d6822",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/ability-forms.json",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/playtest-baselines.json",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/mechs.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "src/mcp/README.md",
+   "content/base/world/lineages/universal-bulwark.json",
+   "content/base/world/lineages/universal-longspear.json"
+  ]
+ },
+ "maxFiles": 20,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "base/components",
+   "base/abilities",
+   "base/effects",
+   "base/scenarios",
+   "lore/events"
+  ],
+  "namePrefix": {
+   "base/*": "ix-",
+   "base/world/lineages": "universal-ironsword"
+  },
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/bulwark-i",
+   "frame/bulwark-ii",
+   "frame/longspear-v4",
+   "frame/bulwark-iv-rampart",
+   "frame/bulwark-old-city"
+  ],
+  "waivers": [
+   {
+    "id": "frame/ix-01",
+    "flag": "winrate",
+    "reason": "D 基型 1 對 1 對 mite-d 5/5 勝（4 場殲滅），參照 bulwark-i 同條件 80%；差 1 場、n=5，萬用底盤對最弱 D 怪全勝可接受"
+   }
+  ]
+ },
+ "playtest": {
+  "required": 3,
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-02/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-02/mcp-log"
+ },
+ "origin": "達卡工坊與往來獵團公開鐵劍的骨架圖、共用備件與修造冊，讓小工坊也能造修一台均衡的衍型機。",
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-02/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "frame/ix-01",
+    "nameEn": "Ferrum IX-01",
+    "meaning": "Ferrum 取拉丁語鐵；第一批只印工坊型號，尚未以系列稱呼成品。",
+    "nameZh": "IX-01",
+    "method": "混用"
+   },
+   {
+    "id": "frame/ix-ii",
+    "nameEn": "Ironsword II",
+    "meaning": "尋常鐵劍象徵人人取得、養得起的通用工具；第二代共用底盤。",
+    "nameZh": "鐵劍-II型",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/ix-iii",
+    "nameEn": "Ironsword III",
+    "meaning": "沿用通用工具的系列意象，第三代擴充掛座與日常護衛配裝。",
+    "nameZh": "鐵劍-III型",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/ix-ii-loom",
+    "nameEn": "Ironsword II Loomhand",
+    "meaning": "Loomhand 指操作織機的工匠，呼應達卡織工衛的地方修造傳統。",
+    "nameZh": "鐵劍-II型・織工",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/ix-homeward",
+    "nameEn": "Homeward Ironsword",
+    "meaning": "隊長守住同伴的返港路，把人帶回家是冠名的理由。",
+    "nameZh": "歸航-鐵劍",
+    "method": "意譯"
+   },
+   {
+    "id": "component/ix-field-plate",
+    "nameEn": "Field Plate",
+    "meaning": "供野戰途中拆換的共用甲片，著重易修與備件互通。",
+    "nameZh": "野戰鎧甲",
+    "method": "意譯"
+   },
+   {
+    "id": "component/ix-line-rifle",
+    "nameEn": "Service Lightcaster",
+    "meaning": "制式服役槍械，以流光發矢，重在常備與可持續使用。",
+    "nameZh": "列裝光矢槍",
+    "method": "意譯"
+   },
+   {
+    "id": "ability/ix-line-shot",
+    "nameEn": "Level Shot",
+    "meaning": "沿目標方向平直出矢的基本射擊，不附帶奇招。",
+    "nameZh": "平射",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/ix-common-road",
+    "nameEn": "Homeward Road",
+    "meaning": "蝕潮退去後的返港護衛工作，展示各型共同完成尋常差事。",
+    "nameZh": "鐵劍・歸港路",
+    "method": "意譯"
+   },
+   {
+    "id": "event/ironsword-open-pattern",
+    "nameEn": "Common Hands Codex",
+    "meaning": "把骨架、備件與故障修法交到各地工匠手上的共用修造冊。",
+    "nameZh": "鐵劍公刻・共用修造冊",
+    "method": "意譯"
+   },
+   {
+    "id": "timeline/ironsword-open-pattern",
+    "nameEn": "Common Hands Codex",
+    "meaning": "年表沿用同一公刻事件的名稱，標記圖與修法一起公開。",
+    "nameZh": "鐵劍公刻・共用修造冊",
+    "method": "意譯"
+   },
+   {
+    "id": "component/ix-watch-rifle",
+    "nameEn": "Watchkeeper Rifle",
+    "meaning": "護住歸途的隊長用光矢槍，強調守望同伴。",
+    "nameZh": "守望光矢槍",
+    "method": "意譯"
+   },
+   {
+    "id": "ability/ix-watch-shot",
+    "nameEn": "Watchkeeper Shot",
+    "meaning": "守住同伴歸路的一發光矢。",
+    "nameZh": "守望一矢",
+    "method": "意譯"
+   }
+  ]
+ },
+ "files": [
+  "content/base/abilities/ix-line-shot.json",
+  "content/base/abilities/ix-watch-shot.json",
+  "content/base/components/ix-field-plate.json",
+  "content/base/components/ix-line-rifle.json",
+  "content/base/components/ix-watch-rifle.json",
+  "content/base/frames/ix-01.json",
+  "content/base/frames/ix-homeward.json",
+  "content/base/frames/ix-ii-loom.json",
+  "content/base/frames/ix-ii.json",
+  "content/base/frames/ix-iii.json",
+  "content/base/scenarios/ix-common-road.json",
+  "content/lore/events/ironsword-open-pattern.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "ability/ix-line-shot",
+  "ability/ix-watch-shot",
+  "component/ix-field-plate",
+  "component/ix-line-rifle",
+  "component/ix-watch-rifle",
+  "frame/ix-01",
+  "frame/ix-homeward",
+  "frame/ix-ii-loom",
+  "frame/ix-ii",
+  "frame/ix-iii",
+  "scenario/ix-common-road",
+  "lore:event/ironsword-open-pattern"
+ ],
+ "acceptance": {
+  "batch": "pilot-mech-02",
+  "round": 3,
+  "at": "2026-10-24T15:27:06",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/abilities/ix-line-shot.json",
+   "content/base/abilities/ix-watch-shot.json",
+   "content/base/components/ix-field-plate.json",
+   "content/base/components/ix-line-rifle.json",
+   "content/base/components/ix-watch-rifle.json",
+   "content/base/frames/ix-01.json",
+   "content/base/frames/ix-homeward.json",
+   "content/base/frames/ix-ii-loom.json",
+   "content/base/frames/ix-ii.json",
+   "content/base/frames/ix-iii.json",
+   "content/base/scenarios/ix-common-road.json",
+   "content/lore/events/ironsword-open-pattern.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "ability/ix-line-shot",
+     "matchesReference": true
+    },
+    {
+     "id": "ability/ix-line-shot",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "ability/ix-line-shot",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 100%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "high",
+     "id": "ability/ix-watch-shot",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "ability/ix-watch-shot",
+     "matchesReference": true
+    },
+    {
+     "id": "ability/ix-watch-shot",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "ability/ix-watch-shot",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 100%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "high",
+     "id": "frame/ix-01",
+     "waived": "D 基型 1 對 1 對 mite-d 5/5 勝（4 場殲滅），參照 bulwark-i 同條件 80%；差 1 場、n=5，萬用底盤對最弱 D 怪全勝可接受"
+    },
+    {
+     "id": "frame/ix-01",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-01",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 100% 敗 0% 平 0% 輪 11.0 原因 {\"eliminate\": 4, \"eliminate:repelled\": 1}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 100%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "high",
+     "id": "frame/ix-homeward",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/ix-homeward",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ix-homeward",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-homeward",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/ix-ii-loom",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 100%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "high",
+     "id": "frame/ix-ii-loom",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ix-ii-loom",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-ii-loom",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/ix-ii",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 100%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "high",
+     "id": "frame/ix-ii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ix-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-ii",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/ix-iii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ix-iii",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-iii",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "scenario/ix-common-road",
+     "flag": "stat",
+     "detail": "base:scenario/ix-common-road n=5 勝 60% 敗 40% 平 0% 輪 9.6 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 3,
+   "rows": 3,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 25,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T15:03:26",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T15:25:53",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 3,
+   "at": "2026-10-24T15:27:06",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "gateRejections": [],
+ "namePrefix_note": "world/models、world/lineages 於第 1 輪驗收後移出本批（新通用血統動營運黃金，需頂層授權）；原檔存 reportDir/deferred/world/",
+ "namingReview": {
+  "reviewer": "agy gemini-4-argon-high",
+  "input": "wf/workflows/dispatch/handoffs/lead-codex-pilot/naming-review/pilot-mech-02-names.txt",
+  "result": "11 名中 9 可；行裝鎧甲語義錯位退回；通用・鐵劍系列建議去間隔號（與既有『通用・堅盾系列』一致，保留，且已移出本批）"
+ },
+ "deferred": {
+  "files": "reportDir/deferred/world/（models ×5、lineage ×1）",
+  "why": "新通用血統讓營運 war 研發多一條血統，5 條黃金戰役與 MCP 戰役測試 hash 變動，另 src/ops/war 測試在新血統下讀到 undefined；需頂層授權重產黃金＋引擎線查"
+ },
+ "summary": "鐵劍通用系列：IX-01（D 基型）、鐵劍-II型（C）、鐵劍-II型・織工（C 達卡改型）、鐵劍-III型（B）、歸航-鐵劍（A 隊長機）＋3 部件 2 能力 1 展示情境＋lore 事件『鐵劍公刻・共用修造冊』與年表插入，共 13 檔；閘門 0 違規；npm test 811/811、黃金不變；MCP stdio 3+ 場；退回 1 輪（平射死資料、隊長機武器帶外、情境太易、行裝鎧甲改名、world 檔移出）；probe 1 條豁免"
+}

@@ -1,0 +1,80 @@
+{
+  "id": "frame/ix-iii",
+  "name": "鐵劍-III型",
+  "aka": [
+    {
+      "faction": "faction/migrant-crew",
+      "name": "Ironsword III"
+    }
+  ],
+  "series": "ironsword",
+  "mark": 3,
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "defaultLoadout": {
+    "right-weapon": "component/ix-line-rifle",
+    "left-weapon": "component/mx-scatter-rune",
+    "system-1": "component/mx-frost-fins",
+    "armor-mount": "component/ix-field-plate",
+    "back-1": "component/mx-ash-mist"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "evasion": 0,
+    "accuracy": 3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 110,
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 137.5,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike",
+    "ability/mx-head-vulcan",
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu"
+  ]
+}

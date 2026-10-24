@@ -1,0 +1,158 @@
+{
+  "id": "scenario/ix-common-road",
+  "name": "鐵劍・歸港路",
+  "brief": "蝕潮退去後，獵團用各代鐵劍護住工坊通往港口的路。擊退攔路裂獸，讓載著備件的拖車回港；全隊失去戰力即告失敗。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/ix-01",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 1
+          }
+        },
+        {
+          "mech": "frame/ix-ii",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 2
+          }
+        },
+        {
+          "mech": "frame/ix-iii",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 3
+          }
+        },
+        {
+          "mech": "frame/ix-ii-loom",
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/ix-homeward",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 18
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 17,
+            "y": 1
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 17,
+            "y": 2
+          }
+        },
+        {
+          "monster": "monster/hound-c",
+          "at": {
+            "x": 17,
+            "y": 3
+          }
+        },
+        {
+          "monster": "monster/siegebeetle-b",
+          "at": {
+            "x": 17,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/bulwark-b",
+          "at": {
+            "x": 17,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 17,
+            "y": 4
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 18,
+            "y": 10
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 25,
+  "seed": 2108
+}

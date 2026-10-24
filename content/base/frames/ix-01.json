@@ -1,0 +1,74 @@
+{
+  "id": "frame/ix-01",
+  "name": "IX-01",
+  "aka": [
+    {
+      "faction": "faction/migrant-crew",
+      "name": "Ferrum IX-01"
+    }
+  ],
+  "series": "ironsword",
+  "mark": 1,
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-d",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-rifle",
+    "armor-mount": "component/ix-field-plate"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 5,
+    "evasion": -1
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu"
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "id": "frame/ix-homeward",
+  "name": "歸航-鐵劍",
+  "aka": [
+    {
+      "faction": "faction/migrant-crew",
+      "name": "Homeward Ironsword"
+    }
+  ],
+  "series": "ironsword",
+  "mark": 4,
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "defaultLoadout": {
+    "right-weapon": "component/ix-watch-rifle",
+    "left-weapon": "component/mx-scatter-rune",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-essence-cell",
+    "armor-mount": "component/ix-field-plate"
+  },
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 7,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "from": 120,
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 150.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 90,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 90,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike",
+    "ability/mx-head-vulcan",
+    "ability/mx-guard-stance",
+    "ability/mx-old-city-wall"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "captain"
+  ]
+}

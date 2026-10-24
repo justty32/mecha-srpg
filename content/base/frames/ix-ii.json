@@ -1,0 +1,74 @@
+{
+  "id": "frame/ix-ii",
+  "name": "鐵劍-II型",
+  "aka": [
+    {
+      "faction": "faction/migrant-crew",
+      "name": "Ironsword II"
+    }
+  ],
+  "series": "ironsword",
+  "mark": 2,
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-rifle",
+    "left-weapon": "component/mx-scatter-rune"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5,
+    "evasion": -1
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu"
+  ]
+}
