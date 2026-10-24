@@ -11,3 +11,4 @@
 ## 待使用者項
 
 - [planning] 世界觀與 BB 式細節／營運層範圍（已裁示的見 [design-notes](workflows/planning/design-notes.md)）→ Fable 寫 spec，再派線
+- [feature-dev] 請使用者 `npm run dev` 開 http://localhost:5173/ 試玩一回合，回饋手感、配色、字級 → 回饋後派 UI 修正線
