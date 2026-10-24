@@ -77,7 +77,7 @@
 - **訂閱主題**：無
 
 ### `cx-bat-field`
-- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人，戰場地形＋地形效果＋地圖
 - **團隊**：`teams/content-battle`
 - **上游**：`lead-content-battle`
@@ -88,7 +88,7 @@
 - **訂閱主題**：無
 
 ### `cx-bat-scen-a`
-- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人，戰鬥情境 8 個（a 組）
 - **團隊**：`teams/content-battle`
 - **上游**：`lead-content-battle`
@@ -99,7 +99,7 @@
 - **訂閱主題**：無
 
 ### `cx-bat-scen-b`
-- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：codex 工人，戰鬥情境 8 個（b 組）
 - **團隊**：`teams/content-battle`
 - **上游**：`lead-content-battle`
@@ -129,4 +129,15 @@
 - **答得出什麼**：營運 vm 的快照、按鈕、快捷鍵、出戰銜接
 - **答不出什麼**：DOM、ops 規則
 - **怎麼找我**：`wf/inbox/orders/cx-uops-vm.md`
+- **訂閱主題**：無
+
+### `cx-bat-scen-c`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，用新單位的戰鬥情境 6 個（c 組）
+- **團隊**：`teams/content-battle`
+- **上游**：`lead-content-battle`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-battle/cx-bat-scen-c.md`「範圍」
+- **答得出什麼**：本組情境的配置與 measure 結果
+- **答不出什麼**：地形、地圖、單位
+- **怎麼找我**：`wf/inbox/orders/cx-bat-scen-c.md`
 - **訂閱主題**：無
