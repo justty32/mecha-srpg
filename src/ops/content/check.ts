@@ -9,6 +9,8 @@ import { keymapErrors } from "./worlddb.ts";
 import { loadWorldDirs, WORLD_KINDS } from "./load.ts";
 import { OPS_REF_ROOTS } from "./cond.ts";
 import { instantiateMech } from "./instantiate.ts";
+import { buildGridMap, cellKey, footprintOf, idx, inBounds, terrainAt } from "../world/grid.ts";
+import type { GridMap } from "../world/grid.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
 const EFFECT_KEYS = ["startOperation", "opProgress", "transferNode", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
@@ -27,7 +29,9 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   const reference = (value: unknown, at: string, expected?: WorldKind | "terrain" | "frame" | "person" | "effect" | "faction" | "component", warning = false) => {
     if (typeof value !== "string") { errors.push(`${at}: missing reference`); return; }
     const p = parseId(value), kind = expected ?? p?.kind;
-    const found = kind && isContentKind(kind) ? db.get(kind, value) : kind && WORLD_KINDS.includes(kind as WorldKind) ? world.get(kind as WorldKind, value) : undefined;
+    // map 同時是戰場與大地圖的 kind；地點／區域的 map 明確查 WorldDB，舊引用仍查 core。
+    const found = expected === "map" ? world.get("map", value)
+      : kind && isContentKind(kind) ? db.get(kind, value) : kind && WORLD_KINDS.includes(kind as WorldKind) ? world.get(kind as WorldKind, value) : undefined;
     if (!found) (warning ? warnings : errors).push(`${at}: missing reference ${value}`);
   };
   const walk = (value: unknown, at: string, kind: WorldKind, field = "") => {
@@ -35,7 +39,8 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if (typeof value === "number" && !Number.isFinite(value)) errors.push(`${at}: non-finite number`);
     if (typeof value === "string") {
       const parsed = parseId(value);
-      if (parsed && (isContentKind(parsed.kind) || WORLD_KINDS.includes(parsed.kind as WorldKind))) reference(value, at, undefined, kind === "faction-ops" && field === "faction");
+      if (parsed && (isContentKind(parsed.kind) || WORLD_KINDS.includes(parsed.kind as WorldKind))) reference(value, at,
+        (kind === "place" || kind === "regions") && field === "map" ? "map" : undefined, kind === "faction-ops" && field === "faction");
       if (["account", "counter"].includes(field) && !isAccount(value)) errors.push(`${at}: invalid account ${value}`);
     } else if (Array.isArray(value)) value.forEach((v, i) => walk(v, `${at}[${i}]`, kind));
     else if (object(value)) {
@@ -67,6 +72,40 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     for (const key of REQUIRED_ARRAYS[kind] ?? []) if (!Array.isArray(raw[key])) errors.push(`${def.id}.${key}: expected array`);
     walk(def, def.id, kind);
   }
+  const grids = new Map<string, GridMap>();
+  for (const def of world.all("map")) {
+    for (const [glyph, id] of Object.entries(def.legend ?? {})) reference(id, `${def.id}.legend.${glyph}`, "wterrain");
+    try { grids.set(def.id, buildGridMap(def, world.all("wterrain"))); }
+    catch (error) { errors.push(`${def.id}: ${error instanceof Error ? error.message : String(error)}`); }
+  }
+  const occupied = new Map<string, Map<string, string>>(), charted = new Set<string>();
+  for (const place of world.all("place")) {
+    reference(place.map, `${place.id}.map`, "map");
+    const mapDef = world.get("map", place.map), map = mapDef && grids.get(mapDef.id);
+    if (!map) continue;
+    try {
+      const footprint = footprintOf(place);
+      for (const cell of [place.at, ...footprint]) {
+        if (!inBounds(map, cell)) { errors.push(`${place.id}: cell ${cellKey(cell)} outside map`); continue; }
+        const terrain = terrainAt(map, cell), name = parseId(terrain.id)?.name;
+        if (terrain.airCost === null && terrain.groundCost === null || name === "cloudwall" || name === "tidesea" && place.kind !== "port") {
+          errors.push(`${place.id}: forbidden terrain ${terrain.id} at ${cellKey(cell)}`);
+        }
+      }
+      let cells = occupied.get(map.id);
+      if (!cells) { cells = new Map(); occupied.set(map.id, cells); }
+      for (const cell of footprint) {
+        const key = cellKey(cell), other = cells.get(key);
+        if (other && other !== place.id) errors.push(`${place.id}: footprint overlaps ${other} at ${key}`);
+        cells.set(key, place.id);
+      }
+      if (inBounds(map, place.at) && !map.dark[idx(map, place.at)]) charted.add(map.id);
+    } catch (error) { errors.push(`${place.id}: ${error instanceof Error ? error.message : String(error)}`); }
+  }
+  for (const def of world.all("map")) if ((def.fog === "dark" || def.darkRects?.length) && grids.has(def.id) && !charted.has(def.id)) {
+    errors.push(`${def.id}: dark map requires a place on a charted cell`);
+  }
+  for (const lane of world.all("lane")) { reference(lane.a, `${lane.id}.a`, "place"); reference(lane.b, `${lane.id}.b`, "place"); }
   for (const route of world.all("route")) { reference(route.a, `${route.id}.a`, "node"); reference(route.b, `${route.id}.b`, "node"); if (!(route.days > 0)) errors.push(`${route.id}.days: must be positive`); }
   for (const node of world.all("node")) for (const terrain of node.terrainPool ?? []) reference(terrain, `${node.id}.terrainPool`, "terrain");
   for (const encounter of world.all("encounter")) {

@@ -21,7 +21,7 @@
 1. 大地圖地形放 `world/wterrains/<name>.json`（kind `wterrain`，與戰場 `terrain` 分開）；欄位 camelCase（`airCost`／`groundCost` 用 `null` 表示不可進）。
 2. 地點 `footprint` 可省，另給簡寫 `size`（奇數邊長，以 `at` 為中心展開）；兩者都省＝只佔 `at`。
 3. 區域檔 `world/regions/<map>.json` 的 kind 叫 `regions`，id `regions/<map>`，內含 `map` 與 `regions: Record<regionKey, { name; phrase? }>`。
-4. 迷霧 `dark` 的範圍用矩形清單 `darkRects`（圖檔欄位），不另做第三張字元圖。
+4. 迷霧 `dark` 的範圍用矩形清單 `darkRects`（圖檔欄位），不另做第三張字元圖：非空時矩形內 dark、其餘 charted（忽略 `fog`）；空或省時全圖照 `fog`。
 5. 事件 `where` 相容舊值：`node`≡`place`、`route`≡`field`（內容線的既有與新增事件不必改檔）；條件／效果作用域保留 `node` 根與 `$node` 綁定當 `place` 的別名。
 6. 舊 `routes/` 12 檔：刪檔需授權，第二波先由載入器標「已廢止、不載入」並在 REPORT 請頂層准刪。
 7. 蝕域通行成本取 `max(地形成本, 蝕深成本)`；係數放 `action/ops-world` 的 `rules.grid`。

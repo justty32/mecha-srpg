@@ -6,6 +6,20 @@ import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDB } from "../content/worlddb.ts";
 import type { JoinTerms } from "../war/types.ts";
 import type { MercRecord } from "../war/merc.ts";
+import type { Cell } from "../../core/types-def.ts";
+
+export type WTerrainDef = { id: Id; name: string; glyph: string; airCost: number | null; groundCost: number | null;
+  sight: number; encounter: number; encounterLost?: number; riftAffinity: number; battlePool: Id[]; flavor: string };
+export type MapDef = { id: Id; name: string; oldName?: string; width: number; height: number; cellKm: number;
+  fog: "charted" | "dark"; darkRects?: { x: number; y: number; w: number; h: number }[]; riftRate: number;
+  legend: Record<string, Id>; base: { rows: string[] }; region?: { legend: Record<string, string>; rows: string[] }; road?: [number, number][] };
+export type RegionsDef = { id: Id; map: Id; regions: Record<string, { name: string; phrase?: string }> };
+export type PlaceDef = { id: Id; name: string; map: Id; at: Cell; size?: number; footprint?: Cell[];
+  kind: "city" | "port" | "ruin" | "outpost" | "rift-site" | "lunar-base" | "beacon";
+  owner?: Id; pop?: number; services: ServiceId[]; ruin?: { depth: number; seedTable: Id; discovered: boolean }; sight?: number; tags: string[] };
+export type LaneDef = { id: Id; a: Id; b: Id; kind: "land-bridge" | "sea-lane" | "air-lane" | "orbital";
+  days: number; departDays?: number[]; fare?: NumExpr; fuelPerDay?: number; carriesShip: boolean;
+  capacity?: { mechs: number; persons: number }; requires?: Id[]; hazards: Id[]; tags: string[] };
 
 export type RoomId = string;
 export type ServiceId = string;
@@ -147,7 +161,8 @@ export type CampaignState = { relations?: Record<string, Relation>; operations?:
   pendingContracts: { template: Id; near?: string }[]; pendingEvents: Id[] };
 export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
 
-export type WorldDefByKind = { operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; ferry: FerryDef; ship: ShipDef; node: NodeDef; route: RouteDef; rift: RiftDef;
+export type WorldDefByKind = { wterrain: WTerrainDef; map: MapDef; regions: RegionsDef; place: PlaceDef; lane: LaneDef;
+  operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; ferry: FerryDef; ship: ShipDef; node: NodeDef; route: RouteDef; rift: RiftDef;
   encounter: EncounterDef; "faction-ops": FactionOpsDef; contract: ContractTemplate; action: WorldActionDef; market: MarketDef; service: ServiceDef;
   recruit: RecruitPoolDef; background: BackgroundDef; research: ResearchDef; job: JobDef; names: NamesDef; event: EventDef;
   dialogue: DialogueDef; room: RoomDef; templates: TemplatesDef; start: StartDef; beasts: BeastDef; keymap: KeymapDef };

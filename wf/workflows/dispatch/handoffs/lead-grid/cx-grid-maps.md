@@ -36,7 +36,7 @@
 
 **共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；不 commit；不 `rm -rf`（暫存搬 `/tmp/cx-grid-maps-trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作；子代理上限 1 個，只准為推進正事開，它若做實質工作也要親自讀 AGENTS.md 與上列規矩。同一工作樹裡另有 codex 線 `cx-grid-core` 在寫 `src/ops/{world,content,state}/` 其他檔與 `content/base/world/actions/ops-world.json`，也有其他領導線在寫 `src/ai/`、`content/` 文字欄；看到別人的未提交改動不要還原。`npm test` 期間若因別線半成品而紅，不算你的錯，照實記錄即可（你的驗收不含 `npm test`）。
 
-**分清錯誤來源**：工具或環境出錯（指令不存在、權限被擋、沙箱拒寫）→ 停下發 `BLOCKED`；你自己寫的臨時腳本出錯 → 自己修，不算阻塞。
+**分清錯誤來源**：工具或環境出錯（指令不存在、權限被擋、沙箱拒寫）→ 停下發 `BLOCKED`；你自己寫的臨時腳本出錯 → 自己修，不算阻塞。不算阻塞。**沙箱禁止 Unix socket listen（EPERM），`src/mcp/` 的 cli／e2e 測試在沙箱內必失敗，這是已知環境限制、不算阻塞**：照常繼續做完全部工作，REPORT 註明哪些測試因此失敗，完整 `npm test` 由領導在沙箱外重跑。
 
 ## 工作
 

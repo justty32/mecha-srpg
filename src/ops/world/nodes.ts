@@ -4,6 +4,8 @@ import type { CampaignState, OpsCtx, RouteDef, WorldActionDef } from "../state/t
 export type CmdResult = { ok: true } | { ok: false; error: string };
 // SPEC-GAP：地基未定義世界係數登記檔，暫存於不參與抽牌的 action/ops-world.rules。
 export type WorldRules = {
+  grid: { shipMp: number; groundMp: number; diagonal: number; blightCost: { shallow: number; deep: number; core: number };
+    contact: { air: number; ground: number }; sight: number; uplinkSight: number };
   pressure: { daily: number; sealedRelief: number; blightPerMonth: number; poissonScale: number; adjacentChance: number; cityBiasPerPressure: number; widthStep: number; widths: Grade[] };
   nodes: { deepMonths: number; insectOwner: string };
   rifts: { openingDays: number };
