@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-06",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -71,5 +71,99 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:12:21",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-06",
+  "round": 1,
+  "at": "2026-10-24T16:12:21",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/events/post-neutrality.json",
+   "content/lore/events/pune-falls.json",
+   "content/lore/events/quito-shipyard-sale.json",
+   "content/lore/events/rift-valley-dig.json",
+   "content/lore/events/shell-signal.json",
+   "content/lore/events/shell-society-founded.json",
+   "content/lore/events/shield-open-carving.json",
+   "content/lore/events/singapore-conference.json",
+   "content/lore/events/skagerrak-incident.json",
+   "content/lore/events/skagerrak-shell-found.json",
+   "content/lore/events/tenth-law.json",
+   "content/lore/events/titicaca-dig.json",
+   "content/lore/events/tranquility-founded.json",
+   "content/lore/events/tranquility-strike.json",
+   "content/lore/events/uluru-standoff.json",
+   "content/lore/events/whiteglove-incident.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/events/post-neutrality.json",
+  "content/lore/events/pune-falls.json",
+  "content/lore/events/quito-shipyard-sale.json",
+  "content/lore/events/rift-valley-dig.json",
+  "content/lore/events/shell-signal.json",
+  "content/lore/events/shell-society-founded.json",
+  "content/lore/events/shield-open-carving.json",
+  "content/lore/events/singapore-conference.json",
+  "content/lore/events/skagerrak-incident.json",
+  "content/lore/events/skagerrak-shell-found.json",
+  "content/lore/events/tenth-law.json",
+  "content/lore/events/titicaca-dig.json",
+  "content/lore/events/tranquility-founded.json",
+  "content/lore/events/tranquility-strike.json",
+  "content/lore/events/uluru-standoff.json",
+  "content/lore/events/whiteglove-incident.json"
+ ],
+ "ids": [
+  "event/post-neutrality",
+  "event/pune-falls",
+  "event/quito-shipyard-sale",
+  "event/rift-valley-dig",
+  "event/shell-signal",
+  "event/shell-society-founded",
+  "event/shield-open-carving",
+  "event/singapore-conference",
+  "event/skagerrak-incident",
+  "event/skagerrak-shell-found",
+  "event/tenth-law",
+  "event/titicaca-dig",
+  "event/tranquility-founded",
+  "event/tranquility-strike",
+  "event/uluru-standoff",
+  "event/whiteglove-incident"
+ ],
+ "summary": "lore 事件 16 檔換詞；閘門 0 違規、check／lore／typecheck／test 綠、黃金不變",
+ "gateRejections": []
 }
