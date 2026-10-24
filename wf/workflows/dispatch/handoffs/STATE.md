@@ -18,7 +18,7 @@
 
 ## 現役
 
-- **lead-tidy**（進行中）：本段落末的搬移與拆檔（已收線目錄移 done、近 8 KB 檔拆子檔、收信殘檔歸檔）；進度看 [next-tidy](next-tidy.md) 與 `git log`。
+- 無。本段落各線（含 lead-codex-pilot、lead-wrapup、lead-tidy）已全部收線（2026-10-24）；報告見 [done 索引](done/README.md)、[lead-tidy](lead-tidy/REPORT.md)、[lead-wrapup](lead-wrapup/REPORT.md)、[lead-codex-pilot](lead-codex-pilot/REPORT.md)。
 - **lead-codex-pilot** 已收線（2026-10-24，[REPORT](lead-codex-pilot/REPORT.md)；四份 manifest 指向該目錄，故留原處）。**lead-wrapup** 兩階段完成，REPORT 由頂層代存 `handoffs/lead-wrapup/REPORT.md`。
 
 ## 本段落（2026-10-24）做了什麼
@@ -41,7 +41,7 @@
 
 1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
 2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
-3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）；lead-tidy 若未收先收。
+3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）。
 4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover：第一批＝用語改名＋翻譯腔重審（依 `design-notes/terms.md`，agy 審查，衍生詞先交使用者定）；其餘批次照 `codex-batches.json`，3–4 批並行。
 5. 並行開 Opus 領導線做 engine-backlog P1（方格大地圖一線、戰鬥／營運調校一線）；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
 6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
