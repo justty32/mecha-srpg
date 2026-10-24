@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "pilot-polish-01",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "author": {
   "agent": "codex",
   "model": "gpt-6-astra",
@@ -12,7 +12,7 @@
  },
  "lead": "lead-codex-pilot",
  "date": "2026-10-24",
- "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "base": "9c3b286efa731f189f42303bd257d305d0201557",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-polish-01",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-polish-01/REPORT.md",
@@ -30,10 +30,87 @@
    "wf/workflows/content/ops-content.md"
   ]
  },
- "files": [],
- "ids": [],
- "acceptance": {},
- "rounds": [],
+ "files": [
+  "content/base/world/events/route-tide-storm.json",
+  "content/base/world/events/ship-helium-leak.json",
+  "content/base/world/events/ship-letter-receipt.json",
+  "content/base/world/events/ship-locker-debt.json",
+  "content/base/world/events/ship-locker-letter.json",
+  "content/base/world/events/ship-tide-stew.json",
+  "content/base/world/events/soul-log-address.json",
+  "content/base/world/events/soul-log-echo.json",
+  "content/base/world/events/soul-night-hum.json",
+  "content/base/world/events/soul-stray-log.json"
+ ],
+ "ids": [
+  "event/route-tide-storm",
+  "event/ship-helium-leak",
+  "event/ship-letter-receipt",
+  "event/ship-locker-debt",
+  "event/ship-locker-letter",
+  "event/ship-tide-stew",
+  "event/soul-log-address",
+  "event/soul-log-echo",
+  "event/soul-night-hum",
+  "event/soul-stray-log"
+ ],
+ "acceptance": {
+  "batch": "pilot-polish-01",
+  "round": 1,
+  "at": "2026-10-24T14:21:01",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/world/events/route-tide-storm.json",
+   "content/base/world/events/ship-helium-leak.json",
+   "content/base/world/events/ship-letter-receipt.json",
+   "content/base/world/events/ship-locker-debt.json",
+   "content/base/world/events/ship-locker-letter.json",
+   "content/base/world/events/ship-tide-stew.json",
+   "content/base/world/events/soul-log-address.json",
+   "content/base/world/events/soul-log-echo.json",
+   "content/base/world/events/soul-night-hum.json",
+   "content/base/world/events/soul-stray-log.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "at": "2026-10-24T14:13",
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：把 tools/tabledb.py 打成相對 worktree 的錯路徑就依停止條款停下，0 改動",
+    "lead": "交接書補 tabledb 實際路徑與錯誤來源規則，重派"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T14:21:01",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
  "gateRejections": [],
  "goal": "潤飾 10 個營運事件（content/base/world/events/）的文案成更自然的中文，只改文字欄",
  "maxFiles": 10,
@@ -69,5 +146,6 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "summary": "10 檔只改 text／choices[].text；閘門 0 違規；check 0 錯 0 新警告、ops check OK、typecheck、npm test 732/732、黃金不變；第 0 輪因 tabledb 路徑誤判 BLOCKED，重派 1 次通過；未開子代理"
 }

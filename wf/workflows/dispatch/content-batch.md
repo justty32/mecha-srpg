@@ -36,9 +36,15 @@ echo $! > $S/logs/<線名>.pid
 - 子代理：「可以再派子 agent，模型隨意（量大呆板用 gpt-6-luna），上限 N；子 agent 做實質工作也要親讀 AGENTS.md 與 `wf/workflows/content/`，受同一閘門約束；REPORT 記成本與品質」。
 - 戰鬥內容另寫 MCP 試玩要求與 `playtest.json` 格式（見 [content/playtest](../content/playtest.md)）。
 
+## 2026-10-24 試點踩到的坑
+
+- **停止條款被字面執行**：範本的「工具或環境出錯 → 停下發 BLOCKED」讓 3 條線在 2 分鐘內全停——兩條把 `tools/tabledb.py` 打成相對 worktree 的錯路徑、一條撞到文件寫錯的 `sweep.ts` 雙包用法。交接書要寫清楚「**自己打錯指令或路徑＝自己修**，只有點名工具本身壞掉才停」，並在必用工具表列出 tabledb 的實際路徑 `wf/tools/tabledb.py`。
+- **MCP 只載 `content/base`**：scratch pack 的情境進不了 MCP；要親手試玩新單位，就讓該批 manifest 允許 1–2 個 `<前綴>` 展示情境（`base/scenarios`）。
+- **重派用新 session**：`codex exec resume` 沒有 `-s`／`-C`／`--add-dir` 旗標，沙箱可能退回 config 預設（danger-full-access），所以重做一律開新 `codex exec`，prompt 帶上一輪的 REPORT 路徑與被擋原因。
+
 ## 收件
 
-等待照 [codex-exec](codex-exec.md)「怎麼判斷完成」；之後**不讀 codex 的自報判通過**，一律跑 `bash wf/tools/content_accept.sh <wt> <manifest> --record`。不過就把 `VIOLATION` 與失敗步驟寫進 orders 或 `codex exec resume` 續跑，最多 2 輪；越界檔原文記進 manifest `gateRejections`。
+等待照 [codex-exec](codex-exec.md)「怎麼判斷完成」；之後**不讀 codex 的自報判通過**，一律跑 `bash wf/tools/content_accept.sh <wt> <manifest> --record`。不過就開新的 `codex exec`（prompt 帶 `VIOLATION` 與失敗步驟），最多 2 輪；越界檔原文記進 manifest `gateRejections`。
 
 ## 交接
 

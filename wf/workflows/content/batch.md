@@ -26,7 +26,7 @@
 4. **派 codex**：`gpt-6-astra`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
 5. **等**：前景 `inbox_poll.sh <領導> --wait --timeout 540` 或 `kill -0 <pid>` 輪詢；三訊號（行程結束、log 尾 `tokens used`、inbox 終局）都看。
 6. **閘門＋驗收**：`bash wf/tools/content_accept.sh <wt> <manifest> --record`。它先跑 `content_gate.py`（不過就停），再依 `checks` 跑 check（列新警告）、lore check、typecheck、`npm test`、黃金不變、`content:probe`（失衡門檻見 [playtest](playtest.md)）、試玩紀錄、已讀清單；產物在 `<reportDir>/accept/verdict-<輪>.json`。
-7. **退回重做**（最多 2 輪）：把 `VIOLATION` 行與失敗步驟原文寫進 `wf/inbox/orders/<線名>.md`，或用 `codex exec resume` 續同一 session；越界的檔原文抄進 manifest `gateRejections`（這是「codex 有沒有亂改」的證據）。第 2 輪仍不過 → `status:"rejected"`，REPORT 記錄，不帶回。
+7. **退回重做**（最多 2 輪）：開新的 `codex exec`（不用 `resume`——它不吃沙箱旗標），prompt 帶 `VIOLATION` 行、失敗步驟原文與上一輪 REPORT 路徑；越界的檔原文抄進 manifest `gateRejections`（這是「codex 有沒有亂改」的證據）。第 2 輪仍不過 → `status:"rejected"`，REPORT 記錄，不帶回。
 8. **帶回 main**：`python3 -I wf/tools/content_gate.py <wt> <manifest> --carry <repo>`——只複製通過的檔；add 模式目的地已有同名檔、polish 模式目的地已被別線改過（≠ base）都拒絕。
 9. **更新帳本與索引**：manifest 填 `files`（相對 repo 根）、`ids`、`status:"accepted"`；`git add <files> <manifest>` 之後 `npm run content:index`（只重寫有變動的分片；索引讀 git 索引版本），再 `git add content/index`。
 10. **commit 與收線**：主 repo 跑 `npm test`、`npm run check`；`git diff --cached --stat`；`git commit -- <files> <manifest> content/index`；移除自己建的 worktree（`git worktree remove`），kill 殘留 socket 行程。

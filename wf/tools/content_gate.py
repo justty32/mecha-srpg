@@ -171,6 +171,11 @@ def check(wt, manifest, base):
     fields = set(allow.get('textFields') or DEFAULT_TEXT_FIELDS) & set(DEFAULT_TEXT_FIELDS)
     name_prefix = allow.get('namePrefix', {})
     prefix_cache = {}
+    head = git(wt, 'rev-parse', 'HEAD').decode().strip()
+    want_base = git(wt, 'rev-parse', base).decode().strip()
+    if head != want_base:
+        violations.append(('<worktree>', 'BASE', f'worktree HEAD {head[:8]} ≠ manifest base {want_base[:8]}'
+                           '（worktree 開錯起點，或有人在 worktree 裡 commit／checkout）'))
 
     for status, path in collect_changes(wt, base):
         full = wt / path

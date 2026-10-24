@@ -7,7 +7,8 @@
 #   --record    把驗收摘要寫回 manifest 的 acceptance／rounds 欄
 # 產物寫到 manifest.reportDir/accept/（gate.json、check.txt、test.tap、probe.json、verdict.json…）。
 # 只在 worktree 內跑指令，不碰主工作樹（--record 只寫 manifest）。全部通過 exit 0，否則 exit 1。
-# 步驟由 manifest.checks 選（預設全跑）：check lore typecheck test probe playtest readlist；閘門永遠先跑。
+# 步驟由 manifest.checks 選（預設全跑）：check lore typecheck test probe playtest readlist；閘門永遠先跑；
+# 通過檔含 content/base/world/ 時自動加跑 ops 內容檢查。
 set -uo pipefail
 WT=$(cd "$1" && pwd); MAN=$(cd "$(dirname "$2")" && pwd)/$(basename "$2"); RECORD=${3:-}
 REPO=$(cd "$(dirname "$0")/../.." && pwd)
@@ -46,6 +47,10 @@ if [ $fail -eq 0 ]; then
   if want lore; then
     (cd "$WT" && node content/lore/check.ts > "$OUT/lore.txt" 2>&1) && step lore ok || step lore fail
   fi
+  if grep -q '"content/base/world/' "$OUT/gate.json"; then   # 動到營運內容就加跑 ops 檢查
+    (cd "$WT" && node src/ops/content/check.ts content/base > "$OUT/ops-check.txt" 2>&1)
+    tail -1 "$OUT/ops-check.txt" | grep -q '^OK 0 errors' && step ops ok || step ops fail
+  fi
   if want typecheck; then
     (cd "$WT" && npm run -s typecheck > "$OUT/typecheck.txt" 2>&1) && step typecheck ok || step typecheck fail
   fi
@@ -53,7 +58,8 @@ if [ $fail -eq 0 ]; then
     (cd "$WT" && npm test > "$OUT/test.tap" 2>&1)
     f=$(grep -E '^# fail ' "$OUT/test.tap" | awk '{print $3}'); p=$(grep -E '^# pass ' "$OUT/test.tap" | awk '{print $3}')
     echo "   pass=${p:-?} fail=${f:-?}"
-    [ "${f:-1}" = 0 ] && step test ok || step test fail
+    { grep -E '^# (tests|pass|fail)' "$OUT/test.tap"; grep -E '^not ok' "$OUT/test.tap"; } > "$OUT/test-summary.txt"
+    [ "${f:-1}" = 0 ] && { step test ok; rm -f "$OUT/test.tap"; } || step test fail   # 全綠只留摘要，紅了留完整 tap
     [ -z "$(git -C "$WT" status --short test/golden src/ops/sim/fixtures)" ] && step golden ok || step golden fail
   fi
   if want probe; then

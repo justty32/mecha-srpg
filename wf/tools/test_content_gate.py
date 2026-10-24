@@ -173,6 +173,12 @@ class GateCase(unittest.TestCase):
     def test_bad_mode(self):
         self.assertIn('MODE', self.run_gate({'mode': 'yolo'})[0])
 
+    def test_base_mismatch(self):
+        self.write('content/base/frames/cx3-a.json', {'id': 'frame/cx3-a'})
+        sh(self.wt, 'git', 'add', '-A')
+        sh(self.wt, 'git', '-c', 'user.name=t', '-c', 'user.email=t@t', 'commit', '-q', '-m', 'moved')
+        self.assertIn('BASE', self.run_gate(self.ADD)[0])
+
     # ---- 潤飾模式 ----
     def test_polish_clean(self):
         def fn(d):
