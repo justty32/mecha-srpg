@@ -62,6 +62,11 @@
    "驗證": "內容平衡探針（填完 frame／monster／ability／scenario 後跑）",
    "指令": "`npm run content:probe -- <id…> [--n 20] [--seed 1] [--jobs J] [--rounds 20] [--no-retreat] [--json FILE|-] [--content DIR] [--bands FILE]`：自動配同級基準對手（`src/sim/probe-baselines.json`，取自 `wf/workflows/content/playtest-baselines.json`）各跑 N 場，印勝率／敗率／平手率／平均輪數／結算原因（eliminate、`eliminate:repelled`、timeout…）／每能力 AI 使用次數／主角從未使用的能力／超出 `numeric-bands.json` 的欄位；`--no-retreat` 關撤離量純火力；`--jobs` 平行輸出與單工逐字相同（2026-10-24 基準：2 個 id×20 場約 1 秒）",
    "誰跑": "agent"
+  },
+  {
+   "驗證": "內容批次護欄（改 content_gate／content_index／content_accept 後跑；收 codex 內容批次時跑驗收鏈）",
+   "指令": "`python3 -I wf/tools/test_content_gate.py`（閘門陽性／陰性 36 例）；`python3 -I wf/tools/content_index.py --check`（分片索引與 git 索引一致，`npm test` 的 `test/content/index.test.ts` 也跑它）；`bash wf/tools/content_accept.sh <worktree> <manifest>`（整批驗收，見 content/batch.md）",
+   "誰跑": "agent"
   }
  ]
 }

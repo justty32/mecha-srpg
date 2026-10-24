@@ -32,10 +32,7 @@ if [ $rc -ne 0 ]; then
 else step gate ok; fi
 
 if [ $fail -eq 0 ]; then
-  # worktree 裡把通過的新檔 intent-to-add（索引只看 git 追蹤的檔），並重產索引
-  py -c 'import json,sys;print("\0".join(json.load(open(sys.argv[1]))["approved"]),end="")' "$OUT/gate.json" \
-    | xargs -0 -r git -C "$WT" add -N --
-  (cd "$WT" && py wf/tools/content_index.py > /dev/null)
+  # 索引一致性測試讀 git 索引／HEAD，worktree 的未追蹤新檔不影響它；新檔入索引在帶回 main 後做。
 
   if want check; then
     BWT="$WT-base"
@@ -78,8 +75,6 @@ if [ $fail -eq 0 ]; then
   fi
 fi
 
-# 還原 worktree 裡驗收自己產生的索引（下一輪閘門才不會把它當 codex 的改動）
-git -C "$WT" checkout -q -- content/index 2>/dev/null
 ROUND=$(ls "$OUT"/verdict-*.json 2>/dev/null | wc -l); ROUND=$((ROUND + 1))
 STEPS=$(for k in "${!RES[@]}"; do printf '%s=%s\n' "$k" "${RES[$k]}"; done)
 py - "$OUT" "$ROUND" "$fail" "$BATCH" <<PYEOF > "$OUT/verdict-$ROUND.json"

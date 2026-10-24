@@ -76,6 +76,7 @@
 | 檔案 | 內容 |
 |------|------|
 | [codex-exec.md](codex-exec.md) | `codex exec` 非互動式派 codex 線：實測旗標、smoke test、背景跑與判斷完成 |
+| [content-batch.md](content-batch.md) | 派 codex 做一批內容：隔離 worktree、可寫集合、交接書必寫、收件走 content_accept |
 | [CLAIMS.md](CLAIMS.md) | 領地登記：現役線／保留路徑／歷史 |
 | [driving-cli-agents.md](driving-cli-agents.md) | 互動式（tmux）備選、監看三訊號、清理、收線七步 |
 | [tool-index.md](tool-index.md) | 任務類型 → 必用工具（交接書「必用工具」段從這裡抄）|

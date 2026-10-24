@@ -1,0 +1,81 @@
+{
+ "contract": "content-batch/1",
+ "id": "pilot-mech-01",
+ "mode": "add",
+ "status": "draft",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-pilot-mech",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-codex-pilot",
+ "date": "2026-10-24",
+ "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/ability-forms.json",
+   "wf/workflows/content/playtest-baselines.json",
+   "src/mcp/README.md",
+   "content/lore/factions/third-blade.json",
+   "content/base/world/lineages/tide-fin.json"
+  ]
+ },
+ "files": [],
+ "ids": [],
+ "acceptance": {},
+ "rounds": [],
+ "gateRejections": [],
+ "goal": "第三刃獵團（潮鰭殼血統 lineage-tide-fin）新摹機小系列：3 台 frame（D／C／B 三級、同系列）＋所需 components／abilities／effects，前綴 cx3-，含 defaultLoadout，照 numeric-bands",
+ "maxFiles": 20,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "base/components",
+   "base/abilities",
+   "base/effects"
+  ],
+  "namePrefix": {
+   "base/*": "cx3-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/bulwark-i",
+   "frame/thirdblade-swordfish-iii",
+   "frame/thirdblade-swordfish-v5"
+  ],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 3,
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-mech-01/mcp-log"
+ }
+}

@@ -73,18 +73,18 @@ def joined(values):
     return ','.join(out)
 
 
-def load_batches(root):
-    """`content/batches/<YYYY-MM>/<id>.json`（也接受直接放在 batches/ 下）。"""
+def load_batches(root, ref=None):
+    """`content/batches/<YYYY-MM>/<id>.json`（也接受直接放在 batches/ 下）；與內容同一來源（git 索引或 ref）。"""
     by_path, deprecated, counts = {}, set(), {}
-    bdir = root / 'content' / 'batches'
-    if not bdir.is_dir():
-        return by_path, deprecated, counts
-    for f in sorted(bdir.rglob('*.json')):
+    files = staged_files(root, ref, ['content/batches'])
+    if files is None:
+        files = [(f.as_posix(), f.read_bytes()) for f in sorted((root / 'content' / 'batches').rglob('*.json'))]
+    for name, raw in files:
         try:
-            m = json.loads(f.read_text(encoding='utf-8'))
-        except json.JSONDecodeError as e:
-            raise SystemExit(f'{f}: batch 帳本不是合法 JSON：{e}')
-        bid = m.get('id', f.stem)
+            m = json.loads(raw.decode('utf-8'))
+        except (json.JSONDecodeError, UnicodeDecodeError) as e:
+            raise SystemExit(f'{name}: batch 帳本不是合法 JSON：{e}')
+        bid = m.get('id', Path(name).stem)
         status = 'active' if m.get('status') == 'accepted' else 'draft'
         files = m.get('files', [])
         counts[bid] = {'status': m.get('status', ''), 'date': m.get('date', ''), 'files': len(files)}
@@ -94,12 +94,12 @@ def load_batches(root):
     return by_path, deprecated, counts
 
 
-def staged_files(root, ref=None):
+def staged_files(root, ref=None, dirs=None):
     """git 索引（staged）裡 content/base、content/lore 的 JSON：[(path, bytes)]。讀的是索引版本，
     不是工作樹——別線還沒 `git add` 的改動與新檔不影響索引檢查，`git add` 之後再重產即可。
     不是 git repo 時回傳 None。"""
     cmd = ['ls-tree', '-r', '-z', ref] if ref else ['ls-files', '-s', '-z']
-    ls = subprocess.run(['git', '-C', str(root), *cmd, '--', *[f'content/{p}' for p in PACKS]],
+    ls = subprocess.run(['git', '-C', str(root), *cmd, '--', *(dirs or [f'content/{p}' for p in PACKS])],
                         capture_output=True)
     if ls.returncode != 0:
         return None
@@ -158,7 +158,7 @@ def build(root, ref=None):
     entries = scan(root, ref)
     species = {d['id']: d for pack, _, d in entries if pack == 'base' and d['id'].startswith('species/')}
     species_family = {k: d.get('family', '') for k, d in species.items()}
-    batches, deprecated, counts = load_batches(root)
+    batches, deprecated, counts = load_batches(root, ref)
     rows = []
     for pack, rel, d in entries:
         tags = [t for t in d.get('tags', []) if isinstance(t, str)] if isinstance(d.get('tags'), list) else []

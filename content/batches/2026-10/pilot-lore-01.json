@@ -1,0 +1,61 @@
+{
+ "contract": "content-batch/1",
+ "id": "pilot-lore-01",
+ "mode": "add",
+ "status": "draft",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-pilot-lore",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-codex-pilot",
+ "date": "2026-10-24",
+ "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-lore-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-lore-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "content/lore/factions/third-blade.json"
+  ]
+ },
+ "files": [],
+ "ids": [],
+ "acceptance": {},
+ "rounds": [],
+ "gateRejections": [],
+ "goal": "lore 新增 5 個人物與 2 個事件（第三刃、月面背面相關），交叉引用正確",
+ "maxFiles": 8,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

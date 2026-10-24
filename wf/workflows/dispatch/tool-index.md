@@ -22,6 +22,9 @@
 | inbox 腳本自測 | `bash wf/tools/test_inbox.sh` | 改過 inbox 腳本後跑 | 現役 |
 | Godot 驗證 | `godot-mono --headless --path <專案目錄> …`（版本 4.7.2.stable.mono） | 只准 headless；不開編輯器、不開視窗 | 新 |
 | 程式碼測試 | `node --test` | 確切指令見 [testing](../testing.md) | 現役 |
+| 內容批次閘門 | `python3 -I wf/tools/content_gate.py <worktree> <manifest> [--json] [--carry <repo>]` | 新增／潤飾模式的路徑與欄位閘門；`--carry` 只帶回通過的檔（見 [content-batch](content-batch.md)） | 新 |
+| 內容批次驗收 | `bash wf/tools/content_accept.sh <worktree> <manifest> [--record]` | 閘門→check→lore→typecheck→test→probe→試玩紀錄→已讀清單，結果寫 manifest | 新 |
+| 內容索引 | `npm run content:index`（`--check` 驗一致；`refs <id>` 查引用） | 重產分片索引 `content/index/`，只重寫變動的分片 | 新 |
 | 收線核 commit | `git log --oneline`、`git status --short` | 核線的 commit 只含明確路徑、工作樹沒殘留 | 新 |
 
 本表膨脹到難讀就照 [STRUCTURE](../../STRUCTURE.md) 分層；加一支工具時同一天加一列並標狀態。

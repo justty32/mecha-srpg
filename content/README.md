@@ -28,6 +28,15 @@ id 使用 `pack:kind/name`，同包引用省略 `pack:`；例如 `base:map/skirm
 
 新增 X 要改哪些檔：見 [content-format 規格](../wf/workflows/planning/specs/core/content-format.md)。
 
+## 索引與批次帳本
+
+遊戲照舊「一檔一筆 JSON」；另有兩份給 agent 查的帳本，都不被載入器與百科讀：
+
+- [index/](index/README.md)：按類別分片的內容索引（每個有 `id` 的檔一列：id、等級、名稱、勢力／族／血統、tags、所屬批次、狀態），`npm run content:index` 產生、`npm test` 驗不過時。查詢先看 `index/_summary.json`，再帶條件查分片，不整份讀。
+- [batches/](batches/README.md)：每批 agent 產出的 manifest（模式、允許範圍、作者模型、新增檔、驗收結果、被擋下的越界嘗試）。流程見 [content 工作流的 batch](../wf/workflows/content/batch.md)。
+
+新增檔後先 `git add`，再 `npm run content:index`，一起 commit。
+
 ## 驗證
 
 在專案根目錄執行 `npm run check`；成功末行為 `OK 0 errors, 0 warnings`。

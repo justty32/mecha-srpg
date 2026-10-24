@@ -1,0 +1,73 @@
+{
+ "contract": "content-batch/1",
+ "id": "pilot-polish-01",
+ "mode": "polish",
+ "status": "draft",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-pilot-polish",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-codex-pilot",
+ "date": "2026-10-24",
+ "base": "0ef7bcccb5c2ff1efada0eae946957b7a598194a",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-polish-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-codex-pilot/pilot-polish-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/content/ops-content.md"
+  ]
+ },
+ "files": [],
+ "ids": [],
+ "acceptance": {},
+ "rounds": [],
+ "gateRejections": [],
+ "goal": "潤飾 10 個營運事件（content/base/world/events/）的文案成更自然的中文，只改文字欄",
+ "maxFiles": 10,
+ "allow": {
+  "polishFiles": [
+   "content/base/world/events/ship-helium-leak.json",
+   "content/base/world/events/ship-letter-receipt.json",
+   "content/base/world/events/ship-locker-debt.json",
+   "content/base/world/events/ship-locker-letter.json",
+   "content/base/world/events/ship-tide-stew.json",
+   "content/base/world/events/soul-log-address.json",
+   "content/base/world/events/soul-log-echo.json",
+   "content/base/world/events/soul-night-hum.json",
+   "content/base/world/events/soul-stray-log.json",
+   "content/base/world/events/route-tide-storm.json"
+  ],
+  "textFields": [
+   "text",
+   "name",
+   "title",
+   "label",
+   "summary",
+   "body",
+   "lines",
+   "phrase",
+   "phrases",
+   "badge",
+   "note"
+  ]
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

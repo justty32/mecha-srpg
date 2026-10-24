@@ -4,6 +4,8 @@
 
 在**不改引擎、不改 spec 架構**的前提下，新增遊戲資料（機甲、部件、怪獸、古代機、人物、能力、地形、情境、營運事件…）與世界觀資料（lore），以及把既有文字改得更像人寫的。本工作流給的是**設計原則＋數值帶＋驗收規程**；格式欄位去讀 spec，不在這重抄。
 
+**先讀** [world-pillars](world-pillars.md)：世界觀設計支柱 31 條（太空歌劇、獵團＝傭兵、怪獸不是畜牲、機魂個性限 S、意圖受挫撤退…）與最常見的違反——動筆與潤飾前過一遍。
+
 **何時用**：「填內容」「新增機甲／怪獸／事件／情境」「補 defaultLoadout」「潤飾文案」「改名統一用語」。
 **何時不用**：要加欄位、改載入器、改 AI 行為 → feature-dev；數值表本身要改結構 → planning；只是查一個 id 怎麼寫 → 直接看範本檔。
 
@@ -18,6 +20,8 @@
 
 ## 流程
 
+<!-- wf-nav -->
+0. **開 batch**（agent 批量產出必做）：照 [batch](batch.md)。
 1. **選題**：從任務書或 catalog 缺口選；一批 ≤ 20 檔、一個類別，先小後大。
 2. **讀範本**：查 templates.json 的範本檔、必配套、常見錯誤，整檔讀過再動筆；再讀該類原則檔。
 3. **查數值帶與引擎事實**：numeric-bands.json 建議區間（超出寫理由；觀察值由 `tools/stats.ts` 重算）；engine-facts.json 21 條（標「待引擎缺口線」的照其落地前寫法）。
@@ -25,6 +29,7 @@
 5. **自動對戰煙霧**：scratch pack、5 seed 0 THROW、能力有被用（見 acceptance-playtest）。
 6. **MCP 試玩**：自己起 socket server，打基準對手、量勝率／輪數／能力使用；失衡照「怎麼調」改再跑。
 7. **驗收與 commit**：Done when 逐條、REPORT 寫件數／平衡／超帶理由／新發現；`git add <明確路徑>`、`git diff --cached --stat`、`git commit -- <路徑>`，不 push。
+8. **更新索引**：`git add` 後 `npm run content:index` 一起 commit；查索引帶條件查分片，**禁止整份讀**。
 
 ## 內容
 
@@ -41,6 +46,9 @@
 | [battle-field.md](battle-field.md) | 地形、地圖、情境（部署、撤離、目標類型、參戰型、輪數）、AI 設定 |
 | [ops-content.md](ops-content.md) | 營運內容：事件 prompt／choose、契約模板、名表、科研、市場、遭遇、對白 |
 | [lore-text.md](lore-text.md) | lore（勢力四節、人物、事件、年表一致性）與文字潤飾準則（禁用詞、句長語感、只改文字欄） |
+| [batch.md](batch.md) | 一批內容從開 manifest、隔離 worktree、派 codex、閘門、驗收、退回重做到帶回 main 與更新帳本 |
+| [polish.md](polish.md) | 潤飾模式：只改文字欄、欄位白名單、閘門判定表 |
+| [playtest.md](playtest.md) | codex 在 worktree 自測：MCP socket 試玩、`content:probe`、`playtest.json` 格式 |
 | [acceptance-playtest.md](acceptance-playtest.md)＋[playtest-baselines.json](playtest-baselines.json) | 每批驗收清單、MCP 試玩規程、基準對手、失衡門檻、調整順序 |
 | `tools/stats.ts` | 零依賴統計：`node wf/workflows/content/tools/stats.ts --json <out>` 重算觀察值 |
 

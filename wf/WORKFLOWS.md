@@ -24,6 +24,7 @@
 | 「環境怎麼裝」「fresh clone 後要做什麼」「指令是什麼」 | **dev-env** | [workflows/dev-env.md](workflows/dev-env.md) |
 | 「討論方案」「寫動工計畫」（spec / plan）| **planning**（kernel 管線的後兩段）| [workflows/planning.md](workflows/planning.md) |
 | 「填內容」「新增機甲／怪獸／古代機／人物／事件／情境」「補配裝」「潤飾文案／統一用語」（不改引擎、不改 spec）| **content** | [workflows/content/README.md](workflows/content/README.md) |
+| 「開一批內容」「派 codex 填內容」「潤飾文案」（批量、隔離 worktree＋閘門）「試玩新內容」 | **content-batch**（content 子流程）| [workflows/content/batch.md](workflows/content/batch.md)；潤飾 [polish](workflows/content/polish.md)、試玩 [playtest](workflows/content/playtest.md) |
 
 **analysis** ＝初次接觸陌生專案、要建立可延續的分析產物；**investigation** ＝回答一個窄問題。**patch** ＝跨 repo、原專案無 git 或不能直接 push、要交給冷啟動 agent 套用時才用；同一個 repo 內能改能測就走 feature-dev。
 
