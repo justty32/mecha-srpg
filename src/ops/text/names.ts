@@ -34,6 +34,11 @@ export function entityName(id: string, state: TextState, world: WorldDB): string
     const siblings = Object.values(state.mechs).filter(m => m.frame === mech.frame).sort((a, b) => a.id.localeCompare(b.id, "en", { numeric: true }));
     return `${entityName(mech.frame, state, world)} ${siblings.findIndex(m => m.id === id) + 1} 號`;
   }
+  const actor = state.actors[id];
+  if (actor) {
+    const kinds = { force: "作戰部隊", patrol: "巡邏隊", caravan: "商隊", swarm: "裂獸群", band: "獵團" };
+    return `${world.get("actor", actor.def ?? `actor/${actor.kind}`)?.name ?? kinds[actor.kind]} ${actor.id.split(/[-/]/).at(-1)}`;
+  }
   const rift = state.rifts[id];
   if (rift) {
     const site = state.places[rift.site]?.dyn;

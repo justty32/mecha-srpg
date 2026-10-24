@@ -7,7 +7,7 @@ import { createWorldDB, keymapErrors } from "./worlddb.ts";
 import type { WorldDB, WorldTables } from "./worlddb.ts";
 
 export const WORLD_FOLDERS = { operations: "operation", treaties: "treaty", lineages: "lineage", models: "model", forces: "forces", rifts: "rift", encounters: "encounter", "factions-ops": "faction-ops",
-  maps: "map", places: "place", lanes: "lane", regions: "regions", wterrains: "wterrain",
+  actors: "actor", maps: "map", places: "place", lanes: "lane", regions: "regions", wterrains: "wterrain",
   contracts: "contract", actions: "action", markets: "market", services: "service", "recruit-pools": "recruit", backgrounds: "background",
   beasts: "beasts", research: "research", jobs: "job", names: "names", events: "event", dialogues: "dialogue", rooms: "room", templates: "templates", "campaign-start": "start" } as const;
 export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ship", "keymap", "affinity", ...Object.values(WORLD_FOLDERS)];

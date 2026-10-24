@@ -1,3 +1,5 @@
+import { actorsDaily2c, actorsDaily3 } from "../world/actors.ts";
+import { blightAt } from "../world/blight.ts";
 import { ensureCore } from "../world/patches.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -12,9 +14,9 @@ import { applyOpsEffect } from "../content/opseffect.ts";
 import { engageFactors, resolveEngage } from "./resolve.ts";
 import { strength, modelPower, forcesDaily } from "./forces.ts";
 import { activeOperation, startOperation, operationsDaily2c, operationAllowed, operationTargets } from "./operations.ts";
-import { findPath, gridOf } from "../world/grid.ts";
+import { findPath, gridOf, neighbors, terrainAt } from "../world/grid.ts";
 import { requirePlace, worldRules } from "../world/places.ts";
-import { placeLoc, placeAt, marchPath, marchStep } from "./loc.ts";
+import { locAt, placeLoc, placeAt, marchPath, marchStep } from "./loc.ts";
 import { nextRelationState, relation, relationKey, changeRelation, flushRelations2, declareWar } from "./relations.ts";
 import { signTreaty, treatiesDaily, breakTreaty } from "./treaties.ts";
 import { drive, allianceWeight } from "./drivers.ts";
@@ -26,6 +28,12 @@ const loaded = loadWorldDirs(["content/base"]), { db, world } = loaded;
 const league = world.require("faction-ops", "faction-ops/residual-league").id, tide = world.require("faction-ops", "faction-ops/tide-faith").id;
 function setup() { const s = newCampaign(db, world, "start/default", 1); return { s, ctx: createOpsCtx(s, db, world) }; }
 function date(s: ReturnType<typeof setup>["s"], day: number) { s.clock = clock(day, world.require("calendar", s.calendar)); }
+function marchDay(s: ReturnType<typeof setup>["s"], ctx: ReturnType<typeof setup>["ctx"]): void {
+  operationsDaily2c(s, ctx); actorsDaily2c(s, ctx);
+  // 作戰單元 fixture：今天的船隻接觸已處理，僅觀測部隊影子的行軍。
+  for (const actor of Object.values(s.actors)) actor.lastContactDay = s.clock.day;
+  actorsDaily3(s, ctx);
+}
 function rel(value: number, state: RelState): Relation { return { a: "a", b: "b", value, state, baseline: 0, treaties: [], grievances: [], weariness: 0, since: 0 }; }
 function op(r = 1): OperationState { return { id: "op", def: "operation/seize", actor: league, coActors: [], target: { loc: { map: "map/longland", region: "", cell: { x: 0, y: 0 } } },
   phase: "engage", startDay: 0, phaseEnd: 9, force: { units: [{ model: "model/test", count: 100, readiness: 1 }], supply: 100, morale: 0, speed: 1, pos: { map: "map/longland", region: "", cell: { x: 0, y: 0 } } },
@@ -57,10 +65,14 @@ test("march 逐日按路程抵達且 map 不變", () => { const {s,ctx}=setup();
 test("跨圖路徑拒絕", () => { const {s,ctx}=setup();const a=placeLoc(s, ctx,"place/dhaka"); assert.equal(marchPath(s,ctx,a,{...a,map:"map/lunar"}),undefined); });
 function warSetup() { const x=setup(); const r=relation(x.s,league,tide)!;r.state="war";r.value=-70;const def=world.require("operation","operation/seize"),target=operationTargets(x.s,x.ctx,league,def)[0]!;assert(target);return {...x,def,target}; }
 for (const reason of ["supply","strength","count","relation"] as const) test(`發起門檻 ${reason}`,()=>{const {s,ctx,def,target}=warSetup();const f=s.factions[league]!;assert(operationAllowed(s,ctx,league,def,target));if(reason==="supply")f.forces!.supply=39;if(reason==="strength")f.forces!.units=[];if(reason==="count")f.ops=["a","b"];if(reason==="relation")relation(s,league,tide)!.state="tense";assert(!operationAllowed(s,ctx,league,def,target));});
-test("階段 muster→march→engage→resolve→aftermath→done 與奪點",()=>{const {s,ctx,target}=warSetup();const o=startOperation(s,ctx,league,"operation/seize",target)!;assert(o);const seen=new Set([o.phase]);for(let day=1;day<30;day++){date(s,day);operationsDaily2c(s,ctx);seen.add(s.operations![o.id]!.phase);}for(const p of ["muster","engage","resolve","aftermath","done"])assert(seen.has(p as typeof o.phase));assert(s.log.some(e=>e.type==="OperationPhase"&&e.payload.phase==="march"));assert(s.log.some(e=>e.type==="PlaceTransferred"));assert(s.factions[league]!.territoryNow.includes(placeAt(s, ctx, target.loc)!));assert(!s.factions[tide]!.territoryNow.includes(placeAt(s, ctx, target.loc)!));assert.equal(s.factions[league]!.ops!.length,0);});
+test("階段 muster→march→engage→resolve→aftermath→done 與奪點",()=>{const {s,ctx,target}=warSetup();const o=startOperation(s,ctx,league,"operation/seize",target)!;assert(o);const seen=new Set([o.phase]);for(let day=1;day<30;day++){date(s,day);marchDay(s,ctx);seen.add(s.operations![o.id]!.phase);}for(const p of ["muster","engage","resolve","aftermath","done"])assert(seen.has(p as typeof o.phase));assert(s.log.some(e=>e.type==="OperationPhase"&&e.payload.phase==="march"));assert(s.log.some(e=>e.type==="PlaceTransferred"));assert(s.factions[league]!.territoryNow.includes(placeAt(s, ctx, target.loc)!));assert(!s.factions[tide]!.territoryNow.includes(placeAt(s, ctx, target.loc)!));assert.equal(s.factions[league]!.ops!.length,0);});
 test("失敗回收部隊且只結算一次",()=>{const {s,ctx,target}=warSetup();const o=startOperation(s,ctx,league,"operation/seize",target)!;o.phase="engage";o.force.morale=-2;date(s,1);operationsDaily2c(s,ctx);date(s,2);operationsDaily2c(s,ctx);assert.equal(s.operations![o.id]!.phase,"failed");assert.equal(s.log.filter(e=>e.type==="OperationFailed").length,1);assert.equal(s.factions[league]!.ops!.length,0);});
 test("超過45天退兵",()=>{const {s,ctx,target}=warSetup();const o=startOperation(s,ctx,league,"operation/seize",target)!;date(s,45);operationsDaily2c(s,ctx);assert.equal(o.phase,"aborted");});
-test("圍堵限大潮前5天且大潮交手",()=>{const {s,ctx}=setup();const node=requirePlace(s,ctx,"place/ridge").id;s.rifts.r={id:"r",site:node,at:placeLoc(s,ctx,node),width:"D",family:"base:rift/insect",phase:"anchored",openedDay:0,anchorAge:0,patches:[],fedCount:0,nextCheck:100};ensureCore(s,ctx,s.rifts.r!);const def=world.require("operation","operation/contain"),target={loc:placeLoc(s, ctx,node),rift:"r"};date(s,2);assert(!operationAllowed(s,ctx,league,def,target));date(s,10);const o=startOperation(s,ctx,league,def.id,target)!;assert(o);for(let d=11;d<=14;d++){date(s,d);operationsDaily2c(s,ctx);}assert.equal(s.log.find(e=>e.type==="OperationEngaged")?.day,14);});
+test("圍堵限大潮前5天且大潮交手",()=>{const {s,ctx}=setup();const node=requirePlace(s,ctx,"place/ridge").id;s.rifts.r={id:"r",site:node,at:placeLoc(s,ctx,node),width:"D",family:"base:rift/insect",phase:"anchored",openedDay:0,anchorAge:0,patches:[],fedCount:0,nextCheck:100};ensureCore(s,ctx,s.rifts.r!);
+  // 原駐地在新建核格內；圍堵部隊由可通行的核旁集結點出發。
+  const map=gridOf(ctx.world,s.rifts.r.at.map), safe=neighbors(map,s.rifts.r.at.cell).find(cell=>terrainAt(map,cell).groundCost!==null&&!blightAt(s,ctx,locAt(ctx,map.id,cell)))!;
+  assert(safe);s.factions[league]!.forces!.pos=locAt(ctx,map.id,safe);
+  const def=world.require("operation","operation/contain"),target={loc:placeLoc(s, ctx,node),rift:"r"};date(s,2);assert(!operationAllowed(s,ctx,league,def,target));date(s,10);const o=startOperation(s,ctx,league,def.id,target)!;assert(o);for(let d=11;d<=14;d++){date(s,d);marchDay(s,ctx);}assert.equal(s.log.find(e=>e.type==="OperationEngaged")?.day,14);});
 test("攻堅成功寫 unanchored 與 RiftPhase",()=>{const {s,ctx}=setup();const node=requirePlace(s,ctx,"place/ridge").id;s.rifts.r={id:"r",site:node,at:placeLoc(s,ctx,node),width:"D",family:"base:rift/insect",phase:"anchored",openedDay:0,anchorAge:0,patches:[],fedCount:0,nextCheck:100};const o=startOperation(s,ctx,league,"operation/assault",{loc:placeLoc(s, ctx,node),rift:"r"})!;o.phase="resolve";o.phaseEnd=0;operationsDaily2c(s,ctx);assert.equal(s.rifts.r.phase,"unanchored");assert(s.log.some(e=>e.type==="RiftPhase"));});
 test("尋殼改 holder 與勢力殼索引",()=>{const {s,ctx}=setup();const o=startOperation(s,ctx,league,"operation/relic-hunt")!;assert(o);o.phase="resolve";o.phaseEnd=0;operationsDaily2c(s,ctx);assert.equal(s.shells![o.target.shell!]!.holder,league);assert(s.factions[league]!.shells!.includes(o.target.shell!));});
 test("條約簽約、到期與守信",()=>{const {s,ctx}=warSetup();assert(signTreaty(s,ctx,league,tide,"treaty/ceasefire"));flushRelations2(s,ctx);assert.notEqual(relation(s,league,tide)!.state,"war");date(s,56);treatiesDaily(s,ctx);assert(s.log.some(e=>e.type==="TreatyExpired"));assert.equal(relation(s,league,tide)!.treaties.length,0);});

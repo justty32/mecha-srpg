@@ -5,7 +5,8 @@ import type { CampaignState, OpsCtx } from "../state/types.ts";
 import type { OperationDef, OperationState, Phase, ForceUnit } from "./types.ts";
 import { evalOpsCond, evalOpsNum } from "../content/cond.ts";
 import { applyOpsEffects } from "../content/opseffect.ts";
-import { placeAt, marchPath, marchStep, placeLoc, sameRegion } from "./loc.ts";
+import { placeAt, marchPath, placeLoc, sameRegion } from "./loc.ts";
+import { spawnActor, despawnActor } from "../world/actors.ts";
 import { mergeUnits, modelPower, riftStrength, strength } from "./forces.ts";
 import { resolveEngage } from "./resolve.ts";
 import { factionId, hasTreaty, relation, relationRank } from "./relations.ts";
@@ -120,6 +121,12 @@ function phaseDays(s: CampaignState, ctx: OpsCtx, def: OperationDef, phase: Phas
 }
 function setPhase(s: CampaignState, ctx: OpsCtx, op: OperationState, to: Phase): void {
   op.phase = to; op.phaseEnd = s.clock.day + phaseDays(s, ctx, ctx.world.require("operation", op.def), to, op.actor);
+  if (to === "march") {
+    const actor = spawnActor(s, ctx, { id: `force:${op.id}`, kind: "force", at: op.force.pos, faction: op.actor,
+      operation: op.id, str: strength(op.force, op.power ?? modelPower(ctx)), goal: { type: "goto", target: op.target.loc } });
+    if (actor) actor.mp = ctx.world.require("actor", "actor/force").mp * op.force.speed;
+  }
+  if (to === "aftermath") despawnActor(s, ctx, `force:${op.id}`, "aftermath");
   ctx.emit("OperationPhase", { operation: op.id, phase: to });
 }
 function returnForces(s: CampaignState, op: OperationState): void {
@@ -147,6 +154,7 @@ export function endOperation(s: CampaignState, ctx: OpsCtx, op: OperationState, 
   }
   if (outcome !== "done") applyOpsEffects(s, ctx, outcome === "failed" ? def.onFail : def.onAbort, operationScope(s, ctx, op));
   op.phase = outcome; op.phaseEnd = s.clock.day;
+  despawnActor(s, ctx, `force:${op.id}`, outcome);
   ctx.emit(outcome === "done" ? "OperationResolved" : outcome === "failed" ? "OperationFailed" : "OperationAborted", { operation: op.id, actor: op.actor, days: s.clock.day - op.startDay });
   returnForces(s, op); onOperationEnd(s, ctx, op);
   // 已結束的作戰不再需要結算快照；避免每次指令複製所有歷史作戰的機型表與出資副本。
@@ -163,7 +171,9 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
     if (s.clock.day - op.startDay >= maxDays) { endOperation(s, ctx, op, "aborted"); continue; }
     if (op.phase === "muster" && s.clock.day >= op.phaseEnd) setPhase(s, ctx, op, "march");
     if (op.phase === "march") {
-      const arrived = marchStep(s, ctx, op.force);
+      const actor = s.actors[`force:${op.id}`];
+      const arrived = !!actor?.destination && actor.lastPlanDay !== undefined && !actor.path?.length &&
+        actor.pos.map === actor.destination.map && actor.pos.cell.x === actor.destination.cell.x && actor.pos.cell.y === actor.destination.cell.y;
       if (arrived && (def.kind !== "contain" || s.clock.phase === "spring")) setPhase(s, ctx, op, "engage");
     }
     if (op.phase === "engage") {

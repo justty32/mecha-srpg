@@ -38,11 +38,23 @@ export type Inventory = { components: ComponentInstance[]; mechs: Id[]; relics: 
 export type PlaceState = { def: Id; dyn?: PlaceDef; ownerOverride?: Id; wreckage: LootBundle[]; lastVisit?: number; flags: string[];
   recoveringUntil?: number; blightOwnerBefore?: Id };
 export type BlightPatch = { id: Id; rift: Id; map: Id; cells: Cell[]; sinceDay: number; burned?: boolean };
-export type KnownCell = { day: number; actors: Id[]; blight?: { rift: Id; patch: Id; depth: "shallow" | "deep" | "core" } };
+export type ActorKind = "force" | "patrol" | "caravan" | "swarm" | "band";
+export type EncounterChoice = "evade" | "pursue" | "parley" | "fight";
+export type ActorDef = { id: Id; name?: string; kind: ActorKind; mp: number; layer: "air" | "ground"; contact: number; str: [number, number]; stance: ActorState["stance"];
+  spawn: { perCity?: number; perRoute?: number; intervalDays?: number; perRift?: number; perFaction?: [number, number]; maxAge?: number };
+  aiChoice: Record<EncounterChoice, number>; parley: Choice[];
+  behavior: { chaseDays: number; stopDays: number; returnDay: number; decay: number; maxIdleDays: number; wanderRadius: number } };
+export type PendingEncounter = { actor: Id; day: number; loc: Loc; aiChoice: EncounterChoice; initiator: "ship" | "actor" };
+export type RevealInput = { cell?: Loc; region?: string; map?: Id; radius: number; days: number };
+export type RevealState = RevealInput & { until: number };
+export type KnownCell = { day: number; actors: Id[]; actorSnapshots?: ActorState[]; blight?: { rift: Id; patch: Id; depth: "shallow" | "deep" | "core" } };
 export type ActorState = { id: Id; kind: "force" | "patrol" | "caravan" | "swarm" | "band"; faction: Id; pos: Loc; path?: Cell[]; mp: number;
   goal: { type: "idle" | "goto" | "patrol" | "raid" | "return" | "hunt" | "trade" | "escort" | "flee"; target?: Loc | Id; until?: number };
   str: number; roster?: Id; swarm?: { rift: Id; family: Id; grades: Grade[] }; cargo?: number;
-  stance: "hostile" | "wary" | "neutral" | "friendly"; born: number; lastSeenByPlayer?: number; flags: string[] };
+  stance: "hostile" | "wary" | "neutral" | "friendly"; born: number; lastSeenByPlayer?: number; flags: string[];
+  def?: Id; layer?: "air" | "ground"; contact?: number; mpCarry?: number; lastPlanDay?: number; lastMoveDay?: number;
+  home?: Loc; destination?: Loc; operation?: Id; expires?: number; lastContactDay?: number; lastSightedDay?: number;
+  contactDay?: number; force?: Id; temporary?: boolean };
 export type RiftState = { id: Id; at: Loc; site: Id; family: Id; width: Grade; phase: "opening" | "anchored" | "unanchored" | "sealing" | "sealed" | "receding" | "closed";
   openedDay: number; anchorAge: number; anchor?: Id; patches: Id[]; fedCount: number; nextCheck: number };
 export type RiftDef = { id: Id; family: string; anchor?: Id; vanguard: Id[]; spreadPerTide: NumExpr; selfClose: boolean; tether: boolean;
@@ -108,11 +120,14 @@ export type BeastDef = { id: Id; family: string; restraint: Id[]; wearPerDay: Pa
   bondPerBattle: number; nicknameBond: number; nicknameBattles: number; decay: number;
   behaviors: { species: Id; molt?: { days: number; window: number; to: Id }; brood?: { child: Id }; mutate?: { frames: Id[] } }[] };
 export type KeymapDef = { id: Id; bindings: { action: string; keys: string[]; label: string; context?: string }[] };
-export type Sortie = { operation?: Id; id: Id; day: number; contract?: Id; loc: Loc; place?: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation" | "intercept";
+export type Sortie = { actors?: Id[]; ambush?: boolean; operation?: Id; id: Id; day: number; contract?: Id; loc: Loc; place?: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation" | "intercept";
   units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
 // SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。
 export type OpsEffect =
+  | { spawnActor: { kind: ActorKind; at: "territory" | "rift" | "place" | Loc; def?: Id; faction?: Id; place?: Id; rift?: Id } }
+  | { setGoal: { actor: Id; goal: ActorState["goal"] } }
+  | { reveal: RevealInput }
   | { startOperation: Id; actor?: Id; target?: OperationState["target"] }
   | { opProgress: { operation?: Id; delta: NumExpr } }
   | { transferPlace: { place: Id; to: Id } } | { transferShell: { shell: Id; to: Id } }
@@ -153,23 +168,23 @@ export type OpsCommand =
   | { v: "borrow"; amount: number }
   | { v: "save" } | { v: "load"; slot: number } | { v: "help"; v2?: string };
 // SPEC-GAP：Prompt/Row 原 spec 未展開；選項保留效果以支援存檔續選。
-export type Prompt = { text: string; choices: Choice[]; event?: Id; person?: Id };
+export type Prompt = { faction?: Id; text: string; choices: Choice[]; event?: Id; person?: Id };
 export type Row = Record<string, string | number | boolean | null>;
 export type Screen = { room: { id: RoomId; title: string; desc: string[]; exits: RoomId[] }; log: { day: number; text: string; kind: LogKind }[];
   panels: Record<string, Row[]>; actions: { id: string; label: string; cmd: OpsCommand; group: string; key?: string; tooltip?: string; disabled?: string }[];
   prompt?: { text: string; choices: { n: number; text: string; disabled?: string }[] }; handoff?: { battle: ScenarioDef } };
 export type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
-export type CampaignState = { relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; version: 2; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
+export type CampaignState = { relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; actorRng?: RngState; version: 2; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
   debtState?: { arrears: number; due: number; paid: number; seized: Id[]; credit?: { limit: number } };
   places: Record<Id, PlaceState>; maps: Record<Id, { blight: Record<string, { rift: Id; patch: Id }>; known: Record<string, KnownCell> }>; patches: Record<Id, BlightPatch>; actors: Record<Id, ActorState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>; ship: ShipState; roster: RosterState;
   hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>; inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>;
-  jobs: Job[]; contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
+  jobs: Job[]; contracts: Record<Id, ContractState>; pendingEncounter?: PendingEncounter; reveals?: RevealState[]; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
   // SPEC-GAP：共用遞增 id、效果 uid、待生成佇列與工時池為後續模組的序列化簿記。
   idCounter: number; effectCounter: number; calendar: Id; techHours: number;
   pendingContracts: { template: Id; near?: string }[]; pendingEvents: Id[] };
 export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
 
-export type WorldDefByKind = { wterrain: WTerrainDef; map: MapDef; regions: RegionsDef; place: PlaceDef; lane: LaneDef;
+export type WorldDefByKind = { actor: ActorDef; wterrain: WTerrainDef; map: MapDef; regions: RegionsDef; place: PlaceDef; lane: LaneDef;
   operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; ship: ShipDef; rift: RiftDef;
   encounter: EncounterDef; "faction-ops": FactionOpsDef; contract: ContractTemplate; action: WorldActionDef; market: MarketDef; service: ServiceDef;
   recruit: RecruitPoolDef; background: BackgroundDef; research: ResearchDef; job: JobDef; names: NamesDef; event: EventDef;

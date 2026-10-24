@@ -11,6 +11,7 @@ type OpsSnap = {
   prompt: { choices: { n: number; enabled: boolean }[] } | null;
   contracts: { id: string; status: string }[];
   battle: unknown; report: { winnerText: string } | null; log: { text: string }[];
+  header: { route: unknown };
 };
 
 const ops = (page: Page) => page.evaluate(() => (window as unknown as { __ops: { snapshot(): OpsSnap } }).__ops.snapshot());
@@ -54,9 +55,12 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   await pane.locator(`button[data-action-id="sail:contract:${accepted!.id}"]`).click();
   const sortieButton = pane.locator(`button[data-action-id="sortieOpen:${accepted!.id}"]`);
   // 起航只排路徑；逐日推進到目標，期間照常回應事件。
-  for (let i = 0; i < 30 && !await sortieButton.isEnabled(); i++) {
+  // 途中遇到行動者時第一個可選＝迴避會停船；沒有航線就重按航向契約。
+  const sailButton = pane.locator(`button[data-action-id="sail:contract:${accepted!.id}"]`);
+  for (let i = 0; i < 60 && !await sortieButton.isEnabled(); i++) {
     const s = await ops(page);
     if (s.prompt) await page.keyboard.press(String(s.prompt.choices.find(c => c.enabled)!.n));
+    else if (!s.header.route && await sailButton.isEnabled()) await sailButton.click();
     else await page.keyboard.press("w");
   }
   await expect(sortieButton).toBeEnabled();

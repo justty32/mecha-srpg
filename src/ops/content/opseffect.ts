@@ -1,4 +1,7 @@
 import { requirePlace } from "../world/places.ts";
+import { spawnActor } from "../world/actors.ts";
+import { reveal } from "../world/fog.ts";
+import { placeLoc } from "../war/loc.ts";
 import { placesDaily2 } from "../world/places.ts";
 import { clearPlaceBlight } from "../world/patches.ts";
 import { startOperation } from "../war/operations.ts";
@@ -90,6 +93,21 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
   }
   if (scope.operation || scope.targetFaction) effect = bind(effect) as OpsEffect;
   const num = (expr: Parameters<typeof evalOpsNum>[2]) => evalOpsNum(s, ctx, expr, scope);
+  if ("reveal" in effect) return reveal(s, ctx, effect.reveal);
+  if ("setGoal" in effect) {
+    const actor = s.actors[effect.setGoal.actor];
+    if (!actor) return false;
+    actor.goal = structuredClone(effect.setGoal.goal); delete actor.path; return true;
+  }
+  if ("spawnActor" in effect) {
+    const e = effect.spawnActor, faction = e.faction ?? scope.faction;
+    const place = e.place ?? scope.place ?? scope.node;
+    const territory = faction && s.factions[factionId(s, ctx, faction) ?? faction]?.territoryNow[0];
+    const rift = s.rifts[e.rift ?? scope.rift ?? ""];
+    const at = typeof e.at === "object" ? e.at : e.at === "rift" ? rift?.at : e.at === "territory" ? territory && placeLoc(s, ctx, territory) : place && placeLoc(s, ctx, place);
+    return !!at && !!spawnActor(s, ctx, { kind: e.kind, at, ...(faction ? { faction } : {}), ...(e.def ? { def: e.def } : {}),
+      ...(rift && e.kind === "swarm" ? { swarm: { rift: rift.id, family: rift.family, grades: [rift.width] } } : {}) });
+  }
   if ("startOperation" in effect) return !!startOperation(s, ctx, effect.actor ?? scope.faction ?? "", effect.startOperation, effect.target);
   if ("opProgress" in effect) {
     const target = s.operations?.[effect.opProgress.operation ?? scope.operation ?? ""];

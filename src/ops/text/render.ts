@@ -1,3 +1,4 @@
+import { encounterOptions } from "../world/encounter.ts";
 import { blightAt } from "../world/blight.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { CampaignEvent, CampaignState, Screen, OpsCommand } from "../state/types.ts";
@@ -18,7 +19,7 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
   const usedKeys = new Set<string>();
   const action = (label: string, cmd: OpsCommand, disabled?: string): Screen["actions"][number] => {
     const specific = cmd.v === "go" ? `go:${cmd.room}` : cmd.v === "choose" ? `choose:${cmd.choice}` : cmd.v;
-    const context = state.pendingChoices.length ? "prompt" : "room";
+    const context = (state.pendingEncounter || state.pendingChoices.length) ? "prompt" : "room";
     const bindings = world.all("keymap").flatMap(k => k.bindings).filter(b => (b.context ?? (b.action.startsWith("choose:") ? "prompt" : "room")) === context);
     const binding = bindings.find(b => b.action === specific) ?? bindings.find(b => b.action === cmd.v);
     const key = binding?.keys.find(k => !usedKeys.has(k.toLowerCase()));
@@ -40,10 +41,16 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
     queue: [...state.jobs].sort((a, b) => a.priority - b.priority || a.id.localeCompare(b.id)).map(j => ({ id: j.id, kind: j.kind, target: j.target, done: j.doneHours, need: j.needHours, priority: j.priority })),
     ship: [{ place: placeAt(state, ctx, state.ship.pos) ?? null, map: state.ship.pos.map, x: state.ship.pos.cell.x, y: state.ship.pos.cell.y, destination: state.ship.path ? JSON.stringify(state.ship.path.to) : null, daysLeft: state.ship.path ? state.pendingTicks : 0, fuel: state.ship.fuel.cur, hull: state.ship.hull.cur }],
   }, actions: [action("環顧四周", { v: "look" }), action("存檔", { v: "save" }), action("指令說明", { v: "help" })] };
+  if (state.pendingEncounter) {
+    const choices = encounterOptions(state, ctx);
+    screen.prompt = { text: `${entityName(state.pendingEncounter.actor, state, world)}進入接觸範圍。`, choices };
+    for (const choice of choices) screen.actions.push(action(choice.text, { v: "choose", choice: choice.n }, choice.disabled));
+    return screen;
+  }
   const pending = state.pendingChoices[0];
   if (pending) {
     screen.prompt = { text: pending.text, choices: pending.choices.map((choice, i) => {
-      const allowed = !choice.requires || evalOpsCond(state, { world, db }, choice.requires, { person: pending.person });
+      const allowed = !choice.requires || evalOpsCond(state, { world, db }, choice.requires, { person: pending.person, faction: pending.faction });
       if (allowed) screen.actions.push(action(choice.text, { v: "choose", choice: i + 1 }));
       return { n: i + 1, text: choice.text, ...(!allowed ? { disabled: "條件尚未成立" } : {}) };
     }) };

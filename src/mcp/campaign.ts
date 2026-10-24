@@ -29,9 +29,12 @@ const startSchema: JsonSchema = { type: "string", default: "default" };
 
 // actions 與省略 sortie 的 begin 共用同一份候選，避免選到不同編成。
 function sortieOptions(state: CampaignState, world: WorldDB): { sortie: Extract<OpsCommand, { v: "sortie" }>["sortie"]; label: string; disabled?: string }[] {
-  if (state.pendingBattle) return [{ sortie: {}, label: "出戰" }];
   const units = state.hangar.bays.flatMap(m => { const mech = m ? state.mechs[m] : undefined;
     return mech?.seats.pilot ? [{ mech: mech.id, seats: { ...mech.seats }, controlMode: "pilot" as const }] : []; });
+  if (state.pendingBattle) {
+    const selected = state.pendingBattle.units.length ? state.pendingBattle.units : units;
+    return [{ sortie: { units: selected }, label: "出戰", ...(!selected.length ? { disabled: "機庫沒有已派駕駛的機甲；先 assign" } : {}) }];
+  }
   return Object.values(state.contracts).filter(c => ["active", "stage"].includes(c.status) && c.target.place === placeAt(state, { world }, state.ship.pos)).map(c => ({
     sortie: { contract: c.id, place: c.target.place, loc: state.ship.pos, units }, label: `出戰契約 ${c.id}（${units.length} 台）`,
     ...(!units.length ? { disabled: "機庫沒有已派駕駛的機甲；先 assign" } : {}),
@@ -121,7 +124,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
     }
     const rendered = campaignView(env, s.id, s.state, output.events, 20, currentRoom(s.state) === beforeRoom && cmd.v !== "look", cmd.v === "map"), battle = battleSummary(record);
     const report = record.battle?.result ? battleReport(env, before, s.state, record.battle.sortie, record.battle.result) : undefined;
-    const advancedDays = s.state.clock.day - beforeDay, stopped = s.state.pendingChoices.length > 0;
+    const advancedDays = s.state.clock.day - beforeDay, stopped = s.state.pendingChoices.length > 0 || !!s.state.pendingEncounter;
     const progress = advance ? `已推進 ${advancedDays} 天${stopped ? "；待選事件使時間暫停，要先 choose，選完會接續剩餘天數" : ""}。\n` : "";
     const battleText = battle ? `出戰${battle.outcome}，${battle.rounds} 輪；我方機甲損失 ${battle.losses.mechs.length}${battle.losses.mechs.length ? `（${battle.losses.mechs.join("、")}）` : ""}、人員死亡 ${battle.losses.persons.length}${battle.losses.persons.length ? `（${battle.losses.persons.join("、")}）` : ""}。\n` : "";
     // act 的畫面不消耗顯式 view 游標；下一次 view 仍可讀取自上次 view 以來的事件。

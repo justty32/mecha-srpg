@@ -1,3 +1,4 @@
+import { chooseEncounter, settleHelplessEncounter } from "../world/encounter.ts";
 import { placeAt, placeLoc } from "../war/loc.ts";
 import { placeDef } from "../world/places.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
@@ -14,18 +15,23 @@ import { cmdBorrow } from "../crew/debt.ts";
 import { currentRoom, describeRoom, roomDefinition } from "../text/index.ts";
 import type { TextState } from "../text/index.ts";
 import { advanceDays, stageCtx, offerEvent, queuedEvents } from "./tick.ts";
-import type { TickCtx } from "./tick.ts";
+import type { TickCtx, TimeState } from "./tick.ts";
 
 export type CmdResult = { ok: true } | { ok: false; error: string };
 export type BattleRunner = (s: CampaignState, ctx: OpsCtx, sortie: Sortie) => CmdResult;
-export type CommandOptions = { battle?: BattleRunner; onDay?: (s: CampaignState) => void };
+export type CommandOptions = { battle?: BattleRunner; onDay?: (s: CampaignState) => void; onTick?: (ms: number) => void };
 const ok: CmdResult = { ok: true };
 const fail = (error: string): CmdResult => ({ ok: false, error });
 
 function choose(s: CampaignState, ctx: TickCtx, cmd: Extract<OpsCommand, { v: "choose" }>): CmdResult {
+  if (s.pendingEncounter) {
+    const result = chooseEncounter(s, ctx, cmd.choice);
+    if (result.ok && !s.pendingBattle && !s.pendingChoices.length) advanceDays(s, ctx, result.days ?? 0);
+    return result.ok ? ok : result;
+  }
   const prompt = s.pendingChoices[0], index = cmd.choice - 1, choice = prompt?.choices[index];
   if (!Number.isInteger(index) || !prompt || !choice) return fail("invalid-choice");
-  const scope = { node: (placeAt(s, ctx, s.ship.pos) ?? ""), ...(prompt.person ? { person: prompt.person } : {}) };
+  const scope = { node: (placeAt(s, ctx, s.ship.pos) ?? ""), ...(prompt.person ? { person: prompt.person } : {}), ...(prompt.faction ? { faction: prompt.faction } : {}) };
   if (choice.requires && !evalOpsCond(s, ctx, choice.requires, scope)) return fail("choice-disabled");
   const naming = (prompt as Partial<crew.NamingPrompt>).naming;
   // SPEC-GAP：數字 choose 無文字欄；自填保留給 applyName，不捏造名稱。
@@ -63,10 +69,14 @@ function textCommand(s: TextState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "g
   ctx.emit("Talked", { person: cmd.who }); return ok;
 }
 function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: CommandOptions): CmdResult {
+  if (["drift", "sortie"].includes(cmd.v) && settleHelplessEncounter(s, ctx)) return ok;
+  if (s.pendingEncounter && !["choose", "look", "save", "load", "help", "map"].includes(cmd.v)) return fail("pending-choice");
   if (s.pendingChoices.length && !["choose", "wait", "look", "save", "load", "help"].includes(cmd.v)) return fail("pending-choice");
   switch (cmd.v) {
     case "wait":
-      if (!Number.isSafeInteger(cmd.days) || cmd.days < 1 || !Number.isSafeInteger(s.pendingTicks + cmd.days)) return fail("invalid-days");
+      if (!Number.isSafeInteger(cmd.days) || cmd.days < 0 || !Number.isSafeInteger(s.pendingTicks + cmd.days)) return fail("invalid-days");
+      // 零天只用來收尾已開始、且所有提示已結算的當日。
+      if (cmd.days === 0 && (!(s as TimeState).time || s.pendingChoices.length || s.pendingEncounter || s.pendingBattle)) return fail("invalid-days");
       advanceDays(s, ctx, cmd.days); return ok;
     case "choose": return choose(s, ctx, cmd);
     case "sail": return worldCommands.cmdSail(s, ctx, cmd);
@@ -97,7 +107,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
         trigger: input.trigger ?? (input.contract ? "contract" : "ambush"), units: input.units ?? [],
         supplies: input.supplies ?? { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: input.injected ?? [],
         ...(input.contract ? { contract: input.contract } : {}), ...(input.rift ? { rift: input.rift } : {}),
-        ...(input.operation ? { operation: input.operation } : {}) };
+        ...(input.operation ? { operation: input.operation } : {}), ...(input.actors ? { actors: input.actors } : {}), ...(input.ambush ? { ambush: true } : {}) };
       return opts.battle(s, ctx, sortie);
     }
     case "save": ctx.emit("SaveRequested"); return ok;
@@ -110,7 +120,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
 export function applyCommand(input: CampaignState, db: ContentDB, world: WorldDB, cmd: OpsCommand, opts: CommandOptions = {}): {
   state: CampaignState; events: CampaignEvent[]; result: CmdResult;
 } {
-  const state = structuredClone(input), ctx: TickCtx = { ...createOpsCtx(state, db, world), onDay: opts.onDay };
+  const state = structuredClone(input), ctx: TickCtx = { ...createOpsCtx(state, db, world), onDay: opts.onDay, onTick: opts.onTick };
   const result = dispatch(state, ctx, cmd, opts);
   // 模組的複合效果或注入 runner 即使先改後拒絕，也不可洩漏部分交易。
   return result.ok ? { state, events: state.log.slice(input.log.length), result } : { state: structuredClone(input), events: [], result };

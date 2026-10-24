@@ -1,6 +1,6 @@
 import { blightAt } from "../world/blight.ts";
 import { gridOf, neighbors, terrainAt } from "../world/grid.ts";
-import { requirePlace } from "../world/places.ts";
+import { requirePlace, worldRules } from "../world/places.ts";
 import type { Cell, EffectRef, MapDef, Objective, UnitSpawn } from "../../core/types-def.ts";
 import type { DynamicScenario } from "../../sim/run.ts";
 import type { PersonState } from "../../core/types-state.ts";
@@ -9,8 +9,11 @@ import { chance, nextInt, nextU32, pickWeighted } from "../../core/rng.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import { instantiatePerson, instantiatePools } from "../content/instantiate.ts";
-import type { CampaignState, EnemySnapshot, OpsCtx, Sortie } from "../state/types.ts";
+import type { ActorState, CampaignState, EnemySnapshot, OpsCtx, Sortie } from "../state/types.ts";
 import { generateOperationScenario } from "./operation-scenario.ts";
+import { actorHostile, inShipContact } from "../world/encounter.ts";
+import { factionId, relation } from "../war/relations.ts";
+import { factionModelPool } from "../war/rnd.ts";
 
 export type SortieScenario = DynamicScenario & { ops: { map: MapDef; unitIds: string[]; forceIds?: Record<string, string> } };
 
@@ -68,7 +71,124 @@ function inject(s: CampaignState, ctx: OpsCtx, person: PersonState, effectRef: E
 
 export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): SortieScenario {
   if (sortie.trigger === "operation") return generateOperationScenario(s, ctx, sortie, generateStandardScenario);
-  return generateStandardScenario(s, ctx, sortie);
+  const scenario = generateStandardScenario(s, ctx, sortie);
+  if (sortie.actors?.length) interceptScenario(s, ctx, sortie, scenario);
+  return scenario;
+}
+function interceptScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: SortieScenario): void {
+  const primary = s.actors[sortie.actors![0]!];
+  if (!primary) throw new Error("missing intercept actor");
+  const gp = ctx.world.all("forces")[0]!.gp;
+  const rules = (worldRules(ctx) as ReturnType<typeof worldRules> & { actors: { maxJoinUnits: number; caravanEscort: number; maxBattleUnits: number } }).actors;
+  const primaryBudget = scenario.slots.enemy!.units.reduce((n, unit) => n + gp[unit.monster
+    ? ctx.db.require("monster", unit.monster).grade : ctx.db.require("frame", unit.mech!).grade], 0);
+  let remaining = rules.maxBattleUnits - scenario.slots.player!.units.length;
+  if (remaining < 1) throw new Error("intercept-player-capacity");
+  const coreFaction = (a: ActorState) => ctx.db.get("faction", ctx.world.get("faction-ops", a.faction)?.faction ?? a.faction)?.id
+    ?? ctx.db.all("faction").find(f => f.tags.includes(a.kind === "swarm" ? "kaiju" : "human"))?.id ?? scenario.slots.enemy!.faction;
+  function units(a: ActorState, slot: string, limit: number, maxBudget = Infinity): UnitSpawn[] {
+    const out: UnitSpawn[] = [];
+    limit = Math.max(0, Math.min(limit, a.kind === "caravan" ? rules.caravanEscort : limit));
+    if (!limit) return out;
+    let budget = Math.min(a.str, maxBudget);
+    if (a.kind === "swarm") {
+      const family = a.swarm?.family ?? ctx.world.get("rift", s.rifts[a.swarm?.rift ?? ""]?.family ?? "")?.family;
+      const candidates = ctx.db.all("monster").filter(m => (!family || ctx.db.require("species", m.species).family === family)
+        && (!a.swarm?.grades.length || a.swarm.grades.includes(m.grade))).sort((x, y) => gp[y.grade] - gp[x.grade] || x.id.localeCompare(y.id));
+      while (candidates.length && out.length < limit) {
+        const pool = candidates.filter(m => gp[m.grade] <= budget);
+        if (!pool.length) break;
+        const monster = pool[nextInt(s.rng, pool.length)]!; out.push({ monster: monster.id, at: "zone" }); budget -= gp[monster.grade];
+      }
+      if (!out.length && candidates.length && gp[candidates.at(-1)!.grade] <= maxBudget) out.push({ monster: candidates.at(-1)!.id, at: "zone" });
+      return out;
+    }
+    const spawn = (frameId: string) => {
+      const frame = ctx.db.require("frame", frameId), spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [] };
+      for (const seat of ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? [])) {
+        const defs = ctx.db.all("person").filter(p => seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));
+        if (!defs.length) continue;
+        const def = defs[nextInt(s.rng, defs.length)]!, id = `${sortie.id}/${slot}/${a.id}/${out.length}/${seat.id}`;
+        scenario.personStates![id] = instantiatePerson(ctx.db, id, def.id);
+        spawn.persons!.push({ id, seat: def.kind === "soul" ? "soul" : "pilot" });
+      }
+      out.push(spawn);
+    };
+    const force = a.operation ? s.operations?.[a.operation]?.force : a.kind === "force" ? s.factions[a.faction]?.forces : undefined;
+    if (force) {
+      for (const unit of [...force.units].sort((x, y) => x.model.localeCompare(y.model))) {
+        if (unit.readiness <= 0) continue;
+        const model = ctx.world.require("model", unit.model);
+        for (let i = 0; i < unit.count; i++) {
+          if (out.length >= limit || gp[model.tier] > budget) return out;
+          spawn(model.frame); budget -= gp[model.tier];
+        }
+      }
+    } else {
+      const models = ctx.world.all("model").filter(m => !a.roster || m.id === a.roster);
+      const faction = factionId(s, ctx, a.faction), allowed = faction ? factionModelPool(s, ctx, faction) : [];
+      const own = models.filter(m => allowed.includes(m.id));
+      const pool = (own.length ? own : models).sort((x, y) => gp[x.tier] - gp[y.tier] || x.id.localeCompare(y.id));
+      while (pool.length && out.length < limit) {
+        const affordable = pool.filter(m => gp[m.tier] <= budget);
+        if (!affordable.length) break;
+        const model = affordable[nextInt(s.rng, affordable.length)]!; spawn(model.frame); budget -= gp[model.tier];
+      }
+      if (!out.length && pool.length && a.kind !== "caravan" && gp[pool[0]!.tier] <= maxBudget) spawn(pool[0]!.frame);
+    }
+    return out;
+  }
+  const counts: Record<string, number> = {};
+  function actorUnits(a: ActorState, slot: string, limit: number, budget = Infinity): UnitSpawn[] {
+    const spawns = units(a, slot, Math.min(limit, remaining), budget), offset = counts[slot] ?? 0;
+    scenario.ops.forceIds ??= {};
+    for (let i = 0; i < spawns.length; i++) scenario.ops.forceIds[`${slot}-${offset + i}`] = `${sortie.id}/actor/${a.id}/${i}`;
+    counts[slot] = offset + spawns.length; remaining -= spawns.length;
+    return spawns;
+  }
+  // SPEC-GAP（18:10 orders）：主敵受原 encounter GP 預算約束；加入者每方一支、最多四機，總量十六。
+  scenario.slots.enemy = { faction: coreFaction(primary), units: actorUnits(primary, "enemy", remaining, primaryBudget) };
+  const joined = new Set<string>();
+  const playerFaction = factionId(s, ctx, "faction/migrant-crew");
+  for (const id of [...new Set(sortie.actors!.slice(1))].sort()) {
+    const a = s.actors[id]; if (!a || !inShipContact(s, ctx, a)) continue;
+    const relationToPlayer = playerFaction ? relation(s, a.faction, playerFaction) : undefined;
+    const hostile = actorHostile(s, ctx, a);
+    const friendly = !hostile && (a.stance === "friendly" || a.faction === playerFaction || !!relationToPlayer && ["friendly", "allied"].includes(relationToPlayer.state));
+    if (!friendly && !hostile) continue;
+    const slot = friendly ? "ally" : "third";
+    if (joined.has(slot) || remaining <= 0) continue;
+    const spawns = actorUnits(a, slot, rules.maxJoinUnits);
+    if (!spawns.length) continue;
+    joined.add(slot);
+    scenario.slots[slot] = { faction: coreFaction(a), units: spawns,
+      ...(friendly ? { allies: ["player"] } : a.faction === primary.faction ? { allies: ["enemy"] } : {}) };
+    if (!friendly && a.faction === primary.faction) scenario.slots.enemy!.allies = ["third"];
+  }
+  if (scenario.slots.ally) scenario.slots.player!.allies = ["ally"];
+  const people = new Set(Object.values(scenario.slots).flatMap(slot => slot.units.flatMap(unit => unit.persons?.map(p => p.id) ?? [])));
+  for (const id of Object.keys(scenario.personStates ?? {})) if (!people.has(id)) delete scenario.personStates![id];
+  const map = scenario.ops.map, oldWidth = map.width, oldHeight = map.height;
+  const cells = typeof map.cells === "string" ? [...map.cells] : [...map.cells.rle.replace(/\s+/gu, "").matchAll(/([1-9][0-9]*)([^0-9])/gu)].flatMap(m => Array<string>(Number(m[1])).fill(m[2]!));
+  // SPEC-GAP：同格軍力超出模板容量時保留全部單位，以互不重疊的矩形部署區擴圖。
+  // 各區近似正方形，區間留一格、左邊保留出口，避免單欄部署把戰場拉成數百列。
+  let nextX = 1;
+  const zones = (["player", "ally", "third", "enemy"] as const).flatMap(slot => {
+    const count = scenario.slots[slot]?.units.length ?? 0;
+    if (!count) { delete map.deployZones[slot]; return []; }
+    const cols = Math.ceil(Math.sqrt(count)), rows = Math.ceil(count / cols), x = nextX;
+    nextX += cols + 1;
+    return [{ slot, x, cols, rows }];
+  });
+  map.width = Math.max(6, map.width, nextX);
+  map.height = Math.max(map.height, ...zones.map(zone => zone.rows + 2));
+  map.cells = Array.from({ length: map.width * map.height }, (_, i) => cells[(Math.floor(i / map.width) % oldHeight) * oldWidth + i % map.width % oldWidth]!).join("");
+  for (const { slot, x, cols, rows } of zones)
+    map.deployZones[slot] = Array.from({ length: cols * rows }, (_, i) => ({ x: x + i % cols, y: 1 + Math.floor(i / cols) }));
+  map.exits = Array.from({ length: map.height }, (_, y) => ({ x: 0, y }));
+  map.globals = { ...map.globals, tide: s.clock.phase === "spring" ? 1 : s.clock.phase === "neap" ? -1 : 0 };
+  scenario.objectives = [{ kind: "eliminate", params: { slots: ["enemy", ...(scenario.slots.third ? ["third"] : [])] }, for: "player", onComplete: "win" },
+    { kind: "eliminate", params: { slots: ["player", ...(scenario.slots.ally ? ["ally"] : [])] }, for: "enemy", onComplete: "win" }];
 }
 function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): SortieScenario {
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;

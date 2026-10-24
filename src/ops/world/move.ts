@@ -1,7 +1,6 @@
 import { nextFloat } from "../../core/rng.ts";
 import type { Cell } from "../../core/types-def.ts";
 import type { CampaignState, Loc, MoveLeg, OpsCommand, OpsCtx } from "../state/types.ts";
-import { nextId } from "../state/ids.ts";
 import { post } from "../state/ledger.ts";
 import { eventRef } from "../state/events.ts";
 import { evalOpsNum } from "../content/cond.ts";
@@ -10,6 +9,8 @@ import { cellKey, cellsWithin, findPath, footprintOf, gridOf, stepCost, chebyshe
 import { blightAt } from "./blight.ts";
 import { allPlaces, placeDef, worldRules } from "./places.ts";
 import type { CmdResult } from "./places.ts";
+import { checkActorContacts } from "./encounter.ts";
+import { spawnActor } from "./actors.ts";
 
 export type TravelPath = { legs: MoveLeg[]; days: number; fuel: number };
 export type TravelState = CampaignState;
@@ -18,7 +19,7 @@ export function isDocked(s: CampaignState, ctx: Pick<OpsCtx, "world">, place?: s
   const here = placeAt(s, ctx, s.ship.pos);
   return !s.ship.path && !s.ship.drifting && !!here && (!place || placeDef(s, ctx, place)?.id === here);
 }
-function mover(s: CampaignState, ctx: OpsCtx) {
+export function shipMover(s: CampaignState, ctx: OpsCtx) {
   const cfg = worldRules(ctx).grid;
   return { layer: s.ship.hull.cur <= 0 ? "ground" as const : "air" as const,
     mp: s.ship.hull.cur <= 0 ? cfg.hulkMp : cfg.shipMp * (s.ship.hull.cur < s.ship.hull.max / 2 ? cfg.mpMods.damaged : 1) *
@@ -37,7 +38,7 @@ function resolveLoc(s: CampaignState, ctx: OpsCtx, value: Loc | string): Loc | u
   return placeDef(s, ctx, value) ? placeLoc(s, ctx, value) : undefined;
 }
 function landPath(s: CampaignState, ctx: OpsCtx, a: Loc, b: Loc) {
-  return a.map === b.map ? findPath(gridOf(ctx.world, a.map), a.cell, b.cell, mover(s, ctx), costAt(s, ctx, a.map)) : undefined;
+  return a.map === b.map ? findPath(gridOf(ctx.world, a.map), a.cell, b.cell, shipMover(s, ctx), costAt(s, ctx, a.map)) : undefined;
 }
 function waitDays(s: CampaignState, ctx: OpsCtx, days: readonly number[], offset: number): number {
   if (!days.length) return 0;
@@ -65,7 +66,7 @@ export function shortestPath(s: CampaignState, ctx: OpsCtx, from: Loc | string, 
   }
   return best;
 }
-function spendFuel(s: CampaignState, ctx: OpsCtx, amount: number): void {
+export function spendFuel(s: CampaignState, ctx: OpsCtx, amount: number): void {
   if (!amount) return;
   const ref = eventRef(ctx.emit("FuelUsed", { loc: s.ship.pos, amount }));
   post(s, ctx, { account: "stock:fuel", delta: -amount, reason: "travel", ref });
@@ -77,11 +78,12 @@ function overload(s: CampaignState, ctx: OpsCtx): boolean {
     s.hangar.bays.filter(Boolean).length + s.hangar.dormant.filter(id => !s.hangar.bays.includes(id)).length > s.ship.capacity.mechBays;
 }
 export function cmdSail(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "sail" }>): CmdResult {
-  if (s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
+  if (s.pendingEncounter || s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
   if (s.ship.path?.lane) return { ok: false, error: "in-transit" };
   if (overload(s, ctx)) return { ok: false, error: "overloaded" };
   const target = typeof cmd.to === "object" && "actor" in cmd.to ? s.actors[cmd.to.actor]?.pos :
     typeof cmd.to === "string" ? resolveLoc(s, ctx, cmd.to) : locAt(ctx, s.ship.pos.map, cmd.to);
+  if (typeof cmd.to === "object" && "actor" in cmd.to && s.actors[cmd.to.actor] && s.actors[cmd.to.actor]!.mp >= shipMover(s, ctx).mp) return { ok: false, error: "cannot-catch" };
   if (!target) return { ok: false, error: typeof cmd.to === "object" ? "unknown-actor" : "unknown-place" };
   const via = (cmd.via ?? []).map(p => typeof p === "string" ? resolveLoc(s, ctx, p) : locAt(ctx, s.ship.pos.map, p));
   if (via.some(p => !p)) return { ok: false, error: "no-route" };
@@ -101,7 +103,7 @@ export function cmdSail(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand, 
   let estimateFrom = s.ship.pos;
   path.days = 0; path.fuel = 0;
   for (const leg of path.legs) {
-    const map = gridOf(ctx.world, leg.map), moving = mover(s, ctx), cost = costAt(s, ctx, leg.map);
+    const map = gridOf(ctx.world, leg.map), moving = shipMover(s, ctx), cost = costAt(s, ctx, leg.map);
     let total = 0, previous = estimateFrom.cell;
     for (const cell of leg.cells) { total += stepCost(map, moving, previous, cell, cost)!; previous = cell; }
     const days = Math.ceil(total / moving.mp);
@@ -128,9 +130,31 @@ function arrived(s: CampaignState, ctx: OpsCtx): void {
   if (place) s.places[place]!.lastVisit = s.clock.day;
   stop(s); ctx.emit("Arrived", { ...(place ? { place, node: place } : {}), cell: s.ship.pos.cell, loc: s.ship.pos });
 }
+function wildEncounter(s: CampaignState, ctx: OpsCtx, depth?: "shallow" | "deep" | "core", rift?: string): void {
+  if (s.log.some(event => event.type === "CampaignEnd")) return;
+  if (s.pendingEncounter || !depth || !rift || s.flags.blightEncounterDay === s.clock.day) return;
+  s.flags.blightEncounterDay = s.clock.day;
+  if (nextFloat(s.rng) >= worldRules(ctx).grid.blightEncounter[depth]) return;
+  const source = s.rifts[rift], family = source && (ctx.world.get("rift", source.family) ?? ctx.world.all("rift").find(r => r.family === source.family));
+  const actor = spawnActor(s, ctx, { kind: "swarm", at: structuredClone(s.ship.pos), flags: ["temporary"],
+    ...(source ? { swarm: { rift, family: family?.family ?? source.family, grades: family?.gradeByWidth[source.width] ?? [source.width] } } : {}) });
+  if (actor) { actor.temporary = true; actor.expires = s.clock.day + 1; checkActorContacts(s, ctx, actor.id); }
+}
 export function moveDaily3(s: CampaignState, ctx: OpsCtx): void {
-  if (s.pendingBattle || s.pendingChoices.length || !s.ship.path) return;
-  const path = s.ship.path, leg = path.legs[0];
+  if (s.pendingEncounter || s.pendingBattle || s.pendingChoices.length) return;
+  // SPEC-GAP（18:30 orders）：只在實際走過蝕格的移動日擲野群；懸停與無油漂流不擲。
+  if (!s.ship.path) return;
+  const path = s.ship.path;
+  if ("actor" in path.to) {
+    const actor = s.actors[path.to.actor];
+    if (!actor) { stop(s); ctx.emit("TravelBlocked", { reason: "unknown-actor" }); return; }
+    checkActorContacts(s, ctx, actor.id);
+    if (s.pendingEncounter || !s.ship.path) return;
+    const current = shortestPath(s, ctx, s.ship.pos, actor.pos);
+    if (!current) { stop(s); ctx.emit("TravelBlocked", { reason: "no-route" }); return; }
+    path.legs = current.legs; path.cells = current.legs[0]?.cells ?? []; s.pendingTicks = current.days;
+  }
+  const leg = path.legs[0];
   if (!leg) { arrived(s, ctx); return; }
   path.cells = leg.cells;
   if (!leg.cells.length && leg.lane) {
@@ -151,7 +175,7 @@ export function moveDaily3(s: CampaignState, ctx: OpsCtx): void {
     }
     return;
   }
-  const moving = mover(s, ctx), map = gridOf(ctx.world, leg.map), costForCell = costAt(s, ctx, leg.map), dailyFuel = s.ship.hull.cur <= 0 ? 0 : worldRules(ctx).travel.fuelPerDay;
+  const moving = shipMover(s, ctx), map = gridOf(ctx.world, leg.map), costForCell = costAt(s, ctx, leg.map), dailyFuel = s.ship.hull.cur <= 0 ? 0 : worldRules(ctx).travel.fuelPerDay;
   let mp = moving.mp + s.ship.mpCarry, moved = false, depth: "shallow" | "deep" | "core" | undefined, rift: string | undefined;
   while (leg.cells.length) {
     const cell = leg.cells[0]!, cost = stepCost(map, moving, s.ship.pos.cell, cell, costForCell);
@@ -162,31 +186,29 @@ export function moveDaily3(s: CampaignState, ctx: OpsCtx): void {
     mp -= cost; s.ship.pos = locAt(ctx, leg.map, cell); leg.cells.shift(); moved = true;
     while (path.via[0]?.map === s.ship.pos.map && cellKey(path.via[0].cell) === cellKey(cell)) path.via.shift();
     if (b && (!depth || worldRules(ctx).grid.blightEncounter[b.depth] > worldRules(ctx).grid.blightEncounter[depth])) { depth = b.depth; rift = b.rift; }
+    checkActorContacts(s, ctx);
+    if (s.pendingEncounter || !s.ship.path) break;
     if (path.legs.length === 1 && !path.via.length && "place" in path.to && placeAt(s, ctx, s.ship.pos) === path.to.place) { leg.cells.length = 0; break; }
   }
   if (moved) spendFuel(s, ctx, dailyFuel * (depth && depth !== "shallow" ? 2 : 1));
-  if (s.ship.path) {
+  if (s.ship.path && !s.pendingEncounter) {
     if (!leg.cells.length && !leg.lane) { path.legs.shift(); path.cells = path.legs[0]?.cells ?? []; }
     if (!path.legs.length) arrived(s, ctx);
     else s.ship.mpCarry = leg.cells.length ? mp : 0;
   }
-  if (moved && depth && rift && nextFloat(s.rng) < worldRules(ctx).grid.blightEncounter[depth]) {
-    const place = placeAt(s, ctx, s.ship.pos);
-    s.pendingBattle = { id: nextId(s, "sortie"), day: s.clock.day, loc: structuredClone(s.ship.pos), ...(place ? { place } : {}), rift, trigger: "ambush", units: [],
-      supplies: { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: [] };
-    ctx.emit("Encounter", { ...(place ? { place, node: place } : {}), loc: s.ship.pos, rift, sortie: s.pendingBattle.id });
-  }
+  if (moved) wildEncounter(s, ctx, depth, rift);
 }
 export function cmdDock(s: CampaignState, ctx: OpsCtx, _cmd: Extract<OpsCommand, { v: "dock" }>): CmdResult {
-  if (s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
+  if (s.pendingEncounter || s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
   if (s.ship.path?.lane) return { ok: false, error: "in-transit" };
   if (!placeAt(s, ctx, s.ship.pos)) return { ok: false, error: "no-place" };
   stop(s); s.ship.drifting = false; return { ok: true };
 }
 export function cmdDrift(s: CampaignState, ctx: OpsCtx, _cmd: Extract<OpsCommand, { v: "drift" }>): CmdResult {
+  if (s.pendingEncounter) return { ok: false, error: "pending-encounter" };
   if (s.pendingChoices.length) return { ok: false, error: "pending-choice" };
   if (s.ship.path?.lane) return { ok: false, error: "in-transit" };
-  if (s.pendingBattle && s.pendingBattle.trigger !== "ambush") return { ok: false, error: "pending-battle" };
+  if (s.pendingBattle && s.pendingBattle.trigger !== "ambush" && !s.pendingBattle.actors?.length) return { ok: false, error: "pending-battle" };
   const cost = s.pendingBattle ? worldRules(ctx).travel.retreatFuel : 0;
   if (availableFuel(s) < cost) return { ok: false, error: "insufficient-fuel" };
   spendFuel(s, ctx, cost); delete s.pendingBattle; stop(s); s.ship.drifting = true; return { ok: true };

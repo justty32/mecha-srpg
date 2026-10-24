@@ -1,0 +1,668 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "kind",
+  "id",
+  "result",
+  "details"
+ ],
+ "rows": [
+  {
+   "kind": "指定測試",
+   "id": "1",
+   "result": "PASS",
+   "details": {
+    "name": "通行不變量",
+    "test": "src/ops/world/actors.test.ts：行動者地形不變量雙向：永不進不可進格，地面永不在深蝕"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "2",
+   "result": "PASS",
+   "details": {
+    "name": "pendingEncounter凍結",
+    "test": "src/ops/world/encounter.test.ts：actors：逐格接觸停船，pendingEncounter 凍結 pos 並保留 pendingTicks，同一對一天只一次"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "3",
+   "result": "PASS",
+   "details": {
+    "name": "同對每天一次",
+    "test": "與凍結測試共用，隔天離開再進範圍才再觸發"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "4",
+   "result": "PASS",
+   "details": {
+    "name": "迴避1.2門檻",
+    "test": "src/ops/world/encounter.test.ts：actors：迴避速度恰為 1.2 倍自動成功、不耗 RNG；未達門檻擲骰，燃料乘二"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "5",
+   "result": "PASS",
+   "details": {
+    "name": "sail actor追擊與拒絕",
+    "test": "src/ops/world/encounter.test.ts：actors：sail actor 每天追新位置，速度相等即下令拒絕 cannot-catch"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "6",
+   "result": "PASS",
+   "details": {
+    "name": "known當日真值子集",
+    "test": "src/ops/world/fog.test.ts：迷霧：known 是觀測當日真值子集，移動後舊情報不洩漏新位置"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "7",
+   "result": "PASS",
+   "details": {
+    "name": "十日卡死偵測",
+    "test": "src/ops/world/actors.test.ts：行動者卡死偵測：沒有連續十天同goal且未移動；開局與每日數量40至200"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "8",
+   "result": "PASS",
+   "details": {
+    "name": "同seed重播",
+    "test": "src/ops/world/actors.test.ts：行動者同seed重播相同，選目標不修改輸入且每天最多重算一次；encounter.test另驗接觸四選重播"
+   }
+  },
+  {
+   "kind": "指定測試",
+   "id": "9",
+   "result": "PASS",
+   "details": {
+    "name": "遭遇迴避抵達黃金",
+    "test": "test/campaigns/grid-actors.test.ts：黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived"
+   }
+  },
+  {
+   "kind": "資料驗證",
+   "id": "actor-check",
+   "result": "PASS",
+   "details": "src/ops/content/actor-check.test.ts：未知kind、mp=0各拒絕並修正後通過；有force/patrol/caravan/swarm/band五張表"
+  },
+  {
+   "kind": "最終量測",
+   "id": "seed-1",
+   "result": "PASS",
+   "details": {
+    "command": "node src/ops/sim/cli.ts --months 12 --seed 1 --continue-after-end",
+    "defaultRun": [
+     "終局 day=168 reason=ship-seized 完成潮月=6/12（加 --continue-after-end 讓世界跑滿）",
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":6,\"maxOperations\":4,\"maxDays\":45,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":39,\"minMajorStates\":3,\"minPowerRatio\":0.5663792452861952,\"errors\":[]}",
+     "actor統計 {\"minActors\":63,\"maxActors\":181,\"encounters\":23,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.13690476190476192,\"maxEncounters\":1,\"maxTickMs\":134,\"meanTickMs\":32.009661835748794}",
+     "OK"
+    ],
+    "months": [
+     {
+      "month": 1,
+      "day": 28,
+      "actors": 112,
+      "encounters": 15
+     },
+     {
+      "month": 2,
+      "day": 56,
+      "actors": 63,
+      "encounters": 17
+     },
+     {
+      "month": 3,
+      "day": 84,
+      "actors": 111,
+      "encounters": 17
+     },
+     {
+      "month": 4,
+      "day": 112,
+      "actors": 151,
+      "encounters": 17
+     },
+     {
+      "month": 5,
+      "day": 140,
+      "actors": 149,
+      "encounters": 19
+     },
+     {
+      "month": 6,
+      "day": 168,
+      "actors": 160,
+      "encounters": 23
+     },
+     {
+      "month": 7,
+      "day": 196,
+      "actors": 180,
+      "encounters": 23
+     },
+     {
+      "month": 8,
+      "day": 224,
+      "actors": 160,
+      "encounters": 23
+     },
+     {
+      "month": 9,
+      "day": 252,
+      "actors": 149,
+      "encounters": 23
+     },
+     {
+      "month": 10,
+      "day": 280,
+      "actors": 163,
+      "encounters": 23
+     },
+     {
+      "month": 11,
+      "day": 308,
+      "actors": 180,
+      "encounters": 23
+     },
+     {
+      "month": 12,
+      "day": 336,
+      "actors": 166,
+      "encounters": 23
+     }
+    ],
+    "statistics": {
+     "minActors": 63,
+     "maxActors": 181,
+     "encounters": 23,
+     "activeDays": 168,
+     "endDay": 168,
+     "encountersPerDay": 0.13690476190476192,
+     "maxEncounters": 1,
+     "maxTickMs": 245,
+     "meanTickMs": 45.1203007518797
+    },
+    "tail": [
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":10,\"maxOperations\":6,\"maxDays\":45,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":39,\"minMajorStates\":3,\"minPowerRatio\":0.55,\"errors\":[]}",
+     "actor統計 {\"minActors\":63,\"maxActors\":181,\"encounters\":23,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.13690476190476192,\"maxEncounters\":1,\"maxTickMs\":245,\"meanTickMs\":45.1203007518797}",
+     "OK"
+    ]
+   }
+  },
+  {
+   "kind": "最終量測",
+   "id": "seed-2",
+   "result": "PASS",
+   "details": {
+    "command": "node src/ops/sim/cli.ts --months 12 --seed 2 --continue-after-end",
+    "defaultRun": [
+     "終局 day=168 reason=ship-seized 完成潮月=6/12（加 --continue-after-end 讓世界跑滿）",
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":7,\"maxOperations\":3,\"maxDays\":35,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":40,\"minMajorStates\":3,\"minPowerRatio\":0.5980430812650313,\"errors\":[]}",
+     "actor統計 {\"minActors\":91,\"maxActors\":151,\"encounters\":52,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.30952380952380953,\"maxEncounters\":2,\"maxTickMs\":79,\"meanTickMs\":15.415966386554622}",
+     "OK"
+    ],
+    "months": [
+     {
+      "month": 1,
+      "day": 28,
+      "actors": 112,
+      "encounters": 17
+     },
+     {
+      "month": 2,
+      "day": 56,
+      "actors": 111,
+      "encounters": 27
+     },
+     {
+      "month": 3,
+      "day": 84,
+      "actors": 111,
+      "encounters": 37
+     },
+     {
+      "month": 4,
+      "day": 112,
+      "actors": 151,
+      "encounters": 46
+     },
+     {
+      "month": 5,
+      "day": 140,
+      "actors": 118,
+      "encounters": 48
+     },
+     {
+      "month": 6,
+      "day": 168,
+      "actors": 118,
+      "encounters": 52
+     },
+     {
+      "month": 7,
+      "day": 196,
+      "actors": 118,
+      "encounters": 52
+     },
+     {
+      "month": 8,
+      "day": 224,
+      "actors": 158,
+      "encounters": 52
+     },
+     {
+      "month": 9,
+      "day": 252,
+      "actors": 107,
+      "encounters": 52
+     },
+     {
+      "month": 10,
+      "day": 280,
+      "actors": 125,
+      "encounters": 52
+     },
+     {
+      "month": 11,
+      "day": 308,
+      "actors": 125,
+      "encounters": 52
+     },
+     {
+      "month": 12,
+      "day": 336,
+      "actors": 125,
+      "encounters": 52
+     }
+    ],
+    "statistics": {
+     "minActors": 91,
+     "maxActors": 158,
+     "encounters": 52,
+     "activeDays": 168,
+     "endDay": 168,
+     "encountersPerDay": 0.30952380952380953,
+     "maxEncounters": 2,
+     "maxTickMs": 104,
+     "meanTickMs": 19.86046511627907
+    },
+    "tail": [
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":7,\"maxOperations\":3,\"maxDays\":45,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":40,\"minMajorStates\":3,\"minPowerRatio\":0.5980430812650313,\"errors\":[]}",
+     "actor統計 {\"minActors\":91,\"maxActors\":158,\"encounters\":52,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.30952380952380953,\"maxEncounters\":2,\"maxTickMs\":104,\"meanTickMs\":19.86046511627907}",
+     "OK"
+    ]
+   }
+  },
+  {
+   "kind": "最終量測",
+   "id": "seed-3",
+   "result": "PASS",
+   "details": {
+    "command": "node src/ops/sim/cli.ts --months 12 --seed 3 --continue-after-end",
+    "defaultRun": [
+     "終局 day=168 reason=ship-seized 完成潮月=6/12（加 --continue-after-end 讓世界跑滿）",
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":4,\"maxOperations\":2,\"maxDays\":45,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":40,\"minMajorStates\":3,\"minPowerRatio\":0.6833333333333333,\"errors\":[]}",
+     "actor統計 {\"minActors\":86,\"maxActors\":132,\"encounters\":31,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.18452380952380953,\"maxEncounters\":2,\"maxTickMs\":70,\"meanTickMs\":15.384976525821596}",
+     "OK"
+    ],
+    "months": [
+     {
+      "month": 1,
+      "day": 28,
+      "actors": 111,
+      "encounters": 17
+     },
+     {
+      "month": 2,
+      "day": 56,
+      "actors": 86,
+      "encounters": 19
+     },
+     {
+      "month": 3,
+      "day": 84,
+      "actors": 100,
+      "encounters": 25
+     },
+     {
+      "month": 4,
+      "day": 112,
+      "actors": 115,
+      "encounters": 27
+     },
+     {
+      "month": 5,
+      "day": 140,
+      "actors": 118,
+      "encounters": 29
+     },
+     {
+      "month": 6,
+      "day": 168,
+      "actors": 118,
+      "encounters": 31
+     },
+     {
+      "month": 7,
+      "day": 196,
+      "actors": 119,
+      "encounters": 31
+     },
+     {
+      "month": 8,
+      "day": 224,
+      "actors": 118,
+      "encounters": 31
+     },
+     {
+      "month": 9,
+      "day": 252,
+      "actors": 158,
+      "encounters": 31
+     },
+     {
+      "month": 10,
+      "day": 280,
+      "actors": 140,
+      "encounters": 31
+     },
+     {
+      "month": 11,
+      "day": 308,
+      "actors": 141,
+      "encounters": 31
+     },
+     {
+      "month": 12,
+      "day": 336,
+      "actors": 124,
+      "encounters": 31
+     }
+    ],
+    "statistics": {
+     "minActors": 86,
+     "maxActors": 158,
+     "encounters": 31,
+     "activeDays": 168,
+     "endDay": 168,
+     "encountersPerDay": 0.18452380952380953,
+     "maxEncounters": 2,
+     "maxTickMs": 130,
+     "meanTickMs": 21.046913580246912
+    },
+    "tail": [
+     "war統計 {\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":8,\"maxOperations\":6,\"maxDays\":45,\"maxWarRatio\":0.022222222222222223,\"maxAlliedRatio\":0,\"maxWarStreakDays\":40,\"minMajorStates\":3,\"minPowerRatio\":0.6833333333333333,\"errors\":[]}",
+     "actor統計 {\"minActors\":86,\"maxActors\":158,\"encounters\":31,\"activeDays\":168,\"endDay\":168,\"encountersPerDay\":0.18452380952380953,\"maxEncounters\":2,\"maxTickMs\":130,\"meanTickMs\":21.046913580246912}",
+     "OK"
+    ]
+   }
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "spawn",
+   "result": "已實作",
+   "details": "最終caravan perRoute=32（兩方向64），swarm perRift=20；族別有週期與maxAge28，insect返巢日7。所有舊輪次不作最終成功證據。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "patrol-stance",
+   "result": "已實作",
+   "details": "patrol neutral→wary，用於把舊seed2 .0566/day遭遇率提高至門檻；該輪seed2 .125/day但seed1/3燃料耗盡，已作廢。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "patrol-speed",
+   "result": "已實作",
+   "details": "最後單旋鈕patrol.mp 60→20；初期港口來回太快造成頻繁迴避，60版seed1僅6/12月，20版seed1完整12月39次=.116/day。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "performance",
+   "result": "已實作",
+   "details": "actorCost每日蝕深圖快取、同日路徑共用、鄰格直接路徑；未改尋路或蝕塊規則。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "battle-cap",
+   "result": "已實作",
+   "details": "18:10 orders上限16、加入者各1支最多4機、商隊最多2護衛；seed3 day43原137單位→8，力保未參戰force後備。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "perRift6-failed",
+   "result": "已實作",
+   "details": "18:20每裂縫24→6量測minActors39，seed2率.594；未達標，已復原24。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "contact1-no-effect",
+   "result": "已實作",
+   "details": "18:26 swarm.contact2→1，船air contact仍2，三seed結果無影響，復原2。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "deep03-no-effect",
+   "result": "已實作",
+   "details": "18:27 blightEncounter.deep .6→.3，三seed結果無影響，復原.6。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "core03-withdrawn",
+   "result": "已實作",
+   "details": "18:28 core1→.3試跑，18:30 orders要求核必遭遇，恢復1；此輪不採作最終證據。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "moving16-caravan20",
+   "result": "已實作",
+   "details": "移動日規則、perRift24→16：三seed率.218/.125/.286合格，seed3末期min38。隨後單旋鈕caravan.perRoute20→24補充人口。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "moving16-caravan24",
+   "result": "已實作",
+   "details": "caravan20→24後三seed率.167/.399/.230合格，但seed2min38。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "moving16-caravan32",
+   "result": "已實作",
+   "details": "caravan24→32後seed3min38、率.406；地面商隊因城市深蝕無法生成，不能單靠商隊補人口。隨後perRift16→20保留空中群基底。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "population-floor",
+   "result": "已實作",
+   "details": "18:35 orders：minPopulation45/maxTopUp5，依序補缺城巡邏、anchored裂縫群、陸格獵團；不改每城一巡邏上限，標SPEC-GAP。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "moving-only",
+   "result": "已實作",
+   "details": "18:30 orders：野群只在船當天實際走過蝕格才擲；停泊/懸停/無油漂流不擲，機率保持.25/.6/1。"
+  },
+  {
+   "kind": "調整紀錄",
+   "id": "campaign-ended",
+   "result": "已實作",
+   "details": "18:22 orders：終局後不觸發玩家接觸、野群或追擊；率=終局前遭遇/有效遊玩天數，全年世界行動者仍統計。"
+  },
+  {
+   "kind": "授權gate",
+   "id": "files",
+   "result": "67 / 70",
+   "details": "17:52 orders把原60件改70件；新檔不得超40KB；無commit/push。"
+  },
+  {
+   "kind": "驗證指令",
+   "id": "typecheck",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/final-typecheck.log",
+    "failedFiles": [],
+    "tail": [
+     "",
+     "> mecha-srpg@0.1.0 typecheck",
+     "> tsc --noEmit && tsc --noEmit -p tsconfig.ui.json",
+     ""
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "check",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/final-check.log",
+    "failedFiles": [],
+    "tail": [
+     "room: 7",
+     "templates: 4",
+     "start: 1",
+     "WARNING content/base/monsters/lancewing-b.json $.partsOverride capture layer HP differs: heart-shrine, crown, left-wing, right-wing, sting, lantern",
+     "WARNING content/base/monsters/mirror-a.json $.partsOverride capture layer HP differs: mirror-side, bare-side, hidden-core, folded-limb, trailing-limb",
+     "WARNING content/base/monsters/nestmother-landlord.json $.partsOverride capture layer HP differs: shoulder, trunk, core-belly",
+     "WARNING content/base/monsters/rotwarden-a.json $.partsOverride capture layer HP differs: torso, arm, legs, head",
+     "WARNING content/base/monsters/siegebeetle-a.json $.partsOverride capture layer HP differs: gate-mantle, horn, heart-shrine, fore-legs, mid-legs, hind-legs",
+     "WARNING content/base/monsters/stalk-b.json $.partsOverride capture layer HP differs: pillar, roots, crown",
+     "WARNING content/base/monsters/tidewolf-b.json $.partsOverride capture layer HP differs: core, front-left, front-right, rear-left, rear-right",
+     "WARNING content/base/monsters/tidewolf-c.json $.partsOverride capture layer HP differs: core, front-left, front-right, rear-left, rear-right",
+     "OK 0 errors, 8 warnings"
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "指定九類",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/final-nine-tests.log",
+    "failedFiles": [],
+    "tail": [
+     "✔ src/ops/world/actors.test.ts (1305.175502ms)",
+     "✔ src/ops/world/encounter.test.ts (1090.948005ms)",
+     "✔ src/ops/world/fog.test.ts (417.992924ms)",
+     "✔ test/campaigns/grid-actors.test.ts (419.652776ms)",
+     "ℹ tests 5",
+     "ℹ suites 0",
+     "ℹ pass 5",
+     "ℹ fail 0",
+     "ℹ cancelled 0",
+     "ℹ skipped 0",
+     "ℹ todo 0",
+     "ℹ duration_ms 1312.087618"
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "黃金UPDATE",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/golden-topup-update.log",
+    "failedFiles": [],
+    "tail": [
+     "✔ test/campaigns/campaigns.test.ts (11454.824489ms)",
+     "ℹ tests 1",
+     "ℹ suites 0",
+     "ℹ pass 1",
+     "ℹ fail 0",
+     "ℹ cancelled 0",
+     "ℹ skipped 0",
+     "ℹ todo 0",
+     "ℹ duration_ms 11459.02658"
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "黃金重播",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/golden-topup-verify.log",
+    "failedFiles": [],
+    "tail": [
+     "✔ test/campaigns/campaigns.test.ts (11919.453927ms)",
+     "ℹ tests 1",
+     "ℹ suites 0",
+     "ℹ pass 1",
+     "ℹ fail 0",
+     "ℹ cancelled 0",
+     "ℹ skipped 0",
+     "ℹ todo 0",
+     "ℹ duration_ms 11924.046459"
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "完整npm-test",
+   "result": "有失敗，見details",
+   "details": {
+    "log": "/tmp/cx-grid-actors/final-test.log",
+    "failedFiles": [
+     "src/mcp/cli.test.ts",
+     "src/mcp/e2e.test.ts",
+     "src/ops/content/worldgen.test.ts"
+    ],
+    "tail": [
+     "  duration_ms: 8283.241184",
+     "  type: 'test'",
+     "  ...",
+     "1..145",
+     "# tests 145",
+     "# suites 0",
+     "# pass 142",
+     "# fail 3",
+     "# cancelled 0",
+     "# skipped 0",
+     "# todo 0",
+     "# duration_ms 257893.539098"
+    ]
+   }
+  },
+  {
+   "kind": "驗證指令",
+   "id": "wf-lint",
+   "result": "見指令尾端",
+   "details": {
+    "log": "/tmp/cx-grid-actors/final-wf-lint.log",
+    "failedFiles": [],
+    "tail": [
+     "== .",
+     "BIGLIST wf/workflows/dispatch/CLAIMS.md:9-12 (1705 bytes, table, 4 rows, 0 links)",
+     "BIGLIST-LINKS wf/SESSION-LOG.md:14-18 (1628 bytes, list, 5 rows, 5 links)",
+     "BIGLIST-LINKS legacy/docs/README.md:13-25 (1289 bytes, table, 13 rows, 11 links)",
+     "SUMMARY .: broken=0 oversize=0 biglist=1 biglist_links=2 querycmd=0 local=0 residue={{=0 模板說明=0 導入判斷=0 inbox_pending=0",
+     "TOTAL broken=0 residue=0 oversize=0 biglist=1 querycmd=0 local=0"
+    ]
+   }
+  },
+  {
+   "kind": "環境例外",
+   "id": "sandbox",
+   "result": "按交接書交領導沙箱外重跑",
+   "details": {
+    "src/mcp/cli.test.ts": "子行程在socket就緒前退出，ready=false",
+    "src/mcp/e2e.test.ts": "server提前退出0，沒有回覆RPC",
+    "src/ops/content/worldgen.test.ts": "spawnSync node EPERM",
+    "logs": [
+     "/tmp/cx-grid-actors/final-env-mcp-cli.log",
+     "/tmp/cx-grid-actors/final-env-mcp-e2e.log",
+     "/tmp/cx-grid-actors/final-env-worldgen.log"
+    ]
+   }
+  }
+ ]
+}

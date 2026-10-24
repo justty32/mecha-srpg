@@ -1,4 +1,6 @@
 import { blightedCells } from "../world/blight.ts";
+import { actorsDaily2c, actorsDaily3 } from "../world/actors.ts";
+import { refreshFog } from "../world/fog.ts";
 import { placeAt } from "../war/loc.ts";
 import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
@@ -9,8 +11,8 @@ import { contractsDaily2, contractsDaily7 } from "../contracts/index.ts";
 import { restraintDaily5, shipDaily5, ledgerDaily6, recruitsDaily7, rosterDaily7 } from "../crew/index.ts";
 
 // SPEC-GAP：用可序列化續點區分「當日後半」與尚未開始的 pendingTicks。
-export type TimeState = CampaignState & { time?: { resume: 5 }; waitRemaining?: number };
-export type TickCtx = OpsCtx & { onDay?: (s: CampaignState) => void };
+export type TimeState = CampaignState & { time?: { resume: 4 | 5 }; waitRemaining?: number };
+export type TickCtx = OpsCtx & { onDay?: (s: CampaignState) => void; onTick?: (ms: number) => void };
 export function stageCtx(ctx: OpsCtx, stage: number): OpsCtx {
   return { ...ctx, emit: (type, payload) => ctx.emit(type, { ...payload, stage }) };
 }
@@ -36,6 +38,8 @@ export function dailySummary(s: CampaignState, ctx: OpsCtx) {
   const bays = [...new Set(s.hangar.bays.filter((id): id is string => id !== null))];
   return { ...(s.operations ? { operations: Object.values(s.operations).filter(o => !["done", "failed", "aborted"].includes(o.phase)).length, war: Object.values(s.relations ?? {}).filter(r => r.state === "war").length, allied: Object.values(s.relations ?? {}).filter(r => r.state === "allied").length, released: Object.values(s.models ?? {}).filter(m => m.releasedDay !== undefined).length, joins: s.log.filter(e => e.type === "ContractAccepted" && e.payload.kind === "join").length } : {}), cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, persons: Object.keys(s.roster.persons).length,
     beasts: Object.keys(s.restraint.beasts).length,
+    actors: Object.keys(s.actors).length,
+    encounters: s.log.filter(e => e.type === "EncounterOffered").length,
     blighted: blightedCells(s),
     rifts: Object.values(s.rifts).filter(r => r.phase !== "closed").length };
 }
@@ -51,22 +55,34 @@ function finishDay(s: TimeState, ctx: TickCtx): void {
 }
 // tick 的契約為就地編排；外層 applyCommand 擁有 clone 與拒絕回滾。
 export function tick(s: TimeState, ctx: TickCtx): void {
-  if (s.pendingChoices.length || s.pendingBattle) return;
-  if (s.time) { finishDay(s, ctx); return; }
+  const started = Date.now();
+  try { tickDaily(s, ctx); } finally { ctx.onTick?.(Date.now() - started); }
+}
+function tickDaily(s: TimeState, ctx: TickCtx): void {
+  if (s.pendingChoices.length || s.pendingBattle || s.pendingEncounter) return;
+  if (s.time) {
+    if (s.time.resume === 4) { eventsDaily4(s, stageCtx(ctx, 4)); s.time.resume = 5; }
+    if (!s.pendingChoices.length) finishDay(s, ctx);
+    return;
+  }
   s.clock = clock(s.clock.day + 1, ctx.world.require("calendar", s.calendar));
   s.flags.anchorable = s.clock.phase === "spring" ? 1 : 0;
   stageCtx(ctx, 1).emit("DayStart", { month: s.clock.month, dom: s.clock.dom });
   const second = stageCtx(ctx, 2);
   worldDaily2(s, second); contractsDaily2(s, second);
+  actorsDaily2c(s, second);
   moveDaily3(s, stageCtx(ctx, 3));
+  actorsDaily3(s, stageCtx(ctx, 3));
+  refreshFog(s, stageCtx(ctx, 3));
+  if (s.pendingEncounter) { s.time = { resume: 4 }; return; }
   eventsDaily4(s, stageCtx(ctx, 4));
   s.time = { resume: 5 };
-  if (!s.pendingChoices.length) finishDay(s, ctx);
+  if (!s.pendingChoices.length && !s.pendingBattle) finishDay(s, ctx);
 }
 export function advanceDays(s: TimeState, ctx: TickCtx, n: number): void {
   if (!Number.isSafeInteger(n) || n < 0 || !Number.isSafeInteger(s.pendingTicks + n)) throw new RangeError("invalid-days");
   s.waitRemaining = (s.waitRemaining ?? 0) + n;
-  while (!s.pendingChoices.length && !s.pendingBattle && (s.time || s.waitRemaining > 0)) {
+  while (!s.pendingChoices.length && !s.pendingBattle && !s.pendingEncounter && (s.time || s.waitRemaining > 0)) {
     if (!s.time) { s.waitRemaining--; if (s.ship.path) s.pendingTicks = Math.max(0, s.pendingTicks - 1); }
     tick(s, ctx);
     if (s.log.some(e => e.type === "CampaignEnd")) { s.pendingTicks = 0; s.waitRemaining = 0; break; }

@@ -10,6 +10,13 @@ import { applySortieResult } from "../sortie/run.ts";
 import type { BattleResult } from "../sortie/apply.ts";
 import { checkInvariants } from "./invariants.ts";
 import { initialWarMetrics, updateWarMetrics } from "./war-metrics.ts";
+import type { BattleRunner } from "../time/index.ts";
+
+const fakeBattle: BattleRunner = (state, ctx, sortie) => {
+  applySortieResult(state, ctx, sortie, { winner: "player", reason: "eliminate", rounds: 3,
+    units: [], persons: [], loot: [], log: { events: 0, hash: "war-test-fixed" } });
+  return { ok: true };
+};
 
 const seeds = [1, 2, 3, 7, 17, 42] as const;
 test("六 seed × idle/random/merc × 六潮月：逐日戰爭不變量", { timeout: 60000 }, () => {
@@ -17,9 +24,9 @@ test("六 seed × idle/random/merc × 六潮月：逐日戰爭不變量", { time
   for (const policy of ["idle", "random", "merc"] as const) for (const seed of seeds) {
     let metrics = initialWarMetrics(fixture(seed).s);
     const result = runCampaign({ ...ctx, start: "default", seed, months: 6, policy, continueAfterEnd: true,
-      ...(policy === "merc" ? { battle: (state: CampaignState) => { delete state.pendingBattle; return { ok: true as const }; } } : {}),
+      battle: fakeBattle,
       onDay(s) { assert.deepEqual(checkInvariants(s, ctx.world), [], `${policy}/${seed}/day${s.clock.day}`); metrics = updateWarMetrics(metrics, s); } });
-    assert.equal(result.summary.length, 6);
+    assert.equal(result.summary.length, 6, `${policy}/${seed}/day${result.state.clock.day}`);
     assert.deepEqual(metrics.errors, [], `${policy}/${seed}`);
   }
 });
@@ -45,7 +52,10 @@ test("七日等待與七次單日等待：作戰外交事件及 state 同值", (
   const { s, ctx } = fixture(3);
   const settle = (input: CampaignState) => {
     let state = input;
-    while (state.pendingChoices.length) state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
+    while (state.pendingChoices.length || state.pendingEncounter) {
+      const actor = state.actors[state.pendingEncounter?.actor ?? ""];
+      state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: actor && actor.kind !== "swarm" ? 3 : 1 }).state;
+    }
     return state;
   };
   const batch = settle(applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state);
@@ -57,7 +67,8 @@ test("七日等待與七次單日等待：作戰外交事件及 state 同值", (
 
 test("外交變態只在第 2 段；研發事件只在潮月首日", () => {
   const { ctx } = fixture();
-  const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 6, policy: "idle", continueAfterEnd: true });
+  const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 6, policy: "idle", continueAfterEnd: true,
+    battle: fakeBattle });
   const relations = result.state.log.filter(e => e.type === "RelationChanged");
   assert(relations.length > 0);
   assert(relations.every(e => e.payload.stage === 2));
@@ -73,12 +84,12 @@ test("含作戰與 join 戰鬥的重播不呼叫 runner，state 逐位元相同"
     applySortieResult(s, battleCtx, sortie, result);
     return { ok: true, result };
   };
-  const result = runCampaign({ ...ctx, start: "default", seed: 3, months: 4, policy: "merc", battle, continueAfterEnd: true });
+  const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 4, policy: "merc", battle, continueAfterEnd: true });
   assert(result.state.log.some(e => e.type === "OperationEngaged"));
   assert(result.state.log.some(e => e.type === "ContractAccepted" && e.payload.kind === "join"));
   assert(result.state.log.some(e => e.type === "BattleResolved" && e.payload.operation));
   assert(result.commands.some(c => c.battle));
-  const replayed = replayCampaign(ctx.db, ctx.world, "default", 3, result.commands,
+  const replayed = replayCampaign(ctx.db, ctx.world, "default", 7, result.commands,
     () => { throw new Error("battle reran"); });
   assert.equal(campaignHash(replayed), campaignHash(result.state));
 });

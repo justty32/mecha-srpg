@@ -1,0 +1,36 @@
+{
+  "id": "actor/patrol",
+  "kind": "patrol",
+  "mp": 20,
+  "layer": "ground",
+  "contact": 1,
+  "str": [
+    15,
+    35
+  ],
+  "stance": "wary",
+  "spawn": {
+    "perCity": 1
+  },
+  "aiChoice": {
+    "evade": 2,
+    "pursue": 3,
+    "parley": 4,
+    "fight": 1
+  },
+  "parley": [
+    {
+      "text": "互讓航道",
+      "effects": []
+    }
+  ],
+  "behavior": {
+    "chaseDays": 3,
+    "stopDays": 2,
+    "returnDay": 7,
+    "decay": 0,
+    "maxIdleDays": 9,
+    "wanderRadius": 12
+  },
+  "name": "巡邏隊"
+}

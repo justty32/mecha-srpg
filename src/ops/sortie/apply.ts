@@ -14,6 +14,7 @@ import { admitBeast, beastRules } from "../crew/restraint.ts";
 import { offerNickname } from "../crew/names.ts";
 import { applyOpsEffect, beastSpecies } from "../content/opseffect.ts";
 import { applyOperationBattle } from "../war/merc.ts";
+import { settleEncounterActors } from "../world/encounter.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
 export type SortieBattleResult = BattleResult;
@@ -111,7 +112,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
         s.flags[`grudge:${before.id}`] = 1; mech.controlMode = "none";
       } else if (entry.status === "dead" || entry.status === "derelict-lost") {
         detachMech(s, before.id);
-        if (entry.status === "derelict-lost") ctx.emit("LostMech", { mech: before.id, node: sortie.place });
+        if (entry.status === "derelict-lost") ctx.emit("LostMech", { mech: before.id, ...(sortie.place ? { node: sortie.place } : {}), loc: sortie.loc });
         else {
           const items: ComponentInstance[] = [];
           for (const part of Object.keys(mech.parts).sort()) for (const slot of Object.keys(mech.parts[part]!.components).sort()) {
@@ -254,5 +255,6 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   }
   // 八、記錄已先落盤供 ledger 引用；不推進營運時間。
   if (sortie.trigger === "operation") applyOperationBattle(s, ctx, sortie, result);
+  settleEncounterActors(s, ctx, sortie, result);
   if (s.pendingBattle?.id === sortie.id) delete s.pendingBattle;
 }

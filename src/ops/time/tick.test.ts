@@ -6,12 +6,29 @@ import assert from "node:assert/strict";
 import { canonicalJson, fnv1a64 } from "../../core/eventlog.ts";
 import { fixture, addRift, day } from "../world/test-support.ts";
 import { applyCommand } from "./commands.ts";
-import type { CampaignState } from "../state/types.ts";
+import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { tick } from "./tick.ts";
 import { createOpsCtx } from "../content/start.ts";
 import { clock } from "../state/clock.ts";
 import { offerContract } from "../contracts/index.ts";
 const hash = (s: CampaignState) => fnv1a64(canonicalJson(s));
+function settle(state: CampaignState, ctx: OpsCtx): CampaignState {
+  while (state.pendingChoices.length || state.pendingEncounter) {
+    const actor = state.actors[state.pendingEncounter?.actor ?? ""];
+    const choice = actor && actor.kind !== "swarm" ? 3 : 1;
+    const result = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice });
+    assert(result.result.ok); state = result.state;
+  }
+  return state;
+}
+function settleContacts(state: CampaignState, ctx: OpsCtx): CampaignState {
+  while (state.pendingEncounter) {
+    assert.notEqual(state.actors[state.pendingEncounter.actor]?.kind, "swarm");
+    state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 3 }).state;
+    state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
+  }
+  return state;
+}
 
 test("tick：同一天八段事件按序，八段都有觀測點", () => {
   const { s, ctx } = fixture(); day(s, ctx, 13); s.pendingEvents.push(ctx.world.require("event", "event/funeral").id);
@@ -24,8 +41,7 @@ test("tick：同一天八段事件按序，八段都有觀測點", () => {
   s.jobs.push({ id: "job-order", kind: "repair", target: mech.id, part, layer: 0, needHours: 1, doneHours: 0, materials: {}, paid: true, priority: 0 });
   const start = s.log.length;
   tick(s, ctx);
-  let state: CampaignState = s;
-  while (state.pendingChoices.length) state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
+  const state = settle(s, ctx);
   const stages = state.log.slice(start).map(e => Number(e.payload.stage));
   assert(stages.every(Number.isFinite));
   assert.deepEqual(stages, [...stages].sort((a, b) => a - b));
@@ -34,24 +50,21 @@ test("tick：同一天八段事件按序，八段都有觀測點", () => {
 });
 test("wait 7 與七次 wait 1 的事件型別及完整 state hash 相同", () => {
   const { s, ctx } = fixture();
-  const settle = (state: CampaignState) => {
-    while (state.pendingChoices.length) state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
-    return state;
-  };
-  const batch = settle(applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state);
+  const batch = settle(applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state, ctx);
   let singles = s;
-  for (let i = 0; i < 7; i++) singles = settle(applyCommand(singles, ctx.db, ctx.world, { v: "wait", days: 1 }).state);
+  for (let i = 0; i < 7; i++) singles = settle(applyCommand(singles, ctx.db, ctx.world, { v: "wait", days: 1 }).state, ctx);
   assert.deepEqual(batch.log.map(e => e.type), singles.log.map(e => e.type));
   assert.equal(hash(batch), hash(singles)); assert.equal(batch.clock.day, 7);
 });
 test("pendingChoices 凍結 day、保留 pendingTicks，choose 續跑當日與餘日", () => {
   const { s, ctx } = fixture();
-  let state = applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state;
+  let state = settleContacts(applyCommand(s, ctx.db, ctx.world, { v: "wait", days: 7 }).state, ctx);
   assert.equal(state.clock.day, 1); assert.equal((state as TimeState).waitRemaining, 6);
   const before = structuredClone(state); tick(state, createOpsCtx(state, ctx.db, ctx.world)); assert.deepEqual(state, before);
   state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
   assert.equal(state.clock.day, 1); assert.equal((state as TimeState).waitRemaining, 6); assert.equal(state.pendingChoices.length, 1);
   state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
+  state = settleContacts(state, ctx);
   assert.equal(state.clock.day, 7); assert.equal(state.pendingTicks, 0);
   assert.equal(state.log.filter(e => e.type === "DaySummary").length, 7);
 });
@@ -60,7 +73,7 @@ test("裂縫 phase 在大潮、開口滿四天或 BattleResolved 同日轉移", 
   let state = s;
   for (let i = 0; i < 56; i++) {
     state = applyCommand(state, ctx.db, ctx.world, { v: "wait", days: 1 }).state;
-    while (state.pendingChoices.length) state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
+    state = settle(state, ctx);
   }
   const changes = state.log.filter(e => e.type === "RiftPhase"); assert(changes.length > 0);
   for (const e of changes) assert(clock(e.day, ctx.world.require("calendar", state.calendar)).phase === "spring" || e.payload.phase === "anchored" && e.day - state.rifts[String(e.payload.rift)]!.openedDay === 4 || state.log.some(b => b.type === "BattleResolved" && b.day === e.day));

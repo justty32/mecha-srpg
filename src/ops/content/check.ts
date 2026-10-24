@@ -13,10 +13,10 @@ import { buildGridMap, cellKey, footprintOf, idx, inBounds, terrainAt } from "..
 import type { GridMap } from "../world/grid.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
-const EFFECT_KEYS = ["startOperation", "opProgress", "transferPlace", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setPlace", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
+const EFFECT_KEYS = ["spawnActor", "setGoal", "reveal", "startOperation", "opProgress", "transferPlace", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setPlace", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
 const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
   operation: ["actorScales", "phases", "onSuccess", "onFail", "onAbort"], treaty: ["terms", "onExpire"], lineage: ["tags"], model: ["requires", "tags"], forces: ["shells"], affinity: ["pairs"],
-  place: ["services", "tags"], lane: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
+  actor: ["parley"], place: ["services", "tags"], lane: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
   "faction-ops": ["territory", "contractKinds", "services", "reputationTiers", "tags"], contract: ["issuerKinds", "gradeRange", "objectives", "onComplete", "onFail", "onCancel"],
   action: ["effects"], market: ["lists", "priceMods"], recruit: ["sources"], research: ["requires", "unlocks"], names: ["names", "epithets"],
   event: ["choices"], dialogue: ["topics"], room: ["base", "exits", "phrases"], start: ["mechs", "persons", "flags"], ship: ["rooms"], calendar: ["spring", "neap", "special"],
@@ -76,6 +76,17 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     }
     for (const key of REQUIRED_ARRAYS[kind] ?? []) if (!Array.isArray(raw[key])) errors.push(`${def.id}.${key}: expected array`);
     walk(def, def.id, kind);
+  }
+  for (const actor of world.all("actor")) {
+    const at = actor.id;
+    if (!["force", "patrol", "caravan", "swarm", "band"].includes(actor.kind)) errors.push(`${at}.kind: unknown actor kind`);
+    if (!Number.isFinite(actor.mp) || actor.mp <= 0) errors.push(`${at}.mp: must be positive`);
+    if (!["air", "ground"].includes(actor.layer)) errors.push(`${at}.layer: unknown layer`);
+    if (!Number.isInteger(actor.contact) || actor.contact < 0) errors.push(`${at}.contact: must be nonnegative integer`);
+    if (!Array.isArray(actor.str) || actor.str.length !== 2 || actor.str.some(n => !Number.isFinite(n) || n <= 0) || actor.str[1] < actor.str[0]) errors.push(`${at}.str: invalid range`);
+    if (!object(actor.spawn)) errors.push(`${at}.spawn: expected object`);
+    if (!object(actor.behavior)) errors.push(`${at}.behavior: expected object`);
+    if (!object(actor.aiChoice) || ["evade", "pursue", "parley", "fight"].some(key => typeof (actor.aiChoice as Record<string, number>)[key] !== "number" || (actor.aiChoice as Record<string, number>)[key]! < 0) || Object.values(actor.aiChoice).reduce((n, v) => n + v, 0) <= 0) errors.push(`${at}.aiChoice: invalid weights`);
   }
   const grids = new Map<string, GridMap>();
   for (const def of world.all("map")) {

@@ -1,0 +1,37 @@
+{
+  "id": "actor/caravan",
+  "kind": "caravan",
+  "mp": 45,
+  "layer": "ground",
+  "contact": 1,
+  "str": [
+    6,
+    18
+  ],
+  "stance": "neutral",
+  "spawn": {
+    "perRoute": 32,
+    "intervalDays": 2
+  },
+  "aiChoice": {
+    "evade": 8,
+    "pursue": 0,
+    "parley": 2,
+    "fight": 0
+  },
+  "parley": [
+    {
+      "text": "互讓航道",
+      "effects": []
+    }
+  ],
+  "behavior": {
+    "chaseDays": 3,
+    "stopDays": 2,
+    "returnDay": 7,
+    "decay": 0,
+    "maxIdleDays": 9,
+    "wanderRadius": 12
+  },
+  "name": "商隊"
+}

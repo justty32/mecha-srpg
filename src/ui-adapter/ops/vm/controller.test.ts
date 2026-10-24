@@ -35,7 +35,7 @@ function verifySnapshot(c: OpsController, s: OpsSnapshot = c.snapshot()): void {
 function prompts(c: OpsController): void {
   for (let i = 0; c.snapshot().prompt && i < 30; i++) {
     const s = c.snapshot(); verifySnapshot(c, s);
-    const choice = s.prompt!.choices.find(c => c.enabled); assert.ok(choice);
+    const choice = s.prompt!.choices.find(c => c.enabled && c.text === "交涉") ?? s.prompt!.choices.find(c => c.enabled); assert.ok(choice);
     c.dispatch({ type: "cmd", cmd: { v: "choose", choice: choice.n } });
   }
   assert.equal(c.snapshot().prompt, null);
@@ -50,7 +50,11 @@ function prepared(): { c: OpsController; contract: string } {
   c.dispatch({ type: "selectContract", contract: contract.id }); verifySnapshot(c);
   const accepted = c.dispatch({ type: "cmd", cmd: { v: "accept", contract: contract.id } }); assert.equal(accepted.message, null);
   c.dispatch({ type: "cmd", cmd: { v: "sail", to: contract.target.place } });
-  for (let i = 0; c.state.ship.path && i < 30; i++) { prompts(c); c.dispatch({ type: "advance", until: "event" }); }
+  for (let i = 0; placeAt(c.state, { world }, c.state.ship.pos) !== contract.target.place && i < 60; i++) {
+    prompts(c);
+    if (!c.state.ship.path) c.dispatch({ type: "cmd", cmd: { v: "sail", to: contract.target.place } });
+    c.dispatch({ type: "advance", until: "event" });
+  }
   prompts(c); assert.equal(placeAt(c.state, { world }, c.state.ship.pos), contract.target.place);
   c.dispatch({ type: "selectNode", node: contract.target.place }); verifySnapshot(c);
   const s = c.dispatch({ type: "sortieOpen", contract: contract.id });

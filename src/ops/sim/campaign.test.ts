@@ -5,6 +5,14 @@ import { runCampaign } from "./campaign.ts";
 import { checkInvariants } from "./invariants.ts";
 import { idle } from "./policies.ts";
 import { gridOf, terrainAt } from "../world/grid.ts";
+import { applySortieResult } from "../sortie/run.ts";
+import type { BattleRunner } from "../time/index.ts";
+
+const fakeBattle: BattleRunner = (state, ctx, sortie) => {
+  applySortieResult(state, ctx, sortie, { winner: "player", reason: "eliminate", rounds: 3,
+    units: [], persons: [], loot: [], log: { events: 0, hash: "campaign-test-fixed" } });
+  return { ok: true };
+};
 
 test("船位置不變量：存在的圖與可進格；未知圖和不可進格會被擋", () => {
   const { s, ctx } = fixture(), original = structuredClone(s.ship.pos);
@@ -59,14 +67,17 @@ test("continueAfterEnd：終局後世界照走，原政策不再行動", () => {
 });
 test("greedy 加不打戰鬥的假 runner 跑 6 潮月", () => {
   const { ctx } = fixture(); let calls = 0;
-  const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 6, policy: "greedy", battle: state => { calls++; delete state.pendingBattle; return { ok: true }; } });
+  const result = runCampaign({ ...ctx, start: "default", seed: 2, months: 6, policy: "greedy",
+    battle: (state, battleCtx, sortie) => { calls++; return fakeBattle(state, battleCtx, sortie); } });
   assert(calls > 0); assert.equal(result.summary.length, 6); assert.deepEqual(checkInvariants(result.state), []);
 });
 test("random 三個 seed 各 6 潮月，每天不變量全空", () => {
   const { ctx } = fixture();
   for (const seed of [1, 7, 42]) {
     let days = 0;
-    const result = runCampaign({ ...ctx, start: "default", seed, months: 6, policy: "random", onDay(s) { assert.deepEqual(checkInvariants(s), []); days++; } });
+    const result = runCampaign({ ...ctx, start: "default", seed, months: 6, policy: "random",
+      battle: fakeBattle,
+      onDay(s) { assert.deepEqual(checkInvariants(s), []); days++; } });
     assert.equal(result.summary.length, 6); assert.equal(days, 168);
   }
 });

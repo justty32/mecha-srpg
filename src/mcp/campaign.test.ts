@@ -118,26 +118,40 @@ test("new → actions.cmd → act → save → load：日期與 cash 相同；cl
 });
 
 test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () => {
-  const { call } = setup();
+  const { env, call } = setup(), { world } = env.world();
   const initial = data(await call("campaign_new", { seed: 1 })), { id } = initial;
   const pilots = initial.panels.roster.filter((p: { role: string }) => p.role === "pilot");
   const units = initial.panels.hangar.map((m: { id: string; seats: Record<string, string | null> }, i: number) => ({
     mech: m.id, seats: { ...m.seats, pilot: pilots[i].id }, controlMode: "pilot",
   }));
   for (const unit of units) data(await call("campaign_act", { id, command: { v: "assign", person: unit.seats.pilot, seat: { mech: unit.mech, seat: "pilot" } } }));
+  const promptChoice = (actions: Screen["actions"]) => {
+    const choices = actions.filter(a => a.cmd?.v === "choose" && !a.disabled);
+    // 遭遇交涉保留原等待目標與航線；一般事件仍採第一個合法選項。
+    return choices.find(a => a.cmd.v === "choose" && a.cmd.choice === 3 && a.label.includes("交涉")) ?? choices[0];
+  };
   let view = data(await call("campaign_advance", { id, days: 28 })).view;
-  for (let i = 0; view.prompt && i < 10; i++) {
-    const choice = (data(await call("campaign_actions", { id })).actions as Screen["actions"]).find(a => a.cmd.v === "choose" && !a.disabled)!;
-    view = data(await call("campaign_act", { id, command: choice.cmd })).view;
+  let evadeDays = 0;
+  for (let i = 0; view.prompt && i < 200; i++) {
+    const choice = promptChoice(data(await call("campaign_actions", { id })).actions)!;
+    if (view.pendingEncounter && choice.cmd.v === "choose" && choice.cmd.choice === 1) evadeDays++;
+    const acted = data(await call("campaign_act", { id, command: choice.cmd }));
+    view = acted.view;
   }
-  assert.equal(view.clock.day, 28);
+  assert.equal(view.clock.day, 28 + evadeDays);
   // 世界內容（事件／契約）持續增加，第 28 天不一定剛好有契約：逐日推進（處理待選）直到能承接，最多 30 天。
   const actionsNow = async () => data(await call("campaign_actions", { id })).actions as Screen["actions"];
-  let accept = (await actionsNow()).find(a => a.cmd.v === "accept" && !a.disabled);
+  // 本案走一般契約航行與出戰；join 還需要作戰階段與部隊資格，另有履約測試。
+  const normalAccept = (actions: Screen["actions"]) => actions.find(a => {
+    if (a.cmd.v !== "accept" || a.disabled) return false;
+    const id = a.cmd.contract, contract = view.panels.contracts.find((c: { id: string }) => c.id === id);
+    return contract && world.require("contract", contract.template).kind !== "join";
+  });
+  let accept = normalAccept(await actionsNow());
   for (let i = 0; !accept && i < 60; i++) {
-    const choice = (await actionsNow()).find(a => a.cmd.v === "choose" && !a.disabled);
+    const choice = promptChoice(await actionsNow());
     view = data(await call(choice ? "campaign_act" : "campaign_advance", choice ? { id, command: choice.cmd } : { id, days: 1 })).view;
-    accept = (await actionsNow()).find(a => a.cmd.v === "accept" && !a.disabled);
+    accept = normalAccept(await actionsNow());
   }
   assert.ok(accept);
   view = data(await call("campaign_act", { id, command: accept.cmd })).view;
@@ -146,12 +160,15 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   const sailed = await call("campaign_act", { id, command: { v: "sail", to: active.target } });
   if (sailed.isError) assert.match(JSON.stringify(sailed.structuredContent), /already-there/);
   else view = data(sailed).view;
-  for (let i = 0; i < 30 && (view.prompt || view.panels.ship?.[0]?.destination); i++) {
-    const choice = (await actionsNow()).find(a => a.cmd.v === "choose" && !a.disabled);
-    view = data(await call(choice ? "campaign_act" : "campaign_advance", choice ? { id, command: choice.cmd } : { id, days: 1 })).view;
+  for (let i = 0; i < 90 && !view.pendingBattle && (view.prompt || view.panels.ship?.[0]?.place !== active.target); i++) {
+    const choice = promptChoice(await actionsNow());
+    const resail = !choice && !view.panels.ship?.[0]?.destination && view.panels.ship?.[0]?.place !== active.target;
+    view = data(await call(choice || resail ? "campaign_act" : "campaign_advance", choice ? { id, command: choice.cmd }
+      : resail ? { id, command: { v: "sail", to: active.target } } : { id, days: 1 })).view;
   }
 
-  const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: { contract: active.id, place: active.target, units } } }));
+  const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: view.pendingBattle
+    ? { units } : { contract: active.id, place: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);
   assert.ok(Array.isArray(battle.battle.losses.mechs));
   assert.ok(Array.isArray(battle.battle.losses.persons));

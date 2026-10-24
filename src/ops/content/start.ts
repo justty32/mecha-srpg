@@ -16,6 +16,8 @@ import { registerPersonName } from "../crew/names.ts";
 import { ensureCore, growPatch } from "../world/patches.ts";
 import { rebuildBlightIndex } from "../world/blight.ts";
 import { nextSpring, riftDefinition } from "../world/rifts.ts";
+import { initActors } from "../world/actors.ts";
+import { refreshFog } from "../world/fog.ts";
 
 export function createOpsCtx(s: CampaignState, db: ContentDB, world: WorldDB): OpsCtx {
   registerTextDB(world, db);
@@ -88,5 +90,7 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
   }
   rebuildBlightIndex(s);
   initWar(s, ctx, seed);
+  initActors(s, ctx);
+  refreshFog(s, ctx);
   return s;
 }

@@ -72,7 +72,8 @@ test("出戰資訊：actions／唯讀 preview 與自動戰果報告", async () =
   for (const unit of (command as any).sortie.units) if (unit.seats.pilot) data(await call("campaign_act", { id,
     command: { v: "assign", person: unit.seats.pilot, seat: { mech: unit.mech, seat: "pilot" } } }));
   const before = data(await call("campaign_save", { id })).blob;
-  const actions = data(await call("campaign_actions", { id })).actions.filter((a: any) => a.cmd?.v === "sortie" || a.tool === "campaign_sortie_begin");
+  // 遭遇待戰時仍可能列出已停用的契約出戰；本案驗證目前可執行的兩種出戰入口。
+  const actions = data(await call("campaign_actions", { id })).actions.filter((a: any) => !a.disabled && (a.cmd?.v === "sortie" || a.tool === "campaign_sortie_begin"));
   assert.ok(actions.length >= 2);
   for (const action of actions) {
     assert.ok(action.preview.enemies.length > 0);

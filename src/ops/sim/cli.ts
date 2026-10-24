@@ -30,20 +30,24 @@ export function main(args: string[]): number {
   if (errors.length) throw new Error(JSON.stringify(errors));
   const firstDay = world.require("start", start.includes("/") ? start : `start/${start}`).day;
   let metrics = initialWarMetrics(newCampaign(db, world, start.includes("/") ? start : `start/${start}`, seed));
+  let minActors = Infinity, maxActors = 0, maxEncounters = 0, maxTickMs = 0, tickMs = 0, ticks = 0;
   // idle 的多日等待仍逐日 tick；事件會暫停並續跑，省掉每一天額外的 wait 指令快照。
   const idleTarget = firstDay + months * world.require("calendar", world.require("start", start.includes("/") ? start : `start/${start}`).calendar ?? world.all("calendar")[0]!.id).daysPerMonth;
   const selectedPolicy = policy === "idle" ? ((s, ctx) => {
     const cmd = policies.idle(s, ctx);
     return cmd.v === "wait" ? { v: "wait" as const, days: Math.max(1, idleTarget - s.clock.day) } : cmd;
   }) satisfies import("./policies.ts").Policy : policy;
-  const result = runCampaign({ onDay(s) {
+  const result = runCampaign({ onTick(ms) { ticks++; tickMs += ms; maxTickMs = Math.max(maxTickMs, ms); }, onDay(s) {
     const errors = checkInvariants(s, world);
     if (errors.length) throw new Error(`day=${s.clock.day}: ${errors.join("; ")}`);
     metrics = updateWarMetrics(metrics, s);
+    const count = Object.keys(s.actors).length;
+    minActors = Math.min(minActors, count); maxActors = Math.max(maxActors, count);
+    maxEncounters = Math.max(maxEncounters, s.log.filter(e => e.day === s.clock.day && e.type === "EncounterOffered").length);
     const period = world.require("calendar", s.calendar).daysPerMonth, elapsed = s.clock.day - firstDay;
     if (elapsed > 0 && elapsed % period === 0) {
       const row = { ...dailySummary(s, createOpsCtx(s, db, world)), month: elapsed / period, day: s.clock.day };
-      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕格數=${row.blighted} 裂縫數=${row.rifts} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
+      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕格數=${row.blighted} 裂縫數=${row.rifts} 行動者=${row.actors} 累計遭遇=${row.encounters} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
     }
   }, db, world, start, months, seed, policy: selectedPolicy, continueAfterEnd, ...(noBattle ? {} : { battle: defaultBattleRunner }) });
   if (result.summary.length !== months) {
@@ -72,6 +76,12 @@ export function main(args: string[]): number {
     }
   }
   console.log(`war統計 ${JSON.stringify(warStatistics(metrics, events))}`);
+  const end = events.find(e => e.type === "CampaignEnd");
+  const activeDays = Math.max(1, (end?.day ?? result.state.clock.day) - firstDay);
+  const encounters = events.filter(e => e.type === "EncounterOffered" && (!end || e.seq < end.seq)).length;
+  console.log(`actor統計 ${JSON.stringify({ minActors, maxActors, encounters, activeDays, endDay: end?.day ?? null,
+    encountersPerDay: encounters / activeDays, maxEncounters,
+    maxTickMs, meanTickMs: tickMs / Math.max(1, ticks) })}`);
   console.log("OK");
   return 0;
 }

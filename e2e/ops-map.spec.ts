@@ -17,11 +17,14 @@ test("大地圖：開局 → 世界分頁 → 游標到地點 → Enter → 抵�
   type Snap = { header: { route: unknown; docked: boolean; location: string }; prompt: { choices: { n: number; enabled: boolean }[] } | null };
   const snap = () => page.evaluate(() => (window as unknown as { __ops: { snapshot(): Snap } }).__ops.snapshot());
   expect((await snap()).header.route).not.toBeNull();
-  for (let i = 0; i < 30; i++) {
+  // 途中可能遇到行動者（遭遇四選按第一個可選＝迴避會停船），停下來就對同一游標格重下 Enter。
+  const dock = root.locator('[data-action-id="map:dock"]');
+  for (let i = 0; i < 60; i++) {
     const s = await snap();
     if (s.prompt) await page.keyboard.press(String(s.prompt.choices.find(c => c.enabled)!.n));
     else if (s.header.route) await page.keyboard.press("w");
-    else break;
+    else if (await dock.isEnabled()) break;
+    else await page.keyboard.press("Enter");
   }
   expect((await snap()).header.route).toBeNull();
   await expect(root.locator('[data-action-id="map:dock"]')).toBeEnabled();

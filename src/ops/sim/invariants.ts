@@ -3,6 +3,7 @@ import type { WorldDB } from "../content/worlddb.ts";
 import { cellKey, gridOf, inBounds, neighbors, terrainAt } from "../world/grid.ts";
 import { checkLedger } from "../state/ledger.ts";
 import { blightPassable } from "../world/patches.ts";
+import { actorPassable } from "../world/actors.ts";
 
 export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
   const errors = checkLedger(s);
@@ -46,6 +47,21 @@ export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
     if (indexed.get(`${map}/${key}`) !== ref.patch) errors.push(`orphan blight index: ${map}/${key}`);
   }
   if (world) {
+    const ctx = { world } as import("../state/types.ts").OpsCtx;
+    if (Object.keys(s.actors).length > 200) errors.push("actor population above 200");
+    for (const [id, actor] of Object.entries(s.actors)) {
+      if (actor.id !== id || !Number.isFinite(actor.str) || actor.str < 0 || !Number.isFinite(actor.mp) || actor.mp <= 0) errors.push(`invalid actor: ${id}`);
+      if (!world.get("map", actor.pos.map)) errors.push(`missing actor map: ${id}`);
+      else if (!actorPassable(s, ctx, actor, actor.pos.cell)) errors.push(`actor impassable: ${id}`);
+      if ((actor.lastPlanDay ?? 0) > s.clock.day || actor.born > s.clock.day) errors.push(`actor future: ${id}`);
+    }
+    for (const [map, data] of Object.entries(s.maps)) for (const [key, known] of Object.entries(data.known)) {
+      if (known.day > s.clock.day) errors.push(`known future: ${map}/${key}`);
+      const snapshots = known.actorSnapshots ?? [];
+      for (const a of snapshots) if (!known.actors.includes(a.id) || a.pos.map !== map || cellKey(a.pos.cell) !== key || a.born > known.day)
+        errors.push(`known actor mismatch: ${map}/${key}/${a.id}`);
+    }
+    if (s.pendingEncounter && (s.ship.pos.map !== s.pendingEncounter.loc.map || cellKey(s.ship.pos.cell) !== cellKey(s.pendingEncounter.loc.cell))) errors.push("ship moved during encounter");
     if (!world.get("map", s.ship.pos.map)) errors.push(`missing ship map: ${s.ship.pos.map}`);
     else {
       const map = gridOf(world, s.ship.pos.map);

@@ -154,7 +154,7 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   }
   for (const b of allButtons(snapshot)) {
     const isChoice = b.action.type === "cmd" && b.action.cmd.v === "choose";
-    const locked = pending && !isChoice ? "先回應事件" : ui.battle ? "戰鬥進行中" : s.pendingBattle && (b.action.type === "advance" || b.action.type === "cmd" && b.action.cmd.v === "wait") ? "先處理待命戰鬥" : over && (b.action.type === "advance" || b.action.type === "cmd") ? "戰役已結束" : undefined;
+    const locked = (pending || s.pendingEncounter) && !isChoice ? "先回應事件" : ui.battle ? "戰鬥進行中" : s.pendingBattle && (b.action.type === "advance" || b.action.type === "cmd" && b.action.cmd.v === "wait") ? "先處理待命戰鬥" : over && (b.action.type === "advance" || b.action.type === "cmd") ? "戰役已結束" : undefined;
     if (locked) { b.enabled = false; b.reason = locked; b.tooltip += `\n${locked}`; }
   }
   // prompt 的可用狀態以真正指令試跑為準（包含自填選項需要文字的拒絕）。

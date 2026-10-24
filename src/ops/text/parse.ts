@@ -11,13 +11,14 @@ import { peekCrew } from "../crew/shared.ts";
 export { entityName } from "./names.ts";
 export type { TextState } from "./names.ts";
 type Candidate = { id: string; names: string[] };
-type Domain = "room" | "person" | "mech" | "place" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "all";
+type Domain = "room" | "person" | "mech" | "place" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "actor" | "all";
 
 function candidates(domain: Domain, state: TextState, world: WorldDB): Candidate[] {
   const result: Candidate[] = [];
   const add = (id: string, ...names: string[]) => result.push({ id, names: [id, id.replace(/^[^:]+:/, ""), id.split("/").at(-1)!, entityName(id, state, world), ...names] });
   const include = (d: Domain) => domain === d || domain === "all";
   if (include("room")) for (const def of world.all("room")) add(def.id.split("/").at(-1)!, def.id, def.title, `room/${def.id.split("/").at(-1)!}`);
+  if (include("actor")) for (const actor of Object.values(state.actors).sort((a, b) => a.id.localeCompare(b.id))) add(actor.id);
   if (include("person")) for (const id of Object.keys(state.roster.persons).sort()) add(id, state.roster.persons[id]!.def);
   if (include("mech")) for (const id of Object.keys(state.mechs).sort()) add(id, state.mechs[id]!.frame.split("/").at(-1)!);
   if (include("place")) for (const def of allPlaces(state, { world })) add(def.id, def.name);
@@ -44,6 +45,7 @@ function resolve(word: string, domain: Domain, state: TextState, world: WorldDB)
   const matches = [...new Map((exact.length ? exact : entries.filter(c => c.names.some(n => n.startsWith(word)))).map(c => [c.id, c])).values()].sort((a, b) => a.id.localeCompare(b.id));
   if (matches.length === 1) return matches[0]!.id;
   if (matches.length > 1) throw { error: `你是指：${matches.map(c => `${entityName(c.id, state, world)}（${c.id}）`).join("、")}`, candidates: matches.slice(0, 8).map(c => c.id) } satisfies ParseError;
+  if (domain === "actor") return word; // 存檔重播可引用尚未生成的 id；執行時再驗存在。
   // SPEC-GAP：招募候選池及 core 物品 DB 不在 parse 簽名內；明確 id 留給執行端驗存在。
   if ((domain === "candidate" || domain === "item") && /^(?:[\w-]+:[\w-]+\/|[\w-]+\/|[\w]+-\d|stock:)[\w./:-]*$/.test(word)) return word;
   throw { error: `找不到${word}。`, candidates: [...new Map(entries.map(c => [c.id, c])).values()].slice(0, 8).map(c => `${entityName(c.id, state, world)}（${c.id}）`) } satisfies ParseError;
@@ -84,7 +86,7 @@ function structured<T>(text: string, kind: "job" | "sortie"): T {
   const value: unknown = JSON.parse(text);
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("需要 JSON 物件");
   const allowed = kind === "job" ? ["id", "kind", "target", "needHours", "doneHours", "materials", "paid", "priority", "part", "layer", "component"]
-    : ["id", "day", "contract", "loc", "place", "rift", "trigger", "units", "supplies", "injected"];
+    : ["id", "day", "contract", "loc", "place", "rift", "trigger", "units", "supplies", "injected", "actors", "ambush", "operation"];
   for (const key of Object.keys(value)) if (!allowed.includes(key)) throw new Error(`未知欄位 ${key}`);
   const v = value as Record<string, unknown>;
   for (const key of ["id", "target", "part", "component", "contract", "place", "rift"]) if (key in v && typeof v[key] !== "string") throw new Error(`${key} 必須是 id／文字`);
@@ -131,7 +133,7 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
           return resolve(word, "place", state, world);
         };
         const target = take();
-        const to = target.startsWith("@") ? { actor: target.slice(1) } : waypoint(target);
+        const to = target.startsWith("@") ? { actor: state.actors[target.slice(1)] ? target.slice(1) : resolve(target.slice(1), "actor", state, world) } : waypoint(target);
         if (typeof to === "object" && "actor" in to && !to.actor) throw new Error("缺少行動者名稱");
         cmd = { v, to };
         if (args.length) { if (!["經", "via"].includes(take())) throw new Error("航點前要寫經／via"); cmd.via = args.splice(0).map(waypoint); }

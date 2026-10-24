@@ -5,7 +5,19 @@ import { applyBattleResult } from "../sortie/apply.ts";
 import { applyCommand } from "../time/index.ts";
 import { createOpsCtx } from "../content/start.ts";
 import { placeLoc } from "../war/loc.ts";
-import { greedy, merc } from "./policies.ts";
+import { greedy, merc, random } from "./policies.ts";
+import { checkActorContacts } from "../world/encounter.ts";
+
+test("greedy 在野外且沒有契約或待戰時不憑空出戰；低油在市場用交易補給", () => {
+  const { s, ctx } = fixture(); s.contracts = {}; s.pendingChoices = []; delete s.pendingBattle;
+  s.ship.pos.cell = { x: 131, y: 91 }; s.ship.drifting = true;
+  assert.notEqual(greedy(s, ctx).v, "sortie");
+  s.ship.pos = placeLoc(s, ctx, "place/dhaka"); s.ship.drifting = false;
+  s.ship.fuel.cur = 2; s.ledger.balances["stock:fuel"] = 2;
+  const command = greedy(s, ctx); assert.equal(command.v, "trade");
+  const next = applyCommand(s, ctx.db, ctx.world, command); assert.equal(next.result.ok, true);
+  assert.ok(next.state.ship.fuel.cur > 2); assert.ok(next.state.ledger.balances.cash < s.ledger.balances.cash);
+});
 
 test("merc 履約航行遇伏擊且無可戰單位時撤離，不等待同一天", () => {
   const { s, ctx, sortie, contract } = fixture();
@@ -48,7 +60,8 @@ test("greedy 不派出戰會注入 morale-shaken 的乘員，mood 零仍可派",
     for (const employment of Object.values(s.roster.employment)) employment.mood = mood;
     const before = structuredClone(s), cmd = greedy(s, ctx);
     assert.deepEqual(s, before);
-    assert.equal(cmd.v, mood < 0 ? "wait" : "sortie", `mood=${mood}`);
+    assert.equal(cmd.v, mood < 0 ? "sail" : "sortie", `mood=${mood}`);
+    if (cmd.v === "sail") assert.ok(ctx.world.all("market").some(m => m.place === cmd.to));
   }
 });
 
@@ -67,7 +80,7 @@ test("greedy 單機結構層剩半血不出戰，超過半血仍可派", () => {
   }
 });
 
-test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的機甲就等待", () => {
+test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的機甲就返補給城", () => {
   for (const damage of ["torso", "legs", "right-arm", "weapon", "ammo", "empty", "working"] as const) {
     const { s, ctx, mech, contract } = fixture();
     s.ship.pos = placeLoc(s, ctx, contract.target.place);
@@ -91,8 +104,32 @@ test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的�
     assert.ok(cmd.sortie.units!.length > 0);
     assert.ok(cmd.sortie.units!.every(u => u.mech !== mech), damage);
     s.hangar.bays = [mech];
-    assert.deepEqual(greedy(s, ctx), { v: "wait", days: 1 }, damage);
+    const returning = greedy(s, ctx); assert.equal(returning.v, "sail", damage);
+    if (returning.v === "sail") assert.ok(ctx.world.all("market").some(m => m.place === returning.to));
+    assert.equal(applyCommand(s, ctx.db, ctx.world, returning).result.ok, true);
   }
+});
+
+test("random 沒有 battle runner 時僅選交涉或迴避，待戰以付費 drift 處理", () => {
+  const { s, ctx, sortie } = fixture(); s.actors = {};
+  const noBattle = Object.assign(ctx, { battleAvailable: false });
+  s.actors.test = { id: "test", kind: "swarm", faction: "enemy", pos: structuredClone(s.ship.pos), mp: 60, str: 10,
+    goal: { type: "idle" }, stance: "hostile", born: 0, flags: [] };
+  checkActorContacts(s, ctx);
+  assert.deepEqual(random(s, noBattle), { v: "choose", choice: 1 });
+  s.actors.test.kind = "patrol";
+  const command = random(s, noBattle); assert.equal(command.v, "choose");
+  if (command.v === "choose") assert.ok([1, 3].includes(command.choice));
+  const ready = { ...ctx, battleAvailable: true };
+  s.actors.test.str = 0; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 4 });
+  s.actors.test.str = Number.MAX_SAFE_INTEGER; assert.deepEqual(greedy(s, ready), { v: "choose", choice: 1 });
+  delete s.pendingEncounter; s.pendingBattle = { ...sortie, trigger: "intercept", actors: ["test"] };
+  assert.deepEqual(random(s, noBattle), { v: "drift" });
+  const escaped = applyCommand(s, ctx.db, ctx.world, random(s, noBattle));
+  assert.equal(escaped.result.ok, true); assert.ok(escaped.state.ship.fuel.cur < s.ship.fuel.cur);
+  s.pendingBattle = { ...sortie, trigger: "ambush" }; s.ship.fuel.cur = 0; s.ledger.balances["stock:fuel"] = 0;
+  const withRunner = random(s, ready); assert.equal(withRunner.v, "sortie");
+  assert.equal(applyCommand(s, ctx.db, ctx.world, withRunner, { battle(state) { delete state.pendingBattle; return { ok: true }; } }).result.ok, true);
 });
 
 test("greedy 對受損層排 repair／rebuild，交給既有 queue 計價且不重複排程", () => {

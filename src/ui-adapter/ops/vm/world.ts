@@ -1,8 +1,8 @@
 import type { CampaignState, OpsCtx, Loc, OpsCommand, PlaceDef } from "../../../ops/state/types.ts";
 import { gridOf, terrainAt, footprintOf, cellKey, cellsWithin } from "../../../ops/world/grid.ts";
-import { allPlaces, worldRules } from "../../../ops/world/places.ts";
+import { allPlaces } from "../../../ops/world/places.ts";
 import { shortestPath, availableFuel } from "../../../ops/world/move.ts";
-import { blightAt } from "../../../ops/world/blight.ts";
+import { visibleCells, knownActors } from "../../../ops/world/fog.ts";
 import type { MapCell, WorldLayer, WorldMapAction, WorldGridSnapshot, WorldCellView, WorldPathPreview, OpsButton } from "./types.ts";
 
 export const WORLD_LAYERS: WorldLayer[] = ["terrain", "blight", "places", "actors", "path", "region", "fog", "sight", "territory"];
@@ -30,6 +30,7 @@ export class WorldViewModel {
   private readonly placeCells = new Map<string, PlaceDef>();
   private readonly territory = new Map<string, string>();
   private readonly sight = new Set<string>();
+  private readonly observed: ReturnType<typeof knownActors>;
   private readonly path = new Set<string>();
   private readonly preview: WorldPathPreview;
   private readonly s: CampaignState;
@@ -37,6 +38,7 @@ export class WorldViewModel {
   readonly ui: WorldUi;
   constructor(s: CampaignState, ctx: OpsCtx, ui: WorldUi) {
     this.s = s; this.ctx = ctx; this.ui = ui;
+    this.observed = knownActors(s).filter(({ actor }) => actor.pos.map === ui.map);
     this.grid = gridOf(ctx.world, ui.map);
     this.size = { w: this.grid.width, h: this.grid.height };
     this.viewport = { w: Math.min(ui.viewport.w, this.size.w), h: Math.min(ui.viewport.h, this.size.h), x: 0, y: 0 };
@@ -48,17 +50,7 @@ export class WorldViewModel {
       const owner = s.places[p.id]?.ownerOverride ?? p.owner;
       if (owner) for (const t of cellsWithin(this.grid, c, 2)) this.territory.set(cellKey(t), owner);
     }
-    const cfg = worldRules(ctx).grid;
-    // SPEC-GAP：尚無 fog 公開視野函式；按靜態地形與天網條件做唯讀等價計算。
-    if (s.ship.pos.map === ui.map) {
-      const radius = cfg.sight + terrainAt(this.grid, s.ship.pos.cell).sight + (ui.map.includes("moon") || ui.map.includes("selene") ? 2 : 0);
-      for (const c of cellsWithin(this.grid, s.ship.pos.cell, radius)) this.sight.add(cellKey(c));
-    }
-    for (const p of this.places) {
-      const owner = s.places[p.id]?.ownerOverride ?? p.owner;
-      if (owner && (s.factions[owner]?.rep ?? -1) >= 0 && p.services.some(id => id.endsWith("/uplink")))
-        for (const c of cellsWithin(this.grid, p.at, cfg.uplinkSight)) this.sight.add(cellKey(c));
-    }
+    for (const key of visibleCells(s, ctx, ui.map)) this.sight.add(key);
     this.preview = ui.preview ? this.pathPreview({ map: ui.map, region: "", cell: ui.cursor }) : { cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "已取消預覽" };
     for (const c of this.preview.cells) this.path.add(cellKey(c));
     if (s.ship.pos.map === ui.map) for (const c of s.ship.path?.cells ?? []) this.path.add(cellKey(c));
@@ -72,17 +64,17 @@ export class WorldViewModel {
     return this.ui.layers.fog && !!this.grid.dark[c.y * this.size.w + c.x] && !this.s.maps[this.map]?.known[cellKey(c)];
   }
   private depth(c: MapCell) {
-    const key = cellKey(c), state = this.s.maps[this.map], known = state?.known[key];
-    if (known && !this.sight.has(key)) return known.blight?.depth;
-    return state?.blight[key] ? blightAt(this.s, this.ctx, { map: this.map, region: "", cell: c })?.depth ?? "shallow" : undefined;
+    return this.s.maps[this.map]?.known[cellKey(c)]?.blight?.depth;
   }
+  private actors() { return this.observed; }
+
   cell(x: number, y: number): WorldCellView {
     const c = { x, y }, key = cellKey(c), layers = this.ui.layers, unknown = this.unknown(c);
     const t = terrainAt(this.grid, c), p = this.placeCells.get(key), age = Math.max(0, this.s.clock.day - (this.s.maps[this.map]?.known[key]?.day ?? this.s.clock.day));
     const region = this.grid.regionKeys[this.grid.region[y * this.size.w + x]!] ?? "";
     const regionName = this.ctx.world.all("regions").find(r => r.map === this.map)?.regions[region]?.name ?? region;
     const depth = this.depth(c), owner = this.territory.get(key);
-    const actor = Object.values(this.s.actors).find(a => a.pos.map === this.map && cellKey(a.pos.cell) === key);
+    const actor = this.actors().find(({ actor: a }) => cellKey(a.pos.cell) === key)?.actor;
     const classes = ["world-cell", ...(layers.terrain ? [`terrain-${t.id.split("/").at(-1)}`] : []),
       ...(unknown ? ["fog-unknown"] : []), ...(layers.fog && age ? ["fog-stale"] : []),
       ...(layers.blight && depth && !unknown ? [`blight-${depth}`] : []),
@@ -99,7 +91,7 @@ export class WorldViewModel {
       region: !unknown && layers.region && this.ui.zoom < 1 ? regionName : "" };
   }
   pathPreview(to: Loc | { actor: string }): WorldPathPreview {
-    const target = "actor" in to ? this.s.actors[to.actor]?.pos : to;
+    const target = "actor" in to ? this.actors().find(({ actor }) => actor.id === to.actor)?.actor.pos : to;
     if (!target) return { cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "目標不存在" };
     const p = target.map === this.map ? this.placeCells.get(cellKey(target.cell)) : undefined;
     const route = shortestPath(this.s, this.ctx, this.s.ship.pos, p?.id ?? target);
@@ -117,7 +109,7 @@ export class WorldViewModel {
     const regionName = this.ctx.world.all("regions").find(r => r.map === this.map)?.regions[region]?.name ?? region;
     const route = cellKey(c) === cellKey(this.cursor) && this.ui.preview ? this.preview : this.pathPreview({ map: this.map, region: "", cell: c });
     return { lines: [`座標：${x},${y}`, `地形：${t.name}`, `區域：${regionName || "無"}`, `蝕深：${this.depth(c) ?? "無"}`, `地點：${p?.name ?? "無"}`,
-      ...Object.values(this.s.actors).filter(a => a.pos.map === this.map && cellKey(a.pos.cell) === cellKey(c)).map(a => `行動者：${a.id}（最後所見第 ${a.lastSeenByPlayer ?? this.s.clock.day - cell.age} 天）`),
+      ...this.actors().filter(({ actor }) => cellKey(actor.pos.cell) === cellKey(c)).map(({ actor, day }) => `行動者：${actor.id}（最後所見第 ${day} 天）`),
       route.reachable ? `到此 ${route.days} 天 ${route.fuel} 燃料` : route.note] };
   }
   sail(): Extract<OpsCommand, { v: "sail" }> {
@@ -151,7 +143,7 @@ export class WorldViewModel {
       colors[i] = color; classes[i]!.push(cls);
     };
     if (this.layers.places) for (const p of this.places) mark(p.at, "#d5dae2", "has-place");
-    if (this.layers.actors) for (const a of Object.values(this.s.actors)) if (a.pos.map === this.map) mark(a.pos.cell, "#dc976b", "has-actor");
+    if (this.layers.actors) for (const { actor } of this.actors()) mark(actor.pos.cell, "#dc976b", "has-actor");
     if (this.layers.path) for (const c of this.preview.cells) mark(c, "#6ef0da", "world-path");
     if (this.s.ship.pos.map === this.map) mark(this.ship, "#ffe17d", "ship");
     return { w, h, colors, classes };

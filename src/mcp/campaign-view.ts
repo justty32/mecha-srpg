@@ -1,4 +1,5 @@
-import { blightAt } from "../ops/world/blight.ts";
+import { knownActors } from "../ops/world/fog.ts";
+import { cellKey } from "../ops/world/grid.ts";
 // 營運畫面只傳可供決策的摘要；指令紀錄與完整狀態留在 session。
 import type { CampaignEvent, CampaignState, OpsCommand, Screen, Sortie } from "../ops/state/types.ts";
 import type { BattleResult, sortieBattleSetup } from "../ops/sortie/index.ts";
@@ -98,7 +99,7 @@ export function commandInfo(env: McpEnv, state: CampaignState, cmd: OpsCommand):
     if (roomDefinition(cmd.target, world)) return describeRoom(cmd.target, state, world, db).desc.join("\n");
     const node = placeDef(state, { world }, cmd.target);
     if (node) {
-      const depth = blightAt(state, createOpsCtx(state, db, world), { map: node.map, cell: node.at, region: "" })?.depth;
+      const depth = state.maps[node.map]?.known[cellKey(node.at)]?.blight?.depth;
       const blight = depth ? { shallow: "淺蝕", deep: "深蝕", core: "蝕核" }[depth] : "無蝕域";
       return `${node.name}｜${node.kind}｜${blight}｜服務：${node.services.join("、")}`;
     }
@@ -175,7 +176,7 @@ export function campaignCatalog(env: McpEnv, state: CampaignState) {
   type Item = { id: string; name: string; label: string; cmd?: OpsCommand; disabled?: string; price?: number; stock?: number; market?: string; mode?: string;
     role?: string; wage?: number; fee?: number; requires?: string[]; cost?: object; hint?: string };
   const market: Item[] = [], recruits: Item[] = [], research: Item[] = [];
-  const blocked = state.pendingChoices.length ? "要先 choose" : state.pendingBattle ? "先處理待出戰" : undefined;
+  const blocked = state.pendingEncounter || state.pendingChoices.length ? "要先 choose" : state.pendingBattle ? "先處理待出戰" : undefined;
   const docked = isDocked(state, { world });
   if (docked) for (const m of world.all("market").filter(m => m.place === placeAt(state, { world }, state.ship.pos))) for (const list of m.lists) for (const item of list.items) {
     const price = marketPrice(state, ctx, m, item), name = campaignName(env, state, item.def);
@@ -224,7 +225,7 @@ export function availableIds(env: McpEnv, state: CampaignState, text: string): s
     ids = [...markets.map(m => m.id), ...markets.flatMap(m => m.lists.flatMap(l => l.items.map(i => i.def))), ...state.inventory.components.map(c => c.id)];
   } else if (verb === "hire") ids = Object.values((state as CrewState).crew?.candidates ?? {}).filter(c => c.place === placeAt(state, { world }, state.ship.pos)).map(c => c.id);
   else if (word === "研" || verb === "queue") ids = world.all("research").map(r => r.id);
-  else if (verb === "sail" || verb === "explore") ids = allPlaces(state, { world }).map(n => n.id);
+  else if (verb === "sail" || verb === "explore") ids = [...allPlaces(state, { world }).map(n => n.id), ...(verb === "sail" ? knownActors(state).map(({ actor }) => actor.id) : [])];
   else if (verb === "board" || verb === "accept" || verb === "drop") ids = Object.keys(state.contracts);
   else if (verb === "go") ids = world.all("room").map(r => r.id);
   else ids = [...Object.keys(state.mechs), ...Object.keys(state.roster.persons), ...Object.keys(state.contracts)];
@@ -257,9 +258,11 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   panels.roster = roster;
   const worldMap = showMap ? allPlaces(state, { world }).filter(n => n.id !== here).flatMap(n => {
     const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, map: n.map, cell: n.at,
-      blight: blightAt(state, ctx, { map: n.map, cell: n.at, region: "" })?.depth ?? null, ...t }] : [];
+      blight: state.maps[n.map]?.known[cellKey(n.at)]?.blight?.depth ?? null, ...t }] : [];
   }).sort((a, b) => a.days - b.days || a.id.localeCompare(b.id)) : [];
   if (showMap) panels.worldMap = worldMap;
+  panels.actors = knownActors(state).map(({ actor, day }) => ({ id: actor.id, kind: actor.kind, faction: actor.faction,
+    loc: structuredClone(actor.pos), str: actor.str, mp: actor.mp, stance: actor.stance, day, age: state.clock.day - day }));
   const pendingBattle = state.pendingBattle && {
     id: state.pendingBattle.id, place: state.pendingBattle.place, loc: state.pendingBattle.loc, trigger: state.pendingBattle.trigger,
     contract: state.pendingBattle.contract, units: structuredClone(state.pendingBattle.units),
@@ -268,7 +271,7 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const prompt = promptInfo(screen);
   const data = { ...(prompt ? { prompt, hint: "要先 choose，選項序號從 1 起。" } : {}),
     id, clock: { ...state.clock }, room: { id: screen.room.id, title: screen.room.title, exits: screen.room.exits }, panels, log, logOmitted: omitted,
-    pendingTicks: state.pendingTicks, ...(pendingBattle ? { pendingBattle } : {}) };
+    pendingTicks: state.pendingTicks, ...(state.pendingEncounter ? { pendingEncounter: structuredClone(state.pendingEncounter) } : {}), ...(pendingBattle ? { pendingBattle } : {}) };
   const summary = [prompt?.summary ?? "",
     `${id}｜潮月 ${state.clock.month} 第 ${state.clock.dom} 天（day=${state.clock.day}）｜${screen.room.title}`,
     ...(brief ? [] : screen.room.desc), `現金 ${money(state.ledger.balances.cash)}；債務 ${money(state.ledger.balances.debt)}；人數 ${Object.keys(state.roster.persons).length}。`,

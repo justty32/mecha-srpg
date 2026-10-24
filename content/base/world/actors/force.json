@@ -1,0 +1,34 @@
+{
+  "id": "actor/force",
+  "kind": "force",
+  "mp": 60,
+  "layer": "ground",
+  "contact": 1,
+  "str": [
+    40,
+    120
+  ],
+  "stance": "neutral",
+  "spawn": {},
+  "aiChoice": {
+    "evade": 1,
+    "pursue": 3,
+    "parley": 2,
+    "fight": 4
+  },
+  "parley": [
+    {
+      "text": "互讓航道",
+      "effects": []
+    }
+  ],
+  "behavior": {
+    "chaseDays": 3,
+    "stopDays": 2,
+    "returnDay": 7,
+    "decay": 0,
+    "maxIdleDays": 9,
+    "wanderRadius": 12
+  },
+  "name": "作戰部隊"
+}

@@ -5,6 +5,7 @@ import type { CampaignState, OpsCommand, Sortie } from "../state/types.ts";
 import type { BattleResult } from "../sortie/apply.ts";
 import { applyCommand } from "../time/index.ts";
 import type { BattleRunner, CmdResult } from "../time/index.ts";
+import type { TimeState } from "../time/tick.ts";
 import { dailySummary } from "../time/tick.ts";
 import { checkInvariants } from "./invariants.ts";
 import { policies } from "./policies.ts";
@@ -14,7 +15,7 @@ export type MonthSummary = ReturnType<typeof dailySummary> & { month: number; da
 export type CampaignCommand = OpsCommand & { battle?: { sortie: Sortie; outcome: CmdResult; result?: BattleResult;
   rng: CampaignState["rng"]; effectCounter: number } };
 export type CampaignOptions = { db: ContentDB; world: WorldDB; start: string; seed: number; months: number;
-  policy: Policy | PolicyName; battle?: BattleRunner; onDay?: (s: CampaignState) => void; continueAfterEnd?: boolean };
+  policy: Policy | PolicyName; battle?: BattleRunner; onDay?: (s: CampaignState) => void; onTick?: (ms: number) => void; continueAfterEnd?: boolean };
 
 export function runCampaign(options: CampaignOptions): { state: CampaignState; commands: CampaignCommand[]; summary: MonthSummary[] } {
   const { db, world, start, seed, months, battle } = options;
@@ -45,7 +46,7 @@ export function runCampaign(options: CampaignOptions): { state: CampaignState; c
         ...(result ? { result } : {}), rng: structuredClone(s.rng), effectCounter: s.effectCounter };
       return outcome;
     });
-    const output = applyCommand(state, db, world, cmd, { battle: recording, onDay(s) {
+    const output = applyCommand(state, db, world, cmd, { battle: recording, onTick: options.onTick, onDay(s) {
       verify(s); options.onDay?.(s);
       const elapsed = s.clock.day - firstDay;
       if (elapsed > 0 && elapsed % daysPerMonth === 0 && s.clock.day <= target) summary.push({ month: elapsed / daysPerMonth, day: s.clock.day, ...dailySummary(s, createOpsCtx(s, db, world)) });
@@ -53,18 +54,22 @@ export function runCampaign(options: CampaignOptions): { state: CampaignState; c
     state = output.state; verify(state);
     return output.result;
   };
-  while ((state.clock.day < target || state.pendingChoices.length) &&
+  while ((state.clock.day < target || state.pendingChoices.length || state.pendingEncounter || state.pendingBattle || (state as TimeState).time) &&
     (options.continueAfterEnd || !state.log.some(e => e.type === "CampaignEnd"))) {
-    const beforeDay = state.clock.day, beforePrompt = JSON.stringify(state.pendingChoices);
+    const beforeDay = state.clock.day, beforePrompt = JSON.stringify([state.pendingChoices, state.pendingEncounter, state.pendingBattle]);
     const ended = state.log.some(e => e.type === "CampaignEnd");
-    const cmd = (ended ? policies.idle : policy)(structuredClone(state), createOpsCtx(state, db, world));
+    const policyCtx = Object.assign(createOpsCtx(state, db, world), { battleAvailable: !!battle });
+    const finishing = state.clock.day >= target && (state as TimeState).time && !state.pendingChoices.length && !state.pendingEncounter && !state.pendingBattle;
+    const cmd = finishing ? { v: "wait" as const, days: 0 } : (ended ? policies.idle : policy)(structuredClone(state), policyCtx);
     const result = execute(cmd);
-    if (state.pendingChoices.length) {
-      if (!result.ok || beforePrompt === JSON.stringify(state.pendingChoices)) throw new Error(`policy-stalled seed=${seed} day=${state.clock.day} command=${JSON.stringify(cmd)}`);
+    if (finishing && !result.ok) throw new Error(`day-resume-failed seed=${seed} day=${state.clock.day}: ${result.error}`);
+    if (state.pendingChoices.length || state.pendingEncounter || state.pendingBattle) {
+      if (!result.ok || beforePrompt === JSON.stringify([state.pendingChoices, state.pendingEncounter, state.pendingBattle])) throw new Error(`policy-stalled seed=${seed} day=${state.clock.day} command=${JSON.stringify(cmd)} error=${result.ok ? "unchanged-prompt" : result.error}`);
       continue;
     }
     // SPEC-GAP：零耗日指令或假 runner 不得形成無限迴圈；每次策略行動後至少推進一天。
-    if (state.clock.day === beforeDay && state.clock.day < target) execute({ v: "wait", days: 1 });
+    if (state.clock.day === beforeDay && state.clock.day < target &&
+      (options.continueAfterEnd || !state.log.some(e => e.type === "CampaignEnd"))) execute({ v: "wait", days: 1 });
   }
   return { state, commands, summary };
 }

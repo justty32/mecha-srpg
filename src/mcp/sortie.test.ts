@@ -13,7 +13,7 @@ function data(result: ToolResult): Record<string, any> {
 }
 function summary(result: ToolResult): string { return (result.content[0] as { text: string }).text; }
 async function setup() {
-  const server = createMcpServer(env);
+  const server = createMcpServer(env), { world } = env.world();
   const call = async (name: string, args: Record<string, unknown>): Promise<ToolResult> => {
     const response = JSON.parse((await server.handle(JSON.stringify({ jsonrpc: "2.0", id: 1, method: "tools/call", params: { name, arguments: args } })))!);
     assert.ok(!response.error, JSON.stringify(response));
@@ -28,8 +28,11 @@ async function setup() {
       const screen = await call("campaign_view", { id }), view = data(screen);
       const actions = data(await call("campaign_actions", { id })).actions as { cmd?: OpsCommand; disabled?: string; preview?: { error?: string } }[];
       const enabled = actions.flatMap(a => !a.disabled && !a.preview?.error && a.cmd ? [a.cmd] : []);
-      const choice = enabled.find(c => c.v === "choose");
-      const sortie = enabled.find(c => c.v === "sortie");
+      const choices = enabled.filter(c => c.v === "choose");
+      const choice = view.pendingEncounter ? choices.find(c => c.choice === 3) ?? choices.find(c => c.choice === 1) : choices[0];
+      // 本案比較契約出戰；途中若已轉成攔截戰，關閉這個 seed 後再找下一個契約 fixture。
+      if (view.pendingBattle && !view.pendingBattle.contract) break;
+      const sortie = enabled.find((c): c is Extract<OpsCommand, { v: "sortie" }> => c.v === "sortie" && !!c.sortie.contract);
       if (!view.prompt && assigned && sortie) {
         const saved = data(await call("campaign_save", { id }));
         return { call, id: id as string, command: sortie, before: saved.blob };
@@ -44,14 +47,18 @@ async function setup() {
         const hangar = view.panels.hangar as { id: string; dormant: boolean; seats: Record<string, string | null> }[];
         const roster = view.panels.roster as { id: string; role: string }[];
         const byId = (a: { id: string }, b: { id: string }) => a.id.localeCompare(b.id);
-        const mech = hangar.filter(m => !m.dormant && Object.hasOwn(m.seats, "pilot") && !m.seats.pilot).sort(byId)[0];
+        const unassigned = hangar.filter(m => !m.dormant && Object.hasOwn(m.seats, "pilot") && !m.seats.pilot).sort(byId);
+        const mech = unassigned[0];
         const seated = new Set(hangar.flatMap(m => Object.values(m.seats)));
         const pilot = roster.filter(p => p.role === "pilot" && !seated.has(p.id)).sort(byId)[0];
         assert.ok(mech && pilot, `沒有可派的機甲與駕駛：\n${summary(screen)}`);
         command = { v: "assign", person: pilot.id, seat: { mech: mech.id, seat: "pilot" } };
-        assigned = true;
+        assigned = unassigned.length === 1;
       } else if (!accepted) {
-        const accept = enabled.filter(c => c.v === "accept").sort((a, b) => a.contract.localeCompare(b.contract))[0];
+        const accept = enabled.filter(c => c.v === "accept").filter(c => {
+          const contract = view.panels.contracts?.find((row: { id: string }) => row.id === c.contract);
+          return contract && world.require("contract", contract.template).kind !== "join";
+        }).sort((a, b) => a.contract.localeCompare(b.contract))[0];
         if (accept) { command = accept; accepted = accept.contract; }
       } else {
         const contract = view.panels.contracts?.find((c: { id: string }) => c.id === accepted);
