@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-12",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（能力與雜項）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "957f1d99c143f9a0f13dbaa184b660f2efa0fb9f",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-12",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-12/REPORT.md",
@@ -61,5 +61,73 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:26:23",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-12",
+  "round": 1,
+  "at": "2026-10-24T16:26:23",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/abilities/ax-watchhorn-far-sight.json",
+   "content/base/abilities/heat-lance-thrust.json",
+   "content/base/abilities/mx-relic-fist.json",
+   "content/base/abilities/shard-gaze.json",
+   "content/base/abilities/shell-lance.json",
+   "content/base/factions/shell-society.json",
+   "content/base/factions/tide-faith.json",
+   "content/base/soultrees/moji-std.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/abilities/ax-watchhorn-far-sight.json",
+  "content/base/abilities/heat-lance-thrust.json",
+  "content/base/abilities/mx-relic-fist.json",
+  "content/base/abilities/shard-gaze.json",
+  "content/base/abilities/shell-lance.json",
+  "content/base/factions/shell-society.json",
+  "content/base/factions/tide-faith.json",
+  "content/base/soultrees/moji-std.json"
+ ],
+ "ids": [
+  "ability/ax-watchhorn-far-sight",
+  "ability/heat-lance-thrust",
+  "ability/mx-relic-fist",
+  "ability/shard-gaze",
+  "ability/shell-lance",
+  "faction/shell-society",
+  "faction/tide-faith",
+  "soultree/moji-std"
+ ],
+ "summary": "能力與雜項換詞（含 agy 第 2 輪專名）；閘門 0 違規、check／typecheck 綠、黃金不變；test 綠",
+ "gateRejections": []
 }
