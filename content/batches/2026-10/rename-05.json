@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-05",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -73,5 +73,102 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:10:41",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-05",
+  "round": 1,
+  "at": "2026-10-24T16:10:41",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/events/gyeongju-contest.json",
+   "content/lore/events/hekate-secret.json",
+   "content/lore/events/hunter-license-act.json",
+   "content/lore/events/iron-wings-month.json",
+   "content/lore/events/kali-found.json",
+   "content/lore/events/kuafu-awakens.json",
+   "content/lore/events/lagos-night.json",
+   "content/lore/events/lance-v4.json",
+   "content/lore/events/league-founded.json",
+   "content/lore/events/longspear-leak.json",
+   "content/lore/events/lunar-blockade.json",
+   "content/lore/events/lunar-tide-and-shell.json",
+   "content/lore/events/migrant-split.json",
+   "content/lore/events/mimic-one.json",
+   "content/lore/events/moonbow-first-shot.json",
+   "content/lore/events/nairobi-port-incident.json",
+   "content/lore/events/old-array-dig.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/events/gyeongju-contest.json",
+  "content/lore/events/hekate-secret.json",
+  "content/lore/events/hunter-license-act.json",
+  "content/lore/events/iron-wings-month.json",
+  "content/lore/events/kali-found.json",
+  "content/lore/events/kuafu-awakens.json",
+  "content/lore/events/lagos-night.json",
+  "content/lore/events/lance-v4.json",
+  "content/lore/events/league-founded.json",
+  "content/lore/events/longspear-leak.json",
+  "content/lore/events/lunar-blockade.json",
+  "content/lore/events/lunar-tide-and-shell.json",
+  "content/lore/events/migrant-split.json",
+  "content/lore/events/mimic-one.json",
+  "content/lore/events/moonbow-first-shot.json",
+  "content/lore/events/nairobi-port-incident.json",
+  "content/lore/events/old-array-dig.json"
+ ],
+ "ids": [
+  "event/gyeongju-contest",
+  "event/hekate-secret",
+  "event/hunter-license-act",
+  "event/iron-wings-month",
+  "event/kali-found",
+  "event/kuafu-awakens",
+  "event/lagos-night",
+  "event/lance-v4",
+  "event/league-founded",
+  "event/longspear-leak",
+  "event/lunar-blockade",
+  "event/lunar-tide-and-shell",
+  "event/migrant-split",
+  "event/mimic-one",
+  "event/moonbow-first-shot",
+  "event/nairobi-port-incident",
+  "event/old-array-dig"
+ ],
+ "summary": "lore 事件 17 檔換詞；閘門 0 違規、check／lore／typecheck／test 綠、黃金不變",
+ "gateRejections": []
 }
