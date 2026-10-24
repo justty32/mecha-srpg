@@ -72,7 +72,7 @@ interface ViewModel {
 }
 ```
 
-呈現方針（使用者 2026-10-24 裁示）：一般網頁遊戲的標準元件——**按鈕、列表、面板、tooltip**，不做文字指令列、不走 MUD 風；每個主要操作有**快捷鍵**，鍵位在資料檔 `keymap.json`（`{ action, keys[], label }`，可改綁），按鈕上標鍵、tooltip 末行寫鍵；`CommandOption` 帶 `key`、`tooltip`（成本、射程、不可用原因）、`disabled`，按鈕分移動／能力／回合／系統四組。DOM 層只做：把 `dirty()` 的格重畫（每格一個 `div`，CSS class 表示地形／單位／意圖）、把事件文字推進「戰鬥記錄」列表面板、把點格、按鈕點擊與按鍵轉成 `Command`。無框架、無虛擬 DOM；視窗捲動改 `viewport` 後全量重畫可視區。逐步互動：`sim` 應提供 `BattleSession`（逐指令推進、AI 回合自動跑）給 ui-adapter，使其不直接依賴 `rules`／`ai`（實作現況 `vm/session.ts` 暫時直呼，日後搬進 `sim`）。
+呈現方針（使用者 2026-10-24 裁示）：一般網頁遊戲的標準元件——**按鈕、列表、面板、tooltip**，不做文字指令列、不走 MUD 風；每個主要操作有**快捷鍵**，鍵位在資料檔 `keymap.json`（`{ action, keys[], label }`，可改綁），按鈕上標鍵、tooltip 末行寫鍵；`CommandOption` 帶 `key`、`tooltip`（成本、射程、不可用原因）、`disabled`，按鈕分移動／能力／回合／系統四組。DOM 層只做：把 `dirty()` 的格重畫（每格一個 `div`，CSS class 表示地形／單位／意圖）、把事件文字推進「戰鬥記錄」列表面板、把點格、按鈕點擊與按鍵轉成 `Command`。無框架、無虛擬 DOM；視窗捲動改 `viewport` 後全量重畫可視區。逐步互動：`sim/session.ts` 的 `BattleSession`（逐指令推進、AI 回合自動跑、`trackKnowledge`、全 AI 觀戰 `spectate`）是 ui-adapter 的唯一入口，`vm/session.ts` 只是它的薄包裝；`vm/boundary.test.ts` 禁止 ui-adapter import `rules`／`ai`（2026-10-24 lead-ui-session 落地）。可視區渲染抽成 `GridView` 共用模組吃 `GridSource` 介面，營運層大地圖的 `WorldViewModel` 另實作一份、兩者不互 import（ops spec `world-grid/ui-contract`）。
 
 ## 替使用者做掉的決定
 

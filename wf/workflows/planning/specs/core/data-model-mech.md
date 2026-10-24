@@ -50,7 +50,7 @@ type PoolDecl = {
   id: PoolId; name: string;                                 // 例：heat、charge、bio-acid、rpm、instinct、ap、fatigue
   min: number; max: NumExpr | null;                         // null＝無上限
   capKind: "hard" | "soft";                                 // soft 允許超載（decisions ToME 第 2 題）
-  inverted: boolean;                                        // true＝越高越糟（熱量、疲勞、承擔）
+  inverted: boolean;                                        // true＝越高越糟（燼 heat、疲勞、承擔）
   initial: NumExpr; regen: NumExpr;                         // 每回合增減（可負＝衰減）
   decayCurve?: { kind: "toward"; baseline: NumExpr; rate: NumExpr };   // TM-05：離開刺激後向基準值收斂
   bands: PoolBand[];                                        // 閾值帶，見 rules-resources-effects
@@ -58,7 +58,7 @@ type PoolDecl = {
 };
 ```
 
-機甲實例的池＝機體 pools ∪ 所有已裝部件 pools；同 id 的池合併（上限相加、regen 相加）。人物的池與機甲的池是同一機制、不同容器；能力成本可同時點名兩邊（decisions ToME 第 1 題）。提供池的部件被毀→該池 `max` 重算，儲量超出的部分依 `capKind` 處理（hard 截掉、soft 留著進超載帶）。
+機甲實例的池＝機體 pools ∪ 所有已裝部件 pools；同 id 的池合併（上限相加、regen 相加）。池的 `id` 是機制名（`heat`、`charge`…），`name` 是給玩家看的風格名（燼、流光…），對照表在 [README](README.md)。人物的池與機甲的池是同一機制、不同容器；能力成本可同時點名兩邊（decisions ToME 第 1 題）。提供池的部件被毀→該池 `max` 重算，儲量超出的部分依 `capKind` 處理（hard 截掉、soft 留著進超載帶）。
 
 ## 部件 ComponentDef
 

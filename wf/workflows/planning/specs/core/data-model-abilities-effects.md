@@ -43,7 +43,7 @@ type AiHints = { tactics: Partial<Record<Tactic, NumExpr>>;         // Tactic = 
   targetPref?: { parts?: PartFunction[]; grades?: Grade[] }; cooldownValue?: number };
 ```
 
-**成本不足＝不能用**（除非該筆 `allowOverload` 且池是 soft）。沒有該池的機甲／人物視為成本不可支付——所以古代機甲不宣告 heat 就永遠不會因熱量受限，也用不了需要 heat 的部件能力。
+**成本不足＝不能用**（除非該筆 `allowOverload` 且池是 soft）。沒有該池的機甲／人物視為成本不可支付——所以古代機甲不宣告 `heat` 就永遠不會積燼受限，也用不了需要 `heat` 的部件能力。
 
 ## EffectDef 與 EffectInstance
 

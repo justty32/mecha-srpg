@@ -16,20 +16,20 @@ content/<pack>/
 
 每個資料夾一檔一筆（`<name>.json`），檔名＝id 的 name 段。**id 格式** `pack:kind/name`（例：`base:frame/hound-mk2`、`base:effect/burn`）；同 pack 內可省 `pack:`。載入器把所有 pack 依 `depends` 排序後合併成一個唯讀 `ContentDB`；後載入的 pack 可用同 id **覆寫**前者（mod 友善）。每種 kind 有一份 JSON Schema（`schemas/<kind>.schema.json`，由 TS 型別產生），載入時驗證：欄位型別、必填、id 參照存在、NumExpr 的 `ref` 路徑合法、池 id 已被某處宣告。
 
-## 五個最小範例（省略選填欄）
+## 五個最小範例（省略選填欄；`name` 用太空歌劇風格名，id 不受限，對照見 [README](README.md)）
 
 **機甲（frame）** `frames/hound-mk2.json`
 ```json
 {"id":"frame/hound-mk2","name":"獵犬 Mk2","cls":"mechanical","grade":"C","bodyPlan":"bodyplan/biped-light",
- "baseAttrs":{"initiative":6,"perception":5},"pools":[{"id":"heat","name":"熱量","min":0,"max":100,"capKind":"soft",
+ "baseAttrs":{"initiative":6,"perception":5},"pools":[{"id":"heat","name":"燼","min":0,"max":100,"capKind":"soft",
  "inverted":true,"initial":0,"regen":-15,"bands":[{"from":100,"to":125,"effects":["effect/overheat-1"]},{"from":125,"to":null,"effects":["effect/overheat-2"]}]}],
  "innateAbilities":[],"repairPolicy":"repair-or-replace","tags":["mech","human"]}
 ```
 
 **部件（component）** `components/autocannon-30.json`
 ```json
-{"id":"component/autocannon-30","name":"30mm 機砲","slot":"weaponMount","size":2,"mass":3,"origin":"mechanical",
- "pools":[{"id":"ammo-30","name":"30mm 彈","min":0,"max":12,"capKind":"hard","inverted":false,"initial":12,"regen":0,"bands":[]}],
+{"id":"component/autocannon-30","name":"雷雞連吼","slot":"weaponMount","size":2,"mass":3,"origin":"mechanical",
+ "pools":[{"id":"ammo-30","name":"殼矢","min":0,"max":12,"capKind":"hard","inverted":false,"initial":12,"regen":0,"bands":[]}],
  "abilities":["ability/burst-30"],"hp":20,"onBroken":["effect/weapon-jammed"],"tags":["ranged","kinetic"]}
 ```
 

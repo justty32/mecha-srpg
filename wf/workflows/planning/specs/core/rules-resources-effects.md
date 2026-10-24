@@ -16,7 +16,7 @@
 type PoolBand = { from: NumExpr; to: NumExpr | null; effects: EffectRef[]; label?: string };
 ```
 
-池值落入哪一帶就掛哪一帶的效果（互斥、自動切換、效果 `clock:"whileSource"`）。熱量 soft 池的典型帶：`[0,max)` 無；`[max, 1.25max)` 性能懲罰；`[1.25max, 1.5max)` 每回合隨機部件受損（`onTurnStart` 鉤子 `damage` 動作，`layerFilter:["component"]`）；`≥1.5max` 停機（`setControl: "disabled"`）。承擔池、本能池、轉速池都用同一結構，內容包填不同帶。
+池值落入哪一帶就掛哪一帶的效果（互斥、自動切換、效果 `clock:"whileSource"`）。燼（`heat`）soft 池的典型帶：`[0,max)` 無；`[max, 1.25max)` 燼滯（性能懲罰）；`[1.25max, 1.5max)` 燼爆（每回合隨機部件受損（`onTurnStart` 鉤子 `damage` 動作，`layerFilter:["component"]`））；`≥1.5max` 停機（`setControl: "disabled"`）。承擔池、本能池、轉速池都用同一結構，內容包填不同帶。
 
 ## 成本與產出
 
@@ -51,6 +51,6 @@ type PoolBand = { from: NumExpr; to: NumExpr | null; effects: EffectRef[]; label
 
 1. **派生值局部重算、不全量重建**：大地圖多單位時全重算太貴；代價是 contribs 要以 path 索引。
 2. **帶效果用 `whileSource` 時鐘且互斥**：切帶時自動撤舊掛新，不需內容包手寫撤除。
-3. **sustained 鎖住的是 `max` 不是 `cur`**：ToME 原意，讓「開著護盾就少一截電能可用」直觀。
+3. **sustained 鎖住的是 `max` 不是 `cur`**：ToME 原意，讓「撐著光幕就少一截流光可用」直觀。
 4. **效果撤除在資源更新之前**：讓「中毒最後一跳」發生在上回合、不與本回合再生打架。
 5. **pending 效果再加入直接忽略**：沿用 BB，避免同一事件內遞迴刷新。
