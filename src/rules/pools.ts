@@ -76,17 +76,19 @@ export function updateBand(ctx: Ctx, owner: Owner, pool: PoolId): void {
   for (const effect of d?.bands[band]?.effects ?? []) applyEffect(ctx, effect, owner, source);
 }
 export type Cost = { owner: "mech" | "person"; pool: PoolId; amount: number; allowOverload?: boolean };
-function costOwner(unitId: Id, personId: Id | null, cost: Cost): Owner | null {
-  return cost.owner === "mech" ? { unit: unitId } : personId === null ? null : { person: personId };
+function costOwner(ctx: Ctx, unitId: Id, personId: Id | null, cost: Cost): Owner | null {
+  // 本能控制沒有指令權者，人物成本由機體同名池支付。
+  return cost.owner === "mech" || unit(ctx, unitId).controlMode === "instinct"
+    ? { unit: unitId } : personId === null ? null : { person: personId };
 }
 export function canPay(ctx: Ctx, unitId: Id, personId: Id | null, costs: Cost[]): boolean {
   const balances = new Map<string, number>();
   for (const cost of costs) {
-    const owner = costOwner(unitId, personId, cost);
+    const owner = costOwner(ctx, unitId, personId, cost);
     if (!owner || !Number.isFinite(cost.amount) || cost.amount < 0) return false;
     const p = container(ctx, owner).pools[cost.pool], d = poolDecls(ctx, owner).find(d => d.id === cost.pool);
     if (!p || !d) return false;
-    const key = JSON.stringify([cost.owner, ownerId(owner), cost.pool]), cur = balances.get(key) ?? p.cur;
+    const key = JSON.stringify(["person" in owner ? "person" : "mech", ownerId(owner), cost.pool]), cur = balances.get(key) ?? p.cur;
     const next = cur + (d.inverted ? cost.amount : -cost.amount);
     if (d.inverted ? next > p.max && !(cost.allowOverload && d.capKind === "soft") : next < d.min) return false;
     balances.set(key, next);
@@ -96,7 +98,7 @@ export function canPay(ctx: Ctx, unitId: Id, personId: Id | null, costs: Cost[])
 export function pay(ctx: Ctx, unitId: Id, personId: Id | null, costs: Cost[], reason: string): void {
   if (!canPay(ctx, unitId, personId, costs)) throw new Error("成本不可支付");
   for (const cost of costs) {
-    const owner = costOwner(unitId, personId, cost)!;
+    const owner = costOwner(ctx, unitId, personId, cost)!;
     const d = poolDecls(ctx, owner).find(d => d.id === cost.pool)!;
     changePool(ctx, owner, cost.pool, d.inverted ? cost.amount : -cost.amount, reason);
   }

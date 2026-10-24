@@ -9,11 +9,11 @@ import type { BattleSetup } from "../../src/rules/index.ts";
 import { createFactionAI, startRound, runUnitTurn, observeEvents } from "../../src/ai/index.ts";
 import { createRulesExec, createRulesQuery } from "../../src/ai/adapters/rules-adapter.ts";
 
-const { db, errors } = loadContentDirs(["content/base", "test/scenarios/pack"])   // 與 golden 同：rules 常數暫放測試 pack（見 REPORT）;
+const { db, errors } = loadContentDirs(["content/base"]);
 
 const setup: BattleSetup = {
   id: "ai-integration",
-  map: { width: 10, height: 8, fill: "terrain/plain", exits: [{ x: 0, y: 4 }] },
+  map: { width: 20, height: 8, fill: "terrain/plain", exits: [{ x: 0, y: 4 }] },
   units: [
     { id: "hound", owner: "player", frame: "frame/hound-mk2", pos: { x: 1, y: 3 },
       components: { "right-weapon": "component/autocannon-30" },
@@ -21,7 +21,8 @@ const setup: BattleSetup = {
     { id: "rival", owner: "enemy", frame: "frame/hound-mk2", pos: { x: 7, y: 2 },
       components: { "right-weapon": "component/autocannon-30" },
       persons: [{ id: "mara", def: "person/mara-okoye", seat: "pilot" }] },
-    { id: "wolf2", owner: "enemy", monster: { species: "species/tidewolf", grade: "D" }, pos: { x: 8, y: 5 } },
+    // 怪獸從後方接近，讓兩台機甲先交火，再驗本能單位的行動。
+    { id: "wolf2", owner: "enemy", monster: { species: "species/tidewolf", grade: "D" }, pos: { x: 18, y: 5 } },
   ],
   objectives: [],
   maxRounds: 6,
@@ -60,6 +61,7 @@ test("integration：rules-adapter 下 AI 對 AI 跑完不拋錯且有出手", ()
   assert.ok(r.commands.some((c) => c.kind === "end"));
   assert.ok(r.commands.some((c) => c.kind === "useAbility" && c.actor === "hound"));
   assert.ok(r.commands.some((c) => c.kind === "useAbility" && c.actor === "rival"));
+  assert.ok(r.commands.some((c) => c.actor === "wolf2" && (c.kind === "move" || c.kind === "useAbility")));
   assert.equal(r.rejected, 0);   // architecture headless (4)：AI 不下非法指令
 });
 

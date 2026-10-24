@@ -200,7 +200,7 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
     u.seats[entry.seat] = p.id;
   }
   const seats = seatsOf(ctx, u.id);
-  u.controlMode = seats.some(s => s.role === "pilot") ? "pilot" : seats.some(s => s.role === "soul") ? "soul" : "none";
+  u.controlMode = seats.some(s => s.role === "pilot") ? "pilot" : seats.some(s => s.role === "soul") ? "soul" : init.monster ? "instinct" : "none";
   for (const id of Object.keys(init.pools ?? {}).sort()) {
     if (u.pools[id]) u.pools[id]!.cur = init.pools![id]!;
     for (const seat of seats) if (person(ctx, seat.person).pools[id]) person(ctx, seat.person).pools[id]!.cur = init.pools![id]!;

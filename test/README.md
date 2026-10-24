@@ -11,6 +11,8 @@
 
 只跑一支：`node --test src/core/rng.test.ts`。
 
+戰鬥所需的 19 個規則常數、步兵、士氣與失控內容都在 `content/base`，AI 整合測試只載入 base。黃金情境另載入測試包的 `cb-*`／`pp-*` 專用內容。
+
 ## 測試放哪
 
 - 單元測試與被測檔同目錄：`src/<模組>/*.test.ts`（core：rng／numexpr／eventlog；content：content.test.ts）。

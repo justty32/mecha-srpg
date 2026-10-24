@@ -3,9 +3,19 @@ import assert from "node:assert/strict";
 import type { Command } from "../../src/core/types-state.ts";
 import { createRng } from "../../src/core/rng.ts";
 import type { Agent, AiCtx, Candidate } from "../../src/ai/index.ts";
-import { createAgent, emptyKnowledge, updateKnowledge, maskedState, dangerMap, getPolicy, selectCandidate, takeTurn } from "../../src/ai/index.ts";
+import { createAgent, emptyKnowledge, updateKnowledge, maskedState, dangerMap, getPolicy, policyIds, selectCandidate, takeTurn } from "../../src/ai/index.ts";
+import { loadContentDirs } from "../../src/content/loader.ts";
 import type { StubBattle } from "./stub-rules.ts";
 import { createStubRules, makeStubBattle } from "./stub-rules.ts";
+
+test("base 所有 aiprofile 的 policy 都已登記", () => {
+  const { db, errors } = loadContentDirs(["content/base"]);
+  assert.deepEqual(errors, []);
+  const registered = policyIds();
+  for (const profile of db.all("aiprofile")) {
+    assert.ok(registered.includes(profile.policy), `${profile.id} 指向未登記的 policy ${profile.policy}`);
+  }
+});
 
 function setup(spec: StubBattle) {
   const { q, exec } = createStubRules();

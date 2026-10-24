@@ -18,7 +18,7 @@ export function controlCheck(ctx: Ctx, unitId: Id): Id | null {
   const u = unit(ctx, unitId), seats = seatsOf(ctx, unitId);
   const pilot = seats.find(s => s.role === "pilot")?.person, soul = seats.find(s => s.role === "soul")?.person;
   let winner: Id | null;
-  if (u.controlMode === "none" || u.controlMode === "disabled") winner = null;
+  if (u.controlMode === "none" || u.controlMode === "disabled" || u.controlMode === "instinct") winner = null;
   else if (u.controlMode === "contested" && pilot && soul) {
     const a = d100(ctx.s.rng) + roleAttr(ctx, { person: pilot, unit: unitId }, "control");
     const b = d100(ctx.s.rng) + roleAttr(ctx, { person: soul, unit: unitId }, "control") + autonomyNodes(ctx, soul) * constant(ctx, "controlAutonomyK");
@@ -42,7 +42,8 @@ export function setControl(ctx: Ctx, unitId: Id, mode: ControlMode, reason: stri
 
 export function handOver(ctx: Ctx, unitId: Id): void {
   const seats = seatsOf(ctx, unitId), pilot = seats.find(s => s.role === "pilot"), soul = seats.find(s => s.role === "soul");
-  const mode: ControlMode = pilot ? "pilot" : soul ? autonomyNodes(ctx, soul.person) >= 1 ? "soul" : "disabled" : "none";
+  const mode: ControlMode = pilot ? "pilot" : soul ? autonomyNodes(ctx, soul.person) >= 1 ? "soul" : "disabled"
+    : rt(ctx.s).monsters[unitId] ? "instinct" : "none";
   setControl(ctx, unitId, mode, "hand-over");
   controlCheck(ctx, unitId);
 }
