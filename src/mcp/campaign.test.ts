@@ -77,7 +77,7 @@ test("campaign_advance：待選事件提前停、事件截斷與 choose 接續",
   assert.equal((await call("campaign_advance", { id, days: 0 })).isError, true);
 });
 
-test("campaign_auto：seed 7 greedy 一潮月 hash 等於直接 runCampaign", async () => {
+test("campaign_auto：seed 7 greedy 一蝕月 hash 等於直接 runCampaign", async () => {
   const { env, call } = setup(), { db, world } = env.world();
   const actual = data(await call("campaign_auto", { seed: 7, months: 1, policy: "greedy" }));
   const expected = runCampaign({ db, world, seed: 7, months: 1, start: "default", policy: "greedy", battle: defaultBattleRunner });

@@ -26,7 +26,7 @@ test("根元素與常駐面板：頂列、分頁、主區、記錄五色", t => 
   const { q, root } = setup(t);
   const shell = q('[data-ui="ops"]')!;
   assert.ok(shell.classList.contains("ops-view"));
-  assert.match(q('[data-ui="ops-header"]')!.textContent!, /第 1 潮月 第 15 日.*大潮.*12,400.*30,000.*嶺口/);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /第 1 蝕月 第 15 日.*大潮.*12,400.*30,000.*嶺口/);
   assert.equal(root.querySelectorAll('[data-ui="ops-tabs"] button[data-action-id^="tab:"]').length, 8);
   assert.ok(q('[data-ui="ops-header"] button[data-action-id="advance:event"]'));
   assert.match(q('[data-ui="ops-rifts"]')!.textContent!, /沼原/);
@@ -39,7 +39,7 @@ test("八個分頁各畫出主區，且只顯示當前分頁", t => {
   const { view, root } = setup(t);
   const expect: Record<string, RegExp> = {
     ship: /艦橋.*主螢幕/, world: /嶺口.*服務/, contracts: /清剿：沼原.*犬族/, roster: /林霧.*燼七/,
-    mechs: /蒼鷹.*登記號|R-0451/, ledger: /船債.*預付款/, market: /嶺口市集.*燃料/, calendar: /第 1 潮月.*今天是大潮/,
+    mechs: /蒼鷹.*登記號|R-0451/, ledger: /船債.*預付款/, market: /嶺口市集.*燃料/, calendar: /第 1 蝕月.*今天是大潮/,
   };
   for (const tab of TAB_ORDER) {
     view.render(opsFixture(tab));

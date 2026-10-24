@@ -119,7 +119,7 @@
    "類別": "營運",
    "目錄／欄位": "`world/encounters/place-*`",
    "生效？": "不會",
-   "條件／備註": "方格大地圖未實作",
+   "條件／備註": "方格大地圖已落地，但 ScenarioGen 的地點模板疊加（encounters/place-<kind>）未實作（lead-grid REPORT 剩餘）",
    "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
   },
   {
@@ -153,8 +153,8 @@
   {
    "類別": "營運",
    "目錄／欄位": "world-grid `places/`、`maps/`、`lanes/`、`regions/`、`actors/`",
-   "生效？": "不會",
-   "條件／備註": "載入器無此資料夾",
+   "生效？": "會",
+   "條件／備註": "2026-10-24 lead-grid 落地：載入器讀 maps／places／lanes／regions／wterrains／actors，npm run check 驗列長、圖例、座標、航道兩端、dark 登陸點；圖用 src/ops/content/worldgen.ts 產生",
    "來源": "[gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)"
   },
   {

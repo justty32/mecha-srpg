@@ -154,7 +154,7 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
       for (const [p, t] of [["spring", "大潮"], ["neap", "小潮"], ["ordinary", "平潮"]]) legend.append(el(doc, "span", t, `ops-day phase-${p}`));
       const up = el(doc, "ul", "", "ops-upcoming");
       for (const u of c.upcoming) up.append(el(doc, "li", `第 ${u.day} 日：${u.text}`));
-      return [el(doc, "h2", `第 ${c.month} 潮月（今天第 ${c.dom} / ${c.daysPerMonth} 日）`),
+      return [el(doc, "h2", `第 ${c.month} 蝕月（今天第 ${c.dom} / ${c.daysPerMonth} 日）`),
         el(doc, "p", c.nextSpringIn === 0 ? "今天是大潮。" : `距下個大潮 ${c.nextSpringIn} 天。`), grid,
         legend, el(doc, "h3", "近期"), up];
     }],

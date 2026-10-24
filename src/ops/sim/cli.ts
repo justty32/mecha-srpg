@@ -47,14 +47,14 @@ export function main(args: string[]): number {
     const period = world.require("calendar", s.calendar).daysPerMonth, elapsed = s.clock.day - firstDay;
     if (elapsed > 0 && elapsed % period === 0) {
       const row = { ...dailySummary(s, createOpsCtx(s, db, world)), month: elapsed / period, day: s.clock.day };
-      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕格數=${row.blighted} 裂縫數=${row.rifts} 行動者=${row.actors} 累計遭遇=${row.encounters} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
+      console.log(`蝕月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕格數=${row.blighted} 裂縫數=${row.rifts} 行動者=${row.actors} 累計遭遇=${row.encounters} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
     }
   }, db, world, start, months, seed, policy: selectedPolicy, continueAfterEnd, ...(noBattle ? {} : { battle: defaultBattleRunner }) });
   if (result.summary.length !== months) {
     // 戰役終局（債務扣船、名冊無駕駛）是合法結局：印出終局行；沒有終局事件卻提早停才算錯。
     const end = result.state.log.find(e => e.type === "CampaignEnd");
     if (!end) throw new Error(`campaign-ended-early: requested=${months} completed=${result.summary.length} day=${result.state.clock.day}`);
-    console.log(`終局 day=${end.day} reason=${String(end.payload.reason ?? "")} 完成潮月=${result.summary.length}/${months}（加 --continue-after-end 讓世界跑滿）`);
+    console.log(`終局 day=${end.day} reason=${String(end.payload.reason ?? "")} 完成蝕月=${result.summary.length}/${months}（加 --continue-after-end 讓世界跑滿）`);
   }
 
   const events = result.state.log;

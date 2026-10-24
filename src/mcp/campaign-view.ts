@@ -273,7 +273,7 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
     id, clock: { ...state.clock }, room: { id: screen.room.id, title: screen.room.title, exits: screen.room.exits }, panels, log, logOmitted: omitted,
     pendingTicks: state.pendingTicks, ...(state.pendingEncounter ? { pendingEncounter: structuredClone(state.pendingEncounter) } : {}), ...(pendingBattle ? { pendingBattle } : {}) };
   const summary = [prompt?.summary ?? "",
-    `${id}｜潮月 ${state.clock.month} 第 ${state.clock.dom} 天（day=${state.clock.day}）｜${screen.room.title}`,
+    `${id}｜蝕月 ${state.clock.month} 第 ${state.clock.dom} 天（day=${state.clock.day}）｜${screen.room.title}`,
     ...(brief ? [] : screen.room.desc), `現金 ${money(state.ledger.balances.cash)}；債務 ${money(state.ledger.balances.debt)}；人數 ${Object.keys(state.roster.persons).length}。`,
     ...hangar.map(mechText), `人員：${roster.map(p => `${p.name} ${p.role} 薪資 ${money(p.wage)} 欠薪 ${money(p.owed)}`).join("；")}`,
     showMap ? `世界圖（自 ${here ?? `${state.ship.pos.cell.x},${state.ship.pos.cell.y}`}；天數／燃料）：${worldMap.map(n => `${n.id} ${n.name} (${n.cell.x},${n.cell.y}) ${n.days} 天/${n.fuel}`).join("；") || "沒有可達地點"}` : "",

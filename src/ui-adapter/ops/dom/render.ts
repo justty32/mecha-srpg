@@ -71,11 +71,11 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
     date.dataset.ui = "ops-date";
     const fuel = meter(doc, "燃料", h.fuel.cur, h.fuel.max, "fuel");
     const hull = meter(doc, "船體", h.hull.cur, h.hull.max, "hull");
-    facts.replaceChildren(date, fact("潮相", h.phaseName, `phase-${h.phase}`),
+    facts.replaceChildren(date, fact("蝕相", h.phaseName, `phase-${h.phase}`),
       fact("現金", money(h.cash), h.cash < 0 ? "neg" : ""), fact("債", money(h.debt), h.debt > 0 ? "neg" : ""),
       fact("所在", `${h.location}${h.docked ? "（停泊）" : ""}`),
       fact("航程", h.route ? `→ ${h.route.toName}・剩 ${h.route.daysLeft} 天` : "—"),
-      fact("潮壓", String(h.pressure)), fuel, hull);
+      fact("蝕壓", String(h.pressure)), fuel, hull);
   };
   const paintSide = (s: OpsSnapshot): void => {
     rifts.replaceChildren(el(doc, "h3", `裂縫（${s.panels.rifts.length}）`));

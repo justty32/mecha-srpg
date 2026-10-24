@@ -114,7 +114,7 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const prompt = screen.prompt ? { text: screen.prompt.text, choices: screen.prompt.choices.map(c => ({ n: c.n, text: c.text, enabled: !c.disabled, ...(c.disabled ? { reason: c.disabled } : {}) })),
     naming: (pending as Partial<NamingPrompt>)?.naming ? { placeholder: "請輸入名字" } : null } : null;
   const snapshot: OpsSnapshot = {
-    header: { ...s.clock, daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 潮月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
+    header: { ...s.clock, daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 蝕月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
       cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, location: route ? `航行中 → ${targetName}` : here ? name(here) : `${s.ship.pos.cell.x},${s.ship.pos.cell.y}`,
       route: route ?? null, docked, pressure: s.pressure,
       fuel: { cur: s.ship.fuel.cur, max: s.ship.fuel.max }, hull: { cur: s.ship.hull.cur, max: s.ship.hull.max } },
@@ -140,7 +140,7 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     calendar: { dom: s.clock.dom, daysPerMonth: cal.daysPerMonth, month: s.clock.month, days,
       nextSpringIn: Array.from({ length: cal.daysPerMonth }, (_, i) => i).find(i => clock(s.clock.day + i, cal).phase === "spring") ?? cal.daysPerMonth,
       upcoming: [...contracts.filter(c => ["active", "stage"].includes(c.status)).map(c => ({ day: c.deadlineDay, text: `${c.title}到期` })),
-        { day: s.clock.day + cal.daysPerMonth - s.clock.dom + 1, text: "新潮月：薪資結算" }].sort((a, b) => a.day - b.day) },
+        { day: s.clock.day + cal.daysPerMonth - s.clock.dom + 1, text: "新蝕月：薪資結算" }].sort((a, b) => a.day - b.day) },
     panels: { rifts: Object.values(s.rifts).map(r => ({ id: r.id, nodeName: name(r.site), phaseName: label(r.phase), width: r.width })),
       queue: s.jobs.map(j => ({ id: j.id, text: `${label(j.kind)}：${name(j.target)} ${j.doneHours}/${j.needHours}`, progress: j.needHours ? Math.min(1, j.doneHours / j.needHours) : 1 })) },
     log: screen.log, prompt, sortie, battle: ui.battle, report: ui.report, message: ui.message, keyHints: [], showHelp: ui.showHelp, over,

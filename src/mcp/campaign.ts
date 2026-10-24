@@ -297,7 +297,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
       const s = session(args.id); requireIdle(s);
       return execute(s, { v: "wait", days: integer(args.days, "days", 1) }, true);
     }),
-    define("campaign_auto", "全自動跑 N 潮月，回每月摘要、最終帳本與 hash；不建立互動 session。", {
+    define("campaign_auto", "全自動跑 N 蝕月，回每月摘要、最終帳本與 hash；不建立互動 session。", {
       seed: seedSchema, months: { type: "integer", minimum: 0 },
       policy: { type: "string", enum: ["idle", "greedy", "random"] }, start: startSchema,
       battles: { type: "boolean", default: true },
@@ -309,7 +309,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
       const { db, world } = env.world();
       const output = runCampaign({ db, world, seed, months, start, policy, ...(args.battles === false ? {} : { battle: defaultBattleRunner }) });
       const final = dailySummary(output.state, createOpsCtx(output.state, db, world)), hash = campaignHash(output.state);
-      return okResult(`自動完成 ${months} 潮月（${policy}）：現金 ${money(final.cash)}、債務 ${money(final.debt)}、人數 ${final.persons}；${output.commands.length} 條指令；hash=${hash}。`,
+      return okResult(`自動完成 ${months} 蝕月（${policy}）：現金 ${money(final.cash)}、債務 ${money(final.debt)}、人數 ${final.persons}；${output.commands.length} 條指令；hash=${hash}。`,
         { summary: output.summary, final, commandCount: output.commands.length, hash });
     }),
     define("campaign_save", "回傳可重播的 blob；可選 path 寫入檔案（相對專案根或絕對路徑）。", {

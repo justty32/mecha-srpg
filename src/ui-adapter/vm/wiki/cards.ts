@@ -20,7 +20,7 @@ const labels: Record<string, string> = {
   min: "下限", max: "上限", initial: "初始值", regen: "恢復", pool: "資源池", owner: "持有者",
   amount: "數量", type: "類型", id: "識別碼", name: "名稱", capKind: "上限類型",
   inverted: "反向", bands: "區間效果", onDepleted: "耗盡效果", accuracy: "命中修正",
-  founded: "成立", hq: "總部", leaders: "領袖", ideology: "信條", places: "據點", mechSeries: "摹機系列",
+  founded: "成立", hq: "總部", leaders: "領袖", ideology: "信條", places: "據點", mechSeries: "衍型機系列",
   mercPolicy: "對傭兵", generosity: "大方度", reliability: "守約度", note: "備註", ancientMech: "藍本古代機",
   foundAt: "發現地", foundDate: "發現時間", pilot: "駕駛員", gameRef: "遊戲資料", doctrine: "研發特色",
   born: "生", died: "歿", role: "身分", mech: "座機", period: "時代", characters: "人物",

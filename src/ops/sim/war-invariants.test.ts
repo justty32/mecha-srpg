@@ -19,7 +19,7 @@ const fakeBattle: BattleRunner = (state, ctx, sortie) => {
 };
 
 const seeds = [1, 2, 3, 7, 17, 42] as const;
-test("六 seed × idle/random/merc × 六潮月：逐日戰爭不變量", { timeout: 60000 }, () => {
+test("六 seed × idle/random/merc × 六蝕月：逐日戰爭不變量", { timeout: 60000 }, () => {
   const { ctx } = fixture();
   for (const policy of ["idle", "random", "merc"] as const) for (const seed of seeds) {
     let metrics = initialWarMetrics(fixture(seed).s);
@@ -65,7 +65,7 @@ test("七日等待與七次單日等待：作戰外交事件及 state 同值", (
   assert.equal(campaignHash(batch), campaignHash(single));
 });
 
-test("外交變態只在第 2 段；研發事件只在潮月首日", () => {
+test("外交變態只在第 2 段；研發事件只在蝕月首日", () => {
   const { ctx } = fixture();
   const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 6, policy: "idle", continueAfterEnd: true,
     battle: fakeBattle });

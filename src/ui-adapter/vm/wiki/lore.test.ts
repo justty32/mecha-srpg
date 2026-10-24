@@ -140,7 +140,7 @@ test("lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清
   assert.equal(relations.rows[0][0].ref.note, "航線爭議");
   assert.deepEqual(relations.rows[0][2], { t: "text", v: "航線爭議" });
   const raw = section(page, "其他原始資料", "raw");
-  for (const field of ["類型", "規模", "成立", "總部", "領袖", "信條", "據點", "摹機系列", "對傭兵", "藍本古代機", "relations", "body", "gameRefs"]) {
+  for (const field of ["類型", "規模", "成立", "總部", "領袖", "信條", "據點", "衍型機系列", "對傭兵", "藍本古代機", "relations", "body", "gameRefs"]) {
     assert.ok(!raw.rows.some(r => r.label === field), field);
   }
   const event = entryPage(index, "lore:event/founding");

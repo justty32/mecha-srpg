@@ -15,7 +15,7 @@ const labels: Record<string, string> = {
   fuel: "燃料", material: "材料", ticket: "支援券", "soul-rental": "機魂租賃", ammo: "彈藥", air: "空路", ground: "陸路", ferry: "渡航",
   repair: "修理", rebuild: "重建", research: "研究", graft: "移植", incubate: "孕育", install: "安裝", mod: "改裝", restrain: "拘束維護", mount: "屍體改裝", embalm: "防腐", prune: "修剪",
   alive: "生還", dead: "死亡", retreated: "撤離", "derelict-recovered": "棄機回收", "derelict-lost": "機體流失", captured: "被俘",
-  ship: "船艙", world: "世界圖", contracts: "契約", roster: "名冊", mechs: "機體", ledger: "帳本", market: "市場", calendar: "潮曆",
+  ship: "船艙", world: "世界圖", contracts: "契約", roster: "名冊", mechs: "機體", ledger: "帳本", market: "市場", calendar: "蝕曆",
   insect: "蟲族", beast: "獸族", alien: "異形", mycel: "菌絲", mycelium: "菌絲", passenger: "乘員",
 };
 export const label = (id: string): string => labels[id] ?? id;

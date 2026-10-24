@@ -23,7 +23,7 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   await page.goto("/?seed=3&spectate=1&anim=off#/ops");
   const root = page.locator('[data-page="ops"] [data-ui="ops"]');
   await expect(root).toBeVisible();
-  await expect(root.locator('[data-ui="ops-header"]')).toContainText("第 1 潮月");
+  await expect(root.locator('[data-ui="ops-header"]')).toContainText("第 1 蝕月");
   await expect(root.locator('[data-ui="ops-tabs"] button[data-action-id="tab:world"] kbd')).toBeVisible();
   await shot(page, "ship");
 

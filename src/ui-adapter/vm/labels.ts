@@ -2,7 +2,7 @@
 // 只管 UI 顯示；內容包的名稱（部位、能力、人物…）一律從 def.name 取，不放這裡。
 import type { ContentDB } from "../../content/contentdb.ts";
 const LAYER: Record<string, string> = { shield: "護盾", armor: "裝甲", chitin: "甲殼", flesh: "肉體", organ: "器官",
-  "cockpit-shell": "駕駛艙殼", component: "組件", structure: "結構", "resonant-shell": "共鳴殼" };
+  "cockpit-shell": "駕駛艙殼", component: "組件", structure: "結構", "resonant-shell": "共鳴裝甲" };
 export function layerTypeLabel(db: ContentDB, id: string): string {
   const name = db.registries["layer-types"][id]?.name;
   return name && name !== id ? name : LAYER[id] ?? id;

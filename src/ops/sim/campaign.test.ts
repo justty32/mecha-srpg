@@ -34,7 +34,7 @@ test("船位置不變量：存在的圖與可進格；未知圖和不可進格�
   s.ship.pos = original; s.ship.hull.cur = hull;
   assert.deepEqual(checkInvariants(s, ctx.world), []);
 });
-test("idle 12 潮月：每天不變量全空", () => {
+test("idle 12 蝕月：每天不變量全空", () => {
   const { s, ctx } = fixture(); let days = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
   assert.equal(days, 6 * 28); assert.equal(result.summary.length, 6);
@@ -65,13 +65,13 @@ test("continueAfterEnd：終局後世界照走，原政策不再行動", () => {
   assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "ship-seized").length, 1);
   assert.ok(result.state.log.some(e => e.type === "DaySummary" && e.day > 168));
 });
-test("greedy 加不打戰鬥的假 runner 跑 6 潮月", () => {
+test("greedy 加不打戰鬥的假 runner 跑 6 蝕月", () => {
   const { ctx } = fixture(); let calls = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 2, months: 6, policy: "greedy",
     battle: (state, battleCtx, sortie) => { calls++; return fakeBattle(state, battleCtx, sortie); } });
   assert(calls > 0); assert.equal(result.summary.length, 6); assert.deepEqual(checkInvariants(result.state), []);
 });
-test("random 三個 seed 各 6 潮月，每天不變量全空", () => {
+test("random 三個 seed 各 6 蝕月，每天不變量全空", () => {
   const { ctx } = fixture();
   for (const seed of [1, 7, 42]) {
     let days = 0;

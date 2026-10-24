@@ -46,7 +46,7 @@ function readBands(source = "wf/workflows/content/numeric-bands.json"): Bands {
     if (!raw || typeof raw !== "object") { result.unchecked.push(`第 ${index} 列：格式無法解析`); continue; }
     const row = raw as Record<string, unknown>, category = String(row.類別 ?? ""), metric = String(row.指標 ?? "");
     const label = `第 ${index} 列 ${category} ${metric}`;
-    const key: BandKey | undefined = category === "摹機" && metric === "總層 HP" ? "frameHp"
+    const key: BandKey | undefined = category === "衍型機" && metric === "總層 HP" ? "frameHp"
       : category === "怪獸" && metric.startsWith("總層 HP") ? "monsterHp"
       : category === "能力" && metric.startsWith("AP 成本") ? "ap"
       : category === "能力" && metric.startsWith("單發傷害") ? "damage"
@@ -129,7 +129,7 @@ function scanBands(db: ContentDB, spawn: UnitSpawn, warnings: string[], bands: B
     if (hardMax !== undefined && value > hardMax) findings.push({ id: owner, grade, field: `${field} 硬上限`, value, min: 0, max: hardMax,
       message: `${field} ${value} > ${grade} 級${area ? "範圍每目標" : ""}硬上限 ${hardMax}` });
   };
-  check(id, monster ? "怪獸總層 HP" : "摹機總層 HP", hp, monster ? "monsterHp" : "frameHp");
+  check(id, monster ? "怪獸總層 HP" : "衍型機總層 HP", hp, monster ? "monsterHp" : "frameHp");
   // 動態戰場／目標數值無單一靜態值，明列未量測，避免捏造為零。
   const number = (expr: NumExpr): number => evalNum(expr, { ref(path) {
     if (path === "self.grade") return "DCBAS".indexOf(grade);

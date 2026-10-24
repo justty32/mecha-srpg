@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { healthFailures, measureHealth } from "./health.ts";
 
-test("grid-health：greedy seed 1 十二潮月退化判準；不合格輸入必須變紅", () => {
+test("grid-health：greedy seed 1 十二蝕月退化判準；不合格輸入必須變紅", () => {
   const row = measureHealth("greedy", 1);
   assert.deepEqual(healthFailures(row), []);
   assert.ok(healthFailures({ ...row, blight12: row.land * 0.15 }).includes("blight12>=15%"));

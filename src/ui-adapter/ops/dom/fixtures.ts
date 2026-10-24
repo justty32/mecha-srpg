@@ -13,7 +13,7 @@ const TAB_NAMES: [OpsTab, string, string][] = [["ship", "船艙", "F1"], ["world
 export function opsFixture(tab: OpsTab = "ship"): OpsSnapshot {
   return {
     header: {
-      day: 15, month: 1, dom: 15, daysPerMonth: 28, phase: "spring", phaseName: "大潮", dateText: "第 1 潮月 第 15 日（大潮）",
+      day: 15, month: 1, dom: 15, daysPerMonth: 28, phase: "spring", phaseName: "大潮", dateText: "第 1 蝕月 第 15 日（大潮）",
       cash: 12400, debt: 30000, location: "嶺口", route: null, docked: true, pressure: 3,
       fuel: { cur: 40, max: 60 }, hull: { cur: 85, max: 100 },
     },

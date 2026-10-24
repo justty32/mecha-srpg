@@ -15,7 +15,7 @@
   {
    "序": "1",
    "優先": "P1",
-   "項目": "方格大地圖實作（world-grid 七段切線）",
+   "項目": "已完成（lead-grid，2026-10-24，commit 9b561da／1a0ae23／2c8d2d5／77137ff／c9c42f8）：方格大地圖實作（world-grid 七段切線）；剩餘：另外四張地球圖與完整月面內容（交內容線，用 src/ops/content/worldgen.ts）、地點模板 encounters/place-*、護送綁商隊／join 綁 force、交涉對白、carriesShip:false 月面載具，見 handoffs/lead-grid/REPORT.md",
    "來源": "[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)",
    "影響": "營運仍是節點圖：places／maps／lanes／regions／actors 與 `encounters/place-*` 填了不生效；沙盒、野外遭遇、追擊迴避、每洲一張圖都卡在這",
    "建議做法": "照 plan-world-grid 切線：(1) ops/content＋grid＋40×40 測試圖 →(2) move／places／tick 段 3 →(3) 蝕塊 →(4) actors／fog／遭遇 →(5) scenario／contracts／text →(6) 六張正式圖產生器＋地點座標＋航道 →(7) ui-ops 大地圖面板（GridView 共用）；驗收 `sim:campaign --months 12`＋六組測試、退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
@@ -54,7 +54,7 @@
    "項目": "第二年經濟崩",
    "來源": "[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)、[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)",
    "影響": "greedy 24 潮月現金 25.9k→5.0k；8 節點第 12 潮月前全被蝕化；勢力無現金與人口帳",
-   "建議做法": "蝕域擴張速率與契約供應重調（大地圖落地後在格上重做）；收復地盤報酬；勢力帳本另議",
+   "建議做法": "蝕塊已落地（lead-grid）：24 潮月 greedy 三 seed 不終局、蝕格 11–16%；但 cx-grid-verify 把偵察／護送契約報酬加倍後預設 seed 第 24 潮月現金約 15 萬、債務未動——現在偏寬，需在格上重調報酬、供給與勢力帳本；量測用 npm run sim:grid-health（-- --months 24）",
    "規模": "中"
   },
   {
