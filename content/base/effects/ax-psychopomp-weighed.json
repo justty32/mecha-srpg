@@ -1,0 +1,41 @@
+{
+  "id": "effect/ax-psychopomp-weighed",
+  "name": "心重於羽",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/ax-psychopomp-weighed"
+    }
+  ],
+  "hooks": {
+    "onTurnStart": [
+      {
+        "do": "damage",
+        "packets": [
+          {
+            "type": "energy",
+            "amount": 6
+          }
+        ],
+        "target": "self"
+      }
+    ]
+  },
+  "tags": [
+    "ancient",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "心重於羽"
+  }
+}

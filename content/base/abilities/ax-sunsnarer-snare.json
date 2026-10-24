@@ -1,0 +1,63 @@
+{
+  "id": "ability/ax-sunsnarer-snare",
+  "name": "縛日・長晝之結",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "ax-trick",
+      "owner": "mech",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 10
+    }
+  ],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/ax-sunsnarer-bound"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1,
+      "debuff": 1
+    }
+  },
+  "cooldown": 2
+}

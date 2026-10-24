@@ -1,0 +1,40 @@
+{
+  "id": "ability/ax-plumed-morningstar",
+  "name": "晨星之矢",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 8
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 28
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "accuracy": 10
+}

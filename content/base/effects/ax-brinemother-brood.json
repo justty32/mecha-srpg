@@ -1,0 +1,30 @@
+{
+  "id": "effect/ax-brinemother-brood",
+  "name": "十一怪之胎",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "spawn",
+        "species": "species/tidewolf",
+        "grade": "D",
+        "at": "adjacent"
+      }
+    ]
+  },
+  "tags": [
+    "ancient",
+    "summon"
+  ],
+  "ui": {
+    "badge": "十一怪之胎"
+  }
+}

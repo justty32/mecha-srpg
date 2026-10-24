@@ -1,0 +1,59 @@
+{
+  "id": "ability/ax-lotus-ribbon",
+  "name": "混天綾・翻江",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 12
+    }
+  ],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/ax-lotus-entangled"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1,
+      "debuff": 1,
+      "attackArea": 0.6
+    }
+  },
+  "cooldown": 3
+}

@@ -1,0 +1,64 @@
+{
+  "id": "ability/ax-watchhorn-gjallarhorn",
+  "name": "加拉爾號角・九界同聞",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "ax-vigil",
+      "owner": "mech",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 6
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/ax-watchhorn-gjallarhorn"
+      ]
+    },
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-watchhorn-gjallarhorn"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 3,
+      "protect": 2
+    }
+  },
+  "usesPerBattle": 1
+}

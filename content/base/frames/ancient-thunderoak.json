@@ -1,0 +1,72 @@
+{
+  "id": "frame/ancient-thunderoak",
+  "name": "佩倫",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-colossus",
+  "baseAttrs": {
+    "accuracy": 8,
+    "evasion": 4,
+    "resolve": 10,
+    "initiative": 4,
+    "perception": 6,
+    "control": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ax-thunder",
+      "name": "雷荷",
+      "min": 0,
+      "max": 3,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 3,
+      "regen": 1,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-thunderoak-thunderaxe",
+    "ability/ax-thunderoak-oak-judgment"
+  ],
+  "resonance": {
+    "beliefs": [
+      "never-retreat",
+      "keep-oaths"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "stood-under-the-oak"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "id": "frame/ancient-skybearer",
+  "name": "阿特拉斯",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-colossus",
+  "baseAttrs": {
+    "accuracy": 7,
+    "evasion": 4,
+    "resolve": 10,
+    "initiative": 4,
+    "perception": 6,
+    "control": 10
+  },
+  "pools": [
+    {
+      "id": "ax-sky",
+      "name": "天穹之重",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": 0,
+      "bands": [
+        {
+          "from": 60,
+          "to": null,
+          "effects": [
+            "effect/ax-skybearer-skyburden"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-skybearer-hold-sky",
+    "ability/ax-skybearer-earthshaker",
+    "ability/ax-skybearer-unburden"
+  ],
+  "resonance": {
+    "beliefs": [
+      "bear-the-weight",
+      "atonement"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "held-up-the-sky"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient"
+  ]
+}

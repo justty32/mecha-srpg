@@ -1,0 +1,40 @@
+{
+  "id": "effect/ax-chainbreaker-unbound",
+  "name": "格萊普尼爾已斷",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-chainbreaker-unbound"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 10,
+      "source": "effect/ax-chainbreaker-unbound"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -5,
+      "source": "effect/ax-chainbreaker-unbound"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "格萊普尼爾已斷"
+  }
+}

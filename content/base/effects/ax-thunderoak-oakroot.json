@@ -1,0 +1,41 @@
+{
+  "id": "effect/ax-thunderoak-oakroot",
+  "name": "橡根・立誓不移",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -10,
+      "source": "effect/ax-thunderoak-oakroot"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-thunderoak-oakroot"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 10,
+      "source": "effect/ax-thunderoak-oakroot"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff",
+    "rooted"
+  ],
+  "ui": {
+    "badge": "橡根・立誓不移"
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "id": "ability/ax-riastrad-ford-guard",
+  "name": "守淺灘・誓不容過",
+  "mode": "reaction",
+  "costs": [
+    {
+      "pool": "fatigue",
+      "owner": "person",
+      "amount": 12
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 28,
+      "armorPen": 0.2
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "protect": 2
+    }
+  },
+  "trigger": {
+    "event": "enemyLeavesAdjacent",
+    "oncePer": "turn"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-serpenteater-amrita",
+  "name": "甘露・毋再為奴",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-serpenteater-amrita"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 10,
+      "source": "effect/ax-serpenteater-amrita"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "甘露・毋再為奴"
+  }
+}

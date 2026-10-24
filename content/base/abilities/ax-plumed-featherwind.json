@@ -1,0 +1,64 @@
+{
+  "id": "ability/ax-plumed-featherwind",
+  "name": "羽風・迎回流亡者",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "ax-sun",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/ax-plumed-featherwind"
+      ]
+    },
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-plumed-featherwind"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 2,
+      "protect": 2
+    }
+  },
+  "cooldown": 2
+}

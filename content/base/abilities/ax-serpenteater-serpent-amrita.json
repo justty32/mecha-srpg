@@ -1,0 +1,64 @@
+{
+  "id": "ability/ax-serpenteater-serpent-amrita",
+  "name": "啖蛇・奪甘露",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "ax-amrita",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 40,
+      "armorPen": 0.3
+    }
+  ],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-serpenteater-amrita"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 2,
+      "buff": 1
+    }
+  },
+  "cooldown": 3
+}

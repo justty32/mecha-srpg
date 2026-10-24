@@ -1,0 +1,57 @@
+{
+  "id": "frame/ancient-chainbreaker",
+  "name": "芬里爾",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-hound",
+  "baseAttrs": {
+    "accuracy": 8,
+    "evasion": 6,
+    "resolve": 8,
+    "initiative": 9,
+    "perception": 7,
+    "control": 4
+  },
+  "pools": [
+    {
+      "id": "ax-wrath",
+      "name": "怒",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 10,
+      "bands": [
+        {
+          "from": 60,
+          "to": null,
+          "effects": [
+            "effect/ax-chainbreaker-wrath"
+          ],
+          "label": "吞日之怒"
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-chainbreaker-jaws",
+    "ability/ax-chainbreaker-unbound",
+    "ability/ax-chainbreaker-howl"
+  ],
+  "resonance": {
+    "beliefs": [
+      "break-chains",
+      "revenge"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "slipped-the-leash"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient",
+    "quadruped"
+  ]
+}

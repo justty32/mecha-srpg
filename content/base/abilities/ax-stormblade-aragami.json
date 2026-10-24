@@ -1,0 +1,57 @@
+{
+  "id": "ability/ax-stormblade-aragami",
+  "name": "荒神・逐天之嵐",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "ax-storm",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-stormblade-aragami"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "attack": 0.4
+    }
+  },
+  "cooldown": 3
+}

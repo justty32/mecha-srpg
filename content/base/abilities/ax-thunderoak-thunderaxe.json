@@ -1,0 +1,51 @@
+{
+  "id": "ability/ax-thunderoak-thunderaxe",
+  "name": "雷斧・劈開蛇影",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "ax-thunder",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 26
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "attackArea": 1
+    }
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "id": "ability/ax-chainbreaker-unbound",
+  "name": "斷鏈・六物皆空",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "ax-wrath",
+      "owner": "mech",
+      "amount": 60
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-chainbreaker-unbound"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1.2,
+      "attack": 0.3
+    }
+  },
+  "cooldown": 3
+}

@@ -1,0 +1,38 @@
+{
+  "id": "effect/ax-psychopomp-procession",
+  "name": "冥途同行",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 20,
+      "source": "effect/ax-psychopomp-procession"
+    }
+  ],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "spawn",
+        "species": "species/mite",
+        "grade": "D",
+        "at": "adjacent"
+      }
+    ]
+  },
+  "tags": [
+    "ancient",
+    "buff",
+    "summon"
+  ],
+  "ui": {
+    "badge": "冥途同行"
+  }
+}

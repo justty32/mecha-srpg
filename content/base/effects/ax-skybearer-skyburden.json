@@ -1,0 +1,48 @@
+{
+  "id": "effect/ax-skybearer-skyburden",
+  "name": "天穹壓肩",
+  "scope": "mech",
+  "clock": {
+    "kind": "whileSource"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "effect/ax-skybearer-skyburden"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": {
+        "pick": {
+          "if": {
+            "cmp": {
+              "a": {
+                "ref": "self.pools.ax-sky.cur"
+              },
+              "op": ">=",
+              "b": 100
+            }
+          },
+          "then": -15,
+          "else": 0
+        }
+      },
+      "source": "effect/ax-skybearer-skyburden"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "pool-band",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "天穹壓肩"
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "id": "ability/ax-lotus-reborn",
+  "name": "蓮花化身・此身還我",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-lotus-reborn"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "escape": 0.7
+    }
+  },
+  "usesPerBattle": 1,
+  "cooldown": 3
+}

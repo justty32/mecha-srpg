@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-watchhorn-bifrost",
+  "name": "虹橋守・草木皆聞",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-watchhorn-bifrost"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/ax-watchhorn-bifrost"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "虹橋守・草木皆聞"
+  }
+}

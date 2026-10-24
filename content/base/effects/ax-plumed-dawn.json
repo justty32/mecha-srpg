@@ -1,0 +1,27 @@
+{
+  "id": "effect/ax-plumed-dawn",
+  "name": "晨星開眼",
+  "scope": "mech",
+  "clock": {
+    "kind": "whileSource"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 8,
+      "source": "effect/ax-plumed-dawn"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "pool-band"
+  ],
+  "ui": {
+    "badge": "晨星開眼"
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "id": "effect/ax-plumed-featherwind",
+  "name": "羽風・返鄉者",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-plumed-featherwind"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "羽風・返鄉者"
+  }
+}

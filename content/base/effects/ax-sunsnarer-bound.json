@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-sunsnarer-bound",
+  "name": "日足入網",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -8,
+      "source": "effect/ax-sunsnarer-bound"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -10,
+      "source": "effect/ax-sunsnarer-bound"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "日足入網"
+  }
+}

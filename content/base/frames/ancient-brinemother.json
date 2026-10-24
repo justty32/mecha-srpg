@@ -1,0 +1,47 @@
+{
+  "id": "frame/ancient-brinemother",
+  "name": "提亞瑪特",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-serpent",
+  "baseAttrs": {
+    "accuracy": 7,
+    "evasion": 4,
+    "resolve": 10,
+    "initiative": 4,
+    "perception": 8,
+    "control": 8
+  },
+  "pools": [
+    {
+      "id": "ax-brine",
+      "name": "鹹水",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 100,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-brinemother-tide",
+    "ability/ax-brinemother-brood"
+  ],
+  "resonance": {
+    "beliefs": [
+      "protect-kin",
+      "revenge"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "mourned-apsu"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient",
+    "amphibious"
+  ]
+}

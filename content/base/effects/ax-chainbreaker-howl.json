@@ -1,0 +1,35 @@
+{
+  "id": "effect/ax-chainbreaker-howl",
+  "name": "諸神黃昏之嗥",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -10,
+      "source": "effect/ax-chainbreaker-howl"
+    }
+  ],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "moraleCheck",
+        "dc": 50
+      }
+    ]
+  },
+  "tags": [
+    "ancient",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "諸神黃昏之嗥"
+  }
+}

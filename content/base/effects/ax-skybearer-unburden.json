@@ -1,0 +1,30 @@
+{
+  "id": "effect/ax-skybearer-unburden",
+  "name": "卸重・天地一息",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "ax-sky",
+        "delta": -60
+      }
+    ]
+  },
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "卸重・天地一息"
+  }
+}

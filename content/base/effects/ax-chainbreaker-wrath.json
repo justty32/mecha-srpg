@@ -1,0 +1,28 @@
+{
+  "id": "effect/ax-chainbreaker-wrath",
+  "name": "吞日之怒",
+  "scope": "mech",
+  "clock": {
+    "kind": "whileSource"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-chainbreaker-wrath"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff",
+    "pool-band"
+  ],
+  "ui": {
+    "badge": "吞日之怒"
+  }
+}

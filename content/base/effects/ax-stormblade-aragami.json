@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-stormblade-aragami",
+  "name": "荒神降身",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-stormblade-aragami"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-stormblade-aragami"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "荒神降身"
+  }
+}

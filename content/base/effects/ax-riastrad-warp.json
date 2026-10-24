@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-riastrad-warp",
+  "name": "扭曲狂・百骨倒生",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 20,
+      "source": "effect/ax-riastrad-warp"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 10,
+      "source": "effect/ax-riastrad-warp"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "扭曲狂・百骨倒生"
+  }
+}

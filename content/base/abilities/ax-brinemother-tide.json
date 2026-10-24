@@ -1,0 +1,46 @@
+{
+  "id": "ability/ax-brinemother-tide",
+  "name": "鹹潮・阿普蘇之淚",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "ax-brine",
+      "owner": "mech",
+      "amount": 5
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "radius": 1,
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 24
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "attackArea": 0.9
+    }
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "ability/ax-watchhorn-far-sight",
+  "name": "千里眼・殼針留記",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 9
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 24
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/shard-marked"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "scout": 2,
+      "debuff": 1
+    }
+  },
+  "accuracy": 15
+}

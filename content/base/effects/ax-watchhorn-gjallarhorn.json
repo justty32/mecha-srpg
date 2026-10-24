@@ -1,0 +1,34 @@
+{
+  "id": "effect/ax-watchhorn-gjallarhorn",
+  "name": "加拉爾・此刻即終戰",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 5,
+      "source": "effect/ax-watchhorn-gjallarhorn"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 15,
+      "source": "effect/ax-watchhorn-gjallarhorn"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "ancient",
+    "buff"
+  ],
+  "ui": {
+    "badge": "加拉爾・此刻即終戰"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ability/ax-riastrad-gae-bolg",
+  "name": "迦耶伯格・倒棘之槍",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "hp",
+      "owner": "person",
+      "amount": 5
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 32,
+      "armorPen": 0.35,
+      "crit": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 12
+  }
+}

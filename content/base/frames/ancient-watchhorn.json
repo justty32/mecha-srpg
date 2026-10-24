@@ -1,0 +1,47 @@
+{
+  "id": "frame/ancient-watchhorn",
+  "name": "海姆達爾",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-warden",
+  "baseAttrs": {
+    "accuracy": 8,
+    "evasion": 7,
+    "resolve": 9,
+    "initiative": 7,
+    "perception": 10,
+    "control": 9
+  },
+  "pools": [
+    {
+      "id": "ax-vigil",
+      "name": "守望",
+      "min": 0,
+      "max": 5,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 5,
+      "regen": 1,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-watchhorn-gjallarhorn",
+    "ability/ax-watchhorn-far-sight",
+    "ability/ax-watchhorn-bifrost"
+  ],
+  "resonance": {
+    "beliefs": [
+      "keep-watch",
+      "bring-them-home"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "sounded-the-horn"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient"
+  ]
+}

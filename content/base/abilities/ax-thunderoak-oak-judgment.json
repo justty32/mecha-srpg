@@ -1,0 +1,75 @@
+{
+  "id": "ability/ax-thunderoak-oak-judgment",
+  "name": "天罰・橡根之誓",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 6
+    },
+    {
+      "pool": "ax-thunder",
+      "owner": "mech",
+      "amount": 3
+    },
+    {
+      "pool": "fatigue",
+      "owner": "person",
+      "amount": 10
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 80
+    }
+  ],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 2
+  },
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 26
+    }
+  ],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/ax-thunderoak-oakroot"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 3,
+      "buff": 1
+    }
+  },
+  "cooldown": 3
+}

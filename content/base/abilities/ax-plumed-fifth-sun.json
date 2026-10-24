@@ -1,0 +1,56 @@
+{
+  "id": "ability/ax-plumed-fifth-sun",
+  "name": "第五太陽・焚盡舊夜",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 6
+    },
+    {
+      "pool": "ax-sun",
+      "owner": "mech",
+      "amount": 80
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 3
+  },
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 26
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 3
+    }
+  },
+  "cooldown": 4
+}

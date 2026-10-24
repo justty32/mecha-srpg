@@ -1,0 +1,46 @@
+{
+  "id": "frame/ancient-stormblade",
+  "name": "須佐之男",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-warden",
+  "baseAttrs": {
+    "accuracy": 9,
+    "evasion": 5,
+    "resolve": 9,
+    "initiative": 7,
+    "perception": 6,
+    "control": 7
+  },
+  "pools": [
+    {
+      "id": "ax-storm",
+      "name": "嵐",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 30,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-stormblade-cloudblade",
+    "ability/ax-stormblade-aragami"
+  ],
+  "resonance": {
+    "beliefs": [
+      "wild-storm",
+      "protect-kin"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "slew-the-serpent"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient"
+  ]
+}

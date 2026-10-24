@@ -1,0 +1,58 @@
+{
+  "id": "ability/ax-psychopomp-weigh",
+  "name": "秤心・瑪亞特之羽",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.resonance"
+        },
+        "op": ">=",
+        "b": 0.5
+      }
+    }
+  ],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 12
+    }
+  ],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/ax-psychopomp-weighed"
+      ]
+    }
+  ],
+  "tags": [
+    "ancient",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1,
+      "attack": 0.5
+    }
+  },
+  "cooldown": 2
+}

@@ -1,0 +1,64 @@
+{
+  "id": "frame/ancient-plumed",
+  "name": "魁札爾科亞特爾",
+  "cls": "ancient",
+  "grade": "S",
+  "bodyPlan": "bodyplan/ancient-winged",
+  "baseAttrs": {
+    "accuracy": 7,
+    "evasion": 8,
+    "resolve": 7,
+    "initiative": 9,
+    "perception": 10,
+    "control": 8
+  },
+  "pools": [
+    {
+      "id": "ax-sun",
+      "name": "太陽",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": {
+        "sum": [
+          10,
+          {
+            "ref": "battle.light",
+            "mul": 5
+          }
+        ]
+      },
+      "bands": [
+        {
+          "from": 80,
+          "to": null,
+          "effects": [
+            "effect/ax-plumed-dawn"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/ax-plumed-morningstar",
+    "ability/ax-plumed-featherwind",
+    "ability/ax-plumed-fifth-sun"
+  ],
+  "resonance": {
+    "beliefs": [
+      "seek-truth",
+      "atonement"
+    ],
+    "threshold": 0.5,
+    "deeds": [
+      "returned-from-exile"
+    ]
+  },
+  "repairPolicy": "repair-only",
+  "tags": [
+    "ancient",
+    "flight"
+  ]
+}
