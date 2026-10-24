@@ -1,0 +1,616 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "id",
+  "類別",
+  "等級",
+  "定位",
+  "變更"
+ ],
+ "rows": [
+  {
+   "id": "frame/corpse-bulwark",
+   "類別": "新增・屍體改裝框架",
+   "等級": "B",
+   "定位": "屍體改裝・盾甲：照 bio-bulwark 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-choir",
+   "類別": "新增・屍體改裝框架",
+   "等級": "A",
+   "定位": "屍體改裝・群喉：照 bio-choir 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-cliffjaw",
+   "類別": "新增・屍體改裝框架",
+   "等級": "A",
+   "定位": "屍體改裝・崖牙：照 bio-cliffjaw 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-hound",
+   "類別": "新增・屍體改裝框架",
+   "等級": "C",
+   "定位": "屍體改裝・掘犬：照 bio-hound 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-lancewing",
+   "類別": "新增・屍體改裝框架",
+   "等級": "C",
+   "定位": "屍體改裝・弔燈蜂：照 bio-lancewing 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-mirror",
+   "類別": "新增・屍體改裝框架",
+   "等級": "B",
+   "定位": "屍體改裝・鏡肢：照 bio-mirror 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-rotwarden",
+   "類別": "新增・屍體改裝框架",
+   "等級": "B",
+   "定位": "屍體改裝・腐衛：照 bio-rotwarden 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-sac",
+   "類別": "新增・屍體改裝框架",
+   "等級": "D",
+   "定位": "屍體改裝・浮囊：照 bio-sac 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-siegebeetle",
+   "類別": "新增・屍體改裝框架",
+   "等級": "B",
+   "定位": "屍體改裝・叩闕甲：照 bio-siegebeetle 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-spitter",
+   "類別": "新增・屍體改裝框架",
+   "等級": "C",
+   "定位": "屍體改裝・吐棘者：照 bio-spitter 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-stalk",
+   "類別": "新增・屍體改裝框架",
+   "等級": "C",
+   "定位": "屍體改裝・菌柱：照 bio-stalk 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "frame/corpse-tidespine",
+   "類別": "新增・屍體改裝框架",
+   "等級": "S",
+   "定位": "屍體改裝・潮脊：照 bio-tidespine 去 instinct 池、burden 0、tag kaiju→corpse，能力照抄",
+   "變更": "新檔"
+  },
+  {
+   "id": "effect/ax-injury-shell-migraine",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "暫時；energy × cockpit-shell/resonant-shell，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "effect/ax-injury-tendon-strain",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "暫時；kinetic/pierce × cockpit-shell/structure，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "effect/ax-injury-brine-cough",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "暫時；acid/thermal × cockpit-shell/organ/flesh，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "effect/ax-injury-phantom-limb",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "永久；kinetic/pierce × cockpit-shell/structure，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "effect/ax-injury-tinnitus",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "永久；energy/kinetic × cockpit-shell/resonant-shell，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "effect/ax-injury-scarred-lung",
+   "類別": "追加・傷勢表列",
+   "等級": "",
+   "定位": "永久；acid/thermal × cockpit-shell/organ，weight 1",
+   "變更": "rules/injuries.json 追加"
+  },
+  {
+   "id": "frame/moji-tern",
+   "類別": "補・內建攻擊",
+   "等級": "C",
+   "定位": "innateAbilities 由空補為 mx-head-vulcan；並加 tag lineage-kuafu",
+   "變更": "innateAbilities、tags"
+  },
+  {
+   "id": "frame/moji-tern-guard",
+   "類別": "補・內建攻擊",
+   "等級": "C",
+   "定位": "innateAbilities 由空補為 mx-frame-strike, mx-head-vulcan；並加 tag lineage-kuafu",
+   "變更": "innateAbilities、tags"
+  },
+  {
+   "id": "frame/hound-mk2",
+   "類別": "補・內建攻擊",
+   "等級": "C",
+   "定位": "innateAbilities 由空補為 mx-head-vulcan；並加 tag lineage-kuafu",
+   "變更": "innateAbilities、tags"
+  },
+  {
+   "id": "ability/bite",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/pounce",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/mite-swarm-bite",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 2（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/reaper-cleave",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/reaper-charge",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/root-drag",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/nest-birth",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-acid-sting",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-bare-rend",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 5（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-brood-call",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-burrow-flank",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-carapace-brace",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-carrion-gulp",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-cliff-bite",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 5（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-dissonant-hymn",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 5（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-glare-pulse",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 2（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-ground-stomp",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-horn-ram",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-knot-flare",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 5（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-mirror-turn",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 2（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-mutation-surge",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-pod-bloom",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-root-snare",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-rot-blade",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-shield-raise",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-shovel-ram",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-spine-sweep",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 6（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-spore-burst",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 2（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-spore-fog",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-spore-shroud",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-star-howl",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-tendril-lash",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 2（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-thorn-snipe",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-thorn-volley",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-throat-swallow",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 5（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-tide-crush",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 6（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-tremor-stamp",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-wall-charge",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 4（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/kx-wing-dive",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "ability/restrain",
+   "類別": "補・AP 成本",
+   "等級": "",
+   "定位": "costs [] → ap 3（owner person；本能控制時由機體 ap 池付）",
+   "變更": "costs"
+  },
+  {
+   "id": "component/arc-emitter",
+   "類別": "改名",
+   "等級": "",
+   "定位": "裂晶電弧發射器 → 裂晶弧光吼砲",
+   "變更": "name／文字"
+  },
+  {
+   "id": "ability/arc-pulse",
+   "類別": "改名",
+   "等級": "",
+   "定位": "裂晶電弧 → 裂晶弧光",
+   "變更": "name／文字"
+  },
+  {
+   "id": "component/autocannon-30",
+   "類別": "改名",
+   "等級": "",
+   "定位": "30mm 機砲 → 凡鐵連吼",
+   "變更": "name／文字"
+  },
+  {
+   "id": "component/autocannon-30 池 ammo-30",
+   "類別": "改名",
+   "等級": "",
+   "定位": "30mm 彈 → 凡鐵殼矢",
+   "變更": "name／文字"
+  },
+  {
+   "id": "ability/burst-30",
+   "類別": "改名",
+   "等級": "",
+   "定位": "30mm 連射 → 凡鐵三矢連吼",
+   "變更": "name／文字"
+  },
+  {
+   "id": "frame/moji-tern(+guard) 池 heat",
+   "類別": "改名",
+   "等級": "",
+   "定位": "熱量 → 燼",
+   "變更": "name／文字"
+  },
+  {
+   "id": "frame/moji-tern(+guard) 池 charge",
+   "類別": "改名",
+   "等級": "",
+   "定位": "電能 → 流光",
+   "變更": "name／文字"
+  },
+  {
+   "id": "frame/hound-mk2 池 heat",
+   "類別": "改名",
+   "等級": "",
+   "定位": "熱量 → 燼",
+   "變更": "name／文字"
+  },
+  {
+   "id": "component/heat-lance",
+   "類別": "改名",
+   "等級": "",
+   "定位": "熱矛 → 熾潮矛",
+   "變更": "name／文字"
+  },
+  {
+   "id": "ability/heat-lance-thrust",
+   "類別": "改名",
+   "等級": "",
+   "定位": "熱矛突刺 → 熾潮矛突刺",
+   "變更": "name／文字"
+  },
+  {
+   "id": "effect/overheat-1",
+   "類別": "改名",
+   "等級": "",
+   "定位": "過熱 I → 燼滯 I",
+   "變更": "name／文字"
+  },
+  {
+   "id": "effect/overheat-2",
+   "類別": "改名",
+   "等級": "",
+   "定位": "過熱 II → 燼滯 II",
+   "變更": "name／文字"
+  },
+  {
+   "id": "effect/perk-soul-calc-1",
+   "類別": "改名",
+   "等級": "",
+   "定位": "算・感測融合 → 算・殼目融合",
+   "變更": "name／文字"
+  },
+  {
+   "id": "world/rooms/hangar",
+   "類別": "改名",
+   "等級": "",
+   "定位": "拘束彈／電流聲 → 拘束矢／流光嗡鳴",
+   "變更": "name／文字"
+  },
+  {
+   "id": "frame/backside-white-night",
+   "類別": "改名",
+   "等級": "",
+   "定位": "白夜 → 偷天",
+   "變更": "name／文字"
+  },
+  {
+   "id": "ability/mx-white-night-fade",
+   "類別": "改名",
+   "等級": "",
+   "定位": "白夜隱沒 → 偷天換影",
+   "變更": "name／文字"
+  },
+  {
+   "id": "frame/bulwark-i",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/bulwark-i-beacon",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/bulwark-ii",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/bulwark-ii-rivet",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/bulwark-iv-rampart",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/bulwark-old-city",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/union-futu",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "加 lineage-kuafu（lore：堅盾＝摹二，夸父血統）；保留 lineage-xingtian（兩條接合）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/union-fr7",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "lineage-xingtian → lineage-kuafu（lore：軍械庫摹一檔案）",
+   "變更": "tags"
+  },
+  {
+   "id": "frame/union-at12",
+   "類別": "血統 tag",
+   "等級": "",
+   "定位": "lineage-xingtian → lineage-kuafu（lore：軍械庫摹一檔案）",
+   "變更": "tags"
+  }
+ ]
+}
