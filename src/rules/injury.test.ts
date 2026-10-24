@@ -14,6 +14,8 @@ const base = loadContentDirs(["content/base", "test/scenarios/pack"]).db;
 function fixture(edit?: (defs: Defs, rules: RulesTables) => void): Ctx {
   const defs = structuredClone(Object.fromEntries(CONTENT_KINDS.map(kind => [kind, Object.fromEntries(base.all(kind).map(d => [d.id, d]))]))) as Defs;
   const rules = structuredClone(base.rules);
+  // 單元測試只看規則：傷勢表固定為腦震盪一列，不隨 base 內容增列而變。
+  rules.injuries = rules.injuries.filter(row => row.effect === "base:effect/injury-concussion");
   for (const stage of ["shaken", "breaking", "fleeing"]) {
     defs.effect![`rtest:effect/morale-${stage}`] = { id: `rtest:effect/morale-${stage}`, name: stage, scope: "person",
       clock: { kind: "permanent" }, stack: { policy: "refresh" }, contribs: [], hooks: {}, tags: ["morale"], ui: { badge: stage } };
