@@ -1,0 +1,69 @@
+{
+ "contract": "content-batch/1",
+ "id": "rename-18",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "全庫用語改名＋翻譯腔重審（lead-content 新增檔與年表）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rn-18",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-rename",
+ "date": "2026-10-24",
+ "base": "c6ae7aa39564321986aee03fd2461b71ec8583ed",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-18",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-18/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/terms-rename.json"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "polishFiles": [
+   "content/base/frames/saltgull-tidegull-longspear.json",
+   "content/base/scenarios/nairobi-joint-cordon.json",
+   "content/lore/events/accra-unbarred-gate.json",
+   "content/lore/events/bellless-dawn.json",
+   "content/lore/events/hundred-lanterns.json",
+   "content/lore/events/kuafu-mountain-vigil.json",
+   "content/lore/events/nine-gates.json",
+   "content/lore/events/southern-sky-vigil.json",
+   "content/lore/events/wreck-crown.json",
+   "content/lore/timeline.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
