@@ -61,7 +61,7 @@ type SoulGrowth  = { tree: Id; researchPerDirection: Record<string, number>; com
 
 ## 座艙關係 SeatRole 與控制模式
 
-機體的 `cockpit` 部位宣告 `seats: SeatDecl[]`；人物進座位得到 `SeatRole = "pilot" | "soul" | "passenger"`。機甲的指令權由 `controlMode` 決定（存在 MechState）：`"pilot"`（人開，機魂給被動加成）、`"soul"`（機魂開，人只用自身能力）、`"shared"`（能力資料用 `actorRole` 指定由誰出手、成本從誰的池扣）、`"contested"`（每回合開始做控制檢定，贏者本回合握指令權；機魂研發方向可偏向爭奪）；另有三個非選擇值：`"none"`（無人且無本能：棄機後的空機體／derelict）、`"instinct"`（**無座位人物的怪獸由本能驅動**：野生裂獸、無拘束出戰的活捕獸；指令交 AI 用族的 `aiProfile`，能力成本裡「人物的池」改扣機體同名池——sim 線 2026-10-24 實作）、`"disabled"`（停機帶效果強制）。失控（承擔超限）是 `controlMode` 被效果強制改成 `"berserk"`——詳 rules-people。**怪獸意識不是人物**（2026-10-24 裁示）：活捕獸的「狂暴意志」只以機體側資料表達——`instinct` 池、機體 `burden` 宣告、族 `aiProfile`——不佔座位、不用 `Person` 骨架；屍體改裝的生物機體則無 `instinct` 池、`burden` 為 0，與摹機同規則。
+機體的 `cockpit` 部位宣告 `seats: SeatDecl[]`；人物進座位得到 `SeatRole = "pilot" | "soul" | "passenger"`。機甲的指令權由 `controlMode` 決定（存在 MechState）：`"pilot"`（人開，機魂給被動加成）、`"soul"`（機魂開，人只用自身能力）、`"shared"`（能力資料用 `actorRole` 指定由誰出手、成本從誰的池扣）、`"contested"`（每回合開始做控制檢定，贏者本回合握指令權；機魂研發方向可偏向爭奪）；另有三個非選擇值：`"none"`（無人且無本能：棄機後的空機體／derelict）、`"instinct"`（**無座位人物的怪獸由本能驅動**：野生裂獸、無拘束出戰的活捕獸；指令交 AI 用族的 `aiProfile`，能力成本裡「人物的池」改扣機體同名池——sim 線 2026-10-24 實作）、`"disabled"`（停機帶效果強制）。失控（承擔超限）是 `controlMode` 被效果強制改成 `"berserk"`——詳 rules-people。**怪獸意識不是人物**（2026-10-24 裁示）：活捕獸的「狂暴意志」只以機體側資料表達——`instinct` 池、機體 `burden` 宣告、族 `aiProfile`——不佔座位、不用 `Person` 骨架；屍體改裝的生物機體則無 `instinct` 池、`burden` 為 0，與衍型機同規則。
 
 ## 替使用者做掉的決定
 

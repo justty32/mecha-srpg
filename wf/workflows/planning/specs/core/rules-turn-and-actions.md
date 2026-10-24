@@ -12,7 +12,7 @@
 
 ## 一輪的順序（CMB-01 採用）
 
-1. **輪始**：`battle.round += 1`；跑全局事件（潮壓變化、情境腳本、`clock.kind="rounds"` 的效果遞減）；spawner 族結算生成。
+1. **輪始**：`battle.round += 1`；跑全局事件（蝕壓變化、情境腳本、`clock.kind="rounds"` 的效果遞減）；spawner 族結算生成。
 2. **排序**：每單位 `initiative = roleAttr(initiative of 指令權者) + frame.baseAttrs.initiative + contribs − fatigue.cur × k`（k 在 rules 常數檔），高者先；同分依 `unitId` 字典序（決定性）。本輪排序只算一次；輪中加入的單位排隊尾。
 3. **逐單位回合**：對排序中每個未行動單位做 §回合流程。
 4. **輪末**：未行動者（因效果跳過）視為行動過；清 Wait 旗標；寫 `RoundEnd` 事件。

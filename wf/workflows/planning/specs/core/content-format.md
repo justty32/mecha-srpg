@@ -29,7 +29,7 @@ content/<pack>/
 **部件（component）** `components/autocannon-30.json`
 ```json
 {"id":"component/autocannon-30","name":"雷雞連吼","slot":"weaponMount","size":2,"mass":3,"origin":"mechanical",
- "pools":[{"id":"ammo-30","name":"殼矢","min":0,"max":12,"capKind":"hard","inverted":false,"initial":12,"regen":0,"bands":[]}],
+ "pools":[{"id":"ammo-30","name":"矢","min":0,"max":12,"capKind":"hard","inverted":false,"initial":12,"regen":0,"bands":[]}],
  "abilities":["ability/burst-30"],"hp":20,"onBroken":["effect/weapon-jammed"],"tags":["ranged","kinetic"]}
 ```
 

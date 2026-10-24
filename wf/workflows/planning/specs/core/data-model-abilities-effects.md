@@ -13,7 +13,7 @@ type NumExpr = number
 type Cond = { tag?: string; not?: Cond; all?: Cond[]; any?: Cond[]; cmp?: { a: NumExpr; op: "<"|"<="|"=="|">="|">"; b: NumExpr } };
 ```
 
-可引用的 `RefPath` 根：`self`、`target`、`part`（當前結算的部位）、`layer`、`battle`（回合數、潮壓等全局值）、`rng`（只在 rules 層允許）。無副作用、可靜態驗證、AI 預估與實扣用同一份求值結果（TM-07、CMB-04 教訓）。
+可引用的 `RefPath` 根：`self`、`target`、`part`（當前結算的部位）、`layer`、`battle`（回合數、蝕壓等全局值）、`rng`（只在 rules 層允許）。無副作用、可靜態驗證、AI 預估與實扣用同一份求值結果（TM-07、CMB-04 教訓）。
 
 ## AbilityDef
 
