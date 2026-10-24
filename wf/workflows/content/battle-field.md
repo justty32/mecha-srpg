@@ -17,11 +17,11 @@
 - `deployZones` 每個 slot 都給，格數 ≥ 該 slot 單位數；**玩家與敵方部署區相距 ≥10 格**（第 1 輪不接敵）、第三方不貼玩家出生（ISS-007）。
 - `exits` 預設四邊；撤離／護送情境把出口放在玩家側邊且不被迷霧死角蓋住（MCP 已畫 `>`）。護送出口離車隊起點 ≥ 2/3 圖寬（ISS-010 太近第 2 輪就結束）。
 - `globals.tide`（NumExpr 逐回合）／`light`（常數）給 `bf-*` 效果引用，一張圖只放一條曲線。
-- 風味：地圖有名字（荒原群王的獵宴、退潮之喉）、有一句地勢描述放 catalog；中央放一個目標地物（補給碑、巢核、殼口）讓雙方有理由靠近。
+- 風味：地圖有名字（荒原群王的獵宴、退潮之喉）、有一句地勢描述放 catalog；中央放一個目標地物（補給碑、巢核、墟口）讓雙方有理由靠近。
 
 ## 情境 scenario
 
-**單位**：每 slot 2–6 台（玩家 2–4、盟軍 4–6、敵 4–10）；玩家 slot 用開局機（moji-tern-guard、hound-mk2、bulwark-ii）或任務指定機；**每台摹機要有武器**——`UnitSpawn.components` 整組指定或靠 frame `defaultLoadout`（現在多數 frame 沒填，所以情境**先寫 components**）；每台至少一把非凡兵武器打獸。**同一具名人物只能在一台、一個陣營**（ISS-008）；敵方人類機用敵方人物或 `persons` 省略讓機魂／instinct 開。怪獸用 `monster:`、人類用 `mech:`＋persons。
+**單位**：每 slot 2–6 台（玩家 2–4、盟軍 4–6、敵 4–10）；玩家 slot 用開局機（moji-tern-guard、hound-mk2、bulwark-ii）或任務指定機；**每台衍型機要有武器**——`UnitSpawn.components` 整組指定或靠 frame `defaultLoadout`（現在多數 frame 沒填，所以情境**先寫 components**）；每台至少一把非凡兵武器打獸。**同一具名人物只能在一台、一個陣營**（ISS-008）；敵方人類機用敵方人物或 `persons` 省略讓機魂／instinct 開。怪獸用 `monster:`、人類用 `mech:`＋persons。
 
 **目標**（按宣告順序第一個完成且非 continue 的決定結果）：
 - 永遠寫**玩家落敗條件**：`{"kind":"eliminate","params":{"slots":["player"]},"for":"player","onComplete":"lose"}`（缺了全滅還 timeout 平手，ISS-009）。
@@ -30,9 +30,9 @@
 - 參戰型（勢力作戰、傭兵加入）：`ally` slot＋`allies:["ally"]` 顯式對稱；盟軍 AI 用 focus-fire／bodyguard；玩家目標與盟軍目標一致（殺錨／守區）。三方以上每方一條 win、玩家一條 lose；`neutral` 在戰場算敵對。
 - `rounds` 20–30；`seed` 固定一個方便重現；`rules.conventionalFactor` 不動。
 
-**類型配方**（各至少一個已有，新寫先換單位與地圖再換目標）：決鬥（16 格、2v2、killTarget）、清巢（24–40 格、4v6–10、eliminate）、守區（hold 8 輪）、護送（80×20、convoy slot＋convoy-runner）、撤離（reachExit＋survive）、斬首（killTarget 潮錨＋護衛）、混戰（third slot 用 guerrilla／tide-cultist）、人對人（白手套、競爭獵團）。
+**類型配方**（各至少一個已有，新寫先換單位與地圖再換目標）：決鬥（16 格、2v2、killTarget）、清巢（24–40 格、4v6–10、eliminate）、守區（hold 8 輪）、護送（80×20、convoy slot＋convoy-runner）、撤離（reachExit＋survive）、斬首（killTarget 蝕錨＋護衛）、混戰（third slot 用 guerrilla／tide-cultist）、人對人（白手套、競爭獵團）。
 
-**難度目測**：敵方總 HP ÷ 玩家＋盟軍總 HP 在 1.2–2.0 之間（怪獸 HP 曲線陡，所以 C 級場 3 台摹機對 1–2 隻 C 怪）；超過 2.5 要有盟軍或目標不是殲滅。
+**難度目測**：敵方總 HP ÷ 玩家＋盟軍總 HP 在 1.2–2.0 之間（怪獸 HP 曲線陡，所以 C 級場 3 台衍型機對 1–2 隻 C 怪）；超過 2.5 要有盟軍或目標不是殲滅。
 
 ## AI 設定 aiprofile
 

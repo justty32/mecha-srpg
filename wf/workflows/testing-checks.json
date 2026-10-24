@@ -10,7 +10,7 @@
  "rows": [
   {
    "驗證": "快速驗證（改完必跑）",
-   "指令": "`npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤＋內容 lint `src/content/lint.ts`：錯誤擋數值越界／主動攻擊無成本，警告含 `band-*` 數值帶、AI 不用的形態、soft 池無超載帶、摹機空手等，每行帶規則 id）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）",
+   "指令": "`npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤＋內容 lint `src/content/lint.ts`：錯誤擋數值越界／主動攻擊無成本，警告含 `band-*` 數值帶、AI 不用的形態、soft 池無超載帶、衍型機空手等，每行帶規則 id）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）",
    "誰跑": "agent"
   },
   {
@@ -20,7 +20,7 @@
   },
   {
    "驗證": "營運層（改 ops 必跑）",
-   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`、`--policy merc`：真戰鬥；2026-10-24 基準 idle 24 潮月約 8 秒、greedy 12 潮月約 12 秒、merc 24 潮月 25 秒–3.5 分鐘；末行 `war統計` 印 war／停火／奪點／作戰數與比例）；調平衡時跑 `node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）；2026-10-24 起 idle 會因債務扣船在約第 6 潮月合法終局（CLI 印「終局 …」仍 `OK`），要量世界就加 `--continue-after-end`；黃金戰役 `node --test test/campaigns/campaigns.test.ts`、war 不變量 `node --test src/ops/sim/war-invariants.test.ts`（約 20 秒）；ops 黃金 hash 一律在乾淨 worktree 以 `GOLDEN_UPDATE=1` 重產",
+   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`、`--policy merc`：真戰鬥；2026-10-24 基準 idle 24 蝕月約 8 秒、greedy 12 蝕月約 12 秒、merc 24 蝕月 25 秒–3.5 分鐘；末行 `war統計` 印 war／停火／奪點／作戰數與比例）；調平衡時跑 `node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 蝕月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 蝕月 4/5 seed 留 7 人）；2026-10-24 起 idle 會因債務扣船在約第 6 蝕月合法終局（CLI 印「終局 …」仍 `OK`），要量世界就加 `--continue-after-end`；黃金戰役 `node --test test/campaigns/campaigns.test.ts`、war 不變量 `node --test src/ops/sim/war-invariants.test.ts`（約 20 秒）；ops 黃金 hash 一律在乾淨 worktree 以 `GOLDEN_UPDATE=1` 重產",
    "誰跑": "agent"
   },
   {

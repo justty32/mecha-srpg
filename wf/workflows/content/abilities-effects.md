@@ -23,7 +23,7 @@
 
 - `accuracy` 加值 ±15 內（命中最終夾 5–95，人物 accuracy 50 上下、怪獸 evasion 5–12、cover 0–35）；砲類 `range.min` 2–4 表最小距離。
 - packets：`type` ∈ kinetic／acid／energy／thermal／pierce；`amount` 數字或 NumExpr（`{"ref":"target.grade","mul":6,"add":12}` 專打大怪）；`armorPen` 0–0.35 **比例**；`crit` 0.15–0.2（×1.5）；`layerFilter` 只打某些層（光矢只打 shield／component）；`resistPen` 抵抗性。
-- 多 packet＝一擊多型（殼矢＋燒），每 packet 各自沿層結算；溢出不傳到鄰接部位。
+- 多 packet＝一擊多型（矢＋燒），每 packet 各自沿層結算；溢出不傳到鄰接部位。
 - `partAim:{allowed:true,penalty:8–15}` 給精準武器；AI 用 `targetPref.parts` 決定要不要指定部位。
 
 ## 效果檔

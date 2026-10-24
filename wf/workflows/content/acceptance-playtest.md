@@ -30,13 +30,13 @@
 
 **工具**：`battle_new {scenario, seed, rounds?}` → `battle_observe {id, map:true}`（看 objectives／單位／地形圖例）→ `battle_legal_actions {id}`（每項附 `action`、命中率、`damageIfHit`）→ `battle_act {id, action}`；全 AI 對照 `battle_auto {scenario, seed}`；`battle_events` 查能力使用。營運：`campaign_new {seed}` → `campaign_actions` → `campaign_sortie_preview`／`campaign_sortie_begin` → 戰鬥 → `campaign_sortie_finish`；長程 `campaign_auto {seed, months:6, policy:"greedy"}`。
 
-**打誰**：照 playtest-baselines 該級的基準摹機／怪獸／情境；新內容替換進基準情境的對應位置（新 C 摹機替掉 rift-edge-nest 的一台 moji-tern-guard；新 C 怪替掉 reaper-c），其他不動——一次只變一個變數。
+**打誰**：照 playtest-baselines 該級的基準衍型機／怪獸／情境；新內容替換進基準情境的對應位置（新 C 衍型機替掉 rift-edge-nest 的一台 moji-tern-guard；新 C 怪替掉 reaper-c），其他不動——一次只變一個變數。
 
 **量什麼**（每場記一行：scenario、seed、rounds、winner、reason、我方損失、敵方損失、新能力使用次數、是否被 AI 使用、手打或 auto）：
 - 勝率＝有勝方的場次中玩家勝／總場；平手率＝timeout／總場；輪數中位。
 - 能力使用：`battle_events` 過濾 `AbilityUsed`＋能力 id；0 次＝AI 不用（查 tactics 鍵、costs、range）。
 - 預估傷害：`legal_actions` 的 `damageIfHit` 對該級怪獸 HP 的比例（單發 ≥ 總 HP 8% 才有存在感；凡兵對獸 ×0.1 後 <2 是正常）。
-- 營運：greedy 6 潮月 30 seed 存活數、第 3 潮月現金、事件每月跳出數、首潮月出戰次數。
+- 營運：greedy 6 蝕月 30 seed 存活數、第 3 蝕月現金、事件每月跳出數、首蝕月出戰次數。
 
 **什麼算失衡**（細表在 baselines）：同級對打 5 seed 單方全勝；對基準怪獸勝率 <30% 或 >90%；平手率 >40%；新能力 0 使用；某單位 5 場 0 次被打（AI 不看它）；一招佔該單位 >80% 出手（其他招死資料）；營運存活 <24/30、單事件 ±>600 現金。
 

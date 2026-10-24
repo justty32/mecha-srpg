@@ -8,7 +8,7 @@
 
 | 族 `family` | 骨架與層 | 行為欄 | 拘束 | AI profile |
 |---|---|---|---|---|
-| `insect` 蟲族 | 多節多足、晶冠；chitin→flesh→organ | `spawner`（只巢母）、繫、潮汐式出巢 | 殼釘節鎖，同調慢、最不易暴走 | reaper-vanguard／swarm-mite／nest-anchor |
+| `insect` 蟲族 | 多節多足、晶冠；chitin→flesh→organ | `spawner`（只巢母）、繫、潮汐式出巢 | 鎮釘節鎖，同調慢、最不易暴走 | reaper-vanguard／swarm-mite／nest-anchor |
 | `beast` 獸族 | 脊椎四足、骨板、顎；厚 chitin 厚 flesh | `molt`（只掘犬→盾甲）、不繫、衝鋒 | 軛與鞍，同調最快、本能漲最快 | pack-hunter／kx-beast-alpha |
 | `alien` 異形 | 不對稱、每隻不同；一側高抗一側 0 | 無錨（群喉例外）、debuff、變異是營運事 | 量身懸囊、工時三倍 | kx-alien-stalker |
 | `mycelium` 菌絲 | 地形不是個體；chitin／flesh **無 organ 核** | 不動或拔根一格、多核錨；燒才有用（kinetic／pierce 0.5、acid 0.8、thermal 0） | 不可拘束只能採（`harvest-only`） | kx-mycel-creep（sentinel） |
@@ -21,7 +21,7 @@
 
 ## 核心部位
 
-死亡＝所有 `core` 部位 broken。**每個 bodyplan 至少一個 core 部位、每部位最後一層 `structural:true`**。單核藏在裡面（exposure 0.5）＝要先打破外面才摸得到；多核（菌床五結、群喉五喉）＝潮錨的「全滅才死」。可捕族的 core 部位帶 `slots:[restraint, cockpit]`、`seats:[{id:"pilot",accepts:["pilot"]}]`、functions 含 `core`、`cockpit`。捕捉條件寫在 species：預設 `requireIntact:["core"]`、`requireBroken:["locomotion"]`；要「先打斷顎」就加 `manipulator`；列的 function 必須存在於 bodyplan；不可捕族寫互斥 `core`／`core`。
+死亡＝所有 `core` 部位 broken。**每個 bodyplan 至少一個 core 部位、每部位最後一層 `structural:true`**。單核藏在裡面（exposure 0.5）＝要先打破外面才摸得到；多核（菌床五結、群喉五喉）＝蝕錨的「全滅才死」。可捕族的 core 部位帶 `slots:[restraint, cockpit]`、`seats:[{id:"pilot",accepts:["pilot"]}]`、functions 含 `core`、`cockpit`。捕捉條件寫在 species：預設 `requireIntact:["core"]`、`requireBroken:["locomotion"]`；要「先打斷顎」就加 `manipulator`；列的 function 必須存在於 bodyplan；不可捕族寫互斥 `core`／`core`。
 
 ## 怪獸個體 monster
 
@@ -31,9 +31,9 @@
 
 **活捕** `frames/bio-<species>.json`：`cls:"bio"`、grade＝某個 monster 的 grade、同 bodyplan、`pools` 只有 `instinct`、`innateAbilities`＝species abilities、`burden` D2／C5–6／B8–9／A12–13／S16、tags `["bio","<族>","kaiju"]`。`name` 用登記號式「生物機甲・<族名>」，真正的名字走營運層四種稱號（登記號／小名／凶名／二名），不要在 frame 取寵物名。一族一台專屬，不共用。
 
-**屍體改裝** `frames/corpse-<species>.json`：同 bodyplan、**無 instinct 池、burden 0**、肉層不再生，與摹機同規則；開銷大在營運層（吃一顆同級核），不在戰鬥數值。14 族都有了，新族補一台。
+**屍體改裝** `frames/corpse-<species>.json`：同 bodyplan、**無 instinct 池、burden 0**、肉層不再生，與衍型機同規則；開銷大在營運層（吃一顆同級核），不在戰鬥數值。14 族都有了，新族補一台。
 
-**怪獸意識不是人物**：不給 bio frame 座位以外的 soul 座、不寫 person 檔；拘束器與駕駛艙是 `origin:"mechanical"` 部件插 `restraint`／`cockpit` 槽。**沒有餵養**：營運 `world/beasts/<family>.json` 只有磨損（wearPerDay D3…S20）、族別維持（蟲獸 `devour` 一潮月一次、異形 `tide-soak`、菌絲 `prune`）、同調 bond；文字不出現餵、飼料、獸欄、寵物——拘束艙是壓制與對抗。
+**怪獸意識不是人物**：不給 bio frame 座位以外的 soul 座、不寫 person 檔；拘束器與駕駛艙是 `origin:"mechanical"` 部件插 `restraint`／`cockpit` 槽。**沒有餵養**：營運 `world/beasts/<family>.json` 只有磨損（wearPerDay D3…S20）、族別維持（蟲獸 `devour` 一蝕月一次、異形 `tide-soak`、菌絲 `prune`）、同調 bond；文字不出現餵、飼料、獸欄、寵物——拘束艙是壓制與對抗。
 
 ## 能力與效果的族風格
 
