@@ -10,6 +10,7 @@
 
 ## 待使用者項
 
-- [planning] 世界觀與 BB 式細節／營運層範圍（已裁示的見 [design-notes](workflows/planning/design-notes.md)）→ Fable 寫 spec，再派線
-- [feature-dev] 請使用者 `npm run dev` 開 http://localhost:5173/ 試玩 lead-ui-fix 改版，九項逐條確認（見 [feedback](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)）→ 回饋後派下一輪 UI 修正
-- [feature-dev] 請使用者開 http://localhost:5173/#/ops 試玩營運畫面：接約→航行→出戰（親自指揮）→回營運看戰果；回饋手感、記錄是否太吵、世界圖可讀性、存讀檔 → 回饋後派營運 UI 修正線
+- [feature-dev] 請試玩**戰鬥** http://localhost:5173/（`npm run dev`；九項見 [feedback](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)，另有意圖撤退、擊退勝）→ 派戰鬥修正線
+- [feature-dev] 請試玩**營運** `#/ops`：接約→航行→親自出戰→看戰果；回饋手感、記錄、世界圖、存讀檔、債務 → 派營運修正線
+- [feature-dev] 請試玩**百科** `#/wiki`（F1 進出、搜尋、交叉連結、年表）→ 派百科修正線
+- [content] 請定**新詞衍生詞**：「鞘」系作廢詞重擬版、潮信會、大潮小潮、工作名（見 [terms](workflows/planning/design-notes/terms.md)）；改名批次先擬一版給你 → 定案後全庫換

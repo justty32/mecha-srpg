@@ -33,7 +33,7 @@
 
 ## roadmap（會做，何時）
 
-已抽到 [planning-roadmap.json](planning-roadmap.json)（7 列）。
+已抽到 [planning-roadmap.json](planning-roadmap.json)（13 列）。
 
 欄位：`事項`、`何時 / 順序`、`前提`（含 REPORT 連結）。查法見 [data-files](common/data-files.md)。
 

@@ -8,7 +8,7 @@
 
 ```ts
 type FrameDef = {                         // 機體（一種型號；古代機甲每台就是一個 FrameDef）
-  id: Id; name: string; cls: "mechanical" | "bio" | "ancient"; grade: Grade;  // Grade = "D"|"C"|"B"|"A"|"S"|"SS"|"SSS"
+  id: Id; name: string; cls: "mechanical" | "bio" | "ancient"; grade: Grade;  // Grade = "D"|"C"|"B"|"A"|"S"|"SS"|"SSS"；古代機無上限、會自我進化（world/mech-lifecycles），超出量尺的表示法待引擎
   bodyPlan: Id; baseAttrs: Record<AttrId, number>;        // 速度、感測距離、載重……機體底值
   pools: PoolDecl[];                                      // 機體自帶的池（可為空：古代系常為空或獨有池）
   innateAbilities: Id[];                                  // 機體自帶能力（古代神異能力在這裡；共鳴門檻寫在能力的 require）

@@ -10,7 +10,8 @@ files=()
 # 頂層＝調度者派的線；第二層 <線名>/cx-*.md＝領導派的子線。REPORT／README／STATE 不是交接書。
 while IFS= read -r f; do
   base=$(basename "$f"); rel=${f#"$dir"/}
-  case "$base" in README.md|STATE.md|REPORT.md|*-REPORT.md|TEMPLATE*) continue ;; esac
+  # engine-backlog／next-tidy／codex-handover 是交棒文件（2026-10-24 lead-wrapup），不是交接書
+  case "$base" in README.md|STATE.md|REPORT.md|*-REPORT.md|TEMPLATE*|engine-backlog.md|next-tidy.md|codex-handover.md) continue ;; esac
   # 第二層只認 cx-*.md（領導派的子線）；contract.md、附件之類不是交接書
   case "$rel" in */*)
     case "$base" in cx-*.md) ;; *) continue ;; esac

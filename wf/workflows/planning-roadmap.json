@@ -15,38 +15,63 @@
   },
   {
    "事項": "內容第二批：機械系命名規範化、補 B 級蟲族（base 常數與步兵／士氣／失控內容已由 sim 線補回）",
-   "何時 / 順序": "隨時",
+   "何時 / 順序": "大半完成（lead-content-mech／content-monster／content-polish／gaps-battle，2026-10-24）；餘下併入 codex 內容批次",
    "前提": "rules REPORT"
   },
   {
    "事項": "平衡第二輪：skirmish 10 seed 敵方從未獲勝（player 7 勝 3 平，屬內容強弱）；AI 不會主動 Wait（`waitScore` 0，無延後時機策略）；未接敵朝地圖中央偵察是暫行啟發",
-   "何時 / 順序": "試玩後",
+   "何時 / 順序": "部分完成（lead-playtest／gaps-battle／tune-battle：平手 64%→8%）；剩餘見 engine-backlog",
    "前提": "[fix-ai REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-ai/REPORT.md)"
   },
   {
    "事項": "地物受損／變廢墟（`featureHp` 已初始化，spec 未定怎麼打地物）；`allies`、neutral 戰場敵對、`killTarget` 目標翻譯補進 spec",
-   "何時 / 順序": "spec 同步線",
+   "何時 / 順序": "spec 已補（plan-spec-sync，2026-10-24）；實作與覆蓋見 engine-backlog",
    "前提": "[fix-seams REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-seams/REPORT.md)"
   },
   {
    "事項": "規則補完：其餘 reaction、sustained 撤除",
-   "何時 / 順序": "sim 後",
+   "何時 / 順序": "待辦（engine-backlog）",
    "前提": "rules REPORT"
   },
   {
    "事項": "營運平衡後續：anchored 後打巢母（A 級錨）全敗——AI 無目標意識（不優先殺錨／孵化源、hold 不進區）；債 24000 每潮月 5% 複利、無還款壓力，12 潮月後 43100；契約報酬 2800×寬度是補洞值；cash 可因泊費變負（spec 允許）",
-   "何時 / 順序": "AI 線＋經濟 spec",
+   "何時 / 順序": "大半完成（lead-ai-objective 目標意識、lead-gaps-ops 債務還款，2026-10-24）；anchored、第二年經濟見 engine-backlog",
    "前提": "[cx-bal2 REPORT](dispatch/handoffs/lead-ops-bio-balance/cx-bal2/REPORT.md)"
   },
   {
    "事項": "UI 遷到 `src/sim/session.ts`（`stepAi` 逐指令播放敵方回合）；hold 核區＝敵方部署區、timeout 預設判負補進 spec",
-   "何時 / 順序": "UI 線／spec 同步線",
+   "何時 / 順序": "已完成（lead-ui-session、plan-spec-sync／spec-integrate，2026-10-24）",
    "前提": "同上"
   },
   {
    "事項": "world-grid 方格大地圖實作：七段切線（content＋grid 40×40 測試圖 → move／places／tick 段 3 → 蝕塊 → actors／fog／遭遇 → scenario／contracts／text 收尾 → 內容線六張正式圖產生器＋地點座標＋航道 → ui-ops 大地圖面板 GridView 共用）；驗收 `npm run sim:campaign -- --months 12`＋六組測試，退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
-   "何時 / 順序": "lead-impl-war 收線後；(1)–(5) 一線、(6) 內容線、(7) ui-ops 線",
+   "何時 / 順序": "待辦（下一段落非 codex 工作第 1 優先，見 engine-backlog）；lead-impl-war 已收線",
    "前提": "[plan-world-grid REPORT](dispatch/handoffs/plan-world-grid/REPORT.md)；spec 整合已完成 2026-10-24（plan-spec-integrate，REPORT 由頂層代存）"
+  },
+  {
+   "事項": "勢力作戰、外交、傭兵參戰、勢力研發（ops-war 四切線＋war-sim 不變量與黃金）",
+   "何時 / 順序": "已完成（lead-impl-war、lead-gaps-ops，2026-10-24）",
+   "前提": "[lead-impl-war REPORT](dispatch/handoffs/lead-impl-war/REPORT.md)"
+  },
+  {
+   "事項": "codex 內容填充試點與護欄（content_gate／content_accept、content/index、batches）",
+   "何時 / 順序": "進行中（lead-codex-pilot）",
+   "前提": "[handoffs/lead-codex-pilot](dispatch/handoffs/lead-codex-pilot/)"
+  },
+  {
+   "事項": "codex 正式內容填充與潤飾（新增內容＋文字潤飾兩件事；第一批＝用語改名＋翻譯腔重審）",
+   "何時 / 順序": "下一 session 起",
+   "前提": "lead-codex-pilot 收線；[STATE](dispatch/handoffs/STATE.md)"
+  },
+  {
+   "事項": "非 codex 引擎工作（方格大地圖、戰鬥後期調校、營運剩餘、AI、fuzz、效能、引擎缺欄）",
+   "何時 / 順序": "與 codex 批次並行，依優先序",
+   "前提": "[engine-backlog](dispatch/handoffs/engine-backlog.md)"
+  },
+  {
+   "事項": "重構拆檔與 tidy（超標檔、ROSTER、收線目錄、殘檔、舊 worktree）",
+   "何時 / 順序": "下次段落（本段落使用者明示不做）",
+   "前提": "[next-tidy](dispatch/handoffs/next-tidy.md)"
   }
  ]
 }

@@ -12,7 +12,7 @@ type LineageDef = { id: Id; name: string; source: Id /*ancient FrameDef*/ | "gen
   tags: string[] };
 ```
 
-血統是「這一脈摹機像誰」：源自哪台殼就偏向它的部件、資源池與能力傾向（源質脈動、潮歌共鳴、鐵壁……用世界的語言命名，不用工程術語）。同血統彼此相似、異血統差異大。**通用血統**（`source:"generic"`）不綁殼、人人可用；使用者舉例「堅盾系列」「長槍系列」是兩條通用血統。勢力取得殼（`ShellState.holder` 變更）→ 2 潮月後 `LineageOpened`，該勢力多一條血統；失殼 → 該血統對它 `stalled`（已釋出機型保留，不再出新型）。
+血統是「這一脈摹機像誰」：源自哪台殼就偏向它的部件、資源池與能力傾向（源質脈動、潮歌共鳴、鐵壁……用世界的語言命名，不用工程術語）。同血統彼此相似、異血統差異大。**通用血統**（`source:"generic"`）不綁殼、人人可用；使用者定三條通用血統與定位（2026-10-24）：**堅盾＝防守**（厚層、掩護、守點）、**長槍＝遠程**（射程、壓制）、**鐵劍＝通用基本型**（均衡、便宜、新手與民兵的第一台）；內容 `lineages/universal-{bulwark,longspear}` 已有，鐵劍待內容補。勢力取得殼（`ShellState.holder` 變更）→ 2 潮月後 `LineageOpened`，該勢力多一條血統；失殼 → 該血統對它 `stalled`（已釋出機型保留，不再出新型）。
 
 ## 機型 ModelDef（ops 側登記，`models/<id>.json`；core `FrameDef` 不改）
 

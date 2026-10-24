@@ -34,6 +34,20 @@ interface Policy   { id: Id; propose(ctx, agent): Candidate[]; score(ctx, agent,
 
 `SpeciesDef.behaviors.telegraph=true` 的單位在**上一回合結束**就選定下回合的 `Candidate` 並寫 `IntentDeclared` 事件（UI 顯示箭頭／目標格）；輪到它時若目標仍合法就照做，否則重選（並寫 `IntentChanged`）。玩家因此能「推開／擋住／誘導」。這是 Policy 的 `precommit` 可選鉤子，不是全局規則。
 
+## 意圖兩層：陣營意圖、個體本能、指揮者（已實作，2026-10-24 lead-gaps-battle／lead-tune-battle）
+
+裁示（design-notes mechanics 末三段）：每一方帶意圖、達不到就撤，取代平手；勝利不必全殲；意圖分陣營層（指揮者）與個體層（本能），怪獸指揮者稀少且低智。實作在 `src/ai/intent.ts`、`src/ai/retreat.ts`，門檻全在 `DEFAULTS`、可由 aiprofile `params` 覆寫（只收數字）。
+
+**陣營意圖**取自：情境目標 → aiprofile `intent`（`params` 只收數字，代碼 0–8＝eliminate／hunt／guardNest／hold／escort／reachExit／killTarget／capture／survive）→ 族行為（spawner＝守巢、territorial＝奪點、其他＝獵食）→ 殲滅。每輪評估全部非 lose 目標：戰力比、損失、目標進度（killTarget／capture 只算目標 HP）、需要輪數（可見單位 HP 差 EMA）對剩餘輪數；`intentMinRound` 之後全部達不到才整隊撤（`intentGiveUpRatio`、`intentGiveUpLoss`、`intentImpossibleRatio`）。巢穴、潮錨等不可移動者不撤。
+
+**個體本能**：怪獸 HP < `individualFleeHp` 逃（已失控 `controlMode:"berserk"` 者不逃；「發狂」走承擔／失控規則）；駕駛重傷 `pilotFleeHp` 或士氣 breaking／fleeing 自退。
+
+**指揮者**：人類 slot 取 resolve → 等級 → id 最高者；把重傷、缺資源、shaken 或帶負面效果的單位後撤 `rotateRounds` 輪（冷卻 `rotateCooldown`）。怪獸 slot 只有母體、潮錨或 S 級以上才有，只下護巢集結與圍攻。指揮者陣亡 → 依 id 穩定分位潰散（怪獸 `commanderScatter` 0.6、人類 0.3），不耗 RNG。
+
+**結算**（rules-battle-flow「勝負」）：對手 active 撤光且有人撤離＝擊退勝，`BattleEnd{reason:"repelled", detail:"repelled"}`；營運層照此回寫擊退／撤退。
+
+**SPEC-GAP（實作暫定，規劃線日後定）**：地圖未宣告 `exits` 時四邊可撤；多方局擊退勝方取字典序第一個仍有 active 的敵對 slot；意圖用數字代碼。**未做**：tag 指定指揮者、補給／治療輪替、字串意圖欄。
+
 ## 範圍攻擊與友傷（AI-11 改造）
 
 `attackArea` 的 targetValue＝Σ 敵方價值 − Σ 友方價值 × friendlyFirePenalty（profile 參數）；`berserk` profile 把 friendlyFirePenalty 設 0 且所有單位算敵方——「敵我不分」自然成立。

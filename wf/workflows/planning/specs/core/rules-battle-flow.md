@@ -30,7 +30,7 @@ load(scenario, content) → deploy → [round]* → end(result) → BattleResult
 
 ## 勝負
 
-每輪輪末與每次單位死亡／撤離後評估 `objectives`：按宣告順序，第一個完成且 `onComplete != "continue"` 的決定結果；`rounds` 到上限而無人勝＝情境宣告的 `timeout` 結果（預設 lose for player）。無目標的情境預設 `eliminate` 對所有敵對 slot；敵對一律由 `hostileSlots()` 判定（情境 `allies` ∪ FactionDef `ally`，對稱；neutral 算敵對，見 data-model-world）。斷繫、失控單位不算任何 slot 的「存活」。結果事件 `BattleEnd{ winner, reason }`。
+每輪輪末與每次單位死亡／撤離後評估 `objectives`：按宣告順序，第一個完成且 `onComplete != "continue"` 的決定結果；`rounds` 到上限而無人勝＝情境宣告的 `timeout` 結果（預設 lose for player）。無目標的情境預設 `eliminate` 對所有敵對 slot；敵對一律由 `hostileSlots()` 判定（情境 `allies` ∪ FactionDef `ally`，對稱；neutral 算敵對，見 data-model-world）。斷繫、失控單位不算任何 slot 的「存活」。結果事件 `BattleEnd{ winner, reason }`。**擊退（已實作 2026-10-24）**：所有敵對單位不再 active 且其中有人撤離 → 該 slot 勝、`reason:"repelled"`；`eliminate` 完成時若有敵方撤離則加 `detail:"repelled"`。勝利因此不必全殲（裁示「不是說必須全殲滅」），AI 意圖撤退規則見 [ai](ai.md)「意圖兩層」。
 
 ## BattleResult（交給營運層的唯一介面）
 
