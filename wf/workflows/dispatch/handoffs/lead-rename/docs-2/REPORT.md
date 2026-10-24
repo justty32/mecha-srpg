@@ -27,7 +27,7 @@
 
 ## 殘留
 
-已執行交接書指定的全 wf `git grep -nE`，共3652筆命中行。逐處位置與理由已列入 [residuals.json](residuals.json)：`file`、`line`、`occurrences`（1-based字元位置與詞）、`reason`。
+已執行交接書指定的全 wf `git grep -nE`，共3652筆命中行。逐處位置與理由已列入 `residuals.json`（已刪，見 git 0c71561 之前）：`file`、`line`、`occurrences`（1-based字元位置與詞）、`reason`。
 
 允許清單內共50行：新詞「蝕潮」（含書名與第一次蝕潮）、大潮與潮汐形容、潮狼、潮濕、劇情高潮，以及四處非古代機的殼體本義；每個命中個別列理由。其餘3602行位於清單外，逐行列明禁止越界修改的理由，沒有順手修改歷史文件或其他線領地。
 

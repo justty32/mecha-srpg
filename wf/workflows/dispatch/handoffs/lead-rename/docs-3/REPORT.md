@@ -65,7 +65,7 @@
 
 ## 產出
 
-文件 worktree：`/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/1f7a129f-b648-43e0-9706-bbc73b5f0325/scratchpad/rename/wt-docs-3`。REPORT：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-rename/docs-3/REPORT.md`。完整殘留帳 [residuals.json](residuals.json) 為 `wf-table/1`，由 tabledb 寫入；記錄檔案、行、命中全文、範圍、理由，逐一對應指定 `git grep` 的全部 8764 個命中行。
+文件 worktree：`/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/1f7a129f-b648-43e0-9706-bbc73b5f0325/scratchpad/rename/wt-docs-3`。REPORT：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-rename/docs-3/REPORT.md`。完整殘留帳 `residuals.json`（已刪，見 git 0c71561 之前） 為 `wf-table/1`，由 tabledb 寫入；記錄檔案、行、命中全文、範圍、理由，逐一對應指定 `git grep` 的全部 8764 個命中行。
 
 ## 殘留
 
