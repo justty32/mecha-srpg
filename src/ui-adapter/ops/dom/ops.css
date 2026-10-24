@@ -1,0 +1,222 @@
+/* ui-adapter/ops/dom/ops.css — 營運畫面；色票與按鈕／kbd／面板樣式沿用戰鬥畫面 style.css。全部選擇器以 .ops-view 起頭。 */
+.ops-view {
+  --bg: #0c121d;
+  --panel: #151f2e;
+  --border: #35465d;
+  --text: #e5edf8;
+  --muted: #acbcd1;
+  --accent: #85c6ff;
+  --spring: #3f7fd0;
+  --neap: #6b5aa8;
+  --money: #e2d38b;
+  --warn: #ffb36b;
+  --blood: #ff7e94;
+  --soul: #bba2f0;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-family: system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  padding: 12px;
+  height: calc(100dvh - 40px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-sizing: border-box;
+  position: relative;
+}
+.ops-view *, .ops-view *::before, .ops-view *::after { box-sizing: border-box; }
+.ops-view[hidden], .ops-view [hidden] { display: none !important; }
+.ops-view h2, .ops-view h3, .ops-view p { margin: 0 0 8px; }
+.ops-view h2 { font-size: 1.05rem; }
+.ops-view h3 { font-size: .85rem; color: var(--muted); margin-top: 12px; }
+.ops-view .muted { color: var(--muted); }
+.ops-view .neg { color: var(--blood); }
+.ops-view .pos { color: #6be4a4; }
+.ops-view button {
+  font: inherit;
+  background: #25364d;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--text);
+  padding: 6px 10px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.ops-view button:hover:enabled { background: #354d6a; border-color: var(--accent); }
+.ops-view button:disabled { opacity: .5; cursor: not-allowed; }
+.ops-view button.active { border-color: var(--accent); background: #244e6d; }
+.ops-view button.tone-primary { background: #1f5a3f; border-color: #3fa577; }
+.ops-view button.tone-danger { background: #5a2430; border-color: #ba414f; }
+.ops-view :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.ops-view kbd {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 5px;
+  border: 1px solid #66809f;
+  border-bottom-width: 2px;
+  border-radius: 3px;
+  font: .75rem ui-monospace, monospace;
+  color: #fff;
+  background: #101c2b;
+}
+.ops-view input, .ops-view select {
+  font: inherit; color: var(--text); background: #0f1825; border: 1px solid var(--border); border-radius: 4px; padding: 5px 8px;
+}
+.ops-view .ops-btn { display: inline-block; }
+.ops-view .ops-buttons { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* 頂列 */
+/* 頂列固定一行：事實區可縮、按鈕區不換行，避免名稱變長把下方面板往下推。 */
+.ops-view [data-ui="ops-header"] {
+  display: flex; flex-wrap: nowrap; align-items: center; gap: 10px;
+  padding: 10px 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 7px;
+}
+.ops-view .ops-facts { display: flex; flex-wrap: nowrap; gap: 12px; align-items: center; margin-right: auto; min-width: 0; overflow: hidden; }
+.ops-view .ops-fact { flex: 0 1 auto; min-width: 0; }
+.ops-view .ops-fact b { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.ops-view .ops-time, .ops-view [data-ui="ops-header"] > button { flex: 0 0 auto; }
+.ops-view .ops-time .ops-buttons { flex-wrap: nowrap; }
+.ops-view .ops-fact { display: inline-flex; flex-direction: column; line-height: 1.2; }
+.ops-view .ops-fact small { color: var(--muted); font-size: .7rem; }
+.ops-view .ops-fact.phase-spring b { color: #9cc8ff; }
+.ops-view .ops-fact.phase-neap b { color: #c9b8ff; }
+.ops-view .ops-facts .ops-meter-row { width: 92px; flex: 0 0 auto; margin: 0; }
+.ops-view [data-ui="ops-message"] { margin: 0; padding: 8px 10px; color: #ffe19c; background: #342d1d; border-radius: 5px; }
+.ops-view [data-ui="ops-over"] { margin: 0; padding: 8px 10px; color: #fff; background: #5a2430; border-radius: 5px; }
+
+/* 三欄 */
+.ops-view .ops-layout { display: grid; grid-template-columns: 200px minmax(0, 1fr) 300px; gap: 12px; flex: 1; min-height: 0; }
+.ops-view .ops-left, .ops-view .ops-log-panel, .ops-view [data-ui="ops-main"] { min-height: 0; min-width: 0; }
+.ops-view .ops-left { display: flex; flex-direction: column; gap: 10px; overflow-y: auto; }
+.ops-view .ops-tab-list { flex-direction: column; }
+.ops-view .ops-tab-list .ops-btn, .ops-view .ops-tab-list button { width: 100%; justify-content: space-between; }
+.ops-view .ops-card, .ops-view .ops-log-panel, .ops-view [data-ui="ops-main"] {
+  padding: 12px; background: var(--panel); border: 1px solid var(--border); border-radius: 7px; overflow-wrap: anywhere;
+}
+.ops-view .ops-card h3 { margin-top: 0; }
+.ops-view .ops-mini { margin: 0; padding-left: 16px; font-size: .8rem; }
+.ops-view [data-ui="ops-main"] { overflow: auto; }
+.ops-view .ops-log-panel { display: flex; flex-direction: column; }
+.ops-view [data-ui="ops-log"] { margin: 0; padding: 0; list-style: none; flex: 1; min-height: 0; overflow-y: auto; font-size: .85rem; }
+.ops-view [data-ui="ops-log"] li { padding: 4px 0; border-bottom: 1px solid #ffffff0c; display: flex; gap: 6px; }
+.ops-view .ops-log-day { color: var(--muted); font-family: ui-monospace, monospace; flex: 0 0 auto; }
+.ops-view [data-ui="ops-log"] .kind-info { color: #a5bdd8; }
+.ops-view [data-ui="ops-log"] .kind-warn { color: var(--warn); }
+.ops-view [data-ui="ops-log"] .kind-money { color: var(--money); }
+.ops-view [data-ui="ops-log"] .kind-blood { color: var(--blood); }
+.ops-view [data-ui="ops-log"] .kind-soul { color: var(--soul); }
+
+/* 量條 */
+.ops-view .ops-meter-row { margin: 6px 0 8px; font-size: .78rem; }
+.ops-view .ops-meter { margin-top: 3px; background: #080e17; height: 5px; overflow: hidden; border-radius: 2px; }
+.ops-view .ops-meter > span { display: block; height: 100%; background: #73c8c0; }
+.ops-view .ops-meter.tone-fuel > span { background: #e2b85b; }
+.ops-view .ops-meter.tone-hull > span { background: #6be4a4; }
+.ops-view .ops-meter.tone-wear > span { background: #ff7e94; }
+.ops-view .ops-meter.tone-vitality > span { background: #7fd06b; }
+.ops-view .ops-meter.tone-broken > span { background: #ba414f; }
+.ops-view .broken { color: #fc919c; }
+
+/* 分頁內容 */
+.ops-view .ops-room-desc { color: #d4deeb; line-height: 1.6; }
+.ops-view .ops-split { display: grid; grid-template-columns: minmax(180px, 280px) minmax(0, 1fr); gap: 12px; align-items: start; }
+.ops-view .ops-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px; }
+.ops-view .ops-pick { cursor: pointer; }
+.ops-view li.ops-pick { padding: 8px; border: 1px solid var(--border); border-radius: 5px; display: flex; flex-direction: column; gap: 2px; font-size: .85rem; }
+.ops-view li.ops-pick:hover, .ops-view tr.ops-pick:hover { background: #1d2b3f; }
+.ops-view .ops-pick.selected { border-color: var(--accent); background: #1c3550; }
+.ops-view .ops-detail { padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: #111a27; }
+.ops-view .ops-enemy { color: var(--warn); }
+.ops-view .ops-table { border-collapse: collapse; width: 100%; font-size: .85rem; margin-bottom: 8px; }
+.ops-view .ops-table th, .ops-view .ops-table td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #ffffff12; }
+.ops-view .ops-table th { color: var(--muted); font-weight: normal; }
+.ops-view .ops-titles { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+.ops-view .ops-chip { padding: 2px 6px; border: 1px solid #706395; background: #29243f; border-radius: 4px; font-size: .72rem; }
+.ops-view .ops-chip.beast { border-color: #a5644a; background: #3a2419; align-self: flex-start; }
+.ops-view .ops-beast { padding: 6px 8px; border: 1px dashed #a5644a; border-radius: 5px; margin-bottom: 8px; }
+.ops-view .ops-beast h3 { margin-top: 0; }
+.ops-view .ops-calendar { display: grid; grid-template-columns: repeat(7, minmax(36px, 1fr)); gap: 4px; max-width: 420px; margin-bottom: 8px; }
+.ops-view .ops-day { padding: 6px; text-align: center; border: 1px solid var(--border); border-radius: 4px; font-size: .8rem; }
+.ops-view .ops-day.phase-spring { background: #1d3a61; border-color: var(--spring); }
+.ops-view .ops-day.phase-neap { background: #2b2447; border-color: var(--neap); }
+.ops-view .ops-day.today { outline: 2px solid #ffdb68; outline-offset: -2px; font-weight: bold; }
+.ops-view .ops-day.deadline::after { content: " !"; color: var(--warn); }
+.ops-view .ops-cal-legend { display: flex; gap: 6px; }
+.ops-view .ops-upcoming { margin: 0; padding-left: 18px; font-size: .85rem; }
+
+/* 世界圖（world-map.ts） */
+.ops-view .world-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; height: 100%; min-height: 0; }
+.ops-view .world-map-col { display: flex; flex-direction: column; gap: 6px; min-height: 0; min-width: 0; }
+.ops-view .world-tools { display: flex; gap: 4px; }
+.ops-view .world-scroll { flex: 1; min-height: 240px; overflow: auto; background: #070b12; border: 1px solid var(--border); }
+.ops-view [data-ui="world-map"] { display: block; max-width: none; }
+.ops-view .world-route { stroke: #4f6684; stroke-width: 3; }
+.ops-view .world-route.closed { stroke: #5a3a44; stroke-dasharray: 8 6; }
+.ops-view .world-route.on-path { stroke: #69e5dc; stroke-width: 5; }
+.ops-view .world-route-days { fill: var(--muted); font-size: 13px; text-anchor: middle; pointer-events: none; }
+.ops-view .world-node { cursor: pointer; }
+.ops-view .world-dot { stroke: #c4d1e3; stroke-width: 2; }
+.ops-view .world-node.body-moon .world-dot { stroke-dasharray: 3 2; stroke: #e8e3c4; }
+.ops-view .world-node.selected .world-dot { stroke: var(--accent); stroke-width: 4; }
+.ops-view .world-blight { fill: #8a3fbf33; stroke: #a35ad6; stroke-width: 2; }
+.ops-view .world-blight.depth-deep { stroke-width: 4; }
+.ops-view .world-blight.depth-core { stroke-width: 6; fill: #8a3fbf66; }
+.ops-view .world-here-ring { fill: none; stroke: #ffdb68; stroke-width: 3; }
+.ops-view .world-dest-ring { fill: none; stroke: #69e5dc; stroke-width: 3; stroke-dasharray: 5 4; }
+.ops-view .world-label { fill: var(--text); font-size: 15px; text-anchor: middle; }
+.ops-view .world-node.here .world-label { fill: #ffdb68; font-weight: bold; }
+.ops-view .world-rift { fill: #ff7e94; font-size: 14px; }
+.ops-view .world-contracts { fill: #e2d38b; font-size: 13px; font-weight: bold; }
+.ops-view .world-legend { display: flex; flex-wrap: wrap; gap: 10px; font-size: .75rem; color: var(--muted); }
+.ops-view .world-legend span::before { content: "●"; margin-right: 3px; }
+.ops-view .legend-here::before { color: #ffdb68; }
+.ops-view .legend-dest::before { color: #69e5dc; }
+.ops-view .legend-blight::before { color: #a35ad6; }
+.ops-view .legend-rift::before { content: "◆" !important; color: #ff7e94; }
+.ops-view .legend-path::before { content: "━" !important; color: #69e5dc; }
+.ops-view .legend-closed::before { content: "┅" !important; color: #ba414f; }
+.ops-view .world-detail { padding: 10px; border: 1px solid var(--border); border-radius: 6px; background: #111a27; overflow-y: auto; }
+
+/* 疊層：蓋在面板上，底下位置不動 */
+/* 多個疊層同時出現（例：戰果報告＋戰後事件）時並排，不互相遮蓋。 */
+.ops-view .ops-overlays { position: absolute; inset: 0; z-index: 50; background: #04080fb0; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; align-content: center; gap: 16px; padding: 16px; overflow: auto; }
+.ops-view .ops-overlay { display: contents; }
+.ops-view .ops-dialog {
+  flex: 0 1 auto; max-width: min(520px, 100%); max-height: 90%; overflow: auto;
+  padding: 16px; background: var(--panel); border: 1px solid #6c83a1; border-radius: 8px; box-shadow: 0 10px 30px #000a;
+}
+.ops-view .ops-dialog.wide { max-width: min(760px, 100%); }
+.ops-view .ops-choices { display: flex; flex-direction: column; gap: 6px; margin: 10px 0; }
+.ops-view .ops-choices .ops-btn, .ops-view .ops-choices button { width: 100%; justify-content: space-between; }
+.ops-view .ops-naming { display: flex; gap: 6px; }
+.ops-view .ops-naming input { flex: 1; }
+.ops-view .ops-sortie-units { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px; margin-bottom: 10px; }
+.ops-view .ops-sortie-unit { padding: 8px; border: 1px solid var(--border); border-radius: 6px; display: flex; flex-direction: column; gap: 6px; }
+.ops-view .ops-sortie-unit.included { border-color: #3fa577; }
+.ops-view .ops-sortie-unit.disabled { opacity: .6; }
+.ops-view .ops-sortie-pick { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.ops-view .ops-seat { display: flex; justify-content: space-between; gap: 6px; align-items: center; font-size: .85rem; }
+.ops-view .ops-error { color: var(--blood); }
+.ops-view .ops-ok { color: #6be4a4; }
+.ops-view .ops-report-winner { font-size: 1.2rem; color: #ffdb68; }
+.ops-view .ops-report-lines { padding-left: 18px; }
+.ops-view [data-ui="ops-help"] th { text-align: left; font-weight: normal; }
+
+.ops-view [data-ui="tooltip"] {
+  position: fixed; z-index: 100; pointer-events: none; white-space: pre-wrap; overflow-wrap: anywhere;
+  max-width: min(340px, calc(100vw - 16px)); padding: 10px 12px; border: 1px solid #6c83a1; border-radius: 6px;
+  color: #f3f7ff; background: #080e17f5; box-shadow: 0 8px 24px #0008; font-size: .8rem;
+}
+@media (max-width: 1100px) {
+  .ops-view .ops-layout { grid-template-columns: 160px minmax(0, 1fr) 220px; gap: 8px; }
+  .ops-view .world-wrap { grid-template-columns: minmax(0, 1fr); }
+  .ops-view .ops-split { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 出戰時的戰鬥層（battle-host.ts）：外層借 .ops-view 色票，戰鬥本體沿用 .battle-view 樣式 */
+.ops-view.ops-battle-host { padding: 0; height: auto; display: block; }
+.ops-view .ops-battle-bar { position: absolute; top: 14px; right: 70px; z-index: 60; }
+.ops-view [data-ui="battle-return"] { background: #1f5a3f; border-color: #3fa577; font-size: 1rem; padding: 8px 14px; box-shadow: 0 4px 14px #000a; }

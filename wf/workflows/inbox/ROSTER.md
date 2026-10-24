@@ -119,3 +119,14 @@
 - **答不出什麼**：戰鬥邏輯、營運
 - **怎麼找我**：已收線，看 REPORT
 - **訂閱主題**：無
+
+### `cx-uops-vm`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，營運畫面 vm（OpsController → OpsSnapshot）
+- **團隊**：`teams/ui-ops`
+- **上游**：`lead-ui-ops`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ui-ops/cx-uops-vm.md`「範圍」
+- **答得出什麼**：營運 vm 的快照、按鈕、快捷鍵、出戰銜接
+- **答不出什麼**：DOM、ops 規則
+- **怎麼找我**：`wf/inbox/orders/cx-uops-vm.md`
+- **訂閱主題**：無

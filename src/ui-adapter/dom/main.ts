@@ -103,6 +103,7 @@ if (root) {
   let wiki: WikiMount | null = null;
   let loading: Promise<void> | null = null;
   let latestRoute: AppRoute = { page: "battle" };
+  let opsStarted = false;   // [lead-ui-ops] 營運頁：第一次進 #/ops 才載入
   const shell = mountShell(root, {
     getWiki: () => wiki,
     onBattleKey: key => battleKey?.(key) ?? false,
@@ -112,6 +113,12 @@ if (root) {
         battleStarted = true;
         try { battleKey = start(pages.battle, hash => shell.navigate(hash)); }
         catch (e) { pages.battle.textContent = `啟動失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); }
+      }
+      if (route.page === "ops" && !opsStarted) {
+        opsStarted = true;
+        pages.ops.textContent = "營運載入中…";
+        import("../ops/dom/main.ts").then(({ mountOpsPage }) => { pages.ops.textContent = ""; mountOpsPage(pages.ops); })
+          .catch((e: unknown) => { pages.ops.textContent = `營運載入失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); });
       }
       if (route.page !== "wiki") return;
       if (wiki) { wiki.show(route.view); return; }

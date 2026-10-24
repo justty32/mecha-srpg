@@ -44,6 +44,8 @@ export class BattleSession {
   activeUnit(): Id | null { return this.inner.currentActor(); }
   isPlayerTurn(): boolean { return this.inner.isHumanTurn(); }
   outcome(): BattleOutcome | null { return this.inner.outcome(); }
+  /** 戰果（分出勝負後非 null）；營運層出戰銜接用它回寫（lead-ui-ops 新增）。 */
+  result(): ReturnType<SimSession["result"]> { return this.inner.result(); }
 
   /** 包一次 sim 推進：前 observer → 推進 → 若有成功指令則推 batch、後 observer。 */
   private track<T>(advance: () => T): T {

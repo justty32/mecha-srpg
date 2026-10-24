@@ -68,6 +68,17 @@ export function runSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie, opts: {
   }
 }
 
+/** 唯讀查詢（lead-ui-ops 新增）：在 state 副本上做出戰檢查、情境生成與 setup 對位，回傳可交給互動戰場的 sim setup。
+ *  輸入 state 不變；同一 state 稍後經 `sortie` 指令實際回寫時，情境生成消耗的 RNG 與此相同（seed 一致）。 */
+export function sortieBattleSetup(input: CampaignState, ctx: OpsCtx, sortie: Sortie): { ok: true; scenario: SortieScenario; sim: SimSetup; seed: number } | { ok: false; error: string } {
+  const s = structuredClone(input);
+  const valid = validateSortie(s, ctx, sortie); if (!valid.ok) return valid;
+  const scenario = generateScenario(s, ctx, sortie);
+  const sim = scenarioToSetup(ctx.db, scenario, scenario.seed!);
+  prepareSetup(s, ctx, sortie, scenario, sim);
+  return { ok: true, scenario, sim, seed: scenario.seed! };
+}
+
 // 正常出戰與營運重播共用戰後入口，確保排隊與回寫次序一致。
 export function applySortieResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
   if (s.log.some(e => e.type === "BattleResolved" && e.payload.sortie === sortie.id)) return;
