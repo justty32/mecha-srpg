@@ -1,5 +1,5 @@
 import type { Cell, Objective } from "../core/types-def.ts";
-import type { BattleOutcome } from "../core/types-state.ts";
+import type { BattleOutcome, BattleState } from "../core/types-state.ts";
 import type { Ctx } from "./state.ts";
 import { distance, emit, hostileSlots, isActive, rt, unit } from "./state.ts";
 import { onSignal } from "./hooks.ts";
@@ -54,14 +54,37 @@ export function evaluateObjectives(ctx: Ctx, atRoundEnd: boolean): BattleOutcome
   for (const o of objectives) {
     if (o.kind === "hold" && atRoundEnd) advanceHold(ctx, o);
     if (o.onComplete === "continue" || (o.kind === "survive" && !atRoundEnd) || !objectiveDone(ctx, o)) continue;
-    // SPEC-GAP：多人 lose 未指定勝方；採仍有 active 單位的其他 slot 字典序第一名。
-    const winner = o.onComplete === "win" ? o.for : slots.find(slot => slot !== o.for && Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && unit(ctx, id).owner === slot)) ?? null;
+    // SPEC-GAP：多人 lose 未指定勝方；採與敗方敵對、仍有 active 單位的 slot 字典序第一名（盟軍與敗方同敗）。
+    const winner = o.onComplete === "win" ? o.for : slots.find(slot => slot !== o.for && hostileSlots(ctx, o.for, slot) && Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && unit(ctx, id).owner === slot)) ?? null;
     runtime.outcome = { winner, reason: o.kind };
     break;
   }
   if (!runtime.outcome && atRoundEnd && runtime.maxRounds !== null && ctx.s.round >= runtime.maxRounds) runtime.outcome = { winner: null, reason: "timeout" };
-  if (runtime.outcome) emit(ctx, "BattleEnd", runtime.outcome);
+  // 指令／開局結算中途（死亡／撤離）定局時，BattleEnd 延到該次結算收尾才寫，讓同一指令的後續結算都在它之前。
+  if (runtime.outcome) {
+    if (!atRoundEnd && deferring.has(ctx.s)) pendingEnd.set(ctx.s, runtime.active);
+    else emit(ctx, "BattleEnd", runtime.outcome);
+  }
   return runtime.outcome;
+}
+// 暫態旗標（不進 BattleState、不進存檔）：只在 deferBattleEnd 包住的同步結算期間有效。
+const deferring = new WeakSet<BattleState>(), pendingEnd = new WeakMap<BattleState, string | null>();
+export function deferBattleEnd<T>(ctx: Ctx, fn: () => T): T {
+  if (deferring.has(ctx.s)) return fn();
+  deferring.add(ctx.s);
+  try { return fn(); }
+  finally {
+    deferring.delete(ctx.s);
+    const runtime = rt(ctx.s);
+    if (pendingEnd.has(ctx.s) && runtime.outcome) {
+      // 事件的 turn 沿用定局當下的行動者（與即時寫入時相同）。
+      const active = runtime.active;
+      runtime.active = pendingEnd.get(ctx.s)!;
+      emit(ctx, "BattleEnd", runtime.outcome);
+      runtime.active = active;
+    }
+    pendingEnd.delete(ctx.s);
+  }
 }
 
 onSignal("roundEnd", "people.objectives.round", 100, ctx => { evaluateObjectives(ctx, true); });

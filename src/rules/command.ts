@@ -13,6 +13,7 @@ import type { Cost } from "./pools.ts";
 import { resolveAbility } from "./attack.ts";
 import { advance, endTurn } from "./turn.ts";
 import { locomotionOf, moveAlong } from "./movement.ts";
+import { deferBattleEnd } from "./objectives.ts";
 
 function actorPerson(ctx: Ctx, id: Id, aid: Id): Id | null {
   const a = ctx.db.require("ability", aid);
@@ -97,7 +98,11 @@ function stopSustain(ctx: Ctx, id: Id, aid: Id): void {
   removeBySource(ctx, source);
 }
 export function tryCommand(ctx: Ctx, cmd: Command): Result {
-  const runtime = rt(ctx.s), start = ctx.s.log.events.length;
+  const start = ctx.s.log.events.length, result = deferBattleEnd(ctx, () => runCommand(ctx, cmd));
+  return result.ok ? { ok: true, events: ctx.s.log.events.slice(start) } : result;
+}
+function runCommand(ctx: Ctx, cmd: Command): Result {
+  const runtime = rt(ctx.s);
   if (runtime.outcome) return { ok: false, rejection: { code: "battle-over" } };
   if (!ctx.s.units[cmd.actor]) return { ok: false, rejection: { code: "bad-actor" } };
   if (runtime.active !== cmd.actor || !isActive(ctx, cmd.actor)) return { ok: false, rejection: { code: "not-active" } };
@@ -158,7 +163,7 @@ export function tryCommand(ctx: Ctx, cmd: Command): Result {
   }
   if (runtime.active !== null && !isActive(ctx, runtime.active)) endTurn(ctx);
   if (runtime.outcome) runtime.active = null;
-  return { ok: true, events: ctx.s.log.events.slice(start) };
+  return { ok: true, events: [] };
 }
 export function previewCommand(ctx: Ctx, cmd: Command): { result: Result; state: BattleState } {
   const state = cloneBattleState(ctx.s);

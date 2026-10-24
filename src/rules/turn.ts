@@ -7,6 +7,7 @@ import { roleAttr } from "./contribs.ts";
 import { applyEffect, tickEffects } from "./effects.ts";
 import { dispatchHook, signal } from "./hooks.ts";
 import { canPay, changePool, pay, regenTick } from "./pools.ts";
+import { deferBattleEnd } from "./objectives.ts";
 
 export function initiativeOf(ctx: Ctx, unitId: Id): number {
   const pid = commanderOf(ctx, unitId);
@@ -20,7 +21,7 @@ export function computeOrder(ctx: Ctx): Id[] {
 }
 export function startBattle(ctx: Ctx): void {
   emit(ctx, "BattleStart", { units: Object.keys(ctx.s.units).sort() });
-  startRound(ctx);
+  deferBattleEnd(ctx, () => startRound(ctx));
 }
 export function startRound(ctx: Ctx): void {
   const runtime = rt(ctx.s);
@@ -57,6 +58,8 @@ export function beginTurn(ctx: Ctx, unitId: Id, resumed: boolean): void {
     for (const id of Object.keys(u.cooldowns).sort()) u.cooldowns[id] = Math.max(0, u.cooldowns[id]! - 1);
     for (const part of Object.keys(u.parts).sort()) {
       const state = u.parts[part]!, defs = layerDefs(ctx, unitId, part);
+      // 已毀部位不再生（修理歸營運層）；否則結構層回血而 part.broken 仍為真，兩者失去一致。
+      if (state.broken) continue;
       for (const [i, def] of defs.entries()) {
         if (def.regen === undefined) continue;
         const layer = state.layers[i]!, ev = evalCtxFor(ctx, { unit: unitId });

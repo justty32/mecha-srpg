@@ -70,7 +70,9 @@ registerVerb("pool", (ctx, action, hc) => {
   const owner = action.owner === "person" && hc.self.person ? { person: hc.self.person }
     : action.owner === "mech" && uid ? { unit: uid } : null;
   // SPEC-GAP：沒有相符擁有者的 pool 動作略過，避免替內容挑選座位。
-  if (owner) changePool(ctx, owner, action.pool, evalNum(action.delta, evalCtxFor(ctx, hc.self)), `effect:${hc.inst?.uid ?? "action"}`);
+  // 擁有者沒有該池（例：補給地形對無 ammo 池的單位）同樣略過。
+  const pools = !owner ? undefined : "person" in owner ? ctx.s.persons[owner.person!]?.pools : ctx.s.units[owner.unit!]?.pools;
+  if (owner && pools?.[action.pool]) changePool(ctx, owner, action.pool, evalNum(action.delta, evalCtxFor(ctx, hc.self)), `effect:${hc.inst?.uid ?? "action"}`);
 });
 registerVerb("apply", (ctx, action, hc) => {
   if (action.do !== "apply") return;

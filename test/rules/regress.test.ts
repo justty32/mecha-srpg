@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { loadContentDirs } from "../../src/content/loader.ts";
-import { createBattle, startBattle, personAttr, currentActor, tryCommand, checkAbility, abilitiesOf, rt, applyEffect } from "../../src/rules/index.ts";
+import { createBattle, startBattle, personAttr, currentActor, tryCommand, checkAbility, abilitiesOf, rt, applyEffect, runActions, applyPacket, layerDefs } from "../../src/rules/index.ts";
 import type { BattleSetup } from "../../src/rules/index.ts";
 
 const { db } = loadContentDirs(["content/base"]);
@@ -107,4 +107,95 @@ test("回歸：雙方都只剩無人可下指令的單位時，戰局照輪推�
   assert.deepEqual(rt(s).outcome, { winner: null, reason: "timeout" });
   assert.equal(s.round, 3);
   assert.equal(s.log.events.at(-1)!.type, "BattleEnd");
+});
+
+test("回歸：多方局 lose 目標定局時，勝方取與敗方敵對的存活 slot，不挑到敗方盟軍", () => {
+  // a(s0) 與 b(s1) 同盟、c(s2) 敵對；s0 的 survive 失敗條件以 lose 表達：字典序第一個存活 slot 是盟軍 s1。
+  const { frame, seat } = pilotedFrame();
+  const setup: BattleSetup = { id: "regress-lose-ally", allies: { s0: ["s1"], s1: ["s0"] },
+    map: { width: 5, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] }, maxRounds: 5,
+    objectives: [{ kind: "survive", params: { rounds: 1 }, for: "s0", onComplete: "lose" }], units: [
+      { id: "a", owner: "s0", pos: { x: 0, y: 0 }, frame, persons: [{ id: "pa", def: humans[0]!, seat }] },
+      { id: "b", owner: "s1", pos: { x: 2, y: 0 }, frame, persons: [{ id: "pb", def: humans[0]!, seat }] },
+      { id: "c", owner: "s2", pos: { x: 4, y: 0 }, frame, persons: [{ id: "pc", def: humans[0]!, seat }] }] };
+  const s = createBattle(db, setup, 1), ctx = { db, s };
+  startBattle(ctx);
+  for (let i = 0; i < 20 && !rt(s).outcome; i++) assert.ok(tryCommand(ctx, { kind: "end", actor: currentActor(s)! }).ok);
+  assert.deepEqual(rt(s).outcome, { winner: "s2", reason: "survive" });
+});
+
+test("回歸：效果動作 do:pool 對沒有該池的單位略過，不拋「缺少池」", () => {
+  // 例：補給碑地形效果對無 ammo 池的單位。
+  const monster = db.require("monster", db.ids("monster").sort()[0]!);
+  const setup: BattleSetup = { id: "regress-pool-verb", map: { width: 3, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] },
+    objectives: [], maxRounds: 2, units: [
+      { id: "m", owner: "enemy", pos: { x: 0, y: 0 }, monster: { species: monster.species, grade: monster.grade } },
+      { id: "b", owner: "player", pos: { x: 2, y: 0 }, frame: pilotedFrame().frame }] };
+  const s = createBattle(db, setup, 1), ctx = { db, s };
+  startBattle(ctx);
+  assert.doesNotThrow(() => runActions(ctx, [{ do: "pool", owner: "mech", pool: "fuzz-no-such-pool", delta: 5 }], { inst: null, self: { unit: "m" }, source: "test" }));
+});
+
+test("回歸：已毀部位的結構層不在 TurnStart regen 回血（part.broken 與結構層 broken 保持一致）", () => {
+  // 例：菌族 rotwarden 的 arm/head flesh 層帶 regen；舊版會把已毀部位的層補回 hp>0、part.broken 卻仍為 true。
+  let found: { species: string; grade: string; part: string } | undefined;
+  for (const sp of db.all("species").sort((a, b) => a.id < b.id ? -1 : 1)) {
+    const part = db.require("bodyplan", sp.bodyPlan).parts.find(p => !p.functions.includes("core") && p.layers.some(l => l.structural && l.regen !== undefined));
+    if (part) { found = { species: sp.id, grade: sp.gradeRange[0]!, part: part.id }; break; }
+  }
+  assert.ok(found, "內容包裡沒有帶 regen 結構層的非核心部位；回歸條件需改用測試包");
+  const setup: BattleSetup = { id: "regress-regen-broken", map: { width: 5, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] },
+    objectives: [], maxRounds: 4, units: [
+      { id: "m", owner: "enemy", pos: { x: 0, y: 0 }, monster: { species: found.species, grade: found.grade as "D" } },
+      { id: "b", owner: "player", pos: { x: 4, y: 0 }, frame: pilotedFrame().frame }] };
+  const s = createBattle(db, setup, 1), ctx = { db, s };
+  startBattle(ctx);
+  const type = Object.keys(layerDefs(ctx, "m", found.part)[0]!.resist).sort()[0] ?? "kinetic";
+  for (let i = 0; i < 20 && !s.units.m!.parts[found.part]!.broken; i++) applyPacket(ctx, "m", found.part, { type, amount: 100000 }, null);
+  assert.ok(s.units.m!.parts[found.part]!.broken);
+  for (let i = 0; i < 20 && !rt(s).outcome; i++) {
+    assert.ok(tryCommand(ctx, { kind: "end", actor: currentActor(s)! }).ok);
+    const defs = layerDefs(ctx, "m", found.part), layers = s.units.m!.parts[found.part]!.layers;
+    assert.ok(defs.every((d, j) => !d.structural || layers[j]!.broken), "已毀部位的結構層被 regen 補回");
+  }
+});
+
+test("回歸：一擊殺死最後敵人時，該指令的後續結算（produces 入池等）都記在 BattleEnd 之前", () => {
+  // 舊版 unitDied 當下就寫 BattleEnd，之後同一指令的 produces 仍寫 PoolChanged，BattleEnd 不是最後一筆。
+  let found: { frame: string; slot: string; component: string; ability: string; seat: string; range: number } | undefined;
+  search: for (const frame of db.ids("frame").sort()) {
+    const f = db.require("frame", frame), plan = db.require("bodyplan", f.bodyPlan);
+    const seat = plan.parts.flatMap(p => p.seats ?? []).find(s => s.accepts[0] === "pilot");
+    if (!seat) continue;
+    for (const part of plan.parts) for (const slot of part.slots) {
+      for (const c of db.all("component").filter(c => c.slot === slot.type).sort((a, b) => a.id < b.id ? -1 : 1)) {
+        const own = new Set([...f.pools.map(p => p.id), ...c.pools.map(p => p.id)]);
+        const a = c.abilities.map(id => db.require("ability", id)).find(a => a.mode === "activated" && !a.actorRole && a.target.kind === "unit"
+          && a.packets.length > 0 && !a.require.length && typeof a.target.range.min === "number" && typeof a.target.range.max === "number"
+          && a.costs.every(x => x.owner === "person" ? x.pool === "ap" : own.has(x.pool))
+          && a.produces.some(x => x.owner === "mech" && own.has(x.pool)));
+        if (a) { found = { frame, slot: slot.id, component: c.id, ability: a.id, seat: seat.id, range: Math.max(1, a.target.range.min as number) }; break search; }
+      }
+    }
+  }
+  assert.ok(found, "內容包裡找不到帶 produces 的單體攻擊部件");
+  const victim = pilotedFrame().frame, vplan = db.require("bodyplan", db.require("frame", victim).bodyPlan);
+  // 受害者所有部位的層都只剩 1 hp：任何命中都會擊毀部位，含 core。
+  const parts = Object.fromEntries(vplan.parts.map(p => [p.id, { broken: false, layers: p.layers.map(() => ({ hp: 0.001, broken: false })) }]));
+  let checked = 0;
+  for (let seed = 1; seed <= 40 && checked === 0; seed++) {
+    const setup: BattleSetup = { id: "regress-kill-produces", map: { width: found.range + 1, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] },
+      objectives: [], maxRounds: 2, units: [
+        { id: "a", owner: "player", pos: { x: 0, y: 0 }, frame: found.frame, components: { [found.slot]: found.component },
+          persons: [{ id: "pa", def: humans[0]!, seat: found.seat }] },
+        { id: "z", owner: "enemy", pos: { x: found.range, y: 0 }, frame: victim, parts }] };
+    const s = createBattle(db, setup, seed), ctx = { db, s };
+    startBattle(ctx);
+    if (currentActor(s) !== "a" || checkAbility(ctx, "a", found.ability, { unit: "z" }) !== null) continue;
+    assert.ok(tryCommand(ctx, { kind: "useAbility", actor: "a", ability: found.ability, target: { unit: "z" } }).ok);
+    if (!rt(s).outcome) continue;
+    checked++;
+    assert.equal(s.log.events.at(-1)!.type, "BattleEnd");
+  }
+  assert.ok(checked > 0, "40 個 seed 都沒有一擊定局");
 });
