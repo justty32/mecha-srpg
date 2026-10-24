@@ -1,0 +1,214 @@
+{
+  "id": "scenario/delta-four-way",
+  "map": "map/delta-ruins-56",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 22,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 22,
+            "y": 19
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "ally": {
+      "faction": "faction/dhaka-weavers",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 25,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 27,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 29,
+            "y": 14
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 32,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 32,
+            "y": 19
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 34,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 35,
+            "y": 20
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 35,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 33,
+            "y": 21
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "third": {
+      "faction": "faction/tide-faith",
+      "units": [
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 24,
+            "y": 22
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 26,
+            "y": 22
+          }
+        },
+        {
+          "mech": "frame/bio-mite",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 24,
+            "y": 24
+          }
+        }
+      ],
+      "ai": "aiprofile/tide-cultist"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "third",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2111
+}

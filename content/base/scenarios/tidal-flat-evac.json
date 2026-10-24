@@ -1,0 +1,206 @@
+{
+  "id": "scenario/tidal-flat-evac",
+  "map": "map/tidal-flat-40x30",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 31,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 33,
+            "y": 19
+          }
+        }
+      ],
+      "allies": [
+        "ally",
+        "convoy"
+      ]
+    },
+    "ally": {
+      "faction": "faction/bay-seventh-post",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 29,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 30,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ash",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 32,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 34,
+            "y": 18
+          }
+        }
+      ],
+      "ai": "aiprofile/bodyguard",
+      "allies": [
+        "player",
+        "convoy"
+      ]
+    },
+    "convoy": {
+      "faction": "faction/bay-seventh-post",
+      "units": [
+        {
+          "mech": "frame/infantry",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 31,
+            "y": 15
+          }
+        },
+        {
+          "mech": "frame/infantry",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 33,
+            "y": 16
+          }
+        }
+      ],
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player",
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 32,
+            "y": 22
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 31,
+            "y": 22
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 33,
+            "y": 22
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 35,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 34,
+            "y": 23
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 30,
+            "y": 23
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "escort",
+      "params": {
+        "target": "frame/infantry"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/infantry"
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

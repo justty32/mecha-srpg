@@ -1,0 +1,87 @@
+{
+  "id": "scenario/quarry-duel",
+  "map": "map/lunar-quarry-16",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 6,
+            "y": 9
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 7,
+            "y": 10
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 9,
+            "y": 9
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 10,
+            "y": 9
+          }
+        }
+      ],
+      "ai": "aiprofile/sniper-perch"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/moji-tern"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

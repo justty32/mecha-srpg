@@ -1,0 +1,164 @@
+{
+  "id": "scenario/hive-burrow-clearing",
+  "map": "map/hive-burrow-24",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 5,
+            "y": 14
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 6,
+            "y": 14
+          }
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 4,
+            "y": 13
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 5,
+            "y": 13
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/unit-07",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 6,
+            "y": 13
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 7,
+            "y": 13
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 6,
+            "y": 9
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 5,
+            "y": 9
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 7,
+            "y": 9
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 4,
+            "y": 10
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 6,
+            "y": 10
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 8,
+            "y": 10
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

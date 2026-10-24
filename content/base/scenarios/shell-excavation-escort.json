@@ -1,0 +1,165 @@
+{
+  "id": "scenario/shell-excavation-escort",
+  "map": "map/ancient-shell-30",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 16,
+            "y": 17
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "convoy": {
+      "faction": "faction/shell-society",
+      "units": [
+        {
+          "mech": "frame/infantry",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 13,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/infantry",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/infantry",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 19
+          }
+        }
+      ],
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/glove",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 11,
+            "y": 23
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ash",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 18,
+            "y": 23
+          }
+        }
+      ],
+      "ai": "aiprofile/sniper-perch"
+    },
+    "third": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 6,
+            "y": 19
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 6,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 7,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "escort",
+      "params": {
+        "target": "frame/infantry"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/infantry"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2112
+}

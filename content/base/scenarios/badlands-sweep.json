@@ -1,0 +1,291 @@
+{
+  "id": "scenario/badlands-sweep",
+  "map": "map/badlands-128",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 70,
+            "y": 63
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 70,
+            "y": 64
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 72,
+            "y": 62
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 72,
+            "y": 63
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 72,
+            "y": 64
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 74,
+            "y": 62
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 74,
+            "y": 63
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 74,
+            "y": 64
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 71,
+            "y": 60
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 73,
+            "y": 60
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 80,
+            "y": 62
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 80,
+            "y": 63
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 80,
+            "y": 64
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 82,
+            "y": 62
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 82,
+            "y": 63
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 82,
+            "y": 64
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 84,
+            "y": 62
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 84,
+            "y": 63
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 84,
+            "y": 64
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "third": {
+      "faction": "faction/anvil-hunters",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 70,
+            "y": 69
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 72,
+            "y": 69
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 74,
+            "y": 69
+          }
+        }
+      ],
+      "ai": "aiprofile/guerrilla"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "third",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2116
+}

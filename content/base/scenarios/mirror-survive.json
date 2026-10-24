@@ -1,0 +1,130 @@
+{
+  "id": "scenario/mirror-survive",
+  "map": "map/shard-mirror-28",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 12,
+            "y": 13
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 12,
+            "y": 15
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 17,
+            "y": 13
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 17,
+            "y": 15
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 16,
+            "y": 12
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 16,
+            "y": 16
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 18,
+            "y": 14
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 15,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 15,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 9,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 9,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 8,
+            "y": 14
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 10
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

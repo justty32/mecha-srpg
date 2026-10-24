@@ -1,0 +1,197 @@
+{
+  "id": "scenario/overpass-wager",
+  "map": "map/ruined-overpass-48x32",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 21,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 21,
+            "y": 21
+          }
+        }
+      ],
+      "allies": [
+        "third"
+      ]
+    },
+    "third": {
+      "faction": "faction/anvil-hunters",
+      "units": [
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 21,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/salt-gull-hunters",
+      "units": [
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 22
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 24,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 24,
+            "y": 22
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player",
+          "third"
+        ]
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

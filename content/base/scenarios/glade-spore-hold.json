@@ -1,0 +1,233 @@
+{
+  "id": "scenario/glade-spore-hold",
+  "map": "map/mycelium-glade-32",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 15,
+            "y": 16
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 16,
+            "y": 16
+          }
+        }
+      ],
+      "ai": "aiprofile/sniper-perch",
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/dhaka-weavers",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 15
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 17
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ash",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 18,
+            "y": 16
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 16,
+            "y": 18
+          }
+        }
+      ],
+      "ai": "aiprofile/bodyguard",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 22,
+            "y": 16
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 22,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 21,
+            "y": 15
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 21,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 23,
+            "y": 15
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 23,
+            "y": 17
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 8,
+        "zone": [
+          {
+            "x": 14,
+            "y": 15
+          },
+          {
+            "x": 15,
+            "y": 15
+          },
+          {
+            "x": 16,
+            "y": 15
+          },
+          {
+            "x": 17,
+            "y": 15
+          },
+          {
+            "x": 14,
+            "y": 16
+          },
+          {
+            "x": 15,
+            "y": 16
+          },
+          {
+            "x": 16,
+            "y": 16
+          },
+          {
+            "x": 17,
+            "y": 16
+          },
+          {
+            "x": 14,
+            "y": 17
+          },
+          {
+            "x": 15,
+            "y": 17
+          },
+          {
+            "x": 16,
+            "y": 17
+          },
+          {
+            "x": 17,
+            "y": 17
+          },
+          {
+            "x": 14,
+            "y": 18
+          },
+          {
+            "x": 15,
+            "y": 18
+          },
+          {
+            "x": 16,
+            "y": 18
+          },
+          {
+            "x": 17,
+            "y": 18
+          }
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

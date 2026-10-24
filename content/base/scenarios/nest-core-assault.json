@@ -1,0 +1,198 @@
+{
+  "id": "scenario/nest-core-assault",
+  "map": "map/nest-core-72",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/ancient-rearguard",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 40,
+            "y": 35
+          }
+        },
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 40,
+            "y": 37
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 42,
+            "y": 35
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 42,
+            "y": 36
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 42,
+            "y": 37
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 44,
+            "y": 35
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 44,
+            "y": 36
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 44,
+            "y": 37
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/nestmother-landlord",
+          "at": {
+            "x": 49,
+            "y": 36
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 47,
+            "y": 35
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 47,
+            "y": 37
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 49,
+            "y": 34
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 49,
+            "y": 38
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 51,
+            "y": 35
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 51,
+            "y": 37
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/nestmother-landlord"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2113
+}

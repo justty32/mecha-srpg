@@ -1,0 +1,221 @@
+{
+  "id": "scenario/waste-encirclement",
+  "map": "map/mineral-waste-64x40",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 29,
+            "y": 16
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 29,
+            "y": 22
+          }
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 28,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 30,
+            "y": 15
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 34,
+            "y": 15
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 36,
+            "y": 18
+          }
+        },
+        {
+          "mech": "frame/corpse-reaper",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 36,
+            "y": 21
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 32,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 32,
+            "y": 20
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 34,
+            "y": 19
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 31,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 31,
+            "y": 20
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 33,
+            "y": 17
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 33,
+            "y": 21
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 35,
+            "y": 18
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 35,
+            "y": 20
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/reaper-c"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 12
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2108
+}

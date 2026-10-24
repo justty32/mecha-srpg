@@ -1,0 +1,178 @@
+{
+  "id": "scenario/beachhead-landing",
+  "map": "map/beachhead-44x36",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 21
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 22,
+            "y": 21
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "ally": {
+      "faction": "faction/bay-seventh-post",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 19,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 21,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 23,
+            "y": 19
+          }
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 20
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 22,
+            "y": 20
+          }
+        }
+      ],
+      "ai": "aiprofile/guerrilla",
+      "allies": [
+        "player"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 20,
+            "y": 12
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 22,
+            "y": 12
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 21,
+            "y": 10
+          }
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": {
+            "x": 19,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 23,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 21,
+            "y": 8
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/reaper-c"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 2115
+}
