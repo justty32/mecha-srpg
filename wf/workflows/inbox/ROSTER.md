@@ -43,6 +43,28 @@
 
 （目前除 dispatcher 外無現役成員；已收線成員原格見 archive/。）
 
+### `cx-mcp-core`
+- **狀態**：已收線（2026-10-24）（領導 `lead-mcp` 代登記）
+- **我是誰**：codex 工人，`lead-mcp` 底下。
+- **團隊**：`teams/mcp`
+- **上游**：`lead-mcp`
+- **領地**：`src/mcp/` 新檔（`tool.ts`、`campaign*.ts`、`ui.ts` 除外）
+- **答得出什麼**：MCP 協定層、戰鬥工具、cli
+- **答不出什麼**：營運層內部、別的 MCP 工具模組
+- **怎麼找我**：`wf/inbox/orders/cx-mcp-core.md`
+- **訂閱主題**：無
+
+### `cx-mcp-ops`
+- **狀態**：已收線（2026-10-24）（領導 `lead-mcp` 代登記）
+- **我是誰**：codex 工人，`lead-mcp` 底下。
+- **團隊**：`teams/mcp`
+- **上游**：`lead-mcp`
+- **領地**：`src/mcp/campaign.ts`、`campaign-view.ts`、`campaign.test.ts`
+- **答得出什麼**：營運 MCP 工具
+- **答不出什麼**：營運層內部、別的 MCP 工具模組
+- **怎麼找我**：`wf/inbox/orders/cx-mcp-ops.md`
+- **訂閱主題**：無
+
 ### `cx-bio`
 - **狀態**：已收線（2026-10-24，領導 `lead-ops-bio-balance` 代登記）
 - **我是誰**：codex 工人，生物系改寫（拘束艙／BeastState／devour／四種 job／命名）
