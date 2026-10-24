@@ -1,3 +1,4 @@
+import { blightAt } from "../world/blight.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { CampaignEvent, CampaignState, Screen, OpsCommand } from "../state/types.ts";
 import type { WorldDB } from "../content/worlddb.ts";
@@ -29,12 +30,13 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
     ...(showMap ? { map: allPlaces(state, ctx).map(place => {
       const path = shortestPath(state, ctx, state.ship.pos, place.id);
       return { id: place.id, name: place.name, map: place.map, x: place.at.x, y: place.at.y,
+        blight: blightAt(state, ctx, { map: place.map, cell: place.at, region: "" })?.depth ?? "clean",
         days: path?.days ?? null, travel: path ? `${path.days} 天` : "無法抵達" };
     }) } : {}),
     ledger: ["cash", "debt", "stock:flesh", "stock:fuel"].map(account => ({ account, balance: state.ledger.balances[account as keyof typeof state.ledger.balances] ?? 0 })),
     roster: Object.keys(state.roster.persons).sort().map(id => ({ id, name: entityName(id, state, world),
       role: state.roster.employment[id]?.role ?? "", owed: state.roster.employment[id]?.owed ?? 0 })),
-    rifts: Object.keys(state.rifts).sort().map(id => ({ id, place: state.rifts[id]!.site, map: state.rifts[id]!.at.map, x: state.rifts[id]!.at.cell.x, y: state.rifts[id]!.at.cell.y, phase: state.rifts[id]!.phase, width: state.rifts[id]!.width })),
+    rifts: Object.keys(state.rifts).sort().map(id => ({ id, place: state.rifts[id]!.site, map: state.rifts[id]!.at.map, x: state.rifts[id]!.at.cell.x, y: state.rifts[id]!.at.cell.y, name: entityName(state.rifts[id]!.site, state, world), patches: state.rifts[id]!.patches.length, cells: state.rifts[id]!.patches.reduce((n, p) => n + (state.patches[p]?.cells.length ?? 0), 0), phase: state.rifts[id]!.phase, width: state.rifts[id]!.width })),
     queue: [...state.jobs].sort((a, b) => a.priority - b.priority || a.id.localeCompare(b.id)).map(j => ({ id: j.id, kind: j.kind, target: j.target, done: j.doneHours, need: j.needHours, priority: j.priority })),
     ship: [{ place: placeAt(state, ctx, state.ship.pos) ?? null, map: state.ship.pos.map, x: state.ship.pos.cell.x, y: state.ship.pos.cell.y, destination: state.ship.path ? JSON.stringify(state.ship.path.to) : null, daysLeft: state.ship.path ? state.pendingTicks : 0, fuel: state.ship.fuel.cur, hull: state.ship.hull.cur }],
   }, actions: [action("環顧四周", { v: "look" }), action("存檔", { v: "save" }), action("指令說明", { v: "help" })] };

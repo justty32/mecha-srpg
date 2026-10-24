@@ -1,3 +1,4 @@
+import { blightedCells } from "../world/blight.ts";
 import { placeAt } from "../war/loc.ts";
 import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
@@ -35,7 +36,7 @@ export function dailySummary(s: CampaignState, ctx: OpsCtx) {
   const bays = [...new Set(s.hangar.bays.filter((id): id is string => id !== null))];
   return { ...(s.operations ? { operations: Object.values(s.operations).filter(o => !["done", "failed", "aborted"].includes(o.phase)).length, war: Object.values(s.relations ?? {}).filter(r => r.state === "war").length, allied: Object.values(s.relations ?? {}).filter(r => r.state === "allied").length, released: Object.values(s.models ?? {}).filter(m => m.releasedDay !== undefined).length, joins: s.log.filter(e => e.type === "ContractAccepted" && e.payload.kind === "join").length } : {}), cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, persons: Object.keys(s.roster.persons).length,
     beasts: Object.keys(s.restraint.beasts).length,
-    blighted: Object.values(s.places).filter(n => n.blight).length,
+    blighted: blightedCells(s),
     rifts: Object.values(s.rifts).filter(r => r.phase !== "closed").length };
 }
 function finishDay(s: TimeState, ctx: TickCtx): void {

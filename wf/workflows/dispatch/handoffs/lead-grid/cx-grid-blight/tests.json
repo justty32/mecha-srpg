@@ -1,0 +1,72 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "category",
+  "name",
+  "file"
+ ],
+ "rows": [
+  {
+   "category": "1",
+   "name": "蝕塊：每塊 7–12 格且連通，地形受限時允許不足 7 格",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "2",
+   "name": "蝕塊：深度與 sinceDay 的潮月門檻一致",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "3",
+   "name": "蝕塊：LIFO 收縮後 patches 仍為開裂順序前綴，最後才退核",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "4",
+   "name": "蝕塊：城邦 footprint 任一格被蝕 iff 裂獸 ownerOverride，乾淨後恢復一潮月",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "5",
+   "name": "蝕塊：菌絲最年輕塊未 burned 不退，燃燒後退且不跳過核",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "6",
+   "name": "蝕塊：開裂 1 格、錨到 3×3，核塊永遠含 at",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "7",
+   "name": "蝕塊：同 seed 開局及擴散結果完全相同",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "8",
+   "name": "蝕塊：rebuildBlightIndex 後索引與 patches 完全一致，壞索引驗證會紅",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "hook",
+   "name": "天象掛鉤：spreadDelta 被呼叫且改變當潮擴散塊數",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "hook",
+   "name": "天象掛鉤：anchorInstant 被呼叫且當日跳過 opening 剩餘天數",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "integration",
+   "name": "蝕核城：孟買 5×5 全核、半徑 15–25 格且三 seed 可重播",
+   "file": "src/ops/world/blight.test.ts"
+  },
+  {
+   "category": "integration",
+   "name": "裂縫口：落格建動態地點、契約指 site，閉合只保留遺跡或移除",
+   "file": "src/ops/world/blight.test.ts"
+  }
+ ]
+}

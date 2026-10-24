@@ -1,3 +1,4 @@
+import { cellKey, footprintOf } from "../world/grid.ts";
 import { placeAt } from "../war/loc.ts";
 import { requirePlace } from "../world/places.ts";
 import { strength, modelPower } from "../war/forces.ts";
@@ -27,7 +28,7 @@ export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, 
     campaign: s, calendar: { ...s.clock, daysPerMonth: cal.daysPerMonth, daysToNextSpring }, debt: { balance: debt, principal, ratio: principal > 0 ? debt / principal : 0 },
     ledger: s.ledger, inventory: s.inventory, ship: s.ship, restraint: { ...s.restraint, freeSlots: s.restraint.slots.filter(id => id === null).length, beastCount: Object.keys(s.restraint.beasts).length, beastWear: Math.max(0, ...Object.values(s.restraint.beasts).map(b => b.wear)) }, flags: s.flags,
     rift: rift ? { ...rift, widthIndex: GRADES.indexOf(rift.width) + 1 } : undefined,
-    faction: faction ? { ...faction, ...(faction.forces ? { strength: strength(faction.forces, modelPower(ctx as OpsCtx)), supply: faction.forces.supply, operationCount: faction.ops?.length ?? 0 } : {}), threatNearby: Object.keys(s.rifts).sort().filter(id => faction.territoryNow.some(n => s.rifts[id]!.zones.includes(n))).length } : undefined,
+    faction: faction ? { ...faction, ...(faction.forces ? { strength: strength(faction.forces, modelPower(ctx as OpsCtx)), supply: faction.forces.supply, operationCount: faction.ops?.length ?? 0 } : {}), threatNearby: Object.keys(s.rifts).sort().filter(id => faction.territoryNow.some(n => footprintOf(requirePlace(s, ctx, n)).some(cell => s.maps[requirePlace(s, ctx, n).map]?.blight[cellKey(cell)]?.rift === id))).length } : undefined,
     person: person ? { ...person, attrs: person.attrsBase, mood: s.roster.employment[person.id]?.mood ?? 0 } : undefined,
     mech, node, place: node, contract: scope.contract ? s.contracts[scope.contract] : undefined,
   };

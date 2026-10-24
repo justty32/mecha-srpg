@@ -40,7 +40,7 @@ test("opseffect：帳本、聲望、旗標、心情與工時", () => {
 test("opseffect：節點、裂縫、命名、核心效果與延後生成佇列", () => {
   const { s, ctx } = fixture();
   const mech = Object.keys(s.mechs).sort()[0]!, person = Object.keys(s.roster.persons).sort()[0]!;
-  s.rifts["rift-100"] = { id: "rift-100", site: placeAt(s, ctx, s.ship.pos)!, at: structuredClone(s.ship.pos), family: "insect", width: "C", phase: "opening", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 14 };
+  s.rifts["rift-100"] = { id: "rift-100", site: placeAt(s, ctx, s.ship.pos)!, at: structuredClone(s.ship.pos), family: "insect", width: "C", phase: "opening", openedDay: 0, anchorAge: 0, patches: [], fedCount: 0, nextCheck: 14 };
   const patch = { flags: ["visited"] };
   applyOpsEffects(s, ctx, [{ setPlace: { id: "place/dhaka", patch } }, { setRift: { id: "rift-100", patch: { phase: "anchored" } } },
     { nameMech: { mech, name: "迦樓羅", by: person } }, { applyEffect: { target: "person", id: person, effect: "effect/injury-concussion" } },

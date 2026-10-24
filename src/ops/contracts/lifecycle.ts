@@ -11,6 +11,7 @@ import { acceptJoin, dropJoin } from "../war/merc.ts";
 import { chebyshev, footprintOf } from "../world/grid.ts";
 import { worldRules } from "../world/places.ts";
 import { shortestPath } from "../world/move.ts";
+import { blightAt } from "../world/blight.ts";
 
 export type CmdResult = { ok: true } | { ok: false; error: string };
 // SPEC-GAP：行動牌生成請求需保留 actor 脈絡；地基原佇列只有 template/near。
@@ -21,7 +22,7 @@ function eligible(s: CampaignState, ctx: OpsCtx, template: ContractTemplate, iss
   return !!faction?.alive && !!def && template.issuerKinds.includes(faction.scaleNow) && faction.rep >= template.requiresRep && def.contractKinds.includes(template.id);
 }
 export function offerContract(s: CampaignState, ctx: OpsCtx, templateId: string, issuerId: string, target: { place: string; rift?: string }): ContractState | undefined {
-  const template = ctx.world.get("contract", templateId), issuer = ctx.world.get("faction-ops", issuerId), node = placeDef(s, ctx, target.place);
+  const template = ctx.world.get("contract", templateId), issuer = ctx.world.get("faction-ops", issuerId), node = placeDef(s, ctx, (target.rift ? s.rifts[target.rift]?.site : undefined) ?? target.place);
   if (!template || !issuer || !node || !eligible(s, ctx, template, issuer.id)) return undefined;
   const rift = target.rift ? s.rifts[target.rift] : undefined;
   if (!rift && ["clear", "seal", "reclaim"].includes(template.kind)) return undefined;
@@ -33,7 +34,7 @@ export function offerContract(s: CampaignState, ctx: OpsCtx, templateId: string,
   if (![total, perHead, deadline].every(Number.isFinite) || total < 0 || perHead < 0 || deadline < s.clock.day) return undefined;
   const id = nextId(s, "contract");
   const contract: ContractState = { id, template: template.id, issuer: issuer.id, target: { place: node.id, ...(rift ? { rift: rift.id,
-    snapshot: { family: family?.family ?? rift.family, width: rift.width, depth: s.places[node.id]?.blight?.depth ?? (node.id === rift.site ? "core" : "shallow"),
+    snapshot: { family: family?.family ?? rift.family, width: rift.width, depth: blightAt(s, ctx, rift.at)?.depth ?? "shallow",
       anchorAge: rift.anchorAge, monsters: [...(family?.monsters ?? [])], phase: rift.phase } } : {}) },
     status: "offered", terms: { total, advance: 0, perHead }, paidAdvance: false, heads: {}, offeredDay: s.clock.day, deadlineDay: deadline, stageIdx: 0, annoyance: 0 };
   s.contracts[id] = contract;
@@ -49,6 +50,10 @@ function nearby(s: CampaignState, ctx: OpsCtx, issuer: string, node: string): bo
   });
 }
 export function contractsDaily2(s: CampaignState, ctx: OpsCtx): void {
+  // SPEC-GAP：本線契約以交接書為準，只撤銷失守城邦尚未接取的委託。
+  for (const c of Object.values(s.contracts)) if (c.status === "offered" && s.places[c.target.place]?.flags.includes("blight-lost")) {
+    c.status = "expired"; c.settled = true; ctx.emit("ContractExpired", { contract: c.id, place: c.target.place });
+  }
   // muster 已建立的參戰契約沿用原作戰與補給條款，只套用雇主選用的具名模板。
   // 不另外發 join；可選模板仍守 issuerKinds／聲望／contractKinds 門檻。
   for (const c of Object.values(s.contracts)) {

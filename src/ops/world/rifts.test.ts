@@ -1,3 +1,5 @@
+import { blightAt } from "./blight.ts";
+import { addPatch } from "./patches.ts";
 import { requirePlace } from "./places.ts";
 import { placeLoc } from "../war/loc.ts";
 import { test } from "node:test";
@@ -10,11 +12,11 @@ import { fixture, day, addRift } from "./test-support.ts";
 import type { RiftState } from "../state/types.ts";
 
 test("rifts：大潮轉移表與非大潮不轉移", () => {
-  const rows: [RiftState["phase"], number, RiftState["phase"]][] = [["opening", 4, "opening"], ["opening", 14, "anchored"], ["anchored", 15, "anchored"], ["unanchored", 15, "unanchored"], ["sealing", 15, "sealing"], ["closed", 28, "closed"]];
+  const rows: [RiftState["phase"], number, RiftState["phase"]][] = [["opening", 4, "anchored"], ["opening", 14, "anchored"], ["anchored", 15, "anchored"], ["unanchored", 15, "unanchored"], ["sealing", 15, "sealing"], ["closed", 28, "closed"]];
   for (const [initial, n, expected] of rows) {
     const { s, ctx } = fixture(), r = addRift(s, ctx, { phase: initial }); day(s, ctx, n);
     riftsDaily2(s, ctx); assert.equal(r.phase, expected, `${initial}@${n}`);
-    if (expected === "anchored" && initial === "opening") assert.ok(s.places[r.site]!.blight);
+    if (expected === "anchored" && initial === "opening") assert.ok(blightAt(s, ctx, r.at));
   }
 });
 test("rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次", () => {
@@ -27,9 +29,8 @@ test("rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次", () => {
 });
 test("rifts：兩次大潮防守封印、潮月退區到 closed", () => {
   const { s, ctx } = fixture(), r = addRift(s, ctx, { phase: "unanchored" }); s.pressure = 100;
-  s.places[r.site]!.blight = { rift: r.id, depth: "core", sinceDay: 0 }; r.zones = [r.site];
   const other = requirePlace(s, ctx, "place/reed-marsh").id;
-  s.places[other]!.blight = { rift: r.id, depth: "shallow", sinceDay: 0 }; r.zones.push(other);
+  addPatch(s, ctx, r, [requirePlace(s, ctx, other).at]);
   day(s, ctx, 14); onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealing");
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealing");
   day(s, ctx, 28);
@@ -39,8 +40,8 @@ test("rifts：兩次大潮防守封印、潮月退區到 closed", () => {
   riftsDaily2(s, ctx); assert.equal(s.pendingBattle?.rift, r.id);
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealed"); assert.equal(s.pressure, 88);
   day(s, ctx, 42); riftsDaily2(s, ctx); assert.equal(r.phase, "sealed");
-  day(s, ctx, 56); riftsDaily2(s, ctx); assert.equal(r.phase, "receding"); assert.equal(s.places[r.site]!.blight, undefined);
-  day(s, ctx, 84); riftsDaily2(s, ctx); assert.equal(r.phase, "closed"); assert.equal(s.places[other]!.blight, undefined);
+  day(s, ctx, 56); riftsDaily2(s, ctx); assert.equal(r.phase, "receding"); assert.equal(blightAt(s, ctx, placeLoc(s, ctx, other)), undefined);
+  day(s, ctx, 84); riftsDaily2(s, ctx); assert.equal(r.phase, "closed"); assert.equal(blightAt(s, ctx, r.at), undefined);
 });
 test("rifts：selfClose 一個大潮後關閉，不產生錨", () => {
   const { s, ctx } = fixture(), original = ctx.world.require("rift", "rift/insect");

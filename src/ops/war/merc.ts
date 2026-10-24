@@ -1,3 +1,4 @@
+import { blightAt } from "../world/blight.ts";
 import { nextFloat } from "../../core/rng.ts";
 import type { CampaignState, ContractState, ContractTemplate, OpsCtx, Sortie, Ask, ObjectiveTemplate } from "../state/types.ts";
 import type { JoinTerms, OperationState, ForceState } from "./types.ts";
@@ -58,7 +59,7 @@ export function onMuster(s: CampaignState, ctx: OpsCtx, op: OperationState): voi
     const family = rift && (ctx.world.get("rift", rift.family) ?? ctx.world.all("rift").find(f => f.family === rift.family));
     const c: ContractState = { id, template: template.id, issuer, operation: op.id, side, loans: [], violations: 0,
       target: { place: (placeAt(s, ctx, op.target.loc) ?? ""), ...(rift ? { rift: rift.id, snapshot: { family: family?.family ?? rift.family, width: rift.width,
-        depth: s.places[(placeAt(s, ctx, op.target.loc) ?? "")]?.blight?.depth ?? "shallow", anchorAge: rift.anchorAge, phase: rift.phase, monsters: family?.monsters } } : {}) },
+        depth: blightAt(s, ctx, op.target.loc)?.depth ?? "shallow", anchorAge: rift.anchorAge, phase: rift.phase, monsters: family?.monsters } } : {}) },
       status: "offered", terms: { total: evalOpsNum(s, ctx, template.pay.base, { faction: issuer }), advance: 0, perHead: 0 },
       paidAdvance: false, heads: {}, offeredDay: s.clock.day,
       deadlineDay: op.startDay + (ctx.world.all("forces")[0]?.maxDays ?? 45) + 1, stageIdx: 0, annoyance: 0,

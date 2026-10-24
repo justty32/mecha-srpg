@@ -43,7 +43,7 @@ export function main(args: string[]): number {
     const period = world.require("calendar", s.calendar).daysPerMonth, elapsed = s.clock.day - firstDay;
     if (elapsed > 0 && elapsed % period === 0) {
       const row = { ...dailySummary(s, createOpsCtx(s, db, world)), month: elapsed / period, day: s.clock.day };
-      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕化節點數=${row.blighted} 裂縫數=${row.rifts} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
+      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕格數=${row.blighted} 裂縫數=${row.rifts} 作戰=${metrics.operations} war=${metrics.war} allied=${metrics.allied} 釋出=${metrics.released} join=${metrics.joins}`);
     }
   }, db, world, start, months, seed, policy: selectedPolicy, continueAfterEnd, ...(noBattle ? {} : { battle: defaultBattleRunner }) });
   if (result.summary.length !== months) {

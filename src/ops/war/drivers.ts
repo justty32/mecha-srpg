@@ -1,3 +1,5 @@
+import { cellKey, footprintOf } from "../world/grid.ts";
+import { requirePlace } from "../world/places.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import type { OperationState, Relation } from "./types.ts";
 import { changeRelation, relation } from "./relations.ts";
@@ -64,7 +66,7 @@ export function dailyDrivers(s: CampaignState, ctx: OpsCtx): void {
       if (rift.phase !== "anchored") continue;
       if (touches(r.a, rift.site) && touches(r.b, rift.site)) drive(s, ctx, "shared-threat", r.a, r.b);
       for (const [a, b] of [[r.a, r.b], [r.b, r.a]] as const) {
-        if (s.factions[b]!.territoryNow.includes(rift.site) && s.factions[a]!.territoryNow.some(n => s.places[n]?.blight?.rift === rift.id)) drive(s, ctx, "border-blight", a, b);
+        if (s.factions[b]!.territoryNow.includes(rift.site) && s.factions[a]!.territoryNow.some(n => footprintOf(requirePlace(s, ctx, n)).some(cell => s.maps[requirePlace(s, ctx, n).map]?.blight[cellKey(cell)]?.rift === rift.id))) drive(s, ctx, "border-blight", a, b);
       }
     }
   }

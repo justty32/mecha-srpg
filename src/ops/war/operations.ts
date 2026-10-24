@@ -15,6 +15,9 @@ import { nextSpring } from "../world/rifts.ts";
 import { onMuster, onOperationEnd, playerEngages } from "./merc-hook.ts";
 import { onOperationSuccess } from "./rnd.ts";
 import { mercDaily } from "./merc.ts";
+import { blightAt, patchDepth } from "../world/blight.ts";
+import { removePatch } from "../world/patches.ts";
+import { locAt } from "./loc.ts";
 export function activeOperation(op: OperationState): boolean { return !["done", "failed", "aborted"].includes(op.phase); }
 export function placeOwner(s: CampaignState, ctx: OpsCtx, node: string): string | undefined {
   const raw = s.places[node]?.ownerOverride ?? placeDef(s, ctx, node)?.owner;
@@ -34,9 +37,9 @@ export function operationTargets(s: CampaignState, ctx: OpsCtx, actor: string, d
   } else if (def.targetSel === "rift-core") {
     for (const r of Object.values(s.rifts).sort((a, b) => a.id.localeCompare(b.id))) if (r.phase === "anchored") targets.push({ loc: placeLoc(s, ctx, r.site), rift: r.id });
   } else if (def.targetSel === "shallow-place" || def.kind === "contain") {
-    for (const id of Object.keys(s.places).sort()) {
-      const n = s.places[id]!, blight = n.blight;
-      if (blight && (def.kind === "contain" ? blight.depth !== "core" : blight.depth === "shallow")) targets.push({ loc: placeLoc(s, ctx, id), rift: blight.rift });
+    for (const patch of Object.values(s.patches)) {
+      const depth = patchDepth(s, ctx, patch);
+      if (def.kind === "contain" ? depth !== "core" : depth === "shallow") targets.push({ loc: locAt(ctx, patch.map, patch.cells[0]!), rift: patch.rift });
     }
   } else if (def.targetSel === "enemy-place" || def.targetSel === "port") {
     for (const n of allPlaces(s, ctx)) {
@@ -164,7 +167,8 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
       if (arrived && (def.kind !== "contain" || s.clock.phase === "spring")) setPhase(s, ctx, op, "engage");
     }
     if (op.phase === "engage") {
-      if (def.kind === "contain" && s.clock.phase === "spring") op.containedPlaces = s.log.filter(e => e.day === s.clock.day && e.type === "PlaceBlighted" && e.payload.rift === op.target.rift).map(e => String(e.payload.place));
+      // SPEC-GAP：沿用作戰記錄欄名 containedPlaces，內容改存本潮蝕塊 id。
+      if (def.kind === "contain" && s.clock.phase === "spring") op.containedPlaces = s.log.filter(e => e.day === s.clock.day && e.type === "PlaceBlighted" && e.payload.rift === op.target.rift).map(e => String(e.payload.patch));
       if (def.kind === "siege") for (const faction of Object.keys(s.factions).sort()) {
         if (faction === op.actor || faction === op.target.faction) continue;
         if (s.factions[faction]!.territoryNow.some(n => nearbyPlaces(s, ctx, (placeAt(s, ctx, op.target.loc) ?? "")).includes(n)))
@@ -182,9 +186,18 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
     }
     if (op.phase === "resolve" && s.clock.day >= op.phaseEnd) {
       if (def.covert && !op.log.some(e => e.kind === "player-exposure")) op.exposed = nextFloat(s.warRng) < 0.3 || op.exposed;
-      applyOpsEffects(s, ctx, def.onSuccess.filter(e => !("transferShell" in e && s.shells?.[op.target.shell ?? ""]?.holder === "player")), operationScope(s, ctx, op));
-      if (def.kind === "contain") for (const node of op.containedPlaces ?? []) if (s.places[node]?.blight?.rift === op.target.rift)
-        applyOpsEffects(s, ctx, [{ setPlace: { id: node, patch: {}, clearBlight: true } }], operationScope(s, ctx, op));
+      const targetPlace = placeAt(s, ctx, op.target.loc);
+      const cellClear = def.onSuccess.some(e => "setPlace" in e && e.setPlace.clearBlight) && !targetPlace;
+      applyOpsEffects(s, ctx, def.onSuccess.filter(e => !("transferShell" in e && s.shells?.[op.target.shell ?? ""]?.holder === "player") &&
+        !("setPlace" in e && e.setPlace.clearBlight && (!targetPlace || def.kind === "contain"))), operationScope(s, ctx, op));
+      if (cellClear && def.kind !== "contain") {
+        const blight = blightAt(s, ctx, op.target.loc);
+        if (blight && blight.depth !== "core") removePatch(s, ctx, blight.patch);
+      }
+      if (def.kind === "contain") for (const id of op.containedPlaces ?? []) {
+        const patch = s.patches[id];
+        if (patch && patch.rift === op.target.rift && s.rifts[patch.rift]?.patches[0] !== id) removePatch(s, ctx, id);
+      }
       if (def.covert && op.exposed && op.target.faction) {
         const r = relation(s, op.actor, op.target.faction);
         if (r) for (const t of r.treaties) if (ctx.world.require("treaty", t.def).kind === "nonaggression") breakTreaty(s, ctx, r, t, op.actor);

@@ -1,3 +1,4 @@
+import { blightAt } from "../world/blight.ts";
 import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx, RiftState } from "../state/types.ts";
 import type { ForceState, ForceUnit } from "./types.ts";
@@ -15,7 +16,7 @@ export function strength(force: ForceState, power: Record<string, number>): numb
 }
 export function riftStrength(s: CampaignState, ctx: OpsCtx, r: RiftState): number {
   const cfg = ctx.world.all("forces")[0]!;
-  const depth = s.places[r.site]?.blight?.depth;
+  const depth = blightAt(s, ctx, r.at)?.depth;
   return cfg.gp[r.width] * cfg.rift.width + (depth === "core" ? 3 : depth === "deep" ? 2 : 1) * cfg.rift.depth + r.anchorAge * cfg.rift.age;
 }
 export function mergeUnits(force: ForceState, units: ForceUnit[]): void {

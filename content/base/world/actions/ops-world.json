@@ -42,7 +42,7 @@
       "daily": 1,
       "sealedRelief": 12,
       "blightPerMonth": 1,
-      "poissonScale": 0.025,
+      "poissonScale": 0.0002,
       "adjacentChance": 0.7,
       "cityBiasPerPressure": 0.01,
       "widthStep": 30,
@@ -81,6 +81,38 @@
       "advanceRaise": 0.1,
       "perHeadShare": 0.1,
       "withdrawRep": 3
+    },
+    "nodes": {
+      "deepMonths": 2
+    },
+    "blight": {
+      "patchSize": [
+        7,
+        12
+      ],
+      "myceliumPerTide": 2,
+      "familyAffinity": {
+        "insect": {
+          "urban": 2,
+          "forest": 2
+        },
+        "beast": {
+          "plain": 2,
+          "waste": 2
+        },
+        "mycelium": {}
+      },
+      "siteName": {
+        "template": "{region}的{family}",
+        "families": {
+          "insect": "蟲潮",
+          "beast": "獸潮",
+          "mycelium": "菌潮",
+          "alien": "異形裂隙"
+        }
+      },
+      "ruinChance": 0.3333333333333333,
+      "seedTables": {}
     }
   }
 }

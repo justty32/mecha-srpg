@@ -139,6 +139,7 @@ function physicalCondition(s: CampaignState, ctx: OpsCtx, id: string): number {
 export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "trade" }>): CmdResult {
   const market = ctx.world.get("market", cmd.market);
   if (!market) return { ok: false, error: "unknown-market" };
+  if (s.places[market.place]?.flags.some(f => f === "recovering" || f === "blight-lost")) return { ok: false, error: "recovering" };
   if ((cmd.buy?.length ?? 0) > 0 && (s.debtState?.arrears ?? 0) >= 3 &&
     ctx.world.require("faction-ops", "faction-ops/selene-whitegloves").territory.includes(market.place)) return { ok: false, error: "selene-embargo" };
   if (s.places[market.place]?.flags.includes("blockaded")) return { ok: false, error: "blockaded" };

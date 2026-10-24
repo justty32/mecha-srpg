@@ -1,3 +1,4 @@
+import { rebuildBlightIndex } from "../world/blight.ts";
 import { placeAt } from "../war/loc.ts";
 import test from "node:test";
 import assert from "node:assert/strict";
@@ -95,10 +96,10 @@ test("mount 無核不開工，扣核與 scrap 後完成 corpse 機體；整屍�
 });
 test("異形 tide-soak 蝕化或同節點 anchored 回滿，錯過減 20", () => {
   const { s, ctx, add, day } = setup("alien"), beast = add("frame/bio-tidewolf");
-  beast.vitality = 60; s.places[placeAt(s, ctx, s.ship.pos)!]!.blight = { rift: "test-rift", depth: "shallow", sinceDay: 0 };
+  beast.vitality = 60; s.patches["test-patch"] = { id: "test-patch", rift: "test-rift", map: s.ship.pos.map, cells: [s.ship.pos.cell], sinceDay: 0 }; rebuildBlightIndex(s);
   day(28); restraintDaily5(s, ctx); assert.equal(beast.vitality, 100);
-  delete s.places[placeAt(s, ctx, s.ship.pos)!]!.blight; day(56); restraintDaily5(s, ctx); assert.equal(beast.vitality, 80);
-  s.rifts.test = { id: "test", site: placeAt(s, ctx, s.ship.pos)!, at: structuredClone(s.ship.pos), family: "alien", width: "D", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 0 };
+  delete s.patches["test-patch"]; rebuildBlightIndex(s); day(56); restraintDaily5(s, ctx); assert.equal(beast.vitality, 80);
+  s.rifts.test = { id: "test", site: placeAt(s, ctx, s.ship.pos)!, at: structuredClone(s.ship.pos), family: "alien", width: "D", phase: "anchored", openedDay: 0, anchorAge: 0, patches: [], fedCount: 0, nextCheck: 0 };
   day(84); restraintDaily5(s, ctx); assert.equal(beast.vitality, 100);
 });
 test("菌房每潮月排 prune，未完成 layers 增長；keymap 重鍵載入拒絕", () => {

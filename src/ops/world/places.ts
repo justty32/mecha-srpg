@@ -1,6 +1,8 @@
 import type { Grade } from "../../core/types-def.ts";
 import type { CampaignState, OpsCtx, PlaceDef, WorldActionDef } from "../state/types.ts";
 import { chebyshev, footprintOf } from "./grid.ts";
+import { blightAt } from "./blight.ts";
+import { addPatch, clearPlaceBlight, ensureCore } from "./patches.ts";
 
 export type CmdResult = { ok: true } | { ok: false; error: string };
 // SPEC-GAP：地基未定義世界係數登記檔，暫存於不參與抽牌的 action/ops-world.rules。
@@ -11,6 +13,9 @@ export type WorldRules = {
     blightEncounter: { shallow: number; deep: number; core: number } };
   pressure: { daily: number; sealedRelief: number; blightPerMonth: number; poissonScale: number; adjacentChance: number; cityBiasPerPressure: number; widthStep: number; widths: Grade[] };
   places: { deepMonths: number; insectOwner: string };
+  nodes: { deepMonths: number };
+  blight: { patchSize: [number, number]; myceliumPerTide: number; familyAffinity: Record<string, Record<string, number>>;
+    siteName: { template: string; families: Record<string, string> }; ruinChance: number; seedTables: Record<string, string> };
   rifts: { openingDays: number };
   travel: { fuelPerDay: number; daysMultiplier: number; shallowEncounterChance: number; retreatFuel: number; partyMin: number; partyMax: number };
   market: { repDiscount: number; minimumMultiplier: number; frameReadiness: number };
@@ -34,37 +39,39 @@ export function nearbyPlaces(s: CampaignState, ctx: OpsCtx, id: string): string[
   return allPlaces(s, ctx).filter(p => p.id !== from.id && p.map === from.map && footprintOf(p).some(b => cells.some(a => chebyshev(a, b) <= worldRules(ctx).grid.interimAdjacency))).map(p => p.id);
 }
 export function blightPlace(s: CampaignState, ctx: OpsCtx, nodeId: string, riftId: string): void {
-  const node = s.places[nodeId], rift = s.rifts[riftId];
-  if (!node || !rift || node.blight) return;
-  node.blight = { rift: riftId, depth: nodeId === rift.site ? "core" : "shallow", sinceDay: s.clock.day };
-  if (!rift.zones.includes(nodeId)) rift.zones.push(nodeId);
-  rift.zones.sort();
-  ctx.emit("PlaceBlighted", { place: nodeId, node: nodeId, rift: riftId });
+  const rift = s.rifts[riftId], def = placeDef(s, ctx, nodeId);
+  if (!rift || !def) return;
+  ensureCore(s, ctx, rift);
+  if (nodeId !== rift.site) addPatch(s, ctx, rift, footprintOf(def), def.map);
 }
 export function reclaimPlace(s: CampaignState, ctx: OpsCtx, nodeId: string, riftId: string): void {
-  const node = s.places[nodeId];
-  if (node?.blight?.rift === riftId) {
-    delete node.blight;
-    delete node.ownerOverride;
-    ctx.emit("PlaceReclaimed", { place: nodeId, node: nodeId, rift: riftId });
-  }
-  const rift = s.rifts[riftId];
-  if (rift) rift.zones = rift.zones.filter(id => id !== nodeId);
+  clearPlaceBlight(s, ctx, nodeId, riftId);
 }
 export function placesDaily2(s: CampaignState, ctx: OpsCtx): void {
   const rules = worldRules(ctx), month = ctx.world.require("calendar", s.calendar).daysPerMonth;
   for (const id of Object.keys(s.places).sort()) {
-    const node = s.places[id]!, blight = node.blight;
-    if (!blight) continue;
-    const rift = s.rifts[blight.rift];
-    blight.depth = rift?.site === id ? "core" : s.clock.day - blight.sinceDay >= rules.places.deepMonths * month ? "deep" : "shallow";
-    if (requirePlace(s, ctx, node.def).kind === "city") {
-      // SPEC-GAP：目前 core 只有蟲族裂獸勢力；新增族須另提供 owner 對照。
-      const owner = ctx.db.require("faction", rules.places.insectOwner).id;
-      if (node.ownerOverride !== owner) {
-        node.ownerOverride = owner;
-        ctx.emit("CityLost", { node: id, faction: owner });
-      }
+    const node = s.places[id]!, def = requirePlace(s, ctx, id);
+    if (def.kind !== "city") continue;
+    const blight = footprintOf(def).map(cell => blightAt(s, ctx, { map: def.map, cell, region: "" })).find(Boolean);
+    // SPEC-GAP：現有內容只有蟲族裂獸勢力，四族暫沿用同一占領者。
+    const owner = ctx.db.require("faction", rules.places.insectOwner).id;
+    if (blight && !node.flags.includes("blight-lost")) {
+      if (node.ownerOverride) node.blightOwnerBefore = node.ownerOverride;
+      node.flags.push("blight-lost");
+      delete node.recoveringUntil;
+      node.flags = node.flags.filter(f => f !== "recovering");
+      ctx.emit("CityLost", { node: id, place: id, faction: owner, rift: blight.rift });
+    } else if (!blight && node.flags.includes("blight-lost")) {
+      if (node.blightOwnerBefore) node.ownerOverride = node.blightOwnerBefore;
+      else delete node.ownerOverride;
+      delete node.blightOwnerBefore;
+      node.flags = node.flags.filter(f => f !== "blight-lost");
+      node.flags.push("recovering"); node.recoveringUntil = s.clock.day + month;
+      ctx.emit("PlaceReclaimed", { node: id, place: id });
+    }
+    if (blight) node.ownerOverride = owner;
+    if (node.recoveringUntil !== undefined && s.clock.day >= node.recoveringUntil) {
+      delete node.recoveringUntil; node.flags = node.flags.filter(f => f !== "recovering");
     }
   }
 }

@@ -1,3 +1,4 @@
+import { rebuildBlightIndex } from "./blight.ts";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { canonicalJson } from "../../core/eventlog.ts";
@@ -56,7 +57,7 @@ test("move：直達不慢於中途懸停一天再走，停船清空 carry", () =
 test("move：每個移動日恰扣一次燃料，經過深蝕格當日乘二", () => {
   for (const deep of [false, true]) {
     const { s, ctx } = sea(), fuel = s.ship.fuel.cur;
-    if (deep) s.places["base:place/test-blight"]!.blight = { rift: "test-rift", depth: "deep", sinceDay: 0 };
+    if (deep) { s.patches["test-patch"] = { id: "test-patch", rift: "test-rift", map: s.ship.pos.map, cells: [{ x: 6, y: 2 }], sinceDay: -56 }; rebuildBlightIndex(s); }
     cmdSail(s, ctx, { v: "sail", to: { x: 6, y: 2 } }); const before = s.ledger.entries.length;
     assert.equal(finish(s, ctx), 1);
     const entries = s.ledger.entries.slice(before).filter(e => e.reason === "travel");

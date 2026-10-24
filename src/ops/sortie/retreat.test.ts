@@ -55,11 +55,11 @@ for (const phase of ["opening", "anchored"] as const) test(`裂縫 ${phase} 擊�
   assert.equal(rift.phase, phase === "opening" ? "closed" : "anchored");
   if (phase === "anchored") {
     assert(rift.nextCheck > due);
-    const zones = [...rift.zones], age = rift.anchorAge;
+    const patches = [...rift.patches], age = rift.anchorAge;
     s.clock.dom = (dom - 1 + due - s.clock.day) % cal.daysPerMonth + 1;
     s.clock.day = due; s.clock.phase = "spring";
     riftsDaily2(s, ctx);
-    assert.deepEqual(rift.zones, zones); assert.equal(rift.anchorAge, age);
+    assert.deepEqual(rift.patches, patches); assert.equal(rift.anchorAge, age);
     const next = rift.nextCheck;
     s.clock.dom = (s.clock.dom - 1 + next - s.clock.day) % cal.daysPerMonth + 1; s.clock.day = next;
     riftsDaily2(s, ctx); assert.equal(rift.anchorAge, age + 1);

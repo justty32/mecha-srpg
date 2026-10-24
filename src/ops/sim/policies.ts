@@ -122,6 +122,10 @@ export const greedy: Policy = (s, ctx) => {
 export const random: Policy = (s, ctx) => {
   const pending = choice(s, ctx); if (pending) return pending;
   if (s.pendingBattle?.trigger === "ambush") return { v: "drift" };
+  if (s.pendingBattle?.contract) {
+    const drop: OpsCommand = { v: "drop", contract: s.pendingBattle.contract };
+    if (applyCommand(s, ctx.db, ctx.world, drop).result.ok) return drop;
+  }
   const candidates: OpsCommand[] = [{ v: "wait", days: 1 }, { v: "map" }, { v: "dock" }, { v: "drift" }, { v: "board" }];
   for (const id of Object.keys(s.contracts).sort()) {
     if (s.contracts[id]!.status === "offered") candidates.push({ v: "accept", contract: id });

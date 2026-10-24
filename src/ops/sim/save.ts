@@ -6,6 +6,7 @@ import type { CampaignCommand } from "./campaign.ts";
 import type { BattleRunner } from "../time/index.ts";
 import { VERBS } from "../text/index.ts";
 import { replayCampaign } from "./replay.ts";
+import { rebuildBlightIndex } from "../world/blight.ts";
 export type CampaignBlob = { start: string; seed: number; commands: CampaignCommand[]; snapshotHash: string };
 export function campaignHash(value: unknown): string { return fnv1a64(canonicalJson(value)); }
 export function createCampaignBlob(start: string, seed: number, commands: readonly CampaignCommand[], state: CampaignState): CampaignBlob {
@@ -35,6 +36,7 @@ export function parseCampaign(source: string): CampaignBlob {
 export function loadCampaign(db: ContentDB, world: WorldDB, input: string | CampaignBlob, battle?: BattleRunner): CampaignState {
   const blob = parseCampaign(typeof input === "string" ? input : serializeCampaign(input));
   const state = replayCampaign(db, world, blob.start, blob.seed, blob.commands, battle);
+  rebuildBlightIndex(state);
   if (campaignHash(state) !== blob.snapshotHash) throw new Error("snapshot-hash-mismatch");
   return state;
 }

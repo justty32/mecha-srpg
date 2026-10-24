@@ -36,6 +36,8 @@ export function entityName(id: string, state: TextState, world: WorldDB): string
   }
   const rift = state.rifts[id];
   if (rift) {
+    const site = state.places[rift.site]?.dyn;
+    if (site) return site.name;
     const family = world.get("rift", rift.family)?.family ?? rift.family;
     return `${entityName(rift.site, state, world)}的${labels[family] ?? "異界"}裂縫`;
   }

@@ -1,3 +1,4 @@
+import { blightAt } from "../world/blight.ts";
 import { placeAt } from "../war/loc.ts";
 import { nextInt } from "../../core/rng.ts";
 import type { MechState } from "../../core/types-state.ts";
@@ -108,7 +109,7 @@ export function restraintDaily5(s: CampaignState, ctx: OpsCtx): void {
       let sustained = false;
       if (cfg.sustain.kind === "devour") sustained = s.flags[`devourDue:${id}`] === beast.sustainDue;
       else if (cfg.sustain.kind === "tide-soak") {
-        sustained = !s.ship.path && (!!s.places[(placeAt(s, ctx, s.ship.pos) ?? "")]?.blight || Object.values(s.rifts).some(r => r.phase === "anchored" && r.site === (placeAt(s, ctx, s.ship.pos) ?? "")));
+        sustained = !s.ship.path && (!!blightAt(s, ctx, s.ship.pos) || Object.values(s.rifts).some(r => r.phase === "anchored" && r.site === (placeAt(s, ctx, s.ship.pos) ?? "")));
         if (sustained) beast.vitality = 100;
       } else sustained = true;
       if (!sustained) beast.vitality = Math.max(0, beast.vitality - cfg.sustain.loss);

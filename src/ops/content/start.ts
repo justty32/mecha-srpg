@@ -13,6 +13,9 @@ import type { WorldDB } from "./worlddb.ts";
 import { instantiateMech, instantiatePerson, instantiatePools } from "./instantiate.ts";
 import { registerTextDB } from "../text/names.ts";
 import { registerPersonName } from "../crew/names.ts";
+import { ensureCore, growPatch } from "../world/patches.ts";
+import { rebuildBlightIndex } from "../world/blight.ts";
+import { nextSpring, riftDefinition } from "../world/rifts.ts";
 
 export function createOpsCtx(s: CampaignState, db: ContentDB, world: WorldDB): OpsCtx {
   registerTextDB(world, db);
@@ -38,10 +41,6 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
   for (const def of allPlaces(s, { world })) s.places[def.id] = { def: def.id, wreckage: [], flags: [], ...(def.id === node.id ? { lastVisit: start.day } : {}) };
   for (const def of world.all("faction-ops")) s.factions[def.id] = { def: def.id, rep: 0, scaleNow: def.scale, territoryNow: [...def.territory], alive: true, memory: [] };
   for (const def of world.all("research")) s.research[def.id] = { def: def.id, hoursDone: 0, coinPaid: false, done: false };
-  for (const rift of start.rifts ?? []) {
-    if (!s.places[rift.site]) throw new Error(`開局裂縫節點不存在：${rift.site}`);
-    s.rifts[rift.id] = structuredClone(rift);
-  }
   for (const entry of start.persons) {
     const def = typeof entry === "string" ? entry : entry.def, id = nextId(s, "person");
     const person = instantiatePerson(db, id, def);
@@ -75,6 +74,19 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
     if (!account.startsWith("stock:")) throw new Error(`開局 stocks 非存量帳：${account}`);
     if (!post(s, ctx, { account, delta: start.stocks[account]!, reason: "opening", ref })) throw new Error(`開局存量不可負：${account}`);
   }
+  for (const input of start.rifts ?? []) {
+    const site = requirePlace(s, ctx, input.site), id = input.id ?? nextId(s, "rift");
+    const rift = s.rifts[id] = { id, site: site.id, at: locAt(ctx, site.map, site.at), family: input.family,
+      width: input.width, phase: input.phase, openedDay: input.openedDay ?? s.clock.day, anchorAge: input.anchorAge,
+      patches: [], fedCount: input.fedCount ?? 0, nextCheck: input.nextCheck ?? nextSpring(s, ctx) };
+    const def = riftDefinition(ctx, rift);
+    if (rift.phase === "anchored" && def.anchor) Object.assign(rift, { anchor: def.anchor });
+    if (rift.phase !== "closed") {
+      ensureCore(s, ctx, rift, site.tags.includes("core-city") ? 2 : rift.phase === "anchored" ? 1 : 0);
+      for (let n = 0; n < (input.prePatches ?? 0); n++) if (!growPatch(s, ctx, rift)) break;
+    }
+  }
+  rebuildBlightIndex(s);
   initWar(s, ctx, seed);
   return s;
 }

@@ -1,3 +1,4 @@
+import { blightAt } from "../ops/world/blight.ts";
 // 營運畫面只傳可供決策的摘要；指令紀錄與完整狀態留在 session。
 import type { CampaignEvent, CampaignState, OpsCommand, Screen, Sortie } from "../ops/state/types.ts";
 import type { BattleResult, sortieBattleSetup } from "../ops/sortie/index.ts";
@@ -96,7 +97,11 @@ export function commandInfo(env: McpEnv, state: CampaignState, cmd: OpsCommand):
       `薪資 ${money(e?.wage ?? 0)}；欠薪 ${money(e?.owed ?? 0)}；${Object.entries(p.pools).map(([k, v]) => `${k} ${v.cur}/${v.max}`).join("；")}\n屬性：${JSON.stringify(p.attrsBase)}`;
     if (roomDefinition(cmd.target, world)) return describeRoom(cmd.target, state, world, db).desc.join("\n");
     const node = placeDef(state, { world }, cmd.target);
-    if (node) return `${node.name}｜${node.kind}｜服務：${node.services.join("、")}`;
+    if (node) {
+      const depth = blightAt(state, createOpsCtx(state, db, world), { map: node.map, cell: node.at, region: "" })?.depth;
+      const blight = depth ? { shallow: "淺蝕", deep: "深蝕", core: "蝕核" }[depth] : "無蝕域";
+      return `${node.name}｜${node.kind}｜${blight}｜服務：${node.services.join("、")}`;
+    }
   }
   const contract = cmd.v === "board" ? cmd.contract : cmd.v === "look" && cmd.target && state.contracts[cmd.target] ? cmd.target : undefined;
   if (cmd.v === "board" || contract) return `契約板：\n${Object.values(state.contracts).filter(c => !contract || c.id === contract).map(c =>
@@ -251,7 +256,8 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
     role: state.roster.employment[id]?.role ?? "未指派", wage: state.roster.employment[id]?.wage ?? 0, owed: state.roster.employment[id]?.owed ?? 0 }));
   panels.roster = roster;
   const worldMap = showMap ? allPlaces(state, { world }).filter(n => n.id !== here).flatMap(n => {
-    const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, map: n.map, cell: n.at, ...t }] : [];
+    const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, map: n.map, cell: n.at,
+      blight: blightAt(state, ctx, { map: n.map, cell: n.at, region: "" })?.depth ?? null, ...t }] : [];
   }).sort((a, b) => a.days - b.days || a.id.localeCompare(b.id)) : [];
   if (showMap) panels.worldMap = worldMap;
   const pendingBattle = state.pendingBattle && {

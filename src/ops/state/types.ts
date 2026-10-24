@@ -36,7 +36,7 @@ export type RelicInstance = { id: Id; def: Id; flags: string[] };
 export type LootBundle = { components: ComponentInstance[]; materials: Partial<Record<Account, number>>; relics?: RelicInstance[]; day?: number; mechs?: Id[] };
 export type Inventory = { components: ComponentInstance[]; mechs: Id[]; relics: RelicInstance[]; tickets: { airstrike: number; restraint: number } };
 export type PlaceState = { def: Id; dyn?: PlaceDef; ownerOverride?: Id; wreckage: LootBundle[]; lastVisit?: number; flags: string[];
-  blight?: { rift: Id; depth: "shallow" | "deep" | "core"; sinceDay: number } };
+  recoveringUntil?: number; blightOwnerBefore?: Id };
 export type BlightPatch = { id: Id; rift: Id; map: Id; cells: Cell[]; sinceDay: number; burned?: boolean };
 export type KnownCell = { day: number; actors: Id[]; blight?: { rift: Id; patch: Id; depth: "shallow" | "deep" | "core" } };
 export type ActorState = { id: Id; kind: "force" | "patrol" | "caravan" | "swarm" | "band"; faction: Id; pos: Loc; path?: Cell[]; mp: number;
@@ -44,7 +44,7 @@ export type ActorState = { id: Id; kind: "force" | "patrol" | "caravan" | "swarm
   str: number; roster?: Id; swarm?: { rift: Id; family: Id; grades: Grade[] }; cargo?: number;
   stance: "hostile" | "wary" | "neutral" | "friendly"; born: number; lastSeenByPlayer?: number; flags: string[] };
 export type RiftState = { id: Id; at: Loc; site: Id; family: Id; width: Grade; phase: "opening" | "anchored" | "unanchored" | "sealing" | "sealed" | "receding" | "closed";
-  openedDay: number; anchorAge: number; anchor?: Id; zones: Id[]; fedCount: number; nextCheck: number };
+  openedDay: number; anchorAge: number; anchor?: Id; patches: Id[]; fedCount: number; nextCheck: number };
 export type RiftDef = { id: Id; family: string; anchor?: Id; vanguard: Id[]; spreadPerTide: NumExpr; selfClose: boolean; tether: boolean;
   gradeByWidth: Partial<Record<Grade, Grade[]>>; monsters?: Id[] };
 export type EncounterUnit = { frame: Id; pilots?: Id[]; components?: { [slot: string]: Id }; w?: number };
@@ -137,7 +137,8 @@ export type TemplatesDef = { id: Id; entries: Record<string, { kind: LogKind; te
 // SPEC-GAP：開局未指定僱用條件；允許人物列帶 role/wage，裸 id 使用檔內 defaults。
 export type StartPerson = Id | { def: Id; role: Employment["role"]; wage: number; soulNodes?: Id[] };
 export type StartDef = { id: Id; day: number; place: Id; ship: Id; calendar?: Id; cash: number; debt: number; mechs: (Id | { frame: Id; components?: Record<string, Id> })[]; persons: StartPerson[];
-  stocks: Partial<Record<Account, number>>; tickets: Partial<Inventory["tickets"]>; flags: string[]; pressure?: number; rifts?: RiftState[];
+  stocks: Partial<Record<Account, number>>; tickets: Partial<Inventory["tickets"]>; flags: string[]; pressure?: number;
+  rifts?: (Pick<RiftState, "site" | "family" | "width" | "phase" | "anchorAge"> & Partial<Omit<RiftState, "patches">> & { prePatches?: number })[];
   employment?: { role: Employment["role"]; wage: number } };
 export type Ask = "total" | "advance" | "perHead";
 export type OpsCommand =

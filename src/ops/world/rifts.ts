@@ -1,9 +1,28 @@
 import { placeLoc } from "../war/loc.ts";
 import { placeAt } from "../war/loc.ts";
-import type { CampaignState, OpsCtx, RiftDef, RiftState } from "../state/types.ts";
+import type { CampaignState, Loc, OpsCtx, RiftDef, RiftState } from "../state/types.ts";
+import { nextFloat } from "../../core/rng.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import { nextId } from "../state/ids.ts";
-import { nearbyPlaces, blightPlace, reclaimPlace, worldRules } from "./places.ts";
+import { nearbyPlaces, worldRules } from "./places.ts";
+import { ensureCore, growPatch, removePatch } from "./patches.ts";
+
+// 天象掛鉤：wf/workflows/planning/design-notes/tide-sky/mechanics.md；本線不實作規則。
+export function spreadDelta(_s: CampaignState, _ctx: OpsCtx, _day: number): number { return 0; }
+export function anchorInstant(_s: CampaignState, _ctx: OpsCtx, _rift: RiftState): boolean { return false; }
+export type RiftHooks = { spreadDelta: typeof spreadDelta; anchorInstant: typeof anchorInstant };
+
+export function openRift(s: CampaignState, ctx: OpsCtx, at: Loc, family: RiftDef, width: RiftState["width"]): RiftState {
+  const id = nextId(s, "rift"), site = nextId(s, "rift-site"), cfg = worldRules(ctx).blight;
+  const region = ctx.world.all("regions").find(r => r.map === at.map)?.regions[at.region]?.name ?? ctx.world.require("map", at.map).name;
+  const name = cfg.siteName.template.replace("{region}", region).replace("{family}", cfg.siteName.families[family.family] ?? family.family);
+  s.places[site] = { def: site, flags: [], wreckage: [], dyn: { id: site, name, map: at.map, at: { ...at.cell }, kind: "rift-site", services: [], tags: [] } };
+  const rift: RiftState = { id, site, at: structuredClone(at), family: family.id, width, phase: "opening", openedDay: s.clock.day,
+    anchorAge: 0, patches: [], fedCount: 0, nextCheck: nextSpring(s, ctx) };
+  s.rifts[id] = rift; ensureCore(s, ctx, rift);
+  ctx.emit("RiftPhase", { rift: id, node: site, phase: "opening" });
+  return rift;
+}
 
 export type RiftBattleOutcome = "anchor-killed" | "anchor-captured" | "defended" | "lost" | "vanguard-killed" | "repelled";
 // SPEC-GAP：記錄最後守住的大潮，避免同一天重複戰果跳過第二次防守。
@@ -28,7 +47,7 @@ function phase(s: CampaignState, ctx: OpsCtx, rift: BattleRiftState, to: RiftSta
   ctx.emit("RiftPhase", { rift: rift.id, phase: to, fedCount: rift.fedCount });
 }
 function close(s: CampaignState, ctx: OpsCtx, rift: RiftState): void {
-  for (const id of [...rift.zones].sort()) reclaimPlace(s, ctx, id, rift.id);
+  for (const id of [...rift.patches].reverse()) removePatch(s, ctx, id);
   delete rift.anchor;
   phase(s, ctx, rift, "closed");
   // 目標消失後撤下尚未接取的同裂縫契約，避免舊快照繼續提供重複清剿。
@@ -38,13 +57,21 @@ function close(s: CampaignState, ctx: OpsCtx, rift: RiftState): void {
     contract.status = "expired"; contract.settled = true;
     ctx.emit("ContractExpired", { contract: id, rift: rift.id });
   }
+  const site = s.places[rift.site];
+  if (site?.dyn?.kind === "rift-site") {
+    const cfg = worldRules(ctx).blight;
+    if (nextFloat(s.rng) < cfg.ruinChance) {
+      site.dyn.kind = "ruin";
+      site.dyn.ruin = { depth: 1, discovered: true, seedTable: ctx.world.require("event", cfg.seedTables[riftDefinition(ctx, rift).family] ?? "event/ruin-entry").id };
+    } else delete s.places[rift.site];
+  }
 }
 function anchor(s: CampaignState, ctx: OpsCtx, rift: RiftState, fed: boolean): void {
   const def = riftDefinition(ctx, rift);
   if (def.anchor) rift.anchor = def.anchor;
   if (fed) rift.fedCount++;
   phase(s, ctx, rift, "anchored");
-  blightPlace(s, ctx, rift.site, rift.id);
+  ensureCore(s, ctx, rift, 1);
 }
 export function onBattleRift(s: CampaignState, ctx: OpsCtx, riftId: string, outcome: RiftBattleOutcome): void {
   const rift = s.rifts[riftId] as BattleRiftState | undefined;
@@ -66,20 +93,23 @@ export function onBattleRift(s: CampaignState, ctx: OpsCtx, riftId: string, outc
     else if (rift.phase === "sealing" && s.clock.day >= rift.nextCheck) { rift.defendedDay = s.clock.day; phase(s, ctx, rift, "sealed"); }
   } else if (outcome === "lost" && ["unanchored", "sealing"].includes(rift.phase)) anchor(s, ctx, rift, true);
 }
-export function riftsDaily2(s: CampaignState, ctx: OpsCtx): void {
-  if (s.clock.phase !== "spring") return;
+export function riftsDaily2(s: CampaignState, ctx: OpsCtx, hooks: RiftHooks = { spreadDelta, anchorInstant }): void {
   for (const id of Object.keys(s.rifts).sort()) {
     const rift = s.rifts[id]! as BattleRiftState, def = riftDefinition(ctx, rift);
-    if (rift.phase === "closed" || s.clock.day < rift.nextCheck) continue;
+    if (rift.phase === "closed") continue;
+    if (rift.phase === "opening" && (hooks.anchorInstant(s, ctx, rift) || s.clock.day - rift.openedDay >= worldRules(ctx).rifts.openingDays) && !def.selfClose) {
+      anchor(s, ctx, rift, false); continue;
+    }
+    if (s.clock.phase !== "spring" || s.clock.day < rift.nextCheck) continue;
     if (def.selfClose && s.clock.day > rift.openedDay) { close(s, ctx, rift); continue; }
     switch (rift.phase) {
       case "opening":
         if (s.clock.day - rift.openedDay >= worldRules(ctx).rifts.openingDays) anchor(s, ctx, rift, false);
         break;
       case "anchored": {
-        const count = Math.max(0, Math.floor(evalOpsNum(s, ctx, def.spreadPerTide, { rift: id })));
-        const candidates = [...new Set([rift.site, ...rift.zones].flatMap(n => nearbyPlaces(s, ctx, n)))].filter(n => !s.places[n]?.blight).sort();
-        for (const n of candidates.slice(0, count)) blightPlace(s, ctx, n, id);
+        const base = def.family === "mycelium" ? worldRules(ctx).blight.myceliumPerTide : evalOpsNum(s, ctx, def.spreadPerTide, { rift: id });
+        const count = Math.max(0, Math.floor(base + hooks.spreadDelta(s, ctx, s.clock.day)));
+        for (let n = 0; n < count; n++) if (!growPatch(s, ctx, rift)) break;
         rift.anchorAge++;
         break;
       }
@@ -101,9 +131,10 @@ export function riftsDaily2(s: CampaignState, ctx: OpsCtx): void {
       }
       case "sealed": case "receding": {
         if (s.clock.day < (rift.recedeDay ?? rift.nextCheck)) break;
-        const node = [...rift.zones].sort().find(n => def.family !== "mycelium" || s.places[n]?.flags.includes("burned"));
-        if (node) reclaimPlace(s, ctx, node, id);
-        phase(s, ctx, rift, rift.zones.length ? "receding" : "closed");
+        const youngest = s.patches[rift.patches.at(-1) ?? ""];
+        if (youngest && (def.family !== "mycelium" || youngest.burned)) removePatch(s, ctx, youngest.id);
+        if (rift.patches.length) phase(s, ctx, rift, "receding");
+        else close(s, ctx, rift);
         rift.recedeDay = s.clock.day + ctx.world.require("calendar", s.calendar).daysPerMonth;
         break;
       }

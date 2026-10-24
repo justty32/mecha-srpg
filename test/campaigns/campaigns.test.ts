@@ -4,7 +4,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, writeFileSync } from "node:fs";
 import { fixture } from "../../src/ops/world/test-support.ts";
-import type { CampaignEvent, ContractState } from "../../src/ops/state/types.ts";
+import type { CampaignEvent, ContractState, RiftState } from "../../src/ops/state/types.ts";
 import type { CampaignCommand } from "../../src/ops/sim/campaign.ts";
 import { replayCampaign } from "../../src/ops/sim/replay.ts";
 import { campaignHash } from "../../src/ops/sim/save.ts";
@@ -14,7 +14,7 @@ import { applyCommand } from "../../src/ops/time/index.ts";
 import { marketListings } from "../../src/ops/world/market.ts";
 
 type Golden = { start: string; seed: number; commands: CampaignCommand[];
-  setup?: { factions?: Record<string, { rep: number }>; ship?: { pos: Loc };
+  setup?: { rifts?: Record<string, Pick<RiftState, "width" | "anchorAge">>; factions?: Record<string, { rep: number }>; ship?: { pos: Loc };
     loan?: { id: string; contract: string; model: string; issuer: string } } };
 type Step = { type: string; field?: string; value?: string };
 const warOnly = new Set(["OperationStarted", "OperationEngaged", "OperationResolved", "RiftPhase", "ShellSeized", "LineageOpened", "ModelReleased",
@@ -22,11 +22,10 @@ const warOnly = new Set(["OperationStarted", "OperationEngaged", "OperationResol
 const sequences: Record<string, Step[]> = {
   "ops-war-assault": [
     { type: "OperationStarted", field: "kind", value: "assault" },
-    { type: "OperationEngaged", field: "operation", value: "operation-9" },
-    { type: "OperationEngaged", field: "operation", value: "operation-9" },
-    { type: "OperationEngaged", field: "operation", value: "operation-9" },
+    { type: "OperationEngaged", field: "operation", value: "operation-4" },
+    { type: "OperationEngaged", field: "operation", value: "operation-4" },
     { type: "RiftPhase", field: "to", value: "unanchored" },
-    { type: "OperationResolved", field: "operation", value: "operation-9" },
+    { type: "OperationResolved", field: "operation", value: "operation-4" },
   ],
   "ops-relic": [
     { type: "OperationStarted", field: "kind", value: "relic-hunt" },
@@ -35,17 +34,17 @@ const sequences: Record<string, Step[]> = {
     { type: "ModelReleased", field: "model", value: "base:model/old-array-ii" },
   ],
   "ops-merc-join": [
-    { type: "ContractAccepted", field: "contract", value: "contract-27" },
+    { type: "ContractAccepted", field: "contract", value: "contract-71" },
     { type: "Arrived", field: "place", value: "base:place/salt-flat" },
     { type: "BattleResolved", field: "operation", value: "operation-2" },
     { type: "OperationResolved", field: "operation", value: "operation-2" },
-    { type: "JoinSettled", field: "contract", value: "contract-27" },
+    { type: "JoinSettled", field: "contract", value: "contract-71" },
   ],
   "ops-betrayal": [
-    { type: "ContractAccepted", field: "contract", value: "contract-14" },
-    { type: "ContractCancelled", field: "contract", value: "contract-14" },
-    { type: "ContractAccepted", field: "contract", value: "contract-29" },
-    { type: "Betrayed", field: "contract", value: "contract-14" },
+    { type: "ContractAccepted", field: "contract", value: "contract-56" },
+    { type: "ContractCancelled", field: "contract", value: "contract-56" },
+    { type: "ContractAccepted", field: "contract", value: "contract-71" },
+    { type: "Betrayed", field: "contract", value: "contract-56" },
   ],
   "ops-leak": [
     { type: "MechLoaned", field: "model", value: "base:model/union-fr7" },
@@ -67,6 +66,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
   let state = input.setup ? newCampaign(ctx.db, ctx.world, `start/${input.start}`, input.seed) :
     replayCampaign(ctx.db, ctx.world, input.start, input.seed, input.commands);
   if (input.setup) {
+    for (const [id, patch] of Object.entries(input.setup.rifts ?? {})) Object.assign(state.rifts[id]!, patch);
     for (const [id, patch] of Object.entries(input.setup.factions ?? {})) state.factions[id]!.rep = patch.rep;
     if (input.setup.ship) state.ship.pos = structuredClone(input.setup.ship.pos);
     if (input.setup.loan) {
@@ -105,7 +105,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
   }
   assert(containsInOrder(state.log, sequence), `${name} 事件子序列缺失`);
   if (name === "ops-merc-join") {
-    assert(state.contracts["contract-27"]?.merc?.attachedLoss && state.contracts["contract-27"]!.merc!.attachedLoss > 0);
+    assert(state.contracts["contract-71"]?.merc?.attachedLoss && state.contracts["contract-71"]!.merc!.attachedLoss > 0);
     assert(state.ledger.entries.some(e => e.reason === "join-pay" && e.ref));
   }
   if (name === "ops-betrayal") {

@@ -55,7 +55,7 @@ test("pendingChoices 凍結 day、保留 pendingTicks，choose 續跑當日與�
   assert.equal(state.clock.day, 7); assert.equal(state.pendingTicks, 0);
   assert.equal(state.log.filter(e => e.type === "DaySummary").length, 7);
 });
-test("裂縫 phase 僅在大潮或 BattleResolved 同日轉移", () => {
+test("裂縫 phase 在大潮、開口滿四天或 BattleResolved 同日轉移", () => {
   const { s, ctx } = fixture(); addRift(s, ctx);
   let state = s;
   for (let i = 0; i < 56; i++) {
@@ -63,5 +63,5 @@ test("裂縫 phase 僅在大潮或 BattleResolved 同日轉移", () => {
     while (state.pendingChoices.length) state = applyCommand(state, ctx.db, ctx.world, { v: "choose", choice: 1 }).state;
   }
   const changes = state.log.filter(e => e.type === "RiftPhase"); assert(changes.length > 0);
-  for (const e of changes) assert(clock(e.day, ctx.world.require("calendar", state.calendar)).phase === "spring" || state.log.some(b => b.type === "BattleResolved" && b.day === e.day));
+  for (const e of changes) assert(clock(e.day, ctx.world.require("calendar", state.calendar)).phase === "spring" || e.payload.phase === "anchored" && e.day - state.rifts[String(e.payload.rift)]!.openedDay === 4 || state.log.some(b => b.type === "BattleResolved" && b.day === e.day));
 });

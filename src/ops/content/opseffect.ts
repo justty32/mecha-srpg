@@ -1,4 +1,6 @@
 import { requirePlace } from "../world/places.ts";
+import { placesDaily2 } from "../world/places.ts";
+import { clearPlaceBlight } from "../world/patches.ts";
 import { startOperation } from "../war/operations.ts";
 import { changeRelation, declareWar, factionId } from "../war/relations.ts";
 import { signTreaty } from "../war/treaties.ts";
@@ -109,8 +111,10 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     const from = Object.keys(s.factions).sort().find(id => s.factions[id]!.territoryNow.includes(node)) ?? "none";
     for (const f of Object.values(s.factions)) f.territoryNow = f.territoryNow.filter(id => id !== node);
     s.factions[to]!.territoryNow.push(node); s.factions[to]!.territoryNow.sort();
+    clearPlaceBlight(s, ctx, node);
     s.places[node]!.ownerOverride = ctx.world.require("faction-ops", to).faction;
-    delete s.places[node]!.blight;
+    if (s.places[node]!.flags.includes("blight-lost")) s.places[node]!.blightOwnerBefore = ctx.world.require("faction-ops", to).faction;
+    placesDaily2(s, ctx);
     ctx.emit("PlaceTransferred", { node, from, to }); return true;
   }
   if ("transferShell" in effect) {
@@ -160,9 +164,7 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     if (!node) throw new Error(`缺少節點狀態：${id}`);
     Object.assign(node, structuredClone(effect.setPlace.patch), { def: node.def });
     if (effect.setPlace.clearBlight) {
-      const rift = node.blight?.rift; delete node.blight;
-      if (rift && s.rifts[rift]) s.rifts[rift]!.zones = s.rifts[rift]!.zones.filter(n => n !== id);
-      ctx.emit("PlaceReclaimed", { node: id, ...(rift ? { rift } : {}) });
+      clearPlaceBlight(s, ctx, id);
     }
   } else if ("setRift" in effect) {
     const rift = entity(s.rifts, effect.setRift.id);

@@ -35,6 +35,7 @@ export function recruitsDaily7(s: CampaignState, ctx: OpsCtx): void {
 export function cmdHire(s: CampaignState, ctx: OpsCtx, cmd: Command<"hire">): CmdResult {
   const candidate = peekCrew(s)?.candidates[cmd.candidate];
   if (!candidate) return fail("unknown-candidate");
+  if (s.places[candidate.place]?.flags.some(f => f === "recovering" || f === "blight-lost")) return fail("recovering");
   if (!isDocked(s, ctx, candidate.place)) return fail("not-docked");
   if (Object.keys(s.roster.persons).length >= s.ship.capacity.berths) return fail("no-berth");
   if (candidate.fee < 0 || candidate.wage < 0 || !Number.isFinite(candidate.fee + candidate.wage)) return fail("invalid-terms");

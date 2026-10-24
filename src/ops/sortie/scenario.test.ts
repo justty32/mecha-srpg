@@ -74,7 +74,7 @@ test("接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入", () =
   assert.ok(sim.setup.units.some(u => u.owner === "player"));
   assert.ok(sim.setup.units.some(u => u.owner === "enemy"));
   assert.equal(sim.setup.map.width * sim.setup.map.height, sim.setup.map.cells!.length);
-  assert.ok(def.objectives.some(o => o.kind === "eliminate" && o.for === "player"));
+  assert.ok(def.objectives.some(o => o.kind === "killTarget" && o.for === "player"));
 });
 test("同 state 與 rng 生成深相等情境", () => {
   const { s, ctx, sortie } = fixture(), copy = structuredClone(s), other = createOpsCtx(copy, ctx.db, ctx.world);

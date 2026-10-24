@@ -17,7 +17,7 @@ test("名冊與名稱解析：無重名、九類名稱都有中文，七態及�
   const names = Object.keys(s.roster.persons).map(id => entityName(id, s, world));
   assert.equal(new Set(names).size, names.length);
   for (const name of [...names, ...Object.keys(s.mechs).map(id => entityName(id, s, world))]) assert.match(name, /\p{Script=Han}/u);
-  s.rifts["rift-test"] = { id: "rift-test", site: requirePlace(s, ctx, "place/salt-flat").id, at: placeLoc(s, ctx, "place/salt-flat"), family: "beast", width: "C", phase: "anchored", openedDay: 0, anchorAge: 0, zones: [], fedCount: 0, nextCheck: 14 };
+  s.rifts["rift-test"] = { id: "rift-test", site: requirePlace(s, ctx, "place/salt-flat").id, at: placeLoc(s, ctx, "place/salt-flat"), family: "beast", width: "C", phase: "anchored", openedDay: 0, anchorAge: 0, patches: [], fedCount: 0, nextCheck: 14 };
   s.pendingContracts.push({ template: "contract/escort-sealed-convoy", near: "territory" }); contractsDaily2(s, ctx);
   s.jobs.push({ id: "job-test", kind: "repair", target: "mech-8", needHours: 1, doneHours: 0, paid: false, materials: {}, priority: 0 });
   delete s.roster.names["mech-8"];

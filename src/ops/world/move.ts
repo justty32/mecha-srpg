@@ -25,16 +25,9 @@ function mover(s: CampaignState, ctx: OpsCtx) {
       (s.clock.phase === "spring" ? cfg.mpMods.spring : s.clock.phase === "neap" ? cfg.mpMods.neap : 1) };
 }
 function costAt(s: CampaignState, ctx: OpsCtx, map: string) {
-  const cfg = worldRules(ctx).grid, grid = gridOf(ctx.world, map);
-  const zones = allPlaces(s, ctx).filter(p => p.map === map && s.places[p.id]?.blight)
-    .map(p => ({ id: p.id, cells: footprintOf(p), blight: s.places[p.id]!.blight! }));
-  const field = new Map<string, { distance: number; depth: "shallow" | "deep" | "core" }>();
-  for (const zone of zones) for (const origin of zone.cells) for (const cell of cellsWithin(grid, origin, cfg.interimZoneRadius)) {
-    const key = cellKey(cell), distance = chebyshev(origin, cell), old = field.get(key);
-    if (!old || distance < old.distance) field.set(key, { distance, depth: zone.blight.depth });
-  }
+  const cfg = worldRules(ctx).grid;
   return (cell: Cell, cost: number) => {
-    const b = field.get(cellKey(cell));
+    const b = blightAt(s, ctx, { map, cell, region: "" });
     if (s.ship.hull.cur <= 0 && b && b.depth !== "shallow") return undefined;
     return b ? Math.max(cost, cfg.blightCost[b.depth]) : cost;
   };

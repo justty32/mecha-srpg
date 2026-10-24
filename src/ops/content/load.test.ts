@@ -12,7 +12,7 @@ test("load/check：base world 零錯且 pack 覆寫順序一致", () => {
   const result = loadWorldDirs(["content/base"]);
   assert.deepEqual(result.errors, []);
   assert.deepEqual(checkWorld(result.db, result.world), { errors: [], warnings: [] });
-  assert.equal(result.world.all("place").length, 9);
+  assert.equal(result.world.all("place").length, 10);
   const original = result.world.require("place", "place/dhaka");
   assert.ok(Object.isFrozen(original));
   const mod = { root: "/tmp/cx-ops-foundation/mod", files: { "pack.json": { id: "mod", version: "1", depends: ["base"] },
