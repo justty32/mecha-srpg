@@ -1,3 +1,4 @@
+import { initWar } from "../war/state.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import { createRng } from "../../core/rng.ts";
 import type { PoolDecl } from "../../core/types-def.ts";
@@ -68,5 +69,6 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
     if (!account.startsWith("stock:")) throw new Error(`開局 stocks 非存量帳：${account}`);
     if (!post(s, ctx, { account, delta: start.stocks[account]!, reason: "opening", ref })) throw new Error(`開局存量不可負：${account}`);
   }
+  initWar(s, ctx, seed);
   return s;
 }

@@ -1,0 +1,58 @@
+{
+  "id": "operation/assault",
+  "kind": "assault",
+  "actorScales": [
+    "state",
+    "company",
+    "city"
+  ],
+  "valid": {
+    "all": []
+  },
+  "weight": 1,
+  "targetSel": "rift-core",
+  "commit": 0.7,
+  "phases": [
+    {
+      "phase": "muster",
+      "days": 3
+    },
+    {
+      "phase": "march",
+      "days": 1
+    },
+    {
+      "phase": "engage",
+      "days": 10
+    },
+    {
+      "phase": "resolve",
+      "days": {
+        "ref": "calendar.daysToNextSpring"
+      }
+    },
+    {
+      "phase": "aftermath",
+      "days": 2
+    }
+  ],
+  "merc": {
+    "minRep": 10,
+    "share": 0.2,
+    "supply": "full",
+    "slots": 2,
+    "sides": "actor"
+  },
+  "onSuccess": [
+    {
+      "setRift": {
+        "id": "$rift",
+        "patch": {
+          "phase": "unanchored"
+        }
+      }
+    }
+  ],
+  "onFail": [],
+  "onAbort": []
+}

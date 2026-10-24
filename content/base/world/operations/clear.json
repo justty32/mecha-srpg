@@ -1,0 +1,56 @@
+{
+  "id": "operation/clear",
+  "kind": "clear",
+  "actorScales": [
+    "state",
+    "city",
+    "company",
+    "guild"
+  ],
+  "valid": {
+    "all": []
+  },
+  "weight": 1,
+  "targetSel": "shallow-node",
+  "commit": 0.7,
+  "phases": [
+    {
+      "phase": "muster",
+      "days": 3
+    },
+    {
+      "phase": "march",
+      "days": 1
+    },
+    {
+      "phase": "engage",
+      "days": 7
+    },
+    {
+      "phase": "resolve",
+      "days": 1
+    },
+    {
+      "phase": "aftermath",
+      "days": 2
+    }
+  ],
+  "merc": {
+    "minRep": 0,
+    "share": 0.15,
+    "supply": "field",
+    "slots": 2,
+    "sides": "actor"
+  },
+  "onSuccess": [
+    {
+      "setNode": {
+        "id": "$node",
+        "patch": {},
+        "clearBlight": true
+      }
+    }
+  ],
+  "onFail": [],
+  "onAbort": []
+}

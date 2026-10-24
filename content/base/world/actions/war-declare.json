@@ -1,0 +1,18 @@
+{
+  "id": "action/war-declare",
+  "actor": "faction",
+  "lane": "war",
+  "valid": {
+    "all": []
+  },
+  "weight": 100,
+  "cooldownDays": 28,
+  "effects": [
+    {
+      "declareWar": {
+        "a": "$actor",
+        "b": "$target"
+      }
+    }
+  ]
+}

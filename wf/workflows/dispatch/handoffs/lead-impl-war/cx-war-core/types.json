@@ -1,0 +1,62 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "type",
+  "fields",
+  "compatibility"
+ ],
+ "rows": [
+  {
+   "type": "CampaignState",
+   "fields": "relations? / operations? / shells? / models? / warRng?",
+   "compatibility": "新增可選欄；無 war pack 不初始化"
+  },
+  {
+   "type": "FactionState",
+   "fields": "forces? / shells? / ops? / prestige? / rnd?",
+   "compatibility": "新增可選欄"
+  },
+  {
+   "type": "FactionOpsDef",
+   "fields": "roster frame 或 model 聯集；actionLanes?",
+   "compatibility": "保留原 frame 形狀；新勢力只抽 war 牌以保持既有契約抽牌流"
+  },
+  {
+   "type": "WorldActionDef",
+   "fields": "lane?: \"war\"",
+   "compatibility": "既有 actionsDaily2 排除此牌道"
+  },
+  {
+   "type": "WorldDefByKind",
+   "fields": "operation / treaty / lineage / model / forces / affinity",
+   "compatibility": "load 與 check 登記"
+  },
+  {
+   "type": "OpsEffect",
+   "fields": "startOperation / opProgress / transferNode / transferShell / relation / treaty / declareWar / leakModel / forceLoss",
+   "compatibility": "新增效果聯集；setNode 新增 clearBlight?"
+  },
+  {
+   "type": "OpsScope",
+   "fields": "operation? / targetFaction?",
+   "compatibility": "新增 operation / relation / targetFaction 條件根"
+  },
+  {
+   "type": "war/types.ts",
+   "fields": "Loc / ForceUnit / ForceState / OperationDef / OperationState / Phase / ShellState / RelState / Relation / TreatyDef / TreatyState / LineageDef / ModelDef / ModelState / JoinTerms / SupplyTier / FactionRnd",
+   "compatibility": "公開型別均可由 war/index.ts 匯入"
+  },
+  {
+   "type": "OperationState",
+   "fields": "power? / initialStr? / contributions? / reliefOf? / containedNodes?",
+   "compatibility": "純結算快照、返還出資、解圍與圍堵記錄；終止後釋放 power/contributions"
+  },
+  {
+   "type": "ForceState",
+   "fields": "marchDays?",
+   "compatibility": "節點版序列化行軍餘日，只在 loc.ts 存取"
+  }
+ ]
+}

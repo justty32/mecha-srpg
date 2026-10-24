@@ -1,0 +1,67 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "id",
+  "topic",
+  "decision"
+ ],
+ "rows": [
+  {
+   "id": "G1",
+   "topic": "驅動數目",
+   "decision": "實表 17 列實際是14非玩家、3玩家，交接書寫13+4；實作14非玩家列，player-*留給merc。"
+  },
+  {
+   "id": "G2",
+   "topic": "catalog 缺 core 勢力",
+   "decision": "第三刃與背面走私網沒有 core FactionDef；不越界新增 factions，tide-fin與jinghai-stolen暫由鹽鷗代管，對應maker也暫映鹽鷗，名稱與機型id不改。需內容領導之後指定正式勢力。"
+  },
+  {
+   "id": "G3",
+   "topic": "古代殼佔位",
+   "decision": "非通用7血統與遺跡殼均用已commit frame/ancient-rearguard。需替換 jinghai、broken-arm、tide-fin、tide-robe、many-eyes、jinghai-stolen與遺跡殼的實際來源。"
+  },
+  {
+   "id": "G4",
+   "topic": "劇情登場",
+   "decision": "bulwark-old-city使用milestone/dhaka-factory-reclaimed，backside-white-night使用milestone/first-lunar-ferry；首次登場事件排程留rnd線。catalog無id的前代機型不建立虛構requires。"
+  },
+  {
+   "id": "G5",
+   "topic": "gp 與補員",
+   "decision": "S/SS/SSS延伸每級乘3；count折損四捨五入成整數。規格補員權重倒數公式與舊多新少矛盾，採機齡正比，captain不進常規補員。"
+  },
+  {
+   "id": "G6",
+   "topic": "勢力資產與市場後果",
+   "decision": "既有FactionState無勢力cash/stock/pop帳本。escort以war-supplied、blockade以blockaded、失敗escort以scarcity節點旗記後果；raid以forceLoss落地。這些旗目前不會實際補市場存貨或關閉服務；siege尚無人口扣減。七類條約皆可簽/到期/毀約，但trade/tribute/proxy/shell-pact的經濟及研發terms尚為空。"
+  },
+  {
+   "id": "G7",
+   "topic": "攻堅與既有不變量",
+   "decision": "既有測試規定RiftPhase只能在大潮或BattleResolved當天；assault的resolve.days由內容設為calendar.daysToNextSpring，下一大潮確認unanchored，未修改測試斷言。"
+  },
+  {
+   "id": "G8",
+   "topic": "節點數與地盤",
+   "decision": "既有load測試固定8節點，故本線新增6節點/7路線草稿移存/tmp/cx-war-core/unused-content，不交付啟用。使用現有節點；保留原節點owner（候鳥號所屬城市），未有owner者以war勢力territory初始化ownerOverride。"
+  },
+  {
+   "id": "G9",
+   "topic": "方格遷移與返還",
+   "decision": "Loc轉接月面map/lunar、地球map/longland。march以暫時取消民用航路蝕域封鎖的shortestPath計算；部隊不借玩家燃料或船體速度。分遣隊結束在aftermath後返還常備軍，未建立返航作戰物件。"
+  },
+  {
+   "id": "G10",
+   "topic": "外交雙向值",
+   "decision": "Relation無向，op-relief的+10與+4合為+14；same-target友好方合編並扣除其實際出資，終止後按比例返還。"
+  },
+  {
+   "id": "G11",
+   "topic": "CLI效能",
+   "decision": "CLI idle 使用既有批次wait到目標日；遇事件照常暫停與續跑，每日仍跑八段及不變量。一般runCampaign與其他policy未改。"
+  }
+ ]
+}

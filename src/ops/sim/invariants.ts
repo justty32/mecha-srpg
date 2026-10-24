@@ -21,5 +21,14 @@ export function checkInvariants(s: CampaignState): string[] {
     const value = s.roster.mastery[person]![node]!;
     if (!Number.isFinite(value) || value < 0 || value > 1) errors.push(`mastery out of range: ${person}/${node}`);
   }
+  for (const [key, r] of Object.entries(s.relations ?? {})) {
+    if (r.a >= r.b || key !== `${r.a}|${r.b}`) errors.push(`invalid relation key: ${key}`);
+    if (!Number.isFinite(r.value) || r.value < -100 || r.value > 100) errors.push(`relation out of range: ${key}`);
+  }
+  for (const o of Object.values(s.operations ?? {})) {
+    if (!Number.isFinite(o.progress) || o.progress < 0 || o.progress > 1) errors.push(`operation progress: ${o.id}`);
+    for (const u of o.force.units) if (u.count < 0 || !Number.isInteger(u.count) || u.readiness < 0 || u.readiness > 1) errors.push(`force out of range: ${o.id}`);
+    for (const slot of o.mercSlots) if (!s.contracts[slot.contract]) errors.push(`missing operation contract: ${slot.contract}`);
+  }
   return errors;
 }

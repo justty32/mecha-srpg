@@ -1,0 +1,66 @@
+{
+  "id": "operation/blockade",
+  "kind": "blockade",
+  "actorScales": [
+    "state",
+    "company"
+  ],
+  "valid": {
+    "all": []
+  },
+  "weight": 1,
+  "targetSel": "port",
+  "commit": 0.7,
+  "phases": [
+    {
+      "phase": "muster",
+      "days": 3
+    },
+    {
+      "phase": "march",
+      "days": 1
+    },
+    {
+      "phase": "engage",
+      "days": 7
+    },
+    {
+      "phase": "resolve",
+      "days": 1
+    },
+    {
+      "phase": "aftermath",
+      "days": 2
+    }
+  ],
+  "merc": {
+    "minRep": 20,
+    "share": 0.2,
+    "supply": "field",
+    "slots": 1,
+    "sides": "actor"
+  },
+  "onSuccess": [
+    {
+      "setNode": {
+        "id": "$node",
+        "patch": {
+          "flags": [
+            "blockaded"
+          ]
+        }
+      }
+    },
+    {
+      "relation": {
+        "a": "$actor",
+        "b": "$target",
+        "delta": -10,
+        "reason": "blockade"
+      }
+    }
+  ],
+  "onFail": [],
+  "onAbort": [],
+  "requiresRelation": "war"
+}

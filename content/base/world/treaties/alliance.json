@@ -1,0 +1,22 @@
+{
+  "id": "treaty/alliance",
+  "kind": "alliance",
+  "days": 168,
+  "requires": {
+    "minState": "friendly",
+    "cond": {
+      "cmp": {
+        "a": {
+          "ref": "relation.value"
+        },
+        "op": ">=",
+        "b": 40
+      }
+    }
+  },
+  "terms": [],
+  "onExpire": [],
+  "breakIf": {
+    "any": []
+  }
+}

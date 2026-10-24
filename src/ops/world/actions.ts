@@ -9,13 +9,13 @@ export type ActionsState = CampaignState & { actionCooldowns?: Record<string, nu
 export function actionsDaily2(s: CampaignState, ctx: OpsCtx): void {
   const state = s as ActionsState;
   const actors: { id: string; kind: WorldActionDef["actor"]; scope: OpsScope }[] = [
-    ...Object.keys(s.factions).sort().filter(id => s.factions[id]!.alive).map(id => ({ id, kind: "faction" as const, scope: { faction: id } })),
+    ...Object.keys(s.factions).sort().filter(id => s.factions[id]!.alive && (ctx.world.require("faction-ops", s.factions[id]!.def).actionLanes?.includes("world") ?? true)).map(id => ({ id, kind: "faction" as const, scope: { faction: id } })),
     ...(s.clock.phase === "spring" ? Object.keys(s.rifts).sort().filter(id => !["closed", "sealed", "receding"].includes(s.rifts[id]!.phase)).map(id => ({ id, kind: "rift" as const, scope: { rift: id, node: s.rifts[id]!.node } })) : []),
     { id: "world", kind: "world" as const, scope: {} },
   ].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
   for (const actor of actors) {
     if (state.actionDrawDays?.[actor.id] === s.clock.day) continue;
-    const cards = ctx.world.all("action").filter(card => card.actor === actor.kind && (state.actionCooldowns?.[`${actor.id}|${card.id}`] ?? 0) <= s.clock.day && evalOpsCond(s, ctx, card.valid, actor.scope))
+    const cards = ctx.world.all("action").filter(card => card.lane !== "war" && card.actor === actor.kind && (state.actionCooldowns?.[`${actor.id}|${card.id}`] ?? 0) <= s.clock.day && evalOpsCond(s, ctx, card.valid, actor.scope))
       .map(card => ({ card, weight: evalOpsNum(s, ctx, card.weight, actor.scope) })).filter(item => item.weight > 0);
     (state.actionDrawDays ??= {})[actor.id] = s.clock.day;
     if (!cards.length) continue;

@@ -11,8 +11,9 @@ import { OPS_REF_ROOTS } from "./cond.ts";
 import { instantiateMech } from "./instantiate.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
-const EFFECT_KEYS = ["ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
+const EFFECT_KEYS = ["startOperation", "opProgress", "transferNode", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
 const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
+  operation: ["actorScales", "phases", "onSuccess", "onFail", "onAbort"], treaty: ["terms", "onExpire"], lineage: ["tags"], model: ["requires", "tags"], forces: ["shells"], affinity: ["pairs"],
   node: ["services", "terrainPool", "tags"], route: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
   "faction-ops": ["territory", "contractKinds", "services", "reputationTiers", "tags"], contract: ["issuerKinds", "gradeRange", "objectives", "onComplete", "onFail", "onCancel"],
   action: ["effects"], market: ["lists", "priceMods"], recruit: ["sources"], research: ["requires", "unlocks"], names: ["names", "epithets"],
@@ -45,14 +46,14 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
         if (typeof value.ref !== "string" || !(OPS_REF_ROOTS as readonly string[]).includes(value.ref.split(".")[0]!)) errors.push(`${at}.ref: invalid ops ref root`);
       }
       if (["materials", "consumes", "stocks"].includes(field)) for (const key of Object.keys(value)) if (!isAccount(key)) errors.push(`${at}: invalid account ${key}`);
-      if (["effects", "onComplete", "onFail", "onCancel"].some(key => at.includes(`.${key}[`)) && at.endsWith("]")) {
+      if (["effects", "onComplete", "onFail", "onCancel", "onSuccess", "onAbort", "terms", "onExpire"].some(key => at.includes(`.${key}[`)) && at.endsWith("]")) {
         if (EFFECT_KEYS.filter(key => key in value).length !== 1) errors.push(`${at}: unknown OpsEffect`);
       }
       // core 的結構檢查器限定戰鬥 ref 根；營運根另由 cond.ts 登記，這裡仍驗 NumExpr/Cond 形狀。
       if (numericRef || "sum" in value || "product" in value || "pick" in value) {
         errors.push(...checkNumExpr(value, at).filter(e => !e.endsWith("必須是字串且根屬於 REF_ROOTS")));
       }
-      if (["when", "valid", "requires", "cond", "growOn", "shrinkOn"].includes(field)) {
+      if (["when", "valid", "requires", "cond", "growOn", "shrinkOn", "breakIf"].includes(field) && !(kind === "treaty" && field === "requires")) {
         errors.push(...checkCond(value, at).filter(e => !e.endsWith("必須是字串且根屬於 REF_ROOTS")));
       }
       for (const [key, item] of Object.entries(value)) {
@@ -77,6 +78,43 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   for (const cal of world.all("calendar")) {
     if (!Number.isSafeInteger(cal.daysPerMonth) || cal.daysPerMonth < 1) errors.push(`${cal.id}: invalid calendar period`);
     if ([...(cal.spring ?? []), ...(cal.neap ?? [])].some(n => !Number.isInteger(n) || n < 1 || n > cal.daysPerMonth)) errors.push(`${cal.id}: invalid phase day`);
+  }
+  for (const model of world.all("model")) {
+    reference(model.frame, `${model.id}.frame`, "frame");
+    if (db.get("frame", model.frame)?.cls !== "mechanical") errors.push(`${model.id}.frame: must be mechanical`);
+    reference(model.lineage, `${model.id}.lineage`, "lineage");
+    for (const id of model.requires ?? []) reference(id, `${model.id}.requires`, "model");
+  }
+  const visiting = new Set<string>(), visited = new Set<string>();
+  const visit = (id: string): void => {
+    if (visiting.has(id)) { errors.push(`${id}.requires: cycle`); return; }
+    if (visited.has(id)) return;
+    visiting.add(id);
+    for (const dep of world.get("model", id)?.requires ?? []) visit(dep);
+    visiting.delete(id); visited.add(id);
+  };
+  for (const m of world.all("model")) visit(m.id);
+  const liveFaction = (id: string) => world.all("faction-ops").some(f => (f.id === id || f.faction === id) && !f.lifecycle?.absorbedBy && !db.get("faction", f.faction)?.tags.includes("kaiju"));
+  for (const lineage of world.all("lineage")) if (lineage.source !== "generic") {
+    reference(lineage.source, `${lineage.id}.source`, "frame");
+    if (db.get("frame", lineage.source)?.cls !== "ancient") errors.push(`${lineage.id}.source: must be ancient`);
+    if (!lineage.holder || !liveFaction(lineage.holder)) errors.push(`${lineage.id}.holder: must be live faction`);
+  }
+  if (world.all("operation").length) for (const f of world.all("faction-ops")) {
+    if (db.get("faction", f.faction)?.tags.includes("kaiju") || f.faction.endsWith("/migrant-crew")) continue;
+    const pool = world.all("model").filter(m => (m.generic || m.maker === f.faction || m.maker === f.id) && "month" in m.availableFrom && m.availableFrom.month <= 0);
+    if (!pool.length) errors.push(`${f.id}: empty opening model pool`);
+    for (const u of f.roster ?? []) if ("model" in u) {
+      reference(u.model, `${f.id}.roster`, "model");
+      if (!pool.some(m => m.id === u.model)) errors.push(`${f.id}.roster: model unavailable at opening ${u.model}`);
+      if (!Number.isInteger(u.count) || u.count < 0) errors.push(`${f.id}.roster: invalid count`);
+    }
+  }
+  for (const cfg of world.all("forces")) for (const shell of cfg.shells ?? []) {
+    reference(shell.frame, `${shell.id}.frame`, "frame");
+    if (db.get("frame", shell.frame)?.cls !== "ancient") errors.push(`${shell.id}: shell frame must be ancient`);
+    if (typeof shell.holder === "object") reference(shell.holder.ruin, `${shell.id}.holder.ruin`, "node");
+    else if (shell.holder !== "player" && !liveFaction(shell.holder)) errors.push(`${shell.id}.holder: must be live faction`);
   }
   const templates = new Set(world.all("templates").flatMap(t => Object.keys(t.entries ?? {})));
   for (const start of world.all("start")) for (const [index, entry] of (start.mechs ?? []).entries()) {

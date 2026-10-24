@@ -1,0 +1,69 @@
+{
+  "id": "operation/escort",
+  "kind": "escort",
+  "actorScales": [
+    "company",
+    "guild",
+    "city"
+  ],
+  "valid": {
+    "all": []
+  },
+  "weight": 1,
+  "targetSel": "route",
+  "commit": 0.7,
+  "phases": [
+    {
+      "phase": "muster",
+      "days": 3
+    },
+    {
+      "phase": "march",
+      "days": 1
+    },
+    {
+      "phase": "engage",
+      "days": 7
+    },
+    {
+      "phase": "resolve",
+      "days": 1
+    },
+    {
+      "phase": "aftermath",
+      "days": 2
+    }
+  ],
+  "merc": {
+    "minRep": -10,
+    "share": 0.1,
+    "supply": "none",
+    "slots": 1,
+    "sides": "actor"
+  },
+  "onSuccess": [
+    {
+      "setNode": {
+        "id": "$node",
+        "patch": {
+          "flags": [
+            "war-supplied"
+          ]
+        }
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "setNode": {
+        "id": "$node",
+        "patch": {
+          "flags": [
+            "scarcity"
+          ]
+        }
+      }
+    }
+  ],
+  "onAbort": []
+}

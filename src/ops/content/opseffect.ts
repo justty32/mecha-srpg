@@ -1,3 +1,8 @@
+import { startOperation } from "../war/operations.ts";
+import { changeRelation, declareWar, factionId } from "../war/relations.ts";
+import { signTreaty } from "../war/treaties.ts";
+import { leakModel } from "../war/rnd.ts";
+import { drive } from "../war/drivers.ts";
 import { chance } from "../../core/rng.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import type { EffectInstance } from "../../core/types-state.ts";
@@ -68,7 +73,55 @@ function applyCoreEffect(s: CampaignState, ctx: OpsCtx, input: Extract<OpsEffect
 }
 
 export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect, scope: OpsScope = {}): boolean {
+  // SPEC-GAP：模板效果用 $actor/$target/$node/$rift/$shell/$operation 綁定作戰脈絡。
+  const op = scope.operation ? s.operations?.[scope.operation] : undefined;
+  const bindings: Record<string, string | undefined> = { $actor: scope.faction, $target: scope.targetFaction, $node: scope.node, $rift: scope.rift, $shell: op?.target.shell, $operation: scope.operation };
+  function bind(value: unknown): unknown {
+    if (typeof value === "string" && Object.hasOwn(bindings, value)) {
+      if (!bindings[value]) throw new Error(`missing war binding: ${value}`);
+      return bindings[value];
+    }
+    if (Array.isArray(value)) return value.map(bind);
+    if (value && typeof value === "object") return Object.fromEntries(Object.entries(value).map(([k, v]) => [k, bind(v)]));
+    return value;
+  }
+  if (scope.operation || scope.targetFaction) effect = bind(effect) as OpsEffect;
   const num = (expr: Parameters<typeof evalOpsNum>[2]) => evalOpsNum(s, ctx, expr, scope);
+  if ("startOperation" in effect) return !!startOperation(s, ctx, effect.actor ?? scope.faction ?? "", effect.startOperation, effect.target);
+  if ("opProgress" in effect) {
+    const target = s.operations?.[effect.opProgress.operation ?? scope.operation ?? ""];
+    if (!target) return false; target.progress = Math.max(0, Math.min(1, target.progress + num(effect.opProgress.delta))); return true;
+  }
+  if ("relation" in effect) { const e = effect.relation; return changeRelation(s, ctx, e.a, e.b, num(e.delta), e.reason); }
+  if ("declareWar" in effect) return declareWar(s, ctx, effect.declareWar.a, effect.declareWar.b);
+  if ("treaty" in effect) return signTreaty(s, ctx, effect.treaty.a, effect.treaty.b, effect.treaty.def);
+  if ("leakModel" in effect) { leakModel(s, ctx, effect.leakModel.model, effect.leakModel.by); return true; }
+  if ("forceLoss" in effect) {
+    const e = effect.forceLoss, target = e.operation ? s.operations?.[e.operation]?.force : s.factions[e.faction ?? scope.faction ?? ""]?.forces;
+    if (!target) return false;
+    const loss = Math.min(1, Math.max(0, num(e.fraction)));
+    for (const u of target.units) { u.count = Math.max(0, Math.round(u.count * (1 - loss))); u.readiness *= 1 - loss; } return true;
+  }
+  if ("transferNode" in effect) {
+    const node = ctx.world.require("node", effect.transferNode.node).id, to = factionId(s, ctx, effect.transferNode.to);
+    if (!to || !s.nodes[node]) return false;
+    const from = Object.keys(s.factions).sort().find(id => s.factions[id]!.territoryNow.includes(node)) ?? "none";
+    for (const f of Object.values(s.factions)) f.territoryNow = f.territoryNow.filter(id => id !== node);
+    s.factions[to]!.territoryNow.push(node); s.factions[to]!.territoryNow.sort();
+    s.nodes[node]!.ownerOverride = ctx.world.require("faction-ops", to).faction;
+    delete s.nodes[node]!.blight;
+    ctx.emit("NodeTransferred", { node, from, to }); return true;
+  }
+  if ("transferShell" in effect) {
+    const shell = s.shells?.[effect.transferShell.shell], to = effect.transferShell.to === "player" ? "player" : factionId(s, ctx, effect.transferShell.to);
+    if (!shell || !to) return false;
+    const from = typeof shell.holder === "string" ? shell.holder : shell.holder.ruin;
+    for (const f of Object.values(s.factions)) if (f.shells) f.shells = f.shells.filter(id => id !== shell.id);
+    shell.holder = to; if (!shell.knownBy.includes(to)) shell.knownBy.push(to);
+    s.factions[to]?.shells?.push(shell.id);
+    ctx.emit("ShellSeized", { shell: shell.id, from, to });
+    if (to !== "player") drive(s, ctx, "shell-envy", to, to); return true;
+  }
   if ("ledger" in effect) {
     const entry = effect.ledger, delta = num(entry.delta);
     // 拒絕的 stock 支出不能留下來源或 Posted 事件。
@@ -104,9 +157,16 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     const id = ctx.world.require("node", effect.setNode.id).id, node = s.nodes[id];
     if (!node) throw new Error(`缺少節點狀態：${id}`);
     Object.assign(node, structuredClone(effect.setNode.patch), { def: node.def });
+    if (effect.setNode.clearBlight) {
+      const rift = node.blight?.rift; delete node.blight;
+      if (rift && s.rifts[rift]) s.rifts[rift]!.zones = s.rifts[rift]!.zones.filter(n => n !== id);
+      ctx.emit("NodeReclaimed", { node: id, ...(rift ? { rift } : {}) });
+    }
   } else if ("setRift" in effect) {
     const rift = entity(s.rifts, effect.setRift.id);
+    const before = rift.phase;
     Object.assign(rift, structuredClone(effect.setRift.patch), { id: rift.id });
+    if (scope.operation && before !== rift.phase) ctx.emit("RiftPhase", { rift: rift.id, from: before, to: rift.phase });
   } else if ("nameMech" in effect) {
     const { mech, name, by } = effect.nameMech;
     entity(s.mechs, mech);

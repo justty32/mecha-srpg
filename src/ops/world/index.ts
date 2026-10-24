@@ -1,10 +1,12 @@
+import { diplomacyDaily2b, operationsDaily2c, warActionsDaily2d, rndMonthly2f } from "../war/index.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { riftsDaily2 } from "./rifts.ts";
 import { pressureDaily2 } from "./pressure.ts";
 import { nodesDaily2 } from "./nodes.ts";
 import { actionsDaily2 } from "./actions.ts";
 export function worldDaily2(s: CampaignState, ctx: OpsCtx): void {
-  riftsDaily2(s, ctx); pressureDaily2(s, ctx); nodesDaily2(s, ctx); actionsDaily2(s, ctx);
+  riftsDaily2(s, ctx); diplomacyDaily2b(s, ctx); operationsDaily2c(s, ctx); pressureDaily2(s, ctx); nodesDaily2(s, ctx); actionsDaily2(s, ctx); warActionsDaily2d(s, ctx);
+  if (s.warRng && s.clock.dom === 1) rndMonthly2f(s, ctx);
 }
 export { riftsDaily2, onBattleRift, riftDefinition, nextSpring } from "./rifts.ts";
 export type { RiftBattleOutcome, BattleRiftState } from "./rifts.ts";

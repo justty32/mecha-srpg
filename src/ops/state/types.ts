@@ -1,3 +1,4 @@
+import type { ForceState, FactionRnd, Relation, OperationState, ShellState, ModelState, OperationDef, TreatyDef, LineageDef, ModelDef, ForcesDef, AffinityDef } from "../war/types.ts";
 import type { Id } from "../../core/ids.ts";
 import type { Cond, NumExpr, Grade, ControlMode, SeatId, EffectRef, Objective, ScenarioDef, PoolDecl } from "../../core/types-def.ts";
 import type { MechState, PersonState, PoolState, RngState } from "../../core/types-state.ts";
@@ -34,12 +35,12 @@ export type ShipDef = { id: Id; rooms: RoomId[]; capacity: ShipCapacity; fuel: S
 export type ShipState = { frame: Id; at: Id; route?: { to: Id; daysLeft: number; via?: Id[] }; rooms: Record<RoomId, RoomState>; capacity: ShipCapacity;
   fuel: PoolState; hull: PoolState; upgrades: Id[] };
 export type FerryDef = { id: Id; ports: Id[]; departDays: number[]; transit: number; capacity: { mechs: number; persons: number }; fare: NumExpr; returnFare: NumExpr; requires: Id[] };
-export type FactionOpsDef = { id: Id; faction: Id; scale: string; territory: Id[]; stance: { player: number; bio: number; ancient: number; soul: number; league: number };
+export type FactionOpsDef = { actionLanes?: ("world" | "war")[]; id: Id; faction: Id; scale: string; territory: Id[]; stance: { player: number; bio: number; ancient: number; soul: number; league: number };
   contractKinds: Id[]; services: ServiceId[]; reputationTiers: { at: number; grants: Id[]; name: string }[];
   lifecycle?: { growOn?: Cond; shrinkOn?: Cond; absorbedBy?: Id };
   naming?: { mechStages: { grade: Grade[]; pattern: string }[]; ancient: string; flavor: string }; tags: string[];
-  roster?: { frame: Id; count: number }[] };
-export type FactionState = { def: Id; rep: number; scaleNow: string; territoryNow: Id[]; alive: boolean; memory: { day: number; kind: string; ref?: Id }[] };
+  roster?: ({ frame: Id; count: number } | { model: Id; count: number })[] };
+export type FactionState = { forces?: ForceState; shells?: Id[]; ops?: Id[]; prestige?: number; rnd?: FactionRnd; def: Id; rep: number; scaleNow: string; territoryNow: Id[]; alive: boolean; memory: { day: number; kind: string; ref?: Id }[] };
 export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?: boolean };
 // SPEC-GAP：stage／敵軍快照未展開；快照在 offered 時由契約模組凍結。
 export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
@@ -51,7 +52,7 @@ export type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "e
 export type ContractState = { id: Id; template: Id; issuer: Id; target: { node: Id; rift?: Id; snapshot?: EnemySnapshot };
   status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
   paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
-export type WorldActionDef = { id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
+export type WorldActionDef = { lane?: "war"; id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
 export type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental" | "ammo";
   items: { def: Id; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
 export type ServiceDef = { id: Id; room: RoomId; hpRegenMult?: number; cleanse?: { whitelist: Id[]; price: NumExpr }; price?: NumExpr; effects?: OpsEffect[] };
@@ -85,10 +86,16 @@ export type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; 
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
 // SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。
 export type OpsEffect =
+  | { startOperation: Id; actor?: Id; target?: OperationState["target"] }
+  | { opProgress: { operation?: Id; delta: NumExpr } }
+  | { transferNode: { node: Id; to: Id } } | { transferShell: { shell: Id; to: Id } }
+  | { relation: { a: Id; b: Id; delta: NumExpr; reason: string } }
+  | { treaty: { a: Id; b: Id; def: Id } } | { declareWar: { a: Id; b: Id } }
+  | { leakModel: { model: Id; by?: Id } } | { forceLoss: { faction?: Id; operation?: Id; fraction: NumExpr } }
   | { ledger: { account: Account; delta: NumExpr; reason: string; ref?: Id; counter?: Account } }
   | { rep: Record<Id, NumExpr> } | { flag: string; value?: NumExpr } | { mood: Record<Id | "all", NumExpr> }
   | { techHours: NumExpr } | { spawnContract: Id; near?: string } | { spawnEvent: Id }
-  | { setNode: { id: Id; patch: Partial<Omit<NodeState, "def">> } }
+  | { setNode: { id: Id; patch: Partial<Omit<NodeState, "def">>; clearBlight?: boolean } }
   | { setRift: { id: Id; patch: Partial<Omit<RiftState, "id">> } }
   | { nameMech: { mech: Id; name: string; by: Id; kind?: NameKind } }
   | { restraintChoice: { mech: Id; action: "suppress" | "release" | "kill"; hours?: number; injuryChance?: number; injuryHp?: number; wear?: number } }
@@ -123,7 +130,7 @@ export type Screen = { room: { id: RoomId; title: string; desc: string[]; exits:
   panels: Record<string, Row[]>; actions: { id: string; label: string; cmd: OpsCommand; group: string; key?: string; tooltip?: string; disabled?: string }[];
   prompt?: { text: string; choices: { n: number; text: string; disabled?: string }[] }; handoff?: { battle: ScenarioDef } };
 export type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
-export type CampaignState = { version: 1; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
+export type CampaignState = { relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; version: 1; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
   nodes: Record<Id, NodeState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>; ship: ShipState; roster: RosterState;
   hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>; inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>;
   jobs: Job[]; contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
@@ -132,7 +139,7 @@ export type CampaignState = { version: 1; clock: Clock; rng: RngState; pressure:
   pendingContracts: { template: Id; near?: string }[]; pendingEvents: Id[] };
 export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
 
-export type WorldDefByKind = { calendar: CalendarDef; ferry: FerryDef; ship: ShipDef; node: NodeDef; route: RouteDef; rift: RiftDef;
+export type WorldDefByKind = { operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; ferry: FerryDef; ship: ShipDef; node: NodeDef; route: RouteDef; rift: RiftDef;
   encounter: EncounterDef; "faction-ops": FactionOpsDef; contract: ContractTemplate; action: WorldActionDef; market: MarketDef; service: ServiceDef;
   recruit: RecruitPoolDef; background: BackgroundDef; research: ResearchDef; job: JobDef; names: NamesDef; event: EventDef;
   dialogue: DialogueDef; room: RoomDef; templates: TemplatesDef; start: StartDef; beasts: BeastDef; keymap: KeymapDef };

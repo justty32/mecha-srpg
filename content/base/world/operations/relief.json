@@ -1,0 +1,50 @@
+{
+  "id": "operation/relief",
+  "kind": "relief",
+  "actorScales": [
+    "state",
+    "city",
+    "company",
+    "guild",
+    "band",
+    "cult"
+  ],
+  "valid": {
+    "all": []
+  },
+  "weight": 1,
+  "targetSel": "enemy-node",
+  "commit": 0.7,
+  "phases": [
+    {
+      "phase": "muster",
+      "days": 3
+    },
+    {
+      "phase": "march",
+      "days": 1
+    },
+    {
+      "phase": "engage",
+      "days": 7
+    },
+    {
+      "phase": "resolve",
+      "days": 1
+    },
+    {
+      "phase": "aftermath",
+      "days": 2
+    }
+  ],
+  "merc": {
+    "minRep": 0,
+    "share": 0.25,
+    "supply": "full",
+    "slots": 2,
+    "sides": "actor"
+  },
+  "onSuccess": [],
+  "onFail": [],
+  "onAbort": []
+}

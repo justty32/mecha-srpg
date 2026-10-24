@@ -1,0 +1,19 @@
+{
+  "id": "action/war-ceasefire",
+  "actor": "faction",
+  "lane": "war",
+  "valid": {
+    "all": []
+  },
+  "weight": 10,
+  "cooldownDays": 28,
+  "effects": [
+    {
+      "treaty": {
+        "a": "$actor",
+        "b": "$target",
+        "def": "treaty/ceasefire"
+      }
+    }
+  ]
+}
