@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # inbox_ack.sh — 收信歸檔一步做完：印摘要＋REPORT 路徑 → 併進 done/<日期>/messages.json
-# 並重寫 messages.md 索引 → 原檔移到 .state/acked/ → STATE.md 記一行。預設 dry-run。
+# 並重寫 messages.md 索引 → 原檔移到 .state/acked/ → ack-log.md 記一行（--state）。預設 dry-run。
 # 移植自 moddings/skyrim agentctl/tools/agent_inbox/inbox_ack.sh（2026-10-23）：放信處改成
 # 本檔旁的 ../inbox（＝wf/inbox），STATE 預設改 wf/workflows/dispatch/handoffs/STATE.md。
 set -uo pipefail
 
 readonly TOOLS_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 readonly INBOX_ROOT="${WF_INBOX_ROOT:-${AGENT_INBOX_ROOT:-$TOOLS_DIR/../inbox}}"
-readonly DEFAULT_STATE_FILE="$TOOLS_DIR/../workflows/dispatch/handoffs/STATE.md"
+readonly DEFAULT_STATE_FILE="$INBOX_ROOT/done/ack-log.md"
 
 usage() {
     cat <<'EOF'
@@ -16,9 +16,9 @@ Usage: inbox_ack.sh (<message>... | --all | --from <line>) [--state '一行'] [-
   <message>        path or bare file name of a message in new/ or mail/<x>/
   --all            every message in new/
   --from <line>    every message in new/ and mail/*/ whose `from:` is <line>
-  --state '一行'   append "- HH:MM <from> <STATUS>：一行" to STATE.md (once per run)
-  --state-file P   STATE.md to append to; default $AGENT_STATE_FILE, else
-                   wf/workflows/dispatch/handoffs/STATE.md
+  --state '一行'   append "- HH:MM <from> <STATUS>：一行" to the ack log (once per run)
+  --state-file P   log file to append to; default $AGENT_STATE_FILE, else
+                   <inbox>/done/ack-log.md (wf/inbox/done/ack-log.md)
   --apply          actually archive; without it only print what would happen
 
 For each message: print summary + any REPORT.md paths named in the body, add a

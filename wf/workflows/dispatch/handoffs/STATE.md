@@ -23,7 +23,7 @@
 
 ## 本段落（2026-10-24）做了什麼
 
-各線 REPORT 在 `handoffs/<線名>/REPORT.md`，重點：
+各線 REPORT 在 `handoffs/done/<收線日>/<線名>/REPORT.md`（索引 [done/README](done/README.md)），重點：
 
 戰鬥：[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)（配裝、等級影響血量、check 強化、`content:probe`、意圖撤退與指揮者，平手 64%→2.5%）、[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)（撤退時機、瞄核心、check 降噪）、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)（AI 目標意識、盟軍配合）、[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)（約 1.6 萬場 fuzz、18 不變量、修 13 bug）、[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)（MCP 試玩、互動出戰）。
 
@@ -44,4 +44,4 @@
 5. 並行開 Opus 領導線做 engine-backlog P1（方格大地圖一線、戰鬥／營運調校一線）。
 6. 使用者試玩回饋（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應修正線。重構與 tidy 照 [next-tidy](next-tidy.md)，使用者說要做再開。
 
-> `inbox_ack.sh --state` 預設把 ack 流水追加在本檔尾；本段落之前的流水在 `wf/inbox/done/2026-10-24/`，已從本檔移除。
+> `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。

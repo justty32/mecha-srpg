@@ -8,7 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-content-battle`（工人 `cx-bat-field`、`cx-bat-scen*`）| `content/base/terrains/`、`content/base/maps/`、`content/base/scenarios/`、`content/base/aiprofiles/`（只新增）、`content/base/effects/bf-*`、`wf/workflows/dispatch/handoffs/lead-content-battle/` | `src/`、`content/base/world/`、單位內容、既有 `skirmish-*`／`rift-edge-*`、spec | 2026-10-24 |
+| `lead-codex-pilot`（工人 codex `cx-pilot-*`，只在 scratchpad worktree 寫）| `wf/tools/content_*`、`content/INDEX.json`、`content/batches/`、試點新增的內容檔（`content/base/{frames,components,abilities,effects}/cx3-*`、`content/lore/{characters,events}/` 新檔）、`wf/workflows/content/README.md` 與 `content/README.md` 相關段、`wf/workflows/dispatch/handoffs/lead-codex-pilot/`、dev-env／testing 資料檔相應列、`package.json` scripts | `src/`、既有內容檔、spec、`content/base/world/` | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -20,6 +20,4 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`lead-ai-objective`（`cx-aio-core`、`cx-aio-tactics`、`cx-aio-play`；`handoffs/lead-ai-objective/`）、`lead-rules-fuzz`（`handoffs/lead-rules-fuzz/`）、`plan-spec`、`lead-legacy-archive`、`plan-world-v2`、`lead-impl-foundation`、`lead-impl-content-base`、`lead-impl-rules`、`lead-impl-ai`、`lead-impl-sim`、`lead-integ-battle`（`handoffs/lead-integ-battle/`）、`lead-impl-ops`、`lead-impl-ui`（`cx-ui-*`）、`lead-fix-scenario-ai`（`cx-fix-*`）、`lead-ui-fix`（`cx-uifix-*`）、`plan-ops-spec`、`plan-spec-sync`、`lead-ops-bio-balance`（`cx-bio`、`cx-bal`、`cx-bal2`）、`lead-ui-session`、`lead-ui-ops`（`cx-uops-vm`、`op-uops-dom`）、`lead-mcp`（`cx-mcp-*`、`op-mcp-*`）、`lead-content-polish`（四線交接書與 REPORT 在各自 `handoffs/<線名>/`，領地列已移除）、`lead-gaps-battle`（`cx-gb-*` 8 工人；交接書與 REPORT 在 `handoffs/lead-gaps-battle/`）（`handoffs/done/2026-10-24/`；sim 線無交接書，契約與工人交接書在 `handoffs/lead-impl-sim/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
-
-收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。
+已收線的線一律在 [handoffs/done/README.md](handoffs/done/README.md)（日期、線名、一句結論、交接書與 REPORT 位置；只准追加）。2026-10-23 收 4 線、2026-10-24 收 39 線（含本表最後移除的 `lead-content-battle`、`lead-content-mech`、`lead-gaps-ops`），各線的附件夾已移 `handoffs/done/<收線日>/<線名>/`。
