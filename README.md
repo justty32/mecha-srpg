@@ -1,6 +1,6 @@
 # mecha-srpg
 
-2108 地月機甲戰爭題材的**網頁文字回合制機甲 SRPG**（工作名《潮獵》）。純 TypeScript，遊戲邏輯與 DOM 分離，可在 node 裡 headless 測試。背景與定位見 [PROJECT.md](PROJECT.md)。
+2108 地月機甲戰爭題材的**網頁文字回合制機甲 SRPG**（工作名《蝕潮獵團》）。純 TypeScript，遊戲邏輯與 DOM 分離，可在 node 裡 headless 測試。背景與定位見 [PROJECT.md](PROJECT.md)。
 
 ## 30 秒導覽
 
