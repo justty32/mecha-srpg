@@ -1,0 +1,63 @@
+{
+  "id": "species/sac",
+  "name": "浮囊",
+  "family": "alien",
+  "bodyPlan": "bodyplan/alien-sac",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-tendril-lash",
+    "ability/kx-glare-pulse"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-sac"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-alien-stalker",
+  "tags": [
+    "kaiju",
+    "alien"
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "id": "effect/kx-flesh-rend",
+  "name": "赤祈裂痕",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onTick": [
+      {
+        "do": "damage",
+        "target": "self",
+        "packets": [
+          {
+            "type": "pierce",
+            "amount": 4,
+            "layerFilter": [
+              "flesh"
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "赤祈裂痕"
+  }
+}

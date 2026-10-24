@@ -1,0 +1,36 @@
+{
+  "id": "ability/kx-mirror-turn",
+  "name": "鏡衣翻面",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-mirrored"
+      ]
+    }
+  ],
+  "tags": [
+    "alien",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1
+    }
+  },
+  "cooldown": 2
+}

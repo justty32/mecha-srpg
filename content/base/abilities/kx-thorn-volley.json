@@ -1,0 +1,36 @@
+{
+  "id": "ability/kx-thorn-volley",
+  "name": "棘冠禮雨",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 12
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}
