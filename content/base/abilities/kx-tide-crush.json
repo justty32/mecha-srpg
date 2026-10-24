@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-tide-crush",
+  "name": "萬潮覆港",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 2
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 28
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-tidal-dread"
+      ]
+    }
+  ],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 3
+}

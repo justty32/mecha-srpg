@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-pod",
+  "name": "生物機甲・孢囊",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mycel-pod",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 4
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-spore-burst"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "mycelium",
+    "kaiju",
+    "harvest-only"
+  ],
+  "burden": 2
+}

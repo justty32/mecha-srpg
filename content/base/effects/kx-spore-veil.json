@@ -1,0 +1,28 @@
+{
+  "id": "effect/kx-spore-veil",
+  "name": "白紗護身",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 15,
+      "source": "effect/kx-spore-veil"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "mycelium",
+    "buff"
+  ],
+  "ui": {
+    "badge": "白紗護身"
+  }
+}

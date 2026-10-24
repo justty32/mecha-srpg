@@ -1,0 +1,143 @@
+{
+  "id": "bodyplan/mycel-stalk",
+  "name": "菌柱體",
+  "parts": [
+    {
+      "id": "pillar",
+      "name": "垂紗柱身",
+      "exposure": 2,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 90,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false,
+          "regen": 5
+        },
+        {
+          "type": "flesh",
+          "hp": 160,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 2
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "roots",
+      "name": "巡地根",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false,
+          "regen": 3
+        },
+        {
+          "type": "flesh",
+          "hp": 80,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "crown",
+      "name": "飄燈孢冠",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false,
+          "regen": 3
+        },
+        {
+          "type": "flesh",
+          "hp": 50,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ]
+}

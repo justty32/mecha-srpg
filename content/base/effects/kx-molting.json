@@ -1,0 +1,32 @@
+{
+  "id": "effect/kx-molting",
+  "name": "舊王蛻夢",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -10,
+      "source": "effect/kx-molting"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -4,
+      "source": "effect/kx-molting"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "molt"
+  ],
+  "ui": {
+    "badge": "舊王蛻夢"
+  }
+}

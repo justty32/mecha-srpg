@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-gorged",
+  "name": "吞喪餘韻",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 3
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 6,
+      "source": "effect/kx-gorged"
+    },
+    {
+      "path": "self.pools.instinct.regen",
+      "op": "add",
+      "value": -3,
+      "source": "effect/kx-gorged"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "吞喪餘韻"
+  }
+}

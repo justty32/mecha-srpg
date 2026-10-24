@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-shield-wall",
+  "name": "王蓋庇身",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 22,
+      "source": "effect/kx-shield-wall"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "王蓋庇身"
+  }
+}

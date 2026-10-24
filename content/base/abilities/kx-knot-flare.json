@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-knot-flare",
+  "name": "五結明燈",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 2
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 16
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-sporeload"
+      ]
+    }
+  ],
+  "tags": [
+    "mycelium",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-lancewing",
+  "name": "生物機甲・弔燈蜂",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/insect-lancewing",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-acid-sting",
+    "ability/kx-wing-dive",
+    "ability/kx-brood-call"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 6
+}

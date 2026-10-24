@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-rotwarden",
+  "name": "生物機甲・腐衛",
+  "cls": "bio",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mycel-rotwarden",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 7
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-rot-blade",
+    "ability/kx-spore-shroud"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "mycelium",
+    "kaiju"
+  ],
+  "burden": 9
+}

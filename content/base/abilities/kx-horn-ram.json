@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-horn-ram",
+  "name": "叩闕",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 26
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-shell-cracked"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 2
+}

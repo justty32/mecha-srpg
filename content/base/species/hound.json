@@ -1,0 +1,73 @@
+{
+  "id": "species/hound",
+  "name": "掘犬",
+  "family": "beast",
+  "bodyPlan": "bodyplan/quadruped-hound",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-shovel-ram",
+    "ability/kx-burrow-flank",
+    "ability/kx-carrion-gulp"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-hound"
+  },
+  "behaviors": {
+    "telegraph": true,
+    "molt": {
+      "to": "species/bulwark",
+      "when": {
+        "tag": "molt-ready"
+      },
+      "duringMoltEffects": [
+        "effect/kx-molting"
+      ]
+    }
+  },
+  "aiProfile": "aiprofile/pack-hunter",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

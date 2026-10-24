@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-spore-burst",
+  "name": "孢夢乍裂",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 8
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/rooted"
+      ]
+    }
+  ],
+  "tags": [
+    "mycelium",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

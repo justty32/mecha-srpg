@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-carapace-braced",
+  "name": "閉闕",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 18,
+      "source": "effect/kx-carapace-braced"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "effect/kx-carapace-braced"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "閉闕"
+  }
+}

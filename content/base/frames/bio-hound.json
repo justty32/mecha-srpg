@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-hound",
+  "name": "生物機甲・掘犬",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/quadruped-hound",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-shovel-ram",
+    "ability/kx-burrow-flank",
+    "ability/kx-carrion-gulp"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ],
+  "burden": 5
+}

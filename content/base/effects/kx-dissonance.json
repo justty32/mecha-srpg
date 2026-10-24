@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-dissonance",
+  "name": "失諧哀歌",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/kx-dissonance"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -10,
+      "source": "effect/kx-dissonance"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "失諧哀歌"
+  }
+}

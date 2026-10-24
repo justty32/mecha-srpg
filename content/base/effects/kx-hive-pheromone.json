@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-hive-pheromone",
+  "name": "萬巢同詔",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 8,
+      "source": "effect/kx-hive-pheromone"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/kx-hive-pheromone"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "萬巢同詔"
+  }
+}
