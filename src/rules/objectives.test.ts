@@ -39,7 +39,7 @@ test("目標依宣告序決定且 BattleEnd 只寫一次，預設排除 berserk 
   const defaults = fixture(); unit(defaults, "v").owner = "berserk";
   assert.deepEqual(evaluateObjectives(defaults, false), { winner: "player", reason: "eliminate" });
 });
-test("survive 只在輪末判定，hold／escort 永不完成，達上限 timeout", () => {
+test("survive 只在輪末判定，缺參數的 hold／escort 不完成，達上限 timeout", () => {
   const ctx = fixture(); rt(ctx.s).objectives = [{ kind: "survive", params: { rounds: 2 }, for: "player", onComplete: "win" }];
   ctx.s.round = 2; assert.equal(evaluateObjectives(ctx, false), null);
   signal(ctx, "roundEnd", { round: 2 }); assert.equal(rt(ctx.s).outcome!.winner, "player");
@@ -48,6 +48,33 @@ test("survive 只在輪末判定，hold／escort 永不完成，達上限 timeou
   assert.equal(objectiveDone(timeout, rt(timeout.s).objectives[0]!), false);
   assert.equal(evaluateObjectives(timeout, false), null);
   assert.deepEqual(evaluateObjectives(timeout, true), { winner: null, reason: "timeout" });
+});
+test("hold 區域連續輪末計數，敵人打斷、同輪重評不累加且進度可存檔", () => {
+  const ctx = fixture(); rt(ctx.s).objectives = [{ kind: "hold", params: { rounds: 2, zone: [{ x: 1, y: 1 }] }, for: "player", onComplete: "win" }];
+  assert.equal(evaluateObjectives(ctx, false), null);
+  assert.equal(evaluateObjectives(ctx, true), null);
+  assert.equal(evaluateObjectives(ctx, true), null);
+  ctx.s.round = 2; unit(ctx, "v").pos = { x: 1, y: 1 };
+  assert.equal(evaluateObjectives(ctx, true), null);
+  ctx.s.round = 3; unit(ctx, "v").pos = { x: 4, y: 4 };
+  assert.equal(evaluateObjectives(ctx, true), null);
+  ctx.s = JSON.parse(JSON.stringify(ctx.s)); ctx.s.round = 4;
+  assert.deepEqual(evaluateObjectives(ctx, true), { winner: "player", reason: "hold" });
+});
+test("hold 無 zone 包含未定義 anchor role：存活撐滿輪數，全滅不能完成", () => {
+  const ctx = fixture(); rt(ctx.s).objectives = [{ kind: "hold", params: { rounds: 1, role: "anchor" }, for: "player", onComplete: "win" }];
+  const dead = { db: ctx.db, s: structuredClone(ctx.s) }; rt(dead.s).unitStatus.u = "dead";
+  assert.equal(evaluateObjectives(dead, true), null);
+  assert.deepEqual(evaluateObjectives(ctx, true), { winner: "player", reason: "hold" });
+});
+test("escort 要全員到出口或已撤離，死亡與缺少目標不算完成", () => {
+  const ctx = fixture(), o = { kind: "escort" as const, params: { units: ["u", "v"] }, for: "player", onComplete: "win" as const };
+  unit(ctx, "u").pos = { x: 0, y: 0 };
+  assert.equal(objectiveDone(ctx, o), false);
+  rt(ctx.s).unitStatus.v = "retreated"; assert.equal(objectiveDone(ctx, o), true);
+  rt(ctx.s).unitStatus.v = "dead"; assert.equal(objectiveDone(ctx, o), false);
+  assert.equal(objectiveDone(ctx, { ...o, params: { units: ["missing"] } }), false);
+  assert.equal(objectiveDone(ctx, { ...o, params: { unit: "u" } }), true);
 });
 test("reachExit、capture、killTarget 與 lose 結算", () => {
   const ctx = fixture();

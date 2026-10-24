@@ -7,12 +7,14 @@ import type { RulesQuery } from "./rules-query.ts";
 import type { AiCtx, Agent, Candidate } from "./policy.ts";
 import { dangerAt, threatOf } from "./danger.ts";
 import { isHostileSlot } from "./hostility.ts";
+import { shouldRetreat } from "./retreat.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
   retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, reposition: 0.3, waitScore: 0, endScore: 0.01,
   ejectBelow: 0.15, moveCost: 0.01, dangerK: 0.01, band: 0.8,
   tries: 3, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
+  retreatForceRatio: 0.5, retreatMinRound: 3, retreatDamage: 0.35,
 };
 
 export const TACTICS: readonly string[] = ["attack", "attackArea", "disable", "heal", "buff", "debuff", "escape", "protect", "capture", "scout"];
@@ -90,7 +92,7 @@ export function want(ctx: AiCtx, unitId: Id): Record<string, number> {
     survive, attack: p.attack, attackArea: p.attack, disable: p.disable, debuff: p.debuff, capture: p.capture,
     protect: ctx.assignment?.protect ? p.protect : 0, heal: p.heal, buff: p.buff,
     scout: ctx.know.visible.length === 0 ? p.scout : p.scout * 0.2, escape: survive,
-    retreat: forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot) < 0.5 || morale === "breaking" || morale === "fleeing" ? p.retreat : 0,
+    retreat: shouldRetreat(ctx, morale, forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot), p) ? p.retreat : 0,
   };
 }
 

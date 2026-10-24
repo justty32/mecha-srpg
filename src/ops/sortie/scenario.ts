@@ -86,7 +86,7 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
   const encounter = templates.find(e => e.depth === snapshot.depth) ?? templates.find(e => e.depth === "deep") ?? templates[0];
   if (!encounter) throw new Error(`missing encounter: ${snapshot.family}/${snapshot.depth}`);
   const scope = { node: sortie.node, ...(rift ? { rift: rift.id } : {}) };
-  const width = Math.max(2, Math.floor(evalOpsNum(s, ctx, encounter.size.w, scope))), height = Math.max(1, Math.floor(evalOpsNum(s, ctx, encounter.size.h, scope)));
+  const width = Math.max(4, Math.floor(evalOpsNum(s, ctx, encounter.size.w, scope))), height = Math.max(1, Math.floor(evalOpsNum(s, ctx, encounter.size.h, scope)));
   const mix = encounter.terrainMix.flatMap(entry => entry.terrain === "$node"
     ? node.terrainPool.map(terrain => ({ terrain, w: entry.w / node.terrainPool.length })) : [entry]);
   const terrains = [...new Set(mix.map(e => ctx.db.require("terrain", e.terrain).id))].sort();
@@ -95,9 +95,13 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
     id: `ops:map/${sortie.id}`, width, height,
     cells: Array.from({ length: width * height }, () => glyph(pickWeighted(s.rng, mix, e => e.w).terrain)).join(""),
     legend: Object.fromEntries(terrains.map(id => [glyph(id), id])),
-    deployZones: { player: Array.from({ length: height }, (_, y) => ({ x: 0, y })), enemy: Array.from({ length: height }, (_, y) => ({ x: width - 1, y })) },
+    deployZones: {},
     exits: Array.from({ length: height }, (_, y) => ({ x: 0, y })) };
   map.id = `ops:map/${sortie.id}`;
+  if (map.width < 4) throw new Error("ops map needs separate exit, player and enemy columns");
+  map.deployZones.player = Array.from({ length: map.height }, (_, y) => [{ x: 1, y }, { x: 2, y }]).flat();
+  map.deployZones.enemy = Array.from({ length: map.height }, (_, y) => ({ x: map.width - 1, y }));
+  map.exits = Array.from({ length: map.height }, (_, y) => ({ x: 0, y }));
   const enemy: UnitSpawn[] = [];
   const familyDef = ctx.world.all("rift").find(d => d.family === snapshot.family);
   const allowed = familyDef?.gradeByWidth[snapshot.width] ?? GRADES.slice(0, GRADES.indexOf(snapshot.width) + 1);
@@ -157,9 +161,12 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
   const playerFaction = ctx.db.require("faction", "faction/migrant-crew").id;
   const enemyFaction = ctx.db.all("faction").find(f => f.tags.includes("kaiju"));
   if (!enemyFaction) throw new Error("missing monster faction");
+  // SPEC-GAP：encounter／contract 沒有 rounds 欄；營運戰鬥統一使用內容常數。
+  const rounds = ctx.db.rules.constants.opsBattleMaxRounds;
+  if (!Number.isSafeInteger(rounds) || rounds! <= 0) throw new Error("missing positive opsBattleMaxRounds");
   const scenario: SortieScenario = { id: `ops:scenario/${sortie.id}`, map: map.id, slots: {
     player: { faction: playerFaction, units: player }, enemy: { faction: enemyFaction.id, units: enemy } }, objectives,
-    rules: { conventionalFactor: ctx.db.rules.constants.conventionalFactor ?? 0.1 }, seed: nextU32(s.rng),
+    rounds, rules: { conventionalFactor: ctx.db.rules.constants.conventionalFactor ?? 0.1 }, seed: nextU32(s.rng),
     ops: { map, persons, personDefs, unitIds: ordered.map(u => u.mech) } };
   // SPEC-GAP：支援沒有 conventional-arms frame／能力內容；不憑空造可攻擊的船或砲台。
   ctx.db = scenarioDB(ctx.db, scenario);

@@ -54,8 +54,9 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
     const room = s.ship.rooms[terms.role === "technician" ? "hangar" : "galley"];
     room?.persons.push(id);
   }
-  for (const [index, frame] of start.mechs.entries()) {
-    const id = nextId(s, "mech"), mech = instantiateMech(db, id, frame);
+  for (const [index, entry] of start.mechs.entries()) {
+    const frame = typeof entry === "string" ? entry : entry.frame;
+    const id = nextId(s, "mech"), mech = instantiateMech(db, id, frame, typeof entry === "string" ? {} : entry.components);
     s.mechs[id] = mech; s.hangar.bays[index] = id; s.inventory.mechs.push(id);
     s.ship.rooms.hangar?.items.push(id);
     if (db.require("frame", frame).cls === "ancient") s.hangar.dormant.push(id);

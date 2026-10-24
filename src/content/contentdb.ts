@@ -25,7 +25,7 @@ export function createContentDB(packs: PackDef[], registries: Registries, rules:
   defs: { [K in ContentKind]?: Record<Id, DefByKind[K]> }): ContentDB {
   // 複製後凍結，避免純載入流程凍結呼叫端的輸入。
   const data = deepFreeze(structuredClone({ packs, registries, rules, defs }));
-  const get = <K extends ContentKind>(kind: K, id: Id): DefByKind[K] | undefined => {
+  const lookupDef = <K extends ContentKind>(kind: K, id: Id): DefByKind[K] | undefined => {
     const parsed = parseId(id);
     if (!parsed || parsed.kind !== kind) return undefined;
     const table = data.defs[kind];
@@ -36,6 +36,14 @@ export function createContentDB(packs: PackDef[], registries: Registries, rules:
       if (found) return found;
     }
     return undefined;
+  };
+  // 資料已凍結，查詢結果（含未找到）在此 DB 的生命週期內不變。
+  const cache = new Map<ContentKind, Map<Id, DefByKind[ContentKind] | undefined>>();
+  const get = <K extends ContentKind>(kind: K, id: Id): DefByKind[K] | undefined => {
+    let table = cache.get(kind);
+    if (!table) { table = new Map(); cache.set(kind, table); }
+    if (!table.has(id)) table.set(id, lookupDef(kind, id));
+    return table.get(id) as DefByKind[K] | undefined;
   };
   const ids = (kind: ContentKind): Id[] => Object.keys(data.defs[kind] ?? {}).sort();
   return deepFreeze({

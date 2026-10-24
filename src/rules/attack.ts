@@ -17,6 +17,8 @@ function subject(ctx: Ctx, id: Id, abilityId?: Id): Subject {
 }
 
 export function hitChance(ctx: Ctx, actor: Id, abilityId: Id, target: Id, part?: PartId): number {
+  // SPEC-GAP：命中公式描述攻守對抗；self 沒有對手，不擲命中骰。
+  if (ctx.db.require("ability", abilityId).target.kind === "self") return 100;
   const a = ctx.db.require("ability", abilityId), from = unit(ctx, actor).pos, to = unit(ctx, target).pos;
   const self = subject(ctx, actor, abilityId), defender = subject(ctx, target), ev = evalCtxFor(ctx, self, defender);
   const value = roleAttr(ctx, self, "accuracy") + evalNum(a.accuracy ?? 0, ev)
@@ -78,7 +80,8 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
   };
   for (const id of targets) {
     if (!isActive(ctx, id)) continue;
-    const probability = hitChance(ctx, actor, abilityId, id, target.part), roll = d100(ctx.s.rng), hit = roll < probability;
+    const probability = hitChance(ctx, actor, abilityId, id, target.part), roll = ability.target.kind === "self" ? null : d100(ctx.s.rng);
+    const hit = roll === null || roll < probability;
     const part = hit ? pickPart(ctx, id, target.part) : null;
     emit(ctx, hit ? "Hit" : "Miss", { unit: actor, target: id, ability: ability.id, chance: probability, roll, part });
     if (hit) {

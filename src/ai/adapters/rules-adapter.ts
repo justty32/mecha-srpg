@@ -7,6 +7,7 @@ import type { Id } from "../../core/ids.ts";
 import type { Cell } from "../../core/types-def.ts";
 import type { BattleState } from "../../core/types-state.ts";
 import { evalNum } from "../../core/numexpr.ts";
+import { cloneBattleState } from "../../core/clone-state.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import * as R from "../../rules/index.ts";
 import type { Ctx, Subject } from "../../rules/index.ts";
@@ -32,9 +33,20 @@ function los(ctx: Ctx, from: Cell, to: Cell): boolean {
   return true;
 }
 
-export function createRulesQuery(db: ContentDB): RulesQuery {
+export function createRulesQuery(db: ContentDB, snapshot?: BattleState): RulesQuery {
   const c = (s: BattleState): Ctx => ({ db, s });
+  const costs = new Map<Id, Record<string, number>>();
+  const reachable = (s: BattleState, id: Id) => {
+    if (s !== snapshot) return R.reachable(c(s), id);
+    let result = costs.get(id);
+    if (!result) { result = R.reachable(c(s), id); costs.set(id, result); }
+    return result;
+  };
   return {
+    forSnapshot: s => createRulesQuery(db, s),
+    // injury／flow 讀 PersonDied；will 從 ControlChanged 還原失控前模式。
+    // 其餘歷史只供對外回放與 hash，AI 決策只讀此次 preview 的新事件。
+    predictionState: s => cloneBattleState(s, e => e.type === "PersonDied" || e.type === "ControlChanged"),
     inBounds: (s, cell) => R.inBounds(s, cell),
     distance: (a, b) => R.distance(a, b),
     unitAt: (s, cell) => R.unitAt(c(s), cell),
@@ -50,14 +62,14 @@ export function createRulesQuery(db: ContentDB): RulesQuery {
     layerDefs: (s, id, part) => R.layerDefs(c(s), id, part),
     reachable(s, id) {
       // rules 的 reachable 含起點（成本 0）；RulesQuery 契約不含起點。
-      const all = R.reachable(c(s), id), pos = s.units[id]!.pos, start = cellKey(pos.x, pos.y);
+      const all = reachable(s, id), pos = s.units[id]!.pos, start = cellKey(pos.x, pos.y);
       const out: Record<string, number> = {};
       for (const k of Object.keys(all).sort()) if (k !== start) out[k] = all[k]!;
       return out;
     },
     pathTo(s, id, to) {
       // 由 reachable 的成本表沿 stepCost 回溯（rules 沒有匯出路徑；SPEC-GAP）。
-      const ctx = c(s), cost = R.reachable(ctx, id), pos = s.units[id]!.pos;
+      const ctx = c(s), cost = reachable(s, id), pos = s.units[id]!.pos;
       if (cost[cellKey(to.x, to.y)] === undefined || (to.x === pos.x && to.y === pos.y)) return null;
       const path: Cell[] = [];
       let cur = { x: to.x, y: to.y };

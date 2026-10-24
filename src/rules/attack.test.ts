@@ -38,6 +38,19 @@ function fixture(edit?: (d: { body: BodyPlanDef; frame: FrameDef; ability: Abili
 }
 
 import { hitChance, pickPart, modifiedAmount, resolveAbility } from "./attack.ts";
+test("self 能力必中且不消耗命中 RNG，無單位目標也不擲命中骰", () => {
+  const ctx = fixture(d => { d.ability.target = { kind: "self", range: { min: 0, max: 0 }, los: false, friendly: "yes" }; d.ability.packets = []; });
+  const before = structuredClone(ctx.s.rng);
+  assert.equal(hitChance(ctx, "a", "ability/test", "a"), 100);
+  resolveAbility(ctx, "a", "ability/test", { part: "core" });
+  assert.deepEqual(ctx.s.rng, before);
+  assert.equal(ctx.s.log.events.filter(e => e.type === "Hit").length, 1);
+  const empty = fixture(d => { d.ability.target.kind = "cell"; d.ability.packets = []; });
+  const emptyRng = structuredClone(empty.s.rng);
+  resolveAbility(empty, "a", "ability/test", { cell: { x: 4, y: 4 } });
+  assert.deepEqual(empty.s.rng, emptyRng);
+  assert.equal(empty.s.log.events.some(e => e.type === "Hit" || e.type === "Miss"), false);
+});
 test("命中夾在 5..95，指定部位懲罰", () => {
   const ctx = fixture();
   assert.equal(hitChance(ctx, "a", "ability/test", "b"), 70);

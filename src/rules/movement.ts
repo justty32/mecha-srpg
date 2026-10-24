@@ -2,6 +2,7 @@ import type { CellKey, Id } from "../core/ids.ts";
 import { cellKey } from "../core/ids.ts";
 import type { Cell, LocomotionClass } from "../core/types-def.ts";
 import { evalCond, evalNum } from "../core/numexpr.ts";
+import { cloneBattleState } from "../core/clone-state.ts";
 import { commanderOf, constant, distance, emit, evalCtxFor, frameView, hostile, inBounds, isActive, partDefs, person, rt, seatsOf, terrainAt, unit, unitAt } from "./state.ts";
 import type { Ctx } from "./state.ts";
 import { applyEffect, hasEffectTag } from "./effects.ts";
@@ -51,7 +52,7 @@ function reactions(ctx: Ctx, mover: Id, from: Cell, to: Cell): void {
       const stamp = a.trigger!.oncePer === "action" ? rt(ctx.s).actionSeq : ctx.s.round;
       if (rt(ctx.s).reactUsed[key] === stamp || (a.trigger!.cond && !evalCond(a.trigger!.cond, ev))) continue;
       // 離格反應在進格後執行，合法距離以離開前的位置判斷；只在副本上做免費 AP 檢查。
-      const probe: Ctx = { db: ctx.db, s: structuredClone(ctx.s) };
+      const probe: Ctx = { db: ctx.db, s: cloneBattleState(ctx.s) };
       unit(probe, mover).pos = { ...from };
       const check = checkAbility(probe, enemy, a.id, { unit: mover });
       if (check && check.code !== "cannot-pay") continue;
@@ -95,17 +96,65 @@ export function reachable(ctx: Ctx, unitId: Id): Record<CellKey, number> {
   const decl = poolDecls(ctx, owner).find(d => d.id === "ap");
   if (!pool || !decl) return result;
   const budget = decl.inverted ? pool.max - pool.cur : pool.cur - decl.min;
+  // 搜尋期間狀態不變；避免每條邊重算機體與全場佔位。
+  const loco = locomotionOf(ctx, unitId)!;
+  const occupied = new Map<string, Id>();
+  for (const id of Object.keys(ctx.s.units).sort()) {
+    const status = rt(ctx.s).unitStatus[id], pos = unit(ctx, id).pos, key = cellKey(pos.x, pos.y);
+    if ((status === "active" || status === "derelict") && !occupied.has(key)) occupied.set(key, id);
+  }
+  const terrains = new Map<number, ReturnType<typeof terrainAt>>();
+  const terrain = (cell: Cell) => {
+    const index = cell.y * ctx.s.map.width + cell.x;
+    let value = terrains.get(index);
+    if (!value) { value = terrainAt(ctx, cell); terrains.set(index, value); }
+    return value;
+  };
+  const costOf = (from: Cell, to: Cell): number | null => {
+    if (!inBounds(ctx.s, from) || !inBounds(ctx.s, to) || distance(from, to) !== 1) return null;
+    const occupant = occupied.get(cellKey(to.x, to.y));
+    if (occupant !== undefined && occupant !== unitId) return null;
+    const target = terrain(to), cost = target.moveCost[loco];
+    if (cost === null || cost === undefined) return null;
+    return Math.max(0, cost + Math.max(0, target.height - terrain(from).height) * constant(ctx, "moveHeightCost"));
+  };
   const queue = [{ cell: start, cost: 0 }];
+  type Entry = typeof queue[number];
+  // 與原排序完全相同的優先序，維持等成本格子的插入順序。
+  const compare = (a: Entry, b: Entry) => a.cost - b.cost || a.cell.y - b.cell.y || a.cell.x - b.cell.x;
+  const push = (entry: Entry) => {
+    let i = queue.length;
+    queue.push(entry);
+    while (i > 0) {
+      const parent = (i - 1) >> 1;
+      if (compare(queue[parent]!, entry) <= 0) break;
+      queue[i] = queue[parent]!; i = parent;
+    }
+    queue[i] = entry;
+  };
+  const pop = (): Entry => {
+    const first = queue[0]!, last = queue.pop()!;
+    if (queue.length) {
+      let i = 0;
+      while (i * 2 + 1 < queue.length) {
+        let child = i * 2 + 1;
+        if (child + 1 < queue.length && compare(queue[child + 1]!, queue[child]!) < 0) child++;
+        if (compare(last, queue[child]!) <= 0) break;
+        queue[i] = queue[child]!; i = child;
+      }
+      queue[i] = last;
+    }
+    return first;
+  };
   while (queue.length) {
-    queue.sort((a, b) => a.cost - b.cost || a.cell.y - b.cell.y || a.cell.x - b.cell.x);
-    const current = queue.shift()!;
+    const current = pop();
     if (current.cost !== result[cellKey(current.cell.x, current.cell.y)]) continue;
     for (let y = -1; y <= 1; y++) for (let x = -1; x <= 1; x++) {
-      const next = { x: current.cell.x + x, y: current.cell.y + y }, cost = stepCost(ctx, unitId, current.cell, next);
+      const next = { x: current.cell.x + x, y: current.cell.y + y }, cost = costOf(current.cell, next);
       if (cost === null) continue;
       const total = current.cost + cost, key = cellKey(next.x, next.y);
       if (total > budget || total >= (result[key] ?? Infinity)) continue;
-      result[key] = total; queue.push({ cell: next, cost: total });
+      result[key] = total; push({ cell: next, cost: total });
     }
   }
   return result;

@@ -7,6 +7,7 @@ import type { WorldKind } from "../state/types.ts";
 import type { WorldDB } from "./worlddb.ts";
 import { loadWorldDirs, WORLD_KINDS } from "./load.ts";
 import { OPS_REF_ROOTS } from "./cond.ts";
+import { instantiateMech } from "./instantiate.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
 const EFFECT_KEYS = ["ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect"];
@@ -76,6 +77,15 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if ([...(cal.spring ?? []), ...(cal.neap ?? [])].some(n => !Number.isInteger(n) || n < 1 || n > cal.daysPerMonth)) errors.push(`${cal.id}: invalid phase day`);
   }
   const templates = new Set(world.all("templates").flatMap(t => Object.keys(t.entries ?? {})));
+  for (const start of world.all("start")) for (const [index, entry] of (start.mechs ?? []).entries()) {
+    try {
+      if (typeof entry !== "string" && (!object(entry) || typeof entry.frame !== "string"
+        || entry.components !== undefined && (!object(entry.components) || Object.values(entry.components).some(id => typeof id !== "string")))) {
+        throw new Error("expected frame id or { frame, components? }");
+      }
+      instantiateMech(db, "check-start", typeof entry === "string" ? entry : entry.frame, typeof entry === "string" ? {} : entry.components);
+    } catch (error) { errors.push(`${start.id}.mechs[${index}]: ${error instanceof Error ? error.message : String(error)}`); }
+  }
   for (const type of EVENT_TYPES) if (!templates.has(type)) warnings.push(`templates: missing ${type}`);
   return { errors: [...new Set(errors)], warnings: [...new Set(warnings)] };
 }

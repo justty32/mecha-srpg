@@ -44,7 +44,7 @@ test("want 表格：低血量 survive 上升、兵力劣勢與指令權者低士
   const rows = [
     { hp: 1, enemy: 1, morale: "steady" as const, survive: 0, retreat: 0 },
     { hp: 0.25, enemy: 1, morale: "steady" as const, survive: 1.5, retreat: 3 },
-    { hp: 1, enemy: 3, morale: "steady" as const, survive: 0, retreat: 3 },
+    { hp: 1, enemy: 3, morale: "steady" as const, survive: 0, retreat: 0 },
     { hp: 1, enemy: 1, morale: "breaking" as const, survive: 0, retreat: 3 },
     { hp: 1, enemy: 1, morale: "fleeing" as const, survive: 0, retreat: 3 },
   ];
@@ -54,6 +54,7 @@ test("want 表格：低血量 survive 上升、兵力劣勢與指令權者低士
       ...Array.from({ length: row.enemy }, (_, i) => ({ id: `e${i}`, owner: "e", pos: { x: 2 + i, y: 0 }, abilities: ["stub:ability/rifle"] })),
     ]);
     scaleHp(ctx.s, "a", row.hp);
+    ctx.s.round = 3;
     ctx.params = { survive: 2, retreat: 3, scout: 5, protect: 7 };
     ctx.assignment = { unit: "a", stance: "defend", protect: "ally", allowRetreat: true };
     const w = want(ctx, "a");
@@ -161,7 +162,23 @@ test("scoreCandidate 移動、支援、偵察及結束候選依固定公式估�
   ctx.know.lastSeen.hidden = { cell: { x: 8, y: 4 }, round: 0 };
   assert.equal(scoreCandidate(ctx, agent, { cmd: scan }), initialScan * 2);
   scaleHp(ctx.s, "a", 0.1);
+  ctx.s.round = 3;
   ctx.assignment = { unit: "a", stance: "hold", allowRetreat: true };
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "eject", actor: "a" } }), 4.5);
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "retreat", actor: "a" } }), 10);
+});
+test("撤離要已交戰且達指定輪數；雙方 miss 算交戰，單向攻擊不算", () => {
+  const ctx = context(); ctx.params = { retreatForceRatio: 10, retreatMinRound: 4, retreatDamage: 0.9 };
+  ctx.s.round = 4;
+  assert.equal(want(ctx, "a").retreat, 0);
+  ctx.s.log.events.push({ seq: 1, round: 3, type: "Miss", payload: { unit: "a", target: "b" } });
+  assert.equal(want(ctx, "a").retreat, 0);
+  ctx.s.log.events.push({ seq: 2, round: 3, type: "Miss", payload: { unit: "b", target: "a" } });
+  ctx.s.round = 3; assert.equal(want(ctx, "a").retreat, 0);
+  ctx.s.round = 4; assert.equal(want(ctx, "a").retreat, 1);
+  ctx.params.retreatForceRatio = 0.1; assert.equal(want(ctx, "a").retreat, 0);
+  scaleHp(ctx.s, "a", 0.5); ctx.params.retreatDamage = 0.4;
+  assert.equal(want(ctx, "a").retreat, 1);
+  const breaking = context([{ id: "a", owner: "p", pos: { x: 0, y: 0 }, abilities: [], commander: { id: "pilot", morale: "breaking" } }]);
+  assert.equal(want(breaking, "a").retreat, 1);
 });

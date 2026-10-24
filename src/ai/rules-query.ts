@@ -18,6 +18,10 @@ export type QueryResult = { ok: true; events: GameEvent[] } | { ok: false; rejec
 export type AbilityTarget = { unit?: Id; cell?: Cell; part?: PartId };
 
 export interface RulesQuery {
+  /** 在單次唯讀決策內重用查詢；snapshot 一旦改動，呼叫端必須丟棄此查詢器。 */
+  forSnapshot?(snapshot: BattleState): RulesQuery;
+  /** AI 估值用的獨立副本；日誌可只保留規則會讀取的歷史，新事件序號不變。 */
+  predictionState?(s: BattleState): BattleState;
   // ---------- 地圖與單位（唯讀） ----------
   inBounds(s: BattleState, cell: Cell): boolean;
   /** Chebyshev 距離（8 方向）。 */

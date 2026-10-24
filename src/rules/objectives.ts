@@ -1,4 +1,4 @@
-import type { Objective } from "../core/types-def.ts";
+import type { Cell, Objective } from "../core/types-def.ts";
 import type { BattleOutcome } from "../core/types-state.ts";
 import type { Ctx } from "./state.ts";
 import { distance, emit, hostileSlots, isActive, rt, unit } from "./state.ts";
@@ -21,9 +21,29 @@ export function objectiveDone(ctx: Ctx, o: Objective): boolean {
     }
     case "reachExit": return !!target && !!ctx.s.units[target] && unit(ctx, target).owner === o.for
       && (runtime.unitStatus[target] === "retreated" || (isActive(ctx, target) && runtime.exits.some(c => distance(c, unit(ctx, target).pos) === 0)));
-    // SPEC-GAP：hold／escort 的區域、進度與護送完成條件未定，永不自動完成。
-    case "hold": case "escort": return false;
+    // SPEC-GAP：護送目標明列 unit／units，全部存活到出口或已撤離才完成。
+    case "escort": {
+      const targets = [...new Set([...(Array.isArray(o.params.units)
+        ? o.params.units.filter((id): id is string => typeof id === "string") : []), ...(target ? [target] : [])])];
+      return targets.length > 0 && targets.every(id => !!ctx.s.units[id]
+        && (runtime.unitStatus[id] === "retreated" || (isActive(ctx, id) && runtime.exits.some(c => distance(c, unit(ctx, id).pos) === 0))));
+    }
+    case "hold": return typeof o.params.rounds === "number" && o.params.rounds > 0
+      && (runtime.holdProgress?.[JSON.stringify(o)]?.count ?? 0) >= o.params.rounds;
   }
+}
+
+function advanceHold(ctx: Ctx, o: Objective): void {
+  const progress = rt(ctx.s).holdProgress ??= {}, key = JSON.stringify(o), previous = progress[key];
+  if (previous?.round === ctx.s.round) return;
+  // SPEC-GAP：zone 以格陣列定義；role:anchor 未定義，視同無 zone 的存活計時。
+  const zone = Array.isArray(o.params.zone) ? o.params.zone.filter((c): c is Cell =>
+    !!c && typeof c === "object" && "x" in c && "y" in c && typeof c.x === "number" && typeof c.y === "number") : undefined;
+  const occupants = Object.keys(ctx.s.units).sort().filter(id => isActive(ctx, id)
+    && (!zone || zone.some(c => distance(c, unit(ctx, id).pos) === 0)));
+  const held = occupants.some(id => unit(ctx, id).owner === o.for)
+    && (!zone || !occupants.some(id => hostileSlots(ctx, o.for, unit(ctx, id).owner)));
+  progress[key] = { round: ctx.s.round, count: held ? (previous?.round === ctx.s.round - 1 ? previous.count : 0) + 1 : 0 };
 }
 
 export function evaluateObjectives(ctx: Ctx, atRoundEnd: boolean): BattleOutcome | null {
@@ -32,6 +52,7 @@ export function evaluateObjectives(ctx: Ctx, atRoundEnd: boolean): BattleOutcome
   const slots = Object.keys(ctx.s.factions).sort().filter(s => s !== "berserk");
   const objectives: Objective[] = runtime.objectives.length ? runtime.objectives : slots.map(slot => ({ kind: "eliminate", params: {}, for: slot, onComplete: "win" }));
   for (const o of objectives) {
+    if (o.kind === "hold" && atRoundEnd) advanceHold(ctx, o);
     if (o.onComplete === "continue" || (o.kind === "survive" && !atRoundEnd) || !objectiveDone(ctx, o)) continue;
     // SPEC-GAP：多人 lose 未指定勝方；採仍有 active 單位的其他 slot 字典序第一名。
     const winner = o.onComplete === "win" ? o.for : slots.find(slot => slot !== o.for && Object.keys(ctx.s.units).sort().some(id => isActive(ctx, id) && unit(ctx, id).owner === slot)) ?? null;

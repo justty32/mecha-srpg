@@ -2,6 +2,7 @@ import type { Id } from "../core/ids.ts";
 import type { Cell, PartId } from "../core/types-def.ts";
 import type { BattleState, Command } from "../core/types-state.ts";
 import { evalCond, evalNum } from "../core/numexpr.ts";
+import { cloneBattleState } from "../core/clone-state.ts";
 import { commanderOf, distance, emit, evalCtxFor, frameView, hostile, inBounds, isActive, person, rt, seatsOf, terrainAt, unit } from "./state.ts";
 import type { Ctx, Rejection, Result } from "./state.ts";
 import { addContrib, removeContribsBySource } from "./contribs.ts";
@@ -155,7 +156,7 @@ export function tryCommand(ctx: Ctx, cmd: Command): Result {
   return { ok: true, events: ctx.s.log.events.slice(start) };
 }
 export function previewCommand(ctx: Ctx, cmd: Command): { result: Result; state: BattleState } {
-  const state = structuredClone(ctx.s);
+  const state = cloneBattleState(ctx.s);
   return { result: tryCommand({ db: ctx.db, s: state }, cmd), state };
 }
 

@@ -2,6 +2,7 @@ import type { Id } from "../core/ids.ts";
 import type { FactionSlot, PartId } from "../core/types-def.ts";
 import type { BattleState, FactionKnowledge, LayerKnowledge } from "../core/types-state.ts";
 import type { GameEvent } from "../core/events.ts";
+import { cloneBattleState } from "../core/clone-state.ts";
 import type { RulesQuery } from "./rules-query.ts";
 
 const DEFAULTS = { ttl: 3 };
@@ -61,8 +62,8 @@ export function knownLayers(q: RulesQuery, s: BattleState, k: FactionKnowledge, 
   return structuredClone(k.revealed[unitId]?.[partId] ?? publicLayers(q, s, unitId)[partId] ?? []);
 }
 
-export function maskedState(q: RulesQuery, s: BattleState, slot: FactionSlot, k: FactionKnowledge): BattleState {
-  const view = structuredClone(s);
+export function maskedState(q: RulesQuery, s: BattleState, slot: FactionSlot, k: FactionKnowledge, prediction = false): BattleState {
+  const view = prediction && q.predictionState ? q.predictionState(s) : cloneBattleState(s);
   for (const id of Object.keys(view.units).sort()) {
     const unit = view.units[id]!;
     if (unit.owner === slot) continue;

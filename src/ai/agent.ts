@@ -26,7 +26,10 @@ export function policyFor(q: RulesQuery, s: BattleState, unitId: Id, fallback: I
 export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Command[] {
   const { q, s } = env;
   const commands: Command[] = [];
+  let cachedContext: AiCtx | undefined;
   const execute = (cmd: Command): QueryResult => {
+    // 指令可能改變世界；連拒絕分支也重新建立決策快照。
+    cachedContext = undefined;
     const result = env.exec(s, cmd);
     if (result.ok) {
       commands.push(structuredClone(cmd));
@@ -34,19 +37,24 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     }
     return result;
   };
+  // 戰鬥已分出結果就不再下指令（規則會以 battle-over 拒絕，徒增 rejected）。
+  const over = (): boolean => !!s.rt?.outcome;
   const end = (): Command[] => {
-    execute({ kind: "end", actor: agent.unit });
+    if (!over()) execute({ kind: "end", actor: agent.unit });
     return commands;
   };
   const context = (): AiCtx => {
-    const view = maskedState(q, s, env.slot, env.know);
-    return { q, s, view, slot: env.slot, know: env.know,
-      danger: dangerMap(q, view, env.slot, env.know), assignment: env.assignment, params: env.params, rng: env.rng };
+    if (cachedContext) return cachedContext;
+    const view = maskedState(q, s, env.slot, env.know, true);
+    const query = q.forSnapshot?.(view) ?? q;
+    return cachedContext = { q: query, s, view, slot: env.slot, know: env.know,
+      danger: dangerMap(query, view, env.slot, env.know), assignment: env.assignment, params: env.params, rng: env.rng };
   };
   if (!q.isActive(s, agent.unit)) return commands;
   const maxActions = Math.max(0, Math.floor(opts?.maxActions ?? DEFAULTS.maxActions));
   const maxRetries = Math.max(1, Math.floor(opts?.maxRetries ?? DEFAULTS.maxRetries));
   for (let action = 0; action < maxActions; action++) {
+    if (over()) return commands;
     const policy = getPolicy(policyFor(q, s, agent.unit, agent.policy));
     let ctx = context();
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。

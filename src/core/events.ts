@@ -22,4 +22,8 @@ export type GameEvent = { seq: number; round: number; turn?: Id; type: EventType
 export type Event = GameEvent;
 
 /** 事件日誌：純資料（可 structuredClone／JSON），存在 BattleState.log。操作函式在 eventlog.ts。 */
-export type EventLog = { events: GameEvent[] };
+export type EventLog = {
+  events: GameEvent[];
+  /** 僅 AI 預測副本省略歷史時使用；新事件仍沿用完整日誌序號。 */
+  seqOffset?: number;
+};

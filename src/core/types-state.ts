@@ -106,6 +106,7 @@ export type RulesRuntime = {
   fieldEffects: EffectInstance[];     // scope = cell／faction／battle 的效果
   objectives: Objective[]; maxRounds: number | null; exits: Cell[]; noRetreat: boolean;
   outcome: BattleOutcome | null;
+  holdProgress?: Record<string, { round: number; count: number }>;
 };
 
 // ---------- 指令（rules-turn-and-actions：Move | UseAbility | Wait | End | Eject | Retreat） ----------

@@ -24,7 +24,7 @@ export function appendEvent(log: EventLog, e: { round: number; type: EventType; 
     }
     return [key, value];
   }));
-  const event: GameEvent = { seq: log.events.length, round: e.round, type: e.type, payload };
+  const event: GameEvent = { seq: log.events.length + (log.seqOffset ?? 0), round: e.round, type: e.type, payload };
   if (e.turn !== undefined) event.turn = e.turn;
   log.events.push(event);
   return event;
