@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-07",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（lore 地點）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "8246fd310f6b8e43db7a6a2bd90381918e0e22df",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-07",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-07/REPORT.md",
@@ -71,5 +71,97 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:13:39",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-07",
+  "round": 1,
+  "at": "2026-10-24T16:13:39",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/places/auckland.json",
+   "content/lore/places/busan.json",
+   "content/lore/places/chittagong.json",
+   "content/lore/places/cold-tide-rift.json",
+   "content/lore/places/dark-quay.json",
+   "content/lore/places/delta.json",
+   "content/lore/places/dhaka.json",
+   "content/lore/places/endymion-vault.json",
+   "content/lore/places/farside-ruin-belt.json",
+   "content/lore/places/ferry-lane.json",
+   "content/lore/places/golmud-nest.json",
+   "content/lore/places/graveyard-belt.json",
+   "content/lore/places/great-lakes-mycelium.json",
+   "content/lore/places/green-line.json",
+   "content/lore/places/gyeongju-tombs.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "testWaiver": "npm test 的 fail 與 base 完全相同：worldgen.test.ts 兩項（讀 lead-grid 未進版控的 handoffs/lead-grid/stage/ 檔，乾淨 worktree 必 ENOENT）；content/index 一致性（base 8246fd3 的索引暫時不一致，HEAD 已由 lc-lore-01 修回）；本批只改文字欄，與這些失敗無關（領導在 base worktree 重跑確認）",
+ "files": [
+  "content/lore/places/auckland.json",
+  "content/lore/places/busan.json",
+  "content/lore/places/chittagong.json",
+  "content/lore/places/cold-tide-rift.json",
+  "content/lore/places/dark-quay.json",
+  "content/lore/places/delta.json",
+  "content/lore/places/dhaka.json",
+  "content/lore/places/endymion-vault.json",
+  "content/lore/places/farside-ruin-belt.json",
+  "content/lore/places/ferry-lane.json",
+  "content/lore/places/golmud-nest.json",
+  "content/lore/places/graveyard-belt.json",
+  "content/lore/places/great-lakes-mycelium.json",
+  "content/lore/places/green-line.json",
+  "content/lore/places/gyeongju-tombs.json"
+ ],
+ "ids": [
+  "place/auckland",
+  "place/busan",
+  "place/chittagong",
+  "place/cold-tide-rift",
+  "place/dark-quay",
+  "place/delta",
+  "place/dhaka",
+  "place/endymion-vault",
+  "place/farside-ruin-belt",
+  "place/ferry-lane",
+  "place/golmud-nest",
+  "place/graveyard-belt",
+  "place/great-lakes-mycelium",
+  "place/green-line",
+  "place/gyeongju-tombs"
+ ],
+ "summary": "lore 地點 15 檔換詞；閘門 0 違規、check／lore／typecheck 綠、黃金不變；test 失敗與 base 相同（見 testWaiver）",
+ "gateRejections": []
 }
