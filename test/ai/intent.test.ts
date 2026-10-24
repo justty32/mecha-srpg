@@ -93,6 +93,16 @@ test("怪獸重傷逃跑並撤離；族門檻與駕駛士氣有效，berserk 維
   assert.equal(individualRetreat(pilot, "a"), false);
 });
 
+test("berserk 設定檔仍遵守撤退意圖，真正失控才忽略撤退", () => {
+  for (const berserk of [false, true]) {
+    const { ctx, rules } = fixture([unit("a", "p", 0), unit("e", "e", 6)]);
+    if (berserk) ctx.s.units.a!.controlMode = "berserk";
+    ctx.assignment = { unit: "a", stance: "hold", allowRetreat: true, intentMode: "retreat" };
+    const commands = takeTurn({ ...ctx, exec: rules.exec }, createAgent("a", "berserk"));
+    assert.equal(commands.some(c => c.kind === "retreat"), !berserk);
+  }
+});
+
 test("人類指揮者把受損單位後撤輪替，輪到再前壓；缺補給與負面狀態也輪替", () => {
   const { ctx, plans } = fixture([unit("leader", "p", 1), unit("a", "p", 4), unit("e", "e", 6)]);
   ctx.s.persons["leader-pilot"]!.attrsBase.resolve = 80;

@@ -69,6 +69,22 @@ test("berserk：只剩友方時仍以合法範圍能力攻擊友方", () => {
   assert.ok(ctx.s.log.events.some((ev) => (ev.type === "Hit" || ev.type === "Miss") && ev.payload.target === "b"));
 });
 
+test("berserk：不能友傷的近戰不被鄰接友軍困住，無敵方情報時仍探索", () => {
+  for (const visible of [true, false]) {
+    const { ctx } = setup({ width: 14, height: 5, units: [
+      { id: "a", owner: "blue", pos: { x: 1, y: 2 }, abilities: ["stub:ability/claw"], ap: 2, perception: visible ? 20 : 2 },
+      { id: "friend", owner: "blue", pos: { x: 2, y: 2 }, abilities: ["stub:ability/claw"] },
+      { id: "enemy", owner: "red", pos: { x: 10, y: 2 }, abilities: ["stub:ability/claw"] },
+    ] });
+    const c = choose(ctx, createAgent("a", "berserk"));
+    assert.equal(c.cmd.kind, "move");
+    if (c.cmd.kind === "move") {
+      const target = visible ? ctx.view.units.enemy!.pos : { x: 7, y: 2 };
+      assert.ok(ctx.q.distance(c.cmd.path.at(-1)!, target) < ctx.q.distance(ctx.view.units.a!.pos, target));
+    }
+  }
+});
+
 test("swarm：離母體太遠時朝母體移動", () => {
   const { ctx } = setup({ width: 12, height: 3, units: [
     { id: "a", owner: "blue", pos: { x: 8, y: 1 }, abilities: ["stub:ability/claw"], ap: 2 },

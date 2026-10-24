@@ -64,7 +64,8 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     const mode = ctx.assignment?.intentMode;
     const withdraw = mobile(q, s, agent.unit) && !s.rt?.noRetreat
       && (mode === "retreat" || individualRetreat(ctx, agent.unit));
-    const policy = getPolicy(base === "berserk" ? base : withdraw ? "flee"
+    // 設定檔採狂攻策略不等於機體失控；只有真正失控才拒絕撤退／輪替指令。
+    const policy = getPolicy(s.units[agent.unit]!.controlMode === "berserk" ? "berserk" : withdraw ? "flee"
       : mode === "regroup" ? "regroup" : mode === "instinct" ? "tactical" : mode === "gather" ? "swarm" : base);
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
     // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
