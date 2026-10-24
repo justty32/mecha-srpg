@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-ops-bio-balance`（工人 `cx-bio`、`cx-bal`）| `src/ops/`、`src/content/`、`content/base/`、`schemas/`、`test/`（除 `test/sim/session.test.ts`）、`src/core/`（只新增欄位）、`src/rules/`／`src/ai/`（必要小修）、`src/sim/`（除 `session.ts`）、`wf/workflows/dispatch/handoffs/lead-ops-bio-balance/`、code-map／testing／roadmap 資料檔 ops 列 | `src/ui-adapter/`、`e2e/`、`src/sim/session.ts`、spec | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -20,6 +19,6 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`、`plan-world-v2`、`lead-impl-foundation`、`lead-impl-content-base`、`lead-impl-rules`、`lead-impl-ai`、`lead-impl-sim`、`lead-integ-battle`（`handoffs/lead-integ-battle/`）、`lead-impl-ops`、`lead-impl-ui`（`cx-ui-*`）、`lead-fix-scenario-ai`（`cx-fix-*`）、`lead-ui-fix`（`cx-uifix-*`）、`plan-ops-spec`、`plan-spec-sync`、`lead-ui-session`（四線交接書與 REPORT 在各自 `handoffs/<線名>/`，領地列已移除）（`handoffs/done/2026-10-24/`；sim 線無交接書，契約與工人交接書在 `handoffs/lead-impl-sim/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
+2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`、`plan-world-v2`、`lead-impl-foundation`、`lead-impl-content-base`、`lead-impl-rules`、`lead-impl-ai`、`lead-impl-sim`、`lead-integ-battle`（`handoffs/lead-integ-battle/`）、`lead-impl-ops`、`lead-impl-ui`（`cx-ui-*`）、`lead-fix-scenario-ai`（`cx-fix-*`）、`lead-ui-fix`（`cx-uifix-*`）、`plan-ops-spec`、`plan-spec-sync`、`lead-ops-bio-balance`（`cx-bio`、`cx-bal`、`cx-bal2`）、`lead-ui-session`（四線交接書與 REPORT 在各自 `handoffs/<線名>/`，領地列已移除）（`handoffs/done/2026-10-24/`；sim 線無交接書，契約與工人交接書在 `handoffs/lead-impl-sim/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
 
 收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。

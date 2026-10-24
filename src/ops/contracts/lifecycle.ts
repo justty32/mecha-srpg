@@ -29,7 +29,7 @@ export function offerContract(s: CampaignState, ctx: OpsCtx, templateId: string,
   const id = nextId(s, "contract");
   const contract: ContractState = { id, template: template.id, issuer: issuer.id, target: { node: node.id, ...(rift ? { rift: rift.id,
     snapshot: { family: family?.family ?? rift.family, width: rift.width, depth: s.nodes[node.id]?.blight?.depth ?? (node.id === rift.node ? "core" : "shallow"),
-      anchorAge: rift.anchorAge, monsters: [...(family?.monsters ?? [])] } } : {}) },
+      anchorAge: rift.anchorAge, monsters: [...(family?.monsters ?? [])], phase: rift.phase } } : {}) },
     status: "offered", terms: { total, advance: 0, perHead }, paidAdvance: false, heads: {}, offeredDay: s.clock.day, deadlineDay: deadline, stageIdx: 0, annoyance: 0 };
   s.contracts[id] = contract;
   ctx.emit("ContractOffered", { contract: id, issuer: issuer.id, node: node.id });

@@ -1,0 +1,56 @@
+{
+  "id": "frame/moji-tern-guard",
+  "name": "摹機・燕鷗攻堅型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/biped-guard",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "熱量",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "電能",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human"
+  ]
+}

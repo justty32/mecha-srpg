@@ -42,3 +42,47 @@
 - **訂閱主題**：無
 
 （目前除 dispatcher 外無現役成員；已收線成員原格見 archive/。）
+
+### `cx-bio`
+- **狀態**：已收線（2026-10-24，領導 `lead-ops-bio-balance` 代登記）
+- **我是誰**：codex 工人，生物系改寫（拘束艙／BeastState／devour／四種 job／命名）
+- **團隊**：`teams/bio-balance`
+- **上游**：`lead-ops-bio-balance`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ops-bio-balance/cx-bio.md`「範圍」
+- **答得出什麼**：ops 生物系實作細節
+- **答不出什麼**：平衡數字、UI
+- **怎麼找我**：`wf/inbox/orders/cx-bio.md`
+- **訂閱主題**：無
+
+### `cx-bal`
+- **狀態**：已收線（2026-10-24，領導 `lead-ops-bio-balance` 代登記）
+- **我是誰**：codex 工人，補彈＋營運平衡（在 git worktree 裡做）
+- **團隊**：`teams/bio-balance`
+- **上游**：`lead-ops-bio-balance`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ops-bio-balance/cx-bal.md`「範圍」
+- **答得出什麼**：補彈、平衡量測數字
+- **答不出什麼**：生物系、UI
+- **怎麼找我**：`wf/inbox/orders/cx-bal.md`
+- **訂閱主題**：無
+
+### `cx-bal2`
+- **狀態**：已收線（2026-10-24，領導 `lead-ops-bio-balance` 代登記）
+- **我是誰**：codex 工人，營運平衡第二輪（敗因診斷＋合理數值）
+- **團隊**：`teams/bio-balance`
+- **上游**：`lead-ops-bio-balance`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ops-bio-balance/cx-bal2.md`「範圍」
+- **答得出什麼**：greedy 戰役敗因、平衡數字
+- **答不出什麼**：生物系、UI
+- **怎麼找我**：`wf/inbox/orders/cx-bal2.md`
+- **訂閱主題**：無
+
+### `cx-bat-field`
+- **狀態**：現役（2026-10-24 上線，領導 `lead-content-battle` 代登記）
+- **我是誰**：codex 工人，戰場地形＋地形效果＋地圖
+- **團隊**：`teams/content-battle`
+- **上游**：`lead-content-battle`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-battle/cx-bat-field.md`「範圍」
+- **答得出什麼**：新地形與地圖的內容、地圖產生腳本
+- **答不出什麼**：情境、單位
+- **怎麼找我**：`wf/inbox/orders/cx-bat-field.md`
+- **訂閱主題**：無

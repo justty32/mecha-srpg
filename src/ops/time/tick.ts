@@ -2,7 +2,7 @@ import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { clock } from "../state/clock.ts";
 import { evalOpsCond, evalOpsNum } from "../content/cond.ts";
-import { worldDaily2, travelDaily3, marketsDaily7 } from "../world/index.ts";
+import { worldDaily2, travelDaily3, marketsDaily7, resupplyDaily7 } from "../world/index.ts";
 import { contractsDaily2, contractsDaily7 } from "../contracts/index.ts";
 import { restraintDaily5, shipDaily5, ledgerDaily6, recruitsDaily7, rosterDaily7 } from "../crew/index.ts";
 
@@ -42,7 +42,7 @@ function finishDay(s: TimeState, ctx: TickCtx): void {
   restraintDaily5(s, stageCtx(ctx, 5));
   ledgerDaily6(s, stageCtx(ctx, 6));
   const seventh = stageCtx(ctx, 7);
-  contractsDaily7(s, seventh); marketsDaily7(s, seventh); recruitsDaily7(s, seventh); rosterDaily7(s, seventh);
+  contractsDaily7(s, seventh); marketsDaily7(s, seventh); resupplyDaily7(s, seventh); recruitsDaily7(s, seventh); rosterDaily7(s, seventh);
   delete s.time;
   stageCtx(ctx, 8).emit("DaySummary", dailySummary(s, ctx));
   ctx.onDay?.(s);

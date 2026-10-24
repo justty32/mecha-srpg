@@ -43,7 +43,7 @@ export type FactionState = { def: Id; rep: number; scaleNow: string; territoryNo
 export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?: boolean };
 // SPEC-GAP：stage／敵軍快照未展開；快照在 offered 時由契約模組凍結。
 export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
-export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[] };
+export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[]; phase?: RiftState["phase"] };
 export type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle";
   issuerKinds: string[]; requiresRep: number; gradeRange: Grade[]; objectives: ObjectiveTemplate[];
   pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] }; advanceMax: number; deadlineDays: NumExpr;
@@ -52,7 +52,7 @@ export type ContractState = { id: Id; template: Id; issuer: Id; target: { node: 
   status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
   paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
 export type WorldActionDef = { id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
-export type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental";
+export type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental" | "ammo";
   items: { def: Id; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
 export type ServiceDef = { id: Id; room: RoomId; hpRegenMult?: number; cleanse?: { whitelist: Id[]; price: NumExpr }; price?: NumExpr; effects?: OpsEffect[] };
 export type RecruitPoolDef = { id: Id; node: Id; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" };

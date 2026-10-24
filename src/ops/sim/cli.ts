@@ -24,7 +24,7 @@ export function main(args: string[]): number {
   const { db, world, errors } = loadWorldDirs(["content/base"]);
   if (errors.length) throw new Error(JSON.stringify(errors));
   const result = runCampaign({ db, world, start, months, seed, policy, ...(noBattle ? {} : { battle: defaultBattleRunner }) });
-  for (const row of result.summary) console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 機庫中的生物機甲數=${row.beasts} 蝕化節點數=${row.blighted} 裂縫數=${row.rifts}`);
+  for (const row of result.summary) console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕化節點數=${row.blighted} 裂縫數=${row.rifts}`);
   console.log("OK");
   return 0;
 }

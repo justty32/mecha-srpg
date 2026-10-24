@@ -6,6 +6,26 @@ import { generateScenario } from "./scenario.ts";
 import { fixture } from "./test-support.ts";
 import { createWorldDB } from "../content/worlddb.ts";
 
+test("核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨", () => {
+  for (const phase of ["opening", "anchored"] as const) {
+    const { s, ctx, sortie, contract } = fixture();
+    contract.template = ctx.world.require("contract", "contract/seal").id;
+    const snapshot = contract.target.snapshot!;
+    snapshot.depth = "core"; snapshot.phase = phase;
+    // 現況與快照刻意不同，確保戰場使用接約時凍結的階段。
+    s.rifts[sortie.rift!]!.phase = phase === "opening" ? "anchored" : "opening";
+    const anchor = ctx.world.all("rift").find(def => def.family === snapshot.family)!.anchor;
+    const scenario = generateScenario(s, ctx, sortie);
+    const hasAnchor = scenario.slots.enemy!.units.some(unit => unit.monster === anchor);
+    assert.equal(hasAnchor, phase !== "opening");
+    if (phase === "opening") {
+      assert.ok(scenario.slots.enemy!.units.length > 0);
+      assert.deepEqual(scenario.objectives.map(objective => [objective.for, objective.kind]),
+        [["player", "eliminate"], ["enemy", "eliminate"]]);
+    } else assert.ok(scenario.objectives.some(objective => objective.for === "player" && objective.kind === "hold"));
+  }
+});
+
 test("接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入", () => {
   const { s, ctx, sortie } = fixture();
   const def = generateScenario(s, ctx, sortie);

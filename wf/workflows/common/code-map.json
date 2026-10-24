@@ -42,7 +42,7 @@
   {
    "領域": "ops",
    "檔案": "`src/ops/`、`content/base/world/`",
-   "職責": "營運層：tick、帳本、世界、契約、船務、文字層、出戰（UnitInit 帶入部位／人物現況，不暫換 ctx.db）、戰役 CLI `npm run sim:campaign`；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）",
+   "職責": "營運層：tick、帳本、世界、契約（快照凍結裂縫 phase；opening 期戰場只出先鋒、目標殲滅）、船務、補彈（`world/resupply.ts`：停泊有市場時按 `ammo` 市價補彈、付不起補到付得起）、生物系拘束艙（`crew/restraint.ts`：磨損／活性／族別維持 devour・tide-soak・prune／掙脫三選／僵死成屍；工時 job restrain・mount・embalm・prune；族係數 `world/beasts/*.json`）、文字層（`Screen.actions` 帶 id／group／key／tooltip／disabled，鍵位 `world/keymap-ops.json`）、出戰（UnitInit 帶入部位／人物現況；活捕獸 instinct 起始依 wear 注入）、戰役 CLI `npm run sim:campaign`；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）",
    "測試在哪": "`src/ops/**/*.test.ts`"
   },
   {

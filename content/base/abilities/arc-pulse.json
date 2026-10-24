@@ -1,0 +1,14 @@
+{
+  "id": "ability/arc-pulse",
+  "name": "裂晶電弧",
+  "mode": "activated",
+  "accuracy": 0,
+  "costs": [{ "pool": "ap", "owner": "person", "amount": 2 }],
+  "produces": [{ "pool": "heat", "owner": "mech", "amount": 15 }],
+  "require": [],
+  "target": { "kind": "ball", "range": { "min": 1, "max": 6 }, "radius": 1, "los": true, "friendly": "no" },
+  "packets": [{ "type": "thermal", "amount": 21 }],
+  "effects": [],
+  "tags": ["ranged", "thermal"],
+  "ai": { "tactics": { "attackArea": 1 } }
+}

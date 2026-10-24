@@ -20,7 +20,7 @@
   },
   {
    "驗證": "營運層（改 ops 必跑）",
-   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）",
+   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）；調平衡時跑 `node wf/workflows/dispatch/handoffs/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）",
    "誰跑": "agent"
   },
   {

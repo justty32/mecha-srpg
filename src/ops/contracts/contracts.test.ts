@@ -39,6 +39,6 @@ test("contracts：同一單位一頭、部分成功半額、付款與 rep 只結
   const dead = { type: "UnitDied", payload: { unit: "enemy-1" } };
   assert.equal(tallyHeads(c, [dead, dead, { type: "Captured", payload: { unit: "enemy-2" } }]), 1);
   assert.equal(tallyHeads(c, [dead, { type: "UnitDied", payload: { unit: "enemy-2" } }]), 2);
-  settleContract(s, ctx, c.id, "partial"); assert.equal(s.ledger.balances.cash, 1200 + (800 + 20) / 2); assert.equal(s.factions[c.issuer]!.rep, 5);
+  settleContract(s, ctx, c.id, "partial"); assert.equal(s.ledger.balances.cash, 1200 + (c.terms.total + 20) / 2); assert.equal(s.factions[c.issuer]!.rep, 5);
   const before = structuredClone(s); settleContract(s, ctx, c.id, "done"); assert.deepEqual(s, before); assert.deepEqual(checkLedger(s), []);
 });

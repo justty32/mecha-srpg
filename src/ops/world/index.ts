@@ -16,6 +16,7 @@ export type { ActionsState } from "./actions.ts";
 export { travelDaily3, shortestPath, cmdSail, cmdDock, cmdDrift, cmdMap } from "./travel.ts";
 export type { TravelPath, TravelState } from "./travel.ts";
 export { marketsDaily7, marketPrice, cmdTrade } from "./market.ts";
+export { resupplyDaily7 } from "./resupply.ts";
 export type { MarketState } from "./market.ts";
 export { cmdExplore } from "./explore.ts";
 export type { ExploreState } from "./explore.ts";

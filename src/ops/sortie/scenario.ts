@@ -69,7 +69,8 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
     if (count && !pool.length) throw new Error(`missing monster grade: ${grade}`);
     for (let i = 0; i < count; i++) enemy.push({ monster: pool[nextInt(s.rng, pool.length)]!.id, at: "zone" });
   }
-  if ((snapshot.depth === "core" || encounter.anchorHere) && familyDef?.anchor) enemy.push({ monster: familyDef.anchor, at: "zone" });
+  // 裂縫 opening 期只有先鋒、錨尚未到（data-model-world-map 狀態機）：接約時快照為 opening 就不放潮錨本尊。
+  if ((snapshot.depth === "core" || encounter.anchorHere) && snapshot.phase !== "opening" && familyDef?.anchor) enemy.push({ monster: familyDef.anchor, at: "zone" });
   if (!enemy.length) throw new Error("empty encounter budget");
   const persons: Record<string, PersonState> = {};
   const ordered = [...sortie.units].sort((a, b) => a.mech < b.mech ? -1 : 1);
@@ -109,7 +110,9 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
     return spawn;
   });
   const template = contract ? ctx.world.require("contract", contract.template) : undefined;
-  const objectives = (template?.stages?.[contract!.stageIdx]?.objectives ?? template?.objectives ?? [{ kind: "eliminate" as const, params: {} }]).map(o => ({
+  // SPEC-GAP：opening 期還沒有錨與核區可守，殺光先鋒即關閉裂縫（rifts.ts vanguard-killed）；此時任何契約的戰場目標都改為殲滅先鋒。
+  const opening = snapshot.phase === "opening";
+  const objectives = (opening ? [{ kind: "eliminate" as const, params: {} }] : template?.stages?.[contract!.stageIdx]?.objectives ?? template?.objectives ?? [{ kind: "eliminate" as const, params: {} }]).map(o => ({
     kind: o.kind, params: {
       ...structuredClone(o.params),
       // SPEC-GAP：核區以敵方部署區代表；anchor 也必須推進佔區，不能只在原地存活。
