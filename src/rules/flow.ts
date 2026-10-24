@@ -74,6 +74,8 @@ export function eject(ctx: Ctx, unitId: Id): Rejection | null {
   if (!isActive(ctx, unitId)) return { code: "not-active" };
   const u = unit(ctx, unitId), seats = seatsOf(ctx, unitId), commander = commanderOf(ctx, unitId);
   if (!commander || !seats.length) return { code: "no-commander" };
+  // ISS-011：步兵本身就是徒步人員，沒有機體可棄。
+  if (u.frame === ctx.db.get("frame", "frame/infantry")?.id) return { code: "no-commander", detail: "infantry" };
   const infantry = `${unitId}-inf`, pos = adjacent(ctx, u.pos);
   if (!pos || ctx.s.units[infantry]) return { code: "no-space" };
   const cost = [{ owner: "person" as const, pool: "ap", amount: constant(ctx, "ejectApCost") }];

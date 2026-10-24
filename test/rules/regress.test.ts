@@ -2,7 +2,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { loadContentDirs } from "../../src/content/loader.ts";
-import { createBattle, startBattle, personAttr, currentActor, tryCommand, checkAbility, abilitiesOf, rt, applyEffect, runActions, applyPacket, layerDefs } from "../../src/rules/index.ts";
+import { resolveAbility, eject, createBattle, startBattle, personAttr, currentActor, tryCommand, checkAbility, abilitiesOf, rt, applyEffect, runActions, applyPacket, layerDefs } from "../../src/rules/index.ts";
 import type { BattleSetup } from "../../src/rules/index.ts";
 
 const { db } = loadContentDirs(["content/base"]);
@@ -210,4 +210,38 @@ test("回歸：UnitInit.pools 匯入值超出 hard 池範圍時夾到 [min,max]�
   assert.ok(p.pools.hp && p.pools.ap, "測試人物需有 hp 與 ap 池");
   assert.ok(p.pools.hp.cur <= p.pools.hp.max, `hp ${p.pools.hp.cur} > ${p.pools.hp.max}`);
   assert.ok(p.pools.ap.cur >= 0, `ap ${p.pools.ap.cur} < min`);
+});
+
+test("回歸（ISS-011）：徒步步兵單位不能再棄機（沒有機體可棄）", () => {
+  const { frame, seat } = pilotedFrame();
+  const setup: BattleSetup = { id: "regress-eject-infantry", map: { width: 4, height: 2, fill: db.ids("terrain").sort()[0]!, exits: [] },
+    objectives: [], maxRounds: 3, units: [
+      { id: "a", owner: "player", pos: { x: 0, y: 0 }, frame, persons: [{ id: "pa", def: humans[0]!, seat }] },
+      { id: "b", owner: "enemy", pos: { x: 3, y: 1 }, frame, persons: [{ id: "pb", def: humans[0]!, seat }] }] };
+  const s = createBattle(db, setup, 1), ctx = { db, s };
+  startBattle(ctx);
+  assert.equal(eject(ctx, "a"), null);
+  assert.ok(s.units["a-inf"], "棄機後應有步兵單位");
+  assert.deepEqual(eject(ctx, "a-inf"), { code: "no-commander", detail: "infantry" });
+});
+
+test("回歸（ISS-012）：friendly:\"only\" 的友方能力不擲命中骰，不會同時寫 Miss 與效果", () => {
+  const a = db.all("ability").filter(x => x.target.friendly === "only" && x.target.kind === "unit" && x.packets.length === 0
+    && x.effects.some(e => e.on === "hit" || e.on === "always")).map(x => x.id).sort()[0];
+  assert.ok(a, "內容包沒有 friendly:only 的單體增益能力");
+  const { frame, seat } = pilotedFrame();
+  const setup: BattleSetup = { id: "regress-friendly-only", map: { width: 4, height: 1, fill: db.ids("terrain").sort()[0]!, exits: [] },
+    objectives: [], maxRounds: 3, units: [
+      { id: "a", owner: "player", pos: { x: 0, y: 0 }, frame, persons: [{ id: "pa", def: humans[0]!, seat }] },
+      { id: "f", owner: "player", pos: { x: 1, y: 0 }, frame, persons: [{ id: "pf", def: humans[0]!, seat }] },
+      { id: "z", owner: "enemy", pos: { x: 3, y: 0 }, frame }] };
+  for (let seed = 1; seed <= 30; seed++) {
+    const s = createBattle(db, setup, seed), ctx = { db, s };
+    startBattle(ctx);
+    const before = s.log.events.length;
+    resolveAbility(ctx, "a", a, { unit: "f" });
+    const events = s.log.events.slice(before);
+    assert.equal(events.filter(e => e.type === "Miss").length, 0, `seed ${seed} 友方增益擲出未命中`);
+    assert.equal(events.find(e => e.type === "Hit")?.payload.roll, null);
+  }
 });
