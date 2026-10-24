@@ -16,7 +16,7 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
   node.replaceChildren(glyph);
   if (cell.unit) {
     const badge = doc.createElement("span");
-    badge.className = `unit-badge side-${cell.unit.side}${cell.unit.active ? " active" : ""} status-${cell.unit.status}`;
+    badge.className = `unit-badge side-${cell.unit.side}${cell.unit.active ? " active" : ""}${cell.unit.stale ? " stale" : ""} status-${cell.unit.status}`;
     badge.textContent = cell.unit.label;
     const hp = doc.createElement("span");
     hp.className = "cell-hp";

@@ -9,7 +9,8 @@ export function normalizeKey(k: KeyInput): string {
 }
 
 function canonical(binding: string): string {
-  const parts = binding.split("+"), key = parts.pop()!;
+  const plus = binding.endsWith("+"), parts = (plus ? binding.slice(0, -1) : binding).split("+");
+  const key = plus ? "+" : parts.pop()!;
   return normalizeKey({ key, ctrlKey: parts.includes("Ctrl"), altKey: parts.includes("Alt"), shiftKey: parts.includes("Shift") });
 }
 
@@ -22,10 +23,12 @@ export function parseAction(action: string): UiAction | null {
     return Number.isSafeInteger(dx) && Number.isSafeInteger(dy) ? { type, dx: dx!, dy: dy! } : null;
   }
   if (type === "abilitySlot") return value && /^[1-9]$/u.test(value) ? { type, n: Number(value) } : null;
+  if (type === "zoom") return value === "1" || value === "-1" || value === "0" ? { type, dir: Number(value) as 1 | -1 | 0 } : null;
   if (value !== undefined) return null;
   switch (type) {
     case "confirm": case "cancel": case "nextUnit": case "centerActive": case "beginMove":
-    case "wait": case "endTurn": case "eject": case "retreat": case "toggleHelp": return { type };
+    case "standby": case "defer": case "skip": case "step": case "cycleAnim":
+    case "endTurn": case "eject": case "retreat": case "toggleHelp": return { type };
     default: return null;
   }
 }
@@ -39,6 +42,7 @@ export function resolveKey(map: KeymapFile, k: KeyInput): UiAction | null {
 export function keyLabel(map: KeymapFile, action: string): string | undefined {
   const key = map.bindings.find(b => b.action === action)?.keys[0];
   if (key === undefined) return undefined;
+  if (key === "+") return "+";
   return canonical(key).split("+").map(part => ({ Shift: "⇧", Escape: "Esc", " ": "Space",
     ArrowUp: "↑", ArrowDown: "↓", ArrowLeft: "←", ArrowRight: "→" }[part] ?? (part.length === 1 ? part.toUpperCase() : part)))
     .join("").replace(/^Ctrl/u, "Ctrl+").replace(/Alt/u, "Alt+");

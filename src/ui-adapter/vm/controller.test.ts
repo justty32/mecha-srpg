@@ -57,9 +57,9 @@ test("controller：游標移出視窗自動捲動並標全重畫", () => {
 test("controller：只靠 dispatch 玩到結局或三十輪", () => {
   const c = controller(); let snapshot = c.snapshot(), steps = 0;
   while (!snapshot.outcome && snapshot.round < 30) {
-    assert.ok(snapshot.playerTurn); assert.ok(++steps <= 200);
-    snapshot = c.dispatch({ type: "endTurn" });
+    assert.ok(++steps <= 200);
+    snapshot = c.dispatch({ type: snapshot.busy ? "skip" : "endTurn" });
   }
   assert.ok(snapshot.outcome || snapshot.round >= 30);
-  if (snapshot.outcome) { assert.match(snapshot.outcome.text, /戰鬥結束/u); assert.deepEqual(snapshot.commands, []); }
+  if (snapshot.outcome) { assert.match(snapshot.outcome.text, /戰鬥結束/u); assert.ok(snapshot.commands.every(c => !c.enabled)); }
 });

@@ -51,7 +51,7 @@ test("viewmodel：移動 dirty 包含起訖格且讀取後清空", () => {
 });
 test("viewmodel：敵方未偵察層 hp 為 null，已偵察值使用知識", () => {
   const { session, vm } = fixture();
-  session.state.knowledge.player!.visible = ["enemy-0"];
+  session.state.knowledge.player!.visible = [];
   session.state.knowledge.player!.revealed = {};
   const unseen = vm.unit("enemy-0");
   assert.ok(unseen.parts.length); assert.ok(unseen.parts.every(p => p.layers.every(l => l.hp === null)));

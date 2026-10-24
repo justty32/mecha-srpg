@@ -3,7 +3,7 @@ import type { UiSnapshot, UnitView } from "../vm/types.ts";
 export function unitFixture(): UnitView {
   return {
     id: "test:unit", name: "蒼鷹一號", frameName: "斥候機", owner: "player", side: "self",
-    pos: { x: 12, y: 18 }, controlMode: "pilot", status: "active",
+    pos: { x: 12, y: 18 }, controlMode: "pilot", status: "active", stale: false, seenRound: null,
     persons: [{ id: "test:pilot", name: "林霧", seat: "pilot", role: "主駕", morale: "穩定" }],
     parts: [{ id: "body", name: "軀幹", broken: false, layers: [
       { type: "armor", hp: 30, max: 60, broken: false },
@@ -41,5 +41,6 @@ export function snapshotFixture(x = 12, y = 18, w = 30, h = 20): UiSnapshot {
       { seq: 2, round: 2, kind: "damage", text: "蒼鷹受到傷害" },
     ],
     message: null, keyHints: [{ action: "endTurn", label: "結束回合", keys: ["e"] }], showHelp: false,
+    quickMenu: null, confirm: null, busy: null, fx: { epoch: 0, items: [] },
   };
 }

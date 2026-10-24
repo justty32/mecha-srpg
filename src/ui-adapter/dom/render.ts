@@ -1,18 +1,34 @@
-import type { UiSnapshot, UiAction, KeyInput } from "../vm/types.ts";
+import type { UiSnapshot, UiAction, KeyInput, AnimMode } from "../vm/types.ts";
 import { createBoard } from "./board.ts";
 import { createPanels, element } from "./panels.ts";
 import { mountTooltip } from "./tooltip.ts";
+import { anchorViewport, fitCellSize, zoomStep } from "./zoom.ts";
+import { createFx } from "./fx.ts";
+import { createMenus } from "./menus.ts";
 
 export type MountOptions = {
   onAction(a: UiAction): void;
   onKey(k: KeyInput): boolean;
   cellSize?: number;
+  anim?: AnimMode;
+  zoom?: number | "auto";
+  onSettings?(s: { anim: AnimMode; zoom: number | "auto" }): void;
 };
-export type BattleView = { render(s: UiSnapshot): void; destroy(): void };
+export type BattleView = {
+  render(s: UiSnapshot): void;
+  apply(a: UiAction): boolean;
+  skipFx(): void;
+  fxBusyMs(): number;
+  destroy(): void;
+};
 
 export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   const doc = root.ownerDocument;
-  const cellSize = opts.cellSize && Number.isFinite(opts.cellSize) && opts.cellSize > 0 ? opts.cellSize : 32;
+  const host = doc.defaultView;
+  let zoom: number | "auto" = typeof opts.zoom === "number" && Number.isFinite(opts.zoom) && opts.zoom >= 12 && opts.zoom <= 96
+    ? opts.zoom : opts.cellSize && Number.isFinite(opts.cellSize) && opts.cellSize > 0 ? Math.max(12, Math.min(96, opts.cellSize)) : "auto";
+  let cellSize = typeof zoom === "number" ? zoom : 32;
+  let anim = opts.anim ?? "on";
   const shell = element(doc, "div", "", "battle-view");
   const anchor = <K extends keyof HTMLElementTagNameMap>(tag: K, name: string): HTMLElementTagNameMap[K] => {
     const node = element(doc, tag);
@@ -35,7 +51,10 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   const viewport = element(doc, "div", "", "board-viewport");
   const board = anchor("div", "board");
   board.setAttribute("aria-label", "戰場");
-  viewport.append(board);
+  const stage = element(doc, "div", "", "board-stage");
+  const fxLayer = anchor("div", "fx-layer");
+  stage.append(board, fxLayer);
+  viewport.append(stage);
   const scrollActions = new Map<string, UiAction>([
     ["scroll-up", { type: "scroll", dx: 0, dy: -10 }],
     ["scroll-down", { type: "scroll", dx: 0, dy: 10 }],
@@ -65,21 +84,91 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   logPanel.append(element(doc, "h2", "戰鬥記錄"), log);
   const sidebar = element(doc, "aside", "", "battle-sidebar");
   sidebar.append(unit, inspect);
-  field.append(frame, commands, message, outcome, help, logPanel);
-  layout.append(field, sidebar);
+  const commandPanel = element(doc, "aside", "", "command-panel");
+  const controls = anchor("section", "view-controls");
+  const viewActions = new Map<string, UiAction>([
+    ["anim-toggle", { type: "cycleAnim" }], ["zoom-in", { type: "zoom", dir: 1 }],
+    ["zoom-out", { type: "zoom", dir: -1 }], ["zoom-fit", { type: "zoom", dir: 0 }],
+    ["board-zoom-in", { type: "zoom", dir: 1 }], ["board-zoom-out", { type: "zoom", dir: -1 }],
+  ]);
+  const controlButtons = new Map<string, HTMLButtonElement>();
+  const corner = element(doc, "div", "", "board-zoom");
+  for (const name of viewActions.keys()) {
+    const button = anchor("button", name);
+    button.type = "button";
+    controlButtons.set(name, button);
+    (name.startsWith("board-") ? corner : controls).append(button);
+  }
+  frame.append(corner);
+  commandPanel.append(commands, controls);
+  field.append(frame, message, outcome, help);
+  sidebar.append(logPanel);
+  layout.append(commandPanel, field, sidebar);
   shell.append(topbar, layout);
   root.append(shell);
   message.hidden = outcome.hidden = help.hidden = true;
   const paintBoard = createBoard(board, cellSize);
   const paintPanels = createPanels({ commands, message, outcome, help, unit, inspect, log });
+  const paintMenus = createMenus(stage, field);
+  const fx = createFx(fxLayer);
   const tooltip = mountTooltip(shell);
   let current: UiSnapshot | null = null;
   let destroyed = false;
+  let mouseCell: UiSnapshot["cursor"] | null = null;
+  const paintControls = (): void => {
+    for (const [name, button] of controlButtons) {
+      const action = viewActions.get(name)!;
+      const actionName = action.type === "zoom" ? `zoom:${action.dir}` : action.type;
+      const raw = current?.keyHints.find(h => h.action === actionName)?.keys[0];
+      const key = raw && raw.length === 1 ? raw.toUpperCase() : raw;
+      const label = action.type === "cycleAnim" ? `動畫：${{ on: "開", fast: "快", off: "關" }[anim]}`
+        : name.endsWith("in") ? "放大" : name.endsWith("out") ? "縮小" : "自動貼合";
+      button.textContent = label;
+      if (key) button.append(element(doc, "kbd", key));
+      button.dataset.tip = button.title = `${label}${key ? `（快捷鍵：${key}）` : ""}`;
+    }
+  };
+  let measuring = false;
+  const measure = (preserveAnchor = false): void => {
+    if (destroyed || measuring || !current) return;
+    const width = viewport.clientWidth, height = viewport.clientHeight;
+    if (width <= 0 || height <= 0) return;
+    const previous = current.viewport, map = current.map, at = mouseCell ?? current.cursor;
+    if (zoom === "auto") cellSize = fitCellSize(width, height, map.width, map.height);
+    board.style.setProperty("--cell-size", `${cellSize}px`);
+    const w = Math.max(1, Math.min(map.width, Math.floor(width / cellSize)));
+    const h = Math.max(1, Math.min(map.height, Math.floor(height / cellSize)));
+    measuring = true;
+    try {
+      if (previous.w !== w || previous.h !== h) opts.onAction({ type: "resize", w, h });
+      if (preserveAnchor) {
+        const position = anchorViewport(previous, { w, h }, at, map);
+        opts.onAction({ type: "setViewport", ...position });
+      }
+      if (current) { paintMenus(current, cellSize); fx.render(current, cellSize, anim); }
+    } finally { measuring = false; }
+  };
+  const apply = (a: UiAction): boolean => {
+    if (destroyed || (a.type !== "zoom" && a.type !== "cycleAnim")) return false;
+    if (a.type === "cycleAnim") anim = anim === "on" ? "fast" : anim === "fast" ? "off" : "on";
+    else {
+      zoom = a.dir === 0 ? "auto" : zoomStep(cellSize, a.dir);
+      if (typeof zoom === "number") cellSize = zoom;
+      board.style.setProperty("--cell-size", `${cellSize}px`);
+      measure(true);
+    }
+    paintControls();
+    if (current) { paintMenus(current, cellSize); fx.render(current, cellSize, anim); }
+    opts.onSettings?.({ anim, zoom });
+    return true;
+  };
   const closest = (event: Event, selector: string): HTMLElement | null => {
     const found = (event.target as HTMLElement | null)?.closest?.<HTMLElement>(selector);
     return found && shell.contains(found) ? found : null;
   };
   const click = (event: MouseEvent): void => {
+    const line = closest(event, "li[data-seq]");
+    if (line) { opts.onAction({ type: "focusLog", seq: Number(line.dataset.seq) }); return; }
     const cell = closest(event, "[data-x][data-y]");
     if (cell && board.contains(cell)) {
       opts.onAction({ type: "clickCell", x: Number(cell.dataset.x), y: Number(cell.dataset.y) });
@@ -87,9 +176,15 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     }
     const button = closest(event, "button");
     if (!button || (button as HTMLButtonElement).disabled) return;
-    if (button === helpToggle) opts.onAction({ type: "toggleHelp" });
+    const viewAction = viewActions.get(button.dataset.ui ?? "");
+    if (viewAction) apply(viewAction);
+    else if (button.dataset.ui === "confirm-accept") opts.onAction({ type: "endTurn" });
+    else if (button.dataset.ui === "confirm-cancel") opts.onAction({ type: "cancel" });
+    else if (button.dataset.partN) opts.onAction({ type: "pickPart", n: Number(button.dataset.partN) });
+    else if (button === helpToggle) opts.onAction({ type: "toggleHelp" });
     else if (button.dataset.cmd) {
-      const command = current?.commands.find(c => c.id === button.dataset.cmd);
+      const choices = button.closest('[data-ui="quick-menu"]') ? current?.quickMenu?.options : current?.commands;
+      const command = choices?.find(c => c.id === button.dataset.cmd);
       if (command?.enabled) opts.onAction(command.action);
     } else {
       const action = scrollActions.get(button.dataset.ui ?? "");
@@ -99,9 +194,16 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   const hover = (event: MouseEvent): void => {
     const cell = closest(event, "[data-x][data-y]");
     if (!cell || !board.contains(cell) || (event.relatedTarget && cell.contains(event.relatedTarget as Node))) return;
+    mouseCell = { x: Number(cell.dataset.x), y: Number(cell.dataset.y) };
     opts.onAction({ type: "hoverCell", x: Number(cell.dataset.x), y: Number(cell.dataset.y) });
   };
+  const leave = (): void => { mouseCell = null; };
   const wheel = (event: WheelEvent): void => {
+    if (event.ctrlKey) {
+      event.preventDefault();
+      if (event.deltaY) apply({ type: "zoom", dir: event.deltaY < 0 ? 1 : -1 });
+      return;
+    }
     // SPEC-GAP：notch 沒有跨裝置單位；每個非零 wheel 事件依方向捲 3 格。
     const horizontal = event.shiftKey || Math.abs(event.deltaX) > Math.abs(event.deltaY);
     const delta = horizontal ? (event.shiftKey ? event.deltaY || event.deltaX : event.deltaX) : event.deltaY;
@@ -113,30 +215,27 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     const active = doc.activeElement;
     const target = event.target as HTMLElement | null;
     if (active?.matches("input, textarea") || target?.matches?.("input, textarea")) return;
+    const line = target?.closest?.<HTMLElement>("li[data-seq]");
+    if (line && shell.contains(line) && (event.key === "Enter" || event.key === " ")) {
+      event.preventDefault(); opts.onAction({ type: "focusLog", seq: Number(line.dataset.seq) }); return;
+    }
     if (opts.onKey({ key: event.key, ctrlKey: event.ctrlKey, altKey: event.altKey, shiftKey: event.shiftKey })) event.preventDefault();
-  };
-  let lastSize = "";
-  const measure = (): void => {
-    if (destroyed) return;
-    const width = viewport.clientWidth;
-    const height = viewport.clientHeight;
-    if (width <= 0 || height <= 0) return;
-    const w = Math.max(8, Math.min(60, Math.floor(width / cellSize)));
-    const h = Math.max(8, Math.min(60, Math.floor(height / cellSize)));
-    const size = `${w},${h}`;
-    if (size === lastSize) return;
-    lastSize = size;
-    opts.onAction({ type: "resize", w, h });
   };
   shell.addEventListener("click", click);
   board.addEventListener("mouseover", hover);
-  board.addEventListener("wheel", wheel, { passive: false });
+  board.addEventListener("mouseleave", leave);
+  viewport.addEventListener("wheel", wheel, { passive: false });
   doc.addEventListener("keydown", keydown);
-  const Observer = doc.defaultView?.ResizeObserver;
-  const observer = Observer ? new Observer(measure) : null;
+  const resized = (): void => measure(true);
+  host?.addEventListener("resize", resized);
+  const Observer = host?.ResizeObserver;
+  const observer = Observer ? new Observer(resized) : null;
   observer?.observe(viewport);
   measure();
   return {
+    apply,
+    skipFx: fx.clear,
+    fxBusyMs: fx.busyMs,
     render(s) {
       if (destroyed) return;
       current = s;
@@ -145,21 +244,29 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       // SPEC-GAP：快照無獨立行動者名稱；優先查可視格／選取單位，否則顯示 id。
       const activeName = s.cells.find(c => c.unit?.id === s.activeUnit)?.unit?.name
         ?? (s.selected?.id === s.activeUnit ? s.selected?.name : null) ?? s.activeUnit;
-      turn.textContent = activeName ? `${s.playerTurn ? "我方" : "其他陣營"}行動：${activeName}` : "等待行動";
+      turn.textContent = s.busy ? `敵方行動中：${s.busy.name ?? activeName ?? "…"}`
+        : activeName ? `${s.playerTurn ? "我方" : "其他陣營"}行動：${activeName}` : "等待行動";
       position.textContent = `${s.viewport.x},${s.viewport.y}`;
       helpToggle.setAttribute("aria-expanded", String(s.showHelp));
       paintBoard(s);
       paintPanels(s);
+      paintControls();
+      paintMenus(s, cellSize);
+      fx.render(s, cellSize, anim);
       tooltip.refresh();
+      measure();
     },
     destroy() {
       if (destroyed) return;
       destroyed = true;
+      fx.clear();
       observer?.disconnect();
+      host?.removeEventListener("resize", resized);
       doc.removeEventListener("keydown", keydown);
       shell.removeEventListener("click", click);
       board.removeEventListener("mouseover", hover);
-      board.removeEventListener("wheel", wheel);
+      board.removeEventListener("mouseleave", leave);
+      viewport.removeEventListener("wheel", wheel);
       tooltip.destroy();
       shell.remove();
       current = null;

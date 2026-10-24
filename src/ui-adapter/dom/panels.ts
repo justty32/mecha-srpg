@@ -1,4 +1,4 @@
-import type { UiSnapshot, UnitView } from "../vm/types.ts";
+import type { CommandOption, UiSnapshot, UnitView } from "../vm/types.ts";
 
 export function element<K extends keyof HTMLElementTagNameMap>(doc: Document, tag: K, text = "", className = ""): HTMLElementTagNameMap[K] {
   const node = doc.createElement(tag);
@@ -20,6 +20,7 @@ function meter(doc: Document, label: string, current: number | null, max: number
 
 function unitPanel(node: HTMLElement, unit: UnitView | null): void {
   const doc = node.ownerDocument;
+  node.classList.toggle("stale", unit?.stale ?? false);
   node.replaceChildren(element(doc, "h2", "單位"));
   if (!unit) {
     node.append(element(doc, "p", "尚未選取單位"));
@@ -27,6 +28,7 @@ function unitPanel(node: HTMLElement, unit: UnitView | null): void {
   }
   node.append(element(doc, "h3", unit.name, `side-${unit.side}`),
     element(doc, "p", `${unit.frameName} · ${unit.pos.x},${unit.pos.y} · ${unit.controlMode} · ${unit.status}`));
+  if (unit.stale) node.append(element(doc, "p", unit.seenRound === null ? "尚未觀測" : `最後所見：第 ${unit.seenRound} 輪`, "stale-note"));
   for (const person of unit.persons) {
     node.append(element(doc, "p", `${person.role}：${person.name} · 士氣 ${person.morale}`));
   }
@@ -44,8 +46,23 @@ function unitPanel(node: HTMLElement, unit: UnitView | null): void {
 
 export type PanelNodes = Record<"commands" | "unit" | "inspect" | "log" | "message" | "outcome" | "help", HTMLElement>;
 
+export function updateCommand(button: HTMLButtonElement, command: CommandOption): void {
+  button.type = "button";
+  button.dataset.cmd = command.id;
+  button.disabled = !command.enabled;
+  button.classList.toggle("active", !!command.active);
+  button.title = [command.tooltip,
+    command.reason && !command.tooltip.includes(command.reason) ? command.reason : "",
+    command.key && !command.tooltip.includes(`快捷鍵：${command.key}`) ? `快捷鍵：${command.key}` : "",
+  ].filter(Boolean).join("\n");
+  button.dataset.tip = button.title;
+  button.textContent = command.label;
+  if (command.key) button.append(element(button.ownerDocument, "kbd", command.key));
+}
+
 export function createPanels(nodes: PanelNodes): (s: UiSnapshot) => void {
   const doc = nodes.unit.ownerDocument;
+  const buttons = new Map<string, { button: HTMLButtonElement; wrapper: HTMLElement }>();
   const cache = new Map<string, string>();
   const changed = (key: string, data: unknown): boolean => {
     const value = JSON.stringify(data);
@@ -55,32 +72,23 @@ export function createPanels(nodes: PanelNodes): (s: UiSnapshot) => void {
   };
   return (s) => {
     if (changed("commands", s.commands)) {
-      nodes.commands.replaceChildren();
-      for (const [group, label] of [["move", "移動"], ["ability", "能力"], ["turn", "回合"], ["system", "系統"]] as const) {
-        const section = element(doc, "section", "", "command-group");
-        section.append(element(doc, "h3", label));
-        for (const command of s.commands.filter(c => c.group === group)) {
-          const button = element(doc, "button", command.label, command.active ? "active" : "");
-          button.type = "button";
-          button.dataset.cmd = command.id;
-          button.disabled = !command.enabled;
-          button.title = [command.tooltip,
-            command.reason && !command.tooltip.includes(command.reason) ? command.reason : "",
-            command.key && !command.tooltip.includes(`快捷鍵：${command.key}`) ? `快捷鍵：${command.key}` : "",
-          ].filter(Boolean).join("\n");
-          button.dataset.tip = button.title;
-          if (command.key) button.append(element(doc, "kbd", command.key));
-          // disabled 按鈕無法取得鍵盤焦點，包裝層提供相同提示。
+      for (const [id, entry] of buttons) entry.wrapper.hidden = !s.commands.some(c => c.id === id);
+      for (const [index, command] of s.commands.entries()) {
+        let entry = buttons.get(command.id);
+        if (!entry) {
           const wrapper = element(doc, "span", "", "command-option");
-          if (!command.enabled) {
-            wrapper.tabIndex = 0;
-            wrapper.dataset.tip = button.title;
-            wrapper.title = button.title;
-          }
+          const button = element(doc, "button");
           wrapper.append(button);
-          section.append(wrapper);
+          entry = { wrapper, button };
+          buttons.set(command.id, entry);
         }
-        nodes.commands.append(section);
+        const { button, wrapper } = entry;
+        updateCommand(button, command);
+        wrapper.hidden = false;
+        wrapper.tabIndex = command.enabled ? -1 : 0;
+        wrapper.dataset.tip = wrapper.title = button.title;
+        // 僅排序有變才搬節點；enabled 切換時保留焦點與位置。
+        if (nodes.commands.children[index] !== wrapper) nodes.commands.insertBefore(wrapper, nodes.commands.children[index] ?? null);
       }
     }
     if (changed("unit", s.selected)) unitPanel(nodes.unit, s.selected);
@@ -94,6 +102,12 @@ export function createPanels(nodes: PanelNodes): (s: UiSnapshot) => void {
       nodes.log.replaceChildren(...s.log.map(line => {
         const li = element(doc, "li", line.text);
         li.dataset.kind = line.kind;
+        if (line.at) {
+          li.dataset.seq = String(line.seq);
+          li.tabIndex = 0;
+          li.setAttribute("role", "button");
+          li.title = `查看 ${line.at.x},${line.at.y}`;
+        }
         return li;
       }));
       nodes.log.scrollTop = nodes.log.scrollHeight;

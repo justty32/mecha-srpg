@@ -15,7 +15,9 @@
   font-family: system-ui, sans-serif;
   font-variant-numeric: tabular-nums;
   padding: 16px;
-  min-height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
   box-sizing: border-box;
 }
 .battle-view *, .battle-view *::before, .battle-view *::after { box-sizing: border-box; }
@@ -61,9 +63,15 @@
 }
 .battle-view [data-ui="topbar"] h1 { margin: 0; margin-right: auto; }
 .battle-view [data-ui="viewport-pos"] { font-family: ui-monospace, monospace; color: var(--muted); }
-.battle-layout { display: grid; grid-template-columns: minmax(0, 1fr) 290px; gap: 16px; }
+.battle-layout { display: grid; grid-template-columns: 180px minmax(0, 1fr) 290px; gap: 16px; flex: 1; min-height: 0; }
 .battle-field, .battle-sidebar { min-width: 0; }
-.battle-sidebar { display: flex; flex-direction: column; gap: 14px; }
+.battle-field { display: flex; flex-direction: column; min-height: 0; position: relative; }
+/* [lead-ui-fix] 側欄三段：單位詳情可捲、查看卡照內容高、戰鬥記錄固定佔下方約 30% 恆可見。 */
+.battle-sidebar { display: flex; flex-direction: column; gap: 10px; overflow: hidden; min-height: 0; }
+.battle-sidebar > [data-ui="unit"] { flex: 1 1 auto; min-height: 120px; overflow-y: auto; }
+.battle-sidebar > [data-ui="inspect"] { flex: 0 0 auto; }
+.battle-sidebar > .log-panel { flex: 0 0 30%; min-height: 140px; display: flex; flex-direction: column; }
+.command-panel { overflow-y: auto; min-height: 0; background: var(--panel); padding: 8px; }
 .battle-view [data-ui="unit"], .battle-view [data-ui="inspect"], .log-panel,
 .battle-view [data-ui="help"], .battle-view [data-ui="outcome"] {
   padding: 14px;
@@ -73,6 +81,9 @@
   overflow-wrap: anywhere;
 }
 .board-frame {
+  position: relative;
+  flex: 1;
+  min-height: 0;
   display: grid;
   grid-template-columns: 32px minmax(0, 1fr) 32px;
   grid-template-rows: 30px minmax(0, 1fr) 30px;
@@ -86,13 +97,35 @@
 .board-viewport {
   grid-area: 2 / 2;
   min-width: 0;
-  height: clamp(256px, 58vh, 768px);
+  min-height: 0;
+  display: grid;
+  place-items: center;
   overflow: hidden;
   background: #070b12;
   border: 1px solid var(--border);
   contain: layout;
 }
 .battle-view [data-ui="board"] { display: grid; width: max-content; }
+.board-stage { position: relative; width: max-content; }
+.board-zoom { position: absolute; right: 40px; bottom: 38px; display: flex; gap: 4px; z-index: 15; }
+.board-zoom kbd { display: none; }
+.battle-view [data-ui="fx-layer"] { position: absolute; inset: 0; pointer-events: none; z-index: 5; overflow: hidden; }
+.fx-item { position: absolute; animation: fx-fade both ease-out; }
+svg.fx-item { inset: 0; width: 100%; height: 100%; }
+.fx-path { color: #69e5dc; }
+.fx-attack { color: #ffdb68; }
+.fx-hit { fill: #ff7c8688; }
+.fx-float { white-space: nowrap; font-size: 14px; font-weight: bold; text-shadow: 0 1px 3px #000, 1px 0 3px #000; animation-name: fx-rise; }
+.tone-damage { color: #f5a27e; }
+.tone-miss { color: #acbcd1; }
+.tone-status { color: #bba2f0; }
+.tone-break { color: #ff7e94; }
+.battle-popover { position: absolute; z-index: 10; padding: 8px; border: 1px solid var(--border); border-radius: 6px; background: #151f2ef5; box-shadow: 0 5px 18px #0008; display: flex; flex-direction: column; gap: 5px; max-height: 80%; overflow: auto; }
+.battle-popover button { white-space: nowrap; text-align: left; }
+.part-picker, .confirm-dialog { top: 50%; left: 50%; transform: translate(-50%, -50%); max-width: 95%; }
+.confirm-dialog { z-index: 20; min-width: min(340px, 95%); }
+@keyframes fx-fade { 0% { opacity: 0; } 1%, 65% { opacity: 1; } 100% { opacity: 0; } }
+@keyframes fx-rise { 0% { opacity: 0; transform: translate(-50%, -50%); } 1% { opacity: 1; } 100% { opacity: 0; transform: translate(-50%, -180%); } }
 .battle-cell {
   width: var(--cell-size);
   height: var(--cell-size);
@@ -110,18 +143,22 @@
 .battle-view .side-ally { background: var(--ally); }
 .battle-view .side-enemy { background: var(--enemy); }
 .battle-view .side-neutral { background: var(--neutral); }
-.unit-badge.active { outline: 1px solid #fff; animation: battle-active 1.4s ease-in-out infinite alternate; }
+.unit-badge.active { outline: 3px solid #ffdb68; animation: battle-active 1.4s ease-in-out infinite alternate; }
+.unit-badge.stale { background: #68717e; opacity: .45; border: 1px dashed #c4cbd4; pointer-events: none; }
+.battle-sidebar .stale { color: var(--muted); opacity: .65; }
 .unit-badge.status-derelict { opacity: .55; }
 .cell-hp { position: absolute; bottom: 1px; left: 2px; right: 2px; height: 3px; background: #080e17; }
 .cell-hp > span { display: block; height: 100%; background: #6be4a4; }
-.battle-cell.highlight-reach { box-shadow: inset 0 0 0 2px #5ca7ff; }
-.battle-cell.highlight-range { box-shadow: inset 0 0 0 2px #b993ec; }
+.battle-cell.highlight-reach { background-image: linear-gradient(#287ace66, #287ace66); }
+.battle-cell.highlight-range { background-image: linear-gradient(#ed75843b, #ed75843b); }
 .battle-cell.highlight-path { box-shadow: inset 0 0 0 3px #69e5dc; }
-.battle-cell.highlight-target { box-shadow: inset 0 0 0 3px #ff7c86; }
-.battle-cell.selected::after { content: ""; position: absolute; inset: 2px; border: 1px solid #ffdb68; pointer-events: none; }
+.battle-cell.highlight-target { background-image: linear-gradient(#c8324d88, #c8324d88); box-shadow: inset 0 0 0 3px #ff7c86; }
+.battle-cell.selected::after { content: ""; position: absolute; inset: 2px; border: 1px solid #69e5dc; pointer-events: none; }
 .battle-cell.cursor { outline: 2px solid #fff; outline-offset: -2px; z-index: 2; }
 .battle-cell.intent::before { content: "!"; position: absolute; right: 0; top: -2px; color: #ffdb68; font-size: 11px; z-index: 2; }
-.battle-view [data-ui="commands"] { display: flex; flex-wrap: wrap; gap: 10px 18px; padding: 14px 0; }
+.battle-view [data-ui="commands"] { display: flex; flex-direction: column; gap: 6px; position: sticky; top: 0; background: var(--panel); }
+.command-option button { width: 100%; min-height: 38px; display: flex; align-items: center; justify-content: space-between; }
+.battle-view [data-ui="view-controls"] { display: flex; flex-direction: column; gap: 6px; margin-top: 18px; }
 .command-group { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .command-group h3 { width: 100%; color: var(--muted); font-size: .75rem; margin: 0; }
 .command-option { display: inline-block; }
@@ -137,8 +174,9 @@
 .battle-view [data-ui="help"] { margin-bottom: 14px; }
 .battle-view [data-ui="help"] th { text-align: left; font-weight: normal; }
 .battle-view [data-ui="help"] td, .battle-view [data-ui="help"] th { padding: 5px; }
-.battle-view [data-ui="log"] { margin: 0; padding: 0; list-style: none; max-height: 220px; overflow-y: auto; font-size: .85rem; }
+.battle-view [data-ui="log"] { margin: 0; padding: 0; list-style: none; flex: 1 1 auto; min-height: 0; overflow-y: auto; font-size: .85rem; }
 .battle-view [data-ui="log"] li { padding: 5px 0; border-bottom: 1px solid #ffffff0c; }
+.battle-view [data-ui="log"] li[data-seq] { cursor: pointer; }
 .battle-view [data-kind="turn"], .battle-view [data-kind="system"] { color: #a5bdd8; }
 .battle-view [data-kind="move"] { color: #86c5ed; }
 .battle-view [data-kind="hit"], .battle-view [data-kind="damage"] { color: #f5a27e; }
@@ -161,10 +199,9 @@
   box-shadow: 0 8px 24px #0008;
   font-size: .8rem;
 }
-@keyframes battle-active { from { outline-color: #ffffff70; } to { outline-color: #fff; } }
+@keyframes battle-active { from { outline-color: #ffdb6870; } to { outline-color: #ffdb68; } }
 @media (prefers-reduced-motion: reduce) { .unit-badge.active { animation: none; } }
 @media (max-width: 850px) {
-  .battle-layout { grid-template-columns: minmax(0, 1fr); }
-  .battle-sidebar { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); }
+  .battle-layout { grid-template-columns: 150px minmax(0, 1fr) 220px; gap: 8px; }
   .battle-view { padding: 8px; }
 }

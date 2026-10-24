@@ -1,6 +1,7 @@
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { Id } from "../../core/ids.ts";
 import type { FactionSlot } from "../../core/types-def.ts";
+import type { GameEvent } from "../../core/events.ts";
 import type { BattleOutcome, BattleState, Command } from "../../core/types-state.ts";
 import type { SimSetup } from "../../sim/run.ts";
 import { createBattle, startBattle, currentActor, tryCommand, rt } from "../../rules/index.ts";
@@ -9,7 +10,7 @@ import { createFactionAI, startRound, runUnitTurn, observeEvents, updateKnowledg
 import type { FactionAI, RulesQuery } from "../../ai/index.ts";
 import { createRulesQuery } from "../../ai/adapters/rules-adapter.ts";
 
-export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; playerSlot?: FactionSlot };
+export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; playerSlot?: FactionSlot; autoAdvance?: boolean };
 
 // SPEC-GAP：互動逐步 API 尚未進 sim；本檔集中所有規則與 AI 存取。
 export class BattleSession {
@@ -17,6 +18,9 @@ export class BattleSession {
   readonly state: BattleState;
   readonly playerSlot: FactionSlot;
   readonly commands: Command[] = [];
+  readonly autoAdvance: boolean;
+  readonly batches: { command: Command; events: GameEvent[]; visible: Id[] }[] = [];
+  readonly observers = new Set<() => void>();
   readonly query: RulesQuery;
   private readonly sim: SimSetup;
   private readonly seed: number;
@@ -26,11 +30,12 @@ export class BattleSession {
   constructor(opts: SessionOptions) {
     this.db = opts.db; this.sim = opts.sim; this.seed = opts.seed;
     this.playerSlot = opts.playerSlot ?? "player";
+    this.autoAdvance = opts.autoAdvance ?? true;
     this.state = createBattle(opts.db, opts.sim.setup, opts.seed);
     this.query = createRulesQuery(opts.db);
     startBattle({ db: this.db, s: this.state });
     this.refreshKnowledge(0);
-    this.advanceAi();
+    if (this.autoAdvance) this.advanceAi();
   }
 
   activeUnit(): Id | null { return currentActor(this.state); }
@@ -50,10 +55,15 @@ export class BattleSession {
 
   private execute(cmd: Command): Result {
     const from = this.state.log.events.length, slot = this.state.units[cmd.actor]?.owner;
+    for (const observer of this.observers) observer();
+    const visible = this.state.knowledge[this.playerSlot]?.visible ?? [];
     const result = tryCommand({ db: this.db, s: this.state }, cmd);
     if (result.ok) {
       this.commands.push(structuredClone(cmd));
       this.refreshKnowledge(from);
+      this.batches.push({ command: this.commands.at(-1)!, events: result.events,
+        visible: [...new Set([...visible, ...this.state.knowledge[this.playerSlot]!.visible])] });
+      for (const observer of this.observers) observer();
       for (const [other, ai] of this.ais) if (other !== slot) observeEvents(ai, this.query, this.state, result.events);
     }
     return result;
@@ -63,8 +73,32 @@ export class BattleSession {
     if (this.outcome()) return { ok: false, rejection: { code: "battle-over" } };
     if (!this.isPlayerTurn()) return { ok: false, rejection: { code: "not-active" } };
     const result = this.execute(cmd);
-    if (result.ok) this.advanceAi();
+    if (result.ok && this.autoAdvance) this.advanceAi();
     return result;
+  }
+
+  stepAi(): { actor: Id | null; events: GameEvent[] } {
+    return this.runAiTurn(cmd => this.execute(cmd));
+  }
+
+  private runAiTurn(execute: (cmd: Command) => Result): { actor: Id | null; events: GameEvent[] } {
+    const actor = this.activeUnit();
+    if (this.outcome() || this.isPlayerTurn() || actor === null) return { actor: null, events: [] };
+    for (const slot of Object.keys(this.state.factions).sort()) {
+      if (slot === this.playerSlot || this.ais.has(slot)) continue;
+      const profile = this.sim.slotProfiles[slot];
+      const ai = createFactionAI({ slot, seed: this.seed, policy: profile?.policy,
+        params: profile?.params, unitPolicies: this.sim.unitPolicies[slot] });
+      this.ais.set(slot, ai);
+      if (this.round === this.state.round) startRound(ai, this.query, this.state);
+    }
+    if (this.round !== this.state.round) {
+      this.round = this.state.round;
+      for (const ai of this.ais.values()) startRound(ai, this.query, this.state);
+    }
+    const from = this.state.log.events.length, slot = this.state.units[actor]!.owner;
+    runUnitTurn(this.ais.get(slot)!, this.query, this.state, actor, (_s, cmd) => execute(cmd));
+    return { actor, events: this.state.log.events.slice(from) };
   }
 
   advanceAi(maxSteps = 10000): number {
@@ -75,20 +109,8 @@ export class BattleSession {
       while (!this.outcome() && !this.isPlayerTurn() && attempts < maxSteps) {
         const actor = this.activeUnit();
         if (actor === null) break;
-        for (const slot of Object.keys(this.state.factions).sort()) {
-          if (slot === this.playerSlot || this.ais.has(slot)) continue;
-          const profile = this.sim.slotProfiles[slot];
-          const ai = createFactionAI({ slot, seed: this.seed, policy: profile?.policy,
-            params: profile?.params, unitPolicies: this.sim.unitPolicies[slot] });
-          this.ais.set(slot, ai);
-          if (this.round === this.state.round) startRound(ai, this.query, this.state);
-        }
-        if (this.round !== this.state.round) {
-          this.round = this.state.round;
-          for (const ai of this.ais.values()) startRound(ai, this.query, this.state);
-        }
-        const count = this.commands.length, slot = this.state.units[actor]!.owner;
-        runUnitTurn(this.ais.get(slot)!, this.query, this.state, actor, (_s, cmd) => {
+        const count = this.commands.length;
+        this.runAiTurn(cmd => {
           if (attempts >= maxSteps) throw limit;
           attempts++;
           return this.execute(cmd);
