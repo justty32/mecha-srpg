@@ -50,6 +50,28 @@ test("DC-T05 五種疊加政策表格，merge 三運算與 perPartSeparate", () 
   assert.equal(effectsOf(ctx, { unit: "u", part: "left-arm" }).length, 1);
 });
 
+test("part scope 未給 part 時 owner 省略該鍵，事件仍記 null", () => {
+  const ctx = setup({ scope: "part" });
+  const inst = applyEffect(ctx, "effect/probe", { unit: "u" }, "a")!;
+  assert.equal(Object.hasOwn(inst.owner, "part"), false);
+  assert.deepEqual(inst.owner, { unit: "u" });
+  assert.deepEqual(structuredClone(inst), JSON.parse(JSON.stringify(inst)));
+  assert.deepEqual(ctx.s.log.events.at(-1)!.payload, {
+    uid: inst.uid, effect: inst.effect, owner: "u", part: null, source: "a",
+  });
+});
+
+test("layer scope 未給 layer 時 owner 省略該鍵並保留 part", () => {
+  const ctx = setup({ scope: "layer" });
+  const inst = applyEffect(ctx, "effect/probe", { unit: "u", part: "left-arm" }, "a")!;
+  assert.equal(Object.hasOwn(inst.owner, "layer"), false);
+  assert.deepEqual(inst.owner, { unit: "u", part: "left-arm" });
+  assert.deepEqual(structuredClone(inst), JSON.parse(JSON.stringify(inst)));
+  assert.deepEqual(ctx.s.log.events.at(-1)!.payload, {
+    uid: inst.uid, effect: inst.effect, owner: "u", part: "left-arm", source: "a",
+  });
+});
+
 test("DC-T04 ownerTurns 只遞減目標時鐘、到零撤除並回復貢獻", () => {
   const ctx = setup({ contribs: [{ path: "self.attrs.resolve", op: "add", value: -8, source: "probe" }],
     hooks: { onApply: [{ do: "emit", event: "AppliedHook" }], onExpire: [{ do: "emit", event: "ExpiredHook" }] } });

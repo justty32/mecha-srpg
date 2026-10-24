@@ -66,10 +66,12 @@ export function applyEffect(ctx: Ctx, ref: EffectRef, target: EffectTarget, sour
   // 容器作用域正規化，避免傳入 unit+person 時混淆人物與機體。
   const location: EffectTarget = def.scope === "person" ? { person: target.person }
     : def.scope === "mech" ? { unit: target.unit }
-    : def.scope === "part" ? { unit: target.unit, part: target.part }
-    : def.scope === "layer" ? { unit: target.unit, part: target.part, layer: target.layer }
-    : def.scope === "cell" ? { cell: target.cell ? { ...target.cell } : undefined }
-    : def.scope === "faction" ? { faction: target.faction } : {};
+    : def.scope === "part" ? { unit: target.unit, ...(target.part !== undefined ? { part: target.part } : {}) }
+    : def.scope === "layer" ? { unit: target.unit,
+      ...(target.part !== undefined ? { part: target.part } : {}),
+      ...(target.layer !== undefined ? { layer: target.layer } : {}) }
+    : def.scope === "cell" ? (target.cell !== undefined ? { cell: { ...target.cell } } : {})
+    : def.scope === "faction" ? (target.faction !== undefined ? { faction: target.faction } : {}) : {};
   const list = container(ctx, def.scope, location);
   const same = (e: EffectInstance) => e.uid >= 0 && e.effect === def.id
     && container(ctx, e.scope, e.owner) === list
