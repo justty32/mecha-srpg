@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-17",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（營運事件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "44b61ac1197ed4ebef7c0ba036346de35f72865c",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-17",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-17/REPORT.md",
@@ -52,5 +52,72 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:34:59",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-17",
+  "round": 1,
+  "at": "2026-10-24T16:34:59",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/world/events/news-selene-courtesy.json",
+   "content/base/world/events/news-tide-street-sermon.json",
+   "content/base/world/events/route-tide-storm.json",
+   "content/base/world/events/ruin-before-tide-glow.json",
+   "content/base/world/events/ruin-coordinate-sale.json",
+   "content/base/world/events/ruin-empty-shell-rubbing.json",
+   "content/base/world/events/ruin-shared-dream.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/world/events/news-selene-courtesy.json",
+  "content/base/world/events/news-tide-street-sermon.json",
+  "content/base/world/events/route-tide-storm.json",
+  "content/base/world/events/ruin-before-tide-glow.json",
+  "content/base/world/events/ruin-coordinate-sale.json",
+  "content/base/world/events/ruin-empty-shell-rubbing.json",
+  "content/base/world/events/ruin-shared-dream.json"
+ ],
+ "ids": [
+  "event/news-selene-courtesy",
+  "event/news-tide-street-sermon",
+  "event/route-tide-storm",
+  "event/ruin-before-tide-glow",
+  "event/ruin-coordinate-sale",
+  "event/ruin-empty-shell-rubbing",
+  "event/ruin-shared-dream"
+ ],
+ "summary": "營運事件換詞；閘門 0 違規、check／ops／typecheck 綠、黃金與營運 hash 不變；test 綠",
+ "gateRejections": []
 }
