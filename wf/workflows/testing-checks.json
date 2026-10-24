@@ -10,7 +10,7 @@
  "rows": [
   {
    "驗證": "快速驗證（改完必跑）",
-   "指令": "`npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）",
+   "指令": "`npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤＋內容 lint `src/content/lint.ts`：錯誤擋數值越界／主動攻擊無成本，警告含 `band-*` 數值帶、AI 不用的形態、soft 池無超載帶、摹機空手等，每行帶規則 id）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）",
    "誰跑": "agent"
   },
   {
@@ -56,6 +56,11 @@
   {
    "驗證": "戰鬥規則 fuzz（改 rules／sim／content 結構後跑）",
    "指令": "`npm run fuzz -- --runs N --seed S [--mode ai|random|scenario|mix] [--jobs J] [--max-ms T] [--json out.json] [--verbose]`：隨機組合 `content/base` 全部內容生成情境（新內容自動吃進），全 AI／隨機合法指令／真情境三模式跑完，逐條檢查 18 條不變量（`test/fuzz/invariants.ts`，每條具名），硬違規 exit 1、印重跑指令；`--jobs` 平行輸出與單工逐字相同。快速版（ai＋random 各 15 場，約 15–20 秒）已在 `npm test`（`test/fuzz/fuzz.test.ts`）",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "內容平衡探針（填完 frame／monster／ability／scenario 後跑）",
+   "指令": "`npm run content:probe -- <id…> [--n 20] [--seed 1] [--jobs J] [--rounds 20] [--no-retreat] [--json FILE|-] [--content DIR] [--bands FILE]`：自動配同級基準對手（`src/sim/probe-baselines.json`，取自 `wf/workflows/content/playtest-baselines.json`）各跑 N 場，印勝率／敗率／平手率／平均輪數／結算原因（eliminate、`eliminate:repelled`、timeout…）／每能力 AI 使用次數／主角從未使用的能力／超出 `numeric-bands.json` 的欄位；`--no-retreat` 關撤離量純火力；`--jobs` 平行輸出與單工逐字相同（2026-10-24 基準：2 個 id×20 場約 1 秒）",
    "誰跑": "agent"
   }
  ]

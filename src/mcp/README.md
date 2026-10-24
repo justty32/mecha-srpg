@@ -36,6 +36,10 @@ stdio MCP server（JSON-RPC 2.0，一行一則；協定版本 `2025-06-18`，也
 
 戰役流程：`campaign_actions {id:"c1"}` 找互動出戰項，將其 `args` 傳給 `tool` 指定的 `campaign_sortie_begin`；取得 `battle:"bN"` 後，用 `battle_observe`／`battle_legal_actions`／`battle_act` 指揮直到 outcome 出現，再送 `campaign_sortie_finish {id:"c1"}`。全 AI 可用 `spectate:true, autoAdvance:false` 開始，再 `battle_step_ai {id:"bN", until:"end"}` 到結束。finish 後仍可查 `battle_events`，不能重複回寫；若先 `battle_close`，請用 `campaign_sortie_cancel` 解除戰役鎖。
 
+## 量平衡（不經 MCP）
+
+填完內容想先知道數值有沒有失衡，跑 `npm run content:probe -- <id…>`（frame／monster／ability／scenario，自動配同級基準對手，印勝率、平手率、結算原因、能力使用次數、超出數值帶的欄位；`--json -` 給機器讀）；用法列在 testing 資料檔「內容平衡探針」列。數字可疑再用上面的 `battle_*` 親手打一場。
+
 ## 檔案
 
 `server.ts` 入口；`protocol.ts` JSON-RPC 與 MCP 方法；`schema.ts` 參數檢查；`tool.ts` 工具契約與內容載入；`battle.ts`＋`battle-view.ts`；`campaign.ts`＋`campaign-view.ts`；`ui.ts`；`cli.ts` socket 客戶端；`node-shim.d.ts` 補 node 型別（專案沒有 `@types/node`）。測試：`node --test 'src/mcp/*.test.ts'`（`e2e.test.ts` 以子行程走 stdio 打一整場，hash 等於 `runBattle`）。

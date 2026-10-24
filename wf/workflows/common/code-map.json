@@ -18,26 +18,26 @@
   {
    "領域": "content",
    "檔案": "`src/content/`、`schemas/`、`content/base/`",
-   "職責": "載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema",
-   "測試在哪": "`src/content/*.test.ts`"
+   "職責": "載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema；`lint.ts` 內容 lint（`lintContent`，只在 `npm run check` CLI 跑，錯誤／警告分級、規則 id；`band-*` 上限常數對齊 numeric-bands）；loader 另驗 MonsterDef partsOverride（部位存在、末層 structural、core、捕捉層數）與 soulGrade 限機魂",
+   "測試在哪": "`src/content/*.test.ts`、`src/content/lint.test.ts`"
   },
   {
    "領域": "rules",
    "檔案": "`src/rules/`（17 模組＋`index.ts`）",
-   "職責": "全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢",
-   "測試在哪": "`src/rules/*.test.ts`、黃金 `test/golden.test.ts`、回歸 `test/rules/regress.test.ts`（fuzz 抓到的 bug）、fuzz `test/fuzz/`（`gen.ts` 情境生成、`invariants.ts` 不變量、`drive.ts` 三模式驅動、`cli.ts`／`worker.ts` 平行 CLI；`npm run fuzz`）"
+   "職責": "全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢；MonsterDef `partsOverride`／`attrMods`／`extraAbilities`／tags 經 `UnitInit.monster.def` 生效（`state.ts` frameView／partDefs 快取）、`BattleResult.units[].monster`；spawner tether `dieWithParent`（`flow.ts`）；擊退判勝（`objectives.ts`：對手撤光＝勝、`BattleOutcome.detail:\"repelled\"`；無出口地圖四邊可撤）",
+   "測試在哪": "`src/rules/*.test.ts`、黃金 `test/golden.test.ts`、回歸 `test/rules/regress.test.ts`（fuzz 抓到的 bug）、fuzz `test/fuzz/`（`gen.ts` 情境生成、`invariants.ts` 不變量、`drive.ts` 三模式驅動、`cli.ts`／`worker.ts` 平行 CLI；`npm run fuzz`）、`test/rules/{monster-def,tether,repel}.test.ts`"
   },
   {
    "領域": "ai",
    "檔案": "`src/ai/`（含 `policies/`、`adapters/`）",
-   "職責": "知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）；情境目標 `objectives.ts`（`objectiveInfo` 讀公開 `rt.objectives`：killTarget／孵化源／守區清敵／攔截加權、hold 進區守區、escort／reachExit 往出口與撤離、同盟共享目標、不殺捕獲目標、不佔友軍出口；權重 `obj*` 走 aiprofile params）；候選涵蓋 line／cone、友軍範圍增益、sustained、捕獲價值、純減益效果估值；`takeTurn` 純移動上限 `maxPureMoves`（tactical 家族）；flee 用相對進展分",
-   "測試在哪": "`test/ai/`（平衡回歸 `balance.test.ts`；目標 `objectives.test.ts`；候選缺口 `tactics-coverage.test.ts`；試玩修正 `playtest-fixes.test.ts`；`eject-commander.test.ts`）"
+   "職責": "知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）；情境目標 `objectives.ts`（`objectiveInfo` 讀公開 `rt.objectives`：killTarget／孵化源／守區清敵／攔截加權、hold 進區守區、escort／reachExit 往出口與撤離、同盟共享目標、不殺捕獲目標、不佔友軍出口；權重 `obj*` 走 aiprofile params）；候選涵蓋 line／cone、友軍範圍增益、sustained、捕獲價值、純減益效果估值；`takeTurn` 純移動上限 `maxPureMoves`（tactical 家族）；flee 用相對進展分；陣營／個體意圖 `intent.ts`（意圖推導、可達性評估、撤離模式、指揮者選定、後撤輪替、指揮者陣亡潰散；門檻走 aiprofile params，DEFAULTS 在檔頭）＋`policies/regroup.ts`（後撤輪替站位）",
+   "測試在哪": "`test/ai/`（平衡回歸 `balance.test.ts`；目標 `objectives.test.ts`；候選缺口 `tactics-coverage.test.ts`；試玩修正 `playtest-fixes.test.ts`；`eject-commander.test.ts`）、`test/ai/{intent,gaps-fixes}.test.ts`"
   },
   {
    "領域": "sim",
-   "檔案": "`src/sim/{run,session,replay,save,cli,measure}.ts`",
-   "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`；`trackKnowledge(slot)` 維護陣營知識、`contentDb`／`rulesQuery`（型別 `SessionQuery`）供 ui-adapter 查詢；UI 的 `vm/session.ts` 已改走它）；`measure.ts` AI 平衡量測",
-   "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）；`stepAi` 末尾不空回 null：`test/sim/step-ai.test.ts`"
+   "檔案": "`src/sim/{run,session,replay,save,cli,measure,probe,probe-worker}.ts`",
+   "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`；`trackKnowledge(slot)` 維護陣營知識、`contentDb`／`rulesQuery`（型別 `SessionQuery`）供 ui-adapter 查詢；UI 的 `vm/session.ts` 已改走它）；`measure.ts` AI 平衡量測；`probe.ts` 內容平衡探針 `npm run content:probe`（基準 `probe-baselines.json`，數值帶執行期讀 `wf/workflows/content/numeric-bands.json`）；`measure.ts` 預設用情境 rounds",
+   "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）；`stepAi` 末尾不空回 null：`test/sim/step-ai.test.ts`、`test/sim/probe.test.ts`"
   },
   {
    "領域": "ops",
@@ -60,8 +60,8 @@
   {
    "領域": "mcp",
    "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`（含共用戰鬥表 `createBattleHub`）＋`battle-view.ts`、`campaign.ts`＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
-   "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API（`campaign_sortie_begin`／`finish`／`cancel` 兩段式互動出戰：begin 用唯讀 `sortieBattleSetup` 建戰鬥 session，finish 以同一筆 sortie 指令回寫，語意同 UI `battleDone`）、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`；戰鬥輸出含 objectives 進度、預估傷害 damageIfHit、出口不受迷霧；營運輸出含機庫狀態、出戰 preview（`campaign_sortie_preview`）與戰果 report",
-   "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`；`sortie.test.ts` 證互動觀戰出戰與 AI 自動出戰 campaignHash 相同；`battle-info.test.ts` 目標／敵我／地圖符號／預估傷害／cli 解耦；`campaign-info.test.ts` 機庫狀態、出戰 preview、戰果報告）"
+   "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API（`campaign_sortie_begin`／`finish`／`cancel` 兩段式互動出戰：begin 用唯讀 `sortieBattleSetup` 建戰鬥 session，finish 以同一筆 sortie 指令回寫，語意同 UI `battleDone`）、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`；戰鬥輸出含 objectives 進度、預估傷害 damageIfHit、出口不受迷霧；營運輸出含機庫狀態、出戰 preview（`campaign_sortie_preview`）與戰果 report；批次工具 `battle_act_many`、`battle_legal_actions unit:\"all\"`、`battle_step_ai until:\"player\"`（大地圖每回合呼叫數約減半）；情境 name／brief 顯示",
+   "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`；`sortie.test.ts` 證互動觀戰出戰與 AI 自動出戰 campaignHash 相同；`battle-info.test.ts` 目標／敵我／地圖符號／預估傷害／cli 解耦；`campaign-info.test.ts` 機庫狀態、出戰 preview、戰果報告）；`batch.test.ts` 批次工具；`sortie.test.ts` 改固定程序找出戰點（不依賴 greedy）"
   }
  ]
 }

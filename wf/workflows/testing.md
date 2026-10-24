@@ -14,7 +14,7 @@
 
 ## 驗證表
 
-已抽到 [testing-checks.json](testing-checks.json)（10 列：快速驗證、完整驗證、營運層、戰鬥效能、文件 lint、驗收模擬、AI 平衡量測、實際遊玩、MCP server、戰鬥規則 fuzz）。
+已抽到 [testing-checks.json](testing-checks.json)（11 列：快速驗證、完整驗證、營運層、戰鬥效能、文件 lint、驗收模擬、AI 平衡量測、實際遊玩、MCP server、戰鬥規則 fuzz、內容平衡探針）。
 
 欄位：`驗證`（名稱與何時跑）、`指令`、`誰跑`（agent，或 使用者 → WAIT_USER）。查法見 [data-files](common/data-files.md)。
 

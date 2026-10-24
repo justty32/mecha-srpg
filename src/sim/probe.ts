@@ -12,16 +12,18 @@ import { runBattle, scenarioToSetup } from "./run.ts";
 import type { DynamicScenario } from "./run.ts";
 import baselines from "./probe-baselines.json" with { type: "json" };
 
-export type ProbeOptions = { n?: number; seed?: number; jobs?: number; rounds?: number; bands?: string };
+export type ProbeOptions = { n?: number; seed?: number; jobs?: number; rounds?: number; bands?: string;
+  /** 關閉撤離（setup.noRetreat）：量純戰力；預設開，量含意圖撤退的實戰結果。 */
+  noRetreat?: boolean };
 type ProbeGrade = keyof typeof baselines.grades;
 function probeGrade(grade: Grade): ProbeGrade {
   if (grade === "D" || grade === "C" || grade === "B" || grade === "A" || grade === "S") return grade;
   throw new Error(`沒有 ${grade} 級基準（僅支援 D／C／B／A／S）`);
 }
-export type Pairing = { name: string; scenario: DynamicScenario; protagonist: string };
+export type Pairing = { name: string; scenario: DynamicScenario; protagonist: string; noRetreat?: boolean };
 export type BandFinding = { id: string; grade: Grade; field: string; value: number; min: number; max: number; message: string };
 export type ProbePlan = { id: string; carrier: string; focusAbility: string | null; warnings: string[]; bands: BandFinding[]; pairings: Pairing[] };
-export type Trial = { seed: number; winner: string | null; rounds: number; abilityUses: Record<string, number>;
+export type Trial = { seed: number; winner: string | null; rounds: number; reason: string | null; abilityUses: Record<string, number>;
   protagonistAbilityUses: Record<string, number>; error: string | null };
 type Task = { group: number; pairing: Pairing; seed: number };
 export type DbSnapshot = Parameters<typeof createContentDB>;
@@ -192,9 +194,13 @@ export function planProbe(db: ContentDB, id: string, opts: ProbeOptions = {}, nu
 }
 
 export function runProbeTrial(db: ContentDB, pairing: Pairing, seed: number): Trial {
-  const trial: Trial = { seed, winner: null, rounds: 0, abilityUses: {}, protagonistAbilityUses: {}, error: null };
+  const trial: Trial = { seed, winner: null, rounds: 0, reason: null, abilityUses: {}, protagonistAbilityUses: {}, error: null };
   try {
-    const sim = scenarioToSetup(db, pairing.scenario, seed), run = runBattle({ db, sim, seed });
+    const sim = scenarioToSetup(db, pairing.scenario, seed);
+    if (pairing.noRetreat) sim.setup.noRetreat = true;
+    const run = runBattle({ db, sim, seed });
+    const detail = (run.result as { detail?: string } | null)?.detail;
+    trial.reason = run.result ? detail ? `${run.result.reason}:${detail}` : run.result.reason : null;
     trial.winner = run.result?.winner ?? null; trial.rounds = run.state.round;
     if (!run.result) throw new Error(`戰鬥未結算：${run.stopped}`);
     for (const event of run.state.log.events) {
@@ -223,6 +229,7 @@ export async function probe(db: ContentDB, ids: string[], opts: ProbeOptions = {
   if (!ids.length) throw new Error("至少指定一個 id");
   const numericBands = readBands(opts.bands);
   const plans = ids.map(id => planProbe(db, id, opts, numericBands)), pairings = plans.flatMap(p => p.pairings);
+  if (opts.noRetreat) for (const pairing of pairings) pairing.noRetreat = true;
   const tasks = pairings.flatMap((pairing, group) => Array.from({ length: n }, (_, i) => ({ group, pairing, seed: seed + i })));
   const rows: { group: number; trial: Trial }[] = [];
   if (jobs === 1) for (const t of tasks) rows.push({ group: t.group, trial: runProbeTrial(db, t.pairing, t.seed) });
@@ -254,16 +261,18 @@ export async function probe(db: ContentDB, ids: string[], opts: ProbeOptions = {
       for (const t of trials) for (const [id, count] of Object.entries(t[key])) counts[id] = (counts[id] ?? 0) + count;
       return Object.fromEntries(Object.entries(counts).sort(([a], [b]) => a.localeCompare(b)));
     };
+    const reasons: Record<string, number> = {};
+    for (const t of successful) if (t.reason) reasons[t.reason] = (reasons[t.reason] ?? 0) + 1;
     const abilityUses = merge("abilityUses"), protagonistAbilityUses = merge("protagonistAbilityUses");
     const abilities = [...new Set(pairing.scenario.slots[pairing.protagonist]!.units.flatMap(s => unitAbilities(db, s)))].sort();
     return { name: pairing.name, protagonist: pairing.protagonist, roundsLimit: pairing.scenario.rounds!, n,
-      wins, losses, draws, winRate: wins / n, lossRate: losses / n, drawRate: draws / n,
+      wins, losses, draws, reasons: Object.fromEntries(Object.entries(reasons).sort(([a], [b]) => a.localeCompare(b))), winRate: wins / n, lossRate: losses / n, drawRate: draws / n,
       averageRounds: successful.length ? successful.reduce((sum, t) => sum + t.rounds, 0) / successful.length : null,
       abilityUses, protagonistAbilityUses, neverUsedAbilities: abilities.filter(a => !protagonistAbilityUses[a]),
       focusAbilityUses: plan.focusAbility ? protagonistAbilityUses[plan.focusAbility] ?? 0 : null,
       exceptions: n - successful.length, trials };
   }) }));
-  return { version: 1, n, seed, bandsSource: numericBands.source, uncheckedBands: numericBands.unchecked, results };
+  return { version: 1, n, seed, noRetreat: !!opts.noRetreat, bandsSource: numericBands.source, uncheckedBands: numericBands.unchecked, results };
 }
 
 export function formatProbe(result: Awaited<ReturnType<typeof probe>>): string {
@@ -276,6 +285,7 @@ export function formatProbe(result: Awaited<ReturnType<typeof probe>>): string {
     lines.push(`超出數值帶的欄位：${entry.bands.length ? entry.bands.map(b => `${b.id} ${b.message}`).join("；") : "無"}`);
     for (const p of entry.pairings) {
       lines.push(`對 ${p.name}：${p.n} 場；勝率 ${(p.winRate * 100).toFixed(1)}%；敗率 ${(p.lossRate * 100).toFixed(1)}%；平手率 ${(p.drawRate * 100).toFixed(1)}%；平均輪數 ${p.averageRounds?.toFixed(2) ?? "無"}（上限 ${p.roundsLimit}）；例外數 ${p.exceptions}`);
+      lines.push(`結算原因：${JSON.stringify(p.reasons)}`);
       lines.push(`能力使用次數：${JSON.stringify(p.abilityUses)}`);
       lines.push(`主角從未使用的能力：${p.neverUsedAbilities.join("、") || "無"}`);
       if (entry.focusAbility) lines.push(`指定能力 ${entry.focusAbility} 主角使用次數：${p.focusAbilityUses}`);
@@ -296,7 +306,8 @@ export async function runCli(args = process.argv.slice(2)) {
     } else if (arg === "--json" || arg === "--content" || arg === "--bands") {
       const value = args[++i]; if (!value || value.startsWith("--")) throw new Error(`${arg} 缺少值`);
       if (arg === "--json") json = value; else if (arg === "--bands") opts.bands = value; else dirs.push(value);
-    } else if (arg.startsWith("--")) throw new Error(`未知參數：${arg}`);
+    } else if (arg === "--no-retreat") opts.noRetreat = true;
+    else if (arg.startsWith("--")) throw new Error(`未知參數：${arg}`);
     else ids.push(arg);
   }
   const { db, errors } = loadContentDirs(dirs.length ? dirs : ["content/base"]);

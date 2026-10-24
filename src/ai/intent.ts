@@ -148,10 +148,12 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
     }
     if (!leaderAlive || monster(q, s, a.unit)) continue;
     let rotation = memory.rotations[a.unit];
-    if ((!rotation || s.round >= rotation.ready) && needsRest(ctx, a.unit)) {
+    // 輪替要有人頂上：其他可動、不需休整的友軍至少一台，否則後撤只是讓戰鬥永遠打不完（lead-gaps-battle 驗收時發現 1 對 1 全 timeout）。
+    const relief = assignments.some(o => o.unit !== a.unit && q.isActive(s, o.unit) && mobile(q, s, o.unit) && !needsRest(ctx, o.unit));
+    if ((!rotation || s.round >= rotation.ready) && relief && needsRest(ctx, a.unit)) {
       rotation = memory.rotations[a.unit] = { until: s.round + p.rotateRounds, ready: s.round + p.rotateRounds + p.rotateCooldown };
     }
-    if (rotation && s.round < rotation.until && needsRest(ctx, a.unit)) a.intentMode = "regroup";
+    if (rotation && s.round < rotation.until && relief && needsRest(ctx, a.unit)) a.intentMode = "regroup";
   }
 }
 
