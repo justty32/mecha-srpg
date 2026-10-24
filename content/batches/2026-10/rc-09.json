@@ -1,0 +1,121 @@
+{
+ "contract": "content-batch/1",
+ "id": "rc-09",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "待和解表照建議裁示落地（lead-reconcile）：筆誤補修：公刻血統、31 城邦、長槍流出年份；只改文字欄，不用潮差＝威脅概念",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-rc-09",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-reconcile",
+ "date": "2026-10-24",
+ "base": "fbffb167ddc8e5621b53289065a80b55a01658d0",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-reconcile/rc-09",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-reconcile/rc-09/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/world/essence.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/dispatch/handoffs/lead-reconcile/guide.md"
+  ]
+ },
+ "maxFiles": 3,
+ "allow": {
+  "polishFiles": [
+   "content/base/world/lineages/universal-longspear.json",
+   "content/lore/characters/qin-wangshu.json",
+   "content/lore/places/mexico-city.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T20:12:10",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rc-09",
+  "round": 1,
+  "at": "2026-10-24T20:12:10",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/world/lineages/universal-longspear.json",
+   "content/lore/characters/qin-wangshu.json",
+   "content/lore/places/mexico-city.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/world/lineages/universal-longspear.json",
+  "content/lore/characters/qin-wangshu.json",
+  "content/lore/places/mexico-city.json"
+ ],
+ "ids": [
+  "lineage/universal-longspear",
+  "character/qin-wangshu",
+  "place/mexico-city"
+ ],
+ "gateRejections": [],
+ "summary": "待和解照建議裁示落地 polish：3/3 檔改文字欄；閘門 0 違規、check／lore／typecheck／test 綠",
+ "leadNote": "工人以交接書「lore 檔另可改敘述欄」為由停下（BLOCKED）；universal-longspear 的 traits.silhouette 年份 2101→2102 由領導在 worktree 補改，閘門放行（proseFields 對所有檔有效）。"
+}
