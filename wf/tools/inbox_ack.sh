@@ -62,7 +62,7 @@ import json, os, re, sys, time
 from pathlib import Path
 
 root, state_file, state_text, apply, all_new, from_line, *wanted = sys.argv[1:]
-root = Path(root); apply = apply == '1'
+root = Path(os.path.realpath(root)); apply = apply == '1'   # 正規化：INBOX_ROOT 含 ../ 或 symlink 時，glob 出來的路徑才比得上
 COLUMNS = ['file', 'from', 'status', 'at', 'source', 'body', 'title']
 NAME_RE = re.compile(r'^(\d{8})T\d{4}-.+-[A-Z-]+\.md$')
 
@@ -101,6 +101,7 @@ if from_line:
                 targets.append(p)
 seen, uniq = set(), []
 for t in targets:
+    t = t.resolve()
     if t not in seen and t.name != 'README.md':
         seen.add(t); uniq.append(t)
 if not uniq:
@@ -137,7 +138,7 @@ for path in uniq:
         die(f'not an inbox message file name: {path.name}')
     day = f'{m.group(1)[:4]}-{m.group(1)[4:6]}-{m.group(1)[6:]}'
     try:
-        rel = path.parent.relative_to(root.resolve()).as_posix() + '/'
+        rel = path.resolve().parent.relative_to(root).as_posix() + '/'
     except ValueError:
         die(f'message is outside the inbox: {path}')
     reports = sorted(set(re.findall(r'[\w./~-]*REPORT\.md', body)))

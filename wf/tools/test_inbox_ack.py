@@ -47,6 +47,15 @@ class InboxAckTests(unittest.TestCase):
         self.assertEqual([row['file'] for row in data['rows']], [self.letter.name])
         self.assertIn('cx-a DONE：收了', self.state.read_text(encoding='utf-8'))
 
+    def test_root_with_dotdot_is_normalized(self):
+        # 回歸：INBOX_ROOT 含 ../ 時 --from／--all 誤報 message is outside the inbox
+        (self.root.parent / 'sub').mkdir()
+        self.env['AGENT_INBOX_ROOT'] = str(self.root.parent / 'sub' / '..' / 'inbox')
+        for args in (('--from', 'cx-a'), ('--all',)):
+            r = self.run_ack(*args)
+            self.assertEqual(r.returncode, 0, r.stderr)
+            self.assertNotIn('outside', r.stderr)
+
     def test_usage(self):
         self.assertEqual(self.run_ack().returncode, 2)
 
