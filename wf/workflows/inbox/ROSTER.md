@@ -111,3 +111,9 @@
 
 ### `lead-tune` 與工人 `cx-tune-{part,intent,human,anchor,scen,multi}`
 - **狀態**：已收線（2026-10-24）；Opus 領導＋六條 codex 工人，團隊 `teams/tune` 已關（紀錄在 `wf/inbox/done/2026-10-24/teams/tune/`）；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-tune/`。
+
+### `lead-world-land` 與工人 `cx-wl-01`…`cx-wl-09`
+- **狀態**：已收線（2026-10-24）；團隊 `teams/wl` 已關（紀錄在 `wf/inbox/done/2026-10-24/teams/wl/`）；交接書與 REPORT 在 `wf/workflows/dispatch/handoffs/lead-world-land/`。
+- **我是誰**：talk-world 裁示落地；工人是 codex polish 批次（lore／base 文字欄）。
+- **團隊**：`teams/wl`；**上游**：`lead-world-land`（頂層之下）
+- **怎麼找我**：`wf/inbox/orders/<線名>.md`
