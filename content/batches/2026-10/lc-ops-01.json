@@ -164,5 +164,43 @@
     "method": "意譯"
    }
   ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：沙箱內 npm test 的 src/mcp 兩檔 EPERM 誤判為阻塞；產物完整",
+    "lead": "沙箱外 content_accept 重跑全綠，直接收件"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T15:57:18",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T15:57:18",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
  }
 }

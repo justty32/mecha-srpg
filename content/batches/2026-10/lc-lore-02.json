@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-lore-02",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "第三刃、背面補成正式勢力的 lore 部分：代表戰役、背盟或結盟、人物、地點 5–8 件＋年表純插入；兩勢力的四小節正文草稿放報告目錄待改名批次後併入",
  "author": {
   "agent": "codex",
@@ -58,5 +58,132 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "files": [
+  "content/lore/characters/ivo-serrin.json",
+  "content/lore/characters/neris-venn.json",
+  "content/lore/events/hidden-lantern-pact.json",
+  "content/lore/events/hundred-lanterns.json",
+  "content/lore/events/moonless-evacuation.json",
+  "content/lore/events/one-banner-compact.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "character/ivo-serrin",
+  "character/neris-venn",
+  "event/hidden-lantern-pact",
+  "event/hundred-lanterns",
+  "event/moonless-evacuation",
+  "event/one-banner-compact"
+ ],
+ "summary": "第三刃／背面 lore：事件 4（百燈破圍、同旗之約、無月撤棧、藏燈之盟）＋人物 2（伊沃・瑟林、涅莉絲・文恩）＋年表純插入 4 條；四小節草稿 faction-drafts/{third-blade,backside}.md 待改名批次後由領導併入勢力檔；閘門 0 違規、驗收全綠",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-02/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "event/hundred-lanterns",
+    "nameEn": "Vigil of the Returning Fleet",
+    "meaning": "Vigil 取守夜意，肩燈引受困船隊穿圍回港；百燈是眾人相接的意象。",
+    "nameZh": "百燈破圍",
+    "method": "意譯"
+   },
+   {
+    "id": "event/one-banner-compact",
+    "nameEn": "Concord beneath One Banner",
+    "meaning": "Concord 取共同承擔之約，城邦與獵團各負守城責任。",
+    "nameZh": "同旗之約",
+    "method": "意譯"
+   },
+   {
+    "id": "event/moonless-evacuation",
+    "nameEn": "Exodus through the Unlit Yard",
+    "meaning": "Exodus 取離開圍困之意；月面無光處的撤貨戰，不是奪取月城。",
+    "nameZh": "無月撤棧",
+    "method": "意譯"
+   },
+   {
+    "id": "event/hidden-lantern-pact",
+    "nameEn": "Covenant of Sheltered Lights",
+    "meaning": "Covenant 為互相承擔的約；藏燈意指保住撤離者的去處。",
+    "nameZh": "藏燈之盟",
+    "method": "意譯"
+   },
+   {
+    "id": "character/ivo-serrin",
+    "nameEn": "Ivo Serrin",
+    "meaning": "虛構專名，短促音節配守倉隊長的寡言語氣，中文取易呼喊的音譯。",
+    "nameZh": "伊沃・瑟林",
+    "method": "音譯"
+   },
+   {
+    "id": "character/neris-venn",
+    "nameEn": "Neris Venn",
+    "meaning": "虛構專名，柔和名音與短姓並置，供地月接頭時辨識；不宣稱真實詞源。",
+    "nameZh": "涅莉絲・文恩",
+    "method": "音譯"
+   },
+   {
+    "id": "move/lantern-sea",
+    "nameEn": "Vigil Ignites the Sea",
+    "meaning": "守夜眾燈化為突擊刀光，取開路與引船返港之意。",
+    "nameZh": "萬燈開海",
+    "method": "意譯"
+   },
+   {
+    "id": "move/names-restored",
+    "nameEn": "Names beyond the Long Night",
+    "meaning": "撤離時將貨單上的名字帶回，為護貨隊協同口令而非古代異能。",
+    "nameZh": "長夜還名",
+    "method": "意譯"
+   }
+  ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：把既有 timeline.json（35 KB）讀成觸發 16 KB 容量 gate，0 改動",
+    "lead": "交接書澄清容量 gate 只看新增檔，重派"
+   }
+  },
+  {
+   "round": "0b",
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：沙箱內 npm test 的 src/mcp 兩檔 EPERM；產物完整",
+    "lead": "沙箱外 content_accept 重跑全綠"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T16:04:49",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T16:04:49",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
+ }
 }
