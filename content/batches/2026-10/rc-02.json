@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rc-02",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "待和解表照建議裁示落地（lead-reconcile）：海洋說：沿海核心與歐洲；只改文字欄，不用潮差＝威脅概念",
  "author": {
   "agent": "codex",
@@ -72,5 +72,102 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T19:35:26",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T19:48:48",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rc-02",
+  "round": 2,
+  "at": "2026-10-24T19:48:48",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/eras/first-tide.json",
+   "content/lore/events/first-tide.json",
+   "content/lore/events/iron-wings-month.json",
+   "content/lore/events/lagos-night.json",
+   "content/lore/events/nine-gates.json",
+   "content/lore/events/pune-falls.json",
+   "content/lore/factions/rift-beasts.json",
+   "content/lore/places/bay-tide-line.json",
+   "content/lore/places/istanbul.json",
+   "content/lore/places/lagos-blight.json",
+   "content/lore/places/mumbai-blight.json",
+   "content/lore/places/sao-paulo-blight.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/eras/first-tide.json",
+  "content/lore/events/first-tide.json",
+  "content/lore/events/iron-wings-month.json",
+  "content/lore/events/lagos-night.json",
+  "content/lore/events/nine-gates.json",
+  "content/lore/events/pune-falls.json",
+  "content/lore/factions/rift-beasts.json",
+  "content/lore/places/bay-tide-line.json",
+  "content/lore/places/istanbul.json",
+  "content/lore/places/lagos-blight.json",
+  "content/lore/places/mumbai-blight.json",
+  "content/lore/places/sao-paulo-blight.json"
+ ],
+ "ids": [
+  "era/first-tide",
+  "event/first-tide",
+  "event/iron-wings-month",
+  "event/lagos-night",
+  "event/nine-gates",
+  "event/pune-falls",
+  "faction/rift-beasts",
+  "place/bay-tide-line",
+  "place/istanbul",
+  "place/lagos-blight",
+  "place/mumbai-blight",
+  "place/sao-paulo-blight"
+ ],
+ "gateRejections": [],
+ "summary": "待和解照建議裁示落地 polish：12/16 檔改文字欄；閘門 0 違規、check／lore／typecheck／test 綠",
+ "leadNote": "第 1 輪刪掉 first-tide 既有地名清單、把 mumbai-blight 的迦梨改成不點破；第 2 輪還原（主因是領導第一版指引 faith 節寫錯，已更正）。"
 }
