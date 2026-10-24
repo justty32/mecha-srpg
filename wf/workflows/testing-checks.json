@@ -20,7 +20,7 @@
   },
   {
    "驗證": "營運層（改 ops 必跑）",
-   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）；調平衡時跑 `node wf/workflows/dispatch/handoffs/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）",
+   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`、`--policy merc`：真戰鬥；2026-10-24 基準 idle 24 潮月約 8 秒、greedy 12 潮月約 12 秒、merc 24 潮月 25 秒–3.5 分鐘；末行 `war統計` 印 war／停火／奪點／作戰數與比例）；調平衡時跑 `node wf/workflows/dispatch/handoffs/lead-ops-bio-balance/balance-probe.ts [--sorties] [--content DIR] [seed…]`（seed 1–5 首戰勝負、全年勝敗、第 3／12 潮月人數現金；2026-10-24 基準首戰 4/5 勝、第 12 潮月 4/5 seed 留 7 人）",
    "誰跑": "agent"
   },
   {

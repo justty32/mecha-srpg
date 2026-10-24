@@ -42,8 +42,8 @@
   {
    "領域": "ops",
    "檔案": "`src/ops/`、`content/base/world/`",
-   "職責": "營運層：tick、帳本、世界、契約（快照凍結裂縫 phase；opening 期戰場只出先鋒、目標殲滅）、船務、補彈（`world/resupply.ts`：停泊有市場時按 `ammo` 市價補彈、付不起補到付得起）、生物系拘束艙（`crew/restraint.ts`：磨損／活性／族別維持 devour・tide-soak・prune／掙脫三選／僵死成屍；工時 job restrain・mount・embalm・prune；族係數 `world/beasts/*.json`）、文字層（`Screen.actions` 帶 id／group／key／tooltip／disabled，鍵位 `world/keymap-ops.json`）、出戰（UnitInit 帶入部位／人物現況；活捕獸 instinct 起始依 wear 注入）、戰役 CLI `npm run sim:campaign`；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）",
-   "測試在哪": "`src/ops/**/*.test.ts`"
+   "職責": "營運層：tick、帳本、世界、契約（快照凍結裂縫 phase；opening 期戰場只出先鋒、目標殲滅）、船務、補彈（`world/resupply.ts`：停泊有市場時按 `ammo` 市價補彈、付不起補到付得起）、生物系拘束艙（`crew/restraint.ts`：磨損／活性／族別維持 devour・tide-soak・prune／掙脫三選／僵死成屍；工時 job restrain・mount・embalm・prune；族係數 `world/beasts/*.json`）、文字層（`Screen.actions` 帶 id／group／key／tooltip／disabled，鍵位 `world/keymap-ops.json`）、出戰（UnitInit 帶入部位／人物現況；活捕獸 instinct 起始依 wear 注入）、勢力作戰與外交（`war/`：`loc.ts` 是唯一知道 `Loc.region`＝節點 id 的檔，方格大地圖遷移只改它；`forces`／`operations`／`resolve` 常備軍與十種作戰、獨立 `warRng`、war 牌道；`relations`／`treaties`／`drivers` 六態滯後外交；`merc*.ts`＋`sortie/operation-scenario.ts` 參戰契約 `kind:\"join\"`；`rnd.ts`／`lineages.ts` 勢力研發與技術流出；內容 `world/{operations,treaties,lineages,models,forces}/`、`affinity.json`、`actions/war-*`、`contracts/op-join-*`）、戰役 CLI `npm run sim:campaign`（政策 idle／greedy／random／merc，每潮月印作戰／war／allied／釋出／join）；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）",
+   "測試在哪": "`src/ops/**/*.test.ts`（war 單元 `src/ops/war/{war,merc,rnd}.test.ts`）"
   },
   {
    "領域": "ui-adapter",
