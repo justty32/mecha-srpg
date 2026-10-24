@@ -95,3 +95,20 @@ test("快照唯讀、鍵盤 disabled、編成取消與錯誤原因", () => {
   assert.deepEqual(c.key({ key: "Escape" }), { type: "cancel" }); c.dispatch({ type: "cancel" });
   c.dispatch({ type: "sortieOpen" }); verifySnapshot(c); c.dispatch({ type: "sortieCancel" }); assert.equal(c.snapshot().sortie, null);
 });
+test("ISS-042：spectate 互動出戰回寫含完整事件，計功／耗材與 auto 出戰一致", () => {
+  const auto = prepared(), live = prepared();
+  assert.equal(campaignHash(live.c.state), campaignHash(auto.c.state));
+  auto.c.dispatch({ type: "sortieLaunch", mode: "auto" });
+  live.c.dispatch({ type: "sortieLaunch", mode: "command" });
+  const battle = live.c.battleController()!; assert.ok(battle);
+  for (let i = 0; !battle.session.outcome() && i < 1000; i++) battle.dispatch({ type: "skip" });
+  live.c.dispatch({ type: "battleDone" }); finished(live.c, live.contract);
+  const recorded = (c: OpsController) => parseCampaign(c.serialize()).commands.findLast(cmd => cmd.battle?.result)!.battle!.result!;
+  const a = recorded(auto.c), b = recorded(live.c);
+  assert.ok(b.events?.length, "互動回寫的 BattleResult 應附 events");
+  assert.equal(b.events!.length, a.events!.length);
+  assert.deepEqual(live.c.state.contracts[live.contract], auto.c.state.contracts[auto.contract]);
+  assert.deepEqual(live.c.state.inventory, auto.c.state.inventory);
+  assert.deepEqual(live.c.state.ledger.balances, auto.c.state.ledger.balances);
+  assert.equal(campaignHash(live.c.state), campaignHash(auto.c.state));
+});

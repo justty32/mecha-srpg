@@ -136,6 +136,8 @@ export class OpsController {
       const valid = validateSortie(s, ctx, sortie); if (!valid.ok) return valid;
       generateScenario(s, ctx, sortie);
       const copy = structuredClone(result);
+      // runBattle 會附完整事件；戰後處理（契約擊殺計數、耗材扣除）消費它，互動出戰須同格式（ISS-042）。
+      copy.events = structuredClone(live.session.state.log.events);
       for (const unit of copy.units) if (s.mechs[unit.id] && sortie.units.some(u => u.mech === unit.id && u.controlMode === "instinct")) unit.state.frame = s.mechs[unit.id]!.frame;
       applySortieResult(s, ctx, sortie, copy);
       return { ok: true, result: copy };
