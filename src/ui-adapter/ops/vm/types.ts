@@ -25,6 +25,7 @@ export type OpsButton = {
 };
 
 export type OpsUiAction =
+  | WorldMapAction
   | { type: "cmd"; cmd: OpsCommand }                       // 任何 ops 指令（經 ops applyCommand 送出；按鈕、快捷鍵、文字形式結果恆等）
   | { type: "tab"; tab: OpsTab }
   | { type: "advance"; until: "day" | "event" }            // 推進一天／到下個事件（連續 wait 1，遇 prompt、新契約、抵達、裂縫變化、戰鬥待命或上限日數停）
@@ -68,8 +69,36 @@ export type WorldNodeView = {
 };
 export type WorldRouteView = { id: string; a: string; b: string; days: number; kind: string; open: boolean; onPath: boolean };
 export type WorldView = {
+  grid?: WorldGridSnapshot;
   nodes: WorldNodeView[]; routes: WorldRouteView[];
   selected: { id: string; name: string; lines: string[]; buttons: OpsButton[] } | null;   // 選取地點詳情：所有權、服務、蝕域、裂縫、航程天數與燃料
+};
+
+export type WorldLayer = "terrain" | "blight" | "places" | "actors" | "path" | "region" | "fog" | "sight" | "territory";
+export type MapCell = { x: number; y: number };
+export type WorldMapAction =
+  | { type: "mapCursor"; x: number; y: number }
+  | { type: "mapHover"; x: number; y: number }
+  | { type: "mapMove"; dx: number; dy: number }
+  | { type: "mapScroll"; dx: number; dy: number }
+  | { type: "mapViewport"; x: number; y: number }
+  | { type: "mapResize"; w: number; h: number }
+  | { type: "mapZoom"; dir: -1 | 0 | 1 }
+  | { type: "mapNext"; dir: -1 | 1 }
+  | { type: "mapLayer"; layer: WorldLayer }
+  | { type: "mapSwitch"; map: string }
+  | { type: "mapCenter" | "mapLayers" | "mapMaps" | "mapMinimap" | "mapCancel" };
+export type WorldCellView = {
+  x: number; y: number; classes: string[]; glyph: string; badge: string; title: string;
+  color: string; age: number; place: string | null; region: string;
+};
+export type WorldPathPreview = { cells: MapCell[]; days: number; fuel: number; risk: number[]; reachable: boolean; note: string };
+export type WorldGridSnapshot = {
+  map: string; name: string; size: { w: number; h: number }; viewport: { x: number; y: number; w: number; h: number };
+  cells: WorldCellView[]; cursor: MapCell; ship: MapCell; zoom: 1 | .5 | .25;
+  layers: Record<WorldLayer, boolean>; layerMenu: boolean; mapMenu: boolean; showMinimap: boolean;
+  maps: { id: string; name: string }[]; hover: { at: MapCell; lines: string[] }; preview: WorldPathPreview;
+  actions: OpsButton[]; minimap: { w: number; h: number; colors: string[] };
 };
 
 /** 船艙房間（ops Screen.room）。 */

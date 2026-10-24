@@ -1,4 +1,5 @@
 import type { CellView, UiSnapshot } from "../vm/types.ts";
+import { createGridView } from "./grid-view.ts";
 
 function paintCell(node: HTMLDivElement, cell: CellView): void {
   const doc = node.ownerDocument;
@@ -28,24 +29,9 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
 }
 
 export function createBoard(board: HTMLElement, cellSize: number): (s: UiSnapshot) => void {
-  let width = 0;
-  let height = 0;
-  let nodes: HTMLDivElement[] = [];
+  const draw = createGridView<CellView & { classes: string[] }>(board, paintCell);
   board.style.setProperty("--cell-size", `${cellSize}px`);
-  return (s) => {
-    const rebuild = width !== s.viewport.w || height !== s.viewport.h;
-    if (rebuild) {
-      width = s.viewport.w;
-      height = s.viewport.h;
-      nodes = Array.from({ length: width * height }, () => board.ownerDocument.createElement("div"));
-      board.style.gridTemplateColumns = `repeat(${width}, var(--cell-size))`;
-      board.style.gridTemplateRows = `repeat(${height}, var(--cell-size))`;
-      board.replaceChildren(...nodes);
-    }
-    const dirty = s.dirty === "all" ? null : new Set(s.dirty);
-    for (let i = 0; i < nodes.length; i++) {
-      const cell = s.cells[i]!;
-      if (rebuild || dirty === null || dirty.has(`${cell.x},${cell.y}`)) paintCell(nodes[i]!, cell);
-    }
-  };
+  return s => draw({ size: { w: s.map.width, h: s.map.height }, viewport: s.viewport,
+    cell: (x, y) => ({ ...s.cells[(y - s.viewport.y) * s.viewport.w + x - s.viewport.x]!, classes: [] }),
+    dirty: () => s.dirty === "all" ? "all" : new Set(s.dirty) });
 }

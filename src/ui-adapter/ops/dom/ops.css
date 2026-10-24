@@ -152,7 +152,32 @@
 .ops-view .world-map-col { display: flex; flex-direction: column; gap: 6px; min-height: 0; min-width: 0; }
 .ops-view .world-tools { display: flex; gap: 4px; }
 .ops-view .world-scroll { flex: 1; min-height: 240px; overflow: auto; background: #070b12; border: 1px solid var(--border); }
-.ops-view [data-ui="world-map"] { display: block; max-width: none; }
+.ops-view [data-ui="world-map"] { display: grid; max-width: none; width: max-content; }
+.ops-view .world-scroll { position: relative; overflow: hidden; }
+.ops-view .world-grid[hidden], .ops-view .world-overview[hidden] { display: none; }
+.ops-view .world-tools { flex-wrap: wrap; align-items: center; }
+.ops-view .world-cell { position: relative; width: var(--cell-size); height: var(--cell-size); border: 1px solid #ffffff12; box-sizing: border-box; cursor: pointer; font: 12px monospace; text-align: center; color: #e6e8e9; }
+.ops-view .world-glyph { opacity: .45; }
+.ops-view .world-badge { position: absolute; inset: 0; font-weight: bold; line-height: var(--cell-size); }
+.ops-view .world-cell.cursor { outline: 2px solid #fff0a0; outline-offset: -2px; z-index: 2; }
+.ops-view .world-cell.ship { color: #ffe17d; }
+.ops-view .world-cell.world-path { border: 1px dashed #6ef0da; }
+.ops-view .world-cell.territory { box-shadow: inset 0 0 0 1px #9ba4e980; }
+.ops-view .world-cell.sight-edge { border-bottom: 2px solid #87c7eb; }
+.ops-view .world-cell.fog-stale { filter: saturate(.4); }
+.ops-view .world-cell.fog-unknown { background: #050608; }
+.ops-view .world-cell.blight-core { animation: world-core 2s ease-in-out infinite; }
+@keyframes world-core { 50% { box-shadow: inset 0 0 6px #ff6a9c; } }
+.ops-view .world-region { position: absolute; left: 0; top: 0; pointer-events: none; font-size: 9px; white-space: nowrap; }
+.ops-view .world-age { position: absolute; right: 0; bottom: 0; font-size: 8px; }
+.ops-view .world-grid[data-zoom="0.5"] .world-glyph { visibility: hidden; }
+.ops-view .world-grid[data-zoom="0.5"] .world-region { display: none; }
+.ops-view .world-grid[data-zoom="0.5"] .world-cell:nth-child(12n) .world-region { display: block; z-index: 1; }
+.ops-view .world-minimap { position: absolute; right: 8px; bottom: 8px; width: min(180px, 35%); border: 1px solid #afc9dc; background: #111; }
+.ops-view .world-minimap canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; cursor: crosshair; }
+.ops-view .world-mini-viewport { position: absolute; border: 1px solid #fff; pointer-events: none; box-sizing: border-box; }
+.ops-view .world-overview { display: block; max-width: 100%; max-height: 100%; object-fit: contain; image-rendering: pixelated; cursor: crosshair; }
+.ops-view .world-actions .ops-buttons, .ops-view .world-menus { display: flex; flex-direction: column; gap: 5px; }
 .ops-view .world-route { stroke: #4f6684; stroke-width: 3; }
 .ops-view .world-route.closed { stroke: #5a3a44; stroke-dasharray: 8 6; }
 .ops-view .world-route.on-path { stroke: #69e5dc; stroke-width: 5; }

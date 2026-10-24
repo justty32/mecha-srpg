@@ -22,6 +22,7 @@ import { bindButtons, mergedBindings, resolveButtonKey } from "./keymap.ts";
 import type { Binding } from "./keymap.ts";
 import { displayName, label, rejection } from "./labels.ts";
 import type { OpsKeyInput, OpsSnapshot, OpsUiAction, BattleReport } from "./types.ts";
+import { createWorldUi, updateWorldUi } from "./world.ts";
 
 export type OpsControllerOptions = { db: ContentDB; world: WorldDB; start?: string; seed: number; spectate?: boolean };
 type LiveBattle = { controller: BattleController; session: BattleSession; cmd: Extract<OpsCommand, { v: "sortie" }>; sortie: Sortie; title: string };
@@ -38,11 +39,13 @@ export class OpsController {
   constructor(opts: OpsControllerOptions) {
     this.opts = opts; this.start = opts.start ?? "start/default";
     this.current = newCampaign(opts.db, opts.world, this.start, opts.seed);
+    this.ui.map = createWorldUi(this.current);
     this.bindings = mergedBindings(opts.world);
   }
   static fromSave(opts: OpsControllerOptions, text: string): OpsController {
     const blob = parseCampaign(text), controller = new OpsController({ ...opts, start: blob.start, seed: blob.seed });
     controller.current = loadCampaign(opts.db, opts.world, text);
+    controller.ui.map = createWorldUi(controller.current);
     controller.commands = structuredClone(blob.commands); return controller;
   }
   serialize(): string {
@@ -153,6 +156,10 @@ export class OpsController {
     if (this.current.pendingChoices.length && !choosing && action.type !== "battleDone") { this.ui.message = "先回應事件"; return this.snapshot(); }
     if (this.current.log.some(e => e.type === "CampaignEnd") && ["cmd", "advance", "sortieOpen", "sortieLaunch", "nameSubmit"].includes(action.type)) {
       this.ui.message = "戰役已結束"; return this.snapshot();
+    }
+    if (action.type.startsWith("map")) {
+      updateWorldUi(this.current, this.ctx(), this.ui.map!, action as import("./types.ts").WorldMapAction);
+      return this.snapshot();
     }
     switch (action.type) {
       case "cmd": {

@@ -14,8 +14,11 @@ import { layoutNodes } from "./layout.ts";
 import { displayName, label, rejection } from "./labels.ts";
 import { formationView, draftSortie, draftError } from "./formation.ts";
 import { allButtons } from "./keymap.ts";
+import { WorldViewModel, createWorldUi, type WorldUi } from "./world.ts";
+import { blightAt } from "../../../ops/world/blight.ts";
 
 export type ViewState = {
+  map?: WorldUi;
   tab: OpsTab; node: string | null; contract: string | null; mech: string | null; person: string | null;
   draft: Sortie | null; battle: OpsSnapshot["battle"]; report: BattleReport | null; message: string | null; showHelp: boolean;
 };
@@ -64,9 +67,10 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   });
   const worldNodes = nodes.map(n => {
     const current = s.places[n.id], owner = current?.ownerOverride ?? n.owner ?? null;
+    const blight = blightAt(s, ctx, { map: n.map, region: "", cell: n.at });
     const rift = Object.values(s.rifts).find(r => r.site === n.id && r.phase !== "closed");
     return { id: n.id, name: n.name, ...points.get(n.id)!, body: n.kind === "lunar-base" ? "moon" as const : "earth" as const, kind: n.kind, kindName: label(n.kind), owner, ownerName: owner ? name(owner) : null,
-      blight: current?.blight ? { depth: current.blight.depth, depthName: label(current.blight.depth) } : null,
+      blight: blight ? { depth: blight.depth, depthName: label(blight.depth) } : null,
       rift: rift ? { id: rift.id, phase: rift.phase, phaseName: label(rift.phase), width: rift.width } : null,
       here: n.id === here, destination: n.id === targetPlace, selected: n.id === ui.node,
       contracts: contracts.filter(c => c.nodeId === n.id && ["offered", "active", "stage"].includes(c.status)).length };
@@ -118,6 +122,7 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     timeButtons: [button("advance:day", "推進一天", "time", { type: "advance", until: "day" }), button("advance:event", "到下個事件", "time", { type: "advance", until: "event" })],
     room: { id: screen.room.id, title: screen.room.title, desc: screen.room.desc }, roomButtons,
     world: { nodes: worldNodes, routes: [],
+      ...(ui.tab === "world" ? { grid: new WorldViewModel(s, ctx, ui.map ?? createWorldUi(s)).snapshot() } : {}),
       selected: selected ? { id: selected.id, name: selected.name,
         lines: [`座標：${name(selectedDef!.map)} ${selectedDef!.at.x},${selectedDef!.at.y}`, `所有權：${selected.ownerName ?? "無"}`, `服務：${selectedDef!.services.map(id => world.get("room", world.get("service", id)?.room ?? id)?.title ?? label(id)).join("、") || "無"}`,
           `蝕域：${selected.blight?.depthName ?? "無"}`, `裂縫：${selected.rift ? `${selected.rift.phaseName}／${selected.rift.width}` : "無"}`, path ? `航程 ${path.days} 天／燃料 ${path.fuel}` : "沒有可通行航線"],
@@ -140,6 +145,13 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
       queue: s.jobs.map(j => ({ id: j.id, text: `${label(j.kind)}：${name(j.target)} ${j.doneHours}/${j.needHours}`, progress: j.needHours ? Math.min(1, j.doneHours / j.needHours) : 1 })) },
     log: screen.log, prompt, sortie, battle: ui.battle, report: ui.report, message: ui.message, keyHints: [], showHelp: ui.showHelp, over,
   };
+  for (const b of snapshot.world.grid?.actions ?? []) {
+    if (b.enabled && b.action.type === "cmd") {
+      const checked = cmdButton(b.id, b.label, b.group, b.action.cmd);
+      b.enabled = checked.enabled;
+      if (checked.reason) { b.reason = checked.reason; b.tooltip += `\n${checked.reason}`; }
+    }
+  }
   for (const b of allButtons(snapshot)) {
     const isChoice = b.action.type === "cmd" && b.action.cmd.v === "choose";
     const locked = pending && !isChoice ? "先回應事件" : ui.battle ? "戰鬥進行中" : s.pendingBattle && (b.action.type === "advance" || b.action.type === "cmd" && b.action.cmd.v === "wait") ? "先處理待命戰鬥" : over && (b.action.type === "advance" || b.action.type === "cmd") ? "戰役已結束" : undefined;

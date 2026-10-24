@@ -5,6 +5,8 @@ import { mountOps } from "./render.ts";
 import { opsFixture, promptFixture, reportFixture, sortieFixture } from "./fixtures.ts";
 import { TAB_ORDER } from "./tabs.ts";
 import type { OpsKeyInput, OpsSnapshot, OpsUiAction } from "../vm/types.ts";
+import { loadWorldDirs } from "../../../ops/content/load.ts";
+import { OpsController } from "../vm/controller.ts";
 
 function setup(t: TestContext, snapshot: OpsSnapshot = opsFixture()) {
   const win = new Window();
@@ -81,16 +83,26 @@ test("點按鈕送出該按鈕的 action；disabled 不送", t => {
   ]);
 });
 
-test("世界圖：SVG 節點與航線，點節點送 selectNode，詳情按鈕送 action", t => {
-  const { q, click, actions, root } = setup(t, opsFixture("world"));
-  assert.ok(q('svg[data-ui="world-map"]'));
-  assert.equal(root.querySelectorAll('[data-ui="world-map"] [data-node]').length, 3);
-  assert.equal(root.querySelectorAll('[data-ui="world-map"] line.world-route').length, 0);
-  assert.ok(root.querySelector('[data-ui="world-map"] .world-node.here [data-node="place/ridge"]'));
-  assert.ok(root.querySelector('[data-ui="world-map"] .world-blight.depth-deep'));
-  click('[data-node="place/marsh"]');
-  click('button[data-action-id="sail:place/marsh"]');
-  assert.deepEqual(actions, [{ type: "selectNode", node: "place/marsh" }, { type: "cmd", cmd: { v: "sail", to: "place/marsh" } }]);
+test("世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail", t => {
+  const { db, world } = loadWorldDirs(["content/base"]), c = new OpsController({ db, world, seed: 3 });
+  const win = new Window(), root = win.document.createElement("div"); win.document.body.append(root);
+  const actions: OpsUiAction[] = [];
+  const view = mountOps(root as unknown as HTMLElement, {
+    onAction(a) { actions.push(a); view.render(c.dispatch(a)); },
+    onKey(k) { const a = c.key(k); if (!a) return false; actions.push(a); view.render(c.dispatch(a)); return true; },
+  });
+  t.after(() => { view.destroy(); win.close(); });
+  const s = c.dispatch({ type: "tab", tab: "world" }); view.render(s);
+  assert.equal(root.querySelectorAll(".world-cell").length, s.world.grid!.viewport.w * s.world.grid!.viewport.h);
+  const first = root.querySelector(".world-cell")!;
+  assert.match(first.className, /terrain-/);
+  view.render(c.dispatch({ type: "mapLayer", layer: "terrain" }));
+  assert.doesNotMatch(first.className, /terrain-/);
+  const p = world.require("place", "place/chittagong");
+  view.render(c.dispatch({ type: "mapCursor", ...p.at }));
+  win.document.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+  assert.deepEqual(actions.at(-1), { type: "cmd", cmd: { v: "sail", to: p.id } });
+  assert.ok(c.state.ship.path);
 });
 
 test("列表選取：契約、機甲、名冊", t => {

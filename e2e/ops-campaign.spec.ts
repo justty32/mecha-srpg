@@ -38,12 +38,12 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   expect((await ops(page)).contracts.some(c => c.status === "offered")).toBe(true);
 
   await page.keyboard.press("g");
-  await expect(root.locator('svg[data-ui="world-map"] [data-node]').first()).toBeVisible();
-  await root.locator('svg[data-ui="world-map"] [data-node]').first().click();
+  await expect(root.locator('[data-ui="world-map"] .world-cell').first()).toBeVisible();
+  await root.locator('[data-ui="world-map"] [data-node]').first().click();
   await expect(root.locator('[data-ui="world-detail"] h2')).not.toBeEmpty();
   await shot(page, "world");
 
-  await page.keyboard.press("c");
+  await root.locator('button[data-action-id="tab:contracts"]').click();
   const pane = root.locator('[data-tab="contracts"]');
   await pane.locator("li.ops-pick").first().click();
   await expect(pane.locator(".ops-detail")).toBeVisible();
