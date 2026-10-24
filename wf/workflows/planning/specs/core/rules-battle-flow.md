@@ -46,7 +46,7 @@ type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number
 
 ## 傳統兵器
 
-情境可放 `tags:["conventional-arms"]` 的單位（戰機、砲兵）或由 `faction` 以「呼叫支援」能力投射（`target.kind:"ball"`、不需 LOS、冷卻長）；傷害經全局修正表對 `kaiju` ×0.1，對人類機甲全額——也就是傳統兵器在對人戰場完全正常，這是裁示的自然推論。
+情境可放 `tags:["conventional-arms"]` 的單位（鐵翼、鐵龜）或由 `faction` 以「呼叫支援」能力投射（`target.kind:"ball"`、不需 LOS、冷卻長）；傷害經全局修正表對 `kaiju` ×0.1，對人類機甲全額——也就是傳統兵器在對人戰場完全正常，這是裁示的自然推論。
 
 ## 替使用者做掉的決定
 

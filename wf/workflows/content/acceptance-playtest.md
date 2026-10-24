@@ -20,13 +20,13 @@
 
 **兩種情境**：野怪場——敵方放你每個新 monster 至少一隻，玩家抄 `scenario/rift-edge-nest` 四台＋駕駛員並用 `components` 配好武器；我方場——玩家放每台新 frame／bio frame 各一、`person/chen-xiaohai` 座 pilot，敵方 `base:monster/reaper-c` ×3。古代機用 skirmish-whitegloves 把玩家一台換掉。
 
-**跑法**：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/sweep.ts --content content/base,<pack> --seeds 1,2,3,4,5 <scenario id…>`，每情境一行 JSON（勝方分布、輪數、死亡、hash）。看能力有沒被用：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ai-objective/scenario-measure.ts <scenario> 1 2 3`，或自寫 runner 統計 `AbilityUsed` 事件的 ability id；單步查評分用 `getPolicy("tactical").propose/score`。
+**跑法**：在放了新內容的那棵工作樹根跑 `node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/sweep.ts --seeds 1,2,3,4,5 <scenario id…>`（`--content` 只吃**單一**目錄、預設 `content/base`，不支援逗號串多包；新內容照批次流程寫進 worktree 的 `content/base/` 就會一起載入），每情境一行 JSON（勝方分布、輪數、死亡、hash）。看能力有沒被用：`node wf/workflows/dispatch/handoffs/done/2026-10-24/lead-ai-objective/scenario-measure.ts <scenario> 1 2 3`，或自寫 runner 統計 `AbilityUsed` 事件的 ability id；單步查評分用 `getPolicy("tactical").propose/score`。
 
 **判準**：5 seed 0 例外（任一 `error` 即不過）；每個新能力至少 1 次 AbilityUsed（反應技例外）；不得出現 5/5 timeout 且雙方 0 死亡（＝打不到，查配裝／部署／射程）。
 
 ## 三、MCP 試玩規程
 
-**連線**：`D=<scratchpad>/<線名>; mkdir -p $D && cd $D; node <repo>/src/mcp/cli.ts serve --socket s.sock`（背景、路徑要短），之後 `node <repo>/src/mcp/cli.ts call --socket s.sock <tool> '<json>'`；只用自己的 socket，收工 kill 自己的 pid。輸出長用 `| head -c 4000`。
+**連線**：走 stdio——`node <repo>/src/mcp/server.ts`（`npm run mcp`）一行一個 JSON-RPC 請求；driver 照 `src/mcp/e2e.test.ts` 的 `withServer` 寫，要逐步手打就 `mkfifo` 讓背景 server 常駐、逐行寫請求（細節同 [playtest](playtest.md)）。暫存放 `/tmp/<線名>/`，收工結束自己的行程；輸出長用 `| head -c 4000`。codex 沙箱禁止 Unix socket listen（`cli.ts serve --socket` 回 EPERM），socket CLI 只給沙箱外的 agent 用。
 
 **工具**：`battle_new {scenario, seed, rounds?}` → `battle_observe {id, map:true}`（看 objectives／單位／地形圖例）→ `battle_legal_actions {id}`（每項附 `action`、命中率、`damageIfHit`）→ `battle_act {id, action}`；全 AI 對照 `battle_auto {scenario, seed}`；`battle_events` 查能力使用。營運：`campaign_new {seed}` → `campaign_actions` → `campaign_sortie_preview`／`campaign_sortie_begin` → 戰鬥 → `campaign_sortie_finish`；長程 `campaign_auto {seed, months:6, policy:"greedy"}`。
 

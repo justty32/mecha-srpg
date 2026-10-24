@@ -1,26 +1,28 @@
 # base 內容包
 
-`base/pack.json` 宣告內容包識別、版本與相依；以下件數為本批內容交付時的 JSON 檔數。
+`base/pack.json` 宣告內容包識別、版本與相依；以下件數為各目錄的 JSON 檔數（2026-10-24 lead-tidy 重數；逐種類總表見 `content/index/_summary.json`）。
 
 ## 目錄一覽
 
+<!-- wf-nav -->
 - [registries/](base/registries/)：列舉值登記，共 7 件。
 - [rules/](base/rules/)：常數與戰鬥規則資料，共 4 件。
-- [bodyplans/](base/bodyplans/)：部位、層與座位佈局，共 7 件。
-- [frames/](base/frames/)：機體型號與資源池，共 7 件。
-- [components/](base/components/)：可裝配部件，共 7 件。
-- [abilities/](base/abilities/)：能力、成本與 AI 提示，共 14 件。
-- [effects/](base/effects/)：狀態、特質與天賦效果，共 20 件。
-- [persons/](base/persons/)：駕駛員與機魂，共 7 件。
-- [soultrees/](base/soultrees/)：機魂天賦樹，共 2 件。
-- [terrains/](base/terrains/)：地形通行、掩蔽與危害，共 6 件。
-- [maps/](base/maps/)：地勢、部署區與撤離邊，共 2 件。
-- [factions/](base/factions/)：勢力關係與感測方式，共 3 件。
-- [species/](base/species/)：怪獸族與行為，共 4 件。
-- [monsters/](base/monsters/)：怪獸個體與等級，共 3 件。
-- [scenarios/](base/scenarios/)：參戰單位與勝負目標，共 2 件。
-- [aiprofiles/](base/aiprofiles/)：AI 策略參數，共 5 件。
+- [bodyplans/](base/bodyplans/)：部位、層與座位佈局，共 39 件。
+- [frames/](base/frames/)：機體型號與資源池，共 89 件。
+- [components/](base/components/)：可裝配部件，共 54 件。
+- [abilities/](base/abilities/)：能力、成本與 AI 提示，共 128 件。
+- [effects/](base/effects/)：狀態、特質與天賦效果，共 124 件。
+- [persons/](base/persons/)：駕駛員與機魂，共 37 件。
+- [soultrees/](base/soultrees/)：機魂天賦樹，共 6 件。
+- [terrains/](base/terrains/)：地形通行、掩蔽與危害，共 23 件。
+- [maps/](base/maps/)：地勢、部署區與撤離邊，共 17 件。
+- [factions/](base/factions/)：勢力關係與感測方式，共 10 件。
+- [species/](base/species/)：怪獸族與行為，共 18 件。
+- [monsters/](base/monsters/)：怪獸個體與等級，共 28 件。
+- [scenarios/](base/scenarios/)：參戰單位與勝負目標，共 26 件。
+- [aiprofiles/](base/aiprofiles/)：AI 策略參數，共 16 件。
 - [curves/](base/curves/)：成長曲線，共 1 件。
+- [world/](base/world/)：營運層世界資料（節點、勢力營運、契約、事件、市場等，子資料夾分類），共 317 件。
 
 ## 命名與新增內容
 

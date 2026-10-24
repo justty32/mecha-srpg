@@ -9,11 +9,6 @@
  ],
  "rows": [
   {
-   "事項": "世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工",
-   "何時 / 順序": "已完成（core v1、world v2，2026-10-24）",
-   "前提": "—"
-  },
-  {
    "事項": "內容第二批：機械系命名規範化、補 B 級蟲族（base 常數與步兵／士氣／失控內容已由 sim 線補回）",
    "何時 / 順序": "大半完成（lead-content-mech／content-monster／content-polish／gaps-battle，2026-10-24）；餘下併入 codex 內容批次",
    "前提": "rules REPORT"
@@ -39,19 +34,9 @@
    "前提": "[cx-bal2 REPORT](dispatch/handoffs/done/2026-10-24/lead-ops-bio-balance/cx-bal2/REPORT.md)"
   },
   {
-   "事項": "UI 遷到 `src/sim/session.ts`（`stepAi` 逐指令播放敵方回合）；hold 核區＝敵方部署區、timeout 預設判負補進 spec",
-   "何時 / 順序": "已完成（lead-ui-session、plan-spec-sync／spec-integrate，2026-10-24）",
-   "前提": "同上"
-  },
-  {
    "事項": "world-grid 方格大地圖實作：七段切線（content＋grid 40×40 測試圖 → move／places／tick 段 3 → 蝕塊 → actors／fog／遭遇 → scenario／contracts／text 收尾 → 內容線六張正式圖產生器＋地點座標＋航道 → ui-ops 大地圖面板 GridView 共用）；驗收 `npm run sim:campaign -- --months 12`＋六組測試，退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
    "何時 / 順序": "待辦（下一段落非 codex 工作第 1 優先，見 engine-backlog）；lead-impl-war 已收線",
    "前提": "[plan-world-grid REPORT](dispatch/handoffs/done/2026-10-24/plan-world-grid/REPORT.md)；spec 整合已完成 2026-10-24（plan-spec-integrate，REPORT 由頂層代存）"
-  },
-  {
-   "事項": "勢力作戰、外交、傭兵參戰、勢力研發（ops-war 四切線＋war-sim 不變量與黃金）",
-   "何時 / 順序": "已完成（lead-impl-war、lead-gaps-ops，2026-10-24）",
-   "前提": "[lead-impl-war REPORT](dispatch/handoffs/done/2026-10-24/lead-impl-war/REPORT.md)"
   },
   {
    "事項": "codex 內容填充試點與護欄（content_gate／content_accept、content/index、batches）",
@@ -70,7 +55,7 @@
   },
   {
    "事項": "重構拆檔與 tidy（超標檔、ROSTER、收線目錄、殘檔、舊 worktree）",
-   "何時 / 順序": "下次段落（本段落使用者明示不做）",
+   "何時 / 順序": "大半完成（lead-tidy，2026-10-24：ROSTER 封存、handoffs 收線目錄移 done/、拆近 8 KB 檔、收信殘檔歸檔）；殘留見 handoffs/next-tidy.md",
    "前提": "[next-tidy](dispatch/handoffs/next-tidy.md)"
   }
  ]

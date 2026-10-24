@@ -6,12 +6,13 @@
 
 ## 分檔
 
+<!-- wf-nav -->
 | 檔 | 內容 |
 |---|---|
 | [design-notes/mechanics.md](design-notes/mechanics.md) | 形態、規模、呈現、BB 路線、機甲結構／層／多資源池、後果與傳導、參考、架構 |
-| [design-notes/mechs.md](design-notes/mechs.md) | 三類機甲與人機關係（共鳴／承擔／機魂）、古代能力、古代機甲無名以神話命名、機械系命名階段、數量不限 |
+| [design-notes/mechs.md](design-notes/mechs.md) | 三類機甲與人機關係（共鳴／承擔／機魂）、古代能力、古代機甲無名以神話命名、機械系命名階段、數量不限（入口導航到 `mechs/` 三子檔：bonds／ancient／mechanical）|
 | [design-notes/bio-mechs.md](design-notes/bio-mechs.md) | 生物系兩類（屍體改裝／活捕）、命名三層、維持與營運主軸 |
-| [design-notes/world.md](design-notes/world.md) | 世界觀：怪獸族與等級、2108 地月、遺跡與裂縫、沙盒、對第一版提案的推翻與補充（相位說不要、飛機傷害十分之一、遺跡與怪獸同時出現、母體子體與蛻皮只限某些族、勢力大小不限） |
+| [design-notes/world.md](design-notes/world.md) | 世界觀：怪獸族與等級、2108 地月、遺跡與裂縫、沙盒、對第一版提案的推翻與補充（相位說不要、飛機傷害十分之一、遺跡與怪獸同時出現、母體子體與蛻皮只限某些族、勢力大小不限）（入口導航到 `world/` 三子檔：setting／rules／factions-and-map）|
 | [design-notes/terms.md](design-notes/terms.md) | 用語改名（殼→原鞘、摹→衍型）與「之」「者」命名語感 |
 
 ## 尚未裁示 → 2026-10-23 使用者裁示「都隨意，讓 Fable 去規劃」

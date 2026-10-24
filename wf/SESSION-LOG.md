@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 2026-10-24 段落收尾：現役 lead-codex-pilot（進行中）與 lead-wrapup（等第二階段）；新 session 從交棒書讀起 → [handoffs/STATE](workflows/dispatch/handoffs/STATE.md)
+- [dispatch] 2026-10-24 段落收尾：lead-codex-pilot 已收線（REPORT 在 handoffs/lead-codex-pilot/）；現役 lead-wrapup（等第二階段寫 codex-handover）；新 session 從交棒書讀起 → [handoffs/STATE](workflows/dispatch/handoffs/STATE.md)
 
 ## 各工作流 session-log
 

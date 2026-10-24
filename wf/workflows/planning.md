@@ -25,15 +25,11 @@
 
 ## 想法（要不要做）
 
-| 想法 | 一句話 | 狀態（想想 / 會做→搬 roadmap / 不做＋原因）|
-|------|--------|------------------------------------------|
-| 技術棧選型：網頁（純文字 DOM／終端風）vs Godot-mono headless | 先開調查線比較，再由頂層與使用者定 | 會做→roadmap |
-| 戰鬥系統參考摘要（超級機器人大戰、Battle Brothers） | 整理可選機制清單給使用者挑，餵世界觀／戰鬥設計 | 會做→roadmap |
-| 舊版 Python 專案（程式碼與教學）封存 `legacy/` | spec v1 定案後原樣搬走，騰出 `src/` | 已做（2026-10-24，線 lead-legacy-archive）|
+目前無 open 的想法（2026-10-24 清空：技術棧選型與戰鬥系統參考已進 roadmap 並完成、legacy 封存已做；紀錄在 git log）。新想法照下列欄位開表：`想法`／`一句話`／`狀態（想想 / 會做→搬 roadmap / 不做＋原因）`。
 
 ## roadmap（會做，何時）
 
-已抽到 [planning-roadmap.json](planning-roadmap.json)（13 列）。
+已抽到 [planning-roadmap.json](planning-roadmap.json)（10 列；已完成列直接移除，2026-10-24 移除 3 列）。
 
 欄位：`事項`、`何時 / 順序`、`前提`（含 REPORT 連結）。查法見 [data-files](common/data-files.md)。
 
