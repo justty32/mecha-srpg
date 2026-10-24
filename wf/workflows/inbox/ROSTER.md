@@ -163,3 +163,47 @@
 - **答不出什麼**：地形、地圖、單位
 - **怎麼找我**：`wf/inbox/orders/cx-bat-scen-c.md`
 - **訂閱主題**：無
+
+### `cx-world-ev-a`
+- **狀態**：已收線（2026-10-24）（領導 `lead-content-world` 代登記）
+- **我是誰**：codex 工人，營運事件 A 組（船上日常、人員衝突、機魂異常、拘束艙／掙脫變體）
+- **團隊**：`teams/content-world`
+- **上游**：`lead-content-world`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-world/cx-world-ev-a.md`「範圍」
+- **答得出什麼**：本組內容檔細節
+- **答不出什麼**：引擎、平衡量測
+- **怎麼找我**：`wf/inbox/orders/cx-world-ev-a.md`
+- **訂閱主題**：無
+
+### `cx-world-ev-b`
+- **狀態**：已收線（2026-10-24）（領導 `lead-content-world` 代登記）
+- **我是誰**：codex 工人，營運事件 B 組（勢力消息、傭兵圈八卦、遺跡傳聞、航路與港口）
+- **團隊**：`teams/content-world`
+- **上游**：`lead-content-world`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-world/cx-world-ev-b.md`「範圍」
+- **答得出什麼**：本組內容檔細節
+- **答不出什麼**：引擎、平衡量測
+- **怎麼找我**：`wf/inbox/orders/cx-world-ev-b.md`
+- **訂閱主題**：無
+
+### `cx-world-data`
+- **狀態**：已收線（2026-10-24）（領導 `lead-content-world` 代登記）
+- **我是誰**：codex 工人，營運資料（encounters、contracts、names、research、markets、recruit-pools）
+- **團隊**：`teams/content-world`
+- **上游**：`lead-content-world`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-world/cx-world-data.md`「範圍」
+- **答得出什麼**：本組內容檔細節
+- **答不出什麼**：引擎、平衡量測
+- **怎麼找我**：`wf/inbox/orders/cx-world-data.md`
+- **訂閱主題**：無
+
+### `cx-world-dlg`
+- **狀態**：已收線（2026-10-24）（領導 `lead-content-world` 代登記）
+- **我是誰**：codex 工人，營運人物資料（dialogues、backgrounds）
+- **團隊**：`teams/content-world`
+- **上游**：`lead-content-world`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-content-world/cx-world-dlg.md`「範圍」
+- **答得出什麼**：本組內容檔細節
+- **答不出什麼**：引擎、平衡量測
+- **怎麼找我**：`wf/inbox/orders/cx-world-dlg.md`
+- **訂閱主題**：無
