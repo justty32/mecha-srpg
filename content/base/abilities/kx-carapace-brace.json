@@ -1,0 +1,36 @@
+{
+  "id": "ability/kx-carapace-brace",
+  "name": "闔殼封闕",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-carapace-braced"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1
+    }
+  },
+  "cooldown": 3
+}

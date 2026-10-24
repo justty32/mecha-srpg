@@ -1,0 +1,71 @@
+{
+  "id": "species/lancewing",
+  "name": "弔燈蜂",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-lancewing",
+  "gradeRange": [
+    "C",
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    },
+    "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-acid-sting",
+    "ability/kx-wing-dive",
+    "ability/kx-brood-call"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-lancewing"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/reaper-vanguard",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}
