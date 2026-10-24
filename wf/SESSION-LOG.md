@@ -11,8 +11,6 @@
 
 ## 最新進度
 
-- [dispatch] 2026-10-24 使用者重開程式前全停：ai 已收線；`plan-ops-spec` 中止、半成品在 `specs/ops/`；續行點 [handoffs/STATE.md](workflows/dispatch/handoffs/STATE.md)
-- [dispatch] 2026-10-24 `lead-ui-fix` 開工：使用者試玩回饋九項（ui-adapter 手感）→ [handoffs/lead-ui-fix/](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)
 
 ## 各工作流 session-log
 
