@@ -2,6 +2,8 @@
 
 [content README](README.md)｜格式契約 [lore README](../../../content/lore/README.md)｜風格 [style.md](../../../content/lore/style.md)（用語表 glossary.json 23 列）｜既有 REPORT `wf/workflows/dispatch/handoffs/plan-lore/REPORT.md`（替使用者做掉的決定與衝突清單）
 
+**先讀** [world-pillars](world-pillars.md)（世界觀設計支柱 31 條與最常見的違反）——lore 與潤飾最常踩的就是那張清單。
+
 ## lore 的優先序與一致性
 
 設定優先序：使用者裁示（design-notes）＞ world spec ＞ lore。lore 不得與前兩者衝突；發現 spec 內部矛盾寫 REPORT，不在 lore 裡改。既有：勢力 31、人物 58、事件 53、地點 49、時代 7、年表 111。新增前先 `ls` 同類資料夾與 `grep` 名字，避免撞名（已發生：白夜 A 級摹機 vs 菌床白夜；irina-sokolova 撞名已改）。
