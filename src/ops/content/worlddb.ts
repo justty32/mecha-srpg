@@ -1,6 +1,20 @@
 import { parseId } from "../../core/ids.ts";
 import type { PackDef } from "../../core/types-def.ts";
-import type { WorldDefByKind, WorldKind } from "../state/types.ts";
+import type { KeymapDef, WorldDefByKind, WorldKind } from "../state/types.ts";
+
+export function keymapErrors(def: KeymapDef): string[] {
+  const errors: string[] = [], used = new Set<string>();
+  if (!Array.isArray(def.bindings)) return [`${def.id}: missing bindings`];
+  for (const binding of def.bindings) {
+    if (!binding.action || !binding.label || !Array.isArray(binding.keys) || !binding.keys.length) { errors.push(`${def.id}: invalid binding`); continue; }
+    for (const key of binding.keys) {
+      const context = binding.context ?? (binding.action.startsWith("choose:") ? "prompt" : "room"), id = `${context}:${key.toLowerCase()}`;
+      if (!key || used.has(id)) errors.push(`${def.id}: duplicate or empty key ${id}`);
+      used.add(id);
+    }
+  }
+  return errors;
+}
 
 export type WorldTables = { [K in WorldKind]?: Record<string, WorldDefByKind[K]> };
 export type WorldDB = {

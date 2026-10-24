@@ -240,10 +240,10 @@ export type SpeciesDef = {
   aiProfile: Id; tags: string[];
 };
 export type MonsterDef = {
-  id: Id; species: Id; grade: Grade; name?: string;
+  id: Id; species: Id; grade: Grade; name?: string; epithet?: string;
   attrMods?: Contribution[]; extraAbilities?: Id[]; partsOverride?: Partial<PartDef>[]; tags: string[];
 };
-export type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade };
+export type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number> };
 export type Objective = {
   kind: "eliminate" | "survive" | "hold" | "escort" | "capture" | "reachExit" | "killTarget";
   params: Record<string, unknown>; for: FactionSlot; onComplete: "win" | "lose" | "continue";

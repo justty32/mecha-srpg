@@ -16,7 +16,7 @@ export function checkInvariants(s: CampaignState): string[] {
     if (mech && !s.mechs[mech]) errors.push(`missing employment seat mech: ${id}/${mech}`);
   }
   for (const item of s.inventory.components) if (item.boundTo && !s.mechs[item.boundTo]) errors.push(`missing boundTo: ${item.id}/${item.boundTo}`);
-  for (const pen of s.stable.pens) if (!s.mechs[pen.mech]) errors.push(`missing pen mech: ${pen.mech}`);
+  for (const beast of Object.values(s.restraint.beasts)) if (!s.mechs[beast.mech]) errors.push(`missing beast mech: ${beast.mech}`);
   for (const person of Object.keys(s.roster.mastery).sort()) for (const node of Object.keys(s.roster.mastery[person]!).sort()) {
     const value = s.roster.mastery[person]![node]!;
     if (!Number.isFinite(value) || value < 0 || value > 1) errors.push(`mastery out of range: ${person}/${node}`);

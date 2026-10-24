@@ -1,11 +1,26 @@
 import { nextInt } from "../../core/rng.ts";
-import type { CampaignState, OpsCtx, Prompt } from "../state/types.ts";
+import type { CampaignState, NameKind, OpsCtx, Prompt } from "../state/types.ts";
+import { beastRules } from "./restraint.ts";
 import { applyOpsEffect } from "../content/opseffect.ts";
 import { crew, detach, fail, ok, peekCrew, rules } from "./shared.ts";
 import type { CmdResult, Command } from "./shared.ts";
 
 // SPEC-GAP：自填名稱不是 OpsCommand；編排層可辨識此 metadata 後呼叫 applyName。
-export type NamingPrompt = Prompt & { naming: { mech: string; by: string; customChoice: number } };
+export type NamingPrompt = Prompt & { naming: { mech: string; by: string; customChoice: number; kind?: NameKind } };
+export function offerNickname(s: CampaignState, ctx: OpsCtx, mech: string): void {
+  const beast = s.restraint.beasts[mech], cfg = beastRules(s, ctx, mech);
+  if (!beast || !cfg || s.roster.names[mech]?.some(n => n.kind === "nickname") || s.pendingChoices.some(p => (p as Partial<NamingPrompt>).naming?.mech === mech)) return;
+  const bonded = Object.keys(beast.bond).sort().find(id => s.roster.persons[id] && beast.bond[id]! >= cfg.nicknameBond);
+  if (!bonded && (s.flags[`battles:${mech}`] ?? 0) < cfg.nicknameBattles) return;
+  const by = bonded ?? Object.keys(s.roster.employment).sort().find(id => s.roster.employment[id]!.role === "technician") ?? Object.keys(s.roster.persons).sort()[0];
+  if (!by) return;
+  const available = [...ctx.world.require("names", `names/nick-${cfg.family}`).names], candidates: string[] = [];
+  for (let i = 0; i < 3 && available.length; i++) candidates.push(available.splice(nextInt(s.rng, available.length), 1)[0]!);
+  const prompt: NamingPrompt = { text: "給牠一個小名", person: by,
+    choices: [...candidates.map(name => ({ text: name, effects: [{ nameMech: { mech, name, by, kind: "nickname" as const } }] })), { text: "自填", effects: [] }],
+    naming: { mech, by, kind: "nickname", customChoice: candidates.length } };
+  s.pendingChoices.push(prompt);
+}
 export function cmdWake(s: CampaignState, ctx: OpsCtx, cmd: Command<"wake">): CmdResult {
   if (s.clock.phase !== "spring") return fail("not-spring-night");
   const mech = s.mechs[cmd.shell], person = s.roster.persons[cmd.by], employee = s.roster.employment[cmd.by];
@@ -44,7 +59,8 @@ export function applyName(s: CampaignState, ctx: OpsCtx, mech: string, by: strin
   if (!s.mechs[mech]) return fail("unknown-mech");
   if (!s.roster.persons[by] && !s.factions[by]) return fail("unknown-namer");
   if (!name.trim()) return fail("empty-name");
-  applyOpsEffect(s, ctx, { nameMech: { mech, by, name: name.trim() } });
+  const naming = s.pendingChoices.map(p => (p as Partial<NamingPrompt>).naming).find(n => n?.mech === mech && n.by === by);
+  applyOpsEffect(s, ctx, { nameMech: { mech, by, name: name.trim(), kind: naming?.kind ?? "title" } });
   const index = s.pendingChoices.findIndex(p => { const n = (p as Partial<NamingPrompt>).naming; return n?.mech === mech && n.by === by; });
   if (index >= 0) s.pendingChoices.splice(index, 1); return ok;
 }

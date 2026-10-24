@@ -1,11 +1,32 @@
 import { chance } from "../../core/rng.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import type { EffectInstance } from "../../core/types-state.ts";
-import type { CampaignState, OpsCtx, OpsEffect } from "../state/types.ts";
+import type { CampaignState, OpsCtx, OpsEffect, CarcassState } from "../state/types.ts";
 import { eventRef } from "../state/events.ts";
 import { post } from "../state/ledger.ts";
 import { evalOpsNum } from "./cond.ts";
 import type { OpsScope } from "./cond.ts";
+
+export function beastSpecies(ctx: OpsCtx, frame: string) {
+  const monster = ctx.db.get("monster", frame);
+  return ctx.db.get("species", monster?.species ?? frame) ?? ctx.db.all("species").find(sp => sp.capture.frame === ctx.db.get("frame", frame)?.id || `base:frame/corpse-${sp.id.split("/").at(-1)}` === frame);
+}
+export function removeRestraint(s: CampaignState, id: string): void {
+  s.restraint.slots = s.restraint.slots.map(value => value === id ? null : value);
+  delete s.restraint.beasts[id]; s.restraint.carcasses = s.restraint.carcasses.filter(c => c.id !== id);
+  s.inventory.mechs = s.inventory.mechs.filter(value => value !== id);
+  for (const room of Object.values(s.ship.rooms)) room.items = room.items.filter(value => value !== id);
+  s.jobs = s.jobs.filter(j => j.target !== id);
+  delete s.mechs[id];
+}
+export function stiffen(s: CampaignState, ctx: OpsCtx, id: string): void {
+  const mech = s.mechs[id], species = mech && beastSpecies(ctx, mech.frame), slot = s.restraint.slots.indexOf(id);
+  if (!mech || !species || slot < 0) return;
+  const cfg = ctx.world.require("beasts", `beasts/${species.family}`);
+  const carcass: CarcassState = { id, species: species.id, grade: ctx.db.require("frame", mech.frame).grade, parts: structuredClone(mech.parts), decayPerDay: cfg.decay, slot };
+  removeRestraint(s, id); s.restraint.slots[slot] = id; s.restraint.carcasses.push(carcass);
+  ctx.emit("Stiffened", { mech: id });
+}
 
 function entity<T extends { id: string }>(items: Record<string, T>, id: string): T {
   const item = Object.hasOwn(items, id) ? items[id] : undefined;
@@ -90,8 +111,41 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
     const { mech, name, by } = effect.nameMech;
     entity(s.mechs, mech);
     if (!name.trim()) throw new Error("機甲名稱不可空白");
-    (s.roster.names[mech] ??= []).push({ name, by, day: s.clock.day });
+    (s.roster.names[mech] ??= []).push({ name, by, day: s.clock.day, kind: effect.nameMech.kind ?? "title" });
     ctx.emit("Named", { mech, by, index: s.roster.names[mech]!.length - 1 });
+  } else if ("restraintChoice" in effect) {
+    const input = effect.restraintChoice, beast = s.restraint.beasts[input.mech];
+    if (!beast) return false;
+    if (input.action === "kill") stiffen(s, ctx, input.mech);
+    else if (input.action === "release") { removeRestraint(s, input.mech); ctx.emit("LostMech", { mech: input.mech }); }
+    else {
+      // SPEC-GAP：硬壓立即生效，技師工時記成優先欠工，次日先償還。
+      s.flags.restraintHoursOwed = (s.flags.restraintHoursOwed ?? 0) + (input.hours ?? 0);
+      beast.wear = input.wear ?? 60; s.flags[`looseDay:${input.mech}`] = s.clock.day;
+      const tech = Object.keys(s.roster.employment).sort().find(id => s.roster.employment[id]!.role === "technician");
+      if (tech && chance(s.rng, input.injuryChance ?? 0)) {
+        const hp = s.roster.persons[tech]?.pools.hp;
+        if (hp) hp.cur = Math.max(0, hp.cur - (input.injuryHp ?? 0));
+      }
+      ctx.emit("Suppressed", { mech: input.mech });
+    }
+  } else if ("salvage" in effect) {
+    const { node, loot, carcass, keep } = effect.salvage;
+    if (keep) {
+      const slot = s.restraint.slots.indexOf(null); if (slot < 0) return false;
+      s.restraint.slots[slot] = carcass.id; s.restraint.carcasses.push({ ...structuredClone(carcass), slot });
+    } else {
+      const ref = eventRef(ctx.emit("OpsEffectApplied", { carcass: carcass.id }));
+      const overflow = { components: [] as typeof loot.components, materials: {} as typeof loot.materials, day: s.clock.day };
+      const used = () => s.inventory.components.length + s.inventory.relics.length + Object.entries(s.ledger.balances).filter(([key]) => key.startsWith("stock:") && key !== "stock:fuel").reduce((sum, [, value]) => sum + value, 0);
+      for (const c of loot.components) (used() < s.ship.capacity.cargo ? s.inventory.components : overflow.components).push(structuredClone(c));
+      for (const account of Object.keys(loot.materials).sort() as (keyof typeof loot.materials)[]) {
+        const amount = loot.materials[account]!, stored = Math.min(amount, Math.max(0, s.ship.capacity.cargo - used()));
+        if (stored) post(s, ctx, { account, delta: stored, reason: "carcass-salvage", ref });
+        if (stored < amount) overflow.materials[account] = amount - stored;
+      }
+      if (overflow.components.length || Object.keys(overflow.materials).length) s.nodes[node]!.wreckage.push(overflow);
+    }
   } else if ("applyEffect" in effect) applyCoreEffect(s, ctx, effect.applyEffect, scope);
   else throw new Error("未知 OpsEffect");
   return true;

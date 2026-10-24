@@ -20,7 +20,7 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
     unit.id = mechId; ids.set(before, mechId);
     unit.components = {};
     for (const part of Object.keys(mech.parts).sort()) for (const slot of Object.keys(mech.parts[part]!.components).sort()) {
-      const component = mech.parts[part]!.components[slot]; if (component) unit.components[slot] = component;
+      const component = mech.parts[part]!.components[slot]; if (component) unit.components[slot] = s.inventory.components.find(c => c.id === component)?.def ?? component;
     }
     for (const person of unit.persons ?? []) {
       const pid = selected.seats[person.seat];
@@ -30,7 +30,7 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
     unit.parts = Object.fromEntries(Object.entries(mech.parts).map(([id, part]) => [id, structuredClone({ layers: part.layers, broken: part.broken })]));
     unit.controlMode = selected.controlMode;
     unit.effects = structuredClone(mech.effects);
-    unit.pools = Object.fromEntries(Object.keys(mech.pools).sort().map(id => [id, mech.pools[id]!.cur]));
+    unit.pools = { ...Object.fromEntries(Object.keys(mech.pools).sort().map(id => [id, mech.pools[id]!.cur])), ...unit.pools };
   }
   for (const slot of Object.keys(sim.unitPolicies).sort()) sim.unitPolicies[slot] = Object.fromEntries(
     Object.keys(sim.unitPolicies[slot]!).sort().map(id => [ids.get(id) ?? id, sim.unitPolicies[slot]![id]!]));

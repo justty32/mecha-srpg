@@ -27,12 +27,6 @@ export function ledgerDaily6(s: CampaignState, ctx: OpsCtx): void {
     }
   }
 }
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫
-// 保留既有支出程式，不由 ledgerDaily6 呼叫。
-function retiredFeedExpense(s: CampaignState, ctx: OpsCtx): void {
-  const rt = peekCrew(s);
-  if (rt?.feedDue) { expense(s, ctx, "stock:feed", rt.feedDue, "FeedConsumed"); rt.feedDue = 0; }
-}
 export function cmdPay(s: CampaignState, ctx: OpsCtx, cmd: Command<"pay">): CmdResult {
   const e = s.roster.employment[cmd.account];
   const owed = cmd.account === "debt" ? s.ledger.balances.debt : e?.owed;

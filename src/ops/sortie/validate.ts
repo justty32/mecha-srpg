@@ -17,7 +17,7 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
   const people = new Set<string>(), mechs = new Set<string>();
   for (const unit of sortie.units) {
     const mech = s.mechs[unit.mech];
-    if (!mech || !s.hangar.bays.includes(unit.mech)) return fail("mech-not-in-hangar");
+    if (!mech || !s.hangar.bays.includes(unit.mech) && !s.restraint.slots.includes(unit.mech)) return fail("mech-not-in-hangar");
     if (mechs.has(unit.mech)) return fail("duplicate-mech");
     mechs.add(unit.mech);
     if (s.hangar.dormant.includes(mech.id)) return fail("dormant");
@@ -25,9 +25,16 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
     const frame = ctx.db.get("frame", mech.frame);
     if (!frame) return fail("unknown-frame");
     const seats = ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? []);
-    // TODO(2026-10-24 裁示)：活捕不查馴化、拘束或獸欄；與屍體改裝分開，活捕一律無座位、本能控制。
-    const captured = s.flags[`captured:${mech.id}`] === 1 || ctx.db.all("species").some(sp => sp.capture.frame === frame.id);
+    const beast = s.restraint.beasts[mech.id], captured = beast?.kind === "live";
     if (captured && (Object.values(unit.seats).some(Boolean) || unit.controlMode !== "instinct")) return fail("captured-requires-instinct");
+    if (captured) {
+      if (beast.wear >= 100 || s.flags[`molting:${mech.id}`]) return fail("beast-unavailable");
+      const installed = Object.values(mech.parts).some(p => Object.values(p.components).some(id => {
+        const def = s.inventory.components.find(c => c.id === id)?.def ?? id;
+        return def && ctx.db.get("component", def)?.tags.includes("restraint");
+      }));
+      if (!installed) return fail("missing-restraint");
+    }
     const bond = (s as CrewState).crew?.bonds[mech.id];
     if (frame.cls === "ancient" && (!bond || unit.seats[bond.seat] !== bond.person)) return fail("seat-locked");
     for (const seatId of Object.keys(unit.seats).sort()) {

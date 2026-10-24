@@ -1,7 +1,7 @@
 import type { CampaignEvent, CampaignState } from "./types.ts";
 
 export const EVENT_TYPES = ["DayStart", "DaySummary", "RiftPhase", "NodeBlighted", "NodeReclaimed", "Arrived", "Encounter", "EventOffered", "Chosen",
-  "JobDone", "Tamed", "Molted", "Brooded", "Mutated", "Accompanied", "NodeMastered", "WagePaid", "WageOwed", "InterestPosted", "Posted",
+  "JobDone", "WearWarning", "BrokeLoose", "Sustained", "Stiffened", "Mounted", "MyceliumOvergrown", "Suppressed", "Devoured", "MoltStarted", "Molted", "Brooded", "Mutated", "Accompanied", "NodeMastered", "WagePaid", "WageOwed", "InterestPosted", "Posted",
   "ContractOffered", "ContractAccepted", "ContractDone", "ContractFailed", "ContractCancelled", "ContractExpired", "Hired", "Left", "Died",
   "BattleResolved", "Woken", "Named", "CampaignEnd", "LostMech", "CampaignStarted", "OpsEffectApplied"] as const;
 

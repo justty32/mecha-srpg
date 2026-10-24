@@ -1,0 +1,35 @@
+{
+  "id": "frame/corpse-nestmother",
+  "name": "屍體改裝・巢母",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/insect-nestmother",
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "brood",
+      "name": "育囊",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 1,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/nest-birth",
+    "ability/root-drag"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "corpse"
+  ],
+  "burden": 0
+}

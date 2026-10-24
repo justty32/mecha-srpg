@@ -2,7 +2,8 @@ import { chance } from "../../core/rng.ts";
 import type { Account, CampaignState, Job, JobDef, OpsCtx } from "../state/types.ts";
 import { nextId } from "../state/ids.ts";
 import { isAccount } from "../state/ledger.ts";
-import { instantiatePerson } from "../content/instantiate.ts";
+import { instantiateMech, instantiatePerson } from "../content/instantiate.ts";
+import { beastRules } from "./restraint.ts";
 import { applyOpsEffect } from "../content/opseffect.ts";
 import { finishResearch, researchReady } from "./research.ts";
 import { compareId, employment, expense, fail, ok, peekCrew } from "./shared.ts";
@@ -17,15 +18,30 @@ function partTemplate(s: CampaignState, ctx: OpsCtx, target: string, part?: stri
 }
 export function cmdQueue(s: CampaignState, ctx: OpsCtx, cmd: Command<"queue">): CmdResult {
   const input = cmd.job as Partial<CrewJob>, kind = input.kind, target = input.target;
-  if (!kind || !target || !["repair", "rebuild", "research", "graft", "incubate", "install", "mod"].includes(kind)) return fail("invalid-job");
+  if (!kind || !target || !["repair", "rebuild", "research", "graft", "incubate", "install", "mod", "restrain", "mount", "embalm", "prune"].includes(kind)) return fail("invalid-job");
   if (!Number.isFinite(input.priority ?? 0)) return fail("invalid-priority");
   let needHours = 0, materials: Partial<Record<Account, number>> = {}, canonical = target;
   let slot: string | undefined, recipe: CrewJobDef | undefined;
-  if (kind === "repair" || kind === "rebuild") {
+  if (kind === "restrain" || kind === "mount" || kind === "embalm" || kind === "prune") {
+    const beast = s.restraint.beasts[target], carcass = s.restraint.carcasses.find(c => c.id === target);
+    const cfg = kind === "prune" ? ctx.world.get("beasts", "beasts/mycelium") : beastRules(s, ctx, target);
+    if (!cfg || kind === "restrain" && beast?.kind !== "live" || kind === "embalm" && beast?.kind !== "corpse" || kind === "mount" && !carcass || kind === "prune" && !s.restraint.myceliumRoom) return fail("invalid-beast-job");
+    if (kind === "prune") { canonical = "mycelium"; needHours = cfg.prune.hours; }
+    else {
+      const grade = carcass?.grade ?? ctx.db.require("frame", s.mechs[target]!.frame).grade, mult = cfg.gradeMult[grade];
+      if (!mult) return fail("missing-grade-cost");
+      needHours = cfg[kind].hours * (kind === "mount" ? mult * mult : mult);
+      materials = { "stock:scrap": cfg[kind].scrap * mult };
+      if (kind === "mount") {
+        if (!ctx.db.get("frame", `frame/corpse-${carcass!.species.split("/").at(-1)}`)) return fail("missing-corpse-frame");
+        materials[`stock:core-${grade}`] = 1;
+      }
+    }
+  } else if (kind === "repair" || kind === "rebuild") {
     const mech = s.mechs[target], template = partTemplate(s, ctx, target, input.part), layer = input.layer;
     if (!mech || !template || layer === undefined || !Number.isInteger(layer) || !template.layers[layer] || !mech.parts[template.id]?.layers[layer]) return fail("invalid-repair-target");
     const def = template.layers[layer]!, state = mech.parts[template.id]!.layers[layer]!;
-    const missing = Math.max(0, def.hp - state.hp), rebuild = def.structural && state.hp <= 0;
+    const missing = Math.max(0, (state.maxHp ?? def.hp) - state.hp), rebuild = def.structural && state.hp <= 0;
     if (!missing || rebuild !== (kind === "rebuild")) return fail("invalid-repair-kind");
     const coefficients = ctx.world.all("job").filter(j => j.kind === "repair");
     const config = coefficients.find(j => j.hoursPerHp?.[def.type] !== undefined);
@@ -72,10 +88,25 @@ export function cmdReorder(s: CampaignState, _ctx: OpsCtx, cmd: Command<"reorder
   job.priority = cmd.priority; return ok;
 }
 function finishJob(s: CampaignState, ctx: OpsCtx, job: CrewJob): void {
-  if (job.kind === "research") finishResearch(s, ctx, job.target, job.doneHours);
+  if (job.kind === "restrain") s.restraint.beasts[job.target]!.wear = 0;
+  else if (job.kind === "mount") {
+    const carcass = s.restraint.carcasses.find(c => c.id === job.target)!;
+    const mech = instantiateMech(ctx.db, nextId(s, "mech"), `frame/corpse-${carcass.species.split("/").at(-1)}`);
+    for (const [id, part] of Object.entries(carcass.parts)) if (mech.parts[id]) mech.parts[id]!.layers = structuredClone(part.layers);
+    mech.controlMode = "pilot"; s.mechs[mech.id] = mech; s.inventory.mechs.push(mech.id);
+    s.restraint.slots[carcass.slot] = mech.id;
+    s.restraint.beasts[mech.id] = { mech: mech.id, kind: "corpse", wear: 0, vitality: 0, bond: {} };
+    s.flags[`embalmMonth:${mech.id}`] = s.clock.month + 1;
+    if (s.roster.names[carcass.id]) { s.roster.names[mech.id] = s.roster.names[carcass.id]!.filter(n => n.kind !== "epithet"); delete s.roster.names[carcass.id]; }
+    s.restraint.carcasses = s.restraint.carcasses.filter(c => c.id !== carcass.id);
+    ctx.emit("Mounted", { carcass: carcass.id, mech: mech.id });
+  } else if (job.kind === "embalm") s.flags[`embalmMonth:${job.target}`] = s.clock.month + 1;
+  else if (job.kind === "prune") {
+    const room = s.restraint.myceliumRoom!; room.lastPrune = s.clock.day; room.layers = 0; room.growth = 0;
+  } else if (job.kind === "research") finishResearch(s, ctx, job.target, job.doneHours);
   else if (job.kind === "repair" || job.kind === "rebuild") {
     const part = s.mechs[job.target]?.parts[job.part!], template = partTemplate(s, ctx, job.target, job.part), layer = part?.layers[job.layer!];
-    if (part && template && layer) { layer.hp = template.layers[job.layer!]!.hp; layer.broken = false;
+    if (part && template && layer) { layer.hp = layer.maxHp ?? template.layers[job.layer!]!.hp; layer.broken = false;
       part.broken = template.layers.some((l, i) => l.structural && part.layers[i]!.hp <= 0); }
   } else if (job.kind === "incubate") {
     const def = ctx.world.require("job", job.recipe!), id = nextId(s, "person"), p = instantiatePerson(ctx.db, id, def.person!);
@@ -101,13 +132,15 @@ export function workqueueDaily5(s: CampaignState, ctx: OpsCtx): void {
   const craft = Object.keys(ctx.db.registries.attrs).sort().find(id => id === "craft" || ctx.db.registries.attrs[id]!.tags?.includes("craft"));
   const base = ctx.world.require("job", "job/repair").technicianHours ?? 0;
   for (const id of Object.keys(s.roster.employment).sort()) if (s.roster.employment[id]!.role === "technician") s.techHours += craft ? s.roster.persons[id]?.attrsBase[craft] ?? 0 : base;
+  const owed = Math.min(s.techHours, s.flags.restraintHoursOwed ?? 0);
+  if (owed) { s.techHours -= owed; s.flags.restraintHoursOwed! -= owed; }
   const done = new Set<string>();
   // SPEC-GAP：priority 越小越先；剩餘當日工時不跨日累積。
   for (const job of [...s.jobs].sort((a, b) => a.priority - b.priority || compareId(a.id, b.id)) as CrewJob[]) {
     if (s.techHours <= 0) break;
     if (job.kind === "incubate" && Object.keys(s.roster.persons).length >= s.ship.capacity.berths) continue;
-    if (job.kind !== "research" && job.kind !== "incubate" && !s.mechs[job.target]) continue;
-    // TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫；不套用舊蛻皮鎖。
+    if (job.kind === "mount" ? !s.restraint.carcasses.some(c => c.id === job.target) : !["research", "incubate", "prune"].includes(job.kind) && !s.mechs[job.target]) continue;
+    if (s.flags[`molting:${job.target}`]) continue;
     if (!job.paid) {
       const accounts = Object.keys(job.materials).sort() as Account[];
       if (accounts.some(a => (s.ledger.balances[a] ?? 0) < job.materials[a]!)) continue;

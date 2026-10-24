@@ -5,12 +5,13 @@ import { EVENT_TYPES } from "../state/events.ts";
 import { isAccount } from "../state/ledger.ts";
 import type { WorldKind } from "../state/types.ts";
 import type { WorldDB } from "./worlddb.ts";
+import { keymapErrors } from "./worlddb.ts";
 import { loadWorldDirs, WORLD_KINDS } from "./load.ts";
 import { OPS_REF_ROOTS } from "./cond.ts";
 import { instantiateMech } from "./instantiate.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
-const EFFECT_KEYS = ["ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect"];
+const EFFECT_KEYS = ["ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setNode", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
 const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
   node: ["services", "terrainPool", "tags"], route: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
   "faction-ops": ["territory", "contractKinds", "services", "reputationTiers", "tags"], contract: ["issuerKinds", "gradeRange", "objectives", "onComplete", "onFail", "onCancel"],
@@ -21,6 +22,7 @@ function object(value: unknown): value is Record<string, unknown> { return value
 
 export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   const errors: string[] = [], warnings: string[] = [];
+  for (const def of world.all("keymap")) errors.push(...keymapErrors(def));
   const reference = (value: unknown, at: string, expected?: WorldKind | "terrain" | "frame" | "person" | "effect", warning = false) => {
     if (typeof value !== "string") { errors.push(`${at}: missing reference`); return; }
     const p = parseId(value), kind = expected ?? p?.kind;

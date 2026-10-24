@@ -9,8 +9,6 @@ import { checkLedger, post } from "../state/ledger.ts";
 import type { Account, CampaignState } from "../state/types.ts";
 import { applyName, cmdAccompany, cmdHire, cmdPay, cmdQueue, cmdReorder, cmdWake,
   ledgerDaily6, openSoulNode, recruitsDaily7, soulDaily5, workqueueDaily5 } from "./index.ts";
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫；三個既有測試僅直測保留的舊模組。
-import { cmdFeed, stableDaily5 } from "./stable.ts";
 import { crew, rules } from "./shared.ts";
 
 const { db, world } = loadWorldDirs(["content/base"]);
@@ -22,12 +20,6 @@ function setup() {
 function balance(s: CampaignState, account: Account, value: number): void {
   const ctx = createOpsCtx(s, db, world), ref = eventRef(ctx.emit("Fixture", { account }));
   assert.equal(post(s, ctx, { account, delta: value - (s.ledger.balances[account] ?? 0), reason: "fixture", ref }), true);
-}
-function beast(s: CampaignState, frame = "frame/bio-mite") {
-  const id = `beast-${s.stable.pens.length}`; s.mechs[id] = instantiateMech(db, id, frame);
-  s.inventory.mechs.push(id);
-  const pen = { mech: id, taming: "wild" as "wild" | "taming" | "tamed", tameDays: 0, hunger: 0, bond: {} };
-  s.stable.pens.push(pen); return pen;
 }
 function ancient(s: CampaignState) {
   const id = "ancient-test", by = Object.keys(s.roster.persons).sort()[0]!;
@@ -87,30 +79,6 @@ test("workqueue：結構歸零 rebuild 工時 ×3、材料 ×2", () => {
   assert.equal(s.jobs[0]!.needHours, def.hp * coeff.hoursPerHp![def.type]! * 3);
   assert.equal(s.jobs[0]!.materials[coeff.material![def.type]!], def.hp * coeff.perHp![def.type]! * 2);
 });
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫
-test("stable：每日餵食累 tameDays 至 tamed、飼料只扣一次", () => {
-  const { s, ctx } = setup(), pen = beast(s); balance(s, "stock:feed", 20);
-  for (let i = 0; i < 3; i++) {
-    s.clock = clock(i + 1, world.require("calendar", s.calendar));
-    assert.equal(cmdFeed(s, ctx, { v: "feed", pen: pen.mech, amount: 1 }).ok, true); stableDaily5(s, ctx); ledgerDaily6(s, ctx);
-  }
-  assert.equal(pen.taming, "tamed"); assert.equal(pen.tameDays, 3); assert.equal(pen.hunger, 0); assert.equal(s.ledger.balances["stock:feed"], 17); assert.deepEqual(checkLedger(s), []);
-});
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫
-test("stable：挨餓會升 hunger 並且不累積馴化天數", () => {
-  const { s, ctx } = setup(), pen = beast(s); balance(s, "stock:feed", 0); stableDaily5(s, ctx);
-  assert.equal(pen.hunger, 25); assert.equal(pen.tameDays, 0); assert.equal(s.ledger.balances["stock:feed"], 0);
-});
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫
-test("stable：馴服巢母僅大潮生一隻 D 級幼獸、有容量才生", () => {
-  const { s, ctx } = setup(), pen = beast(s, "frame/bio-nestmother"); pen.taming = "tamed"; balance(s, "stock:feed", 100);
-  stableDaily5(s, ctx); ledgerDaily6(s, ctx); assert.equal(s.stable.pens.length, 1);
-  s.clock = clock(14, world.require("calendar", s.calendar)); stableDaily5(s, ctx); ledgerDaily6(s, ctx);
-  assert.equal(s.stable.pens.length, 2); const child = s.stable.pens[1]!;
-  assert.equal(db.require("frame", s.mechs[child.mech]!.frame).grade, "D"); assert.equal(s.log.filter(e => e.type === "Brooded").length, 1);
-  s.ship.capacity.stablePens = 2; s.clock = clock(28, world.require("calendar", s.calendar)); stableDaily5(s, ctx);
-  assert.equal(s.stable.pens.length, 2);
-});
 test("soul：科研工時與付幣完成後開節點，mastery 為零", () => {
   const { s, ctx } = setup(), id = soul(s), before = structuredClone(s);
   assert.equal(openSoulNode(s, ctx, id, "heart-1").ok, false); assert.deepEqual(s, before);
@@ -142,7 +110,7 @@ test("names：喚成功推三候選＋自填 Prompt，applyName 記名與 Named 
   assert.equal(new Set(s.pendingChoices[0]!.choices.slice(0, 3).map(c => c.text)).size, 3);
   assert.equal(crew(s).bonds[id]!.person, by); assert.equal(s.hangar.dormant.includes(id), false);
   assert.equal(applyName(s, ctx, id, by, "守望者").ok, true);
-  assert.deepEqual(s.roster.names[id], [{ name: "守望者", by, day: s.clock.day }]);
+  assert.deepEqual(s.roster.names[id], [{ name: "守望者", by, day: s.clock.day, kind: "title" }]);
   assert.equal(s.pendingChoices.length, 0); assert.deepEqual(s.log.at(-1)!.payload, { mech: id, by, index: 0 }); assert.equal(s.log.at(-1)!.type, "Named");
 });
 test("recruit：弦月候選決定性，聘金入帳、名冊多一人且 id 可重播", () => {

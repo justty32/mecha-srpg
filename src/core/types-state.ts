@@ -47,7 +47,7 @@ export type PersonState = {
 };
 
 // ---------- 機甲實例（data-model-mech §MechState；怪獸也是 MechState） ----------
-export type LayerState = { hp: number; broken: boolean };
+export type LayerState = { hp: number; broken: boolean; maxHp?: number };
 export type PartState = { layers: LayerState[]; broken: boolean; components: Record<SlotId, Id | null> };
 export type MechState = {
   id: Id; frame: Id; owner: FactionSlot; pos: Cell; facing?: Dir;

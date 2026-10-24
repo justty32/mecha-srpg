@@ -4,7 +4,7 @@ import { GRADES } from "../../core/types-def.ts";
 import type { Cond, NumExpr } from "../../core/types-def.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 
-export const OPS_REF_ROOTS = ["campaign", "rift", "faction", "person", "mech", "node", "calendar", "debt", "ledger", "inventory", "ship", "stable", "contract", "flags"] as const;
+export const OPS_REF_ROOTS = ["campaign", "rift", "faction", "person", "mech", "node", "calendar", "debt", "ledger", "inventory", "ship", "restraint", "contract", "flags"] as const;
 export type OpsScope = { rift?: string; faction?: string; person?: string; mech?: string; node?: string; contract?: string; tags?: string[] };
 export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, scope: OpsScope = {}): EvalCtx {
   const cal = ctx.world.require("calendar", s.calendar);
@@ -19,7 +19,7 @@ export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, 
   const daysToNextSpring = cal.spring.length ? Math.min(...cal.spring.map(day => (day - s.clock.dom + cal.daysPerMonth) % cal.daysPerMonth || cal.daysPerMonth)) : cal.daysPerMonth;
   const roots = {
     campaign: s, calendar: { ...s.clock, daysPerMonth: cal.daysPerMonth, daysToNextSpring }, debt: { balance: debt, principal, ratio: principal > 0 ? debt / principal : 0 },
-    ledger: s.ledger, inventory: s.inventory, ship: s.ship, stable: { ...s.stable, penCount: s.stable.pens.length }, flags: s.flags,
+    ledger: s.ledger, inventory: s.inventory, ship: s.ship, restraint: { ...s.restraint, freeSlots: s.restraint.slots.filter(id => id === null).length, beastCount: Object.keys(s.restraint.beasts).length, beastWear: Math.max(0, ...Object.values(s.restraint.beasts).map(b => b.wear)) }, flags: s.flags,
     rift: rift ? { ...rift, widthIndex: GRADES.indexOf(rift.width) + 1 } : undefined,
     faction: faction ? { ...faction, threatNearby: Object.keys(s.rifts).sort().filter(id => faction.territoryNow.some(n => s.rifts[id]!.zones.includes(n))).length } : undefined,
     person: person ? { ...person, attrs: person.attrsBase, mood: s.roster.employment[person.id]?.mood ?? 0 } : undefined,

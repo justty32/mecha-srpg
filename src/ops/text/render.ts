@@ -1,5 +1,5 @@
 import type { ContentDB } from "../../content/contentdb.ts";
-import type { CampaignEvent, CampaignState, Screen } from "../state/types.ts";
+import type { CampaignEvent, CampaignState, Screen, OpsCommand } from "../state/types.ts";
 import type { WorldDB } from "../content/worlddb.ts";
 import { evalOpsCond } from "../content/cond.ts";
 import { currentRoom, describeRoom } from "./rooms.ts";
@@ -8,38 +8,66 @@ import { entityName } from "./parse.ts";
 
 export function render(state: CampaignState, events: CampaignEvent[], world: WorldDB, db: ContentDB): Screen {
   const room = describeRoom(currentRoom(state), state, world, db);
+  const usedKeys = new Set<string>();
+  const action = (label: string, cmd: OpsCommand, disabled?: string): Screen["actions"][number] => {
+    const specific = cmd.v === "go" ? `go:${cmd.room}` : cmd.v === "choose" ? `choose:${cmd.choice}` : cmd.v;
+    const context = state.pendingChoices.length ? "prompt" : "room";
+    const bindings = world.all("keymap").flatMap(k => k.bindings).filter(b => (b.context ?? (b.action.startsWith("choose:") ? "prompt" : "room")) === context);
+    const binding = bindings.find(b => b.action === specific) ?? bindings.find(b => b.action === cmd.v);
+    const key = binding?.keys.find(k => !usedKeys.has(k.toLowerCase()));
+    if (key) usedKeys.add(key.toLowerCase());
+    const group = cmd.v === "go" ? "rooms" : cmd.v === "choose" ? "choices" : ["save", "help"].includes(cmd.v) ? "system" : room.id;
+    return { id: `${specific}:${JSON.stringify(cmd)}`, label, cmd, group, ...(key ? { key } : {}), tooltip: `${label}${key ? `（${key}）` : ""}${disabled ? `：${disabled}` : ""}`, ...(disabled ? { disabled } : {}) };
+  };
   const screen: Screen = { room, log: events.map(event => eventLog(event, state, world)), panels: {
-    ledger: ["cash", "debt", "stock:feed", "stock:fuel"].map(account => ({ account, balance: state.ledger.balances[account as keyof typeof state.ledger.balances] ?? 0 })),
+    ledger: ["cash", "debt", "stock:flesh", "stock:fuel"].map(account => ({ account, balance: state.ledger.balances[account as keyof typeof state.ledger.balances] ?? 0 })),
     roster: Object.keys(state.roster.persons).sort().map(id => ({ id, name: entityName(id, state, world),
       role: state.roster.employment[id]?.role ?? "", owed: state.roster.employment[id]?.owed ?? 0 })),
     rifts: Object.keys(state.rifts).sort().map(id => ({ id, node: state.rifts[id]!.node, phase: state.rifts[id]!.phase, width: state.rifts[id]!.width })),
     queue: [...state.jobs].sort((a, b) => a.priority - b.priority || a.id.localeCompare(b.id)).map(j => ({ id: j.id, kind: j.kind, target: j.target, done: j.doneHours, need: j.needHours, priority: j.priority })),
     ship: [{ at: state.ship.at, destination: state.ship.route?.to ?? null, daysLeft: state.ship.route?.daysLeft ?? 0, fuel: state.ship.fuel.cur, hull: state.ship.hull.cur }],
-  }, actions: [{ label: "環顧四周", cmd: { v: "look" } }, { label: "存檔", cmd: { v: "save" } }, { label: "指令說明", cmd: { v: "help" } }] };
+  }, actions: [action("環顧四周", { v: "look" }), action("存檔", { v: "save" }), action("指令說明", { v: "help" })] };
   const pending = state.pendingChoices[0];
   if (pending) {
     screen.prompt = { text: pending.text, choices: pending.choices.map((choice, i) => {
       const allowed = !choice.requires || evalOpsCond(state, { world, db }, choice.requires, { person: pending.person });
-      if (allowed) screen.actions.push({ label: choice.text, cmd: { v: "choose", choice: i + 1 } });
+      if (allowed) screen.actions.push(action(choice.text, { v: "choose", choice: i + 1 }));
       return { n: i + 1, text: choice.text, ...(!allowed ? { disabled: "條件尚未成立" } : {}) };
     }) };
     return screen;
   }
   // SPEC-GAP：pendingBattle 是 Sortie 而非 ScenarioDef；handoff 留給階段 3 產生戰場。
   if (state.pendingBattle) return screen;
-  for (const exit of room.exits) screen.actions.push({ label: `走到${describeRoom(exit, state, world, db).title}`, cmd: { v: "go", room: exit } });
+  for (const exit of room.exits) screen.actions.push(action(`走到${describeRoom(exit, state, world, db).title}`, { v: "go", room: exit }));
   const occupants = state.ship.rooms[room.id]?.persons ?? [];
-  for (const id of [...occupants].sort()) if (state.roster.persons[id]) screen.actions.push({ label: `與${entityName(id, state, world)}談話`, cmd: { v: "talk", who: id } });
+  for (const id of [...occupants].sort()) if (state.roster.persons[id]) screen.actions.push(action(`與${entityName(id, state, world)}談話`, { v: "talk", who: id }));
   if (room.id === "bridge") {
-    screen.actions.push({ label: "查看世界圖", cmd: { v: "map" } }, { label: "查看契約板", cmd: { v: "board" } });
-    for (const id of Object.keys(state.contracts).sort()) if (["offered", "active", "stage"].includes(state.contracts[id]!.status)) screen.actions.push({ label: `查看契約 ${id}`, cmd: { v: "board", contract: id } });
+    screen.actions.push(action("查看世界圖", { v: "map" }), action("查看契約板", { v: "board" }));
+    for (const id of Object.keys(state.contracts).sort()) if (["offered", "active", "stage"].includes(state.contracts[id]!.status)) screen.actions.push(action(`查看契約 ${id}`, { v: "board", contract: id }));
   }
   if (room.id === "hangar") for (const id of [...state.hangar.bays, ...state.hangar.dormant].filter((id): id is string => id !== null).sort()) {
-    if (state.mechs[id] && !screen.actions.some(a => a.cmd.v === "look" && a.cmd.target === id)) screen.actions.push({ label: `查看${entityName(id, state, world)}`, cmd: { v: "look", target: id } });
+    if (state.mechs[id] && !screen.actions.some(a => a.cmd.v === "look" && a.cmd.target === id)) screen.actions.push(action(`查看${entityName(id, state, world)}`, { v: "look", target: id }));
   }
-  if (room.id === "stable" && (state.ledger.balances["stock:feed"] ?? 0) > 0) for (const pen of [...state.stable.pens].sort((a, b) => a.mech.localeCompare(b.mech))) {
-    if (state.mechs[pen.mech] && pen.hunger > 0) screen.actions.push({ label: `餵${entityName(pen.mech, state, world)}`, cmd: { v: "feed", pen: pen.mech, amount: 1 } });
+  if (room.id === "restraint") {
+    screen.panels.beasts = Object.keys(state.restraint.beasts).sort().map(id => {
+      const beast = state.restraint.beasts[id]!;
+      return { id, name: entityName(id, state, world), kind: beast.kind, wear: beast.wear, vitality: beast.vitality };
+    });
+    screen.panels.names = Object.keys(state.roster.names).sort().flatMap(id => state.roster.names[id]!.map(n => ({ mech: id, ...n })));
+    for (const id of Object.keys(state.restraint.beasts).sort()) {
+      const beast = state.restraint.beasts[id]!, mech = state.mechs[id]; if (!mech) continue;
+      const frame = db.require("frame", mech.frame), species = db.all("species").find(sp => sp.capture.frame === frame.id);
+      const cfg = species && world.get("beasts", `beasts/${species.family}`);
+      if (beast.kind === "live" && cfg?.sustain.kind === "devour") {
+        const amount = cfg.sustain.amount[frame.grade]!;
+        const disabled = state.flags[`devourDue:${id}`] === beast.sustainDue ? "本期已投屍" : (state.ledger.balances[cfg.sustain.stock] ?? 0) < amount ? "屍體材料不足" : undefined;
+        screen.actions.push(action(`投屍給${entityName(id, state, world)}`, { v: "devour", beast: id, amount }, disabled));
+      }
+      const kind = beast.kind === "live" ? "restrain" : "embalm";
+      screen.actions.push(action(beast.kind === "live" ? "維護拘束器" : "防腐", { v: "queue", job: { kind, target: id } }, state.jobs.some(j => j.kind === kind && j.target === id) ? "已排入工時佇列" : undefined));
+    }
+    for (const carcass of state.restraint.carcasses) screen.actions.push(action("改裝整屍", { v: "queue", job: { kind: "mount", target: carcass.id } }, state.jobs.some(j => j.kind === "mount" && j.target === carcass.id) ? "已排入工時佇列" : undefined));
   }
-  screen.actions.push({ label: state.ship.route ? "航行一天" : "等待一天", cmd: { v: "wait", days: 1 } });
+  screen.actions.push(action(state.ship.route ? "航行一天" : "等待一天", { v: "wait", days: 1 }));
   return screen;
 }

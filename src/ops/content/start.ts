@@ -26,7 +26,7 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
     nodes: {}, rifts: {}, factions: {}, ship: { frame: ship.id, at: node.id, rooms: Object.fromEntries(ship.rooms.map(room => [room, { persons: [], items: [] }])),
       capacity: { ...ship.capacity }, fuel: pools.fuel!, hull: pools.hull!, upgrades: [] },
     roster: { persons: {}, employment: {}, trust: {}, mastery: {}, names: {}, dead: [] }, hangar: { bays: Array.from({ length: ship.capacity.mechBays }, () => null), dormant: [] },
-    stable: { pens: [] }, mechs: {}, inventory: { components: [], mechs: [], relics: [], tickets: { airstrike: start.tickets.airstrike ?? 0, restraint: start.tickets.restraint ?? 0 } },
+    restraint: { slots: Array(ship.capacity.restraintSlots).fill(null), beasts: {}, carcasses: [] }, mechs: {}, inventory: { components: [], mechs: [], relics: [], tickets: { airstrike: start.tickets.airstrike ?? 0, restraint: start.tickets.restraint ?? 0 } },
     ledger: { entries: [], balances: { cash: 0, debt: 0 } }, research: {}, jobs: [], contracts: {}, pendingChoices: [], pendingTicks: 0,
     lore: [], flags: Object.fromEntries(start.flags.map(flag => [flag, 1])), log: [], idCounter: 0, effectCounter: 0, calendar: calendar.id, techHours: 0, pendingContracts: [], pendingEvents: [] };
   for (const def of world.all("node")) s.nodes[def.id] = { def: def.id, wreckage: [], flags: [], ...(def.id === node.id ? { lastVisit: start.day } : {}) };

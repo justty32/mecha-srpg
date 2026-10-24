@@ -18,7 +18,7 @@ export const VERBS = [
   { v: "assign", zh: "派", grammar: "人物 [機甲 [座位]] [職務 role]" },
   { v: "queue", zh: "排", grammar: "工作 JSON，或 repair|research|… 目標 [部位]" },
   { v: "reorder", zh: "序", grammar: "工作 優先序" },
-  { v: "feed", zh: "餵", grammar: "獸欄機甲 數量" },
+  { v: "devour", zh: "投", grammar: "拘束艙機甲 數量" },
   { v: "accompany", zh: "陪", grammar: "機魂 陪伴者 [節點]" },
   { v: "trade", zh: "買賣", grammar: "市場 [買 物品…] [賣 物品…]" },
   { v: "hire", zh: "招", grammar: "候選人 id" },

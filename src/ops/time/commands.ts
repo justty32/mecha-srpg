@@ -83,7 +83,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
     case "fire": return crew.cmdFire(s, ctx, cmd);
     case "wake": return crew.cmdWake(s, ctx, cmd);
     case "pay": return crew.cmdPay(s, ctx, cmd);
-    case "feed": return fail("feeding-disabled");
+    case "devour": return crew.cmdDevour(s, ctx, cmd);
     case "go": case "look": case "talk": return textCommand(s, ctx, cmd);
     case "sortie": {
       if (!opts.battle) return fail("no-battle-runner");

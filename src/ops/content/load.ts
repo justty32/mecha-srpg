@@ -3,13 +3,13 @@ import { loadPacks, readPackDir } from "../../content/loader.ts";
 import type { LoadIssue, PackFiles } from "../../content/loader.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDefByKind, WorldKind } from "../state/types.ts";
-import { createWorldDB } from "./worlddb.ts";
+import { createWorldDB, keymapErrors } from "./worlddb.ts";
 import type { WorldDB, WorldTables } from "./worlddb.ts";
 
 export const WORLD_FOLDERS = { nodes: "node", routes: "route", rifts: "rift", encounters: "encounter", "factions-ops": "faction-ops",
   contracts: "contract", actions: "action", markets: "market", services: "service", "recruit-pools": "recruit", backgrounds: "background",
-  research: "research", jobs: "job", names: "names", events: "event", dialogues: "dialogue", rooms: "room", templates: "templates", "campaign-start": "start" } as const;
-export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ferry", "ship", ...Object.values(WORLD_FOLDERS)];
+  beasts: "beasts", research: "research", jobs: "job", names: "names", events: "event", dialogues: "dialogue", rooms: "room", templates: "templates", "campaign-start": "start" } as const;
+export const WORLD_KINDS: readonly WorldKind[] = ["calendar", "ferry", "ship", "keymap", ...Object.values(WORLD_FOLDERS)];
 export type WorldLoadResult = { db: ContentDB; world: WorldDB; errors: LoadIssue[]; warnings: LoadIssue[] };
 
 function normalize(value: unknown, pack: string, field = ""): unknown {
@@ -35,7 +35,7 @@ export function loadWorldPacks(packs: PackFiles[]): WorldLoadResult {
       const file = `${source.root}/${relative}`;
       const parts = relative.slice(6).split("/");
       const single = parts.length === 1 ? parts[0]!.replace(/\.json$/, "") : undefined;
-      const kind = single && ["calendar", "ferry", "ship"].includes(single) ? single as WorldKind
+      const kind = single === "keymap-ops" ? "keymap" : single && ["calendar", "ferry", "ship"].includes(single) ? single as WorldKind
         : parts.length === 2 ? WORLD_FOLDERS[parts[0] as keyof typeof WORLD_FOLDERS] : undefined;
       if (!kind) { errors.push({ file, path: "$", message: "unknown world path" }); continue; }
       const value = source.files[relative];
@@ -54,6 +54,7 @@ export function loadWorldPacks(packs: PackFiles[]): WorldLoadResult {
       const parsed = typeof raw.id === "string" ? parseId(raw.id) : null;
       if (!parsed || parsed.kind !== kind || !single && parsed.name !== basename) { errors.push({ file, path: "$.id", message: "id differs from world kind/filename" }); continue; }
       const normalized = normalize(raw, pack.id) as WorldDefByKind[typeof kind];
+      if (kind === "keymap") for (const message of keymapErrors(normalized as WorldDefByKind["keymap"])) errors.push({ file, path: "$", message });
       const table = (tables as Partial<Record<WorldKind, Record<string, WorldDefByKind[WorldKind]>>>)[kind] ??= {};
       if (Object.hasOwn(table, normalized.id)) warnings.push({ file, path: "$.id", message: `overrides ${normalized.id}` });
       table[normalized.id] = normalized;

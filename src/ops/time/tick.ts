@@ -4,7 +4,7 @@ import { clock } from "../state/clock.ts";
 import { evalOpsCond, evalOpsNum } from "../content/cond.ts";
 import { worldDaily2, travelDaily3, marketsDaily7 } from "../world/index.ts";
 import { contractsDaily2, contractsDaily7 } from "../contracts/index.ts";
-import { shipDaily5, ledgerDaily6, recruitsDaily7, rosterDaily7 } from "../crew/index.ts";
+import { restraintDaily5, shipDaily5, ledgerDaily6, recruitsDaily7, rosterDaily7 } from "../crew/index.ts";
 
 // SPEC-GAP：用可序列化續點區分「當日後半」與尚未開始的 pendingTicks。
 export type TimeState = CampaignState & { time?: { resume: 5 } };
@@ -33,12 +33,13 @@ function eventsDaily4(s: CampaignState, ctx: OpsCtx): void {
 export function dailySummary(s: CampaignState, ctx: OpsCtx) {
   const bays = [...new Set(s.hangar.bays.filter((id): id is string => id !== null))];
   return { cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, persons: Object.keys(s.roster.persons).length,
-    beasts: bays.filter(id => s.mechs[id] && ctx.db.require("frame", s.mechs[id]!.frame).cls === "bio").length,
+    beasts: Object.keys(s.restraint.beasts).length,
     blighted: Object.values(s.nodes).filter(n => n.blight).length,
     rifts: Object.values(s.rifts).filter(r => r.phase !== "closed").length };
 }
 function finishDay(s: TimeState, ctx: TickCtx): void {
-  shipDaily5(s, stageCtx(ctx, 5)); // 活捕裁示：不接任何獸欄、餵食函式。
+  shipDaily5(s, stageCtx(ctx, 5));
+  restraintDaily5(s, stageCtx(ctx, 5));
   ledgerDaily6(s, stageCtx(ctx, 6));
   const seventh = stageCtx(ctx, 7);
   contractsDaily7(s, seventh); marketsDaily7(s, seventh); recruitsDaily7(s, seventh); rosterDaily7(s, seventh);

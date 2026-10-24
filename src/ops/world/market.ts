@@ -74,7 +74,7 @@ export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand,
     const physical = ["component", "frame"].includes(listing.kind);
     if (!physical && (!isAccount(listing.item.def) || !listing.item.def.startsWith("stock:"))) return { ok: false, error: "unsupported-item" };
     if (physical && !buy) {
-      if ((!component && !mech) || physicalSold.has(id) || component?.boundTo || mech && (!s.inventory.mechs.includes(id) || Object.values(mech.seats).some(Boolean) || s.jobs.some(j => j.target === id) || s.stable.pens.some(p => p.mech === id))) return { ok: false, error: "item-unavailable" };
+      if ((!component && !mech) || physicalSold.has(id) || component?.boundTo || mech && (!s.inventory.mechs.includes(id) || Object.values(mech.seats).some(Boolean) || s.jobs.some(j => j.target === id) || s.restraint.slots.includes(id))) return { ok: false, error: "item-unavailable" };
       physicalSold.add(id);
     }
     // SPEC-GAP：有身分的實物不在存量帳；以零數量 stock:inventory 對帳，實體仍只存 Inventory。

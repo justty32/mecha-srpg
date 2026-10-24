@@ -5,6 +5,7 @@ import { GRADES } from "../../core/types-def.ts";
 import { chance, nextInt, nextU32, pickWeighted } from "../../core/rng.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import { evalOpsNum } from "../content/cond.ts";
+import { instantiatePools } from "../content/instantiate.ts";
 import type { CampaignState, EnemySnapshot, OpsCtx, Sortie } from "../state/types.ts";
 
 export type SortieScenario = DynamicScenario & { ops: { map: MapDef; unitIds: string[] } };
@@ -76,12 +77,14 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
     const mech = s.mechs[unit.mech]!, frame = ctx.db.require("frame", mech.frame);
     const seats = ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? []);
     const spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [] };
-    // TODO(2026-10-24 裁示)：活捕不造怪獸人物；轉回 species 出戰才能取得 core 的 instinct 與行動池。
+    // 活捕以 species 的本能控制與行動池出戰，磨損只提高本場起點。
     const species = ctx.db.all("species").find(sp => sp.capture.frame === frame.id);
     if (unit.controlMode === "instinct" && species) {
       const monster = ctx.db.all("monster").find(m => m.species === species.id && m.grade === frame.grade);
       if (!monster) throw new Error(`missing captured monster: ${frame.id}`);
-      return { monster: monster.id, at: "zone" };
+      const initial = instantiatePools(species.pools, species.baseAttrsByGrade[monster.grade] ?? {}, species.tags).instinct?.cur ?? 0;
+      const wear = s.restraint.beasts[mech.id]?.wear ?? 0;
+      return { monster: monster.id, at: "zone", pools: { instinct: initial + Math.max(0, wear - 50) / 2 } };
     }
     for (const seat of seats) {
       const pid = unit.seats[seat.id]; if (!pid) continue;
@@ -89,7 +92,7 @@ export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie):
       const role = ctx.db.require("person", p.def).kind === "soul" ? "soul" : "pilot";
       p.seat = { mech: mech.id, role: seat.accepts.includes(role) ? role : "passenger" };
       if ((s.roster.employment[pid]?.mood ?? 0) < 0) { p.morale = "shaken"; inject(s, ctx, p, "effect/morale-shaken", sortie.id); }
-      // TODO(2026-10-24 裁示)：不做 hunger → instinct、bond → burdenLimit 注入。
+      // SPEC-GAP：活捕按本線契約無人物座位，bond 只存營運資料，沒有 burdenLimit 注入目標。
       for (const entry of sortie.injected) if (entry.target === "person" ? entry.id === pid : entry.id === mech.id) inject(s, ctx, p, entry.effect, sortie.id);
       const original = ctx.db.require("person", p.def);
       if ("tree" in original.growth) for (const n of ctx.db.require("soultree", original.growth.tree).nodes) {

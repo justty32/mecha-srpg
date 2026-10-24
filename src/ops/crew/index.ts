@@ -16,10 +16,11 @@ export { recruitsDaily7, cmdHire, cmdFire } from "./recruit.ts";
 export { rosterDaily7, rosterReturn, registerDeath, prepareGrowth } from "./roster.ts";
 export { workqueueDaily5, cmdQueue, cmdReorder } from "./workqueue.ts";
 export { hangarDaily5, cmdAssign } from "./hangar.ts";
-// TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫；不匯出 stableDaily5／cmdFeed。
 export { soulDaily5, openSoulNode, cmdAccompany } from "./soul.ts";
 export { medbayDaily5 } from "./medbay.ts";
 export { cmdWake, applyName } from "./names.ts";
 export type { NamingPrompt } from "./names.ts";
 export type { CmdResult, CrewState, CrewRuntime, CrewRules, Candidate } from "./shared.ts";
 export type { CrewJob, CrewJobDef } from "./workqueue.ts";
+
+export { restraintDaily5, cmdDevour } from "./restraint.ts";

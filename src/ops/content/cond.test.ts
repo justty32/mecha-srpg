@@ -16,7 +16,7 @@ test("cond：core 表達式與營運 ref 根共同求值", () => {
   assert.equal(evalOpsNum(s, ctx, { ref: "calendar.daysToNextSpring" }), 14);
   assert.equal(evalOpsNum(s, ctx, { ref: "debt.ratio" }), 1);
   assert.equal(evalOpsNum(s, ctx, { ref: "flags.absent" }), 0);
-  assert.equal(evalOpsCond(s, ctx, { all: [{ tag: "opening-funeral" }, { cmp: { a: { ref: "stable.penCount" }, op: "==", b: 0 } }] }), true);
+  assert.equal(evalOpsCond(s, ctx, { all: [{ tag: "opening-funeral" }, { cmp: { a: { ref: "restraint.beastCount" }, op: "==", b: 0 } }] }), true);
   assert.equal(evalOpsCond(s, ctx, { cmp: { a: { ref: "campaign.pressure" }, op: ">", b: 0 } }), false);
   const person = Object.keys(s.roster.persons).sort()[0]!;
   assert.equal(evalOpsNum(s, ctx, { ref: "person.level" }, { person }), 1);
@@ -33,7 +33,7 @@ test("opseffect：帳本、聲望、旗標、心情與工時", () => {
   assert.ok(Object.values(s.roster.employment).every(e => e.mood === -3));
   assert.deepEqual(checkLedger(s), []);
   const before = structuredClone(s);
-  assert.equal(applyOpsEffect(s, ctx, { ledger: { account: "stock:feed", delta: -100, reason: "feed" } }), false);
+  assert.equal(applyOpsEffect(s, ctx, { ledger: { account: "stock:flesh", delta: -100, reason: "devour" } }), false);
   assert.deepEqual(s, before);
 });
 test("opseffect：節點、裂縫、命名、核心效果與延後生成佇列", () => {

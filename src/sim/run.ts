@@ -99,7 +99,7 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
             morale: state.morale, will: state.will, attrsBase: state.attrsBase, xp: state.xp, level: state.level }) }
           : { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
       });
-      units.push({ id, owner: slot, pos, persons,
+      units.push({ id, owner: slot, pos, persons, ...(spawn.pools ? { pools: structuredClone(spawn.pools) } : {}),
         ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade } } : { frame: spawn.mech! }) });
       if (monster) {
         const species = db.require("species", monster.species);

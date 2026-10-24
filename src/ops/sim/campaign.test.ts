@@ -8,9 +8,9 @@ test("idle 12 潮月：每天不變量全空", () => {
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
   assert.equal(days, 12 * 28); assert.equal(result.summary.length, 12);
   // 同一條測試也確認檢查器確實會擋錯帳、斷引用與 mastery 越界。
-  s.ledger.balances.cash++; s.stable.pens.push({ mech: "missing", taming: "wild", tameDays: 0, hunger: 0, bond: {} });
+  s.ledger.balances.cash++; s.restraint.beasts["missing"] = { mech: "missing", kind: "live", wear: 0, vitality: 100, bond: {} };
   s.roster.mastery.bad = { node: 2 }; const errors = checkInvariants(s);
-  assert(errors.some(e => e.includes("balance mismatch"))); assert(errors.some(e => e.includes("missing pen"))); assert(errors.some(e => e.includes("mastery")));
+  assert(errors.some(e => e.includes("balance mismatch"))); assert(errors.some(e => e.includes("missing beast"))); assert(errors.some(e => e.includes("mastery")));
 });
 test("greedy 加不打戰鬥的假 runner 跑 6 潮月", () => {
   const { ctx } = fixture(); let calls = 0;

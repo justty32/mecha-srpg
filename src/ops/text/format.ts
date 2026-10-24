@@ -19,7 +19,7 @@ export function formatCommand(cmd: OpsCommand, _state: CampaignState, _world: Wo
     case "assign": args = `${q(cmd.person)}${cmd.seat ? ` ${q(cmd.seat.mech)} ${q(cmd.seat.seat)}` : ""}${cmd.role === undefined ? "" : ` role ${q(cmd.role)}`}`; break;
     case "queue": args = JSON.stringify(cmd.job); break;
     case "reorder": args = `${q(cmd.job)} ${cmd.priority}`; break;
-    case "feed": args = `${q(cmd.pen)} ${cmd.amount}`; break;
+    case "devour": args = `${q(cmd.beast)} ${cmd.amount}`; break;
     case "accompany": args = `${q(cmd.soul)} ${q(cmd.by)}${cmd.node === undefined ? "" : ` ${q(cmd.node)}`}`; break;
     case "trade": args = `${q(cmd.market)}${cmd.buy === undefined ? "" : ` buy ${list(cmd.buy)}`}${cmd.sell === undefined ? "" : ` sell ${list(cmd.sell)}`}`; break;
     case "hire": args = q(cmd.candidate); break;

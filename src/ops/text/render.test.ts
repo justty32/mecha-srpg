@@ -14,8 +14,8 @@ test("render：newCampaign 開局 Screen 完整、可 JSON 化且無副作用", 
 });
 test("render：每個 action 都可 format→parse 恆等，prompt 使用第一筆並禁用不符條件選項", () => {
   const { state, db, world } = fixture();
-  state.stable.pens.push({ mech: "mech-8", taming: "wild", tameDays: 0, hunger: 60, bond: {} });
-  for (const room of ["bridge", "hangar", "stable", "galley", "medbay", "cargo"]) {
+  state.restraint.beasts["mech-8"] = { mech: "mech-8", kind: "live", wear: 60, vitality: 100, bond: {} };
+  for (const room of ["bridge", "hangar", "restraint", "galley", "medbay", "cargo"]) {
     state.text!.room = room;
     for (const action of render(state, [], world, db).actions) assert.deepEqual(parse(formatCommand(action.cmd, state, world), state, world), action.cmd);
   }

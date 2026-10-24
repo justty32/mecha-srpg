@@ -9,6 +9,9 @@ import { isAccount, post } from "../state/ledger.ts";
 import { tallyHeads, settleContract } from "../contracts/index.ts";
 import { onBattleRift, nextSpring } from "../world/index.ts";
 import { registerDeath, rosterReturn } from "../crew/index.ts";
+import { admitBeast, beastRules } from "../crew/restraint.ts";
+import { offerNickname } from "../crew/names.ts";
+import { beastSpecies } from "../content/opseffect.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
 export type SortieBattleResult = BattleResult;
@@ -26,12 +29,12 @@ function persistPools(before: Record<string, PoolState>, after: Record<string, P
   }
   return result;
 }
-function mechAfter(ctx: OpsCtx, before: MechState, after: MechState): MechState {
+function mechAfter(s: CampaignState, ctx: OpsCtx, before: MechState, after: MechState): MechState {
   const mech = structuredClone(after), frame = ctx.db.require("frame", before.frame);
   mech.id = before.id; mech.frame = before.frame; mech.owner = before.owner;
   const decls = [...frame.pools];
   for (const part of Object.keys(before.parts).sort()) for (const slot of Object.keys(before.parts[part]!.components).sort()) {
-    const id = before.parts[part]!.components[slot]; if (id) decls.push(...ctx.db.require("component", id).pools);
+    const id = before.parts[part]!.components[slot]; if (id) decls.push(...ctx.db.require("component", s.inventory.components.find(c => c.id === id)?.def ?? id).pools);
   }
   mech.pools = persistPools(before.pools, after.pools, decls, frame.baseAttrs);
   mech.contribs = structuredClone(before.contribs);
@@ -51,6 +54,7 @@ function detachMech(s: CampaignState, id: string): void {
   s.hangar.bays = s.hangar.bays.map(m => m === id ? null : m);
   s.hangar.dormant = s.hangar.dormant.filter(m => m !== id);
   s.inventory.mechs = s.inventory.mechs.filter(m => m !== id);
+  s.restraint.slots = s.restraint.slots.map(m => m === id ? null : m); delete s.restraint.beasts[id];
   for (const pid of Object.keys(s.roster.persons).sort()) if (s.roster.persons[pid]!.seat?.mech === id) {
     delete s.roster.persons[pid]!.seat;
     if (s.roster.employment[pid]) delete s.roster.employment[pid]!.seat;
@@ -60,9 +64,9 @@ function stash(s: CampaignState, sortie: Sortie, bundle: LootBundle): void {
   s.nodes[sortie.node]!.wreckage.push({ ...bundle, day: s.clock.day });
 }
 function cargoUsed(s: CampaignState): number {
-  // SPEC-GAP：cargo 未定重量，實物每件一格、材料每單位一格；不把燃料／飼料船池再算一次。
+  // SPEC-GAP：cargo 未定重量，實物每件一格、材料每單位一格；燃料由船池計。
   return s.inventory.components.length + s.inventory.relics.length + Object.keys(s.ledger.balances).sort()
-    .filter(key => key.startsWith("stock:") && key !== "stock:fuel" && key !== "stock:feed")
+    .filter(key => key.startsWith("stock:") && key !== "stock:fuel")
     .reduce((sum, key) => sum + s.ledger.balances[key as keyof typeof s.ledger.balances]!, 0);
 }
 function componentLoot(s: CampaignState, ctx: OpsCtx, sortie: Sortie, items: ComponentInstance[]): void {
@@ -81,12 +85,13 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   const ownId = (id: string) => ordered.find(u => u.mech === id)?.mech ?? (/^player-\d+$/.test(id) ? ordered[Number(id.slice(7))]?.mech : undefined);
   const enemy = result.units.filter(u => !ownId(u.id));
   const personalIds = new Set(ordered.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)));
+  const deferredLoot = new Set<string>();
 
   // 一、機體：活著／撤退現況寫回，古代死亡休眠，其餘殘骸與流失。
   for (const entry of [...result.units].sort((a, b) => a.id < b.id ? -1 : 1)) {
     const id = ownId(entry.id), before = id ? s.mechs[id] : undefined;
     if (before) {
-      const mech = mechAfter(ctx, before, entry.state); s.mechs[before.id] = mech;
+      const mech = mechAfter(s, ctx, before, entry.state); s.mechs[before.id] = mech;
       if (entry.status === "dead" && ctx.db.require("frame", before.frame).cls === "ancient") {
         if (!s.hangar.dormant.includes(before.id)) s.hangar.dormant.push(before.id);
         s.flags[`grudge:${before.id}`] = 1; mech.controlMode = "none";
@@ -108,15 +113,38 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
         for (const pid of personalIds) if (s.roster.persons[pid]?.seat?.mech === before.id) delete s.roster.persons[pid]!.seat;
       }
     } else if (entry.status === "captured" && entry.state.owner === "player") {
-      // TODO(2026-10-24 裁示)：活捕進機庫，不建 PenState；滿位留節點殘骸，仍保存 mechs 實體供回收。
-      const mech = structuredClone(entry.state), species = ctx.db.get("species", mech.frame);
+      const mech = structuredClone(entry.state), species = beastSpecies(ctx, mech.frame);
       mech.id = nextId(s, "mech"); mech.frame = species?.capture.frame ?? mech.frame;
       mech.seats = {}; mech.controlMode = "instinct"; mech.owner = "player";
       for (const pool of Object.keys(mech.pools).sort()) mech.pools[pool] = cleanPool(mech.pools[pool]!);
       s.mechs[mech.id] = mech; s.flags[`captured:${mech.id}`] = 1;
-      const bay = s.hangar.bays.indexOf(null);
-      if (bay >= 0) s.hangar.bays[bay] = mech.id;
-      else stash(s, sortie, { components: [], materials: {}, mechs: [mech.id] });
+      // SPEC-GAP：BattleResult 不保留 monster id，缺原始 id 時只沿用同族同級唯一個體的二名。
+      const candidates = ctx.db.all("monster").filter(m => m.species === species?.id && m.grade === ctx.db.require("frame", mech.frame).grade);
+      const monster = ctx.db.get("monster", entry.state.frame) ?? (candidates.length === 1 ? candidates[0] : undefined);
+      if (!admitBeast(s, ctx, mech, monster?.epithet)) stash(s, sortie, { components: [], materials: {}, mechs: [mech.id] });
+    } else if (entry.status === "dead" && !id) {
+      const species = beastSpecies(ctx, entry.state.frame), cfg = species && ctx.world.get("beasts", `beasts/${species.family}`);
+      if (species && cfg && !deferredLoot.has(entry.id)) {
+        deferredLoot.add(entry.id);
+        const loot: LootBundle = { components: [], materials: {} };
+        for (const item of result.loot.filter(l => l.fromUnit === entry.id)) {
+          for (const def of [...item.components].sort()) {
+            const part = Object.values(entry.state.parts).find(p => Object.values(p.components).includes(def));
+            loot.components.push({ id: nextId(s, "component"), def, origin: "loot", ...(part ? { layerHp: Math.min(...part.layers.map(l => l.hp)) } : {}) });
+          }
+          for (const [key, amount] of Object.entries(item.materials)) {
+            const account = key.startsWith("stock:") ? key : `stock:${key}`;
+            if (!isAccount(account) || !Number.isFinite(amount) || amount < 0) throw new Error(`invalid loot material: ${key}`);
+            loot.materials[account] = (loot.materials[account] ?? 0) + amount;
+          }
+        }
+        const grade = ctx.db.get("monster", entry.state.frame)?.grade ?? ctx.db.require("frame", species.capture.frame).grade;
+        const carcass = { id: nextId(s, "carcass"), species: species.id, grade, parts: structuredClone(entry.state.parts), decayPerDay: cfg.decay, slot: -1 };
+        s.pendingChoices.push({ text: `${species.name} 的屍體如何處理？`, choices: [
+          { text: "拆", effects: [{ salvage: { node: sortie.node, loot, carcass, keep: false } }] },
+          { text: "留整屍", requires: { cmp: { a: { ref: "restraint.freeSlots" }, op: ">", b: 0 } }, effects: [{ salvage: { node: sortie.node, loot, carcass, keep: true } }] },
+        ] });
+      }
     }
   }
   // 二、人員：保留舊傷與成長；死亡由 crew 處理認主、全團 mood 與 boundTo。
@@ -128,8 +156,15 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
     if (entry.status === "dead" || p.pools.hp?.cur === 0) registerDeath(s, ctx, entry.id, "battle");
   }
   rosterReturn(s, ctx);
+  for (const unit of ordered) {
+    const beast = s.restraint.beasts[unit.mech], cfg = beast && beastRules(s, ctx, unit.mech); if (!beast || !cfg) continue;
+    s.flags[`battles:${unit.mech}`] = (s.flags[`battles:${unit.mech}`] ?? 0) + 1;
+    if (beast.kind === "live") for (const person of [...personalIds].sort()) if (s.roster.persons[person]) beast.bond[person] = Math.min(100, (beast.bond[person] ?? 0) + cfg.bondPerBattle);
+    offerNickname(s, ctx, unit.mech);
+  }
   // 三、戰利品：實體與材料分流，材料的唯一寫入入口為 post。
   for (const loot of result.loot) {
+    if (deferredLoot.has(loot.fromUnit)) continue;
     const source = result.units.find(u => u.id === loot.fromUnit)?.state;
     componentLoot(s, ctx, sortie, [...loot.components].sort().map(def => {
       const part = source && Object.keys(source.parts).sort().find(key => Object.values(source.parts[key]!.components).includes(def));

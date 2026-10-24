@@ -9,7 +9,9 @@ type Candidate = { id: string; names: string[] };
 type Domain = "room" | "person" | "mech" | "node" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "all";
 
 export function entityName(id: string, state: TextState, world: WorldDB): string {
-  const named = state.text?.names?.[id] ?? state.roster.names[id]?.at(-1)?.name;
+  const names = state.roster.names[id] ?? [], latest = (kind: string) => names.filter(n => n.kind === kind).at(-1)?.name;
+  const nickname = latest("nickname"), epithet = latest("epithet");
+  const named = state.text?.names?.[id] ?? (nickname ? [epithet, nickname].filter(Boolean).join("・") : latest("registry") ?? names.at(-1)?.name);
   if (named) return named;
   const person = state.roster.persons[id];
   if (person) {
@@ -87,7 +89,7 @@ function tokenize(line: string): string[] {
   return tokens;
 }
 
-const jobKinds = ["repair", "rebuild", "research", "graft", "incubate", "install", "mod"];
+const jobKinds = ["repair", "rebuild", "research", "graft", "incubate", "install", "mod", "restrain", "mount", "embalm", "prune"];
 function structured<T>(text: string, kind: "job" | "sortie"): T {
   const value: unknown = JSON.parse(text);
   if (!value || typeof value !== "object" || Array.isArray(value)) throw new Error("需要 JSON 物件");
@@ -160,7 +162,7 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
         break;
       }
       case "reorder": cmd = { v, job: id("job"), priority: num() }; break;
-      case "feed": cmd = { v, pen: id("mech"), amount: num(1) }; break;
+      case "devour": cmd = { v, beast: id("mech"), amount: num(1) }; break;
       case "accompany": { const soul = id("person"), by = id("person"); cmd = { v, soul, by, ...(args.length ? { node: take() } : {}) }; break; }
       case "trade": {
         cmd = { v, market: id("market") };

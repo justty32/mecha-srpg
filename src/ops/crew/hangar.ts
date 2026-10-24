@@ -20,7 +20,7 @@ export function cmdAssign(s: CampaignState, ctx: OpsCtx, cmd: Command<"assign">)
     role = ctx.db.require("person", p.def).kind === "soul" ? "soul" : "pilot";
     if (!seat || !Object.hasOwn(mech.seats, seat.id)) return fail("unknown-seat");
     if (!seat.accepts.includes(role)) { if (!seat.accepts.includes("passenger")) return fail("seat-incompatible"); role = "passenger"; }
-    // TODO(2026-10-24 裁示)：活捕無馴化／餵養，待 spec 改寫；不以舊 PenState 判定可入座。
+    if (s.restraint.beasts[mech.id]?.kind === "live") return fail("captured-requires-instinct");
   }
   detach(s, cmd.person);
   if (cmd.role) e.role = cmd.role as typeof e.role;

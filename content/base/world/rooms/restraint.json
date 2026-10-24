@@ -1,0 +1,50 @@
+{
+  "id": "room/restraint",
+  "title": "拘束艙",
+  "base": [
+    "拘束架的鐵鍊從天花板垂下，鉚釘承受著持續的拉扯。"
+  ],
+  "exits": [
+    "medbay",
+    "hangar",
+    "mycelium"
+  ],
+  "phrases": [
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      "text": "拘束架是空的，鐵鍊靜靜垂著。"
+    },
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastCount"
+          },
+          "op": ">",
+          "b": 0
+        }
+      },
+      "text": "柵後傳來沉重的呼吸，鐵鍊繃得筆直。"
+    },
+    {
+      "when": {
+        "cmp": {
+          "a": {
+            "ref": "restraint.beastWear"
+          },
+          "op": ">=",
+          "b": 50
+        }
+      },
+      "text": "拘束架猛烈震動，固定栓已經鬆動。"
+    }
+  ]
+}
