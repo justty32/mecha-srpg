@@ -52,3 +52,7 @@
 - **tick 段函式**：每個模組匯出它負責的 tick 段，形狀 `(s, ctx) => void`，**只做該段裡屬於自己的那部分**；`ops/time/tick.ts`（階段 3）按 time-and-tick 八段順序呼叫它們。命名：`<模組>Daily<段號>`，例 `worldDaily2`、`travelDaily3`、`shipDaily5`、`ledgerDaily6`、`contractsDaily7`、`marketsDaily7`。
 - **指令處理**：每個動詞一個 `cmd<Verb>(s, ctx, cmd): CmdResult`，`CmdResult = { ok: true } | { ok: false; error: string }`（error 為機器可讀代碼，例 `no-route`、`not-docked`）；被拒時 `s` 不得有任何改動（先驗後改）。動詞歸屬：world＝`map sail dock drift trade explore board accept drop`；crew＝`assign queue reorder feed accompany hire fire wake pay`；text＝`look talk go help choose`（`choose` 只解析，處理在階段 3）；`wait save load sortie` 歸階段 3。
 - **大潮之夜、待選事件**：需要玩家選擇時把 `Prompt` 推進 `s.pendingChoices`（形狀見 foundation 的 types），不要自己等。
+
+## §6 使用者新裁示（2026-10-24，優先於 spec）
+
+生物系分「屍體改裝」與「活捕」；活捕**沒有馴化、餵養、飼料、飢餓、獸欄**，怪獸意識不算人物（design-notes/mechs.md 末段）。ops spec 中這些部分**先不實作**；已寫的不刪，標 `// TODO(2026-10-24 裁示)` 並不接進 tick；spec 由規劃線改寫。
