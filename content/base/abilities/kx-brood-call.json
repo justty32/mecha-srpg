@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-brood-call",
+  "name": "萬巢傳詔",
+  "mode": "activated",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-hive-pheromone"
+      ]
+    },
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-hive-pheromone"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 3
+}
