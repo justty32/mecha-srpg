@@ -10,6 +10,7 @@ import type { Account, CampaignState } from "../state/types.ts";
 import { applyName, cmdAccompany, cmdHire, cmdPay, cmdQueue, cmdReorder, cmdWake,
   ledgerDaily6, openSoulNode, recruitsDaily7, soulDaily5, workqueueDaily5 } from "./index.ts";
 import { crew, rules } from "./shared.ts";
+import { leave } from "./roster.ts";
 
 const { db, world } = loadWorldDirs(["content/base"]);
 function setup() {
@@ -116,10 +117,22 @@ test("names：喚成功推三候選＋自填 Prompt，applyName 記名與 Named 
 test("recruit：弦月候選決定性，聘金入帳、名冊多一人且 id 可重播", () => {
   const first = setup(), second = setup();
   for (const { s, ctx } of [first, second]) {
+    const existing = Object.keys(s.roster.persons).find(id => s.roster.persons[id]!.def === db.require("person", "person/chen-xiaohai").id)!;
+    leave(s, ctx, existing);
     s.clock = clock(6, world.require("calendar", s.calendar)); recruitsDaily7(s, ctx);
     const candidate = crew(s).candidates[Object.keys(crew(s).candidates).sort()[0]!]!, count = Object.keys(s.roster.persons).length, cash = s.ledger.balances.cash;
     assert.equal(cmdHire(s, ctx, { v: "hire", candidate: candidate.id }).ok, true);
     assert.equal(Object.keys(s.roster.persons).length, count + 1); assert.equal(s.ledger.balances.cash, cash - candidate.fee); assert.deepEqual(checkLedger(s), []);
   }
   assert.deepEqual(first.s, second.s);
+});
+
+test("recruit：名冊與各池候選的人物定義不重複；抽空的池保持空白", () => {
+  const { s, ctx } = setup();
+  s.clock = clock(6, world.require("calendar", s.calendar)); recruitsDaily7(s, ctx);
+  const roster = new Set(Object.values(s.roster.persons).map(p => p.def));
+  const defs = Object.values(crew(s).candidates).map(c => c.person.def);
+  assert.ok(defs.every(def => !roster.has(def)));
+  assert.equal(new Set(defs).size, defs.length);
+  assert.equal(Object.values(crew(s).candidates).filter(c => c.pool === world.require("recruit", "recruit/dhaka").id).length, 0);
 });

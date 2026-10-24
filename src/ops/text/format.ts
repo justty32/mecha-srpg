@@ -28,6 +28,7 @@ export function formatCommand(cmd: OpsCommand, _state: CampaignState, _world: Wo
     case "wake": args = `${q(cmd.shell)} ${q(cmd.by)}`; break;
     case "choose": args = String(cmd.choice); break;
     case "pay": args = `${q(cmd.account)} ${cmd.amount}`; break;
+    case "borrow": args = String(cmd.amount); break;
     case "load": args = String(cmd.slot); break;
     case "help": args = cmd.v2 === undefined ? "" : q(cmd.v2); break;
     case "map": case "dock": case "drift": case "save": break;

@@ -5,8 +5,11 @@ import { evalOpsCond } from "../content/cond.ts";
 import { currentRoom, describeRoom } from "./rooms.ts";
 import { eventLog } from "./templates.ts";
 import { entityName } from "./parse.ts";
+import { shortestPath } from "../world/travel.ts";
+import { registerTextDB } from "./names.ts";
 
 export function render(state: CampaignState, events: CampaignEvent[], world: WorldDB, db: ContentDB): Screen {
+  registerTextDB(world, db);
   const room = describeRoom(currentRoom(state), state, world, db);
   const usedKeys = new Set<string>();
   const action = (label: string, cmd: OpsCommand, disabled?: string): Screen["actions"][number] => {
@@ -43,7 +46,12 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
   for (const id of [...occupants].sort()) if (state.roster.persons[id]) screen.actions.push(action(`與${entityName(id, state, world)}談話`, { v: "talk", who: id }));
   if (room.id === "bridge") {
     screen.actions.push(action("查看世界圖", { v: "map" }), action("查看契約板", { v: "board" }));
-    for (const id of Object.keys(state.contracts).sort()) if (["offered", "active", "stage"].includes(state.contracts[id]!.status)) screen.actions.push(action(`查看契約 ${id}`, { v: "board", contract: id }));
+    for (const id of Object.keys(state.contracts).sort()) if (["offered", "active", "stage"].includes(state.contracts[id]!.status)) {
+      const contract = state.contracts[id]!;
+      screen.actions.push(action(`查看${entityName(id, state, world)}`, { v: "board", contract: id }));
+      if (contract.status === "offered") screen.actions.push(action(`承接${entityName(id, state, world)}`, { v: "accept", contract: id },
+        shortestPath(state, { db, world, emit: () => { throw new Error("唯讀查詢"); } }, state.ship.at, contract.target.node) ? undefined : "沒有可抵達目標的航線"));
+    }
   }
   if (room.id === "hangar") for (const id of [...state.hangar.bays, ...state.hangar.dormant].filter((id): id is string => id !== null).sort()) {
     if (state.mechs[id] && !screen.actions.some(a => a.cmd.v === "look" && a.cmd.target === id)) screen.actions.push(action(`查看${entityName(id, state, world)}`, { v: "look", target: id }));

@@ -38,6 +38,7 @@ export const examples: { zh: string; cmd: OpsCommand }[] = [
   { zh: "喚 犬一 阿九", cmd: { v: "wake", shell: "mech-8", by: "person-1" } },
   { zh: "選 2", cmd: { v: "choose", choice: 2 } },
   { zh: "付 債 500", cmd: { v: "pay", account: "debt", amount: 500 } },
+  { zh: "借 800", cmd: { v: "borrow", amount: 800 } },
   { zh: "存", cmd: { v: "save" } }, { zh: "讀 0", cmd: { v: "load", slot: 0 } },
   { zh: "助 航", cmd: { v: "help", v2: "航" } },
 ];

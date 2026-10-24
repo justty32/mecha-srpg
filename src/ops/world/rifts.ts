@@ -3,7 +3,7 @@ import { evalOpsNum } from "../content/cond.ts";
 import { nextId } from "../state/ids.ts";
 import { adjacentNodes, blightNode, reclaimNode, worldRules } from "./nodes.ts";
 
-export type RiftBattleOutcome = "anchor-killed" | "anchor-captured" | "defended" | "lost" | "vanguard-killed";
+export type RiftBattleOutcome = "anchor-killed" | "anchor-captured" | "defended" | "lost" | "vanguard-killed" | "repelled";
 // SPEC-GAP：記錄最後守住的大潮，避免同一天重複戰果跳過第二次防守。
 export type BattleRiftState = RiftState & { defendedDay?: number; recedeDay?: number };
 export function riftDefinition(ctx: OpsCtx, rift: RiftState): RiftDef {
@@ -29,6 +29,13 @@ function close(s: CampaignState, ctx: OpsCtx, rift: RiftState): void {
   for (const id of [...rift.zones].sort()) reclaimNode(s, ctx, id, rift.id);
   delete rift.anchor;
   phase(s, ctx, rift, "closed");
+  // 目標消失後撤下尚未接取的同裂縫契約，避免舊快照繼續提供重複清剿。
+  for (const id of Object.keys(s.contracts).sort()) {
+    const contract = s.contracts[id]!;
+    if (contract.target.rift !== rift.id || contract.status !== "offered") continue;
+    contract.status = "expired"; contract.settled = true;
+    ctx.emit("ContractExpired", { contract: id, rift: rift.id });
+  }
 }
 function anchor(s: CampaignState, ctx: OpsCtx, rift: RiftState, fed: boolean): void {
   const def = riftDefinition(ctx, rift);
@@ -40,7 +47,15 @@ function anchor(s: CampaignState, ctx: OpsCtx, rift: RiftState, fed: boolean): v
 export function onBattleRift(s: CampaignState, ctx: OpsCtx, riftId: string, outcome: RiftBattleOutcome): void {
   const rift = s.rifts[riftId] as BattleRiftState | undefined;
   if (!rift || rift.phase === "closed") return;
-  if (outcome === "vanguard-killed" && rift.phase === "opening") close(s, ctx, rift);
+  if ((outcome === "vanguard-killed" || outcome === "repelled") && rift.phase === "opening") close(s, ctx, rift);
+  else if (outcome === "repelled" && rift.phase === "anchored") {
+    // SPEC-GAP：跳過最近一次待處理大潮；同潮重打不疊加延後，錨與 phase 保留。
+    const cal = ctx.world.require("calendar", s.calendar);
+    const due = s.clock.phase === "spring" && rift.nextCheck <= s.clock.day ? s.clock.day : nextSpring(s, ctx);
+    const dom = (s.clock.dom - 1 + due - s.clock.day) % cal.daysPerMonth + 1;
+    const after = nextSpring({ ...s, clock: { ...s.clock, day: due, dom } }, ctx);
+    rift.nextCheck = Math.max(rift.nextCheck, after);
+  }
   else if ((outcome === "anchor-killed" || outcome === "anchor-captured") && rift.phase === "anchored") {
     delete rift.anchor;
     phase(s, ctx, rift, "unanchored");

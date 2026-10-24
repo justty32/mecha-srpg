@@ -69,6 +69,7 @@ export function advanceDays(s: TimeState, ctx: TickCtx, n: number): void {
     // 航行模組可能清掉自己的計時；仍須保留使用者已要求的逐日等待。
     const remaining = s.pendingTicks;
     tick(s, ctx);
+    if (s.log.some(e => e.type === "CampaignEnd")) { s.pendingTicks = 0; break; }
     s.pendingTicks = remaining;
   }
 }

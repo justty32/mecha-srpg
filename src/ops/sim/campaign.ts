@@ -14,7 +14,7 @@ export type MonthSummary = ReturnType<typeof dailySummary> & { month: number; da
 export type CampaignCommand = OpsCommand & { battle?: { sortie: Sortie; outcome: CmdResult; result?: BattleResult;
   rng: CampaignState["rng"]; effectCounter: number } };
 export type CampaignOptions = { db: ContentDB; world: WorldDB; start: string; seed: number; months: number;
-  policy: Policy | PolicyName; battle?: BattleRunner; onDay?: (s: CampaignState) => void };
+  policy: Policy | PolicyName; battle?: BattleRunner; onDay?: (s: CampaignState) => void; continueAfterEnd?: boolean };
 
 export function runCampaign(options: CampaignOptions): { state: CampaignState; commands: CampaignCommand[]; summary: MonthSummary[] } {
   const { db, world, start, seed, months, battle } = options;
@@ -53,9 +53,11 @@ export function runCampaign(options: CampaignOptions): { state: CampaignState; c
     state = output.state; verify(state);
     return output.result;
   };
-  while (state.clock.day < target || state.pendingChoices.length) {
+  while ((state.clock.day < target || state.pendingChoices.length) &&
+    (options.continueAfterEnd || !state.log.some(e => e.type === "CampaignEnd"))) {
     const beforeDay = state.clock.day, beforePrompt = JSON.stringify(state.pendingChoices);
-    const cmd = policy(structuredClone(state), createOpsCtx(state, db, world));
+    const ended = state.log.some(e => e.type === "CampaignEnd");
+    const cmd = (ended ? policies.idle : policy)(structuredClone(state), createOpsCtx(state, db, world));
     const result = execute(cmd);
     if (state.pendingChoices.length) {
       if (!result.ok || beforePrompt === JSON.stringify(state.pendingChoices)) throw new Error(`policy-stalled seed=${seed} day=${state.clock.day} command=${JSON.stringify(cmd)}`);

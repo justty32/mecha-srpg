@@ -1,0 +1,21 @@
+{
+  "id": "action/board-clear-before-tide",
+  "actor": "world",
+  "valid": {
+    "cmp": {
+      "a": {
+        "ref": "calendar.day"
+      },
+      "op": ">=",
+      "b": 8
+    }
+  },
+  "weight": 100,
+  "cooldownDays": 8,
+  "effects": [
+    {
+      "spawnContract": "contract/clear-before-tide",
+      "near": "territory"
+    }
+  ]
+}

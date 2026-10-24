@@ -8,6 +8,7 @@ import { nextId } from "../state/ids.ts";
 import * as worldCommands from "../world/index.ts";
 import * as contracts from "../contracts/index.ts";
 import * as crew from "../crew/index.ts";
+import { cmdBorrow } from "../crew/debt.ts";
 import { currentRoom, describeRoom, roomDefinition } from "../text/index.ts";
 import type { TextState } from "../text/index.ts";
 import { advanceDays, stageCtx, offerEvent, queuedEvents } from "./tick.ts";
@@ -83,6 +84,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
     case "fire": return crew.cmdFire(s, ctx, cmd);
     case "wake": return crew.cmdWake(s, ctx, cmd);
     case "pay": return crew.cmdPay(s, ctx, cmd);
+    case "borrow": return cmdBorrow(s, ctx, cmd);
     case "devour": return crew.cmdDevour(s, ctx, cmd);
     case "go": case "look": case "talk": return textCommand(s, ctx, cmd);
     case "sortie": {

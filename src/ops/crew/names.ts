@@ -5,6 +5,16 @@ import { applyOpsEffect } from "../content/opseffect.ts";
 import { crew, detach, fail, ok, peekCrew, rules } from "./shared.ts";
 import type { CmdResult, Command } from "./shared.ts";
 
+export function registerPersonName(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, id: string): void {
+  const person = s.roster.persons[id]; if (!person || s.roster.names[id]?.length) return;
+  const def = ctx.db.require("person", person.def), used = new Set(Object.values(s.roster.names).flatMap(list => list.map(n => n.name)));
+  const culture = def.tags.find(t => t.startsWith("culture:"))?.slice(8) ?? "han";
+  const pool = ctx.world.all("names").find(n => n.culture === culture)?.names ?? [];
+  let name = used.has(def.name) ? pool.find(n => !used.has(n)) ?? `${def.name} ${Object.values(s.roster.persons).filter(p => p.def === person.def).length} 號` : def.name;
+  for (let suffix = 2; used.has(name); suffix++) name = `${def.name} ${suffix} 號`;
+  s.roster.names[id] = [{ name, by: id, day: s.clock.day, kind: "registry" }];
+}
+
 // SPEC-GAP：自填名稱不是 OpsCommand；編排層可辨識此 metadata 後呼叫 applyName。
 export type NamingPrompt = Prompt & { naming: { mech: string; by: string; customChoice: number; kind?: NameKind } };
 export function offerNickname(s: CampaignState, ctx: OpsCtx, mech: string): void {

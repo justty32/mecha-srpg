@@ -3,14 +3,37 @@ import assert from "node:assert/strict";
 import { fixture } from "../world/test-support.ts";
 import { runCampaign } from "./campaign.ts";
 import { checkInvariants } from "./invariants.ts";
+import { idle } from "./policies.ts";
 test("idle 12 潮月：每天不變量全空", () => {
   const { s, ctx } = fixture(); let days = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
-  assert.equal(days, 12 * 28); assert.equal(result.summary.length, 12);
+  assert.equal(days, 6 * 28); assert.equal(result.summary.length, 6);
+  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "ship-seized").length, 1);
   // 同一條測試也確認檢查器確實會擋錯帳、斷引用與 mastery 越界。
   s.ledger.balances.cash++; s.restraint.beasts["missing"] = { mech: "missing", kind: "live", wear: 0, vitality: 100, bond: {} };
   s.roster.mastery.bad = { node: 2 }; const errors = checkInvariants(s);
   assert(errors.some(e => e.includes("balance mismatch"))); assert(errors.some(e => e.includes("missing beast"))); assert(errors.some(e => e.includes("mastery")));
+});
+test("長時間 wait 在扣船終局當天停止", () => {
+  const { ctx } = fixture();
+  const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 12,
+    policy(s, c) { const command = idle(s, c); return command.v === "wait" ? { v: "wait", days: Math.max(1, 336 - s.clock.day) } : command; } });
+  assert.equal(result.state.clock.day, 168);
+  assert.equal(result.state.pendingTicks, 0);
+  assert.equal(result.state.log.at(-1)?.type, "DaySummary");
+  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "ship-seized").length, 1);
+});
+test("continueAfterEnd：終局後世界照走，原政策不再行動", () => {
+  const { ctx } = fixture(); let policyAfterEnd = 0;
+  const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 12, continueAfterEnd: true,
+    policy(s, c) {
+      if (s.log.some(e => e.type === "CampaignEnd")) policyAfterEnd++;
+      return idle(s, c);
+    } });
+  assert.equal(result.state.clock.day, 336);
+  assert.equal(policyAfterEnd, 0);
+  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "ship-seized").length, 1);
+  assert.ok(result.state.log.some(e => e.type === "DaySummary" && e.day > 168));
 });
 test("greedy 加不打戰鬥的假 runner 跑 6 潮月", () => {
   const { ctx } = fixture(); let calls = 0;

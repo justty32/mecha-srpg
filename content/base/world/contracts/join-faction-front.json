@@ -1,10 +1,10 @@
 {
   "id": "contract/join-faction-front",
-  "kind": "defend",
+  "kind": "join",
   "issuerKinds": [
     "guild",
     "company",
-    "league"
+    "state"
   ],
   "requiresRep": 10,
   "gradeRange": [
@@ -21,29 +21,7 @@
     }
   ],
   "pay": {
-    "base": {
-      "product": [
-        4200,
-        {
-          "ref": "rift.widthIndex"
-        }
-      ]
-    },
-    "perHead": 320,
-    "bonus": [
-      {
-        "cond": {
-          "cmp": {
-            "a": {
-              "ref": "ship.hull.cur"
-            },
-            "op": ">=",
-            "b": 60
-          }
-        },
-        "amount": 600
-      }
-    ]
+    "base": 7000
   },
   "advanceMax": 0.5,
   "deadlineDays": 14,
@@ -70,52 +48,52 @@
     }
   ],
   "annoyanceMax": 3,
-  "stages": [
-    {
-      "objectives": [
-        {
-          "kind": "hold",
-          "params": {
-            "rounds": 3
-          }
-        }
+  "join": {
+    "command": "mixed",
+    "supply": "field",
+    "share": 0.2,
+    "base": 1500,
+    "orders": [],
+    "exclusive": true,
+    "minStrength": 1,
+    "loan": {
+      "models": [
+        "model/bulwark-i"
       ],
-      "days": 4,
-      "effects": [
-        {
-          "flag": "frontline-mustered"
-        }
-      ]
-    },
-    {
-      "objectives": [
-        {
-          "kind": "eliminate",
-          "params": {}
-        }
-      ],
-      "days": 5,
-      "effects": [
-        {
-          "flag": "frontline-breach-cleared"
-        }
-      ]
-    },
-    {
-      "objectives": [
-        {
-          "kind": "hold",
-          "params": {
-            "rounds": 4
-          }
-        }
-      ],
-      "days": 5,
-      "effects": [
-        {
-          "flag": "frontline-position-held"
-        }
-      ]
+      "max": 2
     }
-  ]
+  },
+  "mercRules": {
+    "progress": 0.4,
+    "allyFraction": [
+      0.3,
+      0.6
+    ],
+    "attachedMax": 3,
+    "headPower": 1,
+    "lossPerPower": 100,
+    "loanPrice": 100,
+    "violationShare": 0.05,
+    "violationRep": 3,
+    "dismissal": 3,
+    "betrayalDays": 7,
+    "blacklistMonths": 3,
+    "exposure": 0.2,
+    "technicianCount": 2,
+    "scrapLimit": 20,
+    "restraintRounds": 4,
+    "briefing": "effect/perk-soul-calc-1",
+    "cleanse": [
+      "effect/injury-concussion"
+    ],
+    "winRep": [
+      5,
+      15
+    ],
+    "enemyRep": [
+      10,
+      25
+    ],
+    "baseExposure": 0.3
+  }
 }

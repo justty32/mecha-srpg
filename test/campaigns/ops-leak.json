@@ -1,0 +1,20 @@
+{
+  "start": "default",
+  "seed": 1,
+  "setup": {
+    "ship": { "at": "base:node/delta" },
+    "loan": {
+      "id": "loan-golden",
+      "contract": "contract-golden-loan",
+      "model": "base:model/union-fr7",
+      "issuer": "base:faction-ops/residual-league"
+    }
+  },
+  "commands": [
+    { "v": "trade", "market": "base:market/war-armory", "sell": ["loan-golden"] },
+    { "v": "wait", "days": 1 },
+    { "v": "choose", "choice": 1 },
+    { "v": "choose", "choice": 1 },
+    { "v": "wait", "days": 5 }
+  ]
+}

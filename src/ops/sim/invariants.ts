@@ -1,8 +1,14 @@
 import type { CampaignState } from "../state/types.ts";
+import type { WorldDB } from "../content/worlddb.ts";
 import { checkLedger } from "../state/ledger.ts";
 
-export function checkInvariants(s: CampaignState): string[] {
+export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
   const errors = checkLedger(s);
+  const sources = new Map(s.log.map(e => [`event-${e.seq}`, e.type]));
+  for (const entry of s.ledger.entries) if (["faction-supply", "join-pay", "loan-loss"].includes(entry.reason) &&
+    (!entry.ref || !["OperationResolved", "AllySupplied"].includes(sources.get(entry.ref) ?? ""))) errors.push(`war ledger source: ${entry.seq}`);
+  for (const id of s.inventory.mechs) if (s.mechs[id]?.owner === "faction" &&
+    !Object.values(s.contracts).some(c => !c.settled && c.loans?.includes(id))) errors.push(`orphan faction loan: ${id}`);
   for (const c of Object.values(s.contracts)) if (c.settled) for (const id of c.loans ?? []) {
     if (s.inventory.mechs.includes(id) || s.hangar.bays.includes(id)) errors.push(`unreturned loan: ${c.id}/${id}`);
   }
@@ -26,12 +32,21 @@ export function checkInvariants(s: CampaignState): string[] {
   }
   for (const [key, r] of Object.entries(s.relations ?? {})) {
     if (r.a >= r.b || key !== `${r.a}|${r.b}`) errors.push(`invalid relation key: ${key}`);
+    if (!s.factions[r.a] || !s.factions[r.b]) errors.push(`missing relation faction: ${key}`);
     if (!Number.isFinite(r.value) || r.value < -100 || r.value > 100) errors.push(`relation out of range: ${key}`);
+  }
+  for (const [id, f] of Object.entries(s.factions)) {
+    if (f.rnd && (!Number.isFinite(f.rnd.points) || f.rnd.points < 0)) errors.push(`rnd points: ${id}`);
+    for (const u of f.forces?.units ?? []) if (!Number.isFinite(u.count) || u.count < 0 || !Number.isFinite(u.readiness) || u.readiness < 0) errors.push(`faction force: ${id}`);
   }
   for (const o of Object.values(s.operations ?? {})) {
     if (!Number.isFinite(o.progress) || o.progress < 0 || o.progress > 1) errors.push(`operation progress: ${o.id}`);
+    if (!s.nodes[o.target.loc.region] || !["map/longland", "map/lunar"].includes(o.target.loc.map)) errors.push(`missing operation target: ${o.id}`);
     for (const u of o.force.units) if (u.count < 0 || !Number.isInteger(u.count) || u.readiness < 0 || u.readiness > 1) errors.push(`force out of range: ${o.id}`);
     for (const slot of o.mercSlots) if (!s.contracts[slot.contract]) errors.push(`missing operation contract: ${slot.contract}`);
   }
+  for (const shell of Object.values(s.shells ?? {})) if (shell.holder !== "player" &&
+    !(typeof shell.holder === "string" ? s.factions[shell.holder] : s.nodes[shell.holder.ruin])) errors.push(`missing shell holder: ${shell.id}`);
+  if (world) for (const model of Object.values(s.models ?? {})) if (!world.get("model", model.def)) errors.push(`missing model def: ${model.def}`);
   return errors;
 }

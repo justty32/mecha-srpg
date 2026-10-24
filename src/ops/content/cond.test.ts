@@ -57,3 +57,15 @@ test("opseffect：節點、裂縫、命名、核心效果與延後生成佇列",
   assert.deepEqual(s.contracts, {}); assert.deepEqual(s.pendingChoices, []);
   assert.deepEqual(JSON.parse(JSON.stringify(s)), s);
 });
+
+test("opseffect：person def 只改最早實例，實例 id 只改指定人物", () => {
+  const { s, ctx } = fixture();
+  const ids = Object.keys(s.roster.persons).sort().filter(id => s.roster.persons[id]!.def === ctx.db.require("person", "person/ren-kasai").id);
+  assert.equal(ids.length, 2);
+  applyOpsEffect(s, ctx, { mood: { "person/ren-kasai": 1 } });
+  assert.equal(s.roster.employment[ids[0]!]!.mood, 1);
+  assert.equal(s.roster.employment[ids[1]!]!.mood, 0);
+  applyOpsEffect(s, ctx, { mood: { [ids[1]!]: -1 } });
+  assert.equal(s.roster.employment[ids[0]!]!.mood, 1);
+  assert.equal(s.roster.employment[ids[1]!]!.mood, -1);
+});

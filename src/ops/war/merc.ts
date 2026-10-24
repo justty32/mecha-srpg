@@ -2,6 +2,7 @@ import { nextFloat } from "../../core/rng.ts";
 import type { CampaignState, ContractState, ContractTemplate, OpsCtx, Sortie, Ask, ObjectiveTemplate } from "../state/types.ts";
 import type { JoinTerms, OperationState, ForceState } from "./types.ts";
 import type { BattleResult } from "../sortie/apply.ts";
+import { classifyOutcome, retreatRules } from "../sortie/outcome.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import { nextId } from "../state/ids.ts";
 import { eventRef } from "../state/events.ts";
@@ -236,14 +237,31 @@ export function applyOperationBattle(s: CampaignState, ctx: OpsCtx, sortie: Sort
       else op.enemyStr = Math.max(0, op.enemyStr - amount);
     }
   }
-  const won = result.winner === "player" || result.winner === "ally";
-  if (won && c.side !== "target") {
+  const { outcome } = classifyOutcome(result, sortie), retreat = retreatRules(ctx);
+  const friends = result.units.filter(u => u.id.includes("/force/friend/"));
+  const friendWithdrew = (result as BattleResult & { withdrawn?: string[] }).withdrawn?.includes("ally")
+    || friends.length > 0 && friends.every(u => u.status === "dead" || u.status === "retreated") && friends.some(u => u.status === "retreated");
+  const won = !friendWithdrew && (outcome === "win" || outcome === "repelled");
+  const ownWithdrew = outcome === "withdrew" || friendWithdrew;
+  const actorWithdrew = c.side === "target" ? outcome === "repelled" : ownWithdrew;
+  const targetWithdrew = c.side === "target" ? ownWithdrew : outcome === "repelled";
+  if (actorWithdrew) {
+    op.progress = Math.max(0, op.progress - retreat.progressLoss);
+    op.force.morale = Math.max(-2, op.force.morale - retreat.moraleLoss);
+  } else if (won && c.side !== "target") {
     // SPEC-GAP：規模係數以本場擊破／剩餘敵戰力折算，上限 1，單場最多推進 0.4。
     const scale = Math.min(1, Math.max(cfg.allyFraction[0], m.enemyPower / Math.max(cfg.headPower, m.initialEnemy)));
     op.progress = Math.min(1, op.progress + cfg.progress * scale);
   } else if (!won && c.side === "target") op.progress = Math.min(1, op.progress + cfg.progress);
   else if (!won) force.morale = Math.max(-2, force.morale - 1);
   else op.force.morale = Math.max(-2, op.force.morale - 1);
+  if (targetWithdrew && op.target.faction) {
+    const defender = s.factions[op.target.faction]?.forces;
+    if (defender) defender.morale = Math.max(-2, defender.morale - retreat.moraleLoss);
+  }
+  if ((actorWithdrew || targetWithdrew) && op.target.faction) {
+    changeRelation(s, ctx, op.actor, op.target.faction, retreat.relationDelta, "operation-retreat");
+  }
   for (const order of joinTerms(ctx, c).orders) if (!orderDone(order, result)) {
     c.violations = (c.violations ?? 0) + 1; rep(s, ctx, c.issuer, -cfg.violationRep, "join-orders");
     ctx.emit("OrderViolated", { contract: c.id, sortie: sortie.id, violations: c.violations });

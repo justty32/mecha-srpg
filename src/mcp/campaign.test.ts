@@ -142,7 +142,9 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   assert.ok(accept);
   view = data(await call("campaign_act", { id, command: accept.cmd })).view;
   const active = view.panels.contracts.find((c: { status: string }) => c.status === "active");
-  data(await call("campaign_act", { id, command: { v: "sail", to: active.target } }));
+  // 節點委託可能就在船所在地（already-there），此時不必航行。
+  const sailed = await call("campaign_act", { id, command: { v: "sail", to: active.target } });
+  if (sailed.isError) assert.match(JSON.stringify(sailed.structuredContent), /already-there/);
   const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: { contract: active.id, node: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);
   assert.ok(Array.isArray(battle.battle.losses.mechs));

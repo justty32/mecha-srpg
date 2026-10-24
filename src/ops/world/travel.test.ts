@@ -22,3 +22,21 @@ test("travel：途中從最後節點改道、深蝕拒絕不改狀態", () => {
   const target = ctx.world.require("node", "node/dhaka").id; s.nodes[target]!.blight = { rift: "rift-test", depth: "deep", sinceDay: 0 };
   const before = structuredClone(s); assert.deepEqual(cmdSail(s, ctx, { v: "sail", to: target }), { ok: false, error: "no-route" }); assert.deepEqual(s, before);
 });
+
+test("travel：船在 core 且鄰路全蝕化時仍可向外航行離開", () => {
+  const { s, ctx } = fixture(), origin = s.ship.at;
+  s.nodes[origin]!.blight = { rift: "rift-test", depth: "core", sinceDay: 0 };
+  const edges = ctx.world.all("route").filter(r => r.kind === "air" && (r.a === origin || r.b === origin));
+  for (const edge of edges) {
+    const next = edge.a === origin ? edge.b : edge.a;
+    s.nodes[next]!.blight = { rift: "rift-test", depth: "deep", sinceDay: 0 };
+  }
+  const edge = edges[0]!, to = edge.a === origin ? edge.b : edge.a;
+  const fuel = s.ship.fuel.cur;
+  assert.deepEqual(cmdSail(s, ctx, { v: "sail", to }), { ok: true });
+  const days = s.ship.route!.daysLeft;
+  for (let i = 0; i < days; i++) travelDaily3(s, ctx);
+  assert.equal(s.ship.at, to);
+  assert.ok(s.ship.fuel.cur < fuel);
+  assert.deepEqual(checkLedger(s), []);
+});

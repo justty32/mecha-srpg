@@ -12,7 +12,10 @@ export type TravelState = CampaignState & { drifting?: boolean };
 function legDays(ctx: OpsCtx, route: RouteDef): number { return Math.ceil(route.days * worldRules(ctx).travel.daysMultiplier); }
 function legFuel(s: CampaignState, ctx: OpsCtx, route: RouteDef): number { return s.ship.hull.cur <= 0 ? 0 : legDays(ctx, route) * worldRules(ctx).travel.fuelPerDay; }
 function routesFrom(s: CampaignState, ctx: OpsCtx, node: string): RouteDef[] {
-  return ctx.world.all("route").filter(r => r.kind === (s.ship.hull.cur <= 0 ? "ground" : "air") && (r.a === node || r.b === node) && routeOpen(s, r));
+  const routes = ctx.world.all("route").filter(r => r.kind === (s.ship.hull.cur <= 0 ? "ground" : "air") && (r.a === node || r.b === node));
+  const open = routes.filter(r => routeOpen(s, r));
+  // SPEC-GAP：節點版緊急出口；全線蝕化封鎖時，僅船目前節點的離開方向可走，照常付航行燃料。
+  return node === s.ship.at && !open.length ? routes.filter(r => s.nodes[r.a] && s.nodes[r.b]) : open;
 }
 export function shortestPath(s: CampaignState, ctx: OpsCtx, from: string, to: string): TravelPath | undefined {
   const start = ctx.world.get("node", from)?.id, end = ctx.world.get("node", to)?.id;

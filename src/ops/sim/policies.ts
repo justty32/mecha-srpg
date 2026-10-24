@@ -65,8 +65,10 @@ function repairJob(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
   return undefined;
 }
 
-function allUnits(s: CampaignState, ctx: OpsCtx): Sortie["units"] {
-  const available = Object.keys(s.roster.persons).sort().filter(id => !s.roster.dead.some(d => d.person === id) && s.roster.persons[id]!.pools.hp?.cur !== 0);
+function allUnits(s: CampaignState, ctx: OpsCtx, requireSteadyCrew = false): Sortie["units"] {
+  const available = Object.keys(s.roster.persons).sort().filter(id => !s.roster.dead.some(d => d.person === id) && s.roster.persons[id]!.pools.hp?.cur !== 0
+    // 與 scenario 的 morale-shaken 注入門檻一致；僅 greedy 啟用。
+    && (!requireSteadyCrew || (s.roster.employment[id]?.mood ?? 0) >= 0));
   const used = new Set<string>();
   return [...new Set(s.hangar.bays.filter((id): id is string => !!id))].sort().filter(id => !s.hangar.dormant.includes(id) && combatReady(s, ctx, id)).map(id => {
     const mech = s.mechs[id]!, frame = ctx.db.require("frame", mech.frame);
@@ -84,14 +86,26 @@ function allUnits(s: CampaignState, ctx: OpsCtx): Sortie["units"] {
 }
 export const greedy: Policy = (s, ctx) => {
   const pending = choice(s, ctx); if (pending) return pending;
+  const drawn = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c =>
+    !c.operation && ["active", "stage"].includes(c.status) && (c.consecutiveDraws ?? 0) >= 2);
+  if (drawn) return { v: "drop", contract: drawn.id };
   const repair = repairJob(s, ctx); if (repair) return repair;
   if (s.ship.route && !s.pendingBattle) return { v: "wait", days: 1 };
   const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => !c.operation && ["active", "stage"].includes(c.status));
-  const units = allUnits(s, ctx);
+  const units = allUnits(s, ctx, true);
   // SPEC-GAP：validateSortie 尚未拒絕全空座位；無可控制機體時等待，避免反覆跑到 battle-maxSteps。
   if (!units.length) return { v: "wait", days: 1 };
+  if (units.length === 1) {
+    const mech = s.mechs[units[0]!.mech]!, body = ctx.db.require("bodyplan", ctx.db.require("frame", mech.frame).bodyPlan);
+    // 領導授權的單機殘破判準：任一部位毀損，或任一結構層剩餘不超過半血。
+    if (body.parts.some(part => !mech.parts[part.id] || mech.parts[part.id]!.broken || part.layers.some((layer, i) =>
+      layer.structural && (mech.parts[part.id]!.layers[i]?.hp ?? 0) <= (mech.parts[part.id]!.layers[i]?.maxHp ?? layer.hp) * 0.5))) {
+      return { v: "wait", days: 1 };
+    }
+  }
   if (s.pendingBattle || active?.target.node === s.ship.at) return { v: "sortie", sortie: {
-    ...s.pendingBattle, ...(active && !s.pendingBattle ? { contract: active.id, node: active.target.node, rift: active.target.rift, trigger: "contract" as const } : {}), units,
+    ...s.pendingBattle, ...(active && !s.pendingBattle ? { contract: active.id, node: active.target.node,
+      ...(active.target.rift ? { rift: active.target.rift } : {}), trigger: "contract" as const } : {}), units,
   } };
   if (active) return { v: "sail", to: active.target.node };
   const offers = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).filter(c => !c.operation && c.status === "offered")

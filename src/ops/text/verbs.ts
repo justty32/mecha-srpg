@@ -27,6 +27,7 @@ export const VERBS = [
   { v: "wake", zh: "喚", grammar: "休眠機甲 人物" },
   { v: "choose", zh: "選", grammar: "選項序號（從 1 起）" },
   { v: "pay", zh: "付", grammar: "債|人物 金額" },
+  { v: "borrow", zh: "借", grammar: "金額（還清船債後開的信貸）" },
   { v: "save", zh: "存", grammar: "" },
   { v: "load", zh: "讀", grammar: "存檔槽（從 0 起）" },
   { v: "help", zh: "助", grammar: "[動詞]" },

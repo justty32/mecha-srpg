@@ -27,7 +27,8 @@ export type RiftState = { id: Id; node: Id; family: Id; width: Grade; phase: "op
   openedDay: number; anchorAge: number; anchor?: Id; zones: Id[]; fedCount: number; nextCheck: number };
 export type RiftDef = { id: Id; family: string; anchor?: Id; vanguard: Id[]; spreadPerTide: NumExpr; selfClose: boolean; tether: boolean;
   gradeByWidth: Partial<Record<Grade, Grade[]>>; monsters?: Id[] };
-export type EncounterDef = { id: Id; family: string; depth: "shallow" | "deep" | "core"; size: { w: NumExpr; h: NumExpr };
+export type EncounterUnit = { frame: Id; pilots?: Id[]; components?: { [slot: string]: Id }; w?: number };
+export type EncounterDef = { faction?: Id; units?: EncounterUnit[]; id: Id; family: string; depth: "shallow" | "deep" | "core"; size: { w: NumExpr; h: NumExpr };
   terrainMix: { terrain: Id | "$node"; w: number }[]; budgetByGrade: Partial<Record<Grade, number>>; anchorHere: boolean; map?: Id };
 export type RoomState = { persons: Id[]; items: Id[] };
 export type ShipCapacity = { mechBays: number; restraintSlots: number; berths: number; cargo: number };
@@ -48,10 +49,12 @@ export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?
 export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
 export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[]; phase?: RiftState["phase"] };
 export type ContractTemplate = { join?: JoinTerms; id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle" | "join";
+  name?: string;
   issuerKinds: string[]; requiresRep: number; gradeRange: Grade[]; objectives: ObjectiveTemplate[];
   pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] }; advanceMax: number; deadlineDays: NumExpr;
-  supplies?: Id[]; onComplete: OpsEffect[]; onFail: OpsEffect[]; onCancel: OpsEffect[]; stages?: StageTemplate[]; annoyanceMax?: number };
+  encounter?: Id[]; supplies?: Id[]; onComplete: OpsEffect[]; onFail: OpsEffect[]; onCancel: OpsEffect[]; stages?: StageTemplate[]; annoyanceMax?: number };
 export type ContractState = { operation?: Id; side?: "actor" | "target"; loans?: Id[]; violations?: number; merc?: MercRecord; id: Id; template: Id; issuer: Id; target: { node: Id; rift?: Id; snapshot?: EnemySnapshot };
+  consecutiveDraws?: number;
   status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
   paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
 export type WorldActionDef = { lane?: "war"; id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
@@ -125,6 +128,7 @@ export type OpsCommand =
   | { v: "accompany"; soul: Id; by: Id; node?: Id } | { v: "trade"; market: Id; buy?: Id[]; sell?: Id[] }
   | { v: "hire"; candidate: Id } | { v: "fire"; person: Id } | { v: "explore"; ruin: Id; party: Id[] }
   | { v: "wake"; shell: Id; by: Id } | { v: "choose"; choice: number } | { v: "pay"; account: "debt" | Id; amount: number }
+  | { v: "borrow"; amount: number }
   | { v: "save" } | { v: "load"; slot: number } | { v: "help"; v2?: string };
 // SPEC-GAP：Prompt/Row 原 spec 未展開；選項保留效果以支援存檔續選。
 export type Prompt = { text: string; choices: Choice[]; event?: Id; person?: Id };
@@ -134,6 +138,7 @@ export type Screen = { room: { id: RoomId; title: string; desc: string[]; exits:
   prompt?: { text: string; choices: { n: number; text: string; disabled?: string }[] }; handoff?: { battle: ScenarioDef } };
 export type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
 export type CampaignState = { relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; version: 1; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
+  debtState?: { arrears: number; due: number; paid: number; seized: Id[]; credit?: { limit: number } };
   nodes: Record<Id, NodeState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>; ship: ShipState; roster: RosterState;
   hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>; inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>;
   jobs: Job[]; contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];

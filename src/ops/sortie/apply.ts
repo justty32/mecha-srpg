@@ -1,4 +1,5 @@
 import type { RunResult } from "../../sim/index.ts";
+import { classifyOutcome, retreatRules } from "./outcome.ts";
 import type { MechState, PersonState, PoolState } from "../../core/types-state.ts";
 import type { PoolDecl } from "../../core/types-def.ts";
 import { evalNum, objectRefs } from "../../core/numexpr.ts";
@@ -11,7 +12,7 @@ import { onBattleRift, nextSpring } from "../world/index.ts";
 import { registerDeath, rosterReturn } from "../crew/index.ts";
 import { admitBeast, beastRules } from "../crew/restraint.ts";
 import { offerNickname } from "../crew/names.ts";
-import { beastSpecies } from "../content/opseffect.ts";
+import { applyOpsEffect, beastSpecies } from "../content/opseffect.ts";
 import { applyOperationBattle } from "../war/merc.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
@@ -81,10 +82,13 @@ function componentLoot(s: CampaignState, ctx: OpsCtx, sortie: Sortie, items: Com
 
 export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
   if (s.log.some(e => e.type === "BattleResolved" && e.payload.sortie === sortie.id)) return;
-  const resolved = ctx.emit("BattleResolved", { sortie: sortie.id, hash: result.log.hash, rounds: result.rounds, winner: result.winner ?? "none", ...(sortie.trigger === "operation" ? { operation: sortie.operation, contract: sortie.contract } : {}) });
+  const { outcome, killRatio } = classifyOutcome(result, sortie), won = outcome === "win" || outcome === "repelled";
+  const resolved = ctx.emit("BattleResolved", { sortie: sortie.id, hash: result.log.hash, rounds: result.rounds, winner: result.winner ?? "none", outcome, killRatio, ...(sortie.trigger === "operation" ? { operation: sortie.operation, contract: sortie.contract } : {}) });
   const ref = eventRef(resolved), ordered = [...sortie.units].sort((a, b) => a.mech < b.mech ? -1 : 1);
   const ownId = (id: string) => ordered.find(u => u.mech === id)?.mech ?? (/^player-\d+$/.test(id) ? ordered[Number(id.slice(7))]?.mech : undefined);
-  const enemy = result.units.filter(u => !ownId(u.id) && (sortie.trigger !== "operation" || u.state.owner === "enemy"));
+  const enemy = result.units.filter(u => !ownId(u.id) && u.state.owner === "enemy");
+  // 護送友軍不屬於營運編隊；活捕敵人雖已轉 owner，仍須走既有拘束艙回寫。
+  const guests = new Set(result.units.filter(u => !ownId(u.id) && u.state.owner === "player" && u.status !== "captured").map(u => u.id));
   const personalIds = new Set(ordered.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)));
   const deferredLoot = new Set<string>();
   if (sortie.trigger === "operation") for (const entry of result.units) {
@@ -95,6 +99,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
 
   // 一、機體：活著／撤退現況寫回，古代死亡休眠，其餘殘骸與流失。
   for (const entry of [...result.units].sort((a, b) => a.id < b.id ? -1 : 1)) {
+    if (guests.has(entry.id)) continue;
     const id = ownId(entry.id), before = id ? s.mechs[id] : undefined;
     if (before) {
       const mech = mechAfter(s, ctx, before, entry.state); s.mechs[before.id] = mech;
@@ -125,10 +130,17 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
       mech.seats = {}; mech.controlMode = "instinct"; mech.owner = "player";
       for (const pool of Object.keys(mech.pools).sort()) mech.pools[pool] = cleanPool(mech.pools[pool]!);
       s.mechs[mech.id] = mech; s.flags[`captured:${mech.id}`] = 1;
-      // SPEC-GAP：BattleResult 不保留 monster id，缺原始 id 時只沿用同族同級唯一個體的二名。
-      const candidates = ctx.db.all("monster").filter(m => m.species === species?.id && m.grade === ctx.db.require("frame", mech.frame).grade);
-      const monster = ctx.db.get("monster", entry.state.frame) ?? (candidates.length === 1 ? candidates[0] : undefined);
-      if (!admitBeast(s, ctx, mech, monster?.epithet)) stash(s, sortie, { components: [], materials: {}, mechs: [mech.id] });
+      // 正式戰果保留捕捉前的個體 id；只有缺 id 的舊結果才按 frame／同族同級唯一個體回推。
+      let monster = entry.monster ? ctx.db.require("monster", entry.monster) : ctx.db.get("monster", entry.state.frame);
+      if (!entry.monster && !monster) {
+        const candidates = ctx.db.all("monster").filter(m => m.species === species?.id && m.grade === ctx.db.require("frame", mech.frame).grade);
+        if (candidates.length === 1) monster = candidates[0];
+      }
+      if (!admitBeast(s, ctx, mech)) stash(s, sortie, { components: [], materials: {}, mechs: [mech.id] });
+      // 捕捉 frame 可能比原獸低級，二名資格以原始個體等級判定。
+      else if (monster?.epithet && ["A", "S"].includes(monster.grade)) {
+        applyOpsEffect(s, ctx, { nameMech: { mech: mech.id, name: monster.epithet, by: "wild", kind: "epithet" } });
+      }
     } else if (entry.status === "dead" && !id) {
       const species = beastSpecies(ctx, entry.state.frame), cfg = species && ctx.world.get("beasts", `beasts/${species.family}`);
       if (species && cfg && !deferredLoot.has(entry.id)) {
@@ -171,7 +183,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   }
   // 三、戰利品：實體與材料分流，材料的唯一寫入入口為 post。
   for (const loot of result.loot) {
-    if (deferredLoot.has(loot.fromUnit)) continue;
+    if (deferredLoot.has(loot.fromUnit) || guests.has(loot.fromUnit)) continue;
     const source = result.units.find(u => u.id === loot.fromUnit)?.state;
     componentLoot(s, ctx, sortie, [...loot.components].sort().map(def => {
       const part = source && Object.keys(source.parts).sort().find(key => Object.values(source.parts[key]!.components).includes(def));
@@ -187,11 +199,21 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   }
   // 四、契約：只認原始 UnitDied 事件，加 sortie id 跨場去重。
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;
+  const retry = outcome === "timeout" || outcome === "withdrew";
   if (contract && sortie.trigger !== "operation") {
     const deaths = (result.events ?? []).filter(e => e.type === "UnitDied" && enemy.some(u => u.id === e.payload.unit));
     tallyHeads(contract, deaths.map(e => ({ ...e, payload: { ...e.payload, unit: `${sortie.id}/${e.payload.unit}` } })));
     // SPEC-GAP：部分目標進度未回傳，只有明示 partial 才付半額，失敗有擊殺不自動視為部分成功。
-    settleContract(s, ctx, contract.id, result.winner === "player" ? "done" : result.reason === "partial" ? "partial" : "failed");
+    if (!contract.settled && ["active", "stage"].includes(contract.status)) {
+      contract.consecutiveDraws = retry ? (contract.consecutiveDraws ?? 0) + 1 : 0;
+      // 撤退與平手都保留重打，greedy 沿用 consecutiveDraws 兩次放棄門檻。
+      if (!retry || s.clock.day > contract.deadlineDay) {
+        const cfg = retreatRules(ctx);
+        const factor = outcome === "repelled" && ctx.world.require("contract", contract.template).kind === "clear"
+          ? cfg.clearBase + cfg.clearKillShare * killRatio : 1;
+        settleContract(s, ctx, contract.id, retry ? "failed" : won ? "done" : result.reason === "partial" ? "partial" : "failed", factor);
+      }
+    }
   }
   // 五、裂縫：以錨 monster/species/capture.frame 比對，捕獲轉 owner 後仍能識別。
   const rift = s.rifts[sortie.rift ?? contract?.target.rift ?? ""];
@@ -199,19 +221,24 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
     const def = ctx.world.get("rift", rift.family) ?? ctx.world.all("rift").find(d => d.family === rift.family);
     const anchor = ctx.db.get("monster", rift.anchor ?? def?.anchor ?? "");
     const species = anchor ? ctx.db.require("species", anchor.species) : undefined;
-    const killed = enemy.find(u => (u.status === "dead" || u.status === "captured") &&
+    const killed = result.units.find(u => !ownId(u.id) && !guests.has(u.id) &&
+      (u.status === "dead" && u.state.owner === "enemy" || u.status === "captured" && u.state.owner === "player") &&
       (u.id === rift.anchor || u.state.frame === anchor?.id || u.state.frame === species?.id || u.state.frame === species?.capture.frame));
     if (killed) onBattleRift(s, ctx, rift.id, killed.status === "captured" ? "anchor-captured" : "anchor-killed");
-    if (rift.phase === "opening" && killed) onBattleRift(s, ctx, rift.id, "vanguard-killed");
+    // eliminate 由戰鬥層判斷先鋒全數失去戰力，包含撤離與活捕，不再重判成必須全部死亡。
+    if (outcome === "repelled") onBattleRift(s, ctx, rift.id, "repelled");
+    if (rift.phase === "opening" && won && result.reason === "eliminate") {
+      onBattleRift(s, ctx, rift.id, "vanguard-killed");
+    }
     const kind = contract && ctx.world.require("contract", contract.template).kind;
-    if (result.winner === "player" && (kind === "seal" || sortie.trigger === "defend")) {
+    if (won && (kind === "seal" || kind === "defend" || sortie.trigger === "defend")) {
       onBattleRift(s, ctx, rift.id, "defended");
       // SPEC-GAP：world 的 defended 只接受大潮；一般 seal 情境勝利仍依戰鬥契約進 sealing。
       if (kind === "seal" && rift.phase === "unanchored") {
         rift.phase = "sealing"; rift.nextCheck = nextSpring(s, ctx);
         ctx.emit("RiftPhase", { rift: rift.id, phase: rift.phase, fedCount: rift.fedCount });
       }
-    } else if (result.winner !== "player") onBattleRift(s, ctx, rift.id, "lost");
+    } else if (!won && outcome !== "timeout") onBattleRift(s, ctx, rift.id, "lost");
   }
   // 六、聲望：契約 onComplete/onFail 已由 settleContract 套用；設施誤傷事件／幅度 core 未回傳，不臆扣。
   // 七、耗材：只計原始 AbilityUsed 事件，不因攜帶而扣除。

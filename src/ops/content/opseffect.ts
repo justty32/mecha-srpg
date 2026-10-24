@@ -66,7 +66,7 @@ function applyCoreEffect(s: CampaignState, ctx: OpsCtx, input: Extract<OpsEffect
   // SPEC-GAP：營運只預掛效果實例與貢獻，不執行戰場鉤子；日數時鐘交給 crew。
   for (let i = 0; i < def.contribs.length; i++) {
     const id = `ops-effect-${uid}-${i}`;
-    target.contribs.push({ ...structuredClone(def.contribs[i]!), id, source: effect.source });
+    target.contribs.push({ ...structuredClone(def.contribs[i]!), id, source: effect.source, value: evalNum(def.contribs[i]!.value, ev) });
     effect.contribIds.push(id);
   }
   target.effects.push(effect);
@@ -140,7 +140,8 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
   } else if ("flag" in effect) s.flags[effect.flag] = num(effect.value ?? 1);
   else if ("mood" in effect) {
     for (const key of Object.keys(effect.mood).sort()) {
-      const ids = key === "all" ? Object.keys(s.roster.employment).sort() : Object.keys(s.roster.persons).sort().filter(id => id === key || s.roster.persons[id]!.def === ctx.db.get("person", key)?.id);
+      const ids = key === "all" ? Object.keys(s.roster.employment).sort() : s.roster.persons[key] ? [key]
+        : Object.keys(s.roster.persons).sort().filter(id => s.roster.persons[id]!.def === ctx.db.get("person", key)?.id).slice(0, 1);
       if (!ids.length && key !== "all") throw new Error(`缺少人物：${key}`);
       const delta = num(effect.mood[key]!);
       for (const id of ids) { const employee = s.roster.employment[id]; if (employee) employee.mood = Math.min(3, Math.max(-3, employee.mood + delta)); }

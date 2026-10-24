@@ -13,12 +13,15 @@ export function recruitsDaily7(s: CampaignState, ctx: OpsCtx): void {
     if (peekCrew(s)?.recruitDays[pool.id] === s.clock.day) continue;
     const rt = crew(s);
     for (const id of Object.keys(rt.candidates).sort()) if (rt.candidates[id]!.pool === pool.id) delete rt.candidates[id];
+    const used = new Set([...Object.values(s.roster.persons).map(p => p.def), ...Object.values(rt.candidates).map(c => c.person.def)]);
     const sources = [...pool.sources].sort((a, b) => a.background < b.background ? -1 : a.background > b.background ? 1 : 0)
       .map(src => ({ def: ctx.world.require("background", src.background), weight: evalOpsNum(s, ctx, src.weight) }))
-      .filter(src => src.weight > 0 && src.def.person && ctx.db.get("person", src.def.person)?.kind === "human");
+      .filter(src => src.weight > 0 && src.def.person && ctx.db.get("person", src.def.person)?.kind === "human" && !used.has(ctx.db.require("person", src.def.person).id));
     for (let i = 0; i < pool.size && sources.length; i++) {
       const bg = pickWeighted(s.rng, sources, v => v.weight).def, id = nextId(s, "candidate");
       const person = instantiatePerson(ctx.db, id, bg.person!);
+      used.add(person.def);
+      for (let j = sources.length - 1; j >= 0; j--) if (ctx.db.require("person", sources[j]!.def.person!).id === person.def) sources.splice(j, 1);
       for (const attr of Object.keys(bg.attrRanges).sort()) { const [lo, hi] = bg.attrRanges[attr]!; person.attrsBase[attr] = rollInt(s.rng, lo, hi); }
       rt.candidates[id] = { id, pool: pool.id, node: ctx.world.require("node", pool.node).id, background: bg.id, culture: bg.culture, person,
         fee: evalOpsNum(s, ctx, bg.hireFee), wage: rules(ctx).wageBase * evalOpsNum(s, ctx, bg.wageMult), traits: [...(bg.traits ?? [])] };

@@ -9,7 +9,8 @@ import { replayCampaign } from "./replay.ts";
 export type CampaignBlob = { start: string; seed: number; commands: CampaignCommand[]; snapshotHash: string };
 export function campaignHash(value: unknown): string { return fnv1a64(canonicalJson(value)); }
 export function createCampaignBlob(start: string, seed: number, commands: readonly CampaignCommand[], state: CampaignState): CampaignBlob {
-  return { start, seed, commands: structuredClone([...commands]), snapshotHash: campaignHash(state) };
+  // 存檔是 JSON 資料：先經 JSON 正規化（丟掉值為 undefined 的鍵，例如規則層 effect owner 的空 part／layer），確保序列化來回逐位相等。
+  return { start, seed, commands: JSON.parse(JSON.stringify(commands)) as CampaignCommand[], snapshotHash: campaignHash(state) };
 }
 export function serializeCampaign(blob: CampaignBlob): string { return JSON.stringify(blob); }
 export function parseCampaign(source: string): CampaignBlob {

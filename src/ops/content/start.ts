@@ -9,8 +9,11 @@ import { nextId } from "../state/ids.ts";
 import { post } from "../state/ledger.ts";
 import type { WorldDB } from "./worlddb.ts";
 import { instantiateMech, instantiatePerson, instantiatePools } from "./instantiate.ts";
+import { registerTextDB } from "../text/names.ts";
+import { registerPersonName } from "../crew/names.ts";
 
 export function createOpsCtx(s: CampaignState, db: ContentDB, world: WorldDB): OpsCtx {
+  registerTextDB(world, db);
   return { db, world, emit: (type, payload) => emit(s, type, payload) };
 }
 function shipPool(id: string, def: ShipPoolDecl): PoolDecl {
@@ -41,6 +44,7 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
     const def = typeof entry === "string" ? entry : entry.def, id = nextId(s, "person");
     const person = instantiatePerson(db, id, def);
     s.roster.persons[id] = person;
+    registerPersonName(s, { db, world }, id);
     const terms = typeof entry === "string" ? start.employment : entry;
     if (!terms) throw new Error(`開局人物缺少僱用條件：${def}`);
     s.roster.employment[id] = { since: start.day, wage: terms.wage, owed: 0, mood: 0, role: terms.role };

@@ -32,6 +32,7 @@ test("rifts：兩次大潮防守封印、潮月退區到 closed", () => {
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealing");
   day(s, ctx, 28);
   const defense = offerContract(s, ctx, "contract/seal", "faction-ops/migrant-crew", { node: r.node, rift: r.id })!;
+  s.ship.at = r.node;
   cmdAccept(s, ctx, { v: "accept", contract: defense.id });
   riftsDaily2(s, ctx); assert.equal(s.pendingBattle?.rift, r.id);
   onBattleRift(s, ctx, r.id, "defended"); assert.equal(r.phase, "sealed"); assert.equal(s.pressure, 88);

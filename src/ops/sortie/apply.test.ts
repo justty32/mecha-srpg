@@ -4,6 +4,7 @@ import { applyBattleResult } from "./apply.ts";
 import { instantiateMech } from "../content/instantiate.ts";
 import { checkLedger } from "../state/ledger.ts";
 import { fixture, result } from "./test-support.ts";
+import { offerContract, cmdDrop, contractsDaily7 } from "../contracts/index.ts";
 
 test("alive 機甲與人物直接寫回已含舊傷的戰果", () => {
   const { s, ctx, sortie, mech, person } = fixture(), battle = result();
@@ -44,4 +45,69 @@ test("loot 材料經 post，checkLedger 無錯且來源含戰鬥 hash", () => {
   assert.ok(s.ledger.entries.some(e => e.reason === `battle-loot:${battle.log.hash}` && e.account === "stock:scrap" && e.ref));
   assert.deepEqual(checkLedger(s), []);
   assert.ok(s.log.some(e => e.type === "BattleResolved" && e.payload.hash === battle.log.hash && e.payload.rounds === battle.rounds));
+});
+
+test("opening 清剿先鋒勝利關閉裂縫，同裂縫不再提供新契約", () => {
+  for (const status of ["dead", "retreated", "captured"] as const) {
+    const { s, ctx, sortie, contract } = fixture(), battle = result();
+    const rift = s.rifts[sortie.rift!]!;
+    rift.phase = "opening"; delete rift.anchor;
+    contract.target.snapshot!.phase = "opening";
+    const otherOffer = offerContract(s, ctx, "contract/seal", contract.issuer, contract.target)!;
+    assert.equal(otherOffer.status, "offered");
+    const vanguard = instantiateMech(ctx.db, "vanguard", "frame/bio-mite");
+    vanguard.owner = status === "captured" ? "player" : "enemy";
+    battle.units.push({ id: vanguard.id, status, state: vanguard });
+    applyBattleResult(s, ctx, sortie, battle);
+    assert.equal(rift.phase, "closed");
+    assert.equal(offerContract(s, ctx, contract.template, contract.issuer, contract.target), undefined);
+    assert.equal(otherOffer.status, "expired");
+    assert.ok(!Object.values(s.contracts).some(c => c.target.rift === rift.id && c.status === "offered"));
+  }
+});
+
+test("回合上限平手保留契約與耗損，期限內可重打或放棄、逾期照常失敗", () => {
+  for (const exit of ["retry", "drop", "expire"] as const) {
+    const { s, ctx, sortie, contract, mech } = fixture(), battle = result();
+    battle.winner = null; battle.reason = "timeout"; battle.rounds = 20;
+    const worn = structuredClone(s.mechs[mech]!);
+    worn.parts.torso!.layers[0]!.hp -= 3;
+    worn.pools["ammo-30"]!.cur -= 1;
+    battle.units.push({ id: mech, status: "alive", state: worn });
+    const cash = s.ledger.balances.cash;
+    applyBattleResult(s, ctx, sortie, battle);
+    assert.equal(contract.status, "active");
+    assert.ok(!contract.settled);
+    assert.equal(s.ledger.balances.cash, cash);
+    assert.equal(s.mechs[mech]!.parts.torso!.layers[0]!.hp, worn.parts.torso!.layers[0]!.hp);
+    assert.equal(s.mechs[mech]!.pools["ammo-30"]!.cur, worn.pools["ammo-30"]!.cur);
+    if (exit === "retry") {
+      applyBattleResult(s, ctx, { ...sortie, id: "sortie-retry" }, result());
+      assert.equal(contract.status, "done");
+    } else if (exit === "drop") {
+      assert.deepEqual(cmdDrop(s, ctx, { v: "drop", contract: contract.id }), { ok: true });
+      assert.equal(contract.status, "cancelled");
+    } else {
+      s.clock.day = contract.deadlineDay + 1;
+      contractsDaily7(s, ctx);
+      assert.equal(contract.status, "failed");
+    }
+  }
+});
+
+test("非作戰護送友軍死亡不算敵方頭數、不回收屍體或戰利品", () => {
+  const { s, ctx, sortie, contract, mech } = fixture(), battle = result();
+  const escort = instantiateMech(ctx.db, `${sortie.id}/escort-0`, "frame/bio-nestmother");
+  escort.owner = "player";
+  const enemy = structuredClone(s.mechs[mech]!); enemy.id = "enemy-unit"; enemy.owner = "enemy";
+  battle.units.push({ id: escort.id, status: "dead", state: escort }, { id: enemy.id, status: "dead", state: enemy });
+  battle.events = [escort.id, enemy.id].map((unit, seq) => ({ seq, round: 1, type: "UnitDied", payload: { unit } }));
+  battle.loot.push({ fromUnit: escort.id, components: [], materials: { scrap: 3 } });
+  const scrap = s.ledger.balances["stock:scrap"];
+  applyBattleResult(s, ctx, sortie, battle);
+  assert.deepEqual(contract.heads, { [`${sortie.id}/${enemy.id}`]: 1 });
+  assert.equal(s.rifts[sortie.rift!]!.phase, "anchored");
+  assert.equal(s.pendingChoices.length, 0);
+  assert.equal(s.ledger.balances["stock:scrap"], scrap);
+  assert.equal(s.mechs[escort.id], undefined);
 });

@@ -24,7 +24,7 @@ function object(value: unknown): value is Record<string, unknown> { return value
 export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   const errors: string[] = [], warnings: string[] = [];
   for (const def of world.all("keymap")) errors.push(...keymapErrors(def));
-  const reference = (value: unknown, at: string, expected?: WorldKind | "terrain" | "frame" | "person" | "effect", warning = false) => {
+  const reference = (value: unknown, at: string, expected?: WorldKind | "terrain" | "frame" | "person" | "effect" | "faction" | "component", warning = false) => {
     if (typeof value !== "string") { errors.push(`${at}: missing reference`); return; }
     const p = parseId(value), kind = expected ?? p?.kind;
     const found = kind && isContentKind(kind) ? db.get(kind, value) : kind && WORLD_KINDS.includes(kind as WorldKind) ? world.get(kind as WorldKind, value) : undefined;
@@ -69,6 +69,23 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   }
   for (const route of world.all("route")) { reference(route.a, `${route.id}.a`, "node"); reference(route.b, `${route.id}.b`, "node"); if (!(route.days > 0)) errors.push(`${route.id}.days: must be positive`); }
   for (const node of world.all("node")) for (const terrain of node.terrainPool ?? []) reference(terrain, `${node.id}.terrainPool`, "terrain");
+  for (const encounter of world.all("encounter")) {
+    if (encounter.faction !== undefined) reference(encounter.faction, `${encounter.id}.faction`, "faction");
+    for (const [i, unit] of (encounter.units ?? []).entries()) {
+      const at = `${encounter.id}.units[${i}]`;
+      reference(unit.frame, `${at}.frame`, "frame");
+      for (const pilot of unit.pilots ?? []) reference(pilot, `${at}.pilots`, "person");
+      const frame = db.get("frame", unit.frame), body = frame && db.get("bodyplan", frame.bodyPlan);
+      for (const [slotId, id] of Object.entries(unit.components ?? {})) {
+        reference(id, `${at}.components.${slotId}`, "component");
+        const slot = body?.parts.flatMap(p => p.slots).find(s => s.id === slotId), component = db.get("component", id);
+        // core loader 的 loadout 檢查是私有函式；沿用槽存在與型別相符兩條契約。
+        if (body && !slot) errors.push(`${at}.components.${slotId}: unknown slot`);
+        else if (slot && component && slot.type !== component.slot) errors.push(`${at}.components.${slotId}: incompatible slot type`);
+      }
+    }
+  }
+  for (const contract of world.all("contract")) for (const id of contract.encounter ?? []) reference(id, `${contract.id}.encounter`, "encounter");
   for (const contract of world.all("contract")) if (!world.all("faction-ops").some(f => contract.issuerKinds?.includes(f.scale))) errors.push(`${contract.id}.issuerKinds: no matching faction`);
   for (const event of world.all("event")) {
     if (event.next) reference(event.next, `${event.id}.next`, "event");

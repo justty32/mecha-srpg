@@ -6,6 +6,47 @@ import { generateScenario } from "./scenario.ts";
 import { fixture } from "./test-support.ts";
 import { createWorldDB } from "../content/worlddb.ts";
 
+test("seal 守區避開敵軍初始格且從玩家初始格沿可通行地形可達", () => {
+  const { s, ctx, sortie, contract } = fixture();
+  contract.template = ctx.world.require("contract", "contract/seal").id;
+  contract.target.snapshot!.depth = "core";
+  const sc = generateScenario(s, ctx, sortie), sim = scenarioToSetup(ctx.db, sc, sc.seed!);
+  const zone = sc.objectives.find(o => o.kind === "hold")!.params.zone as { x: number; y: number }[];
+  assert.ok(zone.length > 0);
+  assert.ok(zone.every(c => !sim.setup.units.some(u => u.owner === "enemy" && u.pos.x === c.x && u.pos.y === c.y)));
+  const terrain = new Map(sim.setup.map.cells!.map(c => [`${c.at.x},${c.at.y}`, ctx.db.require("terrain", c.terrain)]));
+  const reached = new Set<string>(), queue = sim.setup.units.filter(u => u.owner === "player").map(u => u.pos);
+  for (const c of queue) reached.add(`${c.x},${c.y}`);
+  for (let i = 0; i < queue.length; i++) {
+    const at = queue[i]!;
+    for (let dx = -1; dx <= 1; dx++) for (let dy = -1; dy <= 1; dy++) {
+      const c = { x: at.x + dx, y: at.y + dy }, key = `${c.x},${c.y}`, cost = terrain.get(key)?.moveCost.leg;
+      if (cost === null || cost === undefined || reached.has(key)) continue;
+      reached.add(key); queue.push(c);
+    }
+  }
+  assert.ok(zone.every(c => reached.has(`${c.x},${c.y}`)));
+});
+
+test("anchored clear 在錨在場時 killTarget 指向錨，opening 保持 eliminate", () => {
+  for (const phase of ["anchored", "opening"] as const) {
+    const { s, ctx, sortie, contract } = fixture();
+    contract.target.snapshot!.depth = "core"; contract.target.snapshot!.phase = phase;
+    const sc = generateScenario(s, ctx, sortie), sim = scenarioToSetup(ctx.db, sc, sc.seed!);
+    if (phase === "opening") {
+      assert.ok(sc.objectives.some(o => o.for === "player" && o.kind === "eliminate"));
+      assert.ok(!sc.objectives.some(o => o.kind === "killTarget"));
+    } else {
+      const objective = sc.objectives.find(o => o.for === "player" && o.kind === "killTarget");
+      assert.ok(objective);
+      const anchor = ctx.world.require("rift", "rift/insect").anchor!;
+      const index = sc.slots.enemy!.units.findIndex(u => u.monster === anchor);
+      assert.equal(objective.params.unit, `enemy-${index}`);
+      assert.ok(sim.setup.units.some(u => u.id === objective.params.unit));
+    }
+  }
+});
+
 test("核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨", () => {
   for (const phase of ["opening", "anchored"] as const) {
     const { s, ctx, sortie, contract } = fixture();
@@ -43,7 +84,7 @@ test("同 state 與 rng 生成深相等情境", () => {
   assert.notDeepEqual(s.rng, before);
 });
 
-test("hold 缺 zone（含 anchor 與階段目標）展開敵方部署區，明列 zone 保留", () => {
+test("hold 缺 zone（含 anchor 與階段目標）展開可達守區，明列 zone 保留", () => {
   for (const params of [{ rounds: 5 }, { rounds: 5, role: "anchor" }, { rounds: 5, zone: [{ x: 2, y: 1 }] }]) {
     for (const staged of [false, true]) {
       const { s, ctx, sortie, contract } = fixture();
@@ -55,7 +96,12 @@ test("hold 缺 zone（含 anchor 與階段目標）展開敵方部署區，明�
       contract.template = template.id; contract.stageIdx = 0;
       const scenario = generateScenario(s, ctx, sortie);
       const hold = scenario.objectives.find(o => o.kind === "hold")!;
-      assert.deepEqual(hold.params.zone, params.zone ?? scenario.ops.map.deployZones.enemy);
+      if (params.zone) assert.deepEqual(hold.params.zone, params.zone);
+      else {
+        const zone = hold.params.zone as { x: number; y: number }[];
+        assert.ok(zone.length > 0);
+        assert.ok(zone.every(c => !scenario.ops.map.deployZones.enemy!.some(e => e.x === c.x && e.y === c.y)));
+      }
       assert.equal(hold.params.rounds, 5);
       assert.deepEqual(template.objectives[0]!.params, params);
     }

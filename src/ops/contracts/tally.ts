@@ -12,7 +12,7 @@ export function tallyHeads(contract: ContractState, unitDiedEvents: readonly Uni
   for (const id of ids) if (!Object.hasOwn(contract.heads, id)) Object.defineProperty(contract.heads, id, { value: 1, enumerable: true, configurable: true, writable: true });
   return Object.keys(contract.heads).sort().reduce((sum, id) => sum + contract.heads[id]!, 0);
 }
-export function settleContract(s: CampaignState, ctx: OpsCtx, id: string, outcome: "done" | "failed" | "partial"): void {
+export function settleContract(s: CampaignState, ctx: OpsCtx, id: string, outcome: "done" | "failed" | "partial", rewardFactor = 1): void {
   const c = s.contracts[id];
   if (!c || c.settled || !["active", "stage"].includes(c.status)) return;
   const template = ctx.world.require("contract", c.template), scope = { contract: id, faction: c.issuer, node: c.target.node, ...(c.target.rift ? { rift: c.target.rift } : {}) };
@@ -31,7 +31,7 @@ export function settleContract(s: CampaignState, ctx: OpsCtx, id: string, outcom
     const heads = Object.keys(c.heads).sort().reduce((sum, unit) => sum + c.heads[unit]!, 0);
     const bonus = (template.pay.bonus ?? []).filter(b => evalOpsCond(s, ctx, b.cond, scope)).reduce((sum, b) => sum + evalOpsNum(s, ctx, b.amount, scope), 0);
     // 半額是 spec 明定的部分成功；預付扣一次，尾款不足不另造負收入。
-    const earned = (c.terms.total + c.terms.perHead * heads + bonus) * (outcome === "partial" ? 0.5 : 1);
+    const earned = (c.terms.total + c.terms.perHead * heads + bonus) * (outcome === "partial" ? 0.5 : rewardFactor);
     post(s, ctx, { account: "cash", delta: Math.max(0, earned - (c.paidAdvance ? c.terms.advance : 0)), reason: "contract", ref });
     if (stage) applyOpsEffects(s, ctx, stage.effects ?? [], scope);
   }

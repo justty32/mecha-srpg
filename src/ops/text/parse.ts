@@ -3,27 +3,14 @@ import type { WorldDB } from "../content/worlddb.ts";
 import { findVerb, LEGAL_VERBS, VERBS } from "./verbs.ts";
 
 export type ParseError = { error: string; candidates?: string[] };
-// SPEC-GAP：parse 無 core DB 參數，名稱與所在房間以可序列化區域擴充提供。
-export type TextState = CampaignState & { text?: { room?: string; names?: Record<string, string> } };
+import { entityName, textContext } from "./names.ts";
+import type { TextState } from "./names.ts";
+import { marketListings } from "../world/market.ts";
+import { peekCrew } from "../crew/shared.ts";
+export { entityName } from "./names.ts";
+export type { TextState } from "./names.ts";
 type Candidate = { id: string; names: string[] };
 type Domain = "room" | "person" | "mech" | "node" | "contract" | "job" | "market" | "research" | "item" | "candidate" | "all";
-
-export function entityName(id: string, state: TextState, world: WorldDB): string {
-  const names = state.roster.names[id] ?? [], latest = (kind: string) => names.filter(n => n.kind === kind).at(-1)?.name;
-  const nickname = latest("nickname"), epithet = latest("epithet");
-  const named = state.text?.names?.[id] ?? (nickname ? [epithet, nickname].filter(Boolean).join("・") : latest("registry") ?? names.at(-1)?.name);
-  if (named) return named;
-  const person = state.roster.persons[id];
-  if (person) {
-    const dialogue = world.all("dialogue").find(d => d.person === person.def) as { name?: string } | undefined;
-    return dialogue?.name ?? person.def.split("/").at(-1)!;
-  }
-  for (const kind of ["node", "room", "research", "background"] as const) {
-    const def = world.get(kind, id);
-    if (def) return "name" in def ? def.name : def.title;
-  }
-  return id;
-}
 
 function candidates(domain: Domain, state: TextState, world: WorldDB): Candidate[] {
   const result: Candidate[] = [];
@@ -38,11 +25,13 @@ function candidates(domain: Domain, state: TextState, world: WorldDB): Candidate
     add(id, c.template.split("/").at(-1)!, world.get("node", c.target.node)?.name ?? "");
   }
   if (include("job")) for (const job of state.jobs) add(job.id);
+  const ctx = textContext(world);
+  if (include("candidate")) for (const c of Object.values(peekCrew(state)?.candidates ?? {})) add(c.id, ctx?.db.get("person", c.person.def)?.name ?? "應徵者");
   if (include("market")) for (const def of world.all("market")) add(def.id, world.get("node", def.node)?.name ?? "");
   if (include("research")) for (const def of world.all("research")) add(def.id, def.name);
   if (include("item")) {
     for (const item of state.inventory.components) add(item.id, item.def);
-    for (const market of world.all("market")) for (const list of market.lists) for (const item of list.items) add(item.def);
+    if (ctx) for (const market of world.all("market")) for (const { item } of marketListings(state, ctx, market)) add(item.def);
   }
   return result;
 }
@@ -53,10 +42,10 @@ function resolve(word: string, domain: Domain, state: TextState, world: WorldDB)
   const exact = entries.filter(c => c.names.includes(word));
   const matches = [...new Map((exact.length ? exact : entries.filter(c => c.names.some(n => n.startsWith(word)))).map(c => [c.id, c])).values()].sort((a, b) => a.id.localeCompare(b.id));
   if (matches.length === 1) return matches[0]!.id;
-  if (matches.length > 1) throw { error: `你是指：${matches.map(c => `${entityName(c.id, state, world)}（${c.id}）`).join("、")}`, candidates: matches.map(c => c.id) } satisfies ParseError;
+  if (matches.length > 1) throw { error: `你是指：${matches.map(c => `${entityName(c.id, state, world)}（${c.id}）`).join("、")}`, candidates: matches.slice(0, 8).map(c => c.id) } satisfies ParseError;
   // SPEC-GAP：招募候選池及 core 物品 DB 不在 parse 簽名內；明確 id 留給執行端驗存在。
   if ((domain === "candidate" || domain === "item") && /^(?:[\w-]+:[\w-]+\/|[\w-]+\/|[\w]+-\d|stock:)[\w./:-]*$/.test(word)) return word;
-  throw { error: `找不到${word}。` } satisfies ParseError;
+  throw { error: `找不到${word}。`, candidates: [...new Map(entries.map(c => [c.id, c])).values()].slice(0, 8).map(c => `${entityName(c.id, state, world)}（${c.id}）`) } satisfies ParseError;
 }
 
 // 引號字串與 JSON 物件各為一個參數；不執行輸入文字。
@@ -115,7 +104,7 @@ function structured<T>(text: string, kind: "job" | "sortie"): T {
 }
 
 export function parse(line: string, state: CampaignState, world: WorldDB): OpsCommand | ParseError {
-  let grammar = "";
+  let grammar = "", activeDomain: Domain | undefined;
   try {
     const args = tokenize(line), word = args.shift() ?? "";
     const shortcut = ({ 修: "repair", 研: "research", 植: "graft", 育: "incubate" } as Record<string, string>)[word];
@@ -123,7 +112,7 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
     if (!v) return { error: `未知動詞「${word}」。合法動詞：${LEGAL_VERBS}` };
     grammar = `${VERBS.find(entry => entry.v === v)!.zh} ${VERBS.find(entry => entry.v === v)!.grammar}`;
     const take = () => { const arg = args.shift(); if (arg === undefined || arg === "") throw new Error("缺少參數"); return arg; };
-    const id = (domain: Domain) => resolve(take(), domain, state, world);
+    const id = (domain: Domain) => { activeDomain = domain; return resolve(take(), domain, state, world); };
     const num = (min = 0) => { const raw = take(), n = Number(raw); if (!/^\d+$/.test(raw) || !Number.isSafeInteger(n) || n < min) throw new Error(`需要不小於 ${min} 的整數`); return n; };
     let cmd: OpsCommand;
     switch (v) {
@@ -180,13 +169,15 @@ export function parse(line: string, state: CampaignState, world: WorldDB): OpsCo
       case "wake": cmd = { v, shell: id("mech"), by: id("person") }; break;
       case "choose": cmd = { v, choice: num(1) }; break;
       case "pay": { const account = ["債", "debt"].includes(args[0]!) ? (take(), "debt") : id("person"); cmd = { v, account, amount: num(1) }; break; }
+      case "borrow": cmd = { v, amount: num(1) }; break;
       case "load": cmd = { v, slot: num() }; break;
       case "help": cmd = args.length ? { v, v2: take() } : { v }; break;
+      default: throw new Error("此動詞尚未提供文字語法");
     }
     if (args.length) throw new Error("多餘參數");
     return cmd;
   } catch (error) {
     if (error && typeof error === "object" && "error" in error) return error as ParseError;
-    return { error: `${error instanceof Error ? error.message : "參數錯誤"}。用法：${grammar}。合法動詞：${LEGAL_VERBS}` };
+    return { error: `${error instanceof Error ? error.message : "參數錯誤"}。用法：${grammar}。合法動詞：${LEGAL_VERBS}`, ...(activeDomain ? { candidates: candidates(activeDomain, state, world).slice(0, 8).map(c => `${entityName(c.id, state, world)}（${c.id}）`) } : {}) };
   }
 }

@@ -5,7 +5,7 @@ import { clock } from "../../../ops/state/clock.ts";
 import { routeOpen } from "../../../ops/world/nodes.ts";
 import { shortestPath } from "../../../ops/world/travel.ts";
 import type { TravelState } from "../../../ops/world/travel.ts";
-import { marketPrice } from "../../../ops/world/market.ts";
+import { marketPrice, marketListings } from "../../../ops/world/market.ts";
 import type { MarketState } from "../../../ops/world/market.ts";
 import { peekCrew } from "../../../ops/crew/shared.ts";
 import type { NamingPrompt } from "../../../ops/crew/names.ts";
@@ -72,14 +72,14 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const pathNodes = [s.ship.at, ...(route?.via ?? (route ? [route.to] : []))];
   const market = world.all("market").find(m => m.node === s.ship.at);
   const marketReason = route ? "航行中" : !market ? "此地沒有市場" : !docked ? "須先停泊" : null;
-  const marketItems: OpsSnapshot["market"]["items"] = market ? market.lists.flatMap(list => list.items.map(item => ({
-    id: item.def, name: name(item.def), kind: list.kind, kindName: label(list.kind), price: marketPrice(s, ctx, market, item),
+  const marketItems: OpsSnapshot["market"]["items"] = market ? marketListings(s, ctx, market).map(({ kind, item }) => ({
+    id: item.def, name: name(item.def), kind, kindName: label(kind), price: marketPrice(s, ctx, market, item),
     stock: (s as MarketState).markets?.[market.id]?.stock[item.def] ?? item.stockMax,
     buttons: [cmdButton(`buy:${market.id}:${item.def}`, "買一件", "market", { v: "trade", market: market.id, buy: [item.def] }),
-      ...(["component", "frame"].includes(list.kind) ? [] : [cmdButton(`sell:${market.id}:${item.def}`, "賣一件", "market", { v: "trade", market: market.id, sell: [item.def] })])],
-  }))) : [];
+      ...(["component", "frame"].includes(kind) ? [] : [cmdButton(`sell:${market.id}:${item.def}`, "賣一件", "market", { v: "trade", market: market.id, sell: [item.def] })])],
+  })) : [];
   if (market) for (const owned of [...s.inventory.components.map(c => ({ id: c.id, def: c.def, kind: "component" })), ...s.inventory.mechs.filter(id => s.mechs[id]).map(id => ({ id, def: s.mechs[id]!.frame, kind: "frame" }))]) {
-    const item = market.lists.flatMap(l => l.items).find(i => i.def === owned.def); if (!item) continue;
+    const item = marketListings(s, ctx, market).map(l => l.item).find(i => i.def === owned.def); if (!item) continue;
     marketItems.push({ id: owned.id, name: name(owned.def), kind: owned.kind, kindName: `${label(owned.kind)}（持有）`, price: marketPrice(s, ctx, market, item), stock: 1,
       buttons: [cmdButton(`sell:${market.id}:${owned.id}`, "出售", "market", { v: "trade", market: market.id, sell: [owned.id] })] });
   }

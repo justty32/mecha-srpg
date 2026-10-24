@@ -25,6 +25,7 @@ export function crew(s: CampaignState): CrewRuntime {
 // SPEC-GAP：可調營運數值放 service/crew 的擴充欄位，與既有 WorldDB 載入器相容。
 export type CrewRules = ServiceDef & { crew: {
   wageBase: number; leaveChance: number; interestRate: number; dockFee: number; rent: number;
+  amortMonths: number; arrearsRepPenalty: number; seizeCreditRatio: number; sanctionFeeMult: number; creditLimit: number; creditRate: number;
   hpRegen: number; medbayMult: number; medicMult: number; soulNeedHours: number; defaultCulture: string;
   shipFuel: number; shipHull: number;
   withering?: string; grudge?: string;

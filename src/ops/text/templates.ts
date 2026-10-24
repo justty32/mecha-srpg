@@ -22,11 +22,17 @@ export function templateEntries(world: WorldDB): TemplatesDef["entries"] {
 export function eventLog(event: CampaignEvent, state: CampaignState, world: WorldDB): Screen["log"][number] {
   const template = templateEntries(world)[event.type];
   const values: Record<string, unknown> = { ...event.payload, day: event.day };
+  for (const [key, value] of Object.entries(values)) if (typeof value === "number") values[key] = Number(value.toFixed(1));
   for (const [key, value] of Object.entries(event.payload)) if (typeof value === "string") values[key] = { id: value, name: entityName(value, state, world) };
   if (event.type === "Named" && typeof event.payload.mech === "string") {
     const index = typeof event.payload.index === "number" ? event.payload.index : undefined;
     const names = state.roster.names[event.payload.mech];
     values.name = index === undefined ? names?.at(-1)?.name : names?.[index]?.name;
   }
-  return { day: event.day, text: template ? interpolate(template.text, values) : `未登錄事件：${event.type}。`, kind: template?.kind ?? "info" };
+  // 舊事件可能省略對象（如離職後薪資紀錄）；逐欄提供可讀備援，保留 interpolate 的通用語意。
+  for (const match of template?.text.matchAll(/\{([\w.-]+)\}/g) ?? []) {
+    const key = match[1]!.split(".")[0]!;
+    if (values[key] === undefined || values[key] === "") values[key] = { name: ({ person: "船員", node: "當地", mech: "機甲", to: "目的地", from: "原地", amount: "未記錄", days: "若干" } as Record<string, string>)[key] ?? "未記錄" };
+  }
+  return { day: event.day, text: template ? interpolate(template.text, values) : "天網收到一則新動態。", kind: template?.kind ?? "info" };
 }

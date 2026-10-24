@@ -4,15 +4,15 @@ import { parse } from "./parse.ts";
 import { VERBS } from "./verbs.ts";
 import { examples, fixture } from "./fixtures.ts";
 
-test("parse：27 動詞中文逐一產生預期指令且不改 state", () => {
+test("parse：28 動詞中文逐一產生預期指令且不改 state", () => {
   const { state, world } = fixture(), before = structuredClone(state);
-  assert.equal(examples.length, 27);
-  assert.equal(new Set(examples.map(e => e.cmd.v)).size, 27);
+  assert.equal(examples.length, 28);
+  assert.equal(new Set(examples.map(e => e.cmd.v)).size, 28);
   for (const e of examples) assert.deepEqual(parse(e.zh, state, world), e.cmd, e.zh);
   assert.deepEqual(state, before);
   for (const bad of ["等 -1", "等 1.5", "圖 多餘", '出戰 {"day":"bad"}', "排 repair", '談 "未結束']) assert.ok("error" in parse(bad, state, world), bad);
 });
-test("parse：27 個 ASCII 別名逐一成功", () => {
+test("parse：28 個 ASCII 別名逐一成功", () => {
   const { state, world } = fixture();
   for (const e of examples) assert.deepEqual(parse(e.zh.replace(/^\S+/, e.cmd.v), state, world), e.cmd);
 });
