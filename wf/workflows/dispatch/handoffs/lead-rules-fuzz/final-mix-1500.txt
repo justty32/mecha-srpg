@@ -1,0 +1,47 @@
+場數 1500/1500; 模式 {"ai":500,"random":500,"scenario":500}; 耗時 774260 ms; 硬違規場數 0
+耗時明細 jobs=14; 各模式累計 ms {"ai":1902272.0115469992,"random":714949.9672179988,"scenario":6736418.297543993}
+不變量違規場數 {"no-throw":0,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":0,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":32}
+事件覆蓋（出現該事件的場數） {"AbilityUsed":1471,"BattleEnd":1500,"BattleStart":1500,"Conducted":11,"ControlChanged":897,"EffectApplied":1425,"EffectExpired":1336,"Ejected":887,"FieldResupplyRequested":424,"Hit":1450,"LayerBroken":885,"LayerDamaged":1366,"Miss":1406,"MoraleChanged":362,"Moved":1494,"PartBroken":631,"PersonDied":125,"PoolChanged":1500,"Retreated":649,"RoundEnd":1443,"RoundStart":1500,"TurnEnd":1484,"TurnStart":1500,"UnitDied":321,"Waited":996}
+違規分組 1 組（同不變量＋訊息首行去數字；count 為場數）
+ai-rejected | 32 | AI rejected # commands | seed=900099 mode=ai
+前 20 筆違規：
+WARN seed=900099 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 900099 --runs 1 --mode ai --verbose
+WARN seed=900111 mode=ai ai-rejected: AI rejected 18 commands
+node test/fuzz/cli.ts --seed 900111 --runs 1 --mode ai --verbose
+WARN seed=900168 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900168 --runs 1 --mode ai --verbose
+WARN seed=900267 mode=ai ai-rejected: AI rejected 7 commands
+node test/fuzz/cli.ts --seed 900267 --runs 1 --mode ai --verbose
+WARN seed=900279 mode=ai ai-rejected: AI rejected 7 commands
+node test/fuzz/cli.ts --seed 900279 --runs 1 --mode ai --verbose
+WARN seed=900351 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 900351 --runs 1 --mode ai --verbose
+WARN seed=900360 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900360 --runs 1 --mode ai --verbose
+WARN seed=900483 mode=ai ai-rejected: AI rejected 5 commands
+node test/fuzz/cli.ts --seed 900483 --runs 1 --mode ai --verbose
+WARN seed=900522 mode=ai ai-rejected: AI rejected 9 commands
+node test/fuzz/cli.ts --seed 900522 --runs 1 --mode ai --verbose
+WARN seed=900582 mode=ai ai-rejected: AI rejected 2 commands
+node test/fuzz/cli.ts --seed 900582 --runs 1 --mode ai --verbose
+WARN seed=900633 mode=ai ai-rejected: AI rejected 3 commands
+node test/fuzz/cli.ts --seed 900633 --runs 1 --mode ai --verbose
+WARN seed=900651 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900651 --runs 1 --mode ai --verbose
+WARN seed=900669 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900669 --runs 1 --mode ai --verbose
+WARN seed=900702 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 900702 --runs 1 --mode ai --verbose
+WARN seed=900717 mode=ai ai-rejected: AI rejected 13 commands
+node test/fuzz/cli.ts --seed 900717 --runs 1 --mode ai --verbose
+WARN seed=900765 mode=ai ai-rejected: AI rejected 5 commands
+node test/fuzz/cli.ts --seed 900765 --runs 1 --mode ai --verbose
+WARN seed=900768 mode=ai ai-rejected: AI rejected 5 commands
+node test/fuzz/cli.ts --seed 900768 --runs 1 --mode ai --verbose
+WARN seed=900840 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900840 --runs 1 --mode ai --verbose
+WARN seed=900873 mode=ai ai-rejected: AI rejected 3 commands
+node test/fuzz/cli.ts --seed 900873 --runs 1 --mode ai --verbose
+WARN seed=900927 mode=ai ai-rejected: AI rejected 4 commands
+node test/fuzz/cli.ts --seed 900927 --runs 1 --mode ai --verbose

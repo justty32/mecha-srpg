@@ -1,0 +1,17 @@
+場數 50/50; 模式 {"ai":17,"random":17,"scenario":16}; 耗時 141154 ms; 硬違規場數 3
+不變量違規場數 {"no-throw":1,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":2,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":2}
+違規分組 3 組（同不變量＋訊息首行去數字；count 為場數）
+ai-rejected | 2 | AI rejected # commands | seed=22 mode=ai
+events | 2 | event after BattleEnd TurnEnd seq=# | seed=26 mode=random
+no-throw | 1 | legalActions/previewCommand/submit: Error: 缺少池：u#.heat | seed=35 mode=random
+前 20 筆違規：
+WARN seed=22 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 22 --runs 1 --mode ai --verbose
+FAIL seed=26 mode=random events: event after BattleEnd TurnEnd seq=566
+node test/fuzz/cli.ts --seed 26 --runs 1 --mode random --verbose
+FAIL seed=27 mode=scenario events: event after BattleEnd TurnEnd seq=1337
+node test/fuzz/cli.ts --seed 27 --runs 1 --mode scenario --verbose
+FAIL seed=35 mode=random no-throw: legalActions/previewCommand/submit: Error: 缺少池：u1.heat
+node test/fuzz/cli.ts --seed 35 --runs 1 --mode random --verbose
+WARN seed=49 mode=ai ai-rejected: AI rejected 16 commands
+node test/fuzz/cli.ts --seed 49 --runs 1 --mode ai --verbose

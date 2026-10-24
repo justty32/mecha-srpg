@@ -1,0 +1,61 @@
+✔ fuzz 工具自我測試：正常前綴通過，竄改池／層／貢獻／事件／重播會變紅 (615.32475ms)
+✔ fuzz 工具自我測試：其餘具名檢查能拒絕對應壞輸入 (77026.500359ms)
+✖ fuzz 快速版：random／ai 各 15 場零硬違規（jobs=1） (19167.720876ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 2
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 96907.745653
+
+✖ failing tests:
+
+test at test/fuzz/fuzz.test.ts:126:1
+✖ fuzz 快速版：random／ai 各 15 場零硬違規（jobs=1） (19167.720876ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+  
+  + Error: spawnSync node ETIMEDOUT
+  +     at Object.spawnSync (node:internal/child_process:1119:20)
+  +     at spawnSync (node:child_process:911:24)
+  +     at TestContext.<anonymous> (file:///home/lorkhan/repo/game_dev/mecha-srpg/test/fuzz/fuzz.test.ts:128:20)
+  +     at Test.runInAsyncScope (node:async_hooks:228:14)
+  +     at Test.run (node:internal/test_runner/test:1118:25)
+  +     at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+  +     at Test.postRun (node:internal/test_runner/test:1247:19)
+  +     at Test.run (node:internal/test_runner/test:1175:12)
+  +     at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+  +   code: 'ETIMEDOUT',
+  +   errno: -110,
+  +   path: 'node',
+  +   spawnargs: [
+  +     'test/fuzz/cli.ts',
+  +     '--runs',
+  +     '15',
+  +     '--seed',
+  +     '1',
+  +     '--mode',
+  +     'random',
+  +     '--jobs',
+  +     '1'
+  +   ],
+  +   syscall: 'spawnSync node'
+  + }
+  - undefined
+  
+      at TestContext.<anonymous> (file:///home/lorkhan/repo/game_dev/mecha-srpg/test/fuzz/fuzz.test.ts:130:12)
+      at Test.runInAsyncScope (node:async_hooks:228:14)
+      at Test.run (node:internal/test_runner/test:1118:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+      at Test.postRun (node:internal/test_runner/test:1247:19)
+      at Test.run (node:internal/test_runner/test:1175:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:787:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: [Error],
+    expected: undefined,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

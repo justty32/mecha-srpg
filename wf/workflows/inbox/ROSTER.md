@@ -207,3 +207,25 @@
 - **答不出什麼**：引擎、平衡量測
 - **怎麼找我**：`wf/inbox/orders/cx-world-dlg.md`
 - **訂閱主題**：無
+
+### `cx-fuzz-harness`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：`lead-rules-fuzz` 的 codex 工人，寫戰鬥 fuzz 工具（只找 bug 不修）。
+- **團隊**：`teams/rules-fuzz`
+- **上游**：`lead-rules-fuzz`
+- **領地**：`test/fuzz/`、`wf/workflows/dispatch/handoffs/lead-rules-fuzz/cx-fuzz-harness/`
+- **答得出什麼**：fuzz 工具用法、抓到的違規分組。
+- **答不出什麼**：規則修正（領導做）。
+- **怎麼找我**：`wf/inbox/orders/cx-fuzz-harness.md`
+- **訂閱主題**：無
+
+### `cx-fuzz-scale`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：`lead-rules-fuzz` 的 codex 工人，fuzz 工具加速（平行）與加密度。
+- **團隊**：`teams/rules-fuzz`
+- **上游**：`lead-rules-fuzz`
+- **領地**：`test/fuzz/`、`wf/workflows/dispatch/handoffs/lead-rules-fuzz/cx-fuzz-scale/`
+- **答得出什麼**：fuzz 平行與效能、新違規分組。
+- **答不出什麼**：規則修正（領導做）。
+- **怎麼找我**：`wf/inbox/orders/cx-fuzz-scale.md`
+- **訂閱主題**：無

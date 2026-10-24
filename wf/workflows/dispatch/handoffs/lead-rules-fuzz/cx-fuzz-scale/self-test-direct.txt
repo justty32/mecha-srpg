@@ -1,0 +1,21 @@
+✔ fuzz 工具自我測試：正常前綴通過，竄改池／層／貢獻／事件／重播會變紅 (21.625666ms)
+✔ fuzz 工具自我測試：其餘具名檢查能拒絕對應壞輸入 (219.278667ms)
+場數 15/15; 模式 {"ai":0,"random":15,"scenario":0}; 耗時 5107 ms; 硬違規場數 0
+耗時明細 jobs=1; 各模式累計 ms {"ai":0,"random":4742.525148000001,"scenario":0}
+不變量違規場數 {"no-throw":0,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":0,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":0}
+違規分組 0 組（同不變量＋訊息首行去數字；count 為場數）
+前 20 筆違規：
+場數 15/15; 模式 {"ai":15,"random":0,"scenario":0}; 耗時 12167 ms; 硬違規場數 0
+耗時明細 jobs=1; 各模式累計 ms {"ai":11562.841021000002,"random":0,"scenario":0}
+不變量違規場數 {"no-throw":0,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":0,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":0}
+違規分組 0 組（同不變量＋訊息首行去數字；count 為場數）
+前 20 筆違規：
+✔ fuzz 快速版：random／ai 各 15 場零硬違規（jobs=1） (17276.717089ms)
+ℹ tests 3
+ℹ suites 0
+ℹ pass 3
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 17525.150102

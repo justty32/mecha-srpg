@@ -52,6 +52,11 @@
    "驗證": "MCP server（改 `src/mcp/` 必跑）",
    "指令": "`node --test 'src/mcp/*.test.ts'`（Node 24 要 glob，不能只給目錄；已含在 `npm test`）：協定層、每個工具、stdio 端對端 hash＝`runBattle`、互動出戰 hash＝AI 自動出戰（`sortie.test.ts`）、socket CLI、headless 截圖；手動：`node src/mcp/cli.ts serve --socket m.sock` 背景跑，再 `node src/mcp/cli.ts call --socket m.sock TOOL 'JSON'`（socket 路徑要短）",
    "誰跑": "agent"
+  },
+  {
+   "驗證": "戰鬥規則 fuzz（改 rules／sim／content 結構後跑）",
+   "指令": "`npm run fuzz -- --runs N --seed S [--mode ai|random|scenario|mix] [--jobs J] [--max-ms T] [--json out.json] [--verbose]`：隨機組合 `content/base` 全部內容生成情境（新內容自動吃進），全 AI／隨機合法指令／真情境三模式跑完，逐條檢查 18 條不變量（`test/fuzz/invariants.ts`，每條具名），硬違規 exit 1、印重跑指令；`--jobs` 平行輸出與單工逐字相同。快速版（ai＋random 各 15 場，約 15–20 秒）已在 `npm test`（`test/fuzz/fuzz.test.ts`）",
+   "誰跑": "agent"
   }
  ]
 }

@@ -1,0 +1,49 @@
+場數 749/3000; 模式 {"ai":248,"random":253,"scenario":248}; 耗時 600105 ms; 硬違規場數 11
+耗時明細 jobs=15; 各模式累計 ms {"ai":2076755.8321689991,"random":789900.169327,"scenario":5832268.4939210005}
+不變量違規場數 {"no-throw":3,"preview-pure":0,"pool-bounds":0,"layer-hp":5,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":3,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":15}
+違規分組 4 組（同不變量＋訊息首行去數字；count 為場數）
+ai-rejected | 15 | AI rejected # commands | seed=7 mode=ai
+layer-hp | 5 | structural/part mismatch u#.head | seed=211 mode=ai
+events | 3 | event after BattleEnd PoolChanged seq=# | seed=607 mode=ai
+no-throw | 3 | AI runBattle: Error: 缺少池：u#.instinct | seed=1447 mode=ai
+前 20 筆違規：
+WARN seed=7 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 7 --runs 1 --mode ai --verbose
+FAIL seed=211 mode=ai layer-hp: structural/part mismatch u4.head
+node test/fuzz/cli.ts --seed 211 --runs 1 --mode ai --verbose
+WARN seed=250 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 250 --runs 1 --mode ai --verbose
+WARN seed=253 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 253 --runs 1 --mode ai --verbose
+WARN seed=406 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 406 --runs 1 --mode ai --verbose
+WARN seed=412 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 412 --runs 1 --mode ai --verbose
+FAIL seed=607 mode=ai events: event after BattleEnd PoolChanged seq=1821
+node test/fuzz/cli.ts --seed 607 --runs 1 --mode ai --verbose
+WARN seed=625 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 625 --runs 1 --mode ai --verbose
+FAIL seed=835 mode=ai layer-hp: structural/part mismatch u1.head
+node test/fuzz/cli.ts --seed 835 --runs 1 --mode ai --verbose
+WARN seed=1048 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 1048 --runs 1 --mode ai --verbose
+WARN seed=1216 mode=ai ai-rejected: AI rejected 2 commands
+node test/fuzz/cli.ts --seed 1216 --runs 1 --mode ai --verbose
+WARN seed=1417 mode=ai ai-rejected: AI rejected 1 commands
+node test/fuzz/cli.ts --seed 1417 --runs 1 --mode ai --verbose
+FAIL seed=1432 mode=ai layer-hp: structural/part mismatch u5.head
+node test/fuzz/cli.ts --seed 1432 --runs 1 --mode ai --verbose
+FAIL seed=1447 mode=ai no-throw: AI runBattle: Error: 缺少池：u8.instinct
+node test/fuzz/cli.ts --seed 1447 --runs 1 --mode ai --verbose
+FAIL seed=1453 mode=ai layer-hp: structural/part mismatch u6.head
+node test/fuzz/cli.ts --seed 1453 --runs 1 --mode ai --verbose
+WARN seed=1462 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 1462 --runs 1 --mode ai --verbose
+WARN seed=1630 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 1630 --runs 1 --mode ai --verbose
+WARN seed=1807 mode=ai ai-rejected: AI rejected 2 commands
+node test/fuzz/cli.ts --seed 1807 --runs 1 --mode ai --verbose
+FAIL seed=1810 mode=ai events: event after BattleEnd PoolChanged seq=820
+node test/fuzz/cli.ts --seed 1810 --runs 1 --mode ai --verbose
+FAIL seed=1819 mode=ai no-throw: AI runBattle: Error: 缺少池：u1.instinct
+node test/fuzz/cli.ts --seed 1819 --runs 1 --mode ai --verbose

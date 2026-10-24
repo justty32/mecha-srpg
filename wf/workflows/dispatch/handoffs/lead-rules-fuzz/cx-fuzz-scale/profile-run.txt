@@ -1,0 +1,22 @@
+場數 40/40; 模式 {"ai":40,"random":0,"scenario":0}; 耗時 110380 ms; 硬違規場數 3
+耗時明細 jobs=1; 各模式累計 ms {"ai":109575.29994600001,"random":0,"scenario":0}
+不變量違規場數 {"no-throw":1,"preview-pure":0,"pool-bounds":0,"layer-hp":1,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":1,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":2}
+違規分組 5 組（同不變量＋訊息首行去數字；count 為場數）
+layer-hp | 1 | structural/part mismatch u#.head | seed=3 mode=ai
+layer-hp | 1 | structural/part mismatch u#.arm | seed=3 mode=ai
+ai-rejected | 2 | AI rejected # commands | seed=15 mode=ai
+events | 1 | event after BattleEnd PoolChanged seq=# | seed=17 mode=ai
+no-throw | 1 | AI runBattle: Error: 缺少池：u#.instinct | seed=36 mode=ai
+前 20 筆違規：
+FAIL seed=3 mode=ai layer-hp: structural/part mismatch u1.head
+node test/fuzz/cli.ts --seed 3 --runs 1 --mode ai --verbose
+FAIL seed=3 mode=ai layer-hp: structural/part mismatch u1.arm
+node test/fuzz/cli.ts --seed 3 --runs 1 --mode ai --verbose
+WARN seed=15 mode=ai ai-rejected: AI rejected 26 commands
+node test/fuzz/cli.ts --seed 15 --runs 1 --mode ai --verbose
+FAIL seed=17 mode=ai events: event after BattleEnd PoolChanged seq=1003
+node test/fuzz/cli.ts --seed 17 --runs 1 --mode ai --verbose
+WARN seed=32 mode=ai ai-rejected: AI rejected 8 commands
+node test/fuzz/cli.ts --seed 32 --runs 1 --mode ai --verbose
+FAIL seed=36 mode=ai no-throw: AI runBattle: Error: 缺少池：u8.instinct
+node test/fuzz/cli.ts --seed 36 --runs 1 --mode ai --verbose
