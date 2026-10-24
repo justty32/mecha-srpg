@@ -10,6 +10,12 @@ test("greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的�
     const { s, ctx, mech, contract } = fixture();
     s.ship.at = contract.target.node;
     const unit = s.mechs[mech]!;
+    // 開局機體自帶內建頭吼（innateAbilities）；本案只驗部件武器，故此處清空內建能力。
+    if (damage === "right-arm" || damage === "weapon" || damage === "ammo" || damage === "empty") {
+      const db = ctx.db, frameId = unit.frame;
+      ctx.db = { ...db, require: ((kind: string, id: string) => kind === "frame" && id === frameId
+        ? { ...db.require("frame", id), innateAbilities: [] } : (db.require as (a: string, b: string) => unknown)(kind, id)) as typeof db.require };
+    }
     if (damage === "ammo") unit.pools["ammo-30"]!.cur = 0;
     else if (damage === "empty") unit.parts["right-arm"]!.components["right-weapon"] = null;
     else if (damage === "weapon") {
