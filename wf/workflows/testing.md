@@ -20,6 +20,7 @@
 | 完整驗證（commit 前）| 快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .` | agent |
 | 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
 | 驗收模擬（跑一整場 AI 對 AI）| `npm run sim -- --scenario scenario/skirmish-whitegloves --seed 1 [--rounds 50] [--out log.json] [--save s.json]`，印勝負、輪數、存活、事件計數、日誌 hash；同 seed 兩次 hash 必相同 | agent |
+| AI 平衡量測（改 `src/ai/` 評分時跑）| `node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）| agent |
 | 實際遊玩（畫面、操作、敵方回合）| `npm run dev` 開網頁玩一回合（[dev-env](dev-env.md)）| 使用者 → [WAIT_USER](../WAIT_USER.md) |
 
 **改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless 3 條：載入、結束回合＋快捷鍵、大地圖捲動；自動 build＋preview 在 4174 埠）。

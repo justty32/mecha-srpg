@@ -130,3 +130,36 @@
 - **訂閱主題**：無
 
 已收線成員封存於 [archive/ROSTER-2026-10-23.md](archive/ROSTER-2026-10-23.md)、[archive/ROSTER-2026-10-24.md](archive/ROSTER-2026-10-24.md)。
+
+### `lead-fix-scenario-ai`
+- **狀態**：收線（2026-10-24）
+- **我是誰**：Opus 領導線（Claude 子 agent）；情境接縫修正＋AI 平衡第一輪。
+- **團隊**：`teams/fix`（領導；工人格由我代登記）
+- **上游**：dispatcher
+- **領地**：見 CLAIMS `lead-fix-scenario-ai` 列
+- **答得出什麼**：slot 同盟、killTarget 目標翻譯、globals／feature hp、tactical 係數
+- **答不出什麼**：ops、ui
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/lead-fix-scenario-ai/`
+- **訂閱主題**：無
+
+### `cx-fix-seams`
+- **狀態**：收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），修 rules／sim 的情境接縫。
+- **團隊**：`teams/fix`
+- **上游**：lead-fix-scenario-ai
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-fix-scenario-ai/cx-fix-seams.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-fix-seams/`
+- **訂閱主題**：無
+
+### `cx-fix-ai`
+- **狀態**：收線（2026-10-24）
+- **我是誰**：codex 工人（gpt-6-astra，`codex exec`），調 tactical AI 係數與 AI 敵我判斷。
+- **團隊**：`teams/fix`
+- **上游**：lead-fix-scenario-ai
+- **領地**：交接書 `wf/workflows/dispatch/handoffs/lead-fix-scenario-ai/cx-fix-ai.md` 列的檔
+- **答得出什麼**：本線實作細節
+- **答不出什麼**：其他
+- **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/mail/cx-fix-ai/`
+- **訂閱主題**：無

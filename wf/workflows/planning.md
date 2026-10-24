@@ -37,8 +37,8 @@
 |------|------------|---------|
 | 世界觀／戰鬥系統 spec（Fable 撰寫）→ plan → 動工 | 已完成（core v1、world v2，2026-10-24） | — |
 | 內容第二批：機械系命名規範化、補 B 級蟲族（base 常數與步兵／士氣／失控內容已由 sim 線補回）| 隨時 | rules REPORT |
-| 平衡與 AI 手感：skirmish 20 輪多數回合 Wait、命中 3／19；tactical 係數佔位 | sim 線之後 | sim REPORT |
-| 情境接縫：faction 外交（ally 不是同盟）、`killTarget` 參數鍵、map globals／feature hp | sim 線之後 | sim REPORT |
+| 平衡第二輪：skirmish 10 seed 敵方從未獲勝（player 7 勝 3 平，屬內容強弱）；AI 不會主動 Wait（`waitScore` 0，無延後時機策略）；未接敵朝地圖中央偵察是暫行啟發 | 試玩後 | [fix-ai REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-ai/REPORT.md) |
+| 地物受損／變廢墟（`featureHp` 已初始化，spec 未定怎麼打地物）；`allies`、neutral 戰場敵對、`killTarget` 目標翻譯補進 spec | spec 同步線 | [fix-seams REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-seams/REPORT.md) |
 | 規則補完：其餘 reaction、sustained 撤除 | sim 後 | rules REPORT |
 
 ## 交接
