@@ -1,0 +1,34 @@
+{
+  "id": "effect/bf-mirror-glare",
+  "name": "萬象迷眸",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -5,
+      "source": "effect/bf-mirror-glare"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/bf-mirror-glare"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "terrain",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "萬象迷眸"
+  }
+}

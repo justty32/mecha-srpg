@@ -1,0 +1,28 @@
+{
+  "id": "effect/bf-spore-choke",
+  "name": "孢夢掩目",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -2,
+      "source": "effect/bf-spore-choke"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "terrain",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "孢夢掩目"
+  }
+}

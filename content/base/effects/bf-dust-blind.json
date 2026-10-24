@@ -1,0 +1,28 @@
+{
+  "id": "effect/bf-dust-blind",
+  "name": "灰燼蔽眼",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/bf-dust-blind"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "terrain",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "灰燼蔽眼"
+  }
+}

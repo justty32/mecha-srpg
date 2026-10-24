@@ -1,0 +1,31 @@
+{
+  "id": "effect/bf-field-resupply",
+  "name": "盟約回響",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "emit",
+        "event": "FieldResupplyRequested",
+        "payload": {
+          "ammo30": 4
+        }
+      }
+    ]
+  },
+  "tags": [
+    "terrain",
+    "supply"
+  ],
+  "ui": {
+    "badge": "盟約回響"
+  }
+}

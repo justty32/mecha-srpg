@@ -1,0 +1,29 @@
+{
+  "id": "terrain/spore-bloom",
+  "name": "祈夢孢林",
+  "glyph": "*",
+  "color": "#a2b780",
+  "moveCost": {
+    "leg": 2,
+    "track": 3,
+    "hover": 2,
+    "flight": 1,
+    "burrow": 2
+  },
+  "height": 1,
+  "cover": 20,
+  "blocksLos": true,
+  "onEnter": [],
+  "onTurnStart": [
+    "effect/bf-spore-choke"
+  ],
+  "tags": [
+    "mycelium",
+    "rift",
+    "hazard"
+  ],
+  "destructible": {
+    "hp": 20,
+    "becomes": "terrain/mycelium-mat"
+  }
+}

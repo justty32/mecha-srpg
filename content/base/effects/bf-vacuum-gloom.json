@@ -1,0 +1,32 @@
+{
+  "id": "effect/bf-vacuum-gloom",
+  "name": "無光月幕",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": {
+        "ref": "battle.light",
+        "mul": 4,
+        "add": -4
+      },
+      "source": "effect/bf-vacuum-gloom"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "terrain",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "無光月幕"
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "id": "effect/bf-tide-drag",
+  "name": "潮神挽足",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": {
+        "ref": "battle.tide",
+        "mul": -2
+      },
+      "source": "effect/bf-tide-drag"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "terrain",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "潮神挽足"
+  }
+}
