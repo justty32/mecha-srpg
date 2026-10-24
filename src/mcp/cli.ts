@@ -1,9 +1,7 @@
-import { createMcpServer } from "./server.ts";
-import { closeUi } from "./ui.ts";
-
 const runtime = process as typeof process & McpProcess;
 
 export async function serve(socketPath: string): Promise<Server> {
+  const { createMcpServer } = await import("./server.ts"), { closeUi } = await import("./ui.ts");
   const mcp = createMcpServer(), sockets = new Set<McpSocket>();
   // 全部連線共用一個戰鬥表；一個指令完成後才處理下一個。
   let pending = Promise.resolve();
