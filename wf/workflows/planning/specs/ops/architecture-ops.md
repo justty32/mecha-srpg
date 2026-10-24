@@ -19,7 +19,7 @@
 | `ops/sim` | runCampaign、重播、不變量、存檔序列化 | 上列全部 |
 | `ui-ops` | DOM：畫 Screen（面板／按鈕）、收點擊與快捷鍵、切到 core ViewModel 再切回 | text, sim, ui-adapter |
 
-表中依賴欄省略 `ops/` 前綴；`ops/sortie` 對 `sim` 只用 `runBattle` 與 `BattleResult`。依賴只能往下；`ops/*` **不得** import `rules`／`ai`（戰鬥內部），只經 `sim`。`CampaignState` 純資料、可 `structuredClone`，所有改動只經各模組的 `(state, input) → (state', events)`。
+第二輪新增 `ops/war`（常備軍、作戰、外交、勢力研發；可依賴 state、content、world），`ops/contracts` 的參戰型 `join` 與 `ops/sortie` 的友軍 slot 可依賴它。表中依賴欄省略 `ops/` 前綴；`ops/sortie` 對 `sim` 只用 `runBattle` 與 `BattleResult`。依賴只能往下；`ops/*` **不得** import `rules`／`ai`（戰鬥內部），只經 `sim`。`CampaignState` 純資料、可 `structuredClone`，所有改動只經各模組的 `(state, input) → (state', events)`。
 
 ## 狀態與事件
 
@@ -29,11 +29,12 @@ type CampaignState = { version: 1; clock: Clock; rng: RngState; pressure: number
   ship: ShipState; roster: RosterState; hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>;
   inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>; jobs: Job[];
   contracts: Record<Id, ContractState>; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie;
-  lore: string[]; flags: Record<string, number>; log: CampaignEvent[] };
+  lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
+  operations: Record<Id, OperationState>; relations: Record<string, Relation>; shells: Record<Id, ShellState>; models: Record<Id, ModelState> };   // 第二輪：ops/war
 type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
 ```
 
-事件類型（節選）：`DayStart`、`DaySummary`、`RiftPhase`、`NodeBlighted`、`NodeReclaimed`、`Arrived`、`Encounter`、`EventOffered`、`Chosen`、`JobDone`、`WearWarning`、`BrokeLoose`、`Sustained`、`Stiffened`、`Mounted`、`Molted`、`Brooded`, `Mutated`、`Accompanied`、`NodeMastered`、`WagePaid`、`WageOwed`、`InterestPosted`、`Posted`（每筆帳）、`ContractOffered/Accepted/Done/Failed/Cancelled/Expired`、`Hired`、`Left`、`Died`、`BattleResolved`、`Woken`、`Named`、`CampaignEnd`。payload 只放 id 與數字；文字由 `ops/text` 組。
+事件類型（節選）：`DayStart`、`DaySummary`、`RiftPhase`、`NodeBlighted`、`NodeReclaimed`、`Arrived`、`Encounter`、`EventOffered`、`Chosen`、`JobDone`、`WearWarning`、`BrokeLoose`、`Sustained`、`Stiffened`、`Mounted`、`Molted`、`Brooded`, `Mutated`、`Accompanied`、`NodeMastered`、`WagePaid`、`WageOwed`、`InterestPosted`、`Posted`（每筆帳）、`ContractOffered/Accepted/Done/Failed/Cancelled/Expired`、`Hired`、`Left`、`Died`、`BattleResolved`、`Woken`、`Named`、`CampaignEnd`；war：`OperationStarted/Phase/Engaged/Resolved/Failed/Aborted`、`RelationChanged`、`WarDeclared`、`TreatySigned/Broken/Expired`、`ShellSeized`、`LineageOpened/Stalled`、`ModelReleased`、`TechLeaked`、`AllySupplied`、`MechLoaned/Returned/Lost`、`OrderViolated`、`Betrayed`。payload 只放 id 與數字；文字由 `ops/text` 組。
 
 ## 決定性與重播
 

@@ -7,7 +7,8 @@
 ## 一、出戰編成 Sortie
 
 ```ts
-type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection";
+type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; operation?: Id;
+  trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation";   // operation＝參戰型（mercenary-contracts）
   units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode }[];
   supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };   // 營運→戰場的狀態注入（mood、同調、欠薪…）
@@ -17,7 +18,7 @@ type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger
 
 ## 二、情境生成 ScenarioGen
 
-`generateScenario(sortie, campaign, content, rng) → ScenarioDef`，純函式，用營運層自己的 RNG 串流抽（戰鬥用另一個 seed，寫進 `ScenarioDef.seed`）。步驟：(1) **地圖**：從 `encounters/<family>-<depth>.json` 模板抽尺寸與地形配方（淺蝕＝節點 `terrainPool` 地形加零星蝕斑；深蝕＝裏側地形為主；核＝模板固定圖），再合成 `MapDef`（`cells`＋`legend`）。(2) **敵方**：來自 `ContractState.target` 快照（族、寬度、深度、錨齡 → 預算 → 從 `monsters.json` 等級清單抽 `UnitSpawn`；核區加入潮錨本尊 `MonsterDef`）；對人戰鬥由競爭獵團 `roster` 預算抽。(3) **目標**：契約模板 `ObjectiveTemplate` 展開（clear→eliminate、seal→hold 核區 N 輪、escort→escort、capture 類契約→capture、defend→hold＋設施 `destructible` 計數）。(4) **支援**：`airstrikeTickets` 變成玩家 slot 的「呼叫支援」能力次數；`shipOverhead` 加入艦砲單位（會飛的裂獸會去咬它）；城邦節點加砲台單位（`conventional-arms`）。(5) **注入**：`sortie.injected` 寫進 `UnitSpawn` 的 `effects`（core `UnitSpawn` 無此欄 → 見「與 core 的差異」）。(6) `rules.conventionalFactor` 預設 0.1。
+`generateScenario(sortie, campaign, content, rng) → ScenarioDef`，純函式，用營運層自己的 RNG 串流抽（戰鬥用另一個 seed，寫進 `ScenarioDef.seed`）。步驟：(1) **地圖**：從 `encounters/<family>-<depth>.json` 模板抽尺寸與地形配方（淺蝕＝節點 `terrainPool` 地形加零星蝕斑；深蝕＝裏側地形為主；核＝模板固定圖），再合成 `MapDef`（`cells`＋`legend`）。(2) **敵方**：來自 `ContractState.target` 快照（族、寬度、深度、錨齡 → 預算 → 從 `monsters.json` 等級清單抽 `UnitSpawn`；核區加入潮錨本尊 `MonsterDef`）；對人戰鬥由競爭獵團 `roster` 預算抽。(3) **目標**：契約模板 `ObjectiveTemplate` 展開（clear→eliminate、seal→hold 核區 N 輪、escort→escort、capture 類契約→capture、defend→hold＋設施 `destructible` 計數）。(4) **支援**：`airstrikeTickets` 變成玩家 slot 的「呼叫支援」能力次數；`shipOverhead` 加入艦砲單位（會飛的裂獸會去咬它）；城邦節點加砲台單位（`conventional-arms`）。(5) **注入**：`sortie.injected` 寫進 `UnitSpawn` 的 `effects`（core `UnitSpawn` 無此欄 → 見「與 core 的差異」）。(6) `rules.conventionalFactor` 預設 0.1。(7) **參戰型**（`trigger:"operation"`）：敵方改由作戰目標（裂縫快照或敵勢力分遣隊）抽、友軍依指揮權填 `ally` slot 或併入 `player` slot、`allies` 由外交態映射、軍令為 optional 目標——細則在 [mercenary-contracts](mercenary-contracts.md)；回寫多三組：作戰進度、友軍折損、殼的持有者。
 
 ## 三、戰果回寫 applyBattleResult
 

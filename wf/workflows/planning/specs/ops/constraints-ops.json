@@ -440,6 +440,55 @@
    "constraint": "UI 不走純文字／MUD 風：一般網頁遊戲標準（按鈕、列表、面板、選單、tooltip）；主要操作配快捷鍵（鍵位資料驅動、可改綁、按鈕與 tooltip 顯示鍵）；戰場仍是 DOM／CSS 真方格、無美術",
    "spec_section": "text-ui-contract.md#原則",
    "note": "2026-10-24 裁示；27 動詞保留為語意層，parse 只給測試與除錯"
+  },
+  {
+   "id": "DN-W-16",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "獵團＝自營傭兵；各勢力自己組織部隊清剿／攻堅等進行各類戰略，是持續進行的戰役不等玩家；傭兵可參戰、合作，並享勢力補給（彈藥、維修、醫療、臨時借機）；契約有「參戰型」",
+   "spec_section": "data-model-operations-war.md#作戰-operationdef模板operationskindjson與-operationstate",
+   "note": "補給與參戰條款在 mercenary-contracts.md"
+  },
+  {
+   "id": "DN-W-17",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "勢力之間可能有衝突，勢力與勢力之間有外交關係（同盟／友好／中立／緊張／敵對…隨事件變化）；勢力間交火是作戰類型之一；傭兵可被雙方雇用、選邊，選邊影響聲望與外交後果",
+   "spec_section": "data-model-diplomacy.md#關係-relation每對活勢力一筆無向",
+   "note": "選邊與背叛規則在 mercenary-contracts.md"
+  },
+  {
+   "id": "DN-W-18",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "各勢力依其挖掘出、保有的古代機甲不同，研發的機甲各有特色（藍本血統）；取得新古代機開新研發分支，失去則停滯；古代機的爭奪是勢力衝突與作戰目標之一",
+   "spec_section": "data-model-faction-rnd.md#血統-lineagedeflineagesidjson",
+   "note": "殼的爭奪＝作戰 relic-hunt 與 ShellState（operations-war）"
+  },
+  {
+   "id": "DN-W-19",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "時間線會推進，研發的機甲種類愈來愈多：勢力在 tick 中依藍本、資源、作戰／外交結果研發並推出新機型（新系列、迭代型、隊長機）；機型池（市場、部隊、敵方）隨時間擴大；內容資料標首次登場／前置／所屬勢力與藍本",
+   "spec_section": "data-model-faction-rnd.md#推進tick-第-2f-段每潮月第-1-天",
+   "note": "ModelDef 欄位 availableFrom／requires／maker／lineage"
+  },
+  {
+   "id": "DN-W-20",
+   "source": "../../design-notes/mechs.md",
+   "constraint": "至少一條通用機甲系列（開源／逆向／流出／分享／年代早）各勢力與市場都造、都買得到，是共同底層，各家做本地化改型；技術流出／逆向可作為事件或作戰結果把專屬機型變通用",
+   "spec_section": "data-model-faction-rnd.md#技術流出-leakmodel",
+   "note": "lineage source:generic；leakModel 四來源"
+  },
+  {
+   "id": "USR-10",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "基調太空歌劇、不要硬科幻：科技帶神秘與奇幻色彩，不以真實物理為設定與命名依據；少工程術語；數值機制可保留但換風格化名字",
+   "spec_section": "data-model-faction-rnd.md#血統-lineagedeflineagesidjson",
+   "note": "本線新檔照此；既有 spec 待風格改寫線（REPORT 列清單）"
+  },
+  {
+   "id": "USR-11",
+   "source": "../../design-notes/world.md#2026-10-23-深夜對規劃線第一版提案的推翻與補充",
+   "constraint": "營運大地圖改方格式、可自由行動（船在格上移動、時間隨移動流逝；城市／裂縫／遺跡／據點是位置；作戰部隊是地圖上移動的物件，可野外遭遇／追擊／迴避）；可每大洲一張圖、月面另一張，洲際走渡輪／航線",
+   "spec_section": "data-model-operations-war.md#部隊-forcestate勢力的常備軍",
+   "note": "本線以 Loc 抽象相容；world-map 改寫另派線"
   }
  ]
 }

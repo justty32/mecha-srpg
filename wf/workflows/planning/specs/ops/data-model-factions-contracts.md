@@ -26,7 +26,7 @@ type FactionState = { def: Id; rep: number /*−100..100*/; scaleNow: string; te
 ## 契約 ContractTemplate 與 ContractState
 
 ```ts
-type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle";
+type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle" | "join";   // join＝參戰型，見 mercenary-contracts
   issuerKinds: string[]; requiresRep: number; gradeRange: Grade[];
   objectives: ObjectiveTemplate[];                          // 展開成情境 Objective（battle-interface）
   pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] };
@@ -51,7 +51,7 @@ type WorldActionDef = { id: Id; actor: "faction" | "rift" | "world"; valid: Cond
   effects: Id[] /*OpsEffect：postContract / spawnRival / shiftStance / openRoute / raiseFare / loseCity…*/ };
 ```
 
-每天（非大潮）每個活勢力最多抽一張：先過 `valid`，再按 `weight` 加權抽一張執行，設冷卻。大潮日裂縫與勢力都行動。這是 BB `OPS-21` 的採用：契約刷新、競爭獵團出現、勢力生滅、價格變動全部走牌，程式只提供抽牌與 `OpsEffect` 詞彙。`OpsEffect` 是營運層的效果詞彙表（`ledger`／`rep`／`flag`／`spawnContract`／`spawnEvent`／`setNode`／`setRift`／`applyEffect(person|mech)`），與 core 的 `HookAction` 同構但作用在 `CampaignState`。
+每天（非大潮）每個活勢力最多抽一張：先過 `valid`，再按 `weight` 加權抽一張執行，設冷卻。大潮日裂縫與勢力都行動。**勢力的自主作戰、宣戰、簽約也是牌**（效果 `startOperation`／`relation`／`treaty`），勢力因此有常備軍 `FactionState.forces`、關係表與研發狀態——分別在 [data-model-operations-war](data-model-operations-war.md)、[data-model-diplomacy](data-model-diplomacy.md)、[data-model-faction-rnd](data-model-faction-rnd.md)；`FactionOpsDef.roster` 改填 `ModelDef` id 當開局常備軍。這是 BB `OPS-21` 的採用：契約刷新、競爭獵團出現、勢力生滅、價格變動全部走牌，程式只提供抽牌與 `OpsEffect` 詞彙。`OpsEffect` 是營運層的效果詞彙表（`ledger`／`rep`／`flag`／`spawnContract`／`spawnEvent`／`setNode`／`setRift`／`applyEffect(person|mech)`），與 core 的 `HookAction` 同構但作用在 `CampaignState`。
 
 ## 競爭獵團與人類敵人
 

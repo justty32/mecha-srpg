@@ -54,12 +54,17 @@ flowchart LR
 | [text-ui-contract.md](text-ui-contract.md) | OpsCommand 語意層（27 個動詞）、快捷鍵 keymap、房間與狀態片語、對白與事件、`Screen` 按鈕／列表契約、戰場入口 |
 | [content-format-ops.md](content-format-ops.md) | `content/<pack>/world/` 佈局、每種資料一個 JSON 範例、「新增 X 要改哪些檔」 |
 | [architecture-ops.md](architecture-ops.md) | `src/ops/` 模組與依賴、CampaignState 與事件、重播、存檔、六類 headless 測試 |
+| [data-model-operations-war.md](data-model-operations-war.md) | 勢力自主作戰：常備軍與分遣隊（地圖上會動）、作戰十種、階段、抽象結算、tick 第 2 段順序、古代殼的爭奪 |
+| [data-model-diplomacy.md](data-model-diplomacy.md) | 勢力間關係值＋六態、條約（停火／同盟／代理…）、變化驅動、防退化三閘、與 core 戰場陣營的銜接 |
+| [mercenary-contracts.md](mercenary-contracts.md) | 參戰型契約 `join`：友軍 slot 與指揮權三式、勢力補給四檔、軍令與結算、選邊與背叛、作戰情境生成 |
+| [data-model-faction-rnd.md](data-model-faction-rnd.md) | 勢力研發推進：藍本血統、通用系列、ModelDef 機型池隨時間擴大（部隊／市場／敵方）、技術流出 |
+| [war-testing.md](war-testing.md) | 上四檔的 headless 測試：單元、24 潮月模擬、不退化不變量、五條黃金戰役 |
 
-資料檔：`constraints-ops.json`（不可違反清單，欄位 `id`／`source`／`constraint`／`spec_section`／`note`）。
+資料檔：`constraints-ops.json`（不可違反清單，欄位 `id`／`source`／`constraint`／`spec_section`／`note`）、`operations-kinds.json`（作戰十種）、`diplomacy-drivers.json`（外交驅動 17 列）。
 
 ## 讀法
 
-實作按模組切線：先 `ops/state`＋`ops/content`（型別、帳本、載入器），再 `ops/world` 與 `ops/crew` 並行，`ops/contracts`→`ops/time`→`ops/sortie`，`ops/text` 可與 `ops/time` 並行，`ops/sim` 最後收攏。每個子檔結尾都有「替使用者做掉的決定」，可逐條推翻；推翻後只改該節與 `constraints-ops.json` 對應列。
+實作按模組切線：先 `ops/state`＋`ops/content`（型別、帳本、載入器），再 `ops/world` 與 `ops/crew` 並行，`ops/contracts`→`ops/time`→`ops/sortie`，`ops/text` 可與 `ops/time` 並行，`ops/sim` 最後收攏；第二輪 `ops/war`（作戰、外交、研發）接在 `ops/world` 之後，位置一律經 `Loc` 抽象（方格大地圖落地後不改）。每個子檔結尾都有「替使用者做掉的決定」，可逐條推翻；推翻後只改該節與 `constraints-ops.json` 對應列。
 
 ## 替使用者做掉的決定
 
