@@ -29,24 +29,23 @@
 
 ## 命名與用語（本段落的頂層決定）
 
-- 新內容一律用新詞（古代機／裝甲、衍型、蝕潮／蝕月／蝕錨／蝕壓、鎧甲／靈目／矢）。舊詞由第一批改名批次全庫一起換，其他批次不要零星改。
+- 新內容一律用新詞：全庫已由 lead-rename 改名完成（2026-10-24），定案表 `wf/workflows/planning/design-notes/terms-rename.json`（稽古學會、守寢人、夢召、古緣、墟、骸片、沐蝕會、渡月船、源流…；大潮／小潮照用）。
 - **英文原名不放 `aka`**：`aka` 只放中文別名。在 `nameEn`／`etymology` 補欄之前，英文原名與意涵放在批次 manifest 的命名表。
-- 試點的飛魚批與 lore 批還有「潮」舊詞，併入第一批改名批次處理。
 
 ## 填了會不會生效
 
 已抽到 [codex-effects.json](codex-effects.json)（22 列）。這張表合併了 lead-gaps-battle 與 lead-gaps-ops 兩份 REPORT 的總表，再加上試點的發現。欄位：`類別`（戰鬥／營運／lore）、`目錄／欄位`、`生效？`（會／只顯示／不會／不歸 codex）、`條件／備註`、`來源`。
 
-**派批次前先查這張表：標「不會」的不要派。**目前不生效的有：`molt`、`territorial`、`barks/`、`passive`、`encounters/place-*`、world-grid 各資料夾、獸緣殼緣接營運。這些要等 engine-backlog 補上。
+**派批次前先查這張表：標「不會」的不要派。**目前不生效的有：`molt`、`territorial`、`barks/`、`passive`、`encounters/place-*`、world-grid 各資料夾、獸緣古緣接營運。這些要等 engine-backlog 補上。
 
 ## 可直接開工的批次
 
 已抽到 [codex-batches.json](codex-batches.json)（10 列）。欄位：`序`、`批次`、`模式`（add／polish）、`允許的 kind`（相對 `content/`，寫進 manifest 的 `allow`）、`規模`、`注意`、`狀態`。
 
-**第一批是用語改名＋翻譯腔重審**（polish 模式，全庫按類別切成多批）：
+**第一批是用語改名＋翻譯腔重審**（polish 模式，全庫按類別切成多批；**已完成**，見 `handoffs/lead-rename/REPORT.md`）：
 
 - 依 terms.md 換詞，配 agy 審查。
-- 「鞘」系衍生詞、潮信會、大潮小潮、工作名，先擬一版交使用者定案（[WAIT_USER](../../../WAIT_USER.md)），定案前不換。
+- 衍生詞已依使用者授權由改名線經 agy 審查定案（terms.md 末段）。
 - glossary.json 與 style.md 由領導改，不交 codex。
 
 之後的批次，可以照表上的順序，也可以並行：
