@@ -22,7 +22,7 @@
    "標題": "情境單位無武器組件：人類機只有內建凡鐵頭吼（kinetic 8，conventional-arms 對 kaiju ×0.1＝0.8）／鐵拳 14，打蟲類情境幾乎零傷害",
    "重現步驟": "任一蟲類情境 seed 1 battle_auto（hive-burrow-clearing、beachhead-landing…）→ 20 輪 timeout；legal_actions 打蝕蟲 Hit amount≈0.8",
    "負責範圍": "引擎缺口：`UnitSpawn` 無 components 欄（src/core＋src/sim/run.ts scenarioToSetup）→ lead-rules-fuzz／頂層派線；本線過渡：情境換用有非傳統近戰的同家族機（moji-tern→moji-tern-guard 等）",
-   "狀態": "轉頂層",
+   "狀態": "引擎已落地（3049172，UnitSpawn.components／FrameDef.defaultLoadout）；本線已過渡換機（963e103，75 台）；defaultLoadout 內容未填 → 引擎缺口衝刺",
    "回報者": "p2,p3,p4,p5"
   },
   {
@@ -33,7 +33,7 @@
    "標題": "全情境 AI 對 AI 幾乎全 timeout 平局（第 0 輪量測 24 情境×5 seed）",
    "重現步驟": "node wf/workflows/dispatch/handoffs/lead-playtest/sweep.ts",
    "負責範圍": "主因 ISS-001＋命中 14–40%；情境參數（輪數、部署、目標）為本線",
-   "狀態": "處理中",
+   "狀態": "部分改善：AI 對 AI timeout 76%→44%（963e103）；剩 8 情境 5/5 平局見 ISS-044",
    "回報者": "sweep,p1-p4"
   },
   {
@@ -44,7 +44,7 @@
    "標題": "MCP 戰鬥輸出沒有任務目標：勝負條件、斬首目標是誰／剩幾隻、守區座標與進度、護送對象、出口、survive 剩幾輪",
    "重現步驟": "battle_new scenario/glade-spore-hold → battle_observe 無 objectives",
    "負責範圍": "src/mcp/battle-view.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2,p3,p4"
   },
   {
@@ -55,7 +55,7 @@
    "標題": "battle_legal_actions 的 nearestEnemy／無目標原因把友軍、convoy 當敵方",
    "重現步驟": "beast-stampede seed 1：player-0 legal_actions → 「最近敵方 ally-0」",
    "負責範圍": "src/mcp/battle.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2,p3,p4,p5"
   },
   {
@@ -66,7 +66,7 @@
    "標題": "convoy-runner（flee）護送車隊整場不動",
    "重現步驟": "convoy-run／tidal-flat-evac seed 1 battle_auto：convoy 0 步",
    "負責範圍": "content/base/aiprofiles/convoy-runner.json 參數（本線先試）；policy 本身 src/ai/policies/flee.ts → lead-ai-objective",
-   "狀態": "處理中",
+   "狀態": "已修（963e103 convoy-runner 參數＋lead-ai-objective 未提交的 flee.ts 相對距離公式；四個護送情境 5/5 撤離）；flee.ts 提交前結果會變",
    "回報者": "p2,p3"
   },
   {
@@ -77,7 +77,7 @@
    "標題": "護送目標以 frame id 指定、比對到多台；一台毀一台撤離後兩邊目標都不可能完成，空轉到 timeout",
    "重現步驟": "siege-beetle-convoy seed 1 battle_auto（convoy-0 r8 毀、convoy-1 撤離）",
    "負責範圍": "content/base/scenarios/{convoy-run,siege-beetle-convoy,tidal-flat-evac,shell-excavation-escort}.json（本線：失敗條件改逐台 killTarget lose）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p2,p3"
   },
   {
@@ -88,7 +88,7 @@
    "標題": "大地圖／混戰情境把所有陣營擠在中央 10–15 格，第 1 輪接敵、第三方貼玩家出生",
    "重現步驟": "badlands-sweep、delta-four-way、overpass-wager、rival-claim-jump、unbound-raid 的 at 座標",
    "負責範圍": "content/base/scenarios/*.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p3,p4"
   },
   {
@@ -99,7 +99,7 @@
    "標題": "同一具名人物同時駕駛多台、分屬敵我（「葛西 蓮未命中葛西 蓮」）",
    "重現步驟": "任一情境 persons 欄；事件 log",
    "負責範圍": "content/base/scenarios/*.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p2,p3,p4"
   },
   {
@@ -110,7 +110,7 @@
    "標題": "overpass-wager 玩家全滅仍跑到 timeout 判平局（缺玩家落敗條件）",
    "重現步驟": "overpass-wager seed 1 battle_auto",
    "負責範圍": "content/base/scenarios/overpass-wager.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p3"
   },
   {
@@ -121,7 +121,7 @@
    "標題": "siege-beetle-convoy 車隊開場離出口 9 格，第 2 輪就結束",
    "重現步驟": "siege-beetle-convoy seed 1 手打",
    "負責範圍": "content/base/scenarios/siege-beetle-convoy.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p3"
   },
   {
@@ -132,7 +132,7 @@
    "標題": "eject 滿血也能用且無確認；棄機後徒步人員 0 能力卻仍列 eject",
    "重現步驟": "任一情境 legal_actions options 含 eject",
    "負責範圍": "src/rules（eject 條件）→ lead-rules-fuzz；infantry 能力 → lead-content-polish；MCP options 標「不可逆」（本線）",
-   "狀態": "轉頂層",
+   "狀態": "規則線已修（頂層 2026-10-24 告知）；MCP 標「不可逆」已做（ddc1836）",
    "回報者": "p5"
   },
   {
@@ -143,7 +143,7 @@
    "標題": "「必定」／只限友方的增益能力仍擲命中，事件同時寫「未命中」與「受到影響」",
    "重現步驟": "mx-anvil-roar、kx-brood-call、kx-star-howl",
    "負責範圍": "src/rules 命中判定 → lead-rules-fuzz；或 abilities 內容 → lead-content-polish",
-   "狀態": "轉頂層",
+   "狀態": "規則線已修（頂層告知）",
    "回報者": "p2,p3,p5"
   },
   {
@@ -154,7 +154,7 @@
    "標題": "AI 單回合內來回踱步、護衛（bodyguard／focus-fire）貼著蟲群不開火、部分敵軍整場不動；第三方蟲幾乎只打 ally",
    "重現步驟": "unbound-raid seed 1（第三方打 ally 63 次 vs enemy 2 次）；convoy-run 護衛",
    "負責範圍": "src/ai/policies/tactical.ts → lead-ai-objective；6 個新 aiprofile 參數（本線可調）",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-ai-objective）",
    "回報者": "p2,p3"
   },
   {
@@ -165,7 +165,7 @@
    "標題": "ASCII 地圖單位字母與地形字母撞字（B＝守誓壁壘＝player-1）",
    "重現步驟": "glade-spore-hold battle_observe map:true",
    "負責範圍": "src/mcp/battle-view.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2,p3,p4"
   },
   {
@@ -176,7 +176,7 @@
    "標題": "出口格被戰爭迷霧蓋住，圖例卻列「> 出口」",
    "重現步驟": "tidal-flat-evac 開局 observe map",
    "負責範圍": "src/mcp/battle-view.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2,p5"
   },
   {
@@ -187,7 +187,7 @@
    "標題": "地形／全域效果（潮汐、根系纏縛、潮神挽足）只有名字沒效果說明",
    "重現步驟": "glade-spore-hold、tidal-flat-evac observe",
    "負責範圍": "src/mcp/battle-view.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2"
   },
   {
@@ -198,7 +198,7 @@
    "標題": "legal_actions 只有命中率，沒有預期傷害（含 ×0.1、抗性）",
    "重現步驟": "任一蟲類情境",
    "負責範圍": "src/mcp/battle.ts（本線，用 session.preview）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p3,p4"
   },
   {
@@ -209,7 +209,7 @@
    "標題": "傷害浮點殘值外露（7.200000000000003）、效果 id 外露（shaken、fleeing）、自施法寫「命中自己」",
    "重現步驟": "任一戰鬥事件 log",
    "負責範圍": "數值格式化 src/mcp（本線）；effect 缺 name → lead-content-polish；事件文案 src/ui-adapter/vm/text.ts",
-   "狀態": "處理中",
+   "狀態": "MCP 部分已修（ddc1836）；effect 缺 name → lead-content-polish；事件文案 src/ui-adapter/vm/text.ts 未修",
    "回報者": "p2,p3,p4"
   },
   {
@@ -220,7 +220,7 @@
    "標題": "視野外友軍完全看不到；看過的敵方離開視野後從 observe 消失",
    "重現步驟": "delta-four-way",
    "負責範圍": "src/mcp/battle-view.ts（本線：友軍一律列、敵方列最後所見）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p3,p4"
   },
   {
@@ -231,7 +231,7 @@
    "標題": "cli.ts call 也 import 整個 server 模組圖，別線改到一半時連 call 都失敗",
    "重現步驟": "別線工作樹缺檔時 node src/mcp/cli.ts call …",
    "負責範圍": "src/mcp/cli.ts（本線：serve 改動態 import）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p2,p3,p4"
   },
   {
@@ -242,7 +242,7 @@
    "標題": "legal_actions(unit=非當前行動者) 的 playerTurn 仍回 true；events since 超尾端時 next<since；移動失敗原因不分；battle_load 壞檔回英文 JSON 錯誤；不存在 playerSlot 不列可選",
    "重現步驟": "p5 重現步驟見 r1/p5.json",
    "負責範圍": "src/mcp/battle.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p5"
   },
   {
@@ -253,7 +253,7 @@
    "標題": "大地圖 agent 成本高：每台每回合 6–8 呼叫×~2 KB；battle_auto badlands 阻塞 69 秒",
    "重現步驟": "badlands-sweep",
    "負責範圍": "src/mcp（本線：observe brief 精簡）；效能 → lead-rules-fuzz",
-   "狀態": "處理中",
+   "狀態": "部分：大地圖仍高成本；未處理",
    "回報者": "p4"
   },
   {
@@ -264,7 +264,7 @@
    "標題": "instinct 資源顯示超過上限（120/100）",
    "重現步驟": "p5：扮怪獸方 observe",
    "負責範圍": "src/rules 資源 clamp → lead-rules-fuzz",
-   "狀態": "轉頂層",
+   "狀態": "頂層判定為內容問題（soft 池無閾值帶）→ 內容線",
    "回報者": "p5"
   },
   {
@@ -275,7 +275,7 @@
    "標題": "營運：anchored 裂縫的 clear／seal 用起始 3 台機必定 20 輪平手（契約失敗），成為死局",
    "重現步驟": "campaign seed 5 第 43 天起",
    "負責範圍": "src/ops/sortie/scenario.ts → lead-impl-war",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6"
   },
   {
@@ -286,7 +286,7 @@
    "標題": "營運：船所在節點被蝕線吞為 core 後所有航線關閉，船永久困住",
    "重現步驟": "campaign seed 5 第 42 天鹽灘",
    "負責範圍": "src/ops/world → lead-impl-war",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6"
   },
   {
@@ -297,7 +297,7 @@
    "標題": "營運：seed 1 前 56 天終端零契約（契約只來自裂縫），只能看債息吃光現金；且目前工作樹 greedy 1 潮月 seed 1–7 全無出戰",
    "重現步驟": "campaign seed 1；runCampaign greedy months 1",
    "負責範圍": "src/ops/contracts、world/actions → lead-impl-war／lead-content-world",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6,lead"
   },
   {
@@ -308,7 +308,7 @@
    "標題": "營運：opening 期裂縫被打贏 8 次仍 opening，同節點無限刷 2800 契約",
    "重現步驟": "campaign seed 5 第 28–41 天",
    "負責範圍": "src/ops/sortie/apply.ts onBattleRift → lead-impl-war",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6"
   },
   {
@@ -319,7 +319,7 @@
    "標題": "營運：可承接無航線可達的契約，期限到自動失敗",
    "重現步驟": "campaign seed 5 contract-52",
    "負責範圍": "src/ops/contracts/lifecycle.ts → lead-impl-war",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6"
   },
   {
@@ -330,7 +330,7 @@
    "標題": "營運 MCP：look／board／help／talk 查看類指令無輸出；看不到機甲部位血量、武裝、彈藥",
    "重現步驟": "campaign_act {v:look,target:mech-8}",
    "負責範圍": "src/mcp/campaign-view.ts（本線）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p6"
   },
   {
@@ -341,7 +341,7 @@
    "標題": "營運 MCP：出戰前無敵方預估／地圖／目標；戰後摘要只有勝負輪數（無擊殺、損傷、修理估價、契約款）",
    "重現步驟": "campaign_actions 出戰項",
    "負責範圍": "src/mcp/campaign*.ts（本線：用 sortieBattleSetup 預覽）",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p6"
   },
   {
@@ -352,7 +352,7 @@
    "標題": "營運 MCP：市場、招募、研究無列表與 actions，要翻 content 猜 id；文字指令錯誤 candidates 永遠空",
    "重現步驟": "campaign_act text:\"買 …\"",
    "負責範圍": "src/mcp/campaign.ts（本線列表）；parse candidates → lead-impl-war",
-   "狀態": "處理中",
+   "狀態": "MCP 部分已修（ddc1836：市場／招募／研究清單、parse 失敗附 id）；ops parse candidates 轉 lead-impl-war",
    "回報者": "p5,p6"
   },
   {
@@ -363,7 +363,7 @@
    "標題": "營運：起始名冊重名、id 當名字（兩個葛西 蓮、兩個 mara-okoye、mech-8）",
    "重現步驟": "campaign_new seed 1",
    "負責範圍": "src/ops/content/start.ts、content/base/world → lead-impl-war／lead-content-world",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-impl-war）",
    "回報者": "p6"
   },
   {
@@ -374,7 +374,7 @@
    "標題": "營運 log：id／英文外露、空字串（「你付給  17.5 幣薪水」「轉為 。」）、戰爭動態全是無文案事件、浮點尾數",
    "重現步驟": "campaign seed 1 任意 30 天",
    "負責範圍": "src/ops/text → lead-impl-war；MCP 數字格式化（本線）",
-   "狀態": "轉頂層",
+   "狀態": "MCP 數字格式化已修（ddc1836）；ops 文案轉 lead-impl-war",
    "回報者": "p6"
   },
   {
@@ -385,7 +385,7 @@
    "標題": "營運：待選事件選項不標代價後果；pending 時連 look／help 也被擋且只回代號",
    "重現步驟": "campaign_advance 遇事件",
    "負責範圍": "src/ops → lead-impl-war；MCP 錯誤說明附可選項（本線）",
-   "狀態": "處理中",
+   "狀態": "MCP 部分已修（ddc1836：拒絕訊息附選項）；ops 白名單轉 lead-impl-war",
    "回報者": "p5,p6"
   },
   {
@@ -396,7 +396,7 @@
    "標題": "營運：存檔 blob 隨出戰暴增（2.5 潮月 900 KB），CLI 傳不回 campaign_load",
    "重現步驟": "campaign_save 後 campaign_load blob",
    "負責範圍": "src/mcp/campaign.ts（本線：建議 path）；紀錄格式 src/ops/sim → lead-impl-war",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p6"
   },
   {
@@ -407,7 +407,7 @@
    "標題": "UI 互動出戰 battleDone 用 session.result() 回寫，缺 runBattle 附加的完整 events → 契約擊殺計數與耗材扣除漏算（MCP 版已補）",
    "重現步驟": "src/ui-adapter/ops/vm/controller.ts battleDone vs src/ops/sortie/apply.ts 讀 result.events",
    "負責範圍": "src/ui-adapter（或 sim session.result 補 events）→ 頂層派線",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：fix-ui-sortie-events）",
    "回報者": "lead"
   },
   {
@@ -418,7 +418,7 @@
    "標題": "quarry-duel 玩家唯一目標 killTarget 用 frame id（frame/moji-tern），連玩家自己的燕鷗也被算進去，永遠達不成",
    "重現步驟": "quarry-duel seed 1 battle_auto → timeout",
    "負責範圍": "content/base/scenarios/quarry-duel.json（本線 cx-pt-scen）",
-   "狀態": "處理中",
+   "狀態": "已修（963e103，待下輪重測）",
    "回報者": "p1"
   },
   {
@@ -429,7 +429,7 @@
    "標題": "sentinel（sniper-perch）在原點時只送 end，被貼身也不開火",
    "重現步驟": "任一含 sniper-perch 的情境",
    "負責範圍": "src/ai/policies/sentinel.ts（distance===0 分支）→ lead-ai-objective；aiprofile 參數（本線試）",
-   "狀態": "轉頂層",
+   "狀態": "部分：sniper-perch 參數已調（963e103，quarry-duel seed 1 攻擊 100 次）；sentinel.ts 分支 bug 仍轉 lead-ai-objective",
    "回報者": "p1"
   },
   {
@@ -440,7 +440,7 @@
    "標題": "lunar-blockade-run 第 2 輪直衝出口就贏，封鎖無效",
    "重現步驟": "lunar-blockade-run seed 1–3 auto 都第 2–3 輪 player reachExit",
    "負責範圍": "content/base/scenarios/lunar-blockade-run.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已調（963e103）：改中央起步，仍 5/5 第 5 輪玩家勝，偏易，待重測",
    "回報者": "p1"
   },
   {
@@ -451,7 +451,7 @@
    "標題": "mirror-choir-vigil 全隊只按 end 也能零傷撐 10 輪獲勝",
    "重現步驟": "mirror-choir-vigil seed 1 手打全 end",
    "負責範圍": "content/base/scenarios/mirror-choir-vigil.json（本線）",
-   "狀態": "處理中",
+   "狀態": "已調（963e103）：改守 (13,12) 四輪，5/5 第 4 輪玩家勝，偏易，待重測",
    "回報者": "p1"
   },
   {
@@ -462,7 +462,7 @@
    "標題": "AI 目標選擇偏：燕鷗、鐮肢從沒被打；三方戰兩家都先打玩家；回合內移動→射擊→移回",
    "重現步驟": "skirmish-whitegloves、crater-three-way",
    "負責範圍": "src/ai/score.ts、tactical.ts → lead-ai-objective",
-   "狀態": "轉頂層",
+   "狀態": "轉交未修（頂層已轉：lead-ai-objective）",
    "回報者": "p1"
   },
   {
@@ -473,8 +473,41 @@
    "標題": "事件不附命中率；機體毀但駕駛無傷仍標「陣亡」；勝利句外露 slot id（player陣營獲勝）；ASCII 地圖欄號被截斷；機魂 ap 一直顯示但無可用能力",
    "重現步驟": "p1 回報",
    "負責範圍": "src/mcp/battle-view.ts（本線 cx-pt-mcpb）；事件文案 src/ui-adapter/vm/text.ts",
-   "狀態": "處理中",
+   "狀態": "已修（ddc1836，待下輪重測）",
    "回報者": "p1"
+  },
+  {
+   "id": "ISS-043",
+   "輪次": 1,
+   "類別": "balance",
+   "嚴重度": "S2",
+   "標題": "護送四情境改完後 5/5 都在第 4 輪玩家勝（車隊直奔出口撤離），過易",
+   "重現步驟": "node …/sweep.ts scenario/convoy-run scenario/siege-beetle-convoy scenario/tidal-flat-evac scenario/shell-excavation-escort",
+   "負責範圍": "content/base/scenarios（本線範圍，下輪）",
+   "狀態": "未修（下輪）",
+   "回報者": "lead"
+  },
+  {
+   "id": "ISS-044",
+   "輪次": 1,
+   "類別": "balance",
+   "嚴重度": "S2",
+   "標題": "仍 5/5 平局：badlands-sweep、breach-defense、crater-three-way、delta-four-way、dream-bed-burn、glade-spore-hold、rival-claim-jump、skirmish-whitegloves（禁改）；unbound-raid 4/5",
+   "重現步驟": "cx-pt-scen/sweep-after.jsonl",
+   "負責範圍": "情境（本線範圍，下輪；待 defaultLoadout 內容）；hold 被敵擠入即歸零為規則設計",
+   "狀態": "未修（下輪）",
+   "回報者": "lead"
+  },
+  {
+   "id": "ISS-045",
+   "輪次": 1,
+   "類別": "balance",
+   "嚴重度": "S2",
+   "標題": "勝方極度偏玩家：120 場 AI 對 AI 只有 2 場敵方勝；可能過易",
+   "重現步驟": "cx-pt-scen/sweep-after.jsonl",
+   "負責範圍": "情境（本線範圍，下輪）",
+   "狀態": "未修（下輪）",
+   "回報者": "lead"
   }
  ]
 }

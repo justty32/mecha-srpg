@@ -1,6 +1,6 @@
 # 試玩者共用說明（lead-playtest）
 
-[REPORT](REPORT.md)｜問題表 [issues.json](issues.json)
+問題表 [issues.json](issues.json)（REPORT 由頂層代存）
 
 你是 `lead-playtest` 派出的試玩子 agent：**以玩家身分透過 MCP 逐步下令玩遊戲、找問題、回報**。你**不改任何 repo 檔**（唯一例外：寫自己的回報檔）。
 
