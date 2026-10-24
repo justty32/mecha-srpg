@@ -229,3 +229,36 @@
 - **答不出什麼**：規則修正（領導做）。
 - **怎麼找我**：`wf/inbox/orders/cx-fuzz-scale.md`
 - **訂閱主題**：無
+
+### `cx-aio-core`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，AI 目標意識（objectives.ts＋評分／候選整合＋測試）；領導 `lead-ai-objective` 代登記
+- **團隊**：`teams/ai-objective`
+- **上游**：`lead-ai-objective`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ai-objective/cx-aio-core.md`「範圍」
+- **答得出什麼**：AI 目標評分、參數
+- **答不出什麼**：規則、營運、內容
+- **怎麼找我**：`wf/inbox/orders/cx-aio-core.md`
+- **訂閱主題**：無
+
+### `cx-aio-tactics`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，AI 候選與評分缺口（line／cone、友軍範圍增益、sustained、捕獲、純減益、大目標加權）；領導 `lead-ai-objective` 代登記
+- **團隊**：`teams/ai-objective`
+- **上游**：`lead-ai-objective`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ai-objective/cx-aio-tactics.md`「範圍」
+- **答得出什麼**：AI 候選生成、評分參數
+- **答不出什麼**：規則、營運、內容
+- **怎麼找我**：`wf/inbox/orders/cx-aio-tactics.md`
+- **訂閱主題**：無
+
+### `cx-aio-play`
+- **狀態**：已收線（2026-10-24）
+- **我是誰**：codex 工人，試玩回報 AI 行為修正（flee 車隊、踱步／不開火、第三方偏向）；領導 `lead-ai-objective` 代登記
+- **團隊**：`teams/ai-objective`
+- **上游**：`lead-ai-objective`
+- **領地**：見 `wf/workflows/dispatch/handoffs/lead-ai-objective/cx-aio-play.md`「範圍」
+- **答得出什麼**：AI 回合迴圈、flee、目標偏向
+- **答不出什麼**：規則、營運、內容
+- **怎麼找我**：`wf/inbox/orders/cx-aio-play.md`
+- **訂閱主題**：無

@@ -40,7 +40,7 @@
   },
   {
    "驗證": "AI 平衡量測（改 `src/ai/` 評分時跑）",
-   "指令": "`node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）",
+   "指令": "`node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）；目標意識：`node wf/workflows/dispatch/handoffs/lead-ai-objective/scenario-measure.ts <scenario> [--rounds N] [seed…]`（情境原輪數、目標命中數）、`node wf/workflows/dispatch/handoffs/lead-ai-objective/battle-bench.ts --capture OUT.json` 後 `battle-bench.ts OUT.json --phase anchored`（凍結營運戰場重打，勝場與對巢母命中 `nmHits`）",
    "誰跑": "agent"
   },
   {

@@ -7,7 +7,7 @@ import { candidateKey, getPolicy, selectCandidate } from "./policy.ts";
 import { maskedState, observe, updateKnowledge } from "./knowledge.ts";
 import { dangerMap } from "./danger.ts";
 
-const DEFAULTS = { maxActions: 8, maxRetries: 3, band: 0.8 };
+const DEFAULTS = { maxActions: 8, maxRetries: 3, maxPureMoves: 1, band: 0.8 };
 
 export type TurnEnv = { q: RulesQuery; s: BattleState; slot: FactionSlot; know: FactionKnowledge; assignment: Assignment | null; params: AiParams; rng: RngState; exec: ExecCommand };
 export type TurnOptions = { maxActions?: number; maxRetries?: number };
@@ -53,12 +53,16 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
   if (!q.isActive(s, agent.unit)) return commands;
   const maxActions = Math.max(0, Math.floor(opts?.maxActions ?? DEFAULTS.maxActions));
   const maxRetries = Math.max(1, Math.floor(opts?.maxRetries ?? DEFAULTS.maxRetries));
+  const maxPureMoves = Math.max(0, Math.floor(env.params.maxPureMoves ?? DEFAULTS.maxPureMoves));
+  let pureMoves = 0;
   for (let action = 0; action < maxActions; action++) {
     if (over()) return commands;
     const policy = getPolicy(policyFor(q, s, agent.unit, agent.policy));
     let ctx = context();
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
-    let candidates = policy.propose(ctx, agent);
+    // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
+    const limitMoves = ["tactical", "sentinel", "swarm"].includes(policy.id);
+    let candidates = policy.propose(ctx, agent).filter(c => !limitMoves || c.cmd.kind !== "move" || pureMoves < maxPureMoves);
     let failures = 0;
     const reject = (candidate: Candidate): void => {
       const key = candidateKey(candidate);
@@ -68,7 +72,10 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     while (true) {
       if (failures >= maxRetries) return end();
       ctx = context();
-      const candidate = selectCandidate(env.rng, candidates.map((c) => ({ c, score: policy.score(ctx, agent, c) })),
+      const scored = candidates.map((c) => ({ c, score: policy.score(ctx, agent, c) }));
+      // End 是無可取行動時的退路，不能用固定小正分蓋過有效的低傷害攻擊。
+      const canAct = scored.some(({ c, score }) => c.cmd.kind !== "end" && Number.isFinite(score) && score > 0);
+      const candidate = selectCandidate(env.rng, canAct ? scored.filter(({ c }) => c.cmd.kind !== "end") : scored,
         policy.band ?? env.params.band ?? DEFAULTS.band);
       if (!candidate) return end();
       if (candidate.move && q.distance(s.units[agent.unit]!.pos, candidate.move) !== 0) {
@@ -83,6 +90,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
         reject(candidate);
         continue;
       }
+      if (candidate.cmd.kind === "move") pureMoves++;
       policy.onExecuted?.(agent, candidate);
       // SPEC-GAP：wait／retreat／eject 本身終止行動，不額外送 end，以免取消等待或對離場者下指令。
       if (["end", "wait", "retreat", "eject"].includes(candidate.cmd.kind) || !q.isActive(s, agent.unit)) return commands;

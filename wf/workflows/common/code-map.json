@@ -30,14 +30,14 @@
   {
    "領域": "ai",
    "檔案": "`src/ai/`（含 `policies/`、`adapters/`）",
-   "職責": "知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）",
-   "測試在哪": "`test/ai/`（平衡回歸 `balance.test.ts`）"
+   "職責": "知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）；情境目標 `objectives.ts`（`objectiveInfo` 讀公開 `rt.objectives`：killTarget／孵化源／守區清敵／攔截加權、hold 進區守區、escort／reachExit 往出口與撤離、同盟共享目標、不殺捕獲目標、不佔友軍出口；權重 `obj*` 走 aiprofile params）；候選涵蓋 line／cone、友軍範圍增益、sustained、捕獲價值、純減益效果估值；`takeTurn` 純移動上限 `maxPureMoves`（tactical 家族）；flee 用相對進展分",
+   "測試在哪": "`test/ai/`（平衡回歸 `balance.test.ts`；目標 `objectives.test.ts`；候選缺口 `tactics-coverage.test.ts`；試玩修正 `playtest-fixes.test.ts`；`eject-commander.test.ts`）"
   },
   {
    "領域": "sim",
    "檔案": "`src/sim/{run,session,replay,save,cli,measure}.ts`",
    "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`；`trackKnowledge(slot)` 維護陣營知識、`contentDb`／`rulesQuery`（型別 `SessionQuery`）供 ui-adapter 查詢；UI 的 `vm/session.ts` 已改走它）；`measure.ts` AI 平衡量測",
-   "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）"
+   "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）；`stepAi` 末尾不空回 null：`test/sim/step-ai.test.ts`"
   },
   {
    "領域": "ops",

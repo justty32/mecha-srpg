@@ -20,13 +20,38 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   const center = { x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) };
   const nearest = (cell: Cell): number => enemies.length
     ? Math.min(...enemies.map((id) => q.distance(cell, view.units[id]!.pos))) : q.distance(cell, center);
-  const reachable = Object.keys(q.reachable(view, actor)).sort().map((key) => {
+  const reachCosts = q.reachable(view, actor);
+  const reachable = Object.keys(reachCosts).sort().map((key) => {
     const [x, y] = key.split(",").map(Number);
     return { x: x!, y: y! };
   });
   const moves = [...reachable].sort((a, b) => nearest(a) - nearest(b) || dangerAt(ctx.danger, a) - dangerAt(ctx.danger, b)
     || a.x - b.x || a.y - b.y)
     .slice(0, Math.max(0, Math.floor(opts?.maxMoves ?? ctx.params.maxMoves ?? DEFAULTS.maxMoves)));
+  // 最近敵人的格子可能花光 AP；另保留低移動成本的射程內格，合法性仍交規則預覽。
+  const isAttack = (ability: string): boolean => {
+    const def = q.abilityDef(ability);
+    return def.mode === "activated" && ["attack", "attackArea", "disable"].some(t => q.evalNum(view, def.ai.tactics[t] ?? 0, actor) > 0);
+  };
+  const firingMoves: Cell[] = [];
+  const moveLimit = Math.max(0, Math.floor(opts?.maxMoves ?? ctx.params.maxMoves ?? DEFAULTS.maxMoves));
+  for (const ability of [...q.abilitiesOf(view, actor)].sort().filter(isAttack)) {
+    if (firingMoves.length >= moveLimit) break;
+    const def = q.abilityDef(ability), range = q.abilityRange(view, actor, ability);
+    if (def.target.kind !== "unit") continue;
+    for (const id of enemies) {
+      if (firingMoves.length >= moveLimit) break;
+      if (q.checkAbility(view, actor, ability, { unit: id }) === null) continue;
+      const target = view.units[id]!.pos;
+      const cell = reachable.filter(c => {
+        const d = q.distance(c, target);
+        return d >= range.min && d <= range.max && (!def.target.los || q.los(view, c, target));
+      }).sort((a, b) => reachCosts[cellKey(a.x, a.y)]! - reachCosts[cellKey(b.x, b.y)]!
+        || q.distance(a, target) - q.distance(b, target) || a.x - b.x || a.y - b.y)[0];
+      if (cell && firingMoves.length < moveLimit && !firingMoves.some(c => q.distance(c, cell) === 0)) firingMoves.push(cell);
+    }
+  }
+  for (const cell of firingMoves) if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
   // berserk 共用候選產生器，但仍維持只追敵的原有行為。
   if (agent.policy !== "berserk" && opts?.hostileOnly !== false) {
     const objectiveMoves = reachable.map(cell => ({ cell, value: objectiveMoveValue(ctx, actor, self.pos, cell) }))
@@ -84,11 +109,23 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
       }
     }
   }
+  // 已有合法出手位置時，不選走光 AP 的純追敵移動；護送／守區等任務進展仍保留。
+  const attacks = candidates.filter(c => c.cmd.kind === "useAbility" && isAttack(c.cmd.ability));
+  if (attacks.length) {
+    const ready = new Set(attacks.map(c => cellKey((c.move ?? self.pos).x, (c.move ?? self.pos).y)));
+    for (let i = candidates.length - 1; i >= 0; i--) {
+      const c = candidates[i]!;
+      if (c.cmd.kind !== "move") continue;
+      const dest = c.cmd.path.at(-1) ?? self.pos;
+      if (!ready.has(cellKey(dest.x, dest.y)) && objectiveMoveValue(ctx, actor, self.pos, dest) <= 0) candidates.splice(i, 1);
+    }
+  }
   // 本輪已用過 Wait 就不提（真規則會拒絕 wait-used；stub 無 rt.waitUsed 簿記時照舊）。
   if (!view.rt?.waitUsed.includes(actor)) candidates.push({ cmd: { kind: "wait", actor } });
   candidates.push({ cmd: { kind: "end", actor } });
   if (view.rt?.exits.some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
-  candidates.push({ cmd: { kind: "eject", actor } });
+  // 沒有握指令權的人物（無人機、失去駕駛）不能棄機；不提出必被規則以 no-commander 拒絕的候選。
+  if (q.commanderOf(view, actor) !== null) candidates.push({ cmd: { kind: "eject", actor } });
   return candidates;
 }
 
