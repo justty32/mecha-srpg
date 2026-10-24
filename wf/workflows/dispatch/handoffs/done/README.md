@@ -53,5 +53,6 @@
 | 2026-10-24 | `lead-tune` | 戰鬥／營運後期調校：營運首輪撤退 48/89→0、凍結 anchored 9→14/26、人類遭遇 16→37/60、多方 timeout 修正、六個速勝情境、`part:undefined`；sweep 平手 7.7%→3.8% | [lead-tune/](../lead-tune/)（工人 REPORT、量測工具與前後數據留原處；總 REPORT 待頂層代存為 lead-tune/REPORT.md） |
 | 2026-10-24 | `lead-world-land` | talk-world 裁示落地：design-notes world/essence＋scale、specs/world（新 resistance.md）／core／ops、tide-sky 潮候改名、world-pillars W2／W10／M4、style、terms；codex polish 9 批帶回 116 檔；engine-backlog 28–35 | [lead-world-land/](../lead-world-land/)（工人交接書、各批 REPORT 與 guide 留原處；總 REPORT 待頂層代存為 lead-world-land/REPORT.md） |
 | 2026-10-24 | `lead-history-lines` | talk-world HANDOVER 第 7 節：design-notes/world/history-lines（八線敘述、十節點、年表 127 條掛線、孤兒 17、待和解 32）＋ tide-range（72 城實測潮差，codex 上網）；codex 四工人三輪修訂納入當日新裁示 | [lead-history-lines/](../lead-history-lines/)（工人交接書、REPORT 與初稿留原處；總 REPORT 待頂層代存為 lead-history-lines/REPORT.md） |
+| 2026-10-24 | `lead-reconcile` | 待和解照建議裁示（R32 作廢：不用潮差＝威脅）：history-reconcile 加「採用讀法」欄、八線與資料同步；spec／守則 W11／style／terms；codex polish 9 批 98 檔帶回（海洋說、魂線、迦梨與三種聲音、歸還黨三支、新加坡會議制度化、月之暗面、筆誤）；scale 提案 v2；HANDOVER 拆入口＋handover/ | [lead-reconcile/](../lead-reconcile/)（guide、工人交接書與各批 REPORT 留原處；總 REPORT 待頂層代存為 lead-reconcile/REPORT.md） |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。
