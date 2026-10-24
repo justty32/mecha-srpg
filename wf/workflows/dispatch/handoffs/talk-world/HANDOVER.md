@@ -6,7 +6,7 @@
 
 ## 0. 這條線在做什麼
 
-使用者想聊整個世界觀構建；只聊不改檔、不 commit、不改 spec／內容。聊出結論時以【可落地】列出要點，由頂層派人寫進 design-notes。背景：使用者重溫 Modern Warfare 初代三部曲，打動他的是錯綜複雜的局勢與主角的掙扎；他定了蝕潮用潮汐詞形容、天象以日月地三星為引配其他行星、天象效果不只強化。天象（plan-tide-sky）與局勢（plan-intrigue）各五題待拍板。
+使用者想聊整個世界觀構建；只聊不改檔、不 commit、不改 spec／內容。聊出結論時以【可落地】列出要點，由頂層派人寫進 design-notes。背景：使用者重溫 Modern Warfare 初代三部曲，打動他的是錯綜複雜的局勢與主角的掙扎；他定了蝕潮用潮汐詞形容、天象以日月地三星為引配其他行星、天象效果不只強化。天象（plan-tide-sky）與局勢（plan-intrigue）各五題（2026-10-24 已定）。
 
 ## 1. 已讀材料（路徑）
 
@@ -25,7 +25,7 @@
 | 節 | 檔 | 內容 |
 |---|---|---|
 | 2 | [handover/rulings.md](handover/rulings.md) | 使用者已拍板的原話（整段原樣；含 2026-10-24「都按照建議」「不用潮差＝威脅」補記） |
-| 3 | [handover/numbers.md](handover/numbers.md) | 第一代提的世界尺度數字（v1）；v2 重算在 design-notes/world/scale |
+| 3 | [handover/numbers.md](handover/numbers.md) | 第一代提的世界尺度數字（v1）；v2 重算在 design-notes/world/scale（2026-10-24 已定） |
 | 4 | [handover/open.md](handover/open.md) | 瘦身版：線與節點指向 history-*.json，留 1、1.5、5、6、7.5、7.7、7.9、8、9、10 條 |
 | 5 | [handover/landing.md](handover/landing.md) | 【可落地】清單 A／A′／B |
 | 7 | 已執行 | 八條長線派工草稿已由 lead-history-lines 完成，見其 [REPORT](../lead-history-lines/REPORT.md) |
@@ -41,4 +41,4 @@
 - 世界觀工作方法：節點 → 線 → 填充（第 2 節），任何 lore 提案先給節點與線，不要先給大量條目。
 - 禁區：不碰鍵盤滑鼠螢幕、不上網（要網路資料說出來由頂層派 codex）、不改 spec／內容。
 
-新 session 接手時建議第一句：兩個數字已暫定（第 2 節末段），直接問他想從第 4 節哪一題接：殘聯歸哪把傘、精粹與源流／裂晶的詞表關係、祕法三形狀、裏側有沒有聲音、還是逐題過天象與局勢的十題。
+新 session 接手時建議第一句：2026-10-24 數字 v2 與所有暫值題都已定（第 2 節末段 lead-settle 補記）；還沒有答案的只剩凡鐵數字、精粹矢價格、雙籤城權責、S 級能否墟出與 SS／SSS，加上第 4 節只有提案的第 5、6、7.5、7.7、7.8、7.9 條——從這幾題挑一題問他。

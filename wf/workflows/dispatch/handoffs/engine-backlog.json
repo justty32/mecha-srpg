@@ -259,7 +259,7 @@
    "序": "28",
    "優先": "P2",
    "項目": "抵抗性結算取代十分律：精粹等級差每級減半、凡鐵只刮外甲層",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence；數值 2026-10-24 已定（lead-settle，「就用暫定答案」，仍可微調）",
    "影響": "世界觀已廢十分律；引擎仍是 rules/damage-modifiers.json 一列 conventional-arms × kaiju → 0.1，凡鐵還打得進內層與核、殺得死獸",
    "建議做法": "武器／能力加精粹等級（缺省＝凡鐵）；對 kaiju 結算時 factor＝0.5^(目標等級−武器等級)（同級以上 1）；凡鐵對外甲層 0.1、內層與核 0；古代異能「一格抵抗性失效」沿用 rules.conventionalFactor 覆蓋；類別鍵與 conventional-arms tag 不改名；改後黃金重產",
    "規模": "中（core rules＋content 標記，1 codex）"
@@ -315,7 +315,7 @@
    "項目": "全球產能曲線與「大潮後重洗」行動牌（時代）",
    "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/world/scale",
    "影響": "世界有時代、人與獸都爆產能（人類年產約五年翻倍）、大潮後重洗五步（失守與露出→人動→債動→傘動→古代機動）沒有引擎載體",
-   "建議做法": "全球產能曲線兩條（人類機甲、怪獸）＋大潮後的世界行動牌；數字為提案待使用者確認；等方格大地圖與 tide-sky 潮勢落地後做",
+   "建議做法": "全球產能曲線兩條（人類機甲、怪獸）＋大潮後的世界行動牌；全球基準數字以 design-notes/world/scale-v2.json 為準（2026-10-24 使用者「OK」，已定）；產能翻倍與重洗五步仍是提案層讀法；等方格大地圖與 tide-sky 潮勢落地後做",
    "規模": "中"
   },
   {
@@ -343,6 +343,78 @@
    "來源": "使用者 2026-10-24 裁示（怪獸從海洋來、環太平洋、內陸盡量少；不用潮差＝威脅）、[lead-reconcile](lead-reconcile/guide.md)、specs/world/rifts-and-territory",
    "影響": "方格大地圖的新裂縫落格與 content/base/world/rifts 族偏好沒有海岸權重；內陸會和沿海一樣常開新裂",
    "建議做法": "新裂縫落格加權：海岸格與通海河口格高、環太平洋區再加權、內陸格只允許菌絲族或沿河口；不讀潮差、潮高等潮汐物理量；等 lead-grid 收線後由引擎線做，權重數字為提案",
+   "規模": "小"
+  },
+  {
+   "序": "38",
+   "優先": "P2",
+   "項目": "曆函式與天象旗：`stage(dom)`／`tide(day)`／`omens(day)` 純函式，`Clock` 加 `tide`／`stage`／`year`，tick 段 1 寫 `flags.omen:*`，`calendar` 加 `monthsPerYear`／`epochMonth`；內容 kind `omens/`（OmenDef）取代未實作的 `calendar.special`；連珠潮排定第 40 蝕月一次、之後只靠湧現（迫月＋≥3 星候）",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "不做則內容線寫不出天象事件；做了當天事件／契約／行動牌的 `when` 就能寫 `{\"tag\":\"omen/…\"}`",
+   "建議做法": "先做這列：純函式＋載入器一個新資料夾＋check 驗週期；黃金不變（旗不影響既有 Cond）；同時把 tide-sky spec-proposal 第 13、18、20 列（time-and-tick 曆段、content-format-ops 曆範例、constraints-ops USR-14）落進 specs/ops；與第 31 列的 stage／tide 合併做",
+   "規模": "小"
+  },
+  {
+   "序": "39",
+   "優先": "P2",
+   "項目": "天象 `ops` 與 `faction` 效果：天象窗 start／end／eachSpring 呼叫 `applyOpsEffect`；`war/drivers.ts` 行動牌權重 × `aggressionMul`；契約 `pay` 可引用 `calendar.tide`；天象落在人身上五則（歲星同夢、辰星無籤會窗、太白人對人契約、鎮星拘束、熒惑前任特質）",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "太白晝見、秋分、鎮星合月的營運面效果與「天象落在人身上」無法生效",
+   "建議做法": "接在第 38 列之後，同一條線；`truce` 停戰用既有 treaty",
+   "規模": "小"
+  },
+  {
+   "序": "40",
+   "優先": "P2",
+   "項目": "大潮抬級進 ScenarioGen：`budgetByGrade` × `countMul`（大潮 ×1.4、連珠 ×2、枯潮 ×0.6）、`gradeByWidth` 位移（大潮 +1 限錨級以下、連珠 +2）、`named` 二名個體綁星候、敵方單位掛 `unitEffect` EffectRef、`globals.tide` 設成潮級",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "「大潮期有大怪」只停在數字上；`battle.tide` 沒東西可讀",
+   "建議做法": "動 `src/ops/sortie/scenario.ts`；落 spec-proposal 第 14、17 列；黃金戰役會變，commit 說明；等 lead-grid 收線",
+   "規模": "中"
+  },
+  {
+   "序": "41",
+   "優先": "P2",
+   "項目": "蝕塊與新裂縫的天象修正：擴散 `max(0, base + tideSpreadDelta + omenSpreadDelta)`、蝕壓泊松均值 × 潮勢係數、重蝕／連珠 `opening` 直接 `anchored`、枯潮 `sealing` 一夜即 `sealed`、鎮星多退一塊",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "潮勢對世界圖沒有可見後果",
+   "建議做法": "等 lead-grid `cx-grid-blight` 落地後再開；落 spec-proposal 第 15、16 列；係數放 `rules.tide`",
+   "規模": "中"
+  },
+  {
+   "序": "42",
+   "優先": "P3",
+   "項目": "天象 `rule` 開關第一批 6 個：anchorInstant、sealFast、restraintCalm／restraintRestless、awakenBonus（認主：望潮尤佳、歲星加成，接第 36 列）、telegraphDim、broodBoost",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "星候只剩數值效果，少了「特性被啟用」那一味",
+   "建議做法": "每個開關一處分支、各自一條 codex 小線；集合封閉、新開關要加列",
+   "規模": "每個小"
+  },
+  {
+   "序": "43",
+   "優先": "P3",
+   "項目": "蝕曆面板、潮信行與蝕訊四來源：`DaySummary` 加潮信一行；艦橋「蝕曆」面板；蝕訊 `known` 判定（殘聯免費 1 蝕月、塞勒涅訂閱 3／6 蝕月、沐蝕會讖語聲望 ≥20 提前 12 蝕月且約三成不準、稽古學會星盤）",
+   "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
+   "影響": "玩家看不見就不會拿來排營運",
+   "建議做法": "潮信行先做（text 層，`look` 不加動詞）；面板走 ui-ops 的 `vm/layout.ts`；落 spec-proposal 第 19 列",
+   "規模": "小＋中"
+  },
+  {
+   "序": "44",
+   "優先": "P3",
+   "項目": "intrigue 五題的引擎缺口：延後揭露（契約隱藏層＋`reveal`）、延遲事件、勢力記憶被讀（`factionRemembers`）、船員 strain 到 3 每蝕月第 1 天擲離團、雇主撤空援（限有理由的雇主、memory `abandoned-you`）、情報商品三版本",
+   "來源": "[plan-intrigue](plan-intrigue/REPORT.md)、design-notes/intrigue（五件事 2026-10-24 已定，lead-settle）、`design-notes/intrigue/engine-gaps.json`",
+   "影響": "局勢與掙扎只能靠內容硬寫，揭露時機與後果沒有載體",
+   "建議做法": "照 engine-gaps 依賴：延遲事件→隱藏層→情報／戰場來歷；第一輪內容線寫 arc-sample＋小型兩項一條工人線；中型（反對 Prompt、strain、撤空援、情報）看試玩再開",
+   "規模": "小×5＋中×5"
+  },
+  {
+   "序": "45",
+   "優先": "P3",
+   "項目": "lore 資料的「隱藏真相」標記：迦梨是真古代機（沐蝕會 `ancientMech`、薩米爾 `mech`）、裏側聲音同源等世界觀真相，在 wiki 不該當公開事實呈現",
+   "來源": "lead-reconcile REPORT「工人回報的既有矛盾」tide-creed 一項；lead-settle（資料結構，不在 polish 範圍）",
+   "影響": "wiki 若按欄位分類顯示，會直接揭露外界不知道的真相",
+   "建議做法": "`content/lore/README.md` 欄位表與 `content/lore/check.ts` 加可選欄（例：`ancientMech.visibility`：`public`／`rumor`／`hidden`）或事件與條目的 `secret` 標記；wiki 依標記隱藏；既有資料不改值，只補標記",
    "規模": "小"
   }
  ]
