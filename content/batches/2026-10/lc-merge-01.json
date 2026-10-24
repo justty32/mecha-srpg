@@ -1,0 +1,91 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-merge-01",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "把 lc-lore-01／lc-lore-02 的勢力四小節草稿併入 7 個勢力檔 body（只補缺的小節；草稿用語照 terms-rename 定案改新名：殼守→守寢人、殼學會→稽古學會）",
+ "author": {
+  "agent": "lead-content（腳本合併，草稿由 codex gpt-6-astra 撰寫）",
+  "model": "claude-opus-5.5",
+  "reasoning": "-",
+  "line": "lead-content",
+  "subagents": "無"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "9781901dbaf6510d7384f12cf45bb599f9b6fd45",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-merge-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/REPORT.md",
+  "mustRead": []
+ },
+ "maxFiles": 7,
+ "allow": {
+  "polishFiles": [
+   "content/lore/factions/accra.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/ring-caravan.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/factions/singapore-exchange.json",
+   "content/lore/factions/sydney.json",
+   "content/lore/factions/third-blade.json"
+  ],
+  "textFields": [
+   "body"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test"
+ ],
+ "files": [
+  "content/lore/factions/accra.json",
+  "content/lore/factions/backside.json",
+  "content/lore/factions/ring-caravan.json",
+  "content/lore/factions/shell-wardens.json",
+  "content/lore/factions/singapore-exchange.json",
+  "content/lore/factions/sydney.json",
+  "content/lore/factions/third-blade.json"
+ ],
+ "ids": [
+  "faction/accra",
+  "faction/backside",
+  "faction/ring-caravan",
+  "faction/shell-wardens",
+  "faction/singapore-exchange",
+  "faction/sydney",
+  "faction/third-blade"
+ ],
+ "summary": "7 個勢力檔（阿克拉、環線商隊、守寢人、新加坡交易所、雪梨、背面、第三刃）body 補齊四小節（共 20 節，草稿由 lc-lore-01／02 codex 撰寫，領導腳本合併並換定案新名）；欄位建議（ancientMech／relations／type）未套用，留草稿檔；閘門 0 違規、驗收全綠",
+ "gateRejections": [],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:49:09",
+   "ok": true,
+   "steps": {
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 1,
+  "at": "2026-10-24T16:49:09",
+  "ok": true,
+  "steps": {
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
+ }
+}
