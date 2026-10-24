@@ -1,0 +1,59 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-lore-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "A 級以上怪獸二名的由來：為既有 A／S 級具名怪獸各寫一件「牠做過的事」lore 事件 5–8 件＋年表純插入（二名本身不改，引用既有 name／epithet）",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-lore3",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/bio-battle.md",
+   "wf/workflows/content/bio-monsters.md",
+   "content/lore/README.md"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

@@ -1,0 +1,77 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-field-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "地圖與情境：新戰場 3–4 張（各有中央目標地物）、必要時 0–2 種新地形、情境 5–8 個（守住／撤離／斬首／參戰型／人對人為主，少用全殲）；部署相距 ≥10、玩家 lose 條件、輪數 20–30",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-field",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/bio-battle.md",
+   "wf/workflows/content/battle-field.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/playtest-baselines.json",
+   "wf/workflows/content/playtest.md",
+   "src/mcp/README.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/issues.json"
+  ]
+ },
+ "maxFiles": 15,
+ "allow": {
+  "kinds": [
+   "base/maps",
+   "base/terrains",
+   "base/scenarios"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "scenario/rift-edge-nest",
+   "scenario/breach-defense",
+   "scenario/tidal-flat-evac",
+   "scenario/quarry-duel"
+  ],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 3,
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-content/lc-field-01/mcp-log"
+ }
+}

@@ -181,3 +181,69 @@
 - **團隊**：`teams/lead-rename`（成員 `cx-rn-01`…`cx-rn-17`，各一批 polish，交接書 `wf/workflows/dispatch/handoffs/lead-rename/cx-rn-NN.md`，只在隔離 worktree `scratchpad/rename/wt-rename-NN` 內寫；領導代登記，不逐格列）
 - **領地**：見 CLAIMS 的 lead-rename 列
 - **怎麼找我**：`wf/inbox/teams/lead-rename/`、`wf/inbox/mail/lead-rename/`
+
+### `cx-grid-migrate`
+- **狀態**：現役（領導 `lead-grid` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/lead-grid/cx-grid-migrate.md`）
+- **我是誰**：codex 工人，`lead-grid` 底下：營運層節點→地點、逐格移動、航道的大遷移。
+- **團隊**：`teams/grid`
+- **上游**：`lead-grid`
+- **領地**：見交接書「範圍」
+- **答得出什麼**：遷移後的型別與 move.ts 語意
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-grid-migrate.md`
+- **訂閱主題**：無
+
+### `cx-intrigue-ref`
+- **狀態**：現役（規劃線 `plan-intrigue` 代登記，2026-10-24；交接書 `wf/workflows/dispatch/handoffs/plan-intrigue/cx-intrigue-ref.md`）
+- **我是誰**：codex 工人（唯一開網路搜尋的線）：查 18 部參考作品的「局勢／掙扎」手法，寫 `references.json`。
+- **團隊**：無
+- **上游**：`plan-intrigue`（回報 `--to plan-intrigue`）
+- **領地**：只寫 `handoffs/plan-intrigue/references.json` 與 `handoffs/plan-intrigue/cx-intrigue-ref/REPORT.md`
+- **答得出什麼**：各參考作品的來源連結與手法摘要
+- **答不出什麼**：本專案設定
+- **怎麼找我**：`wf/inbox/orders/cx-intrigue-ref.md`
+- **訂閱主題**：無
+
+### `cx-tune-anchor`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：營運 anchored（巢母）戰場可打性（AI 瞄核心／巢母數值）。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-anchor` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-anchor.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-anchor.md`
+- **訂閱主題**：無
+
+### `cx-lc-lore3`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：A 級以上怪獸二名由來 lore（batch lc-lore-03，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-03` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore3.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-lore3.md`
+- **訂閱主題**：無
+
+### `cx-tune-scen`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：護送／突圍六情境過易的數值調整。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-scen` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-scen.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-scen.md`
+- **訂閱主題**：無
+
+### `cx-lc-field`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：地圖與情境（batch lc-field-01，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-field-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-field.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-field.md`
+- **訂閱主題**：無
