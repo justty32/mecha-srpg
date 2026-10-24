@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rename-14",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "全庫用語改名＋翻譯腔重審（部件）：依 design-notes/terms-rename.json 把舊詞（殼／摹／潮／原鞘…）換成定案新詞，只改文字欄",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-rename",
  "date": "2026-10-24",
- "base": "dc41d2c8cec47a4a42b45e6f21c300bc143b8e53",
+ "base": "957f1d99c143f9a0f13dbaa184b660f2efa0fb9f",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-rename/rename-14",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-rename/rename-14/REPORT.md",
@@ -58,5 +58,88 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T16:28:11",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rename-14",
+  "round": 1,
+  "at": "2026-10-24T16:28:11",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/components/autocannon-30.json",
+   "content/base/components/heat-lance.json",
+   "content/base/components/mx-hawk-eye.json",
+   "content/base/components/mx-porcelain-plate.json",
+   "content/base/components/mx-relic-gauntlet.json",
+   "content/base/components/mx-relic-halo.json",
+   "content/base/components/mx-rune-cannon.json",
+   "content/base/components/mx-rune-rifle.json",
+   "content/base/components/mx-runeweave-plate.json",
+   "content/base/components/mx-thousand-eye.json",
+   "content/base/components/mx-xingtian-replica.json",
+   "content/base/components/shell-pin-restraint.json",
+   "content/base/components/shell-shard-lens.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/components/autocannon-30.json",
+  "content/base/components/heat-lance.json",
+  "content/base/components/mx-hawk-eye.json",
+  "content/base/components/mx-porcelain-plate.json",
+  "content/base/components/mx-relic-gauntlet.json",
+  "content/base/components/mx-relic-halo.json",
+  "content/base/components/mx-rune-cannon.json",
+  "content/base/components/mx-rune-rifle.json",
+  "content/base/components/mx-runeweave-plate.json",
+  "content/base/components/mx-thousand-eye.json",
+  "content/base/components/mx-xingtian-replica.json",
+  "content/base/components/shell-pin-restraint.json",
+  "content/base/components/shell-shard-lens.json"
+ ],
+ "ids": [
+  "component/autocannon-30",
+  "component/heat-lance",
+  "component/mx-hawk-eye",
+  "component/mx-porcelain-plate",
+  "component/mx-relic-gauntlet",
+  "component/mx-relic-halo",
+  "component/mx-rune-cannon",
+  "component/mx-rune-rifle",
+  "component/mx-runeweave-plate",
+  "component/mx-thousand-eye",
+  "component/mx-xingtian-replica",
+  "component/shell-pin-restraint",
+  "component/shell-shard-lens"
+ ],
+ "summary": "部件換詞（含 agy 第 2 輪專名）；閘門 0 違規、check／typecheck 綠、黃金不變；test 綠",
+ "gateRejections": []
 }
