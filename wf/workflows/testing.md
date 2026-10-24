@@ -14,16 +14,9 @@
 
 ## 驗證表
 
-| 驗證 | 指令 | 誰跑 |
-|------|------|------|
-| 快速驗證（改完必跑）| `npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）| agent |
-| 完整驗證（commit 前）| 快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .` | agent |
-| 營運層（改 ops 必跑）| `node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）| agent |
-| 戰鬥效能（改 rules／ai 熱路徑時跑）| `node wf/workflows/dispatch/handoffs/lead-integ-battle/bench-ops.ts 500`：印 ms／步與 hash；行為不變的優化 hash 必須不變（2026-10-24 基準 2.5 ms／步）| agent |
-| 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
-| 驗收模擬（跑一整場 AI 對 AI）| `npm run sim -- --scenario scenario/skirmish-whitegloves --seed 1 [--rounds 50] [--out log.json] [--save s.json]`，印勝負、輪數、存活、事件計數、日誌 hash；同 seed 兩次 hash 必相同 | agent |
-| AI 平衡量測（改 `src/ai/` 評分時跑）| `node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）| agent |
-| 實際遊玩（畫面、操作、敵方回合）| `npm run dev` 開網頁玩一回合（[dev-env](dev-env.md)）| 使用者 → [WAIT_USER](../WAIT_USER.md) |
+已抽到 [testing-checks.json](testing-checks.json)（8 列：快速驗證、完整驗證、營運層、戰鬥效能、文件 lint、驗收模擬、AI 平衡量測、實際遊玩）。
+
+欄位：`驗證`（名稱與何時跑）、`指令`、`誰跑`（agent，或 使用者 → WAIT_USER）。查法見 [data-files](common/data-files.md)。
 
 **改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless 7 條：載入、行動後浮出選單、結束回合確認、縮放與記住設定、小地圖自動貼合、跳過動畫、大地圖捲動；自動 build＋preview 在 4174 埠；URL `?anim=off` 讓演出不延遲，`window.__battle.settle()` 跳過演出）。
 

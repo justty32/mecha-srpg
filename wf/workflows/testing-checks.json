@@ -1,0 +1,52 @@
+{
+ "contract": "wf-table/1",
+ "source": "testing.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "驗證",
+  "指令",
+  "誰跑"
+ ],
+ "rows": [
+  {
+   "驗證": "快速驗證（改完必跑）",
+   "指令": "`npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "完整驗證（commit 前）",
+   "指令": "快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .`",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "營運層（改 ops 必跑）",
+   "指令": "`node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "戰鬥效能（改 rules／ai 熱路徑時跑）",
+   "指令": "`node wf/workflows/dispatch/handoffs/lead-integ-battle/bench-ops.ts 500`：印 ms／步與 hash；行為不變的優化 hash 必須不變（2026-10-24 基準 2.5 ms／步）",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "文件 lint",
+   "指令": "`bash wf/tools/wf-lint.sh --strict .`",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "驗收模擬（跑一整場 AI 對 AI）",
+   "指令": "`npm run sim -- --scenario scenario/skirmish-whitegloves --seed 1 [--rounds 50] [--out log.json] [--save s.json]`，印勝負、輪數、存活、事件計數、日誌 hash；同 seed 兩次 hash 必相同",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "AI 平衡量測（改 `src/ai/` 評分時跑）",
+   "指令": "`node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）",
+   "誰跑": "agent"
+  },
+  {
+   "驗證": "實際遊玩（畫面、操作、敵方回合）",
+   "指令": "`npm run dev` 開網頁玩一回合（[dev-env](dev-env.md)）",
+   "誰跑": "使用者 → [WAIT_USER](../WAIT_USER.md)"
+  }
+ ]
+}

@@ -9,9 +9,6 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `plan-ops-spec`（Fable 規劃）**中止（使用者重開程式），待重派，領地保留** | `wf/workflows/planning/specs/ops/` | 其餘唯讀；不 commit | 2026-10-24 10:30 |
-| `lead-impl-ui`（Opus；`cx-ui-*`） | `src/ui-adapter/`、`e2e/`、根目錄 UI 設定檔、`package.json` scripts | 其餘唯讀 | 2026-10-24 |
-| `lead-fix-scenario-ai`（Opus 領導；工人 `cx-fix-*`） | `src/rules/`、`src/ai/`、`src/sim/`、`schemas/content.schema.json`（只加 scenario `allies`）、`src/core/types-*.ts`（只新增欄位）、`content/base/`（world/ 以外）、`test/`、`wf/workflows/dispatch/handoffs/lead-fix-scenario-ai/`、code-map／testing／roadmap 相應段 | core 型別（只新增）、spec、`package.json`／lock、`src/ops/`、`src/ui-adapter/` 唯讀 | 2026-10-24 |
-| `lead-ui-fix`（Opus；`cx-uifix-*`） | `src/ui-adapter/`、`e2e/`、`index.html`、`vite.config.ts`、`tsconfig.ui.json`、`playwright.config.ts`、`handoffs/lead-ui-fix/`、code-map／testing 的 UI 段 | rules／ai／sim／core／content 唯讀 | 2026-10-24 |
 
 ## 保留給調度者，任何線都不得寫
 
@@ -23,6 +20,6 @@
 
 ## 歷史
 
-2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`、`plan-world-v2`、`lead-impl-foundation`、`lead-impl-content-base`、`lead-impl-rules`、`lead-impl-ai`、`lead-impl-sim`、`lead-integ-battle`（`handoffs/lead-integ-battle/`）（`handoffs/done/2026-10-24/`；sim 線無交接書，契約與工人交接書在 `handoffs/lead-impl-sim/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
+2026-10-23 收線：`lead-techstack`、`lead-combat-ref`、`plan-world`、`lead-tome4-ref`；2026-10-24 收線：`plan-spec`、`lead-legacy-archive`、`plan-world-v2`、`lead-impl-foundation`、`lead-impl-content-base`、`lead-impl-rules`、`lead-impl-ai`、`lead-impl-sim`、`lead-integ-battle`（`handoffs/lead-integ-battle/`）、`lead-impl-ops`、`lead-impl-ui`（`cx-ui-*`）、`lead-fix-scenario-ai`（`cx-fix-*`）、`lead-ui-fix`（`cx-uifix-*`）（四線交接書與 REPORT 在各自 `handoffs/<線名>/`，領地列已移除）（`handoffs/done/2026-10-24/`；sim 線無交接書，契約與工人交接書在 `handoffs/lead-impl-sim/`）（交接書與完成證據在 `handoffs/done/2026-10-23/`）。
 
 收線後的線記在 `handoffs/done/<日期>/`（交接書檔尾附完成證據）；堆多了在 `handoffs/done/README.md` 開索引表，只准追加。

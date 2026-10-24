@@ -8,15 +8,9 @@
 
 程式碼尚未落地的模組標「規劃中」，落地後把該列改成實際檔名與測試位置。模組邊界與允許的依賴方向以 spec 的 [architecture](../planning/specs/core/architecture.md) 為準。
 
-| 領域 | 檔案 | 職責 | 測試在哪 |
-|------|------|------|---------|
-| core | `src/core/` | 型別（Def／State）、`Id`、`BattleState`、事件型別、seeded RNG、`EventLog`（可選 `seqOffset`）、NumExpr 求值器、`clone-state.ts`（純資料狀態快速複製）；不依賴任何模組 | `src/core/*.test.ts`|
-| content | `src/content/`、`schemas/`、`content/base/` | 載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema | `src/content/*.test.ts`|
-| rules | `src/rules/`（17 模組＋`index.ts`）| 全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | `src/rules/*.test.ts`、黃金 `test/golden.test.ts` |
-| ai | `src/ai/`（含 `policies/`、`adapters/`）| 知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）| `test/ai/`（平衡回歸 `balance.test.ts`）|
-| sim | `src/sim/{run,session,replay,save,cli,measure}.ts` | 跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`，UI 之後從 `vm/session.ts` 遷入）；`measure.ts` AI 平衡量測 | `test/sim/`（接縫 `seams.test.ts`）|
-| ops | `src/ops/`、`content/base/world/` | 營運層：tick、帳本、世界、契約、船務、文字層、出戰（UnitInit 帶入部位／人物現況，不暫換 ctx.db）、戰役 CLI `npm run sim:campaign`；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）| `src/ops/**/*.test.ts` |
-| ui-adapter | `src/ui-adapter/{vm,dom}/` | vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM | 同目錄 `*.test.ts`、`e2e/` |
+已抽到 [code-map.json](code-map.json)（7 列：core、content、rules、ai、sim、ops、ui-adapter）。
+
+欄位：`領域`（模組領域）、`檔案`（路徑）、`職責`（做什麼、對外介面）、`測試在哪`。查法見資料檔說明（[data-files](data-files.md)）。
 
 **ui-adapter 細節**（2026-10-24 落地；同日 lead-ui-fix 依試玩回饋改版）：`vm/types.ts` 是 vm↔dom 凍結契約；`vm/session.ts` 逐步跑局（唯一直接呼叫 rules／ai 處；`autoAdvance`、`stepAi` 一次一台 AI）、`viewmodel.ts`（含敵方部件即時／最後所見快照）、`controller.ts`（`UiAction`→`UiSnapshot`；演出佇列 busy／step／skip、浮出選單、結束回合確認、選部位）、`presentation.ts`（可見事件篩選、log 合併、fx 產生）、`keymap.json`＋`keymap.ts`（資料驅動快捷鍵）、`text.ts`（事件→中文）、`labels.ts`（含層種類中文對照）、`debug-maps.ts`（>120×120 大地圖）；`content-browser.ts` 在瀏覽器載內容。`dom/render.ts`（`mountBattle`；三欄佈局、固定指令面板）、`board.ts`、`panels.ts`、`menus.ts`（浮出選單／選部位／確認框）、`fx.ts`（戰場演出疊層）、`zoom.ts`（自動貼合與縮放純函式）、`tooltip.ts`、`style.css`、`main.ts`（入口與接線；localStorage 設定、演出計時）；dom 只 import `vm/types.ts` 的型別（main.ts 例外）。根目錄 `index.html`、`vite.config.ts`、`playwright.config.ts`、`tsconfig.ui.json`。
 

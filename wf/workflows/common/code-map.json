@@ -1,0 +1,55 @@
+{
+ "contract": "wf-table/1",
+ "source": "code-map.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "領域",
+  "檔案",
+  "職責",
+  "測試在哪"
+ ],
+ "rows": [
+  {
+   "領域": "core",
+   "檔案": "`src/core/`",
+   "職責": "型別（Def／State）、`Id`、`BattleState`、事件型別、seeded RNG、`EventLog`（可選 `seqOffset`）、NumExpr 求值器、`clone-state.ts`（純資料狀態快速複製）；不依賴任何模組",
+   "測試在哪": "`src/core/*.test.ts`"
+  },
+  {
+   "領域": "content",
+   "檔案": "`src/content/`、`schemas/`、`content/base/`",
+   "職責": "載入 pack、schema 驗證、id 解析、唯讀 `ContentDB`；內容資料與 schema",
+   "測試在哪": "`src/content/*.test.ts`"
+  },
+  {
+   "領域": "rules",
+   "檔案": "`src/rules/`（17 模組＋`index.ts`）",
+   "職責": "全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢",
+   "測試在哪": "`src/rules/*.test.ts`、黃金 `test/golden.test.ts`"
+  },
+  {
+   "領域": "ai",
+   "檔案": "`src/ai/`（含 `policies/`、`adapters/`）",
+   "職責": "知識、估值、可插拔策略；只經 adapter 接 rules；敵我走 `hostility.ts`（RulesQuery 可選 `hostileSlots`，slot 同盟）；撤離門檻 `retreat.ts`（已交戰＋輪數＋戰力比／受損，aiprofile params 可調）；決策快照共用 reachable／pathTo（`forSnapshot`）",
+   "測試在哪": "`test/ai/`（平衡回歸 `balance.test.ts`）"
+  },
+  {
+   "領域": "sim",
+   "檔案": "`src/sim/{run,session,replay,save,cli,measure}.ts`",
+   "職責": "跑局、重播、存檔、`npm run sim`；`scenarioToSetup` 把情境翻成 BattleSetup（slot→faction、`allies`、objective `target`→unit id、map globals／feature hp；可內嵌 `mapDef`、`personStates`）；`runBattle` 的 `BattleResult.events` 附完整事件；`session.ts` 逐指令互動 API（`createSession`：`submit`／`stepAi`／`legalActions`／`preview`，UI 之後從 `vm/session.ts` 遷入）；`measure.ts` AI 平衡量測",
+   "測試在哪": "`test/sim/`（接縫 `seams.test.ts`）"
+  },
+  {
+   "領域": "ops",
+   "檔案": "`src/ops/`、`content/base/world/`",
+   "職責": "營運層：tick、帳本、世界、契約、船務、文字層、出戰（UnitInit 帶入部位／人物現況，不暫換 ctx.db）、戰役 CLI `npm run sim:campaign`；重播套用指令紀錄裡的戰果、不重跑戰鬥（見 [契約](../dispatch/handoffs/lead-impl-ops/contract.md)）",
+   "測試在哪": "`src/ops/**/*.test.ts`"
+  },
+  {
+   "領域": "ui-adapter",
+   "檔案": "`src/ui-adapter/{vm,dom}/`",
+   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM",
+   "測試在哪": "同目錄 `*.test.ts`、`e2e/`"
+  }
+ ]
+}
