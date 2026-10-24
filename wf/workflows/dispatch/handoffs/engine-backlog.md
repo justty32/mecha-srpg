@@ -2,11 +2,11 @@
 
 [handoffs](README.md)｜交棒 [STATE](STATE.md)｜下次整理 [next-tidy](next-tidy.md)
 
-2026-10-24 段落收尾時從各線 REPORT「剩餘工作／需要決定」彙整去重。**codex 只做新增內容與文字潤飾**；本表是那兩件事以外、要開 Opus 領導線（feature-dev／planning）做的事。已抽到 [engine-backlog.json](engine-backlog.json)（45 列）。
+2026-10-24 段落收尾時從各線 REPORT「剩餘工作／需要決定」彙整去重。**codex 只做新增內容與文字潤飾**；本表是那兩件事以外、要開 Opus 領導線（feature-dev／planning）做的事。已抽到 [engine-backlog.json](engine-backlog.json)（48 列）。
 
 欄位：`序`（建議順序）、`優先`（P1 先做／P2 接著做／P3 有空再做）、`項目`、`來源`（REPORT 連結）、`影響`（不做會怎樣）、`建議做法`、`規模`（小＝一條 codex 工人、中＝一位領導帶 1–3 工人、大＝多段切線）。查法見資料檔說明。
 
-統計：P1 6 列、P2 20 列、P3 19 列（第 25 列鐵劍 models 為 2026-10-24 pilot 收線後追加；第 26–27 列 lead-content 追加；後續列陸續追加，第 36 列為認主機率依潮勢加權、第 37 列為新裂縫海岸優先；第 38–45 列為 lead-settle 追加：tide-sky 五題定案後的天象引擎 38–43、intrigue 五件事 44、lore 隱藏真相標記 45）。
+統計：P1 6 列、P2 21 列、P3 21 列（第 25 列鐵劍 models 為 2026-10-24 pilot 收線後追加；第 26–27 列 lead-content 追加；後續列陸續追加，第 36 列為認主機率依潮勢加權、第 37 列為新裂縫海岸優先；第 38–45 列為 lead-settle 追加：tide-sky 五題定案後的天象引擎 38–43、intrigue 五件事 44、lore 隱藏真相標記 45；第 46–48 列為 lead-pilot-essence 追加：無人單位戰力下限 46、人帶能力 47、精粹接觸與老化 48，三列都待 Fable 對談定案後再評估）。
 
 ## 怎麼排
 

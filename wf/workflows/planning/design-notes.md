@@ -12,7 +12,7 @@
 | [design-notes/mechanics.md](design-notes/mechanics.md) | 形態、規模、呈現、BB 路線、機甲結構／層／多資源池、後果與傳導、參考、架構 |
 | [design-notes/mechs.md](design-notes/mechs.md) | 三類機甲與人機關係（共鳴／承擔／機魂）、古代能力、古代機甲無名以神話命名、機械系命名階段、數量不限（入口導航到 `mechs/` 三子檔：bonds／ancient／mechanical）|
 | [design-notes/bio-mechs.md](design-notes/bio-mechs.md) | 生物系兩類（屍體改裝／活捕）、命名三層、維持與營運主軸 |
-| [design-notes/world.md](design-notes/world.md) | 世界觀：怪獸族與等級、2108 地月、遺跡與裂縫、沙盒、對第一版提案的推翻與補充（相位說不要、遺跡與怪獸同時出現、母體子體與蛻皮只限某些族、勢力大小不限）；**2026-10-24 晚**：廢十分律改抵抗性、精粹、機魂不可複製、白手套與凡鐵、群像、地球尺度與勢力三層、各洲一把傘、大潮改讀；**主線劇情層（提案）**：八條長線、十節點、年表掛線、孤兒與待和解表，主要沿海城市潮差表（參考，不作威脅判準）（入口導航到 `world/` 七子檔：setting／rules／factions-and-map／essence／scale／history-lines／tide-range）|
+| [design-notes/world.md](design-notes/world.md) | 世界觀：怪獸族與等級、2108 地月、遺跡與裂縫、沙盒、對第一版提案的推翻與補充（相位說不要、遺跡與怪獸同時出現、母體子體與蛻皮只限某些族、勢力大小不限）；**2026-10-24 晚**：廢十分律改抵抗性、精粹、機魂不可複製、白手套與凡鐵、群像、地球尺度與勢力三層、各洲一把傘、大潮改讀；**主線劇情層（提案）**：八條長線、十節點、年表掛線、孤兒與待和解表，主要沿海城市潮差表（參考，不作威脅判準）；**2026-10-24 深夜（待 Fable 討論、未定案）**：無人化、精粹改人原話（入口導航到 `world/` 八子檔：setting／rules／factions-and-map／essence／scale／pilots／history-lines／tide-range）|
 | [design-notes/terms.md](design-notes/terms.md) | 用語改名（殼→原鞘、摹→衍型）與「之」「者」命名語感；2026-10-24 晚：抵抗性、精粹、漲潮 |
 | [design-notes/intrigue.md](design-notes/intrigue.md) | **規劃線提案（非裁示）**：局勢與掙扎——勢力動機網、契約迷霧與延後揭露、後果連鎖、船員的忠誠與掙扎、引擎對照、劇情弧樣本、與天象線的交會（2026-10-24；五件事 2026-10-24 照建議已定，其餘仍是提案） |
 | [design-notes/tide-sky.md](design-notes/tide-sky.md) | 蝕潮天象：日月五星驅動潮勢與天象效果（2026-10-24 plan-tide-sky；五題 2026-10-24 照建議已定，world 層已落 specs/world） |

@@ -69,3 +69,6 @@
 - **團隊**：`teams/st`；**上游**：`dispatcher`（工人的上游是 `lead-settle`）
 - **領地**：CLAIMS「lead-settle」列；工人照各自交接書（`handoffs/lead-settle/`）
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-pilot-essence` 與工人 `cx-pe-scan`
+- **狀態**：已收線（2026-10-24）；A 無人化／B 精粹改人改為待 Fable 討論；團隊 `teams/pe` 已關，交接書與盤點在 `wf/workflows/dispatch/handoffs/lead-pilot-essence/`。
