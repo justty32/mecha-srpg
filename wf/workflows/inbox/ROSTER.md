@@ -149,7 +149,7 @@
 - **訂閱主題**：無
 
 ### `lead-settle`（含代登記工人 `cx-st-01`／`cx-st-02`／`cx-st-spec`／`cx-st-lines`）
-- **狀態**：現役（2026-10-24）
+- **狀態**：已收線（2026-10-24）；團隊 `teams/st` 已關（`wf/inbox/done/2026-10-24/teams/st/`）；交接書與工人 REPORT 在 `wf/workflows/dispatch/handoffs/lead-settle/`
 - **我是誰**：Opus 領導：數字 v2 定案、暫定題改已定、九項 lore 矛盾；工人是 codex。
 - **團隊**：`teams/st`；**上游**：`dispatcher`（工人的上游是 `lead-settle`）
 - **領地**：CLAIMS「lead-settle」列；工人照各自交接書（`handoffs/lead-settle/`）
