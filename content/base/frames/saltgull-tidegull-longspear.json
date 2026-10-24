@@ -1,0 +1,71 @@
+{
+  "id": "frame/saltgull-tidegull-longspear",
+  "name": "潮鷗-長槍",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-rifle",
+    "left-weapon": "component/mx-singing-blade",
+    "armor-mount": "component/mx-moonveil",
+    "system-1": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 7,
+    "evasion": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 14,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan",
+    "ability/mx-old-city-wall"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-xingtian",
+    "faction-saltgull",
+    "series-longspear",
+    "captain",
+    "hover"
+  ]
+}

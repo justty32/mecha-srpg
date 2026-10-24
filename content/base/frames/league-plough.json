@@ -1,0 +1,68 @@
+{
+  "id": "frame/league-plough",
+  "name": "犁",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-d",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-molten-saw",
+    "left-weapon": "component/mx-rune-rifle"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 30,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 30,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike",
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-league",
+    "series-plough",
+    "engineering"
+  ]
+}

@@ -1,0 +1,182 @@
+{
+  "id": "scenario/nairobi-joint-cordon",
+  "name": "聯防封鎖線",
+  "brief": "殘聯聯絡處安排聯防演練，奈洛比、鹽鷗與織工衛的駕駛員各帶本地機型上場。牧杖保留獸部件接口，本次以機械件封接，沒有獸甲與獸爪；牧者掩護包抄，潮鷗貼水穿行，犁守著舊廠門。擊退封鎖隊或打倒牧者即告過關，獵團全滅則演練失利。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bulwark-iv-rampart",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 6
+          },
+          "components": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          }
+        },
+        {
+          "mech": "frame/selene-crescent-g5",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "components": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-thunder-serpent",
+            "sensor-mount": "component/mx-hawk-eye",
+            "armor-mount": "component/mx-moonveil",
+            "system-1": "component/mx-essence-cell",
+            "back-1": "component/mx-tide-leap"
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "components": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          }
+        },
+        {
+          "mech": "frame/union-fr7",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 12
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/nairobi-shepherd",
+          "persons": [
+            {
+              "id": "person/adewale-balogun",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 6
+          }
+        },
+        {
+          "mech": "frame/nairobi-crook-iii",
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 8
+          }
+        },
+        {
+          "mech": "frame/saltgull-tidegull-longspear",
+          "persons": [
+            {
+              "id": "person/tachibana-ibuki",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 10
+          }
+        },
+        {
+          "mech": "frame/league-plough",
+          "persons": [
+            {
+              "id": "person/kojo-mensah",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 12
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/nairobi-shepherd"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 2108
+}

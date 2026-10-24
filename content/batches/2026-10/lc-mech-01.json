@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "lc-mech-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "人類對手衍型機：lore 已列名卻沒有 frame 的勢力機型（基多、奈洛比、鹽鷗隊長機等）5–7 台＋配裝部件／能力／效果＋1–2 個人對人展示情境；新詞、兩步命名",
  "author": {
   "agent": "codex",
@@ -80,5 +80,153 @@
   "required": 3,
   "file": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/mcp-log"
+ },
+ "files": [
+  "content/base/frames/league-plough.json",
+  "content/base/frames/nairobi-crook-iii.json",
+  "content/base/frames/nairobi-shepherd.json",
+  "content/base/frames/quito-andes-wall.json",
+  "content/base/frames/quito-thunderbird.json",
+  "content/base/frames/quito-vulture-ii.json",
+  "content/base/frames/saltgull-tidegull-longspear.json",
+  "content/base/scenarios/nairobi-joint-cordon.json",
+  "content/base/scenarios/quito-pass-inspection.json"
+ ],
+ "ids": [
+  "frame/league-plough",
+  "frame/nairobi-crook-iii",
+  "frame/nairobi-shepherd",
+  "frame/quito-andes-wall",
+  "frame/quito-thunderbird",
+  "frame/quito-vulture-ii",
+  "frame/saltgull-tidegull-longspear",
+  "scenario/nairobi-joint-cordon",
+  "scenario/quito-pass-inspection"
+ ],
+ "summary": "人類對手衍型機 7 台（基多 禿鷲-II C／安地斯壁 B／雷鳥 A、奈洛比 牧杖-III型 C／牧者 B 隊長機、鹽鷗 潮鷗-長槍 B 隊長機、殘聯 犁 D），全配 defaultLoadout（既有 mx-* 部件）＋展示情境 2（山口查扣令、聯防封鎖線）；無新部件／能力；血統暫借既有 tag（維拉科查／恩凱／埃吉爾專屬血統未落地）；probe 與參照同向、MCP 3 場（1 手打）；第 1 輪 MCP 子行程 EPERM 停線、聯防封鎖線勝率 0%，第 2 輪改 shell stdio 試玩並以情境層換機調到 80%；agy 命名審查退回「山口扣船令」→領導改「山口查扣令」",
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/naming.json",
+  "note": "wf-table/1：id｜英文原名｜意涵｜中文名；收件時併入本欄",
+  "rows": [
+   {
+    "id": "frame/quito-vulture-ii",
+    "nameEn": "Vulture II",
+    "meaning": "沿山口巡行、俯衝截擊的機動鳥名；中文名沿用既有 lore。",
+    "nameZh": "禿鷲-II",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/quito-andes-wall",
+    "nameEn": "Andean Bulwark",
+    "meaning": "以山脈為屏障的重裝守衛；中文名沿用既有 lore。",
+    "nameZh": "安地斯壁",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/quito-thunderbird",
+    "nameEn": "Thunderbird",
+    "meaning": "從高原出擊、以弧光與追矢截斷攻勢的精銳；中文名沿用既有 lore。",
+    "nameZh": "雷鳥",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/nairobi-crook-iii",
+    "nameEn": "Crook III",
+    "meaning": "牧杖取拘束與引導之意，保留獸部件接口的機械支援機；中文名沿用既有 lore。",
+    "nameZh": "牧杖-III型",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/nairobi-shepherd",
+    "nameEn": "Shepherd",
+    "meaning": "指揮軛騎包抄、替同伴掩護的領隊；中文名沿用既有 lore。",
+    "nameZh": "牧者",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/saltgull-tidegull-longspear",
+    "nameEn": "Tidegull Longspear",
+    "meaning": "沿海潮汐間率隊穿行的長槍隊長機，潮指海洋；中文名沿用既有 lore。",
+    "nameZh": "潮鷗-長槍",
+    "method": "意譯"
+   },
+   {
+    "id": "frame/league-plough",
+    "nameEn": "Plough",
+    "meaning": "開路清障、退役後仍在廠門前支撐的工程機；中文名沿用既有 lore。",
+    "nameZh": "犁",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/quito-pass-inspection",
+    "nameEn": "The Pass Embargo",
+    "meaning": "山口守軍查扣運貨隊，獵團要守住貨單與通行權。",
+    "nameZh": "山口查扣令",
+    "method": "意譯"
+   },
+   {
+    "id": "scenario/nairobi-joint-cordon",
+    "nameEn": "The Joint Cordon",
+    "meaning": "聯防演練中突破指揮機的封鎖，展示各家衍型機的配合。",
+    "nameZh": "聯防封鎖線",
+    "method": "意譯"
+   }
+  ]
+ },
+ "rounds": [
+  {
+   "round": 0,
+   "ok": false,
+   "steps": {
+    "worker": "BLOCKED：MCP driver 在 node 內 spawn node 遭 EPERM，playtest 0 列",
+    "lead": "content_accept 第 1 輪 probe（聯防封鎖線 0%）＋playtest 失敗 → 第 2 輪重派"
+   }
+  },
+  {
+   "round": 1,
+   "at": "2026-10-24T16:02:36",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "typecheck": "ok",
+    "playtest": "fail",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T16:16:23",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "round": 2,
+  "at": "2026-10-24T16:16:23",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  }
  }
 }

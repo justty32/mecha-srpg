@@ -1,0 +1,158 @@
+{
+  "id": "scenario/quito-pass-inspection",
+  "name": "山口查扣令",
+  "brief": "高原衛查扣了山口的運貨隊，你受雇替貨主取回通行權。安地斯壁守住缺口，禿鷲沿側翼逼近，雷鳥在後方展開光幕。擊退守軍或打倒雷鳥，迫使查扣隊撤下封條；獵團全滅則任務失敗。這是獨立展示情境，不改寫勢力外交。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/selene-aurora",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 6
+          },
+          "components": {
+            "right-weapon": "component/mx-hush-pulse",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-thousand-eye",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-tide-leap",
+            "armor-mount": "component/mx-moonveil",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-rift-heart"
+          }
+        },
+        {
+          "mech": "frame/bulwark-iv-rampart",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "components": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "components": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/residual-league",
+      "units": [
+        {
+          "mech": "frame/quito-thunderbird",
+          "persons": [
+            {
+              "id": "person/ximena-itzel",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 6
+          }
+        },
+        {
+          "mech": "frame/quito-andes-wall",
+          "persons": [
+            {
+              "id": "person/batbayar-erdene",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 8
+          }
+        },
+        {
+          "mech": "frame/quito-vulture-ii",
+          "persons": [
+            {
+              "id": "person/arun-velan",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 10
+          }
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/quito-thunderbird"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 2108
+}

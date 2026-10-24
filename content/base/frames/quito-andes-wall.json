@@ -1,0 +1,68 @@
+{
+  "id": "frame/quito-andes-wall",
+  "name": "安地斯壁",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-heavy",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-rifle",
+    "left-weapon": "component/mx-scatter-rune",
+    "armor-mount": "component/mx-moonveil",
+    "system-1": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 110,
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 137.5,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 14,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-quito",
+    "series-andes-wall"
+  ]
+}
