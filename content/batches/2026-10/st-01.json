@@ -1,0 +1,157 @@
+{
+ "contract": "content-batch/1",
+ "id": "st-01",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "lead-settle：lead-reconcile REPORT 列的既有 lore 矛盾小修（jonas 年份、替駕需有人在座艙、白手套女武神口徑、安地斯壁非堅盾之祖、恩凱位置、薩米爾 2096 天數、殘聯人口比例）；只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-st-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-settle",
+ "date": "2026-10-24",
+ "base": "dc63cdab32ceb4aae6698c6e1c460c09b0866a78",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-settle/st-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-settle/st-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/dispatch/handoffs/lead-settle/guide.md"
+  ]
+ },
+ "maxFiles": 12,
+ "allow": {
+  "polishFiles": [
+   "content/lore/characters/jonas-halvorsen.json",
+   "content/base/world/events/port-farside-sealed-crate.json",
+   "content/lore/events/whiteglove-incident.json",
+   "content/lore/characters/zheng-weizhou.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/factions/quito.json",
+   "content/lore/events/titicaca-dig.json",
+   "content/lore/events/rift-valley-dig.json",
+   "content/lore/characters/samir-khan.json",
+   "content/lore/factions/league.json",
+   "content/lore/events/tranquility-strike.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T20:44:32",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T20:55:43",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "st-01",
+  "round": 2,
+  "at": "2026-10-24T20:55:43",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/world/events/port-farside-sealed-crate.json",
+   "content/lore/characters/jonas-halvorsen.json",
+   "content/lore/characters/samir-khan.json",
+   "content/lore/characters/zheng-weizhou.json",
+   "content/lore/events/rift-valley-dig.json",
+   "content/lore/events/titicaca-dig.json",
+   "content/lore/events/tranquility-strike.json",
+   "content/lore/events/whiteglove-incident.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/quito.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/whitegloves.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 10,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "leadNote": "領導在 worktree 補改兩處（工人 REPORT「需要決定」回報、不在其可寫清單或超出該檔授權）：selene.json body「二十年後，月亮背面裂開了」→「二十六年後」（2071→2097）；tranquility-strike.json 2098 原型由「需人監看的無人鐵偶」改為人駕的女武神保全機（summary、body、consequences[0]），對齊本批白手套口徑。polishFiles 因此加列一檔、maxFiles 11→12。",
+ "files": [
+  "content/lore/characters/jonas-halvorsen.json",
+  "content/base/world/events/port-farside-sealed-crate.json",
+  "content/lore/events/whiteglove-incident.json",
+  "content/lore/characters/zheng-weizhou.json",
+  "content/lore/factions/selene.json",
+  "content/lore/factions/whitegloves.json",
+  "content/lore/factions/quito.json",
+  "content/lore/events/titicaca-dig.json",
+  "content/lore/events/rift-valley-dig.json",
+  "content/lore/characters/samir-khan.json",
+  "content/lore/factions/league.json",
+  "content/lore/events/tranquility-strike.json"
+ ],
+ "ids": [],
+ "summary": "既有 lore 矛盾 12 檔：jonas 2097 年份、替駕需有人在座艙、白手套女武神口徑（2098 人駕原型→2105 無人→2106 入型錄）、安地斯壁非堅盾之祖、恩凱谷西崖壁、薩米爾 2096 十九天、殘聯人口改約十億、selene 二十六年；閘門 0 違規、驗收全綠（第 2 輪含領導補改）"
+}

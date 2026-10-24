@@ -1,0 +1,113 @@
+{
+ "contract": "content-batch/1",
+ "id": "st-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "lead-settle：新增 lore 地點聖馬洛（九門同喪搬遷後的地點），讓 nine-gates 的 places 改指它",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-st-02",
+  "subagents": "不允許"
+ },
+ "lead": "lead-settle",
+ "date": "2026-10-24",
+ "base": "dc63cdab32ceb4aae6698c6e1c460c09b0866a78",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-settle/st-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-settle/st-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "content/lore/events/nine-gates.json",
+   "content/lore/places/istanbul.json",
+   "wf/workflows/dispatch/handoffs/lead-settle/guide.md"
+  ]
+ },
+ "maxFiles": 1,
+ "allow": {
+  "kinds": [
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T20:49:55",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-24T21:00:20",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "st-02",
+  "round": 2,
+  "at": "2026-10-24T21:00:20",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/places/saint-malo.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 12,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "leadNote": "領導在 worktree 拿掉 saint-malo.json 的空 `aka`：lore check 對 places 不登記此欄（既有 49 個地點都沒有），留著會多一條警告。",
+ "files": [
+  "content/lore/places/saint-malo.json"
+ ],
+ "ids": [
+  "place/saint-malo"
+ ],
+ "summary": "新增 lore 地點聖馬洛城邦；nine-gates 的 places 由領導另改指 place/saint-malo（引用欄非 polish 範圍）；閘門 0 違規、驗收全綠"
+}
