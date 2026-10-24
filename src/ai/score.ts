@@ -19,7 +19,7 @@ const DEFAULTS = {
   tries: 3, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
   retreatForceRatio: 0.5, retreatMinRound: 3, retreatDamage: 0.35,
   objCapture: 2, captureValue: 1, debuffControl: 0.5, debuffAttr: 0.02, debuffMark: 0.25,
-  objHpScale: 200,
+  objHpScale: 200, partAimProgress: 1,
 };
 
 export const TACTICS: readonly string[] = ["attack", "attackArea", "disable", "heal", "buff", "debuff", "escape", "protect", "capture", "scout"];
@@ -31,6 +31,14 @@ export function tacticWeights(q: RulesQuery, s: BattleState, actor: Id, abilityI
 
 function remainingHp(q: RulesQuery, s: BattleState, unitId: Id): number {
   return q.partDefs(s, unitId).reduce((sum, p) => sum + (s.units[unitId]?.parts[p.id]?.layers ?? []).reduce((n, l) => n + l.hp, 0), 0);
+}
+
+// 死亡規則要求 core 全毀；沒有 structural 層的部位不會因受傷而毀損。
+// 只讀知識快照，未偵察的內層仍以公開最大 HP 估計。
+export function lethalParts(q: RulesQuery, view: BattleState, unitId: Id) {
+  return q.partDefs(view, unitId).filter(part => part.functions.includes("core")
+    && !view.units[unitId]?.parts[part.id]?.broken
+    && q.layerDefs(view, unitId, part.id).some(layer => layer.structural));
 }
 
 export function hpFraction(q: RulesQuery, s: BattleState, unitId: Id): number {
@@ -197,7 +205,12 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     const info = objectiveInfo(q, view, ctx.slot);
     const factor = objectiveTargetFactor(info, id, ctx.params);
     const value = valueWithFocus(q, state, id, ctx.assignment?.target, p.focusBonus, factor);
-    const damage = outcome.damage[id] ?? 0, ratio = damage / Math.max(1, remainingHp(q, state, id));
+    const damage = outcome.damage[id] ?? 0;
+    const core = id === target && cmd.target?.part && q.hostile(state, agent.unit, id)
+      ? lethalParts(q, state, id).find(part => part.id === cmd.target!.part) : undefined;
+    const hp = core ? state.units[id]!.parts[core.id]!.layers.reduce((sum, layer) => sum + layer.hp, 0)
+      : remainingHp(q, state, id);
+    const ratio = damage / Math.max(1, hp) * (core ? p.partAimProgress : 1);
     return value * Math.min(2, factor > 1 ? Math.max(ratio, damage / Math.max(1, p.objHpScale)) : ratio) +
       (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0);
   };

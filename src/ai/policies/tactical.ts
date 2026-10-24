@@ -3,7 +3,7 @@ import type { Cell } from "../../core/types-def.ts";
 import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
-import { scoreCandidate } from "../score.ts";
+import { lethalParts, scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
 import { pursuitCells } from "../knowledge.ts";
 import { mobile } from "../intent.ts";
@@ -96,8 +96,10 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
         for (const id of ids) {
           if (def.target.kind === "unit") targets.push({ unit: id });
           if (def.partAim?.allowed) {
+            const lethal = q.hostile(state, actor, id) ? lethalParts(q, state, id) : [];
             for (const part of q.partDefs(state, id)) {
-              if (def.ai.targetPref?.parts?.some((fn) => part.functions.includes(fn))) {
+              if (!state.units[id]!.parts[part.id]?.broken && (lethal.some(core => core.id === part.id)
+                || def.ai.targetPref?.parts?.some((fn) => part.functions.includes(fn)))) {
                 targets.push({ unit: id, part: part.id });
               }
             }

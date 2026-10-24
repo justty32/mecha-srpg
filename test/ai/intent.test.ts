@@ -139,3 +139,60 @@ test("怪獸與人類指揮者陣亡後依參數潰散，其餘退化為個體�
     a = plans(); planIntent(ctx, memory, a); assert.equal(a[0]!.intentMode, "instinct");
   }
 });
+
+test("多目標仍可守住或生存時，不因斬首打不完而撤", () => {
+  for (const kind of ["survive", "hold"] as const) {
+    const { ctx, plans } = fixture();
+    ctx.s.round = 12;
+    const objective = { kind, for: "p", params: { rounds: kind === "survive" ? 30 : 3 }, onComplete: "win" as const };
+    ctx.s.rt!.objectives = [{ kind: "killTarget", for: "p", params: { unit: "e" }, onComplete: "win" }, objective];
+    const a = plans(); planIntent(ctx, { stalled: 10 }, a);
+    assert.notEqual(a[0]!.intentMode, "retreat", kind);
+    ctx.s.rt!.objectives = ctx.s.rt!.objectives.slice(0, 1);
+    const b = plans(); planIntent(ctx, { stalled: 10 }, b);
+    assert.equal(b[0]!.intentMode, "retreat", `${kind} 移除後只剩不可達斬首`);
+  }
+});
+
+test("killTarget 只用目標剩餘 HP 估輪數，不把護衛 HP 算進去", () => {
+  const { ctx, plans } = fixture([unit("a", "p", 2), unit("e", "e", 6), unit("guard", "e", 7)]);
+  ctx.params = { intentGiveUpRatio: 0, intentImpossibleRatio: 100, intentDamageAlpha: 1 };
+  ctx.s.round = 8;
+  ctx.s.rt!.objectives = [{ kind: "killTarget", for: "p", params: { units: ["e"] }, onComplete: "win" }];
+  hurt(ctx, "e", 0.3);
+  const memory: IntentMemory = {};
+  planIntent(ctx, memory, plans());
+  ctx.s.round++;
+  ctx.s.rt!.maxRounds = 15;
+  hurt(ctx, "e", 0.2);
+  const a = plans(); planIntent(ctx, memory, a);
+  assert.notEqual(a[0]!.intentMode, "retreat");
+  ctx.s.rt!.objectives[0]!.params.units = ["e", "guard"];
+  const b = plans(); planIntent(ctx, memory, b);
+  assert.equal(b[0]!.intentMode, "retreat", "兩個指定目標都要納入");
+});
+
+test("profile params 覆寫不可達戰力門檻與傷害平滑權重生效", () => {
+  const { ctx, plans } = fixture();
+  ctx.s.round = 12;
+  ctx.params.intentImpossibleRatio = 0.9;
+  let a = plans(); planIntent(ctx, { stalled: 10 }, a);
+  assert.notEqual(a[0]!.intentMode, "retreat");
+  ctx.params.intentImpossibleRatio = 1.1;
+  a = plans(); planIntent(ctx, { stalled: 10 }, a);
+  assert.equal(a[0]!.intentMode, "retreat");
+  const decision = (alpha: number) => {
+    const { ctx, plans } = fixture();
+    ctx.params = { intentDamageAlpha: alpha, intentImpossibleRatio: 2, intentGiveUpRatio: 0, intentStallRounds: 1 };
+    ctx.s.round = 8;
+    const memory: IntentMemory = {};
+    ctx.params.intentMinRound = 10;
+    planIntent(ctx, memory, plans());
+    ctx.s.round++; hurt(ctx, "e", 0.6); planIntent(ctx, memory, plans());
+    ctx.s.round++; ctx.s.rt!.maxRounds = 15;
+    const a = plans(); planIntent(ctx, memory, a);
+    return a[0]!.intentMode;
+  };
+  assert.equal(decision(0), undefined, "保留上一輪傷害後仍有機會");
+  assert.equal(decision(1), "retreat", "只看單輪零傷害且達自訂停滯門檻時放棄");
+});

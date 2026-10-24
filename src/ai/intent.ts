@@ -8,8 +8,9 @@ import { isHostileSlot } from "./hostility.ts";
 import { shouldRetreat } from "./retreat.ts";
 
 export const DEFAULTS = {
-  intentGiveUpRatio: 0.55, intentGiveUpLoss: 0.6, intentMinRound: 4,
+  intentGiveUpRatio: 0.45, intentGiveUpLoss: 0.7, intentMinRound: 8,
   intentStallRounds: 5, intentTravelPerRound: 4, intentExitReserve: 1,
+  intentImpossibleRatio: 1, intentDamageAlpha: 0.4,
   individualFleeHp: 0.25, pilotFleeHp: 0.2,
   commanderScatter: 0.6, humanCommanderScatter: 0.3,
   rotateHp: 0.45, rotatePool: 0.15, rotateRounds: 2, rotateCooldown: 3,
@@ -18,10 +19,10 @@ export const DEFAULTS = {
 
 // SPEC-GAP：params 只接受 number；intent 的 0..8 依下表對應，避免擴充 schema。
 export const INTENTS = ["eliminate", "hunt", "guardNest", "hold", "escort", "reachExit", "killTarget", "capture", "survive"] as const;
-export type Intent = { kind: typeof INTENTS[number]; source: "objective" | "profile" | "species" | "default"; objective?: Objective };
+export type Intent = { kind: typeof INTENTS[number]; source: "objective" | "profile" | "species" | "default"; objective?: Objective; objectives?: Objective[] };
 export type IntentMemory = {
   retreat?: boolean; commander?: string; leaderPerson?: string; leaderLost?: boolean;
-  previousHp?: number; stalled?: number; lastRound?: number;
+  previousHp?: Record<string, number>; damageRate?: number; stalled?: number; lastRound?: number;
   rotations?: Record<string, { until: number; ready: number }>;
 };
 type Context = Pick<StrategyCtx, "q" | "s" | "view" | "slot" | "params">;
@@ -52,8 +53,9 @@ export function mobile(q: RulesQuery, s: BattleState, id: string): boolean {
   return q.partDefs(s, id).some(p => p.functions.includes("locomotion") && !s.units[id]!.parts[p.id]?.broken);
 }
 export function inferIntent(ctx: Context): Intent {
-  const objective = ctx.s.rt?.objectives.find(o => o.for === ctx.slot && o.onComplete !== "lose");
-  if (objective) return { kind: objective.kind, source: "objective", objective };
+  const objectives = ctx.s.rt?.objectives.filter(o => o.for === ctx.slot && o.onComplete !== "lose");
+  const objective = objectives?.[0];
+  if (objective) return { kind: objective.kind, source: "objective", objective, objectives };
   const kind = INTENTS[ctx.params.intent ?? -1];
   if (kind) return { kind, source: "profile" };
   const creatures = own(ctx).filter(id => monster(ctx.q, ctx.s, id));
@@ -102,32 +104,44 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
   }
   if (memory.commander && (s.rt?.unitStatus[memory.commander] === "dead"
     || memory.leaderPerson && s.log.events.some(e => e.type === "PersonDied" && e.payload.person === memory.leaderPerson))) memory.leaderLost = true;
-  const hp = enemies.reduce((sum, id) => sum + Object.values(view.units[id]!.parts).reduce((n, part) => n + part.layers.reduce((n, l) => n + l.hp, 0), 0), 0);
-  const damage = Math.max(0, (memory.previousHp ?? hp) - hp);
+  const hpOf = (id: string) => Object.values(view.units[id]?.parts ?? {}).reduce((n, part) => n + part.layers.reduce((n, l) => n + l.hp, 0), 0);
   if (memory.lastRound !== s.round) {
+    // 只比較仍可見的同一單位；增援、視野進出不當作傷害或抵消傷害。
+    const damage = enemies.reduce((sum, id) => sum + Math.max(0, (memory.previousHp?.[id] ?? hpOf(id)) - hpOf(id)), 0);
     memory.stalled = damage > 0 ? 0 : (memory.stalled ?? 0) + 1;
-    memory.previousHp = hp; memory.lastRound = s.round;
+    if (memory.previousHp) memory.damageRate = memory.damageRate == null ? damage
+      : p.intentDamageAlpha * damage + (1 - p.intentDamageAlpha) * memory.damageRate;
+    memory.previousHp = Object.fromEntries(enemies.map(id => [id, hpOf(id)])); memory.lastRound = s.round;
   }
+  const damage = memory.damageRate ?? 0;
   const loss = own(ctx).length ? 1 - own(ctx).reduce((sum, id) => sum + (q.isActive(s, id) ? hpFraction(q, s, id) : 0), 0) / own(ctx).length : 0;
   const ratio = forceRatio(q, s, view, slot), exits = retreatCells(s);
   const travel = (cells: Cell[]) => cells.length && friends.length ? Math.min(...friends.flatMap(id => cells.map(c => q.distance(s.units[id]!.pos, c)))) / p.intentTravelPerRound : 0;
   const remaining = s.rt?.maxRounds == null ? Infinity : s.rt.maxRounds - s.round;
   const escape = Math.ceil(travel(exits)) + p.intentExitReserve;
-  let needed = damage > 0 ? hp / damage : (memory.stalled ?? 0) >= p.intentStallRounds ? Infinity : 0;
-  const o = intent.objective;
-  if (intent.kind === "survive") needed = Math.max(0, Number(o?.params.rounds ?? 0) - s.round);
-  if (intent.kind === "guardNest") needed = 0;
-  if (intent.kind === "hold") {
-    const count = o ? s.rt?.holdProgress?.[JSON.stringify(o)]?.count ?? 0 : 0;
-    needed = Math.max(0, Number(o?.params.rounds ?? 0) - count);
-    if (Array.isArray(o?.params.zone)) needed += travel(o.params.zone as Cell[]);
-  }
-  if (intent.kind === "escort" || intent.kind === "reachExit") needed = travel(s.rt?.exits ?? []);
-  // 時間預算用於進攻目標；守住／生存不用為撤離預留時間。
-  const offensive = !["survive", "hold", "guardNest"].includes(intent.kind);
-  const impossible = needed > remaining - (offensive ? escape : 0);
+  const unreachable = (kind: Intent["kind"], o?: Objective): boolean => {
+    // 勝利條件是擇一完成；斬首／捕獲只估指定目標，不要求殲滅護衛。
+    const targets = [...new Set([...(typeof o?.params.unit === "string" ? [o.params.unit] : []),
+      ...(Array.isArray(o?.params.units) ? o.params.units.filter((id): id is string => typeof id === "string") : [])])];
+    if ((kind === "killTarget" || kind === "capture") && targets.some(id => !view.units[id])) return false;
+    const relevant = kind === "killTarget" || kind === "capture" ? targets : enemies.filter(id =>
+      !Array.isArray(o?.params.slots) || o.params.slots.includes(view.units[id]!.owner));
+    const hp = relevant.filter(id => q.isActive(view, id)).reduce((sum, id) => sum + hpOf(id), 0);
+    let needed = hp === 0 ? 0 : damage > 0 ? hp / damage : (memory.stalled ?? 0) >= p.intentStallRounds ? Infinity : 0;
+    if (kind === "survive") needed = Math.max(0, Number(o?.params.rounds ?? 0) - s.round);
+    if (kind === "guardNest") needed = 0;
+    if (kind === "hold") {
+      const count = o ? s.rt?.holdProgress?.[JSON.stringify(o)]?.count ?? 0 : 0;
+      needed = Math.max(0, Number(o?.params.rounds ?? 0) - count);
+      if (Array.isArray(o?.params.zone)) needed += travel(o.params.zone as Cell[]);
+    }
+    if (kind === "escort" || kind === "reachExit") needed = travel(s.rt?.exits ?? []);
+    const offensive = !["survive", "hold", "guardNest"].includes(kind);
+    return needed > remaining - (offensive ? escape : 0);
+  };
+  const impossible = intent.objectives ? intent.objectives.every(o => unreachable(o.kind, o)) : unreachable(intent.kind);
   if (!memory.leaderLost && s.round >= p.intentMinRound && !s.rt?.noRetreat
-    && (ratio < p.intentGiveUpRatio || loss >= p.intentGiveUpLoss || impossible)) memory.retreat = true;
+    && (ratio < p.intentGiveUpRatio || loss >= p.intentGiveUpLoss || impossible && ratio <= p.intentImpossibleRatio)) memory.retreat = true;
   memory.rotations ??= {};
   const leaderAlive = memory.commander && q.isActive(s, memory.commander);
   for (const a of assignments) {
