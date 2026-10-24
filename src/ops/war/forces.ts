@@ -1,7 +1,7 @@
 import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx, RiftState } from "../state/types.ts";
 import type { ForceState, ForceUnit } from "./types.ts";
-import { factionModelPool } from "./rnd.ts";
+import { factionModelPool, replenishWeight } from "./rnd.ts";
 import { locNode } from "./loc.ts";
 const powers = new WeakMap<OpsCtx["world"], Record<string, number>>();
 export function modelPower(ctx: Pick<OpsCtx, "world">): Record<string, number> {
@@ -40,8 +40,7 @@ export function forcesDaily(s: CampaignState, ctx: OpsCtx): void {
     const pool = factionModelPool(s, ctx, id).map(m => ctx.world.require("model", m)).filter(m => m.role !== "captain");
     while (budget > 0) {
       const eligible = pool.filter(m => cfg.gp[m.tier] <= budget); if (!eligible.length) break;
-      // SPEC-GAP：規格倒數公式與「舊多新少」矛盾；採機齡正比，舊型較常補入。
-      const model = pickWeighted(s.warRng, eligible, m => 1 + Math.max(0, s.clock.month - ("month" in m.availableFrom ? m.availableFrom.month : s.clock.month)));
+      const model = pickWeighted(s.warRng, eligible, m => replenishWeight(s, ctx, m));
       mergeUnits(force, [{ model: model.id, count: 1, readiness: 1 }]); budget -= cfg.gp[model.tier];
     }
   }

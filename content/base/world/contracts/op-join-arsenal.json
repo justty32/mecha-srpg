@@ -1,0 +1,81 @@
+{
+  "id": "contract/op-join-arsenal",
+  "kind": "join",
+  "issuerKinds": [
+    "state",
+    "city",
+    "company",
+    "guild",
+    "band",
+    "cult"
+  ],
+  "requiresRep": -100,
+  "gradeRange": [
+    "D",
+    "C",
+    "B",
+    "A"
+  ],
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {}
+    }
+  ],
+  "pay": {
+    "base": 7000
+  },
+  "advanceMax": 0,
+  "deadlineDays": 46,
+  "onComplete": [],
+  "onFail": [],
+  "onCancel": [],
+  "join": {
+    "command": "mixed",
+    "supply": "arsenal",
+    "share": 0.2,
+    "base": 1500,
+    "orders": [],
+    "exclusive": true,
+    "minStrength": 1,
+    "loan": {
+      "models": [
+        "model/bulwark-i"
+      ],
+      "max": 2
+    }
+  },
+  "mercRules": {
+    "progress": 0.4,
+    "allyFraction": [
+      0.3,
+      0.6
+    ],
+    "attachedMax": 3,
+    "headPower": 1,
+    "lossPerPower": 100,
+    "loanPrice": 100,
+    "violationShare": 0.05,
+    "violationRep": 3,
+    "dismissal": 3,
+    "betrayalDays": 7,
+    "blacklistMonths": 3,
+    "exposure": 0.2,
+    "technicianCount": 2,
+    "scrapLimit": 20,
+    "restraintRounds": 4,
+    "briefing": "effect/perk-soul-calc-1",
+    "cleanse": [
+      "effect/injury-concussion"
+    ],
+    "winRep": [
+      5,
+      15
+    ],
+    "enemyRep": [
+      10,
+      25
+    ],
+    "baseExposure": 0.3
+  }
+}

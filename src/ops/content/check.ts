@@ -104,6 +104,10 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if (db.get("faction", f.faction)?.tags.includes("kaiju") || f.faction.endsWith("/migrant-crew")) continue;
     const pool = world.all("model").filter(m => (m.generic || m.maker === f.faction || m.maker === f.id) && "month" in m.availableFrom && m.availableFrom.month <= 0);
     if (!pool.length) errors.push(`${f.id}: empty opening model pool`);
+    const held = world.all("lineage").filter(l => l.source === "generic" || world.all("forces").some(cfg => cfg.shells.some(sh =>
+      typeof sh.holder === "string" && (sh.holder === f.id || sh.holder === f.faction) &&
+      (l.tags.some(t => t.startsWith("shell:")) ? l.tags.includes(`shell:${sh.id}`) : sh.frame === l.source && world.all("lineage").filter(other => other.source === l.source).length === 1))));
+    if (!pool.some(m => m.role !== "captain" && held.some(l => l.id === m.lineage))) errors.push(`${f.id}: no opening model in held lineage`);
     for (const u of f.roster ?? []) if ("model" in u) {
       reference(u.model, `${f.id}.roster`, "model");
       if (!pool.some(m => m.id === u.model)) errors.push(`${f.id}.roster: model unavailable at opening ${u.model}`);
@@ -117,6 +121,12 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     else if (shell.holder !== "player" && !liveFaction(shell.holder)) errors.push(`${shell.id}.holder: must be live faction`);
   }
   const templates = new Set(world.all("templates").flatMap(t => Object.keys(t.entries ?? {})));
+  for (const market of world.all("market")) for (const list of market.lists ?? []) for (const item of list.filters ?? []) {
+    if (item.filter.lineage) reference(item.filter.lineage, `${market.id}.filter.lineage`, "lineage");
+    if (item.filter.maker && item.filter.maker !== "generic" && !liveFaction(item.filter.maker)) errors.push(`${market.id}.filter.maker: missing faction`);
+    if (!["D", "C", "B", "A", "S", "SS", "SSS"].includes(item.filter.tierMax)) errors.push(`${market.id}.filter.tierMax: invalid grade`);
+    if (!["frame", "component"].includes(list.kind)) errors.push(`${market.id}.filter: expected frame or component list`);
+  }
   for (const start of world.all("start")) for (const [index, entry] of (start.mechs ?? []).entries()) {
     try {
       if (typeof entry !== "string" && (!object(entry) || typeof entry.frame !== "string"

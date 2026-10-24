@@ -13,6 +13,7 @@ import { breakTreaty } from "./treaties.ts";
 import { nextSpring } from "../world/rifts.ts";
 import { onMuster, onOperationEnd, playerEngages } from "./merc-hook.ts";
 import { onOperationSuccess } from "./rnd.ts";
+import { mercDaily } from "./merc.ts";
 export function activeOperation(op: OperationState): boolean { return !["done", "failed", "aborted"].includes(op.phase); }
 export function nodeOwner(s: CampaignState, ctx: OpsCtx, node: string): string | undefined {
   const raw = s.nodes[node]?.ownerOverride ?? ctx.world.get("node", node)?.owner;
@@ -135,8 +136,8 @@ function returnForces(s: CampaignState, op: OperationState): void {
 export function endOperation(s: CampaignState, ctx: OpsCtx, op: OperationState, outcome: "done" | "failed" | "aborted"): void {
   if (!activeOperation(op)) return;
   const def = ctx.world.require("operation", op.def);
-  if (outcome === "failed" && def.covert && op.target.faction && s.warRng) {
-    op.exposed = nextFloat(s.warRng) < 0.3;
+  if (outcome === "failed" && def.covert && op.target.faction && s.warRng && !op.log.some(e => e.kind === "player-exposure")) {
+    op.exposed = nextFloat(s.warRng) < 0.3 || op.exposed;
     if (op.exposed) drive(s, ctx, "op-success-against", op.actor, op.target.faction);
   }
   if (outcome !== "done") applyOpsEffects(s, ctx, outcome === "failed" ? def.onFail : def.onAbort, operationScope(op));
@@ -149,6 +150,7 @@ export function endOperation(s: CampaignState, ctx: OpsCtx, op: OperationState, 
 export function operationScope(op: OperationState) { return { operation: op.id, faction: op.actor, targetFaction: op.target.faction, node: locNode(op.target.loc), rift: op.target.rift }; }
 export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
   if (!s.operations || !s.warRng) return;
+  mercDaily(s, ctx);
   const maxDays = ctx.world.all("forces")[0]!.maxDays;
   for (const id of Object.keys(s.operations).sort()) {
     let op = s.operations[id]!; if (!activeOperation(op)) continue;
@@ -177,15 +179,15 @@ export function operationsDaily2c(s: CampaignState, ctx: OpsCtx): void {
       continue;
     }
     if (op.phase === "resolve" && s.clock.day >= op.phaseEnd) {
-      if (def.covert) op.exposed = nextFloat(s.warRng) < 0.3;
-      applyOpsEffects(s, ctx, def.onSuccess, operationScope(op));
+      if (def.covert && !op.log.some(e => e.kind === "player-exposure")) op.exposed = nextFloat(s.warRng) < 0.3 || op.exposed;
+      applyOpsEffects(s, ctx, def.onSuccess.filter(e => !("transferShell" in e && s.shells?.[op.target.shell ?? ""]?.holder === "player")), operationScope(op));
       if (def.kind === "contain") for (const node of op.containedNodes ?? []) if (s.nodes[node]?.blight?.rift === op.target.rift)
         applyOpsEffects(s, ctx, [{ setNode: { id: node, patch: {}, clearBlight: true } }], operationScope(op));
       if (def.covert && op.exposed && op.target.faction) {
         const r = relation(s, op.actor, op.target.faction);
         if (r) for (const t of r.treaties) if (ctx.world.require("treaty", t.def).kind === "nonaggression") breakTreaty(s, ctx, r, t, op.actor);
       }
-      operationDiplomacy(s, ctx, op);
+      if (!op.log.some(e => e.kind === "proxy-accounted")) operationDiplomacy(s, ctx, op);
       if (op.reliefOf && s.operations[op.reliefOf] && activeOperation(s.operations[op.reliefOf]!)) endOperation(s, ctx, s.operations[op.reliefOf]!, "failed");
       s.factions[op.actor]!.prestige = (s.factions[op.actor]!.prestige ?? 0) + 1;
       onOperationSuccess(s, ctx, op); setPhase(s, ctx, op, "aftermath");

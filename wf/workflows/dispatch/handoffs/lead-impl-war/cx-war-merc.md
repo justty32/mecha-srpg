@@ -20,11 +20,13 @@
 8. **結算與外交**：aftermath（`onOperationEnd`）照 spec 公式算 `pay`、扣項、rep；`player-join`、`player-betray`、`player-shell` 三列驅動；背叛三形狀（exclusive 擋在 accept；`drop` 後 ≤ 7 天接對方＝`Betrayed`；私吞）；`blacklist:勢力id` 旗 3 潮月；代理戰爭曝光機率。
 9. **`merc` 政策**：`src/ops/sim/policies.ts` 加 `merc`（`PolicyName` 擴充，CLI `--policy merc` 可用）：有 pendingBattle 就全員出戰；有 active join 就 `sail` 到分遣隊區域；否則接最近的 join；違令隨機（用 RNG 快照，不改 state，照 `random` 政策的做法）；沒有 join 可接時退回 greedy 行為。
 10. **CLI**：`cli.ts` 每潮月那行的 `join=` 改成真的玩家 join 累計數。
+11. **前線留給你的事**（`cx-war-core` REPORT 與領導收線時發現）：`ContractAccepted` 事件 payload 要帶 `kind:"join"`（`time/tick.ts` 的 `dailySummary` 以此計 `joins`）；代理戰爭——`treaties/proxy.json` 條款目前為空、`covert` 襲擾只找傭兵，曝光機率與「帳算在雇主與玩家兩邊」由你接上；勢力關係／聲望 API 在 `war/relations.ts`、`war/drivers.ts`。
+12. **黃金 hash**：`src/ops/sim/fixtures/campaign-hash.json` 已由領導依 HEAD 內容重產；工作樹裡別線（lead-content-world）未提交的內容會讓 `黃金戰役固定指令的事件日誌 hash 相符` 在工作樹變紅——**不要重產它**，領導收線時在乾淨 worktree 重產。
 
 ## 範圍（排除法寫死）
 
-- 只做：`src/ops/war/merc-hook.ts`、`src/ops/war/merc*.ts`（新）、`src/ops/sortie/{scenario,apply,validate}.ts`（只加 operation 分支）、`src/ops/sortie/operation-scenario.ts`（新）、`src/ops/contracts/lifecycle.ts`（只在 `cmdAccept`／`cmdDrop` 加 join 分支）、`src/ops/state/types.ts`（只加可選欄與 union 成員）、`src/ops/sim/{policies,cli,invariants}.ts`（只加）、`content/base/world/contracts/op-join-*.json`（新）、單元測試 `src/ops/war/merc*.test.ts`、`src/ops/sortie/operation-scenario.test.ts`。
-- **`src/ops/sortie/run.ts` 不要改**（裡面有 lead-ui-ops 未提交的 `sortieBattleSetup` 段）；真的非改不可就停下發 `BLOCKED` 說明。
+- 只做：`src/ops/sortie/run.ts`（見下一點的限制）、`src/ops/war/merc-hook.ts`、`src/ops/war/merc*.ts`（新）、`src/ops/sortie/{scenario,apply,validate}.ts`（只加 operation 分支）、`src/ops/sortie/operation-scenario.ts`（新）、`src/ops/contracts/lifecycle.ts`（只在 `cmdAccept`／`cmdDrop` 加 join 分支）、`src/ops/state/types.ts`（只加可選欄與 union 成員）、`src/ops/sim/{policies,cli,invariants}.ts`（只加）、`content/base/world/contracts/op-join-*.json`（新）、單元測試 `src/ops/war/merc*.test.ts`、`src/ops/sortie/operation-scenario.test.ts`。
+- `src/ops/sortie/run.ts`：lead-ui-ops 已收線、該檔已提交，可以改，但**只限 `prepareSetup` 對 ally／attached 單位的 id 對位（目前它假設 player slot 每台都在 `scenario.ops.unitIds` 與 `sortie.units` 裡，attached 勢力機會撞掉）**，`runSortie`／`sortieBattleSetup`／`applySortieResult` 的既有語意不變。
 - 不做：研發（`war/rnd.ts`、`lineages`／`models` 邏輯、市場篩選、`leakModel`）——那是同時在跑的 `cx-war-rnd` 的領地，**不要碰 `src/ops/war/rnd*.ts`、`src/ops/world/market.ts`**；黃金戰役 `test/campaigns/`（下一條線）；`src/core/`、`src/rules/`、`src/sim/`、`src/ai/`、`src/ui-adapter/`、`src/mcp/`、spec、其他 `content/`。
 - 與 `cx-war-rnd` 共用的檔（`src/ops/state/types.ts`、`src/ops/content/check.ts`、`src/ops/sim/cli.ts`）：**只做小塊追加、不重排、不重寫既有行**；看到對方的改動不要動它。
 - 件數 gate：程式檔（新增＋修改）超過 20 個就停下回報；容量 gate：程式 diff 超過 100 KB 就停下回報。
@@ -75,7 +77,7 @@ REPORT 四段（做了什麼／產出（含完整檔案清單）／沒做到或�
 3. `npm test`：`src/ops/**` 無新紅燈（別線造成的紅燈列名不算）。
 4. `node src/ops/sim/cli.ts --months 12 --policy merc --seed 1`（另跑 seed 2、3）不拋錯，且三個 seed 合計至少 3 次 join 走完 `ContractAccepted(join) → BattleResolved → OperationResolved` 或 `OperationFailed` → `Posted`／帳本 `join-pay`（REPORT 附事件序列摘錄）。
 5. idle／greedy 不受影響：`node src/ops/sim/cli.ts --months 12 --policy idle --seed 1` 與 `--policy greedy --seed 1` 不拋錯。
-6. `run.ts` 未改：`git diff --stat src/ops/sortie/run.ts` 只顯示 lead-ui-ops 原有的改動（約 11 行增）。
+6. `src/ops/sortie/run.test.ts`、`src/mcp/sortie.test.ts` 既有測試不改斷言就過（單檔跑：`node --test src/ops/sortie/run.test.ts src/mcp/sortie.test.ts`）。
 
 不要為了「更保險」加驗其他東西。
 

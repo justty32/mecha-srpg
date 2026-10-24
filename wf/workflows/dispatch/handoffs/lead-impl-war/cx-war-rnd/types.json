@@ -1,0 +1,42 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "surface",
+  "change",
+  "consumer"
+ ],
+ "rows": [
+  {
+   "surface": "FrameDef",
+   "change": "只新增 series?: string、mark?: number；frame JSON schema 同步可選屬性",
+   "consumer": "core內容；現有frame不改"
+  },
+  {
+   "surface": "FactionState.rndProgress?",
+   "change": "lastDay?: number、acquired: Record<Id,number>、held: Id[]、suspended?: Record<Id,number>",
+   "consumer": "研發月初去重、殼取得起算與停研進度"
+  },
+  {
+   "surface": "MarketDef.lists[].filters?",
+   "change": "filter:{lineage?,maker?,tierMax}、weight、stockMax、basePrice?；items保持原型",
+   "consumer": "依lead-impl-war 12:10 orders取代原交接items union"
+  },
+  {
+   "surface": "MarketState.markets[id].dynamic?",
+   "change": "{kind,item:{def,weight,stockMax,basePrice?,model?,imported?}}[]",
+   "consumer": "刷新快照與cmdTrade；marketListings供未來文字/UI接線"
+  },
+  {
+   "surface": "rnd.ts exports",
+   "change": "initRnd、rndIncome、rndCandidates、modelAvailable、researchWeight、replenishWeight、isModelGeneric、modelVisibleAt、treatyResearch；原四hooks簽名不變",
+   "consumer": "初始化、補員、條約、市場"
+  },
+  {
+   "surface": "lineages.ts exports",
+   "change": "monthDays、lineageShells、heldLineages、openLineage、shareTreatyLineages、syncLineages",
+   "consumer": "取殼/停研與shell-pact日結"
+  }
+ ]
+}

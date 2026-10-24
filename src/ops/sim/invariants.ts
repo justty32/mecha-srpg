@@ -3,6 +3,9 @@ import { checkLedger } from "../state/ledger.ts";
 
 export function checkInvariants(s: CampaignState): string[] {
   const errors = checkLedger(s);
+  for (const c of Object.values(s.contracts)) if (c.settled) for (const id of c.loans ?? []) {
+    if (s.inventory.mechs.includes(id) || s.hangar.bays.includes(id)) errors.push(`unreturned loan: ${c.id}/${id}`);
+  }
   for (const id of Object.keys(s.mechs).sort()) for (const seat of Object.keys(s.mechs[id]!.seats).sort()) {
     const person = s.mechs[id]!.seats[seat];
     if (person !== null && person !== undefined && !s.roster.persons[person]) errors.push(`missing seat person: ${id}/${seat}/${person}`);

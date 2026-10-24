@@ -37,7 +37,7 @@ export function main(args: string[]): number {
     const period = world.require("calendar", s.calendar).daysPerMonth, elapsed = s.clock.day - firstDay;
     if (elapsed > 0 && elapsed % period === 0) {
       const row = { ...dailySummary(s, createOpsCtx(s, db, world)), month: elapsed / period, day: s.clock.day };
-      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕化節點數=${row.blighted} 裂縫數=${row.rifts} 作戰=${row.operations ?? 0} war=${row.war ?? 0} allied=${row.allied ?? 0} 釋出=${row.released ?? 0} join=${row.joins ?? 0}`);
+      console.log(`潮月 ${row.month} day=${row.day} cash=${row.cash} debt=${row.debt} 人數=${row.persons} 拘束艙生物機甲數=${row.beasts} 蝕化節點數=${row.blighted} 裂縫數=${row.rifts} 作戰=${row.operations ?? 0} war=${row.war ?? 0} allied=${row.allied ?? 0} 釋出=${Object.values(s.models ?? {}).filter(m => m.releasedDay !== undefined).length} join=${row.joins ?? 0}`);
     }
     const ops = Object.values(s.operations ?? {}), rels = Object.values(s.relations ?? {}).filter(r => s.factions[r.a]?.alive && s.factions[r.b]?.alive);
     maxOperations = Math.max(maxOperations, ops.filter(o => !["done", "failed", "aborted"].includes(o.phase)).length);
@@ -47,6 +47,23 @@ export function main(args: string[]): number {
   }, db, world, start, months, seed, policy: selectedPolicy, ...(noBattle ? {} : { battle: defaultBattleRunner }) });
 
   const events = result.state.log;
+  if (policy === "merc") {
+    const joins = events.filter(e => e.type === "ContractAccepted" && e.payload.kind === "join");
+    const battles = events.filter(e => e.type === "BattleResolved" && e.payload.operation);
+    console.log(`merc統計 ${JSON.stringify({ joins: joins.length, wins: battles.filter(e => ["player", "ally"].includes(String(e.payload.winner))).length,
+      losses: battles.filter(e => !["player", "ally"].includes(String(e.payload.winner))).length,
+      pay: result.state.ledger.entries.filter(e => e.reason === "join-pay").reduce((n, e) => n + e.delta, 0) })}`);
+    for (const accepted of joins) {
+      const contract = accepted.payload.contract, operation = accepted.payload.operation;
+      const sequence = events.filter(e => e === accepted || e.type === "BattleResolved" && e.payload.contract === contract
+        || ["OperationResolved", "OperationFailed", "OperationAborted"].includes(e.type) && e.payload.operation === operation
+        || e.type === "AllySupplied" && e.payload.contract === contract && ["settlement", "departure"].includes(String(e.payload.reason))
+        || e.type === "JoinSettled" && e.payload.contract === contract);
+      const refs = new Set(sequence.filter(e => e.type === "OperationResolved" || e.type === "AllySupplied").map(e => `event-${e.seq}`));
+      console.log(`join事件 ${JSON.stringify({ contract, operation, sequence: sequence.map(e => ({ day: e.day, type: e.type, ...e.payload })),
+        ledger: result.state.ledger.entries.filter(e => e.reason === "join-pay" && !!e.ref && refs.has(e.ref)) })}`);
+    }
+  }
   console.log(`war統計 ${JSON.stringify({ enteredWar: events.filter(e => e.type === "RelationChanged" && e.payload.to === "war").length,
     ceasefires: events.filter(e => e.type === "TreatySigned" && e.payload.kind === "ceasefire").length,
     NodeTransferred: events.filter(e => e.type === "NodeTransferred").length, OperationResolved: events.filter(e => e.type === "OperationResolved").length,

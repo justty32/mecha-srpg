@@ -7,8 +7,9 @@ import { evalNum, objectRefs } from "../../core/numexpr.ts";
 import { evalOpsNum } from "../content/cond.ts";
 import { instantiatePools } from "../content/instantiate.ts";
 import type { CampaignState, EnemySnapshot, OpsCtx, Sortie } from "../state/types.ts";
+import { generateOperationScenario } from "./operation-scenario.ts";
 
-export type SortieScenario = DynamicScenario & { ops: { map: MapDef; unitIds: string[] } };
+export type SortieScenario = DynamicScenario & { ops: { map: MapDef; unitIds: string[]; forceIds?: Record<string, string> } };
 
 function inject(s: CampaignState, ctx: OpsCtx, person: PersonState, effectRef: EffectRef, source: string): void {
   const ref = typeof effectRef === "string" ? { effect: effectRef } : effectRef;
@@ -28,6 +29,10 @@ function inject(s: CampaignState, ctx: OpsCtx, person: PersonState, effectRef: E
 }
 
 export function generateScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): SortieScenario {
+  if (sortie.trigger === "operation") return generateOperationScenario(s, ctx, sortie, generateStandardScenario);
+  return generateStandardScenario(s, ctx, sortie);
+}
+function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie): SortieScenario {
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;
   const rift = s.rifts[sortie.rift ?? contract?.target.rift ?? ""];
   const riftDef = rift ? ctx.world.get("rift", rift.family) ?? ctx.world.all("rift").find(d => d.family === rift.family) : undefined;

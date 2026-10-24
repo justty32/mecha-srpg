@@ -6,42 +6,119 @@ import { nextId } from "../state/ids.ts";
 import { isAccount, post } from "../state/ledger.ts";
 import { worldRules } from "./nodes.ts";
 import type { CmdResult } from "./nodes.ts";
+import type { ModelDef } from "../war/types.ts";
+import { factionId, hasTreaty } from "../war/relations.ts";
+import { isModelGeneric, leakModel, modelVisibleAt } from "../war/rnd.ts";
 
 type MarketItem = MarketDef["lists"][number]["items"][number];
-type Listing = { kind: MarketDef["lists"][number]["kind"]; item: MarketItem };
+type MarketFilter = NonNullable<MarketDef["lists"][number]["filters"]>[number];
+type FixedItem = MarketItem & { model?: string; imported?: boolean };
+type Listing = { kind: MarketDef["lists"][number]["kind"]; item: FixedItem };
 // SPEC-GAP：市場庫存與刷新日未入 CampaignState，採延遲初始化、可 JSON 化的局部擴充。
-export type MarketState = CampaignState & { markets?: Record<string, { refreshedDay: number; stock: Record<string, number> }> };
-function listings(market: MarketDef): Listing[] { return market.lists.flatMap(list => list.items.map(item => ({ kind: list.kind, item }))).sort((a, b) => a.item.def < b.item.def ? -1 : a.item.def > b.item.def ? 1 : 0); }
+export type MarketState = CampaignState & { markets?: Record<string, { refreshedDay: number; stock: Record<string, number>; dynamic?: Listing[] }> };
+function tradePartners(s: CampaignState, ctx: OpsCtx, market: MarketDef): string[] {
+  const raw = s.nodes[market.node]?.ownerOverride ?? ctx.world.require("node", market.node).owner;
+  const owner = raw ? factionId(s, ctx, raw) : Object.keys(s.factions).find(id => s.factions[id]!.territoryNow.includes(market.node));
+  return Object.values(s.relations ?? {}).filter(r => (r.a === owner || r.b === owner) && hasTreaty(s, ctx, r, "trade"))
+    .map(r => r.a === owner ? r.b : r.a).sort();
+}
+function matches(ctx: OpsCtx, model: ModelDef, item: MarketFilter): boolean {
+  const { lineage, maker, tierMax } = item.filter;
+  return (!lineage || ctx.world.get("lineage", lineage)?.id === model.lineage) &&
+    (!maker || maker === model.maker || ctx.world.get("faction-ops", maker)?.faction === model.maker || ctx.db.get("faction", maker)?.id === model.maker) &&
+    ["D", "C", "B", "A", "S", "SS", "SSS"].indexOf(model.tier) <= ["D", "C", "B", "A", "S", "SS", "SSS"].indexOf(tierMax);
+}
+function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = false, includeImports = true): Listing[] {
+  const result: Listing[] = [];
+  for (const list of market.lists) {
+    for (const item of list.items) result.push({ kind: list.kind, item });
+    if (list.kind !== "frame") continue;
+    for (const item of list.filters ?? []) for (const model of ctx.world.all("model")) if (matches(ctx, model, item) && (resale || modelVisibleAt(s, ctx, model, market.node))) {
+      result.push({ kind: "frame", item: { def: model.frame, weight: item.weight, stockMax: item.stockMax, ...(item.basePrice === undefined ? {} : { basePrice: item.basePrice }), model: model.id } });
+    }
+  }
+  const partners = includeImports ? tradePartners(s, ctx, market) : [];
+  if (partners.length) {
+    // SPEC-GAP：條約沒有專屬報價；沿用內容中第一份可售的 frame 篩選器報價與庫存。
+    const template = ctx.world.all("market").flatMap(m => m.lists.filter(l => l.kind === "frame").flatMap(l => l.filters ?? [])).find(i => i.basePrice !== undefined);
+    if (template) for (const model of ctx.world.all("model")) {
+      const maker = factionId(s, ctx, model.maker);
+      const released = s.models?.[model.id]?.releasedDay !== undefined || Object.values(s.factions).some(f => f.rnd?.released.includes(model.id));
+      if (!maker || !partners.includes(maker) || !released || model.role === "captain" || model.exportPolicy === "restricted" && !isModelGeneric(s, model)) continue;
+      const existing = result.find(l => l.item.def === model.frame);
+      if (existing) existing.item = { ...existing.item, imported: true };
+      else result.push({ kind: "frame", item: { def: model.frame, weight: template.weight, stockMax: template.stockMax, basePrice: template.basePrice, model: model.id, imported: true } });
+    }
+  }
+  return result.sort((a, b) => a.item.def < b.item.def ? -1 : a.item.def > b.item.def ? 1 : 0);
+}
+export function marketListings(s: CampaignState, ctx: OpsCtx, market: MarketDef): Listing[] {
+  const old = (s as MarketState).markets?.[market.id];
+  if (!old) return listings(s, ctx, market);
+  const dynamic = (old.dynamic ?? []).filter(l => !l.item.model || modelVisibleAt(s, ctx, ctx.world.require("model", l.item.model), market.node));
+  const dynamicIds = new Set(dynamic.map(l => l.item.def));
+  return [...market.lists.flatMap(list => list.items.filter(item => !dynamicIds.has(item.def)).map(item => ({ kind: list.kind, item }))), ...dynamic]
+    .sort((a, b) => a.item.def < b.item.def ? -1 : a.item.def > b.item.def ? 1 : 0);
+}
+function dynamicState(items: Listing[]): { dynamic?: Listing[] } {
+  const dynamic = items.filter(l => l.item.model !== undefined || l.item.imported);
+  return dynamic.length ? { dynamic } : {};
+}
 export function marketPrice(s: CampaignState, ctx: OpsCtx, market: MarketDef, item: MarketItem, condition = 1): number {
+  if (s.nodes[market.node]?.flags.includes("blockaded")) return Infinity;
   const cfg = worldRules(ctx).market, node = s.nodes[market.node], def = ctx.world.require("node", market.node);
   const owner = node?.ownerOverride ?? def.owner;
   const faction = ctx.world.all("faction-ops").find(f => f.faction === owner);
   const rep = faction ? s.factions[faction.id]?.rep ?? 0 : 0;
   let price = (item.basePrice ?? 0) * Math.max(0, Math.min(1, condition)) * Math.max(cfg.minimumMultiplier, 1 - rep * cfg.repDiscount);
+  const resolved = item as FixedItem, releasedDay = resolved.model ? s.models?.[resolved.model]?.releasedDay : undefined;
+  if (releasedDay !== undefined && releasedDay > 0 && s.clock.day - releasedDay < ctx.world.require("calendar", s.calendar).daysPerMonth) price *= 1.5;
+  // SPEC-GAP：trade 折價與 scarcity 減貨未定量；借用既有市場最低倍率作折減比例（目前九折）。
+  if (resolved.imported) price *= 1 - cfg.minimumMultiplier;
   for (const mod of market.priceMods) if (node?.flags.includes(mod.tag)) price *= evalOpsNum(s, ctx, mod.mult, { node: market.node, ...(faction ? { faction: faction.id } : {}) });
   return Math.max(0, price);
 }
-function defaultStock(market: MarketDef): Record<string, number> {
-  return Object.fromEntries(listings(market).map(({ item }) => [item.def, item.stockMax]));
+function defaultStock(items: Listing[]): Record<string, number> {
+  return Object.fromEntries(items.map(({ item }) => [item.def, item.stockMax]));
 }
 export function marketsDaily7(s: CampaignState, ctx: OpsCtx): void {
   const state = s as MarketState;
+  const scarcityStarted = new Set<string>(), supplied = new Set<string>();
+  for (const node of Object.values(s.nodes)) {
+    const key = `market-scarcity:${node.def}`;
+    if (node.flags.includes("war-supplied") && !node.flags.includes("blockaded")) supplied.add(node.def);
+    if (node.flags.includes("scarcity") && s.flags[key] === undefined) { s.flags[key] = s.clock.day + ctx.world.require("calendar", s.calendar).daysPerMonth; scarcityStarted.add(node.def); }
+    if (s.flags[key] !== undefined && (s.flags[key]! <= s.clock.day || supplied.has(node.def))) { node.flags = node.flags.filter(f => f !== "scarcity"); delete s.flags[key]; }
+  }
   for (const market of ctx.world.all("market")) {
+    const node = s.nodes[market.node];
+    if (node?.flags.includes("blockaded")) continue;
+    const restock = supplied.has(market.node), scarce = node?.flags.includes("scarcity");
+    if (restock && node) node.flags = node.flags.filter(f => !market.priceMods.some(m => m.tag === f));
     const old = state.markets?.[market.id];
-    if (old && (s.clock.phase !== "neap" || old.refreshedDay === s.clock.day)) continue;
-    const stock = defaultStock(market);
-    if (s.clock.phase === "neap") {
+    if (old && !restock && (s.clock.phase !== "neap" || old.refreshedDay === s.clock.day)) {
+      if (scarce && scarcityStarted.has(market.node)) for (const id of Object.keys(old.stock)) old.stock[id] = Math.floor(old.stock[id]! * (1 - worldRules(ctx).market.minimumMultiplier));
+      continue;
+    }
+    const items = listings(s, ctx, market), stock = defaultStock(items);
+    if (s.clock.phase === "neap" && !restock) {
       for (const id of Object.keys(stock).sort()) stock[id] = 0;
-      for (const list of market.lists) {
-        const pool = [...list.items].filter(i => i.weight > 0 && i.stockMax > 0).sort((a, b) => a.def < b.def ? -1 : a.def > b.def ? 1 : 0);
+      const groups = market.lists.map(list => listings(s, ctx, { ...market, lists: [list] }, false, false).map(l => l.item));
+      const domestic = new Set(groups.flatMap(group => group.map(item => item.def)));
+      const imports = items.filter(l => !domestic.has(l.item.def)).map(l => l.item);
+      if (imports.length) groups.push(imports);
+      for (const group of groups) {
+        const pool = group.filter(i => i.weight > 0 && i.stockMax > 0);
         for (let i = 0; i < pool.length; i++) {
           const item = pickWeighted(s.rng, pool, item => item.weight);
           stock[item.def] = Math.min(item.stockMax, stock[item.def]! + 1 + nextInt(s.rng, item.stockMax));
         }
       }
     }
-    (state.markets ??= {})[market.id] = { refreshedDay: s.clock.day, stock };
+    if (scarce) for (const id of Object.keys(stock)) stock[id] = Math.floor(stock[id]! * (1 - worldRules(ctx).market.minimumMultiplier));
+    (state.markets ??= {})[market.id] = { refreshedDay: s.clock.day, stock, ...dynamicState(items) };
   }
+  for (const id of supplied) s.nodes[id]!.flags = s.nodes[id]!.flags.filter(f => f !== "war-supplied");
 }
 function physicalCondition(s: CampaignState, ctx: OpsCtx, id: string): number {
   const component = s.inventory.components.find(c => c.id === id);
@@ -59,17 +136,18 @@ function physicalCondition(s: CampaignState, ctx: OpsCtx, id: string): number {
 export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "trade" }>): CmdResult {
   const market = ctx.world.get("market", cmd.market);
   if (!market) return { ok: false, error: "unknown-market" };
+  if (s.nodes[market.node]?.flags.includes("blockaded")) return { ok: false, error: "blockaded" };
   if (s.ship.at !== market.node || s.ship.route || (s as CampaignState & { drifting?: boolean }).drifting) return { ok: false, error: "not-docked" };
   if (s.pendingBattle || s.pendingChoices.length) return { ok: false, error: "pending-encounter" };
   if ((cmd.sell?.length ?? 0) && !market.buysBack) return { ok: false, error: "no-buyback" };
-  const items = listings(market), state = s as MarketState;
-  const stock = { ...(state.markets?.[market.id]?.stock ?? defaultStock(market)) }, balances = { ...s.ledger.balances };
+  const items = marketListings(s, ctx, market), resale = listings(s, ctx, market, true), state = s as MarketState;
+  const stock = { ...(state.markets?.[market.id]?.stock ?? defaultStock(items)) }, balances = { ...s.ledger.balances };
   const physicalSold = new Set<string>();
   const trades: { buy: boolean; id: string; listing: Listing; price: number; account: Account; physical: boolean }[] = [];
   for (const buy of [false, true]) for (const id of (buy ? cmd.buy : cmd.sell) ?? []) {
     const component = !buy ? s.inventory.components.find(c => c.id === id) : undefined, mech = !buy ? s.mechs[id] : undefined;
     const ref = component?.def ?? mech?.frame ?? id;
-    const listing = items.find(i => i.item.def === ref || ctx.db.get("component", ref)?.id === i.item.def || ctx.db.get("frame", ref)?.id === i.item.def);
+    const listing = (buy ? items : resale).find(i => i.item.def === ref || ctx.db.get("component", ref)?.id === i.item.def || ctx.db.get("frame", ref)?.id === i.item.def);
     if (!listing || listing.item.basePrice === undefined) return { ok: false, error: "unknown-item" };
     const physical = ["component", "frame"].includes(listing.kind);
     if (!physical && (!isAccount(listing.item.def) || !listing.item.def.startsWith("stock:"))) return { ok: false, error: "unsupported-item" };
@@ -101,6 +179,13 @@ export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand,
         const empty = s.hangar.bays.indexOf(null); if (empty < 0) s.hangar.bays.push(id); else s.hangar.bays[empty] = id;
       }
     } else if (t.physical) {
+      const frame = s.mechs[t.id]?.frame;
+      if (frame) {
+        // 同一機體可登記多代機型；沒有實例機型欄時取最近已釋出者，每台只流出一次。
+        const model = ctx.world.all("model").filter(m => m.frame === frame && m.exportPolicy !== "open").sort((a, b) =>
+          (s.models?.[b.id]?.releasedDay ?? -1) - (s.models?.[a.id]?.releasedDay ?? -1) || b.mark - a.mark || a.id.localeCompare(b.id))[0];
+        if (model && !isModelGeneric(s, model)) leakModel(s, ctx, model.id, "player");
+      }
       s.inventory.components = s.inventory.components.filter(c => c.id !== t.id);
       s.inventory.mechs = s.inventory.mechs.filter(id => id !== t.id); delete s.mechs[t.id];
       s.hangar.bays = s.hangar.bays.map(id => id === t.id ? null : id); s.hangar.dormant = s.hangar.dormant.filter(id => id !== t.id);
@@ -108,6 +193,6 @@ export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand,
     }
     if (t.account === "stock:fuel") s.ship.fuel.cur = Math.min(s.ship.fuel.max, s.ledger.balances["stock:fuel"] ?? 0);
   }
-  (state.markets ??= {})[market.id] = { refreshedDay: state.markets?.[market.id]?.refreshedDay ?? s.clock.day, stock };
+  (state.markets ??= {})[market.id] = { refreshedDay: state.markets?.[market.id]?.refreshedDay ?? s.clock.day, stock, ...dynamicState(items) };
   return { ok: true };
 }

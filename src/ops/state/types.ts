@@ -4,6 +4,8 @@ import type { Cond, NumExpr, Grade, ControlMode, SeatId, EffectRef, Objective, S
 import type { MechState, PersonState, PoolState, RngState } from "../../core/types-state.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDB } from "../content/worlddb.ts";
+import type { JoinTerms } from "../war/types.ts";
+import type { MercRecord } from "../war/merc.ts";
 
 export type RoomId = string;
 export type ServiceId = string;
@@ -40,21 +42,22 @@ export type FactionOpsDef = { actionLanes?: ("world" | "war")[]; id: Id; faction
   lifecycle?: { growOn?: Cond; shrinkOn?: Cond; absorbedBy?: Id };
   naming?: { mechStages: { grade: Grade[]; pattern: string }[]; ancient: string; flavor: string }; tags: string[];
   roster?: ({ frame: Id; count: number } | { model: Id; count: number })[] };
-export type FactionState = { forces?: ForceState; shells?: Id[]; ops?: Id[]; prestige?: number; rnd?: FactionRnd; def: Id; rep: number; scaleNow: string; territoryNow: Id[]; alive: boolean; memory: { day: number; kind: string; ref?: Id }[] };
+export type FactionState = { rndProgress?: { suspended?: Record<Id, number>; lastDay?: number; acquired: Record<Id, number>; held: Id[] }; forces?: ForceState; shells?: Id[]; ops?: Id[]; prestige?: number; rnd?: FactionRnd; def: Id; rep: number; scaleNow: string; territoryNow: Id[]; alive: boolean; memory: { day: number; kind: string; ref?: Id }[] };
 export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?: boolean };
 // SPEC-GAP：stage／敵軍快照未展開；快照在 offered 時由契約模組凍結。
 export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
 export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[]; phase?: RiftState["phase"] };
-export type ContractTemplate = { id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle";
+export type ContractTemplate = { join?: JoinTerms; id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle" | "join";
   issuerKinds: string[]; requiresRep: number; gradeRange: Grade[]; objectives: ObjectiveTemplate[];
   pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] }; advanceMax: number; deadlineDays: NumExpr;
   supplies?: Id[]; onComplete: OpsEffect[]; onFail: OpsEffect[]; onCancel: OpsEffect[]; stages?: StageTemplate[]; annoyanceMax?: number };
-export type ContractState = { id: Id; template: Id; issuer: Id; target: { node: Id; rift?: Id; snapshot?: EnemySnapshot };
+export type ContractState = { operation?: Id; side?: "actor" | "target"; loans?: Id[]; violations?: number; merc?: MercRecord; id: Id; template: Id; issuer: Id; target: { node: Id; rift?: Id; snapshot?: EnemySnapshot };
   status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
   paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
 export type WorldActionDef = { lane?: "war"; id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
 export type MarketDef = { id: Id; node: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental" | "ammo";
-  items: { def: Id; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
+  items: { def: Id; weight: number; stockMax: number; basePrice?: number }[];
+  filters?: { filter: { lineage?: Id; maker?: Id; tierMax: Grade }; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
 export type ServiceDef = { id: Id; room: RoomId; hpRegenMult?: number; cleanse?: { whitelist: Id[]; price: NumExpr }; price?: NumExpr; effects?: OpsEffect[] };
 export type RecruitPoolDef = { id: Id; node: Id; sources: { background: Id; weight: NumExpr }[]; size: number; refreshOn: "quarter" };
 export type BackgroundDef = { id: Id; name: string; culture: string; attrRanges: Record<string, [number, number]>; hireFee: NumExpr; wageMult: NumExpr; traits?: Id[]; person?: Id };
@@ -81,7 +84,7 @@ export type BeastDef = { id: Id; family: string; restraint: Id[]; wearPerDay: Pa
   bondPerBattle: number; nicknameBond: number; nicknameBattles: number; decay: number;
   behaviors: { species: Id; molt?: { days: number; window: number; to: Id }; brood?: { child: Id }; mutate?: { frames: Id[] } }[] };
 export type KeymapDef = { id: Id; bindings: { action: string; keys: string[]; label: string; context?: string }[] };
-export type Sortie = { id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection";
+export type Sortie = { operation?: Id; id: Id; day: number; contract?: Id; node: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation";
   units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
 // SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。

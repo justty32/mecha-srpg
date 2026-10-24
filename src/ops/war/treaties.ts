@@ -4,6 +4,8 @@ import { applyOpsEffects } from "../content/opseffect.ts";
 import type { Relation, TreatyDef, TreatyState } from "./types.ts";
 import { factionId, hasTreaty, relation, relationRank } from "./relations.ts";
 import { drive } from "./drivers.ts";
+import { shareTreatyLineages, syncLineages } from "./lineages.ts";
+import { treatyResearch } from "./rnd.ts";
 export function canSignTreaty(s: CampaignState, ctx: OpsCtx, r: Relation, def: TreatyDef): boolean {
   return !hasTreaty(s, ctx, r, def.kind) && (def.kind !== "ceasefire" || r.state === "war") &&
     relationRank[r.state] >= relationRank[def.requires.minState] &&
@@ -15,6 +17,7 @@ export function signTreaty(s: CampaignState, ctx: OpsCtx, a: string, b: string, 
   const days = Math.max(1, Math.ceil(evalOpsNum(s, ctx, def.days, { faction: r.a, targetFaction: r.b })));
   r.treaties.push({ def: def.id, signedDay: s.clock.day, endDay: s.clock.day + days });
   if (def.kind === "ceasefire") r.value = Math.max(-50, r.value);
+  if (def.kind === "shell-pact") shareTreatyLineages(s, ctx, r.a, r.b);
   applyOpsEffects(s, ctx, def.terms, { faction: r.a, targetFaction: r.b });
   ctx.emit("TreatySigned", { a: r.a, b: r.b, treaty: def.id, kind: def.kind, endDay: s.clock.day + days }); return true;
 }
@@ -30,6 +33,7 @@ export function treatiesDaily(s: CampaignState, ctx: OpsCtx): void {
     for (const t of [...r.treaties].sort((a, b) => a.def.localeCompare(b.def))) {
       const def = ctx.world.require("treaty", t.def);
       if (t.broken) continue;
+      if (def.kind === "trade" || def.kind === "shell-pact") treatyResearch(s, ctx, r, t);
       if (t.endDay <= s.clock.day) {
         drive(s, ctx, "treaty-honored", r.a, r.b);
         applyOpsEffects(s, ctx, def.onExpire, { faction: r.a, targetFaction: r.b });
@@ -42,4 +46,5 @@ export function treatiesDaily(s: CampaignState, ctx: OpsCtx): void {
       for (const [a, b] of [[r.a, r.b], [r.b, r.a]] as const) if (evalOpsCond(s, ctx, def.breakIf, { faction: a, targetFaction: b })) { breakTreaty(s, ctx, r, t, a); break; }
     }
   }
+  syncLineages(s, ctx);
 }

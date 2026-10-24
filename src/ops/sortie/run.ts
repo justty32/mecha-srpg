@@ -14,6 +14,8 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
   const setup: BattleSetup = sim.setup, ids = new Map<string, string>();
   for (const unit of setup.units) {
     const before = unit.id;
+    const forceId = scenario.ops.forceIds?.[before];
+    if (forceId) { unit.id = forceId; ids.set(before, forceId); continue; }
     if (unit.owner !== "player") { unit.id = `${sortie.id}/${before}`; ids.set(before, unit.id); continue; }
     const mechId = scenario.ops.unitIds[Number(before.slice("player-".length))]!;
     const mech = s.mechs[mechId]!, selected = sortie.units.find(u => u.mech === mechId)!;

@@ -132,6 +132,8 @@ export type PartDef = {
 };
 export type BodyPlanDef = { id: Id; name?: string; parts: PartDef[]; symmetry?: string };
 export type FrameDef = {
+  series?: string;
+  mark?: number;
   id: Id; name: string; cls: FrameClass; grade: Grade;
   bodyPlan: Id; baseAttrs: Record<AttrId, number>;
   pools: PoolDecl[];

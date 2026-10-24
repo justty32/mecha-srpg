@@ -1,0 +1,42 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "gate",
+  "status",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "gate": 1,
+   "status": "通過",
+   "evidence": "npm run typecheck exit0；node src/ops/content/check.ts content/base及npm run check均0 errors/0 warnings。"
+  },
+  {
+   "gate": 2,
+   "status": "通過",
+   "evidence": "rnd.test.ts 21項全綠，涵蓋指定四類與月初/兩潮月/失殼/轉賣rep。rnd-tests.log實際33項=研發21+市場7+既有parse5，非沙箱檔案計數。"
+  },
+  {
+   "gate": 3,
+   "status": "通過（保留交接指定例外）",
+   "evidence": "npm test 110檔105綠5紅：MCP cli/e2e、ops golden、UI controller、fuzz；另跑src/ops/** 36檔35綠，唯一紅為禁止重產的golden。本線導致的parse多義已修復；merc.test最新綠。"
+  },
+  {
+   "gate": 4,
+   "status": "通過",
+   "evidence": "seeds1/2/3各24潮月CLI均OK；每seed ModelReleased31，opening15→final25，ratio1.666667。timeline-seed-1.json逐月逐勢力完整。"
+  },
+  {
+   "gate": 5,
+   "status": "通過",
+   "evidence": "market.test.ts既有兩條斷言完全未改且通過；追加5項亦綠。無filters/條約/戰爭旗時保留既有庫存與rng抽取流程。"
+  },
+  {
+   "gate": 6,
+   "status": "通過",
+   "evidence": "git diff src/core/types-def.ts只有+series?: string與+mark?: number兩行；schema同步兩個可選屬性，沒有frame內容改動。"
+  }
+ ]
+}

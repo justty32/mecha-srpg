@@ -6,6 +6,7 @@ import { evalOpsNum } from "../content/cond.ts";
 import { applyOpsEffects } from "../content/opseffect.ts";
 import { negotiate, negotiationPolicy } from "./negotiate.ts";
 import { settleContract } from "./tally.ts";
+import { acceptJoin, dropJoin } from "../war/merc.ts";
 
 export type CmdResult = { ok: true } | { ok: false; error: string };
 // SPEC-GAP：行動牌生成請求需保留 actor 脈絡；地基原佇列只有 template/near。
@@ -65,6 +66,7 @@ export function cmdAccept(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand
   if (!c || c.status !== "offered") return { ok: false, error: "not-offered" };
   if (s.clock.day > c.deadlineDay) return { ok: false, error: "expired" };
   const template = ctx.world.require("contract", c.template);
+  if (template.kind === "join") return acceptJoin(s, ctx, c, cmd.ask);
   if (!eligible(s, ctx, template, c.issuer)) return { ok: false, error: "issuer-unavailable" };
   if (cmd.ask) {
     const policy = negotiationPolicy(ctx);
@@ -82,6 +84,7 @@ export function cmdAccept(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand
 export function cmdDrop(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand, { v: "drop" }>): CmdResult {
   const c = s.contracts[cmd.contract];
   if (!c || c.settled || !["active", "stage"].includes(c.status)) return { ok: false, error: "not-active" };
+  if (ctx.world.require("contract", c.template).kind === "join") { dropJoin(s, ctx, c); return { ok: true }; }
   c.status = "cancelled"; c.settled = true;
   const ref = eventRef(ctx.emit("ContractCancelled", { contract: c.id }));
   if (c.paidAdvance && c.terms.advance > 0) {

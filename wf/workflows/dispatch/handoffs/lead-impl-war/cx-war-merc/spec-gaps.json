@@ -1,0 +1,62 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "id",
+  "gap",
+  "resolution"
+ ],
+ "rows": [
+  {
+   "id": "M1",
+   "gap": "營運作戰賞金、規模係數、attached扣款、借機價格換算沒有明確數值來源。",
+   "resolution": "op-join-*.json 的 pay.base/mercRules 提供係數。貢獻分母包含實際頭數與抽象 enemyStr 損失折算；單場進度最多0.4。"
+  },
+  {
+   "id": "M2",
+   "gap": "目前是舊節點圖，沒有目標格八鄰與battle_pool。",
+   "resolution": "只經 war/loc.ts 判區；沿用標準 ScenarioGen 地形配方，擴展部署列。護送/尋殼出口放遠端，避免起手一格離場。"
+  },
+  {
+   "id": "M3",
+   "gap": "FactionDef.strategy 現為 strategy/default，不是可載入的 aiprofile。",
+   "resolution": "有實際 aiprofile 才填 slot.ai；否則 sim 預設 tactical。雇主 slot faction/allies 仍照外交映射。"
+  },
+  {
+   "id": "M4",
+   "gap": "core 無殼攜物欄與 optional 目標完成摘要；無 destructible Objective.kind。",
+   "resolution": "尋殼 reachExit 的玩家搬運者代表私吞；軍令由 BattleResult.units/events 判定，hold 重播 Moved/RoundEnd。無 destructible 新核心目標，不改core。"
+  },
+  {
+   "id": "M5",
+   "gap": "無 effect/briefing 與直接 scan 注入介面。",
+   "resolution": "arsenal 經 Sortie.injected 使用既有 effect/perk-soul-calc-1 的 perception+2 作情報注入，戰後移除；不虛稱起手已 revealed。"
+  },
+  {
+   "id": "M6",
+   "gap": "每日補給/醫療沒有既有 join hook。",
+   "resolution": "12:06 orders 放行 operations.ts 呼叫 mercDaily；以 techHours/post 與額外醫療增量達成四檔，不更動 crew。"
+  },
+  {
+   "id": "M7",
+   "gap": "隨機違令沒有現成 policy→戰術AI欄位。",
+   "resolution": "12:18 orders 明確不放行 Sortie.ai，軍令依真實AI戰果自然判定，保留SPEC-GAP，不以反轉units假造隨機。"
+  },
+  {
+   "id": "M8",
+   "gap": "高階 join 在既有 UI 第一份 offered 前會搶位，導致原回歸接到無法接受的契約。",
+   "resolution": "12:16/12:18 orders同意沿用 offerContract 的 rep 可見門檻；接受時重新檢查。greedy 排除 join，UI既有測試不改斷言。"
+  },
+  {
+   "id": "M9",
+   "gap": "repo 沒有 contestContract 實作，也沒有勢力現金帳/代理條約的付款帳戶。",
+   "resolution": "每方最多發一份玩家join、受merc.slots開放條件限制；不偽造競爭獵團搶約。代理以join外源入帳、曝光後雇主relation與玩家rep兩邊記帳；treaties/proxy.json未改。"
+  },
+  {
+   "id": "M10",
+   "gap": "抽象作戰 resolve 原會覆寫曝光與玩家持殼，且可能重算曝光關係。",
+   "resolution": "12:06放行最小operations.ts接線；保留玩家持殼、已曝光，player-exposure與proxy-accounted日誌防止重抽/重扣。曝光公式min(1,0.3+0.2×未撤退玩家slot單位)。"
+  }
+ ]
+}

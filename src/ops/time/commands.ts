@@ -91,7 +91,8 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
       const sortie: Sortie = { id: input.id ?? nextId(s, "sortie"), day: s.clock.day, node: input.node ?? s.ship.at,
         trigger: input.trigger ?? (input.contract ? "contract" : "ambush"), units: input.units ?? [],
         supplies: input.supplies ?? { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: input.injected ?? [],
-        ...(input.contract ? { contract: input.contract } : {}), ...(input.rift ? { rift: input.rift } : {}) };
+        ...(input.contract ? { contract: input.contract } : {}), ...(input.rift ? { rift: input.rift } : {}),
+        ...(input.operation ? { operation: input.operation } : {}) };
       return opts.battle(s, ctx, sortie);
     }
     case "save": ctx.emit("SaveRequested"); return ok;

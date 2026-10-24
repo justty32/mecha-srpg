@@ -1,0 +1,72 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "id",
+  "topic",
+  "decision"
+ ],
+ "rows": [
+  {
+   "id": "G1",
+   "topic": "補員公式衝突",
+   "decision": "倒數公式會新多舊少；依固定驗收與前線既有選擇採(age+潮月天數)×tierMult，tierMult=1/gp[tier]。"
+  },
+  {
+   "id": "G2",
+   "topic": "內容身分與參數",
+   "decision": "多血統共用ancient-rearguard；新增shell:shell/<id>標籤明確對殼。唯一source舊內容仍可fallback。captain-chance:0.3放ModelDef.tags；隊長名沿用FrameDef既有冠名。"
+  },
+  {
+   "id": "G3",
+   "topic": "收入與偏好量級",
+   "decision": "income依spec固定數值，未定cult按city=5；全部活血統含通用每條+2，底線0。命名符合×2；最近潮月作戰部隊count×(1-readiness)作戰損偏好，沒有獨立歷史折損帳。"
+  },
+  {
+   "id": "G4",
+   "topic": "作戰流出係數及內容入口",
+   "decision": "機率0.3/sqrt(gp[tier])；只有seize/raid成功且target有workshop才擲。現有nodes未標workshop，真內容尚無此入口；單元用工坊fixture涵蓋，nodes在本線禁區。"
+  },
+  {
+   "id": "G5",
+   "topic": "市場互通/稀缺參數",
+   "decision": "trade折價與scarcity存量皆乘1-market.minimumMultiplier（目前0.9）；外來機型沿第一份frame filter報價與stockMax。scarcity由市場第一次觀察旗標起算一潮月。"
+  },
+  {
+   "id": "G6",
+   "topic": "未落地服務與經濟",
+   "decision": "封港已阻市場刷新、交易與既有ammo補給；其他services不在授權檔範圍，尚未全面停用。圍城人口、勢力cash/stock、進貢帳本依交接明示不做。"
+  },
+  {
+   "id": "G7",
+   "topic": "動態商品顯示",
+   "decision": "依12:10 orders保持items完全相容，filters存dynamic；文字/UI仍讀items，尚看不到新商品。marketListings供後續接線，明確frame id交易已可用。"
+  },
+  {
+   "id": "G8",
+   "topic": "同frame多ModelDef轉賣",
+   "decision": "只憑frame無法辨認來源型號；挑最近已釋出型（同日以mark決勝），皆未釋出才取一型；只流出一次及maker rep -15。遵交接不讀借機metadata；merc另結算loan-loss。"
+  },
+  {
+   "id": "G9",
+   "topic": "不可變內容及事件登場",
+   "decision": "genericSince在CampaignState覆寫有效generic/open，不修改WorldDB；month只解鎖候選，event用旗標或Chosen/EventResolved完成記錄。隊長排除補員及可重複市場銷售。"
+  },
+  {
+   "id": "G10",
+   "topic": "filter的部件對應缺口",
+   "decision": "frame機型filter已實作；ModelDef沒有component映射，component filter尚無部件展開。現有新市場只用frame。"
+  },
+  {
+   "id": "G11",
+   "topic": "內容補型",
+   "decision": "新增old-array血統/old-array-ii與union-fr8，重用既有戰鬥frame；補正既有mark使勝仗能找到同系列+1隊長。未改frame內容與戰鬥參數。"
+  },
+  {
+   "id": "G12",
+   "topic": "共享與失殼時序",
+   "decision": "shell-pact雙方立即開對方自持血統，條約到期/毀約則非自持血統stalled；日結同步資格，點數只在月初。停研進度存suspended，其他血統仍可推進。"
+  }
+ ]
+}

@@ -12,6 +12,7 @@ import { registerDeath, rosterReturn } from "../crew/index.ts";
 import { admitBeast, beastRules } from "../crew/restraint.ts";
 import { offerNickname } from "../crew/names.ts";
 import { beastSpecies } from "../content/opseffect.ts";
+import { applyOperationBattle } from "../war/merc.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
 export type SortieBattleResult = BattleResult;
@@ -80,18 +81,24 @@ function componentLoot(s: CampaignState, ctx: OpsCtx, sortie: Sortie, items: Com
 
 export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
   if (s.log.some(e => e.type === "BattleResolved" && e.payload.sortie === sortie.id)) return;
-  const resolved = ctx.emit("BattleResolved", { sortie: sortie.id, hash: result.log.hash, rounds: result.rounds, winner: result.winner ?? "none" });
+  const resolved = ctx.emit("BattleResolved", { sortie: sortie.id, hash: result.log.hash, rounds: result.rounds, winner: result.winner ?? "none", ...(sortie.trigger === "operation" ? { operation: sortie.operation, contract: sortie.contract } : {}) });
   const ref = eventRef(resolved), ordered = [...sortie.units].sort((a, b) => a.mech < b.mech ? -1 : 1);
   const ownId = (id: string) => ordered.find(u => u.mech === id)?.mech ?? (/^player-\d+$/.test(id) ? ordered[Number(id.slice(7))]?.mech : undefined);
-  const enemy = result.units.filter(u => !ownId(u.id));
+  const enemy = result.units.filter(u => !ownId(u.id) && (sortie.trigger !== "operation" || u.state.owner === "enemy"));
   const personalIds = new Set(ordered.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)));
   const deferredLoot = new Set<string>();
+  if (sortie.trigger === "operation") for (const entry of result.units) {
+    const loan = s.contracts[sortie.contract ?? ""]?.merc?.loans[entry.id];
+    if (loan && entry.status === "dead") loan.destroyed = true;
+    if (loan && entry.status === "derelict-lost") loan.lost = true;
+  }
 
   // 一、機體：活著／撤退現況寫回，古代死亡休眠，其餘殘骸與流失。
   for (const entry of [...result.units].sort((a, b) => a.id < b.id ? -1 : 1)) {
     const id = ownId(entry.id), before = id ? s.mechs[id] : undefined;
     if (before) {
       const mech = mechAfter(s, ctx, before, entry.state); s.mechs[before.id] = mech;
+      if (sortie.trigger === "operation" && s.contracts[sortie.contract ?? ""]?.loans?.includes(before.id)) Object.assign(mech, { loaned: sortie.contract });
       if (entry.status === "dead" && ctx.db.require("frame", before.frame).cls === "ancient") {
         if (!s.hangar.dormant.includes(before.id)) s.hangar.dormant.push(before.id);
         s.flags[`grudge:${before.id}`] = 1; mech.controlMode = "none";
@@ -180,7 +187,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   }
   // 四、契約：只認原始 UnitDied 事件，加 sortie id 跨場去重。
   const contract = sortie.contract ? s.contracts[sortie.contract] : undefined;
-  if (contract) {
+  if (contract && sortie.trigger !== "operation") {
     const deaths = (result.events ?? []).filter(e => e.type === "UnitDied" && enemy.some(u => u.id === e.payload.unit));
     tallyHeads(contract, deaths.map(e => ({ ...e, payload: { ...e.payload, unit: `${sortie.id}/${e.payload.unit}` } })));
     // SPEC-GAP：部分目標進度未回傳，只有明示 partial 才付半額，失敗有擊殺不自動視為部分成功。
@@ -217,5 +224,6 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
     if (ability.tags.includes("airstrike")) s.inventory.tickets.airstrike = Math.max(0, s.inventory.tickets.airstrike - 1);
   }
   // 八、記錄已先落盤供 ledger 引用；不推進營運時間。
+  if (sortie.trigger === "operation") applyOperationBattle(s, ctx, sortie, result);
   if (s.pendingBattle?.id === sortie.id) delete s.pendingBattle;
 }

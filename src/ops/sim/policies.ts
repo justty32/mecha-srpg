@@ -3,8 +3,10 @@ import type { CampaignState, OpsCommand, OpsCtx, Sortie } from "../state/types.t
 import { evalOpsCond } from "../content/cond.ts";
 import { shortestPath } from "../world/index.ts";
 import { applyCommand } from "../time/index.ts";
+import { joinForce, joinOperation, joinRejection } from "../war/merc.ts";
+import { locNode } from "../war/loc.ts";
 export type Policy = (s: CampaignState, ctx: OpsCtx) => OpsCommand;
-export type PolicyName = "idle" | "greedy" | "random";
+export type PolicyName = "idle" | "greedy" | "random" | "merc";
 function choice(s: CampaignState, ctx: OpsCtx): OpsCommand | undefined {
   const prompt = s.pendingChoices[0]; if (!prompt) return undefined;
   const index = prompt.choices.findIndex(c => !c.requires || evalOpsCond(s, ctx, c.requires, { node: s.ship.at, ...(prompt.person ? { person: prompt.person } : {}) }));
@@ -84,7 +86,7 @@ export const greedy: Policy = (s, ctx) => {
   const pending = choice(s, ctx); if (pending) return pending;
   const repair = repairJob(s, ctx); if (repair) return repair;
   if (s.ship.route && !s.pendingBattle) return { v: "wait", days: 1 };
-  const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => ["active", "stage"].includes(c.status));
+  const active = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).find(c => !c.operation && ["active", "stage"].includes(c.status));
   const units = allUnits(s, ctx);
   // SPEC-GAP：validateSortie 尚未拒絕全空座位；無可控制機體時等待，避免反覆跑到 battle-maxSteps。
   if (!units.length) return { v: "wait", days: 1 };
@@ -92,7 +94,7 @@ export const greedy: Policy = (s, ctx) => {
     ...s.pendingBattle, ...(active && !s.pendingBattle ? { contract: active.id, node: active.target.node, rift: active.target.rift, trigger: "contract" as const } : {}), units,
   } };
   if (active) return { v: "sail", to: active.target.node };
-  const offers = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).filter(c => c.status === "offered")
+  const offers = Object.keys(s.contracts).sort().map(id => s.contracts[id]!).filter(c => !c.operation && c.status === "offered")
     .map(c => ({ c, path: shortestPath(s, ctx, s.ship.at, c.target.node) })).filter(item => item.path)
     .sort((a, b) => a.path!.days - b.path!.days || (a.c.id < b.c.id ? -1 : 1));
   for (const { c } of offers) {
@@ -113,4 +115,32 @@ export const random: Policy = (s, ctx) => {
   // 政策只讀 RNG 快照：抽籤不改營運 state，記錄的指令即可完整重播。
   return legal[nextInt({ ...s.rng }, legal.length)]!;
 };
-export const policies: Record<PolicyName, Policy> = { idle, greedy, random };
+export const merc: Policy = (s, ctx) => {
+  const pending = choice(s, ctx); if (pending) return pending;
+  if (s.pendingBattle) {
+    const units = allUnits(s, ctx);
+    if (units.length) {
+      // SPEC-GAP（lead-impl-war 12:18）：不擴充 Sortie.ai，違令由真實 AI 戰果自然判定。
+      return { v: "sortie", sortie: { ...s.pendingBattle, units } };
+    }
+    if (s.pendingBattle.trigger === "operation" && s.pendingBattle.contract) return { v: "drop", contract: s.pendingBattle.contract };
+  }
+  const active = Object.values(s.contracts).find(c => c.operation && c.status === "active");
+  if (active) {
+    if (s.ship.route) return { v: "wait", days: 1 };
+    const op = joinOperation(s, active)!;
+    const to = locNode(["muster", "march"].includes(op.phase) ? op.target.loc : joinForce(s, active, op).pos);
+    if (s.ship.at !== to) {
+      const sail: OpsCommand = { v: "sail", to };
+      if (applyCommand(s, ctx.db, ctx.world, sail).result.ok) return sail;
+    }
+    const repair = repairJob(s, ctx); if (repair) return repair;
+    return { v: "wait", days: 1 };
+  }
+  const offers = Object.values(s.contracts).filter(c => c.operation && c.status === "offered" && !joinRejection(s, ctx, c))
+    .map(c => ({ c, path: shortestPath(s, ctx, s.ship.at, c.target.node) })).filter(v => v.path)
+    .sort((a, b) => a.path!.days - b.path!.days || a.c.id.localeCompare(b.c.id));
+  if (offers.length) return { v: "accept", contract: offers[0]!.c.id };
+  return greedy(s, ctx);
+};
+export const policies: Record<PolicyName, Policy> = { idle, greedy, random, merc };

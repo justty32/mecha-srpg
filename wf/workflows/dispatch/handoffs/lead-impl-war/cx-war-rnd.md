@@ -21,10 +21,12 @@
 9. **core 可選欄（頂層已裁示採用）**：`src/core/types-def.ts` 的 `FrameDef` 加可選 `series?: string`、`mark?: number`；若 `schemas/` 的 frame schema 拒絕未知欄，就同步加這兩個可選屬性。只新增、不改既有欄、不填任何 frame 內容檔。
 10. **檢查**：`content/check.ts` 確認 `requires` 無環、每勢力開局至少一型可抽、市場 filter 引用存在（前線已做的不重做）。
 11. **CLI**：`cli.ts` 每潮月那行的 `釋出=` 改成真的全世界已釋出機型數。
+12. **前線留給你的市場／條約後果**（`cx-war-core` REPORT G6）：護航成功→目的節點市場補貨＋解除 `priceMods`（前線只留 `war-supplied` 節點旗）；護航失敗→`scarcity` 旗 1 潮月市場少貨；封港→`blockaded` 旗期間該節點 services 停（市場不刷新、不可交易）；`trade` 條約＝兩方市場互列對方可售機型與折價＋研發 `income` +1；`shell-pact`＝兩方都 `LineageOpened`。只動 `world/market.ts`、`war/rnd.ts`、`war/treaties.ts`（只填 trade／shell-pact 條款的效果呼叫）；圍城人口、勢力現金／stock、進貢帳本流**不做**（REPORT 列 SPEC-GAP）。
+13. **黃金 hash**：`src/ops/sim/fixtures/campaign-hash.json` 已由領導依 HEAD 內容重產；工作樹裡別線未提交的內容會讓該黃金測試在工作樹變紅——**不要重產它**。
 
 ## 範圍（排除法寫死）
 
-- 只做：`src/ops/war/rnd.ts`、`src/ops/war/{lineages,models}.ts`（新）、`src/ops/war/forces.ts`（只接抽型權重那一處）、`src/ops/war/state.ts`（只加 rnd 初始化）、`src/ops/world/market.ts`、`src/ops/state/types.ts`（只加可選欄與 union 成員）、`src/ops/content/check.ts`（只加）、`src/ops/sim/cli.ts`（只改 `釋出=`）、`src/core/types-def.ts`（只加第 9 點兩欄）、`schemas/`（只在第 9 點需要時加兩個可選屬性）、`content/base/world/{lineages,models}/`（可改這兩個資料夾的檔）、`content/base/world/markets/war-*.json`（新，最多 2 個）、單元測試 `src/ops/war/rnd*.test.ts`、`src/ops/world/market.test.ts`（只加測試）。
+- 只做：`src/ops/war/rnd.ts`、`src/ops/war/{lineages,models}.ts`（新）、`src/ops/war/forces.ts`（只接抽型權重那一處）、`src/ops/war/state.ts`（只加 rnd 初始化）、`src/ops/war/treaties.ts`（只第 12 點）、`src/ops/world/market.ts`、`src/ops/state/types.ts`（只加可選欄與 union 成員）、`src/ops/content/check.ts`（只加）、`src/ops/sim/cli.ts`（只改 `釋出=`）、`src/core/types-def.ts`（只加第 9 點兩欄）、`schemas/`（只在第 9 點需要時加兩個可選屬性）、`content/base/world/{lineages,models}/`（可改這兩個資料夾的檔）、`content/base/world/markets/war-*.json`（新，最多 2 個）、單元測試 `src/ops/war/rnd*.test.ts`、`src/ops/world/market.test.ts`（只加測試）。
 - 不做：參戰契約、補給、借機、情境生成、`merc` 政策——那是同時在跑的 `cx-war-merc` 的領地，**不要碰 `src/ops/war/merc*.ts`、`src/ops/sortie/`、`src/ops/contracts/`、`src/ops/sim/policies.ts`**；黃金戰役 `test/campaigns/`（下一條線）；`src/rules/`、`src/sim/`、`src/ai/`、`src/ui-adapter/`、`src/mcp/`、spec、`content/base/frames/`、其他 `content/`。
 - 與 `cx-war-merc` 共用的檔（`src/ops/state/types.ts`、`src/ops/content/check.ts`、`src/ops/sim/cli.ts`）：**只做小塊追加、不重排、不重寫既有行**；看到對方的改動不要動它。
 - 件數 gate：程式檔（新增＋修改）超過 15 個就停下回報；容量 gate：程式 diff 超過 80 KB 就停下回報。

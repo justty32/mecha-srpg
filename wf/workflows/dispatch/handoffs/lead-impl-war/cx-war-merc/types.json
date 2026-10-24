@@ -1,0 +1,47 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-24",
+ "columns": [
+  "type",
+  "change",
+  "consumer"
+ ],
+ "rows": [
+  {
+   "type": "ContractTemplate",
+   "change": "kind 聯集新增 join；join?: JoinTerms，引用既有 war/types.ts。op-join 模板附 mercRules 內容係數。",
+   "consumer": "lead-ui-ops / lead-mcp：join 接受固定條款，ask 回 join-fixed-terms。"
+  },
+  {
+   "type": "ContractState",
+   "change": "可選 operation、side(actor|target)、loans(Id[])、violations、merc(MercRecord)。merc 保存貢獻、扣款、借機模型/HP、補給日、退場日、外交防重旗。",
+   "consumer": "存讀檔與 replay：舊存檔不必有欄位；join 以 operation 為生命週期。"
+  },
+  {
+   "type": "Sortie",
+   "change": "trigger 聯集新增 operation；operation?: Id。commands.ts 只追加保留 operation。",
+   "consumer": "出戰用 pendingBattle 的 id/operation/contract。手動用 trigger:contract 冒充 join 出戰會被 operation-required 拒絕。"
+  },
+  {
+   "type": "SortieScenario.ops",
+   "change": "forceIds?: Record<setup unit id, persistent force battle id>。附編、友軍、對人敵軍使用帶模型的 force ID。",
+   "consumer": "prepareSetup 對 forceIds 先對位，略過機庫機的 HP/人物覆寫；互動出戰和自動戰鬥同一入口。"
+  },
+  {
+   "type": "LoanMech",
+   "change": "MechState 交集型別可選 loaned: contract id，owner=faction；未改 core MechState。ContractState.merc.loans[mech].model 可查精確模型。",
+   "consumer": "cx-war-rnd 已收到借機 metadata，market 賣出流出由研發線處理。"
+  },
+  {
+   "type": "PolicyName",
+   "change": "新增 merc；policies.merc 與 CLI --policy merc 可用，CLI join 使用 ContractAccepted.kind=join 累計。",
+   "consumer": "sim CLI / campaign runner。"
+  },
+  {
+   "type": "Merc 公開函式",
+   "change": "onMuster/playerEngages/onOperationEnd 維持 hook 簽名；新 mercDaily/joinRejection/applyOperationBattle 等只在 ops 層。",
+   "consumer": "不新增四動詞或房間，不碰 src/core、rules、sim 或 UI。"
+  }
+ ]
+}

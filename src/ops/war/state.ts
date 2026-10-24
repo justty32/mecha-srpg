@@ -1,7 +1,7 @@
 import { createRng } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
 import { nodeLoc } from "./loc.ts";
-import { factionModelPool } from "./rnd.ts";
+import { factionModelPool, initRnd } from "./rnd.ts";
 import { factionId, nextRelationState, relationKey } from "./relations.ts";
 export function warFactionIds(s: CampaignState, ctx: OpsCtx): string[] {
   return Object.keys(s.factions).sort().filter(id => {
@@ -30,6 +30,7 @@ export function initWar(s: CampaignState, ctx: OpsCtx, seed: number): void {
     s.shells[copy.id] = copy;
     if (typeof copy.holder === "string") s.factions[copy.holder]?.shells?.push(copy.id);
   }
+  initRnd(s, ctx, ids);
   const aff = ctx.world.all("affinity")[0];
   for (let i = 0; i < ids.length; i++) for (const b of ids.slice(i + 1)) {
     const a = ids[i]!, pair = aff?.pairs.find(p => relationKey(factionId(s, ctx, p.a) ?? p.a, factionId(s, ctx, p.b) ?? p.b) === relationKey(a, b));
