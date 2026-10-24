@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "rc-06",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "待和解表照建議裁示落地（lead-reconcile）：「背面」改名月之暗面（一）；只改文字欄，不用潮差＝威脅概念",
  "author": {
   "agent": "codex",
@@ -73,5 +73,81 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-24T19:43:10",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "rc-06",
+  "round": 1,
+  "at": "2026-10-24T19:43:10",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/world/events/port-farside-sealed-crate.json",
+   "content/base/world/lineages/jinghai-stolen.json",
+   "content/base/world/lineages/universal-longspear.json",
+   "content/lore/characters/han-seorin.json",
+   "content/lore/characters/lu-zhaoyin.json",
+   "content/lore/characters/m3.json",
+   "content/lore/characters/mina-darzi.json",
+   "content/lore/characters/neris-venn.json",
+   "content/lore/characters/old-pigeon.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/world/events/port-farside-sealed-crate.json",
+  "content/base/world/lineages/jinghai-stolen.json",
+  "content/base/world/lineages/universal-longspear.json",
+  "content/lore/characters/han-seorin.json",
+  "content/lore/characters/lu-zhaoyin.json",
+  "content/lore/characters/m3.json",
+  "content/lore/characters/mina-darzi.json",
+  "content/lore/characters/neris-venn.json",
+  "content/lore/characters/old-pigeon.json"
+ ],
+ "ids": [
+  "event/port-farside-sealed-crate",
+  "lineage/jinghai-stolen",
+  "lineage/universal-longspear",
+  "character/han-seorin",
+  "character/lu-zhaoyin",
+  "character/m3",
+  "character/mina-darzi",
+  "character/neris-venn",
+  "character/old-pigeon"
+ ],
+ "gateRejections": [],
+ "summary": "待和解照建議裁示落地 polish：9/17 檔改文字欄；閘門 0 違規、check／lore／typecheck／test 綠",
+ "leadNote": "領導在 worktree 親改 2 處（工人因 base 檔 silhouette 是否放行而停下）：lineages/jinghai-stolen、universal-longspear 的 traits.silhouette 勢力義「背面」→暗面／月之暗面；另把工人改掉的 backgrounds/farside-hull-welder、farside-navigator 兩個 name 還原（id 用 farside＝地理義，不屬勢力）。"
 }
