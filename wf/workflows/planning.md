@@ -40,6 +40,8 @@
 | 平衡第二輪：skirmish 10 seed 敵方從未獲勝（player 7 勝 3 平，屬內容強弱）；AI 不會主動 Wait（`waitScore` 0，無延後時機策略）；未接敵朝地圖中央偵察是暫行啟發 | 試玩後 | [fix-ai REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-ai/REPORT.md) |
 | 地物受損／變廢墟（`featureHp` 已初始化，spec 未定怎麼打地物）；`allies`、neutral 戰場敵對、`killTarget` 目標翻譯補進 spec | spec 同步線 | [fix-seams REPORT](dispatch/handoffs/lead-fix-scenario-ai/cx-fix-seams/REPORT.md) |
 | 規則補完：其餘 reaction、sustained 撤除 | sim 後 | rules REPORT |
+| 營運平衡：開局 3 台獵犬（傳統兵器 ×0.1、每台 4 發）對蟲族首戰 5 seed 全敗；薪水 35／天 vs 契約 400 → 3 潮月內走光；補彈機制 spec 未定 | spec＋內容線 | [integ-battle REPORT](dispatch/handoffs/lead-integ-battle/REPORT.md) |
+| UI 遷到 `src/sim/session.ts`（`stepAi` 逐指令播放敵方回合）；hold 核區＝敵方部署區、timeout 預設判負補進 spec | UI 線／spec 同步線 | 同上 |
 
 ## 交接
 

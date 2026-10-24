@@ -18,7 +18,8 @@
 |------|------|------|
 | 快速驗證（改完必跑）| `npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）| agent |
 | 完整驗證（commit 前）| 快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .` | agent |
-| 營運層（改 ops 必跑）| `node src/ops/content/check.ts content/base`＋`node src/ops/sim/cli.ts --months 12 --policy idle` | agent |
+| 營運層（改 ops 必跑）| `node src/ops/content/check.ts content/base`＋`npm run sim:campaign -- --months 12 --policy idle`（再跑 `--policy greedy`：真戰鬥，12 潮月約 1 分鐘內）| agent |
+| 戰鬥效能（改 rules／ai 熱路徑時跑）| `node wf/workflows/dispatch/handoffs/lead-integ-battle/bench-ops.ts 500`：印 ms／步與 hash；行為不變的優化 hash 必須不變（2026-10-24 基準 2.5 ms／步）| agent |
 | 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
 | 驗收模擬（跑一整場 AI 對 AI）| `npm run sim -- --scenario scenario/skirmish-whitegloves --seed 1 [--rounds 50] [--out log.json] [--save s.json]`，印勝負、輪數、存活、事件計數、日誌 hash；同 seed 兩次 hash 必相同 | agent |
 | AI 平衡量測（改 `src/ai/` 評分時跑）| `node src/sim/measure.ts [scenario] [seed…]`，每 seed 一行 JSON：`waitRatio`（wait／單位回合）、winner、hits、deaths、`pass`；skirmish seed 1–5 須全 `pass:true`（`test/ai/balance.test.ts` 守 seed 1）| agent |

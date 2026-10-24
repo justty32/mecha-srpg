@@ -254,3 +254,6 @@
 
 ### `cx-uifix-vm`／`cx-uifix-dom`
 - **狀態**：現役（2026-10-24）；codex 工人（gpt-6-astra），`teams/uifix`，上游 lead-ui-fix；領地見各自交接書 `handoffs/lead-ui-fix/<線名>.md`；信箱 `wf/inbox/mail/<線名>/`
+
+### `lead-integ-battle`／`cx-ib-perf`／`cx-ib-term`／`cx-ib-step`
+- **狀態**：收線（2026-10-24）；Opus 領導＋codex 工人（gpt-6-astra，含 `cx-ib-entry`／`cx-ib-tune`），`teams/integ-battle`；工人各在 scratchpad worktree 工作；領地見 `handoffs/lead-integ-battle/<線名>.md`；信箱 `wf/inbox/mail/<線名>/`
