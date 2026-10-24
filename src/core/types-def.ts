@@ -134,6 +134,8 @@ export type BodyPlanDef = { id: Id; name?: string; parts: PartDef[]; symmetry?: 
 export type FrameDef = {
   series?: string;
   mark?: number;
+  /** 各勢力對本機型的叫法（lead-gaps-battle 2026-10-24；SPEC-GAP，spec 未定欄名）。faction 為勢力 id。 */
+  aka?: { faction: Id; name: string }[];
   id: Id; name: string; cls: FrameClass; grade: Grade;
   bodyPlan: Id; baseAttrs: Record<AttrId, number>;
   pools: PoolDecl[];
@@ -256,6 +258,8 @@ export type Objective = {
 };
 export type ScenarioDef = {
   id: Id; map: Id;
+  /** 顯示名與一段簡介（lead-gaps-battle 2026-10-24；SPEC-GAP，spec 未列）。只給 UI／MCP／百科顯示，不影響規則。 */
+  name?: string; brief?: string;
   slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id; allies?: FactionSlot[] /* 情境層同盟（lead-fix-scenario-ai 新增） */ }>;
   objectives: Objective[]; rounds?: number;
   rules?: { conventionalFactor?: number }; seed?: number;
