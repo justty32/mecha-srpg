@@ -31,7 +31,7 @@ STATUS：**DONE**（2026-10-24）。營運層已從節點圖換成方格大地�
 
 - 大地圖地形獨立成 kind `wterrain`；地點可用 `size` 簡寫 footprint；迷霧暗區用 `darkRects`。
 - 事件 `where:"node"／"route"` 與條件 `$node` 保留為 place／field 的別名，內容線舊檔不必改。
-- 舊 `routes/` 12 檔 `git mv` 到 `archive/routes/`，沒有刪。
+- 舊 `routes/` 12 檔先 `git mv` 到 `archive/routes/`；2026-10-24 使用者同意後由頂層 `git rm`。
 - 警戒行動者只記「目擊」、不攔船；停泊中的船不遭遇（失守城例外）。
 - 遭遇率按航行日計，蝕域遭遇只在移動日擲骰。
 - 攔截戰加入的友軍或第三方每方最多 1 個行動者、每個最多 4 台、全場最多 16 台，商隊只出 0–2 台護衛；無人可戰又逃不掉時以「被劫」扣 10% 現金結算。
@@ -41,7 +41,7 @@ STATUS：**DONE**（2026-10-24）。營運層已從節點圖換成方格大地�
 ## 需要決定
 
 1. 第二年經濟重調（engine-backlog 第 5 列）：建議目標「第 24 蝕月現金低於開局債務 2 倍、第二年每月現金變化在 ±1,000 內」，用 `npm run sim:grid-health -- --months 24` 量。
-2. `archive/routes/` 12 檔要不要 `git rm`。
+2. ~~`archive/routes/` 12 檔要不要 `git rm`~~：已刪（使用者同意，2026-10-24）。
 3. 剩餘工作：四張地球圖（赭洲、霧陸、綠淵、南殼）與完整月面交內容線（用 worldgen 產）；地點模板 `encounters/place-*`、護送綁商隊、join 綁部隊、交涉對白 `dialogues/encounter-*`、月面載具交引擎線。
 4. lead-tune 情報：出戰前 mood<0 注入 `morale-shaken`（`src/ops/sortie/scenario.ts`），ops 端要不要出戰前回復士氣，未處理。
 
