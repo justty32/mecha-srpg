@@ -15,7 +15,7 @@
 ## 流程（fresh clone 後）
 
 1. 確認 node 24（fnm 管理；專案根 `.nvmrc` 由實作線建立）：node 24 可原生執行 `.ts`（type stripping），不必 tsc 編譯。
-2. 不安裝任何套件：沒有執行期依賴，測試用 node 內建 test runner。之後要加開發工具（Vite、happy-dom、Playwright）屬「一定先問」。
+2. `npm ci`：只有開發依賴（`typescript`、`vite`、`happy-dom`、`@playwright/test`，2026-10-24 使用者安裝，`-E` 釘版），沒有執行期依賴；再加任何套件屬「一定先問」。Playwright 用本機快取的 `~/.cache/ms-playwright/chromium_headless_shell-1248`（Manjaro 上跑 ubuntu24.04 fallback build，2026-10-24 實測可跑）。
 3. 無 env var。
 4. 冒煙：照 [testing](testing.md) 跑快速驗證。
 
@@ -25,6 +25,8 @@
 |--------|------|------|
 | 跑單一 TS 檔 | `node <檔>.ts` | node 24 原生 type stripping |
 | 跑測試 | `node --test` | 程式碼落地後的確切 glob 與 npm script 由實作線寫進 [testing](testing.md) |
+| 本機開網頁版 | `npm run dev`，瀏覽器開 `http://localhost:5173/`（`?scenario=<id>&seed=<n>`；大地圖 `?scenario=debug-big&size=160`）| vite 不自動開瀏覽器；agent 只准背景跑、不開 GUI |
+| 打包／預覽 | `npm run build`（輸出 `dist/`）→ `npm run preview`（`http://localhost:4173/`）| `node:fs` 外部化警告無害（瀏覽器只用 `loadPacks`）|
 
 驗證與測試指令不列這裡——連同「誰跑」一起在 [testing](testing.md)。
 

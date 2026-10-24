@@ -16,11 +16,13 @@
 
 | 驗證 | 指令 | 誰跑 |
 |------|------|------|
-| 快速驗證（改完必跑）| `npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（tsc --noEmit，唯一 devDependency）| agent |
+| 快速驗證（改完必跑）| `npm test`（node 內建 test runner；glob 見 `package.json`）＋`npm run check`（載入 `content/base/` 零錯誤）＋`npm run typecheck`（兩段：邏輯層無 DOM lib；`tsconfig.ui.json` 檢 dom／e2e）| agent |
 | 完整驗證（commit 前）| 快速驗證＋黃金測試（`test/golden/`，固定 seed 日誌 hash；rules 線起）＋`bash wf/tools/wf-lint.sh --strict .` | agent |
 | 文件 lint | `bash wf/tools/wf-lint.sh --strict .` | agent |
 | 驗收模擬（跑一整場 AI 對 AI）| `npm run sim -- --scenario scenario/skirmish-whitegloves --seed 1 [--rounds 50] [--out log.json] [--save s.json]`，印勝負、輪數、存活、事件計數、日誌 hash；同 seed 兩次 hash 必相同 | agent |
-| 實際遊玩（畫面、操作、敵方回合）| 瀏覽器開網頁版玩一回合（待實作線補啟動指令）| 使用者 → [WAIT_USER](../WAIT_USER.md) |
+| 實際遊玩（畫面、操作、敵方回合）| `npm run dev` 開網頁玩一回合（[dev-env](dev-env.md)）| 使用者 → [WAIT_USER](../WAIT_USER.md) |
+
+**改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless 3 條：載入、結束回合＋快捷鍵、大地圖捲動；自動 build＋preview 在 4174 埠）。
 
 「誰跑」只有兩種值：**agent**（本機跑得動）、**使用者 → WAIT_USER**（要實機、外部服務、帳號、付費、目視）。判不準就當後者。
 

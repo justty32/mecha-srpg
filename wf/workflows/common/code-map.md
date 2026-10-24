@@ -15,7 +15,9 @@
 | rules | `src/rules/`（17 模組＋`index.ts`）| 全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢 | `src/rules/*.test.ts`、黃金 `test/golden.test.ts` |
 | ai | `src/ai/`（含 `policies/`、`adapters/`）| 知識、估值、可插拔策略；只經 adapter 接 rules | `test/ai/` |
 | sim | `src/sim/{run,replay,save,cli}.ts` | 跑局、重播、存檔、`npm run sim` | `test/sim/` |
-| ui-adapter | `src/ui-adapter/` | ViewModel、可視區、指令輸入、DOM 渲染（唯一碰 DOM 處）| 規劃中 |
+| ui-adapter | `src/ui-adapter/{vm,dom}/` | vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM | 同目錄 `*.test.ts`、`e2e/` |
+
+**ui-adapter 細節**（2026-10-24 落地）：`vm/types.ts` 是 vm↔dom 凍結契約；`vm/session.ts` 逐步跑局（唯一直接呼叫 rules／ai 處）、`viewmodel.ts`、`controller.ts`（`UiAction`→`UiSnapshot`）、`keymap.json`＋`keymap.ts`（資料驅動快捷鍵）、`text.ts`（事件→中文）、`labels.ts`、`debug-maps.ts`（>120×120 大地圖）；`content-browser.ts` 在瀏覽器載內容。`dom/render.ts`（`mountBattle`）、`board.ts`、`panels.ts`、`tooltip.ts`、`style.css`、`main.ts`（入口與接線）；dom 只 import `vm/types.ts` 的型別（main.ts 例外）。根目錄 `index.html`、`vite.config.ts`、`playwright.config.ts`、`tsconfig.ui.json`。
 
 ## 真相層優先序
 

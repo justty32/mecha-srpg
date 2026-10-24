@@ -1,0 +1,10 @@
+{
+  "//": "ui-adapter 的 DOM 層、e2e、vite／playwright 設定：加 DOM lib 與 @types/node（happy-dom／vite 帶進來的）。純邏輯層仍由 tsconfig.json 在無 DOM lib 下檢查，確保邏輯不碰 DOM。",
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "types": ["node", "vite/client"]
+  },
+  "include": ["src/ui-adapter/dom/**/*.ts", "e2e/**/*.ts", "vite.config.ts", "playwright.config.ts"],
+  "exclude": []
+}
