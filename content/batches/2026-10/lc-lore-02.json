@@ -1,0 +1,62 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-lore-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "第三刃、背面補成正式勢力的 lore 部分：代表戰役、背盟或結盟、人物、地點 5–8 件＋年表純插入；兩勢力的四小節正文草稿放報告目錄待改名批次後併入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-lore2",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "content/lore/README.md",
+   "content/lore/factions/third-blade.json",
+   "content/lore/factions/backside.json"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

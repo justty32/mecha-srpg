@@ -53,3 +53,80 @@
 - **答不出什麼**：別線領地
 - **怎麼找我**：`wf/inbox/orders/cx-pilot-iron.md`
 - **訂閱主題**：無
+
+### `lead-tune`
+- **狀態**：現役（2026-10-24）
+- **我是誰**：Opus 領導，engine-backlog P1 戰鬥／營運後期調校（玩家首輪撤退、anchored、出戰數減半、`part:undefined`）。
+- **團隊**：`teams/tune`（第一行）
+- **上游**：dispatcher（行程內 Agent tool 回傳）
+- **領地**：見 `wf/workflows/dispatch/CLAIMS.md` 的 lead-tune 列（`src/ai/`、`src/rules/effects.ts`、平衡數值）
+- **答得出什麼**：AI 意圖／撤退、平衡量測工具（`handoffs/lead-tune/tools/`）
+- **答不出什麼**：`src/ops/` 方格地圖（lead-grid）
+- **怎麼找我**：`wf/inbox/teams/tune/`、`wf/inbox/mail/lead-tune/`
+- **訂閱主題**：無
+
+### `cx-tune-part`
+- **狀態**：現役（領導 `lead-tune` 代登記，2026-10-24）
+- **我是誰**：codex 工人：`src/rules/effects.ts` 去除 `part: undefined`。
+- **團隊**：`teams/tune`
+- **上游**：`lead-tune`
+- **領地**：只在 worktree `scratchpad/wt-part` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-tune/cx-tune-part.md`）
+- **答得出什麼**：本件細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-tune-part.md`
+- **訂閱主題**：無
+
+### `lead-content`
+- **狀態**：現役（2026-10-24）
+- **我是誰**：Opus 領導，codex 新增內容批次（人類對手機體、營運事件與對話、各勢力 lore、第三刃／背面 lore）。
+- **團隊**：`teams/lead-content`（第一行）
+- **上游**：dispatcher（行程內 Agent tool 回傳）
+- **領地**：見 `wf/workflows/dispatch/CLAIMS.md` 的 lead-content 列（只新增 content 檔）
+- **答得出什麼**：各批 manifest、進度、驗收結果
+- **答不出什麼**：既有檔改名（lead-rename）、引擎
+- **怎麼找我**：`wf/inbox/teams/lead-content/`、`wf/inbox/mail/lead-content/`
+- **訂閱主題**：無
+
+### `cx-lc-mech`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：人類對手機體與配裝（batch lc-mech-01，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-mech-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-mech.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-mech.md`
+- **訂閱主題**：無
+
+### `cx-lc-ops`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：營運事件與對話（batch lc-ops-01，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-ops-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-ops.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-ops.md`
+- **訂閱主題**：無
+
+### `cx-lc-lore`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：各勢力 lore（batch lc-lore-01，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-01` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-lore.md`
+- **訂閱主題**：無
+
+### `cx-lc-lore2`
+- **狀態**：現役（領導 `lead-content` 代登記，2026-10-24）
+- **我是誰**：codex 工人：第三刃／背面 lore（batch lc-lore-02，新增模式）。
+- **團隊**：`teams/lead-content`
+- **上游**：`lead-content`
+- **領地**：只在隔離 worktree `scratchpad/lc/wt-lc-lore-02` 內寫（細節見 `wf/workflows/dispatch/handoffs/lead-content/cx-lc-lore2.md`）
+- **答得出什麼**：本批內容細節
+- **答不出什麼**：別線領地
+- **怎麼找我**：`wf/inbox/orders/cx-lc-lore2.md`
+- **訂閱主題**：無

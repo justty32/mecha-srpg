@@ -1,0 +1,84 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-mech-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "人類對手衍型機：lore 已列名卻沒有 frame 的勢力機型（基多、奈洛比、鹽鷗隊長機等）5–7 台＋配裝部件／能力／效果＋1–2 個人對人展示情境；新詞、兩步命名",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-mech",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/ability-forms.json",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/battle-field.md",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/playtest-baselines.json",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/planning/design-notes/mechs.md",
+   "src/mcp/README.md"
+  ]
+ },
+ "maxFiles": 16,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "base/components",
+   "base/abilities",
+   "base/effects",
+   "base/scenarios"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/union-fr7",
+   "frame/bulwark-ii",
+   "frame/longspear-v4",
+   "frame/bulwark-iv-rampart",
+   "frame/selene-crescent-g5",
+   "frame/selene-aurora"
+  ],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 3,
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-content/lc-mech-01/mcp-log"
+ }
+}

@@ -1,0 +1,57 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-ops-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "營運事件與對話：中後期隨機事件系列（每系列 ≥3 件）＋必要的事件鏈後續、對既有人物的新話題對白；效果白名單、第一選項無 requires；不動營運黃金",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-ops",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-ops-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-ops-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/bio-battle.md",
+   "wf/workflows/content/ops-content.md",
+   "wf/workflows/planning/specs/ops/content-format-ops.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-24/lead-content-world/engine-rules.md"
+  ]
+ },
+ "maxFiles": 15,
+ "allow": {
+  "kinds": [
+   "base/world/events",
+   "base/world/templates",
+   "base/world/dialogues",
+   "base/world/rooms"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

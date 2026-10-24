@@ -1,0 +1,58 @@
+{
+ "contract": "content-batch/1",
+ "id": "lc-lore-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "各勢力 lore：為缺「藍本古代機與研發路線／對傭兵態度與補給」的勢力補代表事件（研發、補給、背盟或結盟）5–8 件＋年表純插入；四小節草稿放報告目錄待改名批次後併入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-lc-lore",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-content",
+ "date": "2026-10-24",
+ "base": "cd8e5758ee03245bffa44d2d4b524bc7d70846dd",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-content/lc-lore-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "content/lore/README.md"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
