@@ -13,7 +13,8 @@ import type { WikiApi, WikiMount } from "./mount.ts";
 import "./wiki.css";
 
 export function bootWiki(root: HTMLElement, navigate: (hash: string, replace?: boolean) => void): WikiMount {
-  const modules = import.meta.glob<{ default: unknown }>("/content/**/*.json", { eager: true });
+  // content/index（生成的內容索引）與 content/batches（批次帳本）是 agent 用的帳本，不是百科條目。
+  const modules = import.meta.glob<{ default: unknown }>(["/content/**/*.json", "!/content/index/**", "!/content/batches/**"], { eager: true });
   const files: RawFile[] = Object.entries(modules).map(([file, module]) => {
     const [pack, ...path] = file.slice("/content/".length).split("/");
     return { pack: pack!, path: path.join("/"), data: module.default };
