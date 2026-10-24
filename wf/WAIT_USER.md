@@ -12,3 +12,4 @@
 
 - [planning] 世界觀與 BB 式細節／營運層範圍（已裁示的見 [design-notes](workflows/planning/design-notes.md)）→ Fable 寫 spec，再派線
 - [feature-dev] 請使用者 `npm run dev` 開 http://localhost:5173/ 試玩 lead-ui-fix 改版，九項逐條確認（見 [feedback](workflows/dispatch/handoffs/lead-ui-fix/feedback.md)）→ 回饋後派下一輪 UI 修正
+- [feature-dev] 請使用者開 http://localhost:5173/#/ops 試玩營運畫面：接約→航行→出戰（親自指揮）→回營運看戰果；回饋手感、記錄是否太吵、世界圖可讀性、存讀檔 → 回饋後派營運 UI 修正線
