@@ -176,7 +176,7 @@
 - **訂閱主題**：無
 
 ### `lead-rename`
-- **狀態**：現役（2026-10-24）
+- **狀態**：已收線（2026-10-24）
 - **我是誰**：Opus 領導：全庫用語改名＋翻譯腔重審（codex-batches 第 1 批）。
 - **團隊**：`teams/lead-rename`（成員 `cx-rn-01`…`cx-rn-17`，各一批 polish，交接書 `wf/workflows/dispatch/handoffs/lead-rename/cx-rn-NN.md`，只在隔離 worktree `scratchpad/rename/wt-rename-NN` 內寫；領導代登記，不逐格列）
 - **領地**：見 CLAIMS 的 lead-rename 列

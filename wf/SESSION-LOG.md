@@ -11,6 +11,7 @@
 
 ## 最新進度
 
+- [content] lead-rename 已收線（2026-10-24）：全庫改名 18＋3 批收件、定案表 `design-notes/terms-rename.json`；待頂層代存 REPORT 並裁示「需要決定」4 項（src 顯示字串、刪兩份 residuals.json、lc-field-01 收件後再掃、全面翻譯腔重審）→ [handoffs/lead-rename](workflows/dispatch/handoffs/lead-rename/)
 - [feature-dev] lead-tune 進行中（2026-10-24）：P1 首輪撤退／anchored／出戰數＋`part:undefined`（已 commit `b95dcd4`）；工人 cx-tune-intent、cx-tune-human 在跑 → [lead-tune](workflows/dispatch/handoffs/lead-tune/)
 - [feature-dev] lead-grid：方格大地圖實作（engine-backlog P1）進行中，第一波 grid 核心＋長陸／月面樣本已 commit；第二波 cx-grid-migrate 跑中（`world/nodes/`→`places/`、`ferry.json`→`lanes/`、`routes/` 移出 content；lead-rename 若要改這些檔請等第二波 commit 後在新路徑改） → [handoffs/lead-grid](workflows/dispatch/handoffs/lead-grid/PLAN.md)
 - [content] lead-content：codex 新增內容四批並行（lc-mech-01 人類對手機體、lc-ops-01 營運事件與對話、lc-lore-01 各勢力 lore、lc-lore-02 第三刃／背面 lore）→ [handoffs/lead-content](workflows/dispatch/handoffs/lead-content/)
