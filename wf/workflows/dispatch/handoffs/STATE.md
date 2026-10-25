@@ -42,7 +42,7 @@
 1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
 2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
 3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）。
-4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover 與 `codex-batches.json`：用語改名已完成（lead-rename，2026-10-24）；**翻譯腔重審三批 dl-01／02／03 已排、待開跑**（第 11–13 列，manifest 與交接書草稿在 `lead-decide-land/b5/`，順帶對齊 2026-10-25 裁示與「機甲核心」用詞；第二輪 104 檔見第 14 列）；其餘批次 3–4 批並行。
+4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover 與 `codex-batches.json`：用語改名已完成（lead-rename，2026-10-24）；**翻譯腔重審 B5 五批 dl-01～05 已全部合入**（lead-polish，2026-10-25，第 11–14 列 accepted，[REPORT](lead-polish/REPORT.md)）；其餘批次 3–4 批並行。
 5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）talk-decide 定案的引擎線：engine-backlog 第 30 列（機甲核心與座艙狀態，併 35／46，小–中、重產黃金）可先派，47／48／49 接其後；第 30 列派線時一併授權改 specs/core rules-people 與 specs/ops time-and-tick 的「不能獨駕」殘留；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
 6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
 
