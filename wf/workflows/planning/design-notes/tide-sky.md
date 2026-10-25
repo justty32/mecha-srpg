@@ -2,7 +2,7 @@
 
 [design-notes 入口](../design-notes.md)｜[planning](../../planning.md)｜用語定案 [terms](terms.md)（本檔詞彙 2026-10-24 隨五題定案，定案表就是 [glossary.json](tide-sky/glossary.json)）｜守則 [world-pillars](../../content/world-pillars.md)
 
-**狀態：五題已定（2026-10-24，使用者「就用暫定答案」；見下方「使用者拍板」）**，其餘細節仍是提案。使用者原話（2026-10-24）：「直接用潮汐來形容吧：大潮，小潮，退潮…浪潮有大有小，大潮期會有大怪。」「然後可以弄出更多，以日月地三星的位置為引，配合太陽系中其他星球的位置。」「有些時候是獸族得到強化，有些時候是其他。」「不一定是強化，也可能是事件，或狀態影響，或一些特性啥的。」spec 改法在 [spec-proposal](tide-sky/spec-proposal.md)：world 層第 1–12 列已由 lead-settle 落進 [specs/world/omens](../specs/world/omens.md)（照下方定案修正），ops 層第 13–20 列待引擎線（engine-backlog）。
+**狀態：五題已定（2026-10-24，使用者「就用暫定答案」；見下方「使用者拍板」）**，其餘細節仍是提案。使用者原話（2026-10-24）：「直接用潮汐來形容吧：大潮，小潮，退潮…浪潮有大有小，大潮期會有大怪。」「然後可以弄出更多，以日月地三星的位置為引，配合太陽系中其他星球的位置。」「有些時候是獸族得到強化，有些時候是其他。」「不一定是強化，也可能是事件，或狀態影響，或一些特性啥的。」spec 改法在 [spec-proposal](tide-sky/spec-proposal.md)：world 層第 1–12 列已由 lead-settle 落進 [specs/world/omens](../specs/world/omens.md)（照下方定案修正），ops 層第 13、18、20 列已由 lead-tide-cal 落地（2026-10-26，曆函式與天象旗＝engine-backlog 38），其餘 ops 列待 engine-backlog 39–43。
 
 **2026-10-24 晚潮候改名**（使用者對大潮改讀「都對」，見 [world/scale](world/scale.md)）：每月兩次的朔望改叫**漲潮（日）**、原「漲潮三日」改叫**潮前三日**、潮勢的「怒潮」併入**大潮**（末日級、每年兩三次），所以潮勢是 枯潮＜漲潮＜大潮＜連珠潮、第四題改叫「大潮抬級」；本目錄各檔已照此換詞（引擎 `spring` 等識別字不改）。
 
