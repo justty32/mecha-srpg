@@ -24,7 +24,7 @@
 
 ## 機魂：另一個駕駛員，個性限 S 級以上
 
-`kind:"soul"`、池 `ap`／`fatigue`／`calc`（算力，5–10）、`growth:{tree:"soultree/…", researchPerDirection, companionshipRate}`、無 hp 池（魂核毀才死）。**一般機魂照本宣科、沒有鮮明人格**：traits 0–1、名字是登錄號或物件名（七號、手套、算盤）。**S 級以上才有個性**（節點開滿、陪伴夠久、出過事）：口頭禪、怪癖、對某人的執念、會替招式取名；目前以 tags `soul-grade-s` 與 soultree 節點數表達，機魂等級欄待引擎缺口線。寫有個性的機魂時在 lore 點明「這很罕見」。天賦樹 `soultrees/<dir>.json` 4 節點、方向 `calc`／`hand`／`heart`（算／手／心）；**機魂不能獨駕、不可複製**（2026-10-24 晚裁示；引擎現行的 `autonomy` 獨駕節點待 engine-backlog 移除，新內容不要再寫要獨駕的樹）；perk 是 `effects/perk-soul-*.json`。白手套不是機魂、也不是機甲：是塞勒涅沒有精粹核的無人鐵偶，只打得了人；「手套」是塞勒涅唯一的催收機魂（一個人，不是複本）。古代機**不認機魂**（古代機不看沒有肉的東西）。
+`kind:"soul"`、池 `ap`／`fatigue`／`calc`（算力，5–10）、`growth:{tree:"soultree/…", researchPerDirection, companionshipRate}`、無 hp 池（魂核毀才死）。**一般機魂照本宣科、沒有鮮明人格**：traits 0–1、名字是登錄號或物件名（七號、手套、算盤）。**S 級以上才有個性**（節點開滿、陪伴夠久、出過事）：口頭禪、怪癖、對某人的執念、會替招式取名；目前以 tags `soul-grade-s` 與 soultree 節點數表達，機魂等級欄待引擎缺口線。寫有個性的機魂時在 lore 點明「這很罕見」。天賦樹 `soultrees/<dir>.json` 4 節點、方向 `calc`／`hand`／`heart`（算／手／心）；**機魂不可複製、能獨駕但成長慢**（2026-10-25 裁示推翻 2026-10-24 晚「不能獨駕」；`autonomy` 節點保留）；perk 是 `effects/perk-soul-*.json`。白手套不是機魂：打人時是塞勒涅沒有機甲核心的無人鐵偶（情境寫 `crew:"remote"`＋`core:false`），只打得了人；守牆打獸時是有核心但沒人驅動的遙控機（`crew:"remote"`，普通開）。機甲上那顆叫機甲核心，精粹核只指原料；「手套」是塞勒涅唯一的催收機魂（一個人，不是複本）。古代機**不認機魂**（古代機不看沒有肉的東西）。
 
 ## 常見錯誤
 
