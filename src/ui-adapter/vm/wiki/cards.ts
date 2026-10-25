@@ -3,6 +3,7 @@ import { apparentAge } from "../../../core/age.ts";
 import { parseMarkdown } from "./markdown.ts";
 import { layerTypeLabel } from "../labels.ts";
 import { relationLabel } from "./relations.ts";
+import { fieldVisibility, visibilityOf } from "./visibility.ts";
 import type { CardSection, CardValue, EntryPage, EntryRef, WikiEntry, WikiIndex } from "./types.ts";
 
 type Data = Record<string, unknown>;
@@ -66,7 +67,8 @@ class CardBuilder {
   rows(value: unknown, field = "", depth = 0): Row[] {
     const data = object(value);
     if (!data) return [{ label: field || "value", value: this.value(value, field) }];
-    return Object.entries(data).map(([k, v]): Row => {
+    // lore 物件內的 visibility 只是標記（hidden 已在建索引前拿掉），不當資料列顯示。
+    return Object.entries(data).filter(([k]) => !(this.entry.pack === "lore" && k === "visibility")).map(([k, v]): Row => {
       const path = field ? `${field}.${k}` : k;
       const keyRef = this.ref(k, path);
       // SPEC-GAP：kv 標籤只能是文字；物件鍵引用另放對象欄，保留可點連結。
@@ -195,7 +197,7 @@ class CardBuilder {
       if (ref && typeof relation === "string") ref.rel = relation;
       if (ref && typeof data?.note === "string") ref.note = data.note;
       return [ref ? { t: "ref", ref } as CardValue : this.value(target, item.path),
-        this.value(typeof relation === "string" ? relationLabel(relation) : relation, `${item.path}.rel`),
+        this.value(typeof relation === "string" ? relationLabel(relation) + (visibilityOf(data) === "rumor" ? "（傳聞）" : "") : relation, `${item.path}.rel`),
         this.value(data?.note ?? "", `${item.path}.note`)];
     });
     this.sections.push({ t: "table", title: "關係", columns: ["對象", "關係", "備註"], rows });
@@ -218,7 +220,11 @@ function loreOverview(b: CardBuilder): void {
     place: ["region", "continent", "world", "kind", "status2108", "factions"],
     era: ["from", "to"],
   };
-  b.summary(fields[b.entry.kind] ?? [], { kind: "類型", faction: "所屬", ...(b.entry.kind === "event" ? { places: "地點" } : {}) });
+  const names: Record<string, string> = { kind: "類型", faction: "所屬", ...(b.entry.kind === "event" ? { places: "地點" } : {}) };
+  // 可見度 rumor 的欄：標題加「（傳聞）」（engine-backlog 45；格式見 content/lore/README.md「可見度」）。
+  for (const f of Object.keys(b.data)) if (fieldVisibility(b.data, f) === "rumor") names[f] = `${names[f] ?? label(f)}（傳聞）`;
+  b.used.add("visibility"); b.used.add("fieldVisibility");
+  b.summary(fields[b.entry.kind] ?? [], names);
   b.summary(["era", "faction", "factions", "date", "place", "kind"]);
   const policy = b.overview.find(row => row.label === label("mercPolicy"));
   if (policy?.value.t === "kv") {
@@ -227,6 +233,15 @@ function loreOverview(b: CardBuilder): void {
     }
   }
   if (b.entry.kind === "event") b.list("consequences", "後果");
+  // secrets 到這裡只剩 rumor（hidden 已拿掉），呈現為傳聞清單。
+  if (Array.isArray(b.data.secrets)) {
+    b.used.add("secrets");
+    const items = b.data.secrets.flatMap(raw => {
+      const s = object(raw);
+      return s && typeof s.text === "string" ? [text(typeof s.note === "string" ? `${s.text}（${s.note}）` : s.text)] : [];
+    });
+    if (items.length) b.sections.push({ t: "list", title: "傳聞", items });
+  }
 }
 
 function game(builder: CardBuilder): void {
@@ -318,6 +333,7 @@ export function entryPage(index: WikiIndex, key: string): EntryPage | null {
     const value = b.data[field];
     return typeof value === "string" || typeof value === "number" ? [String(value)] : [];
   });
+  if (lore && visibilityOf(b.data) === "rumor") badges.unshift("傳聞");
   return {
     key, title: entry.name, subtitle: `${categoryLabel} · ${entry.id}`, badges: [...new Set(badges)],
     summary: entry.summary, aka: [...entry.aka],

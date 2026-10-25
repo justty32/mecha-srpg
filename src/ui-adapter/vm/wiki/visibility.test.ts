@@ -122,3 +122,25 @@ test("真實 lore：每一則 hidden 真相都不出現在百科任何畫面資�
   const raw = JSON.stringify(files.filter(f => f.pack === "lore").map(f => f.data));
   assert.ok(hidden.every(t => raw.includes(t)));
 });
+
+test("詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞加（傳聞）、secrets 剩下的列成傳聞清單、visibility 不當資料列", () => {
+  const index = buildWikiIndex(fixtures);
+  const cult = entryPage(index, "lore:faction/cult")!;
+  const overview = cult.sections.find(s => s.title === "概要" && s.t === "kv");
+  assert.ok(overview?.t === "kv" && overview.rows.some(r => r.label === "藍本古代機（傳聞）"));
+  const rumors = cult.sections.find(s => s.title === "傳聞");
+  assert.deepEqual(rumors, { t: "list", title: "傳聞", items: [{ t: "text", v: "清空月面就能結束蝕潮" }] });
+  const dump = JSON.stringify(cult);
+  assert.equal(dump.includes("\"visibility\""), false);
+  assert.equal(dump.includes("可見度"), false);
+  const prophet = entryPage(index, "lore:character/prophet")!;
+  const pov = prophet.sections.find(s => s.title === "概要");
+  assert.ok(pov?.t === "kv" && pov.rows.some(r => r.label === "座機（傳聞）"));
+  const rumorFixtures = [...fixtures, lore("characters/ghost.json", { ...common, id: "character/ghost", name: "幽影", summary: "只在傳聞裡", body: "本文",
+    faction: null, role: "測試員", events: [], visibility: "rumor",
+    relations: [{ character: "character/prophet", relation: "秘密", note: "據說", visibility: "rumor" }] })];
+  const ghost = entryPage(buildWikiIndex(rumorFixtures), "lore:character/ghost")!;
+  assert.equal(ghost.badges[0], "傳聞");
+  const rel = ghost.sections.find(s => s.title === "關係");
+  assert.ok(rel?.t === "table" && JSON.stringify(rel.rows[0]).includes("（傳聞）"));
+});
