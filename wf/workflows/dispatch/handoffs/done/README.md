@@ -55,5 +55,6 @@
 | 2026-10-24 | `lead-history-lines` | talk-world HANDOVER 第 7 節：design-notes/world/history-lines（八線敘述、十節點、年表 127 條掛線、孤兒 17、待和解 32）＋ tide-range（72 城實測潮差，codex 上網）；codex 四工人三輪修訂納入當日新裁示 | [lead-history-lines/](../lead-history-lines/)（工人交接書、REPORT 與初稿留原處；總 REPORT 待頂層代存為 lead-history-lines/REPORT.md） |
 | 2026-10-24 | `lead-reconcile` | 待和解照建議裁示（R32 作廢：不用潮差＝威脅）：history-reconcile 加「採用讀法」欄、八線與資料同步；spec／守則 W11／style／terms；codex polish 9 批 98 檔帶回（海洋說、魂線、迦梨與三種聲音、歸還黨三支、新加坡會議制度化、月之暗面、筆誤）；scale 提案 v2；HANDOVER 拆入口＋handover/ | [lead-reconcile/](../lead-reconcile/)（guide、工人交接書與各批 REPORT 留原處；總 REPORT 待頂層代存為 lead-reconcile/REPORT.md） |
 | 2026-10-24 | `lead-settle` | 數字 v2 定案（「OK」）與世界觀暫值轉已定（「就用暫定答案」）：guide D1–D16；design-notes、talk-world open／rulings 補記、specs/world 新增 omens／voices、history-lines 暫值改已定、world-pillars W12／W13、style 與詞彙表；codex polish st-01 12 檔（lore 矛盾）＋add st-02 聖馬洛；engine-backlog 38–45 | [lead-settle/](../lead-settle/)（guide、工人交接書與各批 REPORT 留原處；總 REPORT 待頂層代存為 lead-settle/REPORT.md） |
+| 2026-10-25 | `talk-decide` | Fable 對談八題全拍板：精粹核不耗損、人在座艙才驅核；機魂能獨駕、成長慢；AI 在大潮時刻／古代機半徑極小機率醒成機魂；精粹改人（不老、能力、三系代價、點名五人）；大潮全球同一時刻；B10／B3／B7／B5／B8／B9 照建議 | [talk-decide/](../talk-decide/REPORT.md)、[HANDOVER](../talk-decide/HANDOVER.md)（留原處，落地線 lead-decide-land） |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。

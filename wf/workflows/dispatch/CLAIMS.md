@@ -8,7 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| talk-decide | `handoffs/talk-decide/` | 其餘唯讀 | 2026-10-25 |
+| lead-decide-land | `planning/design-notes/`、`planning/specs/world/`、`content/world-pillars*`、`content/lore/style.md`、lead-content `faction-drafts/`（只 `ancientMech`）、`handoffs/{engine-backlog.*,codex-batches.json,talk-world/handover/open.md,talk-decide/,lead-decide-land/,STATE.md,done/README.md}`、`wf/STRUCTURE.md`（只 B9 一行）、SESSION-LOG、CLAIMS | `src/`、`tests/`、`test/`、lore 以外遊戲資料、spec/core、數值、AGENTS.md／CLAUDE.md；不刪檔 | 2026-10-25 |
 
 ## 保留給調度者，任何線都不得寫
 
