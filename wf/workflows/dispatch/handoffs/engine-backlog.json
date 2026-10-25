@@ -276,11 +276,11 @@
   {
    "序": "30",
    "優先": "P2",
-   "項目": "移除機魂獨駕：單獨駕駛判定、autonomy 節點、終局計數",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、specs/core/rules-people.md",
-   "影響": "引擎仍允許機魂在失去駕駛員時自動接手、終局把可獨駕機魂算作駕駛員；與「機魂不能獨駕、不可複製」相衝",
-   "建議做法": "失去駕駛員即癱瘓（保留駕駛員昏迷時的接手與替駕一回合）；autonomy 只留在控制檢定；CampaignEnd 只數人類駕駛員；soultrees 內容的 autonomy 節點改向；七號 2104 回港按 lore 唯一例外處理（待使用者確認）",
-   "規模": "小–中（src/rules＋src/ops 終局；後者等 lead-grid 收線）"
+   "項目": "機甲核心與座艙狀態（2026-10-25 定案；合併原第 30、35、46 列）：核心標記（有／無，無＝凡鐵）＋座艙狀態（人／機魂／AI／遙控／空）；座艙沒有人也沒有機魂＝普通開；機魂獨駕保留；白手套六情境改寫",
+   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots、[lead-world-land](lead-world-land/REPORT.md)、[lead-pilot-essence](lead-pilot-essence/REPORT.md)",
+   "影響": "裁示：只有人（或機魂）在座艙裡才驅得動機甲核心、才有能力；遙控與傳統 AI 只能普通開（會動會打，機上精粹武器對獸只算材料等級的抵抗性結算，無招式、無附魔）；機魂能獨駕、成長慢（推翻 2026-10-24 晚「不能獨駕」——原列「移除機魂獨駕」作廢，引擎現行的機魂接手／替駕／autonomy 單獨駕駛不必移除）。現況：引擎沒有核心與座艙標記，白手套情境用機甲 frame 坐 `seat:\"soul\"` 的 `person/glove`（`skirmish-whitegloves` 4 台、`rift-edge-nest` 5 台、`quarry-duel`、`crater-three-way`、`lunar-blockade-run`、`shell-excavation-escort` 各 1 台），`faction/selene-whitegloves` tag `soul-driven`",
+   "建議做法": "(1) frame 或單位加核心標記（`core: true|false`，預設 true；false 的武器一律當凡鐵，接第 28 列抵抗性）；(2) 單位座艙狀態由座位人物推出：有 `actorRole` 人類＝人、只有 soul＝機魂、無座位人物＋aiprofile＝AI 或遙控（仿 `instinct` 加 `scripted` 控制模式，遙控另帶 `remote` 標記）；(3) AI／遙控／空座艙：禁用機體招式與附魔、person 能力與 perk 不生效，只留武器與基本動作，精粹武器傷害照材料等級；(4) 機魂接手、替駕、autonomy 單獨駕駛照現行保留；(5) 白手套情境：打人場改無核心鐵偶、守牆場改有核心遙控機，移除 `seat:\"soul\"` 複坐，faction tag 改 `unmanned`；女武神 A 級保留；(6) 終局「駕駛員為零」是否算機魂：建議算（機魂能獨駕），需同步 specs/ops time-and-tick 與 specs/core rules-people（本表範圍外，派線時一併授權）；改後黃金重產",
+   "規模": "小–中（src/rules control＋content 情境 6 檔＋黃金重產；1 位領導帶 1–2 codex）"
   },
   {
    "序": "31",
@@ -321,7 +321,7 @@
   {
    "序": "35",
    "優先": "P3",
-   "項目": "白手套單位改讀為無精粹核的鐵偶",
+   "項目": "已併入第 30 列（2026-10-25，B3 選②加標記）：白手套單位改讀為無機甲核心的鐵偶",
    "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
    "影響": "白手套在內容裡是衍型機 frame（IX-01 等）＋glove-line aiprofile；新設定下它們只打得了人、對獸無效，三方戰情境（crater-three-way 等）裡白手套打獸不合設定",
    "建議做法": "需要決定：①保留衍型機 frame、只靠文案改讀；②給白手套單位加「凡鐵」標記（第 28 列後對獸只刮甲）；③新 kind 鐵偶。建議②，數值不動",
@@ -351,7 +351,7 @@
    "項目": "曆函式與天象旗：`stage(dom)`／`tide(day)`／`omens(day)` 純函式，`Clock` 加 `tide`／`stage`／`year`，tick 段 1 寫 `flags.omen:*`，`calendar` 加 `monthsPerYear`／`epochMonth`；內容 kind `omens/`（OmenDef）取代未實作的 `calendar.special`；連珠潮排定第 40 蝕月一次、之後只靠湧現（迫月＋≥3 星候）",
    "來源": "[plan-tide-sky](plan-tide-sky/REPORT.md)、design-notes/tide-sky（五題 2026-10-24 已定，lead-settle）",
    "影響": "不做則內容線寫不出天象事件；做了當天事件／契約／行動牌的 `when` 就能寫 `{\"tag\":\"omen/…\"}`",
-   "建議做法": "先做這列：純函式＋載入器一個新資料夾＋check 驗週期；黃金不變（旗不影響既有 Cond）；同時把 tide-sky spec-proposal 第 13、18、20 列（time-and-tick 曆段、content-format-ops 曆範例、constraints-ops USR-14）落進 specs/ops；與第 31 列的 stage／tide 合併做",
+   "建議做法": "先做這列：純函式＋載入器一個新資料夾＋check 驗週期；黃金不變（旗不影響既有 Cond）；同時把 tide-sky spec-proposal 第 13、18、20 列（time-and-tick 曆段、content-format-ops 曆範例、constraints-ops USR-14）落進 specs/ops；與第 31 列的 stage／tide 合併做；2026-10-25 裁示大潮全球同一時刻：大潮由全球一張蝕曆同一刻觸發，本地晝潮／夜潮只是文案差異（不另給天象效果）",
    "規模": "小"
   },
   {
@@ -414,13 +414,13 @@
    "項目": "lore 資料的「隱藏真相」標記：迦梨是真古代機（沐蝕會 `ancientMech`、薩米爾 `mech`）、裏側聲音同源等世界觀真相，在 wiki 不該當公開事實呈現",
    "來源": "lead-reconcile REPORT「工人回報的既有矛盾」tide-creed 一項；lead-settle（資料結構，不在 polish 範圍）",
    "影響": "wiki 若按欄位分類顯示，會直接揭露外界不知道的真相",
-   "建議做法": "`content/lore/README.md` 欄位表與 `content/lore/check.ts` 加可選欄（例：`ancientMech.visibility`：`public`／`rumor`／`hidden`）或事件與條目的 `secret` 標記；wiki 依標記隱藏；既有資料不改值，只補標記",
+   "建議做法": "`content/lore/README.md` 欄位表與 `content/lore/check.ts` 加可選欄（例：`ancientMech.visibility`：`public`／`rumor`／`hidden`）或事件與條目的 `secret` 標記；wiki 依標記隱藏；既有資料不改值，只補標記；2026-10-25（talk-decide B8）：lead-content 勢力草稿的 `ancientMech` 欄即本列的標記位，兩件合一做；塞勒涅三層知情（2086／2095／2097，design-notes/world/great-tide）等本列落地後再寫進 selene 檔",
    "規模": "小"
   },
   {
    "序": "46",
    "優先": "P2",
-   "項目": "待 Fable 對談定案後再評估：無人單位（遠端遙控／照術式的規則 AI）：不能用精粹相關能力、戰力低於人駕",
+   "項目": "已併入第 30 列（2026-10-25 定案）：無人單位（遠端遙控／照術式的規則 AI）：不能用精粹相關能力、戰力低於人駕",
    "來源": "lead-pilot-essence（2026-10-24 使用者原話，尚未定案）、design-notes/world/pilots「A 無人化」",
    "影響": "裁示：無人機只有遙控與規則 AI、戰力一定比人駕差；引擎沒有無人機甲的控制模式，白手套情境用機甲 frame 坐 `seat:\"soul\"` 的 `person/glove`（`skirmish-whitegloves` 一場 4 台、`rift-edge-nest` 5 台坐同一個機魂，其餘一台；共 6 個情境：`skirmish-whitegloves`、`rift-edge-nest`、`quarry-duel`、`crater-three-way`、`lunar-blockade-run`、`shell-excavation-escort`），`faction/selene-whitegloves` tag `soul-driven`——同時違反本列與「機魂不能獨駕、不可複製」",
    "建議做法": "仿 `instinct` 加一個無座位人物的控制模式（例 `scripted`；遙控可同模式另帶 `remote` 標記），指令交 aiprofile（`glove-line`）；無人物時 person 能力與 perk 不生效（EF-08 已略過），另禁用帶 `essence`／`resonance`／`burden` 類 tag 的能力，只留凡鐵武器與基本動作；白手套情境改用此模式、移除 `seat:\"soul\"` 複坐，faction tag 改 `unmanned`；與第 30（機魂獨駕）、35（白手套鐵偶）列合做；改後黃金重產",
@@ -429,19 +429,28 @@
   {
    "序": "47",
    "優先": "P3",
-   "項目": "待 Fable 對談定案後再評估：人帶能力：精粹讓駕駛員長出的能力屬於人、換機照用",
-   "來源": "lead-pilot-essence（2026-10-24 使用者原話，尚未定案）、design-notes/world/pilots「B 精粹改人」",
+   "項目": "已定案可評估（2026-10-25）：人帶能力：驅動機甲核心讓駕駛員長出能力，屬於人、換機照用",
+   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots、design-notes/world/pilots「已定」",
    "影響": "現況：人物的屬性、特質、perk、等級（`PersonDef`／`roster.ts` xpCurve）本來就在人身上、換機跟著走；但主動能力只來自機體與部件（`src/rules/command.ts` `abilitiesOf` 只收 `innateAbilities` 與 `ComponentDef.abilities`），人物沒有能力欄，裁示的「能力帶到其他機甲」只能用被動 perk 表達",
-   "建議做法": "`PersonDef` 加選填 `abilities: Id[]`（或 perk 效果帶 grant），`abilitiesOf` 併入座位人物（`actorRole` 決定由誰出手）；營運端加「長出能力」事件。等級上限、長出門檻、一人上限、系別偏向都是提案 P1–P3，**使用者確認前只做欄位與合併，不做長出規則**",
-   "規模": "小（欄位與合併）；長出規則待使用者確認"
+   "建議做法": "`PersonDef` 加選填 `abilities: Id[]`（或 perk 效果帶 grant），`abilitiesOf` 併入座位人物（`actorRole` 決定誰出手）；能力等級 D～SSS，上限＝驅動過的最高等級機甲核心；座艙普通開時不生效（接第 30 列）；機魂長能力速度為人的 1/10（暫值）；營運端「長出能力」事件以第 48 列的驅動時數為門檻。一人上限個數（提案 3）與首個能力門檻是暫值、留微調場，先做欄位與合併、門檻放 `rules` 參數",
+   "規模": "小（欄位與合併）＋小（長出事件，門檻參數化）"
   },
   {
    "序": "48",
    "優先": "P3",
-   "項目": "待 Fable 對談定案後再評估：精粹接觸計數與老化（提案，待使用者確認）",
-   "來源": "lead-pilot-essence（2026-10-24 使用者原話，尚未定案）、design-notes/world/pilots P4／P5／P9",
-   "影響": "裁示：駕駛者壽命延長、老得慢；引擎沒有人物年齡與接觸精粹的計數，營運與 wiki 無法顯示「不老的」老手",
-   "建議做法": "使用者確認 P5 倍率前不做；確認後 `PersonState` 加現役日數（出擊或在籍駕駛的天數），wiki／人物卡顯示外貌年齡＝實齡−現役年數×(1−倍率)；戒斷、生物系反噬兩個開關（P4）各一個規則參數",
+   "項目": "已定案可評估（2026-10-25）：驅動時數計數與老化",
+   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots、design-notes/world/pilots「不老」",
+   "影響": "裁示：現役駕駛員老得慢、退役回常速；累積量看驅動核心的時數（不看出擊次數）；遙控手、AI、不上機的人不改。引擎沒有人物年齡與驅動時數，營運與 wiki 無法顯示「不老的」老手",
+   "建議做法": "`PersonState` 加驅動時數（在座艙且核心被驅動的戰鬥回合或出擊天數換算）與實齡（可選）；wiki／人物卡顯示外貌年齡＝實齡−現役年數×(1−倍率)，倍率暫值 1/4 放 `rules`；三系代價（古代神性、生物小變異與獸性）先只做文案與 trait 標記，不做數值；原提案的「戒斷」「生物系反噬」開關不做（已由三系代價取代）",
+   "規模": "小"
+  },
+  {
+   "序": "49",
+   "優先": "P3",
+   "項目": "AI 醒成機魂（2026-10-25 定案）：AI 自駕或輔駕有機甲核心的機甲，在大潮時刻或古代機半徑內有極小機率醒成機魂",
+   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots",
+   "影響": "機魂沒有工廠以外的來源；裁示的「機緣巧合」無從發生",
+   "建議做法": "接在第 30 列座艙狀態之後：每場戰鬥對座艙為 AI（含輔駕）的有核心單位擲一次，平時 0、大潮時刻 1/10000、古代機半徑內 1/10000、同時出現相乘（暫值，放 `rules`）；醒了在營運名冊生成一個新的 soul 人物（不可複製），原 AI 程式保留（建議）；需要戰場經歷累積門檻時用第 48 列的計數",
    "規模": "小"
   }
  ]
