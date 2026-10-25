@@ -1,5 +1,5 @@
 // content/lore 驗證：node content/lore/check.ts（Node ≥ 22，零依賴，只用可擦除的 TS 語法）
-// 檢查：JSON 合法、必填欄、id 與檔名一致、枚舉值、交叉引用存在、gameRefs 格式、timeline 排序與 era 存在。
+// 檢查：JSON 合法、必填欄、id 與檔名一致、枚舉值、交叉引用存在、gameRefs 格式、timeline 排序與 era 存在、可見度標記。
 import fs from "node:fs";
 import path from "node:path";
 
@@ -19,6 +19,10 @@ const CHAR_KINDS = new Set(["human", "soul", "other"]);
 const WORLDS = new Set(["earth", "moon", "orbit"]);
 const CONTINENTS = new Set(["亞洲", "歐洲", "非洲", "北美", "南美", "大洋洲", "南極", "月面", "軌道"]);
 const DATE_RE = /^-?\d{1,5}(-\d{2}){0,2}$/;
+// 可見度（隱藏真相標記）：public 外界公認（預設）／rumor 外界只當傳聞／hidden 外界不知道（百科不顯示）。
+const VIS = new Set(["public", "rumor", "hidden"]);
+const COMMON_OPTIONAL = ["visibility", "fieldVisibility", "secrets"];
+const NO_FIELD_VIS = new Set(["id", "name", "visibility", "fieldVisibility", "secrets"]);
 const GAMEREF_RE = /^base:[a-z][a-z0-9-]*\/[a-z0-9][a-z0-9-]*$/;
 
 function isStrArr(v: unknown): v is string[] { return Array.isArray(v) && v.every((x) => typeof x === "string"); }
@@ -50,6 +54,38 @@ function checkGameRefs(v: unknown, where: string) {
   if (!isStrArr(v)) { errors.push(`${where}.gameRefs: 應為字串陣列`); return; }
   for (const x of v) if (!GAMEREF_RE.test(x)) errors.push(`${where}.gameRefs: ${x} 格式應為 base:<kind>/<name>`);
 }
+function checkVis(v: unknown, where: string) {
+  if (v !== undefined && !VIS.has(v as string)) errors.push(`${where}.visibility: ${JSON.stringify(v)} 應為 public／rumor／hidden`);
+}
+// 每種檔共用的可見度欄：visibility（整筆）、fieldVisibility（頂層欄 → 可見度）、secrets（不公開的真相或傳聞）。
+function checkVisibility(rec: Rec, where: string) {
+  checkVis(rec.visibility, where);
+  const fv = rec.fieldVisibility;
+  if (fv !== undefined) {
+    if (typeof fv !== "object" || fv === null || Array.isArray(fv)) errors.push(`${where}.fieldVisibility: 應為物件`);
+    else for (const [k, v] of Object.entries(fv as Rec)) {
+      if (NO_FIELD_VIS.has(k)) errors.push(`${where}.fieldVisibility.${k}: 這欄不能單獨標可見度`);
+      else if (!(k in rec)) errors.push(`${where}.fieldVisibility.${k}: 條目沒有這欄`);
+      if (!VIS.has(v as string)) errors.push(`${where}.fieldVisibility.${k}: ${JSON.stringify(v)} 應為 public／rumor／hidden`);
+    }
+  }
+  const sec = rec.secrets;
+  if (sec === undefined) return;
+  if (!Array.isArray(sec)) { errors.push(`${where}.secrets: 應為陣列`); return; }
+  for (const [i, s] of (sec as Rec[]).entries()) {
+    const w = `${where}.secrets[${i}]`;
+    if (typeof s !== "object" || s === null) { errors.push(`${w}: 應為物件`); continue; }
+    if (typeof s.text !== "string" || !s.text) errors.push(`${w}.text: 缺或非字串`);
+    if (s.visibility !== "rumor" && s.visibility !== "hidden") errors.push(`${w}.visibility: 必填，應為 rumor／hidden`);
+    if (s.date !== undefined && !DATE_RE.test(s.date as string)) errors.push(`${w}.date: ${s.date} 格式錯`);
+    if (s.note !== undefined && typeof s.note !== "string") errors.push(`${w}.note: 應為字串`);
+    if (s.knownBy !== undefined) {
+      if (!isStrArr(s.knownBy)) errors.push(`${w}.knownBy: 應為字串陣列`);
+      else for (const id of s.knownBy) ref(id, id.split("/")[0] === "character" ? "character" : "faction", `${w}.knownBy`);
+    }
+    for (const k of Object.keys(s)) if (!["text", "visibility", "date", "knownBy", "note"].includes(k)) warns.push(`${w}: 未登記欄位 ${k}`);
+  }
+}
 function checkBody(rec: Rec, where: string) {
   const b = rec.body;
   if (typeof b !== "string") return;
@@ -73,6 +109,7 @@ const specs: Spec[] = [
         if (rel.faction === r.id) errors.push(`${w}.relations[${i}]: 指向自己`);
         if (!STANCES.has(rel.stance as string)) errors.push(`${w}.relations[${i}].stance: ${rel.stance} 不在枚舉內`);
         if (typeof rel.note !== "string") errors.push(`${w}.relations[${i}].note: 缺`);
+        checkVis(rel.visibility, `${w}.relations[${i}]`);
       }
       if (r.places !== undefined) refArr(r.places, "place", `${w}.places`);
       if (r.ancientMech !== undefined) {
@@ -83,6 +120,7 @@ const specs: Spec[] = [
           ref(a.foundAt, "place", `${w}.ancientMech.foundAt`);
           if (a.pilot !== null && a.pilot !== undefined) ref(a.pilot, "character", `${w}.ancientMech.pilot`);
           if (a.gameRef !== null && a.gameRef !== undefined && !GAMEREF_RE.test(a.gameRef as string)) errors.push(`${w}.ancientMech.gameRef 格式`);
+          checkVis(a.visibility, `${w}.ancientMech`);
         }
       }
       if (r.mechSeries !== undefined && !isStrArr(r.mechSeries)) errors.push(`${w}.mechSeries: 應為字串陣列`);
@@ -109,6 +147,7 @@ const specs: Spec[] = [
         ref(rel.character, "character", `${w}.relations[${i}]`);
         if (rel.character === r.id) errors.push(`${w}.relations[${i}]: 指向自己`);
         if (typeof rel.relation !== "string" || typeof rel.note !== "string") errors.push(`${w}.relations[${i}]: 缺 relation／note`);
+        checkVis(rel.visibility, `${w}.relations[${i}]`);
       }
       refArr(r.events, "event", `${w}.events`);
       if (r.kind !== undefined && !CHAR_KINDS.has(r.kind as string)) errors.push(`${w}.kind: ${r.kind} 不在枚舉內`);
@@ -155,7 +194,7 @@ for (const s of specs) {
     if (rec.id !== expect) errors.push(`${file}: id ${JSON.stringify(rec.id)} 應為 ${expect}`);
     if (!/^[a-z0-9][a-z0-9-]*$/.test(base)) errors.push(`${file}: 檔名須為 kebab-case`);
     for (const k of s.required) if (!(k in rec)) errors.push(`${file}: 缺必填欄 ${k}`);
-    for (const k of Object.keys(rec)) if (!s.required.includes(k) && !s.optional.includes(k)) warns.push(`${file}: 未登記欄位 ${k}`);
+    for (const k of Object.keys(rec)) if (!s.required.includes(k) && !s.optional.includes(k) && !COMMON_OPTIONAL.includes(k)) warns.push(`${file}: 未登記欄位 ${k}`);
     for (const k of ["name", "summary", "body"]) if (k in rec && typeof rec[k] !== "string") errors.push(`${file}.${k}: 應為字串`);
     if ("aka" in rec && !isStrArr(rec.aka)) errors.push(`${file}.aka: 應為字串陣列`);
     if ("tags" in rec && !isStrArr(rec.tags)) errors.push(`${file}.tags: 應為字串陣列`);
@@ -168,6 +207,7 @@ for (const s of specs) {
 for (const d of docs) {
   const s = specs.find((x) => x.kind === d.kind)!;
   s.refs(d.rec, d.file);
+  checkVisibility(d.rec, d.file);
   checkBody(d.rec, d.file);
 }
 
@@ -198,6 +238,7 @@ if (tl) {
       if (e.event !== undefined && e.event !== null) ref(e.event, "event", `${w}.event`);
       if ("factions" in e) refArr(e.factions, "faction", `${w}.factions`);
       if ("tags" in e && !isStrArr(e.tags)) errors.push(`${w}.tags: 應為字串陣列`);
+      checkVis(e.visibility, w);
       if (k > 21089999 && !(e.tags as string[] | undefined)?.includes("rumor")) errors.push(`${w}: 2108 之後的條目須帶 tag rumor`);
     }
   }

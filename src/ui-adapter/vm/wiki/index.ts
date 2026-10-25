@@ -2,6 +2,7 @@ import { categoryGroup, kindLabel, kindOrder } from "./kinds.ts";
 import { extractLinkTargets } from "./markdown.ts";
 import { dateSortKey } from "./timeline.ts";
 import type { Category, EntryRef, RawFile, TimelineItem, WikiEntry, WikiIndex } from "./types.ts";
+import { publicFiles } from "./visibility.ts";
 
 const ID = /^(?:([a-z][a-z0-9-]*):)?([a-z][a-z0-9-]*\/[a-z0-9][a-z0-9._-]*)$/u;
 const record = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
@@ -9,7 +10,9 @@ const str = (v: unknown): string => typeof v === "string" ? v : "";
 const strings = (v: unknown): string[] => typeof v === "string" ? [v] : Array.isArray(v) ? v.filter((x): x is string => typeof x === "string") : [];
 const unique = (v: string[]): string[] => [...new Set(v.filter(Boolean))];
 
-export function buildWikiIndex(files: RawFile[]): WikiIndex {
+export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
+  // lore 的 hidden 真相在這裡就拿掉，之後的搜尋、引用、年表都只看得到外界版本。
+  const files = publicFiles(rawFiles);
   const entries = new Map<string, WikiEntry>();
   const issues: WikiIndex["issues"] = [];
   const timelineFiles: RawFile[] = [];

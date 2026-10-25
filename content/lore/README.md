@@ -14,7 +14,7 @@
 
 日期字串：`YYYY`、`YYYY-MM` 或 `YYYY-MM-DD`；先民時代用負數年 `-8900`。`born`／`died`／`founded`／`from`／`to` 可為日期或自由字串（「約 2037」「不明」）。`body` 是 markdown 長文（300–1500 字），可用 `## ` 小標與條列，不放 HTML；`summary` 一句話。
 
-驗證：`node content/lore/check.ts`（Node ≥ 22，零依賴）——JSON 合法、必填欄、id 與檔名一致、枚舉值、引用存在、timeline 排序、每洲地點數。0 錯才 commit。
+驗證：`node content/lore/check.ts`（Node ≥ 22，零依賴）——JSON 合法、必填欄、id 與檔名一致、枚舉值、引用存在、timeline 排序、每洲地點數、可見度標記。0 錯才 commit。
 
 ## 欄位表
 
@@ -30,6 +30,8 @@
 | `tags` | 字串陣列（era 沒有此欄） |
 | `gameRefs` | `base:…` 陣列（可空；faction／character／place 有，event／era 沒有） |
 
+每種檔另可帶三個**可選**的可見度欄 `visibility`、`fieldVisibility`、`secrets`，見下方「可見度」。
+
 ### factions/<name>.json
 
 必填：`type`（`大勢力`／`小勢力`／`獵團`／`企業`／`宗教`／`軍事`／`其他`）、`scale`（規模一句）、`founded`、`hq`（總部顯示文字）、`leaders`（`character/…` 陣列）、`ideology`（一句信條）、`relations`（`[{ "faction", "stance", "note" }]`，`stance` ∈ `同盟`／`友好`／`中立`／`緊張`／`敵對`，反映 **2108 開場當下**，歷史變化寫在事件與 body）。大勢力的 body 必含小節 `## 軍事組織與作戰風格`、`## 對傭兵：態度與補給`、`## 藍本古代機與研發路線`、`## 外交`。
@@ -37,7 +39,7 @@
 | 可選欄 | 說明 |
 |---|---|
 | `places` | `place/…` 陣列：總部與主要地盤 |
-| `ancientMech` | 藍本古代機 `{ "name", "foundAt": "place/…", "foundDate", "pilot": "character/…"｜null, "gameRef": "base:frame/…"｜null, "doctrine": 研發特色一句 }` |
+| `ancientMech` | 藍本古代機 `{ "name", "foundAt": "place/…", "foundDate", "pilot": "character/…"｜null, "gameRef": "base:frame/…"｜null, "doctrine": 研發特色一句, "visibility"?: 可見度 }`；外界只聽過宣稱、沒人證實的標 `rumor` |
 | `mechSeries` | 代表衍型機系列（命名照 design-notes：D 代號／A–C 系列＋型號／高階愈中二） |
 | `mercPolicy` | `{ "generosity": 1–5（1 苛刻 5 大方）, "reliability": 1–5（1 會出賣 5 守約）, "note" }` |
 
@@ -79,6 +81,24 @@
 ```
 
 `event` 可選（有對應事件檔才填）；`era` 必填；依 `date` 升冪（年-only 排在該年所有月份之前）。開場（2108-01）之後的條目一律帶 tag `rumor`。
+
+## 可見度（隱藏真相標記）
+
+設定裡有些事外界不知道（例：塞勒涅早就懷疑月面人口與蝕潮有關）、有些只是傳聞（例：先知說迦梨認了他）。資料照實記，再用可見度標出**外界看得到多少**；百科（wiki）依標記決定顯示：
+
+| 值 | 意思 | 百科怎麼呈現 |
+|---|---|---|
+| `public` | 外界公認（**沒標就是它**） | 照常顯示 |
+| `rumor` | 外界只當傳聞，沒人證實 | 顯示，但標「傳聞」 |
+| `hidden` | 外界不知道 | **不顯示**：建索引前就拿掉，搜尋、反向引用、年表、原始資料區都看不到 |
+
+三個放法：
+
+- **整筆或整個物件**：在該物件放 `"visibility"`。可放在條目根、`ancientMech`、`relations[]` 每列、`secrets[]` 每列、`timeline.json` 每筆。hidden 的條目會連同別處指向它的引用（陣列裡的 id、關係列、本文連結）一起從百科消失，本文連結只留文字。
+- **頂層純值欄**：條目根放 `"fieldVisibility": { "<欄名>": "rumor"｜"hidden" }`，例 `{ "mech": "rumor" }`；欄名必須是本條目有的頂層欄，`id`／`name` 與三個可見度欄本身不能標。
+- **不公開的真相或傳聞**：條目根放 `"secrets": [{ "visibility": "hidden"｜"rumor", "text": 一句, "date"?: 日期, "knownBy"?: ["faction/…"｜"character/…"], "note"?: 一句 }]`；`visibility` 必填。寫劇情、事件時查這裡，不必再翻設定筆記。
+
+守則：既有敘述欄（`summary`／`body`）仍照外界口吻寫，真相不寫進敘述，放 `secrets`；標記只描述外界知情，不改欄位的值。
 
 ## 擴充規則
 
