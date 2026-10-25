@@ -2,7 +2,7 @@
 
 lead-decide-land（總 REPORT 待頂層代存為 `../REPORT.md`）｜裁示 [talk-decide misc](../../talk-decide/decisions/misc.md)「B5」｜潤飾規矩 [content/polish](../../../../content/polish.md)｜文字準則 [content/lore-text](../../../../content/lore-text.md)
 
-**狀態：已排、未開跑（2026-10-25）。** 開跑的領導照 [content/batch](../../../../content/batch.md) 流程：把 `dl-0N.manifest.json` 複製成 `content/batches/2026-10/dl-0N.json`（`base` 填開跑當下 HEAD）、開 worktree、把 `cx-dl-0N.md` 裡的 `$WT` 換成 worktree 絕對路徑、`brief_lint --strict`、派 codex（`gpt-6-astra`、reasoning high）。三批檔案不重疊，可以並行；與其他 lore 批次並行時先確認沒有同檔。
+**狀態：2026-10-25 由 lead-polish 開跑。** 開跑的領導照 [content/batch](../../../../content/batch.md) 流程：把 `dl-0N.manifest.json` 複製成 `content/batches/2026-10/dl-0N.json`（`base` 填開跑當下 HEAD）、開 worktree、把 `cx-dl-0N.md` 裡的 `$WT` 換成 worktree 絕對路徑、`brief_lint --strict`、派 codex（`gpt-6-astra`、reasoning high）。三批檔案不重疊，可以並行；與其他 lore 批次並行時先確認沒有同檔。
 
 ## 範圍（使用者 2026-10-25「都按照建議」）
 
@@ -31,4 +31,4 @@ lead-decide-land（總 REPORT 待頂層代存為 `../REPORT.md`）｜裁示 [tal
 | 老爹身世（提案） | 若與檔內既有敘述不衝突，可寫成「開了十幾年的城防 AI，在某個大潮時刻醒了」；衝突就不改，寫進 REPORT「需要決定」 | old-man（dl-02） |
 | 沐蝕會讀法（提案，可選） | 「不老是蝕的恩賜」一句，順就加、不順就不加 | tide-creed（dl-01） |
 
-**不要寫**：塞勒涅三層知情（2086／2095／2097）——那是隱藏真相，等 engine-backlog 第 45 列標記落地；拿其他作品類比大潮停戰或任何事件；SS／SSS 精粹。
+**不要寫**：塞勒涅三層知情（2086／2095／2097）——那是隱藏真相，等 engine-backlog 第 45 列標記落地；拿其他作品類比大潮停戰或任何事件；**SS／SSS 不新增任何設定**（使用者 2026-10-25：背景版、很後期才有；目前展現過最強都是 S；既有「接近 SS」之類句子照原意保留，不加強、不展開）。精粹核／機甲核心原話：「人類拿精粹核，做出了機甲核心」。

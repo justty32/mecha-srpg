@@ -11,6 +11,7 @@
 
 ## 最新進度
 
+- [content] lead-polish 現役（2026-10-25）：B5 翻譯腔重審三批 polish dl-01／02／03 並行開跑（codex gpt-6-astra），驗收後逐批合入 → [b5/guide](workflows/dispatch/handoffs/lead-decide-land/b5/guide.md)
 
 ## 各工作流 session-log
 

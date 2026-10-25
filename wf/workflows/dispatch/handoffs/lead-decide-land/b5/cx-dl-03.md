@@ -8,7 +8,7 @@
 
 ## 範圍（排除法寫死）
 
-只改這 40 個檔（worktree：`$WT`）。讀過判斷不必改的檔在 REPORT 寫「無需改」：
+只改這 40 個檔（worktree：`/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/5c99f797-9f3e-4fc3-ac4c-a0585c1346f9/scratchpad/codex-pilot/wt-dl-03`）。讀過判斷不必改的檔在 REPORT 寫「無需改」：
 
 - `content/lore/characters/mina-darzi.json`
 - `content/lore/characters/molly-van-den-berg.json`
@@ -53,14 +53,14 @@
 
 - 只改文字欄 `summary`、`body`、`note`，與敘述欄 `consequences`、`role`、`scale`、`doctrine`、`ideology`、`mechSeries`、`status2108`。`name`、`aka`、`title`、`tags`、`region`、`hq`、id、檔名、日期、數字、引用（`kind/name` 形式）、鍵、陣列長度一律不動——閘門逐節點比對，動了就退件。
 - 不做：上列以外的任何檔（含 `style.md`、`glossary.json`、`content/base/`、`content/index/`、`content/batches/`、`src/`、`wf/` 除報告目錄）；不新增、不刪除檔；不 commit；worktree 內不要留任何其他檔（筆記、腳本放 `/tmp/cx-dl-03/`）。
-- 不寫：塞勒涅三層知情（2086／2095／2097）、SS／SSS 精粹、拿其他作品類比任何事件。
+- 不寫：塞勒涅三層知情（2086／2095／2097）、拿其他作品類比任何事件。**SS／SSS 不新增任何設定**：那是背景版、很後期才有，目前展現過最強的都是 S；既有提到 SS 的句子照原意保留，不加強、不展開。
 - 件數 gate：改動檔超過 40 個就停下回報；容量 gate：任何單檔改後比原檔長 15% 以上就停下回報。任一觸發都停。
 
 ## 必用工具
 
 | 工具 | 用在哪一步 |
 |---|---|
-| `git -C $WT grep -nE '精粹核|獨駕|座艙裡一定|無人|鐵偶' -- content/lore` | 改前找對齊點、改後核殘留 |
+| `git -C /tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/5c99f797-9f3e-4fc3-ac4c-a0585c1346f9/scratchpad/codex-pilot/wt-dl-03 grep -nE '精粹核|獨駕|座艙裡一定|無人|鐵偶' -- content/lore` | 改前找對齊點、改後核殘留 |
 | `npm run check`（末行 `OK 0 errors`）、`node content/lore/check.ts`（0 錯） | 改完跑；**不用跑 `npm test`**（領導驗收會跑） |
 | `/home/lorkhan/repo/game_dev/mecha-srpg/wf/tools/inbox_poll.sh cx-dl-03 --once` | 每完成一步讀 orders |
 | `/home/lorkhan/repo/game_dev/mecha-srpg/wf/tools/inbox_mail.sh` | 終局回報 |
@@ -86,14 +86,14 @@
 
 | 產物 | 路徑（絕對路徑）|
 |------|----------------|
-| 改過的內容檔 | `$WT/content/lore/…`（上列路徑） |
+| 改過的內容檔 | `/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/5c99f797-9f3e-4fc3-ac4c-a0585c1346f9/scratchpad/codex-pilot/wt-dl-03/content/lore/…`（上列路徑） |
 | REPORT | `/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-decide-land/b5/dl-03/REPORT.md` |
 
 REPORT 結構：**第一段「已讀清單」**（逐行列親自讀過的路徑）；「做了什麼」；「逐檔對照」（每檔一小節，列每處「舊片段 → 新片段」，片段取半句；沒改的檔寫「無需改」）；「裁示對齊」（guide 表每列落在哪檔、怎麼改，或為何不改）；「殘留」（grep 命中仍留的每處＋理由）；「需要決定的事」；「子代理」；末尾「以後交接書該點名的工具」（沒有寫「無」）。
 
 ## 驗收（固定 5 條，一條不多，做完就停）
 
-1. worktree 內改動只落在上列檔案（`git -C $WT status --short` 除 `node_modules` 外只見這些）。
+1. worktree 內改動只落在上列檔案（`git -C /tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/5c99f797-9f3e-4fc3-ac4c-a0585c1346f9/scratchpad/codex-pilot/wt-dl-03 status --short` 除 `node_modules` 外只見這些）。
 2. `npm run check`（末行 `OK 0 errors`）、`node content/lore/check.ts`（0 錯）全過。
 3. guide 對齊表中落在本批的每列都已落地，或 REPORT 寫明不改的理由；`精粹核` 殘留只剩原料義、每處有理由。
 4. REPORT 有逐檔對照。

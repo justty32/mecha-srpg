@@ -72,3 +72,10 @@
 
 ### `lead-pilot-essence` 與工人 `cx-pe-scan`
 - **狀態**：已收線（2026-10-24）；A 無人化／B 精粹改人改為待 Fable 討論；團隊 `teams/pe` 已關，交接書與盤點在 `wf/workflows/dispatch/handoffs/lead-pilot-essence/`。
+
+### `lead-polish`（含代登記工人 `cx-dl-01`／`cx-dl-02`／`cx-dl-03`）
+- **狀態**：現役（2026-10-25）
+- **我是誰**：Opus 領導：B5 翻譯腔重審三批 polish（lore 敘述欄）；工人是 codex。
+- **上游**：`dispatcher`（工人的上游是 `lead-polish`）
+- **領地**：CLAIMS「lead-polish」列；工人照各自交接書（`handoffs/lead-decide-land/b5/cx-dl-0N.md`）
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無

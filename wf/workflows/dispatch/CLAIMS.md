@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| lead-polish（工人 cx-dl-01／02／03） | `content/lore/` 三批 polishFiles 的敘述欄（經 worktree＋閘門帶回）、`content/index/`（重產）、`content/batches/2026-10/dl-*.json`、`handoffs/lead-decide-land/b5/`、`handoffs/{codex-batches.json,STATE.md,done/README.md}`、SESSION-LOG、CLAIMS 本列、ROSTER 本格、`wf/inbox/` 本線信件 | `src/`、`tests/`、`test/`、`content/base/`、spec、design-notes（lead-cockpit 在改）、AGENTS.md／CLAUDE.md；不刪檔、不裝依賴 | 2026-10-25 |
 
 ## 保留給調度者，任何線都不得寫
 
