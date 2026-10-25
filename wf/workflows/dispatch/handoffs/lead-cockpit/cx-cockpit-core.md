@@ -56,6 +56,8 @@
 
 **分清錯誤來源**：工具或環境出錯（指令不存在、權限被擋、沙箱拒寫）→ 停下發 `BLOCKED`；你自己寫的臨時腳本出錯 → 自己修，不算阻塞。沙箱內 `node --test` 計數可能不準（已知坑），以 `# fail 0` 與 exit code 判。
 
+**已知沙箱失敗（不算阻塞，2026-10-25 第一次派線實證）**：沙箱擋 unix socket 與 `spawnSync`，所以 `src/mcp/cli.test.ts`、`src/mcp/e2e.test.ts`、`src/ops/content/worldgen.test.ts`（CLI 那幾條）在沙箱裡一定紅。基準與驗收第 1 條改用：`node --test --test-reporter=tap $(ls src/**/*.test.ts test/**/*.test.ts | grep -v -e src/mcp/cli.test.ts -e src/mcp/e2e.test.ts -e src/ops/content/worldgen.test.ts)`（zsh 下 `**` 可用；或自己寫等效的排除清單）。這三支由領導在沙箱外重跑；你只要確保它們讀的內容／情境改了之後，期望值也跟著改（讀測試碼判斷）。
+
 ## 工作
 
 1. 讀先讀清單與 `src/rules/{control,command,pools,state,attack}.ts`、`src/ai/intent.ts`、`src/ops/sortie/scenario.ts`、`src/ops/time/tick.ts`；先跑一次 `npm test` 記基準通過數。
@@ -78,7 +80,7 @@ REPORT 四段（做了什麼／產出（含改動檔清單、六情境判定表�
 
 ## 驗收（固定 5 條，一條不多，做完就停）
 
-1. 在 `$WT` 跑 `npm test` 回傳 0（`# fail 0`），通過數 ≥ 基準＋新增測試數。
+1. 在 `$WT` 跑上面「已知沙箱失敗」段的排除版測試指令回傳 0（`# fail 0`），通過數 ≥ 基準＋新增測試數。
 2. 在 `$WT` 跑 `npm run typecheck` 回傳 0，`npm run check` 末行 0 errors。
 3. `grep -rn 'person/glove' $WT/content/base/scenarios/` 無輸出；`grep -n 'soul-driven' $WT/content/base/factions/selene-whitegloves.json` 無輸出。
 4. 新增的單元測試涵蓋範圍 7 列的五件事與範圍 4 的兩個終局情形，REPORT 列出測試名稱。
