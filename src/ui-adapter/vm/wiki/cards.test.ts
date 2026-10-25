@@ -5,6 +5,12 @@ import { resolve } from "node:path";
 import { entryPage } from "./cards.ts";
 import type { CardSection, CardValue, EntryPage, WikiEntry, WikiIndex } from "./types.ts";
 
+test("人物百科卡以開局年資顯示外貌與實齡", () => {
+  const p = entry("person/older", { kind: "human", age: 35, activeYears: 16 });
+  const rules = entry("file/rules/cockpit", JSON.parse(readFileSync("content/base/rules/cockpit.json", "utf8")), "base", "rules/cockpit.json");
+  assert.match(JSON.stringify(entryPage(fakeIndex([p, rules]), p.key)), /外貌 23 歲（實齡 35）/);
+});
+
 function entry(id: string, data: unknown = {}, pack = "base", path = `${id}.json`): WikiEntry {
   const record = data !== null && typeof data === "object" ? data as Record<string, unknown> : {};
   const kind = id.split("/")[0]!;

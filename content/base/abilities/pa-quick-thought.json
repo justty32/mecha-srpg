@@ -1,0 +1,42 @@
+{
+  "id": "ability/pa-quick-thought",
+  "name": "思維加速",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/pa-quick-thought"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 2,
+  "grade": "D"
+}

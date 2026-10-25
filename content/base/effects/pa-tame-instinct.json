@@ -1,0 +1,27 @@
+{
+  "id": "effect/pa-tame-instinct",
+  "name": "壓制獸性",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 3,
+      "source": "effect/pa-tame-instinct"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "壓制獸性"
+  }
+}

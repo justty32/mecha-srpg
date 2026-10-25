@@ -1,0 +1,27 @@
+{
+  "id": "effect/pa-ranged-boost",
+  "name": "強化遠程",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "effect/pa-ranged-boost"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "強化遠程"
+  }
+}

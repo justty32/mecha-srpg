@@ -28,6 +28,7 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
   }
   const people = new Set<string>(), mechs = new Set<string>();
   for (const unit of sortie.units) {
+    if (unit.crew !== undefined && unit.crew !== "ai") return fail("invalid-crew");
     const mech = s.mechs[unit.mech];
     if (!mech || !s.hangar.bays.includes(unit.mech) && !s.restraint.slots.includes(unit.mech)) return fail("mech-not-in-hangar");
     if (mechs.has(unit.mech)) return fail("duplicate-mech");

@@ -9,6 +9,19 @@ import { allButtons } from "./keymap.ts";
 import type { OpsSnapshot, OpsKeyInput } from "./types.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
 const opts = { db, world, seed: 3, spectate: true };
+
+test("編隊 AI 駕駛切換可開關，清空座位後仍可自駕", () => {
+  const c = new OpsController(opts);
+  const opened = c.dispatch({ type: "sortieOpen" });
+  const unit = opened.sortie!.units.find(u => u.included)!;
+  assert(unit);
+  c.dispatch({ type: "sortieAi", mech: unit.mech, enabled: true });
+  for (const seat of unit.seats) c.dispatch({ type: "sortieSeat", mech: unit.mech, seat: seat.seat, person: null });
+  assert.equal(c.snapshot().sortie!.units.find(u => u.mech === unit.mech)!.ai, true);
+  assert.notEqual(c.snapshot().sortie!.error, "機體尚未配置駕駛或機魂");
+  c.dispatch({ type: "sortieAi", mech: unit.mech, enabled: false });
+  assert.equal(c.snapshot().sortie!.units.find(u => u.mech === unit.mech)!.ai, false);
+});
 function input(key: string): OpsKeyInput {
   const parts = key.split("+"), last = parts.pop()!;
   return { key: last === "Esc" ? "Escape" : last, altKey: parts.includes("Alt"), ctrlKey: parts.includes("Ctrl"), shiftKey: parts.includes("Shift") };

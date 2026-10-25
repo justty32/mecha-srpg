@@ -30,7 +30,9 @@ const startSchema: JsonSchema = { type: "string", default: "default" };
 // actions 與省略 sortie 的 begin 共用同一份候選，避免選到不同編成。
 function sortieOptions(state: CampaignState, world: WorldDB): { sortie: Extract<OpsCommand, { v: "sortie" }>["sortie"]; label: string; disabled?: string }[] {
   const units = state.hangar.bays.flatMap(m => { const mech = m ? state.mechs[m] : undefined;
-    return mech?.seats.pilot ? [{ mech: mech.id, seats: { ...mech.seats }, controlMode: "pilot" as const }] : []; });
+    return mech && (mech.seats.pilot || mech.crew === "ai") ? [{ mech: mech.id, seats: { ...mech.seats },
+      controlMode: mech.seats.pilot ? "pilot" as const : Object.values(mech.seats).some(Boolean) ? mech.controlMode : "scripted" as const,
+      ...(mech.crew === "ai" ? { crew: "ai" as const } : {}) }] : []; });
   if (state.pendingBattle) {
     const selected = state.pendingBattle.units.length ? state.pendingBattle.units : units;
     return [{ sortie: { units: selected }, label: "出戰", ...(!selected.length ? { disabled: "機庫沒有已派駕駛的機甲；先 assign" } : {}) }];
@@ -207,7 +209,9 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
         { id: s.id, actions, catalog, ...(args.verbs === true ? { verbs: VERBS.map(v => ({ ...v })) } : {}) });
     }),
     define("campaign_sortie_preview", "唯讀出戰情報：地圖、敵軍、目標、輪數與裂縫；sortie 與 begin 相同。", {
-      id: idSchema, sortie: { type: "object" },
+      id: idSchema, sortie: { type: "object", properties: { units: { type: "array", items: { type: "object", properties: {
+        mech: { type: "string" }, seats: { type: "object" }, controlMode: { type: "string" }, crew: { type: "string", enum: ["ai"], description: "AI 自駕或輔駕；空座位時以 scripted 控制" },
+      } } } } },
     }, ["id"], args => {
       const s = session(args.id), info = preview(s, sortieInput(s, args.sortie));
       const prompt = promptInfo(render(s.state, [], env.world().world, env.world().db));
@@ -215,7 +219,9 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
         : okResult(info.summary, { id: s.id, preview: info });
     }),
     define("campaign_sortie_begin", "建立戰役互動出戰；用 battle_* 指揮，結束後 campaign_sortie_finish 回寫，或 campaign_sortie_cancel 取消。", {
-      id: idSchema, sortie: { type: "object" }, spectate: { type: "boolean" }, autoAdvance: { type: "boolean", default: true },
+      id: idSchema, sortie: { type: "object", properties: { units: { type: "array", items: { type: "object", properties: {
+        mech: { type: "string" }, seats: { type: "object" }, controlMode: { type: "string" }, crew: { type: "string", enum: ["ai"], description: "AI 自駕或輔駕；空座位時以 scripted 控制" },
+      } } } } }, spectate: { type: "boolean" }, autoAdvance: { type: "boolean", default: true },
     }, ["id"], args => {
       const s = session(args.id); requireIdle(s);
       const cmd = sortieInput(s, args.sortie), { db, world } = env.world();

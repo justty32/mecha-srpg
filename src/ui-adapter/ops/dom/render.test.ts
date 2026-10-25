@@ -157,6 +157,9 @@ test("編成疊層：勾選、座位下拉、錯誤訊息、按鈕", t => {
   check.checked = false;
   check.dispatchEvent(new win.Event("change", { bubbles: true }) as unknown as Event);
   const seat = q('select[data-seat="pilot"]') as HTMLSelectElement;
+  const ai = q('input[data-ui="sortie-ai"][data-mech="m1"]') as HTMLInputElement;
+  assert.equal(ai.type, "checkbox"); assert.equal(ai.disabled, false); assert.equal(ai.tabIndex, 0);
+  ai.checked = true; ai.dispatchEvent(new win.Event("change", { bubbles: true }) as unknown as Event);
   assert.equal(seat.value, "p1");
   seat.value = "p3";
   seat.dispatchEvent(new win.Event("change", { bubbles: true }) as unknown as Event);
@@ -166,6 +169,7 @@ test("編成疊層：勾選、座位下拉、錯誤訊息、按鈕", t => {
   click('button[data-action-id="sortie:auto"]');
   assert.deepEqual(actions, [
     { type: "sortieToggle", mech: "m1" },
+    { type: "sortieAi", mech: "m1", enabled: true },
     { type: "sortieSeat", mech: "m1", seat: "pilot", person: "p3" },
     { type: "sortieSeat", mech: "m1", seat: "pilot", person: null },
     { type: "sortieLaunch", mode: "auto" },

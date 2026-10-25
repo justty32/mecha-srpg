@@ -38,6 +38,7 @@ export type WillState = {
   soulTree?: { nodes: Id[]; research: number; companionship: number };
 };
 export type PersonState = {
+  abilities?: Id[]; driveHours?: number; maxDrivenGrade?: Grade;
   id: Id;                             // SPEC-GAP：spec 的 PersonState 沒有 id 欄；BattleState.persons 以此為鍵
   def: Id; attrsBase: Record<AttrId, number>;
   contribs: ContributionInstance[]; pools: Record<PoolId, PoolState>;
@@ -50,6 +51,7 @@ export type PersonState = {
 export type LayerState = { hp: number; broken: boolean; maxHp?: number };
 export type PartState = { layers: LayerState[]; broken: boolean; components: Record<SlotId, Id | null> };
 export type MechState = {
+  aiBattles?: number;
   core: boolean; crew?: "ai" | "remote";
   id: Id; frame: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
   parts: Record<PartId, PartState>;

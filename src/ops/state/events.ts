@@ -3,7 +3,7 @@ import type { CampaignEvent, CampaignState } from "./types.ts";
 export const EVENT_TYPES = ["DayStart", "DaySummary", "RiftPhase", "PlaceBlighted", "PlaceReclaimed", "Arrived", "Encounter", "EventOffered", "Chosen",
   "JobDone", "WearWarning", "BrokeLoose", "Sustained", "Stiffened", "Mounted", "MyceliumOvergrown", "Suppressed", "Devoured", "MoltStarted", "Molted", "Brooded", "Mutated", "Accompanied", "NodeMastered", "WagePaid", "WageOwed", "InterestPosted", "Posted",
   "ContractOffered", "ContractAccepted", "ContractDone", "ContractFailed", "ContractCancelled", "ContractExpired", "Hired", "Left", "Died",
-  "BattleResolved", "Woken", "Named", "CampaignEnd", "LostMech", "CampaignStarted", "OpsEffectApplied", "Resupplied",
+  "BattleResolved", "AbilityGained", "SoulAwakened", "Woken", "Named", "CampaignEnd", "LostMech", "CampaignStarted", "OpsEffectApplied", "Resupplied",
   "DebtArrears", "DebtCured", "MechSeized", "DebtCleared", "SeleneEmbargo", "DebtDemand", "DebtCollection", "DebtUltimatum", "DebtBorrowed"] as const;
 
 // SPEC-GAP：CampaignEvent 無 id；帳本來源統一為 event-<seq>，不占實體 idCounter。

@@ -106,7 +106,7 @@ function interceptScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenar
     const spawn = (frameId: string) => {
       const frame = ctx.db.require("frame", frameId), spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [] };
       for (const seat of ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? [])) {
-        const defs = ctx.db.all("person").filter(p => seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));
+        const defs = ctx.db.all("person").filter(p => p.id !== ctx.db.rules.cockpit?.growth?.awakenSoulTemplate && seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));
         if (!defs.length) continue;
         const def = defs[nextInt(s.rng, defs.length)]!, id = `${sortie.id}/${slot}/${a.id}/${out.length}/${seat.id}`;
         scenario.personStates![id] = instantiatePerson(ctx.db, id, def.id);
@@ -276,7 +276,8 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   const player: UnitSpawn[] = ordered.map(unit => {
     const mech = s.mechs[unit.mech]!, frame = ctx.db.require("frame", mech.frame);
     const seats = ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? []);
-    const spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [] };
+    const spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [],
+      ...(mech.core !== (frame.core ?? true) ? { core: mech.core } : {}), ...(unit.crew ? { crew: unit.crew } : {}) };
     // 活捕以 species 的本能控制與行動池出戰，磨損只提高本場起點。
     const species = ctx.db.all("species").find(sp => sp.capture.frame === frame.id);
     if (unit.controlMode === "instinct" && species) {

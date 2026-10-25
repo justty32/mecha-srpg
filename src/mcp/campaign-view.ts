@@ -1,3 +1,4 @@
+import { apparentAge } from "../core/age.ts";
 import { knownActors } from "../ops/world/fog.ts";
 import { cellKey } from "../ops/world/grid.ts";
 // 營運畫面只傳可供決策的摘要；指令紀錄與完整狀態留在 session。
@@ -94,7 +95,10 @@ export function commandInfo(env: McpEnv, state: CampaignState, cmd: OpsCommand):
   if (cmd.v === "look" && cmd.target) {
     if (state.mechs[cmd.target]) return mechText(mechInfo(env, state, cmd.target));
     const p = state.roster.persons[cmd.target], e = state.roster.employment[cmd.target];
-    if (p) return `${personName(env, state, p.id)}｜職能 ${e?.role ?? "未指派"}｜等級 ${p.level}｜士氣 ${p.morale}\n` +
+    const def = p && db.require("person", p.def), growth = db.rules.cockpit?.growth;
+    const age = def && p && growth ? apparentAge(def, p, state.clock.day, growth) : null;
+    const real = def?.age !== undefined && growth ? def.age + Math.floor(state.clock.day / growth.daysPerYear) : null;
+    if (p) return `驅動時數 ${p.driveHours ?? 0}${age === null ? "" : `；外貌 ${age} 歲（實齡 ${real}）`}\n` + `${personName(env, state, p.id)}｜職能 ${e?.role ?? "未指派"}｜等級 ${p.level}｜士氣 ${p.morale}\n` +
       `薪資 ${money(e?.wage ?? 0)}；欠薪 ${money(e?.owed ?? 0)}；${Object.entries(p.pools).map(([k, v]) => `${k} ${v.cur}/${v.max}`).join("；")}\n屬性：${JSON.stringify(p.attrsBase)}`;
     if (roomDefinition(cmd.target, world)) return describeRoom(cmd.target, state, world, db).desc.join("\n");
     const node = placeDef(state, { world }, cmd.target);
@@ -253,8 +257,12 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const hangar = [...new Set([...state.hangar.bays, ...state.hangar.dormant, ...state.restraint.slots])]
     .flatMap(id => id && state.mechs[id] ? [mechInfo(env, state, id)] : []);
   if (hangar.length) panels.hangar = hangar;
-  const roster = Object.keys(state.roster.persons).sort().map(id => ({ id, name: personName(env, state, id),
-    role: state.roster.employment[id]?.role ?? "未指派", wage: state.roster.employment[id]?.wage ?? 0, owed: state.roster.employment[id]?.owed ?? 0 }));
+  const roster = Object.keys(state.roster.persons).sort().map(id => {
+    const p = state.roster.persons[id]!, def = db.require("person", p.def), growth = db.rules.cockpit?.growth;
+    return { id, name: personName(env, state, id), driveHours: p.driveHours ?? 0,
+      apparentAge: growth ? apparentAge(def, p, state.clock.day, growth) : null,
+      realAge: def.kind === "human" && def.age !== undefined && growth ? def.age + Math.floor(state.clock.day / growth.daysPerYear) : null,
+    role: state.roster.employment[id]?.role ?? "未指派", wage: state.roster.employment[id]?.wage ?? 0, owed: state.roster.employment[id]?.owed ?? 0 }; });
   panels.roster = roster;
   const worldMap = showMap ? allPlaces(state, { world }).filter(n => n.id !== here).flatMap(n => {
     const t = travel(n.id); return t ? [{ id: n.id, name: n.name, kind: n.kind, map: n.map, cell: n.at,
@@ -275,7 +283,7 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const summary = [prompt?.summary ?? "",
     `${id}｜蝕月 ${state.clock.month} 第 ${state.clock.dom} 天（day=${state.clock.day}）｜${screen.room.title}`,
     ...(brief ? [] : screen.room.desc), `現金 ${money(state.ledger.balances.cash)}；債務 ${money(state.ledger.balances.debt)}；人數 ${Object.keys(state.roster.persons).length}。`,
-    ...hangar.map(mechText), `人員：${roster.map(p => `${p.name} ${p.role} 薪資 ${money(p.wage)} 欠薪 ${money(p.owed)}`).join("；")}`,
+    ...hangar.map(mechText), `人員：${roster.map(p => `${p.name} ${p.role} 驅動時數 ${p.driveHours}${p.apparentAge === null ? "" : ` 外貌 ${p.apparentAge} 歲（實齡 ${p.realAge}）`} 薪資 ${money(p.wage)} 欠薪 ${money(p.owed)}`).join("；")}`,
     showMap ? `世界圖（自 ${here ?? `${state.ship.pos.cell.x},${state.ship.pos.cell.y}`}；天數／燃料）：${worldMap.map(n => `${n.id} ${n.name} (${n.cell.x},${n.cell.y}) ${n.days} 天/${n.fuel}`).join("；") || "沒有可達地點"}` : "",
     contracts.length ? `契約：${contracts.map(c => `${c.id} ${c.status} ${c.template.replace(/^.*\//u, "")}（${c.issuer.replace(/^.*\//u, "")}）→ ${c.target} 酬 ${c.total}${c.advance ? ` 預付 ${c.advance}` : ""}${c.perHead ? ` 每頭 ${c.perHead}` : ""} 期限 day ${c.deadlineDay}${c.travel ? `（${c.travel.days}天/燃料${c.travel.fuel}）` : "（無航線）"}`).join("；")}` : "",
     pendingBattle ? `待出戰：${pendingBattle.trigger}，${pendingBattle.hint}` : "",

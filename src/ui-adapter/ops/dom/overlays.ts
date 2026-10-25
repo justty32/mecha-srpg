@@ -92,6 +92,10 @@ export function createOverlays(layer: HTMLElement, registry: ActionRegistry, onA
       label.append(check, el(doc, "strong", u.name));
       if (!u.enabled && u.reason) { label.dataset.tip = u.reason; label.append(el(doc, "span", u.reason, "muted")); }
       card.append(label);
+      const aiLabel = el(doc, "label"), ai = el(doc, "input");
+      ai.type = "checkbox"; ai.dataset.ui = "sortie-ai"; ai.dataset.mech = u.mech;
+      ai.checked = u.ai ?? false; ai.disabled = !u.included;
+      aiLabel.append(ai, "AI 駕駛"); card.append(aiLabel);
       for (const s of u.seats) {
         const row = el(doc, "label", "", "ops-seat");
         const select = el(doc, "select");
@@ -150,6 +154,7 @@ export function createOverlays(layer: HTMLElement, registry: ActionRegistry, onA
     const mech = t.dataset.mech;
     if (!mech) return;
     if (t.dataset.ui === "sortie-toggle") onAction({ type: "sortieToggle", mech });
+    else if (t.dataset.ui === "sortie-ai") onAction({ type: "sortieAi", mech, enabled: (t as HTMLInputElement).checked });
     else if (t.dataset.seat) onAction({ type: "sortieSeat", mech, seat: t.dataset.seat, person: t.value || null });
   });
 

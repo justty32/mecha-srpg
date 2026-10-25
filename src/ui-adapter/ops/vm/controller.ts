@@ -194,6 +194,11 @@ export class OpsController {
         else draft.units.push(defaultUnit(this.current, this.ctx(), action.mech, new Set(draft.units.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)))));
         break;
       }
+      case "sortieAi": {
+        const unit = this.ui.draft?.units.find(u => u.mech === action.mech); if (!unit) break;
+        if (action.enabled) unit.crew = "ai"; else delete unit.crew;
+        unit.controlMode = controlMode(this.current, this.ctx(), unit); break;
+      }
       case "sortieSeat": {
         const unit = this.ui.draft?.units.find(u => u.mech === action.mech); if (!unit) break;
         if (!seatDefs(this.current, this.ctx(), action.mech).some(s => s.id === action.seat)

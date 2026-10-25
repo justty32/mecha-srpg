@@ -1,0 +1,27 @@
+{
+  "id": "effect/pa-melee-boost",
+  "name": "強化打擊",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "effect/pa-melee-boost"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "強化打擊"
+  }
+}

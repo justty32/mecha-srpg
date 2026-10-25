@@ -25,6 +25,10 @@ export function abilitiesOf(ctx: Ctx, unitId: Id): Id[] {
   const u = unit(ctx, unitId), driven = isDriven(ctx, unitId), cockpit = ctx.db.rules.cockpit;
   const basics = new Set((cockpit?.basicAbilities ?? []).map(id => ctx.db.get("ability", id)?.id ?? id));
   const ids = frameView(ctx, unitId).innateAbilities.filter(id => driven || basics.has(ctx.db.require("ability", id).id));
+  if (driven) for (const seat of seatsOf(ctx, unitId)) {
+    const p = person(ctx, seat.person), def = ctx.db.require("person", p.def);
+    if ((!p.pools.hp || p.pools.hp.cur > 0) && ["human", "soul"].includes(def.kind)) ids.push(...(def.abilities ?? []), ...(p.abilities ?? []));
+  }
   for (const partId of Object.keys(u.parts).sort()) {
     const part = u.parts[partId]!;
     if (part.broken) continue;

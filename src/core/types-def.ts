@@ -176,6 +176,7 @@ export type AiHints = {
 };
 export type AbilityDef = {
   id: Id; name: string; mode: AbilityMode;
+  grade?: Grade;
   actorRole?: SeatRole;
   costs: AbilityCost[];
   produces: CostLike[];
@@ -195,6 +196,7 @@ export type HumanGrowth = { xpCurve: Id; levelDice: Record<AttrId, number[]>; pe
 export type SoulGrowth = { tree: Id; researchPerDirection: Record<string, number>; companionshipRate: NumExpr };
 export type PersonDef = {
   id: Id; name: string; kind: PersonKind;
+  abilities?: Id[]; age?: number; activeYears?: number;
   soulGrade?: Grade; // 只允許 kind=soul，由載入器檢查
   attrs: Record<AttrId, number>;
   traits: Id[]; perks: Id[];
@@ -280,7 +282,12 @@ export type RegistryEntry = { id: string; name: string; role?: AttrRole; min?: n
 export type RegistryFile = { kind: RegistryKind; entries: RegistryEntry[] };
 
 export const RULE_FILES = ["constants", "damage-modifiers", "morale-events", "injuries", "cockpit"] as const;
-export type CockpitRules = { basicAbilities: Id[]; drivenOnlyTags: string[]; crewPools: Record<"ai" | "remote", PoolDecl[]> };
+export type CockpitGrowth = {
+  driveHoursPerRound: number; soulGrowthFactor: number; abilityCap: number; abilityHours: number[];
+  abilityGradeCap: Grade; abilityPool: Id[]; agingRate: number; driveHoursPerYear: number; daysPerYear: number;
+  awakenMinAiBattles: number; awakenChanceTide: number; awakenChanceAncient: number; awakenSoulTemplate: Id;
+};
+export type CockpitRules = { basicAbilities: Id[]; drivenOnlyTags: string[]; crewPools: Record<"ai" | "remote", PoolDecl[]>; growth?: CockpitGrowth };
 export type RuleFileKind = (typeof RULE_FILES)[number];
 /** rules/constants.json：數值常數表（命中上下限、暴擊倍率、永久傷門檻…）。 */
 export type RulesConstants = { constants: Record<string, number> };

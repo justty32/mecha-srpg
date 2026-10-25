@@ -35,6 +35,7 @@ export type OpsUiAction =
   | { type: "selectPerson"; person: string }
   | { type: "sortieOpen"; contract?: string }              // 打開編成畫面（預設自動帶入可出戰的機體與駕駛）
   | { type: "sortieToggle"; mech: string }                 // 編成：加入／移出一台
+  | { type: "sortieAi"; mech: string; enabled: boolean }
   | { type: "sortieSeat"; mech: string; seat: string; person: string | null }   // 編成：換座位上的人
   | { type: "sortieLaunch"; mode: "command" | "auto" }     // command＝進戰場親自指揮；auto＝AI 自動結算（不進戰場）
   | { type: "sortieCancel" }
@@ -121,6 +122,7 @@ export type PersonRow = {
   role: string; roleName: string;
   hp: { cur: number; max: number } | null;
   mood: number; wage: number; owed: number;
+  driveHours?: number; apparentAge?: number | null; realAge?: number | null;
   seat: string | null;              // 坐在哪台（機甲名）
   status: string;                   // 「待命」「出戰中」「負傷」「死亡」…
   selected: boolean;
@@ -166,7 +168,7 @@ export type PromptView = {
 
 export type SortieView = {
   contract: string | null; title: string; nodeName: string;
-  units: { mech: string; name: string; included: boolean; enabled: boolean; reason?: string;
+  units: { mech: string; name: string; included: boolean; ai?: boolean; enabled: boolean; reason?: string;
     seats: { seat: string; seatName: string; person: string | null; options: { id: string; name: string }[] }[] }[];
   error: string | null;             // validateSortie 的拒絕原因（中文）；null＝可出戰
   buttons: OpsButton[];             // 親自指揮、AI 自動結算、取消

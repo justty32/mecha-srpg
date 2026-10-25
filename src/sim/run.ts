@@ -96,7 +96,9 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
         const state = sc.personStates?.[person.id];
         return state ? { id: state.id, def: state.def, seat: seat.id,
           state: structuredClone({ pools: state.pools, effects: state.effects, contribs: state.contribs,
-            morale: state.morale, will: state.will, attrsBase: state.attrsBase, xp: state.xp, level: state.level }) }
+            morale: state.morale, will: state.will, attrsBase: state.attrsBase, xp: state.xp, level: state.level,
+            ...(state.abilities ? { abilities: state.abilities } : {}), ...(state.driveHours !== undefined ? { driveHours: state.driveHours } : {}),
+            ...(state.maxDrivenGrade ? { maxDrivenGrade: state.maxDrivenGrade } : {}) }) }
           : { id: `${id}-${seat.id}`, def: person.id, seat: seat.id };
       });
       // ISS-001：情境給 components 就整組取代機體 defaultLoadout；id 一律解析成完整 id。

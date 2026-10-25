@@ -15,6 +15,7 @@ import { offerNickname } from "../crew/names.ts";
 import { applyOpsEffect, beastSpecies } from "../content/opseffect.ts";
 import { applyOperationBattle } from "../war/merc.ts";
 import { settleEncounterActors } from "../world/encounter.ts";
+import { cockpitGrowth } from "../crew/cockpit-growth.ts";
 
 export type BattleResult = NonNullable<RunResult["result"]>;
 export type SortieBattleResult = BattleResult;
@@ -35,6 +36,7 @@ function persistPools(before: Record<string, PoolState>, after: Record<string, P
 function mechAfter(s: CampaignState, ctx: OpsCtx, before: MechState, after: MechState): MechState {
   const mech = structuredClone(after), frame = ctx.db.require("frame", before.frame);
   mech.id = before.id; mech.frame = before.frame; mech.owner = before.owner;
+  if (before.aiBattles !== undefined) mech.aiBattles = before.aiBattles;
   const decls = [...frame.pools];
   for (const part of Object.keys(before.parts).sort()) for (const slot of Object.keys(before.parts[part]!.components).sort()) {
     const id = before.parts[part]!.components[slot]; if (id) decls.push(...ctx.db.require("component", s.inventory.components.find(c => c.id === id)?.def ?? id).pools);
@@ -47,6 +49,9 @@ function mechAfter(s: CampaignState, ctx: OpsCtx, before: MechState, after: Mech
 function personAfter(ctx: OpsCtx, before: PersonState, after: PersonState, xpGained: number): PersonState {
   const p = structuredClone(after), def = ctx.db.require("person", before.def);
   p.id = before.id; p.def = before.def;
+  if (before.abilities !== undefined) p.abilities = [...before.abilities];
+  if (before.driveHours !== undefined) p.driveHours = before.driveHours;
+  if (before.maxDrivenGrade !== undefined) p.maxDrivenGrade = before.maxDrivenGrade;
   // 戰鬥已承接現況，池與效果直接寫回，僅按內容宣告衰減戰鬥池。
   p.pools = persistPools(before.pools, after.pools, def.pools, before.attrsBase);
   p.xp = Math.max(after.xp, before.xp + xpGained); // state 已有總 XP 時不再重加。
@@ -178,6 +183,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
     if (entry.status === "dead" || p.pools.hp?.cur === 0) registerDeath(s, ctx, entry.id, "battle");
   }
   rosterReturn(s, ctx);
+  cockpitGrowth(s, ctx, sortie, result);
   for (const unit of ordered) {
     const beast = s.restraint.beasts[unit.mech], cfg = beast && beastRules(s, ctx, unit.mech); if (!beast || !cfg) continue;
     s.flags[`battles:${unit.mech}`] = (s.flags[`battles:${unit.mech}`] ?? 0) + 1;

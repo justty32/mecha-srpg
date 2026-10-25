@@ -19,6 +19,30 @@ function ability() {
 const tactics = { kind: "tactics", entries: [{ id: "attack", name: "攻擊" }] };
 const base = loadContentDirs(["content/base"]);
 
+test("人物成長 schema 與參照：正常資料通過，錯誤型別、能力引用及非機魂範本被拒", () => {
+  const source = readPackDir("content/base");
+  assert.deepEqual(loadPacks([source]).errors, []);
+  const rules = source.files["rules/cockpit.json"] as { growth: Record<string, unknown> };
+  const original = structuredClone(rules.growth);
+  rules.growth.driveHoursPerRound = "bad";
+  assert(loadPacks([source]).errors.some(e => e.path.includes("driveHoursPerRound")));
+  rules.growth = { ...original, abilityPool: ["person/ren-kasai"] };
+  assert(loadPacks([source]).errors.some(e => e.path.includes("abilityPool")));
+  rules.growth = { ...original, awakenSoulTemplate: "person/ren-kasai" };
+  assert(loadPacks([source]).errors.some(e => e.path.includes("awakenSoulTemplate")));
+  rules.growth = { ...original, abilityHours: [60, 20] };
+  assert(loadPacks([source]).errors.some(e => e.path.includes("abilityHours")));
+  rules.growth = original;
+  const p = source.files["persons/ilse-brandt.json"] as Record<string, unknown>;
+  p.abilities = ["ability/missing"];
+  assert(loadPacks([source]).errors.some(e => e.path.includes("abilities")));
+  p.abilities = ["ability/pa-quick-thought"];
+  assert.deepEqual(loadPacks([source]).errors, []);
+  p.age = "old";
+  assert(validateAgainst("person", p).some(e => e.path === "$.age"));
+  assert(validateAgainst("ability", { ...ability(), grade: "X" }).some(e => e.path === "$.grade"));
+});
+
 test("base 內容包載入零錯誤", () => {
   assert.deepEqual(base.errors, []);
 });

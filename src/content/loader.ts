@@ -146,6 +146,20 @@ function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSource
     }
   };
   for (const source of [...definitions.values(), ...ruleSources]) visit(source.value, source.path, source.file);
+  const growth = db.rules.cockpit?.growth;
+  if (growth) {
+    const file = ruleSources.find(s => s.file.endsWith("rules/cockpit.json"))?.file ?? "rules/cockpit.json";
+    if (growth.abilityHours.length < growth.abilityCap || growth.abilityHours.some((n, i, a) => i > 0 && n < a[i - 1]!))
+      errors.push({ file, path: "$.growth.abilityHours", message: "ability thresholds must cover cap and be ordered" });
+    growth.abilityPool.forEach((id, i) => {
+      if (!db.get("ability", id)) errors.push({ file, path: `$.growth.abilityPool[${i}]`, message: `missing ability ${id}` });
+    });
+    if (db.get("person", growth.awakenSoulTemplate)?.kind !== "soul")
+      errors.push({ file, path: "$.growth.awakenSoulTemplate", message: "awakening template must be a soul" });
+  }
+  for (const def of db.all("person")) (def.abilities ?? []).forEach((id, i) => {
+    if (!db.get("ability", id)) errors.push({ file: definitions.get(def.id)?.file ?? def.id, path: `$.abilities[${i}]`, message: `missing ability ${id}` });
+  });
   // ISS-001 配裝相容性：槽必須存在於機體 body plan，部件的 slot 型別要相符；只有機甲 spawn 能帶 components。
   const loadout = (frameId: string, record: Record<string, string>, file: string, at: string): void => {
     const frame = db.get("frame", frameId), plan = frame ? db.get("bodyplan", frame.bodyPlan) : undefined;

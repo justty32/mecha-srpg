@@ -22,7 +22,7 @@ export function generateOperationScenario(s: CampaignState, ctx: OpsCtx, sortie:
     for (const seat of ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? [])) {
       const backgrounds = ctx.world.all("background").filter(b => b.person && seat.accepts.includes(ctx.db.require("person", b.person).kind === "soul" ? "soul" : "pilot"));
       const background = backgrounds.length ? backgrounds[nextInt(s.rng, backgrounds.length)] : undefined;
-      const personDef = background?.person ? ctx.db.require("person", background.person) : ctx.db.all("person").find(p => seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));
+      const personDef = background?.person ? ctx.db.require("person", background.person) : ctx.db.all("person").find(p => p.id !== ctx.db.rules.cockpit?.growth?.awakenSoulTemplate && seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));
       if (!personDef) continue;
       const pid = `${id}/${seat.id}`, p = instantiatePerson(ctx.db, pid, personDef.id);
       if (background) for (const [attr, [lo, hi]] of Object.entries(background.attrRanges)) p.attrsBase[attr] = lo + nextInt(s.rng, hi - lo + 1);

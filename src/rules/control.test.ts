@@ -33,6 +33,20 @@ import { killPerson } from "./injury.ts";
 import { beginTurn, currentActor, startBattle } from "./turn.ts";
 import { abilitiesOf, checkAbility, tryCommand } from "./command.ts";
 
+test("人物能力：驅動時合併天生與後天能力，普通開與死亡人物不併入", () => {
+  const ctx = fixture(defs => { defs.person!["base:person/ren-kasai"]!.abilities = ["ability/pa-quick-thought"]; });
+  person(ctx, "s").abilities = ["ability/pa-tame-instinct"];
+  const human = "base:ability/pa-quick-thought", soul = "base:ability/pa-tame-instinct";
+  assert(abilitiesOf(ctx, "u").includes(human)); assert(abilitiesOf(ctx, "u").includes(soul));
+  unit(ctx, "u").core = false;
+  assert(!abilitiesOf(ctx, "u").includes(human)); assert(!abilitiesOf(ctx, "u").includes(soul));
+  unit(ctx, "u").core = true; person(ctx, "p").pools.hp!.cur = 0;
+  assert(!abilitiesOf(ctx, "u").includes(human)); assert(abilitiesOf(ctx, "u").includes(soul));
+  const other = makeUnit(ctx, { id: "new-mech", frame: "frame/hound-mk2", owner: "player", pos: { x: 3, y: 3 },
+    persons: [{ id: "new-pilot", def: "person/ren-kasai", seat: "pilot", state: { abilities: [soul] } }] });
+  assert(abilitiesOf(ctx, other.id).includes(soul));
+});
+
 test("DC-C02 contested 依雙方骰與控制值選指令權者", () => {
   const ctx = fixture(); unit(ctx, "u").controlMode = "contested";
   const rng = cloneRng(ctx.s.rng), a = d100(rng) + 40, b = d100(rng) + 45;

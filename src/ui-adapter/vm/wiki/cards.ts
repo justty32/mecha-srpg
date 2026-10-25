@@ -1,3 +1,4 @@
+import { apparentAge } from "../../../core/age.ts";
 // 百科資料卡：只讀索引與 JSON，不依賴內容載入器或 DOM。
 import { parseMarkdown } from "./markdown.ts";
 import { layerTypeLabel } from "../labels.ts";
@@ -244,9 +245,19 @@ function game(builder: CardBuilder): void {
     case "effect":
       b.summary(["scope"]); b.kv("clock", "時鐘"); b.kv("stack", "疊加規則");
       b.table("contribs", "修正"); b.kv("hooks", "觸發效果"); break;
-    case "person":
+    case "person": {
+      const growth = object(object([...b.index.entries.values()].find(e => e.pack === b.entry.pack && e.path === "rules/cockpit.json")?.data)?.growth);
+      if (b.data.kind === "human" && typeof b.data.age === "number" && growth && typeof growth.daysPerYear === "number"
+        && typeof growth.driveHoursPerYear === "number" && typeof growth.agingRate === "number") {
+        const age = apparentAge({ kind: "human", age: b.data.age, activeYears: typeof b.data.activeYears === "number" ? b.data.activeYears : 0 }, {}, 0,
+          { daysPerYear: growth.daysPerYear, driveHoursPerYear: growth.driveHoursPerYear, agingRate: growth.agingRate });
+        b.overview.push({ label: "年齡", value: text(`外貌 ${age} 歲（實齡 ${b.data.age}）`) });
+        b.used.add("age");
+      }
+      b.list("abilities", "人物能力");
       b.summary(["kind"]); b.kv("attrs", "屬性"); b.table("pools", "資源池");
       b.list("traits", "特質"); b.list("perks", "天賦"); b.kv("will", "意志"); b.kv("growth", "成長"); break;
+    }
     case "soultree": b.list("nodes", "天賦節點"); break;
     case "species": species(b); break;
     case "monster": {

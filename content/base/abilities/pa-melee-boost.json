@@ -1,0 +1,42 @@
+{
+  "id": "ability/pa-melee-boost",
+  "name": "強化打擊",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/pa-melee-boost"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 2,
+  "grade": "D"
+}

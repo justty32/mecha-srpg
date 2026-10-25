@@ -103,8 +103,8 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
       return [el(doc, "h2", "契約"), split];
     }],
     roster: s => [s.roster, () => [el(doc, "h2", "名冊"), (() => {
-      const t = table(doc, ["姓名", "職務", "生命", "士氣", "薪", "欠薪", "座位", "狀態"], s.roster.map(p => [
-        p.name, p.roleName, p.hp ? `${p.hp.cur}/${p.hp.max}` : "—", p.mood, money(p.wage), p.owed ? money(p.owed) : "—", p.seat ?? "—", p.status]));
+      const t = table(doc, ["姓名", "職務", "生命", "士氣", "薪", "欠薪", "座位", "狀態", "驅動時數", "年齡"], s.roster.map(p => [
+        p.name, p.roleName, p.hp ? `${p.hp.cur}/${p.hp.max}` : "—", p.mood, money(p.wage), p.owed ? money(p.owed) : "—", p.seat ?? "—", p.status, p.driveHours ?? 0, p.apparentAge == null ? "—" : `外貌 ${p.apparentAge} 歲（實齡 ${p.realAge}）`]));
       const rows = t.querySelectorAll("tbody > tr");
       s.roster.forEach((p, i) => {
         const tr = rows[i] as HTMLTableRowElement;

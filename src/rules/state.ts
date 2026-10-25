@@ -20,7 +20,7 @@ export type Subject = { unit?: Id; person?: Id };
 export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
   core?: boolean; crew?: "ai" | "remote"; frame?: Id; monster?: { species: Id; grade: Grade; def?: Id };
   components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId;
-    state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level">> }[];
+    state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level" | "abilities" | "driveHours" | "maxDrivenGrade">> }[];
   parts?: Record<PartId, Pick<MechState["parts"][string], "layers" | "broken">>;
   controlMode?: MechState["controlMode"]; effects?: MechState["effects"];
   pools?: Record<PoolId, number> };

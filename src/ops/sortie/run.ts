@@ -30,7 +30,9 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
       person.id = pid;
     }
     unit.parts = Object.fromEntries(Object.entries(mech.parts).map(([id, part]) => [id, structuredClone({ layers: part.layers, broken: part.broken })]));
-    unit.controlMode = selected.controlMode;
+    unit.controlMode = selected.crew === "ai" && !Object.values(selected.seats).some(Boolean) ? "scripted" : selected.controlMode;
+    unit.core = mech.core;
+    if (selected.crew) unit.crew = selected.crew;
     unit.effects = structuredClone(mech.effects);
     unit.pools = { ...Object.fromEntries(Object.keys(mech.pools).sort().map(id => [id, mech.pools[id]!.cur])), ...unit.pools };
   }

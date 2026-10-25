@@ -1,3 +1,4 @@
+import { apparentAge } from "../../../core/age.ts";
 import type { CampaignState, OpsCtx, OpsCommand, Sortie } from "../../../ops/state/types.ts";
 import { applyCommand } from "../../../ops/time/index.ts";
 import { render } from "../../../ops/text/render.ts";
@@ -130,7 +131,10 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     contracts, mechs,
     roster: Object.values(s.roster.persons).map(p => {
       const e = s.roster.employment[p.id], seat = Object.values(s.mechs).find(m => Object.values(m.seats).includes(p.id));
-      return { id: p.id, name: name(p.id), kind: db.require("person", p.def).kind, role: e?.role ?? "soul", roleName: label(e?.role ?? "soul"),
+      const def = db.require("person", p.def), growth = db.rules.cockpit?.growth;
+      return { driveHours: p.driveHours ?? 0, apparentAge: growth ? apparentAge(def, p, s.clock.day, growth) : null,
+        realAge: def.kind === "human" && def.age !== undefined && growth ? def.age + Math.floor(s.clock.day / growth.daysPerYear) : null,
+        id: p.id, name: name(p.id), kind: db.require("person", p.def).kind, role: e?.role ?? "soul", roleName: label(e?.role ?? "soul"),
         hp: p.pools.hp ? { cur: p.pools.hp.cur, max: p.pools.hp.max } : null, mood: e?.mood ?? 0, wage: e?.wage ?? 0, owed: e?.owed ?? 0,
         seat: seat ? name(seat.id) : null, status: s.roster.dead.some(d => d.person === p.id) ? "死亡" : p.pools.hp && p.pools.hp.cur < p.pools.hp.max ? "負傷" : ui.battle && ui.draft?.units.some(u => Object.values(u.seats).includes(p.id)) ? "出戰中" : "待命", selected: ui.person === p.id };
     }),

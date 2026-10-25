@@ -22,6 +22,11 @@ function summary(result: ToolResult): string { return (result.content[0] as { te
 test("營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項", async () => {
   const { call } = setup(), initial = data(await call("campaign_new", { seed: 5 })), { id } = initial;
   const pilots = initial.panels.roster.filter((p: { role: string }) => p.role === "pilot");
+  assert(initial.panels.roster.every((p: { driveHours: number }) => p.driveHours === 0));
+  const veteran = initial.panels.roster.find((p: { realAge: number | null }) => p.realAge === 35);
+  assert(veteran); assert.equal(veteran.apparentAge, 23);
+  const personLook = data(await call("campaign_act", { id, command: { v: "look", target: veteran.id } }));
+  assert.match(personLook.commandInfo, /驅動時數 0.*外貌 23 歲（實齡 35）/);
   for (const [i, m] of initial.panels.hangar.entries()) data(await call("campaign_act", { id,
     command: { v: "assign", person: pilots[i].id, seat: { mech: m.id, seat: "pilot" } } }));
   const view = await call("campaign_view", { id }), hangar = data(view).panels.hangar;

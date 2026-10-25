@@ -121,7 +121,7 @@ export type BeastDef = { id: Id; family: string; restraint: Id[]; wearPerDay: Pa
   behaviors: { species: Id; molt?: { days: number; window: number; to: Id }; brood?: { child: Id }; mutate?: { frames: Id[] } }[] };
 export type KeymapDef = { id: Id; bindings: { action: string; keys: string[]; label: string; context?: string }[] };
 export type Sortie = { actors?: Id[]; ambush?: boolean; operation?: Id; id: Id; day: number; contract?: Id; loc: Loc; place?: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation" | "intercept";
-  units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
+  units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode; crew?: "ai" }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
 // SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。
 export type OpsEffect =

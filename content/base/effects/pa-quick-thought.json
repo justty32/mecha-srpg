@@ -1,0 +1,27 @@
+{
+  "id": "effect/pa-quick-thought",
+  "name": "思維加速",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/pa-quick-thought"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "思維加速"
+  }
+}

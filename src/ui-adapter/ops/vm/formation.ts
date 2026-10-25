@@ -11,7 +11,7 @@ export function seatDefs(s: CampaignState, ctx: OpsCtx, id: string) {
 export function controlMode(s: CampaignState, ctx: OpsCtx, unit: Sortie["units"][number]): Sortie["units"][number]["controlMode"] {
   if (s.restraint.beasts[unit.mech]?.kind === "live") return "instinct";
   const kinds = Object.values(unit.seats).flatMap(id => id && s.roster.persons[id] ? [ctx.db.require("person", s.roster.persons[id]!.def).kind] : []);
-  return kinds.includes("human") ? kinds.includes("soul") ? "shared" : "pilot" : kinds.includes("soul") ? "soul" : "none";
+  return kinds.includes("human") ? kinds.includes("soul") ? "shared" : "pilot" : kinds.includes("soul") ? "soul" : unit.crew === "ai" ? "scripted" : "none";
 }
 function ready(s: CampaignState, ctx: OpsCtx, id: string): boolean {
   const mech = s.mechs[id]; if (!mech || s.hangar.dormant.includes(id)) return false;
@@ -51,7 +51,7 @@ export function seatOptions(s: CampaignState, ctx: OpsCtx, mech: string, seat: s
   });
 }
 export function defaultUnit(s: CampaignState, ctx: OpsCtx, id: string, used: Set<string>): Sortie["units"][number] {
-  const unit: Sortie["units"][number] = { mech: id, seats: {}, controlMode: "none" };
+  const unit: Sortie["units"][number] = { mech: id, seats: {}, controlMode: "none", ...(s.mechs[id]!.crew === "ai" ? { crew: "ai" } : {}) };
   for (const seat of seatDefs(s, ctx, id)) {
     const available = seatOptions(s, ctx, id, seat.id).filter(id => !used.has(id));
     const occupant = s.mechs[id]!.seats[seat.id], bond = peekCrew(s)?.bonds[id];
@@ -85,7 +85,7 @@ export function draftError(s: CampaignState, ctx: OpsCtx, draft: Sortie): string
   const valid = validateSortie(s, ctx, draft);
   if (!valid.ok) return rejection(valid.error);
   // SPEC-GAP：ops 驗證允許空控制機體；UI 明確要求可控制或本能出戰，避免無法結束的戰鬥。
-  return draft.units.some(u => u.controlMode === "none") ? "機體尚未配置駕駛或機魂" : null;
+  return draft.units.some(u => u.controlMode === "none" && u.crew !== "ai") ? "機體尚未配置駕駛或機魂" : null;
 }
 export function formationView(s: CampaignState, ctx: OpsCtx, draft: Sortie): SortieView {
   const name = (id: string) => displayName(s, ctx.db, ctx.world, id);
@@ -94,7 +94,7 @@ export function formationView(s: CampaignState, ctx: OpsCtx, draft: Sortie): Sor
       const unit = draft.units.find(u => u.mech === id), preview = unit ?? defaultUnit(s, ctx, id, new Set(draft.units.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id))));
       const valid = validateSortie(s, ctx, { ...draft, units: [preview] });
       const reason = !ready(s, ctx, id) ? "機體尚未整備完成" : !valid.ok ? rejection(valid.error) : undefined;
-      return { mech: id, name: name(id), included: !!unit, enabled: !reason, ...(reason ? { reason } : {}), seats: seatDefs(s, ctx, id).map(seat => ({
+      return { mech: id, name: name(id), included: !!unit, ai: preview.crew === "ai", enabled: !reason, ...(reason ? { reason } : {}), seats: seatDefs(s, ctx, id).map(seat => ({
         seat: seat.id, seatName: seat.accepts.map(label).join("／"), person: preview.seats[seat.id] ?? null,
         options: seatOptions(s, ctx, id, seat.id).map(id => ({ id, name: name(id) })),
       })) };
