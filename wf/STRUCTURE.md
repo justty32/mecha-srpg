@@ -70,3 +70,5 @@
 ## 資料檔慣例
 
 抽成 `.json`／`.csv` 的門檻與格式契約 `wf-table/1` 在 [workflows/common/data-files.md](workflows/common/data-files.md)；讀寫走 `tabledb.py`；整理流程走 [workflows/tidy/README.md](workflows/tidy/README.md)；json 內跨層路徑可用 `$fmt` 代號（見 [data-files-fmt](workflows/common/data-files-fmt.md)）。
+
+**生成式資料索引**：由工具從來源檔產生的索引（例：`content/index/`，`npm run content:index` 重建）只從來源檔重建、不手改、進 git；驗證時重建結果與 git 版本比對不過就擋下（`npm test` 的索引一致性）。
