@@ -4,7 +4,11 @@
 
 **曆**　**浮船**
 ```json
-{"id":"calendar/tide","daysPerMonth":28,"spring":[1,15],"neap":[7,21],"special":[]}
+{"id":"calendar/tide","daysPerMonth":28,"monthsPerYear":13,"epochMonth":247,"spring":[1,15],"neap":[7,21]}
+```
+天象（`world/omens/<名>.json`，kind `omen`；週期與潮級規則見 [time-and-tick/calendar](../time-and-tick/calendar.md)）
+```json
+{"id":"omen/perigee","name":"迫月","nameEn":"Perigee","layer":"distance","cycle":{"periodMonths":7,"offsetDays":0,"durationDays":1},"tideDelta":1,"text":"月亮貼得太近，門拉得更開。","effects":[],"tags":["tide"]}
 ```
 ```json
 {"id":"ship/migrant-bird","name":"候鳥號","rooms":["bridge","hangar","restraint","medbay","galley","cargo"],"capacity":{"mechBays":4,"restraintSlots":2,"berths":10,"cargo":60},

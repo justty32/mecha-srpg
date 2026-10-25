@@ -2,22 +2,24 @@
 
 [ops README](README.md)｜世界觀來源 [world/rifts-and-territory](../world/rifts-and-territory.md)、[world/operations](../world/operations.md)｜裂縫狀態機在 [data-model-world-map](data-model-world-map.md)｜移動與遭遇在 [world-grid](world-grid/README.md)
 
-裁示：一局時長不限；營運層一天一 tick、二十八天一蝕月、第 1 與 15 天漲潮、第 7 與 21 天弦月、一場戰鬥不占營運時間、認主只在漲潮之夜（world 暫定裁示）。**2026-10-24 晚改名**：每月兩次的朔望叫「漲潮」（原稱大潮，識別字 `spring` 不改；UI 顯示字串仍寫「大潮」，改字列在 engine-backlog）；「大潮」改指撞上迫月的少數漲潮（末日級、每年兩三次），潮勢分級見 design-notes/tide-sky。BB 的日結順序問題（OPS-02／DAT-12／DAT-13）在此用「先算全團、再按政策分配、跳轉逐日補算」回答。
+裁示：一局時長不限；營運層一天一 tick、二十八天一蝕月、第 1 與 15 天漲潮、第 7 與 21 天弦月、一場戰鬥不占營運時間、認主只在漲潮之夜（world 暫定裁示）。**2026-10-24 晚改名**：每月兩次的朔望叫「漲潮」（原稱大潮，識別字 `spring` 不改；UI 顯示字串改字見 engine-backlog 第 31 列）；「大潮」改指撞上迫月的少數漲潮（末日級、每年兩三次），潮勢分級見 design-notes/tide-sky。BB 的日結順序問題（OPS-02／DAT-12／DAT-13）在此用「先算全團、再按政策分配、跳轉逐日補算」回答。
 
 ## 曆 Calendar
 
 ```ts
 type Clock = { day: number /*自開局起 0..*/; month: number /*floor(day/28)*/; dom: number /*1..28*/;
-  phase: "spring" | "neap" | "ordinary" };            // spring＝漲潮（dom 1、15）、neap＝弦月（dom 7、21）
+  phase: "spring" | "neap" | "ordinary";                 // 舊三分：漲潮（dom 1、15）、弦月（7、21）
+  stage: "rising" | "spring" | "ebb" | "neap" | "slack"; // 潮候五段
+  tide: number; year: number };                          // 潮級 0–4、蝕曆年（元年＝1）
 ```
 
-曆是純函式 `clock(day)`；內容包 `calendar.json` 可改週期與特殊日（例：月面「背面裂開紀念日」事件），程式不寫死 28。**時間只由玩家推進**：`等 N`、航行、探勘、渡輪都換算成 N 個 `tick()`；離線時世界靜止（單機回合制，OPS-20 的答案）。戰鬥發生在某一天之內，結束後當天繼續，不耗 tick。
+曆是純函式 `clock(day)`（`src/ops/state/clock.ts`）；內容包 `calendar.json` 定週期（`monthsPerYear`、`epochMonth`），程式不寫死 28；舊 `special` 特殊日已由天象 kind `omens/` 取代。潮候、潮級、天象窗、旗與 tag 的規則見子檔 [time-and-tick/calendar](time-and-tick/calendar.md)。**時間只由玩家推進**：`等 N`、航行、探勘、渡輪都換算成 N 個 `tick()`；離線時世界靜止（單機回合制，OPS-20 的答案）。戰鬥發生在某一天之內，結束後當天繼續，不耗 tick。
 
 ## 一個 tick 的結算順序（固定、可測）
 
 每個 `tick()` 依序跑八段，每段是 `(state) → (state', CampaignEvent[])`，段內再按 id 字典序迭代以保決定性：
 
-1. **曆與旗標**：`day++`、算 `phase`；漲潮日開 `anchorable` 旗。
+1. **曆與旗標**：`day++`、算 Clock 與天象，寫 `omen:<名>` 旗；漲潮日開 `anchorable` 旗。
 2. **世界**：裂縫狀態機與新裂縫（漲潮日）、蝕壓、蝕塊深度；外交、作戰、行動牌、研發；**行動者 AI**（巡邏、商隊、裂獸群、別的獵團選目標與路徑，分遣隊目標由作戰給）。
 3. **移動**：船與行動者各拿移動點沿格走（航道段 `daysLeft−−`）；到站；每進一格查**接觸**（遭遇寫 `pendingEncounter`、tick 暫停）；蝕格擲遭遇；段末重算視野。
 4. **事件**：地點／野外（地形 × 蝕深）／航道／船上事件抽牌；有待選者 tick **暫停**。
