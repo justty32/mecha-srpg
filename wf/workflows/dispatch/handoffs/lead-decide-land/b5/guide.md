@@ -1,6 +1,6 @@
 # B5 翻譯腔重審三批（dl-01／dl-02／dl-03）共用指引
 
-[lead-decide-land](../REPORT.md)｜裁示 [talk-decide misc](../../talk-decide/decisions/misc.md)「B5」｜潤飾規矩 [content/polish](../../../../content/polish.md)｜文字準則 [content/lore-text](../../../../content/lore-text.md)
+lead-decide-land（總 REPORT 待頂層代存為 `../REPORT.md`）｜裁示 [talk-decide misc](../../talk-decide/decisions/misc.md)「B5」｜潤飾規矩 [content/polish](../../../../content/polish.md)｜文字準則 [content/lore-text](../../../../content/lore-text.md)
 
 **狀態：已排、未開跑（2026-10-25）。** 開跑的領導照 [content/batch](../../../../content/batch.md) 流程：把 `dl-0N.manifest.json` 複製成 `content/batches/2026-10/dl-0N.json`（`base` 填開跑當下 HEAD）、開 worktree、把 `cx-dl-0N.md` 裡的 `$WT` 換成 worktree 絕對路徑、`brief_lint --strict`、派 codex（`gpt-6-astra`、reasoning high）。三批檔案不重疊，可以並行；與其他 lore 批次並行時先確認沒有同檔。
 

@@ -18,7 +18,7 @@
 
 ## 現役
 
-- **talk-decide**（2026-10-25）：Fable 與使用者 tmux 對談待裁示題，交接書 [talk-decide/HANDOVER](talk-decide/HANDOVER.md)；其餘各線（含 lead-grid、lead-world-land、lead-rename、lead-reconcile、lead-settle、lead-tune、lead-pilot-essence）已全部收線，REPORT 見 [done 索引](done/README.md)。
+- 無現役線（2026-10-25）。talk-decide 對談已收線（[REPORT](talk-decide/REPORT.md)），裁示由 lead-decide-land 落地完畢（design-notes world/drive、pilots、great-tide；specs/world/pilots；world-pillars M12／M13；style/people；engine-backlog 30／45–49；B5 三批已排）；總 REPORT 待頂層代存為 `lead-decide-land/REPORT.md`。其餘各線已全部收線，見 [done 索引](done/README.md)。
 - 遊戲機制數值微調（經濟目標 B1、出戰前士氣 B2）使用者說延後，先不派線。
 
 ## 本段落（2026-10-24）做了什麼
@@ -42,8 +42,8 @@
 1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
 2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
 3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）。
-4. （已完成：第一批用語改名由 lead-rename 收件。）開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover：第一批＝用語改名＋翻譯腔重審（依 `design-notes/terms.md`，agy 審查，衍生詞先交使用者定）；其餘批次照 `codex-batches.json`，3–4 批並行。
-5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）engine-backlog 其餘 P1 視 talk-decide 裁示再派；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
+4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover 與 `codex-batches.json`：用語改名已完成（lead-rename，2026-10-24）；**翻譯腔重審三批 dl-01／02／03 已排、待開跑**（第 11–13 列，manifest 與交接書草稿在 `lead-decide-land/b5/`，順帶對齊 2026-10-25 裁示與「機甲核心」用詞；第二輪 104 檔見第 14 列）；其餘批次 3–4 批並行。
+5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）talk-decide 定案的引擎線：engine-backlog 第 30 列（機甲核心與座艙狀態，併 35／46，小–中、重產黃金）可先派，47／48／49 接其後；第 30 列派線時一併授權改 specs/core rules-people 與 specs/ops time-and-tick 的「不能獨駕」殘留；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
 6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
 
 > `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。

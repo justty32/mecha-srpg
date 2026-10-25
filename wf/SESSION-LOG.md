@@ -11,7 +11,6 @@
 
 ## 最新進度
 
-- [content] lead-decide-land 現役（2026-10-25）：talk-decide 裁示落地到 design-notes／specs/world／守則／backlog，排 B5 三批 polish → [talk-decide REPORT](workflows/dispatch/handoffs/talk-decide/REPORT.md)
 
 ## 各工作流 session-log
 
