@@ -4,6 +4,7 @@ import { checkCond, checkNumExpr } from "../../core/numexpr.ts";
 import { EVENT_TYPES } from "../state/events.ts";
 import { isAccount } from "../state/ledger.ts";
 import type { WorldKind } from "../state/types.ts";
+import { stage } from "../state/omens.ts";
 import type { WorldDB } from "./worlddb.ts";
 import { keymapErrors } from "./worlddb.ts";
 import { loadWorldDirs, WORLD_KINDS } from "./load.ts";
@@ -19,7 +20,7 @@ const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
   actor: ["parley"], place: ["services", "tags"], lane: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
   "faction-ops": ["territory", "contractKinds", "services", "reputationTiers", "tags"], contract: ["issuerKinds", "gradeRange", "objectives", "onComplete", "onFail", "onCancel"],
   action: ["effects"], market: ["lists", "priceMods"], recruit: ["sources"], research: ["requires", "unlocks"], names: ["names", "epithets"],
-  event: ["choices"], dialogue: ["topics"], room: ["base", "exits", "phrases"], start: ["mechs", "persons", "flags"], ship: ["rooms"], calendar: ["spring", "neap", "special"],
+  event: ["choices"], dialogue: ["topics"], room: ["base", "exits", "phrases"], start: ["mechs", "persons", "flags"], ship: ["rooms"], calendar: ["spring", "neap"], omen: ["effects", "tags"],
 };
 function object(value: unknown): value is Record<string, unknown> { return value !== null && typeof value === "object" && !Array.isArray(value); }
 
@@ -52,7 +53,7 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
         if (typeof value.ref !== "string" || !(OPS_REF_ROOTS as readonly string[]).includes(value.ref.split(".")[0]!)) errors.push(`${at}.ref: invalid ops ref root`);
       }
       if (["materials", "consumes", "stocks"].includes(field)) for (const key of Object.keys(value)) if (!isAccount(key)) errors.push(`${at}: invalid account ${key}`);
-      if (["effects", "onComplete", "onFail", "onCancel", "onSuccess", "onAbort", "terms", "onExpire"].some(key => at.includes(`.${key}[`)) && at.endsWith("]")) {
+      if (["effects", "onComplete", "onFail", "onCancel", "onSuccess", "onAbort", "terms", "onExpire"].some(key => at.includes(`.${key}[`)) && at.endsWith("]") && !(kind === "omen" && /^[^.]*\.effects\[\d+\]$/.test(at))) {
         if (EFFECT_KEYS.filter(key => key in value).length !== 1) errors.push(`${at}: unknown OpsEffect`);
       }
       // core 的結構檢查器限定戰鬥 ref 根；營運根另由 cond.ts 登記，這裡仍驗 NumExpr/Cond 形狀。
@@ -153,7 +154,12 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   for (const cal of world.all("calendar")) {
     if (!Number.isSafeInteger(cal.daysPerMonth) || cal.daysPerMonth < 1) errors.push(`${cal.id}: invalid calendar period`);
     if ([...(cal.spring ?? []), ...(cal.neap ?? [])].some(n => !Number.isInteger(n) || n < 1 || n > cal.daysPerMonth)) errors.push(`${cal.id}: invalid phase day`);
+    if (cal.monthsPerYear !== undefined && (!Number.isSafeInteger(cal.monthsPerYear) || cal.monthsPerYear < 1)) errors.push(`${cal.id}.monthsPerYear: invalid`);
+    if (cal.epochMonth !== undefined && (!Number.isSafeInteger(cal.epochMonth) || cal.epochMonth < 0)) errors.push(`${cal.id}.epochMonth: invalid`);
+    if (cal.stageWindow !== undefined && (!Number.isSafeInteger(cal.stageWindow) || cal.stageWindow < 0)) errors.push(`${cal.id}.stageWindow: invalid`);
+    if ("special" in cal) errors.push(`${cal.id}.special: obsolete, use world/omens/`);
   }
+  errors.push(...omenErrors(world));
   for (const model of world.all("model")) {
     reference(model.frame, `${model.id}.frame`, "frame");
     if (db.get("frame", model.frame)?.cls !== "mechanical") errors.push(`${model.id}.frame: must be mechanical`);
@@ -213,6 +219,41 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   }
   for (const type of EVENT_TYPES) if (!templates.has(type)) warnings.push(`templates: missing ${type}`);
   return { errors: [...new Set(errors)], warnings: [...new Set(warnings)] };
+}
+
+const OMEN_LAYERS = ["moon", "distance", "eclipse", "sky", "season", "scripted"];
+const OMEN_EFFECT_KINDS = ["tide", "spawn", "blight", "unitEffect", "ops", "event", "rule", "faction"];
+/** 天象週期驗證：窗形狀、排定日、湧現引用、潮級修正要落得到漲潮日（否則永不生效）。 */
+export function omenErrors(world: WorldDB): string[] {
+  const errors: string[] = [], cals = world.all("calendar");
+  for (const def of world.all("omen")) {
+    const at = def.id;
+    if (!OMEN_LAYERS.includes(def.layer)) errors.push(`${at}.layer: invalid`);
+    if (!def.cycle && !def.at?.length && !def.emerge) errors.push(`${at}: needs cycle, at or emerge`);
+    for (const effect of def.effects ?? []) if (!OMEN_EFFECT_KINDS.includes(String(effect.kind))) errors.push(`${at}.effects: unknown kind ${String(effect.kind)}`);
+    if (def.tideDelta !== undefined && !Number.isInteger(def.tideDelta)) errors.push(`${at}.tideDelta: invalid`);
+    if (def.setTide !== undefined && (!Number.isInteger(def.setTide) || def.setTide < 0 || def.setTide > 4)) errors.push(`${at}.setTide: must be 0..4`);
+    if (def.emerge) {
+      if (!OMEN_LAYERS.includes(def.emerge.layer) || !Number.isSafeInteger(def.emerge.min) || def.emerge.min < 0) errors.push(`${at}.emerge: invalid`);
+      for (const id of def.emerge.requires ?? []) if (!world.get("omen", id)) errors.push(`${at}.emerge.requires: missing reference ${id}`);
+    }
+    for (const cal of cals) {
+      if (def.cycle) {
+        const { periodMonths, offsetDays, durationDays } = def.cycle, period = periodMonths * cal.daysPerMonth;
+        if (!(periodMonths > 0) || !Number.isSafeInteger(period)) errors.push(`${at}.cycle.periodMonths: must give whole days under ${cal.id}`);
+        else if (!Number.isSafeInteger(durationDays) || durationDays < 1 || durationDays > period) errors.push(`${at}.cycle.durationDays: must be 1..${period}`);
+        if (!Number.isSafeInteger(offsetDays)) errors.push(`${at}.cycle.offsetDays: invalid`);
+        else if ((def.tideDelta || def.setTide !== undefined) && Number.isSafeInteger(period) && period > 0 && Number.isSafeInteger(durationDays)) {
+          // 潮級修正只在漲潮日生效：窗內至少要有一個漲潮日。
+          const epoch = (cal.epochMonth ?? 0) * cal.daysPerMonth;
+          const hits = Array.from({ length: Math.min(durationDays, period) }, (_, i) => offsetDays + i).some(d => stage(((d - epoch) % cal.daysPerMonth + cal.daysPerMonth) % cal.daysPerMonth + 1, cal) === "spring");
+          if (!hits) errors.push(`${at}.cycle: tide modifier window never covers a spring day (${cal.id})`);
+        }
+      }
+      for (const [i, a] of (def.at ?? []).entries()) if (!Number.isSafeInteger(a.month) || a.month < 0 || !Number.isInteger(a.dom) || a.dom < 1 || a.dom > cal.daysPerMonth) errors.push(`${at}.at[${i}]: invalid month/dom`);
+    }
+  }
+  return errors;
 }
 
 if (import.meta.main) {

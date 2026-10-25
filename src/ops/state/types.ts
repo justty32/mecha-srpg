@@ -25,8 +25,19 @@ export type LaneDef = { id: Id; a: Id; b: Id; kind: "land-bridge" | "sea-lane" |
 
 export type RoomId = string;
 export type ServiceId = string;
-export type Clock = { day: number; month: number; dom: number; phase: "spring" | "neap" | "ordinary" };
-export type CalendarDef = { id: Id; daysPerMonth: number; spring: number[]; neap: number[]; special: { dom: number; month: number; event: Id }[] };
+/** 潮候五段：潮前、漲潮日、退潮、小潮、平潮日（`phase` 是舊三分，保留不動）。 */
+export type TideStage = "rising" | "spring" | "ebb" | "neap" | "slack";
+/** tide＝潮級 0–4（平潮 0、小潮／潮前／退潮 1、漲潮 2、大潮 3、連珠潮 4；枯潮是漲潮日落成 1）；year＝蝕曆年（元年＝1）。 */
+export type Clock = { day: number; month: number; dom: number; phase: "spring" | "neap" | "ordinary"; stage: TideStage; tide: number; year: number };
+/** monthsPerYear／epochMonth：蝕曆一年幾蝕月、開局 month 0 是蝕曆元年起第幾蝕月；stageWindow＝潮前／退潮各幾日（預設 3）。 */
+export type CalendarDef = { id: Id; daysPerMonth: number; spring: number[]; neap: number[]; monthsPerYear?: number; epochMonth?: number; stageWindow?: number };
+export type OmenLayer = "moon" | "distance" | "eclipse" | "sky" | "season" | "scripted";
+/** 天象：cycle 相位自蝕曆元年第一日起算；at 的 month 是營運 clock.month（開局 month 0）；emerge 在漲潮日湧現（requires 全中且 layer 進行中 ≥ min）。
+ * effects 為 OmenEffect（八類，見 specs/ops/time-and-tick），引擎尚未執行（engine-backlog 39–42）。 */
+export type OmenDef = { id: Id; name: string; nameEn?: string; layer: OmenLayer;
+  cycle?: { periodMonths: number; offsetDays: number; durationDays: number }; at?: { month: number; dom: number }[];
+  emerge?: { requires: Id[]; layer: OmenLayer; min: number }; tideDelta?: number; setTide?: number;
+  text?: string; effects: Record<string, unknown>[]; tags: string[] };
 export type Account = "cash" | "debt" | `stock:${string}`;
 export type LedgerEntry = { seq: number; day: number; account: Account; delta: number; reason: string; ref?: Id; counter?: Account };
 export type Ledger = { entries: LedgerEntry[]; balances: Record<Account, number> };
@@ -185,7 +196,7 @@ export type CampaignState = { relations?: Record<string, Relation>; operations?:
 export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
 
 export type WorldDefByKind = { actor: ActorDef; wterrain: WTerrainDef; map: MapDef; regions: RegionsDef; place: PlaceDef; lane: LaneDef;
-  operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; ship: ShipDef; rift: RiftDef;
+  operation: OperationDef; treaty: TreatyDef; lineage: LineageDef; model: ModelDef; forces: ForcesDef; affinity: AffinityDef; calendar: CalendarDef; omen: OmenDef; ship: ShipDef; rift: RiftDef;
   encounter: EncounterDef; "faction-ops": FactionOpsDef; contract: ContractTemplate; action: WorldActionDef; market: MarketDef; service: ServiceDef;
   recruit: RecruitPoolDef; background: BackgroundDef; research: ResearchDef; job: JobDef; names: NamesDef; event: EventDef;
   dialogue: DialogueDef; room: RoomDef; templates: TemplatesDef; start: StartDef; beasts: BeastDef; keymap: KeymapDef };

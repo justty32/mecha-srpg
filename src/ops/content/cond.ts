@@ -37,6 +37,8 @@ export function opsEvalCtx(s: CampaignState, ctx: Pick<OpsCtx, "db" | "world">, 
   if (person) ctx.db.require("person", person.def).tags.forEach(t => tags.add(t));
   if (mech) ctx.db.require("frame", mech.frame).tags.forEach(t => tags.add(t));
   for (const id of Object.keys(s.flags).sort()) if (s.flags[id]) tags.add(id);
+  // 潮候 tag（`tide:rising`…）；天象 tag 來自 `omen:<名>` 旗。
+  if (s.clock.stage) tags.add(`tide:${s.clock.stage}`);
   const ref = objectRefs(roots);
   return { ref(path) {
     if (!(OPS_REF_ROOTS as readonly string[]).includes(path.split(".")[0]!)) throw new NumExprError(`未知營運 ref 根：${path}`);

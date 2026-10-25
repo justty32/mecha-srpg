@@ -5,7 +5,8 @@ import type { ContentDB } from "../../content/contentdb.ts";
 import { createRng } from "../../core/rng.ts";
 import type { PoolDecl } from "../../core/types-def.ts";
 import type { Account, CampaignState, OpsCtx, ShipPoolDecl } from "../state/types.ts";
-import { clock } from "../state/clock.ts";
+import { skyAt } from "../state/clock.ts";
+import { syncOmenFlags } from "../state/omens.ts";
 import { emit, eventRef } from "../state/events.ts";
 import { nextId } from "../state/ids.ts";
 import { post } from "../state/ledger.ts";
@@ -31,15 +32,17 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
   const calendar = start.calendar ? world.require("calendar", start.calendar) : world.all("calendar")[0];
   if (!calendar) throw new Error("缺少開局曆");
   const node = requirePlace({ places: {} }, { world }, start.place);
+  const sky = skyAt(start.day, calendar, world.all("omen"));
   const pools = instantiatePools([shipPool("fuel", ship.fuel), shipPool("hull", ship.hull)], {});
   if (start.persons.length > ship.capacity.berths || start.mechs.length > ship.capacity.mechBays) throw new Error("開局超出船容量");
-  const s: CampaignState = { version: 2, clock: clock(start.day, calendar), rng: createRng(seed), pressure: start.pressure ?? 0,
+  const s: CampaignState = { version: 2, clock: sky.clock, rng: createRng(seed), pressure: start.pressure ?? 0,
     places: {}, maps: Object.fromEntries(world.all("map").map(m => [m.id, { blight: {}, known: {} }])), patches: {}, actors: {}, rifts: {}, factions: {}, ship: { frame: ship.id, pos: locAt({ world }, node.map, node.at), mpCarry: 0, drifting: false, rooms: Object.fromEntries(ship.rooms.map(room => [room, { persons: [], items: [] }])),
       capacity: { ...ship.capacity }, fuel: pools.fuel!, hull: pools.hull!, upgrades: [] },
     roster: { persons: {}, employment: {}, trust: {}, mastery: {}, names: {}, dead: [] }, hangar: { bays: Array.from({ length: ship.capacity.mechBays }, () => null), dormant: [] },
     restraint: { slots: Array(ship.capacity.restraintSlots).fill(null), beasts: {}, carcasses: [] }, mechs: {}, inventory: { components: [], mechs: [], relics: [], tickets: { airstrike: start.tickets.airstrike ?? 0, restraint: start.tickets.restraint ?? 0 } },
     ledger: { entries: [], balances: { cash: 0, debt: 0 } }, research: {}, jobs: [], contracts: {}, pendingChoices: [], pendingTicks: 0,
     lore: [], flags: Object.fromEntries(start.flags.map(flag => [flag, 1])), log: [], idCounter: 0, effectCounter: 0, calendar: calendar.id, techHours: 0, pendingContracts: [], pendingEvents: [] };
+  syncOmenFlags(s.flags, sky.omens);
   for (const def of allPlaces(s, { world })) s.places[def.id] = { def: def.id, wreckage: [], flags: [], ...(def.id === node.id ? { lastVisit: start.day } : {}) };
   for (const def of world.all("faction-ops")) s.factions[def.id] = { def: def.id, rep: 0, scaleNow: def.scale, territoryNow: [...def.territory], alive: true, memory: [] };
   for (const def of world.all("research")) s.research[def.id] = { def: def.id, hoursDone: 0, coinPaid: false, done: false };

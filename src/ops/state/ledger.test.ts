@@ -5,7 +5,7 @@ import { emit, eventRef } from "./events.ts";
 import type { CampaignState } from "./types.ts";
 
 function fixture() {
-  const s: Pick<CampaignState, "clock" | "ledger" | "log"> = { clock: { day: 0, month: 0, dom: 1, phase: "spring" }, ledger: { entries: [], balances: { cash: 0, debt: 0 } }, log: [] };
+  const s: Pick<CampaignState, "clock" | "ledger" | "log"> = { clock: { day: 0, month: 0, dom: 1, phase: "spring", stage: "spring", tide: 2, year: 1 }, ledger: { entries: [], balances: { cash: 0, debt: 0 } }, log: [] };
   const ctx = { emit: (type: string, payload?: Record<string, unknown>) => emit(s, type, payload) };
   const ref = eventRef(ctx.emit("CampaignStarted"));
   return { s, ctx, ref };

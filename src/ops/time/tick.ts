@@ -4,7 +4,8 @@ import { refreshFog } from "../world/fog.ts";
 import { placeAt } from "../war/loc.ts";
 import { pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
-import { clock } from "../state/clock.ts";
+import { skyAt } from "../state/clock.ts";
+import { syncOmenFlags } from "../state/omens.ts";
 import { evalOpsCond, evalOpsNum } from "../content/cond.ts";
 import { worldDaily2, moveDaily3, marketsDaily7, resupplyDaily7 } from "../world/index.ts";
 import { contractsDaily2, contractsDaily7 } from "../contracts/index.ts";
@@ -71,7 +72,9 @@ function tickDaily(s: TimeState, ctx: TickCtx): void {
     if (!s.pendingChoices.length) finishDay(s, ctx);
     return;
   }
-  s.clock = clock(s.clock.day + 1, ctx.world.require("calendar", s.calendar));
+  const sky = skyAt(s.clock.day + 1, ctx.world.require("calendar", s.calendar), ctx.world.all("omen"));
+  s.clock = sky.clock;
+  syncOmenFlags(s.flags, sky.omens);
   s.flags.anchorable = s.clock.phase === "spring" ? 1 : 0;
   stageCtx(ctx, 1).emit("DayStart", { month: s.clock.month, dom: s.clock.dom });
   const second = stageCtx(ctx, 2);

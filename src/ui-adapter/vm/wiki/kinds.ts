@@ -9,7 +9,7 @@ const KIND_LABELS: Record<string, string> = {
   rift: "裂隙", service: "設施", encounter: "遭遇", dialogue: "對話", name: "命名表",
   beast: "生物系", character: "人物", place: "地點", era: "時代",
   registries: "登記表", rules: "規則常數", base: "內容包",
-  action: "營運行動", background: "出身背景", beasts: "生物系族別", calendar: "曆法", ferry: "渡輪",
+  action: "營運行動", background: "出身背景", beasts: "生物系族別", calendar: "曆法", omen: "天象", ferry: "渡輪",
   keymap: "營運鍵位", names: "命名表", recruit: "招募池", ship: "船艦", start: "開局設定", templates: "範本",
 };
 
