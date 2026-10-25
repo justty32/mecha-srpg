@@ -89,7 +89,7 @@ test("AI 醒魂機率一：大潮與古代機各自能醒，事件、名冊、�
     sortie.units[0]!.crew = "ai"; battle.units[0]!.state.crew = "ai";
     s.mechs[mech]!.aiBattles = growth.awakenMinAiBattles - 1;
     growth.awakenChanceTide = 1; growth.awakenChanceAncient = 1;
-    s.clock.phase = trigger === "tide" ? "spring" : "neap";
+    s.clock.phase = "spring"; s.clock.tide = trigger === "tide" ? 3 : 2;
     if (trigger === "ancient") {
       const frame = ctx.db.all("frame").find(f => f.cls === "ancient")!;
       battle.units.push({ id: "ancient", status: "alive", state: instantiateMech(ctx.db, "ancient", frame.id) });
@@ -106,11 +106,11 @@ test("AI 醒魂機率一：大潮與古代機各自能醒，事件、名冊、�
   }
 });
 
-test("AI 醒魂機率零或條件不成立不醒；平日無古代機不耗醒魂骰", () => {
+test("AI 醒魂機率零或條件不成立不醒；漲潮日但非大潮、無古代機不耗醒魂骰", () => {
   for (const reason of ["zero", "no-trigger", "too-few", "no-core", "no-ai", "dead"] as const) {
     const { s, ctx, sortie, mech, battle, growth } = setup();
     sortie.units[0]!.crew = "ai"; s.mechs[mech]!.aiBattles = growth.awakenMinAiBattles - 1;
-    s.clock.phase = reason === "no-trigger" ? "neap" : "spring";
+    s.clock.phase = "spring"; s.clock.tide = reason === "no-trigger" ? 2 : 3;
     growth.awakenChanceTide = reason === "zero" ? 0 : 1; growth.awakenChanceAncient = growth.awakenChanceTide;
     if (reason === "too-few") s.mechs[mech]!.aiBattles = 0;
     if (reason === "no-core") battle.units[0]!.state.core = false;

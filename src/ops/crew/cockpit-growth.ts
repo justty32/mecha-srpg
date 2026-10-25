@@ -5,14 +5,15 @@ import type { BattleResult } from "../sortie/apply.ts";
 import { instantiatePerson } from "../content/instantiate.ts";
 import { nextId } from "../state/ids.ts";
 import { registerPersonName } from "./names.ts";
+import { GREAT_TIDE } from "../state/omens.ts";
 
 /** 戰果回寫後呼叫；戰果入口負責 sortie 去重，依機甲／人物 id 排序消耗營運 RNG。 */
 export function cockpitGrowth(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
   const growth = ctx.db.rules.cockpit?.growth;
   if (!growth) return;
   const ordered = [...sortie.units].sort((a, b) => a.mech < b.mech ? -1 : 1), driven = new Set<string>();
-  // SPEC-GAP：第 38 列大潮曆落地前，以當日漲潮 phase 代替大潮時刻；古代機先看全場、不算距離。
-  const tide = s.clock.phase === "spring", ancient = result.units.some(u => ctx.db.get("frame", u.state.frame)?.cls === "ancient");
+  // 大潮時刻＝當日潮級 ≥ GREAT_TIDE（大潮或連珠潮，全球同一刻）。SPEC-GAP：古代機先看全場、不算距離。
+  const tide = (s.clock.tide ?? 0) >= GREAT_TIDE, ancient = result.units.some(u => ctx.db.get("frame", u.state.frame)?.cls === "ancient");
   for (const [index, selected] of ordered.entries()) {
     const entry = result.units.find(u => u.id === selected.mech || u.id === `player-${index}`);
     const mech = s.mechs[selected.mech];

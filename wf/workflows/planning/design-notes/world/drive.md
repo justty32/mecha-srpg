@@ -39,7 +39,7 @@
 
 ## 引擎落地（2026-10-25，lead-cockpit）
 
-engine-backlog 第 30、47、48、49 列已實作。**暫值全部集中在 `content/base/rules/cockpit.json`**（普通開的基本動作與 `drivenOnlyTags`、無人機的 AP 池、`growth` 段的時數／能力／老化／醒魂數值），改那一檔就能微調。終局「駕駛員為零」算機魂：名冊上還有機魂就不結束。人身上的能力目前到 S 為止（SS／SSS 不做設定，見 [great-tide.md](great-tide.md)）。兩處 SPEC-GAP：大潮曆（engine-backlog 第 38 列）落地前，「大潮時刻」先用漲潮日代替；「古代機半徑內」先算成「這場戰鬥有古代機」，不算距離。
+engine-backlog 第 30、47、48、49 列已實作。**暫值全部集中在 `content/base/rules/cockpit.json`**（普通開的基本動作與 `drivenOnlyTags`、無人機的 AP 池、`growth` 段的時數／能力／老化／醒魂數值），改那一檔就能微調。終局「駕駛員為零」算機魂：名冊上還有機魂就不結束。人身上的能力目前到 S 為止（SS／SSS 不做設定，見 [great-tide.md](great-tide.md)）。「大潮時刻」已改讀大潮曆（2026-10-26，engine-backlog 第 38 列）：當日潮級 ≥ 3（大潮或連珠潮）才擲，每年約兩三次，比原先用漲潮日代替時少約十倍。剩一處 SPEC-GAP：「古代機半徑內」先算成「這場戰鬥有古代機」，不算距離。
 
 ## 仍未決（附建議）
 
