@@ -38,7 +38,7 @@
 2. 讀本檔 → [codex-handover](codex-handover.md) → [engine-backlog](engine-backlog.md)。
 3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md)、`git worktree list`、`tmux ls | grep '^cx-'`）。
 4. 使用者回饋到了先派修正線（見 WAIT_USER，含 cockpit REPORT 四點）。
-5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆（落地後把醒魂「大潮時刻」從漲潮日換過去）、第 28 列抵抗性（順帶把強化打擊／遠程分近戰遠程增傷）；第 45 列隱藏真相標記已完成（2026-10-26 lead-secret，lore 可見度欄見 content/lore/README「可見度」）；P2 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
+5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆已完成（2026-10-26 lead-tide-cal，醒魂已改讀大潮；天象效果接 39–43，醒魂潮骰機率待使用者定，見 [lead-tide-cal REPORT](lead-tide-cal/REPORT.md)）、第 28 列抵抗性（順帶把強化打擊／遠程分近戰遠程增傷）；第 45 列隱藏真相標記已完成（2026-10-26 lead-secret，lore 可見度欄見 content/lore/README「可見度」）；P2 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
 6. 內容：阿鏽人格早熟支線待寫（[codex-batches](codex-batches.json) 第 15 列，需使用者定方向再動筆）；其餘 add／polish 批次照 codex-handover。
 7. 整理：設定筆記 `world/essence.md`、`world/scale.md`、`terms.md` 逼近 8 KB，下次動它們前先按主題拆；其餘照 [next-tidy](next-tidy.md)。
 8. 延後的數值微調（B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門）等使用者開口再排。
