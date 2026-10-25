@@ -79,3 +79,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-polish`）
 - **領地**：CLAIMS「lead-polish」列；工人照各自交接書（`handoffs/lead-decide-land/b5/cx-dl-0N.md`）
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-cockpit`（含代登記工人 `cx-cockpit-core`／`cx-cockpit-growth`）
+- **狀態**：現役（2026-10-25）
+- **我是誰**：Opus 領導：engine-backlog 30（機甲核心與座艙）與 47／48／49；工人是 codex。
+- **團隊**：`teams/cockpit`
+- **上游**：`dispatcher`（工人的上游是 `lead-cockpit`）
+- **領地**：CLAIMS「lead-cockpit」列；工人照各自交接書（`handoffs/lead-cockpit/cx-cockpit-*.md`）
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無

@@ -9,6 +9,7 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | lead-polish（工人 cx-dl-01／02／03） | `content/lore/` 三批 polishFiles 的敘述欄（經 worktree＋閘門帶回）、`content/index/`（重產）、`content/batches/2026-10/dl-*.json`、`handoffs/lead-decide-land/b5/`、`handoffs/{codex-batches.json,STATE.md,done/README.md}`、SESSION-LOG、CLAIMS 本列、ROSTER 本格、`wf/inbox/` 本線信件 | `src/`、`tests/`、`test/`、`content/base/`、spec、design-notes（lead-cockpit 在改）、AGENTS.md／CLAUDE.md；不刪檔、不裝依賴 | 2026-10-25 |
+| lead-cockpit（工人 cx-cockpit-core／cx-cockpit-growth） | `src/`、`test/`、`e2e/`、`schemas/`、`content/base/`（情境、單位、規則、人物資料）、`content/index/base-*.json`（重產）、黃金檔、`specs/core/`（rules-people 等本線相關段）、`specs/ops/`（time-and-tick、constraints-ops 本線相關段）、`specs/world/pilots.md`、`design-notes/world/`（drive、essence、scale、terms 與拆出的子檔）、`wf/workflows/content/{README.md,ancient-people.md,templates.json}`、`common/code-map.json`、engine-backlog、`handoffs/lead-cockpit/`、`handoffs/{STATE.md,done/README.md}`、SESSION-LOG、CLAIMS 本列、ROSTER 本格、`wf/inbox/` 本線信件 | `content/lore/` 敘述欄（lead-polish 在跑）、AGENTS.md／CLAUDE.md；不刪檔、不裝依賴、不做經濟／士氣數值調校 | 2026-10-25 |
 
 ## 保留給調度者，任何線都不得寫
 
