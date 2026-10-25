@@ -18,7 +18,7 @@
 
 ## 現役
 
-- 無現役線（2026-10-25）。talk-decide 對談已收線（[REPORT](talk-decide/REPORT.md)），裁示由 lead-decide-land 落地完畢（design-notes world/drive、pilots、great-tide；specs/world/pilots；world-pillars M12／M13；style/people；engine-backlog 30／45–49；B5 三批已排）；總 REPORT 待頂層代存為 `lead-decide-land/REPORT.md`。其餘各線已全部收線，見 [done 索引](done/README.md)。
+- 無現役線（2026-10-25）。talk-decide 對談已收線（[REPORT](talk-decide/REPORT.md)），裁示由 lead-decide-land 落地完畢（design-notes world/drive、pilots、great-tide；specs/world/pilots；world-pillars M12／M13；style/people；engine-backlog 30／45–49；B5 三批已排）；總 REPORT 已由頂層代存為 `lead-decide-land/REPORT.md`。其餘各線已全部收線，見 [done 索引](done/README.md)。
 - 遊戲機制數值微調（經濟目標 B1、出戰前士氣 B2）使用者說延後，先不派線。
 
 ## 本段落（2026-10-24）做了什麼
