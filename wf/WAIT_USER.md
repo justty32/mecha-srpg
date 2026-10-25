@@ -10,6 +10,4 @@
 
 ## 待使用者項
 
-- [feature-dev] 請試玩**戰鬥** http://localhost:5173/（`npm run dev`；九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)，另有意圖撤退、擊退勝）→ 派戰鬥修正線
-- [feature-dev] 請試玩**營運** `#/ops`：接約→航行→親自出戰→看戰果；回饋手感、記錄、世界圖、存讀檔、債務 → 派營運修正線
-- [feature-dev] 請試玩**百科** `#/wiki`（F1 進出、搜尋、交叉連結、年表）→ 派百科修正線
+- [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)；機甲核心試玩重點見 [lead-cockpit REPORT「需要使用者決定或試玩」四點](workflows/dispatch/handoffs/lead-cockpit/REPORT.md)（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）

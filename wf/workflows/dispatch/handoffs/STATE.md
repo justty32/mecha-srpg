@@ -1,4 +1,4 @@
-# STATE — 交棒：新 session 的起點（2026-10-24 段落收尾，lead-wrapup 寫）
+# STATE — 交棒：新 session 的起點（2026-10-25 段落收尾）
 
 [handoffs](README.md)｜非 codex 工作 [engine-backlog](engine-backlog.md)｜下次整理 [next-tidy](next-tidy.md)｜roadmap [planning-roadmap.json](../../planning-roadmap.json)
 
@@ -18,33 +18,29 @@
 
 ## 現役
 
-- 無現役線（2026-10-25）。talk-decide 對談已收線（[REPORT](talk-decide/REPORT.md)），裁示由 lead-decide-land 落地完畢（design-notes world/drive、pilots、great-tide；specs/world/pilots；world-pillars M12／M13；style/people；engine-backlog 30／45–49；B5 三批已排）；總 REPORT 已由頂層代存為 `lead-decide-land/REPORT.md`。其餘各線已全部收線，見 [done 索引](done/README.md)。
-- lead-cockpit 已收線（2026-10-25）：engine-backlog 30（併 35／46）與 47／48／49 落地——機甲核心與座艙狀態、無人機普通開、白手套六情境改鐵偶／遙控機、終局 no-pilots 算機魂、人帶能力、驅動時數與外貌年齡、編隊 AI 駕駛與 AI 醒魂；暫值全在 `content/base/rules/cockpit.json`。待使用者：駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力門檻（見 lead-cockpit REPORT）。
-- 遊戲機制數值微調（經濟目標 B1、出戰前士氣 B2）使用者說延後，先不派線。
+- **無現役線**（2026-10-25 收尾）；CLAIMS 現役表空、`git worktree list` 只有主目錄、無本專案 `cx-*` tmux、inbox 無未 ack 信。
+- 使用者 2026-10-25 已試玩但沒給具體回饋，見 [WAIT_USER](../../../WAIT_USER.md)。延後不派：B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門等數值微調。
 
-## 本段落（2026-10-24）做了什麼
+## 本段落（2026-10-25）做了什麼
 
-各線 REPORT 在 `handoffs/done/<收線日>/<線名>/REPORT.md`（索引 [done/README](done/README.md)），重點：
+各線 REPORT 見 [done 索引](done/README.md)：
 
-戰鬥：[lead-gaps-battle](done/2026-10-24/lead-gaps-battle/REPORT.md)（配裝、等級影響血量、check 強化、`content:probe`、意圖撤退與指揮者，平手 64%→2.5%）、[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)（撤退時機、瞄核心、check 降噪）、[lead-ai-objective](done/2026-10-24/lead-ai-objective/REPORT.md)（AI 目標意識、盟軍配合）、[lead-rules-fuzz](done/2026-10-24/lead-rules-fuzz/REPORT.md)（約 1.6 萬場 fuzz、18 不變量、修 13 bug）、[lead-playtest](done/2026-10-24/lead-playtest/REPORT.md)（MCP 試玩、互動出戰）。
-
-營運：[lead-impl-war](done/2026-10-24/lead-impl-war/REPORT.md)（勢力作戰、外交、傭兵參戰、研發）、[lead-gaps-ops](done/2026-10-24/lead-gaps-ops/REPORT.md)（困船、無限刷、開局無約、債務、擊退回寫、人類遭遇）。
-
-介面與工具：[lead-wiki](done/2026-10-24/lead-wiki/REPORT.md)、[lead-ui-ops](done/2026-10-24/lead-ui-ops/REPORT.md)、[lead-mcp](done/2026-10-24/lead-mcp/REPORT.md)。
-
-規劃與內容守則：[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)（方格大地圖 spec）、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)（spec 整合與風格改寫）、[plan-content-guide](done/2026-10-24/plan-content-guide/REPORT.md)（content 工作流）、[plan-world-pillars](done/2026-10-24/plan-world-pillars/REPORT.md)（世界觀守則 31 條）。
-
-內容試點：[lead-codex-pilot](lead-codex-pilot/REPORT.md)（閘門、驗收鏈、分片索引與批次帳本；四批：潤飾、lore、飛魚、鐵劍）。
-
-收尾（lead-wrapup）：新裁示寫進 spec 與守則（古代機等級無上限、十分律擴讀定案、三條通用系列、用語過渡說明、意圖兩層 spec 標已實作）；本檔、[engine-backlog](engine-backlog.md)、[next-tidy](next-tidy.md)、roadmap 狀態、[codex-handover](codex-handover.md)。
+- tidy：01735b4（收線驗收證據入版控）、ff7f3a4（inbox 歸檔）、4b21a50（收尾整理）。
+- [talk-decide](talk-decide/REPORT.md)：Fable 對談八題拍板（機甲核心不耗損、機魂能獨駕、AI 醒魂、精粹改人、大潮全球同一時刻）。
+- [lead-decide-land](lead-decide-land/REPORT.md)：裁示落地到 design-notes／specs／守則／style（頂層代存 4b6992d）。
+- [lead-cockpit](lead-cockpit/REPORT.md)：引擎——機甲核心與座艙、無人機普通開、人帶能力、驅動時數與外貌年齡、AI 醒魂、no-pilots 終局；暫值在 `content/base/rules/cockpit.json`（代存 62ca3ed）。
+- [lead-polish](lead-polish/REPORT.md)：翻譯腔五批 225 檔審、161 檔改。
+- lead-lore-fix（218b154）：阿鏽人格早熟記為特例伏筆；老爹維持釜山育成（身世提案不採）；montreal 學會為買方。
 
 ## 新 session 的第一步
 
 1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
-2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
-3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）。
-4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover 與 `codex-batches.json`：用語改名已完成（lead-rename，2026-10-24）；**翻譯腔重審 B5 五批 dl-01～05 已全部合入**（lead-polish，2026-10-25，第 11–14 列 accepted，[REPORT](lead-polish/REPORT.md)）；其餘批次 3–4 批並行。
-5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）talk-decide 定案的引擎線 engine-backlog 30／35／46／47／48／49 已由 lead-cockpit 完成（2026-10-25）；下一批引擎候選：第 28 列抵抗性（可順帶把強化打擊／遠程改成真的分近戰遠程增傷）、第 38 列大潮曆（落地後把醒魂的「大潮時刻」從漲潮日換過去）、第 45 列隱藏真相標記；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
-6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
+2. 讀本檔 → [codex-handover](codex-handover.md) → [engine-backlog](engine-backlog.md)。
+3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md)、`git worktree list`、`tmux ls | grep '^cx-'`）。
+4. 使用者回饋到了先派修正線（見 WAIT_USER，含 cockpit REPORT 四點）。
+5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆（落地後把醒魂「大潮時刻」從漲潮日換過去）、第 28 列抵抗性（順帶把強化打擊／遠程分近戰遠程增傷）、第 45 列隱藏真相標記；P2 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
+6. 內容：阿鏽人格早熟支線待寫（[codex-batches](codex-batches.json) 第 15 列，需使用者定方向再動筆）；其餘 add／polish 批次照 codex-handover。
+7. 整理：設定筆記 `world/essence.md`、`world/scale.md`、`terms.md` 逼近 8 KB，下次動它們前先按主題拆；其餘照 [next-tidy](next-tidy.md)。
+8. 延後的數值微調（B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門）等使用者開口再排。
 
 > `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。

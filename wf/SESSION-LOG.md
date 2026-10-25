@@ -11,6 +11,7 @@
 
 ## 最新進度
 
+2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
 ## 各工作流 session-log
 
