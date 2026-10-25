@@ -6,6 +6,8 @@
 
 import type { Id } from "./ids.ts";
 
+// nameEn／etymology：各內容 def 通用可選欄（英文原名、意涵；2026-10 engine-backlog 9）。只供顯示／百科，不影響規則。
+
 // ---------- 登記檔列舉（開放字串，值由 registries/*.json 決定） ----------
 export type AttrId = string;
 export type PoolId = string;
@@ -77,7 +79,7 @@ export type HookAction =
   | { do: "emit"; event: string; payload?: Record<string, NumExpr> };
 export const HOOK_VERBS = ["damage", "pool", "apply", "remove", "setControl", "moraleCheck", "spawn", "emit"] as const;
 export type EffectDef = {
-  id: Id; name: string; scope: EffectScope;
+  id: Id; nameEn?: string; etymology?: string; name: string; scope: EffectScope;
   clock: { kind: ClockKind; n?: NumExpr };
   stack: { policy: StackPolicy; max?: number; mergeOp?: "sumMag" | "maxMag" | "sumDur" };
   perPartSeparate?: boolean;
@@ -130,14 +132,14 @@ export type PartDef = {
   conduct: ConductRule[];
   seats?: SeatDecl[];
 };
-export type BodyPlanDef = { id: Id; name?: string; parts: PartDef[]; symmetry?: string };
+export type BodyPlanDef = { id: Id; nameEn?: string; etymology?: string; name?: string; parts: PartDef[]; symmetry?: string };
 export type FrameDef = {
   core?: boolean;
   series?: string;
   mark?: number;
   /** 各勢力對本機型的叫法（lead-gaps-battle 2026-10-24；SPEC-GAP，spec 未定欄名）。faction 為勢力 id。 */
   aka?: { faction: Id; name: string }[];
-  id: Id; name: string; cls: FrameClass; grade: Grade;
+  id: Id; nameEn?: string; etymology?: string; name: string; cls: FrameClass; grade: Grade;
   bodyPlan: Id; baseAttrs: Record<AttrId, number>;
   pools: PoolDecl[];
   innateAbilities: Id[];
@@ -148,7 +150,7 @@ export type FrameDef = {
   defaultLoadout?: Record<SlotId, Id>;
 };
 export type ComponentDef = {
-  id: Id; name: string; slot: SlotType; size: number; mass: number;
+  id: Id; nameEn?: string; etymology?: string; name: string; slot: SlotType; size: number; mass: number;
   origin: FrameClass;
   pools: PoolDecl[];
   poolMods?: { pool: PoolId; max?: NumExpr; regen?: NumExpr }[];   // spec 列為必填；範例省略→選填
@@ -175,7 +177,7 @@ export type AiHints = {
   cooldownValue?: number;
 };
 export type AbilityDef = {
-  id: Id; name: string; mode: AbilityMode;
+  id: Id; nameEn?: string; etymology?: string; name: string; mode: AbilityMode;
   grade?: Grade;
   actorRole?: SeatRole;
   costs: AbilityCost[];
@@ -195,7 +197,7 @@ export type AbilityDef = {
 export type HumanGrowth = { xpCurve: Id; levelDice: Record<AttrId, number[]>; perkPointsAt: number[] };
 export type SoulGrowth = { tree: Id; researchPerDirection: Record<string, number>; companionshipRate: NumExpr };
 export type PersonDef = {
-  id: Id; name: string; kind: PersonKind;
+  id: Id; nameEn?: string; etymology?: string; name: string; kind: PersonKind;
   abilities?: Id[]; age?: number; activeYears?: number;
   soulGrade?: Grade; // 只允許 kind=soul，由載入器檢查
   attrs: Record<AttrId, number>;
@@ -207,14 +209,14 @@ export type PersonDef = {
 };
 /** SPEC-GAP：soultrees/ 與 curves/ 的檔案形狀 spec 未定，以下為最小解。 */
 export type SoulTreeDef = {
-  id: Id; name: string;
+  id: Id; nameEn?: string; etymology?: string; name: string;
   nodes: { id: string; perk: Id; research?: Record<string, number>; companionship?: number; requires: string[] }[];
 };
-export type CurveDef = { id: Id; name: string; points: number[] };   // 第 i 級所需累積值
+export type CurveDef = { id: Id; nameEn?: string; etymology?: string; name: string; points: number[] };   // 第 i 級所需累積值
 
 // ---------- 世界（data-model-world） ----------
 export type TerrainDef = {
-  id: Id; name: string; glyph: string; color: string;
+  id: Id; nameEn?: string; etymology?: string; name: string; glyph: string; color: string;
   moveCost: Record<LocomotionClass, number | null>;
   height: number; cover: number; blocksLos: boolean;
   onEnter: EffectRef[]; onTurnStart: EffectRef[];
@@ -222,7 +224,7 @@ export type TerrainDef = {
   tags: string[];
 };
 export type MapDef = {
-  id: Id; width: number; height: number;
+  id: Id; nameEn?: string; etymology?: string; width: number; height: number;
   cells: string | { rle: string };
   legend: Record<string, Id>;
   features?: { at: Cell; terrain: Id; hp?: number }[];
@@ -231,12 +233,12 @@ export type MapDef = {
   globals?: { tide?: NumExpr; light?: number };
 };
 export type FactionDef = {
-  id: Id; name: string; scale: "band" | "company" | "city" | "cult" | "swarm" | "state";
+  id: Id; nameEn?: string; etymology?: string; name: string; scale: "band" | "company" | "city" | "cult" | "swarm" | "state";
   relations: Record<Id, "ally" | "neutral" | "hostile">;
   strategy: Id; sensing: "shared"; tags: string[];
 };
 export type SpeciesDef = {
-  id: Id; name: string; family: string;
+  id: Id; nameEn?: string; etymology?: string; name: string; family: string;
   bodyPlan: Id; gradeRange: Grade[];
   baseAttrsByGrade: Partial<Record<Grade, Record<AttrId, number>>>;
   pools: PoolDecl[]; abilities: Id[];
@@ -250,7 +252,7 @@ export type SpeciesDef = {
   aiProfile: Id; tags: string[];
 };
 export type MonsterDef = {
-  id: Id; species: Id; grade: Grade; name?: string; epithet?: string;
+  id: Id; nameEn?: string; etymology?: string; species: Id; grade: Grade; name?: string; epithet?: string;
   attrMods?: Contribution[]; extraAbilities?: Id[]; partsOverride?: Partial<PartDef>[]; tags: string[];
 };
 export type UnitSpawn = { core?: boolean; crew?: "ai" | "remote"; mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
@@ -261,7 +263,7 @@ export type Objective = {
   params: Record<string, unknown>; for: FactionSlot; onComplete: "win" | "lose" | "continue";
 };
 export type ScenarioDef = {
-  id: Id; map: Id;
+  id: Id; nameEn?: string; etymology?: string; map: Id;
   /** 顯示名與一段簡介（lead-gaps-battle 2026-10-24；SPEC-GAP，spec 未列）。只給 UI／MCP／百科顯示，不影響規則。 */
   name?: string; brief?: string;
   slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id; allies?: FactionSlot[] /* 情境層同盟（lead-fix-scenario-ai 新增） */ }>;
@@ -269,8 +271,8 @@ export type ScenarioDef = {
   rules?: { conventionalFactor?: number }; seed?: number;
 };
 /** SPEC-GAP：loot/ 與 aiprofiles/ 形狀 spec 未定，以下為最小解。 */
-export type LootDef = { id: Id; entries: { item: Id; weight: number; count?: number }[] };
-export type AiProfileDef = { id: Id; name: string; policy: string; params: Record<string, number> };
+export type LootDef = { id: Id; nameEn?: string; etymology?: string; entries: { item: Id; weight: number; count?: number }[] };
+export type AiProfileDef = { id: Id; nameEn?: string; etymology?: string; name: string; policy: string; params: Record<string, number> };
 
 // ---------- 內容包、登記檔、規則表（content-format） ----------
 export type PackDef = { id: string; version: string; depends: string[]; registries?: Record<string, string> };

@@ -187,3 +187,10 @@ test("cockpit 表與 crew/core schema 雙向檢查，基本能力引用必須存
   scenario.slots.enemy.units[0]!.crew = "soul";
   assert(validateAgainst("scenario", scenario).length > 0);
 });
+
+test("schema 接受各 def 的 nameEn／etymology 並拒絕非字串", () => {
+  const curve = { id: "curve/x", name: "曲線", points: [1, 2] };
+  assert.deepEqual(validateAgainst("curve", curve), []);
+  assert.deepEqual(validateAgainst("curve", { ...curve, nameEn: "Curve", etymology: "意涵" }), []);
+  assert.ok(validateAgainst("curve", { ...curve, nameEn: 3 }).length > 0);
+});

@@ -236,3 +236,15 @@ test("content/base 每個真實 JSON 都能產生非空資料卡", () => {
     }, e.path);
   }
 });
+
+test("nameEn／etymology 有值時百科概要顯示，沒值時不顯示", () => {
+  const withValue = entry("frame/named", { name: "某機", nameEn: "Exemplar", etymology: "拉丁 exemplum，範例" });
+  const without = entry("frame/plain", { name: "素機" });
+  const idx = fakeIndex([withValue, without]);
+  const rows = (key: string) => section(page(idx, key), "概要", "kv").rows;
+  const shown = rows(withValue.key);
+  assert.ok(shown.some(r => r.label === "英文原名" && r.value.t === "text" && r.value.v === "Exemplar"));
+  assert.ok(shown.some(r => r.label === "意涵"));
+  assert.ok(!section(page(idx, withValue.key), "其他原始資料", "raw").rows.some(r => r.label === "nameEn" || r.label === "etymology"));
+  assert.ok(!rows(without.key).some(r => r.label === "英文原名" || r.label === "意涵"));
+});

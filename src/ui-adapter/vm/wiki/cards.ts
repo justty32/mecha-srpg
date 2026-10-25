@@ -14,7 +14,7 @@ const text = (v: string): CardValue => ({ t: "text", v });
 const labels: Record<string, string> = {
   cls: "機體類型", grade: "等級", kind: "種類", family: "族", gradeRange: "等級範圍",
   bodyPlan: "構型", species: "物種", epithet: "二名／稱號", title: "稱號", nickname: "小名",
-  aka: "別名", names: "命名表", naming: "命名慣例", epithets: "稱號表", mode: "模式",
+  nameEn: "英文原名", etymology: "意涵", aka: "別名", names: "命名表", naming: "命名慣例", epithets: "稱號表", mode: "模式",
   slot: "槽位", size: "尺寸", mass: "質量", hp: "生命", origin: "來源", scope: "作用範圍",
   width: "寬度", height: "高度", map: "地圖", era: "時代", faction: "勢力", factions: "勢力",
   date: "日期", place: "地點", scale: "規模", sensing: "感知", strategy: "策略",
@@ -291,6 +291,7 @@ export function entryPage(index: WikiIndex, key: string): EntryPage | null {
   const b = new CardBuilder(index, entry);
   const category = index.categories.find(c => c.key === entry.category);
   const categoryLabel = category?.label ?? entry.category;
+  b.summary(["nameEn", "etymology"]);   // 通用可選欄：有值才出列（engine-backlog 9）
   b.summary(["epithet", "title", "nickname", "aka", "names", "naming", "epithets"]);
   const lore = category?.group === "lore" || entry.pack === "lore";
   if (lore) {
