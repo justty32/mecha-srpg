@@ -6,7 +6,7 @@
 
 **遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（節點圖世界、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地；方格大地圖已落地（lead-grid）。
 
-**測試**：`npm test` 912／912、`npm run check` 0 錯 8 警告（2026-10-25）；`npm run typecheck` 0；`node content/lore/check.ts` 0 錯 2 警告；`npm run test:e2e` 12／12（lead-gaps-ops 驗收時）。
+**測試**：`npm test` 935／935、`npm run check` 0 錯 8 警告（2026-10-25，lead-cockpit 收線時）；`npm run typecheck` 0；`node content/lore/check.ts` 0 錯 2 警告；`npm run test:e2e` 13／13。
 
 **網頁**：`npm run dev` → `http://localhost:5173/`：`#/` 戰鬥（`?scenario=<id>&seed=<n>`）、`#/wiki` 百科（F1／Shift+W）、`#/ops` 營運（`?seed=<n>`，`&spectate=1` 全 AI 出戰）。
 
@@ -19,6 +19,7 @@
 ## 現役
 
 - 無現役線（2026-10-25）。talk-decide 對談已收線（[REPORT](talk-decide/REPORT.md)），裁示由 lead-decide-land 落地完畢（design-notes world/drive、pilots、great-tide；specs/world/pilots；world-pillars M12／M13；style/people；engine-backlog 30／45–49；B5 三批已排）；總 REPORT 已由頂層代存為 `lead-decide-land/REPORT.md`。其餘各線已全部收線，見 [done 索引](done/README.md)。
+- lead-cockpit 已收線（2026-10-25）：engine-backlog 30（併 35／46）與 47／48／49 落地——機甲核心與座艙狀態、無人機普通開、白手套六情境改鐵偶／遙控機、終局 no-pilots 算機魂、人帶能力、驅動時數與外貌年齡、編隊 AI 駕駛與 AI 醒魂；暫值全在 `content/base/rules/cockpit.json`。待使用者：駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力門檻（見 lead-cockpit REPORT）。
 - 遊戲機制數值微調（經濟目標 B1、出戰前士氣 B2）使用者說延後，先不派線。
 
 ## 本段落（2026-10-24）做了什麼
@@ -43,7 +44,7 @@
 2. 讀本檔 → **[codex-handover](codex-handover.md)**（配置、生效表、可開工批次）→ [engine-backlog](engine-backlog.md)。
 3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md) 現役表、`git worktree list`、`tmux ls | grep '^cx-'`）。
 4. 開 codex 內容批次（只做**新增內容**與**文字潤飾**），照 codex-handover 與 `codex-batches.json`：用語改名已完成（lead-rename，2026-10-24）；**翻譯腔重審 B5 五批 dl-01～05 已全部合入**（lead-polish，2026-10-25，第 11–14 列 accepted，[REPORT](lead-polish/REPORT.md)）；其餘批次 3–4 批並行。
-5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）talk-decide 定案的引擎線：engine-backlog 第 30 列（機甲核心與座艙狀態，併 35／46，小–中、重產黃金）可先派，47／48／49 接其後；第 30 列派線時一併授權改 specs/core rules-people 與 specs/ops time-and-tick 的「不能獨駕」殘留；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
+5. （lead-grid 方格大地圖已完成；調校見 lead-tune 已收線。）talk-decide 定案的引擎線 engine-backlog 30／35／46／47／48／49 已由 lead-cockpit 完成（2026-10-25）；下一批引擎候選：第 28 列抵抗性（可順帶把強化打擊／遠程改成真的分近戰遠程增傷）、第 38 列大潮曆（落地後把醒魂的「大潮時刻」從漲潮日換過去）、第 45 列隱藏真相標記；P2 的 `nameEn`／`etymology` 與鐵劍 models 入庫可另開小線。
 6. 使用者試玩回饋與新詞定案（[WAIT_USER](../../../WAIT_USER.md)）到了就派對應線。重構與 tidy 照 [next-tidy](next-tidy.md)。
 
 > `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。

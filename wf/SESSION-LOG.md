@@ -11,7 +11,6 @@
 
 ## 最新進度
 
-- [feature-dev] lead-cockpit 現役（2026-10-25）：engine-backlog 30（機甲核心與座艙狀態、白手套六情境）→ 47／48／49；codex 工人 cx-cockpit-core 先跑 → [handoffs/lead-cockpit](workflows/dispatch/handoffs/lead-cockpit/)
 
 ## 各工作流 session-log
 

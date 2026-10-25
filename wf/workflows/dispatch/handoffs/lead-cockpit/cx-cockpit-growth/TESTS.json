@@ -1,0 +1,63 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "link_columns": [],
+ "columns": [
+  "檔案",
+  "測試名稱"
+ ],
+ "rows": [
+  {
+   "檔案": "src/core/age.test.ts",
+   "測試名稱": "apparentAge：年資、驅動時數、整年與四捨五入；無年齡與機魂回 null"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "驅動時數只給有核心且在座的活人與機魂；無核心、遠端、AI 與未上機者不增加"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "第一門檻獲得能力且受最高驅動等級與 S 上限限制；人物能力去重並受個數上限限制"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "機魂能力門檻以人的十分之一速度累積，滿門檻才長出"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "編隊 AI 空座自駕傳入 crew 並成 scripted；有人時仍由 human 驅動，後天能力進入戰鬥"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "AI 醒魂機率一：大潮與古代機各自能醒，事件、名冊、登記名、座位及計數歸零"
+  },
+  {
+   "檔案": "src/ops/crew/cockpit-growth.test.ts",
+   "測試名稱": "AI 醒魂機率零或條件不成立不醒；平日無古代機不耗醒魂骰"
+  },
+  {
+   "檔案": "src/rules/control.test.ts",
+   "測試名稱": "人物能力：驅動時合併天生與後天能力，普通開與死亡人物不併入"
+  },
+  {
+   "檔案": "src/content/content.test.ts",
+   "測試名稱": "人物成長 schema 與參照：正常資料通過，錯誤型別、能力引用及非機魂範本被拒"
+  },
+  {
+   "檔案": "src/ui-adapter/ops/vm/controller.test.ts",
+   "測試名稱": "編隊 AI 駕駛切換可開關，清空座位後仍可自駕"
+  },
+  {
+   "檔案": "src/ui-adapter/vm/wiki/cards.test.ts",
+   "測試名稱": "人物百科卡以開局年資顯示外貌與實齡"
+  },
+  {
+   "檔案": "src/mcp/campaign-info.test.ts",
+   "測試名稱": "營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項"
+  },
+  {
+   "檔案": "src/ui-adapter/ops/dom/render.test.ts",
+   "測試名稱": "編成疊層：勾選、座位下拉、錯誤訊息、按鈕"
+  }
+ ]
+}
