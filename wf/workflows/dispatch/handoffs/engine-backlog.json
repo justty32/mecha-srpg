@@ -422,7 +422,7 @@
    "優先": "P2",
    "項目": "已併入第 30 列（2026-10-25 定案）：無人單位（遠端遙控／照術式的規則 AI）：不能用精粹相關能力、戰力低於人駕",
    "來源": "lead-pilot-essence（2026-10-24 使用者原話，尚未定案）、design-notes/world/pilots「A 無人化」",
-   "影響": "裁示：無人機只有遙控與規則 AI、戰力一定比人駕差；引擎沒有無人機甲的控制模式，白手套情境用機甲 frame 坐 `seat:\"soul\"` 的 `person/glove`（`skirmish-whitegloves` 一場 4 台、`rift-edge-nest` 5 台坐同一個機魂，其餘一台；共 6 個情境：`skirmish-whitegloves`、`rift-edge-nest`、`quarry-duel`、`crater-three-way`、`lunar-blockade-run`、`shell-excavation-escort`），`faction/selene-whitegloves` tag `soul-driven`——同時違反本列與「機魂不能獨駕、不可複製」",
+   "影響": "裁示：無人機只有遙控與規則 AI、戰力一定比人駕差；引擎沒有無人機甲的控制模式，白手套情境用機甲 frame 坐 `seat:\"soul\"` 的 `person/glove`（`skirmish-whitegloves` 一場 4 台、`rift-edge-nest` 5 台坐同一個機魂，其餘一台；共 6 個情境：`skirmish-whitegloves`、`rift-edge-nest`、`quarry-duel`、`crater-three-way`、`lunar-blockade-run`、`shell-excavation-escort`），`faction/selene-whitegloves` tag `soul-driven`——與「無人機只能普通開」「機魂不可複製」相衝（2026-10-25 起見第 30 列）",
    "建議做法": "仿 `instinct` 加一個無座位人物的控制模式（例 `scripted`；遙控可同模式另帶 `remote` 標記），指令交 aiprofile（`glove-line`）；無人物時 person 能力與 perk 不生效（EF-08 已略過），另禁用帶 `essence`／`resonance`／`burden` 類 tag 的能力，只留凡鐵武器與基本動作；白手套情境改用此模式、移除 `seat:\"soul\"` 複坐，faction tag 改 `unmanned`；與第 30（機魂獨駕）、35（白手套鐵偶）列合做；改後黃金重產",
    "規模": "小–中（src/rules control＋content 情境，1 codex）"
   },
