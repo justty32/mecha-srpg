@@ -56,3 +56,21 @@ test("runBattle：AI 指令 rejected 為零", () => {
   assert.ok(run.commands.length > 0);
   assert.equal(run.rejected, 0);
 });
+
+test("scripted AI／遙控低命中率仍能選用武器，機體 AP 扣款且可重播", () => {
+  const scenario = structuredClone(db.require("scenario", scenarioId));
+  scenario.slots.player!.units = [{ mech: "frame/moji-tern", crew: "ai", at: { x: 4, y: 4 } }];
+  scenario.slots.enemy!.units = [{ mech: "frame/moji-tern", crew: "remote", core: false, at: { x: 5, y: 4 } }];
+  scenario.objectives = []; scenario.rounds = 2;
+  const sim = scenarioToSetup(db, scenario, 1), run = runBattle({ db, sim, seed: 1 });
+  for (const id of ["player-0", "enemy-0"]) {
+    assert(run.commands.some(c => c.kind === "useAbility" && c.actor === id));
+    assert(run.state.log.events.some(e => e.type === "PoolChanged" && e.payload.owner === id && e.payload.pool === "ap" && e.payload.reason === "ability"));
+    assert.equal(run.state.units[id]!.controlMode, "scripted");
+    assert.equal(Object.values(run.state.units[id]!.seats).filter(Boolean).length, 0);
+  }
+  const replay = runBattle({ db, sim, seed: 1, players: { player: { kind: "script", commands: run.commands.filter(c => c.actor === "player-0") },
+    enemy: { kind: "script", commands: run.commands.filter(c => c.actor === "enemy-0") } } });
+  assert.equal(replay.hash, run.hash);
+  assert.equal(replay.state.units["enemy-0"]!.core, false); assert.equal(replay.state.units["enemy-0"]!.crew, "remote");
+});

@@ -49,6 +49,12 @@ function finishDay(s: TimeState, ctx: TickCtx): void {
   ledgerDaily6(s, stageCtx(ctx, 6));
   const seventh = stageCtx(ctx, 7);
   contractsDaily7(s, seventh); marketsDaily7(s, seventh); resupplyDaily7(s, seventh); recruitsDaily7(s, seventh); rosterDaily7(s, seventh);
+  const hasPilot = Object.values(s.roster.persons).some(p => {
+    if (s.roster.dead.some(d => d.person === p.id) || p.pools.hp && p.pools.hp.cur <= 0) return false;
+    const kind = ctx.db.require("person", p.def).kind;
+    return kind === "soul" || kind === "human" && s.roster.employment[p.id]?.role === "pilot";
+  });
+  if (!hasPilot && !s.log.some(e => e.type === "CampaignEnd")) stageCtx(ctx, 8).emit("CampaignEnd", { reason: "no-pilots" });
   delete s.time;
   stageCtx(ctx, 8).emit("DaySummary", dailySummary(s, ctx));
   ctx.onDay?.(s);

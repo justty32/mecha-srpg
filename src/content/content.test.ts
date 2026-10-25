@@ -149,3 +149,17 @@ test("MonsterDef 捕捉 HP 不同的警告每隻怪獸只一條、列出全部�
   assert.equal(warnings.length, 1);
   for (const part of monster.partsOverride) assert.ok(warnings[0]!.message.includes(part.id!), part.id);
 });
+
+
+test("cockpit 表與 crew/core schema 雙向檢查，基本能力引用必須存在", () => {
+  const rules = { basicAbilities: ["ability/strike"], drivenOnlyTags: ["soul"], crewPools: { ai: [], remote: [] } };
+  const source = pack({ "abilities/strike.json": ability(), "registries/tactics.json": tactics, "rules/cockpit.json": rules });
+  assert.deepEqual(loadPacks([source]).errors, []);
+  rules.basicAbilities = ["ability/missing"];
+  assert(loadPacks([source]).errors.some(e => e.message.includes("missing reference")));
+  assert(validateAgainst("rules-cockpit", { ...rules, crewPools: { ai: [], remote: [{ id: "ap" }] } }).length > 0);
+  const scenario = { id: "scenario/test", map: "map/test", slots: { enemy: { faction: "faction/test", units: [{ mech: "frame/test", at: "zone", core: false, crew: "ai" }] } }, objectives: [] };
+  assert.deepEqual(validateAgainst("scenario", scenario), []);
+  scenario.slots.enemy.units[0]!.crew = "soul";
+  assert(validateAgainst("scenario", scenario).length > 0);
+});

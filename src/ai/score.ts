@@ -16,7 +16,7 @@ const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
   retreat: 1, focusBonus: 1.5, friendlyFirePenalty: 1, enemyBuffPenalty: 1, reposition: 0.3, waitScore: 0, endScore: 0.01,
   ejectBelow: 0.15, moveCost: 0.01, dangerK: 0.01, band: 0.8,
-  tries: 3, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
+  tries: 3, scriptedPreviewSeed: 1026, previewSeed: 1000, previewStream: 7, forceFloor: 1e-6,
   retreatForceRatio: 0.5, retreatMinRound: 3, retreatDamage: 0.35,
   objCapture: 2, captureValue: 1, debuffControl: 0.5, debuffAttr: 0.02, debuffMark: 0.25,
   objHpScale: 200, partAimProgress: 1,
@@ -60,8 +60,10 @@ export function previewOutcome(q: RulesQuery, view: BattleState, cmd: Command, m
     state = moved.state;
   }
   const killed = new Set<Id>();
-  for (let i = 0; i < tries; i++) {
-    const preview = q.previewCommand({ ...state, rng: createRng(DEFAULTS.previewSeed + i, DEFAULTS.previewStream) }, cmd);
+  // 無人機常落在最低命中率；補一個首骰為 0 的固定樣本，避免武器被估成零傷害。
+  const samples = tries + (state.units[cmd.actor]?.controlMode === "scripted" ? 1 : 0);
+  for (let i = 0; i < samples; i++) {
+    const preview = q.previewCommand({ ...state, rng: createRng(i === tries ? DEFAULTS.scriptedPreviewSeed : DEFAULTS.previewSeed + i, DEFAULTS.previewStream) }, cmd);
     const { result } = preview;
     outcome.runs++;
     if (!result.ok) continue;

@@ -84,3 +84,16 @@ test("命中多 packet 立即跳過擊穿層，死亡事件一次且可重播", 
   assert.equal(ctx.s.log.events.filter(e => e.type === "UnitDied").length, 1);
   assert.deepEqual(ctx.s.log.events.filter(e => e.type === "LayerDamaged").map(e => e.payload.layer), [0, 1, 1]);
 });
+
+
+test("無核心凡鐵對 kaiju 傷害 ×0.1，有核心遙控保留武器傷害", () => {
+  const db = loadContentDirs(["content/base"]).db;
+  const ctx: Ctx = { db, s: { round: 1, rng: createRng(1), map: { def: "test", width: 3, height: 3, terrain: Array(9).fill("base:terrain/plain"), featureHp: {} },
+    units: {}, persons: {}, order: [], knowledge: {}, pending: [], factions: {}, log: createLog(), rt: newRuntime() } };
+  makeUnit(ctx, { id: "a", frame: "frame/hound-mk2", crew: "remote", owner: "player", pos: { x: 0, y: 0 } });
+  makeUnit(ctx, { id: "b", monster: { species: "species/tidewolf", grade: "C" }, owner: "enemy", pos: { x: 1, y: 0 } });
+  const packet = { type: "kinetic", amount: 100 };
+  const driven = modifiedAmount(ctx, "a", "ability/mx-frame-strike", packet, "b");
+  unit(ctx, "a").core = false;
+  assert.equal(modifiedAmount(ctx, "a", "ability/mx-frame-strike", packet, "b"), driven * 0.1);
+});

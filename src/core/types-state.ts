@@ -50,6 +50,7 @@ export type PersonState = {
 export type LayerState = { hp: number; broken: boolean; maxHp?: number };
 export type PartState = { layers: LayerState[]; broken: boolean; components: Record<SlotId, Id | null> };
 export type MechState = {
+  core: boolean; crew?: "ai" | "remote";
   id: Id; frame: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
   parts: Record<PartId, PartState>;
   pools: Record<PoolId, PoolState>; contribs: ContributionInstance[]; effects: EffectInstance[];

@@ -9,6 +9,8 @@ const { db, world } = loadWorldDirs(["content/base"]);
 const valid: EncounterDef = { ...world.require("encounter", "encounter/league-blight-checkpoint"),
   units: [{ frame: "frame/union-fr7", pilots: ["person/adewale-balogun"], components: { "left-weapon": "component/mx-iron-repeater" } }] };
 const checks: [string, (e: EncounterDef) => void][] = [
+  ["壞 core", e => { (e.units![0]! as unknown as { core: string }).core = "false"; }],
+  ["壞 crew", e => { (e.units![0]! as unknown as { crew: string }).crew = "soul"; }],
   ["壞 frame", e => { e.units![0]!.frame = "frame/missing"; }],
   ["frame 欄放其他 kind", e => { e.units![0]!.frame = "person/adewale-balogun"; }],
   ["壞 pilot", e => { e.units![0]!.pilots = ["person/missing"]; }],

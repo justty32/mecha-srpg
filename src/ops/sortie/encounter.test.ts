@@ -165,3 +165,14 @@ test("營運效果與天賦 mastery 在源頭求值，出戰人物貢獻全部�
   const perk = ctx.db.require("effect", node.perk);
   assert.equal(sc.personStates![soul.id]!.contribs[0]!.value, evalNum(perk.contribs[0]!.value, { ref: () => 0 }) * 0.25);
 });
+
+
+test("無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物", () => {
+  const { s, ctx, sortie, encounter } = humanFixture();
+  encounter.units = [{ frame: "frame/union-fr7", crew: "remote", core: false }];
+  overlay(ctx, { encounter: { [encounter.id]: encounter } });
+  const sc = generateScenario(s, ctx, sortie);
+  assert(sc.slots.enemy!.units.every(u => u.core === false && u.crew === "remote" && !u.persons!.length));
+  const sim = scenarioToSetup(ctx.db, sc, sc.seed!);
+  assert(sim.setup.units.filter(u => u.owner === "enemy").every(u => u.core === false && u.crew === "remote" && !u.persons!.length));
+});

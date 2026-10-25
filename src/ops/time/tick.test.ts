@@ -80,3 +80,30 @@ test("裂縫 phase 在大潮、開口滿四天或 BattleResolved 同日轉移", 
   const changes = state.log.filter(e => e.type === "RiftPhase"); assert(changes.length > 0);
   for (const e of changes) assert(clock(e.day, ctx.world.require("calendar", state.calendar)).phase === "spring" || e.payload.phase === "anchored" && e.day - state.rifts[String(e.payload.rift)]!.openedDay === 4 || state.log.some(b => b.type === "BattleResolved" && b.day === e.day));
 });
+
+
+test("日終只剩機魂不結束戰役", () => {
+  const { s, ctx } = fixture();
+  for (const p of Object.values(s.roster.persons)) if (ctx.db.require("person", p.def).kind !== "soul") {
+    delete s.roster.persons[p.id]; delete s.roster.employment[p.id];
+  }
+  assert(Object.values(s.roster.persons).some(p => ctx.db.require("person", p.def).kind === "soul"));
+  (s as TimeState).time = { resume: 5 }; tick(s, ctx);
+  assert(!s.log.some(e => e.type === "CampaignEnd"));
+});
+
+test("日終無活人駕駛且無機魂才結束，CampaignEnd 只發一次", () => {
+  const { s, ctx } = fixture();
+  for (const p of Object.values(s.roster.persons)) {
+    if (ctx.db.require("person", p.def).kind === "soul") delete s.roster.persons[p.id];
+    else if (s.roster.employment[p.id]?.role === "pilot") p.pools.hp!.cur = 0;
+  }
+  (s as TimeState).time = { resume: 5 }; tick(s, ctx);
+  assert.deepEqual(s.log.filter(e => e.type === "CampaignEnd").map(e => e.payload.reason), ["no-pilots"]);
+  (s as TimeState).time = { resume: 5 }; tick(s, ctx);
+  assert.equal(s.log.filter(e => e.type === "CampaignEnd").length, 1);
+  const other = fixture(); other.s.roster.persons = {};
+  other.ctx.emit("CampaignEnd", { reason: "ship-seized" });
+  (other.s as TimeState).time = { resume: 5 }; tick(other.s, other.ctx);
+  assert.equal(other.s.log.filter(e => e.type === "CampaignEnd").length, 1);
+});

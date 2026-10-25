@@ -11,7 +11,7 @@ const ROLE: Record<string, string> = { pilot: "駕駛", soul: "機魂", passenge
 const MORALE: Record<string, string> = { steady: "穩定", shaken: "動搖", breaking: "崩潰邊緣", fleeing: "潰逃" };
 const STATUS: Record<string, string> = { active: "作戰中", dead: "陣亡", retreated: "已撤離", derelict: "棄機", captured: "被俘" };
 const CONTROL: Record<string, string> = { pilot: "駕駛控制", soul: "機魂控制", shared: "共同控制", contested: "爭奪控制",
-  none: "無人控制", disabled: "失能", berserk: "失控", instinct: "本能" };
+  none: "無人控制", disabled: "失能", berserk: "失控", instinct: "本能", scripted: "無人（普通開）" };
 
 const pick = (table: Record<string, string>, v: string): string => table[v] ?? v;
 export const roleLabel = (v: string): string => pick(ROLE, v);

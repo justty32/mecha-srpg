@@ -130,6 +130,8 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     for (const [i, unit] of (encounter.units ?? []).entries()) {
       const at = `${encounter.id}.units[${i}]`;
       reference(unit.frame, `${at}.frame`, "frame");
+      if (unit.core !== undefined && typeof unit.core !== "boolean") errors.push(`${at}.core: must be boolean`);
+      if (unit.crew !== undefined && !["ai", "remote"].includes(unit.crew)) errors.push(`${at}.crew: must be ai or remote`);
       for (const pilot of unit.pilots ?? []) reference(pilot, `${at}.pilots`, "person");
       const frame = db.get("frame", unit.frame), body = frame && db.get("bodyplan", frame.bodyPlan);
       for (const [slotId, id] of Object.entries(unit.components ?? {})) {

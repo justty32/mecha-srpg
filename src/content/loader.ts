@@ -3,7 +3,7 @@ import * as path from "node:path";
 import { CONTENT_KINDS, KIND_FOLDERS, isContentKind, parseId, qualifyId } from "../core/ids.ts";
 import type { ContentKind, Id } from "../core/ids.ts";
 import { REGISTRY_KINDS, RULE_FILES } from "../core/types-def.ts";
-import type { DefByKind, PackDef, PartDef, RegistryKind, RegistryFile, RulesConstants, DamageModifiersFile, MoraleEventsFile, InjuriesFile } from "../core/types-def.ts";
+import type { DefByKind, PackDef, PartDef, RegistryKind, RegistryFile, RulesConstants, CockpitRules, DamageModifiersFile, MoraleEventsFile, InjuriesFile } from "../core/types-def.ts";
 import { emptyRegistries, mergeRegistry, hasEntry } from "./registry.ts";
 import type { Registries } from "./registry.ts";
 import { createContentDB } from "./contentdb.ts";
@@ -92,7 +92,7 @@ function sortedPacks(packs: PackFiles[], errors: LoadIssue[]): { source: PackFil
 }
 
 function checkMerged(db: ContentDB, definitions: Map<string, Source>, ruleSources: Source[], errors: LoadIssue[], warnings: LoadIssue[]): void {
-  const pools = new Set<string>();
+  const pools = new Set<string>(Object.values(db.rules.cockpit?.crewPools ?? {}).flatMap(ds => ds.map(d => d.id)));
   for (const kind of ["frame", "component", "person", "species"] as const) {
     for (const def of db.all(kind)) for (const pool of def.pools) pools.add(pool.id);
   }
@@ -232,7 +232,10 @@ export function loadPacks(packs: PackFiles[]): LoadResult {
         const normalized = normalize(value, pack.id);
         // SPEC-GAP：規則表合併未指定；常數後到覆寫同鍵，列式表依載入順序附加。
         if (name === "constants") Object.assign(rules.constants, (normalized as RulesConstants).constants);
-        else {
+        else if (name === "cockpit") {
+          rules.cockpit = normalized as CockpitRules;
+          ruleSources.push({ file, value: normalized, path: "$" });
+        } else {
           const rows = (normalized as DamageModifiersFile | MoraleEventsFile | InjuriesFile).rows;
           if (name === "damage-modifiers") rules.damageModifiers.push(...(normalized as DamageModifiersFile).rows);
           if (name === "morale-events") rules.moraleEvents.push(...(normalized as MoraleEventsFile).rows);
@@ -282,7 +285,7 @@ if (import.meta.main) {
     console.log(`${kind}: ${counts[kind]}${detail}`);
   }
   console.log(`registries: ${REGISTRY_KINDS.filter(kind => Object.keys(db.registries[kind]).length > 0).length}/7`);
-  console.log(`rules: ${RULE_FILES.filter(name => packs.some(pack => Object.hasOwn(pack.files, `rules/${name}.json`))).length}/4`);
+  console.log(`rules: ${RULE_FILES.filter(name => packs.some(pack => Object.hasOwn(pack.files, `rules/${name}.json`))).length}/${RULE_FILES.length}`);
   for (const warning of warnings) console.log(`WARNING [${warning.ruleId ?? "content-load"}] ${warning.file} ${warning.path} ${warning.message}`);
   for (const error of errors) console.log(`ERROR [${error.ruleId ?? "content-load"}] ${error.file} ${error.path} ${error.message}`);
   if (errors.length) { console.log(`FAIL ${errors.length} errors`); process.exitCode = 1; }

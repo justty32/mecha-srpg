@@ -26,12 +26,12 @@ function fixture(edit?: (defs: Defs, rules: RulesTables) => void): Ctx {
       { id: "v", owner: "enemy", frame: "base:frame/hound-mk2", pos: { x: 4, y: 4 }, persons: [{ id: "q", def: "base:person/ren-kasai", seat: "pilot" }] }],
     objectives: [] }, 42) };
 }
-import { autonomyNodes, controlCheck, handOver, setControl } from "./control.ts";
+import { autonomyNodes, controlCheck, handOver, setControl, cockpitOf, isDriven } from "./control.ts";
 import { cloneRng, d100 } from "../core/rng.ts";
 import { runActions } from "./hooks.ts";
 import { killPerson } from "./injury.ts";
 import { beginTurn, currentActor, startBattle } from "./turn.ts";
-import { checkAbility, tryCommand } from "./command.ts";
+import { abilitiesOf, checkAbility, tryCommand } from "./command.ts";
 
 test("DC-C02 contested 依雙方骰與控制值選指令權者", () => {
   const ctx = fixture(); unit(ctx, "u").controlMode = "contested";
@@ -124,4 +124,80 @@ test("棄機後 derelict 保持 none，beginTurn 自動結束其回合", () => {
   assert.ok(rt(ctx.s).acted.includes("u"));
   assert.notEqual(currentActor(ctx.s), "u");
   assert.ok(ctx.s.log.events.some(e => e.type === "TurnEnd" && e.payload.unit === "u"));
+});
+
+
+test("座艙五態：human、soul 優先於 ai／remote，死亡人物不驅動核心", () => {
+  const ctx = fixture();
+  assert.equal(cockpitOf(ctx, "u"), "human"); assert.equal(isDriven(ctx, "u"), true);
+  unit(ctx, "u").crew = "ai";
+  killPerson(ctx, "p", "u");
+  assert.equal(cockpitOf(ctx, "u"), "soul"); assert.equal(isDriven(ctx, "u"), true);
+  killPerson(ctx, "s", "u");
+  assert.equal(cockpitOf(ctx, "u"), "ai"); assert.equal(isDriven(ctx, "u"), false);
+  unit(ctx, "u").crew = "remote"; assert.equal(cockpitOf(ctx, "u"), "remote");
+  delete unit(ctx, "u").crew; assert.equal(cockpitOf(ctx, "u"), "empty");
+  const wolf = makeUnit(ctx, { id: "wolf", owner: "enemy", pos: { x: 2, y: 2 }, monster: { species: "species/tidewolf", grade: "C" } });
+  assert.equal(isDriven(ctx, wolf.id), true);
+  unit(ctx, "v").core = false; assert.equal(cockpitOf(ctx, "v"), "human"); assert.equal(isDriven(ctx, "v"), false);
+});
+
+test("普通開只留基本動作與武器，擋機體招式、actorRole 與 drivenOnlyTags", () => {
+  const ctx = fixture(defs => {
+    const frame = defs.frame!["base:frame/hound-mk2"]!;
+    frame.innateAbilities = ["base:ability/mx-frame-strike", "base:ability/bite"];
+    const weapon = defs.component!["base:component/autocannon-30"]!;
+    const plain = defs.ability!["base:ability/burst-30"]!;
+    weapon.abilities = [plain.id];
+    for (const tag of ["ancient", "soul", "captain", "command"]) {
+      const id = `base:ability/driven-${tag}`;
+      defs.ability![id] = { ...plain, id, tags: [tag] }; weapon.abilities.push(id);
+    }
+    defs.ability!["base:ability/role-test"] = { ...plain, id: "base:ability/role-test", actorRole: "pilot" };
+    weapon.abilities.push("base:ability/role-test");
+  });
+  makeUnit(ctx, { id: "drone", frame: "frame/hound-mk2", crew: "remote", owner: "player", pos: { x: 0, y: 1 },
+    components: { "left-weapon": "component/autocannon-30" } });
+  assert.deepEqual(abilitiesOf(ctx, "drone"), ["base:ability/burst-30", "base:ability/mx-frame-strike"]);
+  assert.equal(checkAbility(ctx, "drone", "ability/bite")?.code, "unknown-ability");
+  unit(ctx, "drone").seats.pilot = "p";
+  assert.equal(abilitiesOf(ctx, "drone").length, 8);
+  unit(ctx, "drone").core = false;
+  assert.deepEqual(abilitiesOf(ctx, "drone"), ["base:ability/burst-30", "base:ability/mx-frame-strike"]);
+});
+
+test("駕駛死亡或棄機後 crew 接手 scripted；自主機魂仍優先", () => {
+  const ctx = fixture(defs => {
+    defs.soultree!["base:soultree/standard"]!.nodes = [
+      { id: "auto", perk: "base:effect/trait-vengeful", research: { autonomy: 1 }, requires: [] }];
+  });
+  unit(ctx, "u").crew = "ai";
+  person(ctx, "s").will.soulTree!.nodes = ["auto"];
+  killPerson(ctx, "p", "u"); assert.equal(unit(ctx, "u").controlMode, "soul");
+  killPerson(ctx, "s", "u"); assert.equal(unit(ctx, "u").controlMode, "scripted");
+  assert.equal(commanderOf(ctx, "u"), null);
+  unit(ctx, "v").crew = "remote";
+  assert.equal(eject(ctx, "v"), null);
+  assert.equal(unit(ctx, "v").controlMode, "scripted");
+  assert.equal(rt(ctx.s).unitStatus.v, "active"); assert.equal(cockpitOf(ctx, "v"), "remote");
+  const second = fixture(); unit(second, "u").crew = "ai";
+  killPerson(second, "p", "u"); assert.equal(unit(second, "u").controlMode, "scripted");
+});
+
+test("scripted 用機體 AP 移動與基本動作，下一回合回復 crewPools", () => {
+  const ctx = fixture();
+  ctx.s = createBattle(ctx.db, { id: "scripted-turn", map: { width: 5, height: 5, fill: "terrain/plain", exits: [] },
+    units: [{ id: "drone", owner: "player", frame: "frame/hound-mk2", crew: "ai", pos: { x: 1, y: 1 } },
+      { id: "target", owner: "enemy", monster: { species: "species/tidewolf", grade: "D" }, pos: { x: 3, y: 1 } }],
+    objectives: [], maxRounds: 3 }, 42);
+  const drone = unit(ctx, "drone");
+  beginTurn(ctx, "drone", false);
+  assert.equal(drone.controlMode, "scripted"); assert.equal(drone.pools.ap!.cur, 7);
+  assert.equal(tryCommand(ctx, { kind: "move", actor: "drone", path: [{ x: 2, y: 1 }] }).ok, true);
+  const before = drone.pools.ap!.cur;
+  assert.equal(tryCommand(ctx, { kind: "useAbility", actor: "drone", ability: "ability/mx-head-vulcan", target: { unit: "target" } }).ok, true);
+  assert.equal(drone.pools.ap!.cur, before - 2);
+  drone.pools.fatigue!.cur = 40;
+  beginTurn(ctx, "drone", false);
+  assert.equal(drone.pools.ap!.cur, 7); assert.equal(drone.pools.fatigue!.cur, 0);
 });

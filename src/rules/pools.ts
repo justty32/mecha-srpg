@@ -25,6 +25,9 @@ export function poolDecls(ctx: Ctx, owner: Owner): PoolDecl[] {
     });
   }).sort((a, b) => a.slot < b.slot ? -1 : a.slot > b.slot ? 1 : 0);
   for (const c of components) decls.push(...c.def.pools);
+  if (u.crew) for (const d of ctx.db.rules.cockpit?.crewPools[u.crew] ?? []) {
+    if (!decls.some(existing => existing.id === d.id)) decls.push(d);
+  }
   const merged = new Map<PoolId, PoolDecl>();
   for (const d of decls) {
     const old = merged.get(d.id);
@@ -77,8 +80,8 @@ export function updateBand(ctx: Ctx, owner: Owner, pool: PoolId): void {
 }
 export type Cost = { owner: "mech" | "person"; pool: PoolId; amount: number; allowOverload?: boolean };
 function costOwner(ctx: Ctx, unitId: Id, personId: Id | null, cost: Cost): Owner | null {
-  // 本能控制沒有指令權者，人物成本由機體同名池支付。
-  return cost.owner === "mech" || unit(ctx, unitId).controlMode === "instinct"
+  // 本能與無人控制沒有指令權者，人物成本由機體同名池支付。
+  return cost.owner === "mech" || ["instinct", "scripted"].includes(unit(ctx, unitId).controlMode)
     ? { unit: unitId } : personId === null ? null : { person: personId };
 }
 export function canPay(ctx: Ctx, unitId: Id, personId: Id | null, costs: Cost[]): boolean {

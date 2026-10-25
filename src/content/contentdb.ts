@@ -1,9 +1,9 @@
 import { CONTENT_KINDS, parseId } from "../core/ids.ts";
 import type { ContentKind, Id } from "../core/ids.ts";
-import type { DefByKind, PackDef, DamageModifierRow, MoraleEventRow, InjuryRow } from "../core/types-def.ts";
+import type { DefByKind, PackDef, CockpitRules, DamageModifierRow, MoraleEventRow, InjuryRow } from "../core/types-def.ts";
 import type { Registries } from "./registry.ts";
 
-export type RulesTables = { constants: Record<string, number>; damageModifiers: DamageModifierRow[]; moraleEvents: MoraleEventRow[]; injuries: InjuryRow[] };
+export type RulesTables = { cockpit?: CockpitRules; constants: Record<string, number>; damageModifiers: DamageModifierRow[]; moraleEvents: MoraleEventRow[]; injuries: InjuryRow[] };
 export type ContentDB = {
   readonly packs: readonly PackDef[]; readonly registries: Registries; readonly rules: RulesTables;
   get<K extends ContentKind>(kind: K, id: Id): DefByKind[K] | undefined;

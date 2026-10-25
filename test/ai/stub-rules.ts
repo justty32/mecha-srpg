@@ -40,7 +40,7 @@ export function makeStubBattle(spec: StubBattle, seed: number): BattleState {
   for (const u of [...spec.units].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
     s.stub.units[u.id] = structuredClone(u);
     s.units[u.id] = {
-      id: u.id, frame: `stub:frame/${u.id}`, owner: u.owner, pos: { ...u.pos },
+      id: u.id, core: true, frame: `stub:frame/${u.id}`, owner: u.owner, pos: { ...u.pos },
       parts: Object.fromEntries((u.parts ?? DEFAULT_PARTS).map(p => [p.id, {
         layers: p.layers.map(l => ({ hp: l.hp, broken: l.hp <= 0 })), broken: p.layers.every(l => l.hp <= 0), components: {},
       }])),

@@ -135,6 +135,12 @@ export function lintContent(db: ContentDB, packs: readonly PackFiles[] = [],
       }
     });
   }
+  for (const [crew, pools] of Object.entries(db.rules.cockpit?.crewPools ?? {})) pools.forEach((pool, i) => {
+    if (pool.inverted) inverted.add(`mech:${pool.id}`);
+    if (pool.capKind === "soft" && !hasOverflowBand(pool)) {
+      issue("warning", "soft-overflow-band", "rules/cockpit", `$.crewPools.${crew}[${i}].bands`, `${pool.id}: no band covers values above max`);
+    }
+  });
   const monsterAbilities = new Set([
     ...db.all("species").flatMap(s => s.abilities), ...db.all("monster").flatMap(m => m.extraAbilities ?? []),
   ]);

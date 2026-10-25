@@ -59,7 +59,7 @@ export type RiftState = { id: Id; at: Loc; site: Id; family: Id; width: Grade; p
   openedDay: number; anchorAge: number; anchor?: Id; patches: Id[]; fedCount: number; nextCheck: number };
 export type RiftDef = { id: Id; family: string; anchor?: Id; vanguard: Id[]; spreadPerTide: NumExpr; selfClose: boolean; tether: boolean;
   gradeByWidth: Partial<Record<Grade, Grade[]>>; monsters?: Id[] };
-export type EncounterUnit = { frame: Id; pilots?: Id[]; components?: { [slot: string]: Id }; w?: number };
+export type EncounterUnit = { crew?: "ai" | "remote"; core?: boolean; frame: Id; pilots?: Id[]; components?: { [slot: string]: Id }; w?: number };
 export type EncounterDef = { faction?: Id; units?: EncounterUnit[]; id: Id; family: string; depth: "shallow" | "deep" | "core"; size: { w: NumExpr; h: NumExpr };
   terrainMix: { terrain: Id | "$node"; w: number }[]; budgetByGrade: Partial<Record<Grade, number>>; anchorHere: boolean; map?: Id };
 export type RoomState = { persons: Id[]; items: Id[] };

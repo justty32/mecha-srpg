@@ -2,7 +2,7 @@ import schema from "../../schemas/content.schema.json" with { type: "json" };
 import type { ContentKind } from "../core/ids.ts";
 
 export type SchemaError = { path: string; message: string };
-export type SchemaName = ContentKind | "pack" | "registry" | "rules-constants" | "rules-damage-modifiers" | "rules-morale-events" | "rules-injuries";
+export type SchemaName = ContentKind | "pack" | "registry" | "rules-constants" | "rules-damage-modifiers" | "rules-morale-events" | "rules-injuries" | "rules-cockpit";
 export const CONTENT_SCHEMA: Record<string, unknown> = schema;
 type Schema = {
   type?: string | string[]; required?: string[]; properties?: Record<string, Schema>;

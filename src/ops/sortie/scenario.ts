@@ -245,6 +245,7 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
       for (let i = 0; i < count; i++) {
         const entry = pickWeighted(s.rng, pool, u => u.w ?? 1), frame = ctx.db.require("frame", entry.frame);
         const spawn: UnitSpawn = { mech: frame.id, at: "zone", persons: [],
+          ...(entry.core !== undefined ? { core: entry.core } : {}), ...(entry.crew ? { crew: entry.crew } : {}),
           ...(entry.components !== undefined ? { components: structuredClone(entry.components) } : {}) };
         for (const seat of ctx.db.require("bodyplan", frame.bodyPlan).parts.flatMap(p => p.seats ?? [])) {
           const candidates = (entry.pilots ?? []).map(id => ctx.db.require("person", id)).filter(p => seat.accepts.includes(p.kind === "soul" ? "soul" : "pilot"));

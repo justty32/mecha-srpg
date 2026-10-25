@@ -18,7 +18,7 @@ export type Rejection = { code: RejectCode; detail?: string };
 export type Result = { ok: true; events: GameEvent[] } | { ok: false; rejection: Rejection };
 export type Subject = { unit?: Id; person?: Id };
 export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
-  frame?: Id; monster?: { species: Id; grade: Grade; def?: Id };
+  core?: boolean; crew?: "ai" | "remote"; frame?: Id; monster?: { species: Id; grade: Grade; def?: Id };
   components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId;
     state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level">> }[];
   parts?: Record<PartId, Pick<MechState["parts"][string], "layers" | "broken">>;
@@ -56,6 +56,7 @@ export function person(ctx: Ctx, id: Id): PersonState {
 }
 export function unitTags(ctx: Ctx, unitId: Id): string[] {
   return [...new Set([...frameView(ctx, unitId).tags,
+    ...(!rt(ctx.s).monsters[unitId] && unit(ctx, unitId).core === false ? ["conventional-arms"] : []),
     ...unit(ctx, unitId).effects.flatMap(e => ctx.db.require("effect", e.effect).tags)])].sort();
 }
 export function personTags(ctx: Ctx, personId: Id): string[] {
@@ -216,7 +217,8 @@ export function makePerson(ctx: Ctx, id: Id, def: Id): PersonState {
 export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   if ((!init.frame) === (!init.monster)) throw new Error("frame 與 monster 必須二擇一");
   const frame = init.monster ? ctx.db.require("species", init.monster.species).id : ctx.db.require("frame", init.frame!).id;
-  const u: MechState = { id: init.id, frame, owner: init.owner, pos: { ...init.pos },
+  const u: MechState = { id: init.id, frame, core: init.core ?? (init.frame ? ctx.db.require("frame", init.frame).core ?? true : true),
+    ...(init.crew ? { crew: init.crew } : {}), owner: init.owner, pos: { ...init.pos },
     ...(init.facing ? { facing: init.facing } : {}), parts: {}, pools: {}, contribs: [], effects: [], seats: {},
     controlMode: "none", cooldowns: {}, sustained: [] };
   ctx.s.units[init.id] = u;
@@ -236,6 +238,9 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   const components = Object.keys(u.parts).sort().flatMap(p => Object.keys(u.parts[p]!.components).sort()
     .map(slot => ({ slot, id: u.parts[p]!.components[slot] }))).sort((a, b) => a.slot < b.slot ? -1 : a.slot > b.slot ? 1 : 0);
   for (const c of components) if (c.id) declarations.push(...ctx.db.require("component", c.id).pools);
+  if (u.crew) for (const d of ctx.db.rules.cockpit?.crewPools[u.crew] ?? []) {
+    if (!declarations.some(existing => existing.id === d.id)) declarations.push(d);
+  }
   initializePools(ctx, { unit: u.id }, declarations);
   if (init.monster?.def) {
     const def = ctx.db.require("monster", init.monster.def);
@@ -249,7 +254,7 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
     u.seats[entry.seat] = p.id;
   }
   const seats = seatsOf(ctx, u.id);
-  u.controlMode = seats.some(s => s.role === "pilot") ? "pilot" : seats.some(s => s.role === "soul") ? "soul" : init.monster ? "instinct" : "none";
+  u.controlMode = seats.some(s => s.role === "pilot") ? "pilot" : seats.some(s => s.role === "soul") ? "soul" : init.monster ? "instinct" : u.crew && !seats.length ? "scripted" : "none";
   // 匯入值依宣告夾限（hard 夾 [min,max]、soft 只夾 min），與池更新的夾限政策一致。
   const clampTo = (owner: { unit: Id } | { person: Id }, pool: PoolState, id: PoolId, value: number): void => {
     const d = poolDecls(ctx, owner).find(decl => decl.id === id);

@@ -58,10 +58,12 @@ test("BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP", 
   assert.equal(result.monster, "base:monster/engine-test");
   assert.deepEqual(result.state.parts[body.parts[0]!.id]!.layers.map(l => l.hp), hp);
 });
-test("沒有 def 的舊 UnitInit 保持開工前狀態 hash", () => {
+test("沒有 def 的舊 UnitInit 除新增核心標記外保持開工前狀態 hash", () => {
   const ctx = context(false);
-  assert.equal(fnv1a64(canonicalJson(ctx.s)), "659804c7a60fdc98");
-  const changed = structuredClone(ctx.s);
+  assert(Object.values(ctx.s.units).every(u => u.core === true));
+  const priorShape = { ...ctx.s, units: Object.fromEntries(Object.entries(ctx.s.units).map(([id, { core, ...u }]) => [id, u])) };
+  assert.equal(fnv1a64(canonicalJson(priorShape)), "659804c7a60fdc98");
+  const changed = structuredClone(priorShape);
   changed.units.m!.parts[body.parts[0]!.id]!.layers[0]!.hp += 1;
   assert.notEqual(fnv1a64(canonicalJson(changed)), "659804c7a60fdc98");
   assert.deepEqual(ctx.s.units.m!.contribs, []);

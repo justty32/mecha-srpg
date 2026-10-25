@@ -27,7 +27,7 @@ export type FrameClass = "mechanical" | "bio" | "ancient";
 export type PersonKind = "human" | "soul";
 export type SeatRole = "pilot" | "soul" | "passenger";
 // "instinct"：無座位人物的怪獸由本能驅動（lead-impl-sim 2026-10-24 追加；SPEC-GAP，spec 只列七值）。
-export type ControlMode = "pilot" | "soul" | "shared" | "contested" | "none" | "disabled" | "berserk" | "instinct";
+export type ControlMode = "pilot" | "soul" | "shared" | "contested" | "none" | "disabled" | "berserk" | "instinct" | "scripted";
 export type MoraleStage = "steady" | "shaken" | "breaking" | "fleeing";
 export type AttrRole = "accuracy" | "evasion" | "resolve" | "initiative" | "perception" | "control";
 export type Cell = { x: number; y: number };
@@ -132,6 +132,7 @@ export type PartDef = {
 };
 export type BodyPlanDef = { id: Id; name?: string; parts: PartDef[]; symmetry?: string };
 export type FrameDef = {
+  core?: boolean;
   series?: string;
   mark?: number;
   /** 各勢力對本機型的叫法（lead-gaps-battle 2026-10-24；SPEC-GAP，spec 未定欄名）。faction 為勢力 id。 */
@@ -250,7 +251,7 @@ export type MonsterDef = {
   id: Id; species: Id; grade: Grade; name?: string; epithet?: string;
   attrMods?: Contribution[]; extraAbilities?: Id[]; partsOverride?: Partial<PartDef>[]; tags: string[];
 };
-export type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
+export type UnitSpawn = { core?: boolean; crew?: "ai" | "remote"; mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
   /** 情境替機甲裝部件：slot id → component id；給了就整組取代 FrameDef.defaultLoadout（ISS-001）。 */
   components?: Record<SlotId, Id> };
 export type Objective = {
@@ -278,7 +279,8 @@ export type RegistryKind = (typeof REGISTRY_KINDS)[number];
 export type RegistryEntry = { id: string; name: string; role?: AttrRole; min?: number; max?: number; tags?: string[] };
 export type RegistryFile = { kind: RegistryKind; entries: RegistryEntry[] };
 
-export const RULE_FILES = ["constants", "damage-modifiers", "morale-events", "injuries"] as const;
+export const RULE_FILES = ["constants", "damage-modifiers", "morale-events", "injuries", "cockpit"] as const;
+export type CockpitRules = { basicAbilities: Id[]; drivenOnlyTags: string[]; crewPools: Record<"ai" | "remote", PoolDecl[]> };
 export type RuleFileKind = (typeof RULE_FILES)[number];
 /** rules/constants.json：數值常數表（命中上下限、暴擊倍率、永久傷門檻…）。 */
 export type RulesConstants = { constants: Record<string, number> };

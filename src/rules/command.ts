@@ -15,12 +15,16 @@ import { advance, endTurn } from "./turn.ts";
 import { locomotionOf, moveAlong } from "./movement.ts";
 import { deferBattleEnd } from "./objectives.ts";
 
+import { isDriven } from "./control.ts";
+
 function actorPerson(ctx: Ctx, id: Id, aid: Id): Id | null {
   const a = ctx.db.require("ability", aid);
   return a.actorRole ? seatsOf(ctx, id).find(s => s.role === a.actorRole)?.person ?? null : commanderOf(ctx, id);
 }
 export function abilitiesOf(ctx: Ctx, unitId: Id): Id[] {
-  const u = unit(ctx, unitId), ids = [...frameView(ctx, unitId).innateAbilities];
+  const u = unit(ctx, unitId), driven = isDriven(ctx, unitId), cockpit = ctx.db.rules.cockpit;
+  const basics = new Set((cockpit?.basicAbilities ?? []).map(id => ctx.db.get("ability", id)?.id ?? id));
+  const ids = frameView(ctx, unitId).innateAbilities.filter(id => driven || basics.has(ctx.db.require("ability", id).id));
   for (const partId of Object.keys(u.parts).sort()) {
     const part = u.parts[partId]!;
     if (part.broken) continue;
@@ -29,10 +33,12 @@ export function abilitiesOf(ctx: Ctx, unitId: Id): Id[] {
     for (const slot of slots) {
       const index = hpSlots.indexOf(slot);
       if (index >= 0 && part.layers[part.layers.length - hpSlots.length + index]?.broken) continue;
-      ids.push(...ctx.db.require("component", part.components[slot]!).abilities);
+      ids.push(...ctx.db.require("component", part.components[slot]!).abilities.filter(id =>
+        driven || !ctx.db.require("ability", id).tags.some(tag => cockpit?.drivenOnlyTags.includes(tag))));
     }
   }
-  return [...new Set(ids.map(id => ctx.db.require("ability", id).id))].sort();
+  return [...new Set(ids.map(id => ctx.db.require("ability", id).id))]
+    .filter(id => driven || !ctx.db.require("ability", id).actorRole).sort();
 }
 export function resolveCosts(ctx: Ctx, unitId: Id, abilityId: Id): Cost[] {
   const a = ctx.db.require("ability", abilityId), pid = actorPerson(ctx, unitId, abilityId);

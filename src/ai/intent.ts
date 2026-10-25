@@ -71,7 +71,7 @@ export function inferIntent(ctx: Context): Intent {
 export function selectCommander(ctx: Context): string | undefined {
   const { q, s } = ctx;
   return active(ctx).filter(id => {
-    if (!monster(q, s, id)) return !!q.commanderOf(s, id);
+    if (!monster(q, s, id)) return !!q.commanderOf(s, id) || s.units[id]!.controlMode === "scripted";
     return tags(q, s, id).some(t => ["spawner", "tide-anchor", "anchored"].includes(t))
       || q.partDefs(s, id).some(p => p.functions.includes("spawner")) || ["S", "SS", "SSS"].includes(q.unitGrade(s, id));
   }).sort((a, b) => {
@@ -87,7 +87,7 @@ function needsRest(ctx: Context, id: string): boolean {
   const { q, s } = ctx, p = { ...DEFAULTS, ...ctx.params }, u = s.units[id]!;
   const pid = q.commanderOf(s, id), person = pid ? s.persons[pid] : undefined;
   const lowPool = q.abilitiesOf(s, id).some(a => q.abilityDef(a).costs.some(cost => {
-    const pool = cost.owner === "person" ? person?.pools[cost.pool] : u.pools[cost.pool];
+    const pool = cost.owner === "person" && u.controlMode !== "scripted" ? person?.pools[cost.pool] : u.pools[cost.pool];
     return cost.pool !== "ap" && pool && pool.max > 0 && pool.cur / pool.max < p.rotatePool;
   }));
   const negative = tags(q, s, id).some(t => ["stagger", "suppressed", "jammed", "numb", "restraint"].includes(t))
@@ -198,6 +198,6 @@ export function individualRetreat(ctx: AiCtx, id: string): boolean {
   if (!individualRetreatReady(q, s, id, p)) return false;
   const pid = q.commanderOf(s, id), morale = pid ? s.persons[pid]?.morale : undefined;
   if (monster(q, s, id)) return hpFraction(q, s, id) < p.individualFleeHp;
-  return !!pid && (hpFraction(q, s, id) < p.pilotFleeHp
+  return (!!pid || s.units[id]!.controlMode === "scripted") && (hpFraction(q, s, id) < p.pilotFleeHp
     || (morale === "breaking" || morale === "fleeing") && shouldRetreat(ctx, morale, 1, p, id));
 }

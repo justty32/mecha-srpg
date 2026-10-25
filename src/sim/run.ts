@@ -102,7 +102,8 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
       // ISS-001：情境給 components 就整組取代機體 defaultLoadout；id 一律解析成完整 id。
       const loadout = monster ? undefined : spawn.components ?? db.require("frame", spawn.mech!).defaultLoadout;
       const components = loadout ? Object.fromEntries(Object.keys(loadout).sort().map(s => [s, db.require("component", loadout[s]!).id])) : undefined;
-      units.push({ id, owner: slot, pos, persons, ...(spawn.pools ? { pools: structuredClone(spawn.pools) } : {}),
+      units.push({ id, owner: slot, pos, persons,
+        ...(spawn.core !== undefined ? { core: spawn.core } : {}), ...(spawn.crew ? { crew: spawn.crew } : {}), ...(spawn.pools ? { pools: structuredClone(spawn.pools) } : {}),
         ...(components ? { components } : {}),
         ...(monster ? { monster: { species: monster.species, grade: spawn.grade ?? monster.grade, def: monster.id } } : { frame: spawn.mech! }) });
       if (monster) {

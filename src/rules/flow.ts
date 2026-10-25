@@ -98,11 +98,11 @@ export function eject(ctx: Ctx, unitId: Id): Rejection | null {
   }
   rt(ctx.s).commander[infantry] = commander;
   setControl(ctx, infantry, seats.some(s => s.role === "pilot") ? "pilot" : "soul", "eject");
-  rt(ctx.s).unitStatus[unitId] = "derelict";
-  setControl(ctx, unitId, "none", "eject");
+  rt(ctx.s).unitStatus[unitId] = u.crew ? "active" : "derelict";
+  setControl(ctx, unitId, u.crew ? "scripted" : "none", "eject");
   ctx.s.order.push(infantry);
   emit(ctx, "Ejected", { unit: unitId, infantry, persons: seats.map(s => s.person) });
-  signal(ctx, "unitRemoved", { unit: unitId, status: "derelict" });
+  if (!u.crew) signal(ctx, "unitRemoved", { unit: unitId, status: "derelict" });
   return null;
 }
 

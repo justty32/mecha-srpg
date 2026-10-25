@@ -35,7 +35,7 @@ export function instantiateMech(db: ContentDB, id: string, frameId: string, comp
     for (const add of def.layersAdd ?? []) if (!body.parts.some(p => p.id === add.part)) throw new Error(`部件附加部位不存在：${add.part}`);
     return { slot: slotId, part: part!.id, def };
   });
-  const mech: MechState = { id, frame: frame.id, owner: "player", pos: { x: 0, y: 0 }, parts: {}, pools: instantiatePools([...frame.pools, ...installed.flatMap(c => c.def.pools)], frame.baseAttrs, frame.tags),
+  const mech: MechState = { id, frame: frame.id, core: frame.core ?? true, owner: "player", pos: { x: 0, y: 0 }, parts: {}, pools: instantiatePools([...frame.pools, ...installed.flatMap(c => c.def.pools)], frame.baseAttrs, frame.tags),
     contribs: [], effects: [], seats: {}, controlMode: "none", cooldowns: {}, sustained: [] };
   for (const part of [...body.parts].sort((a, b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
     const layers = [...part.layers];

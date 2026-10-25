@@ -83,7 +83,7 @@ export function debtMonth(s: CampaignState, ctx: OpsCtx): void {
     if (debt.arrears === 2) { ctx.emit("DebtCollection", { arrears: 2 }); s.pendingEvents.push(ctx.world.require("event", "event/debt-collection").id); seize(s, ctx); }
     if (debt.arrears === 3) ctx.emit("SeleneEmbargo", { active: 1 });
     if (debt.arrears === 4) { ctx.emit("DebtUltimatum", { arrears: 4 }); s.pendingEvents.push(ctx.world.require("event", "event/debt-ultimatum").id); }
-    if (debt.arrears >= 5) ctx.emit("CampaignEnd", { reason: "ship-seized" });
+    if (debt.arrears >= 5 && !s.log.some(e => e.type === "CampaignEnd")) ctx.emit("CampaignEnd", { reason: "ship-seized" });
   } else if (debt.due > 0) {
     debt.arrears = 0;
   }
