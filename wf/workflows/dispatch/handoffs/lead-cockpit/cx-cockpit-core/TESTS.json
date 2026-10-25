@@ -1,0 +1,71 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "columns": [
+  "檔案",
+  "測試名稱",
+  "涵蓋"
+ ],
+ "rows": [
+  {
+   "檔案": "src/rules/control.test.ts",
+   "測試名稱": "座艙五態：human、soul 優先於 ai／remote，死亡人物不驅動核心",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/rules/control.test.ts",
+   "測試名稱": "普通開只留基本動作與武器，擋機體招式、actorRole 與 drivenOnlyTags",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/rules/control.test.ts",
+   "測試名稱": "駕駛死亡或棄機後 crew 接手 scripted；自主機魂仍優先",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/rules/control.test.ts",
+   "測試名稱": "scripted 用機體 AP 移動與基本動作，下一回合回復 crewPools",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/rules/attack.test.ts",
+   "測試名稱": "無核心凡鐵對 kaiju 傷害 ×0.1，有核心遙控保留武器傷害",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/ops/time/tick.test.ts",
+   "測試名稱": "日終只剩機魂不結束戰役",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/ops/time/tick.test.ts",
+   "測試名稱": "日終無活人駕駛且無機魂才結束，CampaignEnd 只發一次",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/content/content.test.ts",
+   "測試名稱": "cockpit 表與 crew/core schema 雙向檢查，基本能力引用必須存在",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/ops/content/encounter-check.test.ts",
+   "測試名稱": "遭遇檢查雙向：壞 core",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/ops/content/encounter-check.test.ts",
+   "測試名稱": "遭遇檢查雙向：壞 crew",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "src/ops/sortie/encounter.test.ts",
+   "測試名稱": "無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物",
+   "涵蓋": "固定驗收 4／整合驗證"
+  },
+  {
+   "檔案": "test/sim/run.test.ts",
+   "測試名稱": "scripted AI／遙控低命中率仍能選用武器，機體 AP 扣款且可重播",
+   "涵蓋": "固定驗收 4／整合驗證"
+  }
+ ]
+}
