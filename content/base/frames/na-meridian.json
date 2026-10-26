@@ -1,0 +1,72 @@
+{
+  "id": "frame/na-meridian",
+  "name": "長晝-隼翼",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/m2-splitwing-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-starscar-lance",
+    "right-weapon": "component/mx-radiant-rifle",
+    "back-2": "component/mx-hunter-darts",
+    "sensor-mount": "component/mx-hawk-eye",
+    "system-1": "component/mx-essence-cell",
+    "system-2": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 9,
+    "accuracy": 8,
+    "evasion": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 110,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 110,
+      "regen": 18,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "series-longspear",
+    "universal",
+    "faction-north-american-umbrella",
+    "flight"
+  ],
+  "nameEn": "Kestrel Meridian",
+  "etymology": "Kestrel Meridian 取隼停在日午高處守望之意，中文冠名長晝。北美跟進 B 級供貨後，留在地面的資本與工坊另押少量核心，沿公開長槍的射擊接口試作有人分翼機。長距火力掛左翼，近距光矢與追矢分在右翼，尾翼各留流光槽與排燼片；失翼會失去那一側的火力。沒有穿雲一擲的內建招，也沒有隨產線一同增加的王牌駕駛員。"
+}

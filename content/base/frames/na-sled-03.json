@@ -1,0 +1,67 @@
+{
+  "id": "frame/na-sled-03",
+  "name": "NR-03",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "defaultLoadout": {
+    "main-gun": "component/mx-radiant-rifle",
+    "sensor-mount": "component/mx-rift-needle"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "accuracy": 3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "series-longspear",
+    "universal",
+    "faction-north-american-umbrella",
+    "track"
+  ],
+  "nameEn": "Northern Relay 03",
+  "etymology": "Northern Relay 取接力巡哨之意，以 NR-03 作調度代號。美國內陸工業仍在，兩岸卻有等不到換班的哨線；工坊沿公用長槍圖紙，把光矢槍與標記靈目架在同一砲塔，交給有人駕駛的小輪座。接續北美跟進 B 級的地面供貨背景，小機補的是巡查缺口，沒有副槍，也補不滿整條海岸。"
+}

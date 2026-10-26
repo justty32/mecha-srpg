@@ -1,0 +1,72 @@
+{
+  "id": "frame/innersea-lantern",
+  "name": "留燈-合印",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-fortress-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/mx-thunder-serpent",
+    "system-1": "component/m2-relief-cradle",
+    "system-2": "component/mx-cold-spring",
+    "back-1": "component/mx-ash-mist"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 6,
+    "accuracy": 3,
+    "evasion": -6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 120
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 150.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 70,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 70,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-old-city-wall"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "series-bulwark",
+    "lineage-kuafu",
+    "faction-inner-sea-houses"
+  ],
+  "nameEn": "Counterseal Vigil",
+  "etymology": "Counterseal Vigil 取蓋印之後仍有人守夜之意，留燈接在合印系列之前。聖馬洛九門同喪後，大西洋岸的賒帳沒有因援軍到港而結清；內海一座工坊擬用少數昂貴核心，試做守撤離口的有人機。它沿堅盾厚胸底架，把厚砲換成近衛槍與蛇鞭，反覆替鄰機排燼，另留一次遠護。燈亮著不表示諸家肯普發這款機，帳單仍會跟船回來。"
+}

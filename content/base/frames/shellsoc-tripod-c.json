@@ -1,0 +1,66 @@
+{
+  "id": "frame/shellsoc-tripod-c",
+  "name": "定盤-C",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-quadruped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-rifle",
+    "right-weapon": "component/mx-binding-harpoon",
+    "sensor-mount": "component/mx-rift-needle",
+    "back-1": "component/mx-tide-leap"
+  },
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-many-eyes",
+    "faction-shell-society"
+  ],
+  "nameEn": "Survey Compass C",
+  "etymology": "Survey Compass 取測繪盤定向之意，中文稱定盤；型體是四足，沒有按舊代號數腿。稽古學會依「先探後挖」的習慣委託護衛工坊，仿多目的觀測接口做出探路配裝。兩隻前足分掛射擊與束矢，頭部留標記靈目，背架助短暫避讓；學者買的是護衛工位，沒有另建軍隊，也未取走沉睡的古代機。"
+}

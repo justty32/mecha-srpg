@@ -1,0 +1,67 @@
+{
+  "id": "frame/innersea-brace-02",
+  "name": "IS-02",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "defaultLoadout": {
+    "main-gun": "component/mx-shard-grenade",
+    "side-tool": "component/m2-mooring-jaw"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "control": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "series-bulwark",
+    "lineage-kuafu",
+    "faction-inner-sea-houses",
+    "track"
+  ],
+  "nameEn": "Inner Sea Brace 02",
+  "etymology": "Inner Sea Brace 取支住缺口之意，IS-02 沿工坊代號登記。內海諸家把公刻堅盾的修造接口接上輪座，賒給大西洋岸的守港工人；曲射槍自衛，前軸的繫泊鉗橫出短索，讓一排來敵的動作慢下來。工坊買得起這段守門時間，保不了整片海岸；短索既不捕獸，也不把別的機甲拖走。"
+}

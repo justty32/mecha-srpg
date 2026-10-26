@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mech2-03",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "機甲種類擴充第 03 批：na-sled-03、innersea-brace-02、shellsoc-tripod-c、anvil-hoist-ii、tidefaith-censer-iv、na-meridian、innersea-lantern",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-mech2",
  "date": "2026-10-26",
- "base": "67506fa954aedd43e9fb6f6b558ff6a80b15256e",
+ "base": "89e2582fe18e8c636f2cd5454348b33ab81d069d",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-03",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-03/REPORT.md",
@@ -79,11 +79,307 @@
    "frame/longspear-piercing-cloud",
    "frame/bulwark-old-city"
   ],
-  "waivers": []
+  "waivers": [
+   {
+    "id": "frame/innersea-lantern",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 0%"
+   },
+   {
+    "id": "frame/na-meridian",
+    "flag": "band",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+   },
+   {
+    "id": "frame/na-sled-03",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+   },
+   {
+    "id": "frame/tidefaith-censer-iv",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-iv-rampart ×1 勝率 0%"
+   }
+  ]
  },
  "playtest": {
   "required": 2,
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-03/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-03/mcp-log"
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T14:36:49",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-26T14:49:07",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "mech2-03",
+  "round": 2,
+  "at": "2026-10-26T14:49:07",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/frames/anvil-hoist-ii.json",
+   "content/base/frames/innersea-brace-02.json",
+   "content/base/frames/innersea-lantern.json",
+   "content/base/frames/na-meridian.json",
+   "content/base/frames/na-sled-03.json",
+   "content/base/frames/shellsoc-tripod-c.json",
+   "content/base/frames/tidefaith-censer-iv.json",
+   "content/lore/events/seven-seals-diverge.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 20%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "low",
+     "id": "frame/anvil-hoist-ii",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 0%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "low",
+     "id": "frame/anvil-hoist-ii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/anvil-hoist-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 20% 敗 80% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/anvil-hoist-ii",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "high",
+     "id": "frame/innersea-brace-02",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 100%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "high",
+     "id": "frame/innersea-brace-02",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/innersea-brace-02",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/innersea-brace-02",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 100% 敗 0% 平 0% 輪 11.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 0%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "low",
+     "id": "frame/innersea-lantern",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/innersea-lantern",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/innersea-lantern",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/innersea-lantern",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 520 < A 級下限 560",
+     "key": "band:base:frame/na-meridian:衍型機總層 HP",
+     "id": "frame/na-meridian",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/na-meridian",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/na-meridian",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 60% 敗 40% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/na-meridian",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "frame/na-sled-03",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 100%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "high",
+     "id": "frame/na-sled-03",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/na-sled-03",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/na-sled-03",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.6 原因 {\"eliminate\": 4, \"eliminate:repelled\": 1}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/shellsoc-tripod-c",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/shellsoc-tripod-c",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/shellsoc-tripod-c",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/tidefaith-censer-iv",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-iv-rampart ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/tidefaith-censer-iv",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/tidefaith-censer-iv",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/tidefaith-censer-iv",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 2,
+   "rows": 2,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 30,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "leadNotes": [
+  "第 1 輪 test 紅 3 項皆逾時（三批驗收並行跑造成：stdio e2e 60s、隨機圖效能、隨機小情境生成 30 秒），第 2 輪改單獨跑。"
+ ],
+ "files": [
+  "content/base/frames/anvil-hoist-ii.json",
+  "content/base/frames/innersea-brace-02.json",
+  "content/base/frames/innersea-lantern.json",
+  "content/base/frames/na-meridian.json",
+  "content/base/frames/na-sled-03.json",
+  "content/base/frames/shellsoc-tripod-c.json",
+  "content/base/frames/tidefaith-censer-iv.json",
+  "content/lore/events/seven-seals-diverge.json"
+ ],
+ "ids": [
+  "frame/anvil-hoist-ii",
+  "frame/innersea-brace-02",
+  "frame/innersea-lantern",
+  "frame/na-meridian",
+  "frame/na-sled-03",
+  "frame/shellsoc-tripod-c",
+  "frame/tidefaith-censer-iv",
+  "event/seven-seals-diverge"
+ ]
 }

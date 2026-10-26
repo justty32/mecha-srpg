@@ -1,0 +1,59 @@
+{
+  "id": "frame/anvil-hoist-ii",
+  "name": "鐵砧-II型・吊鉚",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-gantry-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-molten-saw",
+    "right-weapon": "component/m2-mooring-jaw",
+    "system-1": "component/mx-frost-fins",
+    "back-1": "component/mx-ash-mist"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 4,
+    "accuracy": 2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-broken-arm",
+    "faction-anvil",
+    "track"
+  ],
+  "nameEn": "Anvil Hoist II",
+  "etymology": "Anvil Hoist 取吊住重物再下手之意，吊鉚沿鐵砧的金工語感命名。獵團從孟加拉灣拖回斷臂後，工坊一直替推牆的機隊補重臂；受雇打出的破口裡，也總有自己的壞機。這支旁型把重樁換成吊臂上的熔鋸，配重掛繫泊鉗與排燼片，借盾陣穩住切割工位。鋸與索只能作戰，還拖不回一台失去支撐的同伴。"
+}

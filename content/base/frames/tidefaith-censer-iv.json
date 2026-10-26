@@ -1,0 +1,57 @@
+{
+  "id": "frame/tidefaith-censer-iv",
+  "name": "贖垢者-IV型・行香",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/m2-hexapod-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-purge-censer",
+    "right-weapon": "component/mx-cinder-breath",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-cold-spring"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5,
+    "accuracy": -3,
+    "resolve": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 150,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 187.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 150
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 187.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-robe",
+    "faction-tidefaith"
+  ],
+  "nameEn": "Redeemer Censer IV",
+  "etymology": "Redeemer Censer 取捧爐行香之意，行香是贖垢者的私造旁型。養裂帶在綠線清剿後失去依靠，少數解拘者想用火遮住撤離口，便沿蝕衣紋路的仿造支系拼起六足機架。兩隻前足分捧禱焰與燼息，後足各接排燼片、冷泉；拆拘束器的內建招讓給了雙火器。教內禁仿的矛盾仍在，這副儀式器物沒有變成教團的量產隊列。"
+}
