@@ -2,7 +2,7 @@ import { categoryGroup, kindLabel, kindOrder } from "./kinds.ts";
 import { extractLinkTargets } from "./markdown.ts";
 import { dateSortKey } from "./timeline.ts";
 import type { Category, EntryRef, RawFile, TimelineItem, WikiEntry, WikiIndex } from "./types.ts";
-import { publicFiles } from "./visibility.ts";
+import { publicFiles, visibilityOf } from "./visibility.ts";
 
 const ID = /^(?:([a-z][a-z0-9-]*):)?([a-z][a-z0-9-]*\/[a-z0-9][a-z0-9._-]*)$/u;
 const record = (v: unknown): v is Record<string, unknown> => typeof v === "object" && v !== null && !Array.isArray(v);
@@ -55,9 +55,15 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
     visiting.add(entry.key);
     const data = entry.data as Record<string, unknown>;
     if (!str(data.name) && !str(data.title)) {
-      const target = resolve(str(data.species), entry.pack);
-      const species = target ? entries.get(target) : undefined;
-      if (species) entry.name = [nameEntry(species, visiting), str(data.grade)].filter(Boolean).join(" ");
+      if (entry.kind === "model") {
+        const target = resolve(str(data.frame), entry.pack);
+        const frame = target ? entries.get(target) : undefined;
+        if (frame?.kind === "frame") entry.name = `${nameEntry(frame, visiting)}（機型）`;
+      } else {
+        const target = resolve(str(data.species), entry.pack);
+        const species = target ? entries.get(target) : undefined;
+        if (species) entry.name = [nameEntry(species, visiting), str(data.grade)].filter(Boolean).join(" ");
+      }
     }
     visiting.delete(entry.key);
     named.add(entry.key);
@@ -122,7 +128,7 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
       ...(entry.pack === "lore" ? [...refFacet(data.faction), ...refFacet(data.factions)] : []),
     ]);
     facet("era", [...refFacet(data.era), ...refFacet(data.period)]);
-    facet("cls", strings(data.cls));
+    for (const field of ["cls", "origin", "mode", "slot", "scope", "symmetry"]) facet(field, strings(data[field]));
     facet("kind", strings(data.kind));
     facet("tag", entry.tags);
   }
@@ -158,7 +164,7 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
       const eventKey = resolve(str(row.event), file.pack);
       const eventData = eventKey ? entries.get(eventKey)?.data : undefined;
       // occurs: possible（開局後可能發生、日期不定）的事件不進年表。
-      if (record(eventData) && eventData.occurs === "possible") continue;
+      if (row.occurs === "possible" || record(eventData) && eventData.occurs === "possible") continue;
       const eraRaw = str(row.era) || str(row.period) || (record(eventData) ? str(eventData.period) || str(eventData.era) : "");
       const eraEntry = [...entries.values()].find(e => e.pack === file.pack && e.kind === "era" && e.name === eraRaw);
       const era = eraRaw ? makeRef(eraRaw, file.pack, "era") ?? {
@@ -166,6 +172,7 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
       } : null;
       timeline.push({
         index, date, sortKey, title: str(row.title), summary: str(row.summary), era,
+        visibility: visibilityOf(row) === "rumor" || visibilityOf(eventData) === "rumor" ? "rumor" : "public",
         event: makeRef(str(row.event), file.pack, "event") ?? null,
         factions: strings(row.factions).flatMap((raw, i) => {
           const ref = makeRef(raw, file.pack, `factions[${i}]`);

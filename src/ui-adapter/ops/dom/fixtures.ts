@@ -13,8 +13,8 @@ const TAB_NAMES: [OpsTab, string, string][] = [["ship", "船艙", "F1"], ["world
 export function opsFixture(tab: OpsTab = "ship"): OpsSnapshot {
   return {
     header: {
-      day: 15, month: 1, dom: 15, daysPerMonth: 28, phase: "spring", phaseName: "大潮", dateText: "第 1 蝕月 第 15 日（大潮）",
-      cash: 12400, debt: 30000, location: "嶺口", route: null, docked: true, pressure: 3,
+      day: 14, month: 0, dom: 15, daysPerMonth: 28, phase: "spring", phaseName: "漲潮", stage: "spring", stageName: "漲潮", tide: 2, tideName: "漲潮", dateText: "第 1 蝕月 第 15 日（漲潮）",
+      omens: [], cash: 12400, debt: 30000, location: "嶺口", route: null, docked: true, pressure: 3,
       fuel: { cur: 40, max: 60 }, hull: { cur: 85, max: 100 },
     },
     tab,
@@ -82,20 +82,20 @@ export function opsFixture(tab: OpsTab = "ship"): OpsSnapshot {
     },
     market: {
       available: true, reason: null, name: "嶺口市集",
-      items: [{ id: "fuel", name: "燃料", kind: "supply", kindName: "補給", price: 50, stock: 99, buttons: [
+      items: [{ id: "fuel", name: "燃料", kind: "supply", kindName: "補給", price: 50, stock: 99, reputation: null, buttons: [
         btn("buy:fuel", "買", "market", { type: "cmd", cmd: { v: "trade", market: "mk/ridge", buy: ["fuel"] } }),
       ] }],
     },
     calendar: {
-      dom: 15, daysPerMonth: 28, month: 1, nextSpringIn: 0,
+      omens: [], dom: 15, daysPerMonth: 28, month: 0, nextSpringIn: 0, nextGreatTide: null,
       days: Array.from({ length: 28 }, (_, i) => ({ dom: i + 1, phase: (i + 1 === 15 || i + 1 === 1 ? "spring" : i + 1 === 8 || i + 1 === 22 ? "neap" : "ordinary") as "spring" | "neap" | "ordinary",
-        today: i + 1 === 15, deadline: i + 1 === 28 })),
+        stage: "spring", stageName: "漲潮", tide: 2, tideName: "漲潮", today: i + 1 === 15, deadline: i + 1 === 28 })),
       upcoming: [{ day: 28, text: "薪水日" }, { day: 30, text: "契約期限：清剿：沼原" }],
     },
     panels: { rifts: [{ id: "rift/1", nodeName: "沼原", phaseName: "張開", width: "中" }], queue: [{ id: "j1", text: "修理左臂", progress: .4 }] },
     log: [
       { day: 14, text: "付了薪水 900。", kind: "money" },
-      { day: 15, text: "大潮來了。", kind: "info" },
+      { day: 15, text: "漲潮來了。", kind: "info" },
       { day: 15, text: "沼原的裂縫張開。", kind: "warn" },
       { day: 15, text: "林霧手上的傷口又裂了。", kind: "blood" },
       { day: 15, text: "燼七在夢裡說話。", kind: "soul" },

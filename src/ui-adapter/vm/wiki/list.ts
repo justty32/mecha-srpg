@@ -1,5 +1,21 @@
 import { facetLabel, GRADE_ORDER } from "./kinds.ts";
+import { visibilityOf } from "./visibility.ts";
 import type { FacetOption, ListQuery, ListView, WikiEntry, WikiIndex } from "./types.ts";
+
+// 列表用的欄位對照；詳情卡由另一條線維護，合併時可再統一。
+const CLASS_LABELS: Record<string, string> = { ancient: "古代機", bio: "生物系", mechanical: "機械系" };
+const ENUM_LABELS: Record<string, Record<string, string>> = {
+  cls: CLASS_LABELS, origin: CLASS_LABELS,
+  mode: { activated: "主動", reaction: "反應" },
+  slot: { armorMount: "裝甲掛點", backMount: "背部掛點", cockpit: "座艙", restraint: "拘束具",
+    sensorMount: "感測器掛點", soulCore: "機魂核心", systemMount: "系統掛點", weaponMount: "武器掛點" },
+  scope: { layer: "層", mech: "機體", part: "部位", person: "人物" },
+  symmetry: { asymmetric: "不對稱", bilateral: "左右對稱" },
+};
+const enumLabel = (field: string, value: string): string => {
+  const labels = Object.hasOwn(ENUM_LABELS, field) ? ENUM_LABELS[field]! : {};
+  return Object.hasOwn(labels, value) ? labels[value]! : value;
+};
 
 export function listCategory(index: WikiIndex, q: ListQuery): ListView | null {
   const category = index.categories.find(c => c.key === q.category);
@@ -11,7 +27,7 @@ export function listCategory(index: WikiIndex, q: ListQuery): ListView | null {
     for (const value of new Set(values)) {
       const option = valuesMap.get(value);
       if (option) option.count++;
-      else valuesMap.set(value, { value, label: index.entries.get(value)?.name ?? value, count: 1 });
+      else valuesMap.set(value, { value, label: index.entries.get(value)?.name ?? enumLabel(name, value), count: 1 });
     }
     options.set(name, valuesMap);
   }
@@ -27,7 +43,12 @@ export function listCategory(index: WikiIndex, q: ListQuery): ListView | null {
     category, query: q,
     rows: entries.filter(e => Object.entries(q.filters ?? {}).every(([name, value]) => !value || e.facets[name]?.includes(value)))
       .sort(compare).map(e => ({ key: e.key, name: e.name, summary: e.summary, tags: e.tags, facets: e.facets,
-        ...(e.facets.grade?.[0] ? { grade: e.facets.grade[0] } : {}) })),
+        ...(e.kind === "model" ? { id: e.id } : {}),
+        displayFacets: Object.keys(ENUM_LABELS).flatMap(field => e.facets[field]?.length
+          ? [{ label: facetLabel(field), values: e.facets[field]!.map(value => enumLabel(field, value)) }] : []),
+        ...(e.facets.grade?.[0] ? { grade: e.facets.grade[0] } : {}),
+        ...(e.pack === "lore" ? { visibility: visibilityOf(e.data),
+          ...((e.data as Record<string, unknown>).occurs === "possible" && e.kind === "event" ? { occurs: "possible" } : {}) } : {}) })),
     // SPEC-GAP：面向選項以整個分類計數，篩選後仍可改選其他值。
     facets: [...options].map(([name, values]) => ({ name, label: facetLabel(name),
       options: [...values.values()].sort((a, b) => {

@@ -4,7 +4,8 @@ import type { CampaignState } from "../../../ops/state/types.ts";
 import { entityName } from "../../../ops/text/parse.ts";
 
 const labels: Record<string, string> = {
-  spring: "大潮", neap: "小潮", ordinary: "平潮", pilot: "駕駛", technician: "技師", medic: "醫護", crew: "船員", soul: "機魂", human: "人類",
+  rising: "潮前", ebb: "退潮", slack: "平潮",
+  spring: "漲潮", neap: "小潮", ordinary: "平潮", pilot: "駕駛", technician: "技師", medic: "醫護", crew: "船員", soul: "機魂", human: "人類",
   opening: "初開", anchored: "定錨", unanchored: "失錨", sealing: "封閉中", sealed: "已封", receding: "退潮", closed: "消散",
   title: "稱號", registry: "登記號", nickname: "小名", dread: "惡名", epithet: "二名",
   offered: "待接", active: "進行中", stage: "階段中", done: "完成", failed: "失敗", cancelled: "已放棄", expired: "已過期",
@@ -28,7 +29,7 @@ const errors: Record<string, string> = {
   "invalid-repair-target": "無效修理部位", "invalid-repair-kind": "修理種類不符損傷", "missing-repair-coefficients": "缺少修理配方", "unknown-research": "找不到研究", "research-done": "研究已完成",
   "research-prerequisite": "研究前置未滿足", "missing-job-recipe": "缺少工作配方", "missing-soul-template": "缺少機魂模板", "no-berth": "沒有空床位", "invalid-install-target": "無效安裝目標",
   "repair-only": "此機體只能修理", "unknown-component": "找不到部件", "no-compatible-slot": "沒有相容插槽", "missing-modification-result": "缺少改裝產物", "invalid-job-cost": "工作成本無效",
-  "job-already-queued": "已排入工時佇列", "unknown-job": "找不到工作", "not-spring-night": "須等到大潮之夜", "not-dormant": "此機體未休眠", "cannot-wake": "無法喚醒此機體",
+  "job-already-queued": "已排入工時佇列", "unknown-job": "找不到工作", "not-spring-night": "須等到漲潮之夜", "not-dormant": "此機體未休眠", "cannot-wake": "無法喚醒此機體",
   "already-bound": "已有認主機體", "resonance-too-low": "共鳴或功績不足", "no-seat": "沒有可用座位", "missing-name-table": "缺少命名表", "unknown-mech": "找不到機體", "unknown-namer": "找不到命名者", "empty-name": "名字不可空白",
   "invalid-role": "無效職務", "seat-locked": "座位受認主關係限制", "dormant": "機體休眠中", "seat-occupied": "座位已有人", "unknown-seat": "找不到座位", "seat-incompatible": "人物與座位不相容",
   "captured-requires-instinct": "活捕獸須以無人本能模式出戰", "unknown-soul-node": "找不到機魂節點", "node-already-open": "節點已開啟", "node-prerequisite": "節點前置未滿足", "research-required": "需要先完成研究",
@@ -38,7 +39,9 @@ const errors: Record<string, string> = {
   "person-dead": "人物已死亡或失去行動能力", "withering": "人物正在凋零", "duplicate-person": "同一人物不可佔多個座位", "pending-encounter": "先處理遭遇事件", "pending-battle": "先處理待命戰鬥",
   "in-transit": "航行中", "overloaded": "飛船超載", "no-route": "沒有可通行航線", "already-there": "已在目的地", "insufficient-fuel": "燃料不足", "unknown-market": "找不到市場", "market-unavailable": "市場目前不可用",
   "expired": "契約已過期", "issuer-unavailable": "委託方或聲望條件不符", "no-buyback": "此市場不收購", "unknown-item": "找不到商品", "unsupported-item": "此商品尚不支援交易",
+  "reputation-required": "聲望未達購買門檻",
   "item-unavailable": "物品已占用或不可出售", "invalid-price": "商品價格無效", "out-of-stock": "商品已售罄", "insufficient-stock": "持有數量不足",
+  "invalid-lord-sortie": "守牆邀請已失效或出戰編成不符", "lord-observation-expired": "王跡觀測期限已過",
   "invalid-party": "探勘隊伍不符條件", "no-event": "沒有可觸發事件", "not-at-ruin": "尚未抵達遺跡", "not-ruin": "目標不是遺跡", "invalid-max-steps": "戰鬥步數上限無效", "sortie-mismatch": "戰場編成與營運紀錄不符",
   "not-offered": "契約已非待接狀態", "unknown-contract": "找不到契約", "insufficient-reputation": "聲望不足", "invalid-ask": "無效談判條件", "not-active": "契約未生效",
 };
@@ -54,3 +57,5 @@ export function displayName(s: CampaignState, db: ContentDB, world: WorldDB, id:
   const faction = world.get("faction-ops", id); if (faction) return db.require("faction", faction.faction).name;
   return labels[id] ?? named;
 }
+
+export const tideName = (tide: number): string => ["平潮", "枯潮", "漲潮", "大潮", "連珠潮"][tide] ?? `潮級 ${tide}`;

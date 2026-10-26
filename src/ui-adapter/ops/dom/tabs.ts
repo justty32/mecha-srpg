@@ -138,26 +138,39 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
     market: s => [s.market, () => {
       const m = s.market;
       if (!m.available) return [el(doc, "h2", "市場"), el(doc, "p", m.reason ?? "目前無法交易。", "muted")];
-      return [el(doc, "h2", m.name ?? "市場"), table(doc, ["品項", "類別", "價格", "庫存", ""], m.items.map(i =>
-        [i.name, i.kindName, money(i.price), i.stock, buttonRow(doc, i.buttons, registry)]))];
+      return [el(doc, "h2", m.name ?? "市場"), table(doc, ["品項", "類別", "價格", "庫存", "聲望門檻", ""], m.items.map(i =>
+        [i.name, i.kindName, money(i.price), i.stock, i.reputation ? `${i.reputation.factionName}聲望 ${i.reputation.need}（目前 ${i.reputation.have}）` : "無", buttonRow(doc, i.buttons, registry)]))];
     }],
-    calendar: s => [s.calendar, () => {
+    calendar: s => [[s.calendar, s.header], () => {
       const c = s.calendar;
       const grid = el(doc, "div", "", "ops-calendar");
       grid.dataset.ui = "calendar-grid";
       for (const d of c.days) {
-        const cell = el(doc, "div", String(d.dom), `ops-day phase-${d.phase}${d.today ? " today" : ""}${d.deadline ? " deadline" : ""}`);
+        const cell = el(doc, "div", `${d.dom}・${d.stageName}・${d.tideName}（${d.tide}）`, `ops-day phase-${d.phase}${d.today ? " today" : ""}${d.deadline ? " deadline" : ""}`);
         cell.dataset.dom = String(d.dom);
-        cell.dataset.tip = `第 ${d.dom} 日・${{ spring: "大潮", neap: "小潮", ordinary: "平潮" }[d.phase]}${d.deadline ? "・有期限" : ""}${d.today ? "・今天" : ""}`;
+        cell.dataset.stage = d.stage; cell.dataset.tide = String(d.tide);
+        cell.dataset.tip = `第 ${d.dom} 日・${{ spring: "漲潮", neap: "小潮", ordinary: "平潮" }[d.phase]}・${d.stageName}・潮級 ${d.tide}（${d.tideName}）${d.deadline ? "・有期限" : ""}${d.today ? "・今天" : ""}`;
         grid.append(cell);
       }
       const legend = el(doc, "div", "", "ops-cal-legend");
-      for (const [p, t] of [["spring", "大潮"], ["neap", "小潮"], ["ordinary", "平潮"]]) legend.append(el(doc, "span", t, `ops-day phase-${p}`));
+      for (const [p, t] of [["spring", "漲潮"], ["neap", "小潮"], ["ordinary", "平潮"]]) legend.append(el(doc, "span", t, `ops-day phase-${p}`));
+      const omens = el(doc, "section", "", "ops-omens");
+      omens.dataset.ui = "calendar-omens";
+      omens.append(el(doc, "h3", "當日天象"));
+      if (!c.omens.length) omens.append(el(doc, "p", "無天象。"));
+      for (const omen of c.omens) {
+        const link = el(doc, "a", omen.name); link.href = omen.href;
+        const entry = el(doc, "p");
+        entry.append(link, `・${omen.layerName}・${omen.tideEffect}${omen.text ? `：${omen.text}` : ""}`);
+        omens.append(entry);
+      }
       const up = el(doc, "ul", "", "ops-upcoming");
       for (const u of c.upcoming) up.append(el(doc, "li", `第 ${u.day} 日：${u.text}`));
-      return [el(doc, "h2", `第 ${c.month} 蝕月（今天第 ${c.dom} / ${c.daysPerMonth} 日）`),
-        el(doc, "p", c.nextSpringIn === 0 ? "今天是大潮。" : `距下個大潮 ${c.nextSpringIn} 天。`), grid,
-        legend, el(doc, "h3", "近期"), up];
+      return [el(doc, "h2", `第 ${c.month + 1} 蝕月（今天第 ${c.dom} / ${c.daysPerMonth} 日）`),
+        el(doc, "p", `當日潮候：${s.header.stageName}・潮級 ${s.header.tide}（${s.header.tideName}）`),
+        el(doc, "p", c.nextSpringIn === 0 ? "今天是漲潮日。" : `距下次漲潮 ${c.nextSpringIn} 天。`),
+        el(doc, "p", c.nextGreatTide ? `下一次大潮：${c.nextGreatTide.daysAway === 0 ? "今天" : `第 ${c.nextGreatTide.day} 日（距今 ${c.nextGreatTide.daysAway} 天）`}・潮級 ${c.nextGreatTide.tide}${c.nextGreatTide.omens.length ? `・${c.nextGreatTide.omens.map(o => o.name).join("、")}` : ""}` : "下一次大潮：期限內無（未來 800 天）。"), grid,
+        legend, omens, el(doc, "h3", "近期"), up];
     }],
   };
   return {

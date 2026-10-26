@@ -23,9 +23,9 @@ test("market：每次買賣兩筆帳、批次拒絕原子性與帳本守恆", ()
 
 import { instantiateMech } from "../content/instantiate.ts";
 import type { MarketState } from "./market.ts";
-import { leakModel } from "../war/rnd.ts";
+import { leakModel, repGate, repGateBlocked } from "../war/rnd.ts";
 import { factionId, relationKey } from "../war/relations.ts";
-import { marketListings } from "./market.ts";
+import { marketListings, marketReputation } from "./market.ts";
 test("market：篩選器排除未開放機型，流出後刷新可售且不改內容", () => {
   const { s, ctx } = fixture(), market = ctx.world.require("market", "market/war-armory"), model = ctx.world.require("model", "model/union-at12");
   marketsDaily7(s, ctx);
@@ -99,4 +99,21 @@ test("market：trade 互列夥伴已釋出可售機型並折價，restricted 不
   s.ship.pos = placeLoc(s, ctx, market.place); s.ledger.balances.cash = 5000; s.factions[owner]!.rep = 0;
   assert.equal(cmdTrade(s, ctx, { v: "trade", market: market.id, buy: [model.frame] }).ok, true);
   assert.equal(s.ledger.balances.cash, 4100);
+});
+
+test("marketReputation 唯讀查詢沿用動態與固定機架的最低門檻及通用豁免", () => {
+  const { s, ctx } = fixture(), model = ctx.world.require("model", "model/union-fr7");
+  const maker = factionId(s, ctx, model.maker)!, before = structuredClone(s);
+  const item = { def: model.frame, weight: 1, stockMax: 1, model: model.id };
+  const blocked = repGateBlocked(s, ctx, model)!;
+  assert.deepEqual(marketReputation(s, ctx, item), { ...blocked, blocked: true });
+  assert.deepEqual(s, before);
+  const low = { ...model, id: "test:model/low", tier: "D" as const }, high = { ...model, tier: "A" as const };
+  const withModels = (models: typeof model[]) => ({ ...ctx, world: { ...ctx.world,
+    all: ((kind) => kind === "model" ? models : ctx.world.all(kind)) as typeof ctx.world.all } });
+  assert.equal(marketReputation(s, withModels([high, low]), { ...item, model: undefined })!.need, repGate(s, ctx, low));
+  assert.equal(marketReputation(s, withModels([high, { ...low, generic: true }]), { ...item, model: undefined }), null);
+  assert.equal(marketReputation(s, withModels([]), { ...item, model: undefined }), null);
+  s.factions[maker]!.rep = blocked.need;
+  assert.deepEqual(marketReputation(s, ctx, item), { faction: maker, need: blocked.need, have: blocked.need, blocked: false });
 });

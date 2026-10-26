@@ -72,6 +72,8 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
     const fuel = meter(doc, "燃料", h.fuel.cur, h.fuel.max, "fuel");
     const hull = meter(doc, "船體", h.hull.cur, h.hull.max, "hull");
     facts.replaceChildren(date, fact("蝕相", h.phaseName, `phase-${h.phase}`),
+      fact("天象", h.omens.map(o => o.name).join("、") || "無"),
+      fact("潮候", h.stageName), fact("潮級", `${h.tide}・${h.tideName}`),
       fact("現金", money(h.cash), h.cash < 0 ? "neg" : ""), fact("債", money(h.debt), h.debt > 0 ? "neg" : ""),
       fact("所在", `${h.location}${h.docked ? "（停泊）" : ""}`),
       fact("航程", h.route ? `→ ${h.route.toName}・剩 ${h.route.daysLeft} 天` : "—"),

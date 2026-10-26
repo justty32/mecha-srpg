@@ -42,6 +42,16 @@ function frameRepBlocked(s: CampaignState, ctx: OpsCtx, item: FixedItem): boolea
   const easiest = models.sort((a, b) => repGate(s, ctx, a)! - repGate(s, ctx, b)! || a.id.localeCompare(b.id))[0]!;
   return !!repGateBlocked(s, ctx, easiest);
 }
+/** 唯讀購買門檻；固定機架沿用交易的最低門檻與通用登記豁免。 */
+export function marketReputation(s: CampaignState, ctx: OpsCtx, item: FixedItem): { faction: string; need: number; have: number; blocked: boolean } | null {
+  const models = item.model ? [ctx.world.require("model", item.model)] : ctx.world.all("model").filter(m => m.frame === item.def);
+  if (!models.length || models.some(m => repGate(s, ctx, m) === undefined)) return null;
+  const model = [...models].sort((a, b) => repGate(s, ctx, a)! - repGate(s, ctx, b)! || a.id.localeCompare(b.id))[0]!;
+  const blocked = repGateBlocked(s, ctx, model);
+  if (blocked) return { ...blocked, blocked: true };
+  const faction = factionId(s, ctx, model.maker) ?? model.maker;
+  return { faction, need: repGate(s, ctx, model)!, have: s.factions[faction]?.rep ?? 0, blocked: false };
+}
 function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = false, includeImports = true): Listing[] {
   const result: Listing[] = [];
   for (const list of market.lists) {

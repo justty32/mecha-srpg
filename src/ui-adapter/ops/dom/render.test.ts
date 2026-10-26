@@ -26,7 +26,7 @@ test("根元素與常駐面板：頂列、分頁、主區、記錄五色", t => 
   const { q, root } = setup(t);
   const shell = q('[data-ui="ops"]')!;
   assert.ok(shell.classList.contains("ops-view"));
-  assert.match(q('[data-ui="ops-header"]')!.textContent!, /第 1 蝕月 第 15 日.*大潮.*12,400.*30,000.*嶺口/);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /第 1 蝕月 第 15 日.*漲潮.*12,400.*30,000.*嶺口/);
   assert.equal(root.querySelectorAll('[data-ui="ops-tabs"] button[data-action-id^="tab:"]').length, 8);
   assert.ok(q('[data-ui="ops-header"] button[data-action-id="advance:event"]'));
   assert.match(q('[data-ui="ops-rifts"]')!.textContent!, /沼原/);
@@ -39,7 +39,7 @@ test("八個分頁各畫出主區，且只顯示當前分頁", t => {
   const { view, root } = setup(t);
   const expect: Record<string, RegExp> = {
     ship: /艦橋.*主螢幕/, world: /嶺口.*服務/, contracts: /清剿：沼原.*犬族/, roster: /林霧.*燼七/,
-    mechs: /蒼鷹.*登記號|R-0451/, ledger: /船債.*預付款/, market: /嶺口市集.*燃料/, calendar: /第 1 蝕月.*今天是大潮/,
+    mechs: /蒼鷹.*登記號|R-0451/, ledger: /船債.*預付款/, market: /嶺口市集.*燃料/, calendar: /第 1 蝕月.*今天是漲潮/,
   };
   for (const tab of TAB_ORDER) {
     view.render(opsFixture(tab));
@@ -209,4 +209,73 @@ test("鍵盤：交給 onKey；setActive(false) 時不收且隱藏；select 焦�
   select.dispatchEvent(new win.KeyboardEvent("keydown", { key: "a", bubbles: true }) as unknown as Event);
   select.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Escape", bubbles: true }) as unknown as Event);
   assert.deepEqual(keys.map(k => k.key), ["F2", "Escape"]);
+});
+
+test("U01 蝕曆標題與頂列同為顯示月序，來源 month 維持零起算", t => {
+  const s = opsFixture("calendar"), { view, q } = setup(t, s);
+  for (const month of [0, 2, 40]) {
+    s.header.month = month; s.calendar.month = month;
+    s.header.dateText = `第 ${month + 1} 蝕月 第 15 日（漲潮）`;
+    view.render(s);
+    assert.match(q('[data-ui="ops-date"]')!.textContent!, new RegExp(`第 ${month + 1} 蝕月`));
+    assert.match(q('[data-tab="calendar"] h2')!.textContent!, new RegExp(`第 ${month + 1} 蝕月`));
+    assert.equal(s.calendar.month, month);
+  }
+});
+
+test("R01 市場常駐聲望門檻、達標數字與購買灰鈕原因", t => {
+  const s = opsFixture("market"), item = s.market.items[0]!;
+  item.reputation = { faction: "f/test", factionName: "聯合", need: 10, have: 3, blocked: true };
+  item.buttons[0] = { ...item.buttons[0]!, enabled: false, reason: "需要聯合聲望 10（目前 3）", tooltip: "需要聯合聲望 10（目前 3）" };
+  const { q, view } = setup(t, s);
+  assert.match(q('[data-tab="market"]')!.textContent!, /聲望門檻.*聯合聲望 10（目前 3）/);
+  const buy = q('[data-action-id="buy:fuel"]') as HTMLButtonElement;
+  assert(buy.disabled); assert.match(buy.dataset.tip!, /需要聯合聲望 10（目前 3）/);
+  item.reputation.have = 10; item.reputation.blocked = false;
+  view.render(s);
+  assert.match(q('[data-tab="market"]')!.textContent!, /聯合聲望 10（目前 10）/);
+});
+
+test("R03／R04 頂列潮候潮級與天象短標；蝕曆有說明及可導航百科連結", t => {
+  const s = opsFixture("calendar");
+  s.header.stage = "spring"; s.header.stageName = "漲潮"; s.header.tide = 4; s.header.tideName = "連珠潮";
+  const omen = { id: "base:omen/test", name: "連珠", layer: "sky", layerName: "天象", text: "天上諸月排成一直線。", tideEffect: "漲潮日潮級設為 4（連珠潮）", href: "#/wiki/e/base%3Aomen%2Ftest" };
+  s.header.omens = [omen]; s.calendar.omens = [omen];
+  const today = s.calendar.days.find(d => d.today)!;
+  today.tide = 4; today.tideName = "連珠潮";
+  const { q, view } = setup(t, s);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /天象連珠.*潮候漲潮.*潮級4・連珠潮/);
+  assert.match(q('[data-ui="calendar-omens"]')!.textContent!, /連珠.*潮級設為 4.*天上諸月/);
+  assert.equal(q('[data-ui="calendar-omens"] a')!.getAttribute("href"), omen.href);
+  const cell = q('[data-ui="calendar-grid"] [data-dom="15"]')!;
+  assert.equal(cell.dataset.stage, "spring"); assert.equal(cell.dataset.tide, "4");
+  assert.match(cell.textContent!, /漲潮.*連珠潮（4）/);
+  s.header.omens = []; s.calendar.omens = []; view.render(s);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /天象無/);
+  assert.match(q('[data-ui="calendar-omens"]')!.textContent!, /無天象/);
+});
+
+test("R02／R05 蝕曆區分漲潮與下一次大潮，含今天與期限內無", t => {
+  const s = opsFixture("calendar"), { q, view } = setup(t, s);
+  const text = () => q('[data-tab="calendar"]')!.textContent!;
+  assert.match(text(), /今天是漲潮日/); assert.match(text(), /下一次大潮：期限內無（未來 800 天）/);
+  s.calendar.nextSpringIn = 4;
+  s.calendar.nextGreatTide = { day: 70, daysAway: 56, tide: 3, omens: [] }; view.render(s);
+  assert.match(text(), /距下次漲潮 4 天/); assert.match(text(), /下一次大潮：第 70 日（距今 56 天）・潮級 3/);
+  s.calendar.nextGreatTide.daysAway = 0; view.render(s);
+  assert.match(text(), /下一次大潮：今天/);
+});
+
+test("K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰鈕原因可見", t => {
+  const s = opsFixture();
+  const { q, view } = setup(t, s);
+  for (const trace of ["吉大港外灘：在。", "第七哨外海：往北。", "北岸哨所：不見了。燈收起來了。這一夜以後，船照常走。誰也沒有再問。 "]) {
+    s.room.desc = [`王跡　${trace}（最後目擊第 490 天）`]; view.render(s);
+    assert(q('[data-tab="ship"]')!.textContent!.includes(s.room.desc[0]!));
+  }
+  s.prompt = { text: "守牆邀請", choices: [{ n: 1, text: "留下守牆", enabled: false, reason: "守牆邀請已失效或出戰編成不符" }], naming: null };
+  view.render(s);
+  assert.match(q('[data-ui="ops-prompt"]')!.textContent!, /守牆邀請/);
+  const choice = q('[data-choice="1"]') as HTMLButtonElement;
+  assert(choice.disabled); assert.match(choice.dataset.tip!, /守牆邀請已失效或出戰編成不符/);
 });

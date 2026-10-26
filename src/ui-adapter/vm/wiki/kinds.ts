@@ -11,13 +11,16 @@ const KIND_LABELS: Record<string, string> = {
   registries: "登記表", rules: "規則常數", base: "內容包",
   action: "營運行動", background: "出身背景", beasts: "生物系族別", calendar: "曆法", omen: "天象", ferry: "渡輪",
   keymap: "營運鍵位", names: "命名表", recruit: "招募池", ship: "船艦", start: "開局設定", templates: "範本",
+  actor: "營運角色", affinity: "親疏規則", file: "其他資料", forces: "部隊編制", lane: "航線",
+  lineage: "機系譜系", model: "機型", operation: "軍事行動", regions: "區域表", treaty: "條約", wterrain: "世界地形",
 };
 
 const KIND_ORDER: Partial<Record<CategoryGroup, readonly string[]>> = {
   game: ["frame", "component", "ability", "effect", "bodyplan", "species", "monster", "person", "soultree",
-    "faction", "terrain", "map", "scenario", "aiprofile", "curve", "registries", "rules", "base"],
-  lore: ["faction", "character", "event", "place", "era"],
-  ops: ["node", "contract", "faction-ops", "market", "event"],
+    "faction", "terrain", "map", "scenario", "aiprofile", "curve", "registries", "rules", "base", "file"],
+  lore: ["faction", "character", "event", "place", "era", "file"],
+  ops: ["node", "contract", "faction-ops", "market", "event", "actor", "affinity", "forces", "lane",
+    "lineage", "model", "operation", "regions", "treaty", "wterrain", "file"],
 };
 
 export function kindOrder(group: CategoryGroup, kind: string): number {
@@ -41,6 +44,7 @@ export function categoryGroup(pack: string, path: string): CategoryGroup {
 export function facetLabel(name: string): string {
   const labels: Record<string, string> = {
     grade: "等級", family: "族", faction: "勢力", era: "時代", tag: "標籤", cls: "類別", kind: "種類",
+    origin: "來源", mode: "發動方式", slot: "安裝槽位", scope: "作用對象", symmetry: "對稱方式",
   };
   return Object.hasOwn(labels, name) ? labels[name]! : name;
 }

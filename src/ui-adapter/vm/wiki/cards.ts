@@ -3,10 +3,13 @@ import { apparentAge } from "../../../core/age.ts";
 import { parseMarkdown } from "./markdown.ts";
 import { fieldVisibility, visibilityOf } from "./visibility.ts";
 import { CardBuilder, object, text, label } from "./card-builder.ts";
+import { cardEnumLabel } from "./card-labels.ts";
 import type { EntryPage, WikiIndex } from "./types.ts";
 
 function species(builder: CardBuilder): void {
-  builder.summary(["family", "gradeRange"]);
+  builder.summary(["family", "gradeRange", "aiProfile"]);
+  builder.kv("behaviors", "生態行為");
+  builder.kv("capture", "捕獲條件");
   builder.table("baseAttrsByGrade", "各等級屬性");
   builder.table("pools", "資源池");
   builder.list("abilities", "能力");
@@ -53,8 +56,20 @@ function game(builder: CardBuilder): void {
       b.table("pools", "資源池"); b.list("innateAbilities", "固有能力"); b.kv("baseAttrs", "基礎屬性"); break;
     case "bodyplan": b.bodyParts(); b.summary(["symmetry"]); break;
     case "component":
-      b.summary(["slot", "size", "mass", "hp", "origin"]); b.table("pools", "資源池");
+      b.summary(["slot", "size", "mass", "hp", "origin", "burden"]); b.table("pools", "資源池");
+      b.table("attrMods", "屬性修正"); b.table("poolMods", "資源池修正");
+      b.table("layersAdd", "附加層"); b.kv("resonance", "共鳴條件");
       b.list("abilities", "能力"); b.list("onBroken", "損壞效果"); break;
+    case "model":
+      b.summary(["frame", "maker", "tier", "cost", "exportPolicy"]);
+      b.list("requires", "前置機型"); b.kv("availableFrom", "解鎖條件"); break;
+    case "omen":
+      b.summary(["layer", "text", "tideDelta", "setTide"], { layer: "天象層" });
+      b.kv("cycle", "週期"); b.table("at", "指定日期"); b.kv("emerge", "觸發條件");
+      b.list("effects", "效果"); break;
+    case "calendar":
+      b.summary(["daysPerMonth", "monthsPerYear", "epochMonth", "stageWindow"]);
+      b.list("spring", "朔望漲潮日"); b.list("neap", "小潮日"); break;
     case "ability":
       b.summary(["mode", "accuracy"]); b.table("costs", "成本"); b.table("produces", "產出");
       b.kv("target", "射程與目標"); b.kv("range", "射程"); b.table("packets", "傷害包"); b.list("effects", "效果"); break;
@@ -132,7 +147,7 @@ export function entryPage(index: WikiIndex, key: string): EntryPage | null {
   }
   const badges = ["grade", "family", "cls", "kind", "epithet", "title", "nickname"].flatMap(field => {
     const value = b.data[field];
-    return typeof value === "string" || typeof value === "number" ? [String(value)] : [];
+    return typeof value === "string" || typeof value === "number" ? [cardEnumLabel(entry.kind, field, String(value))] : [];
   });
   if (lore && visibilityOf(b.data) === "rumor") badges.unshift("傳聞");
   // occurs: possible＝開局後可能發生、日期不定的事件（content/lore/README.md「events」）。

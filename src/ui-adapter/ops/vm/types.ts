@@ -45,11 +45,20 @@ export type OpsUiAction =
   | { type: "toggleHelp" }
   | { type: "cancel" };                                    // Esc：關說明／關報告／取消編成（依序）
 
+export type OmenView = { id: string; name: string; layer: string; layerName: string; text: string; tideEffect: string; href: string };
+
+/** 潮候與真實潮級；不以朔望 phase 推測潮級。 */
+export type TideView = {
+  stage: "rising" | "spring" | "ebb" | "neap" | "slack";
+  stageName: string; tide: number; tideName: string;
+};
+
 /** 頂列常駐資訊。 */
-export type OpsHeader = {
-  day: number; month: number; dom: number; daysPerMonth: number;
-  phase: "spring" | "neap" | "ordinary"; phaseName: string;   // 大潮／小潮／平潮
-  dateText: string;                 // 例「第 1 潮月 第 15 日（大潮）」
+export type OpsHeader = TideView & {
+  day: number; month: number; dom: number; daysPerMonth: number; // month 零起算，顯示時加一
+  phase: "spring" | "neap" | "ordinary"; phaseName: string;   // 漲潮／小潮／平潮
+  dateText: string;                 // 例「第 1 蝕月 第 15 日（漲潮）」
+  omens: OmenView[];
   cash: number; debt: number;
   location: string;                 // 所在地點名（航行中為「航行中 → 目的地」）
   route: { to: string; toName: string; daysLeft: number } | null;
@@ -150,13 +159,15 @@ export type LedgerView = {
 export type MarketView = {
   available: boolean; reason: string | null;   // 例「此地沒有市場」「航行中」
   name: string | null;
-  items: { id: string; name: string; kind: string; kindName: string; price: number; stock: number; buttons: OpsButton[] }[];
+  items: { id: string; name: string; kind: string; kindName: string; price: number; stock: number; reputation: null | { faction: string; factionName: string; need: number; have: number; blocked: boolean }; buttons: OpsButton[] }[];
 };
 
 export type CalendarView = {
-  dom: number; daysPerMonth: number; month: number;
-  days: { dom: number; phase: "spring" | "neap" | "ordinary"; today: boolean; deadline: boolean }[];   // 本潮月逐日
-  nextSpringIn: number;             // 距下個大潮天數（今天是大潮＝0）
+  omens: OmenView[];
+  dom: number; daysPerMonth: number; month: number; // month 零起算，顯示時加一
+  days: { dom: number; phase: "spring" | "neap" | "ordinary"; stage: TideView["stage"]; stageName: string; tide: number; tideName: string; today: boolean; deadline: boolean }[];   // 本潮月逐日
+  nextGreatTide: null | { day: number; daysAway: number; tide: number; omens: OmenView[] };
+  nextSpringIn: number;             // 距下次漲潮天數（今天是漲潮日＝0）
   upcoming: { day: number; text: string }[];   // 契約期限、薪水日等
 };
 

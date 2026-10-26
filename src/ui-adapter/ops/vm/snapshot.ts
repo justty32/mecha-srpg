@@ -2,17 +2,18 @@ import { apparentAge } from "../../../core/age.ts";
 import type { CampaignState, OpsCtx, OpsCommand, Sortie } from "../../../ops/state/types.ts";
 import { applyCommand } from "../../../ops/time/index.ts";
 import { render } from "../../../ops/text/render.ts";
-import { clock } from "../../../ops/state/clock.ts";
+import { clock, skyAt } from "../../../ops/state/clock.ts";
 import { placeAt } from "../../../ops/war/loc.ts";
 import { allPlaces, requirePlace } from "../../../ops/world/places.ts";
 import { isDocked, shortestPath } from "../../../ops/world/move.ts";
-import { marketPrice, marketListings } from "../../../ops/world/market.ts";
+import { marketPrice, marketListings, marketReputation } from "../../../ops/world/market.ts";
 import type { MarketState } from "../../../ops/world/market.ts";
 import { peekCrew } from "../../../ops/crew/shared.ts";
 import type { NamingPrompt } from "../../../ops/crew/names.ts";
 import type { BattleReport, OpsButton, OpsSnapshot, OpsTab, OpsUiAction } from "./types.ts";
+import { nextGreatTide, omenViews } from "./calendar.ts";
 import { layoutNodes } from "./layout.ts";
-import { displayName, label, rejection } from "./labels.ts";
+import { displayName, label, rejection, tideName } from "./labels.ts";
 import { formationView, draftSortie, draftError } from "./formation.ts";
 import { allButtons } from "./keymap.ts";
 import { WorldViewModel, createWorldUi, type WorldUi } from "./world.ts";
@@ -33,7 +34,13 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const over = s.log.some(e => e.type === "CampaignEnd"), pending = s.pendingChoices[0];
   const cmdButton = (id: string, text: string, group: string, cmd: OpsCommand, disabled?: string): OpsButton => {
     const result = cmd.v === "wait" ? { ok: true as const } : applyCommand(s, db, world, cmd).result;
-    return button(id, text, group, { type: "cmd", cmd }, disabled ?? (!result.ok ? rejection(result.error) : undefined));
+    return button(id, text, group, { type: "cmd", cmd }, disabled ?? (!result.ok ? result.error === "reputation-required" && cmd.v === "trade" ? buyReputationReason(cmd) : rejection(result.error) : undefined));
+  };
+  const buyReputationReason = (cmd: Extract<OpsCommand, { v: "trade" }>): string => {
+    const market = world.get("market", cmd.market);
+    const item = market && marketListings(s, ctx, market).find(l => cmd.buy?.includes(l.item.def));
+    const rep = item?.kind === "frame" ? marketReputation(s, ctx, item.item) : null;
+    return rep ? `需要${name(rep.faction)}聲望 ${rep.need}（目前 ${rep.have}）` : rejection("reputation-required");
   };
   const openButton = (id: string, group: string, contract?: string): OpsButton => {
     const draft = draftSortie(s, ctx, contract);
@@ -83,13 +90,14 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const marketReason = route ? "航行中" : !market ? "此地沒有市場" : !docked ? "須先停泊" : null;
   const marketItems: OpsSnapshot["market"]["items"] = market ? marketListings(s, ctx, market).map(({ kind, item }) => ({
     id: item.def, name: name(item.def), kind, kindName: label(kind), price: marketPrice(s, ctx, market, item),
+    reputation: kind === "frame" ? (() => { const rep = marketReputation(s, ctx, item); return rep ? { ...rep, factionName: name(rep.faction) } : null; })() : null,
     stock: (s as MarketState).markets?.[market.id]?.stock[item.def] ?? item.stockMax,
     buttons: [cmdButton(`buy:${market.id}:${item.def}`, "買一件", "market", { v: "trade", market: market.id, buy: [item.def] }),
       ...(["component", "frame"].includes(kind) ? [] : [cmdButton(`sell:${market.id}:${item.def}`, "賣一件", "market", { v: "trade", market: market.id, sell: [item.def] })])],
   })) : [];
   if (market) for (const owned of [...s.inventory.components.map(c => ({ id: c.id, def: c.def, kind: "component" })), ...s.inventory.mechs.filter(id => s.mechs[id]).map(id => ({ id, def: s.mechs[id]!.frame, kind: "frame" }))]) {
     const item = marketListings(s, ctx, market).map(l => l.item).find(i => i.def === owned.def); if (!item) continue;
-    marketItems.push({ id: owned.id, name: name(owned.def), kind: owned.kind, kindName: `${label(owned.kind)}（持有）`, price: marketPrice(s, ctx, market, item), stock: 1,
+    marketItems.push({ id: owned.id, name: name(owned.def), kind: owned.kind, kindName: `${label(owned.kind)}（持有）`, price: marketPrice(s, ctx, market, item), stock: 1, reputation: null,
       buttons: [cmdButton(`sell:${market.id}:${owned.id}`, "出售", "market", { v: "trade", market: market.id, sell: [owned.id] })] });
   }
   const mechs = Object.values(s.mechs).map(m => {
@@ -109,14 +117,16 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const sortie = ui.draft ? formationView(s, ctx, ui.draft) : null;
   if (sortie) sortie.buttons = [button("sortieLaunch:command", "親自指揮", "sortie", { type: "sortieLaunch", mode: "command" }, sortie.error ?? undefined),
     button("sortieLaunch:auto", "自動結算", "sortie", { type: "sortieLaunch", mode: "auto" }, sortie.error ?? undefined), button("sortieCancel", "取消編成", "sortie", { type: "sortieCancel" })];
+  const omenDefs = world.all("omen"), sky = skyAt(s.clock.day, cal, omenDefs), today = sky.clock, activeOmens = omenViews(sky.omens, omenDefs);
   const days = Array.from({ length: cal.daysPerMonth }, (_, i) => {
     const day = s.clock.day - s.clock.dom + i + 1;
-    return { dom: i + 1, phase: clock(day, cal).phase, today: i + 1 === s.clock.dom, deadline: contracts.some(c => ["active", "stage"].includes(c.status) && c.deadlineDay === day) };
+    const predicted = clock(day, cal, omenDefs);
+    return { dom: i + 1, phase: predicted.phase, stage: predicted.stage, stageName: label(predicted.stage), tide: predicted.tide, tideName: tideName(predicted.tide), today: i + 1 === s.clock.dom, deadline: contracts.some(c => ["active", "stage"].includes(c.status) && c.deadlineDay === day) };
   });
   const prompt = screen.prompt ? { text: screen.prompt.text, choices: screen.prompt.choices.map(c => ({ n: c.n, text: c.text, enabled: !c.disabled, ...(c.disabled ? { reason: c.disabled } : {}) })),
     naming: (pending as Partial<NamingPrompt>)?.naming ? { placeholder: "請輸入名字" } : null } : null;
   const snapshot: OpsSnapshot = {
-    header: { ...s.clock, daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 蝕月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
+    header: { ...s.clock, omens: activeOmens, stage: today.stage, stageName: label(today.stage), tide: today.tide, tideName: tideName(today.tide), daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 蝕月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
       cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, location: route ? `航行中 → ${targetName}` : here ? name(here) : `${s.ship.pos.cell.x},${s.ship.pos.cell.y}`,
       route: route ?? null, docked, pressure: s.pressure,
       fuel: { cur: s.ship.fuel.cur, max: s.ship.fuel.max }, hull: { cur: s.ship.hull.cur, max: s.ship.hull.max } },
@@ -142,8 +152,9 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
     ledger: { accounts: Object.entries(s.ledger.balances).map(([account, balance]) => ({ account, name: label(account), balance })),
       recent: s.ledger.entries.slice(-30).reverse().map(e => ({ day: e.day, account: e.account, name: label(e.account), delta: e.delta, reason: label(e.reason) })) },
     market: { available: !marketReason, reason: marketReason, name: market ? `${name(market.place)}市場` : null, items: marketItems },
-    calendar: { dom: s.clock.dom, daysPerMonth: cal.daysPerMonth, month: s.clock.month, days,
-      nextSpringIn: Array.from({ length: cal.daysPerMonth }, (_, i) => i).find(i => clock(s.clock.day + i, cal).phase === "spring") ?? cal.daysPerMonth,
+    calendar: { omens: activeOmens, dom: s.clock.dom, daysPerMonth: cal.daysPerMonth, month: s.clock.month, days,
+      nextGreatTide: nextGreatTide(s.clock.day, cal, omenDefs),
+      nextSpringIn: Array.from({ length: cal.daysPerMonth }, (_, i) => i).find(i => clock(s.clock.day + i, cal, omenDefs).phase === "spring") ?? cal.daysPerMonth,
       upcoming: [...contracts.filter(c => ["active", "stage"].includes(c.status)).map(c => ({ day: c.deadlineDay, text: `${c.title}到期` })),
         { day: s.clock.day + cal.daysPerMonth - s.clock.dom + 1, text: "新蝕月：薪資結算" }].sort((a, b) => a.day - b.day) },
     panels: { rifts: Object.values(s.rifts).map(r => ({ id: r.id, nodeName: name(r.site), phaseName: label(r.phase), width: r.width })),

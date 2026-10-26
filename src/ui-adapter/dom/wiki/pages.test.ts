@@ -73,6 +73,32 @@ test("年表按時代分段，勢力及時代篩選保留 query", t => {
   assert.equal(calls.at(-1)!.hash, href({ v: "timeline", query: { ...query, era: era.value } }));
 });
 
+test("U02 列表、搜尋與年表用相同徽章呈現傳聞／可能發生，公開列不加徽章", t => {
+  const { root, fixture, mounted } = setup(t);
+  Object.assign(fixture.list.rows[0]!, { visibility: "rumor", occurs: "possible" });
+  mounted.show({ v: "cat", query: fixture.list.query });
+  const labels = (selector: string) => [...root.querySelectorAll(`${selector} .wiki-badge`)].map(node => node.textContent);
+  assert.ok(labels('[data-ui="wiki-row"]').includes("傳聞"));
+  assert.ok(labels('[data-ui="wiki-row"]').includes("可能發生"));
+  Object.assign(fixture.hits[0]!, { visibility: "rumor", occurs: "possible" });
+  mounted.show({ v: "search", q: "測試" });
+  assert.deepEqual(labels('[data-ui="wiki-results"]'), ["可能發生", "傳聞"]);
+  Object.assign(fixture.timeline.sections[0]!.items[0]!, { visibility: "rumor" });
+  mounted.show({ v: "timeline", query: {} });
+  assert.deepEqual(labels('[data-ui="wiki-timeline"]'), ["傳聞"]);
+});
+
+test("W04／W05 列表呈現中文欄值，機型原 ID 作為次要文字", t => {
+  const { root, fixture, mounted } = setup(t);
+  Object.assign(fixture.list.rows[0]!, { name: "赤鉚砧（機型）", id: "model/anvil-crimson-rivet",
+    displayFacets: [{ label: "類別", values: ["機械系"] }, { label: "安裝槽位", values: ["武器掛點", "背部掛點"] }] });
+  mounted.show({ v: "cat", query: fixture.list.query });
+  const row = root.querySelector('[data-ui="wiki-row"]')!;
+  assert.equal(row.querySelector("a")!.textContent, "赤鉚砧（機型）");
+  assert.equal(row.querySelector("small.wiki-row-id")!.textContent, "model/anvil-crimson-rivet");
+  assert.deepEqual([...row.querySelectorAll(".wiki-row-facet")].map(node => node.textContent), ["類別：機械系", "安裝槽位：武器掛點、背部掛點"]);
+});
+
 test("勢力矩陣格子對應 cells，關係 class 與來源正確", t => {
   const { root, fixture, mounted } = setup(t);
   mounted.show({ v: "relations" });

@@ -30,7 +30,7 @@ export type WikiEntry = {
   id: string;                  // 原 id（無 id 檔為 "file/<path>"）
   kind: string;                // id 的 kind 段（"frame"、"faction"、"faction-ops"、"character"…）；無 id 檔取目錄名
   category: string;            // 所屬 Category.key
-  name: string;                // 顯示名：name → title → id 最後一段（例 monster 沒 name 時用 species 名＋grade，見 cards）
+  name: string;                // 顯示名：name → title → 推導名（怪獸用 species＋grade，機型用 frame＋機型）→ id 尾段
   aka: string[];               // 別名（lore 的 aka；字串或陣列都收）
   summary: string;             // 一句摘要（lore summary；遊戲資料由 cards 產一句，或空字串）
   body: string;                // markdown 原文（lore body；沒有就空字串）
@@ -51,8 +51,11 @@ export type Category = {
   count: number;
 };
 
+/** 清單、搜尋與年表沿用詳情卡的語意標記；hidden 在索引前已剔除。 */
+export type EntryStatus = { visibility?: "public" | "rumor" | "hidden"; occurs?: string };
+
 /** 年表一筆（content/lore/timeline.json 的 entries；欄位容錯，缺的給空值）。 */
-export type TimelineItem = {
+export type TimelineItem = EntryStatus & {
   index: number;               // 原陣列序（同日期時保序）
   date: string;                // 原字串，例 "2061"、"2108-03"、"2108-03-14"
   sortKey: string;             // 可字典序比較的鍵（年補零到 6 位＋月日），解析失敗就放原字串
@@ -91,7 +94,11 @@ export type WikiIndex = {
 export type SortKey = "name" | "grade" | "id";
 export type ListQuery = { category: string; sort?: SortKey; desc?: boolean; filters?: Record<string, string> };   // filters：facet 名 → 值
 export type FacetOption = { value: string; label: string; count: number };
-export type ListRow = { key: EntryKey; name: string; summary: string; grade?: string; tags: string[]; facets: Record<string, string[]> };
+export type ListRow = EntryStatus & {
+  key: EntryKey; name: string; summary: string; grade?: string; tags: string[]; facets: Record<string, string[]>;
+  id?: string;                // 機型原 ID，供中文標題之外辨識
+  displayFacets?: { label: string; values: string[] }[];  // 已翻譯的列表欄值；facets 保留原值供篩選
+};
 export type ListView = {
   category: Category;
   rows: ListRow[];
@@ -101,8 +108,8 @@ export type ListView = {
 
 // ── 搜尋 ────────────────────────────────────────────────────
 
-export type SearchField = "name" | "aka" | "summary" | "body" | "id" | "tag";
-export type SearchHit = { key: EntryKey; name: string; category: string; score: number; field: SearchField; snippet: string };
+export type SearchField = "name" | "aka" | "nameEn" | "etymology" | "summary" | "body" | "id" | "tag";
+export type SearchHit = EntryStatus & { key: EntryKey; name: string; category: string; score: number; field: SearchField; snippet: string };
 
 // ── markdown（最小子集；DOM 一律用 textContent／createElement 畫，不用 innerHTML）─────
 

@@ -100,7 +100,7 @@ test("frame 概要、構型部位層、資源池與固有能力", () => {
   const p = page(index, frame.key);
   const overview = section(p, "概要", "kv");
   assert.deepEqual(overview.rows.find(r => r.label === "等級")?.value, { t: "text", v: "A" });
-  assert.deepEqual(overview.rows.find(r => r.label === "機體類型")?.value, { t: "text", v: "ancient" });
+  assert.deepEqual(overview.rows.find(r => r.label === "機體類型")?.value, { t: "text", v: "古代機" });
   const parts = section(p, "部位與層", "table");
   assert.equal(parts.rows.length, 2);
   assert.ok(sectionValues(parts).some(v => v.t === "num" && v.v === 20));

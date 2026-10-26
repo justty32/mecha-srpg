@@ -1,8 +1,17 @@
-import type { FacetOption, HomeView, ListView, RelationsView, SearchHit, SortKey, TimelineView, WikiView } from "../../vm/wiki/types.ts";
+import type { EntryStatus, FacetOption, HomeView, ListView, RelationsView, SearchHit, SortKey, TimelineView, WikiView } from "../../vm/wiki/types.ts";
 import { element, renderRef, viewLink } from "./markdown-dom.ts";
 import type { Href } from "./markdown-dom.ts";
 
 type Navigate = (view: WikiView) => void;
+
+function statusBadges(doc: Document, status: EntryStatus): HTMLElement[] {
+  const labels = [status.occurs === "possible" ? "可能發生" : "", status.visibility === "rumor" ? "傳聞" : ""];
+  return labels.filter(Boolean).map(label => {
+    const badge = element(doc, "span", label);
+    badge.className = "wiki-badge";
+    return badge;
+  });
+}
 
 function page(doc: Document, name: string, title: string): HTMLElement {
   const section = element(doc, "section");
@@ -105,6 +114,12 @@ export function renderList(doc: Document, view: ListView, href: Href, navigate: 
     const link = viewLink(doc, row.name, { v: "entry", key: row.key }, href);
     link.dataset.key = row.key;
     item.append(link);
+    item.append(...statusBadges(doc, row));
+    if (row.id) {
+      const id = element(doc, "small", row.id);
+      id.className = "wiki-row-id";
+      item.append(id);
+    }
     if (row.grade) {
       const badge = element(doc, "span", row.grade);
       badge.className = "wiki-badge wiki-grade";
@@ -121,6 +136,11 @@ export function renderList(doc: Document, view: ListView, href: Href, navigate: 
       tags.className = "wiki-row-tags";
       item.append(tags);
     }
+    for (const facet of row.displayFacets ?? []) {
+      const value = element(doc, "small", `${facet.label}：${facet.values.join("、")}`);
+      value.className = "wiki-row-facet";
+      item.append(value);
+    }
     list.append(item);
   }
   node.append(list);
@@ -136,7 +156,7 @@ export function renderSearch(doc: Document, hits: SearchHit[], q: string, href: 
     const item = element(doc, "li");
     const link = viewLink(doc, hit.name, { v: "entry", key: hit.key }, href);
     link.dataset.key = hit.key;
-    item.append(link, element(doc, "small", ` · ${hit.category}`), element(doc, "p", hit.snippet));
+    item.append(link, ...statusBadges(doc, hit), element(doc, "small", ` · ${hit.category}`), element(doc, "p", hit.snippet));
     list.append(item);
   }
   node.append(list);
@@ -171,6 +191,7 @@ export function renderTimeline(doc: Document, view: TimelineView, href: Href, na
       const title = element(doc, "h3");
       title.append(element(doc, "span", `${item.date} · `));
       title.append(item.event ? renderRef(doc, { ...item.event, label: item.title }, href) : doc.createTextNode(item.title));
+      title.append(...statusBadges(doc, item));
       article.append(title, element(doc, "p", item.summary));
       for (const faction of item.factions) article.append(renderRef(doc, faction, href), doc.createTextNode(" "));
       era.append(article);

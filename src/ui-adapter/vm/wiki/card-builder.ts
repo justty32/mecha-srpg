@@ -1,6 +1,7 @@
 import { layerTypeLabel } from "../labels.ts";
 import { relationLabel } from "./relations.ts";
 import { visibilityOf } from "./visibility.ts";
+import { cardEnumLabel } from "./card-labels.ts";
 import type { CardSection, CardValue, EntryRef, WikiEntry, WikiIndex } from "./types.ts";
 
 type Data = Record<string, unknown>;
@@ -24,7 +25,18 @@ const labels: Record<string, string> = {
   foundAt: "發現地", foundDate: "發現時間", pilot: "駕駛員", gameRef: "遊戲資料", doctrine: "研發特色",
   born: "生", died: "歿", role: "身分", mech: "座機", period: "時代", characters: "人物",
   region: "地區", continent: "大洲", world: "天體", status2108: "2108 現況", from: "起始", to: "結束",
-  structural: "結構層", breakEffect: "破壞效果",
+  structural: "結構層", breakEffect: "破壞效果", symmetry: "對稱性",
+  aiProfile: "AI 策略", spawner: "繁殖", child: "子代物種", cadence: "間隔回合", tether: "子代存續",
+  molt: "蛻變", when: "觸發條件", duringMoltEffects: "蛻變期間效果", telegraph: "攻擊預兆",
+  territorial: "領域擴張", spreads: "擴張效果", requireIntact: "須保持完整的功能", requireBroken: "須破壞的功能",
+  ability: "能力", frame: "對應機體",
+  burden: "負擔", beliefs: "信念", threshold: "共鳴門檻", deeds: "事蹟", attr: "屬性", op: "運算", value: "數值",
+  part: "部位", insertAt: "插入位置", layer: "層", ablative: "可剝落", reduce: "減傷", resist: "抗性", passThrough: "穿透比例",
+  maker: "製造勢力", tier: "價階", cost: "造價", exportPolicy: "出口政策", requires: "前置條件",
+  month: "月份（開局起算，0 為首月）", dom: "月內日", event: "事件", lineage: "機系譜系",
+  tideDelta: "漲潮日潮級增減", setTide: "漲潮日潮級設定", text: "說明", periodMonths: "週期（蝕月）",
+  offsetDays: "相位偏移（日）", durationDays: "持續日數", daysPerMonth: "每蝕月日數", monthsPerYear: "每年蝕月數",
+  epochMonth: "開局距元年蝕月數", stageWindow: "潮前／退潮日數",
 };
 export const label = (field: string): string => labels[field] ?? field;
 
@@ -52,12 +64,13 @@ export class CardBuilder {
     if (typeof value === "number") return { t: "num", v: value };
     if (typeof value === "string") {
       const ref = this.ref(value, field);
-      return ref ? { t: "ref", ref } : text(value);
+      return ref ? { t: "ref", ref } : text(cardEnumLabel(this.entry.kind, field, value));
     }
     if (depth > 3 && value !== null && typeof value === "object") return text(JSON.stringify(value));
     if (Array.isArray(value)) return { t: "list", items: value.map((v, i) => this.value(v, `${field}[${i}]`, depth + 1)) };
     const data = object(value);
     if (data) return { t: "kv", rows: this.rows(data, field, depth) };
+    if (typeof value === "boolean" && field === "behaviors.telegraph") return text(value ? "有攻擊預兆" : "無攻擊預兆");
     return text(value === null ? "null" : value === undefined ? "—" : String(value));
   }
 
@@ -72,7 +85,11 @@ export class CardBuilder {
       if (keyRef) return { label: keyRef.label, value: { t: "kv", rows: [
         { label: "對象", value: { t: "ref", ref: keyRef } }, { label: "值", value: this.value(v, path, depth + 1) },
       ] } };
-      return { label: label(k), value: this.value(v, path, depth + 1) };
+      const contextual = field === "behaviors.molt" && k === "to" ? "蛻變物種"
+        : field === "capture" && k === "ability" ? "捕獲能力"
+        : field === "emerge" && k === "min" ? "同層天象最少數"
+        : field === "emerge" && k === "requires" ? "必須同時出現的天象" : label(k);
+      return { label: contextual, value: this.value(v, path, depth + 1) };
     });
   }
 
