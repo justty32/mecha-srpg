@@ -5,6 +5,7 @@ import type { CalendarDef, CampaignState, LordScript, NamedLordState, OpsCtx, Op
 import { skyAt } from "../state/clock.ts";
 import { allPlaces } from "./places.ts";
 import { cellKey, footprintOf, gridOf, neighbors } from "./grid.ts";
+import type { GridMap } from "./grid.ts";
 import { blightPassable } from "./patches.ts";
 import { rebuildBlightIndex } from "./blight.ts";
 import { nextId } from "../state/ids.ts";
@@ -46,7 +47,20 @@ function sameCells(a: Cell[], b: Cell[]): boolean {
   const keys = new Set(a.map(cellKey));
   return keys.size === a.length && a.length === b.length && b.every(c => keys.has(cellKey(c)));
 }
-/** SPEC-GAP：只由具名腳本授權的一區建立無核心永久淺蝕；正常裂縫不能持有這種 patch。 */
+function connectedChunks(map: GridMap, cells: Cell[]): Cell[][] {
+  const remaining = new Map(cells.map(c => [cellKey(c), c])), chunks: Cell[][] = [];
+  for (const cell of cells) {
+    if (!remaining.delete(cellKey(cell))) continue;
+    const chunk = [cell];
+    for (let i = 0; i < chunk.length; i++) for (const next of neighbors(map, chunk[i]!)) {
+      if (remaining.delete(cellKey(next))) chunk.push(next);
+    }
+    chunks.push(chunk.sort((a, b) => a.y - b.y || a.x - b.x));
+  }
+  chunks.sort((a, b) => b.length - a.length || a[0]!.y - b[0]!.y || a[0]!.x - b[0]!.x);
+  return chunks;
+}
+/** SPEC-GAP：具名腳本可將一區空格與既有非核心蝕格轉為無核心永久淺蝕。 */
 export function shiftBlight(s: CampaignState, ctx: OpsCtx, effect: Extract<OpsEffect, { blightShift: unknown }>["blightShift"]): boolean {
   const script = lordScripts(ctx).find(c => c.blight.area === effect.area);
   if (!script || effect.to !== "shallow") return false;
@@ -56,22 +70,31 @@ export function shiftBlight(s: CampaignState, ctx: OpsCtx, effect: Extract<OpsEf
   const map = gridOf(ctx.world, script.blight.map);
   if (effect.cells.some(c => !blightPassable(map, c))) return false;
   const cities = new Set(allPlaces(s, ctx).filter(p => p.map === map.id && p.kind === "city").flatMap(p => footprintOf(p).map(cellKey)));
-  const available = effect.cells.filter(c => !s.maps[map.id]!.blight[cellKey(c)] && !cities.has(cellKey(c)));
-  const remaining = new Map(available.map(c => [cellKey(c), c])), chunks: Cell[][] = [];
-  for (const cell of available) {
-    if (!remaining.delete(cellKey(cell))) continue;
-    const chunk = [cell];
-    for (let i = 0; i < chunk.length; i++) for (const next of neighbors(map, chunk[i]!)) {
-      if (remaining.delete(cellKey(next))) chunk.push(next);
-    }
-    chunks.push(chunk.sort((a, b) => a.y - b.y || a.x - b.x));
-  }
-  chunks.sort((a, b) => b.length - a.length || a[0]!.y - b[0]!.y || a[0]!.x - b[0]!.x);
-  const cells = chunks[0] ?? [];
+  const index = s.maps[map.id]!.blight;
+  const available = effect.cells.filter(c => {
+    if (cities.has(cellKey(c))) return false;
+    const ref = index[cellKey(c)], patch = ref && s.patches[ref.patch];
+    return !ref || !!patch && patch.depthOverride !== "shallow" && s.rifts[patch.rift]?.patches[0] !== patch.id;
+  });
+  const cells = connectedChunks(map, available)[0] ?? [];
   s.flags[flag] = 1;
   if (!cells.length) { ctx.emit("WanchaoBlightSkipped", { area: effect.area, cells: 0 }); return true; }
   const id = `event:${effect.area}`;
   if (s.patches[id]) throw new Error(`event patch collision: ${id}`);
+  const changed = new Set(cells.map(cellKey));
+  const sources = new Set(cells.flatMap(c => index[cellKey(c)] ? [index[cellKey(c)]!.patch] : []));
+  for (const source of sources) {
+    const patch = s.patches[source]!, rift = s.rifts[patch.rift]!;
+    const chunks = connectedChunks(map, patch.cells.filter(c => !changed.has(cellKey(c))));
+    const replacements = chunks.map((chunk, i) => {
+      // 抽格可能切斷原塊；分塊保留年齡，原位置插回以維持核心與時間順序。
+      const part = i === 0 ? patch : { ...patch, id: nextId(s, "patch") };
+      part.cells = chunk; s.patches[part.id] = part;
+      return part.id;
+    });
+    rift.patches.splice(rift.patches.indexOf(source), 1, ...replacements);
+    if (!chunks.length) delete s.patches[source];
+  }
   s.patches[id] = { id, rift: "", map: map.id, cells: structuredClone(cells), sinceDay: s.clock.day, origin: "event", depthOverride: "shallow" };
   rebuildBlightIndex(s);
   ctx.emit("WanchaoBlightShift", { area: effect.area, patch: id, cells: cells.length });

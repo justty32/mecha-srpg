@@ -121,7 +121,7 @@ test("presence 發包不佔地，未指定 issuer 時有領地勢力優先", () 
   const board = fixture();
   actionsDaily2(board.s, board.ctx); contractsDaily2(board.s, board.ctx);
   const representatives = board.ctx.world.all("faction-ops").filter(f => f.tags.includes("presence-board"));
-  assert.equal(representatives.length, 7);
+  assert.equal(representatives.length, 8);
   for (const def of representatives) {
     assert(Object.values(board.s.contracts).some(c => c.issuer === def.id));
     assert(!def.actionLanes!.includes("war"));

@@ -6,8 +6,10 @@ import { createWorldDB } from "../content/worlddb.ts";
 import type { WorldTables } from "../content/worlddb.ts";
 import { checkWorld } from "../content/check.ts";
 import { lordScripts, shiftBlight, initNamedLords, lordTrace, northwardCandidates, namedLordsDaily2, namedLordsDaily4, applyLordChoice, routeGrades } from "./lords.ts";
-import { patchDepth, rebuildBlightIndex } from "./blight.ts";
+import { blightedCells, patchDepth, rebuildBlightIndex } from "./blight.ts";
 import { pressureDaily2 } from "./pressure.ts";
+import { riftsDaily2 } from "./rifts.ts";
+import { actorsDaily3 } from "./actors.ts";
 import { checkInvariants } from "../sim/invariants.ts";
 import { skyAt } from "../state/clock.ts";
 import { cellKey } from "./grid.ts";
@@ -31,6 +33,15 @@ function clearCoast(f: ReturnType<typeof setup>) {
 }
 function atDay(f: ReturnType<typeof setup>, day: number) {
   f.s.clock = skyAt(day, world.require("calendar", f.s.calendar), world.all("omen")).clock;
+}
+function coastDepths(f: ReturnType<typeof setup>) {
+  return f.script.blight.cells.map(cell => {
+    const ref = f.s.maps[f.script.blight.map]!.blight[cellKey(cell)];
+    return { cell: cellKey(cell), depth: ref ? patchDepth(f.s, f.ctx, f.s.patches[ref.patch]!) : "clear" };
+  });
+}
+function depthCounts(cells: ReturnType<typeof coastDepths>) {
+  return Object.fromEntries(["clear", "shallow", "deep", "core"].map(depth => [depth, cells.filter(c => c.depth === depth).length]));
 }
 
 describe("萬潮世界：E4 事件改區", () => {
@@ -61,6 +72,61 @@ describe("萬潮世界：E4 事件改區", () => {
     assert(shiftBlight(other.s, other.ctx, other.script.blight)); assert(!other.s.patches[`event:${script.blight.area}`]);
     assert(other.s.log.some(e => e.type === "WanchaoBlightSkipped")); const n = other.s.log.length;
     assert(shiftBlight(other.s, other.ctx, other.script.blight)); assert.equal(other.s.log.length, n);
+  });
+  test("北岸七格深蝕轉淺：保留殘格、刪空塊、拆斷塊，去重且 pressure 排除事件塊", () => {
+    // 同一個深蝕塊覆蓋北岸七格；分別留下連通兩格、斷開兩格、零格。
+    for (const outside of [[{ x: 128, y: 98 }, { x: 128, y: 99 }], [{ x: 128, y: 97 }, { x: 132, y: 97 }], []]) {
+      const f = setup(); clearCoast(f); atDay(f, 100);
+      const { s, ctx, script } = f, rift = Object.values(s.rifts).find(r => r.at.map === script.blight.map && r.patches.length)!;
+      const core = structuredClone(s.patches[rift.patches[0]!]!), prior = new Set(rift.patches);
+      const cells = [...structuredClone(script.blight.cells.slice(0, 7)), ...outside];
+      s.patches["coast-deep"] = { id: "coast-deep", rift: rift.id, map: script.blight.map, cells, sinceDay: 0 };
+      rift.patches.push("coast-deep"); rebuildBlightIndex(s);
+      // 舊淺蝕老化後，沿正式段三清掉已被深蝕覆蓋的地面行動者。
+      actorsDaily3(s, ctx);
+      assert.deepEqual(checkInvariants(s, world), []);
+      const before = coastDepths(f), total = blightedCells(s);
+      assert.deepEqual(depthCounts(before), { clear: 2, shallow: 0, deep: 7, core: 0 });
+      assert(shiftBlight(s, ctx, script.blight));
+      const after = coastDepths(f), event = s.patches[`event:${script.blight.area}`]!;
+      assert.deepEqual(depthCounts(after), { clear: 0, shallow: 9, deep: 0, core: 0 });
+      assert.equal(event.cells.length, 9); assert.equal(event.sinceDay, s.clock.day);
+      assert.equal(blightedCells(s), total + 2);
+      const remainder = rift.patches.filter(id => !prior.has(id)).map(id => s.patches[id]!);
+      assert.equal(remainder.reduce((n, p) => n + p.cells.length, 0), cells.length - 7);
+      assert.deepEqual(remainder.flatMap(p => p.cells).map(cellKey).sort(), outside.map(cellKey).sort());
+      assert(remainder.every(p => p.sinceDay === 0 && patchDepth(s, ctx, p) === "deep"));
+      assert.deepEqual(s.patches[core.id], core); assert.equal(rift.patches[0], core.id);
+      assert.deepEqual(rift.patches.filter(id => prior.has(id)), [...prior]);
+      if (!outside.length) { assert.equal(s.patches["coast-deep"], undefined); assert(!rift.patches.includes("coast-deep")); }
+      assert.deepEqual(checkInvariants(s, world), []);
+      const shifted = structuredClone(s); assert(shiftBlight(s, ctx, script.blight)); assert.deepEqual(s, shifted);
+      const without = structuredClone(s); delete without.patches[event.id]; rebuildBlightIndex(without);
+      pressureDaily2(s, ctx); pressureDaily2(without, createOpsCtx(without, db, world)); assert.equal(s.pressure, without.pressure);
+      if (outside.length === 2 && outside[0]!.y === 98)
+        console.log("COAST_FIXTURE", JSON.stringify({ before, after }));
+    }
+  });
+  test("真實開局逐日裂縫成長：北行當夜北岸九格改區前後證據", () => {
+    const f = setup(), { s, ctx, lord, script } = f;
+    let before: ReturnType<typeof coastDepths> = [];
+    // 正式曆與開局，逐日先長裂縫再北行；只驗本線軌跡，不運行 sim CLI。
+    for (let day = s.clock.day + 1; day <= lord.northwardDay; day++) {
+      atDay(f, day);
+      const sky = skyAt(day, world.require("calendar", s.calendar), world.all("omen"));
+      syncOmenFlags(s.flags, sky.omens); s.flags.anchorable = s.clock.phase === "spring" ? 1 : 0;
+      riftsDaily2(s, ctx);
+      if (day === lord.northwardDay) before = coastDepths(f);
+      namedLordsDaily2(s, ctx);
+      actorsDaily3(s, ctx);
+    }
+    const after = coastDepths(f), converted = before.filter((c, i) => c.depth === "deep" && after[i]!.depth === "shallow").length;
+    assert(lord.moved); assert.equal(before.length, 9); assert(converted > 0);
+    assert.deepEqual(depthCounts(after), { clear: 0, shallow: 9, deep: 0, core: 0 });
+    assert.deepEqual(checkInvariants(s, world), []);
+    const event = s.log.find(e => e.type === "WanchaoBlightShift")!;
+    assert.equal(event.payload.cells, 9); assert(s.patches[`event:${script.blight.area}`]);
+    console.log("COAST_TRAJECTORY", JSON.stringify({ seed: 1, day: s.clock.day, before, after, beforeCounts: depthCounts(before), afterCounts: depthCounts(after), converted, changed: event.payload.cells }));
   });
 });
 
