@@ -35,6 +35,6 @@
 → [world/before-collapse-powers.md](world/before-collapse-powers.md)：崩年前國際局勢與崩年後的傘：中國君主立憲（朝名年號不取）、韓財閥上月、日傘 AI 守牆、美國沒縮且拒用「傘」字、歐洲老家族、撒南輸出駕駛員。
 → [world/magnates.md](world/magnates.md)：巨頭七類（不死、不萬能）、穹頂下的錢、塞勒涅是中型巨頭兼管家。
 → [world/polity.md](world/polity.md)：國家縮而不死：國家、傘、城邦三層；死人的債歸國庫、地契抵押給月亮；空城；城邦類型總覽（含公司城、殘聯例外）。
-→ [world/city-types.md](world/city-types.md)：自由城市與黑幫城市（類型是裁示，設計是提案）。
+→ [world/city-types.md](world/city-types.md)：自由城市與黑幫城市（類型是裁示；數量、分布、獵牌與催收規則、吉大港與環線商隊歸屬已定 2026-10-26，其餘提案）。
 → [world/aegir.md](world/aegir.md)：超級機器人式的那一台＝埃吉爾（定案方向；認主事件與歐傘填充另開線）。
 → 崩年的底色十三句掛線：[world/history-lines.md](world/history-lines.md) 框架一節。
