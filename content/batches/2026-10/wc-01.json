@@ -1,0 +1,100 @@
+{
+ "contract": "content-batch/1",
+ "id": "wc-01",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "萬潮葬王副線落地：兩件 occurs: possible 事件（北行、城門前停步）；既有檔插入句與年表兩條由領導在 main 套用（字串插入不走 superset 閘門）；遊戲文案草稿留交接區",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-wc-01",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": "cx-wc-plan（gpt-6-astra）plan/plan.md"
+ },
+ "lead": "lead-wanchao",
+ "date": "2026-10-26",
+ "base": "6f0f6f90905b0c60d25b9ba9ea4d2e2c266e1981",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-wanchao/wc-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-wanchao/wc-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/plan-wanchao/plan.md",
+   "content/lore/events/wreck-crown.json",
+   "content/lore/events/aegir-wakes.json",
+   "wf/workflows/dispatch/handoffs/lead-wanchao/plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-wanchao/cx-wc-01.md"
+  ]
+ },
+ "maxFiles": 2,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {
+   "lore/*": "wanchao-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": 1,
+ "acceptance": {
+  "batch": "wc-01",
+  "round": 1,
+  "at": "2026-10-26T13:56:31",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/events/wanchao-at-gate.json",
+   "content/lore/events/wanchao-northward.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 14,
+   "problems": []
+  }
+ },
+ "files": [
+  "content/lore/events/wanchao-northward.json",
+  "content/lore/events/wanchao-at-gate.json"
+ ],
+ "ids": [
+  "event/wanchao-northward",
+  "event/wanchao-at-gate"
+ ],
+ "gateRejections": [],
+ "leadApplied": {
+  "note": "領導在 main 套用（字串只插入，apply_inserts 驗證去掉插入段＝原文；年表只插入）；正文兩處開頭去掉計數口吻（第八至第二十四個蝕月、第四十個蝕月），一處改「若某個大潮夜」；法蒂瑪、茉莉兩檔在 lead-tone-fix 收線（9608fa2）後插入",
+  "files": [
+   "content/lore/places/chittagong.json",
+   "content/lore/characters/captain-hamid.json",
+   "content/lore/characters/rashid-ironmouth.json",
+   "content/lore/characters/anil-chowdhury.json",
+   "content/lore/timeline.json",
+   "content/lore/characters/fatima-begum.json",
+   "content/lore/characters/molly-van-den-berg.json"
+  ]
+ }
+}
