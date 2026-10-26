@@ -11,6 +11,7 @@
 
 ## 最新進度
 
+- [dispatch] 2026-10-26 填充層七線（lead-fill 南亞東南亞、lead-aegir 歐洲、lead-fill-am、lead-fill-af、lead-fill-ea、lead-fill-mech、lead-fill-kaiju）進行中；每線交 handoffs/<線>/review.json（每件一兩句白話）→ 全收後開**去重線** → 再交 Fable＋使用者審敘事基調（使用者 2026-10-26 定的流程）
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
 - [content] lead-fill open：lore 填充層（第 0 步落地使用者拍板 → 第一批 ≤15 檔：孟加拉灣周邊＋崩年後續代表地）→ handoffs/lead-fill/
