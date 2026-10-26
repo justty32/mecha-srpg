@@ -42,7 +42,7 @@
 - **訂閱主題**：無
 
 ### `lead-engine-next`（含代登記工人 `cx-en-ai-plan`、`cx-en-ai`、`cx-en-wc-plan`、`cx-en-wc`）
-- **狀態**：現役（2026-10-26 上線）
+- **狀態**：已收線（2026-10-26）
 - **我是誰**：Opus 領導：引擎一批——AI 自護／友方支援招（backlog 68、73）、萬潮葬王副線引擎（57–61）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
 - **團隊**：`teams/engnext`
 - **上游**：`dispatcher`（工人的上游是 `lead-engine-next`）

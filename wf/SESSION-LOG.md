@@ -12,7 +12,6 @@
 ## 最新進度
 
 - [dispatch] 2026-10-26 lead-bigfill open：下一輪大填充（月面、可玩內容、加深）；codex 大量平行（計畫 astra → 產出 sol）→ 交接區 `wf/workflows/dispatch/handoffs/lead-bigfill/`
-- [dispatch] 2026-10-26 lead-engine-next open：AI 自護／友方支援招（backlog 68、73）＋萬潮葬王副線引擎（57–61）＋黃金重錄 → 交接區 `wf/workflows/dispatch/handoffs/lead-engine-next/`
 
 
 ## 各工作流 session-log

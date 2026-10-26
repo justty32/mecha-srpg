@@ -86,5 +86,6 @@
 | 2026-10-24 | `lead-tidy` | next-tidy 六節整理完成一輪，wf-lint 全 0、測試綠 | [lead-tidy/](2026-10-24/lead-tidy/) |
 | 2026-10-24 | `lead-wrapup` | 兩階段段落收尾：新裁示落地、守則同步與交棒文件更新 | [lead-wrapup/](2026-10-24/lead-wrapup/) |
 | 2026-10-26 | `lead-tidy2` | wf 整理＋重構拆檔：inbox 已收線信 30 封／orders 5／團隊 9 歸檔（7a00591）；近 8 KB 文件 15 份按語意拆（a6b2781）；已收線 32 線資料夾移 done（4472b98，moves.tsv）；src mcp battle／campaign、wiki cards／mount.test 拆檔、行為不變（d65eb1c）；STATE／next-tidy 改寫；不刪檔，建議刪除與殘留見 REPORT | [lead-tidy2/](../lead-tidy2/REPORT.md) |
+| 2026-10-26 | `lead-engine-next` | 引擎一批：AI 會用自護／原地側閃／友方卸燼支援招（新 `src/ai/support.ts`，以預覽前後差值估實際增閃、治療、有需求的燼卸載；protect 免護衛指派、berserk 可自增益；盾甲舉盾 0→38、叩闕甲豎甲 0→28 次，排燼扶架高燼用低燼不用；kaiju2 權宜 8 招改回 protect／escape）；萬潮葬王副線引擎 57–61（王跡欄、8–24 蝕月大潮夜腳本北行、presence 不可交戰在場單位、北岸新增淺蝕區、第 40 蝕月守牆＋主動迎戰＋capture-once）、base-drafts 14 列落 content/base；ops-relic 重錄、戰鬥黃金不變；grid-health 換 seed 2；engine-backlog 57–61／68／73 完成；codex 4 條（計畫 astra 2、產出 sol 2）；commit 1d3cc64、16114d1、c948641 | [lead-engine-next/](../lead-engine-next/)（交接書 4 份、ai-plan／wc-plan 計畫、ai-01／wc-01 REPORT；總 REPORT 在回傳頂層的匯報） |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。

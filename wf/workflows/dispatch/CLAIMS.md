@@ -8,14 +8,11 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-engine-next` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 
 ### 現役細目
 
 表格只放線名，完整領地寫在這裡（表格超過 1 KB 會被 wf-lint 判成大表）；收線時連同表格那格一起刪。
-
-**`lead-engine-next`**　可寫：`src/`（含測試）、`content/base/`、`content/index/`、`specs/`（最小必要）、`test/` 黃金與 fixtures、`wf/workflows/dispatch/handoffs/lead-engine-next/`、engine-backlog 第 57–61／68／73 列狀態。唯讀／禁區：`content/lore/`（sonnet-lore-insert）、`wf/workflows/content/mechs.md`。
 
 **`lead-bigfill`**　可寫：`content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔。
 
