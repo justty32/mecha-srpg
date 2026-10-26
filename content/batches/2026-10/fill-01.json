@@ -1,0 +1,61 @@
+{
+ "contract": "content-batch/1",
+ "id": "fill-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "填充層第一批 A：開局舞台周邊——吉大港成為黑幫城市、達卡崩年縮城、第七哨唱名夜、候鳥號 2103–2107 撿人四件；7 件事件＋年表純插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-fill-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill",
+ "date": "2026-10-26",
+ "base": "dd10300d2c21e342e3c258c780daa1360e4c76b6",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill/fill-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill/fill-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/dispatch/handoffs/lead-fill/cx-fill-01.md"
+  ]
+ },
+ "maxFiles": 8,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": null,
+ "playtest": null
+}
