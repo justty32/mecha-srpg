@@ -1,0 +1,102 @@
+{
+  "id": "scenario/kj-quay-rise",
+  "name": "碼頭翻身",
+  "brief": "漲潮沿碼頭樁爬上來，防波堤上的濕甲逐片翻身。抱樁垂下裸臂，巢母的囊口已張開；獵團趁退路還在，穿過舊碼頭。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bulwark-ii",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/moji-tern-guard",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bio-breakwater-clinger",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/nestmother-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/nestmother-b",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/breakwater-clinger-c",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "seed": 2,
+  "rounds": 20
+}

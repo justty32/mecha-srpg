@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-breakwater-clinger",
+  "name": "生物機甲・抱樁",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/alien-breakwater-clinger",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-breakwater-clinger-rend",
+    "ability/kx-breakwater-clinger-drag"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "alien",
+    "kaiju"
+  ],
+  "burden": 6
+}

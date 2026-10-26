@@ -1,0 +1,49 @@
+{
+  "id": "ability/kx-breakwater-clinger-drag",
+  "name": "掛足拖行",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 12
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-breakwater-clinger-snared"
+      ]
+    }
+  ],
+  "tags": [
+    "alien",
+    "telegraph",
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.8,
+      "debuff": 1
+    }
+  },
+  "cooldown": 2
+}

@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-breakwater-clinger-snared",
+  "name": "絆足",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -8,
+      "source": "effect/kx-breakwater-clinger-snared"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-breakwater-clinger-snared"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "絆足"
+  }
+}

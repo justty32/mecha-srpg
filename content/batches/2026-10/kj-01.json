@@ -1,0 +1,76 @@
+{
+ "contract": "content-batch/1",
+ "id": "kj-01",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "怪獸二名之夜填充：補 4 件無事件檔的年表條目（巢母首見、赤眼兇星初見、白夜初見、第一隻被捕的巢母）與 2 隻無由來的 A 級二名獸（負天星塚、無人應答）的命名之夜，共 6 件 lore 事件",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-kj-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill-kaiju",
+ "date": "2026-10-26",
+ "base": "bb223c73ccde7aacfd2aa889da5aa924a5c42b29",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/bio-monsters.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "wf/workflows/planning/specs/world/monsters.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/cx-kj-01.md"
+  ]
+ },
+ "maxFiles": 6,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": null,
+ "playtest": null,
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-01/accept/verdict-1.json",
+  "note": "worktree 內唯一失敗為 test/content/index.test.ts（索引未重產，屬預期）；帶回主 repo 重產索引後於乾淨 worktree 全套重跑；年表：第 1–4 件由領導在既有條目補 event 欄，第 5、6 件追加"
+ },
+ "files": [
+  "content/lore/events/landlord-sits.json",
+  "content/lore/events/red-eye-first-seen.json",
+  "content/lore/events/white-night-first-seen.json",
+  "content/lore/events/first-nest-taken.json",
+  "content/lore/events/star-grave-named.json",
+  "content/lore/events/last-vesper-named.json"
+ ],
+ "ids": [
+  "event/landlord-sits",
+  "event/red-eye-first-seen",
+  "event/white-night-first-seen",
+  "event/first-nest-taken",
+  "event/star-grave-named",
+  "event/last-vesper-named"
+ ],
+ "gateRejections": []
+}
