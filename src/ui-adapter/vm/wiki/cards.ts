@@ -223,7 +223,7 @@ function loreOverview(b: CardBuilder): void {
   const names: Record<string, string> = { kind: "類型", faction: "所屬", ...(b.entry.kind === "event" ? { places: "地點" } : {}) };
   // 可見度 rumor 的欄：標題加「（傳聞）」（engine-backlog 45；格式見 content/lore/README.md「可見度」）。
   for (const f of Object.keys(b.data)) if (fieldVisibility(b.data, f) === "rumor") names[f] = `${names[f] ?? label(f)}（傳聞）`;
-  b.used.add("visibility"); b.used.add("fieldVisibility");
+  b.used.add("visibility"); b.used.add("fieldVisibility"); b.used.add("occurs");
   b.summary(fields[b.entry.kind] ?? [], names);
   b.summary(["era", "faction", "factions", "date", "place", "kind"]);
   const policy = b.overview.find(row => row.label === label("mercPolicy"));
@@ -334,6 +334,8 @@ export function entryPage(index: WikiIndex, key: string): EntryPage | null {
     return typeof value === "string" || typeof value === "number" ? [String(value)] : [];
   });
   if (lore && visibilityOf(b.data) === "rumor") badges.unshift("傳聞");
+  // occurs: possible＝開局後可能發生、日期不定的事件（content/lore/README.md「events」）。
+  if (lore && entry.kind === "event" && b.data.occurs === "possible") badges.unshift("可能發生");
   return {
     key, title: entry.name, subtitle: `${categoryLabel} · ${entry.id}`, badges: [...new Set(badges)],
     summary: entry.summary, aka: [...entry.aka],

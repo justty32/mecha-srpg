@@ -144,3 +144,20 @@ test("詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞�
   const rel = ghost.sections.find(s => s.title === "關係");
   assert.ok(rel?.t === "table" && JSON.stringify(rel.rows[0]).includes("（傳聞）"));
 });
+
+test("occurs: possible 的事件不進年表（含 timeline.json 引用與未列入的事件檔），詳情卡標「可能發生」", () => {
+  const evt = (name: string, extra: Record<string, unknown>): RawFile => lore(`events/${name}.json`, { id: `event/${name}`, name, date: "2110", period: "era/x",
+    summary: "s", body: "b", factions: [], characters: [], places: [], consequences: [], tags: [], ...extra });
+  const index = buildWikiIndex([
+    evt("maybe-listed", { occurs: "possible" }), evt("maybe-unlisted", { occurs: "possible" }), evt("sure", {}),
+    lore("timeline.json", { contract: "lore-timeline/1", entries: [
+      { date: "2110", title: "可能列入", summary: "s", era: "era/x", event: "event/maybe-listed", factions: [], tags: ["rumor"] },
+      { date: "2111", title: "確定", summary: "s", era: "era/x", event: "event/sure", factions: [], tags: [] },
+    ] }),
+  ]);
+  const titles = timelineView(index, {}).sections.flatMap(s => s.items.map(i => i.title));
+  assert.deepEqual(titles, ["確定"]);
+  assert.ok(entryPage(index, "lore:event/maybe-listed")!.badges.includes("可能發生"));
+  assert.ok(!entryPage(index, "lore:event/sure")!.badges.includes("可能發生"));
+  assert.ok(!JSON.stringify(entryPage(index, "lore:event/maybe-listed")).includes("possible"), "occurs 不當原始資料列顯示");
+});

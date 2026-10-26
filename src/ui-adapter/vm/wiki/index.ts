@@ -145,7 +145,7 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
   const eventRows = [...entries.values()].filter(e => e.pack === "lore" && e.kind === "event" && !listedEvents.has(e.key))
     .flatMap(e => {
       const data = e.data as Record<string, unknown>;
-      return data.date === undefined ? [] : [{ ...data, title: e.name, event: e.id }];
+      return data.date === undefined || data.occurs === "possible" ? [] : [{ ...data, title: e.name, event: e.id }];
     });
   const timelineSources = [...timelineFiles, { pack: "lore", path: "events/", data: { entries: eventRows } }];
   for (const file of timelineSources) {
@@ -157,6 +157,8 @@ export function buildWikiIndex(rawFiles: RawFile[]): WikiIndex {
       const sortKey = dateSortKey(date);
       const eventKey = resolve(str(row.event), file.pack);
       const eventData = eventKey ? entries.get(eventKey)?.data : undefined;
+      // occurs: possible（開局後可能發生、日期不定）的事件不進年表。
+      if (record(eventData) && eventData.occurs === "possible") continue;
       const eraRaw = str(row.era) || str(row.period) || (record(eventData) ? str(eventData.period) || str(eventData.era) : "");
       const eraEntry = [...entries.values()].find(e => e.pack === file.pack && e.kind === "era" && e.name === eraRaw);
       const era = eraRaw ? makeRef(eraRaw, file.pack, "era") ?? {

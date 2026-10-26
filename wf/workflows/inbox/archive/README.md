@@ -7,3 +7,4 @@
 | ROSTER-2026-10-24-b.md | 2026-10-24 | ../ROSTER.md（第二批已收線成員的原格） |
 | ROSTER-2026-10-24-c.md | 2026-10-24 | ../ROSTER.md（第三批已收線成員的原格，lead-tidy 封存） |
 | ROSTER-2026-10-24-d.md | 2026-10-24 | ../ROSTER.md（lead-content 收線時封存：lead-content 與 cx-lc-*、lead-rename 與其工人、cx-pilot-iron） |
+| ROSTER-2026-10-26.md | 2026-10-26 | ../ROSTER.md（超 8 KB；lead-reconcile 至 lead-fill-mech 等 16 格已收線成員原格） |

@@ -55,7 +55,7 @@
 
 ### events/<name>.json
 
-必填：`date`、`period`（`era/…`）、`factions`／`characters`／`places`（id 陣列，可空）、`consequences`（一句一條）。`tags` 建議：`war`（勢力間衝突）、`campaign`（勢力主導的清剿／攻堅）、`diplomacy`、`dig`（古代機挖掘／爭奪）、`tide`、`rumor`。可選 `kind`：`戰役`／`外交`／`挖掘`／`災難`／`政治`／`科技`／`其他`。
+必填：`date`、`period`（`era/…`）、`factions`／`characters`／`places`（id 陣列，可空）、`consequences`（一句一條）。`tags` 建議：`war`（勢力間衝突）、`campaign`（勢力主導的清剿／攻堅）、`diplomacy`、`dig`（古代機挖掘／爭奪）、`tide`、`rumor`。可選 `kind`：`戰役`／`外交`／`挖掘`／`災難`／`政治`／`科技`／`其他`。可選 `occurs`：唯一值 `possible`＝開局（2108-01）後**可能發生**、日期不定的事件（`date` 仍須填一個代表日期）；百科不把它放進年表，詳情卡標「可能發生」。沒標就是已發生或確定發生。
 
 ### places/<name>.json
 
@@ -63,6 +63,7 @@
 
 | 可選欄 | 說明 |
 |---|---|
+| `aka` | 別名陣列（通用欄的 `aka` 在地點檔為可選，可省略） |
 | `world` | `earth`／`moon`／`orbit` |
 | `kind` | `城邦`／`野地`／`蝕域`／`遺跡`／`港`／`月面`／`軌道`／`船`／`其他` |
 | `status2108` | 開場狀態一句（守住／失守／蝕線上／封鎖中…） |

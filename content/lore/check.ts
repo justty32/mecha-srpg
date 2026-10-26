@@ -156,8 +156,9 @@ const specs: Spec[] = [
   {
     dir: "events", kind: "event",
     required: ["id", "name", "date", "period", "summary", "body", "factions", "characters", "places", "consequences", "tags"],
-    optional: ["kind"],
+    optional: ["kind", "occurs"],
     refs(r, w) {
+      if (r.occurs !== undefined && r.occurs !== "possible") errors.push(`${w}.occurs: ${JSON.stringify(r.occurs)} 應為 possible`);
       if (!DATE_RE.test(r.date as string)) errors.push(`${w}.date: ${r.date} 不是 YYYY／YYYY-MM／YYYY-MM-DD`);
       ref(r.period, "era", `${w}.period`);
       refArr(r.factions, "faction", `${w}.factions`);
@@ -169,7 +170,7 @@ const specs: Spec[] = [
   {
     dir: "places", kind: "place",
     required: ["id", "name", "region", "continent", "summary", "body", "factions", "gameRefs", "tags"],
-    optional: ["world", "kind", "status2108"],
+    optional: ["aka", "world", "kind", "status2108"],
     refs(r, w) {
       refArr(r.factions, "faction", `${w}.factions`);
       if (r.world !== undefined && !WORLDS.has(r.world as string)) errors.push(`${w}.world: ${r.world} 不在枚舉內`);
