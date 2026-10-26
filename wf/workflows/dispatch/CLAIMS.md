@@ -10,8 +10,8 @@
 |----|---------|------------|---------|
 | `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-fill-pilots` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-fill-scen` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-fill-gear` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
+| `lead-small`（暫停 2026-10-26 晚）| 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 
 ### 現役細目
 
@@ -19,11 +19,11 @@
 
 **`lead-bigfill`**　暫停（2026-10-26 晚）→ 接續見 `handoffs/lead-bigfill/report.md`。可寫：`content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔。
 
-**`lead-fill-scen`**　可寫：`content/base/scenarios/`、`content/base/maps/`、`content/base/terrains/`（新檔為主）、`content/batches/2026-10/fs-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-fill-scen/`；黃金重錄（整批後一次；重錄前在此加「黃金重錄中」）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、`content/lore/`、AI 檔、萬潮葬王相關。
+**`lead-fill-gear`**　【暫停（2026-10-26 晚）→ 接續見 report.md；黃金重錄未收（fg-golden）】可寫：`content/base/components/`、`content/base/abilities/`、`content/base/effects/`（只新增，檔名用 `fg-` 前綴軌道碼）、`content/base/world/markets/`（新檔＋只插入既有上架）、`content/base/world/services/`、`content/base/world/research/`（新檔）、loot／掉落相關資料（盤點後明列）、`content/batches/2026-10/fg-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-fill-gear/`；黃金重錄（整批後一次；重錄前在此加「黃金重錄中」）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、`content/lore/`、AI 檔、萬潮葬王相關、既有 id 檔的數值。
 
-**`lead-fill-gear`**　可寫：`content/base/components/`、`content/base/abilities/`、`content/base/effects/`（只新增，檔名用 `fg-` 前綴軌道碼）、`content/base/world/markets/`（新檔＋只插入既有上架）、`content/base/world/services/`、`content/base/world/research/`（新檔）、loot／掉落相關資料（盤點後明列）、`content/batches/2026-10/fg-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-fill-gear/`；黃金重錄（整批後一次；重錄前在此加「黃金重錄中」）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、`content/lore/`、AI 檔、萬潮葬王相關、既有 id 檔的數值。
+**`lead-fill-pilots`**　可寫：`content/base/persons/`、`content/base/world/recruit-pools/`、`content/base/world/backgrounds/`、`content/base/world/names/`、`content/base/soultrees/`（必要時）、`content/lore/characters/`（新檔＋只插入）、`content/batches/2026-10/fp-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-fill-pilots/`、engine-backlog 只追加新列；黃金重錄（整批後一次）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、AI 檔、萬潮葬王。 暫停（2026-10-26 晚）→ 接續見 report.md。
 
-**`lead-fill-pilots`**　可寫：`content/base/persons/`、`content/base/world/recruit-pools/`、`content/base/world/backgrounds/`、`content/base/world/names/`、`content/base/soultrees/`（必要時）、`content/lore/characters/`（新檔＋只插入）、`content/batches/2026-10/fp-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-fill-pilots/`、engine-backlog 只追加新列；黃金重錄（整批後一次）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、AI 檔、萬潮葬王。
+**`lead-small`**　可寫：`src/ops/world/lords.ts`、`src/ops/world/lords.test.ts`（北岸改區）；`content/base/factions/third-blade.json`、`content/base/world/factions-ops/third-blade.json`、`content/base/world/models/thirdblade-*.json`（只改 maker）、`content/base/world/contracts/ls-*.json`（新檔）、`content/batches/2026-10/ls-*.json`、`content/index/`（git add 後重產）、`test/campaigns/`＋`test/golden/`＋軌跡相依測試（黃金重錄，整批後一次）、`wf/workflows/dispatch/handoffs/lead-small/`。唯讀／禁區：其餘 `src/`、`specs/`、`design-notes/`、`content/lore/`、萬潮葬王資料檔（wanchao-script 不改）。
 
 ## 保留給調度者，任何線都不得寫
 
