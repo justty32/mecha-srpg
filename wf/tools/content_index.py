@@ -16,13 +16,15 @@ base-monster、lore-character）；單片超過 SHARD_MAX_ROWS 列或 SHARD_MAX_
   path（相對 content/）、batch（`content/batches/<YYYY-MM>/*.json` 帳本，舊內容空白）、
   status（active／draft／deprecated）。不放描述長文。
 單片不足 1 KB 的小類併進 `<pack>-misc.json`（照 wf/STRUCTURE.md 小檔合併）。另寫
-`content/index/_summary.json`（wf-table/1，≤ 8 KB）：各分片的類別、件數、各級分布，header 帶 batch 件數。
+`content/index/_summary.json`（wf-table/1，≤ 8 KB）：各分片的類別、件數、各級分布，header 只帶 batch 總數與各月件數；
+逐批 status／date／files 在 `_batches-<YYYY-MM>.json`（按月分片，不隨批次數撐大 summary）。
 `content/index/README.md` 是手寫的導航入口（不由本工具產生）。
 查詢一律 `wf/tools/tabledb.py <分片> find k=v`／`grep RE`，不整份讀。
 """
 
 import argparse
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -87,7 +89,9 @@ def load_batches(root, ref=None):
         bid = m.get('id', Path(name).stem)
         status = 'active' if m.get('status') == 'accepted' else 'draft'
         files = m.get('files', [])
-        counts[bid] = {'status': m.get('status', ''), 'date': m.get('date', ''), 'files': len(files)}
+        parent = Path(name).parent.name
+        month = parent if re.fullmatch(r'\d{4}-\d{2}', parent) else str(m.get('date', ''))[:7] or 'undated'
+        counts[bid] = {'status': m.get('status', ''), 'date': m.get('date', ''), 'files': len(files), 'month': month}
         for p in files:
             by_path[p] = (bid, status)
         deprecated.update(m.get('deprecated', []))
@@ -230,8 +234,42 @@ def shards(rows):
     return out, kinds_of
 
 
+def batch_shards(counts):
+    """`_batches-<YYYY-MM>.json`：batch→status／date／files 件數，按月分片（月內超 6 KB 再按 id 前綴分；每片同受 SUMMARY_MAX_BYTES 保護）。"""
+    months = {}
+    for bid, c in sorted(counts.items()):
+        months.setdefault(c['month'], []).append({'id': bid, 'status': c['status'], 'date': c['date'],
+                                                  'files': str(c['files'])})
+    out = {}
+
+    def emit(name, rs):
+        head = {'contract': 'wf-table/1', 'source': 'README.md', 'extracted': 'generated',
+                'generator': 'wf/tools/content_index.py', 'columns': ['id', 'status', 'date', 'files']}
+        text = json.dumps(head, ensure_ascii=False)[:-1] + ',\n "rows": [\n'
+        return text + ',\n'.join(' ' + json.dumps(r, ensure_ascii=False) for r in rs) + '\n ]}\n'
+
+    for month, rs in months.items():
+        text = emit(month, rs)
+        if len(text.encode()) <= SUMMARY_MAX_BYTES * 3 // 4:
+            out[f'_batches-{month}.json'] = text
+            continue
+        by_prefix = {}  # 單月太大：再按 id 前綴（第一個 `-` 前）分片
+        for r in rs:
+            by_prefix.setdefault(r['id'].split('-', 1)[0], []).append(r)
+        for pre, part in by_prefix.items():
+            text = emit(pre, part)
+            if len(text.encode()) > SUMMARY_MAX_BYTES:
+                raise SystemExit(f'_batches-{month}-{pre}.json {len(text.encode())} B > {SUMMARY_MAX_BYTES} B')
+            out[f'_batches-{month}-{pre}.json'] = text
+    return out
+
+
 def summary(rows, counts, files, kinds_of):
-    """`_summary.json`：wf-table/1，一片一列（shard 連結、kinds、count、grades），header 帶 batch 件數。"""
+    """`_summary.json`：wf-table/1，一片一列（shard 連結、kinds、count、grades），header 只帶 batch 總數與各月件數；
+逐批 status／date／files 在 `_batches-<YYYY-MM>.json`（按月分片，不隨批次數撐大 summary）。"""
+    per_month = {}
+    for c in counts.values():
+        per_month[c['month']] = per_month.get(c['month'], 0) + 1
     table = []
     for name in sorted(files):
         rs = json.loads(files[name])['rows']
@@ -241,7 +279,8 @@ def summary(rows, counts, files, kinds_of):
         table.append({'shard': name, 'kinds': ' '.join(sorted(kinds_of[name])), 'count': str(len(rs)),
                       'grades': ' '.join(f'{g}:{n}' for g, n in sorted(grades.items()))})
     head = {'contract': 'wf-table/1', 'source': 'README.md', 'extracted': 'generated',
-            'generator': 'wf/tools/content_index.py', 'total': len(rows), 'batches': counts,
+            'generator': 'wf/tools/content_index.py', 'total': len(rows),
+            'batches': {'count': len(counts), 'per_month': per_month},
             'columns': ['shard', 'kinds', 'count', 'grades'], 'link_columns': ['shard']}
     out = json.dumps(head, ensure_ascii=False)[:-1] + ',\n "rows": [\n'
     out += ',\n'.join(' ' + json.dumps(r, ensure_ascii=False) for r in table)
@@ -255,6 +294,7 @@ def expected(root, ref=None):
     rows, counts = build(root, ref)
     files, kinds_of = shards(rows)
     files['_summary.json'] = summary(rows, counts, files, kinds_of)
+    files.update(batch_shards(counts))
     return files
 
 

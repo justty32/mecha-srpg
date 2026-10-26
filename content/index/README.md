@@ -4,7 +4,7 @@
 
 `content/base/`、`content/lore/` 每個有 `id` 的 JSON 一列，由 `npm run content:index` 產生；`npm test` 會驗它與實際檔案一致，過時就紅。遊戲載入器與百科都不讀這裡。
 
-**按類別分片**：一片一個 `<pack>-<kind>.json`（例 `base-frame.json`、`base-monster.json`、`lore-character.json`）；不足 1 KB 的小類併進 `<pack>-misc.json`；單片超過 2000 列或 512 KB 再按等級分成 `<pack>-<kind>-<grade>.json`。哪幾片、各幾列、各級分布看 [_summary.json](_summary.json)（永遠 ≤ 8 KB）。
+**按類別分片**：一片一個 `<pack>-<kind>.json`（例 `base-frame.json`、`base-monster.json`、`lore-character.json`）；不足 1 KB 的小類併進 `<pack>-misc.json`；單片超過 2000 列或 512 KB 再按等級分成 `<pack>-<kind>-<grade>.json`。哪幾片、各幾列、各級分布看 [_summary.json](_summary.json)（永遠 ≤ 8 KB）；各批次的 status／date／files 件數在按月分片 `_batches-<YYYY-MM>[-<前綴>].json`（例 [_batches-2026-10.json](_batches-2026-10.json)；單月過大時按 id 前綴再分），summary 只帶批次總數與各月件數。
 
 **只准帶條件查分片，不整份讀**（鐵律 3）：先看 `_summary.json` 找分片，再用資料檔工具的 `find`／`grep` 取需要的列；查法見 [data-files](../../wf/workflows/common/data-files.md)。引用數會頻繁變動，不進分片，要時用產生器的 `refs` 子指令即時算。
 
