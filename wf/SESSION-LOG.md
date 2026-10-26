@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 2026-10-26 填充層七線（lead-fill 南亞東南亞、lead-aegir 歐洲、lead-fill-am、lead-fill-af、lead-fill-ea、lead-fill-mech、lead-fill-kaiju）進行中；每線交 handoffs/<線>/review.json（每件一兩句白話）→ 全收後開**去重線** → 再交 Fable＋使用者審敘事基調（使用者 2026-10-26 定的流程）
+- [dispatch] 2026-10-26 晚：填充七線、去重、Fable 基調審查已完成；現役 lead-tone-fix（照 Fable 方向 1–5）、lead-mech2、lead-kaiju2、plan-wanchao（Fable）、sonnet-rep-tune；使用者外出，授權「隨意、繼續」
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
 
