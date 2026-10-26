@@ -18,6 +18,7 @@ export type WorldRules = {
     siteName: { template: string; families: Record<string, string> }; ruinChance: number; seedTables: Record<string, string> };
   rifts: { openingDays: number };
   travel: { fuelPerDay: number; daysMultiplier: number; shallowEncounterChance: number; retreatFuel: number; partyMin: number; partyMax: number };
+  repGate: { byTier: Record<Grade, number>; overrides: Record<string, number> };
   market: { repDiscount: number; minimumMultiplier: number; frameReadiness: number };
 };
 export function worldRules(ctx: OpsCtx): WorldRules {

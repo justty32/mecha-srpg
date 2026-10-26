@@ -82,7 +82,7 @@ export type MoveLeg = { map: Id; cells: Cell[]; lane?: { id: Id; to: Loc } };
 export type ShipState = { frame: Id; pos: Loc; path?: { cells: Cell[]; lane?: { id: Id; daysLeft: number };
   legs: MoveLeg[]; to: Loc | { place: Id } | { actor: Id }; via: Loc[] };
   mpCarry: number; drifting: boolean; rooms: Record<RoomId, RoomState>; capacity: ShipCapacity; fuel: PoolState; hull: PoolState; upgrades: Id[] };
-export type FactionOpsDef = { actionLanes?: ("world" | "war")[]; id: Id; faction: Id; scale: string; territory: Id[]; stance: { player: number; bio: number; ancient: number; soul: number; league: number };
+export type FactionOpsDef = { actionLanes?: ("world" | "war")[]; id: Id; faction: Id; scale: string; territory: Id[]; presence?: Id[]; stance: { player: number; bio: number; ancient: number; soul: number; league: number };
   contractKinds: Id[]; services: ServiceId[]; reputationTiers: { at: number; grants: Id[]; name: string }[];
   lifecycle?: { growOn?: Cond; shrinkOn?: Cond; absorbedBy?: Id };
   naming?: { mechStages: { grade: Grade[]; pattern: string }[]; ancient: string; flavor: string }; tags: string[];

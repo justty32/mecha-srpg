@@ -1,4 +1,4 @@
-import { placeDef } from "../world/places.ts";
+import { placeDef, worldRules } from "../world/places.ts";
 import type { Id } from "../../core/ids.ts";
 import { nextFloat, pickWeighted } from "../../core/rng.ts";
 import type { CampaignState, OpsCtx } from "../state/types.ts";
@@ -11,7 +11,7 @@ import { placeAt } from "./loc.ts";
 export function initRnd(s: CampaignState, ctx: OpsCtx, ids: string[]): void {
   for (const id of ids) {
     const f = s.factions[id]!, lineages = heldLineages(s, ctx, id);
-    const released = ctx.world.all("model").filter(m => m.role !== "captain" && lineages.includes(m.lineage) &&
+    const released = ctx.world.all("model").filter(m => m.role !== "captain" && makerCanResearch(s, ctx, id, m) && lineages.includes(m.lineage) &&
       "month" in m.availableFrom && m.availableFrom.month <= 0).map(m => m.id);
     f.rnd = { points: 0, released, lineages, stalled: [] };
     f.rndProgress = { acquired: {}, held: [...lineages], lastDay: s.clock.day };
@@ -20,6 +20,22 @@ export function initRnd(s: CampaignState, ctx: OpsCtx, ids: string[]): void {
 }
 export function isModelGeneric(s: CampaignState, model: ModelDef): boolean {
   return model.generic || s.models?.[model.id]?.genericSince !== undefined;
+}
+// 通用血統上的私有衍型只授權造機勢力；流出後重新加入通用池。
+function makerCanResearch(s: CampaignState, ctx: OpsCtx, faction: string, model: ModelDef): boolean {
+  return ctx.world.get("lineage", model.lineage)?.source !== "generic" || isModelGeneric(s, model) ||
+    model.maker === "generic" || factionId(s, ctx, model.maker) === faction;
+}
+export function repGate(s: CampaignState, ctx: OpsCtx, model: ModelDef): number | undefined {
+  if (isModelGeneric(s, model) || model.maker === "generic") return undefined;
+  const gates = worldRules(ctx).repGate;
+  return gates.overrides[model.id] ?? gates.byTier[model.tier];
+}
+export function repGateBlocked(s: CampaignState, ctx: OpsCtx, model: ModelDef): { faction: string; need: number; have: number } | undefined {
+  const need = repGate(s, ctx, model);
+  if (need === undefined) return undefined;
+  const faction = factionId(s, ctx, model.maker) ?? model.maker, have = s.factions[faction]?.rep ?? 0;
+  return have < need ? { faction, need, have } : undefined;
 }
 export function modelVisibleAt(s: CampaignState, ctx: OpsCtx, model: ModelDef, node: string): boolean {
   if (model.role === "captain" || s.models?.[model.id]?.releasedDay === undefined) return false;
@@ -51,7 +67,7 @@ export function modelAvailable(s: CampaignState, ctx: OpsCtx, faction: string, m
 }
 export function rndCandidates(s: CampaignState, ctx: OpsCtx, faction: string): ModelDef[] {
   const rnd = s.factions[faction]?.rnd; if (!rnd) return [];
-  return ctx.world.all("model").filter(m => m.role !== "captain" && !rnd.released.includes(m.id) &&
+  return ctx.world.all("model").filter(m => m.role !== "captain" && makerCanResearch(s, ctx, faction, m) && !rnd.released.includes(m.id) &&
     m.requires.every(id => rnd.released.includes(id)) && rnd.lineages.includes(m.lineage) && !rnd.stalled.includes(m.lineage) && modelAvailable(s, ctx, faction, m));
 }
 export function researchWeight(s: CampaignState, ctx: OpsCtx, faction: string, model: ModelDef): number {

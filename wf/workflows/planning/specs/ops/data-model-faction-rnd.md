@@ -39,6 +39,8 @@ type ModelState = { def: Id; releasedDay?: number; genericSince?: number; by: Id
 - **敵方情境**：對人作戰與競爭獵團 `ambush` 的 `UnitSpawn` 從該勢力 `released`（獵團從 `generic`＋買得到的）抽，人物臨時生成；所以玩家在第 10 蝕月遇到的塞勒涅白手套，開的是第 10 蝕月的型號。
 - **玩家**：買、撿、拆的是同一池；`ResearchDef` 的 `unlocks` 可指向 `ModelDef`（獵團自己也能造通用改型）。
 
+SPEC-GAP 補（2026-10-26 lead-rep）：玩家購買尚未流出的 `generic:false` 且 `maker !== "generic"` 機型，須對 maker 的逐勢力聲望達 `action/ops-world.rules.repGate.overrides[model.id] ?? byTier[tier]`；通用三系與已流出機型公開。所有市場（含 maker 地盤與條約進口）一律在付款扣貨前驗證，不足回 `reputation-required`；固定 frame 清單若有任一無門檻 model 即公開，否則取最低門檻。原可見規則保留；已釋出、非隊長的私有機聲望達標後，也可在符合篩選器的市場列出。通用血統上的私有 maker 機只由 maker 開局釋出與研發，其餘血統照舊。世界補員仍從各自 released 抽；玩家目前沒有研發機型／補員帶機入口，本次不新增。
+
 ## 技術流出 `leakModel`
 
 `OpsEffect leakModel { model; by? }` 把機型改成 `generic:true, genericSince`、`exportPolicy:"open"`，寫 `TechLeaked`，驅動表 `tech-leak` 列結宿怨。來源四種：(1) 作戰——奪點／襲擾踩到 `maker` 標 `workshop` 的區域且成功，擲 `0.3 × tier 係數`；(2) 事件——叛逃技師、黑市拍賣（`events/`）；(3) 條約——`trade` 連續 6 蝕月、或 `shell-pact`，到期 `licensed → open`；(4) **玩家**——把 `restricted`／`licensed` 機型（撿的、借的）賣進市場或交給另一勢力，流出且 `maker rep −15`。流出的機型進通用池，所有勢力可做 `variant`——這就是「通用系列愈來愈多」的來源之一；年代早的另一半在內容裡直接 `generic:true`。

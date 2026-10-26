@@ -160,6 +160,15 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if ("special" in cal) errors.push(`${cal.id}.special: obsolete, use world/omens/`);
   }
   errors.push(...omenErrors(world));
+  const rules = world.get("action", "action/ops-world") as unknown as { rules?: { repGate?: { overrides?: Record<string, unknown> } } } | undefined;
+  for (const [id, value] of Object.entries(rules?.rules?.repGate?.overrides ?? {})) {
+    reference(id, "action/ops-world.rules.repGate.overrides", "model");
+    if (typeof value !== "number" || !Number.isFinite(value) || value < -100 || value > 100) errors.push(`action/ops-world.rules.repGate.overrides.${id}: must be number in -100..100`);
+  }
+  for (const f of world.all("faction-ops")) {
+    if (f.presence !== undefined && !Array.isArray(f.presence)) errors.push(`${f.id}.presence: expected array`);
+    else for (const id of f.presence ?? []) reference(id, `${f.id}.presence`, "place");
+  }
   for (const model of world.all("model")) {
     reference(model.frame, `${model.id}.frame`, "frame");
     if (db.get("frame", model.frame)?.cls !== "mechanical") errors.push(`${model.id}.frame: must be mechanical`);

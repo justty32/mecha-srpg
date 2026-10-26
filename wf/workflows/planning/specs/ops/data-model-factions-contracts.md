@@ -23,6 +23,8 @@ type FactionState = { def: Id; rep: number /*−100..100*/; scaleNow: string; te
 
 殘聯是傘：它自己是一個勢力（獵牌、評等、通緝），三十一座城邦各是一個勢力（各自發契約）。**聲望逐勢力**，無全局名聲；殘聯評等由 `rep` 分層決定契約級別與型錄衍型機等級。`stance.bio`／`ancient`／`soul` 讓同一件事（你帶了一隻 B 級進城）對不同勢力產生不同 rep 變化——由事件表引用這些格子，不在程式裡分支。開局約 40 個勢力，5–8 個大。`naming` 是給內容與生成器用的慣例欄（2026-10-24 裁示）：機械系名稱分階段——代號→系列＋型號→愈高階愈中二，`pattern` 依開發勢力喜好；古代機甲原始無名，`ancient` 預設由發現者以神話命名。程式只在生成機甲名與事件文字時取用。
 
+SPEC-GAP 補（2026-10-26 lead-rep）：`FactionOpsDef.presence?: Id[] /*place*/` 是派駐發包地，不算領地、不駐軍；附近判定及非裂縫契約落點同時採 territoryNow 與 presence。未指定 issuer 的發包請求，先讓有領地的既有勢力承接，再輪只有 presence 的勢力。
+
 **契約與談判**（ContractTemplate／EnemySnapshot／ContractState、生命週期與取消、敵軍編成快照、清剿打什麼、談判 Negotiation）→ [data-model-factions-contracts/contracts](data-model-factions-contracts/contracts.md)
 
 ## 世界行動牌 WorldAction（勢力模擬）

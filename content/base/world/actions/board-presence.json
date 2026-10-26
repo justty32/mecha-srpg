@@ -1,0 +1,23 @@
+{
+  "id": "action/board-presence",
+  "actor": "faction",
+  "valid": {
+    "tag": "presence-board"
+  },
+  "weight": 100,
+  "cooldownDays": 8,
+  "effects": [
+    {
+      "spawnContract": "contract/scout-rift-margin",
+      "near": "territory"
+    },
+    {
+      "spawnContract": "contract/defend-citywall",
+      "near": "territory"
+    },
+    {
+      "spawnContract": "contract/escort-sealed-convoy",
+      "near": "territory"
+    }
+  ]
+}

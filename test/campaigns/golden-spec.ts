@@ -17,10 +17,10 @@ export const warOnly = new Set(["OperationStarted", "OperationEngaged", "Operati
 export const sequences: Record<string, Step[]> = {
   "ops-war-assault": [
     { type: "OperationStarted", field: "kind", value: "assault" },
-    { type: "OperationEngaged", field: "operation", value: "operation-4" },
-    { type: "OperationEngaged", field: "operation", value: "operation-4" },
+    { type: "OperationEngaged", field: "operation", value: "operation-1" },
+    { type: "OperationEngaged", field: "operation", value: "operation-1" },
     { type: "RiftPhase", field: "to", value: "unanchored" },
-    { type: "OperationResolved", field: "operation", value: "operation-4" },
+    { type: "OperationResolved", field: "operation", value: "operation-1" },
   ],
   "ops-relic": [
     { type: "OperationStarted", field: "kind", value: "relic-hunt" },
@@ -29,17 +29,17 @@ export const sequences: Record<string, Step[]> = {
     { type: "ModelReleased", field: "model", value: "base:model/old-array-ii" },
   ],
   "ops-merc-join": [
-    { type: "ContractAccepted", field: "contract", value: "contract-68" },
-    { type: "Arrived", field: "place", value: "base:place/salt-flat" },
-    { type: "BattleResolved", field: "operation", value: "operation-2" },
-    { type: "OperationResolved", field: "operation", value: "operation-2" },
-    { type: "JoinSettled", field: "contract", value: "contract-68" },
+    { type: "ContractAccepted", field: "contract", value: "contract-136" },
+    { type: "Arrived", field: "place", value: "base:place/ridge" },
+    { type: "BattleResolved", field: "operation", value: "operation-5" },
+    { type: "OperationResolved", field: "operation", value: "operation-5" },
+    { type: "JoinSettled", field: "contract", value: "contract-136" },
   ],
   "ops-betrayal": [
-    { type: "ContractAccepted", field: "contract", value: "contract-57" },
-    { type: "ContractCancelled", field: "contract", value: "contract-57" },
-    { type: "ContractAccepted", field: "contract", value: "contract-72" },
-    { type: "Betrayed", field: "contract", value: "contract-57" },
+    { type: "ContractAccepted", field: "contract", value: "contract-66" },
+    { type: "ContractCancelled", field: "contract", value: "contract-66" },
+    { type: "ContractAccepted", field: "contract", value: "contract-62" },
+    { type: "Betrayed", field: "contract", value: "contract-66" },
   ],
   "ops-leak": [
     { type: "MechLoaned", field: "model", value: "base:model/union-fr7" },

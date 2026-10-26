@@ -11,7 +11,7 @@ import { worldRules } from "./places.ts";
 import type { CmdResult } from "./places.ts";
 import type { ModelDef } from "../war/types.ts";
 import { factionId, hasTreaty } from "../war/relations.ts";
-import { isModelGeneric, leakModel, modelVisibleAt } from "../war/rnd.ts";
+import { isModelGeneric, leakModel, modelVisibleAt, repGate, repGateBlocked } from "../war/rnd.ts";
 
 type MarketItem = MarketDef["lists"][number]["items"][number];
 type MarketFilter = NonNullable<MarketDef["lists"][number]["filters"]>[number];
@@ -31,12 +31,23 @@ function matches(ctx: OpsCtx, model: ModelDef, item: MarketFilter): boolean {
     (!maker || maker === model.maker || ctx.world.get("faction-ops", maker)?.faction === model.maker || ctx.db.get("faction", maker)?.id === model.maker) &&
     ["D", "C", "B", "A", "S", "SS", "SSS"].indexOf(model.tier) <= ["D", "C", "B", "A", "S", "SS", "SSS"].indexOf(tierMax);
 }
+function marketModelVisible(s: CampaignState, ctx: OpsCtx, model: ModelDef, place: string): boolean {
+  return modelVisibleAt(s, ctx, model, place) || model.role !== "captain" &&
+    s.models?.[model.id]?.releasedDay !== undefined && repGate(s, ctx, model) !== undefined && !repGateBlocked(s, ctx, model);
+}
+function frameRepBlocked(s: CampaignState, ctx: OpsCtx, item: FixedItem): boolean {
+  if (item.model) return !!repGateBlocked(s, ctx, ctx.world.require("model", item.model));
+  const models = ctx.world.all("model").filter(m => m.frame === item.def);
+  if (!models.length || models.some(m => repGate(s, ctx, m) === undefined)) return false;
+  const easiest = models.sort((a, b) => repGate(s, ctx, a)! - repGate(s, ctx, b)! || a.id.localeCompare(b.id))[0]!;
+  return !!repGateBlocked(s, ctx, easiest);
+}
 function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = false, includeImports = true): Listing[] {
   const result: Listing[] = [];
   for (const list of market.lists) {
     for (const item of list.items) result.push({ kind: list.kind, item });
     if (list.kind !== "frame") continue;
-    for (const item of list.filters ?? []) for (const model of ctx.world.all("model")) if (matches(ctx, model, item) && (resale || modelVisibleAt(s, ctx, model, market.place))) {
+    for (const item of list.filters ?? []) for (const model of ctx.world.all("model")) if (matches(ctx, model, item) && (resale || marketModelVisible(s, ctx, model, market.place))) {
       result.push({ kind: "frame", item: { def: model.frame, weight: item.weight, stockMax: item.stockMax, ...(item.basePrice === undefined ? {} : { basePrice: item.basePrice }), model: model.id } });
     }
   }
@@ -58,7 +69,7 @@ function listings(s: CampaignState, ctx: OpsCtx, market: MarketDef, resale = fal
 export function marketListings(s: CampaignState, ctx: OpsCtx, market: MarketDef): Listing[] {
   const old = (s as MarketState).markets?.[market.id];
   if (!old) return listings(s, ctx, market);
-  const dynamic = (old.dynamic ?? []).filter(l => !l.item.model || modelVisibleAt(s, ctx, ctx.world.require("model", l.item.model), market.place));
+  const dynamic = (old.dynamic ?? []).filter(l => !l.item.model || marketModelVisible(s, ctx, ctx.world.require("model", l.item.model), market.place));
   const dynamicIds = new Set(dynamic.map(l => l.item.def));
   return [...market.lists.flatMap(list => list.items.filter(item => !dynamicIds.has(item.def)).map(item => ({ kind: list.kind, item }))), ...dynamic]
     .sort((a, b) => a.item.def < b.item.def ? -1 : a.item.def > b.item.def ? 1 : 0);
@@ -155,6 +166,7 @@ export function cmdTrade(s: CampaignState, ctx: OpsCtx, cmd: Extract<OpsCommand,
     const ref = component?.def ?? mech?.frame ?? id;
     const listing = (buy ? items : resale).find(i => i.item.def === ref || ctx.db.get("component", ref)?.id === i.item.def || ctx.db.get("frame", ref)?.id === i.item.def);
     if (!listing || listing.item.basePrice === undefined) return { ok: false, error: "unknown-item" };
+    if (buy && listing.kind === "frame" && frameRepBlocked(s, ctx, listing.item)) return { ok: false, error: "reputation-required" };
     const physical = ["component", "frame"].includes(listing.kind);
     if (!physical && (!isAccount(listing.item.def) || !listing.item.def.startsWith("stock:"))) return { ok: false, error: "unsupported-item" };
     if (physical && !buy) {

@@ -41,8 +41,11 @@ export function offerContract(s: CampaignState, ctx: OpsCtx, templateId: string,
   ctx.emit("ContractOffered", { contract: id, issuer: issuer.id, node: node.id });
   return contract;
 }
+function issuerPlaces(s: CampaignState, ctx: OpsCtx, issuer: string): string[] {
+  return [...new Set([...s.factions[issuer]!.territoryNow, ...(ctx.world.require("faction-ops", issuer).presence ?? [])])];
+}
 function nearby(s: CampaignState, ctx: OpsCtx, issuer: string, node: string): boolean {
-  const territory = s.factions[issuer]!.territoryNow;
+  const territory = issuerPlaces(s, ctx, issuer);
   const target = requirePlace(s, ctx, node);
   return territory.includes(node) || territory.some(id => {
     const home = placeDef(s, ctx, id);
@@ -71,14 +74,14 @@ export function contractsDaily2(s: CampaignState, ctx: OpsCtx): void {
   for (const request of requests) {
     const template = ctx.world.get("contract", request.template);
     if (!template) continue;
-    const issuers = (request.issuer ? [request.issuer] : Object.keys(s.factions).sort()).filter(id => eligible(s, ctx, template, id));
+    const issuers = (request.issuer ? [request.issuer] : Object.keys(s.factions).sort((a, b) => Number(!s.factions[a]!.territoryNow.length) - Number(!s.factions[b]!.territoryNow.length) || a.localeCompare(b))).filter(id => eligible(s, ctx, template, id));
     for (const issuer of issuers) {
       const explicitNode = request.place ?? (request.near && request.near !== "territory" ? placeDef(s, ctx, request.near)?.id : undefined);
       const targets = request.rift ? [s.rifts[request.rift]].filter(r => !!r) : Object.keys(s.rifts).sort().map(id => s.rifts[id]!).filter(r =>
         !["closed", "sealed", "receding"].includes(r.phase) && template.gradeRange.includes(r.width) && (!explicitNode || r.site === explicitNode) && (request.near !== "territory" || nearby(s, ctx, issuer, r.site)));
       const needsRift = ["clear", "seal", "reclaim"].includes(template.kind);
       const rift = request.rift || needsRift ? targets[0] : undefined;
-      const node = rift?.site ?? explicitNode ?? (!needsRift ? s.factions[issuer]!.territoryNow
+      const node = rift?.site ?? explicitNode ?? (!needsRift ? issuerPlaces(s, ctx, issuer)
         .filter(id => !s.places[id]?.flags.includes("blight-lost") && shortestPath(s, ctx, s.ship.pos, id)).sort()[0] : undefined);
       if (!node || !rift && needsRift || template.kind === "join") continue;
       const duplicate = Object.keys(s.contracts).sort().some(id => { const c = s.contracts[id]!; return c.template === template.id && c.issuer === issuer && c.target.place === node && ["offered", "active", "stage"].includes(c.status); });
