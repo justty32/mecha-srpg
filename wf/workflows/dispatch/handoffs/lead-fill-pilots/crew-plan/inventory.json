@@ -1,0 +1,1720 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "type",
+  "id",
+  "name",
+  "count",
+  "hireable",
+  "detail"
+ ],
+ "rows": [
+  {
+   "type": "pool",
+   "id": "recruit/dhaka",
+   "name": "recruit/dhaka",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "size": 4,
+    "place": "place/dhaka"
+   }
+  },
+  {
+   "type": "pool",
+   "id": "recruit/reed-marsh",
+   "name": "recruit/reed-marsh",
+   "count": 4,
+   "hireable": [
+    "person/mitali-das",
+    "person/salim-haddad",
+    "person/nadia-el-masri",
+    "person/lin-zhaosheng"
+   ],
+   "detail": {
+    "size": 3,
+    "place": "place/reed-marsh"
+   }
+  },
+  {
+   "type": "pool",
+   "id": "recruit/singapore",
+   "name": "recruit/singapore",
+   "count": 4,
+   "hireable": [
+    "person/irina-sokolova",
+    "person/maia-te-rangi",
+    "person/tupaia-moana",
+    "person/hana-sato"
+   ],
+   "detail": {
+    "size": 4,
+    "place": "place/singapore"
+   }
+  },
+  {
+   "type": "pool",
+   "id": "recruit/wharf-chittagong",
+   "name": "recruit/wharf-chittagong",
+   "count": 4,
+   "hireable": [
+    "person/kojo-mensah",
+    "person/farida-rahman",
+    "person/tachibana-ibuki",
+    "person/yusuf-demir"
+   ],
+   "detail": {
+    "size": 4,
+    "place": "place/chittagong"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/chittagong",
+   "name": "吉大港",
+   "count": 4,
+   "hireable": [
+    "person/farida-rahman",
+    "person/kojo-mensah",
+    "person/tachibana-ibuki",
+    "person/yusuf-demir"
+   ],
+   "detail": {
+    "basePlace": "place/chittagong",
+    "pools": [
+     "recruit/wharf-chittagong"
+    ],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/dhaka",
+   "name": "達卡",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "basePlace": "place/dhaka",
+    "pools": [
+     "recruit/dhaka"
+    ],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/delta",
+   "name": "三角洲",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/delta",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/mumbai-gate",
+   "name": "孟買門",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/mumbai",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/old-array",
+   "name": "舊陣列遺跡",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/old-array",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/reed-marsh",
+   "name": "蘆葦澤",
+   "count": 4,
+   "hireable": [
+    "person/lin-zhaosheng",
+    "person/mitali-das",
+    "person/nadia-el-masri",
+    "person/salim-haddad"
+   ],
+   "detail": {
+    "basePlace": "place/reed-marsh",
+    "pools": [
+     "recruit/reed-marsh"
+    ],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/ridge",
+   "name": "北方山脊",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/ridge",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/salt-flat",
+   "name": "鹽灘",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/salt-flat",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/tranquility-city",
+   "name": "靜海市",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "basePlace": "place/selene-city",
+    "pools": [],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "place",
+   "id": "place/singapore",
+   "name": "新加坡渡月港",
+   "count": 4,
+   "hireable": [
+    "person/hana-sato",
+    "person/irina-sokolova",
+    "person/maia-te-rangi",
+    "person/tupaia-moana"
+   ],
+   "detail": {
+    "basePlace": "place/singapore",
+    "pools": [
+     "recruit/singapore"
+    ],
+    "gap": "缺一個專業船員主題池"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/anvil",
+   "name": "鐵砧獵團",
+   "count": 1,
+   "hireable": [
+    "person/kojo-mensah"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/greg-olsen",
+     "character/ivo-serrin"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/chittagong-breakers",
+   "name": "吉大港拆船幫",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/rashid-ironmouth"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/dhaka-weavers",
+   "name": "達卡紡織公會",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/fatima-begum",
+     "character/rokeya-karim"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/far-herd",
+   "name": "遠牧獵團",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/juma-kiprop"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/ground-union",
+   "name": "地勤會",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/park-incheol"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/heartland-capital",
+   "name": "內陸財團",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/evan-cresswell"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/league",
+   "name": "殘聯",
+   "count": 2,
+   "hireable": [
+    "person/lin-zhaosheng",
+    "person/tachibana-ibuki"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/adebayo-oluwaseyi"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/league-armory",
+   "name": "殘聯軍械庫",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/howard-ling"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/migrant-crew",
+   "name": "候鳥號獵團",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/a-xiu",
+     "character/chen-xiaohai",
+     "character/gui-hongfei",
+     "character/ilse-brandt",
+     "character/mara-okoye",
+     "character/old-ben",
+     "character/ren-kasai",
+     "character/sayeed"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/mimic-works",
+   "name": "衍一聯合",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/qin-wangshu"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/old-arms-makers",
+   "name": "舊廠諸家",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/remnant-wings",
+   "name": "殘翼航空",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/hakan-demir",
+     "character/patrick-oconnor"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/salt-gull",
+   "name": "鹽鷗獵團",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/molly-van-den-berg",
+     "character/salt-crone"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/selene",
+   "name": "塞勒涅工業",
+   "count": 2,
+   "hireable": [
+    "person/hana-sato",
+    "person/irina-sokolova"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/jonas-halvorsen",
+     "character/m3",
+     "character/rosa-mendoza",
+     "character/tsai-mingzhu",
+     "character/unit-07"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/shell-society",
+   "name": "稽古學會",
+   "count": 2,
+   "hireable": [
+    "person/nadia-el-masri",
+    "person/yusuf-demir"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/anil-chowdhury",
+     "character/eugenia-ferrero",
+     "character/ogun-adeyemi",
+     "character/okamoto-mayu",
+     "character/rajiv-saldanha",
+     "character/xingtian"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/third-blade",
+   "name": "第三刃",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/choi-mugyeom",
+     "character/han-seorin",
+     "character/old-man",
+     "character/yoon-seoyoung"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/tide-creed",
+   "name": "沐蝕會",
+   "count": 1,
+   "hireable": [
+    "person/salim-haddad"
+   ],
+   "detail": {
+    "loreCharacters": [
+     "character/meera-naik",
+     "character/samir-khan"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/unbinders",
+   "name": "解拘者",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/aisha-the-yokeless"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/whitegloves",
+   "name": "白手套",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [
+     "character/glove",
+     "character/zheng-weizhou"
+    ],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "faction",
+   "id": "faction/yoke-saddle-works",
+   "name": "軛鞍行",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "loreCharacters": [],
+    "mapping": "優先lore gameRefs；缺lore時按person tags映射，數量為現有池可抽範本，非現役職缺"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/a-xiu",
+   "name": "阿鏽",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號租來的機魂",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/adebayo-oluwaseyi",
+   "name": "阿德巴約・奧盧瓦塞伊",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/league",
+    "role": "殘聯首任議長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/aisha-the-yokeless",
+   "name": "無軛的阿依莎",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/unbinders",
+    "role": "解拘者首領",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/anil-chowdhury",
+   "name": "阿尼爾・喬杜里",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "稽古學會駐達卡的座標販子",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/chen-xiaohai",
+   "name": "陳小海",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號駕駛員，獸緣全團最高",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/choi-mugyeom",
+   "name": "崔武謙",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/third-blade",
+    "role": "第三刃拖機手與劍魚駕駛員",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/eugenia-ferrero",
+   "name": "尤金妮亞・費雷羅",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "考古學家、稽古學會會長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/evan-cresswell",
+   "name": "伊文・克雷斯維爾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/heartland-capital",
+    "role": "內陸財團的紐約地契估價員",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/fatima-begum",
+   "name": "法蒂瑪・貝古姆",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/dhaka-weavers",
+    "role": "達卡紡織公會長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/glove",
+   "name": "手套",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/whitegloves",
+    "role": "塞勒涅信貸部唯一的催收機魂",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/greg-olsen",
+   "name": "格雷格・奧爾森",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/anvil",
+    "role": "鐵砧獵團團長、地球最大獵團的老闆",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/gui-hongfei",
+   "name": "老桂（桂鴻飛）",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號前團長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/hakan-demir",
+   "name": "哈坎・德米爾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/remnant-wings",
+    "role": "殘翼航空上校，奧康納之後的掌舵人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/han-seorin",
+   "name": "韓瑞潾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/third-blade",
+    "role": "第三刃隨船驗貨員",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/howard-ling",
+   "name": "霍華・凌",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/league-armory",
+    "role": "殘聯獵牌總監、軍械庫總管",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/ilse-brandt",
+   "name": "伊爾瑟・布蘭特",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號駕駛員、前鐵砧王牌、刑天認主者拉吉夫的副手",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/ivo-serrin",
+   "name": "伊沃・瑟林",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/anvil",
+    "role": "鐵砧東亞守倉隊長、第三刃的契約對手",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/jonas-halvorsen",
+   "name": "約納斯・哈爾沃森",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/selene",
+    "role": "塞勒涅工業創辦人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/juma-kiprop",
+   "name": "朱瑪・基普羅普",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/far-herd",
+    "role": "遠牧獵團團長、軛騎",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/lira-santos",
+   "name": "莉拉・桑托斯",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": null,
+    "role": "往來群島的報訊船值更長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/m3",
+   "name": "M-3（三號測試員）",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/selene",
+    "role": "赫卡忒的秘密認主者（傳聞）",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/mara-okoye",
+   "name": "瑪拉・奧可耶",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號技師兼駕駛員",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/marta-bellini",
+   "name": "瑪塔・貝里尼",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/inner-sea-houses",
+    "role": "熱那亞家族工坊的受雇總匠",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/meera-naik",
+   "name": "米拉・奈克",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/tide-creed",
+    "role": "孟買門難民灶的施粥者與教義轉述者",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/mina-darzi",
+   "name": "米娜・達爾齊",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/backside",
+    "role": "渡月船貨布縫補工與押貨人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/molly-van-den-berg",
+   "name": "茉莉・范・德・貝格",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/salt-gull",
+    "role": "鹽鷗獵團團長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/ogun-adeyemi",
+   "name": "奧貢・阿德耶米",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "神經學者、「遺跡誘導」理論提出者、稽古學會共同創辦人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/okamoto-mayu",
+   "name": "岡本 繭",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "刻痕語言學家",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/old-ben",
+   "name": "老班",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號廚子兼醫官",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/old-man",
+   "name": "老爹",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/third-blade",
+    "role": "第三刃隊長機連星-劍魚的機魂",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/park-incheol",
+   "name": "朴仁哲",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/ground-union",
+    "role": "靜海市地勤會會長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/patrick-oconnor",
+   "name": "帕特里克・奧康納",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/remnant-wings",
+    "role": "鐵翼之月的指揮官、殘翼航空創辦人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/qin-wangshu",
+   "name": "秦望舒",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/mimic-works",
+    "role": "衍一總工程師、堅盾公刻者、魂核介面之母（後效力塞勒涅）",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/rajiv-saldanha",
+   "name": "拉吉夫・薩爾達納",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "刑天認主者、前鐵砧駕駛員",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/rashid-ironmouth",
+   "name": "拉希德「鐵嘴」",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/chittagong-breakers",
+    "role": "吉大港拆船幫老大",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/ren-kasai",
+   "name": "葛西 蓮",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號駕駛員、前吉大港拆船場工頭",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/rokeya-karim",
+   "name": "羅凱婭・卡里姆",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/dhaka-weavers",
+    "role": "達卡補天院的補帆師與輪值教工",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/rosa-mendoza",
+   "name": "羅莎・門多薩",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/selene",
+    "role": "塞勒涅地月信貸部主任",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/saevna-suren",
+   "name": "賽芙娜・蘇蕾恩",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": null,
+    "role": "運河夜船隊的北非受雇護航隊長，現隨持殘聯獵牌的獵團輪值",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/sahen-darim",
+   "name": "薩赫恩・達里姆",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/west-asia-umbrella",
+    "role": "兩河斷橋受害一方的倖存者，現守停戰線渡船",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/salt-crone",
+   "name": "鹽婆",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/salt-gull",
+    "role": "鹽鷗隊長機潮鷗-長槍的機魂",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/samir-khan",
+   "name": "薩米爾・卡恩",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/tide-creed",
+    "role": "沐蝕會先知",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/sarei-ndovi",
+   "name": "薩蕾・恩多維",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/sub-saharan-umbrella",
+    "role": "撒南傘大潮前協調拘束獸群、騎手與援船的調度人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/sayeed",
+   "name": "賽義德",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/migrant-crew",
+    "role": "候鳥號駕駛員，達卡招來的新人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/tsai-mingzhu",
+   "name": "蔡明珠",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/selene",
+    "role": "塞勒涅工業執行長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/unit-07",
+   "name": "七號",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/selene",
+    "role": "第一個被認為有自己意志的機魂",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/xingtian",
+   "name": "刑天",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/shell-society",
+    "role": "守到最後的先民——一個人、一隻獸、一層裝甲",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/yoon-seoyoung",
+   "name": "尹瑞英",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/third-blade",
+    "role": "第三刃團長",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "character",
+   "id": "character/zheng-weizhou",
+   "name": "鄭維舟",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "faction": "faction/whitegloves",
+    "role": "白手套計畫主持人、試圖複製手套的人",
+    "reuse": "可作背景掛連；本輪不複製、不把固定角色拉進招募池"
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/adewale-balogun",
+   "name": "阿德瓦萊・巴洛貢",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "pilot",
+     "remnant"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/anjali-nair",
+   "name": "安賈莉・奈爾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/dhaka-weavers",
+    "tags": [
+     "human",
+     "technician",
+     "dhaka-guild"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/arun-velan",
+   "name": "阿倫・維蘭",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "remnant",
+     "mumbai",
+     "beast-kin"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/batbayar-erdene",
+   "name": "巴特巴雅爾・額爾德尼",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "remnant",
+     "headquarters"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/chen-xiaohai",
+   "name": "陳小海",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "factionInferred": "faction/migrant-crew",
+    "tags": [
+     "human"
+    ],
+    "hasLore": true
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/darya-farzan",
+   "name": "達莉雅・法爾贊",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/selene",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "selene",
+     "shell-touched"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/esin-kaya",
+   "name": "艾辛・卡亞",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "technician",
+     "remnant"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/hana-sato",
+   "name": "佐藤 花",
+   "count": 1,
+   "hireable": [
+    "person/hana-sato"
+   ],
+   "detail": {
+    "factionInferred": "faction/selene",
+    "tags": [
+     "human",
+     "technician",
+     "selene"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/ilse-brandt",
+   "name": "伊爾瑟・布蘭特",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/migrant-crew",
+    "tags": [
+     "human"
+    ],
+    "hasLore": true
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/irina-sokolova",
+   "name": "伊琳娜・索科洛娃",
+   "count": 1,
+   "hireable": [
+    "person/irina-sokolova"
+   ],
+   "detail": {
+    "factionInferred": "faction/selene",
+    "tags": [
+     "human",
+     "pilot",
+     "selene-retired",
+     "veteran"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/kojo-mensah",
+   "name": "科喬・門薩",
+   "count": 1,
+   "hireable": [
+    "person/kojo-mensah"
+   ],
+   "detail": {
+    "factionInferred": "faction/anvil",
+    "tags": [
+     "human",
+     "technician",
+     "iron-anvil"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/leila-nasser",
+   "name": "蕾拉・納賽爾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/shell-society",
+    "tags": [
+     "human",
+     "researcher",
+     "shell-society",
+     "shell-touched"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/lin-zhaosheng",
+   "name": "林照生",
+   "count": 1,
+   "hireable": [
+    "person/lin-zhaosheng"
+   ],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "remnant",
+     "chongqing"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/mara-okoye",
+   "name": "瑪拉・奧可耶",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/migrant-crew",
+    "tags": [
+     "human"
+    ],
+    "hasLore": true
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/nadia-el-masri",
+   "name": "娜迪雅・馬斯里",
+   "count": 1,
+   "hireable": [
+    "person/nadia-el-masri"
+   ],
+   "detail": {
+    "factionInferred": "faction/shell-society",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "shell-society",
+     "shell-touched"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/nuala-byrne",
+   "name": "努拉・伯恩",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/third-blade",
+    "tags": [
+     "human",
+     "pilot",
+     "third-blade",
+     "rival-hunter"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/ren-kasai",
+   "name": "葛西 蓮",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/migrant-crew",
+    "tags": [],
+    "hasLore": true
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/ronan-o-dalaigh",
+   "name": "羅南・歐達利",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/salt-gull",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "salt-gull"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/salim-haddad",
+   "name": "薩利姆・哈達德",
+   "count": 1,
+   "hireable": [
+    "person/salim-haddad"
+   ],
+   "detail": {
+    "factionInferred": "faction/tide-creed",
+    "tags": [
+     "human",
+     "pilot",
+     "cult-apostate",
+     "beast-kin"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/sigrun-hallvard",
+   "name": "西格倫・哈爾瓦德",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/tide-creed",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "cult-exile",
+     "beast-kin"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/tachibana-ibuki",
+   "name": "橘 伊吹",
+   "count": 1,
+   "hireable": [
+    "person/tachibana-ibuki"
+   ],
+   "detail": {
+    "factionInferred": "faction/league",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "remnant",
+     "osaka"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/tupaia-moana",
+   "name": "圖派亞・莫阿納",
+   "count": 1,
+   "hireable": [
+    "person/tupaia-moana"
+   ],
+   "detail": {
+    "factionInferred": "faction/backside",
+    "tags": [
+     "human",
+     "technician",
+     "far-side",
+     "salvage-diver"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/ximena-itzel",
+   "name": "希梅娜・伊策爾",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/selene",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "selene",
+     "shell-touched"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/xochitl-reyes",
+   "name": "索奇特爾・雷耶斯",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/selene",
+    "tags": [
+     "human",
+     "researcher",
+     "selene-exile",
+     "soul-mentor"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/yusuf-demir",
+   "name": "優素福・德米爾",
+   "count": 1,
+   "hireable": [
+    "person/yusuf-demir"
+   ],
+   "detail": {
+    "factionInferred": "faction/shell-society",
+    "tags": [
+     "human",
+     "pilot",
+     "shell-society",
+     "student",
+     "shell-touched"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "person",
+   "id": "person/zofia-kowalska",
+   "name": "佐菲亞・科瓦爾斯卡",
+   "count": 0,
+   "hireable": [],
+   "detail": {
+    "factionInferred": "faction/anvil",
+    "tags": [
+     "human",
+     "ancient-candidate",
+     "iron-anvil",
+     "veteran"
+    ],
+    "hasLore": false
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/anvil-salvager",
+   "name": "鐵砧獵團碼頭回收技師",
+   "count": 1,
+   "hireable": [
+    "person/kojo-mensah"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "bengal"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/farside-hull-welder",
+   "name": "背面帶傷艙外焊工",
+   "count": 1,
+   "hireable": [
+    "person/tupaia-moana"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "polynesia"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/farside-navigator",
+   "name": "背面渡輪領航員",
+   "count": 1,
+   "hireable": [
+    "person/maia-te-rangi"
+   ],
+   "detail": {
+    "inScope": false,
+    "culture": "polynesia"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/league-runaway",
+   "name": "殘聯逃籍的船屋傷兵",
+   "count": 1,
+   "hireable": [
+    "person/lin-zhaosheng"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "han"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/refugee",
+   "name": "難民機甲師",
+   "count": 1,
+   "hireable": [
+    "person/chen-xiaohai"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "bengal"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/selene-soul-mender",
+   "name": "塞勒涅離職魂核維修員",
+   "count": 1,
+   "hireable": [
+    "person/hana-sato"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "yamato"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/selene-test-retiree",
+   "name": "塞勒涅退役測試駕駛",
+   "count": 1,
+   "hireable": [
+    "person/irina-sokolova"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "norse"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/seventh-watch-child",
+   "name": "第七哨難民孩子",
+   "count": 1,
+   "hireable": [
+    "person/mitali-das"
+   ],
+   "detail": {
+    "inScope": false,
+    "culture": "bengal"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/seventh-watch-diver",
+   "name": "第七哨漁隊救生潛水員",
+   "count": 1,
+   "hireable": [
+    "person/farida-rahman"
+   ],
+   "detail": {
+    "inScope": false,
+    "culture": "bengal"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/shell-field-student",
+   "name": "稽古學會傷後返港學生",
+   "count": 1,
+   "hireable": [
+    "person/yusuf-demir"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "mesopotamia"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/shell-marsh-mortician",
+   "name": "稽古學會船屋收殮員",
+   "count": 1,
+   "hireable": [
+    "person/nadia-el-masri"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "egypt"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/storm-rescue-skipper",
+   "name": "大阪漁港救難艇長",
+   "count": 1,
+   "hireable": [
+    "person/tachibana-ibuki"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "yamato"
+   }
+  },
+  {
+   "type": "background",
+   "id": "background/tide-apostate",
+   "name": "沐蝕會叛教者",
+   "count": 1,
+   "hireable": [
+    "person/salim-haddad"
+   ],
+   "detail": {
+    "inScope": true,
+    "culture": "mesopotamia"
+   }
+  }
+ ]
+}

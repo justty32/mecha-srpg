@@ -1,0 +1,2718 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "name",
+  "gender",
+  "age",
+  "born",
+  "activeYears",
+  "origin",
+  "before",
+  "after",
+  "personality",
+  "moment",
+  "quote",
+  "role",
+  "abilityBias",
+  "attrs",
+  "levelDice",
+  "traits",
+  "perks",
+  "abilities",
+  "tags",
+  "culture",
+  "cultureReason",
+  "background",
+  "backgroundName",
+  "hireFee",
+  "wageMult",
+  "attrRanges",
+  "backgroundTraits",
+  "template",
+  "feeTemplate",
+  "pool",
+  "weight",
+  "recruitPlace",
+  "place",
+  "faction",
+  "hook",
+  "mech",
+  "now",
+  "bodyOutline",
+  "events",
+  "relations",
+  "will",
+  "batch",
+  "files",
+  "under20Reason"
+ ],
+ "rows": [
+  {
+   "id": "temilade-akinwale",
+   "name": "泰米拉德・阿金瓦萊",
+   "gender": "女",
+   "age": 22,
+   "born": "2086",
+   "activeYears": null,
+   "origin": "lagos-blight",
+   "before": "崩前是拉哥斯渡船家的幼童，只記得母親膝上的渡船顛簸。",
+   "after": "2099 年跟家人逃往阿克拉，2106 年才在堅盾上學會守撤離口。",
+   "personality": "逢人愛問家在哪，聽到答案卻從不追問能否回去。",
+   "moment": "2107 年巡邏時蟲肢刮過舊橋，她把堅盾側身卡住斷口，讓後面的傷機先退。",
+   "quote": "橋斷了，我站成橋！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/temilade-akinwale",
+   "backgroundName": "潟湖回望的出洋駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/lagos-blight",
+   "faction": "faction/lagos-returners",
+   "hook": "N05→N06；F；底色1.8、1.11：走出來的人仍要留一條回程。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "在新加坡等下一段守港約，想先賺足護送家人的船費；不承諾收復故城。",
+   "bodyOutline": {
+    "崩前": "崩前是拉哥斯渡船家的幼童，只記得母親膝上的渡船顛簸。",
+    "崩後": "2099 年跟家人逃往阿克拉，2106 年才在堅盾上學會守撤離口。 逢人愛問家在哪，聽到答案卻從不追問能否回去。",
+    "現在與招牌瞬間": "在新加坡等下一段守港約，想先賺足護送家人的船費；不承諾收復故城。 2107 年巡邏時蟲肢刮過舊橋，她把堅盾側身卡住斷口，讓後面的傷機先退。 「橋斷了，我站成橋！」"
+   },
+   "events": [
+    "event/lagos-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/temilade-akinwale.json",
+    "content/base/persons/temilade-akinwale.json",
+    "content/lore/characters/temilade-akinwale.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "kunle-adetola",
+   "name": "昆勒・阿德托拉",
+   "gender": "男",
+   "age": 28,
+   "born": "2080",
+   "activeYears": null,
+   "origin": "lagos-blight",
+   "before": "崩前跟父親在拉哥斯渡口搬魚筐，記得滿船的人嫌他擋路。",
+   "after": "斷鏈後跟家人換糧，失城後在阿克拉修甲，2105 年轉學機甲射擊。",
+   "personality": "愛逞嘴快，射出第一矢前卻會把每個同伴的位置問清楚。",
+   "moment": "綠線清剿外圍的撤退路被子體遮住，他等傷員越過靈目邊沿才讓 AT-12 連吼。",
+   "quote": "都過去，這一聲歸我！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/kunle-adetola",
+   "backgroundName": "失城渡船家的射手",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/lagos-blight",
+   "faction": "faction/sub-saharan-umbrella",
+   "hook": "N08、N09；G、C；2107 綠線清剿的普通參戰者。",
+   "mech": "AT-12（model/union-at12）",
+   "now": "短約結束隨撒南出洋船到新加坡，願受雇護送下一班騎手。",
+   "bodyOutline": {
+    "崩前": "崩前跟父親在拉哥斯渡口搬魚筐，記得滿船的人嫌他擋路。",
+    "崩後": "斷鏈後跟家人換糧，失城後在阿克拉修甲，2105 年轉學機甲射擊。 愛逞嘴快，射出第一矢前卻會把每個同伴的位置問清楚。",
+    "現在與招牌瞬間": "短約結束隨撒南出洋船到新加坡，願受雇護送下一班騎手。 綠線清剿外圍的撤退路被子體遮住，他等傷員越過靈目邊沿才讓 AT-12 連吼。 「都過去，這一聲歸我！」"
+   },
+   "events": [
+    "event/green-line-purge"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/kunle-adetola.json",
+    "content/base/persons/kunle-adetola.json",
+    "content/lore/characters/kunle-adetola.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "abena-asiedu",
+   "name": "阿貝娜・阿西耶杜",
+   "gender": "女",
+   "age": 24,
+   "born": "2084",
+   "activeYears": null,
+   "origin": "accra",
+   "before": "崩前在阿克拉市場跟著祖母擺豆餅盤，災年前的記憶只剩油香。",
+   "after": "斷糧後幫分糧，2106 年守備缺人時第一次坐進堅盾。",
+   "personality": "對遲到的人很兇，卻總替最後一班留一份吃的。",
+   "moment": "留門之戰的獸影遮住土堤，她把堅盾停在將合的門縫，等跑得最慢的人穿過。",
+   "quote": "門還沒關，腳別停！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/abena-asiedu",
+   "backgroundName": "留門城的換班駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/accra",
+   "faction": "faction/accra",
+   "hook": "N05、N08；F、G；2107-11-15 阿克拉留門之戰。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "在新加坡接一季護港約，替家中換到糧種後回阿克拉輪班。",
+   "bodyOutline": {
+    "崩前": "崩前在阿克拉市場跟著祖母擺豆餅盤，災年前的記憶只剩油香。",
+    "崩後": "斷糧後幫分糧，2106 年守備缺人時第一次坐進堅盾。 對遲到的人很兇，卻總替最後一班留一份吃的。",
+    "現在與招牌瞬間": "在新加坡接一季護港約，替家中換到糧種後回阿克拉輪班。 留門之戰的獸影遮住土堤，她把堅盾停在將合的門縫，等跑得最慢的人穿過。 「門還沒關，腳別停！」"
+   },
+   "events": [
+    "event/accra-unbarred-gate"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/abena-asiedu.json",
+    "content/base/persons/abena-asiedu.json",
+    "content/lore/characters/abena-asiedu.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "yaw-boakye",
+   "name": "亞沃・博阿基耶",
+   "gender": "男",
+   "age": 33,
+   "born": "2075",
+   "activeYears": null,
+   "origin": "accra",
+   "before": "崩前在阿克拉石工家長大，會把碎石排成比自己高的城。",
+   "after": "崩年搬糧，後來修土堤；2105 年因守備空缺改學 AT-12。",
+   "personality": "笑聲大，見同伴逞英雄便第一個罵回來。",
+   "moment": "海堤缺口裡湧出蟲甲的反光，他把 AT-12 的身體橫過缺口，吼退想徒手堵洞的人。",
+   "quote": "活人往後，鐵往前！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/yaw-boakye",
+   "backgroundName": "海堤補洞的守甲人",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 3,
+   "recruitPlace": "place/singapore",
+   "place": "place/accra",
+   "faction": "faction/accra",
+   "hook": "底色1.2、1.4；C、G：駕駛缺額與護糧互相牽動。",
+   "mech": "AT-12（model/union-at12）",
+   "now": "換班後隨出口船到新加坡受雇，條件是下一季能回去看女兒。",
+   "bodyOutline": {
+    "崩前": "崩前在阿克拉石工家長大，會把碎石排成比自己高的城。",
+    "崩後": "崩年搬糧，後來修土堤；2105 年因守備空缺改學 AT-12。 笑聲大，見同伴逞英雄便第一個罵回來。",
+    "現在與招牌瞬間": "換班後隨出口船到新加坡受雇，條件是下一季能回去看女兒。 海堤缺口裡湧出蟲甲的反光，他把 AT-12 的身體橫過缺口，吼退想徒手堵洞的人。 「活人往後，鐵往前！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/yaw-boakye.json",
+    "content/base/persons/yaw-boakye.json",
+    "content/lore/characters/yaw-boakye.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "njeri-mwangi",
+   "name": "恩潔莉・姆旺吉",
+   "gender": "女",
+   "age": 21,
+   "born": "2087",
+   "activeYears": null,
+   "origin": "nairobi",
+   "before": "崩前仍是奈洛比工棚裡的幼童，只記得父親收工時手上的味道。",
+   "after": "斷鏈年代在工棚分零件，2106 年學上鞍，學的是承擔與退出。",
+   "personality": "逞強前先笑，承認撐不住時也不低頭。",
+   "moment": "出洋途中拘束艙猛撞，她鬆開接駁退出承擔，紅著眼把昏厥的同伴推出危險處。",
+   "quote": "人先下鞍，天還沒塌！",
+   "role": "生物系駕駛",
+   "abilityBias": "resolve、control 與獸感",
+   "attrs": {
+    "accuracy": 52,
+    "evasion": 12,
+    "resolve": 64,
+    "initiative": 7,
+    "perception": 5,
+    "control": 51
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-beast-sense"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "beast-kin"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/njeri-mwangi",
+   "backgroundName": "高地工棚新軛騎",
+   "hireFee": 220,
+   "wageMult": 0.8,
+   "attrRanges": {
+    "accuracy": [
+     42,
+     62
+    ],
+    "resolve": [
+     54,
+     74
+    ],
+    "control": [
+     41,
+     61
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/salim-haddad.json",
+   "feeTemplate": "content/base/world/backgrounds/tide-apostate.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/nairobi",
+   "faction": "faction/yoke-saddle-works",
+   "hook": "C；2103 軛騎出洋的後續；底色1.2、1.12。",
+   "mech": "既有獸族生物系；僅寫受雇經歷，不附贈機體、不命名新機",
+   "now": "新加坡換船空檔接短約；不自帶一頭可雇出的獸，獸與鞍另循既有取得方式。",
+   "bodyOutline": {
+    "崩前": "崩前仍是奈洛比工棚裡的幼童，只記得父親收工時手上的味道。",
+    "崩後": "斷鏈年代在工棚分零件，2106 年學上鞍，學的是承擔與退出。 逞強前先笑，承認撐不住時也不低頭。",
+    "現在與招牌瞬間": "新加坡換船空檔接短約；不自帶一頭可雇出的獸，獸與鞍另循既有取得方式。 出洋途中拘束艙猛撞，她鬆開接駁退出承擔，紅著眼把昏厥的同伴推出危險處。 「人先下鞍，天還沒塌！」"
+   },
+   "events": [
+    "event/yoke-riders-abroad"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/njeri-mwangi.json",
+    "content/base/persons/njeri-mwangi.json",
+    "content/lore/characters/njeri-mwangi.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "kamau-ndegwa",
+   "name": "卡茂・恩德瓜",
+   "gender": "男",
+   "age": 46,
+   "born": "2062",
+   "activeYears": 16,
+   "origin": "nairobi",
+   "before": "崩前是奈洛比外圍的長途貨車修工，懂得等遠方送來備件。",
+   "after": "崩年改修護糧車，2092 年三十歲開始駕駛，2093 年後長期用堅盾護路。",
+   "personality": "討厭被叫少年，也不拿年紀壓新人。",
+   "moment": "一次外洋護糧撤退中，獸的前肢把船舷壓彎，他讓堅盾跪下接住重量直到糧船脫離。",
+   "quote": "我還有一膝，船就別沉！",
+   "role": "不老的機械系駕駛",
+   "abilityBias": "accuracy、resolve；資歷不再額外加數值",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "veteran"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/kamau-ndegwa",
+   "backgroundName": "高地護糧老駕駛",
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "attrRanges": {
+    "accuracy": [
+     52,
+     72
+    ],
+    "resolve": [
+     51,
+     71
+    ],
+    "control": [
+     46,
+     66
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/irina-sokolova.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "pool": "recruit/singapore-savanna-pilots",
+   "weight": 1,
+   "recruitPlace": "place/singapore",
+   "place": "place/nairobi",
+   "faction": "faction/sub-saharan-umbrella",
+   "hook": "底色1.2、1.4；C、G；pilots 不老規則。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "在新加坡等高價護航約；實齡46、年資16、外貌約34，機械系沒有代價。",
+   "bodyOutline": {
+    "崩前": "崩前是奈洛比外圍的長途貨車修工，懂得等遠方送來備件。",
+    "崩後": "崩年改修護糧車，2092 年三十歲開始駕駛，2093 年後長期用堅盾護路。 討厭被叫少年，也不拿年紀壓新人。",
+    "現在與招牌瞬間": "在新加坡等高價護航約；實齡46、年資16、外貌約34，機械系沒有代價。 一次外洋護糧撤退中，獸的前肢把船舷壓彎，他讓堅盾跪下接住重量直到糧船脫離。 「我還有一膝，船就別沉！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/kamau-ndegwa.json",
+    "content/base/persons/kamau-ndegwa.json",
+    "content/lore/characters/kamau-ndegwa.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "halima-ware",
+   "name": "哈莉瑪・瓦雷",
+   "gender": "女",
+   "age": 23,
+   "born": "2085",
+   "activeYears": null,
+   "origin": "djibouti",
+   "before": "崩前是吉布地港後的孩子，記得兵營牆外整夜有人說話。",
+   "after": "斷糧時隨親族退往內陸，回港後學修鞍，2105 年成為遠牧替班騎手。",
+   "personality": "緊張時講笑話，越怕就講得越難笑。",
+   "moment": "護航船遇獸時她先讓同伴退開，在拘束矢釘穩後才把自己的機體轉向浪裡。",
+   "quote": "我怕得很，所以跟緊！",
+   "role": "生物系駕駛",
+   "abilityBias": "resolve、control 與獸感",
+   "attrs": {
+    "accuracy": 52,
+    "evasion": 12,
+    "resolve": 64,
+    "initiative": 7,
+    "perception": 5,
+    "control": 51
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-beast-sense"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "beast-kin"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/halima-ware",
+   "backgroundName": "吉布地換船軛騎",
+   "hireFee": 220,
+   "wageMult": 0.8,
+   "attrRanges": {
+    "accuracy": [
+     42,
+     62
+    ],
+    "resolve": [
+     54,
+     74
+    ],
+    "control": [
+     41,
+     61
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/salim-haddad.json",
+   "feeTemplate": "content/base/world/backgrounds/tide-apostate.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/djibouti",
+   "faction": "faction/far-herd",
+   "hook": "C、G；2103 軛騎出洋後續；底色1.8 獵團成家。",
+   "mech": "既有獸族生物系；僅寫受雇經歷，不附贈機體、不命名新機",
+   "now": "在吉大港交還上一約的機體後求職，把家留在吉布地。",
+   "bodyOutline": {
+    "崩前": "崩前是吉布地港後的孩子，記得兵營牆外整夜有人說話。",
+    "崩後": "斷糧時隨親族退往內陸，回港後學修鞍，2105 年成為遠牧替班騎手。 緊張時講笑話，越怕就講得越難笑。",
+    "現在與招牌瞬間": "在吉大港交還上一約的機體後求職，把家留在吉布地。 護航船遇獸時她先讓同伴退開，在拘束矢釘穩後才把自己的機體轉向浪裡。 「我怕得很，所以跟緊！」"
+   },
+   "events": [
+    "event/yoke-riders-abroad"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/halima-ware.json",
+    "content/base/persons/halima-ware.json",
+    "content/lore/characters/halima-ware.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "idris-roble",
+   "name": "伊德里斯・羅布萊",
+   "gender": "男",
+   "age": 31,
+   "born": "2077",
+   "activeYears": null,
+   "origin": "djibouti",
+   "before": "崩前在吉布地港邊幫人削木塞，聽熟了貨船的離岸聲。",
+   "after": "崩年替內陸商隊搬糧，後來跟遠牧學船砲，專替撤走的機甲壓陣。",
+   "personality": "平時話少，別人越亂他報位越慢。",
+   "moment": "運河夜後一趟護航，獸甲越過舷沿；他沒有盲射，等騎手離開砲線才讓精粹矢落下。",
+   "quote": "讓開我的吼聲！",
+   "role": "船砲手",
+   "abilityBias": "accuracy；砲手只有標籤與履歷",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "gunner",
+    "crew"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/idris-roble",
+   "backgroundName": "紅海南口壓陣砲手",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 3,
+   "recruitPlace": "place/chittagong",
+   "place": "place/djibouti",
+   "faction": "faction/far-herd",
+   "hook": "G、C；2106 運河夜後紅海護航；底色1.4。",
+   "mech": "",
+   "now": "在吉大港修船期找新職，熟悉船砲只是履歷，沒有新增砲術效果。",
+   "bodyOutline": {
+    "崩前": "崩前在吉布地港邊幫人削木塞，聽熟了貨船的離岸聲。",
+    "崩後": "崩年替內陸商隊搬糧，後來跟遠牧學船砲，專替撤走的機甲壓陣。 平時話少，別人越亂他報位越慢。",
+    "現在與招牌瞬間": "在吉大港修船期找新職，熟悉船砲只是履歷，沒有新增砲術效果。 運河夜後一趟護航，獸甲越過舷沿；他沒有盲射，等騎手離開砲線才讓精粹矢落下。 「讓開我的吼聲！」"
+   },
+   "events": [
+    "event/suez-canal-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/idris-roble.json",
+    "content/base/persons/idris-roble.json",
+    "content/lore/characters/idris-roble.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "akinyi-odero",
+   "name": "阿金妮・奧德羅",
+   "gender": "女",
+   "age": 40,
+   "born": "2068",
+   "activeYears": null,
+   "origin": "nairobi",
+   "before": "崩前替奈洛比修造棚打下手，以為磨好的件總會有人來取。",
+   "after": "崩年修件等不到料，2095 年後改學拘束艙，跟著出口船補缺工。",
+   "personality": "說話直，最厭惡把壞零件藏到下一班手裡。",
+   "moment": "獸撞裂艙壁那夜，她把一整塊備用隔板推到缺口，讓同伴補上拘束件才鬆手。",
+   "quote": "壞在哪裡，就站在哪裡！",
+   "role": "拘束艙技師",
+   "abilityBias": "control 成長優先",
+   "attrs": {
+    "accuracy": 47,
+    "evasion": 6,
+    "resolve": 52,
+    "initiative": 5,
+    "perception": 5,
+    "control": 50
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-bg-siege-rigger"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/akinyi-odero",
+   "backgroundName": "軛鞍行隨船修工",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "attrRanges": {
+    "accuracy": [
+     37,
+     57
+    ],
+    "resolve": [
+     42,
+     62
+    ],
+    "control": [
+     40,
+     60
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/kojo-mensah.json",
+   "feeTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/nairobi",
+   "faction": "faction/yoke-saddle-works",
+   "hook": "C；2095 軛鞍行開張→2103 軛騎出洋；底色1.3。",
+   "mech": "",
+   "now": "在吉大港完成修艙約後受雇；不寫獸因她照料而溫順。",
+   "bodyOutline": {
+    "崩前": "崩前替奈洛比修造棚打下手，以為磨好的件總會有人來取。",
+    "崩後": "崩年修件等不到料，2095 年後改學拘束艙，跟著出口船補缺工。 說話直，最厭惡把壞零件藏到下一班手裡。",
+    "現在與招牌瞬間": "在吉大港完成修艙約後受雇；不寫獸因她照料而溫順。 獸撞裂艙壁那夜，她把一整塊備用隔板推到缺口，讓同伴補上拘束件才鬆手。 「壞在哪裡，就站在哪裡！」"
+   },
+   "events": [
+    "event/yoke-riders-abroad"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/akinyi-odero.json",
+    "content/base/persons/akinyi-odero.json",
+    "content/lore/characters/akinyi-odero.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "amina-mwende",
+   "name": "阿米娜・姆溫德",
+   "gender": "女",
+   "age": 18,
+   "born": "2090",
+   "activeYears": null,
+   "origin": "nairobi",
+   "before": "2090 年出生，沒有崩前生活；母親此前是內陸糧磨的接生助手。",
+   "after": "靠糧磨近糧與母親手藝熬過斷藥，後在港醫棚學包紮，2107 年隨返航者抵吉大港。",
+   "personality": "不肯被叫奇蹟，認為每個活下來的人都欠過別人的手。",
+   "moment": "傷員害怕再失去知覺，她在滿艙吼砲聲裡一遍遍叫他的名字，直到他自己答。",
+   "quote": "你還能回答，就別退場！",
+   "role": "醫護助手",
+   "abilityBias": "control 成長、resolve 次之",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 7,
+    "resolve": 43,
+    "initiative": 5,
+    "perception": 6,
+    "control": 46
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "medic",
+    "crew"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/amina-mwende",
+   "backgroundName": "高地糧磨養大的醫護助手",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/anjali-nair.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 2,
+   "recruitPlace": "place/chittagong",
+   "place": "place/nairobi",
+   "faction": "faction/nairobi",
+   "hook": "底色1.1、1.8；C、E：稀少出生者看待點名與活命。",
+   "mech": "",
+   "now": "吉大港尋醫護助手職；出生斷層唯一一人，有穩定近糧與接生者照顧的具體存活條件。",
+   "bodyOutline": {
+    "崩前": "2090 年出生，沒有崩前生活；母親此前是內陸糧磨的接生助手。",
+    "崩後": "靠糧磨近糧與母親手藝熬過斷藥，後在港醫棚學包紮，2107 年隨返航者抵吉大港。 不肯被叫奇蹟，認為每個活下來的人都欠過別人的手。",
+    "現在與招牌瞬間": "吉大港尋醫護助手職；出生斷層唯一一人，有穩定近糧與接生者照顧的具體存活條件。 傷員害怕再失去知覺，她在滿艙吼砲聲裡一遍遍叫他的名字，直到他自己答。 「你還能回答，就別退場！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/amina-mwende.json",
+    "content/base/persons/amina-mwende.json",
+    "content/lore/characters/amina-mwende.json"
+   ],
+   "under20Reason": "吉大港尋醫護助手職；出生斷層唯一一人，有穩定近糧與接生者照顧的具體存活條件。"
+  },
+  {
+   "id": "kweku-danquah",
+   "name": "奎庫・丹夸",
+   "gender": "男",
+   "age": 55,
+   "born": "2053",
+   "activeYears": null,
+   "origin": "accra",
+   "before": "崩前在阿克拉大灶做飯，能按魚販的到港聲算開火時辰。",
+   "after": "斷鏈後把大灶搬到收容所；拉哥斯難民進城後，一鍋飯要分給更多人。",
+   "personality": "嘴上嫌人吃得多，看到空碗卻會多添一勺。",
+   "moment": "留門之戰的傷員衝進廚棚，他把尚未切完的麵團壓成整張，推進灶裡接著叫眾人坐下。",
+   "quote": "先吃！天塌也得嚼！",
+   "role": "船廚與補給船員",
+   "abilityBias": "control 成長；無炊事數值",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "cook",
+    "crew"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/kweku-danquah",
+   "backgroundName": "留門城分糧老廚",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/hana-sato.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 3,
+   "recruitPlace": "place/chittagong",
+   "place": "place/accra",
+   "faction": "faction/accra",
+   "hook": "N05、N08；F、G；底色1.4、1.8。",
+   "mech": "",
+   "now": "搭糧船到吉大港後找船廚職，想讓守夜的人至少能吃熱食；無醫療或炊事加成承諾。",
+   "bodyOutline": {
+    "崩前": "崩前在阿克拉大灶做飯，能按魚販的到港聲算開火時辰。",
+    "崩後": "斷鏈後把大灶搬到收容所；拉哥斯難民進城後，一鍋飯要分給更多人。 嘴上嫌人吃得多，看到空碗卻會多添一勺。",
+    "現在與招牌瞬間": "搭糧船到吉大港後找船廚職，想讓守夜的人至少能吃熱食；無醫療或炊事加成承諾。 留門之戰的傷員衝進廚棚，他把尚未切完的麵團壓成整張，推進灶裡接著叫眾人坐下。 「先吃！天塌也得嚼！」"
+   },
+   "events": [
+    "event/accra-unbarred-gate"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/kweku-danquah.json",
+    "content/base/persons/kweku-danquah.json",
+    "content/lore/characters/kweku-danquah.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "zuri-kilonzo",
+   "name": "祖莉・基隆佐",
+   "gender": "女",
+   "age": 14,
+   "born": "2094",
+   "activeYears": null,
+   "origin": "nairobi",
+   "before": "2094 年出生，沒有崩前記憶；母親把斷鏈前滿架零件說成故事。",
+   "after": "在軛鞍行跟母親學辨件，2107 年隨受雇工班到吉大港，只做岸上與艙內輔助。",
+   "personality": "遇見不懂的東西就直接說不懂，不肯替師傅裝懂。",
+   "moment": "要封回拘束箱前，她從一排同樣亮的鎖片裡挑出裂了的那片，雙手舉到大人面前。",
+   "quote": "這片不能用，誰急都不行！",
+   "role": "技師學徒",
+   "abilityBias": "control 成長；職能僅為學徒",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician",
+    "apprentice"
+   ],
+   "culture": "bengal",
+   "cultureReason": "沿用既有迦納裔 kojo-mensah 背景 bengal 的營運暫代；不是族裔判定。",
+   "background": "background/zuri-kilonzo",
+   "backgroundName": "軛鞍行辨件學徒",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/hana-sato.json",
+   "feeTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "pool": "recruit/chittagong-highland-crews",
+   "weight": 2,
+   "recruitPlace": "place/chittagong",
+   "place": "place/nairobi",
+   "faction": "faction/yoke-saddle-works",
+   "hook": "底色1.3、1.12；C：知識靠工棚傳下去。",
+   "mech": "",
+   "now": "在吉大港由母親留在同港照護，求學徒薪；不配機、不寫出擊或戰鬥資歷。",
+   "bodyOutline": {
+    "崩前": "2094 年出生，沒有崩前記憶；母親把斷鏈前滿架零件說成故事。",
+    "崩後": "在軛鞍行跟母親學辨件，2107 年隨受雇工班到吉大港，只做岸上與艙內輔助。 遇見不懂的東西就直接說不懂，不肯替師傅裝懂。",
+    "現在與招牌瞬間": "在吉大港由母親留在同港照護，求學徒薪；不配機、不寫出擊或戰鬥資歷。 要封回拘束箱前，她從一排同樣亮的鎖片裡挑出裂了的那片，雙手舉到大人面前。 「這片不能用，誰急都不行！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-01",
+   "files": [
+    "content/base/world/backgrounds/zuri-kilonzo.json",
+    "content/base/persons/zuri-kilonzo.json",
+    "content/lore/characters/zuri-kilonzo.json"
+   ],
+   "under20Reason": "在吉大港由母親留在同港照護，求學徒薪；不配機、不寫出擊或戰鬥資歷。"
+  },
+  {
+   "id": "samira-badawi",
+   "name": "薩米拉・巴達維",
+   "gender": "女",
+   "age": 43,
+   "born": "2065",
+   "activeYears": 14,
+   "origin": "aswan",
+   "before": "崩前在亞斯文替水務抄水尺，知道每個記號下面是哪家的田。",
+   "after": "2091 放閘夜幫搬傷者，2094 年二十九歲學開公刻堅盾，從此守渠。",
+   "personality": "對命令總多問一句淹到誰家，得到答覆才動。",
+   "moment": "後來一次守閘時，她讓堅盾踩進自家田，接住上溯獸的撞擊，替閘工爭到封渠時間。",
+   "quote": "水可以過，人不能丟！",
+   "role": "不老的守閘駕駛",
+   "abilityBias": "accuracy、resolve；資歷不再額外加數值",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "veteran"
+   ],
+   "culture": "egypt",
+   "cultureReason": "沿用既有北非向 egypt 名表。",
+   "background": "background/samira-badawi",
+   "backgroundName": "河谷堅盾老駕駛",
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "attrRanges": {
+    "accuracy": [
+     52,
+     72
+    ],
+    "resolve": [
+     51,
+     71
+    ],
+    "control": [
+     46,
+     66
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/irina-sokolova.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 1,
+   "recruitPlace": "place/chittagong",
+   "place": "place/aswan",
+   "faction": "faction/north-africa-umbrella",
+   "hook": "2091 放閘夜→2093 公刻；G、C；底色1.4。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "在吉大港接一季護糧約；實齡43、年資14、外貌約32.5；不改放閘夜無機甲的裁定。",
+   "bodyOutline": {
+    "崩前": "崩前在亞斯文替水務抄水尺，知道每個記號下面是哪家的田。",
+    "崩後": "2091 放閘夜幫搬傷者，2094 年二十九歲學開公刻堅盾，從此守渠。 對命令總多問一句淹到誰家，得到答覆才動。",
+    "現在與招牌瞬間": "在吉大港接一季護糧約；實齡43、年資14、外貌約32.5；不改放閘夜無機甲的裁定。 後來一次守閘時，她讓堅盾踩進自家田，接住上溯獸的撞擊，替閘工爭到封渠時間。 「水可以過，人不能丟！」"
+   },
+   "events": [
+    "event/aswan-sluice-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/samira-badawi.json",
+    "content/base/persons/samira-badawi.json",
+    "content/lore/characters/samira-badawi.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "tarek-mahfouz",
+   "name": "塔雷克・馬赫福茲",
+   "gender": "男",
+   "age": 26,
+   "born": "2082",
+   "activeYears": null,
+   "origin": "aswan",
+   "before": "崩前在河谷跟家人挖淺渠，覺得河水永遠會按時回來。",
+   "after": "崩年接待上游來的親族，後來養護水閘，2106 年轉開堅盾拖清渠底堵物。",
+   "personality": "容易跟人爭嘴，遇見受困者卻先伸手。",
+   "moment": "獸屍堵渠、上游水將溢出時，他把堅盾倒進泥裡，拖出獸甲讓第一股水先走。",
+   "quote": "泥裡的路，我來開！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "egypt",
+   "cultureReason": "沿用既有北非向 egypt 名表。",
+   "background": "background/tarek-mahfouz",
+   "backgroundName": "泥渠清障駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/aswan",
+   "faction": "faction/north-africa-umbrella",
+   "hook": "G；放閘夜後水困機殺成常態；底色1.4。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "護糧船抵吉大港後接新約，會要求先說清楚撤離位置。",
+   "bodyOutline": {
+    "崩前": "崩前在河谷跟家人挖淺渠，覺得河水永遠會按時回來。",
+    "崩後": "崩年接待上游來的親族，後來養護水閘，2106 年轉開堅盾拖清渠底堵物。 容易跟人爭嘴，遇見受困者卻先伸手。",
+    "現在與招牌瞬間": "護糧船抵吉大港後接新約，會要求先說清楚撤離位置。 獸屍堵渠、上游水將溢出時，他把堅盾倒進泥裡，拖出獸甲讓第一股水先走。 「泥裡的路，我來開！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/tarek-mahfouz.json",
+    "content/base/persons/tarek-mahfouz.json",
+    "content/lore/characters/tarek-mahfouz.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "huda-sharaf",
+   "name": "胡妲・沙拉夫",
+   "gender": "女",
+   "age": 51,
+   "born": "2057",
+   "activeYears": null,
+   "origin": "suez",
+   "before": "崩前在運河岸的診所做醫護，習慣了每班船都能帶回藥。",
+   "after": "崩年轉做傷員轉運，2106 運河夜失去藥箱與半船同行者。",
+   "personality": "對活人很不耐煩，對怕死的人卻從不嘲笑。",
+   "moment": "運河夜後搜救時，獸影還在水面下移，她跪在碎舷板上壓住傷口，直到擔架接走。",
+   "quote": "下一口氣，跟我搶回來！",
+   "role": "船醫",
+   "abilityBias": "control 成長、resolve 次之",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 7,
+    "resolve": 43,
+    "initiative": 5,
+    "perception": 6,
+    "control": 46
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "medic",
+    "crew"
+   ],
+   "culture": "egypt",
+   "cultureReason": "沿用既有北非向 egypt 名表。",
+   "background": "background/huda-sharaf",
+   "backgroundName": "運河南口隨船醫護",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/anjali-nair.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/suez",
+   "faction": "faction/north-africa-umbrella",
+   "hook": "2106 運河夜；G、E；底色1.8。",
+   "mech": "",
+   "now": "隨後續糧船到吉大港受雇，知道欠藥不能靠勇氣補足。",
+   "bodyOutline": {
+    "崩前": "崩前在運河岸的診所做醫護，習慣了每班船都能帶回藥。",
+    "崩後": "崩年轉做傷員轉運，2106 運河夜失去藥箱與半船同行者。 對活人很不耐煩，對怕死的人卻從不嘲笑。",
+    "現在與招牌瞬間": "隨後續糧船到吉大港受雇，知道欠藥不能靠勇氣補足。 運河夜後搜救時，獸影還在水面下移，她跪在碎舷板上壓住傷口，直到擔架接走。 「下一口氣，跟我搶回來！」"
+   },
+   "events": [
+    "event/suez-canal-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/huda-sharaf.json",
+    "content/base/persons/huda-sharaf.json",
+    "content/lore/characters/huda-sharaf.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "nabil-qassem",
+   "name": "納比勒・卡西姆",
+   "gender": "男",
+   "age": 64,
+   "born": "2044",
+   "activeYears": null,
+   "origin": "aswan",
+   "before": "崩前替尼羅河貨船領航，曾以為退休前都會走同一段水。",
+   "after": "放閘夜後帶難民沿尚通的支渠走，後來因糧路改變而學紅海航向。",
+   "personality": "記性很好，卻樂於讓年輕人指出自己漏看的岸標。",
+   "moment": "一次夜航的河岸火光全滅，他敲響船頭的舊銅盤，讓分散的船聽著聲音退回已知水道。",
+   "quote": "跟著這一聲，還有岸！",
+   "role": "領航員",
+   "abilityBias": "accuracy、perception；領航是履歷",
+   "attrs": {
+    "accuracy": 57,
+    "evasion": 14,
+    "resolve": 46,
+    "initiative": 9,
+    "perception": 7,
+    "control": 48
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "navigator",
+    "crew"
+   ],
+   "culture": "egypt",
+   "cultureReason": "沿用既有北非向 egypt 名表。",
+   "background": "background/nabil-qassem",
+   "backgroundName": "河谷改走外洋的老舵手",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/maia-te-rangi.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 3,
+   "recruitPlace": "place/chittagong",
+   "place": "place/aswan",
+   "faction": "faction/north-africa-umbrella",
+   "hook": "底色1.1、1.4；G：少數高齡船員與近糧路。",
+   "mech": "",
+   "now": "在吉大港尋不需長時站立的領航職；64歲船員從未驅動核心，不寫不老。",
+   "bodyOutline": {
+    "崩前": "崩前替尼羅河貨船領航，曾以為退休前都會走同一段水。",
+    "崩後": "放閘夜後帶難民沿尚通的支渠走，後來因糧路改變而學紅海航向。 記性很好，卻樂於讓年輕人指出自己漏看的岸標。",
+    "現在與招牌瞬間": "在吉大港尋不需長時站立的領航職；64歲船員從未驅動核心，不寫不老。 一次夜航的河岸火光全滅，他敲響船頭的舊銅盤，讓分散的船聽著聲音退回已知水道。 「跟著這一聲，還有岸！」"
+   },
+   "events": [
+    "event/aswan-sluice-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/nabil-qassem.json",
+    "content/base/persons/nabil-qassem.json",
+    "content/lore/characters/nabil-qassem.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "ramin-daryani",
+   "name": "拉明・達里亞尼",
+   "gender": "男",
+   "age": 29,
+   "born": "2079",
+   "activeYears": null,
+   "origin": "hormuz",
+   "before": "崩前在荷姆茲岸邊幫船工刷船身，把油味當成家的氣味。",
+   "after": "2096 燃夜時在撤離的人群裡；2105 年才轉學堅盾護航，沒有冒稱當年援軍。",
+   "personality": "聽到有人吹噓自己不怕火就立刻揭穿。",
+   "moment": "一次糧船遇獸時他開堅盾越過焦黑的廢船腹，截住往船隊伸來的巨肢。",
+   "quote": "火已熄了，我還沒退！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "沿用既有西亞向 mesopotamia 名表。",
+   "background": "background/ramin-daryani",
+   "backgroundName": "海峽火後的護航駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/hormuz",
+   "faction": "faction/west-asia-umbrella",
+   "hook": "2096 燃夜的下一代；G、C；底色1.2。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "在吉大港交船後待雇，不因出生海峽就享燃夜來船的免通行費。",
+   "bodyOutline": {
+    "崩前": "崩前在荷姆茲岸邊幫船工刷船身，把油味當成家的氣味。",
+    "崩後": "2096 燃夜時在撤離的人群裡；2105 年才轉學堅盾護航，沒有冒稱當年援軍。 聽到有人吹噓自己不怕火就立刻揭穿。",
+    "現在與招牌瞬間": "在吉大港交船後待雇，不因出生海峽就享燃夜來船的免通行費。 一次糧船遇獸時他開堅盾越過焦黑的廢船腹，截住往船隊伸來的巨肢。 「火已熄了，我還沒退！」"
+   },
+   "events": [
+    "event/hormuz-burning-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/ramin-daryani.json",
+    "content/base/persons/ramin-daryani.json",
+    "content/lore/characters/ramin-daryani.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "salma-kattan",
+   "name": "薩爾瑪・卡坦",
+   "gender": "女",
+   "age": 35,
+   "born": "2073",
+   "activeYears": null,
+   "origin": "twin-rivers",
+   "before": "崩前在兩河下游磨坊幫忙，把橋那頭的市場當成周末去處。",
+   "after": "崩年替渡船搬糧，2100 斷橋後學護送，2106 年才駕駛堅盾。",
+   "personality": "願意救對岸的人，卻不接受別人說一切都過去了。",
+   "moment": "一趟撤渡時她的堅盾在岸邊半跪，遮住傷員的身影，等最後一人進船才轉身。",
+   "quote": "先讓他過河，再來吵！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "沿用既有西亞向 mesopotamia 名表。",
+   "background": "background/salma-kattan",
+   "backgroundName": "斷橋兩岸的壓陣駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/chittagong-canal-watch",
+   "weight": 4,
+   "recruitPlace": "place/chittagong",
+   "place": "place/twin-rivers",
+   "faction": "faction/west-asia-umbrella",
+   "hook": "2100 斷橋夜後果；G、F；底色1.11。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "短期護糧抵吉大港，既不替兩岸和解，也不替任何一岸保證不再背盟。",
+   "bodyOutline": {
+    "崩前": "崩前在兩河下游磨坊幫忙，把橋那頭的市場當成周末去處。",
+    "崩後": "崩年替渡船搬糧，2100 斷橋後學護送，2106 年才駕駛堅盾。 願意救對岸的人，卻不接受別人說一切都過去了。",
+    "現在與招牌瞬間": "短期護糧抵吉大港，既不替兩岸和解，也不替任何一岸保證不再背盟。 一趟撤渡時她的堅盾在岸邊半跪，遮住傷員的身影，等最後一人進船才轉身。 「先讓他過河，再來吵！」"
+   },
+   "events": [
+    "event/twin-rivers-night"
+   ],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/salma-kattan.json",
+    "content/base/persons/salma-kattan.json",
+    "content/lore/characters/salma-kattan.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "rasha-mazin",
+   "name": "拉莎・馬津",
+   "gender": "女",
+   "age": 37,
+   "born": "2071",
+   "activeYears": null,
+   "origin": "dhahran",
+   "before": "崩前是達蘭井場工人的女兒，放學後在備件棚替父親分類。",
+   "after": "崩年舊油井改養城，跟工班學修甲，出港短約替家裡換買不到的件。",
+   "personality": "討厭漂亮保證，喜歡把做不到的事先說清楚。",
+   "moment": "守港機的腿架在獸影下折斷，她把地上完好的撐架頂進去，喊駕駛先把傷員拖走。",
+   "quote": "能站一回，就替人站一回！",
+   "role": "機甲技師",
+   "abilityBias": "control 成長優先",
+   "attrs": {
+    "accuracy": 47,
+    "evasion": 6,
+    "resolve": 52,
+    "initiative": 5,
+    "perception": 5,
+    "control": 50
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-bg-siege-rigger"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "沿用既有西亞向 mesopotamia 名表。",
+   "background": "background/rasha-mazin",
+   "backgroundName": "井城輪休修甲工",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "attrRanges": {
+    "accuracy": [
+     37,
+     57
+    ],
+    "resolve": [
+     42,
+     62
+    ],
+    "control": [
+     40,
+     60
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/kojo-mensah.json",
+   "feeTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/dhahran",
+   "faction": "faction/west-asia-umbrella",
+   "hook": "底色1.3、1.6；C、G：公司城守夜仍靠修工。",
+   "mech": "",
+   "now": "在新加坡替家鄉採件兼求職；國家與公司都不能憑一句命令生出備件。",
+   "bodyOutline": {
+    "崩前": "崩前是達蘭井場工人的女兒，放學後在備件棚替父親分類。",
+    "崩後": "崩年舊油井改養城，跟工班學修甲，出港短約替家裡換買不到的件。 討厭漂亮保證，喜歡把做不到的事先說清楚。",
+    "現在與招牌瞬間": "在新加坡替家鄉採件兼求職；國家與公司都不能憑一句命令生出備件。 守港機的腿架在獸影下折斷，她把地上完好的撐架頂進去，喊駕駛先把傷員拖走。 「能站一回，就替人站一回！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/rasha-mazin.json",
+    "content/base/persons/rasha-mazin.json",
+    "content/lore/characters/rasha-mazin.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "bahir-saffar",
+   "name": "巴希爾・薩法爾",
+   "gender": "男",
+   "age": 48,
+   "born": "2060",
+   "activeYears": null,
+   "origin": "dubai",
+   "before": "崩前在杜拜轉運場調貨，熟悉每一條通往高樓的供貨路。",
+   "after": "崩年斷水後帶家人離城，後來只在短期打撈時回去，從不把空樓當家。",
+   "personality": "怕人不肯認迷路，會先承認自己也走錯過。",
+   "moment": "空樓裡回音混成一片時，他把一扇墜落的鏡面轉向出口，讓日光在地上拉出方向。",
+   "quote": "看見光了，就往活處走！",
+   "role": "導航與打撈船員",
+   "abilityBias": "accuracy、perception；領航是履歷",
+   "attrs": {
+    "accuracy": 57,
+    "evasion": 14,
+    "resolve": 46,
+    "initiative": 9,
+    "perception": 7,
+    "control": 48
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "navigator",
+    "crew"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "沿用既有西亞向 mesopotamia 名表。",
+   "background": "background/bahir-saffar",
+   "backgroundName": "空城回航的帶路人",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/maia-te-rangi.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 3,
+   "recruitPlace": "place/singapore",
+   "place": "place/dubai",
+   "faction": "faction/west-asia-umbrella",
+   "hook": "底色1.4、1.5；F、G：供應鏈斷出的空城。",
+   "mech": "",
+   "now": "在新加坡尋回程船工職；空城風險是斷水與坍塌，不另造內陸獸潮。",
+   "bodyOutline": {
+    "崩前": "崩前在杜拜轉運場調貨，熟悉每一條通往高樓的供貨路。",
+    "崩後": "崩年斷水後帶家人離城，後來只在短期打撈時回去，從不把空樓當家。 怕人不肯認迷路，會先承認自己也走錯過。",
+    "現在與招牌瞬間": "在新加坡尋回程船工職；空城風險是斷水與坍塌，不另造內陸獸潮。 空樓裡回音混成一片時，他把一扇墜落的鏡面轉向出口，讓日光在地上拉出方向。 「看見光了，就往活處走！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/bahir-saffar.json",
+    "content/base/persons/bahir-saffar.json",
+    "content/lore/characters/bahir-saffar.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "aigerim-sarsen",
+   "name": "艾格琳・薩爾森",
+   "gender": "女",
+   "age": 20,
+   "born": "2088",
+   "activeYears": null,
+   "origin": "almaty",
+   "before": "2088 年出生，崩前尚是嬰兒；母親記得滿車遠行的貨，她沒有親歷記憶。",
+   "after": "斷鏈後跟糧隊長大，2107 年剛學開堅盾，在近處糧路護送中累積經驗。",
+   "personality": "凡事喜歡先試一遍，不肯把長輩的恐懼當成地圖。",
+   "moment": "山路滑坡逼停糧隊時，她用堅盾撐住將翻的首車，讓後車一輛輛倒回平地。",
+   "quote": "山不讓路，我先頂住！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "隨經西亞的採購路暫借 mesopotamia 名表；不是把中亞族裔改成西亞。",
+   "background": "background/aigerim-sarsen",
+   "backgroundName": "山口糧隊新駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/almaty",
+   "faction": "faction/central-asia-umbrella",
+   "hook": "底色1.1、1.4；C、G：出生斷層前最後一批新成人。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "跟採購隊到新加坡換取精粹與件，願接短期護運，不宣稱中亞常有獸災。",
+   "bodyOutline": {
+    "崩前": "2088 年出生，崩前尚是嬰兒；母親記得滿車遠行的貨，她沒有親歷記憶。",
+    "崩後": "斷鏈後跟糧隊長大，2107 年剛學開堅盾，在近處糧路護送中累積經驗。 凡事喜歡先試一遍，不肯把長輩的恐懼當成地圖。",
+    "現在與招牌瞬間": "跟採購隊到新加坡換取精粹與件，願接短期護運，不宣稱中亞常有獸災。 山路滑坡逼停糧隊時，她用堅盾撐住將翻的首車，讓後車一輛輛倒回平地。 「山不讓路，我先頂住！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/aigerim-sarsen.json",
+    "content/base/persons/aigerim-sarsen.json",
+    "content/lore/characters/aigerim-sarsen.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "timur-bektemir",
+   "name": "帖木爾・別克捷米爾",
+   "gender": "男",
+   "age": 22,
+   "born": "2086",
+   "activeYears": null,
+   "origin": "almaty",
+   "before": "崩前幼時替家人看小攤，只記得商隊旗影把臉照成不同顏色。",
+   "after": "崩年以後貨隊縮短，2106 年因護衛缺額上機，學的是把受損機帶下山。",
+   "personality": "喜歡把危險講成笑話，真正決定撤退時一句不多。",
+   "moment": "風雪吞掉山口時，他讓堅盾肩靠破損貨機，兩台一起倒著離開碎石坡。",
+   "quote": "下山不是輸，回去才有下一回！",
+   "role": "駕駛",
+   "abilityBias": "accuracy、resolve 並重",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "隨經西亞的採購路暫借 mesopotamia 名表；不是把中亞族裔改成西亞。",
+   "background": "background/timur-bektemir",
+   "backgroundName": "天山探墟接應駕駛",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "attrRanges": {
+    "accuracy": [
+     47,
+     67
+    ],
+    "resolve": [
+     36,
+     56
+    ],
+    "control": [
+     38,
+     58
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/adewale-balogun.json",
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 4,
+   "recruitPlace": "place/singapore",
+   "place": "place/almaty",
+   "faction": "faction/central-asia-umbrella",
+   "hook": "底色1.2、1.3；C、G：墟多獸少但接應不能缺人。",
+   "mech": "堅盾-I（model/bulwark-i）",
+   "now": "隨採購船到新加坡找護運短約，第一次面對海上的獸仍會害怕。",
+   "bodyOutline": {
+    "崩前": "崩前幼時替家人看小攤，只記得商隊旗影把臉照成不同顏色。",
+    "崩後": "崩年以後貨隊縮短，2106 年因護衛缺額上機，學的是把受損機帶下山。 喜歡把危險講成笑話，真正決定撤退時一句不多。",
+    "現在與招牌瞬間": "隨採購船到新加坡找護運短約，第一次面對海上的獸仍會害怕。 風雪吞掉山口時，他讓堅盾肩靠破損貨機，兩台一起倒著離開碎石坡。 「下山不是輸，回去才有下一回！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/timur-bektemir.json",
+    "content/base/persons/timur-bektemir.json",
+    "content/lore/characters/timur-bektemir.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "saodat-rahimova",
+   "name": "紹達特・拉希莫娃",
+   "gender": "女",
+   "age": 58,
+   "born": "2050",
+   "activeYears": null,
+   "origin": "almaty",
+   "before": "崩前在阿拉木圖長途車站診所工作，替遠行者換藥。",
+   "after": "崩年遠方藥路斷掉後留下照顧近處糧隊，靠同行者帶回的少量藥續班。",
+   "personality": "會為一塊繃帶罵半天，從不為病人浪費她的時間生氣。",
+   "moment": "山口接回凍僵的搬工時，她把他擺成能呼吸的姿勢，對圍觀者吼出每個人要做的事。",
+   "quote": "想救他，就把手伸出來！",
+   "role": "醫護與伙食船員",
+   "abilityBias": "control 成長、resolve 次之",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 7,
+    "resolve": 43,
+    "initiative": 5,
+    "perception": 6,
+    "control": 46
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "medic",
+    "crew"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "隨經西亞的採購路暫借 mesopotamia 名表；不是把中亞族裔改成西亞。",
+   "background": "background/saodat-rahimova",
+   "backgroundName": "山路接傷的老醫護",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/anjali-nair.json",
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 3,
+   "recruitPlace": "place/singapore",
+   "place": "place/almaty",
+   "faction": "faction/central-asia-umbrella",
+   "hook": "底色1.1、1.3；C、G：斷藥的倖存者仍守近路。",
+   "mech": "",
+   "now": "為護送傷後返鄉的同伴南下新加坡，願在等回程期間受雇。",
+   "bodyOutline": {
+    "崩前": "崩前在阿拉木圖長途車站診所工作，替遠行者換藥。",
+    "崩後": "崩年遠方藥路斷掉後留下照顧近處糧隊，靠同行者帶回的少量藥續班。 會為一塊繃帶罵半天，從不為病人浪費她的時間生氣。",
+    "現在與招牌瞬間": "為護送傷後返鄉的同伴南下新加坡，願在等回程期間受雇。 山口接回凍僵的搬工時，她把他擺成能呼吸的姿勢，對圍觀者吼出每個人要做的事。 「想救他，就把手伸出來！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "keep-watch"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/saodat-rahimova.json",
+    "content/base/persons/saodat-rahimova.json",
+    "content/lore/characters/saodat-rahimova.json"
+   ],
+   "under20Reason": "不適用"
+  },
+  {
+   "id": "azamat-tursun",
+   "name": "阿扎馬特・圖爾孫",
+   "gender": "男",
+   "age": 21,
+   "born": "2087",
+   "activeYears": null,
+   "origin": "almaty",
+   "before": "崩前是阿拉木圖印店的幼童，只有紙墨留在家人口中的舊日裡。",
+   "after": "斷鏈後在學會外包的抄讀隊做助手，替探墟者記退路，沒有獲得祕法。",
+   "personality": "愛問別人沒問過的事，也承認不是每道刻痕都會回答。",
+   "moment": "崩落石縫裡的骸片映亮掌心，他先在石上畫回程箭頭，才把拓紙遞給學者。",
+   "quote": "看不懂也好，先把人帶回！",
+   "role": "測繪與導航船員",
+   "abilityBias": "perception 成長優先",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-bg-ruin-cartographer"
+   ],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "researcher",
+    "navigator",
+    "crew"
+   ],
+   "culture": "mesopotamia",
+   "cultureReason": "隨經西亞的採購路暫借 mesopotamia 名表；不是把中亞族裔改成西亞。",
+   "background": "background/azamat-tursun",
+   "backgroundName": "天山抄讀隊帶路學生",
+   "hireFee": 180,
+   "wageMult": 0.7,
+   "attrRanges": {
+    "accuracy": [
+     38,
+     58
+    ],
+    "resolve": [
+     37,
+     57
+    ],
+    "control": [
+     32,
+     52
+    ]
+   },
+   "backgroundTraits": [],
+   "template": "content/base/persons/leila-nasser.json",
+   "feeTemplate": "content/base/world/backgrounds/shell-field-student.json",
+   "pool": "recruit/singapore-highland-caravan",
+   "weight": 2,
+   "recruitPlace": "place/singapore",
+   "place": "place/almaty",
+   "faction": "faction/shell-society",
+   "hook": "B、C；底色1.3：知識機構斷裂後的抄讀與接應。",
+   "mech": "",
+   "now": "隨拓片護送到新加坡，接導航輔助職；所見只是反光，不證實古代機意志。",
+   "bodyOutline": {
+    "崩前": "崩前是阿拉木圖印店的幼童，只有紙墨留在家人口中的舊日裡。",
+    "崩後": "斷鏈後在學會外包的抄讀隊做助手，替探墟者記退路，沒有獲得祕法。 愛問別人沒問過的事，也承認不是每道刻痕都會回答。",
+    "現在與招牌瞬間": "隨拓片護送到新加坡，接導航輔助職；所見只是反光，不證實古代機意志。 崩落石縫裡的骸片映亮掌心，他先在石上畫回程箭頭，才把拓紙遞給學者。 「看不懂也好，先把人帶回！」"
+   },
+   "events": [],
+   "relations": [],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve"
+    }
+   },
+   "batch": "fp-afrwasia-02",
+   "files": [
+    "content/base/world/backgrounds/azamat-tursun.json",
+    "content/base/persons/azamat-tursun.json",
+    "content/lore/characters/azamat-tursun.json"
+   ],
+   "under20Reason": "不適用"
+  }
+ ]
+}

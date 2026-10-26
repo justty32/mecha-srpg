@@ -1,0 +1,49 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "item",
+  "impact",
+  "proposal",
+  "size",
+  "current"
+ ],
+ "rows": [
+  {
+   "item": "招募卡顯示人物出身與年齡",
+   "impact": "目前lore的三段經歷不會自動出現在招募卡，玩家難以辨認老手與專業。",
+   "proposal": "由person id找gameRefs相符的人物，卡片顯示summary、age與activeYears；長文仍連百科。",
+   "size": "小（UI／查詢層）",
+   "current": "本輪只配好lore gameRefs，不改卡片。"
+  },
+  {
+   "item": "船員職類與篩選",
+   "impact": "medic、navigator等tags只是資料標記，沒有獨立專業能力，也不保證派任規則。",
+   "proposal": "先用tags做顯示與篩選；要醫護／導航加成另立職能契約，別暗借現有trait。",
+   "size": "顯示小；職能中（跨營運與資料契約）",
+   "current": "背景中文名、tags與attrs表達傾向，穩手僅準確+5。"
+  },
+  {
+   "item": "未成年學徒的派任限制",
+   "impact": "kind:human與非pilot tags不等於引擎禁止上座艙，十四歲學徒的非戰鬥定位目前只在內容。",
+   "proposal": "另立年齡／帶教與派任約束；本輪不得加effect冒充限制，也不宣稱已鎖。",
+   "size": "中（指令驗證、UI與測試）",
+   "current": "譚雲禾與裴振羽不寫駕駛經歷、不帶pilot tag。是否要落地前先做硬限制由領導決定。"
+  },
+  {
+   "item": "前職勢力與現職分開",
+   "impact": "lore單一faction容易讓白手套離職者看似現役，跨區計數也缺精確來源。",
+   "proposal": "後續可加可選originFaction與affiliations；在此之前role／body明寫離職，faction作出身掛點。",
+   "size": "中（lore契約與百科）",
+   "current": "不新增欄位到content，people的faction依現有欄位填。"
+  },
+  {
+   "item": "招募來源容量與多範本",
+   "impact": "同池只剩一位未雇來源時只出一人；單背景只能指一person，不能把size當無限生成數。",
+   "proposal": "需要更大季節輪替時再擴背景名單；若要背景多person，另改抽樣契約並保留全局去重。",
+   "size": "中（引擎與格式）；單純添名單為內容批",
+   "current": "本批三來源抽二，全部雇完後可空池，這是既有行為。"
+  }
+ ]
+}

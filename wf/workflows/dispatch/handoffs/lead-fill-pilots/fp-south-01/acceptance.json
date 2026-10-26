@@ -1,0 +1,117 @@
+{
+  "status": "DONE",
+  "line": "cx-fp-south-01",
+  "base": "27e6ea2f3481a4df855b19bfbf2760a65433fbf1",
+  "acceptance": [
+    {
+      "number": 1,
+      "status": "PASS",
+      "newFiles": 31,
+      "modifiedTracked": 0,
+      "person": 9,
+      "background": 9,
+      "character": 9,
+      "recruitPool": 4,
+      "references": "all exist; no cross-batch new references",
+      "totalBytes": 32749,
+      "maxBytes": 1759,
+      "preexistingUntracked": "node_modules symlink (present at session start)"
+    },
+    {
+      "number": 2,
+      "status": "PASS (worker checks); full tests by lead",
+      "checks": [
+        {
+          "name": "check",
+          "command": "npm run check",
+          "exit": 0,
+          "seconds": 0.42,
+          "log": "/tmp/cx-fp-south-01/check.log"
+        },
+        {
+          "name": "lore",
+          "command": "node content/lore/check.ts",
+          "exit": 0,
+          "seconds": 0.05,
+          "log": "/tmp/cx-fp-south-01/lore.log"
+        },
+        {
+          "name": "typecheck",
+          "command": "npm run typecheck",
+          "exit": 0,
+          "seconds": 0.44,
+          "log": "/tmp/cx-fp-south-01/typecheck.log"
+        }
+      ],
+      "baseWarnings": {
+        "loader": 32,
+        "ops": 10,
+        "newFiles": 0
+      },
+      "loreErrors": 0,
+      "loreWarnings": [
+        "WARN characters/arpita-biswas.json: 未登記欄位 places",
+        "WARN characters/bimal-haldar.json: 未登記欄位 places",
+        "WARN characters/jhuma-pal.json: 未登記欄位 places",
+        "WARN characters/parul-mandal.json: 未登記欄位 places",
+        "WARN characters/ratan-majumdar.json: 未登記欄位 places",
+        "WARN characters/riyaz-bhuiyan.json: 未登記欄位 places",
+        "WARN characters/sabir-mondal.json: 未登記欄位 places",
+        "WARN characters/shahana-mitra.json: 未登記欄位 places",
+        "WARN characters/tahmina-sarker.json: 未登記欄位 places"
+      ],
+      "npmTest": "領導跑；工人未執行，無黃金結果或豁免主張"
+    },
+    {
+      "number": 3,
+      "status": "PASS",
+      "reviewRows": 31,
+      "maxPlainLanguageChars": 37,
+      "insertsRows": 1,
+      "personAndBackgroundSpec": "exact match",
+      "ageBornAndActiveYears": "exact match",
+      "bodyCharsMin": 323,
+      "bodyCharsMax": 335,
+      "names": "grep main content and five other-region names-claimed files: 0 matches",
+      "forbiddenContent": "0 matches; no new effect or AI files"
+    },
+    {
+      "number": 4,
+      "status": "PASS",
+      "report": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-pilots/fp-south-01/REPORT.md",
+      "readlist": [
+        "/home/lorkhan/repo/game_dev/mecha-srpg/AGENTS.md",
+        "wf/workflows/common/user.md",
+        "wf/workflows/content/README.md",
+        "wf/workflows/content/batch.md",
+        "content/lore/README.md",
+        "content/lore/style.md",
+        "content/lore/style/people.md",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/fp-common.md",
+        "wf/workflows/dispatch/handoffs/fill-rulings.md",
+        "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+        "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+        "wf/workflows/planning/design-notes/world/pilots.md",
+        "wf/workflows/planning/design-notes/world/history-lines.md",
+        "wf/workflows/planning/specs/ops/content-format-ops/crew-text.md",
+        "src/ops/crew/recruit.ts",
+        "content/base/world/recruit-pools/",
+        "content/base/world/backgrounds/",
+        "content/base/persons/",
+        "AGENTS.md",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/plan.md",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/people.json",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/pools.json",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/batch-files.json",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/review-draft.json",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/cx-fp-south-01.md",
+        "wf/workflows/dispatch/handoffs/lead-fill-pilots/fp-rulings.md"
+      ],
+      "limitations": [
+        "crew tags provide no job bonus or no-pilot restriction; employment defaults to pilot",
+        "character.places is currently an unregistered optional field (9 warnings)"
+      ],
+      "subagents": 0
+    }
+  ]
+}

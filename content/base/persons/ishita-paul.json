@@ -1,0 +1,99 @@
+{
+  "id": "person/ishita-paul",
+  "name": "伊希塔・保羅",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+  },
+  "traits": [
+    "effect/ax-trait-watchful"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 48,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 48,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "seek-truth",
+      "bring-them-home"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve",
+      "add": -10
+    },
+    "resonanceAffinity": {
+      "seek-truth": 0.5
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "perception": [
+        1,
+        1,
+        2
+      ],
+      "resolve": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "communications"
+  ],
+  "age": 22
+}

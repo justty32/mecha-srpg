@@ -1,0 +1,86 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "gate",
+  "result",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "gate": 1,
+   "result": "PASS",
+   "evidence": {
+    "sections": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11"
+    ],
+    "planBytes": 16989,
+    "people": 24,
+    "age16to19": 1,
+    "percentage": 4.1667,
+    "histogram5Years": {
+     "10–14": 1,
+     "15–19": 1,
+     "20–24": 7,
+     "25–29": 3,
+     "30–34": 3,
+     "35–39": 3,
+     "40–44": 1,
+     "45–49": 2,
+     "50–54": 1,
+     "55–59": 1,
+     "60–64": 1
+    }
+   }
+  },
+  {
+   "gate": 2,
+   "result": "PASS",
+   "evidence": {
+    "peopleJSON": "wf-table/1 valid",
+    "reviewRows": 76,
+    "maxPlainChars": 30,
+    "grepExit": 1,
+    "grepHits": 0,
+    "claimFiles": 5
+   }
+  },
+  {
+   "gate": 3,
+   "result": "PASS",
+   "evidence": {
+    "batches": {
+     "fp-euram-01": 38,
+     "fp-euram-02": 38
+    },
+    "lint": [
+     "brief_lint: 0 違規／1 檔",
+     "brief_lint: 0 違規／1 檔"
+    ],
+    "manifest": "2 valid JSON; prescribed fields and read paths verified"
+   }
+  },
+  {
+   "gate": 4,
+   "result": "PASS",
+   "evidence": {
+    "peopleWithExistingPlaceAndFaction": 24,
+    "poolBasePlacesExist": 4,
+    "newEffects": 0,
+    "AI": 0,
+    "forbiddenStory": 0
+   }
+  }
+ ]
+}

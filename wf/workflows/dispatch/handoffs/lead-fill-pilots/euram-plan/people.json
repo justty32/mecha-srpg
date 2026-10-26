@@ -1,0 +1,3257 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "name",
+  "gender",
+  "age",
+  "born",
+  "activeYears",
+  "appearanceAge",
+  "region",
+  "before",
+  "after",
+  "personality",
+  "moment",
+  "quote",
+  "role",
+  "mech",
+  "attrs",
+  "levelDice",
+  "traits",
+  "backgroundTraits",
+  "perks",
+  "abilities",
+  "tags",
+  "will",
+  "culture",
+  "cultureNote",
+  "background",
+  "backgroundName",
+  "attrRanges",
+  "hireFee",
+  "wageMult",
+  "pool",
+  "weight",
+  "place",
+  "faction",
+  "hook",
+  "events",
+  "now",
+  "youngReason",
+  "loreDraft",
+  "loreExtras",
+  "summary",
+  "template",
+  "termsTemplate",
+  "profile",
+  "batch",
+  "files",
+  "image",
+  "kind",
+  "proposal"
+ ],
+ "rows": [
+  {
+   "id": "elian-vauclerc",
+   "name": "艾里安・沃克萊",
+   "gender": "男",
+   "age": 38,
+   "born": "2070",
+   "activeYears": 18,
+   "appearanceAge": 24.5,
+   "region": "歐洲",
+   "before": "崩前是內海家族旁支的寄宿生，只見過假期裡的海。",
+   "after": "2090 年十八歲上堅盾，後來離開家族護院班，轉守聖馬洛。",
+   "personality": "愛逞體面，敗退時卻肯當眾承認自己害怕。",
+   "moment": "九門同喪次晨，他用堅盾接住內城牆上鬆落的鐘架，讓抬傷者從腳邊過；沒有參與原事件的斬牆一擊。",
+   "quote": "門倒了，人還站著！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:celt",
+    "veteran"
+   ],
+   "will": {
+    "beliefs": [
+     "keep-oaths",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/inner-sea-gate-veteran",
+   "backgroundName": "內海家族旁支守門駕駛",
+   "attrRanges": {
+    "accuracy": [
+     52,
+     72
+    ],
+    "resolve": [
+     51,
+     71
+    ],
+    "control": [
+     46,
+     66
+    ]
+   },
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 1,
+   "place": "place/saint-malo",
+   "faction": "faction/euro-umbrella",
+   "hook": "年表2107-04-15九門同喪；G；底色1.6",
+   "events": [
+    "event/nine-gates"
+   ],
+   "now": "2107 年傷癒後隨歐洲備件船到新加坡候雇。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前是內海家族旁支的寄宿生，只見過假期裡的海。",
+    "崩後": "2090 年十八歲上堅盾，後來離開家族護院班，轉守聖馬洛。 愛逞體面，敗退時卻肯當眾承認自己害怕。",
+    "現在與招牌瞬間": "2107 年傷癒後隨歐洲備件船到新加坡候雇。 九門同喪次晨，他用堅盾接住內城牆上鬆落的鐘架，讓抬傷者從腳邊過；沒有參與原事件的斬牆一擊。 「門倒了，人還站著！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/elian-vauclerc"
+    ],
+    "places": [
+     "place/saint-malo"
+    ],
+    "events": [
+     "event/nine-gates"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "駕駛"
+    ]
+   },
+   "summary": "內海家族旁支守門駕駛；愛逞體面，敗退時卻肯當眾承認自己害怕。",
+   "template": "content/base/persons/irina-sokolova.json",
+   "termsTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "profile": "veteran",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/inner-sea-gate-veteran.json",
+    "content/base/persons/elian-vauclerc.json",
+    "content/lore/characters/elian-vauclerc.json"
+   ],
+   "image": "鐘架",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "tessa-rinaldi",
+   "name": "泰莎・里納爾迪",
+   "gender": "女",
+   "age": 26,
+   "born": "2082",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "歐洲",
+   "before": "崩前七歲，在熱那亞替做工的母親撿掉地的鈕扣，還不會讀圖。",
+   "after": "工坊斷了師傅後，她從拆壞件學起，成年才跟出貨船做維修。",
+   "personality": "嫌人吹牛，補完一件卻會偷偷摸一下自己的落款。",
+   "moment": "流光從破裂的肩甲接縫噴出，她把自己的補片按上去，聽見機甲重新抬起臂架才鬆手。",
+   "quote": "這隻手，還能抬！",
+   "role": "技師",
+   "mech": "",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-bg-siege-rigger"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician",
+    "culture:greek"
+   ],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "greek",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用內海工坊常講的希臘故事。",
+   "background": "background/genoa-patch-smith",
+   "backgroundName": "熱那亞家族工坊外派技師",
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 3,
+   "place": "place/genoa-yards",
+   "faction": "faction/inner-sea-houses",
+   "hook": "N03公刻；C；底色1.3",
+   "events": [],
+   "now": "隨熱那亞修造船到新加坡，交貨後自行接活。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前七歲，在熱那亞替做工的母親撿掉地的鈕扣，還不會讀圖。",
+    "崩後": "工坊斷了師傅後，她從拆壞件學起，成年才跟出貨船做維修。 嫌人吹牛，補完一件卻會偷偷摸一下自己的落款。",
+    "現在與招牌瞬間": "隨熱那亞修造船到新加坡，交貨後自行接活。 流光從破裂的肩甲接縫噴出，她把自己的補片按上去，聽見機甲重新抬起臂架才鬆手。 「這隻手，還能抬！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/tessa-rinaldi"
+    ],
+    "places": [
+     "place/genoa-yards"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "技師"
+    ]
+   },
+   "summary": "熱那亞家族工坊外派技師；嫌人吹牛，補完一件卻會偷偷摸一下自己的落款。",
+   "template": "content/base/persons/hana-sato.json",
+   "termsTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "profile": "technician",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/genoa-patch-smith.json",
+    "content/base/persons/tessa-rinaldi.json",
+    "content/lore/characters/tessa-rinaldi.json"
+   ],
+   "image": "補片",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "marek-wolski",
+   "name": "馬雷克・沃爾斯基",
+   "gender": "男",
+   "age": 23,
+   "born": "2085",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "歐洲",
+   "before": "崩前四歲，記得父親在漢堡車站把兩張票折進掌心。",
+   "after": "靠港口接濟長大，2106 年才進鐵砧地方護貨班學堅盾。",
+   "personality": "嘴硬愛搶第一句，真的挨罵時反而把錯處重演給新人看。",
+   "moment": "拖貨場外一隻鐮肢抬臂時，他把堅盾蹲進車輪前的坑，讓傷工從盾背翻過去。",
+   "quote": "我蹲下，是讓你們過去！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/hamburg-freight-rookie",
+   "backgroundName": "漢堡新晉護貨駕駛",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 4,
+   "place": "place/hamburg",
+   "faction": "faction/anvil",
+   "hook": "N08獵牌；C、G；底色1.2",
+   "events": [],
+   "now": "短約到期，隨同一艘修造船在新加坡另找雇主。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前四歲，記得父親在漢堡車站把兩張票折進掌心。",
+    "崩後": "靠港口接濟長大，2106 年才進鐵砧地方護貨班學堅盾。 嘴硬愛搶第一句，真的挨罵時反而把錯處重演給新人看。",
+    "現在與招牌瞬間": "短約到期，隨同一艘修造船在新加坡另找雇主。 拖貨場外一隻鐮肢抬臂時，他把堅盾蹲進車輪前的坑，讓傷工從盾背翻過去。 「我蹲下，是讓你們過去！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/marek-wolski"
+    ],
+    "places": [
+     "place/hamburg"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "駕駛"
+    ]
+   },
+   "summary": "漢堡新晉護貨駕駛；嘴硬愛搶第一句，真的挨罵時反而把錯處重演給新人看。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/hamburg-freight-rookie.json",
+    "content/base/persons/marek-wolski.json",
+    "content/lore/characters/marek-wolski.json"
+   ],
+   "image": "輪坑",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "sanne-de-vries",
+   "name": "珊娜・德弗里斯",
+   "gender": "女",
+   "age": 34,
+   "born": "2074",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "歐洲",
+   "before": "崩前十五歲，給鹿特丹引水艇刷船名，想上大船。",
+   "after": "先在水上機庫拖傷機，2105 年受訓，改開岸勤長槍。",
+   "personality": "平常不搶話，認定撤離方向後誰都別想把她推回去。",
+   "moment": "貨櫃岸翻覆時，她把長槍的掌部卡進兩只箱角，扳開夾住救援艇的缺口。",
+   "quote": "把海讓出來！",
+   "role": "駕駛",
+   "mech": "長槍-V4",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "protect-kin",
+     "keep-oaths"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/rotterdam-recovery-pilot",
+   "backgroundName": "鹿特丹拖機轉駕駛",
+   "attrRanges": {
+    "accuracy": [
+     49,
+     69
+    ],
+    "resolve": [
+     48,
+     68
+    ],
+    "control": [
+     39,
+     59
+    ]
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 3,
+   "place": "place/rotterdam-roost",
+   "faction": "faction/salt-gull",
+   "hook": "底色1.4、1.8；F、G；N06跨線運糧",
+   "events": [],
+   "now": "鹽鷗外勤短約結束，搭維修船在新加坡候補班。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前十五歲，給鹿特丹引水艇刷船名，想上大船。",
+    "崩後": "先在水上機庫拖傷機，2105 年受訓，改開岸勤長槍。 平常不搶話，認定撤離方向後誰都別想把她推回去。",
+    "現在與招牌瞬間": "鹽鷗外勤短約結束，搭維修船在新加坡候補班。 貨櫃岸翻覆時，她把長槍的掌部卡進兩只箱角，扳開夾住救援艇的缺口。 「把海讓出來！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/sanne-de-vries"
+    ],
+    "places": [
+     "place/rotterdam-roost"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "駕駛"
+    ]
+   },
+   "summary": "鹿特丹拖機轉駕駛；平常不搶話，認定撤離方向後誰都別想把她推回去。",
+   "template": "content/base/persons/adewale-balogun.json",
+   "termsTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "profile": "pilot",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/rotterdam-recovery-pilot.json",
+    "content/base/persons/sanne-de-vries.json",
+    "content/lore/characters/sanne-de-vries.json"
+   ],
+   "image": "箱角",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "bruno-azzari",
+   "name": "布魯諾・阿扎里",
+   "gender": "男",
+   "age": 20,
+   "born": "2088",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "歐洲",
+   "before": "崩前只有一歲，所謂舊家全是保母後來講的故事。",
+   "after": "在家族圍籬邊搬拓本，2107 年才通過普通堅盾試駕，不是古代機候選。",
+   "personality": "好奇心過頭，卻從不替沉默的東西編答案。",
+   "moment": "山坳塌下碎石時，他把練習機靠上崖壁，讓勘測者從兩足間撤走；埋在雪裡的骸片亮了一下，他沒有伸手拿。",
+   "quote": "先回來，再問它！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:greek"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "greek",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用內海工坊常講的希臘故事。",
+   "background": "background/alpine-yard-trainee",
+   "backgroundName": "內海獵場出身試駕生",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 4,
+   "place": "place/alpine-shell",
+   "faction": "faction/inner-sea-houses",
+   "hook": "N03知識散落；A、C；底色1.3",
+   "events": [],
+   "now": "辭去獵場勤務，自費跟修造船到新加坡，想學港口守備。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前只有一歲，所謂舊家全是保母後來講的故事。",
+    "崩後": "在家族圍籬邊搬拓本，2107 年才通過普通堅盾試駕，不是古代機候選。 好奇心過頭，卻從不替沉默的東西編答案。",
+    "現在與招牌瞬間": "辭去獵場勤務，自費跟修造船到新加坡，想學港口守備。 山坳塌下碎石時，他把練習機靠上崖壁，讓勘測者從兩足間撤走；埋在雪裡的骸片亮了一下，他沒有伸手拿。 「先回來，再問它！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/bruno-azzari"
+    ],
+    "places": [
+     "place/alpine-shell"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "駕駛"
+    ]
+   },
+   "summary": "內海獵場出身試駕生；好奇心過頭，卻從不替沉默的東西編答案。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/alpine-yard-trainee.json",
+    "content/base/persons/bruno-azzari.json",
+    "content/lore/characters/bruno-azzari.json"
+   ],
+   "image": "雪中骸片",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "celia-keravel",
+   "name": "瑟莉亞・凱拉維爾",
+   "gender": "女",
+   "age": 62,
+   "born": "2046",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "歐洲",
+   "before": "崩前四十三歲，在聖馬洛給夜班碼頭工烤麵包。",
+   "after": "斷鏈後改煮配給糧，後來隨救護船離港，從未駕駛機甲。",
+   "personality": "罵人很響，記得每個人咬不動什麼。",
+   "moment": "外海獸吼壓過飯鈴，她把第一盤烤得焦黑的餅舉到傷員前，逼他們一個個開口挑剔，船艙終於又有人聲。",
+   "quote": "先罵我的餅，再去罵海！",
+   "role": "廚工",
+   "mech": "",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-salt-mourning"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "cook",
+    "culture:celt"
+   ],
+   "will": {
+    "beliefs": [
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/saint-malo-ship-cook",
+   "backgroundName": "聖馬洛隨船廚工",
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "hireFee": 300,
+   "wageMult": 0.9,
+   "pool": "recruit/singapore-inner-sea-contracts",
+   "weight": 2,
+   "place": "place/saint-malo",
+   "faction": "faction/euro-umbrella",
+   "hook": "底色1.4、1.8；F、G",
+   "events": [],
+   "now": "2107 年救護船在新加坡換班，她留港找下一艘船。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前四十三歲，在聖馬洛給夜班碼頭工烤麵包。",
+    "崩後": "斷鏈後改煮配給糧，後來隨救護船離港，從未駕駛機甲。 罵人很響，記得每個人咬不動什麼。",
+    "現在與招牌瞬間": "2107 年救護船在新加坡換班，她留港找下一艘船。 外海獸吼壓過飯鈴，她把第一盤烤得焦黑的餅舉到傷員前，逼他們一個個開口挑剔，船艙終於又有人聲。 「先罵我的餅，再去罵海！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/celia-keravel"
+    ],
+    "places": [
+     "place/saint-malo"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "歐洲",
+     "廚工"
+    ]
+   },
+   "summary": "聖馬洛隨船廚工；罵人很響，記得每個人咬不動什麼。",
+   "template": "content/base/persons/hana-sato.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-hull-welder.json",
+   "profile": "crew",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/saint-malo-ship-cook.json",
+    "content/base/persons/celia-keravel.json",
+    "content/lore/characters/celia-keravel.json"
+   ],
+   "image": "焦餅",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "vera-zorina",
+   "name": "薇拉・佐琳娜",
+   "gender": "女",
+   "age": 52,
+   "born": "2056",
+   "activeYears": 16,
+   "appearanceAge": 40.0,
+   "region": "俄國",
+   "before": "崩前三十三歲，在雅庫茨克做木材運輸的調車手。",
+   "after": "2092 年三十六歲上堅盾，2100 年失守後護送南撤，仍做機械系護運。",
+   "personality": "不愛被喊英雄，收隊時會逐人問肚子餓不餓。",
+   "moment": "白夜的光透過車底時，她把堅盾跪在泥裡墊高翻側的傷員車，等最後一人爬出才退。",
+   "quote": "你照你的白夜，我帶我的人！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse",
+    "veteran"
+   ],
+   "will": {
+    "beliefs": [
+     "keep-oaths",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/white-night-rearguard",
+   "backgroundName": "白夜退線老駕駛",
+   "attrRanges": {
+    "accuracy": [
+     52,
+     72
+    ],
+    "resolve": [
+     51,
+     71
+    ],
+    "control": [
+     46,
+     66
+    ]
+   },
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 1,
+   "place": "place/yakutsk-bed",
+   "faction": "faction/russia-umbrella",
+   "hook": "年表2100白夜首燒與雅庫茨克失守；F；底色1.11",
+   "events": [],
+   "now": "2107 年結束護運約，跟南下補給船抵達達卡候雇；不是總統府派兵。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前三十三歲，在雅庫茨克做木材運輸的調車手。",
+    "崩後": "2092 年三十六歲上堅盾，2100 年失守後護送南撤，仍做機械系護運。 不愛被喊英雄，收隊時會逐人問肚子餓不餓。",
+    "現在與招牌瞬間": "2107 年結束護運約，跟南下補給船抵達達卡候雇；不是總統府派兵。 白夜的光透過車底時，她把堅盾跪在泥裡墊高翻側的傷員車，等最後一人爬出才退。 「你照你的白夜，我帶我的人！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/vera-zorina"
+    ],
+    "places": [
+     "place/yakutsk-bed"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "駕駛"
+    ]
+   },
+   "summary": "白夜退線老駕駛；不愛被喊英雄，收隊時會逐人問肚子餓不餓。",
+   "template": "content/base/persons/irina-sokolova.json",
+   "termsTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "profile": "veteran",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/white-night-rearguard.json",
+    "content/base/persons/vera-zorina.json",
+    "content/lore/characters/vera-zorina.json"
+   ],
+   "image": "側翻車",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "pavel-rakitin",
+   "name": "帕維爾・拉基廷",
+   "gender": "男",
+   "age": 33,
+   "born": "2075",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "俄國",
+   "before": "崩前十四歲，跟父親在堪察加井棚分揀工具。",
+   "after": "井港斷援後先做搬運，2104 年成年守備缺人，才學會開堅盾。",
+   "personality": "對人很慢熟，對傷機卻總先喊一聲等我。",
+   "moment": "港邊來獸撞彎汲光槽，他把機甲背架轉給傷機，等對方走起來後兩台一瘸一拐退回棚下。",
+   "quote": "我還有一口光！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "protect-kin",
+     "keep-oaths"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/kamchatka-backrack-guard",
+   "backgroundName": "堪察加井港退勤駕駛",
+   "attrRanges": {
+    "accuracy": [
+     49,
+     69
+    ],
+    "resolve": [
+     48,
+     68
+    ],
+    "control": [
+     39,
+     59
+    ]
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 3,
+   "place": "place/kamchatka-wells",
+   "faction": "faction/russia-umbrella",
+   "hook": "棄東令2091的井港後果；G；底色1.6",
+   "events": [
+    "event/eastern-abandonment"
+   ],
+   "now": "退勤後護送一船舊件南下，船到達卡拆約。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前十四歲，跟父親在堪察加井棚分揀工具。",
+    "崩後": "井港斷援後先做搬運，2104 年成年守備缺人，才學會開堅盾。 對人很慢熟，對傷機卻總先喊一聲等我。",
+    "現在與招牌瞬間": "退勤後護送一船舊件南下，船到達卡拆約。 港邊來獸撞彎汲光槽，他把機甲背架轉給傷機，等對方走起來後兩台一瘸一拐退回棚下。 「我還有一口光！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/pavel-rakitin"
+    ],
+    "places": [
+     "place/kamchatka-wells"
+    ],
+    "events": [
+     "event/eastern-abandonment"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "駕駛"
+    ]
+   },
+   "summary": "堪察加井港退勤駕駛；對人很慢熟，對傷機卻總先喊一聲等我。",
+   "template": "content/base/persons/adewale-balogun.json",
+   "termsTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "profile": "pilot",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/kamchatka-backrack-guard.json",
+    "content/base/persons/pavel-rakitin.json",
+    "content/lore/characters/pavel-rakitin.json"
+   ],
+   "image": "背架",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "alina-vetlina",
+   "name": "阿莉娜・韋特琳娜",
+   "gender": "女",
+   "age": 22,
+   "born": "2086",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "俄國",
+   "before": "崩前只有三歲，記得冷藏屋門外一點紅漆，說不出那是什麼店。",
+   "after": "在提克西救濟棚長大，2106 年學岸勤堅盾，缺的同齡兵讓她常代班。",
+   "personality": "笑起來停不住，開機時卻把每個轉身做得很慢。",
+   "moment": "岸冰崩開時，她把機甲足甲橫在縫上，讓卸貨工抱著糧包走過去，靈目一直朝著外海黑影。",
+   "quote": "別看下面，看我！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/tiksi-icewatch-rookie",
+   "backgroundName": "提克西極夜新駕駛",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 4,
+   "place": "place/tiksi",
+   "faction": "faction/russia-umbrella",
+   "hook": "底色1.1、1.2；C、G",
+   "events": [],
+   "now": "隨井港換班船往南，達卡短約開放後留下。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前只有三歲，記得冷藏屋門外一點紅漆，說不出那是什麼店。",
+    "崩後": "在提克西救濟棚長大，2106 年學岸勤堅盾，缺的同齡兵讓她常代班。 笑起來停不住，開機時卻把每個轉身做得很慢。",
+    "現在與招牌瞬間": "隨井港換班船往南，達卡短約開放後留下。 岸冰崩開時，她把機甲足甲橫在縫上，讓卸貨工抱著糧包走過去，靈目一直朝著外海黑影。 「別看下面，看我！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/alina-vetlina"
+    ],
+    "places": [
+     "place/tiksi"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "駕駛"
+    ]
+   },
+   "summary": "提克西極夜新駕駛；笑起來停不住，開機時卻把每個轉身做得很慢。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/tiksi-icewatch-rookie.json",
+    "content/base/persons/alina-vetlina.json",
+    "content/lore/characters/alina-vetlina.json"
+   ],
+   "image": "冰縫",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "denis-chernavin",
+   "name": "傑尼斯・切爾納文",
+   "gender": "男",
+   "age": 27,
+   "born": "2081",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "俄國",
+   "before": "崩前八歲，在井港學校把海畫成平的，被老師笑過。",
+   "after": "2105 年才從拖車工改學長槍，見過海面被獸背抬成斜坡。",
+   "personality": "每次緊張都講笑話，笑話講完還是照隊友報的位置開火。",
+   "moment": "海霧裡獸甲反光逼近，他壓住想追擊的腳步，把最後一矢打在撤離船前的獸足旁，給船留出轉向空處。",
+   "quote": "這一矢，買你們轉身！",
+   "role": "駕駛",
+   "mech": "長槍-V4",
+   "attrs": {
+    "accuracy": 64,
+    "evasion": 13,
+    "resolve": 50,
+    "initiative": 8,
+    "perception": 6,
+    "control": 45
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/kamchatka-last-arrow",
+   "backgroundName": "井港護航轉獵手",
+   "attrRanges": {
+    "accuracy": [
+     54,
+     74
+    ],
+    "resolve": [
+     40,
+     60
+    ],
+    "control": [
+     35,
+     55
+    ]
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 3,
+   "place": "place/kamchatka-wells",
+   "faction": "faction/russia-umbrella",
+   "hook": "底色1.2、1.4；C、F",
+   "events": [],
+   "now": "護送修件船到達卡後結約，想學獵團而非守港一生。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前八歲，在井港學校把海畫成平的，被老師笑過。",
+    "崩後": "2105 年才從拖車工改學長槍，見過海面被獸背抬成斜坡。 每次緊張都講笑話，笑話講完還是照隊友報的位置開火。",
+    "現在與招牌瞬間": "護送修件船到達卡後結約，想學獵團而非守港一生。 海霧裡獸甲反光逼近，他壓住想追擊的腳步，把最後一矢打在撤離船前的獸足旁，給船留出轉向空處。 「這一矢，買你們轉身！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/denis-chernavin"
+    ],
+    "places": [
+     "place/kamchatka-wells"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "駕駛"
+    ]
+   },
+   "summary": "井港護航轉獵手；每次緊張都講笑話，笑話講完還是照隊友報的位置開火。",
+   "template": "content/base/persons/nuala-byrne.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "profile": "shooter",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/kamchatka-last-arrow.json",
+    "content/base/persons/denis-chernavin.json",
+    "content/lore/characters/denis-chernavin.json"
+   ],
+   "image": "末矢",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "nadya-krutova",
+   "name": "娜佳・克魯托娃",
+   "gender": "女",
+   "age": 46,
+   "born": "2062",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "俄國",
+   "before": "崩前二十七歲，在雅庫茨克做產房護理。",
+   "after": "失守後跟妮娜的撤離隊到南側營地，改治撤運傷患，不進菌床核心。",
+   "personality": "不說一定會好，只把下一件能做的事說得非常清楚。",
+   "moment": "菌光映進撤運車時，她把剪開的袖布塞給傷者咬住，帶著整車人跟她一齊數呼吸。",
+   "quote": "跟著我數，別交給白夜！",
+   "role": "醫護",
+   "mech": "",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "medic",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "bring-them-home",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/white-night-evac-medic",
+   "backgroundName": "白夜南營隨船醫護",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     34,
+     54
+    ],
+    "control": [
+     28,
+     48
+    ]
+   },
+   "hireFee": 460,
+   "wageMult": 1.1,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 3,
+   "place": "place/yakutsk-bed",
+   "faction": "faction/russia-umbrella",
+   "hook": "年表2100雅庫茨克失守；底色1.1、1.8；F",
+   "events": [],
+   "now": "換班後自願隨藥材船到達卡；沿途治傷換船位。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前二十七歲，在雅庫茨克做產房護理。",
+    "崩後": "失守後跟妮娜的撤離隊到南側營地，改治撤運傷患，不進菌床核心。 不說一定會好，只把下一件能做的事說得非常清楚。",
+    "現在與招牌瞬間": "換班後自願隨藥材船到達卡；沿途治傷換船位。 菌光映進撤運車時，她把剪開的袖布塞給傷者咬住，帶著整車人跟她一齊數呼吸。 「跟著我數，別交給白夜！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/nadya-krutova"
+    ],
+    "places": [
+     "place/yakutsk-bed"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "醫護"
+    ]
+   },
+   "summary": "白夜南營隨船醫護；不說一定會好，只把下一件能做的事說得非常清楚。",
+   "template": "content/base/persons/leila-nasser.json",
+   "termsTemplate": "content/base/world/backgrounds/shell-marsh-mortician.json",
+   "profile": "medic",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/white-night-evac-medic.json",
+    "content/base/persons/nadya-krutova.json",
+    "content/lore/characters/nadya-krutova.json"
+   ],
+   "image": "袖布",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "timur-seregin",
+   "name": "季穆爾・謝列金",
+   "gender": "男",
+   "age": 21,
+   "born": "2087",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "俄國",
+   "before": "崩前兩歲，只剩母親哼的歌，不把聽來的城市當親見。",
+   "after": "在護運船上學辨天網雜音和冰岸缺口，成年後才獨立值更。",
+   "personality": "怕做錯便反覆問，危急時卻敢讓整艘船聽見自己的判斷。",
+   "moment": "冰霧裡三道回聲重疊，他把耳罩掀開聽船身刮冰，喊出轉舵，船尾剛好擦過崩落的冰柱。",
+   "quote": "別跟回聲，跟我的聲音！",
+   "role": "導航",
+   "mech": "",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "navigator",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/tiksi-listening-navigator",
+   "backgroundName": "提克西護運領航學成者",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     34,
+     54
+    ],
+    "control": [
+     28,
+     48
+    ]
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/dhaka-northern-exiles",
+   "weight": 4,
+   "place": "place/tiksi",
+   "faction": "faction/russia-umbrella",
+   "hook": "底色1.4；F、G；N06跨線貨運",
+   "events": [],
+   "now": "領完南下護運薪在達卡候下一航次。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前兩歲，只剩母親哼的歌，不把聽來的城市當親見。",
+    "崩後": "在護運船上學辨天網雜音和冰岸缺口，成年後才獨立值更。 怕做錯便反覆問，危急時卻敢讓整艘船聽見自己的判斷。",
+    "現在與招牌瞬間": "領完南下護運薪在達卡候下一航次。 冰霧裡三道回聲重疊，他把耳罩掀開聽船身刮冰，喊出轉舵，船尾剛好擦過崩落的冰柱。 「別跟回聲，跟我的聲音！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/timur-seregin"
+    ],
+    "places": [
+     "place/tiksi"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "俄國",
+     "導航"
+    ]
+   },
+   "summary": "提克西護運領航學成者；怕做錯便反覆問，危急時卻敢讓整艘船聽見自己的判斷。",
+   "template": "content/base/persons/leila-nasser.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "profile": "navigator",
+   "batch": "fp-euram-01",
+   "files": [
+    "content/base/world/backgrounds/tiksi-listening-navigator.json",
+    "content/base/persons/timur-seregin.json",
+    "content/lore/characters/timur-seregin.json"
+   ],
+   "image": "耳罩",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "maren-whitcomb",
+   "name": "瑪倫・惠特科姆",
+   "gender": "女",
+   "age": 36,
+   "born": "2072",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "崩前十七歲，在西雅圖港當糧車點貨學徒。",
+   "after": "後來改守庫房，直到2104年才進岸防駕駛班，未開過國家試製B級。",
+   "personality": "脾氣直，知道自己錯時會當著全班重新報一次。",
+   "moment": "歸船斷座夜，她在旁巷用堅盾撐住倒斜的貨棚，放最後一車糧通過；頂砲那人另有其人。",
+   "quote": "這條路，我還沒交出去！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:celt"
+   ],
+   "will": {
+    "beliefs": [
+     "protect-kin",
+     "keep-oaths"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/seattle-warehouse-guard",
+   "backgroundName": "西雅圖退勤守港駕駛",
+   "attrRanges": {
+    "accuracy": [
+     49,
+     69
+    ],
+    "resolve": [
+     48,
+     68
+    ],
+    "control": [
+     39,
+     59
+    ]
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 3,
+   "place": "place/seattle",
+   "faction": "faction/north-american-umbrella",
+   "hook": "年表2106-10-15歸船斷座夜；底色1.4、1.6；G",
+   "events": [
+    "event/seattle-broken-gun"
+   ],
+   "now": "2107 年退勤，護糧船經太平洋轉到吉大港，轉獵手候雇。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前十七歲，在西雅圖港當糧車點貨學徒。",
+    "崩後": "後來改守庫房，直到2104年才進岸防駕駛班，未開過國家試製B級。 脾氣直，知道自己錯時會當著全班重新報一次。",
+    "現在與招牌瞬間": "2107 年退勤，護糧船經太平洋轉到吉大港，轉獵手候雇。 歸船斷座夜，她在旁巷用堅盾撐住倒斜的貨棚，放最後一車糧通過；頂砲那人另有其人。 「這條路，我還沒交出去！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/maren-whitcomb"
+    ],
+    "places": [
+     "place/seattle"
+    ],
+    "events": [
+     "event/seattle-broken-gun"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "駕駛"
+    ]
+   },
+   "summary": "西雅圖退勤守港駕駛；脾氣直，知道自己錯時會當著全班重新報一次。",
+   "template": "content/base/persons/adewale-balogun.json",
+   "termsTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "profile": "pilot",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/seattle-warehouse-guard.json",
+    "content/base/persons/maren-whitcomb.json",
+    "content/lore/characters/maren-whitcomb.json"
+   ],
+   "image": "棚柱",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "caleb-fenwick",
+   "name": "凱勒布・芬威克",
+   "gender": "男",
+   "age": 24,
+   "born": "2084",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "崩前五歲，在丹佛農產場替祖父挑扁掉的果子。",
+   "after": "在糧車隊長大，2106 年從副手轉開堅盾；第一次看獸是在沿海交貨。",
+   "personality": "愛問有沒有近路，碰到怕海的新工卻願意陪他慢走。",
+   "moment": "糧車前輪陷進港口碎坑，獸足聲漸近，他把機甲手掌平放成坡，讓車從指節上壓過。",
+   "quote": "山裡的糧，今天要到海邊！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:celt"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/denver-grain-escort",
+   "backgroundName": "丹佛糧隊護運駕駛",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 4,
+   "place": "place/denver",
+   "faction": "faction/north-american-umbrella",
+   "hook": "N06跨線貿易；底色1.4；G",
+   "events": [],
+   "now": "護送隊在吉大港結約，他選擇留下學海岸作戰。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前五歲，在丹佛農產場替祖父挑扁掉的果子。",
+    "崩後": "在糧車隊長大，2106 年從副手轉開堅盾；第一次看獸是在沿海交貨。 愛問有沒有近路，碰到怕海的新工卻願意陪他慢走。",
+    "現在與招牌瞬間": "護送隊在吉大港結約，他選擇留下學海岸作戰。 糧車前輪陷進港口碎坑，獸足聲漸近，他把機甲手掌平放成坡，讓車從指節上壓過。 「山裡的糧，今天要到海邊！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/caleb-fenwick"
+    ],
+    "places": [
+     "place/denver"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "駕駛"
+    ]
+   },
+   "summary": "丹佛糧隊護運駕駛；愛問有沒有近路，碰到怕海的新工卻願意陪他慢走。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/denver-grain-escort.json",
+    "content/base/persons/caleb-fenwick.json",
+    "content/lore/characters/caleb-fenwick.json"
+   ],
+   "image": "掌坡",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "lucie-vautrin",
+   "name": "露西・沃特蘭",
+   "gender": "女",
+   "age": 31,
+   "born": "2077",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "崩前十二歲，跟祖母在蒙特婁修鐘，只會換最簡單的齒片。",
+   "after": "成年後替學會修運輸機具，不進刑天內殿、不聲稱讀懂刻痕。",
+   "personality": "凡是聽不懂的先記成問號，不肯把問號說成神諭。",
+   "moment": "吊架斷齒時，她拿拆開的工具匣墊住滑輪，托著學員的手把傷機上的人放下來。",
+   "quote": "不懂的留下，人先放下來！",
+   "role": "技師",
+   "mech": "",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-bg-siege-rigger"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician",
+    "culture:celt"
+   ],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/montreal-hoist-smith",
+   "backgroundName": "蒙特婁學會隨船技師",
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 3,
+   "place": "place/montreal",
+   "faction": "faction/shell-society",
+   "hook": "N03知識斷層；A、C；底色1.3",
+   "events": [],
+   "now": "學會運貨船在吉大港交貨後，她停薪接民間維修短約。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前十二歲，跟祖母在蒙特婁修鐘，只會換最簡單的齒片。",
+    "崩後": "成年後替學會修運輸機具，不進刑天內殿、不聲稱讀懂刻痕。 凡是聽不懂的先記成問號，不肯把問號說成神諭。",
+    "現在與招牌瞬間": "學會運貨船在吉大港交貨後，她停薪接民間維修短約。 吊架斷齒時，她拿拆開的工具匣墊住滑輪，托著學員的手把傷機上的人放下來。 「不懂的留下，人先放下來！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/lucie-vautrin"
+    ],
+    "places": [
+     "place/montreal"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "技師"
+    ]
+   },
+   "summary": "蒙特婁學會隨船技師；凡是聽不懂的先記成問號，不肯把問號說成神諭。",
+   "template": "content/base/persons/hana-sato.json",
+   "termsTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "profile": "technician",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/montreal-hoist-smith.json",
+    "content/base/persons/lucie-vautrin.json",
+    "content/lore/characters/lucie-vautrin.json"
+   ],
+   "image": "工具匣",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "isela-trevino",
+   "name": "伊瑟拉・特雷維尼奧",
+   "gender": "女",
+   "age": 22,
+   "born": "2086",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "崩前只有三歲，家中相片上的大港是父母的記憶。",
+   "after": "在墨西哥城糧隊學修輪架，2106 年試駕通用堅盾後才加入護運。",
+   "personality": "討厭別人替她解釋家鄉，自己卻會慢慢學每個人的口音。",
+   "moment": "沿海交貨時獸吼震落站牌，她把堅盾盾面壓平當遮頂，請跑散的孩子拍兩下才走出去接下一批。",
+   "quote": "先敲兩下，我就接你！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:nahua"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "nahua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用跨加勒比與墨西哥航班學來的納瓦故事。",
+   "background": "background/mexico-highland-escort",
+   "backgroundName": "墨西哥高原護運駕駛",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 4,
+   "place": "place/mexico-city",
+   "faction": "faction/north-american-umbrella",
+   "hook": "底色1.6；G；N08跨傘獵牌",
+   "events": [],
+   "now": "原護運約結束，從巴拿馬轉船到吉大港；未假稱已豁免國家徵召。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前只有三歲，家中相片上的大港是父母的記憶。",
+    "崩後": "在墨西哥城糧隊學修輪架，2106 年試駕通用堅盾後才加入護運。 討厭別人替她解釋家鄉，自己卻會慢慢學每個人的口音。",
+    "現在與招牌瞬間": "原護運約結束，從巴拿馬轉船到吉大港；未假稱已豁免國家徵召。 沿海交貨時獸吼震落站牌，她把堅盾盾面壓平當遮頂，請跑散的孩子拍兩下才走出去接下一批。 「先敲兩下，我就接你！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/isela-trevino"
+    ],
+    "places": [
+     "place/mexico-city"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "駕駛"
+    ]
+   },
+   "summary": "墨西哥高原護運駕駛；討厭別人替她解釋家鄉，自己卻會慢慢學每個人的口音。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/mexico-highland-escort.json",
+    "content/base/persons/isela-trevino.json",
+    "content/lore/characters/isela-trevino.json"
+   ],
+   "image": "拍盾",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "owen-calder",
+   "name": "歐文・考爾德",
+   "gender": "男",
+   "age": 18,
+   "born": "2090",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "2090 年出生，崩前尚未出生；不寫親歷崩前的句子。",
+   "after": "母親在溫尼伯內陸井站生下他，外祖家存糧、井水與留守助產者讓母子活過斷鏈；同年幼兒多未長成。",
+   "personality": "怕別人把他當奇蹟，會主動說自己也會聽錯。",
+   "moment": "一次船艙雜音吞掉傷員求救，他站到傳聲口逐字重喊船名，直到回聲裡真的有人答應接人。",
+   "quote": "別把活人的聲音當雜音！",
+   "role": "報訊",
+   "mech": "",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "signaller",
+    "culture:celt"
+   ],
+   "will": {
+    "beliefs": [
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "celt",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用家中與船員學來的凱爾特故事。",
+   "background": "background/winnipeg-collapse-signaller",
+   "backgroundName": "溫尼伯崩年生報訊員",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     34,
+     54
+    ],
+    "control": [
+     28,
+     48
+    ]
+   },
+   "hireFee": 180,
+   "wageMult": 0.7,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 2,
+   "place": "place/winnipeg",
+   "faction": "faction/north-american-umbrella",
+   "hook": "底色1.1出生斷層、1.8哀悼；C、G",
+   "events": [],
+   "now": "十六歲學報訊，成年才跟糧船出港，現於吉大港候雇；不當駕駛。",
+   "youngReason": "溫尼伯內陸井站、家存糧與助產者共同護住母子；同齡少，成年才出航，非天選駕駛。",
+   "loreDraft": {
+    "崩前": "2090 年出生，崩前尚未出生；不寫親歷崩前的句子。",
+    "崩後": "母親在溫尼伯內陸井站生下他，外祖家存糧、井水與留守助產者讓母子活過斷鏈；同年幼兒多未長成。 怕別人把他當奇蹟，會主動說自己也會聽錯。",
+    "現在與招牌瞬間": "十六歲學報訊，成年才跟糧船出港，現於吉大港候雇；不當駕駛。 一次船艙雜音吞掉傷員求救，他站到傳聲口逐字重喊船名，直到回聲裡真的有人答應接人。 「別把活人的聲音當雜音！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/owen-calder"
+    ],
+    "places": [
+     "place/winnipeg"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "報訊"
+    ]
+   },
+   "summary": "溫尼伯崩年生報訊員；怕別人把他當奇蹟，會主動說自己也會聽錯。",
+   "template": "content/base/persons/leila-nasser.json",
+   "termsTemplate": "content/base/world/backgrounds/shell-field-student.json",
+   "profile": "signaller",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/winnipeg-collapse-signaller.json",
+    "content/base/persons/owen-calder.json",
+    "content/lore/characters/owen-calder.json"
+   ],
+   "image": "傳聲口",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "dahlia-merrick",
+   "name": "黛莉雅・梅里克",
+   "gender": "女",
+   "age": 43,
+   "born": "2065",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "北美",
+   "before": "崩前二十四歲，在休士頓井場管機具搬運。",
+   "after": "井主接守港口後一直做重工，2105 年才轉駕長槍，故沒有不老年資。",
+   "personality": "不肯叫舊雇主恩人，也不抹去同班人救過自己的事。",
+   "moment": "港門外獸甲撞彎遮棚，她把長槍膝架頂在供糧槽下，抬高矢口越過人群，先護運糧人退回井城。",
+   "quote": "飯要進去，我來擋風！",
+   "role": "駕駛",
+   "mech": "長槍-V4",
+   "attrs": {
+    "accuracy": 64,
+    "evasion": 13,
+    "resolve": 50,
+    "initiative": 8,
+    "perception": 6,
+    "control": 45
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:norse"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "norse",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用北海／北方護運班傳的北歐故事。",
+   "background": "background/houston-rig-hunter",
+   "backgroundName": "休士頓井城轉職駕駛",
+   "attrRanges": {
+    "accuracy": [
+     54,
+     74
+    ],
+    "resolve": [
+     40,
+     60
+    ],
+    "control": [
+     35,
+     55
+    ]
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/chittagong-western-hunters",
+   "weight": 3,
+   "place": "place/houston-wells",
+   "faction": "faction/heartland-capital",
+   "hook": "底色1.6、1.12；G、C",
+   "events": [],
+   "now": "離開井城薪班後隨貨船到吉大港，自願轉做獵團短約。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前二十四歲，在休士頓井場管機具搬運。",
+    "崩後": "井主接守港口後一直做重工，2105 年才轉駕長槍，故沒有不老年資。 不肯叫舊雇主恩人，也不抹去同班人救過自己的事。",
+    "現在與招牌瞬間": "離開井城薪班後隨貨船到吉大港，自願轉做獵團短約。 港門外獸甲撞彎遮棚，她把長槍膝架頂在供糧槽下，抬高矢口越過人群，先護運糧人退回井城。 「飯要進去，我來擋風！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/dahlia-merrick"
+    ],
+    "places": [
+     "place/houston-wells"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "北美",
+     "駕駛"
+    ]
+   },
+   "summary": "休士頓井城轉職駕駛；不肯叫舊雇主恩人，也不抹去同班人救過自己的事。",
+   "template": "content/base/persons/nuala-byrne.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "profile": "shooter",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/houston-rig-hunter.json",
+    "content/base/persons/dahlia-merrick.json",
+    "content/lore/characters/dahlia-merrick.json"
+   ],
+   "image": "供糧槽",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "nayra-sullca",
+   "name": "奈拉・蘇爾卡",
+   "gender": "女",
+   "age": 14,
+   "born": "2094",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "2094 年出生，崩前尚未出生；舊船廠只存在於家人的故事裡。",
+   "after": "在基多民船修棚學辨接件，隨監護親人搭商船外出；不是高原衛、不帶基多軍援。",
+   "personality": "看見大人裝懂便皺眉，輪到自己不會會直接舉手。",
+   "moment": "大人爭論傷機該拆哪裡時，她舉起兩枚形狀不同的接件吼停，讓被卡住的艙蓋終於能打開。",
+   "quote": "不是這一枚！讓我指給你看！",
+   "role": "技師學徒",
+   "mech": "",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "technician",
+    "culture:quechua",
+    "apprentice"
+   ],
+   "will": {
+    "beliefs": [
+     "seek-truth"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "quechua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用安地斯商路船員學來的蓋丘亞故事。",
+   "background": "background/quito-civilian-apprentice",
+   "backgroundName": "基多民船機務學徒",
+   "attrRanges": {
+    "accuracy": [
+     36,
+     56
+    ],
+    "resolve": [
+     30,
+     50
+    ],
+    "control": [
+     34,
+     54
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 2,
+   "place": "place/quito",
+   "faction": "faction/quito",
+   "hook": "底色1.1崩後世代、1.3知識斷層；C；N03後果",
+   "events": [],
+   "now": "隨民船家屬到新加坡，僅招募為船員學徒；不安排上機戰鬥。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "2094 年出生，崩前尚未出生；舊船廠只存在於家人的故事裡。",
+    "崩後": "在基多民船修棚學辨接件，隨監護親人搭商船外出；不是高原衛、不帶基多軍援。 看見大人裝懂便皺眉，輪到自己不會會直接舉手。",
+    "現在與招牌瞬間": "隨民船家屬到新加坡，僅招募為船員學徒；不安排上機戰鬥。 大人爭論傷機該拆哪裡時，她舉起兩枚形狀不同的接件吼停，讓被卡住的艙蓋終於能打開。 「不是這一枚！讓我指給你看！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/nayra-sullca"
+    ],
+    "places": [
+     "place/quito"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "技師學徒"
+    ]
+   },
+   "summary": "基多民船機務學徒；看見大人裝懂便皺眉，輪到自己不會會直接舉手。",
+   "template": "content/base/persons/hana-sato.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "apprentice",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/quito-civilian-apprentice.json",
+    "content/base/persons/nayra-sullca.json",
+    "content/lore/characters/nayra-sullca.json"
+   ],
+   "image": "接件",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "tomas-figueiral",
+   "name": "托馬斯・菲蓋拉爾",
+   "gender": "男",
+   "age": 39,
+   "born": "2069",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "崩前二十歲，在聖保羅外環修貨卡胎面。",
+   "after": "2090 撤出城後靠環線養活家人，2104 年才改開護車堅盾。",
+   "personality": "嘮叨每件易丟的小事，卻願意把自己最後的備件先給別人。",
+   "moment": "燈火之戰時他在後段把堅盾壓住彈跳的貨車軸，讓修工抽出斷件，車隊沒有為他停下。",
+   "quote": "車別等我，我追得上！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:quechua"
+   ],
+   "will": {
+    "beliefs": [
+     "protect-kin",
+     "keep-oaths"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "quechua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用安地斯商路船員學來的蓋丘亞故事。",
+   "background": "background/sao-paulo-axle-guard",
+   "backgroundName": "聖保羅外環轉駕護車手",
+   "attrRanges": {
+    "accuracy": [
+     49,
+     69
+    ],
+    "resolve": [
+     48,
+     68
+    ],
+    "control": [
+     39,
+     59
+    ]
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 4,
+   "place": "place/ring-road",
+   "faction": "faction/ring-caravan",
+   "hook": "N06→年表2107-03-15環線燈火之戰；G、F；底色1.4",
+   "events": [
+    "event/ring-road-lanterns"
+   ],
+   "now": "2107 年護車約結束，轉做出海商船護衛，抵新加坡後候雇。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前二十歲，在聖保羅外環修貨卡胎面。",
+    "崩後": "2090 撤出城後靠環線養活家人，2104 年才改開護車堅盾。 嘮叨每件易丟的小事，卻願意把自己最後的備件先給別人。",
+    "現在與招牌瞬間": "2107 年護車約結束，轉做出海商船護衛，抵新加坡後候雇。 燈火之戰時他在後段把堅盾壓住彈跳的貨車軸，讓修工抽出斷件，車隊沒有為他停下。 「車別等我，我追得上！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/tomas-figueiral"
+    ],
+    "places": [
+     "place/ring-road"
+    ],
+    "events": [
+     "event/ring-road-lanterns"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "駕駛"
+    ]
+   },
+   "summary": "聖保羅外環轉駕護車手；嘮叨每件易丟的小事，卻願意把自己最後的備件先給別人。",
+   "template": "content/base/persons/adewale-balogun.json",
+   "termsTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "profile": "pilot",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/sao-paulo-axle-guard.json",
+    "content/base/persons/tomas-figueiral.json",
+    "content/lore/characters/tomas-figueiral.json"
+   ],
+   "image": "車軸",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "beatriz-noronha",
+   "name": "碧亞特麗絲・諾羅尼亞",
+   "gender": "女",
+   "age": 29,
+   "born": "2079",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "崩前十歲，在里約海邊替家裡攤位收遮布。",
+   "after": "沿岸退成空城帶後隨修棚討生活，2105 年才學長槍，靠中間人接買來的通用件。",
+   "personality": "收錢很快，答應不賣的東西再貴也不改口。",
+   "moment": "海霧裡獸影壓上岸，她把一整匣精粹矢留給落後的撤船，自己拖著空矢架退回內街。",
+   "quote": "貨能再找，船上那些不行！",
+   "role": "駕駛",
+   "mech": "長槍-V4",
+   "attrs": {
+    "accuracy": 64,
+    "evasion": 13,
+    "resolve": 50,
+    "initiative": 8,
+    "perception": 6,
+    "control": 45
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:quechua"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "quechua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用安地斯商路船員學來的蓋丘亞故事。",
+   "background": "background/rio-empty-quiver",
+   "backgroundName": "里約空城岸新獵手",
+   "attrRanges": {
+    "accuracy": [
+     54,
+     74
+    ],
+    "resolve": [
+     40,
+     60
+    ],
+    "control": [
+     35,
+     55
+    ]
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 3,
+   "place": "place/rio",
+   "faction": "faction/latam-umbrella",
+   "hook": "底色1.5空城、1.4跨線運糧；F、G",
+   "events": [],
+   "now": "拒接一趟來路不明的貨，改上正常商船到新加坡候護衛約。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前十歲，在里約海邊替家裡攤位收遮布。",
+    "崩後": "沿岸退成空城帶後隨修棚討生活，2105 年才學長槍，靠中間人接買來的通用件。 收錢很快，答應不賣的東西再貴也不改口。",
+    "現在與招牌瞬間": "拒接一趟來路不明的貨，改上正常商船到新加坡候護衛約。 海霧裡獸影壓上岸，她把一整匣精粹矢留給落後的撤船，自己拖著空矢架退回內街。 「貨能再找，船上那些不行！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/beatriz-noronha"
+    ],
+    "places": [
+     "place/rio"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "駕駛"
+    ]
+   },
+   "summary": "里約空城岸新獵手；收錢很快，答應不賣的東西再貴也不改口。",
+   "template": "content/base/persons/nuala-byrne.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "profile": "shooter",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/rio-empty-quiver.json",
+    "content/base/persons/beatriz-noronha.json",
+    "content/lore/characters/beatriz-noronha.json"
+   ],
+   "image": "空矢架",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "mateo-cedral",
+   "name": "馬特奧・塞德拉爾",
+   "gender": "男",
+   "age": 48,
+   "born": "2060",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "崩前二十九歲，替巴拿馬候閘貨船領航。",
+   "after": "斷鏈後跟商團跑兩洋中繼，熟悉自由城市的實際接應岸，不替任何傘保證援軍。",
+   "personality": "能把壞消息說得清楚，從不拿笑話遮住剩下的路。",
+   "moment": "兩船在閘前橫住時，他跳上舷邊，讓兩邊船工照他的手勢一寸寸錯開，背後獸鳴壓得人聽不見口令。",
+   "quote": "看手，兩洋都給我讓一寸！",
+   "role": "導航",
+   "mech": "",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "navigator",
+    "culture:nahua"
+   ],
+   "will": {
+    "beliefs": [
+     "seek-truth",
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "nahua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用跨加勒比與墨西哥航班學來的納瓦故事。",
+   "background": "background/panama-two-ocean-guide",
+   "backgroundName": "巴拿馬兩洋領航員",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     34,
+     54
+    ],
+    "control": [
+     28,
+     48
+    ]
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 3,
+   "place": "place/panama-locks",
+   "faction": "faction/ring-caravan",
+   "hook": "年表2102商路約；G、F；底色1.4",
+   "events": [
+    "event/trade-route-charter"
+   ],
+   "now": "環線商船向東送貨，新加坡是這趟航程的結約港。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前二十九歲，替巴拿馬候閘貨船領航。",
+    "崩後": "斷鏈後跟商團跑兩洋中繼，熟悉自由城市的實際接應岸，不替任何傘保證援軍。 能把壞消息說得清楚，從不拿笑話遮住剩下的路。",
+    "現在與招牌瞬間": "環線商船向東送貨，新加坡是這趟航程的結約港。 兩船在閘前橫住時，他跳上舷邊，讓兩邊船工照他的手勢一寸寸錯開，背後獸鳴壓得人聽不見口令。 「看手，兩洋都給我讓一寸！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/mateo-cedral"
+    ],
+    "places": [
+     "place/panama-locks"
+    ],
+    "events": [
+     "event/trade-route-charter"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "導航"
+    ]
+   },
+   "summary": "巴拿馬兩洋領航員；能把壞消息說得清楚，從不拿笑話遮住剩下的路。",
+   "template": "content/base/persons/leila-nasser.json",
+   "termsTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "profile": "navigator",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/panama-two-ocean-guide.json",
+    "content/base/persons/mateo-cedral.json",
+    "content/lore/characters/mateo-cedral.json"
+   ],
+   "image": "手勢",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "rocio-arenal",
+   "name": "羅西奧・阿雷納爾",
+   "gender": "女",
+   "age": 21,
+   "born": "2087",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "崩前兩歲，只認得家裡留下的坡街陶磚。",
+   "after": "在守牆修棚長大，2106 年學堅盾，常被問為什麼這一班沒有十七歲的新人。",
+   "personality": "不甘心總被放在後排，仍會照交代護著最慢的那人走。",
+   "moment": "斷纜夜她在內街用盾攔住滾下的石塊，讓抬傷者走出坡道；露西亞仍是外階守軍的領頭人。",
+   "quote": "前面有山，後面有我！",
+   "role": "駕駛",
+   "mech": "堅盾-I型",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "pilot",
+    "culture:quechua"
+   ],
+   "will": {
+    "beliefs": [
+     "survive",
+     "protect-kin"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "quechua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用安地斯商路船員學來的蓋丘亞故事。",
+   "background": "background/valparaiso-slope-guard",
+   "backgroundName": "瓦港坡街護送駕駛",
+   "attrRanges": {
+    "accuracy": [
+     35,
+     55
+    ],
+    "resolve": [
+     32,
+     52
+    ],
+    "control": [
+     30,
+     50
+    ]
+   },
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 4,
+   "place": "place/valparaiso",
+   "faction": "faction/latam-umbrella",
+   "hook": "年表2107-02-15斷纜夜；C、G；底色1.1、1.2",
+   "events": [
+    "event/valparaiso-cut-cable"
+   ],
+   "now": "2107 年末結束地方短約，改隨修件商船到新加坡。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前兩歲，只認得家裡留下的坡街陶磚。",
+    "崩後": "在守牆修棚長大，2106 年學堅盾，常被問為什麼這一班沒有十七歲的新人。 不甘心總被放在後排，仍會照交代護著最慢的那人走。",
+    "現在與招牌瞬間": "2107 年末結束地方短約，改隨修件商船到新加坡。 斷纜夜她在內街用盾攔住滾下的石塊，讓抬傷者走出坡道；露西亞仍是外階守軍的領頭人。 「前面有山，後面有我！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/rocio-arenal"
+    ],
+    "places": [
+     "place/valparaiso"
+    ],
+    "events": [
+     "event/valparaiso-cut-cable"
+    ],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "駕駛"
+    ]
+   },
+   "summary": "瓦港坡街護送駕駛；不甘心總被放在後排，仍會照交代護著最慢的那人走。",
+   "template": "content/base/persons/mitali-das.json",
+   "termsTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "profile": "junior",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/valparaiso-slope-guard.json",
+    "content/base/persons/rocio-arenal.json",
+    "content/lore/characters/rocio-arenal.json"
+   ],
+   "image": "陶磚坡",
+   "kind": "human",
+   "proposal": "提案"
+  },
+  {
+   "id": "cira-valdes",
+   "name": "西拉・巴爾德斯",
+   "gender": "女",
+   "age": 55,
+   "born": "2053",
+   "activeYears": null,
+   "appearanceAge": null,
+   "region": "拉美",
+   "before": "崩前三十六歲，在哈瓦那客船上做甲板領班。",
+   "after": "貨船斷航後留岸修砲，後來隨糧船掌砲；只操作船砲，從未驅動機甲核心。",
+   "personality": "認得人心虛時的咳嗽聲，肯當面拆穿，也肯替他守下一班。",
+   "moment": "糧船回港前獸甲浮起，她把待修的砲架楔正，等撤艇離開線路才吼出一發同級精粹矢，讓船趁空轉向。",
+   "quote": "我老了，這聲還沒老！",
+   "role": "船砲手",
+   "mech": "",
+   "attrs": {
+    "accuracy": 64,
+    "evasion": 13,
+    "resolve": 50,
+    "initiative": 8,
+    "perception": 6,
+    "control": 45
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "backgroundTraits": [],
+   "perks": [],
+   "abilities": [],
+   "tags": [
+    "human",
+    "gunner",
+    "culture:nahua"
+   ],
+   "will": {
+    "beliefs": [
+     "bring-them-home"
+    ],
+    "burdenLimit": {
+     "ref": "self.attrs.resolve",
+     "add": 0
+    }
+   },
+   "culture": "nahua",
+   "cultureNote": "沿用既有神話取名表作招募命名偏好；不代表國籍或血統。沿用跨加勒比與墨西哥航班學來的納瓦故事。",
+   "background": "background/havana-old-gunner",
+   "backgroundName": "哈瓦那隨船老砲手",
+   "attrRanges": {
+    "accuracy": [
+     54,
+     74
+    ],
+    "resolve": [
+     40,
+     60
+    ],
+    "control": [
+     35,
+     55
+    ]
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "pool": "recruit/singapore-latin-crew",
+   "weight": 2,
+   "place": "place/havana",
+   "faction": "faction/latam-umbrella",
+   "hook": "底色1.4、1.8；F、G；哈瓦那接糧後果",
+   "events": [],
+   "now": "糧船經巴拿馬換航到新加坡，她留下接下一個船砲班。",
+   "youngReason": "",
+   "loreDraft": {
+    "崩前": "崩前三十六歲，在哈瓦那客船上做甲板領班。",
+    "崩後": "貨船斷航後留岸修砲，後來隨糧船掌砲；只操作船砲，從未驅動機甲核心。 認得人心虛時的咳嗽聲，肯當面拆穿，也肯替他守下一班。",
+    "現在與招牌瞬間": "糧船經巴拿馬換航到新加坡，她留下接下一個船砲班。 糧船回港前獸甲浮起，她把待修的砲架楔正，等撤艇離開線路才吼出一發同級精粹矢，讓船趁空轉向。 「我老了，這聲還沒老！」"
+   },
+   "loreExtras": {
+    "aka": [],
+    "relations": [],
+    "visibility": "public",
+    "gameRefs": [
+     "base:person/cira-valdes"
+    ],
+    "places": [
+     "place/havana"
+    ],
+    "events": [],
+    "tags": [
+     "人物",
+     "可招募",
+     "拉美",
+     "船砲手"
+    ]
+   },
+   "summary": "哈瓦那隨船老砲手；認得人心虛時的咳嗽聲，肯當面拆穿，也肯替他守下一班。",
+   "template": "content/base/persons/nuala-byrne.json",
+   "termsTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "profile": "gunner",
+   "batch": "fp-euram-02",
+   "files": [
+    "content/base/world/backgrounds/havana-old-gunner.json",
+    "content/base/persons/cira-valdes.json",
+    "content/lore/characters/cira-valdes.json"
+   ],
+   "image": "砲楔",
+   "kind": "human",
+   "proposal": "提案"
+  }
+ ]
+}

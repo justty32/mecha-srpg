@@ -1,0 +1,300 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "gate",
+  "status",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "gate": 1,
+   "status": "PASS",
+   "evidence": {
+    "headings": [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5",
+     "6",
+     "7",
+     "8",
+     "9",
+     "10",
+     "11"
+    ],
+    "planBytes": 14438,
+    "people": 24,
+    "histogram": {
+     "10–14": 1,
+     "15–19": 1,
+     "20–24": 7,
+     "25–29": 3,
+     "30–34": 2,
+     "35–39": 2,
+     "40–44": 2,
+     "45–49": 2,
+     "50–54": 1,
+     "55–59": 2,
+     "60–64": 1
+    },
+    "age16to19": [
+     "amina-mwende"
+    ],
+    "fraction": "1/24=4.17%",
+    "populationDenominator": "整個afrwasia計畫24人，子批只是生產拆分"
+   }
+  },
+  {
+   "gate": 2,
+   "status": "PASS",
+   "evidence": {
+    "peopleRows": 24,
+    "reviewRows": 76,
+    "reviewMaxBlurbChars": 51,
+    "newNamePatterns": 76,
+    "grepCommand": [
+     "grep",
+     "-R",
+     "-n",
+     "-I",
+     "-F",
+     "-f",
+     "/tmp/cx-fp-afrwasia-plan/new-name-patterns.txt",
+     "--exclude-dir=.git",
+     "--exclude-dir=node_modules",
+     "--exclude-dir=afrwasia-plan",
+     "."
+    ],
+    "grepCwd": "/home/lorkhan/repo/game_dev/mecha-srpg",
+    "grepExit": 1,
+    "grepStdout": "",
+    "grepStderr": "",
+    "grepMeaning": "1=無匹配；排除本線產物、git物件、依賴；其餘全repo含content/base、content/lore、wf與legacy",
+    "crossRegionClaims": [
+     {
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-pilots/crew-plan/names-claimed.json",
+      "count": 30,
+      "overlap": []
+     },
+     {
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-pilots/east-plan/names-claimed.json",
+      "count": 24,
+      "overlap": []
+     },
+     {
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/names-claimed.json",
+      "count": 26,
+      "overlap": []
+     },
+     {
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-pilots/euram-plan/names-claimed.json",
+      "count": 24,
+      "overlap": []
+     },
+     {
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-pilots/moon-plan/names-claimed.json",
+      "count": 20,
+      "overlap": []
+     }
+    ]
+   }
+  },
+  {
+   "gate": 3,
+   "status": "PASS",
+   "evidence": [
+    {
+     "batch": "fp-afrwasia-01",
+     "briefLintCommand": [
+      "python3",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/tools/brief_lint.py",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-pilots/afrwasia-plan/cx-fp-afrwasia-01.md",
+      "--strict"
+     ],
+     "briefLintExit": 0,
+     "stdout": "brief_lint: 0 違規／1 檔\n",
+     "stderr": "",
+     "files": 38,
+     "groups": 12,
+     "pools": 2,
+     "manifest": "合法JSON；draft/TBD；未預填驗收成功"
+    },
+    {
+     "batch": "fp-afrwasia-02",
+     "briefLintCommand": [
+      "python3",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/tools/brief_lint.py",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-pilots/afrwasia-plan/cx-fp-afrwasia-02.md",
+      "--strict"
+     ],
+     "briefLintExit": 0,
+     "stdout": "brief_lint: 0 違規／1 檔\n",
+     "stderr": "",
+     "files": 38,
+     "groups": 12,
+     "pools": 2,
+     "manifest": "合法JSON；draft/TBD；未預填驗收成功"
+    }
+   ]
+  },
+  {
+   "gate": 4,
+   "status": "PASS",
+   "evidence": {
+    "personLinks": [
+     {
+      "id": "temilade-akinwale",
+      "place": "place/lagos-blight",
+      "faction": "faction/lagos-returners",
+      "existing": true
+     },
+     {
+      "id": "kunle-adetola",
+      "place": "place/lagos-blight",
+      "faction": "faction/sub-saharan-umbrella",
+      "existing": true
+     },
+     {
+      "id": "abena-asiedu",
+      "place": "place/accra",
+      "faction": "faction/accra",
+      "existing": true
+     },
+     {
+      "id": "yaw-boakye",
+      "place": "place/accra",
+      "faction": "faction/accra",
+      "existing": true
+     },
+     {
+      "id": "njeri-mwangi",
+      "place": "place/nairobi",
+      "faction": "faction/yoke-saddle-works",
+      "existing": true
+     },
+     {
+      "id": "kamau-ndegwa",
+      "place": "place/nairobi",
+      "faction": "faction/sub-saharan-umbrella",
+      "existing": true
+     },
+     {
+      "id": "halima-ware",
+      "place": "place/djibouti",
+      "faction": "faction/far-herd",
+      "existing": true
+     },
+     {
+      "id": "idris-roble",
+      "place": "place/djibouti",
+      "faction": "faction/far-herd",
+      "existing": true
+     },
+     {
+      "id": "akinyi-odero",
+      "place": "place/nairobi",
+      "faction": "faction/yoke-saddle-works",
+      "existing": true
+     },
+     {
+      "id": "amina-mwende",
+      "place": "place/nairobi",
+      "faction": "faction/nairobi",
+      "existing": true
+     },
+     {
+      "id": "kweku-danquah",
+      "place": "place/accra",
+      "faction": "faction/accra",
+      "existing": true
+     },
+     {
+      "id": "zuri-kilonzo",
+      "place": "place/nairobi",
+      "faction": "faction/yoke-saddle-works",
+      "existing": true
+     },
+     {
+      "id": "samira-badawi",
+      "place": "place/aswan",
+      "faction": "faction/north-africa-umbrella",
+      "existing": true
+     },
+     {
+      "id": "tarek-mahfouz",
+      "place": "place/aswan",
+      "faction": "faction/north-africa-umbrella",
+      "existing": true
+     },
+     {
+      "id": "huda-sharaf",
+      "place": "place/suez",
+      "faction": "faction/north-africa-umbrella",
+      "existing": true
+     },
+     {
+      "id": "nabil-qassem",
+      "place": "place/aswan",
+      "faction": "faction/north-africa-umbrella",
+      "existing": true
+     },
+     {
+      "id": "ramin-daryani",
+      "place": "place/hormuz",
+      "faction": "faction/west-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "salma-kattan",
+      "place": "place/twin-rivers",
+      "faction": "faction/west-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "rasha-mazin",
+      "place": "place/dhahran",
+      "faction": "faction/west-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "bahir-saffar",
+      "place": "place/dubai",
+      "faction": "faction/west-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "aigerim-sarsen",
+      "place": "place/almaty",
+      "faction": "faction/central-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "timur-bektemir",
+      "place": "place/almaty",
+      "faction": "faction/central-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "saodat-rahimova",
+      "place": "place/almaty",
+      "faction": "faction/central-asia-umbrella",
+      "existing": true
+     },
+     {
+      "id": "azamat-tursun",
+      "place": "place/almaty",
+      "faction": "faction/shell-society",
+      "existing": true
+     }
+    ],
+    "newEffects": 0,
+    "aiFiles": 0,
+    "forbiddenStory": 0,
+    "poolsReferenceExistingBasePlaces": true
+   }
+  }
+ ]
+}

@@ -1,0 +1,37 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "item",
+  "impact",
+  "proposal",
+  "size"
+ ],
+ "rows": [
+  {
+   "item": "招募卡連人物短介",
+   "impact": "只看到數值時讀不到出身與招牌瞬間",
+   "proposal": "由 person id 連 lore character 的 summary；保留現有 gameRefs 單向契約，UI 建反查",
+   "size": "小；UI與引用映射，另派引擎線"
+  },
+  {
+   "item": "船員職類篩選",
+   "impact": "medic／navigator／communicator／cook 現在只是 tags，沒有獨立職業能力",
+   "proposal": "讀 tags 作顯示與篩選；職業技能若要生效另訂機制，本輪不承諾效果",
+   "size": "小至中；篩選與營運規格分開"
+  },
+  {
+   "item": "韓國與俄國命名文化",
+   "impact": "han／norse 是相容占位，將來隨機命名不宜當國籍",
+   "proposal": "另批增已審名表及 culture 映射；現有固定姓名不改",
+   "size": "小；名表與引用"
+  },
+  {
+   "item": "招募時序用詞核對",
+   "impact": "refreshOn=quarter 是資料值，recruitsDaily7 實際以 neap 與當日去重；不可向玩家保證任意曆季節奏",
+   "proposal": "引擎線核對 phase 與 UI 季名，補用詞契約；本輪保留既有行為",
+   "size": "小；調查與文件，若改刷新另估"
+  }
+ ]
+}

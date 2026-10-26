@@ -1,0 +1,12 @@
+查核時間：2026-10-26T17:22:18.838821+08:00
+範圍：既有content/src/test/wf/legacy與根目錄Markdown；排除本線產物south-plan，不排除其他區占名。
+命令：grep -r -n -I -F -f /tmp/cx-fp-south-plan/new-name-patterns.txt --exclude-dir=south-plan content src test wf legacy SPEC.md PROJECT.md CLAUDE.md README.md AGENTS.md
+匹配模式：116（人名kebab、中文全名、背景id/名、新池id）
+exit=1
+stdout:
+(0 matches)
+stderr:
+(empty)
+跨區占名：{"wf/workflows/dispatch/handoffs/lead-fill-pilots/crew-plan/names-claimed.json": 30, "wf/workflows/dispatch/handoffs/lead-fill-pilots/east-plan/names-claimed.json": 24, "wf/workflows/dispatch/handoffs/lead-fill-pilots/afrwasia-plan/names-claimed.json": 24, "wf/workflows/dispatch/handoffs/lead-fill-pilots/euram-plan/names-claimed.json": 24, "wf/workflows/dispatch/handoffs/lead-fill-pilots/moon-plan/names-claimed.json": 20}
+跨區衝突：[]
+逐檔既有路徑碰撞：[]

@@ -1,0 +1,5406 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "name",
+  "gender",
+  "age",
+  "born",
+  "activeYears",
+  "origin",
+  "before",
+  "after",
+  "personality",
+  "moment",
+  "quote",
+  "role",
+  "profile",
+  "attrs",
+  "levelDice",
+  "trait",
+  "tags",
+  "culture",
+  "background",
+  "backgroundName",
+  "hireFee",
+  "wageMult",
+  "pool",
+  "place",
+  "faction",
+  "hook",
+  "events",
+  "batch",
+  "personTemplate",
+  "backgroundTemplate",
+  "personSpec",
+  "backgroundSpec",
+  "bodyPoints",
+  "visibility",
+  "relations",
+  "ageReason"
+ ],
+ "rows": [
+  {
+   "id": "tahmina-sarker",
+   "name": "塔赫米娜・薩爾克",
+   "gender": "女",
+   "age": 42,
+   "born": "2066",
+   "activeYears": 17,
+   "origin": "南亞／dhaka",
+   "before": "崩前在達卡替出口布驗染色，記得全廠停工仍等船的早晨。",
+   "after": "2091 起駕機守廠，2102 在老桂守線旁護送工班，如今交班後接短雇。",
+   "personality": "平時刻薄，遇到比自己膽小的人就先報自己的名字。",
+   "moment": "2102 堅盾-I跪進染渠，她讓機臂撐住倒落的鋸齒屋頂，讓工班從臂下爬過。",
+   "quote": "廠還有人，天就不准塌！",
+   "role": "守牆駕駛",
+   "profile": "veteran",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "veteran"
+   ],
+   "culture": "bengal",
+   "background": "background/tahmina-sarker-trade",
+   "backgroundName": "織工衛換班老手",
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "pool": "recruit/dhaka-weavers-yard",
+   "place": "place/dhaka",
+   "faction": "faction/dhaka-weavers",
+   "hook": "底色1.2；C/G；2102孟加拉灣戰役的守廠側面",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/irina-sokolova.json",
+   "backgroundTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "personSpec": {
+    "id": "person/tahmina-sarker",
+    "name": "塔赫米娜・薩爾克",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 62,
+     "evasion": 9,
+     "resolve": 61,
+     "initiative": 6,
+     "perception": 7,
+     "control": 56
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 58,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 58,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "veteran"
+    ],
+    "age": 42,
+    "activeYears": 17
+   },
+   "backgroundSpec": {
+    "id": "background/tahmina-sarker-trade",
+    "name": "織工衛換班老手",
+    "person": "person/tahmina-sarker",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      52,
+      72
+     ],
+     "resolve": [
+      51,
+      71
+     ],
+     "control": [
+      46,
+      66
+     ]
+    },
+    "hireFee": 850,
+    "wageMult": 1.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在達卡替出口布驗染色，記得全廠停工仍等船的早晨。",
+    "崩後": "2091 起駕機守廠，2102 在老桂守線旁護送工班，如今交班後接短雇。 平時刻薄，遇到比自己膽小的人就先報自己的名字。",
+    "現在與招牌瞬間": "2102 堅盾-I跪進染渠，她讓機臂撐住倒落的鋸齒屋頂，讓工班從臂下爬過。 「廠還有人，天就不准塌！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "ratan-majumdar",
+   "name": "拉坦・馬朱姆達",
+   "gender": "男",
+   "age": 52,
+   "born": "2056",
+   "activeYears": "",
+   "origin": "南亞／dhaka",
+   "before": "崩前是達卡織機修理工，靠遠洋零件維持一整排梭機。",
+   "after": "斷件後拆舊機養新機，公刻傳開才轉到機甲工棚，現在接隨船修理短工。",
+   "personality": "愛挑剔別人的手法，修好後卻會把功勞推給學徒。",
+   "moment": "一台犁在工棚門口失去動作，他伏在尚未熄的流光旁接回筋組，讓鐵掌重新攤開。",
+   "quote": "這隻手，還能把人托起來！",
+   "role": "技師",
+   "profile": "tech",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician"
+   ],
+   "culture": "bengal",
+   "background": "background/ratan-majumdar-trade",
+   "backgroundName": "織機轉行的接筋匠",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/dhaka-weavers-yard",
+   "place": "place/dhaka",
+   "faction": "faction/dhaka-weavers",
+   "hook": "底色1.3；C；2093堅盾公刻後的修造知識",
+   "events": [
+    "event/bulwark-first-workshops"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/ratan-majumdar",
+    "name": "拉坦・馬朱姆達",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician"
+    ],
+    "age": 52
+   },
+   "backgroundSpec": {
+    "id": "background/ratan-majumdar-trade",
+    "name": "織機轉行的接筋匠",
+    "person": "person/ratan-majumdar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前是達卡織機修理工，靠遠洋零件維持一整排梭機。",
+    "崩後": "斷件後拆舊機養新機，公刻傳開才轉到機甲工棚，現在接隨船修理短工。 愛挑剔別人的手法，修好後卻會把功勞推給學徒。",
+    "現在與招牌瞬間": "一台犁在工棚門口失去動作，他伏在尚未熄的流光旁接回筋組，讓鐵掌重新攤開。 「這隻手，還能把人托起來！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "jhuma-pal",
+   "name": "朱瑪・帕爾",
+   "gender": "女",
+   "age": 22,
+   "born": "2086",
+   "activeYears": "",
+   "origin": "南亞／dhaka",
+   "before": "崩前只有三歲，記得母親衣袖上的染味，不記得成衣賣到哪裡。",
+   "after": "在縮小的達卡長大，先替織工衛傳口令，2107 才學開犁。",
+   "personality": "怕被說年輕，真正出事時反而肯承認自己不懂。",
+   "moment": "演練撤退時老機失足，她停下考核，把犁的背轉向工友，硬扛整車散落的棉包。",
+   "quote": "我還沒學完，誰都別先走！",
+   "role": "獵團學徒駕駛",
+   "profile": "rookie",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/jhuma-pal-trade",
+   "backgroundName": "染坊換班學駕人",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/dhaka-weavers-yard",
+   "place": "place/dhaka",
+   "faction": "faction/dhaka-weavers",
+   "hook": "底色1.1/1.2；C/G；補天院缺徒與駕駛搶人的後果",
+   "events": [
+    "event/dhaka-contraction"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/mitali-das.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/jhuma-pal",
+    "name": "朱瑪・帕爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 15,
+     "resolve": 42,
+     "initiative": 8,
+     "perception": 7,
+     "control": 40
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 45,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 45,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 22
+   },
+   "backgroundSpec": {
+    "id": "background/jhuma-pal-trade",
+    "name": "染坊換班學駕人",
+    "person": "person/jhuma-pal",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前只有三歲，記得母親衣袖上的染味，不記得成衣賣到哪裡。",
+    "崩後": "在縮小的達卡長大，先替織工衛傳口令，2107 才學開犁。 怕被說年輕，真正出事時反而肯承認自己不懂。",
+    "現在與招牌瞬間": "演練撤退時老機失足，她停下考核，把犁的背轉向工友，硬扛整車散落的棉包。 「我還沒學完，誰都別先走！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "sabir-mondal",
+   "name": "薩比爾・蒙達爾",
+   "gender": "男",
+   "age": 28,
+   "born": "2080",
+   "activeYears": "",
+   "origin": "南亞／dhaka",
+   "before": "崩前在達卡北郊上小學，記得午飯每人有一份。",
+   "after": "2103 解拘災後拆下自家灶磚搬入守區，直到2107才借獵團的犁學駕。",
+   "personality": "看起來什麼都肯讓，唯獨討厭別人替他決定回不回家。",
+   "moment": "撤鄰里時他把犁橫在排水口，鐮肢的刃一節節敲上鎧甲，後面的人終於敢起跑。",
+   "quote": "家可以拆，人不准拆散！",
+   "role": "難民駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-beast-sense"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/sabir-mondal-trade",
+   "backgroundName": "北郊拆灶的新駕駛",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/dhaka-camp-berth",
+   "place": "place/dhaka",
+   "faction": "faction/league",
+   "hook": "底色1.5/1.11；F/G；2103達卡解拘後失去房屋的人",
+   "events": [
+    "event/dhaka-unbinding"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/sabir-mondal",
+    "name": "薩比爾・蒙達爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/trait-beast-sense"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 28
+   },
+   "backgroundSpec": {
+    "id": "background/sabir-mondal-trade",
+    "name": "北郊拆灶的新駕駛",
+    "person": "person/sabir-mondal",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在達卡北郊上小學，記得午飯每人有一份。",
+    "崩後": "2103 解拘災後拆下自家灶磚搬入守區，直到2107才借獵團的犁學駕。 看起來什麼都肯讓，唯獨討厭別人替他決定回不回家。",
+    "現在與招牌瞬間": "撤鄰里時他把犁橫在排水口，鐮肢的刃一節節敲上鎧甲，後面的人終於敢起跑。 「家可以拆，人不准拆散！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "arpita-biswas",
+   "name": "阿爾皮塔・比斯瓦斯",
+   "gender": "女",
+   "age": 14,
+   "born": "2094",
+   "activeYears": "",
+   "origin": "南亞／dhaka-sail-court",
+   "before": "2094 才出生，崩前只有師傅說的遠洋商標，沒有親歷記憶。",
+   "after": "在補天院學縫帆，輪到機甲工棚只做器具清點與外甲補片，不接觸核心駕駛。",
+   "personality": "嘴硬又愛問到底，把被糾正的地方一一重做。",
+   "moment": "補帆試風時接縫裂開，她爬到桌上把錯針當眾拆光，請大家再給她一遍。",
+   "quote": "錯在我這一針，就從我這一針補！",
+   "role": "船修學徒（非駕駛）",
+   "profile": "apprentice",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "apprentice",
+    "crew"
+   ],
+   "culture": "bengal",
+   "background": "background/arpita-biswas-trade",
+   "backgroundName": "補天院轉船修學徒",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/dhaka-camp-berth",
+   "place": "place/dhaka-sail-court",
+   "faction": "faction/dhaka-weavers",
+   "hook": "底色1.1/1.3；C；補天院空學徒桌的崩後一代",
+   "events": [
+    "event/dhaka-contraction"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/arpita-biswas",
+    "name": "阿爾皮塔・比斯瓦斯",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "apprentice",
+     "crew"
+    ],
+    "age": 14
+   },
+   "backgroundSpec": {
+    "id": "background/arpita-biswas-trade",
+    "name": "補天院轉船修學徒",
+    "person": "person/arpita-biswas",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "2094 才出生，崩前只有師傅說的遠洋商標，沒有親歷記憶。",
+    "崩後": "在補天院學縫帆，輪到機甲工棚只做器具清點與外甲補片，不接觸核心駕駛。 嘴硬又愛問到底，把被糾正的地方一一重做。",
+    "現在與招牌瞬間": "補帆試風時接縫裂開，她爬到桌上把錯針當眾拆光，請大家再給她一遍。 「錯在我這一針，就從我這一針補！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [
+    {
+     "character": "character/rokeya-karim",
+     "relation": "輪值學徒",
+     "note": "曾在補天院接受她指導；不取代既有補帆師，也未駕核心。"
+    }
+   ],
+   "ageReason": ""
+  },
+  {
+   "id": "shahana-mitra",
+   "name": "莎哈娜・米特拉",
+   "gender": "女",
+   "age": 33,
+   "born": "2075",
+   "activeYears": "",
+   "origin": "南亞／delta",
+   "before": "崩前在庫爾納河埠替家中渡船收票，熟悉滿船工人的換班歌。",
+   "after": "渡口斷糧後跟撈屍船走，近年學開獵犬-II型，只受短期護送雇用。",
+   "personality": "肯陪陌生人唱歌，卻不肯說自己原來住哪一條街。",
+   "moment": "通海支流冒出掘犬的礦牙時，她讓機甲踩住沉船船首，把船身扳回能通行的角度。",
+   "quote": "河口借我一肩！",
+   "role": "船民護航駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/shahana-mitra-trade",
+   "backgroundName": "庫爾納船民護航手",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/delta-boatfolk",
+   "place": "place/delta",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.4/1.5；F/G；庫爾納斷鏈後的小船與2102三角洲逃路",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/shahana-mitra",
+    "name": "莎哈娜・米特拉",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 33
+   },
+   "backgroundSpec": {
+    "id": "background/shahana-mitra-trade",
+    "name": "庫爾納船民護航手",
+    "person": "person/shahana-mitra",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在庫爾納河埠替家中渡船收票，熟悉滿船工人的換班歌。",
+    "崩後": "渡口斷糧後跟撈屍船走，近年學開獵犬-II型，只受短期護送雇用。 肯陪陌生人唱歌，卻不肯說自己原來住哪一條街。",
+    "現在與招牌瞬間": "通海支流冒出掘犬的礦牙時，她讓機甲踩住沉船船首，把船身扳回能通行的角度。 「河口借我一肩！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "bimal-haldar",
+   "name": "比馬爾・哈爾達爾",
+   "gender": "男",
+   "age": 61,
+   "born": "2047",
+   "activeYears": "",
+   "origin": "南亞／delta",
+   "before": "崩前在恆河口領渡船，能靠岸邊炊煙分辨各個村子。",
+   "after": "村子散後替第七哨的糧船帶路，從未驅動機甲核心，年老就是年老。",
+   "personality": "話說得慢，遇到逞強的年輕船長會突然大笑。",
+   "moment": "一片礦化紅樹根在船旁響起，他把舊航圖整張翻面，沿尚未硬化的水色帶隊轉出去。",
+   "quote": "舊河死了，我們走活水！",
+   "role": "船員領航",
+   "profile": "navigator",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "navigator"
+   ],
+   "culture": "bengal",
+   "background": "background/bimal-haldar-trade",
+   "backgroundName": "三角洲退渡老舵手",
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "pool": "recruit/delta-boatfolk",
+   "place": "place/delta",
+   "faction": "faction/bay-seventh-post",
+   "hook": "底色1.4；F/G；蝕後水道變形與哨所補給",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/leila-nasser.json",
+   "backgroundTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "personSpec": {
+    "id": "person/bimal-haldar",
+    "name": "比馬爾・哈爾達爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 5,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 8,
+     "control": 38
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 48,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 48,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "perception": [
+       1,
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "navigator"
+    ],
+    "age": 61
+   },
+   "backgroundSpec": {
+    "id": "background/bimal-haldar-trade",
+    "name": "三角洲退渡老舵手",
+    "person": "person/bimal-haldar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      47,
+      67
+     ],
+     "resolve": [
+      36,
+      56
+     ],
+     "control": [
+      38,
+      58
+     ]
+    },
+    "hireFee": 700,
+    "wageMult": 1.4,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在恆河口領渡船，能靠岸邊炊煙分辨各個村子。",
+    "崩後": "村子散後替第七哨的糧船帶路，從未驅動機甲核心，年老就是年老。 話說得慢，遇到逞強的年輕船長會突然大笑。",
+    "現在與招牌瞬間": "一片礦化紅樹根在船旁響起，他把舊航圖整張翻面，沿尚未硬化的水色帶隊轉出去。 「舊河死了，我們走活水！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "parul-mandal",
+   "name": "帕魯爾・曼達爾",
+   "gender": "女",
+   "age": 24,
+   "born": "2084",
+   "activeYears": "",
+   "origin": "南亞／delta",
+   "before": "崩前五歲，在河邊跟父親削船槳，尚不知道村外還有城市。",
+   "after": "2102 隨逃難船離開，成年後在鐵砧地方工班學拘束，剛獲准獨駕犁。",
+   "personality": "緊張時數自己的呼吸，不把別人的害怕拿來開玩笑。",
+   "moment": "掘犬拖著拘束器衝過泥脊，她放棄補射，跪機把側向拉力吃回自己一側。",
+   "quote": "要拖，先拖我！",
+   "role": "拘束駕駛",
+   "profile": "rookie",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-beast-sense"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/parul-mandal-trade",
+   "backgroundName": "泥灘拘束學駕人",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/delta-hunters-rest",
+   "place": "place/delta",
+   "faction": "faction/anvil",
+   "hook": "底色1.2/1.8；C/E；2102逃民成年後成為獵團新人",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/mitali-das.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/parul-mandal",
+    "name": "帕魯爾・曼達爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 15,
+     "resolve": 42,
+     "initiative": 8,
+     "perception": 7,
+     "control": 40
+    },
+    "traits": [
+     "effect/trait-beast-sense"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 45,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 45,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 24
+   },
+   "backgroundSpec": {
+    "id": "background/parul-mandal-trade",
+    "name": "泥灘拘束學駕人",
+    "person": "person/parul-mandal",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前五歲，在河邊跟父親削船槳，尚不知道村外還有城市。",
+    "崩後": "2102 隨逃難船離開，成年後在鐵砧地方工班學拘束，剛獲准獨駕犁。 緊張時數自己的呼吸，不把別人的害怕拿來開玩笑。",
+    "現在與招牌瞬間": "掘犬拖著拘束器衝過泥脊，她放棄補射，跪機把側向拉力吃回自己一側。 「要拖，先拖我！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "riyaz-bhuiyan",
+   "name": "里亞茲・布伊揚",
+   "gender": "男",
+   "age": 21,
+   "born": "2087",
+   "activeYears": "",
+   "origin": "南亞／delta",
+   "before": "崩前兩歲，只記得顛簸船腹，不把父親講的舊港當自己的回憶。",
+   "after": "在哨所長大，先搬矢箱，現在只操作有精粹矢的護航砲位，未獨駕核心。",
+   "personality": "喜歡誇口，射偏時卻會第一個認。",
+   "moment": "盾甲掀起黑水擋住歸船，他忍到船影偏離才放出僅有的一矢，逼牠讓出窄口。",
+   "quote": "這一矢，給回家的人讓路！",
+   "role": "偵察砲手",
+   "profile": "rookie",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "gunner"
+   ],
+   "culture": "bengal",
+   "background": "background/riyaz-bhuiyan-trade",
+   "backgroundName": "河口趴灘砲手",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/delta-hunters-rest",
+   "place": "place/delta",
+   "faction": "faction/bay-seventh-post",
+   "hook": "底色1.1/1.4；C/F；第七哨缺新手但仍守糧路",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-01",
+   "personTemplate": "content/base/persons/mitali-das.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/riyaz-bhuiyan",
+    "name": "里亞茲・布伊揚",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 15,
+     "resolve": 42,
+     "initiative": 8,
+     "perception": 7,
+     "control": 40
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 45,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 45,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "gunner"
+    ],
+    "age": 21
+   },
+   "backgroundSpec": {
+    "id": "background/riyaz-bhuiyan-trade",
+    "name": "河口趴灘砲手",
+    "person": "person/riyaz-bhuiyan",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前兩歲，只記得顛簸船腹，不把父親講的舊港當自己的回憶。",
+    "崩後": "在哨所長大，先搬矢箱，現在只操作有精粹矢的護航砲位，未獨駕核心。 喜歡誇口，射偏時卻會第一個認。",
+    "現在與招牌瞬間": "盾甲掀起黑水擋住歸船，他忍到船影偏離才放出僅有的一矢，逼牠讓出窄口。 「這一矢，給回家的人讓路！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "firoza-sikdar",
+   "name": "菲羅扎・西克達爾",
+   "gender": "女",
+   "age": 37,
+   "born": "2071",
+   "activeYears": "",
+   "origin": "南亞／chittagong",
+   "before": "崩前在吉大港拆船場學辨舊船接縫，靠工班互相喊停保命。",
+   "after": "船少後改拆獸甲與報廢腿架，2105 災後把新工棚的停工口令教給所有散工。",
+   "personality": "生氣時反而壓低聲音，討厭別人稱她膽大。",
+   "moment": "倒下的燕鷗腿架壓住工友時，她先敲斷自己剛做好的接頭，讓整片鐵骨向空灘倒去。",
+   "quote": "鐵可以重接，人先出來！",
+   "role": "拆船技師",
+   "profile": "tech",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician"
+   ],
+   "culture": "bengal",
+   "background": "background/firoza-sikdar-trade",
+   "backgroundName": "拆船幫斷骨接手",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/chittagong-breakers-yard",
+   "place": "place/chittagong",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.3；C；獵犬-II型拼裝供應的工班側面",
+   "events": [
+    "event/hound-ii-license"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/firoza-sikdar",
+    "name": "菲羅扎・西克達爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician"
+    ],
+    "age": 37
+   },
+   "backgroundSpec": {
+    "id": "background/firoza-sikdar-trade",
+    "name": "拆船幫斷骨接手",
+    "person": "person/firoza-sikdar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在吉大港拆船場學辨舊船接縫，靠工班互相喊停保命。",
+    "崩後": "船少後改拆獸甲與報廢腿架，2105 災後把新工棚的停工口令教給所有散工。 生氣時反而壓低聲音，討厭別人稱她膽大。",
+    "現在與招牌瞬間": "倒下的燕鷗腿架壓住工友時，她先敲斷自己剛做好的接頭，讓整片鐵骨向空灘倒去。 「鐵可以重接，人先出來！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "tapan-biswas",
+   "name": "塔潘・比斯瓦斯",
+   "gender": "男",
+   "age": 48,
+   "born": "2060",
+   "activeYears": "",
+   "origin": "南亞／chittagong",
+   "before": "崩前在拆船灘負責拖運重料，從不讓兒子進切割區。",
+   "after": "2105 解拘災失去工班後幫忙重建，2107 才學駕獵犬-II型，不是年輕外貌老手。",
+   "personality": "對孩子囉嗦，對自己的傷卻總說再等一下。",
+   "moment": "工棚試吊時支座滑走，他第一次主動坐進借來的機甲，把晃動屋架推回坑內。",
+   "quote": "我來托，別拿命墊！",
+   "role": "新轉職駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/tapan-biswas-trade",
+   "backgroundName": "拆屍場轉駕的扶機工",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/chittagong-breakers-yard",
+   "place": "place/chittagong",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.2/1.8；C/E；2105毀場到2106重建的轉職者",
+   "events": [
+    "event/chittagong-hoisted-roof"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/tapan-biswas",
+    "name": "塔潘・比斯瓦斯",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 48
+   },
+   "backgroundSpec": {
+    "id": "background/tapan-biswas-trade",
+    "name": "拆屍場轉駕的扶機工",
+    "person": "person/tapan-biswas",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在拆船灘負責拖運重料，從不讓兒子進切割區。",
+    "崩後": "2105 解拘災失去工班後幫忙重建，2107 才學駕獵犬-II型，不是年輕外貌老手。 對孩子囉嗦，對自己的傷卻總說再等一下。",
+    "現在與招牌瞬間": "工棚試吊時支座滑走，他第一次主動坐進借來的機甲，把晃動屋架推回坑內。 「我來托，別拿命墊！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "mukul-sarker",
+   "name": "穆庫爾・薩爾克",
+   "gender": "男",
+   "age": 23,
+   "born": "2085",
+   "activeYears": "",
+   "origin": "南亞／chittagong",
+   "before": "崩前四歲，記得拆船灘有比街道還寬的船腹。",
+   "after": "崩後替工棚磨料，2106 長槍-V4開工才進試矢班，尚無長期出擊年資。",
+   "personality": "愛替每次試射取誇張名字，收工後卻把失敗件留下研究。",
+   "moment": "靶架被風掀成一片白，他取消最後一矢，直到工友趴進掩體才重新舉槍。",
+   "quote": "天讓半寸，我只取半寸！",
+   "role": "機甲砲手",
+   "profile": "rookie",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "gunner"
+   ],
+   "culture": "bengal",
+   "background": "background/mukul-sarker-trade",
+   "backgroundName": "長槍工棚試矢學徒",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/chittagong-breakers-yard",
+   "place": "place/chittagong",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.3；C；2106長槍量產後的年輕試矢員",
+   "events": [
+    "event/lance-v4"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/mitali-das.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/mukul-sarker",
+    "name": "穆庫爾・薩爾克",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 15,
+     "resolve": 42,
+     "initiative": 8,
+     "perception": 7,
+     "control": 40
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 45,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 45,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "gunner"
+    ],
+    "age": 23
+   },
+   "backgroundSpec": {
+    "id": "background/mukul-sarker-trade",
+    "name": "長槍工棚試矢學徒",
+    "person": "person/mukul-sarker",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前四歲，記得拆船灘有比街道還寬的船腹。",
+    "崩後": "崩後替工棚磨料，2106 長槍-V4開工才進試矢班，尚無長期出擊年資。 愛替每次試射取誇張名字，收工後卻把失敗件留下研究。",
+    "現在與招牌瞬間": "靶架被風掀成一片白，他取消最後一矢，直到工友趴進掩體才重新舉槍。 「天讓半寸，我只取半寸！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "jamil-barua",
+   "name": "賈米爾・巴魯阿",
+   "gender": "男",
+   "age": 31,
+   "born": "2077",
+   "activeYears": "",
+   "origin": "南亞／chittagong",
+   "before": "崩前替吉大港碼頭家人傳話，知道不同船旗有不同口音。",
+   "after": "黑幫接管後替散工押貨，近年才駕犁護船，短雇到期就另找工。",
+   "personality": "能把爭吵說成笑話，但碰到工友受傷就不笑了。",
+   "moment": "兩批帶火氣的貨隊在窄埠相撞，他把機甲空掌平舉，讓眾人看清裡面只有被踩扁的飯盒。",
+   "quote": "要過這手，先把火收了！",
+   "role": "碼頭護船駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/jamil-barua-trade",
+   "backgroundName": "碼頭幫換雇護船手",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/chittagong-dock-gang",
+   "place": "place/chittagong",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.6；G；吉大港不入盟、工人仍得共用一座港",
+   "events": [
+    "event/chittagong-gang-rule"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/jamil-barua",
+    "name": "賈米爾・巴魯阿",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 31
+   },
+   "backgroundSpec": {
+    "id": "background/jamil-barua-trade",
+    "name": "碼頭幫換雇護船手",
+    "person": "person/jamil-barua",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前替吉大港碼頭家人傳話，知道不同船旗有不同口音。",
+    "崩後": "黑幫接管後替散工押貨，近年才駕犁護船，短雇到期就另找工。 能把爭吵說成笑話，但碰到工友受傷就不笑了。",
+    "現在與招牌瞬間": "兩批帶火氣的貨隊在窄埠相撞，他把機甲空掌平舉，讓眾人看清裡面只有被踩扁的飯盒。 「要過這手，先把火收了！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "malati-kar",
+   "name": "瑪拉蒂・卡爾",
+   "gender": "女",
+   "age": 45,
+   "born": "2063",
+   "activeYears": "",
+   "origin": "南亞／chittagong",
+   "before": "崩前在港區診所做清創助手，每週等藥船補貨。",
+   "after": "藥船停後學會挑揀能救的傷，2105 起跟拆屍工班隨船，拒替幫派打手先治。",
+   "personality": "說話毫不安慰人，手卻一直留在傷者看得到的位置。",
+   "moment": "盾甲留下的碎甲割開工人頸側，她趴上血污的鐵槽按住傷口，叫旁人先報他的名字。",
+   "quote": "你還能罵我，就不准停！",
+   "role": "碼頭醫護",
+   "profile": "medic",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "medic"
+   ],
+   "culture": "bengal",
+   "background": "background/malati-kar-trade",
+   "backgroundName": "拆屍場止血醫護",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "pool": "recruit/chittagong-dock-gang",
+   "place": "place/chittagong",
+   "faction": "faction/chittagong-breakers",
+   "hook": "底色1.1/1.8；E/G；斷藥與2105解拘災後的醫護缺口",
+   "events": [
+    "event/chittagong-unbinding"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "personSpec": {
+    "id": "person/malati-kar",
+    "name": "瑪拉蒂・卡爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "medic"
+    ],
+    "age": 45
+   },
+   "backgroundSpec": {
+    "id": "background/malati-kar-trade",
+    "name": "拆屍場止血醫護",
+    "person": "person/malati-kar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在港區診所做清創助手，每週等藥船補貨。",
+    "崩後": "藥船停後學會挑揀能救的傷，2105 起跟拆屍工班隨船，拒替幫派打手先治。 說話毫不安慰人，手卻一直留在傷者看得到的位置。",
+    "現在與招牌瞬間": "盾甲留下的碎甲割開工人頸側，她趴上血污的鐵槽按住傷口，叫旁人先報他的名字。 「你還能罵我，就不准停！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "shapla-nandi",
+   "name": "莎普拉・南迪",
+   "gender": "女",
+   "age": 20,
+   "born": "2088",
+   "activeYears": "",
+   "origin": "南亞／reed-marsh",
+   "before": "崩前一歲，沒有可靠記憶；那個有陸上院子的家只活在長輩說法裡。",
+   "after": "2102 逃路上的船屋是她的家，成年才學駕犁，替第七哨帶路但不駐澤設哨。",
+   "personality": "討厭別人叫澤地空無一人，卻不肯出賣船民的藏身處。",
+   "moment": "蛙聲突然斷掉，她先讓犁停步，眼見水下的節肢刮過底泥，才示意後船散開。",
+   "quote": "別跟我的影子，跟我的聲音！",
+   "role": "蘆葦澤獵手駕駛",
+   "profile": "rookie",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 15,
+    "resolve": 42,
+    "initiative": 8,
+    "perception": 7,
+    "control": 40
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-beast-sense"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/shapla-nandi-trade",
+   "backgroundName": "船屋新獵手",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/reed-marsh-hunters",
+   "place": "place/reed-marsh",
+   "faction": "faction/bay-seventh-post",
+   "hook": "底色1.1/1.5；F/G；2102逃路留下的流動船民",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/mitali-das.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/shapla-nandi",
+    "name": "莎普拉・南迪",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 15,
+     "resolve": 42,
+     "initiative": 8,
+     "perception": 7,
+     "control": 40
+    },
+    "traits": [
+     "effect/trait-beast-sense"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 45,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 45,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 20
+   },
+   "backgroundSpec": {
+    "id": "background/shapla-nandi-trade",
+    "name": "船屋新獵手",
+    "person": "person/shapla-nandi",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前一歲，沒有可靠記憶；那個有陸上院子的家只活在長輩說法裡。",
+    "崩後": "2102 逃路上的船屋是她的家，成年才學駕犁，替第七哨帶路但不駐澤設哨。 討厭別人叫澤地空無一人，卻不肯出賣船民的藏身處。",
+    "現在與招牌瞬間": "蛙聲突然斷掉，她先讓犁停步，眼見水下的節肢刮過底泥，才示意後船散開。 「別跟我的影子，跟我的聲音！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "harun-talukdar",
+   "name": "哈倫・塔盧克達爾",
+   "gender": "男",
+   "age": 55,
+   "born": "2053",
+   "activeYears": "",
+   "origin": "南亞／reed-marsh",
+   "before": "崩前在達卡西南替村落修魚閘，習慣看水色決定開口。",
+   "after": "魚閘廢後替過路獵團帶路與操作拘束砲，沒有駕駛年資；從不聲稱找到養裂者。",
+   "personality": "嘴上嫌人多，出發前總多留一份糧。",
+   "moment": "一次退路被陌生蝕斑截住，他把自家的舊魚閘撞開，讓船隊穿過自己最後的家產。",
+   "quote": "我的閘，我自己開！",
+   "role": "獵手與拘束砲手",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "gunner"
+   ],
+   "culture": "bengal",
+   "background": "background/harun-talukdar-trade",
+   "backgroundName": "蘆葦口退役捕手",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/reed-marsh-hunters",
+   "place": "place/reed-marsh",
+   "faction": "faction/league",
+   "hook": "底色1.5/1.11；F；蘆葦澤養裂僅傳聞，寫撤離的選擇",
+   "events": [
+    "event/bay-of-bengal-campaign"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/harun-talukdar",
+    "name": "哈倫・塔盧克達爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "gunner"
+    ],
+    "age": 55
+   },
+   "backgroundSpec": {
+    "id": "background/harun-talukdar-trade",
+    "name": "蘆葦口退役捕手",
+    "person": "person/harun-talukdar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在達卡西南替村落修魚閘，習慣看水色決定開口。",
+    "崩後": "魚閘廢後替過路獵團帶路與操作拘束砲，沒有駕駛年資；從不聲稱找到養裂者。 嘴上嫌人多，出發前總多留一份糧。",
+    "現在與招牌瞬間": "一次退路被陌生蝕斑截住，他把自家的舊魚閘撞開，讓船隊穿過自己最後的家產。 「我的閘，我自己開！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "nalin-perera",
+   "name": "納林・佩雷拉",
+   "gender": "男",
+   "age": 29,
+   "born": "2079",
+   "activeYears": "",
+   "origin": "錫蘭／南亞船民",
+   "before": "崩前在錫蘭港區跟家人剝椰纖，記得海上貨船從不一起停。",
+   "after": "斷航後沿南亞港口流落，成年在鹽鷗做岸勤，2107才轉駕獵犬-II型。",
+   "personality": "不愛提遠方故鄉，誰問家在哪就指當天同桌的人。",
+   "moment": "登岸時死獸背甲在浪裡翻起，他側轉機肩托住拖架，讓岸上的人離開碎甲落點。",
+   "quote": "岸在這裡，站到我後面！",
+   "role": "海上護航駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/nalin-perera-trade",
+   "backgroundName": "錫蘭來的岸勤駕駛",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/salt-flat-shorehands",
+   "place": "place/salt-flat",
+   "faction": "faction/salt-gull",
+   "hook": "底色1.4/1.8；E/F；鹽灘交換屍體背後的流動船民",
+   "events": [
+    "event/gull-anvil-truce"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/nalin-perera",
+    "name": "納林・佩雷拉",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 29
+   },
+   "backgroundSpec": {
+    "id": "background/nalin-perera-trade",
+    "name": "錫蘭來的岸勤駕駛",
+    "person": "person/nalin-perera",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在錫蘭港區跟家人剝椰纖，記得海上貨船從不一起停。",
+    "崩後": "斷航後沿南亞港口流落，成年在鹽鷗做岸勤，2107才轉駕獵犬-II型。 不愛提遠方故鄉，誰問家在哪就指當天同桌的人。",
+    "現在與招牌瞬間": "登岸時死獸背甲在浪裡翻起，他側轉機肩托住拖架，讓岸上的人離開碎甲落點。 「岸在這裡，站到我後面！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "suriya-menon",
+   "name": "蘇莉雅・梅農",
+   "gender": "女",
+   "age": 39,
+   "born": "2069",
+   "activeYears": 16,
+   "origin": "南亞／salt-flat",
+   "before": "崩前在印度西岸學修小艇，二十歲時看著航路一條條停掉。",
+   "after": "2092 起持續駕機，2104 攻勢撤下後仍護送傷員；如今在輪休季接受短雇。",
+   "personality": "笑聲比新人響，拒絕別人把她當成不會累的傳奇。",
+   "moment": "2104 退船旁鐮肢的刃貼近舷側，她讓舊堅盾側身吃下擦擊，只吼船再後退半步。",
+   "quote": "把海退給牠，把人帶回來！",
+   "role": "海上老手駕駛",
+   "profile": "veteran",
+   "attrs": {
+    "accuracy": 62,
+    "evasion": 9,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 7,
+    "control": 56
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "veteran"
+   ],
+   "culture": "bengal",
+   "background": "background/suriya-menon-trade",
+   "backgroundName": "鹽鷗輪休老舵甲",
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "pool": "recruit/salt-flat-shorehands",
+   "place": "place/salt-flat",
+   "faction": "faction/salt-gull",
+   "hook": "底色1.2/1.11；F；2104首次歸還攻勢被棄者的餘生",
+   "events": [
+    "event/first-return-offensive"
+   ],
+   "batch": "fp-south-02",
+   "personTemplate": "content/base/persons/irina-sokolova.json",
+   "backgroundTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "personSpec": {
+    "id": "person/suriya-menon",
+    "name": "蘇莉雅・梅農",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 62,
+     "evasion": 9,
+     "resolve": 61,
+     "initiative": 6,
+     "perception": 7,
+     "control": 56
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 58,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 58,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "veteran"
+    ],
+    "age": 39,
+    "activeYears": 16
+   },
+   "backgroundSpec": {
+    "id": "background/suriya-menon-trade",
+    "name": "鹽鷗輪休老舵甲",
+    "person": "person/suriya-menon",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      52,
+      72
+     ],
+     "resolve": [
+      51,
+      71
+     ],
+     "control": [
+      46,
+      66
+     ]
+    },
+    "hireFee": 850,
+    "wageMult": 1.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在印度西岸學修小艇，二十歲時看著航路一條條停掉。",
+    "崩後": "2092 起持續駕機，2104 攻勢撤下後仍護送傷員；如今在輪休季接受短雇。 笑聲比新人響，拒絕別人把她當成不會累的傳奇。",
+    "現在與招牌瞬間": "2104 退船旁鐮肢的刃貼近舷側，她讓舊堅盾側身吃下擦擊，只吼船再後退半步。 「把海退給牠，把人帶回來！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "vedika-kamat",
+   "name": "維迪卡・卡馬特",
+   "gender": "女",
+   "age": 32,
+   "born": "2076",
+   "activeYears": "",
+   "origin": "南亞／mumbai-gate",
+   "before": "崩前在孟買跟母親擺花攤，最熟的是市場開門的聲音。",
+   "after": "失城後跟歸還黨難民走到蘇拉特，近年學開堅盾，現在到孟買門外接尋親人。",
+   "personality": "不相信勝利宣告，卻會把每張尋親口信念完。",
+   "moment": "一次尋親隊在外緣退卻，她把橙漆刮成箭頭留在廢牆，讓後到的人沿痕跡找到撤船。",
+   "quote": "回家先帶活人，別帶捷報！",
+   "role": "歸來者護送駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/vedika-kamat-trade",
+   "backgroundName": "橙旗外的撤民護手",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/mumbai-returners-camp",
+   "place": "place/mumbai-gate",
+   "faction": "faction/mumbai-returners",
+   "hook": "底色1.11；F/G；N06放棄收復後與N08退線的矛盾",
+   "events": [
+    "event/first-return-offensive"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/vedika-kamat",
+    "name": "維迪卡・卡馬特",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 32
+   },
+   "backgroundSpec": {
+    "id": "background/vedika-kamat-trade",
+    "name": "橙旗外的撤民護手",
+    "person": "person/vedika-kamat",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在孟買跟母親擺花攤，最熟的是市場開門的聲音。",
+    "崩後": "失城後跟歸還黨難民走到蘇拉特，近年學開堅盾，現在到孟買門外接尋親人。 不相信勝利宣告，卻會把每張尋親口信念完。",
+    "現在與招牌瞬間": "一次尋親隊在外緣退卻，她把橙漆刮成箭頭留在廢牆，讓後到的人沿痕跡找到撤船。 「回家先帶活人，別帶捷報！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "imran-kelkar",
+   "name": "伊姆蘭・凱爾卡爾",
+   "gender": "男",
+   "age": 50,
+   "born": "2058",
+   "activeYears": "",
+   "origin": "南亞／mumbai-gate",
+   "before": "崩前在孟買修載貨車，家人知道他總能從廢件拼出可用的東西。",
+   "after": "失城後替難民修器具，歸還軍買機後改修堅盾；短雇所得帶回蘇拉特家屬。",
+   "personality": "見到新機會興奮，聽到催攻便先問撤人安排。",
+   "moment": "帶傷機甲退到門外時鐵掌攥住不放，他逐節卸掉卡死的指甲，把掌心傷員抱下來。",
+   "quote": "手能放開，人才回得來！",
+   "role": "歸還軍技師",
+   "profile": "tech",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician"
+   ],
+   "culture": "bengal",
+   "background": "background/imran-kelkar-trade",
+   "backgroundName": "孟買歸來的修掌匠",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/mumbai-returners-camp",
+   "place": "place/mumbai-gate",
+   "faction": "faction/mumbai-returners",
+   "hook": "底色1.3/1.11；C/F；N09買機後仍缺能修機的人",
+   "events": [
+    "event/first-return-offensive"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/imran-kelkar",
+    "name": "伊姆蘭・凱爾卡爾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician"
+    ],
+    "age": 50
+   },
+   "backgroundSpec": {
+    "id": "background/imran-kelkar-trade",
+    "name": "孟買歸來的修掌匠",
+    "person": "person/imran-kelkar",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在孟買修載貨車，家人知道他總能從廢件拼出可用的東西。",
+    "崩後": "失城後替難民修器具，歸還軍買機後改修堅盾；短雇所得帶回蘇拉特家屬。 見到新機會興奮，聽到催攻便先問撤人安排。",
+    "現在與招牌瞬間": "帶傷機甲退到門外時鐵掌攥住不放，他逐節卸掉卡死的指甲，把掌心傷員抱下來。 「手能放開，人才回得來！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "nandita-shetty",
+   "name": "南迪塔・謝蒂",
+   "gender": "女",
+   "age": 27,
+   "born": "2081",
+   "activeYears": "",
+   "origin": "南亞／mumbai-gate",
+   "before": "崩前八歲，在西岸親族的小店學分香料，聽不懂大人為何爭走或留。",
+   "after": "靠難民灶活下來，替門外供糧人護送，最近學開犁；是外圍信徒，未加入解拘者。",
+   "personality": "會為受傷的人停步，也會固執地替自己沒見過的神蹟辯護。",
+   "moment": "酸風捲過缺口時她把供糧車推出倒塌的牌樓，額上灰印被汗沖成兩道黑痕。",
+   "quote": "神若看著，就讓我先把人送完！",
+   "role": "教團外圍護送駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/nandita-shetty-trade",
+   "backgroundName": "孟買門焚香護送人",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/mumbai-creed-fringe",
+   "place": "place/mumbai-gate",
+   "faction": "faction/tide-creed",
+   "hook": "底色1.9；H/B；N06後難民信仰與N07無肉教義的裂口",
+   "events": [
+    "event/fleshless-declaration"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/nandita-shetty",
+    "name": "南迪塔・謝蒂",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 27
+   },
+   "backgroundSpec": {
+    "id": "background/nandita-shetty-trade",
+    "name": "孟買門焚香護送人",
+    "person": "person/nandita-shetty",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前八歲，在西岸親族的小店學分香料，聽不懂大人為何爭走或留。",
+    "崩後": "靠難民灶活下來，替門外供糧人護送，最近學開犁；是外圍信徒，未加入解拘者。 會為受傷的人停步，也會固執地替自己沒見過的神蹟辯護。",
+    "現在與招牌瞬間": "酸風捲過缺口時她把供糧車推出倒塌的牌樓，額上灰印被汗沖成兩道黑痕。 「神若看著，就讓我先把人送完！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "suhas-bendre",
+   "name": "蘇哈斯・本德雷",
+   "gender": "男",
+   "age": 19,
+   "born": "2089",
+   "activeYears": "",
+   "origin": "南亞／mumbai-gate",
+   "before": "2089 年生於已避往內陸親族家的孕婦身邊，對崩前沒有記憶。",
+   "after": "親族以自存糧撐過斷鏈，後來進難民灶；他跟流動醫護學止血，只在門外接短雇。",
+   "personality": "一緊張就背誦步驟，會為承認不知道而臉紅。",
+   "moment": "年長病人叫他別管時，他把敲傷的藥臼擺到人前，請對方幫他數完壓傷的呼吸。",
+   "quote": "我還在學，你先別走！",
+   "role": "醫護學徒（非駕駛）",
+   "profile": "apprentice",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "medic",
+    "apprentice",
+    "crew"
+   ],
+   "culture": "bengal",
+   "background": "background/suhas-bendre-trade",
+   "backgroundName": "難民灶長大的醫護徒",
+   "hireFee": 100,
+   "wageMult": 0.6,
+   "pool": "recruit/mumbai-creed-fringe",
+   "place": "place/mumbai-gate",
+   "faction": "faction/tide-creed",
+   "hook": "底色1.1/1.9；C/H；出生斷層的罕見倖存者，不製造新一代大軍",
+   "events": [
+    "event/fleshless-declaration"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/seventh-watch-child.json",
+   "personSpec": {
+    "id": "person/suhas-bendre",
+    "name": "蘇哈斯・本德雷",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "medic",
+     "apprentice",
+     "crew"
+    ],
+    "age": 19
+   },
+   "backgroundSpec": {
+    "id": "background/suhas-bendre-trade",
+    "name": "難民灶長大的醫護徒",
+    "person": "person/suhas-bendre",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      35,
+      55
+     ],
+     "resolve": [
+      32,
+      52
+     ],
+     "control": [
+      30,
+      50
+     ]
+    },
+    "hireFee": 100,
+    "wageMult": 0.6,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "2089 年生於已避往內陸親族家的孕婦身邊，對崩前沒有記憶。",
+    "崩後": "親族以自存糧撐過斷鏈，後來進難民灶；他跟流動醫護學止血，只在門外接短雇。 一緊張就背誦步驟，會為承認不知道而臉紅。",
+    "現在與招牌瞬間": "年長病人叫他別管時，他把敲傷的藥臼擺到人前，請對方幫他數完壓傷的呼吸。 「我還在學，你先別走！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": "26人中唯一16–19歲：2089出生，孕婦先避往內陸親族家、自存糧使母嬰撐過斷鏈，後進難民灶；稀少倖存個案，非成熟駕駛。"
+  },
+  {
+   "id": "kalyani-deshmukh",
+   "name": "卡莉亞妮・德什穆克",
+   "gender": "女",
+   "age": 41,
+   "born": "2067",
+   "activeYears": "",
+   "origin": "南亞／old-array",
+   "before": "崩前在浦那修觀天陣列的支架，記得每座碗影落在哪塊草地。",
+   "after": "2103替稽古學會整理拓痕工具，2106隨撤民離開，現在只在遺跡外臨時整備。",
+   "personality": "把傳聞說得很清楚，輪到自己的夢卻一句也不肯多說。",
+   "moment": "撤離時內殿刻痕的餘光照到她的拓紙，她將紙捲回匣裡，轉身扶起落後的同伴。",
+   "quote": "字可以明天讀，人得今天走！",
+   "role": "探勘技師",
+   "profile": "research",
+   "attrs": {
+    "accuracy": 45,
+    "evasion": 5,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 8,
+    "control": 38
+   },
+   "levelDice": {
+    "perception": [
+     1,
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-bg-ruin-cartographer"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "researcher"
+   ],
+   "culture": "bengal",
+   "background": "background/kalyani-deshmukh-trade",
+   "backgroundName": "浦那撤出的拓痕技師",
+   "hireFee": 180,
+   "wageMult": 0.7,
+   "pool": "recruit/old-array-survey-rest",
+   "place": "place/old-array",
+   "faction": "faction/shell-society",
+   "hook": "底色1.3；A/B；N08浦那撤離留下的見證，不證實刑天新動作",
+   "events": [
+    "event/pune-falls"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/leila-nasser.json",
+   "backgroundTemplate": "content/base/world/backgrounds/shell-field-student.json",
+   "personSpec": {
+    "id": "person/kalyani-deshmukh",
+    "name": "卡莉亞妮・德什穆克",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 45,
+     "evasion": 5,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 8,
+     "control": 38
+    },
+    "traits": [
+     "effect/ax-bg-ruin-cartographer"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 48,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 48,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "perception": [
+       1,
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "researcher"
+    ],
+    "age": 41
+   },
+   "backgroundSpec": {
+    "id": "background/kalyani-deshmukh-trade",
+    "name": "浦那撤出的拓痕技師",
+    "person": "person/kalyani-deshmukh",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      38,
+      58
+     ],
+     "resolve": [
+      37,
+      57
+     ],
+     "control": [
+      32,
+      52
+     ]
+    },
+    "hireFee": 180,
+    "wageMult": 0.7,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在浦那修觀天陣列的支架，記得每座碗影落在哪塊草地。",
+    "崩後": "2103替稽古學會整理拓痕工具，2106隨撤民離開，現在只在遺跡外臨時整備。 把傳聞說得很清楚，輪到自己的夢卻一句也不肯多說。",
+    "現在與招牌瞬間": "撤離時內殿刻痕的餘光照到她的拓紙，她將紙捲回匣裡，轉身扶起落後的同伴。 「字可以明天讀，人得今天走！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "pranab-bhowmik",
+   "name": "普拉納布・鮑米克",
+   "gender": "男",
+   "age": 25,
+   "born": "2083",
+   "activeYears": "",
+   "origin": "南亞／old-array",
+   "before": "崩前六歲，在孟加拉跟家人製陶，只知道火窯能把泥變硬。",
+   "after": "隨流動工班到浦那，2106幫撤民搬負重，2107才學開堅盾-I護送拓本隊。",
+   "personality": "說話像在催人睡覺，值夜時卻從不接受代班。",
+   "moment": "歪倒陣列下有蝕斑一齊亮起，他壓低機身讓探勘人越過背甲，自己最後退出。",
+   "quote": "今晚我醒著，你們都回去！",
+   "role": "探勘隊守夜駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/pranab-bhowmik-trade",
+   "backgroundName": "舊陣列短雇守夜人",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/old-array-survey-rest",
+   "place": "place/old-array",
+   "faction": "faction/anvil",
+   "hook": "底色1.2/1.8；C/G；N08後舊陣列探勘需要能帶人回去的新人",
+   "events": [
+    "event/pune-falls"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/pranab-bhowmik",
+    "name": "普拉納布・鮑米克",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 25
+   },
+   "backgroundSpec": {
+    "id": "background/pranab-bhowmik-trade",
+    "name": "舊陣列短雇守夜人",
+    "person": "person/pranab-bhowmik",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前六歲，在孟加拉跟家人製陶，只知道火窯能把泥變硬。",
+    "崩後": "隨流動工班到浦那，2106幫撤民搬負重，2107才學開堅盾-I護送拓本隊。 說話像在催人睡覺，值夜時卻從不接受代班。",
+    "現在與招牌瞬間": "歪倒陣列下有蝕斑一齊亮起，他壓低機身讓探勘人越過背甲，自己最後退出。 「今晚我醒著，你們都回去！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "sumon-debnath",
+   "name": "蘇蒙・德布納特",
+   "gender": "男",
+   "age": 35,
+   "born": "2073",
+   "activeYears": "",
+   "origin": "南亞／ridge",
+   "before": "崩前在達卡北丘茶園搬茶，知道雨後哪塊紅土會滑。",
+   "after": "茶園散後當過路嚮導，2107學開犁；只在山腳短停，不替學會宣告山底有古代機。",
+   "personality": "寧可被叫膽小，也不肯用猜的路帶人下山。",
+   "moment": "紅土崩落時他讓犁側跪成一道踏面，等最後一人越過才拔出陷在泥裡的腿。",
+   "quote": "山不給路，我借它一膝！",
+   "role": "山路偵察駕駛",
+   "profile": "regular",
+   "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+   },
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot"
+   ],
+   "culture": "bengal",
+   "background": "background/sumon-debnath-trade",
+   "backgroundName": "北脊短途看路人",
+   "hireFee": 620,
+   "wageMult": 1.3,
+   "pool": "recruit/ridge-trail-rest",
+   "place": "place/ridge",
+   "faction": "faction/shell-society",
+   "hook": "底色1.5；A/F；北脊座標仍為傳聞，寫地表嚮導的代價",
+   "events": [
+    "event/dhaka-unbinding"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "backgroundTemplate": "content/base/world/backgrounds/anvil-salvager.json",
+   "personSpec": {
+    "id": "person/sumon-debnath",
+    "name": "蘇蒙・德布納特",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ],
+    "age": 35
+   },
+   "backgroundSpec": {
+    "id": "background/sumon-debnath-trade",
+    "name": "北脊短途看路人",
+    "person": "person/sumon-debnath",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      37,
+      57
+     ],
+     "resolve": [
+      42,
+      62
+     ],
+     "control": [
+      40,
+      60
+     ]
+    },
+    "hireFee": 620,
+    "wageMult": 1.3,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在達卡北丘茶園搬茶，知道雨後哪塊紅土會滑。",
+    "崩後": "茶園散後當過路嚮導，2107學開犁；只在山腳短停，不替學會宣告山底有古代機。 寧可被叫膽小，也不肯用猜的路帶人下山。",
+    "現在與招牌瞬間": "紅土崩落時他讓犁側跪成一道踏面，等最後一人越過才拔出陷在泥裡的腿。 「山不給路，我借它一膝！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  },
+  {
+   "id": "padma-bora",
+   "name": "帕德瑪・博拉",
+   "gender": "女",
+   "age": 63,
+   "born": "2045",
+   "activeYears": "",
+   "origin": "南亞／ridge",
+   "before": "崩前在東北印度茶工食堂掌灶，能從腳步分出哪班工人回來。",
+   "after": "斷糧後隨親族到達卡，替公會的短程運糧隊做飯；從未駕機，手指與背脊照常變老。",
+   "personality": "愛把份量罵得很小，盛出來卻總比嘴上多。",
+   "moment": "暴雨打熄山腳的爐火時，她把未熟的糧分進每人懷裡，自己抱走最後一鍋重新生火。",
+   "quote": "人齊了，這頓才算飯！",
+   "role": "探路隊廚務船員",
+   "profile": "medic",
+   "attrs": {
+    "accuracy": 46,
+    "evasion": 5,
+    "resolve": 40,
+    "initiative": 5,
+    "perception": 7,
+    "control": 44
+   },
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "trait": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "cook",
+    "crew"
+   ],
+   "culture": "bengal",
+   "background": "background/padma-bora-trade",
+   "backgroundName": "北丘隨船炊事婆",
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "pool": "recruit/ridge-trail-rest",
+   "place": "place/ridge",
+   "faction": "faction/dhaka-weavers",
+   "hook": "底色1.4/1.8；E/G；糧要跨線、守住的城仍靠流動船員",
+   "events": [
+    "event/dhaka-contraction"
+   ],
+   "batch": "fp-south-03",
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "backgroundTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "personSpec": {
+    "id": "person/padma-bora",
+    "name": "帕德瑪・博拉",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "cook",
+     "crew"
+    ],
+    "age": 63
+   },
+   "backgroundSpec": {
+    "id": "background/padma-bora-trade",
+    "name": "北丘隨船炊事婆",
+    "person": "person/padma-bora",
+    "culture": "bengal",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": []
+   },
+   "bodyPoints": {
+    "崩前": "崩前在東北印度茶工食堂掌灶，能從腳步分出哪班工人回來。",
+    "崩後": "斷糧後隨親族到達卡，替公會的短程運糧隊做飯；從未駕機，手指與背脊照常變老。 愛把份量罵得很小，盛出來卻總比嘴上多。",
+    "現在與招牌瞬間": "暴雨打熄山腳的爐火時，她把未熟的糧分進每人懷裡，自己抱走最後一鍋重新生火。 「人齊了，這頓才算飯！」 現在以短雇換取同行的機會，所屬勢力只記出身或交班前的關係。"
+   },
+   "visibility": "public",
+   "relations": [],
+   "ageReason": ""
+  }
+ ]
+}

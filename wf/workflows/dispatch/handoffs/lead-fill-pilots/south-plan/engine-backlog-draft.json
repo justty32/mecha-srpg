@@ -1,0 +1,56 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "item",
+  "impact",
+  "proposal",
+  "size",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "item": "雇用角色與學徒禁駕",
+   "impact": "cmdHire呼叫employment(s,wage)，預設role=pilot；tags不把醫護變成營運醫護，也不阻止14歲學徒入座。",
+   "proposal": "另線增加背景預設雇用職類與可駕駛資格，雇用時採用並於入座驗證；本輪只寫tags與lore。",
+   "size": "中：資料契約＋雇用/座艙檢查＋對應測試",
+   "evidence": "src/ops/crew/recruit.ts；src/ops/crew/shared.ts:50"
+  },
+  {
+   "item": "招募卡人物簡介",
+   "impact": "背景/person沒有bio，使用者可能看不到崩前崩後與招牌瞬間。",
+   "proposal": "百科以gameRefs反查人物，招募卡提供連結或摘要；不要把body塞入person未知欄位。",
+   "size": "小至中：查詢＋UI",
+   "evidence": "content/lore/README.md；src/ops/crew/recruit.ts"
+  },
+  {
+   "item": "職類篩選",
+   "impact": "12個新池合計14候選上限；同一地點多池的船員與駕駛需要易讀分類。",
+   "proposal": "先用既有tags分類顯示，不承諾獨立醫療、領航、廚務加成。",
+   "size": "小：列表呈現",
+   "evidence": "src/ops/crew/recruit.ts"
+  },
+  {
+   "item": "刷新詞義與跨池占用",
+   "impact": "refreshOn寫quarter，但實作以clock.phase=neap且當日去重；不同池依序處理，重用person可能受候選殘留影響。",
+   "proposal": "另線核對曆制與介面名詞，若需全體先清後抽再做雙階段；本計畫新池來源互斥，先避開跨池偏差。",
+   "size": "中：曆制契約/招募狀態＋測試",
+   "evidence": "src/ops/crew/recruit.ts:14-22"
+  },
+  {
+   "item": "文化名表粒度",
+   "impact": "bengal是既有南亞桶，無印度西岸/錫蘭獨立culture。",
+   "proposal": "本輪沿既有bengal；日後要細分則新增名表與遷移方案，不把文化桶當族裔設定。",
+   "size": "小至中：名表資料＋舊資料兼容",
+   "evidence": "content/base/world/names/mythic-bengal.json"
+  },
+  {
+   "item": "character places登記",
+   "impact": "共同規格要求places；現有characters optional只有died/kind/mech，check會警告未知欄且不驗地點引用。",
+   "proposal": "內容工人仍按共同規格寫places，報告新警告；後續格式線將places列為可選並驗引用。本計畫已獨立核26個地方id存在。",
+   "size": "小：lore文件＋check＋測試",
+   "evidence": "content/lore/check.ts:140-154"
+  }
+ ]
+}

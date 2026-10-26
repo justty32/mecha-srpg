@@ -1,0 +1,43 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "item",
+  "impact",
+  "proposal",
+  "size"
+ ],
+ "rows": [
+  {
+   "item": "區域營運地點尚缺",
+   "impact": "本區16個地理核心地點及跨區伊斯坦堡都不能直接承載招募池；目前人物在南亞或新加坡轉船待雇。",
+   "proposal": "地圖線補完區域 place、map 定位與旅行資料後，由合併線另開本地池；不在本批造空 place。",
+   "size": "大；跨地圖與旅行驗證"
+  },
+  {
+   "item": "撒南與中亞 culture 名表缺口",
+   "impact": "既有 mythic 名表沒有區域專用值，營運 culture 暫代會混同玩家所見文化。",
+   "proposal": "另開內容線增區域神話名表、核對 consumers，再逐筆替換暫代 culture；本輪不新增未登記值。",
+   "size": "中；名表內容與引用遷移"
+  },
+  {
+   "item": "船員職種只有 tags 與敘述",
+   "impact": "medic、cook、navigator、gunner、apprentice 不會自動增加醫療、伙食、領航或砲術效果；學徒也沒有角色硬鎖。",
+   "proposal": "需要正式玩法時另設招募職類顯示及指派限制；本輪不加 effect，不宣稱標籤提供能力。",
+   "size": "中；UI、指派與資料契約"
+  },
+  {
+   "item": "招募卡人物小傳",
+   "impact": "出身、性格、年齡落在 lore，玩家選人時難看見。",
+   "proposal": "按 gameRefs 連結角色百科或摘 summary，避免在 person 加未登記 bio。",
+   "size": "小至中；UI 與反向索引"
+  },
+  {
+   "item": "一背景多人物的來源池",
+   "impact": "每個背景只能指定一個模板，招完後會出現空池。",
+   "proposal": "若需求確立再增兼容舊格式的 person 候選集合；先用本批一對一背景擴容。",
+   "size": "中；資料驗證與抽樣去重"
+  }
+ ]
+}

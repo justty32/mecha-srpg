@@ -1,0 +1,37 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "item",
+  "impact",
+  "proposal",
+  "size"
+ ],
+ "rows": [
+  {
+   "item": "招募卡連結人物小傳",
+   "impact": "24人的崩前崩後與招牌瞬間目前主要在百科；卡上不保證可讀。",
+   "proposal": "以base person id反查lore gameRefs，顯示摘要與人物連結；不將body塞進person。",
+   "size": "S，UI與索引查詢"
+  },
+  {
+   "item": "船員職類與學徒配置",
+   "impact": "medic／navigator／cook／signaller／gunner／apprentice tags目前只有標記；未成年人不當駕駛是敘事約定，沒有上機硬鎖。",
+   "proposal": "另線定義可配置職類與配置限制，再決定醫護導航效果；本輪不新增欄位、effect或程式。",
+   "size": "M，crew型別、操作與測試"
+  },
+  {
+   "item": "招募池多人背景與缺額提示",
+   "impact": "一背景一範本且全域去重，雇滿六人後池會空，不能誤當每季生出同名新人。",
+   "proposal": "先顯示可用來源數與已雇提示；多人背景是否值得做另行設計，不拿本批驗收當前置。",
+   "size": "S提示／M多人來源"
+  },
+  {
+   "item": "命名文化擴充",
+   "impact": "現有神話culture無斯拉夫、法語、葡語或西語獨立表；本批只選既有神話偏好。",
+   "proposal": "日後由命名線評估新增神話表與文化選擇；不得把神話表當國籍分類。",
+   "size": "S，內容表與命名介面評估"
+  }
+ ]
+}

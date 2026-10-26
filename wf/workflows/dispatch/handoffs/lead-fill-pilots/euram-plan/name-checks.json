@@ -1,0 +1,37 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "scope",
+  "patterns",
+  "command",
+  "exit",
+  "hits",
+  "note"
+ ],
+ "rows": [
+  {
+   "scope": "全庫grep",
+   "patterns": 104,
+   "command": "grep -R -I -n -F -f /tmp/cx-fp-euram-plan/names-patterns.txt --exclude-dir=.git --exclude-dir=node_modules --exclude-dir=euram-plan .",
+   "exit": 1,
+   "hits": 0,
+   "note": "全repo文字含content、src、wf、legacy及其他區草稿；只排除版本資料、依賴與本計畫自己。exit1=無符合，不是工具故障。"
+  },
+  {
+   "scope": "跨區claims",
+   "patterns": 24,
+   "command": "讀取lead-fill-pilots/*-plan/names-claimed.json交集",
+   "exit": 0,
+   "hits": 0,
+   "note": [
+    "wf/workflows/dispatch/handoffs/lead-fill-pilots/crew-plan/names-claimed.json",
+    "wf/workflows/dispatch/handoffs/lead-fill-pilots/east-plan/names-claimed.json",
+    "wf/workflows/dispatch/handoffs/lead-fill-pilots/afrwasia-plan/names-claimed.json",
+    "wf/workflows/dispatch/handoffs/lead-fill-pilots/south-plan/names-claimed.json",
+    "wf/workflows/dispatch/handoffs/lead-fill-pilots/moon-plan/names-claimed.json"
+   ]
+  }
+ ]
+}

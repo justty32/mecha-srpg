@@ -1,0 +1,121 @@
+{
+  "contract": "south-plan-acceptance/1",
+  "checks": [
+    {
+      "gate": 1,
+      "pass": true,
+      "evidence": {
+        "headings": [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11"
+        ],
+        "planBytes": 14532,
+        "people": 26,
+        "age16to19": 1,
+        "ratio": 0.038461538461538464,
+        "histogram5yr": {
+          "10": 1,
+          "15": 1,
+          "20": 5,
+          "25": 4,
+          "30": 3,
+          "35": 3,
+          "40": 2,
+          "45": 2,
+          "50": 2,
+          "55": 1,
+          "60": 2
+        }
+      }
+    },
+    {
+      "gate": 2,
+      "pass": true,
+      "evidence": {
+        "peopleContract": "wf-table/1",
+        "reviewContract": "wf-table/1",
+        "reviewColumns": [
+          "檔",
+          "類別",
+          "名稱",
+          "白話",
+          "掛到"
+        ],
+        "reviewRows": 90,
+        "longRows": [],
+        "maxPlainLength": 39,
+        "grepExit": 1,
+        "grepEvidence": "name-grep-evidence.txt",
+        "crossClaims": {
+          "wf/workflows/dispatch/handoffs/lead-fill-pilots/crew-plan/names-claimed.json": 30,
+          "wf/workflows/dispatch/handoffs/lead-fill-pilots/east-plan/names-claimed.json": 24,
+          "wf/workflows/dispatch/handoffs/lead-fill-pilots/afrwasia-plan/names-claimed.json": 24,
+          "wf/workflows/dispatch/handoffs/lead-fill-pilots/euram-plan/names-claimed.json": 24,
+          "wf/workflows/dispatch/handoffs/lead-fill-pilots/moon-plan/names-claimed.json": 20
+        },
+        "crossCollisions": [],
+        "fileCollisions": []
+      }
+    },
+    {
+      "gate": 3,
+      "pass": true,
+      "evidence": [
+        {
+          "brief": "cx-fp-south-01.md",
+          "lintExit": 0,
+          "stdout": "brief_lint: 0 違規／1 檔\n",
+          "stderr": "",
+          "manifest": "fp-south-01.manifest.json",
+          "manifestValid": true,
+          "files": 31
+        },
+        {
+          "brief": "cx-fp-south-02.md",
+          "lintExit": 0,
+          "stdout": "brief_lint: 0 違規／1 檔\n",
+          "stderr": "",
+          "manifest": "fp-south-02.manifest.json",
+          "manifestValid": true,
+          "files": 31
+        },
+        {
+          "brief": "cx-fp-south-03.md",
+          "lintExit": 0,
+          "stdout": "brief_lint: 0 違規／1 檔\n",
+          "stderr": "",
+          "manifest": "fp-south-03.manifest.json",
+          "manifestValid": true,
+          "files": 28
+        }
+      ]
+    },
+    {
+      "gate": 4,
+      "pass": true,
+      "evidence": {
+        "peopleWithPlaceAndFaction": 26,
+        "badRefs": [],
+        "bannedSubjects": [],
+        "AI": 0,
+        "newEffects": 0,
+        "newKinds": [
+          "background",
+          "character",
+          "person",
+          "recruit-pool"
+        ]
+      }
+    }
+  ],
+  "pass": true
+}

@@ -1,0 +1,112 @@
+{
+  "id": "person/yaw-boakye",
+  "name": "亞沃・博阿基耶",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 59,
+    "evasion": 10,
+    "resolve": 58,
+    "initiative": 7,
+    "perception": 6,
+    "control": 49
+  },
+  "traits": [
+    "effect/ax-trait-oathbound"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "bring-them-home",
+      "keep-watch"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {
+      "accuracy": [
+        1,
+        2,
+        3
+      ],
+      "evasion": [
+        1,
+        2
+      ],
+      "resolve": [
+        1,
+        2,
+        3
+      ],
+      "initiative": [
+        0,
+        1
+      ],
+      "perception": [
+        0,
+        1
+      ],
+      "control": [
+        1,
+        2
+      ]
+    },
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot"
+  ],
+  "age": 33
+}

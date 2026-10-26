@@ -1,0 +1,5847 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "name",
+  "sex",
+  "age",
+  "origin",
+  "role",
+  "profile",
+  "place",
+  "faction",
+  "backgroundName",
+  "before",
+  "after",
+  "personality",
+  "moment",
+  "shout",
+  "hook",
+  "born",
+  "activeYears",
+  "batch",
+  "culture",
+  "cultureNote",
+  "pool",
+  "background",
+  "status",
+  "genderPlacement",
+  "attrsBias",
+  "levelDice",
+  "traits",
+  "tags",
+  "personTemplate",
+  "personSpec",
+  "hireFee",
+  "wageMult",
+  "feeTemplate",
+  "backgroundSpec",
+  "effectPlacement",
+  "places",
+  "events",
+  "relations",
+  "ageReason",
+  "loreOutline",
+  "summary",
+  "files",
+  "loreSpec"
+ ],
+ "rows": [
+  {
+   "id": "xu-jingcen",
+   "name": "徐景岑",
+   "sex": "女",
+   "age": 22,
+   "origin": "成都",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/court-seat",
+   "faction": "faction/imperial-court",
+   "backgroundName": "行在糧隊新駕駛",
+   "before": "崩年前是成都糧站職員的幼女，只記得父親肩上的稻穗。",
+   "after": "在縮城後的糧隊長大，2106 才學開堅盾，護運到達卡後接短約。",
+   "personality": "嘴上嫌人拖拉，總把步子放慢等最後一車。",
+   "moment": "護糧隊在沿海遇掘犬，她把堅盾半跪在翻覆糧車前，讓人從機膝下過。",
+   "shout": "糧過去，我才過！",
+   "hook": "底色1.4／C、F、G：內陸糧必須有人跨線運",
+   "born": "2086",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/xu-jingcen-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/xu-jingcen",
+    "name": "徐景岑",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 22
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/xu-jingcen-recruit",
+    "name": "行在糧隊新駕駛",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/xu-jingcen"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/court-seat",
+    "place/dhaka"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩年前是成都糧站職員的幼女，只記得父親肩上的稻穗。性別：女；出生年 2086。",
+    "在縮城後的糧隊長大，2106 才學開堅盾，護運到達卡後接短約。性格落在行動：嘴上嫌人拖拉，總把步子放慢等最後一車。",
+    "護糧隊在沿海遇掘犬，她把堅盾半跪在翻覆糧車前，讓人從機膝下過。她／他吼「糧過去，我才過！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "行在糧隊新駕駛，嘴上嫌人拖拉，總把步子放慢等最後一車。",
+   "files": [
+    "content/base/world/backgrounds/xu-jingcen-recruit.json",
+    "content/base/persons/xu-jingcen.json",
+    "content/lore/characters/xu-jingcen.json"
+   ],
+   "loreSpec": {
+    "id": "character/xu-jingcen",
+    "name": "徐景岑",
+    "aka": [],
+    "born": "2086",
+    "faction": "faction/imperial-court",
+    "role": "駕駛；行在糧隊新駕駛",
+    "kind": "human",
+    "summary": "行在糧隊新駕駛，嘴上嫌人拖拉，總把步子放慢等最後一車。",
+    "places": [
+     "place/court-seat",
+     "place/dhaka"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/xu-jingcen"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "he-yanxu",
+   "name": "何彥序",
+   "sex": "男",
+   "age": 24,
+   "origin": "江口",
+   "role": "駕駛／砲手",
+   "profile": "pilot",
+   "place": "place/yangtze-mouth",
+   "faction": "faction/imperial-court",
+   "backgroundName": "江口流亡砲手",
+   "before": "崩前是江口港工家的孩子，記得全家在樓頂吃晚飯。",
+   "after": "江口夜後遷內陸，修倉多年，2106 加入護運隊學操機砲，現於達卡待雇。",
+   "personality": "怕把話說滿，報方位卻從不含糊。",
+   "moment": "沿海接應時獸甲映紅水面，他在抖動的機身上補出最後一矢，打開撤離口。",
+   "shout": "讓這一矢替人開路！",
+   "hook": "event/jiangkou-night 的流亡後果／底色1.5",
+   "born": "2084",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/he-yanxu-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/he-yanxu",
+    "name": "何彥序",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 24
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/he-yanxu-recruit",
+    "name": "江口流亡砲手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/he-yanxu"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/yangtze-mouth",
+    "place/dhaka"
+   ],
+   "events": [
+    "event/jiangkou-night"
+   ],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是江口港工家的孩子，記得全家在樓頂吃晚飯。性別：男；出生年 2084。",
+    "江口夜後遷內陸，修倉多年，2106 加入護運隊學操機砲，現於達卡待雇。性格落在行動：怕把話說滿，報方位卻從不含糊。",
+    "沿海接應時獸甲映紅水面，他在抖動的機身上補出最後一矢，打開撤離口。她／他吼「讓這一矢替人開路！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "江口流亡砲手，怕把話說滿，報方位卻從不含糊。",
+   "files": [
+    "content/base/world/backgrounds/he-yanxu-recruit.json",
+    "content/base/persons/he-yanxu.json",
+    "content/lore/characters/he-yanxu.json"
+   ],
+   "loreSpec": {
+    "id": "character/he-yanxu",
+    "name": "何彥序",
+    "aka": [],
+    "born": "2084",
+    "faction": "faction/imperial-court",
+    "role": "駕駛／砲手；江口流亡砲手",
+    "kind": "human",
+    "summary": "江口流亡砲手，怕把話說滿，報方位卻從不含糊。",
+    "places": [
+     "place/yangtze-mouth",
+     "place/dhaka"
+    ],
+    "relations": [],
+    "events": [
+     "event/jiangkou-night"
+    ],
+    "gameRefs": [
+     "base:person/he-yanxu"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "luo-shuqin",
+   "name": "羅淑芹",
+   "sex": "女",
+   "age": 31,
+   "origin": "成都",
+   "role": "技師",
+   "profile": "tech",
+   "place": "place/court-seat",
+   "faction": "faction/imperial-court",
+   "backgroundName": "行在流動修甲師",
+   "before": "崩前在成都讀小學，常偷看母親替貨車換輪。",
+   "after": "斷鏈後跟母親守工棚，轉修衍型機，隨糧隊南來為傷機找活。",
+   "personality": "愛挑毛病，修好才肯說一句辛苦。",
+   "moment": "沿海傷機的腿架裂開時，她敲響整塊備用裝甲，指揮同伴借它撐住機身。",
+   "shout": "骨頭借你，給我站直！",
+   "hook": "底色1.3／C：工匠把斷掉的知識帶進船上",
+   "born": "2077",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/luo-shuqin-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/luo-shuqin",
+    "name": "羅淑芹",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "east-origin"
+    ],
+    "age": 31
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/luo-shuqin-recruit",
+    "name": "行在流動修甲師",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/luo-shuqin"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/court-seat",
+    "place/dhaka"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在成都讀小學，常偷看母親替貨車換輪。性別：女；出生年 2077。",
+    "斷鏈後跟母親守工棚，轉修衍型機，隨糧隊南來為傷機找活。性格落在行動：愛挑毛病，修好才肯說一句辛苦。",
+    "沿海傷機的腿架裂開時，她敲響整塊備用裝甲，指揮同伴借它撐住機身。她／他吼「骨頭借你，給我站直！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "行在流動修甲師，愛挑毛病，修好才肯說一句辛苦。",
+   "files": [
+    "content/base/world/backgrounds/luo-shuqin-recruit.json",
+    "content/base/persons/luo-shuqin.json",
+    "content/lore/characters/luo-shuqin.json"
+   ],
+   "loreSpec": {
+    "id": "character/luo-shuqin",
+    "name": "羅淑芹",
+    "aka": [],
+    "born": "2077",
+    "faction": "faction/imperial-court",
+    "role": "技師；行在流動修甲師",
+    "kind": "human",
+    "summary": "行在流動修甲師，愛挑毛病，修好才肯說一句辛苦。",
+    "places": [
+     "place/court-seat",
+     "place/dhaka"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/luo-shuqin"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "duan-chengye",
+   "name": "段承業",
+   "sex": "男",
+   "age": 39,
+   "origin": "朝廷沿海守備",
+   "role": "駕駛",
+   "profile": "veteran",
+   "place": "place/court-seat",
+   "faction": "faction/imperial-court",
+   "backgroundName": "赴牆老駕駛",
+   "before": "崩前在沿海工坊當學徒，覺得國家大得走不完。",
+   "after": "2092 起駕堅盾，參與赴牆後長守沿海，2107 傷後離隊到達卡接護運。",
+   "personality": "說話像訓人，卻會先承認自己害怕。",
+   "moment": "赴牆後一次撤退，他把破盾橫在海獸與傷員之間，喊完才發現自己哭了。",
+   "shout": "我這一面，還沒倒！",
+   "hook": "event/court-conscription-writ 後續／底色1.6",
+   "born": "2069",
+   "activeYears": 16,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/duan-chengye-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin",
+    "veteran"
+   ],
+   "personTemplate": "content/base/persons/irina-sokolova.json",
+   "personSpec": {
+    "id": "person/duan-chengye",
+    "name": "段承業",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 62,
+     "evasion": 9,
+     "resolve": 61,
+     "initiative": 6,
+     "perception": 7,
+     "control": 56
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 58,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 58,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin",
+     "veteran"
+    ],
+    "age": 39,
+    "activeYears": 16
+   },
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "feeTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "backgroundSpec": {
+    "id": "background/duan-chengye-recruit",
+    "name": "赴牆老駕駛",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      52,
+      72
+     ],
+     "resolve": [
+      51,
+      71
+     ],
+     "control": [
+      46,
+      66
+     ]
+    },
+    "hireFee": 850,
+    "wageMult": 1.6,
+    "traits": [],
+    "person": "person/duan-chengye"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/court-seat",
+    "place/dhaka"
+   ],
+   "events": [
+    "event/court-conscription-writ"
+   ],
+   "relations": [
+    {
+     "character": "character/wen-zhaoheng",
+     "relation": "見過赴牆使者",
+     "note": "是徵召與補給的受領者，不改溫照衡既有經歷。"
+    }
+   ],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在沿海工坊當學徒，覺得國家大得走不完。性別：男；出生年 2069。",
+    "2092 起駕堅盾，參與赴牆後長守沿海，2107 傷後離隊到達卡接護運。性格落在行動：說話像訓人，卻會先承認自己害怕。",
+    "赴牆後一次撤退，他把破盾橫在海獸與傷員之間，喊完才發現自己哭了。她／他吼「我這一面，還沒倒！」；2108仍只找一份能接的約，不保證扭轉整場戰局。 機械系現役16年，外貌約27.0歲；只寫老得慢，沒有神性或生物變異。"
+   ],
+   "summary": "赴牆老駕駛，說話像訓人，卻會先承認自己害怕。",
+   "files": [
+    "content/base/world/backgrounds/duan-chengye-recruit.json",
+    "content/base/persons/duan-chengye.json",
+    "content/lore/characters/duan-chengye.json"
+   ],
+   "loreSpec": {
+    "id": "character/duan-chengye",
+    "name": "段承業",
+    "aka": [],
+    "born": "2069",
+    "faction": "faction/imperial-court",
+    "role": "駕駛；赴牆老駕駛",
+    "kind": "human",
+    "summary": "赴牆老駕駛，說話像訓人，卻會先承認自己害怕。",
+    "places": [
+     "place/court-seat",
+     "place/dhaka"
+    ],
+    "relations": [
+     {
+      "character": "character/wen-zhaoheng",
+      "relation": "見過赴牆使者",
+      "note": "是徵召與補給的受領者，不改溫照衡既有經歷。"
+     }
+    ],
+    "events": [
+     "event/court-conscription-writ"
+    ],
+    "gameRefs": [
+     "base:person/duan-chengye"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "pan-yuehe",
+   "name": "潘月禾",
+   "sex": "女",
+   "age": 53,
+   "origin": "朝廷內陸糧運",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/court-seat",
+   "faction": "faction/imperial-court",
+   "backgroundName": "糧運轉職守車手",
+   "before": "崩前管理糧車隊的行程，能背出沿途每家的飯味。",
+   "after": "斷鏈後改跑近程糧路，2106 才進座艙；隨新糧抵達達卡後兼接護運。",
+   "personality": "對小事寬容，對餓著肚子硬撐的人很兇。",
+   "moment": "海岸卸糧遇蟲群，她駕通用機把車廂推成弧形，將最後一袋米留在人群中央。",
+   "shout": "有飯的地方，先守住！",
+   "hook": "底色1.4／G：長鏈斷後近程糧路",
+   "born": "2055",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/pan-yuehe-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/pan-yuehe",
+    "name": "潘月禾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 53
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/pan-yuehe-recruit",
+    "name": "糧運轉職守車手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/pan-yuehe"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/court-seat",
+    "place/dhaka"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前管理糧車隊的行程，能背出沿途每家的飯味。性別：女；出生年 2055。",
+    "斷鏈後改跑近程糧路，2106 才進座艙；隨新糧抵達達卡後兼接護運。性格落在行動：對小事寬容，對餓著肚子硬撐的人很兇。",
+    "海岸卸糧遇蟲群，她駕通用機把車廂推成弧形，將最後一袋米留在人群中央。她／他吼「有飯的地方，先守住！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "糧運轉職守車手，對小事寬容，對餓著肚子硬撐的人很兇。",
+   "files": [
+    "content/base/world/backgrounds/pan-yuehe-recruit.json",
+    "content/base/persons/pan-yuehe.json",
+    "content/lore/characters/pan-yuehe.json"
+   ],
+   "loreSpec": {
+    "id": "character/pan-yuehe",
+    "name": "潘月禾",
+    "aka": [],
+    "born": "2055",
+    "faction": "faction/imperial-court",
+    "role": "駕駛；糧運轉職守車手",
+    "kind": "human",
+    "summary": "糧運轉職守車手，對小事寬容，對餓著肚子硬撐的人很兇。",
+    "places": [
+     "place/court-seat",
+     "place/dhaka"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/pan-yuehe"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "qiu-ninglan",
+   "name": "邱寧嵐",
+   "sex": "女",
+   "age": 18,
+   "origin": "成都山地遷居戶",
+   "role": "醫護",
+   "profile": "tech",
+   "place": "place/court-seat",
+   "faction": "faction/imperial-court",
+   "backgroundName": "山地接生戶醫護助手",
+   "before": "2090 出生，沒有崩前記憶；父母在斷鏈初期已遷入成都周邊產糧村。",
+   "after": "村中接生婆與共食灶讓她活過出生斷層，長大學包紮，隨糧隊到達卡。",
+   "personality": "不信大人的沒事，會蹲下把傷問完。",
+   "moment": "沿海收傷時甲片落滿棚頂，她把傷員的手按在自己脈上，讓他跟著數。",
+   "shout": "跟著我數，別先停！",
+   "hook": "底色1.1、1.2／C、G：出生斷層的少數倖存者",
+   "born": "2090",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/dhaka-east-court",
+   "background": "background/qiu-ninglan-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-names-before-orders"
+   ],
+   "tags": [
+    "human",
+    "medic",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/qiu-ninglan",
+    "name": "邱寧嵐",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/ax-trait-names-before-orders"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "medic",
+     "east-origin"
+    ],
+    "age": 18
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/qiu-ninglan-recruit",
+    "name": "山地接生戶醫護助手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/qiu-ninglan"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/court-seat",
+    "place/dhaka"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "2090 生於已遷入產糧村的家庭，接生婆與共食灶支持存活；僅醫護助手，不寫少年王牌。",
+   "loreOutline": [
+    "2090 出生，沒有崩前記憶；父母在斷鏈初期已遷入成都周邊產糧村。性別：女；出生年 2090。",
+    "村中接生婆與共食灶讓她活過出生斷層，長大學包紮，隨糧隊到達卡。性格落在行動：不信大人的沒事，會蹲下把傷問完。",
+    "沿海收傷時甲片落滿棚頂，她把傷員的手按在自己脈上，讓他跟著數。她／他吼「跟著我數，別先停！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "山地接生戶醫護助手，不信大人的沒事，會蹲下把傷問完。",
+   "files": [
+    "content/base/world/backgrounds/qiu-ninglan-recruit.json",
+    "content/base/persons/qiu-ninglan.json",
+    "content/lore/characters/qiu-ninglan.json"
+   ],
+   "loreSpec": {
+    "id": "character/qiu-ninglan",
+    "name": "邱寧嵐",
+    "aka": [],
+    "born": "2090",
+    "faction": "faction/imperial-court",
+    "role": "醫護；山地接生戶醫護助手",
+    "kind": "human",
+    "summary": "山地接生戶醫護助手，不信大人的沒事，會蹲下把傷問完。",
+    "places": [
+     "place/court-seat",
+     "place/dhaka"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/qiu-ninglan"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "fujimoto-sayo",
+   "name": "藤本 紗世",
+   "sex": "女",
+   "age": 23,
+   "origin": "仙台",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/sendai-wall",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "仙台借調新人",
+   "before": "崩前是仙台托幼所的孩子，只記得接她的人總是老人。",
+   "after": "在空班表旁長大，2106 才上機；受派到新加坡護送修造件，短期可雇。",
+   "personality": "討厭被稱作希望，只肯答應眼前一班。",
+   "moment": "仙台外岸砂扇展腹時，她首次坐進有人驅動的核心艙，把同伴的傷機護出扇影。",
+   "shout": "這個座位，我來坐！",
+   "hook": "底色1.1、1.2／C：日本缺駕駛員；place/sendai-bell-cliff",
+   "born": "2085",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/fujimoto-sayo-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/fujimoto-sayo",
+    "name": "藤本 紗世",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 23
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/fujimoto-sayo-recruit",
+    "name": "仙台借調新人",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/fujimoto-sayo"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/sendai-wall",
+    "place/singapore",
+    "place/sendai-bell-cliff"
+   ],
+   "events": [],
+   "relations": [
+    {
+     "character": "character/mase-tomonori",
+     "relation": "受教者",
+     "note": "在仙台向教習問過守牆步法，不取代守燈的位置。"
+    }
+   ],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是仙台托幼所的孩子，只記得接她的人總是老人。性別：女；出生年 2085。",
+    "在空班表旁長大，2106 才上機；受派到新加坡護送修造件，短期可雇。性格落在行動：討厭被稱作希望，只肯答應眼前一班。",
+    "仙台外岸砂扇展腹時，她首次坐進有人驅動的核心艙，把同伴的傷機護出扇影。她／他吼「這個座位，我來坐！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "仙台借調新人，討厭被稱作希望，只肯答應眼前一班。",
+   "files": [
+    "content/base/world/backgrounds/fujimoto-sayo-recruit.json",
+    "content/base/persons/fujimoto-sayo.json",
+    "content/lore/characters/fujimoto-sayo.json"
+   ],
+   "loreSpec": {
+    "id": "character/fujimoto-sayo",
+    "name": "藤本 紗世",
+    "aka": [],
+    "born": "2085",
+    "faction": "faction/japan-umbrella",
+    "role": "駕駛；仙台借調新人",
+    "kind": "human",
+    "summary": "仙台借調新人，討厭被稱作希望，只肯答應眼前一班。",
+    "places": [
+     "place/sendai-wall",
+     "place/singapore",
+     "place/sendai-bell-cliff"
+    ],
+    "relations": [
+     {
+      "character": "character/mase-tomonori",
+      "relation": "受教者",
+      "note": "在仙台向教習問過守牆步法，不取代守燈的位置。"
+     }
+    ],
+    "events": [],
+    "gameRefs": [
+     "base:person/fujimoto-sayo"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "arase-kento",
+   "name": "荒瀨 健斗",
+   "sex": "男",
+   "age": 34,
+   "origin": "瀨戶內",
+   "role": "駕駛",
+   "profile": "veteran",
+   "place": "place/setouchi",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "瀨戶內長役護航手",
+   "before": "崩前是船塢工人的兒子，在退潮泥灘找落下的鉚釘。",
+   "after": "2094 起駕堅盾護拖機船，現隨修造件出差新加坡，等回程貨時接約。",
+   "personality": "臉仍年輕，說笑卻總用過時的比喻。",
+   "moment": "外洋浪裡升起獸背，他讓受損機先靠自己的裝甲，再帶它一步步退到船旁。",
+   "shout": "借我一程，還你一岸！",
+   "hook": "event/setouchi-lock 後續／底色1.2、1.3",
+   "born": "2074",
+   "activeYears": 14,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/arase-kento-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin",
+    "veteran"
+   ],
+   "personTemplate": "content/base/persons/irina-sokolova.json",
+   "personSpec": {
+    "id": "person/arase-kento",
+    "name": "荒瀨 健斗",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 62,
+     "evasion": 9,
+     "resolve": 61,
+     "initiative": 6,
+     "perception": 7,
+     "control": 56
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 58,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 58,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin",
+     "veteran"
+    ],
+    "age": 34,
+    "activeYears": 14
+   },
+   "hireFee": 850,
+   "wageMult": 1.6,
+   "feeTemplate": "content/base/world/backgrounds/selene-test-retiree.json",
+   "backgroundSpec": {
+    "id": "background/arase-kento-recruit",
+    "name": "瀨戶內長役護航手",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      52,
+      72
+     ],
+     "resolve": [
+      51,
+      71
+     ],
+     "control": [
+      46,
+      66
+     ]
+    },
+    "hireFee": 850,
+    "wageMult": 1.6,
+    "traits": [],
+    "person": "person/arase-kento"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/setouchi",
+    "place/singapore"
+   ],
+   "events": [
+    "event/setouchi-lock"
+   ],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是船塢工人的兒子，在退潮泥灘找落下的鉚釘。性別：男；出生年 2074。",
+    "2094 起駕堅盾護拖機船，現隨修造件出差新加坡，等回程貨時接約。性格落在行動：臉仍年輕，說笑卻總用過時的比喻。",
+    "外洋浪裡升起獸背，他讓受損機先靠自己的裝甲，再帶它一步步退到船旁。她／他吼「借我一程，還你一岸！」；2108仍只找一份能接的約，不保證扭轉整場戰局。 機械系現役14年，外貌約23.5歲；只寫老得慢，沒有神性或生物變異。"
+   ],
+   "summary": "瀨戶內長役護航手，臉仍年輕，說笑卻總用過時的比喻。",
+   "files": [
+    "content/base/world/backgrounds/arase-kento-recruit.json",
+    "content/base/persons/arase-kento.json",
+    "content/lore/characters/arase-kento.json"
+   ],
+   "loreSpec": {
+    "id": "character/arase-kento",
+    "name": "荒瀨 健斗",
+    "aka": [],
+    "born": "2074",
+    "faction": "faction/japan-umbrella",
+    "role": "駕駛；瀨戶內長役護航手",
+    "kind": "human",
+    "summary": "瀨戶內長役護航手，臉仍年輕，說笑卻總用過時的比喻。",
+    "places": [
+     "place/setouchi",
+     "place/singapore"
+    ],
+    "relations": [],
+    "events": [
+     "event/setouchi-lock"
+    ],
+    "gameRefs": [
+     "base:person/arase-kento"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "nishimura-touko",
+   "name": "西村 燈子",
+   "sex": "女",
+   "age": 46,
+   "origin": "仙台",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/sendai-wall",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "仙台晚入艙守備",
+   "before": "崩前在仙台做港口調度，習慣催別人快一點。",
+   "after": "崩後在後方接天網班，2106 才改當有人駕駛，今護件南來接替輪守。",
+   "personality": "從不催傷員，會催那些替傷員作決定的人。",
+   "moment": "矢櫛的背架在外岸亮起，她第一次把通用機的肩轉向來矢，讓拖機手離岸。",
+   "shout": "別替我說來不及！",
+   "hook": "底色1.2／C：後方年資不算駕駛年資",
+   "born": "2062",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/nishimura-touko-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/nishimura-touko",
+    "name": "西村 燈子",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 46
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/nishimura-touko-recruit",
+    "name": "仙台晚入艙守備",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/nishimura-touko"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/sendai-wall",
+    "place/singapore"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在仙台做港口調度，習慣催別人快一點。性別：女；出生年 2062。",
+    "崩後在後方接天網班，2106 才改當有人駕駛，今護件南來接替輪守。性格落在行動：從不催傷員，會催那些替傷員作決定的人。",
+    "矢櫛的背架在外岸亮起，她第一次把通用機的肩轉向來矢，讓拖機手離岸。她／他吼「別替我說來不及！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "仙台晚入艙守備，從不催傷員，會催那些替傷員作決定的人。",
+   "files": [
+    "content/base/world/backgrounds/nishimura-touko-recruit.json",
+    "content/base/persons/nishimura-touko.json",
+    "content/lore/characters/nishimura-touko.json"
+   ],
+   "loreSpec": {
+    "id": "character/nishimura-touko",
+    "name": "西村 燈子",
+    "aka": [],
+    "born": "2062",
+    "faction": "faction/japan-umbrella",
+    "role": "駕駛；仙台晚入艙守備",
+    "kind": "human",
+    "summary": "仙台晚入艙守備，從不催傷員，會催那些替傷員作決定的人。",
+    "places": [
+     "place/sendai-wall",
+     "place/singapore"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/nishimura-touko"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "morita-shunpei",
+   "name": "森田 俊平",
+   "sex": "男",
+   "age": 27,
+   "origin": "瀨戶內",
+   "role": "技師",
+   "profile": "tech",
+   "place": "place/setouchi",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "乾塢筋組修補手",
+   "before": "崩前跟祖父住船塢邊，最早的記憶是大船把天空遮住。",
+   "after": "鎖海後隨祖父改修機甲筋組，與修造件一起到新加坡找短約。",
+   "personality": "笑得大聲，手上工作一出錯就立刻認。",
+   "moment": "傷機在塢口失去支撐，他將備用筋組抬進裂甲，讓駕駛再屈一次膝。",
+   "shout": "再彎一次，就能回家！",
+   "hook": "event/setouchi-lock／底色1.3：船匠轉修機甲",
+   "born": "2081",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/morita-shunpei-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/morita-shunpei",
+    "name": "森田 俊平",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "east-origin"
+    ],
+    "age": 27
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/morita-shunpei-recruit",
+    "name": "乾塢筋組修補手",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/morita-shunpei"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/setouchi",
+    "place/singapore"
+   ],
+   "events": [
+    "event/setouchi-lock"
+   ],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前跟祖父住船塢邊，最早的記憶是大船把天空遮住。性別：男；出生年 2081。",
+    "鎖海後隨祖父改修機甲筋組，與修造件一起到新加坡找短約。性格落在行動：笑得大聲，手上工作一出錯就立刻認。",
+    "傷機在塢口失去支撐，他將備用筋組抬進裂甲，讓駕駛再屈一次膝。她／他吼「再彎一次，就能回家！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "乾塢筋組修補手，笑得大聲，手上工作一出錯就立刻認。",
+   "files": [
+    "content/base/world/backgrounds/morita-shunpei-recruit.json",
+    "content/base/persons/morita-shunpei.json",
+    "content/lore/characters/morita-shunpei.json"
+   ],
+   "loreSpec": {
+    "id": "character/morita-shunpei",
+    "name": "森田 俊平",
+    "aka": [],
+    "born": "2081",
+    "faction": "faction/japan-umbrella",
+    "role": "技師；乾塢筋組修補手",
+    "kind": "human",
+    "summary": "乾塢筋組修補手，笑得大聲，手上工作一出錯就立刻認。",
+    "places": [
+     "place/setouchi",
+     "place/singapore"
+    ],
+    "relations": [],
+    "events": [
+     "event/setouchi-lock"
+    ],
+    "gameRefs": [
+     "base:person/morita-shunpei"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "ogata-miharu",
+   "name": "緒方 美晴",
+   "sex": "女",
+   "age": 58,
+   "origin": "仙台",
+   "role": "醫護",
+   "profile": "tech",
+   "place": "place/sendai-wall",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "仙台老醫護",
+   "before": "崩前在仙台病房輪夜班，盼退休後學畫海。",
+   "after": "斷鏈時病房縮了又縮，今隨護航船照顧傷員，到新加坡替家人等返鄉船。",
+   "personality": "不愛聽英雄故事，會記住英雄怕疼的樣子。",
+   "moment": "外岸獸鳴壓過傷員聲，她把整張空白畫紙撕成醒目的指向，帶擔架隊穿過濃霧。",
+   "shout": "疼就喊，喊給我聽！",
+   "hook": "底色1.1、1.8／E：活下來的老醫護與被叫回的人",
+   "born": "2050",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/ogata-miharu-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "medic",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/ogata-miharu",
+    "name": "緒方 美晴",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "medic",
+     "east-origin"
+    ],
+    "age": 58
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/ogata-miharu-recruit",
+    "name": "仙台老醫護",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/ogata-miharu"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/sendai-wall",
+    "place/singapore"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在仙台病房輪夜班，盼退休後學畫海。性別：女；出生年 2050。",
+    "斷鏈時病房縮了又縮，今隨護航船照顧傷員，到新加坡替家人等返鄉船。性格落在行動：不愛聽英雄故事，會記住英雄怕疼的樣子。",
+    "外岸獸鳴壓過傷員聲，她把整張空白畫紙撕成醒目的指向，帶擔架隊穿過濃霧。她／他吼「疼就喊，喊給我聽！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "仙台老醫護，不愛聽英雄故事，會記住英雄怕疼的樣子。",
+   "files": [
+    "content/base/world/backgrounds/ogata-miharu-recruit.json",
+    "content/base/persons/ogata-miharu.json",
+    "content/lore/characters/ogata-miharu.json"
+   ],
+   "loreSpec": {
+    "id": "character/ogata-miharu",
+    "name": "緒方 美晴",
+    "aka": [],
+    "born": "2050",
+    "faction": "faction/japan-umbrella",
+    "role": "醫護；仙台老醫護",
+    "kind": "human",
+    "summary": "仙台老醫護，不愛聽英雄故事，會記住英雄怕疼的樣子。",
+    "places": [
+     "place/sendai-wall",
+     "place/singapore"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/ogata-miharu"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "takeda-masatsugu",
+   "name": "武田 正嗣",
+   "sex": "男",
+   "age": 63,
+   "origin": "瀨戶內",
+   "role": "導航",
+   "profile": "navigator",
+   "place": "place/setouchi",
+   "faction": "faction/japan-umbrella",
+   "backgroundName": "瀨戶內老船領航",
+   "before": "崩前領拖船穿過內海，在船頭認潮汐與岸影。",
+   "after": "鎖海後改領拖機船，現把修造隊送到新加坡，趁候貨受雇領航。",
+   "personality": "方向說得極準，自己的家事卻總岔開話題。",
+   "moment": "外洋獸群割斷熟路，他把舊航圖翻面，沿親眼看見的空水面帶船退走。",
+   "shout": "圖沒有路，人還有眼！",
+   "hook": "event/setouchi-lock 後續／底色1.4",
+   "born": "2045",
+   "activeYears": null,
+   "batch": "fp-east-01",
+   "culture": "yamato",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。",
+   "pool": "recruit/singapore-east-relief",
+   "background": "background/takeda-masatsugu-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "沿導航範本 accuracy／evasion／initiative 傾向與六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "navigator",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/maia-te-rangi.json",
+   "personSpec": {
+    "id": "person/takeda-masatsugu",
+    "name": "武田 正嗣",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 57,
+     "evasion": 14,
+     "resolve": 46,
+     "initiative": 9,
+     "perception": 7,
+     "control": 48
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 55,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 55,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "navigator",
+     "east-origin"
+    ],
+    "age": 63
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "backgroundSpec": {
+    "id": "background/takeda-masatsugu-recruit",
+    "name": "瀨戶內老船領航",
+    "culture": "yamato",
+    "attrRanges": {
+     "accuracy": [
+      47,
+      67
+     ],
+     "resolve": [
+      36,
+      56
+     ],
+     "control": [
+      38,
+      58
+     ]
+    },
+    "hireFee": 700,
+    "wageMult": 1.4,
+    "traits": [],
+    "person": "person/takeda-masatsugu"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/setouchi",
+    "place/singapore"
+   ],
+   "events": [
+    "event/setouchi-lock"
+   ],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前領拖船穿過內海，在船頭認潮汐與岸影。性別：男；出生年 2045。",
+    "鎖海後改領拖機船，現把修造隊送到新加坡，趁候貨受雇領航。性格落在行動：方向說得極準，自己的家事卻總岔開話題。",
+    "外洋獸群割斷熟路，他把舊航圖翻面，沿親眼看見的空水面帶船退走。她／他吼「圖沒有路，人還有眼！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "瀨戶內老船領航，方向說得極準，自己的家事卻總岔開話題。",
+   "files": [
+    "content/base/world/backgrounds/takeda-masatsugu-recruit.json",
+    "content/base/persons/takeda-masatsugu.json",
+    "content/lore/characters/takeda-masatsugu.json"
+   ],
+   "loreSpec": {
+    "id": "character/takeda-masatsugu",
+    "name": "武田 正嗣",
+    "aka": [],
+    "born": "2045",
+    "faction": "faction/japan-umbrella",
+    "role": "導航；瀨戶內老船領航",
+    "kind": "human",
+    "summary": "瀨戶內老船領航，方向說得極準，自己的家事卻總岔開話題。",
+    "places": [
+     "place/setouchi",
+     "place/singapore"
+    ],
+    "relations": [],
+    "events": [
+     "event/setouchi-lock"
+    ],
+    "gameRefs": [
+     "base:person/takeda-masatsugu"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "baek-junseo",
+   "name": "白俊序",
+   "sex": "男",
+   "age": 22,
+   "origin": "仁川",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/incheon",
+   "faction": "faction/korea-umbrella",
+   "backgroundName": "仁川解役新獵手",
+   "before": "崩前是仁川廠工家的幼子，只記得飯盒上的廠徽。",
+   "after": "守備養成後2106入艙，解役後持獵牌南到吉大港，靠護運養家。",
+   "personality": "見到崇拜他的孩子便緊張，見到獸反而話多。",
+   "moment": "沿海護運時掘犬翻過殘牆，他把自己的機影擋在孩子畫的守城像前。",
+   "shout": "像不能動，我能！",
+   "hook": "底色1.6、1.12／C、G：守城者的崇拜與人力",
+   "born": "2086",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/baek-junseo-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/baek-junseo",
+    "name": "白俊序",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 22
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/baek-junseo-recruit",
+    "name": "仁川解役新獵手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/baek-junseo"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/incheon",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是仁川廠工家的幼子，只記得飯盒上的廠徽。性別：男；出生年 2086。",
+    "守備養成後2106入艙，解役後持獵牌南到吉大港，靠護運養家。性格落在行動：見到崇拜他的孩子便緊張，見到獸反而話多。",
+    "沿海護運時掘犬翻過殘牆，他把自己的機影擋在孩子畫的守城像前。她／他吼「像不能動，我能！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "仁川解役新獵手，見到崇拜他的孩子便緊張，見到獸反而話多。",
+   "files": [
+    "content/base/world/backgrounds/baek-junseo-recruit.json",
+    "content/base/persons/baek-junseo.json",
+    "content/lore/characters/baek-junseo.json"
+   ],
+   "loreSpec": {
+    "id": "character/baek-junseo",
+    "name": "白俊序",
+    "aka": [],
+    "born": "2086",
+    "faction": "faction/korea-umbrella",
+    "role": "駕駛；仁川解役新獵手",
+    "kind": "human",
+    "summary": "仁川解役新獵手，見到崇拜他的孩子便緊張，見到獸反而話多。",
+    "places": [
+     "place/incheon",
+     "place/chittagong"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/baek-junseo"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "jang-yeorin",
+   "name": "張汝潾",
+   "sex": "女",
+   "age": 29,
+   "origin": "仁川",
+   "role": "駕駛／拘束手",
+   "profile": "pilot",
+   "place": "place/incheon",
+   "faction": "faction/korea-umbrella",
+   "backgroundName": "韓傘解役拘束手",
+   "before": "崩前在仁川學校學跳繩，最怕體育課落在最後。",
+   "after": "崩後先搬傷機，2106學駕通用機，解役到吉大港接拘束與護送。",
+   "personality": "每次出門都先練撤退，嫌逞強的人吵。",
+   "moment": "海岸扣甲合攏雙鉗，她把拘束矢打向關節，替被卡住的友機爭到轉身空隙。",
+   "shout": "退路我留，回頭跟上！",
+   "hook": "底色1.2／C、G：軍籍轉獵牌而非免徵召",
+   "born": "2079",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/jang-yeorin-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/jang-yeorin",
+    "name": "張汝潾",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 29
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/jang-yeorin-recruit",
+    "name": "韓傘解役拘束手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/jang-yeorin"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/incheon",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在仁川學校學跳繩，最怕體育課落在最後。性別：女；出生年 2079。",
+    "崩後先搬傷機，2106學駕通用機，解役到吉大港接拘束與護送。性格落在行動：每次出門都先練撤退，嫌逞強的人吵。",
+    "海岸扣甲合攏雙鉗，她把拘束矢打向關節，替被卡住的友機爭到轉身空隙。她／他吼「退路我留，回頭跟上！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "韓傘解役拘束手，每次出門都先練撤退，嫌逞強的人吵。",
+   "files": [
+    "content/base/world/backgrounds/jang-yeorin-recruit.json",
+    "content/base/persons/jang-yeorin.json",
+    "content/lore/characters/jang-yeorin.json"
+   ],
+   "loreSpec": {
+    "id": "character/jang-yeorin",
+    "name": "張汝潾",
+    "aka": [],
+    "born": "2079",
+    "faction": "faction/korea-umbrella",
+    "role": "駕駛／拘束手；韓傘解役拘束手",
+    "kind": "human",
+    "summary": "韓傘解役拘束手，每次出門都先練撤退，嫌逞強的人吵。",
+    "places": [
+     "place/incheon",
+     "place/chittagong"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/jang-yeorin"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "im-taegwon",
+   "name": "林泰權",
+   "sex": "男",
+   "age": 41,
+   "origin": "仁川",
+   "role": "技師",
+   "profile": "tech",
+   "place": "place/incheon",
+   "faction": "faction/korea-umbrella",
+   "backgroundName": "仁川離廠補甲師",
+   "before": "崩前在財閥廠房當見習工，連廠門口都不敢大聲說話。",
+   "after": "財閥上月後守著舊工位修機，現離廠到吉大港，以補甲換回家資本。",
+   "personality": "說話很慢，別人打斷工人時卻會吼回去。",
+   "moment": "港邊落下的獸甲壓住修理位，他站到裂縫旁指揮同事頂開甲面，先抬出傷者。",
+   "shout": "讓做事的人把話說完！",
+   "hook": "底色1.3、1.6／C：財閥離去後的工匠",
+   "born": "2067",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/im-taegwon-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/im-taegwon",
+    "name": "林泰權",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "east-origin"
+    ],
+    "age": 41
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/im-taegwon-recruit",
+    "name": "仁川離廠補甲師",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/im-taegwon"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/incheon",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在財閥廠房當見習工，連廠門口都不敢大聲說話。性別：男；出生年 2067。",
+    "財閥上月後守著舊工位修機，現離廠到吉大港，以補甲換回家資本。性格落在行動：說話很慢，別人打斷工人時卻會吼回去。",
+    "港邊落下的獸甲壓住修理位，他站到裂縫旁指揮同事頂開甲面，先抬出傷者。她／他吼「讓做事的人把話說完！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "仁川離廠補甲師，說話很慢，別人打斷工人時卻會吼回去。",
+   "files": [
+    "content/base/world/backgrounds/im-taegwon-recruit.json",
+    "content/base/persons/im-taegwon.json",
+    "content/lore/characters/im-taegwon.json"
+   ],
+   "loreSpec": {
+    "id": "character/im-taegwon",
+    "name": "林泰權",
+    "aka": [],
+    "born": "2067",
+    "faction": "faction/korea-umbrella",
+    "role": "技師；仁川離廠補甲師",
+    "kind": "human",
+    "summary": "仁川離廠補甲師，說話很慢，別人打斷工人時卻會吼回去。",
+    "places": [
+     "place/incheon",
+     "place/chittagong"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/im-taegwon"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "seo-damyeong",
+   "name": "徐多明",
+   "sex": "女",
+   "age": 25,
+   "origin": "釜山",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/busan",
+   "faction": "faction/busan",
+   "backgroundName": "雙籤城外出獵手",
+   "before": "崩前是釜山魚市的小孩，跟母親把魚鱗掃成一堆銀色。",
+   "after": "在處容之舞旁長大，2106學駕通用機，循獵牌窗口到吉大港待雇。",
+   "personality": "愛給普通動作取大名字，笑完仍會練到熟。",
+   "moment": "海口蟲影壓船時，她用通用機流刃削開一截擋路甲肢，吼得比砲還大。",
+   "shout": "今夜一刀，替你開海！",
+   "hook": "底色1.2／C、G；釜山雙籤城既定讀法",
+   "born": "2083",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/seo-damyeong-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/seo-damyeong",
+    "name": "徐多明",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 25
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/seo-damyeong-recruit",
+    "name": "雙籤城外出獵手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/seo-damyeong"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/busan",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是釜山魚市的小孩，跟母親把魚鱗掃成一堆銀色。性別：女；出生年 2083。",
+    "在處容之舞旁長大，2106學駕通用機，循獵牌窗口到吉大港待雇。性格落在行動：愛給普通動作取大名字，笑完仍會練到熟。",
+    "海口蟲影壓船時，她用通用機流刃削開一截擋路甲肢，吼得比砲還大。她／他吼「今夜一刀，替你開海！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "雙籤城外出獵手，愛給普通動作取大名字，笑完仍會練到熟。",
+   "files": [
+    "content/base/world/backgrounds/seo-damyeong-recruit.json",
+    "content/base/persons/seo-damyeong.json",
+    "content/lore/characters/seo-damyeong.json"
+   ],
+   "loreSpec": {
+    "id": "character/seo-damyeong",
+    "name": "徐多明",
+    "aka": [],
+    "born": "2083",
+    "faction": "faction/busan",
+    "role": "駕駛；雙籤城外出獵手",
+    "kind": "human",
+    "summary": "雙籤城外出獵手，愛給普通動作取大名字，笑完仍會練到熟。",
+    "places": [
+     "place/busan",
+     "place/chittagong"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/seo-damyeong"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "moon-hyejin",
+   "name": "文惠珍",
+   "sex": "女",
+   "age": 37,
+   "origin": "釜山",
+   "role": "駕駛／砲手",
+   "profile": "pilot",
+   "place": "place/busan",
+   "faction": "faction/third-blade",
+   "backgroundName": "第三刃外勤替補砲手",
+   "before": "崩前在釜山修戲臺，總躲在幕後聽觀眾拍手。",
+   "after": "崩後長年做機庫工，2106才學駕，外勤差事結束後獲准在吉大港接短約。",
+   "personality": "怕人看見自己緊張，便把每個口令說兩遍。",
+   "moment": "船側甲被獸肢扯開，她將機砲轉向開口，在同伴撤入艙內前守完那一段。",
+   "shout": "拍子別亂，下一聲是我！",
+   "hook": "底色1.2、1.12／C：第三刃也缺坐艙的人",
+   "born": "2071",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/moon-hyejin-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/moon-hyejin",
+    "name": "文惠珍",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 37
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/moon-hyejin-recruit",
+    "name": "第三刃外勤替補砲手",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/moon-hyejin"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/busan",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [
+    {
+     "character": "character/yoon-seoyoung",
+     "relation": "外勤受派者",
+     "note": "在第三刃接過押船差事，不新增團長決策或勢力戰。"
+    }
+   ],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在釜山修戲臺，總躲在幕後聽觀眾拍手。性別：女；出生年 2071。",
+    "崩後長年做機庫工，2106才學駕，外勤差事結束後獲准在吉大港接短約。性格落在行動：怕人看見自己緊張，便把每個口令說兩遍。",
+    "船側甲被獸肢扯開，她將機砲轉向開口，在同伴撤入艙內前守完那一段。她／他吼「拍子別亂，下一聲是我！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "第三刃外勤替補砲手，怕人看見自己緊張，便把每個口令說兩遍。",
+   "files": [
+    "content/base/world/backgrounds/moon-hyejin-recruit.json",
+    "content/base/persons/moon-hyejin.json",
+    "content/lore/characters/moon-hyejin.json"
+   ],
+   "loreSpec": {
+    "id": "character/moon-hyejin",
+    "name": "文惠珍",
+    "aka": [],
+    "born": "2071",
+    "faction": "faction/third-blade",
+    "role": "駕駛／砲手；第三刃外勤替補砲手",
+    "kind": "human",
+    "summary": "第三刃外勤替補砲手，怕人看見自己緊張，便把每個口令說兩遍。",
+    "places": [
+     "place/busan",
+     "place/chittagong"
+    ],
+    "relations": [
+     {
+      "character": "character/yoon-seoyoung",
+      "relation": "外勤受派者",
+      "note": "在第三刃接過押船差事，不新增團長決策或勢力戰。"
+     }
+    ],
+    "events": [],
+    "gameRefs": [
+     "base:person/moon-hyejin"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "oh-seongmi",
+   "name": "吳成美",
+   "sex": "女",
+   "age": 52,
+   "origin": "釜山",
+   "role": "通訊",
+   "profile": "navigator",
+   "place": "place/busan",
+   "faction": "faction/busan",
+   "backgroundName": "釜山港天網值守",
+   "before": "崩前替魚市叫價，半條街都認得她的嗓子。",
+   "after": "崩後改報進港與收傷，隨外勤船到吉大港後接通訊短約。",
+   "personality": "罵人不留情，點名卻從不把姓省掉。",
+   "moment": "獸吼淹過港口人聲，她連喊三遍陌生傷員的全名，讓接應者終於認出那架殘機。",
+   "shout": "名字報完，一個也別吞！",
+   "hook": "底色1.8／E、F：哀悼與點名相連",
+   "born": "2056",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "han",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。韓國專用 culture 尚缺，暫用 han。",
+   "pool": "recruit/chittagong-east-charter",
+   "background": "background/oh-seongmi-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "沿導航範本 accuracy／evasion／initiative 傾向與六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-names-before-orders"
+   ],
+   "tags": [
+    "human",
+    "communicator",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/maia-te-rangi.json",
+   "personSpec": {
+    "id": "person/oh-seongmi",
+    "name": "吳成美",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 57,
+     "evasion": 14,
+     "resolve": 46,
+     "initiative": 9,
+     "perception": 7,
+     "control": 48
+    },
+    "traits": [
+     "effect/ax-trait-names-before-orders"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 55,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 55,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "communicator",
+     "east-origin"
+    ],
+    "age": 52
+   },
+   "hireFee": 700,
+   "wageMult": 1.4,
+   "feeTemplate": "content/base/world/backgrounds/farside-navigator.json",
+   "backgroundSpec": {
+    "id": "background/oh-seongmi-recruit",
+    "name": "釜山港天網值守",
+    "culture": "han",
+    "attrRanges": {
+     "accuracy": [
+      47,
+      67
+     ],
+     "resolve": [
+      36,
+      56
+     ],
+     "control": [
+      38,
+      58
+     ]
+    },
+    "hireFee": 700,
+    "wageMult": 1.4,
+    "traits": [],
+    "person": "person/oh-seongmi"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/busan",
+    "place/chittagong"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前替魚市叫價，半條街都認得她的嗓子。性別：女；出生年 2056。",
+    "崩後改報進港與收傷，隨外勤船到吉大港後接通訊短約。性格落在行動：罵人不留情，點名卻從不把姓省掉。",
+    "獸吼淹過港口人聲，她連喊三遍陌生傷員的全名，讓接應者終於認出那架殘機。她／他吼「名字報完，一個也別吞！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "釜山港天網值守，罵人不留情，點名卻從不把姓省掉。",
+   "files": [
+    "content/base/world/backgrounds/oh-seongmi-recruit.json",
+    "content/base/persons/oh-seongmi.json",
+    "content/lore/characters/oh-seongmi.json"
+   ],
+   "loreSpec": {
+    "id": "character/oh-seongmi",
+    "name": "吳成美",
+    "aka": [],
+    "born": "2056",
+    "faction": "faction/busan",
+    "role": "通訊；釜山港天網值守",
+    "kind": "human",
+    "summary": "釜山港天網值守，罵人不留情，點名卻從不把姓省掉。",
+    "places": [
+     "place/busan",
+     "place/chittagong"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/oh-seongmi"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "pavel-ryabinin",
+   "name": "帕維爾・里亞比寧",
+   "sex": "男",
+   "age": 24,
+   "origin": "雅庫茨克",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/yakutsk-bed",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "白夜南逃新駕駛",
+   "before": "崩前是河谷木工家的幼子，只記得冬天窗上的霜。",
+   "after": "2100失城時十六歲，跟南逃隊走出河谷，2106入艙，護運到蘆葦澤後待雇。",
+   "personality": "見白光會停半拍，停完總先替別人探路。",
+   "moment": "南側接應時菌毯在水溝亮起，他把通用機停在硬地，逐車報出能走的缺口。",
+   "shout": "別追亮處，跟我的腳印！",
+   "hook": "2100白夜初見年表＋底色1.11／F：走出來的人",
+   "born": "2084",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/pavel-ryabinin-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-watchful"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/pavel-ryabinin",
+    "name": "帕維爾・里亞比寧",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 24
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/pavel-ryabinin-recruit",
+    "name": "白夜南逃新駕駛",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/pavel-ryabinin"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/yakutsk-bed",
+    "place/reed-marsh"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是河谷木工家的幼子，只記得冬天窗上的霜。性別：男；出生年 2084。",
+    "2100失城時十六歲，跟南逃隊走出河谷，2106入艙，護運到蘆葦澤後待雇。性格落在行動：見白光會停半拍，停完總先替別人探路。",
+    "南側接應時菌毯在水溝亮起，他把通用機停在硬地，逐車報出能走的缺口。她／他吼「別追亮處，跟我的腳印！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "白夜南逃新駕駛，見白光會停半拍，停完總先替別人探路。",
+   "files": [
+    "content/base/world/backgrounds/pavel-ryabinin-recruit.json",
+    "content/base/persons/pavel-ryabinin.json",
+    "content/lore/characters/pavel-ryabinin.json"
+   ],
+   "loreSpec": {
+    "id": "character/pavel-ryabinin",
+    "name": "帕維爾・里亞比寧",
+    "aka": [],
+    "born": "2084",
+    "faction": "faction/russia-umbrella",
+    "role": "駕駛；白夜南逃新駕駛",
+    "kind": "human",
+    "summary": "白夜南逃新駕駛，見白光會停半拍，停完總先替別人探路。",
+    "places": [
+     "place/yakutsk-bed",
+     "place/reed-marsh"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/pavel-ryabinin"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "vera-korovina",
+   "name": "薇拉・科羅維娜",
+   "sex": "女",
+   "age": 32,
+   "origin": "雅庫茨克",
+   "role": "駕駛／護運",
+   "profile": "pilot",
+   "place": "place/yakutsk-bed",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "南側火帶護運手",
+   "before": "崩前在雅庫茨克讀小學，認得河岸結冰前的聲音。",
+   "after": "2100跟妮娜撤離，先運糧，2106學駕，隨返南貨隊到蘆葦澤找接應約。",
+   "personality": "討厭別人把逃走說成輕鬆，仍會幫想回去的人收行囊。",
+   "moment": "一次燒季後的撤離，菌光從灰裡重新透出，她用機身遮住恐慌人群的視線，指向尚暗的地帶。",
+   "shout": "想回去的，先活到明年！",
+   "hook": "2100白夜首燒後續＋底色1.11／F、H",
+   "born": "2076",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/vera-korovina-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/vera-korovina",
+    "name": "薇拉・科羅維娜",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 32
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/vera-korovina-recruit",
+    "name": "南側火帶護運手",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/vera-korovina"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/yakutsk-bed",
+    "place/reed-marsh"
+   ],
+   "events": [],
+   "relations": [
+    {
+     "character": "character/nina-belova",
+     "relation": "撤離隊同行者",
+     "note": "2100年隨隊南撤，沒有奪回菌床。"
+    }
+   ],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在雅庫茨克讀小學，認得河岸結冰前的聲音。性別：女；出生年 2076。",
+    "2100跟妮娜撤離，先運糧，2106學駕，隨返南貨隊到蘆葦澤找接應約。性格落在行動：討厭別人把逃走說成輕鬆，仍會幫想回去的人收行囊。",
+    "一次燒季後的撤離，菌光從灰裡重新透出，她用機身遮住恐慌人群的視線，指向尚暗的地帶。她／他吼「想回去的，先活到明年！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "南側火帶護運手，討厭別人把逃走說成輕鬆，仍會幫想回去的人收行囊。",
+   "files": [
+    "content/base/world/backgrounds/vera-korovina-recruit.json",
+    "content/base/persons/vera-korovina.json",
+    "content/lore/characters/vera-korovina.json"
+   ],
+   "loreSpec": {
+    "id": "character/vera-korovina",
+    "name": "薇拉・科羅維娜",
+    "aka": [],
+    "born": "2076",
+    "faction": "faction/russia-umbrella",
+    "role": "駕駛／護運；南側火帶護運手",
+    "kind": "human",
+    "summary": "南側火帶護運手，討厭別人把逃走說成輕鬆，仍會幫想回去的人收行囊。",
+    "places": [
+     "place/yakutsk-bed",
+     "place/reed-marsh"
+    ],
+    "relations": [
+     {
+      "character": "character/nina-belova",
+      "relation": "撤離隊同行者",
+      "note": "2100年隨隊南撤，沒有奪回菌床。"
+     }
+    ],
+    "events": [],
+    "gameRefs": [
+     "base:person/vera-korovina"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "kirill-nefedov",
+   "name": "基里爾・涅費多夫",
+   "sex": "男",
+   "age": 43,
+   "origin": "堪察加",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/kamchatka-wells",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "井港轉職護岸手",
+   "before": "崩前是井港的貨運修工，熟悉熄工後的空倉。",
+   "after": "斷鏈後修港多年，2106才接受駕駛訓練，押送舊件南來到蘆葦澤等回程。",
+   "personality": "看起來冷淡，總把最麻煩的活留給自己。",
+   "moment": "沿海護岸時獸背頂碎泊臺，他把通用機的肩抵住漂向救生艇的廢梁。",
+   "shout": "海再推，我還在這裡！",
+   "hook": "底色1.6／G：俄國保住港卻救不到每處",
+   "born": "2065",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/kirill-nefedov-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/kirill-nefedov",
+    "name": "基里爾・涅費多夫",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 43
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/kirill-nefedov-recruit",
+    "name": "井港轉職護岸手",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/kirill-nefedov"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/kamchatka-wells",
+    "place/reed-marsh"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是井港的貨運修工，熟悉熄工後的空倉。性別：男；出生年 2065。",
+    "斷鏈後修港多年，2106才接受駕駛訓練，押送舊件南來到蘆葦澤等回程。性格落在行動：看起來冷淡，總把最麻煩的活留給自己。",
+    "沿海護岸時獸背頂碎泊臺，他把通用機的肩抵住漂向救生艇的廢梁。她／他吼「海再推，我還在這裡！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "井港轉職護岸手，看起來冷淡，總把最麻煩的活留給自己。",
+   "files": [
+    "content/base/world/backgrounds/kirill-nefedov-recruit.json",
+    "content/base/persons/kirill-nefedov.json",
+    "content/lore/characters/kirill-nefedov.json"
+   ],
+   "loreSpec": {
+    "id": "character/kirill-nefedov",
+    "name": "基里爾・涅費多夫",
+    "aka": [],
+    "born": "2065",
+    "faction": "faction/russia-umbrella",
+    "role": "駕駛；井港轉職護岸手",
+    "kind": "human",
+    "summary": "井港轉職護岸手，看起來冷淡，總把最麻煩的活留給自己。",
+    "places": [
+     "place/kamchatka-wells",
+     "place/reed-marsh"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/kirill-nefedov"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "alina-trofimova",
+   "name": "阿麗娜・特羅菲莫娃",
+   "sex": "女",
+   "age": 48,
+   "origin": "俄遠東撤離戶",
+   "role": "駕駛",
+   "profile": "pilot",
+   "place": "place/tiksi",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "遠東轉港晚學駕駛",
+   "before": "崩前在遠東做裝卸調度，總以為下一班船會準時來。",
+   "after": "棄東後遷提克西，2106才入艙護貨；跟向南的護運隊抵蘆葦澤待雇。",
+   "personality": "承諾說得少，答應的換班從不忘。",
+   "moment": "南行靠岸遇扣甲擋住貨口，她操機撬開側面空隙，把受困搬工托到安全處。",
+   "shout": "下一班不到，我接這班！",
+   "hook": "event/eastern-abandonment 後續＋底色1.6",
+   "born": "2060",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/alina-trofimova-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "accuracy／resolve 偏高，成長採駕駛六屬性骰",
+   "levelDice": {
+    "accuracy": [
+     1,
+     2,
+     3
+    ],
+    "evasion": [
+     1,
+     2
+    ],
+    "resolve": [
+     1,
+     2,
+     3
+    ],
+    "initiative": [
+     0,
+     1
+    ],
+    "perception": [
+     0,
+     1
+    ],
+    "control": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-oathbound"
+   ],
+   "tags": [
+    "human",
+    "pilot",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/adewale-balogun.json",
+   "personSpec": {
+    "id": "person/alina-trofimova",
+    "name": "阿麗娜・特羅菲莫娃",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 59,
+     "evasion": 10,
+     "resolve": 58,
+     "initiative": 7,
+     "perception": 6,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-oathbound"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 62,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 62,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "accuracy": [
+       1,
+       2,
+       3
+      ],
+      "evasion": [
+       1,
+       2
+      ],
+      "resolve": [
+       1,
+       2,
+       3
+      ],
+      "initiative": [
+       0,
+       1
+      ],
+      "perception": [
+       0,
+       1
+      ],
+      "control": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "pilot",
+     "east-origin"
+    ],
+    "age": 48
+   },
+   "hireFee": 780,
+   "wageMult": 1.5,
+   "feeTemplate": "content/base/world/backgrounds/storm-rescue-skipper.json",
+   "backgroundSpec": {
+    "id": "background/alina-trofimova-recruit",
+    "name": "遠東轉港晚學駕駛",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      49,
+      69
+     ],
+     "resolve": [
+      48,
+      68
+     ],
+     "control": [
+      39,
+      59
+     ]
+    },
+    "hireFee": 780,
+    "wageMult": 1.5,
+    "traits": [],
+    "person": "person/alina-trofimova"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/tiksi",
+    "place/reed-marsh"
+   ],
+   "events": [
+    "event/eastern-abandonment"
+   ],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在遠東做裝卸調度，總以為下一班船會準時來。性別：女；出生年 2060。",
+    "棄東後遷提克西，2106才入艙護貨；跟向南的護運隊抵蘆葦澤待雇。性格落在行動：承諾說得少，答應的換班從不忘。",
+    "南行靠岸遇扣甲擋住貨口，她操機撬開側面空隙，把受困搬工托到安全處。她／他吼「下一班不到，我接這班！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "遠東轉港晚學駕駛，承諾說得少，答應的換班從不忘。",
+   "files": [
+    "content/base/world/backgrounds/alina-trofimova-recruit.json",
+    "content/base/persons/alina-trofimova.json",
+    "content/lore/characters/alina-trofimova.json"
+   ],
+   "loreSpec": {
+    "id": "character/alina-trofimova",
+    "name": "阿麗娜・特羅菲莫娃",
+    "aka": [],
+    "born": "2060",
+    "faction": "faction/russia-umbrella",
+    "role": "駕駛；遠東轉港晚學駕駛",
+    "kind": "human",
+    "summary": "遠東轉港晚學駕駛，承諾說得少，答應的換班從不忘。",
+    "places": [
+     "place/tiksi",
+     "place/reed-marsh"
+    ],
+    "relations": [],
+    "events": [
+     "event/eastern-abandonment"
+    ],
+    "gameRefs": [
+     "base:person/alina-trofimova"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "denis-chernov",
+   "name": "丹尼斯・切爾諾夫",
+   "sex": "男",
+   "age": 55,
+   "origin": "雅庫茨克",
+   "role": "技師",
+   "profile": "tech",
+   "place": "place/yakutsk-bed",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "失城南逃修甲師",
+   "before": "崩前是雅庫茨克修車匠，習慣替熟客留一隻舊工具。",
+   "after": "2100背著工具南逃，在火帶外修機，護送傷機到蘆葦澤後留船待雇。",
+   "personality": "一談故鄉便倔，替別人修東西卻願意重來。",
+   "moment": "撤離車的輪陷進發亮泥邊，他拆下自己的工具箱墊住輪下，把唯一家當留在菌光外沿。",
+   "shout": "人先走，鐵留下！",
+   "hook": "2100雅庫茨克失守＋底色1.3、1.11",
+   "born": "2053",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/denis-chernov-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/trait-steady-hands"
+   ],
+   "tags": [
+    "human",
+    "technician",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/denis-chernov",
+    "name": "丹尼斯・切爾諾夫",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/trait-steady-hands"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "technician",
+     "east-origin"
+    ],
+    "age": 55
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/denis-chernov-recruit",
+    "name": "失城南逃修甲師",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/denis-chernov"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/yakutsk-bed",
+    "place/reed-marsh"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前是雅庫茨克修車匠，習慣替熟客留一隻舊工具。性別：男；出生年 2053。",
+    "2100背著工具南逃，在火帶外修機，護送傷機到蘆葦澤後留船待雇。性格落在行動：一談故鄉便倔，替別人修東西卻願意重來。",
+    "撤離車的輪陷進發亮泥邊，他拆下自己的工具箱墊住輪下，把唯一家當留在菌光外沿。她／他吼「人先走，鐵留下！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "失城南逃修甲師，一談故鄉便倔，替別人修東西卻願意重來。",
+   "files": [
+    "content/base/world/backgrounds/denis-chernov-recruit.json",
+    "content/base/persons/denis-chernov.json",
+    "content/lore/characters/denis-chernov.json"
+   ],
+   "loreSpec": {
+    "id": "character/denis-chernov",
+    "name": "丹尼斯・切爾諾夫",
+    "aka": [],
+    "born": "2053",
+    "faction": "faction/russia-umbrella",
+    "role": "技師；失城南逃修甲師",
+    "kind": "human",
+    "summary": "失城南逃修甲師，一談故鄉便倔，替別人修東西卻願意重來。",
+    "places": [
+     "place/yakutsk-bed",
+     "place/reed-marsh"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/denis-chernov"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  },
+  {
+   "id": "mikhail-zorin",
+   "name": "米哈伊爾・佐林",
+   "sex": "男",
+   "age": 67,
+   "origin": "提克西",
+   "role": "廚／老船員",
+   "profile": "tech",
+   "place": "place/tiksi",
+   "faction": "faction/russia-umbrella",
+   "backgroundName": "提克西南行船廚",
+   "before": "崩前在提克西貨船煮飯，能聽出船員餓著肚子的笑。",
+   "after": "崩後跟貨隊往南，停在蘆葦澤照料換船的人，已很久沒有領自己的返程差事。",
+   "personality": "不講安慰話，誰不肯吃就直接坐到誰旁邊。",
+   "moment": "獸影掠過南方外港時，他把大鍋推入內艙，敲鍋叫散在各處的人循聲回來。",
+   "shout": "回來吃這口，才准說再見！",
+   "hook": "底色1.4、1.8／E：遠港的糧與船上的家",
+   "born": "2041",
+   "activeYears": null,
+   "batch": "fp-east-02",
+   "culture": "norse",
+   "cultureNote": "既有神話命名表相容值，並非國籍；本名固定取 person.name。俄國專用 culture 尚缺，沿 selene-test-retiree 用 norse。",
+   "pool": "recruit/reed-marsh-east-southbound",
+   "background": "background/mikhail-zorin-recruit",
+   "status": "提案",
+   "genderPlacement": "性別寫在 lore body；不擅增 person 性別欄",
+   "attrsBias": "control 偏向，成長 control [1,2,3]／resolve [1,2]",
+   "levelDice": {
+    "control": [
+     1,
+     2,
+     3
+    ],
+    "resolve": [
+     1,
+     2
+    ]
+   },
+   "traits": [
+    "effect/ax-trait-names-before-orders"
+   ],
+   "tags": [
+    "human",
+    "cook",
+    "east-origin"
+   ],
+   "personTemplate": "content/base/persons/hana-sato.json",
+   "personSpec": {
+    "id": "person/mikhail-zorin",
+    "name": "米哈伊爾・佐林",
+    "kind": "human",
+    "attrs": {
+     "accuracy": 46,
+     "evasion": 5,
+     "resolve": 40,
+     "initiative": 5,
+     "perception": 7,
+     "control": 44
+    },
+    "traits": [
+     "effect/ax-trait-names-before-orders"
+    ],
+    "perks": [],
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "will": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {
+      "control": [
+       1,
+       2,
+       3
+      ],
+      "resolve": [
+       1,
+       2
+      ]
+     },
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "tags": [
+     "human",
+     "cook",
+     "east-origin"
+    ],
+    "age": 67
+   },
+   "hireFee": 600,
+   "wageMult": 1.2,
+   "feeTemplate": "content/base/world/backgrounds/selene-soul-mender.json",
+   "backgroundSpec": {
+    "id": "background/mikhail-zorin-recruit",
+    "name": "提克西南行船廚",
+    "culture": "norse",
+    "attrRanges": {
+     "accuracy": [
+      36,
+      56
+     ],
+     "resolve": [
+      30,
+      50
+     ],
+     "control": [
+      34,
+      54
+     ]
+    },
+    "hireFee": 600,
+    "wageMult": 1.2,
+    "traits": [],
+    "person": "person/mikhail-zorin"
+   },
+   "effectPlacement": "trait 只放 person；背景 traits=[]，避免雇用時再疊同一效果。",
+   "places": [
+    "place/tiksi",
+    "place/reed-marsh"
+   ],
+   "events": [],
+   "relations": [],
+   "ageReason": "",
+   "loreOutline": [
+    "崩前在提克西貨船煮飯，能聽出船員餓著肚子的笑。性別：男；出生年 2041。",
+    "崩後跟貨隊往南，停在蘆葦澤照料換船的人，已很久沒有領自己的返程差事。性格落在行動：不講安慰話，誰不肯吃就直接坐到誰旁邊。",
+    "獸影掠過南方外港時，他把大鍋推入內艙，敲鍋叫散在各處的人循聲回來。她／他吼「回來吃這口，才准說再見！」；2108仍只找一份能接的約，不保證扭轉整場戰局。"
+   ],
+   "summary": "提克西南行船廚，不講安慰話，誰不肯吃就直接坐到誰旁邊。",
+   "files": [
+    "content/base/world/backgrounds/mikhail-zorin-recruit.json",
+    "content/base/persons/mikhail-zorin.json",
+    "content/lore/characters/mikhail-zorin.json"
+   ],
+   "loreSpec": {
+    "id": "character/mikhail-zorin",
+    "name": "米哈伊爾・佐林",
+    "aka": [],
+    "born": "2041",
+    "faction": "faction/russia-umbrella",
+    "role": "廚／老船員；提克西南行船廚",
+    "kind": "human",
+    "summary": "提克西南行船廚，不講安慰話，誰不肯吃就直接坐到誰旁邊。",
+    "places": [
+     "place/tiksi",
+     "place/reed-marsh"
+    ],
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/mikhail-zorin"
+    ],
+    "tags": [
+     "人物",
+     "東亞與北亞",
+     "可雇用"
+    ],
+    "visibility": "public"
+   }
+  }
+ ]
+}
