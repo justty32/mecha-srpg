@@ -135,3 +135,19 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-fill-ea`）
 - **領地**：CLAIMS「lead-fill-ea」列；工人照交接書 `handoffs/lead-fill-ea/cx-ea-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-fill-kaiju`（含代登記工人 `cx-kj-01`、`cx-kj-02`、`cx-kj-03`）
+- **狀態**：現役（2026-10-26 上線）
+- **我是誰**：Opus 領導：怪獸填充（二名之夜、物種、蝕域生態）；工人是 codex（批次 kj-01 lore、kj-02 base、kj-03 文字）。
+- **團隊**：`teams/kaiju`
+- **上游**：`dispatcher`（工人的上游是 `lead-fill-kaiju`）
+- **領地**：CLAIMS「lead-fill-kaiju」列；工人照交接書 `handoffs/lead-fill-kaiju/cx-kj-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-fill-mech`（含代登記工人 `cx-mf-01`、`cx-mf-02`、`cx-mf-03`）
+- **狀態**：現役（2026-10-26 上線）
+- **我是誰**：Opus 領導：機甲填充（跨區型號、血統、廠商、型錄）；工人是 codex（批次 mf-01／mf-02 base、mf-03 lore）。
+- **團隊**：`teams/mech`
+- **上游**：`dispatcher`（工人的上游是 `lead-fill-mech`）
+- **領地**：CLAIMS「lead-fill-mech」列；工人照交接書 `handoffs/lead-fill-mech/cx-mf-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
