@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "ea-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "中日韓俄 2108-01 骨架：朝廷、日本那把傘、韓國那把傘、俄羅斯那把傘四勢力；江口夜、財閥上月、棄東令、天命詔、瀨戶內鎖海、樺太默契、朝廷閱兵七事件；江口空城（空城）、瀨戶內、堪察加井城（公司城）三地；守寢人與釜山各插入一列關係；年表由領導插入",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-fill-ea",
  "date": "2026-10-26",
- "base": "3aa7c07a8abbab3132dc5515b757f9b484c34549",
+ "base": "2608fc73b004876d33503387a5d8878df04d9f62",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-01",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-01/REPORT.md",
@@ -65,5 +65,55 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "ea-01/accept/verdict-1.json",
+  "gate": "0 違規",
+  "check": "OK 0 errors",
+  "lore": "0 錯",
+  "typecheck": "ok",
+  "test": "957 pass／1 fail：content/index 摘要 8 KB 測試，worktree base 2608fc7 既有失敗，主線 cd9e528 已修；帶回後主 repo 重跑",
+  "golden": "不變",
+  "readlist": "ok",
+  "leadFixes": "四個傘勢力的 aka 移除英文名（英文原名不放 aka，見 naming.json）；timeline 由領導依 timeline-add.json 純插入 7 條"
+ },
+ "files": [
+  "content/lore/events/chaebol-ascent.json",
+  "content/lore/events/court-parade.json",
+  "content/lore/events/eastern-abandonment.json",
+  "content/lore/events/jiangkou-night.json",
+  "content/lore/events/karafuto-understanding.json",
+  "content/lore/events/mandate-of-kuafu.json",
+  "content/lore/events/setouchi-lock.json",
+  "content/lore/factions/busan.json",
+  "content/lore/factions/imperial-court.json",
+  "content/lore/factions/japan-umbrella.json",
+  "content/lore/factions/korea-umbrella.json",
+  "content/lore/factions/russia-umbrella.json",
+  "content/lore/factions/shell-wardens.json",
+  "content/lore/places/kamchatka-wells.json",
+  "content/lore/places/setouchi.json",
+  "content/lore/places/yangtze-mouth.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/chaebol-ascent",
+  "event/court-parade",
+  "event/eastern-abandonment",
+  "event/jiangkou-night",
+  "event/karafuto-understanding",
+  "event/mandate-of-kuafu",
+  "event/setouchi-lock",
+  "faction/busan",
+  "faction/imperial-court",
+  "faction/japan-umbrella",
+  "faction/korea-umbrella",
+  "faction/russia-umbrella",
+  "faction/shell-wardens",
+  "place/kamchatka-wells",
+  "place/setouchi",
+  "place/yangtze-mouth"
+ ],
+ "gateRejections": []
 }
