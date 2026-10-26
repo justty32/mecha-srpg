@@ -32,3 +32,4 @@
 ## 已落地（lead-tone-fix，2026-10-26，commit 9364f46）
 
 基調審查方向 1–5 落地（美洲 5 新事件、撤 4 件改 hidden 併主檔、殘聯機甲史 4 件、機械清理、八項矛盾）；第二節定案名已拿掉提案標記。例外：漲潮倒數依 spec opening.md 定十一天（非 Fable 推薦的三天）。base 轉交與刪檔建議見 [lead-tone-fix/report](lead-tone-fix/report.md)。
+- 使用者選項回覆（2026-10-26）：漲潮倒數十一天（照開場規格）；4 個撤件（estuary-exchange、another-ledger、djibouti-charter、inland-registers）**授權刪除**並清引用；萬潮葬王引擎（engine-backlog 57–61）待 lead-mech2、lead-kaiju2 收線後再派；「黑脊北行」「城門未開」「王跡」定案，〈沉船加冕〉正面斬擊與老鷺／老鸛寫法交潤飾。
