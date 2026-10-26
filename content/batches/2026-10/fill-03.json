@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "fill-03",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "填充層第二批（南亞＋東南亞＋群島）：依 fill-03-plan/PLAN.md 產出 13 件（6 事件、4 地點、3 人物）＋年表純插入",
  "author": {
   "agent": "codex",
@@ -61,5 +61,51 @@
   "readlist"
  ],
  "probe": null,
- "playtest": null
+ "playtest": null,
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill/fill-03/accept/verdict-1.json",
+  "result": "REJECT round 1（唯一失敗：index 一致性測試，_batches／_summary 兩片在 base 7bd347c 即已過時，別線 manifest 提交未重產；主 repo 同時亦過時）→ 領導豁免，帶回後在主 repo 重產索引"
+ },
+ "files": [
+  "content/lore/characters/lira-santos.json",
+  "content/lore/characters/meera-naik.json",
+  "content/lore/characters/rokeya-karim.json",
+  "content/lore/events/chittagong-hoisted-roof.json",
+  "content/lore/events/jakarta-forty-silences.json",
+  "content/lore/events/malacca-grain-relay.json",
+  "content/lore/events/manila-broken-chain.json",
+  "content/lore/events/seventh-post-cannon-debt.json",
+  "content/lore/events/surat-hanging-keys.json",
+  "content/lore/places/dhaka-sail-court.json",
+  "content/lore/places/makassar.json",
+  "content/lore/places/surat-key-court.json",
+  "content/lore/places/zamboanga.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "character/lira-santos",
+  "character/meera-naik",
+  "character/rokeya-karim",
+  "event/chittagong-hoisted-roof",
+  "event/jakarta-forty-silences",
+  "event/malacca-grain-relay",
+  "event/manila-broken-chain",
+  "event/seventh-post-cannon-debt",
+  "event/surat-hanging-keys",
+  "place/dhaka-sail-court",
+  "place/makassar",
+  "place/surat-key-court",
+  "place/zamboanga"
+ ],
+ "gateRejections": [],
+ "waivers": [
+  {
+   "step": "test",
+   "reason": "test/content/index.test.ts 失敗源自 base 既有索引過時（_batches-2026-10、_summary），非本批內容；gate、check、lore、typecheck、golden、readlist 全過"
+  }
+ ],
+ "namingTable": "wf/workflows/dispatch/handoffs/lead-fill/fill-03/naming.json",
+ "plan": "wf/workflows/dispatch/handoffs/lead-fill/fill-03-plan/PLAN.md",
+ "note": "兩段式：計畫 gpt-6-astra（cx-fill-03p）→ 產出 gpt-6.1-sol（cx-fill-03）。timeline carry 被拒（別線先改），領導依日期純插入 6 條。"
 }
