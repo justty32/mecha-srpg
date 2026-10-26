@@ -101,3 +101,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-engine-next`）
 - **領地**：CLAIMS「lead-engine-next」列；工人在隔離 worktree，照交接書 `handoffs/lead-engine-next/cx-en-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-bigfill`（含代登記工人 `cx-bf-*`）
+- **狀態**：現役（2026-10-26 上線）
+- **我是誰**：Opus 領導：下一輪大填充（月面、可玩內容、加深）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
+- **團隊**：`teams/bigfill`
+- **上游**：`dispatcher`（工人的上游是 `lead-bigfill`）
+- **領地**：CLAIMS「lead-bigfill」列；工人在隔離 worktree，照交接書 `handoffs/lead-bigfill/cx-bf-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無

@@ -9,6 +9,7 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `lead-engine-next` | `src/`（含測試）、`content/base/`、`content/index/`、`specs/`（最小必要）、`test/` 黃金與 fixtures、`wf/workflows/dispatch/handoffs/lead-engine-next/`、engine-backlog 第 57–61／68／73 列狀態 | `content/lore/`（sonnet-lore-insert）、`wf/workflows/content/mechs.md` | 2026-10-26 |
+| `lead-bigfill` | `content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開） | `src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔 | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
