@@ -20,6 +20,6 @@ agent 不用重猜的事。always-on 鐵律在 AGENTS.md，這裡是**這位使�
 | 回覆風格 | 通用風格見 [reply-style.md](reply-style.md)；這位使用者的例外：短、先結論；不要每段都 bullet；使用者問「要不要」時附**可執行判準**（門檻數字）與後果，讓他能改數字 |
 | 時區 | Asia/Taipei |
 
-**團隊與禁區（使用者 2026-10-23 定）**：團隊配置是頂層 Fable 5.1（主 session）→ 領導 Opus（Agent tool）→ 工人 codex gpt，規劃交給 Fable，細節見 [team-model](../team-model.md)。2026-10-24 補充：主 session 派工時普通工作交給 Opus、簡單工作交給 Sonnet；**工人層盡量都用 codex**（使用者 2026-10-24 再次強調）；**上網搜尋一律交給 codex**（Claude Code 抓網頁很吃 token）；隊伍數量無上限。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24），刪檔一律先問。
+**團隊與禁區（使用者 2026-10-23 定）**：團隊配置是頂層 Fable 5.1（主 session）→ 領導 Opus（Agent tool）→ 工人 codex gpt，規劃交給 Fable，細節見 [team-model](../team-model.md)。2026-10-24 補充：主 session 派工時普通工作交給 Opus、簡單工作交給 Sonnet；**工人層盡量都用 codex**（使用者 2026-10-24 再次強調）；**上網搜尋一律交給 codex**（Claude Code 抓網頁很吃 token）；隊伍數量無上限。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。內容創作（使用者 2026-10-26 定）：先 codex astra 做計劃、再 sol 產出與微調文筆，數值最後統一調，每件附簡短白話介紹供 Fable＋使用者審敘事基調，見 [batch](../content/batch.md)「兩段式創作」。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24），刪檔一律先問。
 
 領域詞彙常猜錯 → 開 `glossary.md`（見 [common/README](README.md)）。

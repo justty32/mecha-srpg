@@ -17,13 +17,21 @@
 
 一批一檔，按月份子資料夾。欄位：`id`；`mode`（`add`＝只新增、`polish`＝只改文字欄）；`status`（`draft`→`accepted`／`rejected`）；`goal`；`author`（agent、model、reasoning、line、subagents）；`lead`；`date`；`base`（worktree 起點 commit）；`reportDir`（codex 報告目錄，相對 repo 根）；`report`（`file`、`mustRead` 已讀清單必列的路徑）；`maxFiles`；`allow`——add 模式 `kinds`（相對 `content/`，如 `base/frames`、`lore/characters`）、`namePrefix`（glob→前綴，如 `{"base/*":"cx3-"}`）、`modify`（例外檔＋`superset` 規則：只准插入）；polish 模式 `polishFiles`（glob）、`textFields`（白名單子集）；`checks`（要跑的驗收步驟）；`probe`（`n`、`reference` 同級既有單位、`waivers` 豁免＋理由）；`playtest`（`required` 場數、`file`、`logDir`）。收尾填：`files`、`ids`、`acceptance`、`rounds`、`gateRejections`（被閘門擋下的越界嘗試原文）、`deprecated`（之後要淘汰的檔）。
 
+## 兩段式創作（2026-10-26，使用者定）
+
+填內容（add 模式）分兩段，數值最後才調：
+1. **計劃段**：codex `-m gpt-6-astra` 寫批次計畫（設計理念、相關概念、需求、清單、`review.json` 草稿），領導審過才進下段。
+2. **產出段**：codex `-m gpt-6.1-sol` 依計畫產出並微調文筆；數值照同級暫填，全批收線後統一調。兩段的 codex 工人都可再派子 agent（上限寫進交接書）。
+3. **白話審核表**：每件在 `handoffs/<線>/review.json` 留一列，欄：檔、類別、名稱、白話（一到兩句、≤60 字）、掛到。
+4. **收線後**：先開去重線（重複與否在人審前處理），再交 Fable＋使用者審是否合敘事基調。
+
 ## 流程
 
 <!-- wf-nav -->
 1. **開 manifest**：照上節寫 `content/batches/<YYYY-MM>/<batch>.json`（`status:"draft"`），`base` 填當下 HEAD。一批 ≤ 20 檔、一個類別。
 2. **開隔離 worktree**：`git worktree add --detach <scratchpad>/codex-pilot/wt-<batch> <base>`，再 `ln -s <repo>/node_modules <wt>/node_modules`（閘門認得這個 symlink）。
 3. **寫交接書**：照 [dispatch/content-batch](../dispatch/content-batch.md)——「先讀」列完整路徑（AGENTS.md、`wf/workflows/content/` 全部、`content/lore/style.md`）並要求 REPORT 開頭「已讀清單」；可寫範圍只有 worktree 的允許目錄＋報告目錄；socket／scratch 一律放 `/tmp/<線名>/`；子代理可派、模型隨意、上限寫死，同受閘門約束。`brief_lint --strict` 0 違規。
-4. **派 codex**：`gpt-6.1-sol`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
+4. **派 codex**（填內容走上節兩段式，計劃段用 astra）：`gpt-6.1-sol`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
 5. **等**：前景 `inbox_poll.sh <領導> --wait --timeout 540` 或 `kill -0 <pid>` 輪詢；三訊號（行程結束、log 尾 `tokens used`、inbox 終局）都看。
 6. **閘門＋驗收**：`bash wf/tools/content_accept.sh <wt> <manifest> --record`。它先跑 `content_gate.py`（不過就停），再依 `checks` 跑 check（列新警告）、lore check、typecheck、`npm test`、黃金不變、`content:probe`（失衡門檻見 [playtest](playtest.md)）、試玩紀錄、已讀清單；產物在 `<reportDir>/accept/verdict-<輪>.json`。
    **可選：命名審查**——把新名字交給 `agy`（gemini-4-argon-high）純文字審查翻譯腔，用法見 [polish](polish.md)「首要標準」第 5 條；結果摘要記 manifest `namingReview`，明顯翻譯腔退回。
@@ -34,7 +42,7 @@
 
 ## 查帳本與索引
 
-先看 `content/index/_summary.json` 找分片，再對分片 `find`／`grep`（例：C 級獸族怪獸＝`base-monster.json` 上 `find grade=C family=beast`；某批加了什麼＝各分片 `find batch=<id>`，或直接讀該批 manifest 的 `files`）。**不整份讀分片**（鐵律 3）；查法見 [data-files](../common/data-files.md)。誰引用某 id：`content_index.py refs <id>`。
+先看 `content/index/_summary.json` 找分片（逐批件數看 `_batches-<YYYY-MM>.json`），再對分片 `find`／`grep`（例：C 級獸族怪獸＝`base-monster.json` 上 `find grade=C family=beast`；某批加了什麼＝各分片 `find batch=<id>`，或直接讀該批 manifest 的 `files`）。**不整份讀分片**（鐵律 3）；查法見 [data-files](../common/data-files.md)。誰引用某 id：`content_index.py refs <id>`。
 
 ## 交接
 
