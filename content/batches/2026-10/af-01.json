@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "af-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "撒南＋北非＋西亞骨架：三把傘、軛鞍行、五個群像種子事件（放閘夜／燃夜／金山夜／斷橋夜／運河夜）與五個地點；年表增列由領導帶回時插入",
  "author": {
   "agent": "codex",
@@ -165,5 +165,93 @@
     "method": "意譯"
    }
   ]
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T09:41:24",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "af-01",
+  "round": 1,
+  "at": "2026-10-26T09:41:24",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/events/aswan-sluice-night.json",
+   "content/lore/events/gold-reef-night.json",
+   "content/lore/events/hormuz-burning-night.json",
+   "content/lore/events/suez-canal-night.json",
+   "content/lore/events/twin-rivers-night.json",
+   "content/lore/factions/north-africa-umbrella.json",
+   "content/lore/factions/sub-saharan-umbrella.json",
+   "content/lore/factions/west-asia-umbrella.json",
+   "content/lore/factions/yoke-saddle-works.json",
+   "content/lore/places/aswan.json",
+   "content/lore/places/gold-reef.json",
+   "content/lore/places/hormuz.json",
+   "content/lore/places/suez.json",
+   "content/lore/places/twin-rivers.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 26,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/factions/sub-saharan-umbrella.json",
+  "content/lore/factions/north-africa-umbrella.json",
+  "content/lore/factions/west-asia-umbrella.json",
+  "content/lore/factions/yoke-saddle-works.json",
+  "content/lore/events/aswan-sluice-night.json",
+  "content/lore/events/hormuz-burning-night.json",
+  "content/lore/events/gold-reef-night.json",
+  "content/lore/events/twin-rivers-night.json",
+  "content/lore/events/suez-canal-night.json",
+  "content/lore/places/aswan.json",
+  "content/lore/places/hormuz.json",
+  "content/lore/places/gold-reef.json",
+  "content/lore/places/suez.json",
+  "content/lore/places/twin-rivers.json"
+ ],
+ "ids": [
+  "faction/sub-saharan-umbrella",
+  "faction/north-africa-umbrella",
+  "faction/west-asia-umbrella",
+  "faction/yoke-saddle-works",
+  "event/aswan-sluice-night",
+  "event/hormuz-burning-night",
+  "event/gold-reef-night",
+  "event/twin-rivers-night",
+  "event/suez-canal-night",
+  "place/aswan",
+  "place/hormuz",
+  "place/gold-reef",
+  "place/suez",
+  "place/twin-rivers"
+ ],
+ "gateRejections": [],
+ "acceptanceNote": "第 1 輪 test 唯一 fail 是 content/index 一致性（worktree 未重產索引，預期）；帶回 main 後重產索引、主 repo npm test 綠才算數。年表 5 筆由領導從 timeline-add.json 插入；金山夜依 2026-10-24 裁示不進年表。"
 }
