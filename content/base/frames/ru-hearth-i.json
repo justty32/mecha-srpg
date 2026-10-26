@@ -1,0 +1,69 @@
+{
+  "id": "frame/ru-hearth-i",
+  "name": "長爐-I型",
+  "etymology": "長爐取寒地爐火長守之意，系列名為提案名。俄國強人體制與資源調度延續，北極岸冰封使損失較小；2091 棄東令只留雅庫茨克，守得住哪裡比旗插到哪裡更實在。它循公刻堅盾的夸父血統加厚，耐寒守點，大燼池容得下重砲，轉進卻慢。掛接「俄跟進 B 級」提案，並不表示俄國取得了另一台古代機。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-heavy",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-cannon",
+    "left-weapon": "component/mx-singing-blade",
+    "system-1": "component/mx-frost-fins",
+    "armor-mount": "component/mx-porcelain-plate"
+  },
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 150,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 187.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 150
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 187.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-russia-umbrella",
+    "series-hearth"
+  ]
+}

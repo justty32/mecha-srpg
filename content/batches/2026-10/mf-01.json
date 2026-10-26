@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mf-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "機甲填充第一批：國家型傘與單國小傘的招牌衍型機（中傘 B 級量產、俄與北美跟進 B、日傘普通開守牆機 D）、歐傘內海家族工坊機 C、塞勒涅第一款型錄機銀環-G1；frame＋必要部件；models 由領導另寫",
  "author": {
   "agent": "codex",
@@ -82,11 +82,103 @@
    "frame/bulwark-iv-rampart",
    "frame/selene-crescent-g5"
   ],
-  "waivers": []
+  "waivers": [
+   {
+    "id": "frame/jp-si04",
+    "flag": "winrate",
+    "reason": "日傘普通開守牆機設定上沒有招式（區域線 drive 設定），D 單挑對堅盾-I 0%、對 mite-d 20% 是設計結果；使用者裁示本輪不做平衡、數值後期統一調"
+   }
+  ]
  },
  "playtest": {
   "required": 2,
   "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/mcp-log"
- }
+ },
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/accept/verdict-1.json",
+  "note": "閘門 ok；check／typecheck／readlist ok；test 唯一紅燈是 content/index 過時／summary 8 KB（index 由領導整合時重產，cd9e528 修正 summary 上限）；probe：jp-si04 對同級低勝率 waiver（不平衡），其餘與參照同向。整合 worktree（全部 mf-01～03＋5 models＋年表回連）npm test 958/958。"
+ },
+ "files": [
+  "content/base/frames/selene-silverring-g1.json",
+  "content/base/frames/cn-jade-tablet-i.json",
+  "content/base/frames/ru-hearth-i.json",
+  "content/base/frames/na-kestrel-i.json",
+  "content/base/frames/jp-si04.json",
+  "content/base/frames/innersea-counterseal-ii.json",
+  "content/base/world/models/hound-mk2.json",
+  "content/base/world/models/moji-tern.json",
+  "content/base/world/models/league-plough.json",
+  "content/base/world/models/saltgull-tidegull-longspear.json",
+  "content/base/world/models/selene-silverring-g1.json"
+ ],
+ "ids": [
+  "frame/selene-silverring-g1",
+  "frame/cn-jade-tablet-i",
+  "frame/ru-hearth-i",
+  "frame/na-kestrel-i",
+  "frame/jp-si04",
+  "frame/innersea-counterseal-ii",
+  "model/hound-mk2",
+  "model/moji-tern",
+  "model/league-plough",
+  "model/saltgull-tidegull-longspear",
+  "model/selene-silverring-g1"
+ ],
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/naming.json",
+  "rows": [
+   {
+    "id": "frame/selene-silverring-g1",
+    "nameEn": "Silverring-G1",
+    "meaning": "月輪意象與塞勒涅既有型錄編號",
+    "nameZh": "銀環-G1",
+    "method": "沿用",
+    "status": "既有"
+   },
+   {
+    "id": "frame/cn-jade-tablet-i",
+    "nameEn": "Jade Tablet-I",
+    "meaning": "朝廷禮器，取持圭列陣的端整，不用朝名年號",
+    "nameZh": "玉圭-I型",
+    "method": "意譯",
+    "status": "提案名"
+   },
+   {
+    "id": "frame/ru-hearth-i",
+    "nameEn": "Hearth-I",
+    "meaning": "寒地長守的爐火，取續燃與耐寒之意",
+    "nameZh": "長爐-I型",
+    "method": "意譯",
+    "status": "提案名"
+   },
+   {
+    "id": "frame/na-kestrel-i",
+    "nameEn": "Kestrel-I",
+    "meaning": "隼翼掠地換射位，取機動射手之意",
+    "nameZh": "隼翼-I型",
+    "method": "意譯",
+    "status": "提案名"
+   },
+   {
+    "id": "frame/jp-si04",
+    "nameEn": "Setouchi Industrial 04",
+    "meaning": "瀨戶內工位序號，縮成造船廠代號 SI-04",
+    "nameZh": "SI-04",
+    "method": "意譯",
+    "status": "提案名"
+   },
+   {
+    "id": "frame/innersea-counterseal-ii",
+    "nameEn": "Counterseal-II",
+    "meaning": "交貨與賒帳各蓋一印，取工坊與契書合印之意",
+    "nameZh": "合印-II型",
+    "method": "意譯",
+    "status": "提案名"
+   }
+  ]
+ },
+ "summary": "6 台 frame（銀環-G1、玉圭-I型、長爐-I型、隼翼-I型、SI-04、合印-II型）＋領導另寫 5 個 world model（燕鷗、獵犬-II、犁、潮鷗-長槍、銀環-G1）；黃金戰役重錄"
 }

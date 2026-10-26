@@ -1,0 +1,68 @@
+{
+  "id": "frame/selene-silverring-g1",
+  "name": "銀環-G1",
+  "etymology": "銀環取月輪之意。2099 年入型錄，是塞勒涅第一款量產型錄衍型機，骨架仿自靜海；新加坡海峽衛拿它守碼頭。當年的型錄以最好的靈目、最貴的帳單招客，修理與光矢逐筆記帳。G1 的遠射配裝較後來的 G2 樸素，沒有後者的光幕與流光囊。2102 年一台押運 G1 墜入孟加拉灣，被拆船幫撈起，月之暗面逆向後流出長槍圖紙。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-radiant-rifle",
+    "left-weapon": "component/mx-rune-rifle",
+    "sensor-mount": "component/mx-hawk-eye"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "accuracy": 3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-jinghai",
+    "faction-selene",
+    "series-silverring"
+  ]
+}

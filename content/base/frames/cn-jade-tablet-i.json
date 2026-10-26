@@ -1,0 +1,69 @@
+{
+  "id": "frame/cn-jade-tablet-i",
+  "name": "玉圭-I型",
+  "etymology": "玉圭借朝廷禮器之意，系列名為提案名。朝廷視夸父為天命，衍一聯合留在國境內的技藝接成這條線列機產線；公刻給了城邦地板，沒有把高階煉製與供應一併送走。掛接〈2107 中傘公開量產 B 級〉提案：閱兵陣列公開的是國家仍保住的天花板，維持陣列仍要逐城供料與訓練駕駛員。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-rune-rifle",
+    "left-weapon": "component/mx-chain-maul",
+    "system-1": "component/mx-frost-fins",
+    "armor-mount": "component/mx-porcelain-plate"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "evasion": -3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-imperial-court",
+    "series-jade-tablet"
+  ]
+}

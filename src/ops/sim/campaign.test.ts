@@ -37,9 +37,9 @@ test("船位置不變量：存在的圖與可進格；未知圖和不可進格�
 test("idle 12 蝕月：每天不變量全空", () => {
   const { s, ctx } = fixture(); let days = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
-  // 終局日與原因隨世界軌跡變（2026-10-26 鐵劍入庫後由第 104 天無駕駛員改為第 168 天債務扣船）；兩者都是合法終局。
-  assert.equal(days, 168); assert.equal(result.summary.length, 6);
-  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "ship-seized").length, 1);
+  // 終局日與原因隨世界軌跡變（2026-10-26 鐵劍入庫後由第 104 天無駕駛員改為第 168 天債務扣船；同日 lead-fill-mech 機型入庫後改為第 118 天無駕駛員）；都是合法終局。
+  assert.equal(days, 118); assert.equal(result.summary.length, 4);
+  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "no-pilots").length, 1);
   // 同一條測試也確認檢查器確實會擋錯帳、斷引用與 mastery 越界。
   s.ledger.balances.cash++; s.restraint.beasts["missing"] = { mech: "missing", kind: "live", wear: 0, vitality: 100, bond: {} };
   s.roster.mastery.bad = { node: 2 }; const errors = checkInvariants(s);

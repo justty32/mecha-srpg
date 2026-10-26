@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mf-02",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "舊軍工非核心件型錄 6 件（腿架、液壓、臂甲、靈目座、護艙隔板、排燼背架），依 plan-02",
  "author": {
   "agent": "codex",
@@ -58,5 +58,80 @@
   "typecheck",
   "test",
   "readlist"
- ]
+ ],
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-02/accept/verdict-1.json",
+  "note": "閘門 ok；check／typecheck／readlist ok；test 唯一紅燈是 content/index 過時／summary 8 KB（index 由領導整合時重產，cd9e528 修正 summary 上限）。整合 worktree（全部 mf-01～03＋5 models＋年表回連）npm test 958/958。"
+ },
+ "files": [
+  "content/base/components/oa-leg-brace.json",
+  "content/base/components/oa-hydraulic-assist.json",
+  "content/base/components/oa-arm-mantlet.json",
+  "content/base/components/oa-sight-cradle.json",
+  "content/base/components/oa-cockpit-baffle.json",
+  "content/base/components/oa-vent-rack.json"
+ ],
+ "ids": [
+  "component/oa-leg-brace",
+  "component/oa-hydraulic-assist",
+  "component/oa-arm-mantlet",
+  "component/oa-sight-cradle",
+  "component/oa-cockpit-baffle",
+  "component/oa-vent-rack"
+ ],
+ "gateRejections": [],
+ "naming": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-02/naming.json",
+  "rows": [
+   {
+    "id": "component/oa-leg-brace",
+    "nameEn": "Loadbearer Brace",
+    "meaning": "替老機雙腿接住重量，承住每一步；護架並非可替換的整副骨架。",
+    "nameZh": "承步腿架",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   },
+   {
+    "id": "component/oa-hydraulic-assist",
+    "nameEn": "Yieldstep Hydraulics",
+    "meaning": "關節受力時順勢讓步，轉向更順；只借迴避加值。",
+    "nameZh": "順行液壓組",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   },
+   {
+    "id": "component/oa-arm-mantlet",
+    "nameEn": "Armward Mantlet",
+    "meaning": "把舊甲板做成遮護持械右臂的護面。",
+    "nameZh": "擋矢臂甲",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   },
+   {
+    "id": "component/oa-sight-cradle",
+    "nameEn": "Truepoint Cradle",
+    "meaning": "固定並校準原有靈目，取定住準頭之意。",
+    "nameZh": "定準靈目座",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   },
+   {
+    "id": "component/oa-cockpit-baffle",
+    "nameEn": "Hearthguard Baffle",
+    "meaning": "替有人坐著的位置留一道阻隔，取護艙而非直譯爐衛。",
+    "nameZh": "護艙隔板",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   },
+   {
+    "id": "component/oa-vent-rack",
+    "nameEn": "Openback Vent Rack",
+    "meaning": "把可替換排燼件掛上敞開的背架。",
+    "nameZh": "敞背排燼架",
+    "method": "依英文意涵取中文構詞，沿用 plan-02 提案",
+    "status": "提案名"
+   }
+  ]
+ }
 }

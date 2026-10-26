@@ -38,7 +38,7 @@ export const sequences: Record<string, Step[]> = {
   "ops-betrayal": [
     { type: "ContractAccepted", field: "contract", value: "contract-57" },
     { type: "ContractCancelled", field: "contract", value: "contract-57" },
-    { type: "ContractAccepted", field: "contract", value: "contract-73" },
+    { type: "ContractAccepted", field: "contract", value: "contract-72" },
     { type: "Betrayed", field: "contract", value: "contract-57" },
   ],
   "ops-leak": [

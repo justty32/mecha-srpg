@@ -1,0 +1,69 @@
+{
+  "id": "frame/na-kestrel-i",
+  "name": "隼翼-I型",
+  "etymology": "隼翼取掠地換位、停身瞄準之意，系列名為提案名。美國內陸工業完整、縮得最少，留在地上的資本與國家共同續造公刻血統，再以國家名義調度加拿大與墨西哥諸城的機隊；官方稱美國，不稱傘。此型用背翼換射位、用流光維持遠射，接「北美跟進 B 級」提案；它只沿用夸父公刻圖的接口，沒有拿到蒙特婁的古代機。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-radiant-rifle",
+    "left-weapon": "component/mx-singing-blade",
+    "back-1": "component/mx-flare-wings",
+    "system-1": "component/mx-cold-spring"
+  },
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 6,
+    "accuracy": 4
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 90,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 90,
+      "regen": 16,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-north-american-umbrella",
+    "series-kestrel"
+  ]
+}
