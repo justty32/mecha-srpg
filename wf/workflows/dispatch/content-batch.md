@@ -19,7 +19,7 @@ worktree 的 `.git` 是指回主 repo 的檔，git 目錄在 `-C` 之外，所�
 
 ```sh
 H=$R/wf/workflows/dispatch/handoffs/<領導>
-codex exec -m gpt-6-astra -s workspace-write -c model_reasoning_effort='"high"' \
+codex exec -m gpt-6.1-sol -s workspace-write -c model_reasoning_effort='"high"' \
   -C $S/wt-<batch> --add-dir $R/wf/inbox --add-dir $H/<batch> --skip-git-repo-check \
   -o $S/logs/<線名>.last.txt \
   '你是線 <線名>。讀 <交接書絕對路徑> 並完整執行（先親自讀它「先讀」行點名的 AGENTS.md 與 wf 規矩）；你的工作目錄是隔離 worktree，只能照交接書寫允許的路徑；驗收條數已寫死，不要自行加碼。' \

@@ -12,15 +12,16 @@
 |------|------|------|-------------|---------------|
 | `gpt-6-astra` | 可用，exit 0 | 8.2 | 3,719 | `Hello! I’m Codex, based on GPT-6.` |
 | `gpt-6-sol` | 可用，exit 0 | 5.6 | 3,656 | `Hello! I’m Codex, based on GPT-6.` |
+| `gpt-6.1-sol`（2026-10-26，同指令） | 可用，exit 0 | 5.3 | 2,917 | `Hello! I’m Codex, based on GPT-6.` |
 
 - log 開頭照舊印 `Reading additional input from stdin...`：0.163 起「有 prompt 參數又有 stdin 時，stdin 會附成 `<stdin>` 區塊」，`< /dev/null` 讓它讀到空內容立刻往下走，**仍要保留**。
 - log 裡兩行 `ERROR rmcp::transport::worker: worker quit with fatal: Transport channel closed, when AuthRequired(…)` 是 `~/.codex/config.toml` 掛的 MCP 沒登入，**無害雜訊**，不影響任務；看 log 時 `grep -v rmcp::transport`。
-- 不要用 `-m gpt-sol` 這個別名：ChatGPT 帳號會被拒（`The 'gpt-sol' model is not supported when using Codex with a ChatGPT account`，skyrim／gd_libs 兩處實測）。不帶 `-m` 時用 config 預設 `gpt-6-astra`。
+- 不要用 `-m gpt-sol` 這個別名：ChatGPT 帳號會被拒（`The 'gpt-sol' model is not supported when using Codex with a ChatGPT account`，skyrim／gd_libs 兩處實測）。不帶 `-m` 時用 config 預設（`gpt-6-astra`，2026-10-26 起本專案預設工人改 `gpt-6.1-sol`，派線請明給 `-m`）。
 
 ## 完整指令
 
 ```sh
-codex exec -m gpt-6-astra -s workspace-write \
+codex exec -m gpt-6.1-sol -s workspace-write \
   -c model_reasoning_effort='"high"' \
   -C "<唯一可寫工作目錄，絕對路徑>" \
   --add-dir /home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox \

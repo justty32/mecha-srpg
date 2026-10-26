@@ -23,7 +23,7 @@
 1. **開 manifest**：照上節寫 `content/batches/<YYYY-MM>/<batch>.json`（`status:"draft"`），`base` 填當下 HEAD。一批 ≤ 20 檔、一個類別。
 2. **開隔離 worktree**：`git worktree add --detach <scratchpad>/codex-pilot/wt-<batch> <base>`，再 `ln -s <repo>/node_modules <wt>/node_modules`（閘門認得這個 symlink）。
 3. **寫交接書**：照 [dispatch/content-batch](../dispatch/content-batch.md)——「先讀」列完整路徑（AGENTS.md、`wf/workflows/content/` 全部、`content/lore/style.md`）並要求 REPORT 開頭「已讀清單」；可寫範圍只有 worktree 的允許目錄＋報告目錄；socket／scratch 一律放 `/tmp/<線名>/`；子代理可派、模型隨意、上限寫死，同受閘門約束。`brief_lint --strict` 0 違規。
-4. **派 codex**：`gpt-6-astra`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
+4. **派 codex**：`gpt-6.1-sol`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
 5. **等**：前景 `inbox_poll.sh <領導> --wait --timeout 540` 或 `kill -0 <pid>` 輪詢；三訊號（行程結束、log 尾 `tokens used`、inbox 終局）都看。
 6. **閘門＋驗收**：`bash wf/tools/content_accept.sh <wt> <manifest> --record`。它先跑 `content_gate.py`（不過就停），再依 `checks` 跑 check（列新警告）、lore check、typecheck、`npm test`、黃金不變、`content:probe`（失衡門檻見 [playtest](playtest.md)）、試玩紀錄、已讀清單；產物在 `<reportDir>/accept/verdict-<輪>.json`。
    **可選：命名審查**——把新名字交給 `agy`（gemini-4-argon-high）純文字審查翻譯腔，用法見 [polish](polish.md)「首要標準」第 5 條；結果摘要記 manifest `namingReview`，明顯翻譯腔退回。

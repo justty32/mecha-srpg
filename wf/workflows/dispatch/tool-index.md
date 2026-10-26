@@ -9,7 +9,7 @@
 <!-- wf-nav -->
 | 任務類型 | 必用工具 | 用途 | 狀態 |
 |---|---|---|---|
-| 派 codex 線（非互動） | `codex exec -m gpt-6-astra -s workspace-write …`（配方見 [codex-exec](codex-exec.md)） | 背景一條線一個行程；`-s` 必給 | 現役（smoke test） |
+| 派 codex 線（非互動） | `codex exec -m gpt-6.1-sol -s workspace-write …`（配方見 [codex-exec](codex-exec.md)） | 背景一條線一個行程；`-s` 必給 | 現役（smoke test） |
 | 派 codex 線（tmux 互動） | `wf/tools/cx_launch.sh <線> <交接書> [--model M]` | 開 tmux＋codex、文字與 Enter 分送、4 秒驗 Working；`--dry-run` 只印 | 新 |
 | 監看 tmux 線 | `wf/tools/cx_watch.sh <線>… [--recipient R] --timeout N` | 行程樹判活、批准提示、畫面停滯、該線的新信（唯讀）；前景跑 | 新 |
 | 等信（領導醒鐘） | `wf/tools/inbox_poll.sh <自己> --wait --timeout 540` | 阻塞到個人格／團隊格／orders 有信；逾時 exit 3 再跑一輪 | 新 |

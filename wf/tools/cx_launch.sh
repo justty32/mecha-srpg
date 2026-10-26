@@ -19,7 +19,7 @@ at <handoff.md>, then verify the line actually started working.
 
   --dir DIR         working directory (default: current directory)
   --model M         pass `-m M` to codex. Default: none — plain `codex` uses its
-                    configured default (~/.codex/config.toml: gpt-6-astra). gpt-6-sol
+                    configured default (~/.codex/config.toml: gpt-6-astra). Project default worker: gpt-6.1-sol; gpt-6-astra, gpt-6-sol
                     also works. Do NOT pass `gpt-sol`: that alias errors on a ChatGPT
                     account.
   --sandbox MODE    pass `-s MODE` (default workspace-write; config default is

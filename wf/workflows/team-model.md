@@ -19,10 +19,10 @@
 |---|---|---|---|---|
 | **頂層** | 主 session，**Fable 5.1** | 使用者直接對話的那一個 | 只跟使用者溝通、做最終決策、分配資源與授權；開領導、收領導的匯報 | **不實作**；**不親自逐則讀信**（信由領導消化後匯報） |
 | **領導（隊長）** | **Opus** | 頂層用 Claude Code 的 Agent tool 在行程內派出 | 讀交接書、拆工、寫子線交接書、派 codex 工人、監看、驗收、收線；向頂層匯報時**重寫標題、帶判斷** | 不越過交接書授權；不親自做工人的量 |
-| **工人（隊員）** | **codex gpt**（預設 `gpt-6-astra`，`gpt-6-sol` 亦可）；Claude Sonnet／Opus 子 agent 為輔 | 領導用 `codex exec`（[codex-exec](dispatch/codex-exec.md)）或 tmux（[cx_launch](dispatch/driving-cli-agents.md)）派；Claude 子 agent 由領導用 Agent tool 開 | 照交接書做一件事、寫 REPORT 檔、回報終局狀態 | 不改交接書範圍、不自行加碼驗證 |
+| **工人（隊員）** | **codex gpt**（預設 `gpt-6.1-sol`，`gpt-6-astra`／`gpt-6-sol` 亦可）；Claude Sonnet／Opus 子 agent 為輔 | 領導用 `codex exec`（[codex-exec](dispatch/codex-exec.md)）或 tmux（[cx_launch](dispatch/driving-cli-agents.md)）派；Claude 子 agent 由領導用 Agent tool 開 | 照交接書做一件事、寫 REPORT 檔、回報終局狀態 | 不改交接書範圍、不自行加碼驗證 |
 | **規劃（spec／plan、架構設計）** | **Fable**（主 session 或 Fable 子 agent） | 頂層自己寫，或用 Agent tool 開 Fable 子 agent | 產出 spec／plan 交給領導執行 | 不派工、不監看 |
 
-**派誰的預設**：實作與量大的活**盡量派 codex gpt**，模型隨意（對 ChatGPT 帳號**不要用 `gpt-sol` 這個別名**，會被拒；用 `gpt-6-astra`／`gpt-6-sol` 全名）。Claude Sonnet／Opus 子 agent 適合 merge、查資料、要和 Claude 頻繁來回的活。規劃類交給 Fable，因為領導拆工的品質取決於 plan。
+**派誰的預設**：實作與量大的活**盡量派 codex gpt**，模型隨意（對 ChatGPT 帳號**不要用 `gpt-sol` 這個別名**，會被拒；用 `gpt-6.1-sol`／`gpt-6-astra`／`gpt-6-sol` 全名）。Claude Sonnet／Opus 子 agent 適合 merge、查資料、要和 Claude 頻繁來回的活。規劃類交給 Fable，因為領導拆工的品質取決於 plan。
 
 **隊伍數量無上限**，以協調得過來為度；**領導層不要開太多**——量壓在工人層。判準是「領導監看得過來嗎」：**開了卻沒人盯的線比不開更糟**。單一、有界、驗收寫得死的工作可以直接開一條 codex 線掛在頂層底下，不必配領導。
 
@@ -38,7 +38,7 @@
 
 ## 二、三、聰明度分級與 token 消耗速度
 
-兩張表（哪個模型幾級、消耗速度與性價比結論）拆到 [grades](team-model/grades.md)；有新模型就在那裡加列並標日期。結論一句：**gpt-6-astra／gpt-6-sol 是聰明度 A、消耗 C 的性價比之神，工人層主力**；Fable 只留給頂層與規劃。
+兩張表（哪個模型幾級、消耗速度與性價比結論）拆到 [grades](team-model/grades.md)；有新模型就在那裡加列並標日期。結論一句：**gpt-6.1-sol（預設）／gpt-6-astra／gpt-6-sol 是聰明度 A、消耗 C 的性價比之神，工人層主力**；Fable 只留給頂層與規劃。
 
 ## 四、選人判準（按序看這六項）
 
