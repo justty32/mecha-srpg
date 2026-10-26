@@ -1,0 +1,1012 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "nameZh",
+  "nameEn",
+  "family",
+  "grades",
+  "niche",
+  "group",
+  "role",
+  "hook",
+  "bodyplan",
+  "aiprofile",
+  "abilities",
+  "effects",
+  "monsters",
+  "batch"
+ ],
+ "rows": [
+  {
+   "id": "species/brinepin",
+   "nameZh": "鹽針（提案）;白刺（提案，備選）",
+   "nameEn": "Brinepin｜鹽白細針在退水石縫間齊射",
+   "family": "insect",
+   "grades": "D",
+   "niche": "海岸;河口",
+   "group": "群體",
+   "role": "尾針能隔三格點射；露出的針節打壞後全身命中下降。",
+   "hook": "八打雁通海閘渠；海洋來獸與蟲繫；F／底色1.4、1.6；承2101蝕線協定的守港分工（非新增節點原因）。常由井工護送隊與港防民兵遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-brinepin",
+    "parts": "heart(腹心,提案) exposure=1 functions=core,cockpit layers=c10/f10/o20;needle(尾針,提案) exposure=2 functions=weaponMount layers=c10/f20;feet(六足,提案) exposure=1 functions=locomotion layers=c10/f30",
+    "totalHP": 110,
+    "resist": "全層pierce=0；chitin kinetic=0.2，其餘0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=20/5/100",
+    "onBroken": "needle→blunted",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-brinepin",
+     "corpse": "frame/corpse-brinepin"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "泥母所生D子體；核不藏深，先破尾針或直接收核是兩種取捨。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/swarm-mite\",\"policy\":\"swarm\",\"params\":{\"attack\":1,\"protect\":0.2}}",
+   "abilities": "ability/kx-brinepin-prick｜隔石飛針（提案）｜activated unit range 1–3 friendly no｜ai.tactics attack=1｜傷害pierce 8｜AP2 cooldown0｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-brinepin-blunted｜折針（提案，ui.badge同名）｜scope mech；permanent；accuracy -8；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-brinepin-blunted；未列hooks時空物件",
+   "monsters": "monster/brinepin-d",
+   "batch": "kj2-01"
+  },
+  {
+   "id": "species/lantern-keel",
+   "nameZh": "燈腹（提案）;垂燈（提案，備選）",
+   "nameEn": "Lantern Keel｜腹下亮囊使薄翼群聚到同一片上空",
+   "family": "insect",
+   "grades": "C",
+   "niche": "港口;空中",
+   "group": "群體",
+   "role": "高暴露腹核旁是薄翼；貼群增閃，打亮囊可削弱整體行動。",
+   "hook": "八打雁通海閘渠；海洋來獸與蟲繫；F／底色1.4、1.6；承2101蝕線協定的守港分工（非新增節點原因）。常由井工護送隊與港防民兵遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-lantern-keel",
+    "parts": "heart(腹核,提案) exposure=2 functions=core,cockpit layers=c20/f40/o60;wing-left(左薄翼,提案) exposure=2 functions=locomotion layers=c20/f40;wing-right(右薄翼,提案) exposure=2 functions=locomotion layers=c30/f30;lantern(亮囊,提案) exposure=1 functions=sensor layers=c50/f60;feet(短足,提案) exposure=1 functions=空 layers=c20/f30",
+    "totalHP": 400,
+    "resist": "全層pierce=0；chitin kinetic=0.2，其餘0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 10,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=20/5/100",
+    "onBroken": "lantern→dimmed",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-lantern-keel",
+     "corpse": "frame/corpse-lantern-keel"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "閘母所生C子體，與鹽針不是成長關係；空中僅形態＋短增益，實戰按leg移動。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/bodyguard\",\"policy\":\"tactical\",\"params\":{\"attack\":0.8,\"protect\":2,\"holdRatio\":0.9,\"attackRatio\":1.5,\"focusDistance\":1,\"dangerK\":0.005}}",
+   "abilities": "ability/kx-lantern-keel-drip｜低掠落珠（提案）｜activated unit range 1–4 friendly no｜ai.tactics attack=1｜傷害acid 16｜AP3 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-lantern-keel-gather｜並翼遮燈（提案）｜activated ball radius1 range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown2｜效果effect/kx-lantern-keel-screen（on hit）｜friendly only；radius=1；效果on hit，自身亦在範圍",
+   "effects": "effect/kx-lantern-keel-screen｜並翼（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +8；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-lantern-keel-screen；未列hooks時空物件;\neffect/kx-lantern-keel-dimmed｜燈落（提案，ui.badge同名）｜scope mech；permanent；initiative -2；accuracy -5；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-lantern-keel-dimmed；未列hooks時空物件",
+   "monsters": "monster/lantern-keel-c",
+   "batch": "kj2-01"
+  },
+  {
+   "id": "species/silt-mother",
+   "nameZh": "泥母（提案）;泥巢（提案，備選）",
+   "nameEn": "Silt Cradle｜泥堆似的低巢只開一口吐出細針子體",
+   "family": "insect",
+   "grades": "B",
+   "niche": "河口;地下",
+   "group": "單體母體＋子群",
+   "role": "先打唯一囊口會壓低AP回復；也可穿過厚泥背直接瞄藏核。",
+   "hook": "八打雁通海閘渠；海洋來獸與蟲繫；F／底色1.4、1.6；承2101蝕線協定的守港分工（非新增節點原因）。常由井工護送隊與港防民兵遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-silt-mother",
+    "parts": "heart(泥下腹核,提案) exposure=0.5 functions=core,cockpit layers=c80/f100/o140;roof(泥背,提案) exposure=2 functions=空 layers=c180/f100;sac(單囊口,提案) exposure=2 functions=spawner layers=c50/f90;forefeet(前四足,提案) exposure=1 functions=locomotion layers=c60/f80;hindfeet(後二足,提案) exposure=1 functions=locomotion layers=c60/f60",
+    "totalHP": 1000,
+    "resist": "全層pierce=0；roof chitin kinetic=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 8,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=9/7/9；instinct initial/regen/max=20/5/100",
+    "onBroken": "sac→ruptured",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;spawner",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-silt-mother",
+     "corpse": "frame/corpse-silt-mother"
+    },
+    "behaviors": "telegraph=true；spawner={child:species/brinepin,cadence:3,max:3,tether:dieWithParent}",
+    "notes": "沿通海涵洞坐定的巢母系B種；地下不等於可穿牆。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/nest-anchor\",\"policy\":\"sentinel\",\"params\":{\"attack\":0.5,\"protect\":1,\"buff\":1}}",
+   "abilities": "ability/kx-silt-mother-spit｜吐泥封口（提案）｜activated unit range 1–4 friendly no｜ai.tactics attack=1｜傷害acid 22｜AP4 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-silt-mother-brood｜翻泥出針（提案）｜activated self range 0–0 friendly only｜ai.tactics buff=1｜傷害0｜AP4 cooldown3｜效果effect/kx-silt-mother-brood（on self）｜tags spawn；usesPerBattle=3;\nability/kx-silt-mother-sweep｜低身掃礫（提案）｜activated line range 1–3 friendly no｜ai.tactics attackArea=1｜傷害kinetic 14｜AP3 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-silt-mother-brood｜翻泥（提案，ui.badge同名）｜scope mech；ownerTurns 1；onApply spawn species/brinepin grade D at adjacent；tags spawn；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-silt-mother-brood；未列hooks時空物件;\neffect/kx-silt-mother-ruptured｜囊裂（提案，ui.badge同名）｜scope mech；permanent；self.pools.ap.regen -3；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-silt-mother-ruptured；未列hooks時空物件",
+   "monsters": "monster/silt-mother-b",
+   "batch": "kj2-01"
+  },
+  {
+   "id": "species/sluice-mother",
+   "nameZh": "閘母（提案）;扉巢（提案，備選）",
+   "nameEn": "Sluice Cathedral｜拱起的巢腹像一列闔閉閘門",
+   "family": "insect",
+   "grades": "A",
+   "niche": "港口;河口",
+   "group": "單體母體＋子群",
+   "role": "兩個囊閘包著藏核，生出C級護翼；拆一扇閘就降低下一輪出招量。",
+   "hook": "八打雁通海閘渠；海洋來獸與蟲繫；F／底色1.4、1.6；承2101蝕線協定的守港分工（非新增節點原因）。常由井工護送隊與港防民兵遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-sluice-mother",
+    "parts": "heart(閘後核,提案) exposure=0.5 functions=core,cockpit layers=c100/f160/o240;mantle(拱甲,提案) exposure=2 functions=空 layers=c240/f120;gate-left(左囊閘,提案) exposure=2 functions=spawner layers=c70/f90;gate-right(右囊閘,提案) exposure=2 functions=spawner layers=c70/f90;feet(六柱足,提案) exposure=1 functions=locomotion layers=c100/f180;crest(冠節,提案) exposure=1 functions=sensor layers=c100/f140",
+    "totalHP": 1700,
+    "resist": "全層pierce=0；mantle chitin kinetic=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 3,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=10/8/10；instinct initial/regen/max=20/5/100",
+    "onBroken": "gate-left、gate-right→shut",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;spawner",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-sluice-mother",
+     "corpse": "frame/corpse-sluice-mother"
+    },
+    "behaviors": "telegraph=true；spawner={child:species/lantern-keel,cadence:4,max:2,tether:dieWithParent}",
+    "notes": "與泥母同屬巢母系的另一物種；A裂縫才可直接通過，非泥母升級。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-sluice-brood\",\"policy\":\"sentinel\",\"params\":{\"attack\":0.8,\"buff\":1.5,\"protect\":0.8,\"dangerK\":0.005},\"name\":\"閘下孵群（提案）\"}",
+   "abilities": "ability/kx-sluice-mother-spit｜穿閘落雨（提案）｜activated unit range 1–5 friendly no｜ai.tactics attack=1｜傷害acid 28｜AP4 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-sluice-mother-brood｜開扉垂燈（提案）｜activated self range 0–0 friendly only｜ai.tactics buff=1｜傷害0｜AP4 cooldown4｜效果effect/kx-sluice-mother-brood（on self）｜tags spawn；usesPerBattle=2;\nability/kx-sluice-mother-sweep｜合閘掃岸（提案）｜activated cone range 1–3 friendly no｜ai.tactics attackArea=1｜傷害kinetic 18｜AP4 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-sluice-mother-brood｜開扉（提案，ui.badge同名）｜scope mech；ownerTurns 1；onApply spawn species/lantern-keel grade C at adjacent；tags spawn；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-sluice-mother-brood；未列hooks時空物件;\neffect/kx-sluice-mother-shut｜斷扉（提案，ui.badge同名）｜scope mech；permanent；stack policy stack max2；self.pools.ap.regen -2／層；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-sluice-mother-shut；未列hooks時空物件",
+   "monsters": "monster/sluice-mother-a",
+   "batch": "kj2-01"
+  },
+  {
+   "id": "species/grit-fan",
+   "nameZh": "砂扇（提案）;鋪砂（提案，備選）",
+   "nameEn": "Grit Fan｜砂面突然展開成一把低矮扇子",
+   "family": "insect",
+   "grades": "D",
+   "niche": "海岸",
+   "group": "群體",
+   "role": "近距離扇掃打成排的腳，單核卻完全露在扇腹。",
+   "hook": "仙台外側舊港與濱岸崖；F、C／底色1.1、1.2、1.5；承2101堅盾普及與蝕線協定，舊廠已退在牆外。常由輪守駕駛與拖機工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-grit-fan",
+    "parts": "heart(扇腹核,提案) exposure=2 functions=core,cockpit layers=c10/f20/o20;fan(砂扇,提案) exposure=2 functions=weaponMount layers=c15/f25;feet(扁足,提案) exposure=1 functions=locomotion layers=c10/f20",
+    "totalHP": 120,
+    "resist": "全層thermal=0；chitin kinetic=0.2，其餘0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+     }
+    },
+    "pools": "ap max/regen/initial=6/6/6；instinct initial/regen/max=10/3/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-grit-fan",
+     "corpse": "frame/corpse-grit-fan"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/swarm-mite\",\"policy\":\"swarm\",\"params\":{\"attack\":1,\"protect\":0.2}}",
+   "abilities": "ability/kx-grit-fan-scatter｜展扇揚砂（提案）｜activated cone range 1–2 friendly no｜ai.tactics attackArea=1｜傷害kinetic 5｜AP2 cooldown1｜效果無（on hit）｜無額外限制",
+   "effects": "無新效果",
+   "monsters": "monster/grit-fan-d",
+   "batch": "kj2-02"
+  },
+  {
+   "id": "species/hinge-crab",
+   "nameZh": "扣甲（提案）;合鉗（提案，備選）",
+   "nameEn": "Hinge Bastion｜左右甲片合攏時替鄰近蟲體遮住亮肉",
+   "family": "insect",
+   "grades": "C",
+   "niche": "港口",
+   "group": "群體",
+   "role": "左右護片厚薄不同；貼近同伴施展小圈防護，離群後效益驟減。",
+   "hook": "仙台外側舊港與濱岸崖；F、C／底色1.1、1.2、1.5；承2101堅盾普及與蝕線協定，舊廠已退在牆外。常由輪守駕駛與拖機工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-hinge-crab",
+    "parts": "heart(鉗後核,提案) exposure=1 functions=core,cockpit layers=c40/f40/o60;plate-left(厚鉗,提案) exposure=2 functions=manipulator layers=c80/f40;plate-right(薄鉗,提案) exposure=1 functions=weaponMount layers=c50/f30;feet(八足,提案) exposure=1 functions=locomotion layers=c30/f50",
+    "totalHP": 420,
+    "resist": "全層acid=0；左鉗chitin kinetic=0.3，右鉗chitin kinetic=0.1，其餘0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=10/2/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-hinge-crab",
+     "corpse": "frame/corpse-hinge-crab"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/bodyguard\",\"policy\":\"tactical\",\"params\":{\"attack\":0.8,\"protect\":2,\"holdRatio\":0.9,\"attackRatio\":1.5,\"focusDistance\":1,\"dangerK\":0.005}}",
+   "abilities": "ability/kx-hinge-crab-snap｜叩鉗挫甲（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害kinetic 16｜AP3 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-hinge-crab-shelter｜合鉗成簷（提案）｜activated ball radius1 range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown2｜效果effect/kx-hinge-crab-sheltered（on hit）｜friendly only；效果on hit",
+   "effects": "effect/kx-hinge-crab-sheltered｜甲簷（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +10；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-hinge-crab-sheltered；未列hooks時空物件",
+   "monsters": "monster/hinge-crab-c",
+   "batch": "kj2-02"
+  },
+  {
+   "id": "species/needle-rack",
+   "nameZh": "矢櫛（提案）;排棘（提案，備選）",
+   "nameEn": "Needle Rack｜背上的矢列使它像一座會伏下的棘架",
+   "family": "insect",
+   "grades": "B",
+   "niche": "海岸;高處",
+   "group": "單體",
+   "role": "遠射有三格死角；拆高暴露背架讓點射失準，逼近仍須選擇藏核或斷足。",
+   "hook": "仙台外側舊港與濱岸崖；F、C／底色1.1、1.2、1.5；承2101堅盾普及與蝕線協定，舊廠已退在牆外。常由輪守駕駛與拖機工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-needle-rack",
+    "parts": "heart(架下核,提案) exposure=0.5 functions=core,cockpit layers=c60/f80/o160;rack(背矢架,提案) exposure=2 functions=weaponMount layers=c180/f100;mantle(長背甲,提案) exposure=2 functions=空 layers=c160/f80;feet(伏足,提案) exposure=1 functions=locomotion layers=c60/f120",
+    "totalHP": 1000,
+    "resist": "全層acid=0；chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=8/6/8；instinct initial/regen/max=10/2/100",
+    "onBroken": "rack→shattered",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "weaponMount",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-needle-rack",
+     "corpse": "frame/corpse-needle-rack"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/sniper-perch\",\"policy\":\"sentinel\",\"params\":{\"attack\":3,\"disable\":1,\"protect\":0.2,\"band\":1,\"endScore\":1e-06}}",
+   "abilities": "ability/kx-needle-rack-shot｜一線穿礁（提案）｜activated unit range 3–7 friendly no｜ai.tactics attack=1｜傷害pierce 24｜AP4 cooldown0｜效果無（on hit）｜partAim allowed penalty10；targetPref.parts weaponMount;\nability/kx-needle-rack-rake｜梳岸成列（提案）｜activated line range 3–6 friendly no｜ai.tactics attackArea=1｜傷害pierce 15｜AP4 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-needle-rack-shattered｜折櫛（提案，ui.badge同名）｜scope mech；permanent；accuracy -12；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-needle-rack-shattered；未列hooks時空物件",
+   "monsters": "monster/needle-rack-b",
+   "batch": "kj2-02"
+  },
+  {
+   "id": "species/bell-borer",
+   "nameZh": "鐘蠹（提案）;空鐘（提案，備選）",
+   "nameEn": "Bell Borer｜中空胸甲敲響時崖下亮起一圈粉塵",
+   "family": "insect",
+   "grades": "A",
+   "niche": "海岸;地下",
+   "group": "單體",
+   "role": "長口點射與近身扇掃交替；胸鐘破裂會永久減少AP上限，厚肋只是誘餌。",
+   "hook": "仙台外側舊港與濱岸崖；F、C／底色1.1、1.2、1.5；承2101堅盾普及與蝕線協定，舊廠已退在牆外。常由輪守駕駛與拖機工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/insect-bell-borer",
+    "parts": "heart(鐘後核,提案) exposure=0.5 functions=core,cockpit layers=c100/f150/o250;bell(胸鐘,提案) exposure=2 functions=sensor layers=c250/f150;ribs(弧肋,提案) exposure=2 functions=空 layers=c120/f160;horn(長口,提案) exposure=1 functions=weaponMount layers=c100/f180;feet(掘足,提案) exposure=1 functions=locomotion layers=c100/f140",
+    "totalHP": 1700,
+    "resist": "全層acid=0；bell chitin kinetic=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 6,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=10/7/10；instinct initial/regen/max=20/5/100",
+    "onBroken": "bell→cracked",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;weaponMount",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bell-borer",
+     "corpse": "frame/corpse-bell-borer"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "濱岸洞口留存的鑽食形態，不能穿越地圖牆壁。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-bell-watch\",\"policy\":\"sentinel\",\"params\":{\"attack\":1.4,\"protect\":1.2,\"disable\":0.6,\"band\":1},\"name\":\"伏鐘守岸（提案）\"}",
+   "abilities": "ability/kx-bell-borer-toll｜叩鐘飛礫（提案）｜activated unit range 2–6 friendly no｜ai.tactics attack=1｜傷害pierce 30｜AP5 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-bell-borer-dust｜伏地震塵（提案）｜activated cone range 1–3 friendly no｜ai.tactics attackArea=1｜傷害kinetic 20｜AP4 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-bell-borer-close｜抱鐘收足（提案）｜activated self range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown3｜效果effect/kx-bell-borer-closed（on self）｜無額外限制",
+   "effects": "effect/kx-bell-borer-closed｜抱鐘（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +12；initiative -2；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-bell-borer-closed；未列hooks時空物件;\neffect/kx-bell-borer-cracked｜鐘裂（提案，ui.badge同名）｜scope mech；permanent；self.pools.ap.max -3；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-bell-borer-cracked；未列hooks時空物件",
+   "monsters": "monster/bell-borer-a",
+   "batch": "kj2-02"
+  },
+  {
+   "id": "species/surf-runner",
+   "nameZh": "濺蹄（提案）;白蹄（提案，備選）",
+   "nameEn": "Surf Runner｜淺浪上只露出四蹄一串白點",
+   "family": "beast",
+   "grades": "D",
+   "niche": "海岸;河口",
+   "group": "群體",
+   "role": "薄肉快步接近再短暫增閃；打斷一組前足還有後足，兩組全破才停。",
+   "hook": "西雅圖接糧港外岸；F、G／底色1.4、1.6、1.8；承2101蝕線協定的沿海縮守，丹佛供糧與回運精粹並行。常由貨場守軍與糧車護送隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-surf-runner",
+    "parts": "heart(胸核,提案) exposure=1 functions=core,cockpit layers=f30/o30;forefeet(前雙蹄,提案) exposure=1 functions=locomotion layers=f30;hindfeet(後雙蹄,提案) exposure=1 functions=locomotion layers=f30;head(短首,提案) exposure=2 functions=sensor layers=c10/f20",
+    "totalHP": 150,
+    "resist": "全層pierce=0；僅頭chitin kinetic=0.1，其餘0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 10,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 7
+     }
+    },
+    "pools": "ap max/regen/initial=10/7/10；instinct initial/regen/max=25/7/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-surf-runner",
+     "corpse": "frame/corpse-surf-runner"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/guerrilla\",\"policy\":\"tactical\",\"params\":{\"attack\":1,\"dangerK\":0.05,\"reposition\":0.6,\"retreat\":1.5,\"retreatMinRound\":2,\"retreatDamage\":0.25,\"maxEngage\":2,\"band\":0.7}}",
+   "abilities": "ability/kx-surf-runner-kick｜掠水踢踏（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害kinetic 6｜AP2 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-surf-runner-skip｜折身掠浪（提案）｜activated self range 0–0 friendly only｜ai.tactics escape=1｜傷害0｜AP2 cooldown3｜效果effect/kx-surf-runner-skipping（on self）｜無額外限制",
+   "effects": "effect/kx-surf-runner-skipping｜掠浪（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +10；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-surf-runner-skipping；未列hooks時空物件",
+   "monsters": "monster/surf-runner-d",
+   "batch": "kj2-03"
+  },
+  {
+   "id": "species/foam-jaw",
+   "nameZh": "沫顎（提案）;吐沫（提案，備選）",
+   "nameEn": "Foam Jaw｜顎縫的白沫讓近前卸貨的人先退半步",
+   "family": "beast",
+   "grades": "C",
+   "niche": "港口;河口",
+   "group": "群體",
+   "role": "咬擊與酸沫扇面讓玩家拆開隊形；顎破後命中下降而核仍可捕。",
+   "hook": "西雅圖接糧港外岸；F、G／底色1.4、1.6、1.8；承2101蝕線協定的沿海縮守，丹佛供糧與回運精粹並行。常由貨場守軍與糧車護送隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-foam-jaw",
+    "parts": "heart(胸核,提案) exposure=1 functions=core,cockpit layers=c20/f50/o60;jaw(沫顎,提案) exposure=2 functions=manipulator layers=c30/f50;chest(胸板,提案) exposure=2 functions=空 layers=c30/f50;forefeet(前足,提案) exposure=1 functions=locomotion layers=c20/f40;hindfeet(後足,提案) exposure=1 functions=locomotion layers=c20/f30",
+    "totalHP": 400,
+    "resist": "全層thermal=0；chitin kinetic=0.2，其餘0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=25/7/100",
+    "onBroken": "jaw→split",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-foam-jaw",
+     "corpse": "frame/corpse-foam-jaw"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/pack-hunter\",\"policy\":\"swarm\",\"params\":{\"attack\":1,\"protect\":0.5}}",
+   "abilities": "ability/kx-foam-jaw-bite｜貼岸啃咬（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害pierce 16｜AP3 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-foam-jaw-foam｜翻顎噴沫（提案）｜activated cone range 1–3 friendly no｜ai.tactics attackArea=1｜傷害acid 10｜AP3 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-foam-jaw-split｜顎裂（提案，ui.badge同名）｜scope mech；permanent；accuracy -10；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-foam-jaw-split；未列hooks時空物件",
+   "monsters": "monster/foam-jaw-c",
+   "batch": "kj2-03"
+  },
+  {
+   "id": "species/shelf-back",
+   "nameZh": "棧背（提案）;橫脊（提案，備選）",
+   "nameEn": "Shelfback｜脊上橫板如堆在水邊的棧板",
+   "family": "beast",
+   "grades": "B",
+   "niche": "港口",
+   "group": "群體",
+   "role": "護背小圈只幫貼身同伴；大背板吸火，暴露的長顎是捕捉捷徑。",
+   "hook": "西雅圖接糧港外岸；F、G／底色1.4、1.6、1.8；承2101蝕線協定的沿海縮守，丹佛供糧與回運精粹並行。常由貨場守軍與糧車護送隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-shelf-back",
+    "parts": "heart(背下核,提案) exposure=0.5 functions=core,cockpit layers=c60/f80/o160;back(橫背,提案) exposure=2 functions=空 layers=c220/f100;jaw(長顎,提案) exposure=2 functions=manipulator layers=c40/f80;forefeet(前足,提案) exposure=1 functions=locomotion layers=c50/f80;hindfeet(後足,提案) exposure=1 functions=locomotion layers=c50/f80",
+    "totalHP": 1000,
+    "resist": "全層thermal=0；back chitin kinetic=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=15/3/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-shelf-back",
+     "corpse": "frame/corpse-shelf-back"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/bodyguard\",\"policy\":\"tactical\",\"params\":{\"attack\":0.8,\"protect\":2,\"holdRatio\":0.9,\"attackRatio\":1.5,\"focusDistance\":1,\"dangerK\":0.005}}",
+   "abilities": "ability/kx-shelf-back-shove｜橫背推岸（提案）｜activated unit range 1–2 friendly no｜ai.tactics attack=1｜傷害kinetic 24｜AP4 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-shelf-back-shelter｜俯背成簷（提案）｜activated ball radius1 range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown2｜效果effect/kx-shelf-back-sheltered（on hit）｜friendly only；效果on hit",
+   "effects": "effect/kx-shelf-back-sheltered｜背簷（提案，ui.badge同名）｜scope mech；ownerTurns 2；evasion +8；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-shelf-back-sheltered；未列hooks時空物件",
+   "monsters": "monster/shelf-back-b",
+   "batch": "kj2-03"
+  },
+  {
+   "id": "species/reef-antler",
+   "nameZh": "礁角（提案）;白枝（提案，備選）",
+   "nameEn": "Reef Antler｜白色分叉角像被帶上岸的礁枝",
+   "family": "beast",
+   "grades": "A",
+   "niche": "海岸;港口",
+   "group": "單體",
+   "role": "線狀掃角迫使守軍橫向分散；拆角減命中，繞過高暴露厚頸才是速殺藏核的路。",
+   "hook": "西雅圖接糧港外岸；F、G／底色1.4、1.6、1.8；承2101蝕線協定的沿海縮守，丹佛供糧與回運精粹並行。常由貨場守軍與糧車護送隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-reef-antler",
+    "parts": "heart(頸後核,提案) exposure=0.5 functions=core,cockpit layers=c100/f140/o260;antler(礁枝角,提案) exposure=2 functions=weaponMount,manipulator layers=c220/f140;neck(厚頸,提案) exposure=2 functions=sensor layers=c100/f140;forefeet(前足,提案) exposure=1 functions=locomotion layers=c120/f180;hindfeet(後足,提案) exposure=1 functions=locomotion layers=c120/f180",
+    "totalHP": 1700,
+    "resist": "全層acid=0；antler chitin pierce=0.5，neck chitin kinetic=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 6,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=9/9/9；instinct initial/regen/max=30/7/100",
+    "onBroken": "antler→broken",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-reef-antler",
+     "corpse": "frame/corpse-reef-antler"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-reef-line\",\"policy\":\"tactical\",\"params\":{\"attack\":1.2,\"protect\":0.8,\"maxEngage\":4,\"focusDistance\":2,\"holdRatio\":1.1,\"dangerK\":0.01},\"name\":\"礁角橫掃（提案）\"}",
+   "abilities": "ability/kx-reef-antler-rake｜橫角斷桅（提案）｜activated line range 1–4 friendly no｜ai.tactics attackArea=1｜傷害pierce 20｜AP4 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-reef-antler-gore｜俯首挑岸（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害kinetic 30｜AP5 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-reef-antler-brace｜低角迎矢（提案）｜activated self range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown3｜效果effect/kx-carapace-braced（on self）｜無額外限制",
+   "effects": "effect/kx-reef-antler-broken｜角折（提案，ui.badge同名）｜scope mech；permanent；accuracy -12；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-reef-antler-broken；未列hooks時空物件",
+   "monsters": "monster/reef-antler-a",
+   "batch": "kj2-03"
+  },
+  {
+   "id": "species/shell-ear",
+   "nameZh": "伏耳（提案）;貼耳（提案，備選）",
+   "nameEn": "Still Listener｜雙耳貼著濕石，等近岸目標進入它的射界",
+   "family": "beast",
+   "grades": "D",
+   "niche": "海岸",
+   "group": "單體",
+   "role": "不追人的遠射小獸，兩格內無傷害招；先拆雙耳或貼近都能削低威脅。",
+   "hook": "瓦爾帕萊索外港石階與通海礁溝；F／底色1.4、1.5、1.11；承2102商路約後的備件護送，不改智利國屬港守住。常由智利民兵與基多備件貨隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-shell-ear",
+    "parts": "heart(胸核,提案) exposure=1 functions=core,cockpit layers=c10/f20/o20;ear-left(左耳,提案) exposure=2 functions=sensor layers=f20;ear-right(右耳,提案) exposure=2 functions=sensor layers=f20;feet(伏足,提案) exposure=1 functions=locomotion layers=c10/f30",
+    "totalHP": 130,
+    "resist": "全層thermal=0；chitin kinetic=0.2，其餘0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+     }
+    },
+    "pools": "ap max/regen/initial=6/5/6；instinct initial/regen/max=5/2/100",
+    "onBroken": "ear-left、ear-right→deafened",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;sensor",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-shell-ear",
+     "corpse": "frame/corpse-shell-ear"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/sniper-perch\",\"policy\":\"sentinel\",\"params\":{\"attack\":3,\"disable\":1,\"protect\":0.2,\"band\":1,\"endScore\":1e-06}}",
+   "abilities": "ability/kx-shell-ear-spit｜伏石吐丸（提案）｜activated unit range 2–5 friendly no｜ai.tactics attack=1｜傷害energy 7｜AP2 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-shell-ear-hush｜抖耳落灰（提案）｜activated unit range 1–5 friendly no｜ai.tactics debuff=1｜傷害0｜AP2 cooldown2｜效果effect/kx-shell-ear-dulled（on hit）｜無額外限制",
+   "effects": "effect/kx-shell-ear-dulled｜灰罩（提案，ui.badge同名）｜scope mech；ownerTurns 1；accuracy -5；perception -2；debuff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-shell-ear-dulled；未列hooks時空物件;\neffect/kx-shell-ear-deafened｜耳折（提案，ui.badge同名）｜scope mech；permanent；stack policy stack max2；accuracy -4／層；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-shell-ear-deafened；未列hooks時空物件",
+   "monsters": "monster/shell-ear-d",
+   "batch": "kj2-04"
+  },
+  {
+   "id": "species/split-fin",
+   "nameZh": "岔鰭（提案）;分尾（提案，備選）",
+   "nameEn": "Forked Wake｜分叉尾留下兩道相反的水痕",
+   "family": "beast",
+   "grades": "C",
+   "niche": "河口;海岸",
+   "group": "群體",
+   "role": "三格咬擊有冷卻，空檔改短增閃；尾鰭不是腿，斷尾削閃仍可移動。",
+   "hook": "瓦爾帕萊索外港石階與通海礁溝；F／底色1.4、1.5、1.11；承2102商路約後的備件護送，不改智利國屬港守住。常由智利民兵與基多備件貨隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-split-fin",
+    "parts": "heart(腹核,提案) exposure=1 functions=core,cockpit layers=c20/f50/o70;forefeet(前蹼足,提案) exposure=1 functions=locomotion layers=c20/f50;hindfeet(後蹼足,提案) exposure=1 functions=locomotion layers=c20/f50;tail(岔鰭,提案) exposure=2 functions=manipulator layers=c20/f40;back(扁背,提案) exposure=2 functions=空 layers=c40/f20",
+    "totalHP": 400,
+    "resist": "全層pierce=0；chitin energy=0.3，其餘0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+     }
+    },
+    "pools": "ap max/regen/initial=10/6/10；instinct initial/regen/max=20/7/100",
+    "onBroken": "tail→torn",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-split-fin",
+     "corpse": "frame/corpse-split-fin"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "河口上溯止於近海；游水只寫形態，戰鬥無跨水捷徑。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/guerrilla\",\"policy\":\"tactical\",\"params\":{\"attack\":1,\"dangerK\":0.05,\"reposition\":0.6,\"retreat\":1.5,\"retreatMinRound\":2,\"retreatDamage\":0.25,\"maxEngage\":2,\"band\":0.7}}",
+   "abilities": "ability/kx-split-fin-rush｜分水追咬（提案）｜activated unit range 1–3 friendly no｜ai.tactics attack=1｜傷害pierce 18｜AP3 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-split-fin-swerve｜甩尾折返（提案）｜activated self range 0–0 friendly only｜ai.tactics escape=1｜傷害0｜AP2 cooldown3｜效果effect/kx-split-fin-swerving（on self）｜無額外限制",
+   "effects": "effect/kx-split-fin-swerving｜折返（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +8；initiative +2；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-split-fin-swerving；未列hooks時空物件;\neffect/kx-split-fin-torn｜鰭裂（提案，ui.badge同名）｜scope mech；permanent；evasion -6；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-split-fin-torn；未列hooks時空物件",
+   "monsters": "monster/split-fin-c",
+   "batch": "kj2-04"
+  },
+  {
+   "id": "species/trench-maw",
+   "nameZh": "淵顎（提案）;溝顎（提案，備選）",
+   "nameEn": "Trench Maw｜上岸時背甲仍掛著海溝黑泥",
+   "family": "beast",
+   "grades": "B",
+   "niche": "深海;海岸",
+   "group": "單體",
+   "role": "高甲慢吐息，每輪AP少，近咬與直線酸息互搶行動；深核使破甲選擇更重。",
+   "hook": "瓦爾帕萊索外港石階與通海礁溝；F／底色1.4、1.5、1.11；承2102商路約後的備件護送，不改智利國屬港守住。常由智利民兵與基多備件貨隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-trench-maw",
+    "parts": "heart(深胸核,提案) exposure=0.5 functions=core,cockpit layers=c100/f140/o260;jaw(淵顎,提案) exposure=2 functions=manipulator layers=c140/f100;back(溝甲,提案) exposure=2 functions=空 layers=c160/f80;forefeet(前足,提案) exposure=1 functions=locomotion layers=c60/f100;hindfeet(後足,提案) exposure=1 functions=locomotion layers=c60/f100",
+    "totalHP": 1300,
+    "resist": "全層thermal=0；全chitin kinetic=0.5、pierce=0.3，其餘0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 8,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 8
+     }
+    },
+    "pools": "ap max/regen/initial=6/5/6；instinct initial/regen/max=10/3/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-trench-maw",
+     "corpse": "frame/corpse-trench-maw"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "深海來源屬近岸見聞提案，不開深海關卡；僅在岸上可戰。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/reaper-vanguard\",\"policy\":\"tactical\",\"params\":{\"attack\":1,\"disable\":0.5}}",
+   "abilities": "ability/kx-trench-maw-bite｜低顎咬沉（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害pierce 26｜AP4 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-trench-maw-breath｜張口瀉泥（提案）｜activated line range 1–4 friendly no｜ai.tactics attackArea=1｜傷害acid 16｜AP4 cooldown3｜效果無（on hit）｜無額外限制",
+   "effects": "無新效果",
+   "monsters": "monster/trench-maw-b",
+   "batch": "kj2-04"
+  },
+  {
+   "id": "species/storm-mane",
+   "nameZh": "雷鬣（提案）;披雷（提案，備選）",
+   "nameEn": "Storm Mane｜青色長鬣在背上立起，像一場懸住的暴雨",
+   "family": "beast",
+   "grades": "A",
+   "niche": "海岸;港口",
+   "group": "單體",
+   "role": "高AP與高本能的狂攻獸；前後足都破才停，長鬣打掉則無法維持每輪連招。",
+   "hook": "瓦爾帕萊索外港石階與通海礁溝；F／底色1.4、1.5、1.11；承2102商路約後的備件護送，不改智利國屬港守住。常由智利民兵與基多備件貨隊遇見。",
+   "bodyplan": {
+    "id": "bodyplan/beast-storm-mane",
+    "parts": "heart(胸核,提案) exposure=1 functions=core,cockpit layers=c80/f160/o260;mane(青鬣,提案) exposure=2 functions=sensor layers=c100/f180;jaw(長顎,提案) exposure=1 functions=manipulator layers=c100/f220;forefeet(前足,提案) exposure=1 functions=locomotion layers=c120/f180;hindfeet(後足,提案) exposure=1 functions=locomotion layers=c120/f180",
+    "totalHP": 1700,
+    "resist": "全層acid=0；mane chitin energy=0.5，其餘chitin kinetic=0.3，其餘0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 8,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=12/8/12；instinct initial/regen/max=40/9/80",
+    "onBroken": "mane→sheared",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion;manipulator",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-storm-mane",
+     "corpse": "frame/corpse-storm-mane"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "berserk是個體猛攻，不是人格化指揮；所有攻擊friendly no。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/tide-cultist\",\"policy\":\"berserk\",\"params\":{\"berserkAttack\":12,\"berserkDistance\":2,\"friendlyFirePenalty\":0}}",
+   "abilities": "ability/kx-storm-mane-bite｜拖纜裂咬（提案）｜activated unit range 1–1 friendly no｜ai.tactics attack=1｜傷害pierce 30｜AP5 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-storm-mane-lash｜甩鬣掠電（提案）｜activated cone range 1–3 friendly no｜ai.tactics attackArea=1｜傷害energy 20｜AP4 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-storm-mane-rise｜豎鬣追岸（提案）｜activated self range 0–0 friendly only｜ai.tactics buff=1｜傷害0｜AP2 cooldown3｜效果effect/kx-storm-mane-risen（on self）｜無額外限制",
+   "effects": "effect/kx-storm-mane-risen｜鬣張（提案，ui.badge同名）｜scope mech；ownerTurns 2；accuracy +8；initiative +2；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-storm-mane-risen；未列hooks時空物件;\neffect/kx-storm-mane-sheared｜鬣落（提案，ui.badge同名）｜scope mech；permanent；self.pools.ap.regen -3；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-storm-mane-sheared；未列hooks時空物件",
+   "monsters": "monster/storm-mane-a",
+   "batch": "kj2-04"
+  },
+  {
+   "id": "species/bent-needle",
+   "nameZh": "曲針（提案）;歪針（提案，備選）",
+   "nameEn": "Crooked Needle｜一根彎針立在不成對的肉足上",
+   "family": "alien",
+   "grades": "D",
+   "niche": "港口;海岸",
+   "group": "單體",
+   "role": "只會四格精準點射且偏好武器部位；裸核露得多，右側小甲無法替它擋所有傷害。",
+   "hook": "奧克蘭外港空泊位；異形經寒潮裂縫隨冰北漂的既有生態；F／底色1.5、1.8；承2106無人應答記錄的地方警示，不替該二名增寫戰果。常由海岸巡守與回收工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/alien-bent-needle",
+    "parts": "heart(偏核,提案) exposure=2 functions=core,cockpit layers=f10/o30;needle(曲針,提案) exposure=1 functions=weaponMount layers=c10/f20;foot(單足,提案) exposure=1 functions=locomotion layers=f30;plate(右小甲,提案) exposure=2 functions=空 layers=c20",
+    "totalHP": 120,
+    "resist": "全層thermal=0；plate chitin energy=0.2；所有裸肉pierce=0，其餘0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+     }
+    },
+    "pools": "ap max/regen/initial=6/6/6；instinct initial/regen/max=5/2/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "weaponMount",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bent-needle",
+     "corpse": "frame/corpse-bent-needle"
+    },
+    "behaviors": "telegraph=true",
+    "notes": ""
+   },
+   "aiprofile": "{\"id\":\"aiprofile/sniper-perch\",\"policy\":\"sentinel\",\"params\":{\"attack\":3,\"disable\":1,\"protect\":0.2,\"band\":1,\"endScore\":1e-06}}",
+   "abilities": "ability/kx-bent-needle-pick｜斜針挑隙（提案）｜activated unit range 1–4 friendly no｜ai.tactics attack=1｜傷害pierce 8｜AP2 cooldown0｜效果無（on hit）｜partAim allowed penalty8；targetPref.parts weaponMount",
+   "effects": "無新效果",
+   "monsters": "monster/bent-needle-d",
+   "batch": "kj2-05"
+  },
+  {
+   "id": "species/hollow-sail",
+   "nameZh": "空帆（提案）;偏帆（提案，備選）",
+   "nameEn": "Hollow Sail｜一側鼓帆而另一側像被抽走了形體",
+   "family": "alien",
+   "grades": "C",
+   "niche": "空中;港口",
+   "group": "單體",
+   "role": "露核薄帆在兩格外射擊，危險時增閃撤開；不用升空就能被近戰追上。",
+   "hook": "奧克蘭外港空泊位；異形經寒潮裂縫隨冰北漂的既有生態；F／底色1.5、1.8；承2106無人應答記錄的地方警示，不替該二名增寫戰果。常由海岸巡守與回收工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/alien-hollow-sail",
+    "parts": "heart(帆心核,提案) exposure=2 functions=core,cockpit layers=f50/o70;sail-right(右硬帆,提案) exposure=2 functions=空 layers=c30/f60;sail-left(左空帆,提案) exposure=1 functions=空 layers=f70;foot(垂足,提案) exposure=1 functions=locomotion layers=c20/f30;tendril(長鬚,提案) exposure=1 functions=weaponMount layers=f70",
+    "totalHP": 400,
+    "resist": "全層pierce=0；右帆chitin energy=0.3，左帆全部resist=0，其餘0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 10,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=10/7/10；instinct initial/regen/max=5/2/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-hollow-sail",
+     "corpse": "frame/corpse-hollow-sail"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "空中形態只用增閃近似，不宣稱越障或空對地特權。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/guerrilla\",\"policy\":\"tactical\",\"params\":{\"attack\":1,\"dangerK\":0.05,\"reposition\":0.6,\"retreat\":1.5,\"retreatMinRound\":2,\"retreatDamage\":0.25,\"maxEngage\":2,\"band\":0.7}}",
+   "abilities": "ability/kx-hollow-sail-cast｜鼓帆射芒（提案）｜activated unit range 2–6 friendly no｜ai.tactics attack=1｜傷害energy 16｜AP3 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-hollow-sail-fold｜捲帆側掠（提案）｜activated self range 0–0 friendly only｜ai.tactics escape=1｜傷害0｜AP2 cooldown2｜效果effect/kx-hollow-sail-folded（on self）｜無額外限制",
+   "effects": "effect/kx-hollow-sail-folded｜帆捲（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +10；initiative +2；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-hollow-sail-folded；未列hooks時空物件",
+   "monsters": "monster/hollow-sail-c",
+   "batch": "kj2-05"
+  },
+  {
+   "id": "species/paired-wake",
+   "nameZh": "雙影（提案）;雙囊（提案，備選）",
+   "nameEn": "Paired Wake｜兩塊不對稱肉影共享一束拖足",
+   "family": "alien",
+   "grades": "B",
+   "niche": "河口;海岸",
+   "group": "單體雙核",
+   "role": "一核有甲一核裸露，打掉任一顆仍會繼續戰鬥；兩核俱破才死。",
+   "hook": "奧克蘭外港空泊位；異形經寒潮裂縫隨冰北漂的既有生態；F／底色1.5、1.8；承2106無人應答記錄的地方警示，不替該二名增寫戰果。常由海岸巡守與回收工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/alien-paired-wake",
+    "parts": "heart-left(左披核,提案) exposure=0.5 functions=core,cockpit layers=c50/f100/o100;heart-right(右裸核,提案) exposure=2 functions=core,cockpit layers=f130/o120;arm-left(厚臂,提案) exposure=2 functions=manipulator layers=c80/f120;arm-right(細臂,提案) exposure=1 functions=weaponMount layers=f120;feet(共束足,提案) exposure=1 functions=locomotion layers=f180",
+    "totalHP": 1000,
+    "resist": "全層thermal=0；左核與厚臂chitin energy=0.5，右核／細臂全部resist=0，其餘0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=8/8/8；instinct initial/regen/max=25/5/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-paired-wake",
+     "corpse": "frame/corpse-paired-wake"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "並非兩個單位或複製體；單一格、雙core，各核均預留懸囊槽與pilot座，展示時僅放一名駕駛。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-alien-stalker\",\"policy\":\"tactical\",\"params\":{\"attack\":1,\"disable\":1,\"debuff\":0.8}}",
+   "abilities": "ability/kx-paired-wake-rend｜雙影交撕（提案）｜activated unit range 1–2 friendly no｜ai.tactics attack=1｜傷害kinetic 22｜AP4 cooldown0｜效果無（on hit）｜partAim allowed penalty10；targetPref.parts core;\nability/kx-paired-wake-cross｜錯身穿光（提案）｜activated line range 1–4 friendly no｜ai.tactics attackArea=1｜傷害energy 14｜AP4 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "無新效果",
+   "monsters": "monster/paired-wake-b",
+   "batch": "kj2-05"
+  },
+  {
+   "id": "species/dusk-fold",
+   "nameZh": "垂幕（提案）;暮帷（提案，備選）",
+   "nameEn": "Dusk Fold｜垂下的薄幕遮住三處高低不等的亮核",
+   "family": "alien",
+   "grades": "A",
+   "niche": "港口;深海",
+   "group": "單體三核",
+   "role": "三核暴露各異；先放失準線再遠射，AP高上限低回復使第二輪明顯轉慢。",
+   "hook": "奧克蘭外港空泊位；異形經寒潮裂縫隨冰北漂的既有生態；F／底色1.5、1.8；承2106無人應答記錄的地方警示，不替該二名增寫戰果。常由海岸巡守與回收工遇見。",
+   "bodyplan": {
+    "id": "bodyplan/alien-dusk-fold",
+    "parts": "heart-low(低核,提案) exposure=0.5 functions=core,cockpit layers=c50/f100/o150;heart-side(側核,提案) exposure=1 functions=core,cockpit layers=c50/f100/o150;heart-high(高核,提案) exposure=2 functions=core,cockpit layers=c50/f100/o150;mantle(硬幕,提案) exposure=2 functions=空 layers=c300/f100;arm(裸垂臂,提案) exposure=1 functions=weaponMount layers=f200;foot(捲足,提案) exposure=1 functions=locomotion layers=c60/f140",
+    "totalHP": 1700,
+    "resist": "全層pierce=0；mantle chitin energy=0.6、thermal=0.3；裸臂全部resist=0，其餘0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 6,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=12/5/12；instinct initial/regen/max=10/2/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "requireIntact": "core",
+     "requireBroken": "locomotion",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-dusk-fold",
+     "corpse": "frame/corpse-dusk-fold"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "只寫由港外深水升上岸的見聞，不解釋裏側；三核共同維生、非新蝕錨。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-dusk-drift\",\"policy\":\"tactical\",\"params\":{\"attack\":0.8,\"disable\":1.4,\"debuff\":1.2,\"maxEngage\":2,\"reposition\":0.8,\"retreat\":1.2,\"retreatMinRound\":3,\"retreatDamage\":0.4,\"dangerK\":0.04},\"name\":\"垂幕游移（提案）\"}",
+   "abilities": "ability/kx-dusk-fold-rain｜垂幕落影（提案）｜activated unit range 2–6 friendly no｜ai.tactics attack=1｜傷害acid 28｜AP5 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-dusk-fold-dim｜摺幕遮眼（提案）｜activated line range 1–4 friendly no｜ai.tactics debuff=1｜傷害0｜AP3 cooldown3｜效果effect/kx-dusk-fold-dimmed（on hit）｜無額外限制;\nability/kx-dusk-fold-withdraw｜收幕側走（提案）｜activated self range 0–0 friendly only｜ai.tactics escape=1｜傷害0｜AP2 cooldown3｜效果effect/kx-dusk-fold-veiled（on self）｜無額外限制",
+   "effects": "effect/kx-dusk-fold-dimmed｜暮障（提案，ui.badge同名）｜scope mech；ownerTurns 2；accuracy -10；initiative -2；debuff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-dusk-fold-dimmed；未列hooks時空物件;\neffect/kx-dusk-fold-veiled｜覆幕（提案，ui.badge同名）｜scope mech；ownerTurns 1；evasion +12；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-dusk-fold-veiled；未列hooks時空物件",
+   "monsters": "monster/dusk-fold-a",
+   "batch": "kj2-05"
+  },
+  {
+   "id": "species/wick-mat",
+   "nameZh": "燈苔（提案）;濕穗（提案，備選）",
+   "nameEn": "Wick Mat｜菌毯上細細亮起的濕穗像未點完的燈芯",
+   "family": "mycelium",
+   "grades": "D",
+   "niche": "淡水／內陸",
+   "group": "群體地形器官",
+   "role": "固定在岸邊射四格細線，分散站位可避開多體受擊；唯一根結破即死。",
+   "hook": "五湖菌海淡水支流與舊橋；菌絲淡水例外；F／底色1.4、1.5、1.8；承2101-08-15借火催曉之後的採菌回程警示，不更改白夜2100首燒。常由採菌隊與冬季河岸學者遇見。",
+   "bodyplan": {
+    "id": "bodyplan/mycel-wick-mat",
+    "parts": "knot(根結,提案) exposure=2 functions=core layers=c30/f60;wick(亮穗,提案) exposure=1 functions=weaponMount layers=c10/f20",
+    "totalHP": 120,
+    "resist": "全層kinetic=0.5、pierce=0.5、acid=0.8、thermal=0、energy=0",
+    "attrsByGrade": {
+     "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+     }
+    },
+    "pools": "ap max/regen/initial=4/4/4；instinct initial/regen/max=0/0/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "mode": "harvest-only",
+     "requireIntact": "core",
+     "requireBroken": "core",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bed",
+     "note": "互斥條件讓捕捉不可達；frame僅引用既有harvest-only佔位，絕不新建可駕駛菌體。"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "沒有organ、沒有腿；群體由多個戰場單位呈現，不是新移動規則。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-mycel-creep\",\"policy\":\"sentinel\",\"params\":{\"attack\":0.8,\"debuff\":1,\"buff\":1,\"protect\":0.6}}",
+   "abilities": "ability/kx-wick-mat-seep｜沿穗滲漿（提案）｜activated line range 1–4 friendly no｜ai.tactics attackArea=1｜傷害acid 5｜AP2 cooldown0｜效果無（on hit）｜無額外限制",
+   "effects": "無新效果",
+   "monsters": "monster/wick-mat-d",
+   "batch": "kj2-06"
+  },
+  {
+   "id": "species/reed-lace",
+   "nameZh": "蘆網（提案）;岸網（提案，備選）",
+   "nameEn": "Reed Lace｜蘆影般的菌絲在河岸交成一張稀網",
+   "family": "mycelium",
+   "grades": "C",
+   "niche": "淡水／內陸;河岸",
+   "group": "群體地形器官",
+   "role": "三根結全破才退；先用真正rooted標籤封腳，再朝被困目標吐珠。",
+   "hook": "五湖菌海淡水支流與舊橋；菌絲淡水例外；F／底色1.4、1.5、1.8；承2101-08-15借火催曉之後的採菌回程警示，不更改白夜2100首燒。常由採菌隊與冬季河岸學者遇見。",
+   "bodyplan": {
+    "id": "bodyplan/mycel-reed-lace",
+    "parts": "knot-one(上游結,提案) exposure=1 functions=core layers=c40/f60;knot-two(中結,提案) exposure=2 functions=core layers=c40/f60;knot-three(下游結,提案) exposure=1 functions=core layers=c40/f60;crown(蘆冠,提案) exposure=2 functions=weaponMount layers=c40/f60",
+    "totalHP": 400,
+    "resist": "全層kinetic=0.5、pierce=0.5、acid=0.8、thermal=0、energy=0",
+    "attrsByGrade": {
+     "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+     }
+    },
+    "pools": "ap max/regen/initial=6/5/6；instinct initial/regen/max=0/0/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "mode": "harvest-only",
+     "requireIntact": "core",
+     "requireBroken": "core",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bed",
+     "note": "互斥條件讓捕捉不可達；frame僅引用既有harvest-only佔位，絕不新建可駕駛菌體。"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "新效果明列rooted；不沿用只有initiative減益的舊effect/rooted來冒充定身。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-mycel-creep\",\"policy\":\"sentinel\",\"params\":{\"attack\":0.8,\"debuff\":1,\"buff\":1,\"protect\":0.6}}",
+   "abilities": "ability/kx-reed-lace-bind｜交蘆絆步（提案）｜activated unit range 1–4 friendly no｜ai.tactics disable=1｜傷害0｜AP3 cooldown2｜效果effect/kx-reed-lace-caught（on hit）｜無額外限制;\nability/kx-reed-lace-spit｜抖蘆落珠（提案）｜activated unit range 1–3 friendly no｜ai.tactics attack=1｜傷害acid 14｜AP3 cooldown0｜效果無（on hit）｜無額外限制",
+   "effects": "effect/kx-reed-lace-caught｜蘆絆（提案，ui.badge同名）｜scope mech；ownerTurns 1；initiative -3；tags rooted,debuff（既有標籤，不新增registry）；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-reed-lace-caught；未列hooks時空物件",
+   "monsters": "monster/reed-lace-c",
+   "batch": "kj2-06"
+  },
+  {
+   "id": "species/vault-root",
+   "nameZh": "拱根（提案）;伏拱（提案，備選）",
+   "nameEn": "Vault Root｜舊橋底下長出的弧根像另一座倒立的橋",
+   "family": "mycelium",
+   "grades": "B",
+   "niche": "地下;淡水／內陸",
+   "group": "單片地形器官",
+   "role": "再生只在外拱與餘根，狙擊窄根結可避開厚甲消耗；最遠七格吐流。",
+   "hook": "五湖菌海淡水支流與舊橋；菌絲淡水例外；F／底色1.4、1.5、1.8；承2101-08-15借火催曉之後的採菌回程警示，不更改白夜2100首燒。常由採菌隊與冬季河岸學者遇見。",
+   "bodyplan": {
+    "id": "bodyplan/mycel-vault-root",
+    "parts": "knot(深根結,提案) exposure=0.5 functions=core layers=c180/f260;vault(外拱,提案) exposure=2 functions=空 layers=c200/f160;roots(側根,提案) exposure=1 functions=空 layers=c100/f100;feeder(餘根,提案) exposure=1 functions=weaponMount layers=c40/f60",
+    "totalHP": 1100,
+    "resist": "全層kinetic=0.5、pierce=0.5、acid=0.8、thermal=0、energy=0；vault flesh regen3、feeder flesh regen2，其餘regen0",
+    "attrsByGrade": {
+     "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+     }
+    },
+    "pools": "ap max/regen/initial=8/6/8；instinct initial/regen/max=0/0/100",
+    "onBroken": "全部空陣列",
+    "capture": {
+     "mode": "harvest-only",
+     "requireIntact": "core",
+     "requireBroken": "core",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bed",
+     "note": "互斥條件讓捕捉不可達；frame僅引用既有harvest-only佔位，絕不新建可駕駛菌體。"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "未破層逐回合回復，不復活破壞部位；地下僅來源，目標全部在地表可見。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/sniper-perch\",\"policy\":\"sentinel\",\"params\":{\"attack\":3,\"disable\":1,\"protect\":0.2,\"band\":1,\"endScore\":1e-06}}",
+   "abilities": "ability/kx-vault-root-stream｜倒拱激流（提案）｜activated unit range 2–7 friendly no｜ai.tactics attack=1｜傷害acid 22｜AP4 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-vault-root-burst｜掀根濺岸（提案）｜activated ball radius1 range 1–4 friendly no｜ai.tactics attackArea=1｜傷害acid 14｜AP4 cooldown2｜效果無（on hit）｜無額外限制",
+   "effects": "無新效果",
+   "monsters": "monster/vault-root-b",
+   "batch": "kj2-06"
+  },
+  {
+   "id": "species/drowned-grove",
+   "nameZh": "沉林（提案）;白汊（提案，備選）",
+   "nameEn": "Drowned Grove｜五座白結直立在淹沒的橋墩旁",
+   "family": "mycelium",
+   "grades": "A",
+   "niche": "淡水／內陸",
+   "group": "單片五結地形",
+   "role": "五結全破才死；每拆一結永久降低命中，最後階段比開場更容易穿過。",
+   "hook": "五湖菌海淡水支流與舊橋；菌絲淡水例外；F／底色1.4、1.5、1.8；承2101-08-15借火催曉之後的採菌回程警示，不更改白夜2100首燒。常由採菌隊與冬季河岸學者遇見。",
+   "bodyplan": {
+    "id": "bodyplan/mycel-drowned-grove",
+    "parts": "knot-one(橋首結,提案) exposure=1 functions=core layers=c100/f180;knot-two(白枝結,提案) exposure=2 functions=core layers=c100/f180;knot-three(沉舟結,提案) exposure=1 functions=core layers=c100/f180;knot-four(斜墩結,提案) exposure=2 functions=core layers=c100/f180;knot-five(末汊結,提案) exposure=0.5 functions=core layers=c100/f180;crown(白冠,提案) exposure=2 functions=weaponMount layers=c120/f180",
+    "totalHP": 1700,
+    "resist": "全層kinetic=0.5、pierce=0.5、acid=0.8、thermal=0、energy=0",
+    "attrsByGrade": {
+     "A": {
+      "initiative": 3,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+     }
+    },
+    "pools": "ap max/regen/initial=9/6/9；instinct initial/regen/max=0/0/100",
+    "onBroken": "knot-one、knot-two、knot-three、knot-four、knot-five→thinned",
+    "capture": {
+     "mode": "harvest-only",
+     "requireIntact": "core",
+     "requireBroken": "core",
+     "ability": "ability/restrain",
+     "frame": "frame/bio-bed",
+     "note": "互斥條件讓捕捉不可達；frame僅引用既有harvest-only佔位，絕不新建可駕駛菌體。"
+    },
+    "behaviors": "telegraph=true",
+    "notes": "五結是死亡判定節點，沒有organ精粹核；不新增菌床之外的營運錨槽。"
+   },
+   "aiprofile": "{\"id\":\"aiprofile/kx-mycel-creep\",\"policy\":\"sentinel\",\"params\":{\"attack\":0.8,\"debuff\":1,\"buff\":1,\"protect\":0.6}}",
+   "abilities": "ability/kx-drowned-grove-spit｜枯枝落沫（提案）｜activated unit range 1–5 friendly no｜ai.tactics attack=1｜傷害acid 26｜AP4 cooldown0｜效果無（on hit）｜無額外限制;\nability/kx-drowned-grove-sweep｜五汊橫流（提案）｜activated line range 1–6 friendly no｜ai.tactics attackArea=1｜傷害acid 18｜AP4 cooldown2｜效果無（on hit）｜無額外限制;\nability/kx-drowned-grove-veil｜白林疊影（提案）｜activated self range 0–0 friendly only｜ai.tactics protect=1｜傷害0｜AP3 cooldown3｜效果effect/kx-drowned-grove-veiled（on self）｜無額外限制",
+   "effects": "effect/kx-drowned-grove-veiled｜林影（提案，ui.badge同名）｜scope mech；ownerTurns 2；evasion +10；buff；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-drowned-grove-veiled；未列hooks時空物件;\neffect/kx-drowned-grove-thinned｜枝斷（提案，ui.badge同名）｜scope mech；permanent；stack policy stack max5；accuracy -2／層；未列stack時refresh；contribs前綴self.attrs.（pools完整路徑照列）；op add；source=effect/kx-drowned-grove-thinned；未列hooks時空物件",
+   "monsters": "monster/drowned-grove-a",
+   "batch": "kj2-06"
+  }
+ ]
+}
