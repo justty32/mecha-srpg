@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "ag-02",
  "mode": "polish",
- "status": "draft",
+ "status": "accepted",
  "goal": "ag-01 新設定咬回既有條目：鹽鷗、茉莉、聖馬洛、鹿特丹 body 各補一兩句（一小時必撤、懷錶、抵押帳單、標單）",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-aegir",
  "date": "2026-10-26",
- "base": "",
+ "base": "785287a2d84f62c3b3ec1980addc02218ef7d43f",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-aegir/ag-02",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-aegir/ag-02/REPORT.md",
@@ -52,5 +52,69 @@
   "typecheck",
   "test",
   "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T09:49:29",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "ag-02",
+  "round": 1,
+  "at": "2026-10-26T09:49:29",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/places/rotterdam-roost.json",
+   "content/lore/places/saint-malo.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 14,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/factions/salt-gull.json",
+  "content/lore/characters/molly-van-den-berg.json",
+  "content/lore/places/saint-malo.json",
+  "content/lore/places/rotterdam-roost.json"
+ ],
+ "ids": [
+  "faction/salt-gull",
+  "character/molly-van-den-berg",
+  "place/saint-malo",
+  "place/rotterdam-roost"
+ ],
+ "gateRejections": [],
+ "summary": "四檔 body 各補一兩句：一小時必撤、懷錶、抵押帳單、標單與九門同喪同夜兩種歐洲；閘門 0 違規",
+ "waivers": [
+  {
+   "step": "test",
+   "reason": "worktree base 早於 cd9e528（content_index 8 KB 修正），唯一失敗是索引一致性；帶回後在 main 重產 index 並重跑 npm test"
+  }
  ]
 }
