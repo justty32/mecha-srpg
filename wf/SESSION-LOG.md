@@ -1,6 +1,5 @@
 # SESSION-LOG — 進度（只列 open）
 
-- [feature-dev] 2026-10-26 lead-rep（國家／勢力機甲走聲望取得、補營運勢力資料、舊廠件上架、戰役黃金重錄）進行中 → handoffs/lead-rep/
 [INDEX](INDEX.md)｜等使用者的另記 [WAIT_USER](WAIT_USER.md)
 
 **寫入時機**：

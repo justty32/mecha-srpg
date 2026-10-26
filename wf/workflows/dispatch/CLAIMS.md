@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| lead-rep | `src/ops/`（含測試）、`content/base/`（world／frames／models 等營運相關）、`specs/ops`（最小必要）、`test/campaigns/`、`test/golden/`、`src/ops/sim/fixtures/`、`content/index`（重產）、`wf/workflows/dispatch/handoffs/lead-rep/`、engine-backlog 第 55／56 列狀態 | `content/lore/`、`design-notes/`（lead-dedup／sonnet-lore-format 持有）| 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 

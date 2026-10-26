@@ -39,7 +39,7 @@ type ModelState = { def: Id; releasedDay?: number; genericSince?: number; by: Id
 - **敵方情境**：對人作戰與競爭獵團 `ambush` 的 `UnitSpawn` 從該勢力 `released`（獵團從 `generic`＋買得到的）抽，人物臨時生成；所以玩家在第 10 蝕月遇到的塞勒涅白手套，開的是第 10 蝕月的型號。
 - **玩家**：買、撿、拆的是同一池；`ResearchDef` 的 `unlocks` 可指向 `ModelDef`（獵團自己也能造通用改型）。
 
-SPEC-GAP 補（2026-10-26 lead-rep）：玩家購買尚未流出的 `generic:false` 且 `maker !== "generic"` 機型，須對 maker 的逐勢力聲望達 `action/ops-world.rules.repGate.overrides[model.id] ?? byTier[tier]`；通用三系與已流出機型公開。所有市場（含 maker 地盤與條約進口）一律在付款扣貨前驗證，不足回 `reputation-required`；固定 frame 清單若有任一無門檻 model 即公開，否則取最低門檻。原可見規則保留；已釋出、非隊長的私有機聲望達標後，也可在符合篩選器的市場列出。通用血統上的私有 maker 機只由 maker 開局釋出與研發，其餘血統照舊。世界補員仍從各自 released 抽；玩家目前沒有研發機型／補員帶機入口，本次不新增。
+SPEC-GAP 補（2026-10-26 lead-rep）：未流出、`maker` 為勢力的機型，玩家購買須對 maker 聲望 ≥ `action/ops-world.rules.repGate`（`overrides[id] ?? byTier[tier]`）；通用與已流出機型公開。各市場付款前驗證，不足回 `reputation-required`；固定 frame 清單有任一無門檻 model 即公開，否則取最低門檻。達標的已釋出非隊長私有機可在符合篩選器的市場列出。通用血統上的私有機只由 maker 釋出與研發。玩家尚無研發機型／補員帶機入口。
 
 ## 技術流出 `leakModel`
 
