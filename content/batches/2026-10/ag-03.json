@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "ag-03",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "歐洲具名人物 4（港務糧倉協調人、國家派駐專員、公會議價人、熱那亞總匠）與歷史事件 3（鹿特丹沉堤 2089、遷簿令 2093、空城押契 2099）；年表三條、茉莉 relations 與第一張標單 characters 純插入",
  "author": {
   "agent": "codex",
@@ -18,7 +18,7 @@
  },
  "lead": "lead-aegir",
  "date": "2026-10-26",
- "base": "",
+ "base": "b781312a3ab7aa0ebc761fa6f24963ff8e8ab66f",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-aegir/ag-03",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-aegir/ag-03/REPORT.md",
@@ -92,5 +92,84 @@
     "method": "意譯"
    }
   ]
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T10:29:08",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "ag-03",
+  "round": 1,
+  "at": "2026-10-26T10:29:08",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/characters/claire-renaud.json",
+   "content/lore/characters/lena-visser.json",
+   "content/lore/characters/marta-bellini.json",
+   "content/lore/characters/oskar-lind.json",
+   "content/lore/events/coastal-mortgage.json",
+   "content/lore/events/inland-registers.json",
+   "content/lore/events/rotterdam-breach.json",
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/events/first-bid-sheet.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 13,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/characters/lena-visser.json",
+  "content/lore/characters/claire-renaud.json",
+  "content/lore/characters/oskar-lind.json",
+  "content/lore/characters/marta-bellini.json",
+  "content/lore/events/rotterdam-breach.json",
+  "content/lore/events/inland-registers.json",
+  "content/lore/events/coastal-mortgage.json",
+  "content/lore/timeline.json",
+  "content/lore/characters/molly-van-den-berg.json",
+  "content/lore/events/first-bid-sheet.json"
+ ],
+ "ids": [
+  "character/lena-visser",
+  "character/claire-renaud",
+  "character/oskar-lind",
+  "character/marta-bellini",
+  "event/rotterdam-breach",
+  "event/inland-registers",
+  "event/coastal-mortgage"
+ ],
+ "gateRejections": [],
+ "summary": "計畫（gpt-6-astra）→產出（gpt-6.1-sol）：歐洲 4 人物 3 事件、年表 3 條、茉莉 relations 與第一張標單 characters 插入；閘門 0 違規",
+ "waivers": [
+  {
+   "step": "test",
+   "reason": "唯一失敗是索引過時（新檔與 manifest 尚未重產 index，batch.md 第 9 步帶回後重產）；帶回後 main 重產並重跑 npm test"
+  }
+ ]
 }
