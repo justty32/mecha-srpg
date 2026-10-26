@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-split-fin-swerve",
+  "name": "甩尾折返",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-split-fin-swerving"
+      ]
+    }
+  ],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "escape": 1
+    }
+  },
+  "cooldown": 3
+}

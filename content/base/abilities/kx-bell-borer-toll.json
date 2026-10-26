@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-bell-borer-toll",
+  "name": "叩鐘飛礫",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 30,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 0
+}

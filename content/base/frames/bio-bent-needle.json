@@ -1,0 +1,34 @@
+{
+  "id": "frame/bio-bent-needle",
+  "name": "生物機甲・曲針",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/alien-bent-needle",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 5
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-bent-needle-pick"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "alien",
+    "kaiju"
+  ],
+  "burden": 2
+}

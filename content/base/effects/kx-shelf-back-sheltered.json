@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-shelf-back-sheltered",
+  "name": "背簷",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 8,
+      "source": "effect/kx-shelf-back-sheltered"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "背簷"
+  }
+}

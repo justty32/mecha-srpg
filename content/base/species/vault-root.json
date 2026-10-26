@@ -1,0 +1,64 @@
+{
+  "id": "species/vault-root",
+  "name": "拱根",
+  "family": "mycelium",
+  "bodyPlan": "bodyplan/mycel-vault-root",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": 0,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-vault-root-stream",
+    "ability/kx-vault-root-burst"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "core"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-bed"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/sniper-perch",
+  "tags": [
+    "mycelium",
+    "kaiju",
+    "harvest-only"
+  ]
+}

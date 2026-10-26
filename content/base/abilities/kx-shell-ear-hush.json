@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-shell-ear-hush",
+  "name": "抖耳落灰",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-shell-ear-dulled"
+      ]
+    }
+  ],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1
+    }
+  },
+  "cooldown": 2
+}

@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-vault-root-burst",
+  "name": "掀根濺岸",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 14,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "mycelium",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

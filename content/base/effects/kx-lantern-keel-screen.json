@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-lantern-keel-screen",
+  "name": "並翼",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 8,
+      "source": "effect/kx-lantern-keel-screen"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "並翼"
+  }
+}

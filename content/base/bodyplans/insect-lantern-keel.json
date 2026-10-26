@@ -1,0 +1,251 @@
+{
+  "id": "bodyplan/insect-lantern-keel",
+  "name": "燈腹體",
+  "parts": [
+    {
+      "id": "heart",
+      "name": "腹核",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 2
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wing-left",
+      "name": "左薄翼",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "wing-right",
+      "name": "右薄翼",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "lantern",
+      "name": "亮囊",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 50,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/kx-lantern-keel-dimmed"
+      ],
+      "conduct": []
+    },
+    {
+      "id": "feet",
+      "name": "短足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

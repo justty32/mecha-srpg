@@ -1,0 +1,26 @@
+{
+  "id": "effect/kx-brinepin-blunted",
+  "name": "折針",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -8,
+      "source": "effect/kx-brinepin-blunted"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "折針"
+  }
+}

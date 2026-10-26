@@ -1,0 +1,26 @@
+{
+  "id": "effect/kx-split-fin-torn",
+  "name": "鰭裂",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -6,
+      "source": "effect/kx-split-fin-torn"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "鰭裂"
+  }
+}

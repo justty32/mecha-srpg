@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-silt-mother-spit",
+  "name": "吐泥封口",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 22,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 0
+}

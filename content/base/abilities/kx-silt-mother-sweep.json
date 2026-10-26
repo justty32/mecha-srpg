@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-silt-mother-sweep",
+  "name": "低身掃礫",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 14,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

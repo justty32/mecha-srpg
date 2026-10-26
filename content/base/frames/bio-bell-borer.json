@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-bell-borer",
+  "name": "生物機甲・鐘蠹",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/insect-bell-borer",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-bell-borer-toll",
+    "ability/kx-bell-borer-dust",
+    "ability/kx-bell-borer-close"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 12
+}

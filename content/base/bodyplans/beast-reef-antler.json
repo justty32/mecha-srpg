@@ -1,0 +1,254 @@
+{
+  "id": "bodyplan/beast-reef-antler",
+  "name": "礁角・四足之軀",
+  "parts": [
+    {
+      "id": "heart",
+      "name": "頸後核",
+      "exposure": 0.5,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 100,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 140,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 260,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 2
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "antler",
+      "name": "礁枝角",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 220,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0.5,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 140,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "weaponMount",
+        "manipulator"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/kx-reef-antler-broken"
+      ],
+      "conduct": []
+    },
+    {
+      "id": "neck",
+      "name": "厚頸",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 100,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 140,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "forefeet",
+      "name": "前足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 120,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 180,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "hindfeet",
+      "name": "後足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 120,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 180,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

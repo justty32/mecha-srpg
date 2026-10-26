@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-paired-wake-cross",
+  "name": "錯身穿光",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 14,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

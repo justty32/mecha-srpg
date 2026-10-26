@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-bell-borer-closed",
+  "name": "抱鐘",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 12,
+      "source": "effect/kx-bell-borer-closed"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-bell-borer-closed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "抱鐘"
+  }
+}

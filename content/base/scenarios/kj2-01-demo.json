@@ -1,0 +1,120 @@
+{
+  "id": "scenario/kj2-01-demo",
+  "name": "八打雁外閘・辨形",
+  "brief": "井工的回程索還掛在渠岸。鹽針伏石，燈腹低掠，泥母與閘母各據一段外渠；兩台機甲須守住中央岸路八輪，讓工班過閘。場上原有的子群各自活動，母體還會生出新的子體。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-cliffjaw",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 29
+          }
+        },
+        {
+          "mech": "frame/corpse-cliffjaw",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 31
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/brinepin-d",
+          "at": {
+            "x": 30,
+            "y": 27
+          }
+        },
+        {
+          "monster": "monster/lantern-keel-c",
+          "at": {
+            "x": 31,
+            "y": 25
+          }
+        },
+        {
+          "monster": "monster/silt-mother-b",
+          "at": {
+            "x": 32,
+            "y": 28
+          }
+        },
+        {
+          "monster": "monster/sluice-mother-a",
+          "at": {
+            "x": 32,
+            "y": 31
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 29,
+            "y": 29
+          },
+          {
+            "x": 30,
+            "y": 29
+          },
+          {
+            "x": 29,
+            "y": 30
+          },
+          {
+            "x": 30,
+            "y": 30
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 210801
+}

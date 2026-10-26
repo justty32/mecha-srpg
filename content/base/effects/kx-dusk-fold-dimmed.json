@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-dusk-fold-dimmed",
+  "name": "暮障",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/kx-dusk-fold-dimmed"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-dusk-fold-dimmed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "暮障"
+  }
+}

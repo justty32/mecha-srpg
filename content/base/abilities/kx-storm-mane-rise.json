@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-storm-mane-rise",
+  "name": "豎鬣追岸",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-storm-mane-risen"
+      ]
+    }
+  ],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 3
+}

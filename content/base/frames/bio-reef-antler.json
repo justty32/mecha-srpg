@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-reef-antler",
+  "name": "生物機甲・礁角",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/beast-reef-antler",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 30,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-reef-antler-rake",
+    "ability/kx-reef-antler-gore",
+    "ability/kx-reef-antler-brace"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ],
+  "burden": 12
+}

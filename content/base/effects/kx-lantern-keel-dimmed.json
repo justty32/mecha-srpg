@@ -1,0 +1,32 @@
+{
+  "id": "effect/kx-lantern-keel-dimmed",
+  "name": "燈落",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-lantern-keel-dimmed"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/kx-lantern-keel-dimmed"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "燈落"
+  }
+}

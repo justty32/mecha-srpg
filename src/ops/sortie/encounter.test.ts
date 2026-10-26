@@ -33,7 +33,7 @@ test("方格地形生成的怪獸遭遇與 RNG 保持固定指紋", () => {
   const { s, ctx, sortie } = fixture();
   s.rng = { state: "0522a486b3bda0d1", inc: "000000000000006d" };
   const sc = generateScenario(s, ctx, sortie);
-  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "84a6ed9830afee39");
+  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "be2027dc27300024");
 });
 
 test("契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊", () => {

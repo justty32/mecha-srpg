@@ -1,0 +1,64 @@
+{
+  "id": "species/trench-maw",
+  "name": "淵顎",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-trench-maw",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 8,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 10,
+      "regen": 3,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-trench-maw-bite",
+    "ability/kx-trench-maw-breath"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "manipulator"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-trench-maw"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/reaper-vanguard",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

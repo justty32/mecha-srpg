@@ -1,0 +1,44 @@
+{
+  "id": "ability/kx-sluice-mother-brood",
+  "name": "開扉垂燈",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/kx-sluice-mother-brood"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph",
+    "spawn"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 4,
+  "usesPerBattle": 2
+}

@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-split-fin-rush",
+  "name": "分水追咬",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 18,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 2
+}

@@ -1,0 +1,26 @@
+{
+  "id": "effect/kx-bell-borer-cracked",
+  "name": "鐘裂",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.ap.max",
+      "op": "add",
+      "value": -3,
+      "source": "effect/kx-bell-borer-cracked"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "鐘裂"
+  }
+}

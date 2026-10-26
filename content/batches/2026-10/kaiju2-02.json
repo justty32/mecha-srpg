@@ -1,0 +1,616 @@
+{
+ "contract": "content-batch/1",
+ "id": "kaiju2-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "怪獸擴充 kj2-02：砂扇、扣甲、矢櫛、鐘蠹（35 檔）",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-kj2-02",
+  "subagents": "允許，模型隨意，上限 2",
+  "plan": {
+   "model": "gpt-6-astra",
+   "line": "cx-kj2-plan",
+   "file": "wf/workflows/dispatch/handoffs/lead-kaiju2/kj2-plan/plan.md"
+  }
+ },
+ "lead": "lead-kaiju2",
+ "date": "2026-10-26",
+ "base": "6f0f6f90905b0c60d25b9ba9ea4d2e2c266e1981",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-kaiju2/kj2-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-kaiju2/kj2-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/bio-monsters.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/battle-field.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/playtest.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/dispatch/handoffs/lead-kaiju2/kj2-plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-kaiju2/cx-kj2-02.md"
+  ]
+ },
+ "maxFiles": 35,
+ "allow": {
+  "kinds": [
+   "base/abilities",
+   "base/aiprofiles",
+   "base/bodyplans",
+   "base/effects",
+   "base/frames",
+   "base/monsters",
+   "base/scenarios",
+   "base/species",
+   "lore/places"
+  ],
+  "namePrefix": {
+   "base/scenarios": "kj2-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "probe",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "monster/mite-d",
+   "monster/lancewing-c",
+   "monster/siegebeetle-b",
+   "monster/siegebeetle-a"
+  ],
+  "waivers": [
+   {
+    "id": "ability/kx-bell-borer-close",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-close",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-close",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-close",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-dust",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-dust",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-dust",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-dust",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-toll",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-toll",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-toll",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-bell-borer-toll",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-grit-fan-scatter",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-grit-fan-scatter",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-grit-fan-scatter",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-grit-fan-scatter",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-shelter",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-shelter",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-shelter",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-shelter",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-snap",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-snap",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-snap",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-hinge-crab-snap",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-rake",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-rake",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-rake",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-rake",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-shot",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-shot",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-shot",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "ability/kx-needle-rack-shot",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-bell-borer",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-bell-borer",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-bell-borer",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-bell-borer",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-grit-fan",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-grit-fan",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-grit-fan",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-grit-fan",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-hinge-crab",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-hinge-crab",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-hinge-crab",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-hinge-crab",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-needle-rack",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-needle-rack",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-needle-rack",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/bio-needle-rack",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-bell-borer",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-bell-borer",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-bell-borer",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-bell-borer",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-grit-fan",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-grit-fan",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-grit-fan",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-grit-fan",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-hinge-crab",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-hinge-crab",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-hinge-crab",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-hinge-crab",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-needle-rack",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-needle-rack",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-needle-rack",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "frame/corpse-needle-rack",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/bell-borer-a",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/bell-borer-a",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/bell-borer-a",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/bell-borer-a",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/grit-fan-d",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/grit-fan-d",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/grit-fan-d",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/grit-fan-d",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/hinge-crab-c",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/hinge-crab-c",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/hinge-crab-c",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/hinge-crab-c",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/needle-rack-b",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/needle-rack-b",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/needle-rack-b",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "monster/needle-rack-b",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "scenario/kj2-02-demo",
+    "flag": "band",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "scenario/kj2-02-demo",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "scenario/kj2-02-demo",
+    "flag": "draw",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   },
+   {
+    "id": "scenario/kj2-02-demo",
+    "flag": "unused-ability",
+    "reason": "使用者 2026-10-26：數值照同級暫填、後期統一調；本輪不平衡，band／勝率／平手為同級暫值的預期；未用招式原因見 lead-kaiju2 REPORT（protect／原地 escape 無指派時 AI 權重 0，已改 buff 鍵或記 engine-backlog）"
+   }
+  ]
+ },
+ "playtest": null,
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T14:03:02",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-26T14:36:45",
+   "ok": false,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-kaiju2/kj2-02/accept/verdict-2.json",
+  "note": "第 1 輪 gate／check／lore／typecheck／test／golden／readlist 全過、probe 只因 band／勝率（數值後期調）不過；第 2 輪 probe 過（waivers），test 2–3 項失敗為六批並行驗收的計時類（perf <10ms、fuzz／invariants 時限、mcp e2e），第 1 輪同內容通過；帶回後於整合 worktree 全套重跑為準（見 lead-kaiju2 report.md）。"
+ },
+ "leadNotes": [
+  "第 2 輪：領導把無指派時 AI 不會用的 protect／原地 escape 招改 buff 鍵（見 REPORT），並依使用者「數值後期調」加 probe waivers；0 例外。"
+ ],
+ "files": [
+  "content/base/species/grit-fan.json",
+  "content/base/bodyplans/insect-grit-fan.json",
+  "content/base/frames/bio-grit-fan.json",
+  "content/base/frames/corpse-grit-fan.json",
+  "content/base/monsters/grit-fan-d.json",
+  "content/base/abilities/kx-grit-fan-scatter.json",
+  "content/base/species/hinge-crab.json",
+  "content/base/bodyplans/insect-hinge-crab.json",
+  "content/base/frames/bio-hinge-crab.json",
+  "content/base/frames/corpse-hinge-crab.json",
+  "content/base/monsters/hinge-crab-c.json",
+  "content/base/abilities/kx-hinge-crab-snap.json",
+  "content/base/abilities/kx-hinge-crab-shelter.json",
+  "content/base/effects/kx-hinge-crab-sheltered.json",
+  "content/base/species/needle-rack.json",
+  "content/base/bodyplans/insect-needle-rack.json",
+  "content/base/frames/bio-needle-rack.json",
+  "content/base/frames/corpse-needle-rack.json",
+  "content/base/monsters/needle-rack-b.json",
+  "content/base/abilities/kx-needle-rack-shot.json",
+  "content/base/abilities/kx-needle-rack-rake.json",
+  "content/base/effects/kx-needle-rack-shattered.json",
+  "content/base/species/bell-borer.json",
+  "content/base/bodyplans/insect-bell-borer.json",
+  "content/base/frames/bio-bell-borer.json",
+  "content/base/frames/corpse-bell-borer.json",
+  "content/base/monsters/bell-borer-a.json",
+  "content/base/abilities/kx-bell-borer-toll.json",
+  "content/base/abilities/kx-bell-borer-dust.json",
+  "content/base/abilities/kx-bell-borer-close.json",
+  "content/base/effects/kx-bell-borer-closed.json",
+  "content/base/effects/kx-bell-borer-cracked.json",
+  "content/base/aiprofiles/kx-bell-watch.json",
+  "content/lore/places/sendai-bell-cliff.json",
+  "content/base/scenarios/kj2-02-demo.json"
+ ],
+ "ids": [
+  "species/grit-fan",
+  "bodyplan/insect-grit-fan",
+  "frame/bio-grit-fan",
+  "frame/corpse-grit-fan",
+  "monster/grit-fan-d",
+  "ability/kx-grit-fan-scatter",
+  "species/hinge-crab",
+  "bodyplan/insect-hinge-crab",
+  "frame/bio-hinge-crab",
+  "frame/corpse-hinge-crab",
+  "monster/hinge-crab-c",
+  "ability/kx-hinge-crab-snap",
+  "ability/kx-hinge-crab-shelter",
+  "effect/kx-hinge-crab-sheltered",
+  "species/needle-rack",
+  "bodyplan/insect-needle-rack",
+  "frame/bio-needle-rack",
+  "frame/corpse-needle-rack",
+  "monster/needle-rack-b",
+  "ability/kx-needle-rack-shot",
+  "ability/kx-needle-rack-rake",
+  "effect/kx-needle-rack-shattered",
+  "species/bell-borer",
+  "bodyplan/insect-bell-borer",
+  "frame/bio-bell-borer",
+  "frame/corpse-bell-borer",
+  "monster/bell-borer-a",
+  "ability/kx-bell-borer-toll",
+  "ability/kx-bell-borer-dust",
+  "ability/kx-bell-borer-close",
+  "effect/kx-bell-borer-closed",
+  "effect/kx-bell-borer-cracked",
+  "aiprofile/kx-bell-watch",
+  "place/sendai-bell-cliff",
+  "scenario/kj2-02-demo"
+ ],
+ "namingReview": "agy gemini-4-argon-high 2026-10-26（計畫段）：見 handoffs/lead-kaiju2/kj2-plan/naming-review.txt；採納 23 項（砂扇、淵顎、垂幕、掩舟暮帷、斷橋骸林與 14 個招式／徽章），青鬣維持（比照房東／千囊房東，且基調修正線已採用）。"
+}

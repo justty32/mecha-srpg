@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-storm-mane-risen",
+  "name": "鬣張",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 8,
+      "source": "effect/kx-storm-mane-risen"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/kx-storm-mane-risen"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "鬣張"
+  }
+}

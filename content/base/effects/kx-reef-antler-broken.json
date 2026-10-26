@@ -1,0 +1,26 @@
+{
+  "id": "effect/kx-reef-antler-broken",
+  "name": "角折",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -12,
+      "source": "effect/kx-reef-antler-broken"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "角折"
+  }
+}

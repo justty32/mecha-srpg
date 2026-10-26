@@ -1,0 +1,44 @@
+{
+  "id": "ability/kx-dusk-fold-dim",
+  "name": "摺幕遮眼",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-dusk-fold-dimmed"
+      ]
+    }
+  ],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1
+    }
+  },
+  "cooldown": 3
+}

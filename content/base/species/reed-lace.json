@@ -1,0 +1,64 @@
+{
+  "id": "species/reed-lace",
+  "name": "蘆網",
+  "family": "mycelium",
+  "bodyPlan": "bodyplan/mycel-reed-lace",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": 0,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-reed-lace-bind",
+    "ability/kx-reed-lace-spit"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "core"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-bed"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-mycel-creep",
+  "tags": [
+    "mycelium",
+    "kaiju",
+    "harvest-only"
+  ]
+}

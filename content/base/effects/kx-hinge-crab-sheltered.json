@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-hinge-crab-sheltered",
+  "name": "甲簷",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/kx-hinge-crab-sheltered"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "甲簷"
+  }
+}

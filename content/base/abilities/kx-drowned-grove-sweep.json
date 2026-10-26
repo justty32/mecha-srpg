@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-drowned-grove-sweep",
+  "name": "五汊橫流",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 18,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "mycelium",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

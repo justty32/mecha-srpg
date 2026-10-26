@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-sluice-mother",
+  "name": "生物機甲・閘母",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/insect-sluice-mother",
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-sluice-mother-spit",
+    "ability/kx-sluice-mother-brood",
+    "ability/kx-sluice-mother-sweep"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 12
+}

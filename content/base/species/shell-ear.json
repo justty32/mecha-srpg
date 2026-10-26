@@ -1,0 +1,64 @@
+{
+  "id": "species/shell-ear",
+  "name": "伏耳",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-shell-ear",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-shell-ear-spit",
+    "ability/kx-shell-ear-hush"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "sensor"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-shell-ear"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/sniper-perch",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

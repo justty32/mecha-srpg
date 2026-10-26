@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-lantern-keel-gather",
+  "name": "並翼遮燈",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": true,
+    "friendly": "only",
+    "radius": 1
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-lantern-keel-screen"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 2
+}

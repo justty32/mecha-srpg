@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-shell-ear-dulled",
+  "name": "灰罩",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/kx-shell-ear-dulled"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-shell-ear-dulled"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "灰罩"
+  }
+}

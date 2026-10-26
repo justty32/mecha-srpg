@@ -1,0 +1,251 @@
+{
+  "id": "bodyplan/beast-split-fin",
+  "name": "岔鰭・分水之軀",
+  "parts": [
+    {
+      "id": "heart",
+      "name": "腹核",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0.3
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 50,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 70,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 2
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "forefeet",
+      "name": "前蹼足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0.3
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 50,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "hindfeet",
+      "name": "後蹼足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0.3
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 50,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "tail",
+      "name": "岔鰭",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0.3
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "manipulator"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/kx-split-fin-torn"
+      ],
+      "conduct": []
+    },
+    {
+      "id": "back",
+      "name": "扁背",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0.3
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

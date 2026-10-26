@@ -1,0 +1,63 @@
+{
+  "id": "species/needle-rack",
+  "name": "矢櫛",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-needle-rack",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 10,
+      "regen": 2,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-needle-rack-shot",
+    "ability/kx-needle-rack-rake"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "weaponMount"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-needle-rack"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/sniper-perch",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}

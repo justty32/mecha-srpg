@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-surf-runner",
+  "name": "生物機甲・濺蹄",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/beast-surf-runner",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 5
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 25,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-surf-runner-kick",
+    "ability/kx-surf-runner-skip"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ],
+  "burden": 2
+}

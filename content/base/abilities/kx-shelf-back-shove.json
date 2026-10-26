@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-shelf-back-shove",
+  "name": "橫背推岸",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 24,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 0
+}

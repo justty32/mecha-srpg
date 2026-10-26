@@ -1,0 +1,64 @@
+{
+  "id": "species/shelf-back",
+  "name": "棧背",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-shelf-back",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 15,
+      "regen": 3,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-shelf-back-shove",
+    "ability/kx-shelf-back-shelter"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "manipulator"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-shelf-back"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/bodyguard",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

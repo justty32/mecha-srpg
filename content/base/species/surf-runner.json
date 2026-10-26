@@ -1,0 +1,63 @@
+{
+  "id": "species/surf-runner",
+  "name": "濺蹄",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-surf-runner",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 10,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 7
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 25,
+      "regen": 7,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-surf-runner-kick",
+    "ability/kx-surf-runner-skip"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-surf-runner"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/guerrilla",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

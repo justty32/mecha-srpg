@@ -1,0 +1,29 @@
+{
+  "id": "effect/kx-silt-mother-brood",
+  "name": "翻泥",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "spawn",
+        "species": "species/brinepin",
+        "grade": "D",
+        "at": "adjacent"
+      }
+    ]
+  },
+  "tags": [
+    "spawn"
+  ],
+  "ui": {
+    "badge": "翻泥"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "id": "ability/kx-paired-wake-rend",
+  "name": "雙影交撕",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 22,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "core"
+      ]
+    }
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
+}

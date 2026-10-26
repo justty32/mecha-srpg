@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-hollow-sail",
+  "name": "生物機甲・空帆",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/alien-hollow-sail",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-hollow-sail-cast",
+    "ability/kx-hollow-sail-fold"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "alien",
+    "kaiju"
+  ],
+  "burden": 5
+}

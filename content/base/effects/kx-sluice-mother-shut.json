@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-sluice-mother-shut",
+  "name": "斷扉",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "stack",
+    "max": 2
+  },
+  "contribs": [
+    {
+      "path": "self.pools.ap.regen",
+      "op": "add",
+      "value": -2,
+      "source": "effect/kx-sluice-mother-shut"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "斷扉"
+  }
+}

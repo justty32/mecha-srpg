@@ -1,0 +1,65 @@
+{
+  "id": "species/storm-mane",
+  "name": "青鬣",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-storm-mane",
+  "gradeRange": [
+    "A"
+  ],
+  "baseAttrsByGrade": {
+    "A": {
+      "initiative": 8,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 80,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 40,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-storm-mane-bite",
+    "ability/kx-storm-mane-lash",
+    "ability/kx-storm-mane-rise"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "manipulator"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-storm-mane"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/tide-cultist",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-reed-lace-spit",
+  "name": "抖蘆落珠",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 14,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "mycelium",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "cooldown": 0
+}

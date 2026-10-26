@@ -1,0 +1,26 @@
+{
+  "id": "effect/kx-silt-mother-ruptured",
+  "name": "囊裂",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.ap.regen",
+      "op": "add",
+      "value": -3,
+      "source": "effect/kx-silt-mother-ruptured"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "囊裂"
+  }
+}

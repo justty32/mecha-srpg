@@ -1,0 +1,62 @@
+{
+  "id": "species/grit-fan",
+  "name": "砂扇",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-grit-fan",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 10,
+      "regen": 3,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-grit-fan-scatter"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-grit-fan"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/swarm-mite",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}

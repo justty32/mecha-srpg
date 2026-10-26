@@ -1,0 +1,51 @@
+{
+  "id": "ability/kx-bent-needle-pick",
+  "name": "斜針挑隙",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 8,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "weaponMount"
+      ]
+    }
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 8
+  }
+}

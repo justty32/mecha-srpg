@@ -1,0 +1,43 @@
+{
+  "id": "ability/kx-trench-maw-breath",
+  "name": "張口瀉泥",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 16,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 3
+}

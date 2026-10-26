@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-shelf-back",
+  "name": "生物機甲・棧背",
+  "cls": "bio",
+  "grade": "B",
+  "bodyPlan": "bodyplan/beast-shelf-back",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 7
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 15,
+      "regen": 3,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-shelf-back-shove",
+    "ability/kx-shelf-back-shelter"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ],
+  "burden": 8
+}

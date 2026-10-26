@@ -1,0 +1,47 @@
+{
+  "id": "scenario/kj2-05-demo",
+  "name": "奧克蘭空泊・辨形",
+  "brief": "舊泊位的警示圖還缺最後一筆。獵團以兩台崖牙機甲接近空船，守住棧板中央八輪，讓巡守帶回曲針、空帆、雙影與垂幕的輪廓。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-cliffjaw",
+          "persons": [{"id": "person/chen-xiaohai", "seat": "pilot"}],
+          "at": {"x": 17, "y": 30}
+        },
+        {
+          "mech": "frame/corpse-cliffjaw",
+          "persons": [{"id": "person/ren-kasai", "seat": "pilot"}],
+          "at": {"x": 17, "y": 31}
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {"monster": "monster/bent-needle-d", "at": {"x": 30, "y": 29}},
+        {"monster": "monster/hollow-sail-c", "at": {"x": 33, "y": 32}},
+        {"monster": "monster/paired-wake-b", "at": {"x": 31, "y": 33}},
+        {"monster": "monster/dusk-fold-a", "at": {"x": 32, "y": 30}}
+      ]
+    }
+  },
+  "objectives": [
+    {"kind": "eliminate", "params": {"slots": ["player"]}, "for": "player", "onComplete": "lose"},
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [{"x": 30, "y": 29}, {"x": 31, "y": 29}, {"x": 30, "y": 30}, {"x": 31, "y": 30}],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {"kind": "survive", "params": {"rounds": 20}, "for": "enemy", "onComplete": "win"}
+  ],
+  "seed": 210805,
+  "rounds": 20
+}

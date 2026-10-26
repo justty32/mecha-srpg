@@ -1,0 +1,120 @@
+{
+  "id": "scenario/kj2-06-demo",
+  "name": "五湖白汊・辨形",
+  "brief": "舊橋斷在白林枝間，回程索繞向岸邊。分辨濕穗與蘆網，守住中央乾地八輪，讓採菌隊把最後一包皮層帶過岔口。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-cliffjaw",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 30
+          }
+        },
+        {
+          "mech": "frame/corpse-cliffjaw",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 20,
+            "y": 31
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/wick-mat-d",
+          "at": {
+            "x": 30,
+            "y": 27
+          }
+        },
+        {
+          "monster": "monster/reed-lace-c",
+          "at": {
+            "x": 32,
+            "y": 29
+          }
+        },
+        {
+          "monster": "monster/vault-root-b",
+          "at": {
+            "x": 33,
+            "y": 31
+          }
+        },
+        {
+          "monster": "monster/drowned-grove-a",
+          "at": {
+            "x": 32,
+            "y": 30
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 30,
+            "y": 29
+          },
+          {
+            "x": 31,
+            "y": 29
+          },
+          {
+            "x": 30,
+            "y": 30
+          },
+          {
+            "x": 31,
+            "y": 30
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 210806
+}

@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-storm-mane",
+  "name": "生物機甲・青鬣",
+  "cls": "bio",
+  "grade": "A",
+  "bodyPlan": "bodyplan/beast-storm-mane",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 80,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 40,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-storm-mane-bite",
+    "ability/kx-storm-mane-lash",
+    "ability/kx-storm-mane-rise"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ],
+  "burden": 12
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ability/kx-shelf-back-shelter",
+  "name": "俯背成簷",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": true,
+    "friendly": "only",
+    "radius": 1
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/kx-shelf-back-sheltered"
+      ]
+    }
+  ],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 2
+}

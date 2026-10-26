@@ -1,0 +1,209 @@
+{
+  "id": "bodyplan/insect-needle-rack",
+  "name": "矢櫛體",
+  "parts": [
+    {
+      "id": "heart",
+      "name": "架下核",
+      "exposure": 0.5,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 80,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 160,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "restraint",
+          "type": "restraint",
+          "size": 2
+        },
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "rack",
+      "name": "背矢架",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 180,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 100,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/kx-needle-rack-shattered"
+      ],
+      "conduct": []
+    },
+    {
+      "id": "mantle",
+      "name": "長背甲",
+      "exposure": 2.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 160,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 80,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "feet",
+      "name": "伏足",
+      "exposure": 1.0,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 120,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "acid": 0,
+            "energy": 0,
+            "thermal": 0,
+            "pierce": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

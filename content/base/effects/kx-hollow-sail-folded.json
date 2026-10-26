@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-hollow-sail-folded",
+  "name": "帆捲",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/kx-hollow-sail-folded"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/kx-hollow-sail-folded"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "帆捲"
+  }
+}

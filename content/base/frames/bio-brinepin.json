@@ -1,0 +1,34 @@
+{
+  "id": "frame/bio-brinepin",
+  "name": "生物機甲・鹽針",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/insect-brinepin",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 5
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-brinepin-prick"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 2
+}

@@ -1,0 +1,28 @@
+{
+  "id": "effect/kx-reed-lace-caught",
+  "name": "蘆絆",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "effect/kx-reed-lace-caught"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "rooted",
+    "debuff"
+  ],
+  "ui": {
+    "badge": "蘆絆"
+  }
+}

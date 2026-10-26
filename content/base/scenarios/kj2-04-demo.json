@@ -1,0 +1,120 @@
+{
+  "id": "scenario/kj2-04-demo",
+  "name": "瓦港外階・辨形",
+  "brief": "外階留給來獸，內側拖機纜還在接續。你駕崖牙守住中央通路，替工班拖回傷機爭取空檔。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-cliffjaw",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 10,
+            "y": 30
+          }
+        },
+        {
+          "mech": "frame/corpse-cliffjaw",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 10,
+            "y": 32
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/shell-ear-d",
+          "at": {
+            "x": 32,
+            "y": 29
+          }
+        },
+        {
+          "monster": "monster/split-fin-c",
+          "at": {
+            "x": 30,
+            "y": 34
+          }
+        },
+        {
+          "monster": "monster/trench-maw-b",
+          "at": {
+            "x": 34,
+            "y": 32
+          }
+        },
+        {
+          "monster": "monster/storm-mane-a",
+          "at": {
+            "x": 31,
+            "y": 31
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 29,
+            "y": 30
+          },
+          {
+            "x": 30,
+            "y": 30
+          },
+          {
+            "x": 29,
+            "y": 31
+          },
+          {
+            "x": 30,
+            "y": 31
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 210804
+}

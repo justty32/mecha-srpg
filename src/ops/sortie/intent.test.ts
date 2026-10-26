@@ -11,7 +11,9 @@ import { sortieBattleSetup } from "./run.ts";
 import { fixture, result } from "./test-support.ts";
 
 test("營運出戰敵獸與玩家活捕獸保留 monster.def，覆寫部位與屬性生效", () => {
-  const { s, ctx, sortie } = fixture(), pack = readPackDir("content/base");
+  const { s, ctx, sortie, contract } = fixture(), pack = readPackDir("content/base");
+  // 裂縫名單擴充後固定本測試的候選，確保 D 級抽到蝕蟲（lead-kaiju2）。
+  contract.target.snapshot!.monsters = ["monster/mite-d", "monster/reaper-c", "monster/nestmother-landlord"];
   const original = ctx.db.require("monster", "monster/mite-d"), species = ctx.db.require("species", original.species);
   const part = ctx.db.require("bodyplan", species.bodyPlan).parts[0]!;
   const layers = part.layers.map(layer => ({ ...layer, hp: layer.hp + 17 }));

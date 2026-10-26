@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-shell-ear-deafened",
+  "name": "耳折",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "stack",
+    "max": 2
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -4,
+      "source": "effect/kx-shell-ear-deafened"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "耳折"
+  }
+}

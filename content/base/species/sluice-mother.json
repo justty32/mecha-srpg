@@ -1,0 +1,71 @@
+{
+  "id": "species/sluice-mother",
+  "name": "閘母",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-sluice-mother",
+  "gradeRange": [
+    "A"
+  ],
+  "baseAttrsByGrade": {
+    "A": {
+      "initiative": 3,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-sluice-mother-spit",
+    "ability/kx-sluice-mother-brood",
+    "ability/kx-sluice-mother-sweep"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "spawner"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-sluice-mother"
+  },
+  "behaviors": {
+    "telegraph": true,
+    "spawner": {
+      "child": "species/lantern-keel",
+      "cadence": 4,
+      "max": 2,
+      "tether": "dieWithParent"
+    }
+  },
+  "aiProfile": "aiprofile/kx-sluice-brood",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}

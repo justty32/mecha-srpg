@@ -1,0 +1,63 @@
+{
+  "id": "species/wick-mat",
+  "name": "燈苔",
+  "family": "mycelium",
+  "bodyPlan": "bodyplan/mycel-wick-mat",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": 0,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 4,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-wick-mat-seep"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "core"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-bed"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-mycel-creep",
+  "tags": [
+    "mycelium",
+    "kaiju",
+    "harvest-only"
+  ]
+}

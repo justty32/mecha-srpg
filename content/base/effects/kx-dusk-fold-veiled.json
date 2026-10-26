@@ -1,0 +1,27 @@
+{
+  "id": "effect/kx-dusk-fold-veiled",
+  "name": "覆幕",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 12,
+      "source": "effect/kx-dusk-fold-veiled"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "覆幕"
+  }
+}

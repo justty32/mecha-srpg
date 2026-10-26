@@ -1,0 +1,63 @@
+{
+  "id": "species/split-fin",
+  "name": "岔鰭",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-split-fin",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 7,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-split-fin-rush",
+    "ability/kx-split-fin-swerve"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-split-fin"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/guerrilla",
+  "tags": [
+    "kaiju",
+    "beast"
+  ]
+}

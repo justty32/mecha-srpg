@@ -1,0 +1,33 @@
+{
+  "id": "effect/kx-split-fin-swerving",
+  "name": "折返",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 8,
+      "source": "effect/kx-split-fin-swerving"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "effect/kx-split-fin-swerving"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "折返"
+  }
+}

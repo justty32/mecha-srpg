@@ -1,0 +1,36 @@
+{
+  "id": "frame/bio-silt-mother",
+  "name": "生物機甲・泥母",
+  "cls": "bio",
+  "grade": "B",
+  "bodyPlan": "bodyplan/insect-silt-mother",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 7
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-silt-mother-spit",
+    "ability/kx-silt-mother-brood",
+    "ability/kx-silt-mother-sweep"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 8
+}

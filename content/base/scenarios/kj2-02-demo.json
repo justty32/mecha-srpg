@@ -1,0 +1,120 @@
+{
+  "id": "scenario/kj2-02-demo",
+  "name": "仙台鳴崖・辨形",
+  "brief": "崖下胸鐘再響。越過舊岸，守住中央岸階八輪，讓拖機隊接回返程纜。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/bio-cliffjaw",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 12,
+            "y": 30
+          }
+        },
+        {
+          "mech": "frame/corpse-cliffjaw",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 12,
+            "y": 32
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/grit-fan-d",
+          "at": {
+            "x": 30,
+            "y": 30
+          }
+        },
+        {
+          "monster": "monster/hinge-crab-c",
+          "at": {
+            "x": 30,
+            "y": 31
+          }
+        },
+        {
+          "monster": "monster/needle-rack-b",
+          "at": {
+            "x": 32,
+            "y": 30
+          }
+        },
+        {
+          "monster": "monster/bell-borer-a",
+          "at": {
+            "x": 31,
+            "y": 32
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 29,
+            "y": 30
+          },
+          {
+            "x": 30,
+            "y": 30
+          },
+          {
+            "x": 29,
+            "y": 31
+          },
+          {
+            "x": 30,
+            "y": 31
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 210802
+}

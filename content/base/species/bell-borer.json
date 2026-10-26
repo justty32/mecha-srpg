@@ -1,0 +1,65 @@
+{
+  "id": "species/bell-borer",
+  "name": "鐘蠹",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-bell-borer",
+  "gradeRange": [
+    "A"
+  ],
+  "baseAttrsByGrade": {
+    "A": {
+      "initiative": 6,
+      "perception": 8,
+      "accuracy": 65,
+      "evasion": 12
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-bell-borer-toll",
+    "ability/kx-bell-borer-dust",
+    "ability/kx-bell-borer-close"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "weaponMount"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-bell-borer"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-bell-watch",
+  "tags": [
+    "kaiju",
+    "insect"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "id": "effect/kx-sluice-mother-brood",
+  "name": "開扉",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "spawn",
+        "species": "species/lantern-keel",
+        "grade": "C",
+        "at": "adjacent"
+      }
+    ]
+  },
+  "tags": [
+    "spawn"
+  ],
+  "ui": {
+    "badge": "開扉"
+  }
+}

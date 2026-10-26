@@ -1,0 +1,42 @@
+{
+  "id": "ability/kx-dusk-fold-rain",
+  "name": "垂幕落影",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 28,
+      "armorPen": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

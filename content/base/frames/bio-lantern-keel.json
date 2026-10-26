@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-lantern-keel",
+  "name": "生物機甲・燈腹",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/insect-lantern-keel",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-lantern-keel-drip",
+    "ability/kx-lantern-keel-gather"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 5
+}

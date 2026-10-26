@@ -1,0 +1,63 @@
+{
+  "id": "species/hollow-sail",
+  "name": "空帆",
+  "family": "alien",
+  "bodyPlan": "bodyplan/alien-hollow-sail",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 10,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-hollow-sail-cast",
+    "ability/kx-hollow-sail-fold"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/bio-hollow-sail"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/guerrilla",
+  "tags": [
+    "kaiju",
+    "alien"
+  ]
+}
