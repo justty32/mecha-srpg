@@ -63,5 +63,6 @@
 | 2026-10-25 | `lead-polish`、`lead-decide-land`、`lead-cockpit`（代存註記）| 總 REPORT 已由頂層代存：lead-decide-land 為 4b6992d、lead-cockpit 為 62ca3ed（lead-polish REPORT 已於 a68f806 入版控）；上列兩列的「待頂層代存」以此為準 | [lead-decide-land/REPORT.md](../lead-decide-land/REPORT.md)、[lead-cockpit/REPORT.md](../lead-cockpit/REPORT.md) |
 | 2026-10-26 | `lead-secret` | engine-backlog 45：lore 可見度標記（visibility／fieldVisibility／secrets）入 README 與 check.ts；百科建索引前拿掉 hidden、rumor 呈現為傳聞；補標記 15 檔；塞勒涅三層知情（2086／2095／2097）與三種聲音同源寫進 secrets（hidden）；commit 36a0968、c1077fa；HEAD＋本線 npm test 942／942 | 無附件夾；總 REPORT 子 agent 不得寫檔，內容在回傳頂層的匯報，待頂層代存為 lead-secret/REPORT.md |
 | 2026-10-26 | `lead-tide-cal` | engine-backlog 38：潮候／潮級／蝕曆年純函式、Clock 新欄、tick 寫 `omen:<名>` 旗、`world/omens/` 十五條（連珠第 40 蝕月一次）、check 驗週期；醒魂改讀大潮（潮級 ≥ 3）；tide-sky spec 13／18／20 落地；commit 0c43b0f、8745992、9a3f885、33e6790；乾淨 worktree npm test 950／950，黃金不變 | [lead-tide-cal/REPORT.md](../lead-tide-cal/REPORT.md) |
+| 2026-10-26 | `lead-ironsword` | engine-backlog 25：鐵劍 lineage＋models ×5、飛魚 models ×3 入庫；war「undefined」是 rnd.test 寫死 cost 撞上通用血統 +2 研發收入（非引擎 bug）；戰役黃金全數重錄（新增 test/campaigns/rerecord.ts、golden-spec.ts），戰鬥黃金不變；commit 00e614e；乾淨 worktree @17a2fbf npm test 957／957 | 無附件夾；子 agent 不得寫 REPORT 檔，內容在回傳頂層的匯報，待頂層代存為 lead-ironsword/REPORT.md |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。
