@@ -1,0 +1,65 @@
+{
+ "contract": "content-batch/1",
+ "id": "fill-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "填充層第二批（南亞＋東南亞＋群島）：依 fill-03-plan/PLAN.md 產出 13 件（6 事件、4 地點、3 人物）＋年表純插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-fill-03",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-fill",
+ "date": "2026-10-26",
+ "base": "7bd347cfd63631749ab1281cc47f29b93affcd49",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill/fill-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill/fill-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-fill/fill-03-plan/PLAN.md",
+   "wf/workflows/dispatch/handoffs/lead-fill/cx-fill-03.md"
+  ]
+ },
+ "maxFiles": 14,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/places",
+   "lore/characters"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": null,
+ "playtest": null
+}
