@@ -248,7 +248,8 @@ if (tl) {
 // 每個事件至少被年表引用一次（警告）
 if (tl && Array.isArray(tl.entries)) {
   const covered = new Set((tl.entries as Rec[]).map((e) => e.event).filter(Boolean));
-  for (const d of docs) if (d.kind === "event" && !covered.has(d.rec.id)) warns.push(`${d.file}: 未出現在 timeline`);
+  // occurs: possible（可能發生、不進年表）不報。
+  for (const d of docs) if (d.kind === "event" && d.rec.occurs !== "possible" && !covered.has(d.rec.id)) warns.push(`${d.file}: 未出現在 timeline`);
 }
 
 const perCont: Record<string, number> = {};
