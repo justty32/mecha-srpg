@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| lead-epic-land | `wf/workflows/planning/design-notes/world/`（含 history-lines 八篇與 json）、`wf/workflows/planning/design-notes/world.md`、`content/lore/`、`wf/workflows/planning/specs/world/`（必要時）、`wf/workflows/dispatch/handoffs/lead-epic-land/`、STATE.md 相關敘述、done 索引 | `src/`、`specs/core`、`content/base/` | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 

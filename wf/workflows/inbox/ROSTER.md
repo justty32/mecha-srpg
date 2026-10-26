@@ -87,3 +87,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-cockpit`）
 - **領地**：CLAIMS「lead-cockpit」列；工人照各自交接書（`handoffs/lead-cockpit/cx-cockpit-*.md`）
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-epic-land`（含代登記工人 `cx-el-01`）
+- **狀態**：已收線（2026-10-26）；團隊 `teams/epic` 已關；REPORT 在回傳頂層的匯報（待頂層代存為 `handoffs/lead-epic-land/REPORT.md`）
+- **我是誰**：Opus 領導：plan-epic 已裁示部分落地到設定筆記與 lore；工人是 codex（lore polish 批次 el-01）。
+- **團隊**：`teams/epic`
+- **上游**：`dispatcher`（工人的上游是 `lead-epic-land`）
+- **領地**：CLAIMS「lead-epic-land」列；工人照交接書 `handoffs/lead-epic-land/cx-el-01.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
