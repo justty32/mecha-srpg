@@ -1,0 +1,93 @@
+{
+ "contract": "wf-table/1",
+ "source": "../deep-plan/cx-bf-deep-03.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/characters/lena-visser.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/niek-vos",
+    "relation": "地方往來",
+    "note": "莉娜指泊位，尼克在岸上替偏航糧駁穩住船側。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  },
+  {
+   "file": "content/lore/characters/lena-visser.json",
+   "jsonPath": "$.events",
+   "op": "append",
+   "value": "event/roost-pier-grip",
+   "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+  },
+  {
+   "file": "content/lore/characters/claire-renaud.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/solene-le-goff",
+    "relation": "地方往來",
+    "note": "雷諾在城內替她保管下機要用的拐杖。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  },
+  {
+   "file": "content/lore/characters/claire-renaud.json",
+   "jsonPath": "$.events",
+   "op": "append",
+   "value": "event/malo-return-to-the-breach",
+   "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+  },
+  {
+   "file": "content/lore/characters/oskar-lind.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/anke-rehm",
+    "relation": "地方往來",
+    "note": "交機時替對方指認工人真正卡住的傷件。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  },
+  {
+   "file": "content/lore/characters/oskar-lind.json",
+   "jsonPath": "$.events",
+   "op": "append",
+   "value": "event/hamburg-ember-shoulder",
+   "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+  },
+  {
+   "file": "content/lore/characters/marta-bellini.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/elia-conti",
+    "relation": "地方往來",
+    "note": "瑪塔修造，他在座艙裡把接縫受力的感覺報回。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  },
+  {
+   "file": "content/lore/characters/marta-bellini.json",
+   "jsonPath": "$.events",
+   "op": "append",
+   "value": "event/genoa-first-footfall",
+   "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+  },
+  {
+   "file": "content/lore/factions/salt-gull.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/skagerrak-cold-reflection",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  }
+ ]
+}

@@ -1,0 +1,1894 @@
+{
+ "contract": "wf-table/1",
+ "source": "cx-bf-play-08.md",
+ "extracted": "2026-10-26",
+ "planningHead": "8a48e7ef3e982b278e382d8a166cfc05a8564428",
+ "notes": "18件：契約組3×3、事件6、對話3。掛到為設計記錄，只有欄位定案進遊戲JSON；text規格另落稿，不新增同名假欄。月面lore按本任務例外作掛點，合併時同入庫。",
+ "columns": [
+  "檔",
+  "類別",
+  "名稱",
+  "白話",
+  "掛到"
+ ],
+ "rows": [
+  {
+   "檔": "content/base/world/encounters/rift-z-bf-moon-dock-parts.json",
+   "類別": "encounters",
+   "名稱": "靜海修船件待卸：頂住鹽針・戰場",
+   "白話": "月面修船件抵新加坡，鹽針堵住卸料坡；守住這一班，讓工人先退。",
+   "掛到": {
+    "id": "encounter/rift-z-bf-moon-dock-parts",
+    "接口": "渡月港契約／修船件捎運",
+    "lore": [
+     "place/tranquility-repair-dock",
+     "place/ferry-nostos"
+    ],
+    "節點主線年表": "D；2066渡月航路定班；N07；底色1.2",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "從靜海送回檢修的普通修船件已落地，鹽針正攀卸料坡；工班尚未撤離，現在要頂住八回合。",
+    "光": "白色船腹映著卸料人影；「架可以再搭，人先退！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/brinepin",
+     "monster": "base:monster/brinepin-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "survive",
+      "params": {
+       "rounds": 8
+      }
+     }
+    },
+    "敘事邊界": "塞勒涅白手套作地球收貨雇主，不新增靜海修船塢營運勢力；不生成護送工人或貨物單位。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dock-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/encounters/insect-shallow.json",
+    "接入": "僅同組contract.encounter明指，不新增species白名單假欄，不接通用裂縫池",
+    "欄位定案": {
+     "id": "encounter/rift-z-bf-moon-dock-parts",
+     "family": "insect",
+     "depth": "shallow",
+     "size": {
+      "w": 10,
+      "h": 20
+     },
+     "terrainMix": [
+      {
+       "terrain": "$node",
+       "w": 3
+      },
+      {
+       "terrain": "terrain/erosion",
+       "w": 1
+      }
+     ],
+     "budgetByGrade": {
+      "D": 2,
+      "C": 1
+     },
+     "anchorHere": false
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/contracts/bf-moon-dock-parts.json",
+   "類別": "contracts",
+   "名稱": "靜海修船件待卸：頂住鹽針",
+   "白話": "月面修船件抵新加坡，鹽針堵住卸料坡；守住這一班，讓工人先退。",
+   "掛到": {
+    "id": "contract/bf-moon-dock-parts",
+    "接口": "渡月港契約／修船件捎運",
+    "lore": [
+     "place/tranquility-repair-dock",
+     "place/ferry-nostos"
+    ],
+    "節點主線年表": "D；2066渡月航路定班；N07；底色1.2",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "從靜海送回檢修的普通修船件已落地，鹽針正攀卸料坡；工班尚未撤離，現在要頂住八回合。",
+    "光": "白色船腹映著卸料人影；「架可以再搭，人先退！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/brinepin",
+     "monster": "base:monster/brinepin-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "survive",
+      "params": {
+       "rounds": 8
+      }
+     }
+    },
+    "敘事邊界": "塞勒涅白手套作地球收貨雇主，不新增靜海修船塢營運勢力；不生成護送工人或貨物單位。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dock-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/contracts/defend-citywall.json",
+    "接入": {
+     "牌": "action/board-bf-moon-dock-parts",
+     "雇主": "faction-ops/selene-whitegloves",
+     "落點": "place/singapore"
+    },
+    "欄位定案": {
+     "id": "contract/bf-moon-dock-parts",
+     "kind": "defend",
+     "issuerKinds": [
+      "company"
+     ],
+     "requiresRep": -5,
+     "gradeRange": [
+      "D",
+      "C"
+     ],
+     "objectives": [
+      {
+       "kind": "survive",
+       "params": {
+        "rounds": 8
+       }
+      },
+      {
+       "kind": "killTarget",
+       "params": {
+        "target": "monster/brinepin-d"
+       },
+       "optional": true
+      }
+     ],
+     "pay": {
+      "base": 3400
+     },
+     "advanceMax": 0.4,
+     "deadlineDays": 8,
+     "supplies": [],
+     "onComplete": [
+      {
+       "rep": {
+        "issuer": 5
+       }
+      }
+     ],
+     "onFail": [
+      {
+       "rep": {
+        "issuer": -5
+       }
+      }
+     ],
+     "onCancel": [
+      {
+       "rep": {
+        "issuer": -3
+       }
+      }
+     ],
+     "annoyanceMax": 2,
+     "name": "靜海修船件待卸：頂住鹽針",
+     "encounter": [
+      "encounter/rift-z-bf-moon-dock-parts"
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/actions/board-bf-moon-dock-parts.json",
+   "類別": "actions",
+   "名稱": "靜海修船件待卸：頂住鹽針・發包",
+   "白話": "月面修船件抵新加坡，鹽針堵住卸料坡；守住這一班，讓工人先退。",
+   "掛到": {
+    "id": "action/board-bf-moon-dock-parts",
+    "接口": "渡月港契約／修船件捎運",
+    "lore": [
+     "place/tranquility-repair-dock",
+     "place/ferry-nostos"
+    ],
+    "節點主線年表": "D；2066渡月航路定班；N07；底色1.2",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "從靜海送回檢修的普通修船件已落地，鹽針正攀卸料坡；工班尚未撤離，現在要頂住八回合。",
+    "光": "白色船腹映著卸料人影；「架可以再搭，人先退！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/brinepin",
+     "monster": "base:monster/brinepin-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "survive",
+      "params": {
+       "rounds": 8
+      }
+     }
+    },
+    "敘事邊界": "塞勒涅白手套作地球收貨雇主，不新增靜海修船塢營運勢力；不生成護送工人或貨物單位。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dock-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/actions/board-rival-carcass-claim.json",
+    "接入": "每日段2世界牌競抽；posted設下只表示投遞一次，不保證雇主尚存或發包成功",
+    "欄位定案": {
+     "id": "action/board-bf-moon-dock-parts",
+     "actor": "world",
+     "valid": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 5
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.bf-posted-moon-dock-parts"
+         },
+         "op": "==",
+         "b": 0
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "campaign.factions.base:faction-ops/selene-whitegloves.rep"
+         },
+         "op": ">=",
+         "b": -5
+        }
+       }
+      ]
+     },
+     "weight": 100,
+     "cooldownDays": 8,
+     "effects": [
+      {
+       "spawnContract": "contract/bf-moon-dock-parts",
+       "near": "place/singapore"
+      },
+      {
+       "flag": "bf-posted-moon-dock-parts",
+       "value": 1
+      }
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/encounters/rift-z-bf-moon-dark-parts.json",
+   "類別": "encounters",
+   "名稱": "暗面備件急交：擊破砂扇・戰場",
+   "白話": "暗面普通備件隨正班船落地，砂扇堵住交貨口；鹽鷗代找獵團清路。",
+   "掛到": {
+    "id": "encounter/rift-z-bf-moon-dark-parts",
+    "接口": "暗面走私／暗面捎貨",
+    "lore": [
+     "event/dark-run-under-bow",
+     "place/dark-quay-night-slip"
+    ],
+    "節點主線年表": "D；2097封鎖、2107藏燈之盟；N04、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "備件依附正式船班抵新加坡，接貨班正被砂扇攤開的棘面擋住；鹽鷗獵團臨時轉包岸邊清路，只為這趟貨。",
+    "光": "貨車推入渡月船退去的白光；「天路借到了，地上這一步打出來！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/grit-fan",
+     "monster": "base:monster/grit-fan-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "killTarget",
+      "params": {
+       "target": "monster/grit-fan-d"
+      }
+     }
+    },
+    "敘事邊界": "鹽鷗只是本次地球轉包窗口，不宣告與暗面結盟；聲望只記鹽鷗。普通備件沒有古代機、活獸或魂核；沒有獨立航路。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dark-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/encounters/insect-shallow.json",
+    "接入": "僅同組contract.encounter明指，不新增species白名單假欄，不接通用裂縫池",
+    "欄位定案": {
+     "id": "encounter/rift-z-bf-moon-dark-parts",
+     "family": "insect",
+     "depth": "shallow",
+     "size": {
+      "w": 10,
+      "h": 20
+     },
+     "terrainMix": [
+      {
+       "terrain": "$node",
+       "w": 3
+      },
+      {
+       "terrain": "terrain/erosion",
+       "w": 1
+      }
+     ],
+     "budgetByGrade": {
+      "D": 2,
+      "C": 1
+     },
+     "anchorHere": false
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/contracts/bf-moon-dark-parts.json",
+   "類別": "contracts",
+   "名稱": "暗面備件急交：擊破砂扇",
+   "白話": "暗面普通備件隨正班船落地，砂扇堵住交貨口；鹽鷗代找獵團清路。",
+   "掛到": {
+    "id": "contract/bf-moon-dark-parts",
+    "接口": "暗面走私／暗面捎貨",
+    "lore": [
+     "event/dark-run-under-bow",
+     "place/dark-quay-night-slip"
+    ],
+    "節點主線年表": "D；2097封鎖、2107藏燈之盟；N04、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "備件依附正式船班抵新加坡，接貨班正被砂扇攤開的棘面擋住；鹽鷗獵團臨時轉包岸邊清路，只為這趟貨。",
+    "光": "貨車推入渡月船退去的白光；「天路借到了，地上這一步打出來！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/grit-fan",
+     "monster": "base:monster/grit-fan-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "killTarget",
+      "params": {
+       "target": "monster/grit-fan-d"
+      }
+     }
+    },
+    "敘事邊界": "鹽鷗只是本次地球轉包窗口，不宣告與暗面結盟；聲望只記鹽鷗。普通備件沒有古代機、活獸或魂核；沒有獨立航路。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dark-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/contracts/scout-rift-margin.json",
+    "接入": {
+     "牌": "action/board-bf-moon-dark-parts",
+     "雇主": "faction-ops/salt-gull-hunters",
+     "落點": "place/singapore"
+    },
+    "欄位定案": {
+     "id": "contract/bf-moon-dark-parts",
+     "kind": "scout",
+     "issuerKinds": [
+      "band"
+     ],
+     "requiresRep": -10,
+     "gradeRange": [
+      "D",
+      "C"
+     ],
+     "objectives": [
+      {
+       "kind": "killTarget",
+       "params": {
+        "target": "monster/grit-fan-d"
+       }
+      }
+     ],
+     "pay": {
+      "base": 3600
+     },
+     "advanceMax": 0.2,
+     "deadlineDays": 5,
+     "supplies": [],
+     "onComplete": [
+      {
+       "rep": {
+        "issuer": 5
+       }
+      }
+     ],
+     "onFail": [
+      {
+       "rep": {
+        "issuer": -5
+       }
+      }
+     ],
+     "onCancel": [
+      {
+       "rep": {
+        "issuer": -3
+       }
+      }
+     ],
+     "annoyanceMax": 4,
+     "name": "暗面備件急交：擊破砂扇",
+     "encounter": [
+      "encounter/rift-z-bf-moon-dark-parts"
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/actions/board-bf-moon-dark-parts.json",
+   "類別": "actions",
+   "名稱": "暗面備件急交：擊破砂扇・發包",
+   "白話": "暗面普通備件隨正班船落地，砂扇堵住交貨口；鹽鷗代找獵團清路。",
+   "掛到": {
+    "id": "action/board-bf-moon-dark-parts",
+    "接口": "暗面走私／暗面捎貨",
+    "lore": [
+     "event/dark-run-under-bow",
+     "place/dark-quay-night-slip"
+    ],
+    "節點主線年表": "D；2097封鎖、2107藏燈之盟；N04、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "備件依附正式船班抵新加坡，接貨班正被砂扇攤開的棘面擋住；鹽鷗獵團臨時轉包岸邊清路，只為這趟貨。",
+    "光": "貨車推入渡月船退去的白光；「天路借到了，地上這一步打出來！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/grit-fan",
+     "monster": "base:monster/grit-fan-d",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "killTarget",
+      "params": {
+       "target": "monster/grit-fan-d"
+      }
+     }
+    },
+    "敘事邊界": "鹽鷗只是本次地球轉包窗口，不宣告與暗面結盟；聲望只記鹽鷗。普通備件沒有古代機、活獸或魂核；沒有獨立航路。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-dark-parts",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/actions/board-rival-carcass-claim.json",
+    "接入": "每日段2世界牌競抽；posted設下只表示投遞一次，不保證雇主尚存或發包成功",
+    "欄位定案": {
+     "id": "action/board-bf-moon-dark-parts",
+     "actor": "world",
+     "valid": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 12
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.bf-posted-moon-dark-parts"
+         },
+         "op": "==",
+         "b": 0
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "campaign.factions.base:faction-ops/salt-gull-hunters.rep"
+         },
+         "op": ">=",
+         "b": -10
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.farside-prices-known"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       }
+      ]
+     },
+     "weight": 100,
+     "cooldownDays": 8,
+     "effects": [
+      {
+       "spawnContract": "contract/bf-moon-dark-parts",
+       "near": "place/singapore"
+      },
+      {
+       "flag": "bf-posted-moon-dark-parts",
+       "value": 1
+      }
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/encounters/rift-z-bf-moon-white-cargo.json",
+   "類別": "encounters",
+   "名稱": "白甲候卸：抱樁下守住泊位・戰場",
+   "白話": "抱樁攀上白甲候卸的港岸，鐵偶對獸無用；你守住泊位讓搬工撤開。",
+   "掛到": {
+    "id": "encounter/rift-z-bf-moon-white-cargo",
+    "接口": "渡月港契約／白甲下船",
+    "lore": [
+     "event/whitegloves-come-ashore",
+     "place/white-armour-loading-hall"
+    ],
+    "節點主線年表": "D；2105白手套事變→2107信貸協定；N07、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "新加坡待卸的是無核心鐵偶，岸邊抱樁逼近搬工；守區六回合讓人撤開，鐵偶不入己方編成、不對獸使招式。",
+    "光": "一排白甲停在船光邊緣，搬工仰頭吼「白甲站住，活人先走！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/breakwater-clinger",
+     "monster": "base:monster/breakwater-clinger-c",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "hold",
+      "params": {
+       "rounds": 6
+      }
+     }
+    },
+    "敘事邊界": "白甲是背景貨物，不是可玩機體；不是重打罷工，也不是護送目標的假完成。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-white-cargo",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/encounters/rift-alien-shallow.json",
+    "接入": "僅同組contract.encounter明指，不新增species白名單假欄，不接通用裂縫池",
+    "欄位定案": {
+     "id": "encounter/rift-z-bf-moon-white-cargo",
+     "family": "alien",
+     "depth": "shallow",
+     "size": {
+      "w": 10,
+      "h": 16
+     },
+     "terrainMix": [
+      {
+       "terrain": "terrain/shard-mirror",
+       "w": 2
+      },
+      {
+       "terrain": "$node",
+       "w": 3
+      },
+      {
+       "terrain": "terrain/erosion",
+       "w": 1
+      }
+     ],
+     "budgetByGrade": {
+      "D": 2,
+      "C": 1
+     },
+     "anchorHere": false
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/contracts/bf-moon-white-cargo.json",
+   "類別": "contracts",
+   "名稱": "白甲候卸：抱樁下守住泊位",
+   "白話": "抱樁攀上白甲候卸的港岸，鐵偶對獸無用；你守住泊位讓搬工撤開。",
+   "掛到": {
+    "id": "contract/bf-moon-white-cargo",
+    "接口": "渡月港契約／白甲下船",
+    "lore": [
+     "event/whitegloves-come-ashore",
+     "place/white-armour-loading-hall"
+    ],
+    "節點主線年表": "D；2105白手套事變→2107信貸協定；N07、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "新加坡待卸的是無核心鐵偶，岸邊抱樁逼近搬工；守區六回合讓人撤開，鐵偶不入己方編成、不對獸使招式。",
+    "光": "一排白甲停在船光邊緣，搬工仰頭吼「白甲站住，活人先走！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/breakwater-clinger",
+     "monster": "base:monster/breakwater-clinger-c",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "hold",
+      "params": {
+       "rounds": 6
+      }
+     }
+    },
+    "敘事邊界": "白甲是背景貨物，不是可玩機體；不是重打罷工，也不是護送目標的假完成。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-white-cargo",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/contracts/defend-citywall.json",
+    "接入": {
+     "牌": "action/board-bf-moon-white-cargo",
+     "雇主": "faction-ops/selene-whitegloves",
+     "落點": "place/singapore"
+    },
+    "欄位定案": {
+     "id": "contract/bf-moon-white-cargo",
+     "kind": "defend",
+     "issuerKinds": [
+      "company"
+     ],
+     "requiresRep": -5,
+     "gradeRange": [
+      "D",
+      "C"
+     ],
+     "objectives": [
+      {
+       "kind": "hold",
+       "params": {
+        "rounds": 6
+       }
+      },
+      {
+       "kind": "killTarget",
+       "params": {
+        "target": "monster/breakwater-clinger-c"
+       },
+       "optional": true
+      }
+     ],
+     "pay": {
+      "base": 3400
+     },
+     "advanceMax": 0.4,
+     "deadlineDays": 8,
+     "supplies": [],
+     "onComplete": [
+      {
+       "rep": {
+        "issuer": 5
+       }
+      }
+     ],
+     "onFail": [
+      {
+       "rep": {
+        "issuer": -5
+       }
+      }
+     ],
+     "onCancel": [
+      {
+       "rep": {
+        "issuer": -3
+       }
+      }
+     ],
+     "annoyanceMax": 2,
+     "name": "白甲候卸：抱樁下守住泊位",
+     "encounter": [
+      "encounter/rift-z-bf-moon-white-cargo"
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/actions/board-bf-moon-white-cargo.json",
+   "類別": "actions",
+   "名稱": "白甲候卸：抱樁下守住泊位・發包",
+   "白話": "抱樁攀上白甲候卸的港岸，鐵偶對獸無用；你守住泊位讓搬工撤開。",
+   "掛到": {
+    "id": "action/board-bf-moon-white-cargo",
+    "接口": "渡月港契約／白甲下船",
+    "lore": [
+     "event/whitegloves-come-ashore",
+     "place/white-armour-loading-hall"
+    ],
+    "節點主線年表": "D；2105白手套事變→2107信貸協定；N07、N09",
+    "遊戲地點": "base:place/singapore",
+    "此刻理由": "新加坡待卸的是無核心鐵偶，岸邊抱樁逼近搬工；守區六回合讓人撤開，鐵偶不入己方編成、不對獸使招式。",
+    "光": "一排白甲停在船光邊緣，搬工仰頭吼「白甲站住，活人先走！」",
+    "限額核心畫面": "無；不用拓本、鞋、碗湯飯、繩纜、空擔架、空座",
+    "出場怪獸": {
+     "species": "base:species/breakwater-clinger",
+     "monster": "base:monster/breakwater-clinger-c",
+     "生態位": "地球海岸／港口",
+     "指定方式": "contract.objectives killTarget.params.target；optional亦展開，已在場則匹配、否則補入",
+     "伴隨與總數": "指定encounter使width=D；先生成同族D×2，D目標缺席才補故2–3隻，C目標必補故3隻；C:1預算此路徑不執行",
+     "主目標": {
+      "kind": "hold",
+      "params": {
+       "rounds": 6
+      }
+     }
+    },
+    "敘事邊界": "白甲是背景貨物，不是可玩機體；不是重打罷工，也不是護送目標的假完成。",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     },
+     {
+      "file": "content/base/world/factions-ops/selene-whitegloves.json",
+      "jsonPath": "$.contractKinds",
+      "op": "append",
+      "value": "contract/bf-moon-white-cargo",
+      "why": "只加指定雇主；不改actionLanes、territory或presence"
+     }
+    ],
+    "黃金": "接線後改抽牌與契約軌跡；未套port tag前休眠",
+    "範本": "content/base/world/actions/board-rival-carcass-claim.json",
+    "接入": "每日段2世界牌競抽；posted設下只表示投遞一次，不保證雇主尚存或發包成功",
+    "欄位定案": {
+     "id": "action/board-bf-moon-white-cargo",
+     "actor": "world",
+     "valid": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 19
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.bf-posted-moon-white-cargo"
+         },
+         "op": "==",
+         "b": 0
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "campaign.factions.base:faction-ops/selene-whitegloves.rep"
+         },
+         "op": ">=",
+         "b": -5
+        }
+       }
+      ]
+     },
+     "weight": 100,
+     "cooldownDays": 8,
+     "effects": [
+      {
+       "spawnContract": "contract/bf-moon-white-cargo",
+       "near": "place/singapore"
+      },
+      {
+       "flag": "bf-posted-moon-white-cargo",
+       "value": 1
+      }
+     ]
+    }
+   }
+  },
+  {
+   "檔": "content/base/world/events/port-bf-moon-return-light.json",
+   "類別": "events",
+   "名稱": "望鄉號抵港人潮",
+   "白話": "回程工人在船光裡踏上地球；你可出錢替散開的人潮標出出口。",
+   "掛到": {
+    "id": "event/port-bf-moon-return-light",
+    "接口": "渡月港／回程人潮",
+    "lore": [
+     "place/ferry-nostos",
+     "event/return-fare-queue"
+    ],
+    "節點主線年表": "D；2107票價調整；N09",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-tide-street-sermon.json",
+    "欄位定案": {
+     "id": "event/port-bf-moon-return-light",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 5
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-port-bf-moon-return-light"
+         },
+         "op": "==",
+         "b": 0
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "讓出出口看人潮散開",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-return-light",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "付100現金畫出口標記（全員士氣+1）",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-return-light",
+         "value": 1
+        },
+        {
+         "ledger": {
+          "account": "cash",
+          "delta": -100,
+          "reason": "event-moon-return-light"
+         }
+        },
+        {
+         "mood": {
+          "all": 1
+         }
+        }
+       ],
+       "requires": {
+        "cmp": {
+         "a": {
+          "ref": "ledger.balances.cash"
+         },
+         "op": ">=",
+         "b": 100
+        }
+       }
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你在新加坡看回程工人跨下踏板；退去的白光將每個影子拉長。有人學起2107那句「這次換月亮送我走！」現在只呈現抵港人潮，去程貴、回程便宜作來客談資，不計人口去向、不改票價。",
+     "氣味": "密封衣的舊布味",
+     "聲音": "舷梯腳步與呼喊",
+     "不解釋名詞": "望鄉號"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "無",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/events/port-bf-moon-white-steps.json",
+   "類別": "events",
+   "名稱": "白甲踏下舷梯",
+   "白話": "白手套鐵偶在新加坡攔貨；你可公開替搬工出聲，換來好感也惹惱催收方。",
+   "掛到": {
+    "id": "event/port-bf-moon-white-steps",
+    "接口": "白手套催收",
+    "lore": [
+     "event/whitegloves-come-ashore"
+    ],
+    "節點主線年表": "D；2107信貸協定；N09",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-selene-courtesy.json",
+    "欄位定案": {
+     "id": "event/port-bf-moon-white-steps",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 12
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-port-bf-moon-white-steps"
+         },
+         "op": "==",
+         "b": 0
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "退到搬工身後等放行",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-white-steps",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "喊先讓人過（白手套聲望-2、全員士氣+1）",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-white-steps",
+         "value": 1
+        },
+        {
+         "rep": {
+          "faction-ops/selene-whitegloves": -2
+         }
+        },
+        {
+         "mood": {
+          "all": 1
+         }
+        }
+       ]
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你看白手套鐵偶沿新加坡舷梯排開，船光在白甲上連成一線；搬工停手等放行。催收通告是轉來的聲音，鐵偶無魂、無核心、無怪招式；場面延續2107既有事件，不重排第一通催收。第二選項是你喊「收貨可以，先讓人過！」並承擔關係代價，沒有取消任何欠債。",
+     "氣味": "港口油味",
+     "聲音": "白甲落地聲與催收通告",
+     "不解釋名詞": "白手套"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "無",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/events/news-bf-moon-two-strikes.json",
+   "類別": "events",
+   "名稱": "兩次罷工的白甲",
+   "白話": "港口放映兩次罷工舊影：人駕白甲變成鐵偶；你可出錢讓人群把口號聽完。",
+   "掛到": {
+    "id": "event/news-bf-moon-two-strikes",
+    "接口": "罷工新聞／罷工舊影",
+    "lore": [
+     "event/moonbow-silent-line",
+     "event/whitewall-at-gate"
+    ],
+    "節點主線年表": "D；2098靜海大罷工、2105白手套事變；N04→N07",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-tide-street-sermon.json",
+    "欄位定案": {
+     "id": "event/news-bf-moon-two-strikes",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 19
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-news-bf-moon-two-strikes"
+         },
+         "op": "==",
+         "b": 0
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "記下年份離開放映處",
+       "effects": [
+        {
+         "flag": "seen-news-bf-moon-two-strikes",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "付100現金續放舊影（全員士氣+1）",
+       "effects": [
+        {
+         "flag": "seen-news-bf-moon-two-strikes",
+         "value": 1
+        },
+        {
+         "ledger": {
+          "account": "cash",
+          "delta": -100,
+          "reason": "event-moon-two-strikes"
+         }
+        },
+        {
+         "mood": {
+          "all": 1
+         }
+        }
+       ],
+       "requires": {
+        "cmp": {
+         "a": {
+          "ref": "ledger.balances.cash"
+         },
+         "op": ">=",
+         "b": 100
+        }
+       }
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你在新加坡看船員帶來的兩段舊影：2098人駕的無核心女武神保全機原型逼退人牆，2105無人無魂鐵偶踏出白光；兩段都沿原結局。保留人喊「井裡有人，別叫我們回去！」的聲音，不讓玩家救回歷史死傷或重打一場勝仗。",
+     "氣味": "潮濕布幕味",
+     "聲音": "舊影口號",
+     "不解釋名詞": "月弓"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "無",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/events/news-bf-moon-dark-lamps.json",
+   "類別": "events",
+   "名稱": "暗埠收燈的後話",
+   "白話": "暗埠局部查貨的消息傳來，備件延誤；你可催本船加班補缺，付出士氣。",
+   "掛到": {
+    "id": "event/news-bf-moon-dark-lamps",
+    "接口": "暗面走私／收燈之後",
+    "lore": [
+     "event/dark-quay-inspection",
+     "place/dark-quay-night-slip"
+    ],
+    "節點主線年表": "D；2107藏燈之盟後局部查貨；N04、N09",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-tide-street-sermon.json",
+    "欄位定案": {
+     "id": "event/news-bf-moon-dark-lamps",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 26
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-news-bf-moon-dark-lamps"
+         },
+         "op": "==",
+         "b": 0
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.farside-prices-known"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "記下缺件等下一批",
+       "effects": [
+        {
+         "flag": "seen-news-bf-moon-dark-lamps",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "催修繕班補缺（全員士氣-1、技術工時+3）",
+       "effects": [
+        {
+         "flag": "seen-news-bf-moon-dark-lamps",
+         "value": 1
+        },
+        {
+         "mood": {
+          "all": -1
+         }
+        },
+        {
+         "techHours": 3
+        }
+       ]
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你在新加坡聽熟面孔說起2107那次查貨，舊影只到暗埠外側入口：白甲截住黃燈，搬工喊「收燈，人先散！」再退開。部分普通備件被扣，暗埠仍開；不揭2105止步之謎、不宣布全網覆滅。眼前一批替代備件尚未到齊，第二選項是本船加班整理修繕。",
+     "氣味": "舊機油味",
+     "聲音": "貨車輪與轉述口號",
+     "不解釋名詞": "暗埠"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "無",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/events/port-bf-moon-earthward-screen.json",
+   "類別": "events",
+   "名稱": "巨幕裡的地球",
+   "白話": "返港搬景工放出長廊舊影，地球被框成私景；你可耗材換一堂搭架課。",
+   "掛到": {
+    "id": "event/port-bf-moon-earthward-screen",
+    "接口": "渡月港／穹頂換景",
+    "lore": [
+     "place/earthward-gallery"
+    ],
+    "節點主線年表": "D；2092財閥上月；底色1.2、1.13D",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-tide-street-sermon.json",
+    "欄位定案": {
+     "id": "event/port-bf-moon-earthward-screen",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 19
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-port-bf-moon-earthward-screen"
+         },
+         "op": "==",
+         "b": 0
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "看完長廊影像收起投影",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-earthward-screen",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "拿2廢料學退架（技術工時+5）",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-earthward-screen",
+         "value": 1
+        },
+        {
+         "ledger": {
+          "account": "stock:scrap",
+          "delta": -2,
+          "reason": "event-moon-earthward-screen"
+         }
+        },
+        {
+         "techHours": 5
+        }
+       ],
+       "requires": {
+        "cmp": {
+         "a": {
+          "ref": "ledger.balances.stock:scrap"
+         },
+         "op": ">=",
+         "b": 2
+        }
+       }
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你在新加坡看搬景工攤開工作影像：望地長廊的巨幕升起，整顆地球倒在鏡面，主人抬手便遮去搬工的故鄉。返港工人當場示範退架手勢；花錢的人不點名，不造品牌，也不把巨幕當拓本。第二選項提供本船耗材請工人教安全退架。",
+     "氣味": "幕布灰味",
+     "聲音": "幕架滑動聲",
+     "不解釋名詞": "望地長廊"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "無",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/events/port-bf-moon-letter-light.json",
+   "類別": "events",
+   "名稱": "候領封套隨光到岸",
+   "白話": "候領處受託寄來一封家書；你可付地球轉交費，沒回音仍不能算死訊。",
+   "掛到": {
+    "id": "event/port-bf-moon-letter-light",
+    "接口": "渡月港／一次家書轉交",
+    "lore": [
+     "place/lunar-letter-counter"
+    ],
+    "節點主線年表": "D；2066渡月航路定班；N09；底色1.8",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/events/news-tide-street-sermon.json",
+    "欄位定案": {
+     "id": "event/port-bf-moon-letter-light",
+     "where": "node",
+     "when": {
+      "all": [
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.month"
+         },
+         "op": ">=",
+         "b": 1
+        }
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "calendar.dom"
+         },
+         "op": "==",
+         "b": 26
+        }
+       },
+       {
+        "tag": "bf-receive-singapore"
+       },
+       {
+        "cmp": {
+         "a": {
+          "ref": "flags.seen-port-bf-moon-letter-light"
+         },
+         "op": "==",
+         "b": 0
+        }
+       }
+      ]
+     },
+     "weight": 2,
+     "choices": [
+      {
+       "text": "把封套交還受託船員",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-letter-light",
+         "value": 1
+        }
+       ]
+      },
+      {
+       "text": "付100現金託人轉交（全員士氣+1）",
+       "effects": [
+        {
+         "flag": "seen-port-bf-moon-letter-light",
+         "value": 1
+        },
+        {
+         "ledger": {
+          "account": "cash",
+          "delta": -100,
+          "reason": "event-moon-letter-light"
+         }
+        },
+        {
+         "mood": {
+          "all": 1
+         }
+        }
+       ],
+       "requires": {
+        "cmp": {
+         "a": {
+          "ref": "ledger.balances.cash"
+         },
+         "op": ">=",
+         "b": 100
+        }
+       }
+      }
+     ]
+    },
+    "text規格": {
+     "字數": "60–160字",
+     "口吻": "第二人稱、現在式；具名人物不入text；歷史影像明寫年份，不冒充當日月面直播",
+     "方向": "你在新加坡接到當事人授權自靜海家書候領處轉寄的封套，渡月船退去的光把紙邊照成一道白線。船員喊「向地球，交到手裡！」天網仍通；不拆信、不推定收件人死亡。拒接就交還受託船員；付費只委託地球送信人轉交，不承諾下一封回信或新增投遞任務。",
+     "氣味": "乾紙味",
+     "聲音": "離港號與船員喊聲",
+     "不解釋名詞": "靜海家書候領處"
+    },
+    "光": "奇觀或吼句均由text方向落地",
+    "限額核心畫面": "家書一次，僅重用候領處掛點",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "接port tag後進事件池；每個選項均seen，不能循環刷收益"
+   }
+  },
+  {
+   "檔": "content/base/world/dialogues/bf-ren-kasai-moon-dock-command.json",
+   "類別": "dialogues",
+   "名稱": "蓮的撤架令",
+   "白話": "蓮學月面工班吼撤架，嘴上嫌排場大，轉身先把擋路的人推開。",
+   "掛到": {
+    "id": "dialogue/bf-ren-kasai-moon-dock-command",
+    "接口": "渡月港／修船件捎運",
+    "lore": [
+     "place/tranquility-repair-dock"
+    ],
+    "節點主線年表": "D；N07；底色1.2",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/dialogues/ren-kasai-empty-chair.json",
+    "欄位定案": {
+     "id": "dialogue/bf-ren-kasai-moon-dock-command",
+     "person": "person/ren-kasai",
+     "topics": [
+      {
+       "topic": "蓮的撤架令",
+       "when": {
+        "all": [
+         {
+          "cmp": {
+           "a": {
+            "ref": "calendar.month"
+           },
+           "op": ">=",
+           "b": 1
+          }
+         },
+         {
+          "tag": "bf-receive-singapore"
+         },
+         {
+          "cmp": {
+           "a": {
+            "ref": "flags.dlg-bf-ren-kasai-moon-dock-command"
+           },
+           "op": "==",
+           "b": 0
+          }
+         }
+        ]
+       },
+       "lines": [
+        "你學起月面工班的撤架令。蓮把眉一挑。",
+        "「船能亮半片天，撤架還不是靠嗓子。這活我熟。」",
+        "「架可以再搭，人先退！……別光看我，你也退。」"
+       ],
+       "choices": [
+        {
+         "text": "聽完回去當班",
+         "effects": [
+          {
+           "flag": "dlg-bf-ren-kasai-moon-dock-command",
+           "value": 1
+          }
+         ]
+        },
+        {
+         "text": "跟他把撤架手勢演完（本人士氣+1）",
+         "effects": [
+          {
+           "flag": "dlg-bf-ren-kasai-moon-dock-command",
+           "value": 1
+          },
+          {
+           "mood": {
+            "person/ren-kasai": 1
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "接入": "同船實例在名冊且同房間才可talk；bf前置排序，一個topic、兩choice都seen，無永真後話；01–07已成立話題可能先出，有限次談完可輪到本題",
+    "光": "工班／開船的吼句與白甲畫面，脾氣見lines",
+    "限額核心畫面": "無；不寫空位或空座",
+    "敘事邊界": "只談在新加坡聽到或看到的事，不指稱月面具名人物當日在場；不替罕見機魂增造複本",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "不耗抽話題RNG；接tag後晚期talk改旗標和士氣，未talk軌跡預期不變"
+   }
+  },
+  {
+   "檔": "content/base/world/dialogues/bf-ilse-brandt-moon-departure-command.json",
+   "類別": "dialogues",
+   "名稱": "鐵姨的開船令",
+   "白話": "伊爾瑟學望鄉號開船令，笑罵窮船也有嗓門；人沒退完，她照樣不開船。",
+   "掛到": {
+    "id": "dialogue/bf-ilse-brandt-moon-departure-command",
+    "接口": "渡月港／開船令",
+    "lore": [
+     "place/ferry-nostos",
+     "faction/lunar-ferry-crews"
+    ],
+    "節點主線年表": "D；2066定班；N09",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/dialogues/ilse-brandt-hull-oath.json",
+    "欄位定案": {
+     "id": "dialogue/bf-ilse-brandt-moon-departure-command",
+     "person": "person/ilse-brandt",
+     "topics": [
+      {
+       "topic": "鐵姨的開船令",
+       "when": {
+        "all": [
+         {
+          "cmp": {
+           "a": {
+            "ref": "calendar.month"
+           },
+           "op": ">=",
+           "b": 1
+          }
+         },
+         {
+          "tag": "bf-receive-singapore"
+         },
+         {
+          "cmp": {
+           "a": {
+            "ref": "flags.dlg-bf-ilse-brandt-moon-departure-command"
+           },
+           "op": "==",
+           "b": 0
+          }
+         }
+        ]
+       },
+       "lines": [
+        "你學望鄉號船員喊「踏板收，向地球！」",
+        "伊爾瑟笑出聲：「咱們沒那道白光，嗓門倒不用付錢。」",
+        "「人還在踏板上就別收。等他下來，老娘陪你吼。」"
+       ],
+       "choices": [
+        {
+         "text": "聽完回去當班",
+         "effects": [
+          {
+           "flag": "dlg-bf-ilse-brandt-moon-departure-command",
+           "value": 1
+          }
+         ]
+        },
+        {
+         "text": "等撤人手勢再跟她喊開船（本人士氣+1）",
+         "effects": [
+          {
+           "flag": "dlg-bf-ilse-brandt-moon-departure-command",
+           "value": 1
+          },
+          {
+           "mood": {
+            "person/ilse-brandt": 1
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "接入": "同船實例在名冊且同房間才可talk；bf前置排序，一個topic、兩choice都seen，無永真後話；01–07已成立話題可能先出，有限次談完可輪到本題",
+    "光": "工班／開船的吼句與白甲畫面，脾氣見lines",
+    "限額核心畫面": "無；不寫空位或空座",
+    "敘事邊界": "只談在新加坡聽到或看到的事，不指稱月面具名人物當日在場；不替罕見機魂增造複本",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "不耗抽話題RNG；接tag後晚期talk改旗標和士氣，未talk軌跡預期不變"
+   }
+  },
+  {
+   "檔": "content/base/world/dialogues/bf-mara-okoye-moon-white-armour.json",
+   "類別": "dialogues",
+   "名稱": "瑪拉看白甲",
+   "白話": "瑪拉盯著下船白甲，罵漂亮鎧甲不會救搬工；別把空鐵偶當成有魂的人。",
+   "掛到": {
+    "id": "dialogue/bf-mara-okoye-moon-white-armour",
+    "接口": "白手套催收／白甲下船",
+    "lore": [
+     "event/whitegloves-come-ashore",
+     "place/white-armour-loading-hall"
+    ],
+    "節點主線年表": "D；2107信貸協定；N07、N09",
+    "遊戲地點": "base:place/singapore",
+    "範本": "content/base/world/dialogues/mara-okoye-spare-hand.json",
+    "欄位定案": {
+     "id": "dialogue/bf-mara-okoye-moon-white-armour",
+     "person": "person/mara-okoye",
+     "topics": [
+      {
+       "topic": "瑪拉看白甲",
+       "when": {
+        "all": [
+         {
+          "cmp": {
+           "a": {
+            "ref": "calendar.month"
+           },
+           "op": ">=",
+           "b": 1
+          }
+         },
+         {
+          "tag": "bf-receive-singapore"
+         },
+         {
+          "cmp": {
+           "a": {
+            "ref": "flags.dlg-bf-mara-okoye-moon-white-armour"
+           },
+           "op": "==",
+           "b": 0
+          }
+         }
+        ]
+       },
+       "lines": [
+        "你說白甲走得像同一個人。瑪拉把手往你眼前一拍。",
+        "「看清楚，空的。轉來一句催款聲，也不會多長一顆魂。」",
+        "「白甲站住，活人先走！要我教它們幾遍？」"
+       ],
+       "choices": [
+        {
+         "text": "聽完回去當班",
+         "effects": [
+          {
+           "flag": "dlg-bf-mara-okoye-moon-white-armour",
+           "value": 1
+          }
+         ]
+        },
+        {
+         "text": "陪她把搬工通道讓出來（本人士氣+1）",
+         "effects": [
+          {
+           "flag": "dlg-bf-mara-okoye-moon-white-armour",
+           "value": 1
+          },
+          {
+           "mood": {
+            "person/mara-okoye": 1
+           }
+          }
+         ]
+        }
+       ]
+      }
+     ]
+    },
+    "接入": "同船實例在名冊且同房間才可talk；bf前置排序，一個topic、兩choice都seen，無永真後話；01–07已成立話題可能先出，有限次談完可輪到本題",
+    "光": "工班／開船的吼句與白甲畫面，脾氣見lines",
+    "限額核心畫面": "無；不寫空位或空座",
+    "敘事邊界": "只談在新加坡聽到或看到的事，不指稱月面具名人物當日在場；不替罕見機魂增造複本",
+    "插入需求": [
+     {
+      "file": "content/base/world/places/singapore.json",
+      "jsonPath": "$.tags",
+      "op": "append",
+      "value": "bf-receive-singapore",
+      "why": "僅地球新加坡港啟用；與01–07同值去重"
+     }
+    ],
+    "黃金": "不耗抽話題RNG；接tag後晚期talk改旗標和士氣，未talk軌跡預期不變"
+   }
+  }
+ ]
+}

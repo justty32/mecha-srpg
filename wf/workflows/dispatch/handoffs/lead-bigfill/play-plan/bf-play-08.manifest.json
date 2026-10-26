@@ -1,0 +1,143 @@
+{
+  "contract": "content-batch/1",
+  "id": "bf-play-08",
+  "mode": "add",
+  "status": "draft",
+  "goal": "地球新加坡港承接月面lore；3組契約、6事件、3對話，共18檔",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-bf-play-08",
+    "subagents": "上限1；親讀同規則、不擴批；重負載限制相同",
+    "plan": {
+      "model": "gpt-6-astra",
+      "line": "cx-bf-play-moonplan",
+      "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/cx-bf-play-08.md"
+    }
+  },
+  "lead": "lead-bigfill",
+  "date": "2026-10-26",
+  "base": "TBD",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-08",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-08/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/ops-content.md",
+      "wf/workflows/content/world-pillars.md",
+      "content/lore/style.md",
+      "content/lore/style/people.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/play-rulings.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/moon-rulings.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/cx-bf-play-08.md",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/bf-play-08.manifest.json",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/moon-hooks-review.json",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/ops-hooks.json",
+      "wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/review-draft.json"
+    ]
+  },
+  "maxFiles": 18,
+  "allow": {
+    "kinds": [
+      "base/world/contracts",
+      "base/world/encounters",
+      "base/world/actions",
+      "base/world/events",
+      "base/world/dialogues"
+    ],
+    "namePrefix": {
+      "base/world/contracts": "bf-moon-",
+      "base/world/encounters": "rift-z-bf-moon-",
+      "base/world/actions": "board-bf-moon-",
+      "base/world/dialogues": "bf-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "readlist"
+  ],
+  "checkNotes": {
+    "ops": "產出工人在worktree跑 node src/ops/content/check.ts content/base；任何node檢查前先pgrep，忙則等。",
+    "test": "bf-common重負載限制優先：工人不跑npm test、e2e、sim、fuzz、content_accept；全套由領導收件後統一跑一次。",
+    "lore": "本批不產lore，無lore檢查。",
+    "probe": "本批不產戰鬥單位，不跑probe。",
+    "playtest": "不使用MCP或GUI。",
+    "golden": "接入bf-receive-singapore與contractKinds後影響世界抽選／新契約；一次性對話有條件改state。工人不更新期望或重錄；領導整批接線後統一驗證，不把未套inserts的綠燈當完成接入。"
+  },
+  "probe": {
+    "n": 5,
+    "reference": [],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-08/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-08/mcp-log"
+  },
+  "files": [
+    "content/base/world/encounters/rift-z-bf-moon-dock-parts.json",
+    "content/base/world/contracts/bf-moon-dock-parts.json",
+    "content/base/world/actions/board-bf-moon-dock-parts.json",
+    "content/base/world/encounters/rift-z-bf-moon-dark-parts.json",
+    "content/base/world/contracts/bf-moon-dark-parts.json",
+    "content/base/world/actions/board-bf-moon-dark-parts.json",
+    "content/base/world/encounters/rift-z-bf-moon-white-cargo.json",
+    "content/base/world/contracts/bf-moon-white-cargo.json",
+    "content/base/world/actions/board-bf-moon-white-cargo.json",
+    "content/base/world/events/port-bf-moon-return-light.json",
+    "content/base/world/events/port-bf-moon-white-steps.json",
+    "content/base/world/events/news-bf-moon-two-strikes.json",
+    "content/base/world/events/news-bf-moon-dark-lamps.json",
+    "content/base/world/events/port-bf-moon-earthward-screen.json",
+    "content/base/world/events/port-bf-moon-letter-light.json",
+    "content/base/world/dialogues/bf-ren-kasai-moon-dock-command.json",
+    "content/base/world/dialogues/bf-ilse-brandt-moon-departure-command.json",
+    "content/base/world/dialogues/bf-mara-okoye-moon-white-armour.json"
+  ],
+  "ids": [
+    "encounter/rift-z-bf-moon-dock-parts",
+    "contract/bf-moon-dock-parts",
+    "action/board-bf-moon-dock-parts",
+    "encounter/rift-z-bf-moon-dark-parts",
+    "contract/bf-moon-dark-parts",
+    "action/board-bf-moon-dark-parts",
+    "encounter/rift-z-bf-moon-white-cargo",
+    "contract/bf-moon-white-cargo",
+    "action/board-bf-moon-white-cargo",
+    "event/port-bf-moon-return-light",
+    "event/port-bf-moon-white-steps",
+    "event/news-bf-moon-two-strikes",
+    "event/news-bf-moon-dark-lamps",
+    "event/port-bf-moon-earthward-screen",
+    "event/port-bf-moon-letter-light",
+    "dialogue/bf-ren-kasai-moon-dock-command",
+    "dialogue/bf-ilse-brandt-moon-departure-command",
+    "dialogue/bf-mara-okoye-moon-white-armour"
+  ],
+  "acceptance": {},
+  "rounds": [],
+  "gateRejections": [],
+  "deprecated": [],
+  "planning": {
+    "golden": "接入bf-receive-singapore與contractKinds後影響世界抽選／新契約；一次性對話有條件改state。工人不更新期望或重錄；領導整批接線後統一驗證，不把未套inserts的綠燈當完成接入。",
+    "reviewRows": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/moon-hooks-review.json",
+    "plannedFiles": 18,
+    "ready": "領導填base、預置worktree與正式manifest後才派產出；月面lore合併同入庫；inserts套入後才稱地球可遇到",
+    "headObserved": "8a48e7ef3e982b278e382d8a166cfc05a8564428",
+    "interfaces": [
+      "渡月港契約",
+      "暗面走私",
+      "白手套催收",
+      "罷工新聞"
+    ],
+    "worktree": "/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/0f9b4c05-fb1f-4c91-bdb2-4d3d26486a03/scratchpad/lead-bigfill/wt-bf-play-08/"
+  }
+}

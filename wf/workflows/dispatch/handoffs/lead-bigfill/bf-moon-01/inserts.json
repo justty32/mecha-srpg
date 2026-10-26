@@ -1,0 +1,49 @@
+{
+ "contract": "wf-table/1",
+ "source": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/cx-bf-moon-01.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/factions/selene.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/tranquility-ferry-port",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/factions/ground-union.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/tranquility-ferry-port",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/factions/ground-union.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/prism-stair",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/factions/ground-union.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/moonbow-shift-house",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/places/tranquility-city.json",
+   "jsonPath": "$.factions",
+   "op": "append",
+   "value": "faction/dome-households",
+   "why": "補匿名住戶群像，不改公司實質統治"
+  }
+ ]
+}

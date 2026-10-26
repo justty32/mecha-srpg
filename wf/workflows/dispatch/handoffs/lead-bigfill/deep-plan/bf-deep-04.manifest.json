@@ -1,0 +1,188 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-04",
+ "mode": "add",
+ "status": "draft",
+ "goal": "非洲／西亞人物與事件加深，新增10件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-04",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-04",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-04/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/alien-hollow-sail.json",
+   "content/base/bodyplans/alien-paired-wake.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/species/hollow-sail.json",
+   "content/base/species/paired-wake.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/lore/characters/wanjiku-kamau.json",
+   "content/lore/eras/league.json",
+   "content/lore/factions/accra.json",
+   "content/lore/factions/nairobi.json",
+   "content/lore/factions/north-africa-umbrella.json",
+   "content/lore/factions/west-asia-umbrella.json",
+   "content/lore/places/accra.json",
+   "content/lore/places/aswan.json",
+   "content/lore/places/djibouti.json",
+   "content/lore/places/dubai.json",
+   "content/lore/places/rift-valley-seat.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-04.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/esi-ampofo.json",
+  "content/lore/events/accra-open-throat.json",
+  "content/lore/characters/aden-hersi.json",
+  "content/lore/events/djibouti-crossed-shadows.json",
+  "content/lore/events/aswan-stone-singing.json",
+  "content/lore/events/aswan-hand-above-water.json",
+  "content/lore/events/dubai-tidal-visor.json",
+  "content/lore/events/dubai-last-shadow.json",
+  "content/lore/characters/nali-otieno.json",
+  "content/lore/places/rift-valley-bone-echo.json"
+ ],
+ "ids": [
+  "character/esi-ampofo",
+  "event/accra-open-throat",
+  "character/aden-hersi",
+  "event/djibouti-crossed-shadows",
+  "event/aswan-stone-singing",
+  "event/aswan-hand-above-water",
+  "event/dubai-tidal-visor",
+  "event/dubai-last-shadow",
+  "character/nali-otieno",
+  "place/rift-valley-bone-echo"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/esi-ampofo",
+    "nameZh": "埃西・安波福",
+    "meaning": "埃西把阿克拉門外的人護在機腹後，喊「退進來，別替我死！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/accra-open-throat",
+    "nameZh": "城門放聲",
+    "meaning": "阿克拉孩子不敢穿過門影，民兵把「回家的人不用低頭！」吼過整條街。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/aden-hersi",
+    "nameZh": "阿登・赫爾西",
+    "meaning": "阿登聽見破船裡還有人，將機掌壓進船腹，喊「海別想替你收聲！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/djibouti-crossed-shadows",
+    "nameZh": "吉布地錯影",
+    "meaning": "雙影的厚臂先出海，裸核卻從另一邊亮起，岸上人把兩個輪廓認成一隻。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/aswan-stone-singing",
+    "nameZh": "亞斯文石聲",
+    "meaning": "亞斯文搬石工喊「把河留給後人！」，機甲踏著號子把護岸石送回缺口。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/aswan-hand-above-water",
+    "nameZh": "河上托掌",
+    "meaning": "亞斯文岸邊滑塌，護運駕駛舉起整片機掌，喊「站住，我在下面！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/dubai-tidal-visor",
+    "nameZh": "杜拜浪面",
+    "meaning": "杜拜海側空樓前，空帆一硬一空的翼影把沙地切成明暗兩半。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/dubai-last-shadow",
+    "nameZh": "最後一片門影",
+    "meaning": "杜拜回收隊將機甲留在最後一片門影，吼「空城也要帶人回去！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/nali-otieno",
+    "nameZh": "娜莉・奧蒂諾",
+    "meaning": "娜莉看見孩子手裡的骸片亮起，仍喊「先放下，先活著！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/rift-valley-bone-echo",
+    "nameZh": "座外骨鳴崗",
+    "meaning": "恩凱骨縫裡的長鳴穿過崖崗，來朝訪的人終於抬頭看見那排巨骨。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

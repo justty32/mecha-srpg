@@ -1,0 +1,59 @@
+{
+ "contract": "wf-table/1",
+ "source": "../deep-plan/cx-bf-deep-01.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/timeline.json",
+   "jsonPath": "$.entries[122]",
+   "op": "setKey",
+   "value": {
+    "event": "event/bell-cliff-shattered-lights"
+   },
+   "why": "既有同夜不重複加列；合併時以 date=2105、title=仙台外崖燈盞盡碎，內港換班未斷 重定位，只在event缺鍵時新增，已有異值交領導裁定。"
+  },
+  {
+   "file": "content/lore/factions/japan-umbrella.json",
+   "jsonPath": "$",
+   "op": "setKey",
+   "value": {
+    "places": [
+     "place/sendai-low-eaves"
+    ]
+   },
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  },
+  {
+   "file": "content/lore/factions/shell-wardens.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/golmud-dawn-recess",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  },
+  {
+   "file": "content/lore/factions/shell-society.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/golmud-dawn-recess",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  },
+  {
+   "file": "content/lore/characters/kim-haneul.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/han-bora",
+    "relation": "地方往來",
+    "note": "金河娜經過古陵時認得修鼓人，韓寶羅留在空陵照看訪客。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  }
+ ]
+}

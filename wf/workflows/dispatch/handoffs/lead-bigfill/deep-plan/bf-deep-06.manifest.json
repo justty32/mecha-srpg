@@ -1,0 +1,200 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-06",
+ "mode": "add",
+ "status": "draft",
+ "goal": "海上與殘聯（環太平洋）人物與事件加深，新增10件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-06",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-06",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-06/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/alien-dusk-fold.json",
+   "content/base/bodyplans/alien-hollow-sail.json",
+   "content/base/bodyplans/beast-trench-maw.json",
+   "content/base/bodyplans/insect-brinepin.json",
+   "content/base/bodyplans/insect-lantern-keel.json",
+   "content/base/bodyplans/insect-needle-rack.json",
+   "content/base/bodyplans/insect-silt-mother.json",
+   "content/base/bodyplans/insect-sluice-mother.json",
+   "content/base/bodyplans/quadruped-beast.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/species/brinepin.json",
+   "content/base/species/dusk-fold.json",
+   "content/base/species/hollow-sail.json",
+   "content/base/species/lantern-keel.json",
+   "content/base/species/needle-rack.json",
+   "content/base/species/silt-mother.json",
+   "content/base/species/sluice-mother.json",
+   "content/base/species/tidewolf.json",
+   "content/base/species/trench-maw.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/sydney.json",
+   "content/lore/places/auckland-empty-berths.json",
+   "content/lore/places/auckland.json",
+   "content/lore/places/batangas-outer-sluices.json",
+   "content/lore/places/makassar.json",
+   "content/lore/places/uluru-heart.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-06.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/yani-saleh.json",
+  "content/lore/events/makassar-mud-brood.json",
+  "content/lore/events/makassar-spark-keel.json",
+  "content/lore/events/batangas-wing-rain.json",
+  "content/lore/events/batangas-third-closure.json",
+  "content/lore/places/batangas-needle-ledge.json",
+  "content/lore/events/auckland-hollow-overhead.json",
+  "content/lore/events/auckland-dusk-canopy.json",
+  "content/lore/places/auckland-maw-shelf.json",
+  "content/lore/characters/mara-keene.json"
+ ],
+ "ids": [
+  "character/yani-saleh",
+  "event/makassar-mud-brood",
+  "event/makassar-spark-keel",
+  "event/batangas-wing-rain",
+  "event/batangas-third-closure",
+  "place/batangas-needle-ledge",
+  "event/auckland-hollow-overhead",
+  "event/auckland-dusk-canopy",
+  "place/auckland-maw-shelf",
+  "character/mara-keene"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/yani-saleh",
+    "nameZh": "雅妮・薩利赫",
+    "meaning": "雅妮在望加錫開護航機守住船頭，吼「破船也有船頭！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/makassar-mud-brood",
+    "nameZh": "望加錫泥口",
+    "meaning": "泥母在望加錫海灘張開單囊口，鹽針從泥背下湧出，修船者立刻停工。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/makassar-spark-keel",
+    "nameZh": "船底再鳴",
+    "meaning": "望加錫破船的修造聲壓過風聲，雅妮帶頭吼「把這條船敲回海上！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/batangas-wing-rain",
+    "nameZh": "八打雁翼雨",
+    "meaning": "八打雁外閘上空，燈腹的亮囊排成低低一片，光滴落在舊閘輪上。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/batangas-third-closure",
+    "nameZh": "第三回閉港",
+    "meaning": "閘母的囊閘堵住八打雁外渠，搬運者喊「閉港千扉！」，只守住內岸路。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/batangas-needle-ledge",
+    "nameZh": "八打雁懸矢檐",
+    "meaning": "八打雁海側的矢櫛伏在高檐，背矢架張開時，整條外岸先聽見刮響。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/auckland-hollow-overhead",
+    "nameZh": "奧克蘭缺帆",
+    "meaning": "奧克蘭回收隊抬頭看見空帆，半邊硬帆遮天，另半邊像被海風掏空。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/auckland-dusk-canopy",
+    "nameZh": "舊船覆幕夜",
+    "meaning": "垂幕的三處亮核升在空船旁，回收者把掩舟暮帷的名字帶回奧克蘭內泊。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/auckland-maw-shelf",
+    "nameZh": "奧克蘭顎影岸",
+    "meaning": "奧克蘭外泊岸下，淵顎的溝甲先露出水面，深處張口才讓人看見牠有多大。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/mara-keene",
+    "nameZh": "瑪拉・基恩",
+    "meaning": "瑪拉看著紅心露脊由紅轉綠，站到來客前喊「看見，不等於拿走！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

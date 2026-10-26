@@ -1,0 +1,189 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "南亞人物與事件加深，新增10件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-02",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/mycel-reed-lace.json",
+   "content/base/bodyplans/quadruped-beast.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/species/reed-lace.json",
+   "content/base/species/tidewolf.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/lore/eras/league.json",
+   "content/lore/factions/bay-seventh-post.json",
+   "content/lore/factions/dhaka-weavers.json",
+   "content/lore/factions/mumbai-returners.json",
+   "content/lore/factions/tide-creed.json",
+   "content/lore/places/bay-tide-line.json",
+   "content/lore/places/dhaka-sail-court.json",
+   "content/lore/places/dhaka.json",
+   "content/lore/places/khulna.json",
+   "content/lore/places/mumbai-gate.json",
+   "content/lore/places/surat-key-court.json",
+   "content/lore/places/surat.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-02.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/rupa-das.json",
+  "content/lore/events/sail-ribs-hold-the-sky.json",
+  "content/lore/characters/sajid-ali.json",
+  "content/lore/events/khulna-reed-mouth.json",
+  "content/lore/characters/anaya-patel.json",
+  "content/lore/events/surat-voices-on-the-slope.json",
+  "content/lore/characters/bina-sen.json",
+  "content/lore/events/seventh-post-salt-jaws.json",
+  "content/lore/events/mumbai-ash-halo.json",
+  "content/lore/places/mumbai-resonant-wall.json"
+ ],
+ "ids": [
+  "character/rupa-das",
+  "event/sail-ribs-hold-the-sky",
+  "character/sajid-ali",
+  "event/khulna-reed-mouth",
+  "character/anaya-patel",
+  "event/surat-voices-on-the-slope",
+  "character/bina-sen",
+  "event/seventh-post-salt-jaws",
+  "event/mumbai-ash-halo",
+  "place/mumbai-resonant-wall"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/rupa-das",
+    "nameZh": "魯帕・達斯",
+    "meaning": "魯帕托起塌向補天院的帆骨，明知誇張仍喊「借我一片天！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/sail-ribs-hold-the-sky",
+    "nameZh": "帆骨撐天",
+    "meaning": "補天院的破帆壓下來，院內工匠把「撐到人走完！」喊成一聲。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/sajid-ali",
+    "nameZh": "薩吉德・阿里",
+    "meaning": "薩吉德對著庫爾納空街喊「有活口，就回聲！」，再把機甲轉進死巷。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/khulna-reed-mouth",
+    "nameZh": "庫爾納蘆口",
+    "meaning": "若淡水渠裡的蘆網結成白冠，打撈者會在庫爾納死巷前折返。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/anaya-patel",
+    "nameZh": "阿娜雅・帕特爾",
+    "meaning": "阿娜雅把還想返戰場的傷兵拖回蘇拉特，喊「罵我也得活著罵！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/surat-voices-on-the-slope",
+    "nameZh": "坡上還聲",
+    "meaning": "蘇拉特後送拖架滑向斜坡，傷兵把「我還在！」一聲聲吼給駕駛。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/bina-sen",
+    "nameZh": "比娜・森",
+    "meaning": "比娜拖著裂盾還敢喊「缺口算我的！」，把退潮的哨線守到換班。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/seventh-post-salt-jaws",
+    "nameZh": "第七哨白齒",
+    "meaning": "C級潮狼的牙從浪裡一排排露出，比娜拖著裂盾替換防隊擋住缺口。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/mumbai-ash-halo",
+    "nameZh": "門內灰虹",
+    "meaning": "孟買門的朝聖者隔著灰霧看見一圈暗紅光，爭著說那就是迦梨。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/mumbai-resonant-wall",
+    "nameZh": "孟買聽壁",
+    "meaning": "門外殘牆的骸片泛出紫光，等候者把掌心懸在牆前，沒有拿走它。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

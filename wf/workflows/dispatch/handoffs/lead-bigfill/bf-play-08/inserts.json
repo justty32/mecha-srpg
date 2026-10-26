@@ -1,0 +1,42 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/base/world/places/singapore.json",
+   "jsonPath": "$.tags",
+   "op": "append",
+   "value": "bf-receive-singapore",
+   "why": "僅地球新加坡港啟用；與01–07同值去重"
+  },
+  {
+   "file": "content/base/world/factions-ops/selene-whitegloves.json",
+   "jsonPath": "$.contractKinds",
+   "op": "append",
+   "value": "contract/bf-moon-dock-parts",
+   "why": "只加指定雇主；不改actionLanes、territory或presence"
+  },
+  {
+   "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+   "jsonPath": "$.contractKinds",
+   "op": "append",
+   "value": "contract/bf-moon-dark-parts",
+   "why": "只加指定雇主；不改actionLanes、territory或presence"
+  },
+  {
+   "file": "content/base/world/factions-ops/selene-whitegloves.json",
+   "jsonPath": "$.contractKinds",
+   "op": "append",
+   "value": "contract/bf-moon-white-cargo",
+   "why": "只加指定雇主；不改actionLanes、territory或presence"
+  }
+ ]
+}

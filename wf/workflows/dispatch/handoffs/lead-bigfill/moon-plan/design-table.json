@@ -1,0 +1,2242 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "batch",
+  "id",
+  "type",
+  "name",
+  "position",
+  "hook",
+  "visibility",
+  "occurs",
+  "timeline-add",
+  "inserts",
+  "terms",
+  "nameEn",
+  "namingMeaning",
+  "file",
+  "bodyPoints",
+  "fields",
+  "tone",
+  "timeline-note"
+ ],
+ "rows": [
+  {
+   "batch": "bf-moon-01",
+   "id": "place/tranquility-ferry-port",
+   "type": "地點",
+   "name": "靜海渡月港",
+   "position": "渡月船拖光尾落進靜海，地勤舉起雙臂，把離家的人接進白城。",
+   "hook": "D；2066 定班、2096 赤道港協定；N07",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/selene.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/tranquility-ferry-port",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    },
+    {
+     "file": "content/lore/factions/ground-union.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/tranquility-ferry-port",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "靜海渡月港（提案）",
+   "nameEn": "Tranquility Arrival",
+   "namingMeaning": "渡月船拖光尾落進靜海，地勤舉起雙臂，把離家的人接進白城。",
+   "file": "content/lore/places/tranquility-ferry-port.json",
+   "bodyPoints": [
+    "從渡月船落架寫起，光尾把整片灰原照白，地勤舉臂指向泊位。",
+    "旅客在密封踏板上分流，富客有人領路，返工者自己扛行李；畫面只收在港。",
+    "它是既有靜海市港區的近景，不增第四個地球港、不取代城市主檔。",
+    "七號回港只提原事件留下的空泊位記憶，不再演一次回港或新增醒魂。"
+   ],
+   "fields": {
+    "region": "月面・靜海市港區",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "港",
+    "status2108": "弦月通航，地勤在白光中接班",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union",
+     "faction/whitegloves"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "渡月船拖光尾落架，灰原與接船者的雙臂一同亮起。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "place/earthward-gallery",
+   "type": "地點",
+   "name": "望地長廊",
+   "position": "富戶把整顆地球框進長廊，受僱者抬著巨幕，把別人的故鄉遮住。",
+   "hook": "D；2041 靜海市、2092 財閥上月；magnates",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "望地長廊（提案）",
+   "nameEn": "Terra Framed",
+   "namingMeaning": "富戶把整顆地球框進長廊，受僱者抬著巨幕，把別人的故鄉遮住。",
+   "file": "content/lore/places/earthward-gallery.json",
+   "bodyPoints": [
+    "先讓巨幕沿長廊升起，窗框像宮門，懸在黑天的地球成了廳內最大的畫。",
+    "廳裡的鏡面把藍光折成長河，住戶為一次迎客就讓受僱者重排整座廳。",
+    "錢表現在能獨占景色與耗費人力，不列價格，不點名富戶或公司品牌。",
+    "散場時工人把幕落回去，地球仍懸在原處；靜海不寫成日常地球升落。"
+   ],
+   "fields": {
+    "region": "月面・靜海市觀景穹頂",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "住戶宴會與迎客時局部專用",
+    "factions": [
+     "faction/selene"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "地球被宮門般的窗框與鏡面長河包圍。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": true
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "place/prism-stair",
+   "type": "地點",
+   "name": "分光階",
+   "position": "穹頂的七色光落在侍役搬景的階上，台上換一個白晝，階下便換一班人。",
+   "hook": "D；2092 財閥上月；底色 1.2、1.13 D",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/ground-union.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/prism-stair",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "分光階（提案）",
+   "nameEn": "Prismatic Stair",
+   "namingMeaning": "穹頂的七色光落在侍役搬景的階上，台上換一個白晝，階下便換一班人。",
+   "file": "content/lore/places/prism-stair.json",
+   "bodyPoints": [
+    "彩色幕片從階頂放下，穹頂白光被切成滿階色帶，搬景工沿光帶向上走。",
+    "此處是住宅穹頂的內勤通道，連到接待廳與花房，不是新城市或神祕設施。",
+    "富戶想換季就換布景，侍役的汗與同一張排班單留在階下。",
+    "艾拉先把笨重幕架接住再放同伴通過，光很奢侈，承重的仍是人的肩。"
+   ],
+   "fields": {
+    "region": "月面・靜海市住宅穹頂內勤層",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "受僱者輪班搬景，階頂接住戶廳堂",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "搬景工沿穹頂分出的七色光帶上階。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "place/moonbow-shift-house",
+   "type": "地點",
+   "name": "月弓換班屋",
+   "position": "月弓的光環逐節亮起，換班屋裡的人先喊清場，再看月壤奔向地球。",
+   "hook": "D；2043 月弓初射、2098 罷工；N04",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/ground-union.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/moonbow-shift-house",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "月弓換班屋（提案）",
+   "nameEn": "Bow Watch",
+   "namingMeaning": "月弓的光環逐節亮起，換班屋裡的人先喊清場，再看月壤奔向地球。",
+   "file": "content/lore/places/moonbow-shift-house.json",
+   "bodyPoints": [
+    "窗外光環接連亮起，屋裡的人把當班手牌翻面，喊「弓要開了，退線！」。",
+    "從這道窗看月壤拖光遠去，不解釋月弓的機制或速度。",
+    "舊屋在靜海西緣維修區，兩次停機留下空手牌；不改停機時長。",
+    "下一班接住手牌，寫工人敬畏自己照看的巨弓，也知道它不會替人爭待遇。"
+   ],
+   "fields": {
+    "region": "月面・靜海西緣月弓維修區",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "仍在換班，持工牌出入",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "月弓光環逐節亮起，月壤拖光奔向地球。",
+    "shout": "弓要開了，退線！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "place/lunar-glass-garden",
+   "type": "地點",
+   "name": "穹頂花房",
+   "position": "巨樹的枝冠在穹頂藍光裡連成異鄉，園丁從樹影下推過自己的工具車。",
+   "hook": "D；2092 財閥上月；magnates 三股資本",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "穹頂花房（提案）",
+   "nameEn": "Canopy of Exiles",
+   "namingMeaning": "巨樹的枝冠在穹頂藍光裡連成異鄉，園丁從樹影下推過自己的工具車。",
+   "file": "content/lore/places/lunar-glass-garden.json",
+   "bodyPoints": [
+    "富戶把故鄉的樹移到月面，枝冠連成遮住廳頂的林，穹頂藍光在葉間碎成星。",
+    "花房屬住宅區，沒有新增月面氣候或能養活全城的農業奇蹟。",
+    "三股資本各留一片舊庭院，名字不出場，園丁每日穿過不屬於自己的樹影。",
+    "韓妍讓工具車繞過垂枝；昂貴的故鄉由領薪的人維持，古代機與長生藥不涉入。"
+   ],
+   "fields": {
+    "region": "月面・靜海市住宅穹頂",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "富戶的移植庭園，園丁輪值",
+    "factions": [
+     "faction/selene"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "穹頂藍光穿過巨樹枝冠，葉影碎成星。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "faction/dome-households",
+   "type": "勢力",
+   "name": "穹頂住戶",
+   "position": "同一顆地球照著各家的舞廳，主人隔窗舉手，管家替他們把門打開。",
+   "hook": "D；N04、N09；magnates 穹頂下的錢",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/places/tranquility-city.json",
+     "jsonPath": "$.factions",
+     "op": "append",
+     "value": "faction/dome-households",
+     "why": "補匿名住戶群像，不改公司實質統治"
+    }
+   ],
+   "terms": "穹頂住戶（提案）",
+   "nameEn": "Dome Households",
+   "namingMeaning": "同一顆地球照著各家的舞廳，主人隔窗舉手，管家替他們把門打開。",
+   "file": "content/lore/factions/dome-households.json",
+   "bodyPoints": [
+    "從相鄰穹頂同時亮起的舞廳寫群像，有人不看地球，有人整夜要窗前留空。",
+    "歐洲老錢、美國上月的資本與韓國財閥各自持有錢；合稱不是新公司或統一議會。",
+    "受僱管事與保全替住戶開門，塞勒涅是中型管家公司，不變成操縱世界的幕後首腦。",
+    "封鎖後住戶也害怕月面破裂；不讓他們知道人口真相，更不讓財富買到恩底彌翁的回應。"
+   ],
+   "fields": {
+    "type": "其他",
+    "scale": "三股匿名資本的月面住戶群像，沒有共同首領",
+    "founded": "崩年陸續上月，非成立日",
+    "hq": "靜海市住宅穹頂",
+    "ideology": "窗外是地球，門內是家。",
+    "places": [
+     "place/lunar-glass-garden",
+     "place/earthward-gallery"
+    ],
+    "relations": [
+     {
+      "faction": "faction/selene",
+      "stance": "友好",
+      "note": "各家委託公司照管生活與款項，錢不歸公司統一持有。"
+     },
+     {
+      "faction": "faction/ground-union",
+      "stance": "緊張",
+      "note": "靠受僱者維持穹頂，對工人的態度並不一致。"
+     }
+    ],
+    "leaders": [],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "相鄰穹頂的舞廳一齊亮起，藍色地球映在每一道窗。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "character/eira-vey",
+   "type": "人物",
+   "name": "艾拉・維伊",
+   "position": "艾拉在地球藍光裡截住滑落的巨幕，喊人退開；她管一座廳，錢卻不歸她。",
+   "hook": "D；N09；底色 1.2、1.13 D",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "艾拉・維伊（提案）",
+   "nameEn": "Eira Vey",
+   "namingMeaning": "艾拉在地球藍光裡截住滑落的巨幕，喊人退開；她管一座廳，錢卻不歸她。",
+   "file": "content/lore/characters/eira-vey.json",
+   "bodyPoints": [
+    "先寫她在分光階托住滑下的幕架，喊「讓開，我接著！」，同伴才得以抽身。",
+    "她是領薪的宅邸管事，負責廳堂與換景，沒有家族繼承權、股權或放款權。",
+    "她能讓一場迎客準時開門，不能讓主人替受傷侍役多付一筆錢。",
+    "望地長廊的藍光照著她重新站回門旁；她的果斷只及於身邊這班人。"
+   ],
+   "fields": {
+    "born": "2071",
+    "faction": "faction/selene",
+    "role": "住宅穹頂受僱管事",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/han-yeon",
+      "relation": "同事",
+      "note": "共同維持廳堂與花房，都是領薪者。"
+     }
+    ],
+    "events": [
+     "event/rain-under-glass"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "地球藍光照著托住巨幕的管事。",
+    "shout": "讓開，我接著！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "character/han-yeon",
+   "type": "人物",
+   "name": "韓妍",
+   "position": "韓妍攀上穹頂樹冠剪去病枝，身後是整片藍色地球，腳下是別人的故鄉。",
+   "hook": "D；2092 財閥上月；底色 1.4、1.8",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "韓妍（提案）",
+   "nameEn": "Han Yeon",
+   "namingMeaning": "韓妍攀上穹頂樹冠剪去病枝，身後是整片藍色地球，腳下是別人的故鄉。",
+   "file": "content/lore/characters/han-yeon.json",
+   "bodyPoints": [
+    "她從枝架間接住落枝，手勢叫同伴避開，藍色地球的光穿過她身後的葉。",
+    "她隨受僱工作來月面，照顧移植巨樹，不是富戶親族，也沒有新公司。",
+    "住戶要樹冠永遠像崩前，她知道樹會病、工人會累，庭園並不會把過去變回來。",
+    "她在玻璃雨宴後先照看被壓折的枝，不替任何家族把園丁的勞動署成主人恩賜。"
+   ],
+   "fields": {
+    "born": "2068",
+    "faction": null,
+    "role": "穹頂花房受僱園丁",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/eira-vey",
+      "relation": "同事",
+      "note": "管事調換景班，她管樹冠與植栽。"
+     }
+    ],
+    "events": [
+     "event/rain-under-glass"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "園丁立在樹冠間，背後一片地球藍光。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "character/lin-shuqin",
+   "type": "人物",
+   "name": "林淑琴",
+   "position": "罷工後林淑琴敲響飯盆，朝月弓復亮的窗喊：活著的，坐過來！",
+   "hook": "D；2098 靜海大罷工、2105 白手套事變；N07",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "林淑琴（提案）",
+   "nameEn": "Lin Shuqin",
+   "namingMeaning": "罷工後林淑琴敲響飯盆，朝月弓復亮的窗喊：活著的，坐過來！",
+   "file": "content/lore/characters/lin-shuqin.json",
+   "bodyPoints": [
+    "本計畫唯一以吃食為核心的一件：復工後她把飯盆敲響，喊「活著的，坐過來！」。",
+    "月弓的光重回窗上，傷者伸手接飯，她不把復亮當成工人贏了。",
+    "她是地勤會普通炊事員，不代替朴仁哲領導、洩影像或定死者名單。",
+    "以她一面催人吃、一面為下一班留位置收尾；不另開飯堂地點與吃飯事件來重複此畫面。"
+   ],
+   "fields": {
+    "born": "2059",
+    "faction": "faction/ground-union",
+    "role": "地勤會炊事員",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/park-incheol",
+      "relation": "工會同伴",
+      "note": "聽過兩次罷工的號召，沒有領導職。"
+     }
+    ],
+    "events": [
+     "event/tranquility-strike",
+     "event/whiteglove-incident"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "復亮月弓的光照進傷者接飯的窗。",
+    "shout": "活著的，坐過來！",
+    "restrictedCore": "吃食",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "event/rain-under-glass",
+   "type": "事件",
+   "name": "玻璃上的雨",
+   "position": "富戶為一夜歡宴落下滿廳光雨，侍役在地球的倒影裡把巨幕拉到天頂。",
+   "hook": "D；2092 財閥上月；magnates",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "玻璃上的雨（提案）",
+   "nameEn": "Rain of Glass",
+   "namingMeaning": "富戶為一夜歡宴落下滿廳光雨，侍役在地球的倒影裡把巨幕拉到天頂。",
+   "file": "content/lore/events/rain-under-glass.json",
+   "bodyPoints": [
+    "財閥上月後的一場宴，以艾拉帶人把巨幕升到廳頂開場，地球的倒影鋪滿腳下。",
+    "花房的水沿高玻璃落下，穹頂光把水痕照成銀色長雨，住戶在雨影裡起舞。",
+    "核心是舞廳、光雨與造景人力，不寫菜餚、酒杯或後廚；錢讓人能在月上買一場故鄉雨。",
+    "韓妍照看被布景壓折的枝，宴後工人拆回景片；不命名主人，不把雨寫成月面天候或古代異能。"
+   ],
+   "fields": {
+    "date": "2092",
+    "period": "era/mimic-dawn",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/dome-households"
+    ],
+    "characters": [
+     "character/eira-vey",
+     "character/han-yeon"
+    ],
+    "places": [
+     "place/earthward-gallery",
+     "place/lunar-glass-garden",
+     "place/prism-stair"
+    ],
+    "consequences": [
+     "受僱者記住了為一夜歡宴搭起整片雨景的工作。",
+     "移植庭園與迎客廳成了上月富戶維持舊生活的舞台。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "整廳光雨與腳下地球倒影，巨幕被拉到天頂。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": true
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "event/moonbow-silent-line",
+   "type": "事件",
+   "name": "弓前不返工",
+   "position": "月弓停亮後，地勤在人駕白甲前喊不返工，最後先退的是血肉那一排。",
+   "hook": "D；2098 靜海大罷工；N04→N07",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "弓前不返工（提案）",
+   "nameEn": "Before the Silent Bow",
+   "namingMeaning": "月弓停亮後，地勤在人駕白甲前喊不返工，最後先退的是血肉那一排。",
+   "file": "content/lore/events/moonbow-silent-line.json",
+   "bodyPoints": [
+    "把鏡頭限在2098既有港口鎮壓的一段：月弓暗在遠方，人牆與白色盾列相對。",
+    "人群喊「井裡有人，別叫我們回去！」，對面仍是有人坐在座艙裡的無核心女武神原型。",
+    "盾向前，人群先退；工人扶著同伴退離通道，不新增反殺、死亡名單或反敗為勝。",
+    "收束到原事件的罷工終結、輪班縮短與影像外洩，不重定先後細節，不把人駕原型改成鐵偶。"
+   ],
+   "fields": {
+    "date": "2098",
+    "period": "era/yoke-years",
+    "kind": "政治",
+    "factions": [
+     "faction/ground-union",
+     "faction/whitegloves",
+     "faction/selene"
+    ],
+    "characters": [],
+    "places": [
+     "place/tranquility-city",
+     "place/moonbow"
+    ],
+    "consequences": [
+     "港口人牆被盾列逼退，仍沿靜海大罷工既有結局。",
+     "不新增勝敗、死傷數或輪班讓步。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "b"
+    ],
+    "lightShot": "停亮的月弓在遠方，人牆喊聲撞上白色盾列。",
+    "shout": "井裡有人，別叫我們回去！",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-01",
+   "id": "event/whitewall-at-gate",
+   "type": "事件",
+   "name": "白牆先踏一步",
+   "position": "鐵偶從港閘白光裡踏出，人牆喊別退；凡鐵矢落下，地勤先退進維修井。",
+   "hook": "D；2105 白手套事變；N07",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "白牆先踏一步（提案）",
+   "nameEn": "The White Wall Steps",
+   "namingMeaning": "鐵偶從港閘白光裡踏出，人牆喊別退；凡鐵矢落下，地勤先退進維修井。",
+   "file": "content/lore/events/whitewall-at-gate.json",
+   "bodyPoints": [
+    "取2105罷工弦月夜港口進場的一刻，白手套無人鐵偶從閘光裡列成白牆。",
+    "地勤喊「人還在這裡，別退！」，鐵偶同聲通告「請確認償還意願」，不是機魂合唱或招式。",
+    "依原史凡鐵矢落向工具、門與腿，人牆先退入月弓維修井；不寫成擊潰鐵偶或逼公司認輸。",
+    "後果接原事件的通氣閥被關、罷工被鎮壓與朴仁哲失去一腿；不補斷腿機制，不揭搬魂秘密，不給後方操作者新面孔。"
+   ],
+   "fields": {
+    "date": "2105",
+    "period": "era/tide-line",
+    "kind": "戰役",
+    "factions": [
+     "faction/ground-union",
+     "faction/whitegloves",
+     "faction/selene"
+    ],
+    "characters": [
+     "character/park-incheol"
+    ],
+    "places": [
+     "place/tranquility-ferry-port",
+     "place/moonbow"
+    ],
+    "consequences": [
+     "地勤先退進維修井，沿白手套事變原有敗局。",
+     "這一刻留下人牆面對無魂鐵偶的記憶，不另立戰役。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "鐵偶從港閘白光中列隊踏出，凡鐵矢打散工具。",
+    "shout": "人還在這裡，別退！",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "place/ferry-nostos",
+   "type": "地點",
+   "name": "望鄉號",
+   "position": "望鄉號從赤道港拖光尾升起，窗裡的人看著地球漸小，月亮漸滿。",
+   "hook": "D；2066 定班、2096 赤道港協定；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/selene.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/ferry-nostos",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "望鄉號（提案）",
+   "nameEn": "Nostos",
+   "namingMeaning": "望鄉號從赤道港拖光尾升起，窗裡的人看著地球漸小，月亮漸滿。",
+   "file": "content/lore/places/ferry-nostos.json",
+   "bodyPoints": [
+    "先寫船離開赤道港的一刻，光尾穿過星哨與墳帶，乘客貼窗看地球退遠。",
+    "它只是塞勒涅現役渡月船的一艘，母港靜海、輪值既有三港，不另建公司或獨立航路。",
+    "弦月開船、單程三天，窄艙裡富客與搬工各守自己的位置，船名不替所有旅人承諾返鄉。",
+    "不追認它是2066首航船，不佔老鴿未指名的固定座位，不改拘束艙不得登船的規矩。"
+   ],
+   "fields": {
+    "region": "地月之間・既有渡月航路",
+    "continent": "軌道",
+    "world": "orbit",
+    "kind": "船",
+    "status2108": "現役定班船，母港靜海",
+    "factions": [
+     "faction/selene"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "渡月船",
+     "航程"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "赤道港光尾升空，窗外地球漸小、月亮漸滿。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "place/tranquility-repair-dock",
+   "type": "地點",
+   "name": "靜海修船塢",
+   "position": "渡月船在塢裡展開白色艙板，工人站在巨影下喊撤架，讓它再升上黑天。",
+   "hook": "D；2066 定班；N07；底色 1.2",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/ground-union.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/tranquility-repair-dock",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "靜海修船塢（提案）",
+   "nameEn": "White Hull Dock",
+   "namingMeaning": "渡月船在塢裡展開白色艙板，工人站在巨影下喊撤架，讓它再升上黑天。",
+   "file": "content/lore/places/tranquility-repair-dock.json",
+   "bodyPoints": [
+    "白色艙板沿吊架展開，修船工的影子被船腹照得細小，寫手勢與巨物同框。",
+    "船塢位於靜海既有港區，不另建自治港，也不羅列維修機制。",
+    "莎拉確認門能閉合才喊「架撤了，人先走！」，工人逐個離架，船才被交回當班船員。",
+    "罷工曾讓吊架空停；今日再送船起落，不代表工作條件已經變好。"
+   ],
+   "fields": {
+    "region": "月面・靜海港既有修造區",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "港",
+    "status2108": "依弦月班期修造，地勤人手不足",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "白艙板展如翼，塢工撤架後船影升向黑天。",
+    "shout": "架撤了，人先走！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "place/lunar-letter-counter",
+   "type": "地點",
+   "name": "靜海家書候領處",
+   "position": "渡月船升空的光掃過候領櫃，沒人來取的家書仍朝地球擺著。",
+   "hook": "D；2066 定班；底色 1.8；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "靜海家書候領處（提案）",
+   "nameEn": "Letters in Departure Light",
+   "namingMeaning": "渡月船升空的光掃過候領櫃，沒人來取的家書仍朝地球擺著。",
+   "file": "content/lore/places/lunar-letter-counter.json",
+   "bodyPoints": [
+    "本計畫唯一以家書為核心的一件：船起飛的光掃過窄櫃，未領封套像一排朝向地球的小窗。",
+    "這是靜海港既有候船區的便民櫃，人們要摸到親人的筆跡，不是天網消失。",
+    "匿名值班人按舊約繼續保管未領物，不據此替地球人物立傳或判定生死。",
+    "光退後封套仍留著；不把它改成暗面售名處、不新增鞋與食物意象。"
+   ],
+   "fields": {
+    "region": "月面・靜海港候船區",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "弦月前後領取，未領物繼續保管",
+    "factions": [
+     "faction/selene"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "渡月船升空的光掃過朝向地球的未領封套。",
+    "shout": "",
+    "restrictedCore": "家書",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "faction/lunar-ferry-crews",
+   "type": "勢力",
+   "name": "渡月船員",
+   "position": "開船令從艙首傳到艙尾，渡月船員把同一船人的姓名喊進離港白光。",
+   "hook": "D；2066 定班；底色 1.2、1.4",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/places/ferry-lane.json",
+     "jsonPath": "$.factions",
+     "op": "append",
+     "value": "faction/lunar-ferry-crews",
+     "why": "補受僱船員的存在"
+    }
+   ],
+   "terms": "渡月船員（提案）",
+   "nameEn": "Ferry Hands",
+   "namingMeaning": "開船令從艙首傳到艙尾，渡月船員把同一船人的姓名喊進離港白光。",
+   "file": "content/lore/factions/lunar-ferry-crews.json",
+   "bodyPoints": [
+    "在船起落時寫船員接力傳令，搬工先下踏板，旅客的名字逐個被喊回艙內。",
+    "這是常住靜海的職業群像，不是新航運公司、工會或常備軍。",
+    "有人同情地勤停工，有人怕停航無薪，不替全體宣布同盟或同心反抗。",
+    "「人齊，才開船！」只是當班人的責任口號，不是能壓過公司班期的永久法律；暗面熟客也不能靠一句話免查。"
+   ],
+   "fields": {
+    "type": "其他",
+    "scale": "塞勒涅渡月船上的受僱船員，無共同首領",
+    "founded": "2066 定班後逐代接班",
+    "hq": "靜海港及渡月船",
+    "ideology": "人齊，才開船！",
+    "places": [
+     "place/ferry-nostos",
+     "place/tranquility-repair-dock"
+    ],
+    "relations": [
+     {
+      "faction": "faction/selene",
+      "stance": "中立",
+      "note": "領薪工作，個人立場不同。"
+     },
+     {
+      "faction": "faction/ground-union",
+      "stance": "友好",
+      "note": "靠地勤維持船班，不是工會合併。"
+     },
+     {
+      "faction": "faction/backside",
+      "stance": "中立",
+      "note": "有人替暗面捎貨，群像不替黑市作保。"
+     }
+    ],
+    "leaders": [],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "船員接力唱名，船的光尾在艙外亮起。",
+    "shout": "人齊，才開船！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "character/aliya-nasser",
+   "type": "人物",
+   "name": "阿莉雅・納瑟",
+   "position": "最後一個搬工退出踏板，阿莉雅才抬手吼開船，把望鄉號送向藍色地球。",
+   "hook": "D；2066 定班；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "阿莉雅・納瑟（提案）",
+   "nameEn": "Aliya Nasser",
+   "namingMeaning": "最後一個搬工退出踏板，阿莉雅才抬手吼開船，把望鄉號送向藍色地球。",
+   "file": "content/lore/characters/aliya-nasser.json",
+   "bodyPoints": [
+    "她把手停在半空等搬工離開，接著吼「踏板收，向地球！」，港光從窗上向後退。",
+    "她是常住靜海的望鄉號船長，受僱掌舵，沒有公司股權或暗面領袖身分。",
+    "她能爭取一個當班停頓，不能取消票價或替所有未到者延誤航班。",
+    "最後空位的去留仍是possible事件，不提前寫她必然違令、被捕或丟職。"
+   ],
+   "fields": {
+    "born": "2069",
+    "faction": "faction/selene",
+    "role": "望鄉號船長，常住靜海",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/ivo-marot",
+      "relation": "當班同事",
+      "note": "他清踏板，她發開船令。"
+     }
+    ],
+    "events": [
+     "event/last-empty-berth"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "船長抬手，望鄉號拖光離開靜海，向藍色地球去。",
+    "shout": "踏板收，向地球！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "character/ivo-marot",
+   "type": "人物",
+   "name": "伊沃・馬洛",
+   "position": "伊沃在渡月船白光裡割斷卡住的空貨網，吼人退後，自己最後離開踏板。",
+   "hook": "D；2066 定班；底色 1.2、1.4",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "伊沃・馬洛（提案）",
+   "nameEn": "Ivo Marot",
+   "namingMeaning": "伊沃在渡月船白光裡割斷卡住的空貨網，吼人退後，自己最後離開踏板。",
+   "file": "content/lore/characters/ivo-marot.json",
+   "bodyPoints": [
+    "先寫他沿踏板拉開打結的空貨網，船腹白光照滿密封服，他喊「人退後，網給我！」。",
+    "他是望鄉號的貨艙領班，常住靜海，領船員薪；本輪改寫為搬運與離港動作。",
+    "他切開的是已卸空的貨網，既不徒手抓飛船，也不使用新裝備招式。",
+    "網落下後他最後離開踏板，把清空手勢交給船長；不把一次果斷擴成全船英雄傳。"
+   ],
+   "fields": {
+    "born": "2072",
+    "faction": "faction/lunar-ferry-crews",
+    "role": "望鄉號貨艙領班，常住靜海",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/aliya-nasser",
+      "relation": "當班同事",
+      "note": "清空踏板後向船長示意。"
+     }
+    ],
+    "events": [],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "船腹白光照著割開空網、最後離開踏板的領班。",
+    "shout": "人退後，網給我！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "character/chen-yuehe",
+   "type": "人物",
+   "name": "陳月河",
+   "position": "滿牆離港光照著逆流的人潮，陳月河爬上欄杆喊方向，把回程隊伍帶到船邊。",
+   "hook": "D；2107 渡月船票價調漲；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "陳月河（提案）",
+   "nameEn": "Chen Yuehe",
+   "namingMeaning": "滿牆離港光照著逆流的人潮，陳月河爬上欄杆喊方向，把回程隊伍帶到船邊。",
+   "file": "content/lore/characters/chen-yuehe.json",
+   "bodyPoints": [
+    "她攀上候船欄杆，高舉引路旗，朝人潮喊「回地球的，跟這面旗！」。",
+    "她在靜海長大，是港區引導員，不兼任家書保管或黑市交割，沒有地球人口名冊。",
+    "去程漲價、回程便宜後，想接親人上月與想離月的人擠在同一道口，她只替人指明方向。",
+    "離港光退後她把旗放回欄邊；不替任何家庭指定結果，也不知道壓艙的隱藏真相。"
+   ],
+   "fields": {
+    "born": "2083",
+    "faction": "faction/selene",
+    "role": "靜海港候船引導員",
+    "kind": "human",
+    "relations": [],
+    "events": [
+     "event/return-fare-queue"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "渡月船離港光鋪滿候船牆，引路旗從人潮上方立起。",
+    "shout": "回地球的，跟這面旗！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "character/sara-kett",
+   "type": "人物",
+   "name": "莎拉・凱特",
+   "position": "莎拉站在渡月船巨大的艙門下，喊先撤人再撤架，自己的影子被白船吞沒。",
+   "hook": "D；N07；底色 1.2",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "莎拉・凱特（提案）",
+   "nameEn": "Sara Kett",
+   "namingMeaning": "莎拉站在渡月船巨大的艙門下，喊先撤人再撤架，自己的影子被白船吞沒。",
+   "file": "content/lore/characters/sara-kett.json",
+   "bodyPoints": [
+    "她仰頭看艙門在塢裡合攏，先數同伴都離開吊架，再喊「架撤了，人先走！」。",
+    "她是普通艙門地勤，不駕機甲，不解開魂核試驗，也不替工會作全局決策。",
+    "兩次罷工的記憶讓她不肯把少一人當作班表小事，仍要面對下一班催工。",
+    "船體滑出塢口時，光尾掠過她空著的掌心，留下的是下一扇待修門。"
+   ],
+   "fields": {
+    "born": "2074",
+    "faction": "faction/ground-union",
+    "role": "靜海修船塢艙門地勤",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/park-incheol",
+      "relation": "工會同伴",
+      "note": "敬重會長，沒有領導職。"
+     }
+    ],
+    "events": [
+     "event/whiteglove-incident"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "巨艙門與小小地勤同框，出塢光尾掠過掌心。",
+    "shout": "架撤了，人先走！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "event/ferry-first-departure",
+   "type": "事件",
+   "name": "弦月啟航",
+   "position": "定班首日，無名船員朝全船吼下一班還回來，渡月船的光尾越過赤道港。",
+   "hook": "D；2066 渡月航路定班",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/timeline.json",
+     "jsonPath": "$.entries[5]",
+     "op": "setKey",
+     "value": {
+      "event": "event/ferry-first-departure"
+     },
+     "why": "補2066既有定班條目的event；領導按日期與標題重找位置，已有不同event則回報，不覆寫。"
+    }
+   ],
+   "terms": "弦月啟航（提案）",
+   "nameEn": "Departure at Half Moon",
+   "namingMeaning": "定班首日，無名船員朝全船吼下一班還回來，渡月船的光尾越過赤道港。",
+   "file": "content/lore/events/ferry-first-departure.json",
+   "bodyPoints": [
+    "從2066定班首日的赤道港離船畫面切入，船員向離岸人群喊「下一班，我們還回來！」。",
+    "光尾照亮岸邊，窗裡地球慢慢退遠；移民夢從一去不知何時回，變成能等下一班。",
+    "當事人全匿名，不讓尚未出生的新角色出場，也不追認望鄉號就是首航船。",
+    "弦月開船、單程三天照既定；2066不提前出現2096三港分班協定，不新造港名。"
+   ],
+   "fields": {
+    "date": "2066",
+    "period": "era/old-world",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/lunar-ferry-crews"
+    ],
+    "characters": [],
+    "places": [
+     "place/ferry-lane"
+    ],
+    "consequences": [
+     "定班讓船員與移民可以等下一個弦月。",
+     "此為既有渡月航路定班條目的離港近景。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "定班首日的光尾越過赤道港，船窗中的地球開始退遠。",
+    "shout": "下一班，我們還回來！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "只建議補既有2066條目的event鍵，不另增條目。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "event/return-fare-queue",
+   "type": "事件",
+   "name": "回程排到門外",
+   "position": "回程隊伍擠進靜海港的離船白光，有人朝穹頂喊這次換月亮送我走。",
+   "hook": "D；2107 渡月船票價調漲；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "回程排到門外（提案）",
+   "nameEn": "The Homeward Queue",
+   "namingMeaning": "回程隊伍擠進靜海港的離船白光，有人朝穹頂喊這次換月亮送我走。",
+   "file": "content/lore/events/return-fare-queue.json",
+   "bodyPoints": [
+    "陳月河在兩股人潮間舉旗，想接親人上月的人停在窗口，付得起回程的人朝船走。",
+    "船在架上亮起，有人轉身向白穹頂喊「這次換月亮送我走！」，旁人拉著他繼續前進。",
+    "只寫票價調漲後的人流，不替新群像宣布強制遣返，不把人口政策寫成能減弱蝕潮。",
+    "門裡隊伍向地球去，富戶仍在穹頂看景；不追加事故、勝利或地球人物生平。"
+   ],
+   "fields": {
+    "date": "2107",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "characters": [
+     "character/chen-yuehe"
+    ],
+    "places": [
+     "place/tranquility-city",
+     "place/ferry-lane"
+    ],
+    "consequences": [
+     "便宜回程使部分工人離月，未讓穹頂富戶一同搬走。",
+     "引導員在候船區分開兩股方向不同的人潮。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "離船白光裡兩股人潮分開，一人回望穹頂高喊。",
+    "shout": "這次換月亮送我走！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "event/whitegloves-come-ashore",
+   "type": "事件",
+   "name": "白手套下船",
+   "position": "渡月船停進新加坡港，白手套鐵偶踏下舷梯，催收聲先於白甲走進人群。",
+   "hook": "D；2107 信貸協定；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "白手套下船（提案）",
+   "nameEn": "White Gloves Ashore",
+   "namingMeaning": "渡月船停進新加坡港，白手套鐵偶踏下舷梯，催收聲先於白甲走進人群。",
+   "file": "content/lore/events/whitegloves-come-ashore.json",
+   "bodyPoints": [
+    "時間在信貸協定生效與既有第一通催收之後，地點限既有新加坡渡月港，不新增地球地點或人物。",
+    "從望鄉號當班船員視角寫白手套鐵偶列隊下舷梯，船尾餘光映著白甲，港工收回正在搬貨的手。",
+    "鐵偶轉來「請確認償還意願」；若提手套，必說它是唯一催收機魂、罕見S級以上人格，聲音轉達不是分魂，也不是鐵偶的招式。",
+    "只見受僱的執行者催問並攔住一件待交貨物，不跟進債戶住所，不新增債主主謀、戰鬥或奪取古代機的結果。"
+   ],
+   "fields": {
+    "date": "2107",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/whitegloves"
+    ],
+    "characters": [
+     "character/ivo-marot"
+    ],
+    "places": [
+     "place/singapore",
+     "place/ferry-nostos"
+    ],
+    "consequences": [
+     "船員在既有港看見催收權化為踏下船的鐵偶。",
+     "不改第一通催收的地點、順序或協定適用範圍。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "渡月船餘光映白甲，鐵偶列隊踏下新加坡舷梯。",
+    "shout": "請確認償還意願",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-02",
+   "id": "event/last-empty-berth",
+   "type": "事件",
+   "name": "空位留到開船",
+   "position": "若最後一人趕不上踏板，望鄉號的開船令便卡在船長舉起的手裡。",
+   "hook": "D；2107 票價調漲的後果；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "possible",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "空位留到開船（提案）",
+   "nameEn": "The Last Berth",
+   "namingMeaning": "若最後一人趕不上踏板，望鄉號的開船令便卡在船長舉起的手裡。",
+   "file": "content/lore/events/last-empty-berth.json",
+   "bodyPoints": [
+    "可能在開局後某個弦月出現：最後一位持票者未到，船外光尾已亮，空位仍留在窗邊。",
+    "阿莉雅可能把手壓住再等片刻，也可能照班開船，兩種選擇都要有人承擔。",
+    "她要喊的是「踏板收，向地球！」，故事停在是否發令的分岔，不替她定罪或定善。",
+    "代表日期不排定新史實，不給登船者姓名或古代機身分，也不改全航路班期。"
+   ],
+   "fields": {
+    "date": "2108-02",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/lunar-ferry-crews"
+    ],
+    "characters": [
+     "character/aliya-nasser"
+    ],
+    "places": [
+     "place/ferry-nostos"
+    ],
+    "consequences": [
+     "若延候，當班船員須承擔班期壓力。",
+     "若照班離港，未到者可能留下；結果待觸發。"
+    ],
+    "tags": [
+     "moon",
+     "rumor"
+    ],
+    "occurs": "possible"
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "光尾亮起，船長的手停在半空，空位對著地球。",
+    "shout": "踏板收，向地球！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不加年表：occurs: possible，代表日期不排定發生。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "place/grey-edge-rest-stop",
+   "type": "地點",
+   "name": "灰沿歇腳站",
+   "position": "背面墟帶的遠光壓在窗上，外圍工人停下車，誰也不把那道光當作招手。",
+   "hook": "D；2097 月面封鎖；N04",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/ground-union.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/grey-edge-rest-stop",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "灰沿歇腳站（提案）",
+   "nameEn": "Grey Verge",
+   "namingMeaning": "背面墟帶的遠光壓在窗上，外圍工人停下車，誰也不把那道光當作招手。",
+   "file": "content/lore/places/grey-edge-rest-stop.json",
+   "bodyPoints": [
+    "從外圍勤務車停在灰原寫起，密封站的小窗被墟帶遠光照亮，乘員先抬頭再下車。",
+    "歇腳站只在封鎖線外供轉班與拖車，不開墟內捷徑，不新增城鎮。",
+    "遠方古代裝甲仍保持原姿態，光可見卻無回應；不替恩底彌翁說話或招認駕駛。",
+    "工人交換下一段勤務的手牌便出門，站小得只接住一班人，沒有解救整個月面的本事。"
+   ],
+   "fields": {
+    "region": "月面・背面墟帶封鎖線外勤務路",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "外圍轉班點，禁止越線",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "c"
+    ],
+    "lightShot": "墟帶遠光照滿轉班站小窗，沉睡裝甲在遠方不動。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "place/farside-light-ridge",
+   "type": "地點",
+   "name": "望墟脊",
+   "position": "外圍測路人爬上灰脊，看見墟帶像一列沒走完的星，然後轉身回報可走的路。",
+   "hook": "D；N04；底色 1.2",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "望墟脊（提案）",
+   "nameEn": "Ridge of Distant Stars",
+   "namingMeaning": "外圍測路人爬上灰脊，看見墟帶像一列沒走完的星，然後轉身回報可走的路。",
+   "file": "content/lore/places/farside-light-ridge.json",
+   "bodyPoints": [
+    "測路工爬上封鎖線外的灰脊，遠方墟帶的光排成破碎長列，像隊伍停在半途。",
+    "這是外圍勤務視野，不給古墓新增入口、可用座標或穩定越線方法。",
+    "他們只回報拖車路況，不由光推知古代機的心意、身分或甦醒時間。",
+    "背面看不見地球；測路人朝身後的勤務車揮手，讓人的回程與不動的古代裝甲分開。"
+   ],
+   "fields": {
+    "region": "月面・背面封鎖線外灰脊",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "野地",
+    "status2108": "勤務測路點，不通往墟帶內部",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "c"
+    ],
+    "lightShot": "灰脊外的墟帶如破碎星列，古代裝甲仍停在原處。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "place/white-armour-loading-hall",
+   "type": "地點",
+   "name": "白甲候裝廳",
+   "position": "白庫開門，女武神鐵偶整排走向貨架，搬工只敢在它們停步後收回吊帶。",
+   "hook": "D；2105 白手套事變→2107 信貸協定；N07、N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/whitegloves.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/white-armour-loading-hall",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "白甲候裝廳（提案）",
+   "nameEn": "White Armour Hall",
+   "namingMeaning": "白庫開門，女武神鐵偶整排走向貨架，搬工只敢在它們停步後收回吊帶。",
+   "file": "content/lore/places/white-armour-loading-hall.json",
+   "bodyPoints": [
+    "先寫白庫大門開啟，白色女武神鐵偶列隊步上貨架，銀線在同一片庫光裡移動。",
+    "這是靜海港既有保全貨場的候裝廳，不增軍工企業、型號或軍隊。",
+    "這一批專為鎮壓催收，無機甲核心、無魂；不要和有核心但只能普通開的守牆遙控機混寫。",
+    "搬工等停步後才收吊帶，聽到通告不搭話；受僱白手套依單出貨，不安排幕後富豪出鏡指揮。"
+   ],
+   "fields": {
+    "region": "月面・靜海港保全貨場",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "催收鐵偶整備候裝",
+    "factions": [
+     "faction/selene",
+     "faction/whitegloves"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "白庫開門，鐵偶整排走出，銀線與庫光同步移動。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "place/dark-quay-night-slip",
+   "type": "地點",
+   "name": "暗埠夜棧",
+   "position": "暗埠的黃光跟著貨車一路奔到密封門，接貨人喊換手，名字留在光照不到的地方。",
+   "hook": "D；2097 封鎖、2107 藏燈之盟；N04",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [
+    {
+     "file": "content/lore/factions/backside.json",
+     "jsonPath": "$.places",
+     "op": "append",
+     "value": "place/dark-quay-night-slip",
+     "why": "補同一勢力的月面活動地點；若已存在則略過"
+    }
+   ],
+   "terms": "暗埠夜棧（提案）",
+   "nameEn": "Night Slip",
+   "namingMeaning": "暗埠的黃光跟著貨車一路奔到密封門，接貨人喊換手，名字留在光照不到的地方。",
+   "file": "content/lore/places/dark-quay-night-slip.json",
+   "bodyPoints": [
+    "從地下舊貨棧一段轉運平台寫起，攤燈的黃光在車邊掠過，搬工接力推貨。",
+    "這是暗埠內部夜間交接處，不是第二座暗埠、外露發射港或直通地球的航道。",
+    "接貨人喊「換手，別回頭！」，只寫當夜的急促動作，不公開可重用的暗號規程。",
+    "暗面替這趟人貨開路，也可能賣旁人的消息；藏燈之盟只保護簽約當次撤離，夜棧沒有讓黑市普遍守義。"
+   ],
+   "fields": {
+    "region": "月面・靜海暗埠內部轉運平台",
+    "continent": "月面",
+    "world": "moon",
+    "kind": "其他",
+    "status2108": "夜間分批轉運，接現有港區貨流",
+    "factions": [
+     "faction/backside",
+     "faction/ground-union"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "日常"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "暗埠黃光掠過奔行的貨車，貨物在密封門前換手。",
+    "shout": "換手，別回頭！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": true,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "faction/farside-shift-workers",
+   "type": "勢力",
+   "name": "背面輪班人",
+   "position": "灰原上的勤務車向墟光排開，輪班人喊把這一班帶回去，才放下車尾的扶欄。",
+   "hook": "D；2097 封鎖、2098 大罷工；N04→N07",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "背面輪班人（提案）",
+   "nameEn": "Farside Watches",
+   "namingMeaning": "灰原上的勤務車向墟光排開，輪班人喊把這一班帶回去，才放下車尾的扶欄。",
+   "file": "content/lore/factions/farside-shift-workers.json",
+   "bodyPoints": [
+    "一班勤務車面向墟帶遠光排開，車尾的人朝同伴喊「這一班，一個都帶回去！」。",
+    "這是外圍測路、修車與接班的職業群像，不是新工會、探索軍或暗面部隊。",
+    "他們多與地勤會有關，也有人只求領薪；2098縮短輪班的讓步沿原史，不重寫成工人取得封鎖權。",
+    "車隊仍須依許可停在外圍，喊得再大聲也叫不醒恩底彌翁；公司的封鎖沒有因此消失。"
+   ],
+   "fields": {
+    "type": "其他",
+    "scale": "背面封鎖線外的輪班勤務者，無共同領袖或兵力",
+    "founded": "2097 封鎖後逐班形成",
+    "hq": "背面外圍勤務站",
+    "ideology": "這一班，一個都帶回去！",
+    "places": [
+     "place/grey-edge-rest-stop",
+     "place/farside-light-ridge"
+    ],
+    "relations": [
+     {
+      "faction": "faction/ground-union",
+      "stance": "友好",
+      "note": "部分是工會成員，不取代地勤會。"
+     },
+     {
+      "faction": "faction/selene",
+      "stance": "緊張",
+      "note": "受僱進外圍工作，仍要面對封鎖與班期。"
+     },
+     {
+      "faction": "faction/backside",
+      "stance": "中立",
+      "note": "個別工人借接應通路，不等於全體加入暗面。"
+     }
+    ],
+    "leaders": [],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "灰原勤務車朝墟帶遠光排開，車尾的人喊回程。",
+    "shout": "這一班，一個都帶回去！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "character/sora-maen",
+   "type": "人物",
+   "name": "索拉・梅恩",
+   "position": "索拉替暗面捎貨，手仍按正式船班掌舵；離開靜海那一刻，她只喊向地球。",
+   "hook": "D；2097 封鎖→2107 藏燈之盟；N04、N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "索拉・梅恩（提案）",
+   "nameEn": "Sora Maen",
+   "namingMeaning": "索拉替暗面捎貨，手仍按正式船班掌舵；離開靜海那一刻，她只喊向地球。",
+   "file": "content/lore/characters/sora-maen.json",
+   "bodyPoints": [
+    "先寫她在受僱渡月船的副駕席接過一段當班，光尾把靜海壓成白點，她喊「向地球，別看貨艙！」。",
+    "她常住靜海，是替暗面捎貨的船員駕駛，不是新航運老闆、偷天駕駛或暗面領袖。",
+    "暗面的生意依附塞勒涅正式航路，弦月單程三天；她靠熟面孔交接，不靠超常航速或新船型。",
+    "她在一次已結束的捎運中帶貨出港，公開只留被人講起的往事，不給可複用的藏貨位置，也不保證每次能脫查。"
+   ],
+   "fields": {
+    "born": "2075",
+    "faction": "faction/backside",
+    "role": "渡月船受僱副駕，替暗面捎貨，常住靜海",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/xu-ji",
+      "relation": "接應同伴",
+      "note": "只替約定這一趟接貨，互不掌握整張網。"
+     }
+    ],
+    "events": [
+     "event/dark-run-under-bow"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "副駕接班時光尾離開靜海，白城退成一點。",
+    "shout": "向地球，別看貨艙！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": true,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "character/xu-ji",
+   "type": "人物",
+   "name": "許霽",
+   "position": "許霽在暗埠黃光裡推貨穿過人群，喊接住這趟，下一趟不作保。",
+   "hook": "D；2107 藏燈之盟、暗埠留票；N04",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "許霽（提案）",
+   "nameEn": "Xu Ji",
+   "namingMeaning": "許霽在暗埠黃光裡推貨穿過人群，喊接住這趟，下一趟不作保。",
+   "file": "content/lore/characters/xu-ji.json",
+   "bodyPoints": [
+    "他把滑走的貨車轉向接手人，喊「接住這趟，別問下一趟！」，黃光從臉旁連續掠過。",
+    "他是暗埠的現場接應人，負責轉運，不再新增照音、雁橋那類押票驗貨中人。",
+    "他與索拉只約一次貨程，無權替全網保密，地勤互助也不會抹去黑市售名的生意。",
+    "遇查先把搬工帶離白甲前方，不揭誰私下放行，也不替白手套創造人格或陰謀首腦。"
+   ],
+   "fields": {
+    "born": "2080",
+    "faction": "faction/backside",
+    "role": "暗埠夜間轉運接應人",
+    "kind": "human",
+    "relations": [
+     {
+      "character": "character/sora-maen",
+      "relation": "接應同伴",
+      "note": "在港前換手，船上由她自己承擔風險。"
+     }
+    ],
+    "events": [
+     "event/dark-run-under-bow",
+     "event/dark-quay-inspection"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "b"
+    ],
+    "lightShot": "黃光掠過奔行貨車，接應人轉身喊換手。",
+    "shout": "接住這趟，別問下一趟！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": true,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "character/tomo-vell",
+   "type": "人物",
+   "name": "陶莫・維爾",
+   "position": "白甲走上貨架時，陶莫喊停，把同伴從鐵偶腳下的吊帶拖出來。",
+   "hook": "D；2105 白手套事變→2107 信貸協定；N07、N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不適用",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "陶莫・維爾（提案）",
+   "nameEn": "Tomo Vell",
+   "namingMeaning": "白甲走上貨架時，陶莫喊停，把同伴從鐵偶腳下的吊帶拖出來。",
+   "file": "content/lore/characters/tomo-vell.json",
+   "bodyPoints": [
+    "先寫他朝候裝廳喊「吊帶有人，停步！」，把被勾住的同伴拖回庫光裡。",
+    "鐵偶按整備停步流程停下，不是被吼出良心、醒成機魂或有人駕核心施術。",
+    "他是保全貨場受僱搬工，知道裝出去的是無魂催收鐵偶，沒有權力決定它們去哪裡。",
+    "白甲再次走上架時，他只把吊帶收得更遠；不替後方僱主補姓名、不寫他秘密控制整隊。"
+   ],
+   "fields": {
+    "born": "2070",
+    "faction": "faction/selene",
+    "role": "靜海保全貨場受僱搬工",
+    "kind": "human",
+    "relations": [],
+    "events": [
+     "event/white-armour-departure"
+    ],
+    "aka": [],
+    "gameRefs": [],
+    "tags": [
+     "月面",
+     "群像"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "白庫光裡搬工拖出同伴，鐵偶停步後再次上架。",
+    "shout": "吊帶有人，停步！",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "event/dark-run-under-bow",
+   "type": "事件",
+   "name": "借月弓的光",
+   "position": "暗面的貨在月弓光下趕上正班船，三天後隨新加坡舷梯落地，沒有另一條天路。",
+   "hook": "D；2097 封鎖、2096 赤道港協定、2107 藏燈之盟；N04、N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "借月弓的光（提案）",
+   "nameEn": "Under the Bowlight",
+   "namingMeaning": "暗面的貨在月弓光下趕上正班船，三天後隨新加坡舷梯落地，沒有另一條天路。",
+   "file": "content/lore/events/dark-run-under-bow.json",
+   "bodyPoints": [
+    "2107藏燈之盟後的一趟既成捎運：許霽從夜棧把封好的普通備件推向港區，月弓一引，貨車影子被光拉長。",
+    "索拉值正式渡月船副駕當班，貨混在當次正常轉運裡；不把月弓當作運人方法或安全偷渡機制。",
+    "起落兩端寫快節奏交接，航程照弦月單程三天，最後只在既有新加坡港的舷梯交貨，不展開地球街區與人物。",
+    "這次貨到不代表暗面永不失手，也不新訂盟約；不販古代機、不運活獸，不在公開文字教一條永久逃查捷徑。"
+   ],
+   "fields": {
+    "date": "2107",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/backside",
+     "faction/selene"
+    ],
+    "characters": [
+     "character/sora-maen",
+     "character/xu-ji"
+    ],
+    "places": [
+     "place/dark-quay-night-slip",
+     "place/ferry-lane",
+     "place/singapore"
+    ],
+    "consequences": [
+     "這次普通備件依附定班渡月船完成交接。",
+     "暗面仍沒有獨立航路，也沒有保證下次安全的通行權。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a",
+     "b"
+    ],
+    "lightShot": "月弓光把急行貨車影子拉長，正式渡月船拖光離港。",
+    "shout": "向地球，別看貨艙！",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": true,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "event/white-armour-departure",
+   "type": "事件",
+   "name": "白甲離月",
+   "position": "白庫的鐵偶一路列隊進船，地球掛在艙口外，搬工拉下最後一道攔繩。",
+   "hook": "D；2107 信貸協定；N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "白甲離月（提案）",
+   "nameEn": "White Armour Outbound",
+   "namingMeaning": "白庫的鐵偶一路列隊進船，地球掛在艙口外，搬工拉下最後一道攔繩。",
+   "file": "content/lore/events/white-armour-departure.json",
+   "bodyPoints": [
+    "信貸協定後的一次日常出貨，鐵偶從白甲候裝廳走上貨架，再按搬工手勢列隊入船。",
+    "地球掛在開啟的艙口外，陶莫拉下攔繩，把仍在路徑上的同伴叫回。",
+    "搬工聽見催收通告的試播，只知這批無核心鐵偶將去地球，不知是哪一戶出錢、哪一座城先收到它們。",
+    "以船離靜海的光尾收束，不宣稱首次外派，不讓古代機裝船，不替受僱執行者寫成主謀。"
+   ],
+   "fields": {
+    "date": "2107",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/selene",
+     "faction/whitegloves"
+    ],
+    "characters": [
+     "character/tomo-vell"
+    ],
+    "places": [
+     "place/white-armour-loading-hall",
+     "place/tranquility-city",
+     "place/ferry-lane"
+    ],
+    "consequences": [
+     "催收鐵偶隨正式船班外派，沿信貸協定既有權限。",
+     "貨場工人留下這次裝船的記憶，不改首次地球催收史。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "a"
+    ],
+    "lightShot": "白甲列隊入艙，地球懸在艙口外，離船光尾掠過攔繩。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "event/dark-quay-inspection",
+   "type": "事件",
+   "name": "暗埠收燈",
+   "position": "白手套在暗埠入口展開白甲，黃燈一盞盞背過身，接應人把搬工帶離查貨線。",
+   "hook": "D；2105 入口止步、2107 藏燈之盟後續；N04、N09",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "不設；已發生",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "暗埠收燈（提案）",
+   "nameEn": "When the Quay Dims",
+   "namingMeaning": "白手套在暗埠入口展開白甲，黃燈一盞盞背過身，接應人把搬工帶離查貨線。",
+   "file": "content/lore/events/dark-quay-inspection.json",
+   "bodyPoints": [
+    "時間在2107既有盟約之後的一次局部查貨，鐵偶只到暗埠外側入口展開攔線，白甲刮過黃光邊緣。",
+    "許霽喊「收燈，人先散！」，搬工先退，貨主把待查的普通箱件停在白甲前，不能把所有貨都變沒。",
+    "鐵偶夾起查扣箱件撤走，查扣限這一次；暗埠仍開著，不改2105追兵止步的原因，也不新增清剿暗埠的戰役。",
+    "不補無名上司的密令或賄賂真相，不讓鐵偶使招；夜棧又亮燈時，被扣的人貨風險仍要各自承擔。"
+   ],
+   "fields": {
+    "date": "2107",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/backside",
+     "faction/whitegloves"
+    ],
+    "characters": [
+     "character/xu-ji"
+    ],
+    "places": [
+     "place/dark-quay",
+     "place/dark-quay-night-slip"
+    ],
+    "consequences": [
+     "部分普通箱件被查扣，暗埠仍運作。",
+     "這次局部查貨不取代既有無月撤棧，也不更改2105止步之謎。"
+    ],
+    "tags": [
+     "moon"
+    ]
+   },
+   "tone": {
+    "lightTypes": [
+     "b"
+    ],
+    "lightShot": "白甲在入口截住黃燈，鐵偶夾箱後撤走。",
+    "shout": "收燈，人先散！",
+    "restrictedCore": "",
+    "whiteglovesAction": true,
+    "darkside": true,
+    "luxury": false
+   },
+   "timeline-note": "不新增年表；沿掛點既有條目，這件只拉近當地畫面。"
+  },
+  {
+   "batch": "bf-moon-03",
+   "id": "event/help-outside-the-belt",
+   "type": "事件",
+   "name": "墟外待救",
+   "position": "若勤務車困在封鎖線外，墟帶遠光只照著它，回應呼救的仍得是人。",
+   "hook": "D；N04 封鎖的日常後果；底色 1.2",
+   "visibility": {
+    "visibility": "public",
+    "secrets": []
+   },
+   "occurs": "possible",
+   "timeline-add": [],
+   "inserts": [],
+   "terms": "墟外待救（提案）",
+   "nameEn": "Help Beyond the Cordon",
+   "namingMeaning": "若勤務車困在封鎖線外，墟帶遠光只照著它，回應呼救的仍得是人。",
+   "file": "content/lore/events/help-outside-the-belt.json",
+   "bodyPoints": [
+    "可能在開局後某班出現：外圍勤務車停住，墟帶遠光越過車頂，受困者呼叫接班車。",
+    "只在封鎖線外接人，能否湊到拖車、願不願冒班期風險，由後續選擇決定。",
+    "遠處古代裝甲不動，恩底彌翁不指路、不認主；不能用神蹟替人解圍。",
+    "代表日期不排定事故或死傷，救成與救不成只列可能後果，不強迫暗面全網守義。"
+   ],
+   "fields": {
+    "date": "2108-03",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/ground-union",
+     "faction/farside-shift-workers"
+    ],
+    "characters": [],
+    "places": [
+     "place/grey-edge-rest-stop",
+     "place/farside-light-ridge"
+    ],
+    "consequences": [
+     "若能接到拖車，受困者可能返回歇腳站。",
+     "若無人接應，當班人必須繼續等待；不預定死傷。"
+    ],
+    "tags": [
+     "moon",
+     "rumor"
+    ],
+    "occurs": "possible"
+   },
+   "tone": {
+    "lightTypes": [
+     "c"
+    ],
+    "lightShot": "受困車頂被墟帶遠光照著，古代裝甲不回應呼救。",
+    "shout": "",
+    "restrictedCore": "",
+    "whiteglovesAction": false,
+    "darkside": false,
+    "luxury": false
+   },
+   "timeline-note": "不加年表：occurs: possible，代表日期不排定發生。"
+  }
+ ]
+}

@@ -1,0 +1,258 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-merge",
+ "mode": "add",
+ "status": "draft",
+ "goal": "套用全部bf批次既有檔插入與年表接線",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6",
+  "reasoning": "high",
+  "line": "cx-bf-merge",
+  "subagents": 0
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "8a48e7ef3e982b278e382d8a166cfc05a8564428",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-merge",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-merge/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/ops-content.md",
+   "content/lore/README.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md"
+  ]
+ },
+ "maxFiles": 80,
+ "allow": {
+  "kinds": [],
+  "modify": [
+   {
+    "path": "content/base/world/factions-ops/anvil-hunters.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/dhaka-weavers.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/imperial-court.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/inner-sea-houses.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/japan-umbrella.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/nairobi.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/north-american-umbrella.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/quito.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/residual-league.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/russia-umbrella.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/salt-gull-hunters.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/factions-ops/selene-whitegloves.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/places/chittagong.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/places/dhaka.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/base/world/places/singapore.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/claire-renaud.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/eugenia-ferrero.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/kim-haneul.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/lena-visser.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/marta-bellini.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/oskar-lind.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/wanjiku-kamau.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/backside.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/ground-union.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/japan-umbrella.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/league.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/nairobi.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/north-american-umbrella.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/quito.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/salt-gull.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/selene.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/shell-society.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/shell-wardens.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/sydney.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/tide-creed.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/whitegloves.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/ferry-lane.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/tranquility-city.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "readlist"
+ ],
+ "checkNotes": {
+  "scope": "不跑test、e2e、sim、fuzz、content_accept；驗收固定三條"
+ },
+ "probe": {
+  "n": 0,
+  "reference": [],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/base/world/factions-ops/anvil-hunters.json",
+  "content/base/world/factions-ops/dhaka-weavers.json",
+  "content/base/world/factions-ops/imperial-court.json",
+  "content/base/world/factions-ops/inner-sea-houses.json",
+  "content/base/world/factions-ops/japan-umbrella.json",
+  "content/base/world/factions-ops/nairobi.json",
+  "content/base/world/factions-ops/north-american-umbrella.json",
+  "content/base/world/factions-ops/quito.json",
+  "content/base/world/factions-ops/residual-league.json",
+  "content/base/world/factions-ops/russia-umbrella.json",
+  "content/base/world/factions-ops/salt-gull-hunters.json",
+  "content/base/world/factions-ops/selene-whitegloves.json",
+  "content/base/world/places/chittagong.json",
+  "content/base/world/places/dhaka.json",
+  "content/base/world/places/singapore.json",
+  "content/lore/characters/claire-renaud.json",
+  "content/lore/characters/eugenia-ferrero.json",
+  "content/lore/characters/kim-haneul.json",
+  "content/lore/characters/lena-visser.json",
+  "content/lore/characters/marta-bellini.json",
+  "content/lore/characters/oskar-lind.json",
+  "content/lore/characters/wanjiku-kamau.json",
+  "content/lore/factions/backside.json",
+  "content/lore/factions/ground-union.json",
+  "content/lore/factions/japan-umbrella.json",
+  "content/lore/factions/league.json",
+  "content/lore/factions/nairobi.json",
+  "content/lore/factions/north-american-umbrella.json",
+  "content/lore/factions/quito.json",
+  "content/lore/factions/salt-gull.json",
+  "content/lore/factions/selene.json",
+  "content/lore/factions/shell-society.json",
+  "content/lore/factions/shell-wardens.json",
+  "content/lore/factions/sydney.json",
+  "content/lore/factions/tide-creed.json",
+  "content/lore/factions/whitegloves.json",
+  "content/lore/places/ferry-lane.json",
+  "content/lore/places/tranquility-city.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [],
+ "acceptance": {},
+ "rounds": [],
+ "gateRejections": [],
+ "deprecated": [],
+ "planning": {
+  "note": "起點預先帶入的新檔不屬本線新增；allow.kinds依交接書固定空陣列"
+ }
+}

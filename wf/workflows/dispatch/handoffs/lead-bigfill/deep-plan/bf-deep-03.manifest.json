@@ -1,0 +1,193 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "歐洲／內海人物與事件加深，新增10件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-03",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/alien-breakwater-clinger.json",
+   "content/base/frames/anvil-hoist-ii.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/frames/innersea-counterseal-ii.json",
+   "content/base/species/breakwater-clinger.json",
+   "content/base/world/models/anvil-hoist-ii.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/base/world/models/innersea-counterseal-ii.json",
+   "content/lore/characters/claire-renaud.json",
+   "content/lore/characters/lena-visser.json",
+   "content/lore/characters/marta-bellini.json",
+   "content/lore/characters/oskar-lind.json",
+   "content/lore/eras/league.json",
+   "content/lore/factions/anvil.json",
+   "content/lore/factions/euro-umbrella.json",
+   "content/lore/factions/inner-sea-houses.json",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/places/genoa-yards.json",
+   "content/lore/places/hamburg.json",
+   "content/lore/places/rotterdam-roost.json",
+   "content/lore/places/saint-malo.json",
+   "content/lore/places/skagerrak-shell.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-03.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/niek-vos.json",
+  "content/lore/events/roost-pier-grip.json",
+  "content/lore/characters/solene-le-goff.json",
+  "content/lore/events/malo-return-to-the-breach.json",
+  "content/lore/characters/anke-rehm.json",
+  "content/lore/events/hamburg-ember-shoulder.json",
+  "content/lore/characters/elia-conti.json",
+  "content/lore/events/genoa-first-footfall.json",
+  "content/lore/events/skagerrak-black-ridge.json",
+  "content/lore/places/skagerrak-cold-reflection.json"
+ ],
+ "ids": [
+  "character/niek-vos",
+  "event/roost-pier-grip",
+  "character/solene-le-goff",
+  "event/malo-return-to-the-breach",
+  "character/anke-rehm",
+  "event/hamburg-ember-shoulder",
+  "character/elia-conti",
+  "event/genoa-first-footfall",
+  "event/skagerrak-black-ridge",
+  "place/skagerrak-cold-reflection"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/niek-vos",
+    "nameZh": "尼克・沃斯",
+    "meaning": "怕水的護駁駕駛把機甲踏向浪邊，喊「岸還在！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/roost-pier-grip",
+    "nameZh": "鷗巢纏樁夜",
+    "meaning": "抱樁從鹿特丹海側纏上樁腳，糧駁的船腹開始往牠那邊斜。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/solene-le-goff",
+    "nameZh": "索蓮・勒戈夫",
+    "meaning": "索蓮把拐杖留給同伴，重新開上守門機，喊「門缺一人，我補！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/malo-return-to-the-breach",
+    "nameZh": "缺門有人",
+    "meaning": "聖馬洛守門機再度跨過舊缺口，索蓮喊「人回來了，門就有！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/anke-rehm",
+    "nameZh": "安珂・雷姆",
+    "meaning": "安珂將機甲肩架扛進倒塌的機庫，喊「先卸人，再卸鐵！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/hamburg-ember-shoulder",
+    "nameZh": "燼肩托架",
+    "meaning": "漢堡機庫的燼從機肩噴出，工人吼「鐵可以再造！」，把同伴拖離架底。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/elia-conti",
+    "nameZh": "埃利亞・孔蒂",
+    "meaning": "埃利亞替別人的合印試機，出塢前總喊「把名字留在這一步！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/genoa-first-footfall",
+    "nameZh": "出塢一踏",
+    "meaning": "若合印跨出熱那亞乾塢，修造者會齊喊「我們造的，站起來！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/skagerrak-black-ridge",
+    "nameZh": "黑脊映面",
+    "meaning": "接哨者在北海退潮時看見埃吉爾的濕亮刻痕，整船人忽然不再爭誰先靠岸。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/skagerrak-cold-reflection",
+    "nameZh": "北海冷照屋",
+    "meaning": "北海外圈浮屋的開口對著古墟，月光中的裝甲刻痕映在換哨者臉上。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

@@ -1,0 +1,208 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-05",
+ "mode": "add",
+ "status": "draft",
+ "goal": "美洲人物與事件加深，新增11件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-05",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-05",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-05/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/mycel-drowned-grove.json",
+   "content/base/bodyplans/mycel-reed-lace.json",
+   "content/base/bodyplans/quadruped-beast.json",
+   "content/base/bodyplans/quadruped-hound.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/frames/na-sled-03.json",
+   "content/base/species/drowned-grove.json",
+   "content/base/species/hound.json",
+   "content/base/species/reed-lace.json",
+   "content/base/species/tidewolf.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/base/world/models/na-sled-03.json",
+   "content/lore/characters/eugenia-ferrero.json",
+   "content/lore/eras/league.json",
+   "content/lore/factions/latam-umbrella.json",
+   "content/lore/factions/north-american-umbrella.json",
+   "content/lore/factions/quito.json",
+   "content/lore/factions/rift-beasts.json",
+   "content/lore/factions/shell-society.json",
+   "content/lore/places/belem.json",
+   "content/lore/places/brasilia.json",
+   "content/lore/places/five-lakes-white-ford.json",
+   "content/lore/places/havana.json",
+   "content/lore/places/montreal.json",
+   "content/lore/places/seattle-outer-grain-quay.json",
+   "content/lore/places/seattle.json",
+   "content/lore/places/titicaca-ruin.json",
+   "content/lore/places/valparaiso.json",
+   "content/lore/places/winnipeg.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-05.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 11,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/jo-marlow.json",
+  "content/lore/characters/anne-bellerose.json",
+  "content/lore/characters/luz-aranda.json",
+  "content/lore/characters/ines-vidal.json",
+  "content/lore/characters/davi-moura.json",
+  "content/lore/events/brasilia-salt-chorus.json",
+  "content/lore/characters/mila-reed.json",
+  "content/lore/events/white-ford-fallen-bridge.json",
+  "content/lore/places/white-ford-reed-crown.json",
+  "content/lore/characters/luc-morin.json",
+  "content/lore/places/titicaca-empty-dawn.json"
+ ],
+ "ids": [
+  "character/jo-marlow",
+  "character/anne-bellerose",
+  "character/luz-aranda",
+  "character/ines-vidal",
+  "character/davi-moura",
+  "event/brasilia-salt-chorus",
+  "character/mila-reed",
+  "event/white-ford-fallen-bridge",
+  "place/white-ford-reed-crown",
+  "character/luc-morin",
+  "place/titicaca-empty-dawn"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/jo-marlow",
+    "nameZh": "喬・馬洛",
+    "meaning": "喬在西雅圖裂座岸砲旁開機，喊「這回船頭朝家！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/anne-bellerose",
+    "nameZh": "安・貝勒羅斯",
+    "meaning": "安在溫尼伯雪路上把護運機開回逆風處，喊「雪埋不了這一隊！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/luz-aranda",
+    "nameZh": "露絲・阿蘭達",
+    "meaning": "露絲以機甲攔住哈瓦那近岸的獸，喊「港還沒閉眼！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/ines-vidal",
+    "nameZh": "伊內絲・維達爾",
+    "meaning": "瓦港拘束手站上傷機的背，喊「還會咬，就還沒完！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/davi-moura",
+    "nameZh": "達維・莫拉",
+    "meaning": "達維守在貝倫近海河口，吼「這口飯，從我身後過！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/brasilia-salt-chorus",
+    "nameZh": "高原回海聲",
+    "meaning": "巴西利亞的沿岸來客站到人群前，吼「我家的海，還在我嘴裡！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/mila-reed",
+    "nameZh": "米拉・里德",
+    "meaning": "米拉聽見白汊空橋折斷，轉身吼「別踩白色的地！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/white-ford-fallen-bridge",
+    "nameZh": "白汊斷橋夜",
+    "meaning": "沉林的白結撐斷空橋，採菌者沿乾岸撤退，將斷橋骸林叫進岸圖。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/white-ford-reed-crown",
+    "nameZh": "白汊蘆冠岸",
+    "meaning": "白汊乾岸外的蘆網結成蒼白冠頂，採菌者看見白絲在淡水中接成一片。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/luc-morin",
+    "nameZh": "呂克・莫蘭",
+    "meaning": "刑天沉睡的裝甲映亮地下門口，呂克守住門檻，喊「到這裡，別再往下！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/titicaca-empty-dawn",
+    "nameZh": "空寢向曙岸",
+    "meaning": "的的喀喀空寢床旁的刻痕在水下泛亮，引船老人讓訪客看完整片升日之形。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

@@ -1,0 +1,207 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-deep-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "東亞人物與事件加深，新增11件；所有插入由領導合併線處理。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-deep-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "TBD",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-deep-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-tone-fix/report.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/history-lines/f-rift-line.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/great-tide.md",
+   "content/base/bodyplans/beast-foam-jaw.json",
+   "content/base/bodyplans/insect-bell-borer.json",
+   "content/base/bodyplans/insect-hinge-crab.json",
+   "content/base/bodyplans/insect-lantern-keel.json",
+   "content/base/bodyplans/quadruped-beast.json",
+   "content/base/frames/bulwark-i.json",
+   "content/base/species/bell-borer.json",
+   "content/base/species/foam-jaw.json",
+   "content/base/species/hinge-crab.json",
+   "content/base/species/lantern-keel.json",
+   "content/base/species/tidewolf.json",
+   "content/base/world/models/bulwark-i.json",
+   "content/lore/characters/kim-haneul.json",
+   "content/lore/eras/league.json",
+   "content/lore/eras/tide-line.json",
+   "content/lore/factions/busan.json",
+   "content/lore/factions/imperial-court.json",
+   "content/lore/factions/japan-umbrella.json",
+   "content/lore/factions/korea-umbrella.json",
+   "content/lore/factions/shell-society.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/places/court-seat.json",
+   "content/lore/places/golmud-nest.json",
+   "content/lore/places/gyeongju-tombs.json",
+   "content/lore/places/incheon.json",
+   "content/lore/places/sendai-bell-cliff.json",
+   "content/lore/places/sendai-wall.json",
+   "content/lore/places/yangtze-mouth.json",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-plan/cx-bf-deep-01.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/deep-rulings.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 11,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "waivers": [
+   "純lore，無可玩單位，不跑戰鬥探針"
+  ]
+ },
+ "playtest": {
+  "required": 0
+ },
+ "files": [
+  "content/lore/characters/jiang-yan.json",
+  "content/lore/events/estuary-white-maw.json",
+  "content/lore/characters/yun-haejin.json",
+  "content/lore/events/incheon-biting-surf.json",
+  "content/lore/events/court-yard-first-roar.json",
+  "content/lore/characters/senda-chiyo.json",
+  "content/lore/events/bell-cliff-shattered-lights.json",
+  "content/lore/places/sendai-low-eaves.json",
+  "content/lore/events/sun-script-on-frost.json",
+  "content/lore/places/golmud-dawn-recess.json",
+  "content/lore/characters/han-bora.json"
+ ],
+ "ids": [
+  "character/jiang-yan",
+  "event/estuary-white-maw",
+  "character/yun-haejin",
+  "event/incheon-biting-surf",
+  "event/court-yard-first-roar",
+  "character/senda-chiyo",
+  "event/bell-cliff-shattered-lights",
+  "place/sendai-low-eaves",
+  "event/sun-script-on-frost",
+  "place/golmud-dawn-recess",
+  "character/han-bora"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "先確立意象，再取中文；新名一律提案；英文識別id不是aka，不造中文回譯英文別名。",
+  "rows": [
+   {
+    "id": "character/jiang-yan",
+    "nameZh": "江燕",
+    "meaning": "江口回收駕駛把機甲跪成一道堤，喊「這條街還有人！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/estuary-white-maw",
+    "nameZh": "江口白沫夜",
+    "meaning": "沫顎把白沫鋪滿舊渡口，江燕以機肩撞開一條回船路。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/yun-haejin",
+    "nameZh": "尹海真",
+    "meaning": "仁川守牆駕駛把自己補過的肩架頂回戰線，喊「肩還能借！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/incheon-biting-surf",
+    "nameZh": "仁川咬岸",
+    "meaning": "若扣甲爬上仁川堤腳，尹海真會以補過的機肩守住排水口。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/court-yard-first-roar",
+    "nameZh": "行在初吼",
+    "meaning": "成都行在的新駕駛第一次喊「替活人開路！」，老兵跟著吼了回去。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/senda-chiyo",
+    "nameZh": "千田 千代",
+    "meaning": "千代在胸鐘震響時推起傷機，喊「把背交過來！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/bell-cliff-shattered-lights",
+    "nameZh": "鳴崖碎燈夜",
+    "meaning": "鐘蠹的胸鐘震碎仙台崖燈，輪守者喊出了碎燈鳴塚。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/sendai-low-eaves",
+    "nameZh": "仙台低簷",
+    "meaning": "仙台牆根的低簷下能看見燈腹薄翼掠海，搬運工貼牆讓過亮囊。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "event/sun-script-on-frost",
+    "nameZh": "霜壁留日",
+    "meaning": "夸父窩口的刻痕透過霜層泛亮，抄寫者停筆看見一個追日的人。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "place/golmud-dawn-recess",
+    "nameZh": "窩口映日龕",
+    "meaning": "窩口石龕正對夸父裝甲，斜照的金光讓學者與守寢人同時住口。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   },
+   {
+    "id": "character/han-bora",
+    "nameZh": "韓寶羅",
+    "meaning": "修鼓人看見處容空陵的骸片泛亮，仍吼「這一拍，替活人！」。",
+    "method": "中文先定意涵；人名音譯／地方與事件名依畫面命名"
+   }
+  ]
+ },
+ "draftNotes": [
+  "本檔是計畫稿，base由領導建worktree前替換為實際commit。",
+  "checks由領導於正式收批執行；工人僅跑交接書固定四條，不自行加碼。",
+  "已有年表三夜只補event；未合併年表前的新事件缺列警告須逐件列出，合併線消除。"
+ ]
+}

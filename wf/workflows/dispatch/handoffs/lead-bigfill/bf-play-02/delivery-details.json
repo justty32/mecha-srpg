@@ -1,0 +1,854 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "id",
+  "name",
+  "lore",
+  "hook",
+  "trigger",
+  "objectives",
+  "monster",
+  "template",
+  "bytes",
+  "notes"
+ ],
+ "rows": [
+  {
+   "file": "content/base/world/encounters/rift-z-bf-nairobi-yoke-return.json",
+   "id": "encounter/rift-z-bf-nairobi-yoke-return",
+   "name": "",
+   "lore": [
+    "faction/nairobi",
+    "faction/yoke-saddle-works",
+    "place/mombasa"
+   ],
+   "hook": "C/G；底色1.2、1.4",
+   "trigger": {
+    "由契約指定": "contract/bf-nairobi-yoke-return",
+    "地點": "place/chittagong"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/shell-ear-d",
+    "物種": "species/shell-ear",
+    "族": "beast",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/rift-beast-shallow.json",
+   "bytes": 415,
+   "notes": "破軛待裝回東非，伏耳壓住吉大港接應岸；借岸作戰，不是把獸帶去內陸；拘束不是馴化。 指定獸 伏耳（species/shell-ear／monster/shell-ear-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-nairobi-yoke-return.json",
+   "id": "contract/bf-nairobi-yoke-return",
+   "name": "奈洛比高地城邦破軛待裝船：驅除伏耳",
+   "lore": [
+    "faction/nairobi",
+    "faction/yoke-saddle-works",
+    "place/mombasa"
+   ],
+   "hook": "C/G；底色1.2、1.4",
+   "trigger": {
+    "發包牌": "action/board-bf-nairobi-yoke-return",
+    "雇主": "faction-ops/nairobi",
+    "落點": "place/chittagong",
+    "門檻": -10
+   },
+   "objectives": [
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/shell-ear-d"
+     }
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/shell-ear-d",
+    "物種": "species/shell-ear",
+    "族": "beast",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/scout-rift-margin.json",
+   "bytes": 768,
+   "notes": "破軛待裝回東非，伏耳壓住吉大港接應岸；借岸作戰，不是把獸帶去內陸；拘束不是馴化。 指定獸 伏耳（species/shell-ear／monster/shell-ear-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-nairobi-yoke-return.json",
+   "id": "action/board-bf-nairobi-yoke-return",
+   "name": "",
+   "lore": [
+    "faction/nairobi",
+    "faction/yoke-saddle-works",
+    "place/mombasa"
+   ],
+   "hook": "C/G；底色1.2、1.4",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 19
+      }
+     },
+     {
+      "tag": "bf-receive-chittagong"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-nairobi-yoke-return"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/nairobi.rep"
+       },
+       "op": ">=",
+       "b": -10
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/shell-ear-d",
+    "物種": "species/shell-ear",
+    "族": "beast",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1033,
+   "notes": "破軛待裝回東非，伏耳壓住吉大港接應岸；借岸作戰，不是把獸帶去內陸；拘束不是馴化。 指定獸 伏耳（species/shell-ear／monster/shell-ear-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  },
+  {
+   "file": "content/base/world/encounters/rift-z-bf-dhaka-first-stitch.json",
+   "id": "encounter/rift-z-bf-dhaka-first-stitch",
+   "name": "",
+   "lore": [
+    "faction/dhaka-weavers",
+    "place/dhaka-sail-court"
+   ],
+   "hook": "N03；底色1.1、1.3",
+   "trigger": {
+    "由契約指定": "contract/bf-dhaka-first-stitch",
+    "地點": "place/dhaka"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/reed-lace-c",
+    "物種": "species/reed-lace",
+    "族": "mycelium",
+    "等級": "C",
+    "生態位": "淡水河岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/rift-mycelium-shallow.json",
+   "bytes": 420,
+   "notes": "達卡淡水河岸的蘆網截住撤料隊；守區六回合給學徒撤離，非虛構護送單位；不寫菌絲出海。 指定獸 蘆網（species/reed-lace／monster/reed-lace-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-dhaka-first-stitch.json",
+   "id": "contract/bf-dhaka-first-stitch",
+   "name": "達卡補天院撤料：守住蘆網河岸",
+   "lore": [
+    "faction/dhaka-weavers",
+    "place/dhaka-sail-court"
+   ],
+   "hook": "N03；底色1.1、1.3",
+   "trigger": {
+    "發包牌": "action/board-bf-dhaka-first-stitch",
+    "雇主": "faction-ops/dhaka-weavers",
+    "落點": "place/dhaka",
+    "門檻": -5
+   },
+   "objectives": [
+    {
+     "kind": "hold",
+     "params": {
+      "rounds": 6
+     }
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/reed-lace-c"
+     },
+     "optional": true
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/reed-lace-c",
+    "物種": "species/reed-lace",
+    "族": "mycelium",
+    "等級": "C",
+    "生態位": "淡水河岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/defend-citywall.json",
+   "bytes": 871,
+   "notes": "達卡淡水河岸的蘆網截住撤料隊；守區六回合給學徒撤離，非虛構護送單位；不寫菌絲出海。 指定獸 蘆網（species/reed-lace／monster/reed-lace-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-dhaka-first-stitch.json",
+   "id": "action/board-bf-dhaka-first-stitch",
+   "name": "",
+   "lore": [
+    "faction/dhaka-weavers",
+    "place/dhaka-sail-court"
+   ],
+   "hook": "N03；底色1.1、1.3",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 26
+      }
+     },
+     {
+      "tag": "bf-receive-dhaka"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-dhaka-first-stitch"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/dhaka-weavers.rep"
+       },
+       "op": ">=",
+       "b": -5
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/reed-lace-c",
+    "物種": "species/reed-lace",
+    "族": "mycelium",
+    "等級": "C",
+    "生態位": "淡水河岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1024,
+   "notes": "達卡淡水河岸的蘆網截住撤料隊；守區六回合給學徒撤離，非虛構護送單位；不寫菌絲出海。 指定獸 蘆網（species/reed-lace／monster/reed-lace-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  },
+  {
+   "file": "content/base/world/encounters/rift-z-bf-anvil-shield-turn.json",
+   "id": "encounter/rift-z-bf-anvil-shield-turn",
+   "name": "",
+   "lore": [
+    "faction/anvil",
+    "place/hamburg"
+   ],
+   "hook": "N08；底色1.11",
+   "trigger": {
+    "由契約指定": "contract/bf-anvil-shield-turn",
+    "地點": "place/chittagong"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/foam-jaw-c",
+    "物種": "species/foam-jaw",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "survive",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/rift-beast-shallow.json",
+   "bytes": 413,
+   "notes": "鐵砧外派修甲班在吉大港通海斜坡換盾；嘴上說只借半步，傷機卻整列退到你身後。 指定獸 沫顎（species/foam-jaw／monster/foam-jaw-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-anvil-shield-turn.json",
+   "id": "contract/bf-anvil-shield-turn",
+   "name": "鐵砧獵團換盾空檔：擋住沫顎",
+   "lore": [
+    "faction/anvil",
+    "place/hamburg"
+   ],
+   "hook": "N08；底色1.11",
+   "trigger": {
+    "發包牌": "action/board-bf-anvil-shield-turn",
+    "雇主": "faction-ops/anvil-hunters",
+    "落點": "place/chittagong",
+    "門檻": -5
+   },
+   "objectives": [
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     }
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/foam-jaw-c"
+     },
+     "optional": true
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/foam-jaw-c",
+    "物種": "species/foam-jaw",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "survive",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/defend-citywall.json",
+   "bytes": 868,
+   "notes": "鐵砧外派修甲班在吉大港通海斜坡換盾；嘴上說只借半步，傷機卻整列退到你身後。 指定獸 沫顎（species/foam-jaw／monster/foam-jaw-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-anvil-shield-turn.json",
+   "id": "action/board-bf-anvil-shield-turn",
+   "name": "",
+   "lore": [
+    "faction/anvil",
+    "place/hamburg"
+   ],
+   "hook": "N08；底色1.11",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 5
+      }
+     },
+     {
+      "tag": "bf-receive-chittagong"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-anvil-shield-turn"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/anvil-hunters.rep"
+       },
+       "op": ">=",
+       "b": -5
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/foam-jaw-c",
+    "物種": "species/foam-jaw",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "survive",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1029,
+   "notes": "鐵砧外派修甲班在吉大港通海斜坡換盾；嘴上說只借半步，傷機卻整列退到你身後。 指定獸 沫顎（species/foam-jaw／monster/foam-jaw-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  },
+  {
+   "file": "content/base/world/encounters/rift-z-bf-saltgull-tide-ramp.json",
+   "id": "encounter/rift-z-bf-saltgull-tide-ramp",
+   "name": "",
+   "lore": [
+    "faction/salt-gull",
+    "place/rotterdam-roost"
+   ],
+   "hook": "N08；底色1.8",
+   "trigger": {
+    "由契約指定": "contract/bf-saltgull-tide-ramp",
+    "地點": "place/chittagong"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/split-fin-c",
+    "物種": "species/split-fin",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/rift-beast-shallow.json",
+   "bytes": 414,
+   "notes": "吉大港通海河口的岔鰭逼近卸甲坡；守區六回合換班，殺獸可選；不改2106停火，不把全殲當交班。 指定獸 岔鰭（species/split-fin／monster/split-fin-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-saltgull-tide-ramp.json",
+   "id": "contract/bf-saltgull-tide-ramp",
+   "name": "鹽鷗獵團換班未到：岔鰭前守住卸甲坡",
+   "lore": [
+    "faction/salt-gull",
+    "place/rotterdam-roost"
+   ],
+   "hook": "N08；底色1.8",
+   "trigger": {
+    "發包牌": "action/board-bf-saltgull-tide-ramp",
+    "雇主": "faction-ops/salt-gull-hunters",
+    "落點": "place/chittagong",
+    "門檻": -5
+   },
+   "objectives": [
+    {
+     "kind": "hold",
+     "params": {
+      "rounds": 6
+     }
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/split-fin-c"
+     },
+     "optional": true
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/split-fin-c",
+    "物種": "species/split-fin",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/defend-citywall.json",
+   "bytes": 880,
+   "notes": "吉大港通海河口的岔鰭逼近卸甲坡；守區六回合換班，殺獸可選；不改2106停火，不把全殲當交班。 指定獸 岔鰭（species/split-fin／monster/split-fin-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-saltgull-tide-ramp.json",
+   "id": "action/board-bf-saltgull-tide-ramp",
+   "name": "",
+   "lore": [
+    "faction/salt-gull",
+    "place/rotterdam-roost"
+   ],
+   "hook": "N08；底色1.8",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 12
+      }
+     },
+     {
+      "tag": "bf-receive-chittagong"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-saltgull-tide-ramp"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/salt-gull-hunters.rep"
+       },
+       "op": ">=",
+       "b": -5
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/split-fin-c",
+    "物種": "species/split-fin",
+    "族": "beast",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "hold",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1038,
+   "notes": "吉大港通海河口的岔鰭逼近卸甲坡；守區六回合換班，殺獸可選；不改2106停火，不把全殲當交班。 指定獸 岔鰭（species/split-fin／monster/split-fin-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。守區用hold、rounds=6且不填zone，既有引擎展開可達區；不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  },
+  {
+   "file": "content/base/world/encounters/rift-z-bf-league-lantern-keel.json",
+   "id": "encounter/rift-z-bf-league-lantern-keel",
+   "name": "",
+   "lore": [
+    "faction/league",
+    "place/chittagong"
+   ],
+   "hook": "F/G；底色1.4、1.6",
+   "trigger": {
+    "由契約指定": "contract/bf-league-lantern-keel",
+    "地點": "place/chittagong"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/lantern-keel-c",
+    "物種": "species/lantern-keel",
+    "族": "insect",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/insect-shallow.json",
+   "bytes": 348,
+   "notes": "吉大港借桌的殘聯窗口發約，燈腹正擋住本班起航；不宣稱殘聯擁有港口。 指定獸 燈腹（species/lantern-keel／monster/lantern-keel-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-league-lantern-keel.json",
+   "id": "contract/bf-league-lantern-keel",
+   "name": "殘聯夜班起航受阻：擊落燈腹",
+   "lore": [
+    "faction/league",
+    "place/chittagong"
+   ],
+   "hook": "F/G；底色1.4、1.6",
+   "trigger": {
+    "發包牌": "action/board-bf-league-lantern-keel",
+    "雇主": "faction-ops/residual-league",
+    "落點": "place/chittagong",
+    "門檻": -10
+   },
+   "objectives": [
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/lantern-keel-c"
+     }
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/lantern-keel-c",
+    "物種": "species/lantern-keel",
+    "族": "insect",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/scout-rift-margin.json",
+   "bytes": 760,
+   "notes": "吉大港借桌的殘聯窗口發約，燈腹正擋住本班起航；不宣稱殘聯擁有港口。 指定獸 燈腹（species/lantern-keel／monster/lantern-keel-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-league-lantern-keel.json",
+   "id": "action/board-bf-league-lantern-keel",
+   "name": "",
+   "lore": [
+    "faction/league",
+    "place/chittagong"
+   ],
+   "hook": "F/G；底色1.4、1.6",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 19
+      }
+     },
+     {
+      "tag": "bf-receive-chittagong"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-league-lantern-keel"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/residual-league.rep"
+       },
+       "op": ">=",
+       "b": -10
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/lantern-keel-c",
+    "物種": "species/lantern-keel",
+    "族": "insect",
+    "等級": "C",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1041,
+   "notes": "吉大港借桌的殘聯窗口發約，燈腹正擋住本班起航；不宣稱殘聯擁有港口。 指定獸 燈腹（species/lantern-keel／monster/lantern-keel-c）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  },
+  {
+   "file": "content/base/world/encounters/rift-z-bf-breakers-salt-needle.json",
+   "id": "encounter/rift-z-bf-breakers-salt-needle",
+   "name": "",
+   "lore": [
+    "faction/chittagong-breakers",
+    "place/chittagong"
+   ],
+   "hook": "N03；底色1.3、1.4",
+   "trigger": {
+    "由契約指定": "contract/bf-breakers-salt-needle",
+    "地點": "place/chittagong"
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/brinepin-d",
+    "物種": "species/brinepin",
+    "族": "insect",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/encounters/insect-shallow.json",
+   "bytes": 349,
+   "notes": "拆船班透過殘聯借桌窗口委託；聲望只加殘聯。仍開放的內側拆船坡出現鹽針，當班吊臂已停；不引用或另開外灘禁區劇情。 指定獸 鹽針（species/brinepin／monster/brinepin-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 遭遇本身不加monster/species白名單假欄；出場保證由同組契約提供。"
+  },
+  {
+   "file": "content/base/world/contracts/bf-breakers-salt-needle.json",
+   "id": "contract/bf-breakers-salt-needle",
+   "name": "吉大港拆船幫當班急停：拔掉內坡鹽針",
+   "lore": [
+    "faction/chittagong-breakers",
+    "place/chittagong"
+   ],
+   "hook": "N03；底色1.3、1.4",
+   "trigger": {
+    "發包牌": "action/board-bf-breakers-salt-needle",
+    "雇主": "faction-ops/residual-league",
+    "落點": "place/chittagong",
+    "門檻": -10
+   },
+   "objectives": [
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/brinepin-d"
+     }
+    }
+   ],
+   "monster": {
+    "指定出場": "monster/brinepin-d",
+    "物種": "species/brinepin",
+    "族": "insect",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/contracts/scout-rift-margin.json",
+   "bytes": 770,
+   "notes": "拆船班透過殘聯借桌窗口委託；聲望只加殘聯。仍開放的內側拆船坡出現鹽針，當班吊臂已停；不引用或另開外灘禁區劇情。 指定獸 鹽針（species/brinepin／monster/brinepin-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 金額、聲望、期限沿主範本；killTarget結構參照epithet-bounty、hold結構參照seal-anchor-watch，不挪用其高階報酬。"
+  },
+  {
+   "file": "content/base/world/actions/board-bf-breakers-salt-needle.json",
+   "id": "action/board-bf-breakers-salt-needle",
+   "name": "",
+   "lore": [
+    "faction/chittagong-breakers",
+    "place/chittagong"
+   ],
+   "hook": "N03；底色1.3、1.4",
+   "trigger": {
+    "all": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.month"
+       },
+       "op": ">=",
+       "b": 1
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "calendar.dom"
+       },
+       "op": "==",
+       "b": 26
+      }
+     },
+     {
+      "tag": "bf-receive-chittagong"
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "flags.bf-posted-breakers-salt-needle"
+       },
+       "op": "==",
+       "b": 0
+      }
+     },
+     {
+      "cmp": {
+       "a": {
+        "ref": "campaign.factions.base:faction-ops/residual-league.rep"
+       },
+       "op": ">=",
+       "b": -10
+      }
+     }
+    ]
+   },
+   "objectives": [],
+   "monster": {
+    "指定出場": "monster/brinepin-d",
+    "物種": "species/brinepin",
+    "族": "insect",
+    "等級": "D",
+    "生態位": "港口／通海河口／海岸",
+    "保證接法": "契約 killTarget.params.target；先匹配，缺席時補入；optional亦執行此展開",
+    "主目標": "killTarget",
+    "隨機伴隨": "沿範本D級同族池；明示encounter的width=D，目前C預算不執行，不宣稱所有同族種固定出場",
+    "總量": "範本D:2；指定獸未抽到時額外1，故共2–3；C指定獸固定額外1；不是改舊數值"
+   },
+   "template": "content/base/world/actions/board-rival-carcass-claim.json",
+   "bytes": 1045,
+   "notes": "拆船班透過殘聯借桌窗口委託；聲望只加殘聯。仍開放的內側拆船坡出現鹽針，當班吊臂已停；不引用或另開外灘禁區劇情。 指定獸 鹽針（species/brinepin／monster/brinepin-d）必須寫在契約name；此name亦要保留現在必須接戰的理由。不造獸二名或新招式專名。 只發同組一份；不添加全域事件或怪獸池。"
+  }
+ ]
+}

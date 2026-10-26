@@ -1,0 +1,37 @@
+{
+ "contract": "wf-table/1",
+ "source": "../deep-plan/cx-bf-deep-06.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/timeline.json",
+   "jsonPath": "$.entries[160]",
+   "op": "setKey",
+   "value": {
+    "event": "event/auckland-dusk-canopy"
+   },
+   "why": "既有同夜不重複加列；合併時以 date=2107、title=舊船覆幕，內泊留燈 重定位，只在event缺鍵時新增，已有異值交領導裁定。"
+  },
+  {
+   "file": "content/lore/factions/sydney.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/auckland-maw-shelf",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  },
+  {
+   "file": "content/lore/factions/league.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/auckland-maw-shelf",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  }
+ ]
+}

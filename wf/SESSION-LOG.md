@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [dispatch] 2026-10-26 lead-bigfill open：下一輪大填充（月面、可玩內容、加深）；codex 大量平行（計畫 astra → 產出 sol）→ 交接區 `wf/workflows/dispatch/handoffs/lead-bigfill/`
+- [dispatch] 2026-10-26 lead-bigfill 暫停（2026-10-26 晚）：215 件已入庫 634e7ad0 → 接續見 `wf/workflows/dispatch/handoffs/lead-bigfill/report.md`
 
 
 ## 各工作流 session-log

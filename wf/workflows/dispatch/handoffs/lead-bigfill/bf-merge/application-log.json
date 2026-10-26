@@ -1,0 +1,2056 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "batch",
+  "kind",
+  "status",
+  "reason",
+  "request",
+  "tagChanges",
+  "appliedValue"
+ ],
+ "rows": [
+  {
+   "batch": "bf-deep-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/timeline.json",
+    "jsonPath": "$.entries[122]",
+    "op": "setKey",
+    "value": {
+     "event": "event/bell-cliff-shattered-lights"
+    },
+    "why": "既有同夜不重複加列；合併時以 date=2105、title=仙台外崖燈盞盡碎，內港換班未斷 重定位，只在event缺鍵時新增，已有異值交領導裁定。"
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/japan-umbrella.json",
+    "jsonPath": "$",
+    "op": "setKey",
+    "value": {
+     "places": [
+      "place/sendai-low-eaves"
+     ]
+    },
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/shell-wardens.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/golmud-dawn-recess",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/shell-society.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/golmud-dawn-recess",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/kim-haneul.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/han-bora",
+     "relation": "地方往來",
+     "note": "金河娜經過古陵時認得修鼓人，韓寶羅留在空陵照看訪客。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/tide-creed.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/mumbai-resonant-wall",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/lena-visser.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/niek-vos",
+     "relation": "地方往來",
+     "note": "莉娜指泊位，尼克在岸上替偏航糧駁穩住船側。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/lena-visser.json",
+    "jsonPath": "$.events",
+    "op": "append",
+    "value": "event/roost-pier-grip",
+    "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/claire-renaud.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/solene-le-goff",
+     "relation": "地方往來",
+     "note": "雷諾在城內替她保管下機要用的拐杖。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/claire-renaud.json",
+    "jsonPath": "$.events",
+    "op": "append",
+    "value": "event/malo-return-to-the-breach",
+    "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/oskar-lind.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/anke-rehm",
+     "relation": "地方往來",
+     "note": "交機時替對方指認工人真正卡住的傷件。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/oskar-lind.json",
+    "jsonPath": "$.events",
+    "op": "append",
+    "value": "event/hamburg-ember-shoulder",
+    "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/marta-bellini.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/elia-conti",
+     "relation": "地方往來",
+     "note": "瑪塔修造，他在座艙裡把接縫受力的感覺報回。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/marta-bellini.json",
+    "jsonPath": "$.events",
+    "op": "append",
+    "value": "event/genoa-first-footfall",
+    "why": "補參與人反向事件引用；possible不轉成既定歷史。"
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/salt-gull.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/skagerrak-cold-reflection",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/wanjiku-kamau.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/nali-otieno",
+     "relation": "地方往來",
+     "note": "替來往遺址的人護送傷者，研究內容仍由萬吉庫自行判斷。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/nairobi.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/rift-valley-bone-echo",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-05",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/timeline.json",
+    "jsonPath": "$.entries[161]",
+    "op": "setKey",
+    "value": {
+     "event": "event/white-ford-fallen-bridge"
+    },
+    "why": "既有同夜不重複加列；合併時以 date=2107、title=白汊空橋斷後另繫回程索 重定位，只在event缺鍵時新增，已有異值交領導裁定。"
+   }
+  },
+  {
+   "batch": "bf-deep-05",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/north-american-umbrella.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/white-ford-reed-crown",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-05",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/characters/eugenia-ferrero.json",
+    "jsonPath": "$.relations",
+    "op": "append",
+    "value": {
+     "character": "character/luc-morin",
+     "relation": "地方往來",
+     "note": "費雷羅來往地下時由他接衣引路，研究仍由她主持。"
+    },
+    "why": "既有人物反向連到本地新人物，不變更其職業。"
+   }
+  },
+  {
+   "batch": "bf-deep-05",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/quito.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/titicaca-empty-dawn",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/timeline.json",
+    "jsonPath": "$.entries[160]",
+    "op": "setKey",
+    "value": {
+     "event": "event/auckland-dusk-canopy"
+    },
+    "why": "既有同夜不重複加列；合併時以 date=2107、title=舊船覆幕，內泊留燈 重定位，只在event缺鍵時新增，已有異值交領導裁定。"
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/sydney.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/auckland-maw-shelf",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/league.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/auckland-maw-shelf",
+    "why": "只增加地點導航，不賦予古代機所有權。"
+   }
+  },
+  {
+   "batch": "bf-moon-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/selene.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/tranquility-ferry-port",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/ground-union.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/tranquility-ferry-port",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/ground-union.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/prism-stair",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/ground-union.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/moonbow-shift-house",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/places/tranquility-city.json",
+    "jsonPath": "$.factions",
+    "op": "append",
+    "value": "faction/dome-households",
+    "why": "補匿名住戶群像，不改公司實質統治"
+   }
+  },
+  {
+   "batch": "bf-moon-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/selene.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/ferry-nostos",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/ground-union.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/tranquility-repair-dock",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/places/ferry-lane.json",
+    "jsonPath": "$.factions",
+    "op": "append",
+    "value": "faction/lunar-ferry-crews",
+    "why": "補受僱船員的存在"
+   }
+  },
+  {
+   "batch": "bf-moon-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/timeline.json",
+    "jsonPath": "$.entries[5]",
+    "op": "setKey",
+    "value": {
+     "event": "event/ferry-first-departure"
+    },
+    "why": "補2066既有定班條目的event；領導按日期與標題重找位置，已有不同event則回報，不覆寫。"
+   }
+  },
+  {
+   "batch": "bf-moon-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/ground-union.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/grey-edge-rest-stop",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/whitegloves.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/white-armour-loading-hall",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-moon-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/lore/factions/backside.json",
+    "jsonPath": "$.places",
+    "op": "append",
+    "value": "place/dark-quay-night-slip",
+    "why": "補同一勢力的月面活動地點；若已存在則略過"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/imperial-court.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-court-grain",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/russia-umbrella.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-tiksi-raincoat",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/japan-umbrella.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-sendai-gate",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/north-american-umbrella.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-seattle-return-gun",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/inner-sea-houses.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-genoa-shared-forge",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-01",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/quito.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-quito-coast-beacon",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/nairobi.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-nairobi-yoke-return",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/dhaka-weavers.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-dhaka-first-stitch",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/places/dhaka.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-dhaka",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/anvil-hunters.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-anvil-shield-turn",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-saltgull-tide-ramp",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/residual-league.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-league-lantern-keel",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-02",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/residual-league.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-breakers-salt-needle",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/residual-league.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-exchange-bent-needle",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/dhaka-weavers.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-weavers-wick-mat",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/dhaka.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-dhaka",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/japan-umbrella.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-japan-shoal-turn",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-03",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/imperial-court.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-court-cargo-ramp",
+    "why": "只登記此雇主；合併線套用"
+   }
+  },
+  {
+   "batch": "bf-play-04",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/dhaka.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-dhaka",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-04",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-04",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-05",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-05",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-06",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-06",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "解鎖本案地球港口內容；合併線同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-07",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/dhaka.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-dhaka",
+    "why": "讓本批事件／發包在此地球地點成立；同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-07",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/chittagong.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-chittagong",
+    "why": "讓本批事件／發包在此地球地點成立；同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-07",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "讓本批事件／發包在此地球地點成立；同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-08",
+   "kind": "insert",
+   "status": "skipped",
+   "reason": "同檔同路徑同值重複",
+   "request": {
+    "file": "content/base/world/places/singapore.json",
+    "jsonPath": "$.tags",
+    "op": "append",
+    "value": "bf-receive-singapore",
+    "why": "僅地球新加坡港啟用；與01–07同值去重"
+   }
+  },
+  {
+   "batch": "bf-play-08",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/selene-whitegloves.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-moon-dock-parts",
+    "why": "只加指定雇主；不改actionLanes、territory或presence"
+   }
+  },
+  {
+   "batch": "bf-play-08",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/salt-gull-hunters.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-moon-dark-parts",
+    "why": "只加指定雇主；不改actionLanes、territory或presence"
+   }
+  },
+  {
+   "batch": "bf-play-08",
+   "kind": "insert",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "file": "content/base/world/factions-ops/selene-whitegloves.json",
+    "jsonPath": "$.contractKinds",
+    "op": "append",
+    "value": "contract/bf-moon-white-cargo",
+    "why": "只加指定雇主；不改actionLanes、territory或presence"
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-01",
+    "title": "霜壁留日",
+    "summary": "夸父窩口的刻痕透過霜層泛亮，抄寫者停筆看見一個追日的人。",
+    "event": "event/sun-script-on-frost",
+    "era": "era/league",
+    "factions": [
+     "faction/shell-wardens"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "dig"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-01",
+    "title": "霜壁留日",
+    "summary": "夸父窩口的刻痕透過霜層泛亮，抄寫者停筆看見一個追日的人。",
+    "event": "event/sun-script-on-frost",
+    "era": "era/league",
+    "factions": [
+     "faction/shell-wardens"
+    ],
+    "tags": [
+     "dig"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-02",
+    "title": "行在初吼",
+    "summary": "成都行在的新駕駛第一次喊「替活人開路！」，老兵跟著吼了回去。",
+    "event": "event/court-yard-first-roar",
+    "era": "era/league",
+    "factions": [
+     "faction/imperial-court"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "mech"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-02",
+    "title": "行在初吼",
+    "summary": "成都行在的新駕駛第一次喊「替活人開路！」，老兵跟著吼了回去。",
+    "event": "event/court-yard-first-roar",
+    "era": "era/league",
+    "factions": [
+     "faction/imperial-court"
+    ],
+    "tags": [
+     "mech"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-01",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-08",
+    "title": "江口白沫夜",
+    "summary": "沫顎把白沫鋪滿舊渡口，江燕以機肩撞開一條回船路。",
+    "event": "event/estuary-white-maw",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-08",
+    "title": "江口白沫夜",
+    "summary": "沫顎把白沫鋪滿舊渡口，江燕以機肩撞開一條回船路。",
+    "event": "event/estuary-white-maw",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-02",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-06",
+    "title": "帆骨撐天",
+    "summary": "補天院的破帆壓下來，院內工匠把「撐到人走完！」喊成一聲。",
+    "event": "event/sail-ribs-hold-the-sky",
+    "era": "era/league",
+    "factions": [
+     "faction/dhaka-weavers"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "relief"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-06",
+    "title": "帆骨撐天",
+    "summary": "補天院的破帆壓下來，院內工匠把「撐到人走完！」喊成一聲。",
+    "event": "event/sail-ribs-hold-the-sky",
+    "era": "era/league",
+    "factions": [
+     "faction/dhaka-weavers"
+    ],
+    "tags": [
+     "relief"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-02",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-09",
+    "title": "坡上還聲",
+    "summary": "蘇拉特後送拖架滑向斜坡，傷兵把「我還在！」一聲聲吼給駕駛。",
+    "event": "event/surat-voices-on-the-slope",
+    "era": "era/league",
+    "factions": [
+     "faction/mumbai-returners"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "relief"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-09",
+    "title": "坡上還聲",
+    "summary": "蘇拉特後送拖架滑向斜坡，傷兵把「我還在！」一聲聲吼給駕駛。",
+    "event": "event/surat-voices-on-the-slope",
+    "era": "era/league",
+    "factions": [
+     "faction/mumbai-returners"
+    ],
+    "tags": [
+     "relief"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-02",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-12",
+    "title": "第七哨白齒",
+    "summary": "C級潮狼的牙從浪裡一排排露出，比娜拖著裂盾替換防隊擋住缺口。",
+    "event": "event/seventh-post-salt-jaws",
+    "era": "era/league",
+    "factions": [
+     "faction/bay-seventh-post"
+    ],
+    "tags": [
+     "tide"
+    ]
+   },
+   "tagChanges": [],
+   "appliedValue": {
+    "date": "2107-12",
+    "title": "第七哨白齒",
+    "summary": "C級潮狼的牙從浪裡一排排露出，比娜拖著裂盾替換防隊擋住缺口。",
+    "event": "event/seventh-post-salt-jaws",
+    "era": "era/league",
+    "factions": [
+     "faction/bay-seventh-post"
+    ],
+    "tags": [
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-02",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-08",
+    "title": "門內灰虹",
+    "summary": "孟買門的朝聖者隔著灰霧看見一圈暗紅光，爭著說那就是迦梨。",
+    "event": "event/mumbai-ash-halo",
+    "era": "era/league",
+    "factions": [
+     "faction/tide-creed"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "rumor"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-08",
+    "title": "門內灰虹",
+    "summary": "孟買門的朝聖者隔著灰霧看見一圈暗紅光，爭著說那就是迦梨。",
+    "event": "event/mumbai-ash-halo",
+    "era": "era/league",
+    "factions": [
+     "faction/tide-creed"
+    ],
+    "tags": [
+     "rumor"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-03",
+    "title": "燼肩托架",
+    "summary": "漢堡機庫的燼從機肩噴出，工人吼「鐵可以再造！」，把同伴拖離架底。",
+    "event": "event/hamburg-ember-shoulder",
+    "era": "era/league",
+    "factions": [
+     "faction/anvil"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "relief"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-03",
+    "title": "燼肩托架",
+    "summary": "漢堡機庫的燼從機肩噴出，工人吼「鐵可以再造！」，把同伴拖離架底。",
+    "event": "event/hamburg-ember-shoulder",
+    "era": "era/league",
+    "factions": [
+     "faction/anvil"
+    ],
+    "tags": [
+     "relief"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-05",
+    "title": "鷗巢纏樁夜",
+    "summary": "抱樁從鹿特丹海側纏上樁腳，糧駁的船腹開始往牠那邊斜。",
+    "event": "event/roost-pier-grip",
+    "era": "era/league",
+    "factions": [
+     "faction/salt-gull"
+    ],
+    "tags": [
+     "tide"
+    ]
+   },
+   "tagChanges": [],
+   "appliedValue": {
+    "date": "2107-05",
+    "title": "鷗巢纏樁夜",
+    "summary": "抱樁從鹿特丹海側纏上樁腳，糧駁的船腹開始往牠那邊斜。",
+    "event": "event/roost-pier-grip",
+    "era": "era/league",
+    "factions": [
+     "faction/salt-gull"
+    ],
+    "tags": [
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-09",
+    "title": "黑脊映面",
+    "summary": "接哨者在北海退潮時看見埃吉爾的濕亮刻痕，整船人忽然不再爭誰先靠岸。",
+    "event": "event/skagerrak-black-ridge",
+    "era": "era/league",
+    "factions": [
+     "faction/salt-gull"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "dig"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-09",
+    "title": "黑脊映面",
+    "summary": "接哨者在北海退潮時看見埃吉爾的濕亮刻痕，整船人忽然不再爭誰先靠岸。",
+    "event": "event/skagerrak-black-ridge",
+    "era": "era/league",
+    "factions": [
+     "faction/salt-gull"
+    ],
+    "tags": [
+     "dig"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-03",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-11",
+    "title": "缺門有人",
+    "summary": "聖馬洛守門機再度跨過舊缺口，索蓮喊「人回來了，門就有！」。",
+    "event": "event/malo-return-to-the-breach",
+    "era": "era/league",
+    "factions": [
+     "faction/euro-umbrella"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "mech"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-11",
+    "title": "缺門有人",
+    "summary": "聖馬洛守門機再度跨過舊缺口，索蓮喊「人回來了，門就有！」。",
+    "event": "event/malo-return-to-the-breach",
+    "era": "era/league",
+    "factions": [
+     "faction/euro-umbrella"
+    ],
+    "tags": [
+     "mech"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-12",
+    "title": "城門放聲",
+    "summary": "阿克拉孩子不敢穿過門影，民兵把「回家的人不用低頭！」吼過整條街。",
+    "event": "event/accra-open-throat",
+    "era": "era/league",
+    "factions": [
+     "faction/accra"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "memorial"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-12",
+    "title": "城門放聲",
+    "summary": "阿克拉孩子不敢穿過門影，民兵把「回家的人不用低頭！」吼過整條街。",
+    "event": "event/accra-open-throat",
+    "era": "era/league",
+    "factions": [
+     "faction/accra"
+    ],
+    "tags": [
+     "memorial"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-07",
+    "title": "吉布地錯影",
+    "summary": "雙影的厚臂先出海，裸核卻從另一邊亮起，岸上人把兩個輪廓認成一隻。",
+    "event": "event/djibouti-crossed-shadows",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-07",
+    "title": "吉布地錯影",
+    "summary": "雙影的厚臂先出海，裸核卻從另一邊亮起，岸上人把兩個輪廓認成一隻。",
+    "event": "event/djibouti-crossed-shadows",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-02",
+    "title": "亞斯文石聲",
+    "summary": "亞斯文搬石工喊「把河留給後人！」，機甲踏著號子把護岸石送回缺口。",
+    "event": "event/aswan-stone-singing",
+    "era": "era/league",
+    "factions": [
+     "faction/north-africa-umbrella"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "reconstruction"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-02",
+    "title": "亞斯文石聲",
+    "summary": "亞斯文搬石工喊「把河留給後人！」，機甲踏著號子把護岸石送回缺口。",
+    "event": "event/aswan-stone-singing",
+    "era": "era/league",
+    "factions": [
+     "faction/north-africa-umbrella"
+    ],
+    "tags": [
+     "reconstruction"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-04",
+    "title": "河上托掌",
+    "summary": "亞斯文岸邊滑塌，護運駕駛舉起整片機掌，喊「站住，我在下面！」。",
+    "event": "event/aswan-hand-above-water",
+    "era": "era/league",
+    "factions": [
+     "faction/north-africa-umbrella"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "relief"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-04",
+    "title": "河上托掌",
+    "summary": "亞斯文岸邊滑塌，護運駕駛舉起整片機掌，喊「站住，我在下面！」。",
+    "event": "event/aswan-hand-above-water",
+    "era": "era/league",
+    "factions": [
+     "faction/north-africa-umbrella"
+    ],
+    "tags": [
+     "relief"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-06",
+    "title": "杜拜浪面",
+    "summary": "杜拜海側空樓前，空帆一硬一空的翼影把沙地切成明暗兩半。",
+    "event": "event/dubai-tidal-visor",
+    "era": "era/league",
+    "factions": [
+     "faction/west-asia-umbrella"
+    ],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-06",
+    "title": "杜拜浪面",
+    "summary": "杜拜海側空樓前，空帆一硬一空的翼影把沙地切成明暗兩半。",
+    "event": "event/dubai-tidal-visor",
+    "era": "era/league",
+    "factions": [
+     "faction/west-asia-umbrella"
+    ],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-04",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-10",
+    "title": "最後一片門影",
+    "summary": "杜拜回收隊將機甲留在最後一片門影，吼「空城也要帶人回去！」。",
+    "event": "event/dubai-last-shadow",
+    "era": "era/league",
+    "factions": [
+     "faction/west-asia-umbrella"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "relief"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-10",
+    "title": "最後一片門影",
+    "summary": "杜拜回收隊將機甲留在最後一片門影，吼「空城也要帶人回去！」。",
+    "event": "event/dubai-last-shadow",
+    "era": "era/league",
+    "factions": [
+     "faction/west-asia-umbrella"
+    ],
+    "tags": [
+     "relief"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-05",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-05",
+    "title": "高原回海聲",
+    "summary": "巴西利亞的沿岸來客站到人群前，吼「我家的海，還在我嘴裡！」。",
+    "event": "event/brasilia-salt-chorus",
+    "era": "era/league",
+    "factions": [
+     "faction/latam-umbrella"
+    ],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "memorial"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-05",
+    "title": "高原回海聲",
+    "summary": "巴西利亞的沿岸來客站到人群前，吼「我家的海，還在我嘴裡！」。",
+    "event": "event/brasilia-salt-chorus",
+    "era": "era/league",
+    "factions": [
+     "faction/latam-umbrella"
+    ],
+    "tags": [
+     "memorial"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2104",
+    "title": "第三回閉港",
+    "summary": "閘母的囊閘堵住八打雁外渠，搬運者喊「閉港千扉！」，只守住內岸路。",
+    "event": "event/batangas-third-closure",
+    "era": "era/tide-line",
+    "factions": [],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2104",
+    "title": "第三回閉港",
+    "summary": "閘母的囊閘堵住八打雁外渠，搬運者喊「閉港千扉！」，只守住內岸路。",
+    "event": "event/batangas-third-closure",
+    "era": "era/tide-line",
+    "factions": [],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-04",
+    "title": "望加錫泥口",
+    "summary": "泥母在望加錫海灘張開單囊口，鹽針從泥背下湧出，修船者立刻停工。",
+    "event": "event/makassar-mud-brood",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-04",
+    "title": "望加錫泥口",
+    "summary": "泥母在望加錫海灘張開單囊口，鹽針從泥背下湧出，修船者立刻停工。",
+    "event": "event/makassar-mud-brood",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-08",
+    "title": "船底再鳴",
+    "summary": "望加錫破船的修造聲壓過風聲，雅妮帶頭吼「把這條船敲回海上！」。",
+    "event": "event/makassar-spark-keel",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "地方史"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "reconstruction"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-08",
+    "title": "船底再鳴",
+    "summary": "望加錫破船的修造聲壓過風聲，雅妮帶頭吼「把這條船敲回海上！」。",
+    "event": "event/makassar-spark-keel",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "reconstruction"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-11",
+    "title": "八打雁翼雨",
+    "summary": "八打雁外閘上空，燈腹的亮囊排成低低一片，光滴落在舊閘輪上。",
+    "event": "event/batangas-wing-rain",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-11",
+    "title": "八打雁翼雨",
+    "summary": "八打雁外閘上空，燈腹的亮囊排成低低一片，光滴落在舊閘輪上。",
+    "event": "event/batangas-wing-rain",
+    "era": "era/league",
+    "factions": [],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "bf-deep-06",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "",
+   "request": {
+    "date": "2107-12",
+    "title": "奧克蘭缺帆",
+    "summary": "奧克蘭回收隊抬頭看見空帆，半邊硬帆遮天，另半邊像被海風掏空。",
+    "event": "event/auckland-hollow-overhead",
+    "era": "era/league",
+    "factions": [
+     "faction/sydney"
+    ],
+    "tags": [
+     "地方史",
+     "tide"
+    ]
+   },
+   "tagChanges": [
+    {
+     "from": "地方史",
+     "to": "monster"
+    }
+   ],
+   "appliedValue": {
+    "date": "2107-12",
+    "title": "奧克蘭缺帆",
+    "summary": "奧克蘭回收隊抬頭看見空帆，半邊硬帆遮天，另半邊像被海風掏空。",
+    "event": "event/auckland-hollow-overhead",
+    "era": "era/league",
+    "factions": [
+     "faction/sydney"
+    ],
+    "tags": [
+     "monster",
+     "tide"
+    ]
+   }
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2107",
+    "title": "暗埠收燈",
+    "summary": "白手套在暗埠外側入口展開白甲，黃燈轉暗，接應人將搬工帶離查貨線。",
+    "event": "event/dark-quay-inspection",
+    "era": "era/league",
+    "factions": [
+     "faction/backside",
+     "faction/whitegloves"
+    ],
+    "tags": [
+     "debt"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "debt"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2107",
+    "title": "借月弓的光",
+    "summary": "暗面的普通備件在月弓光下趕上正班船，三天後從新加坡舷梯交貨。",
+    "event": "event/dark-run-under-bow",
+    "era": "era/league",
+    "factions": [
+     "faction/backside",
+     "faction/selene"
+    ],
+    "tags": [
+     "trade"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "trade"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2098",
+    "title": "弓前不返工",
+    "summary": "月弓停亮後，地勤在人駕白甲前喊不返工，最後先退的是血肉那一排。",
+    "event": "event/moonbow-silent-line",
+    "era": "era/yoke-years",
+    "factions": [
+     "faction/ground-union",
+     "faction/whitegloves",
+     "faction/selene"
+    ],
+    "tags": [
+     "labor"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "labor"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2092",
+    "title": "玻璃上的雨",
+    "summary": "富戶為一夜歡宴落下滿廳光雨，侍役在地球的倒影裡把巨幕拉到天頂。",
+    "event": "event/rain-under-glass",
+    "era": "era/mimic-dawn",
+    "factions": [
+     "faction/selene",
+     "faction/dome-households"
+    ],
+    "tags": [
+     "politics"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "politics"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2107",
+    "title": "回程排到門外",
+    "summary": "回程隊伍擠進靜海港的離船白光，有人朝穹頂喊這次換月亮送我走。",
+    "event": "event/return-fare-queue",
+    "era": "era/league",
+    "factions": [
+     "faction/selene",
+     "faction/ground-union"
+    ],
+    "tags": [
+     "migrant-crew"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "migrant-crew"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2107",
+    "title": "白甲離月",
+    "summary": "白庫鐵偶列隊入船，地球懸在艙口外，搬工拉下最後一道攔繩。",
+    "event": "event/white-armour-departure",
+    "era": "era/league",
+    "factions": [
+     "faction/selene",
+     "faction/whitegloves"
+    ],
+    "tags": [
+     "trade"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "trade"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2107",
+    "title": "白手套下船",
+    "summary": "渡月船停進新加坡港，白手套鐵偶踏下舷梯，催收聲先於白甲走進人群。",
+    "event": "event/whitegloves-come-ashore",
+    "era": "era/league",
+    "factions": [
+     "faction/selene",
+     "faction/whitegloves"
+    ],
+    "tags": [
+     "debt"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "debt"
+    }
+   ]
+  },
+  {
+   "batch": "validation-repair",
+   "kind": "timeline",
+   "status": "applied",
+   "reason": "月面timeline-add空表遺漏已發生事件；沿用事件既有欄位，補到main的0警告基準",
+   "request": {
+    "date": "2105",
+    "title": "白牆先踏一步",
+    "summary": "鐵偶從港閘白光裡踏出，人牆喊別退；凡鐵矢落下，地勤先退進維修井。",
+    "event": "event/whitewall-at-gate",
+    "era": "era/tide-line",
+    "factions": [
+     "faction/ground-union",
+     "faction/whitegloves",
+     "faction/selene"
+    ],
+    "tags": [
+     "labor"
+    ]
+   },
+   "tagChanges": [
+    {
+     "fromTag": "moon",
+     "to": "labor"
+    }
+   ]
+  }
+ ]
+}

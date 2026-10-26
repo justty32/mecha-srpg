@@ -1,0 +1,32 @@
+{
+ "contract": "wf-table/1",
+ "source": "../deep-plan/cx-bf-deep-04.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/characters/wanjiku-kamau.json",
+   "jsonPath": "$.relations",
+   "op": "append",
+   "value": {
+    "character": "character/nali-otieno",
+    "relation": "地方往來",
+    "note": "替來往遺址的人護送傷者，研究內容仍由萬吉庫自行判斷。"
+   },
+   "why": "既有人物反向連到本地新人物，不變更其職業。"
+  },
+  {
+   "file": "content/lore/factions/nairobi.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/rift-valley-bone-echo",
+   "why": "只增加地點導航，不賦予古代機所有權。"
+  }
+ ]
+}

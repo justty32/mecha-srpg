@@ -1,0 +1,44 @@
+{
+ "contract": "wf-table/1",
+ "source": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/cx-bf-moon-02.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "file",
+  "jsonPath",
+  "op",
+  "value",
+  "why"
+ ],
+ "rows": [
+  {
+   "file": "content/lore/factions/selene.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/ferry-nostos",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/factions/ground-union.json",
+   "jsonPath": "$.places",
+   "op": "append",
+   "value": "place/tranquility-repair-dock",
+   "why": "補同一勢力的月面活動地點；若已存在則略過"
+  },
+  {
+   "file": "content/lore/places/ferry-lane.json",
+   "jsonPath": "$.factions",
+   "op": "append",
+   "value": "faction/lunar-ferry-crews",
+   "why": "補受僱船員的存在"
+  },
+  {
+   "file": "content/lore/timeline.json",
+   "jsonPath": "$.entries[5]",
+   "op": "setKey",
+   "value": {
+    "event": "event/ferry-first-departure"
+   },
+   "why": "補2066既有定班條目的event；領導按日期與標題重找位置，已有不同event則回報，不覆寫。"
+  }
+ ]
+}
