@@ -81,8 +81,10 @@ export function deathConsistency(ctx: Ctx, add: Add): void {
   for (const id of Object.keys(ctx.s.units)) if (rt(ctx.s).unitStatus[id] === "active" && isDead(ctx, id))
     add("death-consistency", `active unit has destroyed cores ${id}`);
   // order 是整輪歷史，規則會跳過其中的死者；真正後續行動由 deadDontAct 追蹤。
+  for (const [id, status] of Object.entries(rt(ctx.s).unitStatus))
+    if (status === "presence" && ctx.s.order.includes(id)) add("death-consistency", `presence in order ${id}`);
   const actor = currentActor(ctx.s);
-  if (actor && ["dead", "retreated", "captured"].includes(rt(ctx.s).unitStatus[actor]!))
+  if (actor && ["presence", "dead", "retreated", "captured"].includes(rt(ctx.s).unitStatus[actor]!))
     add("death-consistency", `inactive unit selected from order ${actor}`);
 }
 export type Memory = { eventIndex: number; lastRound: number; ended: boolean; inactive: Set<string> };
@@ -104,7 +106,7 @@ export function deadDontAct(ctx: Ctx, add: Add, memory: Memory): void {
 }
 export function positions(ctx: Ctx, add: Add): void {
   const occupied = new Set<string>();
-  for (const u of Object.values(ctx.s.units)) if (rt(ctx.s).unitStatus[u.id] === "active") {
+  for (const u of Object.values(ctx.s.units)) if (["active", "presence"].includes(rt(ctx.s).unitStatus[u.id]!)) {
     const { x, y } = u.pos, key = `${x},${y}`;
     if (!Number.isInteger(x) || !Number.isInteger(y) || x < 0 || y < 0 || x >= ctx.s.map.width || y >= ctx.s.map.height)
       add("positions", `out of bounds ${u.id} ${key}`);
@@ -176,7 +178,7 @@ export function termination(ctx: Ctx, add: Add): void {
   if (!result) { add("termination", "outcome without battleResult"); return; }
   for (const [id, status] of Object.entries(runtime.unitStatus)) {
     const actual = result.units.find(u => u.id === id)?.status;
-    const valid = status === "active" ? actual === "alive" : status === "derelict"
+    const valid = status === "presence" ? actual === undefined : status === "active" ? actual === "alive" : status === "derelict"
       ? actual === "derelict-recovered" || actual === "derelict-lost" : actual === status;
     if (!valid) add("termination", `result status mismatch ${id} ${status}/${actual}`);
   }

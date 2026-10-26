@@ -23,6 +23,7 @@ function contractDetail(doc: Document, c: ContractView, registry: ActionRegistry
   const box = el(doc, "section", "", "ops-detail");
   box.append(el(doc, "h2", c.title), el(doc, "p", `${c.kindName}・委託：${c.issuerName}・地點：${c.nodeName}・${c.statusName}`),
     table(doc, ["總酬", "預付", "人頭", "期限"], [[money(c.total), money(c.advance), money(c.perHead), `第 ${c.deadlineDay} 日（剩 ${c.daysLeft} 天）`]]));
+  if (c.text) box.append(el(doc, "p", c.text));
   if (c.enemy) box.append(el(doc, "p", `敵情：${c.enemy}`, "ops-enemy"));
   box.append(buttonRow(doc, c.buttons, registry));
   return box;

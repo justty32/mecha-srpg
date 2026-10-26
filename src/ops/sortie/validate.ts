@@ -1,3 +1,4 @@
+import { inLordBay, lordScripts } from "../world/lords.ts";
 import { placeAt } from "../war/loc.ts";
 import type { CampaignState, OpsCtx, Sortie } from "../state/types.ts";
 import type { CmdResult, CrewState } from "../crew/index.ts";
@@ -8,6 +9,14 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
   const fail = (error: string): CmdResult => ({ ok: false, error });
   if (!ctx.world.get("map", sortie.loc.map) || sortie.place && !s.places[sortie.place]) return fail("unknown-place");
   if (!sortie.units.length) return fail("empty-sortie");
+  if (sortie.lordEncounter || s.pendingBattle?.lordEncounter && s.pendingBattle.id === sortie.id) {
+    const script = lordScripts(ctx).find(c => c.lord === sortie.lordEncounter?.lord), lord = script && s.namedLords?.[script.lord];
+    if (!script || !lord || sortie.lordEncounter?.beat !== "gate" || lord.gate !== "accepted" || lord.gateSortie !== sortie.id
+      || s.pendingBattle?.id !== sortie.id || s.pendingBattle.lordEncounter?.lord !== script.lord || lord.battleFinished || lord.gateDay !== s.clock.day
+      || s.clock.month !== script.gate.month || s.clock.dom !== script.gate.dom || !inLordBay(s, script)
+      || sortie.place !== script.gate.place || sortie.contract || sortie.rift || sortie.trigger !== "defend" || sortie.supplies.shipOverhead
+      || sortie.loc.map !== s.pendingBattle.loc.map || sortie.loc.cell.x !== s.pendingBattle.loc.cell.x || sortie.loc.cell.y !== s.pendingBattle.loc.cell.y) return fail("invalid-lord-sortie");
+  }
   if (sortie.trigger === "operation") {
     const c = s.contracts[sortie.contract ?? ""], op = c && joinOperation(s, c);
     if (!c || !op || c.status !== "active" || op.phase !== "engage" || sortie.operation !== op.id) return fail("inactive-operation");
@@ -23,6 +32,8 @@ export function validateSortie(s: CampaignState, ctx: OpsCtx, sortie: Sortie): C
   if (sortie.contract) {
     const c = s.contracts[sortie.contract];
     if (!c || !["active", "stage"].includes(c.status)) return fail("inactive-contract");
+    const script = lordScripts(ctx).find(script => script.contracts[0]?.template === c.template);
+    if (script && s.namedLords?.[script.lord]?.status !== "northward") return fail("lord-observation-expired");
     if (c.operation && sortie.trigger !== "operation") return fail("operation-required");
     if (sortie.trigger !== "operation" && (c.target.place !== sortie.place || sortie.rift && c.target.rift !== sortie.rift)) return fail("wrong-target");
   }

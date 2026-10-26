@@ -1,3 +1,4 @@
+import { lordTrace } from "../world/lords.ts";
 import { encounterOptions } from "../world/encounter.ts";
 import { blightAt } from "../world/blight.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
@@ -16,6 +17,8 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
   registerTextDB(world, db);
   const ctx = { db, world, emit: () => { throw new Error("唯讀查詢"); } };
   const room = describeRoom(currentRoom(state), state, world, db);
+  const traces = lordTrace(state, ctx);
+  if (room.id === "bridge") room.desc.push(...traces.map(t => `王跡　${t.text}（最後目擊第 ${t.sinceDay} 天）`));
   const usedKeys = new Set<string>();
   const action = (label: string, cmd: OpsCommand, disabled?: string): Screen["actions"][number] => {
     const specific = cmd.v === "go" ? `go:${cmd.room}` : cmd.v === "choose" ? `choose:${cmd.choice}` : cmd.v;
@@ -34,6 +37,7 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
         blight: blightAt(state, ctx, { map: place.map, cell: place.at, region: "" })?.depth ?? "clean",
         days: path?.days ?? null, travel: path ? `${path.days} 天` : "無法抵達" };
     }) } : {}),
+    ...(traces.length ? { namedLords: traces.map(t => ({ ...t })) } : {}),
     ledger: ["cash", "debt", "stock:flesh", "stock:fuel"].map(account => ({ account, balance: state.ledger.balances[account as keyof typeof state.ledger.balances] ?? 0 })),
     roster: Object.keys(state.roster.persons).sort().map(id => ({ id, name: entityName(id, state, world),
       role: state.roster.employment[id]?.role ?? "", owed: state.roster.employment[id]?.owed ?? 0 })),

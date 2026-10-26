@@ -1,3 +1,5 @@
+import { lordScripts } from "../world/lords.ts";
+import { classifyOutcome } from "./outcome.ts";
 import { runBattle, scenarioToSetup } from "../../sim/index.ts";
 import type { SimSetup } from "../../sim/index.ts";
 import type { CampaignState, OpsCtx, Sortie } from "../state/types.ts";
@@ -39,6 +41,7 @@ function prepareSetup(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenario: S
   for (const slot of Object.keys(sim.unitPolicies).sort()) sim.unitPolicies[slot] = Object.fromEntries(
     Object.keys(sim.unitPolicies[slot]!).sort().map(id => [ids.get(id) ?? id, sim.unitPolicies[slot]![id]!]));
   for (const objective of setup.objectives) {
+    if (typeof objective.params.target === "string") objective.params.target = ids.get(objective.params.target) ?? objective.params.target;
     if (typeof objective.params.unit === "string") objective.params.unit = ids.get(objective.params.unit) ?? objective.params.unit;
     if (Array.isArray(objective.params.units)) objective.params.units = objective.params.units.map(id => typeof id === "string" ? ids.get(id) ?? id : id);
   }
@@ -86,6 +89,23 @@ export function sortieBattleSetup(input: CampaignState, ctx: OpsCtx, sortie: Sor
 // 正常出戰與營運重播共用戰後入口，確保排隊與回寫次序一致。
 export function applySortieResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie, result: BattleResult): void {
   if (s.log.some(e => e.type === "BattleResolved" && e.payload.sortie === sortie.id)) return;
+  const scripts = lordScripts(ctx);
+  const named = result.units.filter(u => !sortie.units.some(own => own.mech === u.id) && scripts.some(c => u.monster === c.lord || u.state.frame === c.lord));
+  const script = scripts.find(c => c.lord === sortie.lordEncounter?.lord), lord = script && s.namedLords?.[script.lord];
+  if (named.some(u => !script || u.monster !== script.lord && u.state.frame !== script.lord)) throw new Error("invalid named lord result");
+  if (sortie.lordEncounter) {
+    if (!script || !lord || lord.battleFinished || lord.gate !== "accepted" || lord.gateSortie !== sortie.id || s.pendingBattle?.id !== sortie.id
+      || lord.gateDay !== s.clock.day || sortie.lordEncounter.beat !== "gate" || named.length > 1) throw new Error("invalid lord encounter result");
+    const captured = named.filter(u => u.status === "captured");
+    if (captured.length && (lord.captured || !result.events?.some(e => e.type === "PresenceEngaged" && named.some(u => u.id === e.payload.unit))
+      || !result.events.some(e => e.type === "Captured"))) throw new Error("invalid unique lord capture");
+    if (captured.length) lord.captured = true;
+    lord.battleFinished = true; lord.gate = "closed"; lord.status = "gone"; lord.sinceDay = s.clock.day;
+    const outcome = classifyOutcome(result, sortie).outcome;
+    lord.wallOutcome = outcome === "win" || outcome === "repelled" ? named.length ? "won" : "held" : outcome;
+    lord.citySnapshot = structuredClone(s.places[script.gate.place]!);
+    ctx.emit("WanchaoWallResult", { lord: script.lord, outcome: lord.wallOutcome });
+  } else if (named.length) throw new Error("named lord requires gate");
   const selected = new Set(sortie.units.map(u => u.mech));
   let priority = Math.max(0, ...s.jobs.map(j => j.priority));
   for (const job of [...s.jobs].sort((a, b) => a.id < b.id ? -1 : 1)) if (selected.has(job.target) && !job.paid && job.doneHours === 0) job.priority = ++priority;

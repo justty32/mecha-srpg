@@ -107,6 +107,7 @@ function dispatch(s: CampaignState, ctx: TickCtx, cmd: OpsCommand, opts: Command
         trigger: input.trigger ?? (input.contract ? "contract" : "ambush"), units: input.units ?? [],
         supplies: input.supplies ?? { airstrikeTickets: 0, restraintRounds: 0, shipOverhead: s.ship.hull.cur > 0 }, injected: input.injected ?? [],
         ...(input.contract ? { contract: input.contract } : {}), ...(input.rift ? { rift: input.rift } : {}),
+        ...(input.lordEncounter ? { lordEncounter: structuredClone(input.lordEncounter) } : {}),
         ...(input.operation ? { operation: input.operation } : {}), ...(input.actors ? { actors: input.actors } : {}), ...(input.ambush ? { ambush: true } : {}) };
       return opts.battle(s, ctx, sortie);
     }

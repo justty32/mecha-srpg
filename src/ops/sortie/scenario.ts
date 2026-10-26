@@ -1,3 +1,4 @@
+import { lordScripts, routeGrades } from "../world/lords.ts";
 import { blightAt } from "../world/blight.ts";
 import { gridOf, neighbors, terrainAt } from "../world/grid.ts";
 import { requirePlace, worldRules } from "../world/places.ts";
@@ -233,7 +234,9 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   const usedPilots = new Set<string>();
   let pilotSerial = 0;
   const familyDef = ctx.world.all("rift").find(d => d.family === snapshot.family);
-  const allowed = familyDef?.gradeByWidth[snapshot.width] ?? GRADES.slice(0, GRADES.indexOf(snapshot.width) + 1);
+  const baseGrades = familyDef?.gradeByWidth[snapshot.width] ?? GRADES.slice(0, GRADES.indexOf(snapshot.width) + 1);
+  const scripts = lordScripts(ctx);
+  const allowed = !contract?.target.snapshot && !selected ? scripts.reduce((grades, script) => routeGrades(s, script, sortie.loc, grades, sourceRift?.id), baseGrades) : baseGrades;
   const candidates = (snapshot.monsters ?? ctx.db.ids("monster")).map(id => ctx.db.require("monster", id))
     .filter(m => ctx.db.require("species", m.species).family === snapshot.family).sort((a, b) => a.id < b.id ? -1 : 1);
   // SPEC-GAP：budgetByGrade 沒有單價與 anchorAge 係數，採各級名額，不按玩家強弱縮放。
@@ -366,6 +369,19 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   }
   // SPEC-GAP：明示敵軍勝利條件，避免玩家全滅後 clear 目標永遠無法結束。
   objectives.push({ kind: "eliminate", params: {}, for: "enemy", onComplete: "win" });
+  const lordScript = scripts.find(script => sortie.lordEncounter?.lord === script.lord
+    || template?.id === script.contracts[0]?.template && s.namedLords?.[script.lord]?.status === "northward");
+  if (lordScript) {
+    const at = { x: map.width - 1, y: 0 };
+    map.deployZones.enemy = map.deployZones.enemy!.filter(c => c.x !== at.x || c.y !== at.y);
+    if (!map.deployZones.enemy.length) throw new Error("presence requires spare edge cell");
+    enemy.push({ monster: lordScript.lord, at, presence: { aura: lordScript.aura,
+      engageable: sortie.lordEncounter?.beat === "gate", captureLocked: s.namedLords?.[lordScript.lord]?.captured ?? false } });
+    if (sortie.lordEncounter?.beat === "gate") {
+      objectives.splice(0, objectives.length, { kind: "survive", params: { rounds: ctx.db.rules.constants.opsBattleMaxRounds! }, for: "player", onComplete: "win" },
+        { kind: "eliminate", params: {}, for: "enemy", onComplete: "win" });
+    }
+  }
   const playerFaction = ctx.db.require("faction", "faction/migrant-crew").id;
   const enemyFaction = encounter.faction ? ctx.db.require("faction", encounter.faction) : ctx.db.all("faction").find(f => f.tags.includes("kaiju"));
   if (!enemyFaction) throw new Error("missing monster faction");
@@ -377,6 +393,8 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
     rounds, rules: { conventionalFactor: ctx.db.rules.constants.conventionalFactor ?? 0.1 }, seed: nextU32(s.rng),
     mapDef: map, personStates: persons, ops: { map, unitIds: ordered.map(u => u.mech),
       ...(Object.keys(temporaryIds).length ? { forceIds: temporaryIds } : {}) } };
+  if (sortie.lordEncounter && lordScript) { scenario.name = "吉大港守牆"; scenario.brief = lordScript.gate.text; }
+  else if (template?.text) { scenario.name = template.name; scenario.brief = template.text; }
   // SPEC-GAP：支援沒有 conventional-arms frame／能力內容；不憑空造可攻擊的船或砲台。
   return scenario;
 }

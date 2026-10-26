@@ -50,7 +50,7 @@ export function growPatch(s: CampaignState, ctx: OpsCtx, rift: RiftState): Bligh
   return addPatch(s, ctx, rift, floodFill(map, seed, size, allow, s.rng));
 }
 export function removePatch(s: CampaignState, ctx: OpsCtx, id: string): boolean {
-  const patch = s.patches[id]; if (!patch) return false;
+  const patch = s.patches[id]; if (!patch || patch.origin === "event") return false;
   for (const cell of patch.cells) delete s.maps[patch.map]!.blight[cellKey(cell)];
   const rift = s.rifts[patch.rift];
   if (rift) rift.patches = rift.patches.filter(p => p !== id);
@@ -62,7 +62,7 @@ export function removePatch(s: CampaignState, ctx: OpsCtx, id: string): boolean 
 }
 export function clearPlaceBlight(s: CampaignState, ctx: OpsCtx, place: string, riftId?: string): number {
   const def = requirePlace(s, ctx, place), cells = footprintOf(def);
-  const targets = Object.values(s.patches).filter(p => p.map === def.map && (!riftId || p.rift === riftId) &&
+  const targets = Object.values(s.patches).filter(p => p.origin !== "event" && p.map === def.map && (!riftId || p.rift === riftId) &&
     s.rifts[p.rift]?.patches[0] !== p.id && p.cells.some(c => cells.some(f => chebyshev(c, f) <= 1)));
   for (const patch of targets) removePatch(s, ctx, patch.id);
   return targets.length;

@@ -1,3 +1,4 @@
+import { shiftBlight, applyLordChoice } from "../world/lords.ts";
 import { requirePlace } from "../world/places.ts";
 import { spawnActor } from "../world/actors.ts";
 import { reveal } from "../world/fog.ts";
@@ -93,6 +94,8 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
   }
   if (scope.operation || scope.targetFaction) effect = bind(effect) as OpsEffect;
   const num = (expr: Parameters<typeof evalOpsNum>[2]) => evalOpsNum(s, ctx, expr, scope);
+  if ("blightShift" in effect) return shiftBlight(s, ctx, effect.blightShift);
+  if ("lordChoice" in effect) return applyLordChoice(s, ctx, effect.lordChoice);
   if ("reveal" in effect) return reveal(s, ctx, effect.reveal);
   if ("setGoal" in effect) {
     const actor = s.actors[effect.setGoal.actor];

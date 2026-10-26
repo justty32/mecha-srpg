@@ -1,3 +1,4 @@
+import { northwardCandidates } from "../world/lords.ts";
 import { isContentKind, parseId } from "../../core/ids.ts";
 import type { ContentDB } from "../../content/contentdb.ts";
 import { checkCond, checkNumExpr } from "../../core/numexpr.ts";
@@ -10,11 +11,11 @@ import { keymapErrors } from "./worlddb.ts";
 import { loadWorldDirs, WORLD_KINDS } from "./load.ts";
 import { OPS_REF_ROOTS } from "./cond.ts";
 import { instantiateMech } from "./instantiate.ts";
-import { buildGridMap, cellKey, footprintOf, idx, inBounds, terrainAt } from "../world/grid.ts";
+import { buildGridMap, cellKey, footprintOf, idx, inBounds, terrainAt, neighbors } from "../world/grid.ts";
 import type { GridMap } from "../world/grid.ts";
 
 export type WorldCheckResult = { errors: string[]; warnings: string[] };
-const EFFECT_KEYS = ["spawnActor", "setGoal", "reveal", "startOperation", "opProgress", "transferPlace", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setPlace", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
+const EFFECT_KEYS = ["blightShift", "lordChoice", "spawnActor", "setGoal", "reveal", "startOperation", "opProgress", "transferPlace", "transferShell", "relation", "treaty", "declareWar", "leakModel", "forceLoss","ledger", "rep", "flag", "mood", "techHours", "spawnContract", "spawnEvent", "setPlace", "setRift", "nameMech", "applyEffect", "restraintChoice", "salvage"];
 const REQUIRED_ARRAYS: Partial<Record<WorldKind, string[]>> = {
   operation: ["actorScales", "phases", "onSuccess", "onFail", "onAbort"], treaty: ["terms", "onExpire"], lineage: ["tags"], model: ["requires", "tags"], forces: ["shells"], affinity: ["pairs"],
   actor: ["parley"], place: ["services", "tags"], lane: ["hazards", "tags"], rift: ["vanguard"], encounter: ["terrainMix"],
@@ -27,7 +28,7 @@ function object(value: unknown): value is Record<string, unknown> { return value
 export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
   const errors: string[] = [], warnings: string[] = [];
   for (const def of world.all("keymap")) errors.push(...keymapErrors(def));
-  const reference = (value: unknown, at: string, expected?: WorldKind | "terrain" | "frame" | "person" | "effect" | "faction" | "component", warning = false) => {
+  const reference = (value: unknown, at: string, expected?: WorldKind | "monster" | "terrain" | "frame" | "person" | "effect" | "faction" | "component", warning = false) => {
     if (typeof value !== "string") { errors.push(`${at}: missing reference`); return; }
     const p = parseId(value), kind = expected ?? p?.kind;
     // map 同時是戰場與大地圖的 kind；地點／區域的 map 明確查 WorldDB，舊引用仍查 core。
@@ -36,6 +37,7 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     if (!found) (warning ? warnings : errors).push(`${at}: missing reference ${value}`);
   };
   const walk = (value: unknown, at: string, kind: WorldKind, field = "") => {
+    if (field === "lordScript") return; // 專用驗證器明確區分 world map 與 battle map。
     if (["text", "name", "title", "base", "lines", "topic", "pattern", "flavor", "names", "epithets", "id"].includes(field)) return;
     if (typeof value === "number" && !Number.isFinite(value)) errors.push(`${at}: non-finite number`);
     if (typeof value === "string") {
@@ -46,6 +48,13 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
       if (["account", "counter"].includes(field) && !isAccount(value)) errors.push(`${at}: invalid account ${value}`);
     } else if (Array.isArray(value)) value.forEach((v, i) => walk(v, `${at}[${i}]`, kind));
     else if (object(value)) {
+      if ("blightShift" in value) {
+        const e = value.blightShift;
+        if (!object(e) || typeof e.area !== "string" || e.to !== "shallow" || !Array.isArray(e.cells) || !e.cells.length
+          || e.cells.some(c => !object(c) || !Number.isSafeInteger(c.x) || !Number.isSafeInteger(c.y))) errors.push(`${at}.blightShift: invalid area/cells/to`);
+        else if (!world.all("action").some(a => a.lordScript?.blight.area === e.area)) errors.push(`${at}.blightShift: unknown area`);
+      }
+      if ("lordChoice" in value && (!object(value.lordChoice) || !["accept", "decline", "inquire"].includes(String(value.lordChoice.choice)))) errors.push(`${at}.lordChoice: invalid choice`);
       if ("ledger" in value && (!object(value.ledger) || !isAccount(value.ledger.account))) errors.push(`${at}.ledger.account: invalid account`);
       if ("counter" in value && !isAccount(value.counter)) errors.push(`${at}.counter: invalid account`);
       const numericRef = "ref" in value && !["account", "reason", "kind"].some(key => key in value);
@@ -94,6 +103,54 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
     for (const [glyph, id] of Object.entries(def.legend ?? {})) reference(id, `${def.id}.legend.${glyph}`, "wterrain");
     try { grids.set(def.id, buildGridMap(def, world.all("wterrain"))); }
     catch (error) { errors.push(`${def.id}: ${error instanceof Error ? error.message : String(error)}`); }
+  }
+  for (const action of world.all("action")) {
+    const c = action.lordScript; if (!c) continue;
+    const at = `${action.id}.lordScript`;
+    reference(c.lord, `${at}.lord`, "monster"); reference(c.aura, `${at}.aura`, "effect");
+    if (db.get("monster", c.lord)?.grade !== "S") errors.push(`${at}.lord: must be S`);
+    if (!Array.isArray(c.startIds) || !c.startIds.length) errors.push(`${at}.startIds: expected nonempty array`);
+    else for (const id of c.startIds) reference(id, `${at}.startIds`, "start");
+    if (!Array.isArray(c.windowMonths) || c.windowMonths.length !== 2 || !Number.isInteger(c.minTide) || c.minTide < 3 || c.minTide > 4) errors.push(`${at}: invalid tide window`);
+    else for (const cal of world.all("calendar")) if (!northwardCandidates({ world }, c, cal).length) errors.push(`${at}: empty tide candidates`);
+    if (c.routeDelta !== 1 || c.gradeCap !== "A" || !Number.isSafeInteger(c.observationDays) || c.observationDays < 1) errors.push(`${at}: invalid route settings`);
+    if (!c.branchRiftAt || !Number.isSafeInteger(c.branchRiftAt.x) || !Number.isSafeInteger(c.branchRiftAt.y) || c.branchRadius !== 4) errors.push(`${at}: invalid branch search`);
+    if (!Array.isArray(c.route) || c.route.length !== 4) errors.push(`${at}.route: expected four stops`);
+    else for (const [i, stop] of c.route.entries()) {
+      reference(stop.place, `${at}.route[${i}].place`, "place"); reference(stop.loc?.map, `${at}.route[${i}].map`, "map");
+      const map = stop.loc && grids.get(stop.loc.map);
+      if (!map || !stop.loc.cell || !inBounds(map, stop.loc.cell) || !map.regionKeys.includes(stop.loc.region)) errors.push(`${at}.route[${i}]: invalid loc`);
+    }
+    const b = c.blight;
+    if (!b || typeof b.area !== "string" || !b.area || b.to !== "shallow" || !Array.isArray(b.cells) || !b.cells.length || b.cells.length > 12) errors.push(`${at}.blight: invalid area/cells/to`);
+    else {
+      reference(b.map, `${at}.blight.map`, "map"); const map = grids.get(b.map);
+      if (map) {
+        const keys = new Set(b.cells.map(cellKey));
+        if (keys.size !== b.cells.length) errors.push(`${at}.blight: duplicate cells`);
+        for (const cell of b.cells) {
+          if (!inBounds(map, cell)) { errors.push(`${at}.blight: outside map`); continue; }
+          const t = terrainAt(map, cell);
+          if (t.airCost === null || ["tidesea", "cloudwall"].includes(t.id.split("/").at(-1)!)) errors.push(`${at}.blight: forbidden terrain`);
+          if (world.all("place").some(p => p.map === b.map && p.kind === "city" && footprintOf(p).some(c => cellKey(c) === cellKey(cell)))) errors.push(`${at}.blight: city footprint`);
+        }
+        const queue = [b.cells[0]!], seen = new Set([cellKey(b.cells[0]!)]);
+        for (let i = 0; i < queue.length; i++) for (const cell of neighbors(map, queue[i]!)) if (keys.has(cellKey(cell)) && !seen.has(cellKey(cell))) { seen.add(cellKey(cell)); queue.push(cell); }
+        if (seen.size !== keys.size) errors.push(`${at}.blight: disconnected cells`);
+      }
+    }
+    if (!c.trace || ["present", "northward", "gone"].some(k => typeof c.trace[k as keyof typeof c.trace] !== "string" || !c.trace[k as keyof typeof c.trace])) errors.push(`${at}.trace: missing text`);
+    if (!Array.isArray(c.routePrompts) || c.routePrompts.length !== 2) errors.push(`${at}.routePrompts: expected two prompts`);
+    else for (const prompt of c.routePrompts) { walk(prompt, `${at}.routePrompts`, "action"); if (!prompt.text || !prompt.choices?.length || !prompt.regions?.length) errors.push(`${at}.routePrompts: invalid prompt`); }
+    if (!Array.isArray(c.contracts) || c.contracts.length !== 3) errors.push(`${at}.contracts: expected three requests`);
+    else for (const request of c.contracts) { reference(request.template, `${at}.contracts.template`, "contract"); reference(request.issuer, `${at}.contracts.issuer`, "faction-ops"); reference(request.place, `${at}.contracts.place`, "place"); }
+    const gate = c.gate;
+    if (!gate || !Number.isSafeInteger(gate.month) || gate.month !== 40 || gate.dom !== 1 || !gate.text || !gate.choices?.length || !gate.allowedRegions?.length) errors.push(`${at}.gate: invalid gate`);
+    else {
+      reference(gate.map, `${at}.gate.map`, "map"); reference(gate.omen, `${at}.gate.omen`, "omen"); reference(gate.place, `${at}.gate.place`, "place");
+      walk(gate.choices, `${at}.gate.choices`, "action");
+      const map = grids.get(gate.map); if (map && gate.allowedRegions.some(r => !map.regionKeys.includes(r))) errors.push(`${at}.gate: unknown region`);
+    }
   }
   const occupied = new Map<string, Map<string, string>>(), charted = new Set<string>();
   for (const place of world.all("place")) {

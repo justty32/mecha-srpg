@@ -111,7 +111,7 @@ export class BattleController {
     if (a.target.kind === "self") return { unit: actor };
     if (a.target.kind !== "unit" && a.target.kind !== "part") return { cell: { ...cell } };
     const id = this.vm.cell(cell.x, cell.y).unit?.id;
-    if (!id || this.vm.cell(cell.x, cell.y).unit?.stale) return {};
+    if (!id || this.vm.cell(cell.x, cell.y).unit?.stale || this.vm.cell(cell.x, cell.y).unit?.selectable === false) return {};
     if (a.target.kind !== "part") return { unit: id };
     // 只用第一個合法部位判定格子高亮；實際指令由 part 模式選擇。
     const part = q.partDefs(s, id).find(p => !q.checkAbility(s, actor, ability, { unit: id, part: p.id }));
@@ -133,7 +133,7 @@ export class BattleController {
     this.played.add(turn); this.selected = cmd.actor;
     this.presentation.collect(this.session);
     this.mode = { kind: "idle" }; this.message = null;
-    if (this.session.activeUnit() === cmd.actor && this.session.isPlayerTurn()
+    if (cmd.kind !== "engagePresence" && this.session.activeUnit() === cmd.actor && this.session.isPlayerTurn()
       && !this.vm.commands(cmd.actor).some(c => c.enabled && (c.group === "ability" || c.id === "move"))) {
       const ended = this.session.submit({ kind: "end", actor: cmd.actor });
       if (ended.ok) this.message = "行動點用完，自動待機";
@@ -185,7 +185,7 @@ export class BattleController {
       if (this.selected === actor && this.reachable().has(cellKey(cell.x, cell.y))) {
         const path = this.session.query.pathTo(this.session.state, actor!, cell);
         if (path?.length) this.send({ kind: "move", actor: actor!, path });
-      } else if (unit && !unit.stale) this.selected = unit.id;
+      } else if (unit && !unit.stale && unit.selectable !== false) this.selected = unit.id;
     } else if (!actor || !this.session.isPlayerTurn()) this.message = rejectionText("not-active");
     else if (this.mode.kind === "move") {
       const path = this.session.query.pathTo(this.session.state, actor, cell);
@@ -207,6 +207,14 @@ export class BattleController {
   dispatch(a: UiAction): UiSnapshot {
     if (a.type === "navigate") return this.snapshot();
     this.message = null;
+    const pendingEngagement = this.confirmation?.action === "engagePresence" ? this.confirmation.target : undefined;
+    if (pendingEngagement && (a.type === "endTurn" || a.type === "confirm"
+      || (a.type === "engagePresence" && a.target === pendingEngagement))) {
+      this.confirmation = null;
+      const actor = this.session.activeUnit();
+      if (actor && this.session.isPlayerTurn()) this.send({ kind: "engagePresence", actor, target: pendingEngagement });
+      return this.snapshot();
+    }
     if (a.type !== "endTurn") this.confirmation = null;
     if (a.type === "skip" || (this.busy() && (a.type === "cancel" || a.type === "confirm"))) {
       this.skip(); return this.snapshot();
@@ -219,6 +227,13 @@ export class BattleController {
     switch (a.type) {
       case "step": this.step(); break;
       case "endTurn": this.endRound(); break;
+      case "engagePresence": {
+        const option = this.commands().find(c => c.id === `engagePresence:${a.target}`);
+        if (option?.enabled) this.confirmation = { action: "engagePresence", target: a.target,
+          text: `確定迎戰${unitName(this.session.db, s, a.target)}？（再次選擇迎戰或按確定）` };
+        else this.message = option?.reason ?? "此單位不可迎戰";
+        break;
+      }
       case "pickPart": this.pickPart(a.n); break;
       case "focusLog": {
         this.presentation.collect(this.session);

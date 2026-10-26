@@ -7,6 +7,8 @@ import { layerTypeLabel } from "./labels.ts";
 export function unitName(db: ContentDB, state: BattleState, id: string): string {
   const u = state.units[id];
   if (!u) return id || "單位";
+  const namedPresence = state.rt?.presences?.[id] && state.rt.monsters[id]?.def;
+  if (namedPresence) return db.require("monster", namedPresence).name ?? db.require("species", u.frame).name;
   const body = db.get("frame", u.frame) ?? db.get("species", u.frame);
   const pilot = Object.values(u.seats).map(pid => pid ? state.persons[pid] : undefined).find(p => p?.seat?.role === "pilot");
   return pilot ? `${db.require("person", pilot.def).name}／${body?.name ?? u.frame}` : body?.name ?? u.frame;
@@ -44,6 +46,7 @@ export function eventText(db: ContentDB, state: BattleState, evt: GameEvent): Lo
     case "LayerBroken": text = `${unit}的${part}／${layer}破損`; kind = "break"; break;
     case "PartBroken": text = `${unit}的${part}毀損`; kind = "break"; break;
     case "EffectApplied": text = `${name("owner")}受到「${db.get("effect", value("effect"))?.name ?? "效果"}」影響`; kind = "effect"; break;
+    case "PresenceEngaged": text = `${name("by")}迎戰${unit}`; kind = "system"; break;
     case "UnitDied": text = `${unit}被擊毀`; kind = "death"; break;
     case "MoraleChanged": text = `${name("person")}的士氣變為${morale[value("to")] ?? value("to")}`; kind = "morale"; break;
     case "RoundStart": text = `第 ${evt.round} 輪開始`; kind = "turn"; break;

@@ -160,6 +160,7 @@ function captureProximity(q: RulesQuery, view: BattleState, id: Id): number {
 
 export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const { q, view } = ctx, p = { ...DEFAULTS, ...ctx.params }, cmd = c.cmd;
+  if (cmd.kind === "engagePresence") return -Infinity;
   const actor = view.units[agent.unit];
   if (!actor) return -Infinity;
   const needs = want(ctx, agent.unit, cmd.kind === "useAbility" ? cmd.target?.unit : undefined);

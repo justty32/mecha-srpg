@@ -89,7 +89,7 @@ export type BattleState = {
 };
 
 // ---------- rules 層執行期簿記（lead-impl-rules 新增；只放純資料） ----------
-export type UnitStatus = "active" | "dead" | "retreated" | "derelict" | "captured";
+export type UnitStatus = "presence" | "active" | "dead" | "retreated" | "derelict" | "captured";
 export type BattleOutcome = { winner: FactionSlot | null; reason: string; detail?: "eliminated" | "repelled" };
 export type RulesRuntime = {
   globals: { tide?: NumExpr; light?: number };
@@ -104,6 +104,7 @@ export type RulesRuntime = {
   unitStatus: Record<Id, UnitStatus>;
   spawnParents?: Record<Id, Id>;     // spawn 子單位 → 母體；舊存檔可省略
   monsters: Record<Id, { species: Id; grade: Grade; def?: Id }>;   // 怪獸單位：MechState.frame 填 species id
+  presences?: Record<Id, { aura: Id; engageable?: boolean; captureLocked?: boolean; engaged?: boolean }>;
   capturedMonsters?: Record<Id, Id>; // 捕捉轉換 frame 後仍保留 MonsterDef id
   moraleStreak: Record<Id, number>;   // 人物連續士氣檢定成功次數
   berserkFrom: Record<Id, FactionSlot>; // 失控單位的原 slot
@@ -121,6 +122,7 @@ export type Command =
   | { kind: "useAbility"; actor: Id; ability: Id; target?: { unit?: Id; cell?: Cell; part?: PartId } }
   | { kind: "wait"; actor: Id }
   | { kind: "end"; actor: Id }
+  | { kind: "engagePresence"; actor: Id; target: Id }
   | { kind: "eject"; actor: Id }
   | { kind: "retreat"; actor: Id };
 

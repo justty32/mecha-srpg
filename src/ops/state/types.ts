@@ -48,7 +48,7 @@ export type LootBundle = { components: ComponentInstance[]; materials: Partial<R
 export type Inventory = { components: ComponentInstance[]; mechs: Id[]; relics: RelicInstance[]; tickets: { airstrike: number; restraint: number } };
 export type PlaceState = { def: Id; dyn?: PlaceDef; ownerOverride?: Id; wreckage: LootBundle[]; lastVisit?: number; flags: string[];
   recoveringUntil?: number; blightOwnerBefore?: Id };
-export type BlightPatch = { id: Id; rift: Id; map: Id; cells: Cell[]; sinceDay: number; burned?: boolean };
+export type BlightPatch = { id: Id; rift: Id; map: Id; cells: Cell[]; sinceDay: number; burned?: boolean; origin?: "event"; depthOverride?: "shallow" };
 export type ActorKind = "force" | "patrol" | "caravan" | "swarm" | "band";
 export type EncounterChoice = "evade" | "pursue" | "parley" | "fight";
 export type ActorDef = { id: Id; name?: string; kind: ActorKind; mp: number; layer: "air" | "ground"; contact: number; str: [number, number]; stance: ActorState["stance"];
@@ -93,7 +93,7 @@ export type ObjectiveTemplate = Pick<Objective, "kind" | "params"> & { optional?
 export type StageTemplate = { objectives: ObjectiveTemplate[]; days?: number; effects?: OpsEffect[] };
 export type EnemySnapshot = { family: string; width: Grade; depth: "shallow" | "deep" | "core"; anchorAge: number; monsters?: Id[]; phase?: RiftState["phase"] };
 export type ContractTemplate = { join?: JoinTerms; id: Id; kind: "clear" | "seal" | "reclaim" | "escort" | "scout" | "rival" | "survey" | "defend" | "smuggle" | "join";
-  name?: string;
+  name?: string; text?: string;
   issuerKinds: string[]; requiresRep: number; gradeRange: Grade[]; objectives: ObjectiveTemplate[];
   pay: { base: NumExpr; perHead?: NumExpr; bonus?: { cond: Cond; amount: NumExpr }[] }; advanceMax: number; deadlineDays: NumExpr;
   encounter?: Id[]; supplies?: Id[]; onComplete: OpsEffect[]; onFail: OpsEffect[]; onCancel: OpsEffect[]; stages?: StageTemplate[]; annoyanceMax?: number };
@@ -101,7 +101,26 @@ export type ContractState = { operation?: Id; side?: "actor" | "target"; loans?:
   consecutiveDraws?: number;
   status: "offered" | "active" | "stage" | "done" | "failed" | "cancelled" | "expired"; terms: { total: number; advance: number; perHead: number };
   paidAdvance: boolean; heads: Record<Id, number>; offeredDay: number; deadlineDay: number; stageIdx: number; annoyance: number; settled?: boolean };
-export type WorldActionDef = { lane?: "war"; id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
+export type LordScript = {
+  lord: Id; startIds: Id[]; windowMonths: [number, number]; minTide: number;
+  route: { loc: Loc; place: Id }[]; routeDelta: 1; gradeCap: "A"; observationDays: number;
+  branchRiftAt: Cell; branchRadius: number;
+  blight: { area: string; map: Id; cells: Cell[]; to: "shallow" };
+  aura: Id; trace: Record<"present" | "northward" | "gone", string>;
+  routePrompts: { regions: string[]; text: string; choices: Choice[] }[];
+  contracts: { template: Id; issuer: Id; place: Id }[]; news: string[];
+  gate: { month: number; dom: number; omen: Id; map: Id; place: Id; allowedRegions: string[]; text: string; choices: Choice[] };
+};
+export type NamedLordState = {
+  loc: Loc; heading: "none" | "north"; sinceDay: number; status: "present" | "northward" | "gone";
+  northwardDay: number; routeIndex: number; moved: boolean; visited: number[];
+  northRift?: Id; northBranch?: "raised" | "passed";
+  routeBoosts?: { map: Id; region: string; day: number; delta: 1 }[];
+  gate: "unseen" | "offered" | "accepted" | "closed"; gateDay?: number; gateSortie?: Id;
+  captured: boolean; battleFinished: boolean; wallOutcome?: "held" | "won" | "withdrew" | "lost" | "timeout";
+  citySnapshot?: PlaceState;
+};
+export type WorldActionDef = { lordScript?: LordScript; lane?: "war"; id: Id; actor: "faction" | "rift" | "world"; valid: Cond; weight: NumExpr; cooldownDays: number; effects: OpsEffect[] };
 export type MarketDef = { id: Id; place: Id; lists: { kind: "component" | "frame" | "carcass" | "fuel" | "material" | "ticket" | "soul-rental" | "ammo";
   items: { def: Id; weight: number; stockMax: number; basePrice?: number }[];
   filters?: { filter: { lineage?: Id; maker?: Id; tierMax: Grade }; weight: number; stockMax: number; basePrice?: number }[] }[]; priceMods: { tag: string; mult: NumExpr }[]; refreshOn: "quarter"; buysBack: boolean };
@@ -131,11 +150,13 @@ export type BeastDef = { id: Id; family: string; restraint: Id[]; wearPerDay: Pa
   bondPerBattle: number; nicknameBond: number; nicknameBattles: number; decay: number;
   behaviors: { species: Id; molt?: { days: number; window: number; to: Id }; brood?: { child: Id }; mutate?: { frames: Id[] } }[] };
 export type KeymapDef = { id: Id; bindings: { action: string; keys: string[]; label: string; context?: string }[] };
-export type Sortie = { actors?: Id[]; ambush?: boolean; operation?: Id; id: Id; day: number; contract?: Id; loc: Loc; place?: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation" | "intercept";
+export type Sortie = { lordEncounter?: { lord: Id; beat: "gate" }; actors?: Id[]; ambush?: boolean; operation?: Id; id: Id; day: number; contract?: Id; loc: Loc; place?: Id; rift?: Id; trigger: "contract" | "ambush" | "defend" | "ruin-exit" | "collection" | "operation" | "intercept";
   units: { mech: Id; seats: Record<SeatId, Id | null>; controlMode: ControlMode; crew?: "ai" }[]; supplies: { airstrikeTickets: number; restraintRounds: number; shipOverhead: boolean };
   injected: { target: "mech" | "person"; id: Id; effect: EffectRef }[] };
 // SPEC-GAP：沒有 opseffects/ 登記檔；使用範例的 inline 可辨識聯集，不創造不可解析的效果 id。
 export type OpsEffect =
+  | { blightShift: { area: string; cells: Cell[]; to: "shallow" } }
+  | { lordChoice: { lord: Id; choice: "decline" | "accept" | "inquire" } }
   | { spawnActor: { kind: ActorKind; at: "territory" | "rift" | "place" | Loc; def?: Id; faction?: Id; place?: Id; rift?: Id } }
   | { setGoal: { actor: Id; goal: ActorState["goal"] } }
   | { reveal: RevealInput }
@@ -185,14 +206,14 @@ export type Screen = { room: { id: RoomId; title: string; desc: string[]; exits:
   panels: Record<string, Row[]>; actions: { id: string; label: string; cmd: OpsCommand; group: string; key?: string; tooltip?: string; disabled?: string }[];
   prompt?: { text: string; choices: { n: number; text: string; disabled?: string }[] }; handoff?: { battle: ScenarioDef } };
 export type CampaignEvent = { seq: number; day: number; type: string; payload: Record<string, unknown> };
-export type CampaignState = { relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; actorRng?: RngState; version: 2; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
+export type CampaignState = { namedLords?: Record<Id, NamedLordState>; relations?: Record<string, Relation>; operations?: Record<Id, OperationState>; shells?: Record<Id, ShellState>; models?: Record<Id, ModelState>; warRng?: RngState; actorRng?: RngState; version: 2; clock: Clock; rng: RngState; pressure: number; pressureSource?: Id;
   debtState?: { arrears: number; due: number; paid: number; seized: Id[]; credit?: { limit: number } };
   places: Record<Id, PlaceState>; maps: Record<Id, { blight: Record<string, { rift: Id; patch: Id }>; known: Record<string, KnownCell> }>; patches: Record<Id, BlightPatch>; actors: Record<Id, ActorState>; rifts: Record<Id, RiftState>; factions: Record<Id, FactionState>; ship: ShipState; roster: RosterState;
   hangar: HangarState; restraint: RestraintBay; mechs: Record<Id, MechState>; inventory: Inventory; ledger: Ledger; research: Record<Id, ResearchState>;
   jobs: Job[]; contracts: Record<Id, ContractState>; pendingEncounter?: PendingEncounter; reveals?: RevealState[]; pendingChoices: Prompt[]; pendingTicks: number; pendingBattle?: Sortie; lore: string[]; flags: Record<string, number>; log: CampaignEvent[];
   // SPEC-GAP：共用遞增 id、效果 uid、待生成佇列與工時池為後續模組的序列化簿記。
   idCounter: number; effectCounter: number; calendar: Id; techHours: number;
-  pendingContracts: { template: Id; near?: string }[]; pendingEvents: Id[] };
+  pendingContracts: { template: Id; near?: string; issuer?: Id; place?: Id }[]; pendingEvents: Id[] };
 export type OpsCtx = { db: ContentDB; world: WorldDB; emit(type: string, payload?: Record<string, unknown>): CampaignEvent };
 
 export type WorldDefByKind = { actor: ActorDef; wterrain: WTerrainDef; map: MapDef; regions: RegionsDef; place: PlaceDef; lane: LaneDef;

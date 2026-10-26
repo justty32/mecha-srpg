@@ -22,7 +22,9 @@ export function checkInvariants(s: CampaignState, world?: WorldDB): string[] {
   }
   for (const patch of Object.values(s.patches)) {
     const rift = s.rifts[patch.rift];
-    if (!rift?.patches.includes(patch.id)) errors.push(`orphan patch: ${patch.id}`);
+    if (patch.origin === "event") {
+      if (patch.rift !== "" || patch.depthOverride !== "shallow") errors.push(`invalid event patch: ${patch.id}`);
+    } else if (!rift?.patches.includes(patch.id)) errors.push(`orphan patch: ${patch.id}`);
     if (!patch.cells.length || !Number.isFinite(patch.sinceDay) || patch.sinceDay > s.clock.day) errors.push(`invalid patch: ${patch.id}`);
     const map = world?.get("map", patch.map) ? gridOf(world, patch.map) : undefined;
     const keys = new Set(patch.cells.map(cellKey));

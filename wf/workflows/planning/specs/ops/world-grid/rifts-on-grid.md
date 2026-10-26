@@ -45,3 +45,12 @@ type BlightPatch = { id: Id; rift: Id; map: Id; cells: Cell[] /*7–12 格、連
 3. **核由 1 格長成 3×3**：第 4 天錨到時畫面上有變化，呼應「前三天只有先鋒」的窗口。
 4. **遭遇率寫在深度不寫在族**：族影響打到什麼，深度影響多常打——玩家只需記一組數字。
 5. **月面不開新裂縫（內容開關）**：守住「月面只裂過一次、是後方」的設定，但留開關給 mod。
+
+
+## SPEC-GAP 補（2026-10-26 lead-engine-next）
+
+萬潮葬王北行只在完成當夜建立孟加拉灣北岸事件蝕區；開局不預置裂縫或蝕塊，也不為牠建立出身核心。`BlightPatch` 增加可選 `origin:"event"`、`depthOverride:"shallow"`。事件塊必須 `rift:""`（無裂縫 sentinel）、非核心、1–12 格合法且連通，`maps[map].blight` 仍由 patches 重建並拒絕重疊；普通塊保留原有裂縫父子、塊齡排序與 LIFO 不變量。深度先認普通裂縫核心，再讀非核心 override；事件塊永久淺蝕，不重設既有塊的 `sinceDay`。
+
+唯一寫入口是 `blightShift:{area:"wanchao-north-coast",cells:[{x,y},…],to:"shallow"}`。目標圖與區域來自 `action.lordScript.blight`；本區固定 x=129..131、y=97..99 九格。套用時排除已有任何 patch 的格及城市 footprint，剩餘格不連通則取最大連通塊；無可用格時只記已套用／略過旗，不建空塊。同一 area 再次套用回 true，不新增塊、不重發事件。錯 area、越界／越區 cells 或其他 to 拒絕，不能用此入口改寫普通塊或核心。
+
+事件塊不列入蝕壓 patch 數，不持有錨、不加入任何 rift.patches，也不另外生成野群；正常 growPatch 仍以索引避讓它。它只影響蝕深、通行與呈現；不解封吉大港外灘、不改第二區，也不表示已完成通用獨立蝕域模型。

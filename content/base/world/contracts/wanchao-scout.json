@@ -1,0 +1,50 @@
+{
+  "id": "contract/wanchao-scout",
+  "kind": "scout",
+  "issuerKinds": [
+    "state"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      }
+    }
+  ],
+  "pay": {
+    "base": 3600
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 28,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4,
+  "name": "跟蹤偵察",
+  "text": "殘聯把偵察懸賞掛到歷來最高，聯絡員卻只給你一張目擊簿：「盯著牠，別去碰牠。」沿岸記下黑脊的位置與時刻，帶回報訊便能交差。萬潮葬王遠在海面，望見船骨間的斷桅，你便覺得胸口發緊。"
+}

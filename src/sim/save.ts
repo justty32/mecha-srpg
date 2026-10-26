@@ -66,6 +66,7 @@ function command(v: unknown): boolean {
     case "useAbility": return string(v.ability) && (v.target === undefined || (object(v.target)
       && (v.target.unit === undefined || string(v.target.unit)) && (v.target.part === undefined || string(v.target.part))
       && (v.target.cell === undefined || cell(v.target.cell))));
+    case "engagePresence": return string(v.target);
     case "end": case "wait": case "eject": case "retreat": return true;
     default: return false;
   }
@@ -76,6 +77,9 @@ function setupShape(v: unknown): boolean {
     && (v.map.cells === undefined || (Array.isArray(v.map.cells) && v.map.cells.every(c => object(c) && cell(c.at) && string(c.terrain))))
     && Array.isArray(v.units) && v.units.every(u => object(u) && string(u.id) && string(u.owner) && cell(u.pos)
       && (string(u.frame) || (object(u.monster) && string(u.monster.species) && string(u.monster.grade)))
+      && (u.presence === undefined || (object(u.presence) && string(u.presence.aura)
+        && (u.presence.engageable === undefined || typeof u.presence.engageable === "boolean")
+        && (u.presence.captureLocked === undefined || typeof u.presence.captureLocked === "boolean")))
       && (u.persons === undefined || (Array.isArray(u.persons) && u.persons.every(p => object(p) && string(p.id) && string(p.def) && string(p.seat)))))
     && Array.isArray(v.objectives) && v.objectives.every(o => object(o) && string(o.kind) && object(o.params) && string(o.for) && string(o.onComplete))
     && (v.maxRounds === undefined || (integer(v.maxRounds) && v.maxRounds > 0));
@@ -88,6 +92,11 @@ function snapshotShape(v: unknown): boolean {
       && object(p.pools) && Array.isArray(p.contribs) && Array.isArray(p.effects))
     && object(v.map) && integer(v.map.width) && integer(v.map.height) && Array.isArray(v.map.terrain) && v.map.terrain.every(string)
     && object(v.factions) && object(v.knowledge) && object(v.rng) && string(v.rng.state) && string(v.rng.inc)
+    && (v.rt === undefined || (object(v.rt) && (v.rt.presences === undefined || (object(v.rt.presences)
+      && Object.values(v.rt.presences).every(p => object(p) && string(p.aura)
+        && (p.engageable === undefined || typeof p.engageable === "boolean")
+        && (p.captureLocked === undefined || typeof p.captureLocked === "boolean")
+        && (p.engaged === undefined || typeof p.engaged === "boolean"))))))
     && Array.isArray(v.pending) && object(v.log) && Array.isArray(v.log.events)
     && v.log.events.every(e => object(e) && integer(e.seq) && integer(e.round) && string(e.type) && object(e.payload));
 }

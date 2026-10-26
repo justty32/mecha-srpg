@@ -1,0 +1,51 @@
+{
+  "id": "contract/wanchao-watch",
+  "kind": "defend",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 8
+      }
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 28,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "守牆但牠不來",
+  "text": "第七哨的值哨人交給你一盞燈：「守住這段，等換班。」撤離的人要從海堤通過，你得擋住沿途的流獸。直到天亮，你也沒在牆外看見萬潮葬王；換班人帶來報訊，黑脊已經往北。"
+}

@@ -75,7 +75,7 @@ export function draftSortie(s: CampaignState, ctx: OpsCtx, contract?: string): S
     for (const id of [...new Set([...s.hangar.bays, ...s.restraint.slots].filter((id): id is string => !!id))].sort()) {
       if (!ready(s, ctx, id)) continue;
       const unit = defaultUnit(s, ctx, id, used);
-      if (unit.controlMode !== "none" && validateSortie(s, ctx, { ...draft, contract: undefined, rift: undefined, place: placeAt(s, ctx, s.ship.pos), loc: s.ship.pos, supplies: { ...draft.supplies, shipOverhead: false }, units: [unit] }).ok) draft.units.push(unit);
+      if (unit.controlMode !== "none" && validateSortie(s, ctx, { ...draft, contract: undefined, rift: undefined, place: draft.lordEncounter ? draft.place : placeAt(s, ctx, s.ship.pos), loc: draft.lordEncounter ? draft.loc : s.ship.pos, supplies: { ...draft.supplies, shipOverhead: false }, units: [unit] }).ok) draft.units.push(unit);
       else for (const person of Object.values(unit.seats)) if (person) used.delete(person);
     }
   }

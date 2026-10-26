@@ -4,8 +4,8 @@ import { evalNum } from "../core/numexpr.ts";
 import { commanderOf, constant, emit, evalCtxFor, isActive, layerDefs, person, rt, seatsOf, terrainAt, unit } from "./state.ts";
 import type { Ctx } from "./state.ts";
 import { roleAttr } from "./contribs.ts";
-import { applyEffect, tickEffects } from "./effects.ts";
-import { dispatchHook, signal } from "./hooks.ts";
+import { applyEffect, removeEffect, tickEffects } from "./effects.ts";
+import { dispatchHook, onSignal, signal } from "./hooks.ts";
 import { canPay, changePool, pay, regenTick } from "./pools.ts";
 import { deferBattleEnd } from "./objectives.ts";
 
@@ -19,9 +19,28 @@ export function computeOrder(ctx: Ctx): Id[] {
   return Object.keys(ctx.s.units).sort().filter(id => isActive(ctx, id))
     .sort((a, b) => initiativeOf(ctx, b) - initiativeOf(ctx, a) || (a < b ? -1 : a > b ? 1 : 0));
 }
+/** SPEC-GAP：全場光環只讀在場來源；每個真正新回合補回既有 ownerTurns 效果。 */
+export function applyPresenceAuras(ctx: Ctx, target?: Id): void {
+  const runtime = rt(ctx.s);
+  for (const source of Object.keys(runtime.presences ?? {}).sort()) {
+    if (!ctx.s.units[source] || !["presence", "active"].includes(runtime.unitStatus[source]!)) continue;
+    for (const id of target ? [target] : Object.keys(ctx.s.units).sort()) {
+      if (id === source || !isActive(ctx, id)) continue;
+      const pid = commanderOf(ctx, id);
+      applyEffect(ctx, runtime.presences![source]!.aura,
+        { unit: id, ...(pid ? { person: pid } : {}) }, source);
+    }
+  }
+}
+for (const name of ["unitDied", "unitRemoved"] as const) onSignal(name, "presence.aura-stop", -10, (ctx, p) => {
+  if (typeof p.unit !== "string" || !rt(ctx.s).presences?.[p.unit]) return;
+  const aura = rt(ctx.s).presences![p.unit]!.aura;
+  for (const u of Object.values(ctx.s.units)) for (const e of [...u.effects])
+    if (e.source === p.unit && e.effect === aura) removeEffect(ctx, e.uid, "source-removed");
+});
 export function startBattle(ctx: Ctx): void {
   emit(ctx, "BattleStart", { units: Object.keys(ctx.s.units).sort() });
-  deferBattleEnd(ctx, () => startRound(ctx));
+  deferBattleEnd(ctx, () => { applyPresenceAuras(ctx); startRound(ctx); });
 }
 export function startRound(ctx: Ctx): void {
   const runtime = rt(ctx.s);
@@ -53,6 +72,7 @@ export function beginTurn(ctx: Ctx, unitId: Id, resumed: boolean): void {
       { unit: unitId, ...(pid ? { person: pid } : {}), cell: u.pos, faction: u.owner }, terrain.id);
     tickEffects(ctx, "ownerTurns", { unit: unitId });
     for (const seat of seatsOf(ctx, unitId)) tickEffects(ctx, "ownerTurns", { person: seat.person });
+    applyPresenceAuras(ctx, unitId);
     regenTick(ctx, { unit: unitId });
     for (const seat of seatsOf(ctx, unitId)) regenTick(ctx, { person: seat.person });
     for (const id of Object.keys(u.cooldowns).sort()) u.cooldowns[id] = Math.max(0, u.cooldowns[id]! - 1);

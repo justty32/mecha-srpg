@@ -16,6 +16,7 @@ export function rebuildBlightIndex(s: CampaignState): void {
 }
 export function patchDepth(s: CampaignState, ctx: OpsCtx, patch: BlightPatch): "core" | "shallow" | "deep" {
   if (s.rifts[patch.rift]?.patches[0] === patch.id) return "core";
+  if (patch.depthOverride === "shallow") return "shallow";
   const month = ctx.world.require("calendar", s.calendar).daysPerMonth;
   return s.clock.day - patch.sinceDay < worldRules(ctx).nodes.deepMonths * month ? "shallow" : "deep";
 }

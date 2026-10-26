@@ -15,7 +15,8 @@ export type UnitBadge = {
   owner: FactionSlot; side: Side;
   active: boolean;                  // 現在輪到它（行動中高亮；敵方回合也是 true，與 CellView.selected 用不同色）
   hpRatio: number;                  // 0..1，所有可見層 hp 和／max 和；未偵察的層不計
-  status: "active" | "derelict";
+  status: "active" | "derelict" | "presence";
+  selectable?: boolean;
   stale?: boolean;                  // [lead-ui-fix] 不在視野內：畫在最後所見位置、灰色殘影（不擋點擊）
 };
 
@@ -26,6 +27,7 @@ export type CellView = {
   x: number; y: number;
   terrain: { id: Id; name: string; glyph: string; color: string };
   unit?: UnitBadge;
+  selectable?: boolean;
   highlight?: Highlight;
   cursor?: boolean;                 // 鍵盤游標所在格
   selected?: boolean;               // 被選取單位所在格
@@ -40,6 +42,7 @@ export type PersonView = { id: Id; name: string; seat: string; role: string; mor
 
 /** 單位詳情面板：全部來自玩家陣營的 FactionKnowledge（看不到的就是 null／省略）。 */
 export type UnitView = {
+  selectable?: boolean;
   id: Id; name: string; frameName: string; owner: FactionSlot; side: Side;
   pos: Cell; controlMode: string; status: string;
   persons: PersonView[]; parts: PartView[]; pools: PoolView[]; effects: EffectView[];
@@ -116,7 +119,7 @@ export type UiSnapshot = {
   /** [lead-ui-fix] 行動後浮出的下一步選單（錨在行動中我方棋子格上）：能力＋待機（＋還能動時的移動）；mode 非 idle 或非玩家回合時為 null。 */
   quickMenu: { at: Cell; options: CommandOption[] } | null;
   /** [lead-ui-fix] 待確認提示（例：「還有 N 台未行動，確定結束？（再按 E 確認）」）；任何其他操作都會取消它。 */
-  confirm: { action: "endTurn"; text: string } | null;
+  confirm: { action: "endTurn" | "engagePresence"; target?: Id; text: string } | null;
   busy: Busy | null;
   /** [lead-ui-fix] 最近的演出（最多 64 筆，舊→新）；epoch 變了＝被跳過，DOM 立刻清掉播放中的演出。 */
   fx: { epoch: number; items: Fx[] };
@@ -140,6 +143,7 @@ export type UiAction =
   | { type: "standby" }                           // 待機＝這台行動結束（規則 end 指令）
   | { type: "defer" }                             // 延後＝移到本輪隊尾（規則 wait 指令；每輪一次）
   | { type: "endTurn" }                           // 結束我方本輪：未行動者全部待機；有未行動者先要求再按一次確認
+  | { type: "engagePresence"; target: Id }
   | { type: "eject" }
   | { type: "retreat" }
   | { type: "toggleHelp" }

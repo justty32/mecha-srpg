@@ -20,7 +20,7 @@ export function poisson(rng: RngState, mean: number): number {
 }
 export function pressureDaily2(s: CampaignState, ctx: OpsCtx): void {
   const cfg = worldRules(ctx).pressure, cal = ctx.world.require("calendar", s.calendar);
-  s.pressure += cfg.daily + cfg.blightPerMonth * Object.keys(s.patches).length / cal.daysPerMonth;
+  s.pressure += cfg.daily + cfg.blightPerMonth * Object.values(s.patches).filter(p => p.origin !== "event").length / cal.daysPerMonth;
   if (s.clock.phase !== "spring") return;
   const families = ctx.world.all("rift");
   if (!families.length) return;

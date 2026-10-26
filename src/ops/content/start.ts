@@ -1,3 +1,4 @@
+import { initNamedLords } from "../world/lords.ts";
 import { allPlaces, requirePlace } from "../world/places.ts";
 import { locAt } from "../war/loc.ts";
 import { initWar } from "../war/state.ts";
@@ -91,6 +92,7 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
       for (let n = 0; n < (input.prePatches ?? 0); n++) if (!growPatch(s, ctx, rift)) break;
     }
   }
+  initNamedLords(s, ctx, start.id, seed);
   rebuildBlightIndex(s);
   initWar(s, ctx, seed);
   initActors(s, ctx);

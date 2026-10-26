@@ -41,7 +41,7 @@ export class BattleViewModel {
     const cell: CellView = { x, y, terrain: { id: t.id, name: t.name, glyph: t.glyph, color: t.color } };
     const knowledge = s.knowledge[playerSlot];
     let id = q.unitAt(s, { x, y });
-    if (id && s.units[id]!.owner !== playerSlot && !knowledge?.visible.includes(id)) id = null;
+    if (id && s.units[id]!.owner !== playerSlot && !knowledge?.visible.includes(id) && !s.rt?.presences?.[id]) id = null;
     if (!id) id = Object.keys(knowledge?.lastSeen ?? {}).sort().find(candidate => {
       const last = knowledge!.lastSeen[candidate]!;
       return s.units[candidate]?.owner !== playerSlot && !knowledge?.visible.includes(candidate)
@@ -55,9 +55,11 @@ export class BattleViewModel {
       : pilotName ? `${[...pilotName][0] ?? ""}${[...view.frameName][0] ?? ""}` : [...view.frameName].slice(0, 2).join("");
     const layers = view.parts.flatMap(p => p.layers).filter(l => l.hp !== null);
     const max = layers.reduce((n, l) => n + l.max, 0), hp = layers.reduce((n, l) => n + (l.hp ?? 0), 0);
+    if (view.selectable === false) cell.selectable = false;
     cell.unit = { id, label, name: view.name, owner: view.owner, side: view.side,
       active: !view.stale && id === this.session.activeUnit(), hpRatio: max ? Math.max(0, Math.min(1, hp / max)) : 0,
-      stale: view.stale, status: view.status === statusLabel("derelict") ? "derelict" : "active" };
+      ...(view.selectable === false ? { selectable: false } : {}),
+      stale: view.stale, status: s.rt?.unitStatus[id] === "presence" ? "presence" : view.status === statusLabel("derelict") ? "derelict" : "active" };
     return cell;
   }
 
@@ -88,7 +90,8 @@ export class BattleViewModel {
     const { state: s, db, query: q, playerSlot } = this.session, u = s.units[id];
     if (!u) throw new Error(`找不到單位：${id}`);
     const own = u.owner === playerSlot, frame = db.get("frame", u.frame) ?? db.require("species", u.frame);
-    const knowledge = s.knowledge[playerSlot], known = knowledge?.revealed[id], visible = own || !!knowledge?.visible.includes(id);
+    const publicPresence = !!s.rt?.presences?.[id], presence = s.rt?.unitStatus[id] === "presence";
+    const knowledge = s.knowledge[playerSlot], known = knowledge?.revealed[id], visible = own || publicPresence || !!knowledge?.visible.includes(id);
     const persons = own ? Object.entries(u.seats).flatMap(([seat, pid]) => {
       const p = pid ? s.persons[pid] : undefined;
       return p ? [{ id: p.id, name: db.require("person", p.def).name, seat, role: roleLabel(p.seat?.role ?? "passenger"), morale: moraleLabel(p.morale) }] : [];
@@ -117,9 +120,9 @@ export class BattleViewModel {
         max: Number.isFinite(value.max) ? value.max : null });
     }
     // SPEC-GAP：知識沒有敵方池／人物／效果／控制權；省略，位置只採 visible 或 lastSeen，未知用 (-1,-1)。
-    return { id, name: own ? unitName(db, s, id) : frame.name, frameName: frame.name, owner: u.owner,
-      side: own ? "self" : "enemy", pos: { ...(own || knowledge?.visible.includes(id) ? u.pos : knowledge?.lastSeen[id]?.cell ?? { x: -1, y: -1 }) },
-      controlMode: own ? controlLabel(u.controlMode) : "未知", status: own || knowledge?.visible.includes(id) ? statusLabel(s.rt?.unitStatus[id] ?? "active") : "未知",
+    return { ...(presence ? { selectable: false } : {}), id, name: own || publicPresence ? unitName(db, s, id) : frame.name, frameName: frame.name, owner: u.owner,
+      side: own ? "self" : "enemy", pos: { ...(visible ? u.pos : knowledge?.lastSeen[id]?.cell ?? { x: -1, y: -1 }) },
+      controlMode: own ? controlLabel(u.controlMode) : "未知", status: presence ? "在場／不可交戰" : visible ? statusLabel(s.rt?.unitStatus[id] ?? "active") : "未知",
       stale: !visible, seenRound: own ? null : this.seen.get(id)?.round ?? null,
       persons, parts, pools, effects: own ? u.effects.filter(e => !db.require("effect", e.effect).ui.hidden)
         .map(e => ({ id: e.effect, name: db.require("effect", e.effect).name, stacks: e.stacks, remaining: e.remaining })) : [] };
@@ -161,6 +164,13 @@ export class BattleViewModel {
       add({ id: `ability:${id}`, label: a.name, group: "ability", tooltip: `消耗：${costs}\n射程：${range.min}–${range.max}`,
         enabled: !reason, ...(reason ? { reason } : {}), action: { type: "beginAbility", ability: id } }, `abilitySlot:${i + 1}`);
     });
+    for (const target of Object.keys(s.rt?.presences ?? {}).sort()) {
+      const p = s.rt!.presences![target]!;
+      if (s.rt!.unitStatus[target] !== "presence" || !p.engageable || p.engaged) continue;
+      add({ id: `engagePresence:${target}`, label: `迎戰${unitName(this.session.db, s, target)}`, group: "system",
+        tooltip: "確認迎戰後，這個在場單位才可成為攻擊與捕捉目標", enabled: !unavailable,
+        ...(unavailable ? { reason: unavailable } : {}), action: { type: "engagePresence", target } }, "engagePresence");
+    }
     return options;
   }
 }

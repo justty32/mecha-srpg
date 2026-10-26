@@ -61,7 +61,8 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
       cmdButton(`drop:${c.id}`, "放棄", "contract", { v: "drop", contract: c.id }),
       cmdButton(`sail:contract:${c.id}`, "航向目標", "contract", { v: "sail", to: c.target.place }),
       openButton(`sortieOpen:${c.id}`, "contract", c.id)];
-    return { id: c.id, title: `${label(kind)}：${name(c.target.place)}`, kind, kindName: label(kind), issuerName: name(c.issuer), nodeId: c.target.place,
+    return { id: c.id, title: ctx.world.require("contract", c.template).name ?? `${label(kind)}：${name(c.target.place)}`,
+      ...(ctx.world.require("contract", c.template).text ? { text: ctx.world.require("contract", c.template).text } : {}), kind, kindName: label(kind), issuerName: name(c.issuer), nodeId: c.target.place,
       nodeName: name(c.target.place), status: c.status, statusName: label(c.status), ...c.terms, deadlineDay: c.deadlineDay,
       daysLeft: Math.max(0, c.deadlineDay - s.clock.day), enemy: target ? `${label(target.family)}／${target.width}／${label(target.depth)}${target.phase ? `／${label(target.phase)}` : ""}` : null,
       selected: ui.contract === c.id, buttons };

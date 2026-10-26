@@ -1,3 +1,4 @@
+import { namedLordsDaily2, namedLordsDaily4 } from "../world/lords.ts";
 import { blightedCells } from "../world/blight.ts";
 import { actorsDaily2c, actorsDaily3 } from "../world/actors.ts";
 import { refreshFog } from "../world/fog.ts";
@@ -26,6 +27,7 @@ export function queuedEvents(s: CampaignState, ctx: OpsCtx): void {
   while (!s.pendingChoices.length && s.pendingEvents.length) offerEvent(s, ctx, s.pendingEvents.shift()!);
 }
 function eventsDaily4(s: CampaignState, ctx: OpsCtx): void {
+  namedLordsDaily4(s, ctx);
   queuedEvents(s, ctx);
   if (s.pendingChoices.length) return;
   const all = ctx.world.all("event");
@@ -78,7 +80,7 @@ function tickDaily(s: TimeState, ctx: TickCtx): void {
   s.flags.anchorable = s.clock.phase === "spring" ? 1 : 0;
   stageCtx(ctx, 1).emit("DayStart", { month: s.clock.month, dom: s.clock.dom });
   const second = stageCtx(ctx, 2);
-  worldDaily2(s, second); contractsDaily2(s, second);
+  worldDaily2(s, second); namedLordsDaily2(s, second); contractsDaily2(s, second);
   actorsDaily2c(s, second);
   moveDaily3(s, stageCtx(ctx, 3));
   actorsDaily3(s, stageCtx(ctx, 3));

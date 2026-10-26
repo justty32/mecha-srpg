@@ -18,6 +18,7 @@ export type Rejection = { code: RejectCode; detail?: string };
 export type Result = { ok: true; events: GameEvent[] } | { ok: false; rejection: Rejection };
 export type Subject = { unit?: Id; person?: Id };
 export type UnitInit = { id: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
+  presence?: import("../core/types-def.ts").PresenceDef;
   core?: boolean; crew?: "ai" | "remote"; frame?: Id; monster?: { species: Id; grade: Grade; def?: Id };
   components?: Record<SlotId, Id>; persons?: { id: Id; def: Id; seat: SeatId;
     state?: Partial<Pick<PersonState, "pools" | "effects" | "contribs" | "morale" | "will" | "attrsBase" | "xp" | "level" | "abilities" | "driveHours" | "maxDrivenGrade">> }[];
@@ -130,7 +131,7 @@ export function isActive(ctx: Ctx, unitId: Id): boolean { return rt(ctx.s).unitS
 export function unitAt(ctx: Ctx, cell: Cell): Id | null {
   return Object.keys(ctx.s.units).sort().find(id => {
     const status = rt(ctx.s).unitStatus[id], pos = unit(ctx, id).pos;
-    return (status === "active" || status === "derelict") && pos.x === cell.x && pos.y === cell.y;
+    return (status === "active" || status === "derelict" || status === "presence") && pos.x === cell.x && pos.y === cell.y;
   }) ?? null;
 }
 export function terrainAt(ctx: Ctx, cell: Cell): TerrainDef {
@@ -289,6 +290,12 @@ export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   for (const state of [u, ...(init.persons ?? []).map(p => person(ctx, p.id))]) {
     for (const effect of state.effects) rt(ctx.s).nextUid = Math.max(rt(ctx.s).nextUid, effect.uid + 1);
     for (const c of state.contribs) if (/^c\d+$/.test(c.id)) rt(ctx.s).nextContrib = Math.max(rt(ctx.s).nextContrib, Number(c.id.slice(1)) + 1);
+  }
+  if (init.presence) {
+    if ((init.persons?.length ?? 0) > 0) throw new Error("在場單位不可配置人物");
+    const aura = ctx.db.require("effect", init.presence.aura).id;
+    (rt(ctx.s).presences ??= {})[u.id] = { ...init.presence, aura };
+    rt(ctx.s).unitStatus[u.id] = "presence";
   }
   return u;
 }

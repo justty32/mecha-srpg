@@ -62,7 +62,14 @@ export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): B
   for (const init of setup.units) {
     if (s.units[init.id] || !inBounds(s, init.pos) || unitAt(ctx, init.pos)) throw new Error(`非法部署：${init.id}`);
     makeUnit(ctx, init);
-    s.order.push(init.id);
+    if (isActive(ctx, init.id)) s.order.push(init.id);
+  }
+  for (const objective of runtime.objectives) {
+    if (objective.kind !== "capture" && objective.kind !== "killTarget") continue;
+    const targets = [...(typeof objective.params.unit === "string" ? [objective.params.unit] : []),
+      ...(Array.isArray(objective.params.units) ? objective.params.units : [])];
+    if (targets.some(id => typeof id === "string" && runtime.unitStatus[id] === "presence"))
+      throw new Error("在場單位不可作為強制擊殺或捕捉目標");
   }
   for (const id of Object.keys(s.persons).sort()) person(ctx, id).will.burden = person(ctx, id).pools.burden?.cur ?? 0;
   return s;
@@ -128,6 +135,8 @@ export function retreat(ctx: Ctx, unitId: Id): Rejection | null {
 export function canCapture(ctx: Ctx, target: Id): boolean {
   const monster = rt(ctx.s).monsters[target];
   if (!monster || !isActive(ctx, target) || !unitTags(ctx, target).includes("kaiju")) return false;
+  const presence = rt(ctx.s).presences?.[target];
+  if (presence && (!presence.engageable || !presence.engaged || presence.captureLocked)) return false;
   const capture = ctx.db.require("species", monster.species).capture, u = unit(ctx, target), parts = partDefs(ctx, target);
   return capture.requireIntact.every(fn => {
     const matching = parts.filter(p => p.functions.includes(fn));
@@ -142,6 +151,7 @@ export function capture(ctx: Ctx, actor: Id, target: Id): void {
   if (!canCapture(ctx, target)) return;
   const runtime = rt(ctx.s), u = unit(ctx, target), def = ctx.db.require("species", runtime.monsters[target]!.species);
   const frame = ctx.db.require("frame", def.capture.frame).id;
+  if (runtime.presences?.[target]) runtime.presences[target]!.captureLocked = true;
   runtime.unitStatus[target] = "captured";
   u.owner = unit(ctx, actor).owner;
   u.frame = frame;
@@ -156,13 +166,14 @@ export function capture(ctx: Ctx, actor: Id, target: Id): void {
 export function battleResult(ctx: Ctx): BattleResult | null {
   const runtime = rt(ctx.s), outcome = runtime.outcome;
   if (!outcome) return null;
-  const units: BattleResult["units"] = Object.keys(ctx.s.units).sort().map(id => {
+  const units: BattleResult["units"] = Object.keys(ctx.s.units).sort().flatMap<BattleResult["units"][number]>(id => {
     const u = unit(ctx, id), status = runtime.unitStatus[id];
+    if (status === "presence") return [];
     const recovered = status === "derelict" && outcome.winner !== null && Object.keys(ctx.s.units).sort().some(other =>
       isActive(ctx, other) && unit(ctx, other).owner === outcome.winner && distance(u.pos, unit(ctx, other).pos) <= constant(ctx, "derelictRecoverRange"));
     const monster = runtime.monsters[id]?.def ?? runtime.capturedMonsters?.[id];
-    return { id, ...(monster ? { monster } : {}), status: status === "derelict" ? recovered ? "derelict-recovered" : "derelict-lost" : status === "active" || status === undefined ? "alive" : status,
-      state: structuredClone(u) };
+    return [{ id, ...(monster ? { monster } : {}), status: status === "derelict" ? recovered ? "derelict-recovered" : "derelict-lost" : status === "active" || status === undefined ? "alive" : status,
+      state: structuredClone(u) }];
   });
   const persons: BattleResult["persons"] = Object.keys(ctx.s.persons).sort().map(id => ({ id,
     status: ctx.s.log.events.some(e => e.type === "PersonDied" && e.payload.person === id) || person(ctx, id).pools.hp?.cur === 0 ? "dead" : "alive",
@@ -171,6 +182,22 @@ export function battleResult(ctx: Ctx): BattleResult | null {
   return { ...outcome, rounds: ctx.s.round, units, persons, loot: [], log: { events: ctx.s.log.events.length, hash: hashLog(ctx.s.log) } };
 }
 
+registerCommand("engagePresence", (ctx, cmd) => {
+  if (cmd.kind !== "engagePresence") return { code: "unsupported" };
+  const runtime = rt(ctx.s), presence = runtime.presences?.[cmd.target];
+  if (unit(ctx, cmd.actor).owner !== "player" || !ctx.s.units[cmd.target]
+    || runtime.unitStatus[cmd.target] !== "presence" || !presence?.engageable || presence.engaged)
+    return { code: "bad-target" };
+  presence.engaged = true;
+  runtime.unitStatus[cmd.target] = "active";
+  if (!ctx.s.order.includes(cmd.target)) ctx.s.order.push(cmd.target);
+  // SPEC-GAP：迎戰為玩家明確確認；取代守牆目標，擊殺或捕捉其一即可結束。
+  runtime.objectives = runtime.objectives.filter(o => o.for !== "player");
+  runtime.objectives.push({ kind: "killTarget", params: { unit: cmd.target }, for: "player", onComplete: "win" },
+    { kind: "capture", params: { unit: cmd.target }, for: "player", onComplete: "win" });
+  emit(ctx, "PresenceEngaged", { unit: cmd.target, by: cmd.actor });
+  return null;
+});
 registerCommand("eject", (ctx, cmd) => eject(ctx, cmd.actor));
 registerCommand("retreat", (ctx, cmd) => retreat(ctx, cmd.actor));
 registerVerb("spawn", (ctx, action, hc) => {

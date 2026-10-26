@@ -71,3 +71,32 @@
 ```json
 {"id":"encounter/place-city","kind":"city","overlay":[{"feature":"terrain/ruin-wall","along":"footprint-edge"},{"unit":"conventional-arms","count":2,"slot":"ally"}]}
 ```
+
+
+## SPEC-GAP 補（2026-10-26 lead-engine-next）
+
+`WorldActionDef.lordScript?` 是單一具名 S 的資料腳本，沿既有 action kind 載入，不進隨機行動牌（`actor:"world",valid:{any:[]},weight:0,cooldownDays:0,effects:[]`）。形狀如下；所有內容引用照 loader 正規化，區域鍵保留裸字串。
+
+```ts
+lordScript: {
+  lord: Id; startIds: Id[]; windowMonths: [number,number]; minTide: number;
+  route: {loc: Loc; place: Id}[]; routeDelta: 1; gradeCap: "A"; observationDays: number;
+  branchRiftAt: Cell; branchRadius: number;
+  blight: {area: string; map: Id; cells: Cell[]; to: "shallow"};
+  aura: Id; trace: Record<"present"|"northward"|"gone",string>;
+  routePrompts: {regions: string[]; text: string; choices: Choice[]}[];
+  contracts: {template: Id; issuer: Id; place: Id}[]; news: string[];
+  gate: {month: number; dom: number; omen: Id; map: Id; place: Id;
+    allowedRegions: string[]; text: string; choices: Choice[]};
+}
+```
+
+`checkWorld` 必須驗 lord／aura／start／world map／place／omen／contract／issuer 引用、四站合法 Loc、月份與潮級候選、改區格合法且連通。北行候選由 skyAt 按零起算 `clock.month=8..24` 取大潮（tide≥3），且此前已有大潮；空候選拒絕。開局以原始主 RNG 複本抽一次並存 northwardDay，不消耗主／war／actor RNG，讀檔不重抽。只為 startIds 命中的戰役新增 namedLords。
+
+每日段 2 在 world 後、contracts 前依腳本一次走完四站；不要求接約或在灣內。每站記位置、日期與 visited，沿途普通出獸上限當日加一、cap A，隔日失效。終站在 branchRiftAt=(132,92) 曼哈頓距離≤4 查既有未 sealed／receding／closed 裂縫，按距離、id 字典序取一個 width 上移一級 cap A，記 northBranch=raised；沒有則 passed。命中裂縫不再疊沿途第二級；不新增開局裂縫。
+
+北行完成套一次 blightShift（契約見 [rifts-on-grid](../world-grid/rifts-on-grid.md)），再發五則 TemplatesDef news、三筆指定 issuer/place 的合約請求。契約仍驗 alive／rep／scale／contractKinds，不掛平日隨機發包牌。`ContractTemplate.text?` 承接原文，顯示於板上詳情及 scenario.brief；scout 觀測窗外失效，不生成舊 presence。
+
+每日段 4 優先提供所在路段的 routePrompts；文字與選項照內容，問清河口以 `lordChoice:{lord,choice:"inquire"}` 回報已保存的 raised／passed 見聞，不混進主文。王跡三句固定原文並另列 sinceDay；gone 只表示最後目擊失效，不推論死亡。
+
+守牆只在 `clock.month=40,dom=1` 的連珠潮夜（現成曆 day1120）檢查 gate.map／allowedRegions；全 UI 月份序號統一留後續。gate choices 用 `lordChoice:{lord,choice:"decline"|"accept"}`，runtime 驗當日、offered、灣內且無其他 pendingBattle。拒絕關閉窗口；接受建唯一 pending sortie，loc=吉大港、shipOverhead=false，船留原格。錯過當夜不重發；接受尚非迎戰。

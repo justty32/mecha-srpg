@@ -1,0 +1,51 @@
+{
+  "id": "contract/wanchao-evacuation",
+  "kind": "escort",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": 0,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "escort",
+      "params": {
+        "role": "convoy"
+      }
+    }
+  ],
+  "pay": {
+    "base": 6400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 28,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 3,
+  "name": "撤離護送",
+  "text": "紡織公會的人把撤離名單遞給你：「先把人送到岸上。」織工衛在水道盡頭接應，鹽鷗只等離船後的一小時。沿路若有流獸，替人群擋開；把人送到便能交差。遠處黑脊仍在海上。"
+}

@@ -1,0 +1,239 @@
+{
+  "id": "action/wanchao-script",
+  "actor": "world",
+  "valid": {
+    "any": []
+  },
+  "weight": 0,
+  "cooldownDays": 0,
+  "effects": [],
+  "lordScript": {
+    "lord": "monster/tidespine-chittagong",
+    "startIds": [
+      "start/default"
+    ],
+    "windowMonths": [
+      8,
+      24
+    ],
+    "minTide": 3,
+    "route": [
+      {
+        "loc": {
+          "map": "map/longland",
+          "region": "white-sail",
+          "cell": {
+            "x": 136,
+            "y": 99
+          }
+        },
+        "place": "place/chittagong"
+      },
+      {
+        "loc": {
+          "map": "map/longland",
+          "region": "reed-hymn",
+          "cell": {
+            "x": 126,
+            "y": 100
+          }
+        },
+        "place": "place/salt-flat"
+      },
+      {
+        "loc": {
+          "map": "map/longland",
+          "region": "tide-scar",
+          "cell": {
+            "x": 130,
+            "y": 98
+          }
+        },
+        "place": "place/delta"
+      },
+      {
+        "loc": {
+          "map": "map/longland",
+          "region": "tide-scar",
+          "cell": {
+            "x": 132,
+            "y": 96
+          }
+        },
+        "place": "place/dhaka"
+      }
+    ],
+    "routeDelta": 1,
+    "gradeCap": "A",
+    "observationDays": 28,
+    "branchRiftAt": {
+      "x": 132,
+      "y": 92
+    },
+    "branchRadius": 4,
+    "blight": {
+      "area": "wanchao-north-coast",
+      "map": "map/longland",
+      "cells": [
+        {
+          "x": 129,
+          "y": 97
+        },
+        {
+          "x": 130,
+          "y": 97
+        },
+        {
+          "x": 131,
+          "y": 97
+        },
+        {
+          "x": 129,
+          "y": 98
+        },
+        {
+          "x": 130,
+          "y": 98
+        },
+        {
+          "x": 131,
+          "y": 98
+        },
+        {
+          "x": 129,
+          "y": 99
+        },
+        {
+          "x": 130,
+          "y": 99
+        },
+        {
+          "x": 131,
+          "y": 99
+        }
+      ],
+      "to": "shallow"
+    },
+    "aura": "effect/kx-tidal-dread",
+    "trace": {
+      "present": "吉大港外灘：在。",
+      "northward": "第七哨外海：往北。",
+      "gone": "北岸哨所：不見了。"
+    },
+    "routePrompts": [
+      {
+        "regions": [
+          "reed-hymn",
+          "tide-scar"
+        ],
+        "text": "海面一條黑脊往北，船肋間掛著斷桅。殘聯聯絡員催你記下時刻。你可以留在遠處報訊，也可以轉向避開。旁邊的拆船工收起鐵鉤，艇板上只有濕透的舊船骨。",
+        "choices": [
+          {
+            "text": "留在遠處報訊",
+            "effects": []
+          },
+          {
+            "text": "轉向避開",
+            "effects": []
+          }
+        ]
+      },
+      {
+        "regions": [
+          "river-crown",
+          "tide-scar"
+        ],
+        "text": "織工衛正在河口接傷員，第七哨哨兵扛著界旗涉過泥水。「第七哨外海，這一區重畫。」他指向岸圖。北郊的舊裂縫已有報訊，你可以上前問清，再幫忙抬擔架；也可以留下沿途見聞，趁艇還沒滿離開。",
+        "choices": [
+          {
+            "text": "上前問清，再幫忙抬擔架",
+            "effects": [
+              {
+                "lordChoice": {
+                  "lord": "monster/tidespine-chittagong",
+                  "choice": "inquire"
+                }
+              }
+            ]
+          },
+          {
+            "text": "留下沿途見聞，趁艇還沒滿離開",
+            "effects": []
+          }
+        ]
+      }
+    ],
+    "contracts": [
+      {
+        "template": "contract/wanchao-scout",
+        "issuer": "faction-ops/residual-league",
+        "place": "place/delta"
+      },
+      {
+        "template": "contract/wanchao-evacuation",
+        "issuer": "faction-ops/dhaka-weavers",
+        "place": "place/dhaka"
+      },
+      {
+        "template": "contract/wanchao-watch",
+        "issuer": "faction-ops/bay-seventh-post",
+        "place": "place/delta"
+      }
+    ],
+    "news": [
+      "WanchaoLeagueNews",
+      "WanchaoSeleneNews",
+      "WanchaoFaithNews",
+      "WanchaoReturnersNews",
+      "WanchaoSeventhNews"
+    ],
+    "gate": {
+      "month": 40,
+      "dom": 1,
+      "omen": "omen/grand-syzygy",
+      "map": "map/longland",
+      "place": "place/chittagong",
+      "allowedRegions": [
+        "river-crown",
+        "reed-hymn",
+        "white-sail",
+        "salt-oath",
+        "tide-scar",
+        "mourning-sails",
+        "green-lantern",
+        "ivory-gate",
+        "storm-veil",
+        "pilgrim-depth",
+        "choir-coast",
+        "sunset-watch",
+        "broken-moon",
+        "silver-vigil"
+      ],
+      "text": "城門外的斷桅高過牆頭。拆船幫守門人纏著傷手，鐵砧駕駛員托住橫梁，軍械庫聯絡官把補給箱推到你腳邊。你可以離開，也可以接下守牆。萬潮葬王或許會轉身回海；若你決定迎戰，這是唯一能嘗試捕捉牠的一夜。城能否守住，還沒有答案。",
+      "choices": [
+        {
+          "text": "離開",
+          "effects": [
+            {
+              "lordChoice": {
+                "lord": "monster/tidespine-chittagong",
+                "choice": "decline"
+              }
+            }
+          ]
+        },
+        {
+          "text": "接下守牆",
+          "effects": [
+            {
+              "lordChoice": {
+                "lord": "monster/tidespine-chittagong",
+                "choice": "accept"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

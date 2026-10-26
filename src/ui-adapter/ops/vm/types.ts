@@ -106,7 +106,7 @@ export type WorldGridSnapshot = {
 export type RoomView = { id: string; title: string; desc: string[] };
 
 export type ContractView = {
-  id: string; title: string;        // 「清剿：嶺口」
+  id: string; title: string; text?: string;        // 「清剿：嶺口」
   kind: string; kindName: string;
   issuerName: string; nodeId: string; nodeName: string;
   status: string; statusName: string;

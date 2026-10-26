@@ -257,7 +257,9 @@ export type MonsterDef = {
   id: Id; nameEn?: string; etymology?: string; species: Id; grade: Grade; name?: string; epithet?: string;
   attrMods?: Contribution[]; extraAbilities?: Id[]; partsOverride?: Partial<PartDef>[]; tags: string[];
 };
-export type UnitSpawn = { core?: boolean; crew?: "ai" | "remote"; mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
+/** SPEC-GAP：在場單位沿用原個體；光環與是否可主動迎戰屬情境資料。 */
+export type PresenceDef = { aura: Id; engageable?: boolean; captureLocked?: boolean };
+export type UnitSpawn = { presence?: PresenceDef; core?: boolean; crew?: "ai" | "remote"; mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade; pools?: Record<PoolId, number>;
   /** 情境替機甲裝部件：slot id → component id；給了就整組取代 FrameDef.defaultLoadout（ISS-001）。 */
   components?: Record<SlotId, Id> };
 export type Objective = {
