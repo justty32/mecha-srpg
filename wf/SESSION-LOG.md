@@ -15,6 +15,7 @@
 
 - [content] lead-fill open：lore 填充層（第 0 步落地使用者拍板 → 第一批 ≤15 檔：孟加拉灣周邊＋崩年後續代表地）→ handoffs/lead-fill/
 - [content] lead-aegir open：埃吉爾認主事件＋歐傘那一盤 2108-01 填充（≤15 檔，codex 批次 ag-01）→ handoffs/lead-aegir/
+- [content] lead-fill-am open：lore 填充層南北美洲（北美傘、內陸財團、拉美傘、空城／自由／黑幫／公司城代表地、人物與事件；codex 批次 am-01 起）→ handoffs/lead-fill-am/
 
 ## 各工作流 session-log
 
