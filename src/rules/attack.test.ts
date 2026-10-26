@@ -68,7 +68,7 @@ test("未指定依 exposure 抽、忽略已毀部位、指定不耗 RNG", () => 
   unit(ctx, "b").parts.leg!.broken = true;
   assert.equal(pickPart(ctx, "b"), "core");
 });
-test("DN-W-14 conventional-arms 對 kaiju 十分之一，修正後才暴擊", () => {
+test("DN-W-14 conventional-arms 對 kaiju 抵抗性外甲倍率 0.1，修正後才暴擊", () => {
   const ctx = fixture(d => { d.frame.tags = ["kaiju"]; d.ability.tags = ["conventional-arms"]; });
   assert.equal(modifiedAmount(ctx, "a", "ability/test", { type: "kinetic", amount: 100 }, "b"), 10);
   assert.equal(modifiedAmount(ctx, "a", "ability/test", { type: "kinetic", amount: 100, crit: 1 }, "b"), 10 * base.rules.constants.critFactor!);

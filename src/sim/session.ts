@@ -4,7 +4,7 @@ import type { FactionSlot } from "../core/types-def.ts";
 import type { GameEvent } from "../core/events.ts";
 import type { BattleOutcome, BattleState, Command } from "../core/types-state.ts";
 import { hashLog } from "../core/eventlog.ts";
-import { abilitiesOf, battleResult, checkAbility, createBattle, currentActor, previewCommand, rt,
+import { abilitiesOf, battleResult, checkAbility, createBattle, currentActor, damageFactor, previewCommand, rt,
   startBattle, tryCommand } from "../rules/index.ts";
 import type { BattleResult, Result } from "../rules/index.ts";
 import { createFactionAI, observeEvents, runUnitTurn, startRound } from "../ai/index.ts";
@@ -64,6 +64,8 @@ export class BattleSession {
   result(): BattleResult | null { return battleResult({ db: this.db, s: this.s }); }
   hash(): string { return hashLog(this.s.log); }
   preview(cmd: Command): ReturnType<typeof previewCommand> { return previewCommand({ db: this.db, s: this.s }, cmd); }
+  /** 傷害修正鏈的確定性倍率（近戰／遠程增傷 × 全局修正表 × 抵抗性；不含暴擊與層）；估算顯示用，不改 state。 */
+  damageFactor(actor: Id, ability: Id, target: Id): number { return damageFactor({ db: this.db, s: this.s }, actor, ability, target); }
   observe(fn: SessionObserver): () => void {
     this.observers.add(fn);
     return () => { this.observers.delete(fn); };

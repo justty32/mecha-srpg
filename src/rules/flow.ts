@@ -18,7 +18,9 @@ export type BattleSetup = { id: string;
   allies?: Record<FactionSlot, FactionSlot[]>; factions?: Record<FactionSlot, Id>;
   map: { width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id; hp?: number }[]; exits: Cell[];
     globals?: { tide?: NumExpr; light?: number } };
-  units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean };
+  units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean;
+  /** 情境規則覆蓋（ScenarioDef.rules）；目前只有凡鐵外甲倍率。 */
+  rules?: { conventionalFactor?: number } };
 export type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number;
   events?: GameEvent[];
   units: { id: Id; monster?: Id; status: "alive" | "dead" | "retreated" | "derelict-recovered" | "derelict-lost" | "captured"; state: MechState }[];
@@ -34,6 +36,7 @@ export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): B
   runtime.objectives = structuredClone(setup.objectives);
   runtime.maxRounds = setup.maxRounds ?? null;
   runtime.noRetreat = setup.noRetreat ?? false;
+  if (setup.rules?.conventionalFactor !== undefined) runtime.conventionalFactor = setup.rules.conventionalFactor;
   runtime.exits = structuredClone(setup.map.exits);
   runtime.globals = structuredClone(setup.map.globals ?? {});
   for (const [slot, allies] of Object.entries(setup.allies ?? {})) for (const ally of allies) {

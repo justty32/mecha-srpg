@@ -6,7 +6,7 @@
 
 ```ts
 type ScenarioDef = { id: Id; map: Id; slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id; allies?: FactionSlot[] }>;
-  objectives: Objective[]; rounds?: number; rules?: { conventionalFactor?: number /*預設 0.1*/ }; seed?: number };
+  objectives: Objective[]; rounds?: number; rules?: { conventionalFactor?: number /*凡鐵外甲倍率覆蓋；省略用 constants.conventionalFactor（0.1）*/ }; seed?: number };
 type UnitSpawn = { mech?: Id; monster?: Id; persons?: { id: Id; seat: SeatRole }[]; at: Cell | "zone"; grade?: Grade };
 type Objective = { kind: "eliminate" | "survive" | "hold" | "escort" | "capture" | "reachExit" | "killTarget";
   params: Record<string, unknown>; for: FactionSlot; onComplete: "win" | "lose" | "continue" };
@@ -21,7 +21,7 @@ type Objective = { kind: "eliminate" | "survive" | "hold" | "escort" | "capture"
 
 ### 地物受損（提案，待實作）
 
-可破壞格是**可被瞄準的目標**：能力 `target.kind` 為 `cell` 或範圍型（`ball`／`line`）時，範圍內每個 `destructible` 格都吃一次該能力的傷害包，傷害型乘以地形 `destructible.resist?: Partial<Record<DamageType, number>>`（預設 1）；直接對單位的單體攻擊**不**順帶打到它腳下的地物。`featureHp ≤ 0` → 地形換成 `becomes`、寫 `FeatureDestroyed{ at, from, to }`，格上單位吃地形 `destructible.onCollapse?: EffectRef[]`，`cover`／`blocksLos`／`moveCost` 立即以新地形計；AI 只把 `tags` 含 `objective` 的可破壞格當目標，其餘地物只在擋路或擋視線時納入估值。抵抗性（`conventional-arms` 修正，原十分律）只對 `kaiju` 單位，地物吃全額；菌絲族 `territorial` 擴散不經傷害、直接改格。
+可破壞格是**可被瞄準的目標**：能力 `target.kind` 為 `cell` 或範圍型（`ball`／`line`）時，範圍內每個 `destructible` 格都吃一次該能力的傷害包，傷害型乘以地形 `destructible.resist?: Partial<Record<DamageType, number>>`（預設 1）；直接對單位的單體攻擊**不**順帶打到它腳下的地物。`featureHp ≤ 0` → 地形換成 `becomes`、寫 `FeatureDestroyed{ at, from, to }`，格上單位吃地形 `destructible.onCollapse?: EffectRef[]`，`cover`／`blocksLos`／`moveCost` 立即以新地形計；AI 只把 `tags` 含 `objective` 的可破壞格當目標，其餘地物只在擋路或擋視線時納入估值。抵抗性（凡鐵只刮外甲、精粹等級差減半，原十分律）只對 `kaiju` 單位，地物吃全額；菌絲族 `territorial` 擴散不經傷害、直接改格。
 
 ### 替使用者做掉的決定（2026-10-24 補）
 

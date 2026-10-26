@@ -9,6 +9,7 @@ import { applyEffect } from "./effects.ts";
 import type { EffectTarget } from "./effects.ts";
 import { dispatchHook, signal } from "./hooks.ts";
 import { applyPacket, isDead } from "./layers.ts";
+import { damageBonus, resistance } from "./resistance.ts";
 
 function subject(ctx: Ctx, id: Id, abilityId?: Id): Subject {
   const role = abilityId ? ctx.db.require("ability", abilityId).actorRole : undefined;
@@ -43,14 +44,21 @@ export function pickPart(ctx: Ctx, target: Id, aimed?: PartId): PartId {
   return pickWeighted(ctx.s.rng, live, p => Math.max(0, p.exposure)).id;
 }
 
-export function modifiedAmount(ctx: Ctx, actor: Id | null, abilityId: Id | null, packet: DamagePacket, target: Id): number {
-  const ev = evalCtxFor(ctx, actor ? subject(ctx, actor, abilityId ?? undefined) : { unit: target }, { unit: target });
-  let amount = evalNum(packet.amount, ev);
+/** 修正鏈的確定性部分（不擲暴擊）：攻方近戰／遠程增傷 → 全局修正表 → 抵抗性。估算（sim session）與結算共用。 */
+export function damageFactor(ctx: Ctx, actor: Id | null, abilityId: Id | null, target: Id): number {
+  let factor = 1;
+  if (actor && abilityId) factor *= damageBonus(ctx, actor, abilityId, subject(ctx, actor, abilityId).person);
   const sourceTags = [...(actor ? unitTags(ctx, actor) : []), ...(abilityId ? ctx.db.require("ability", abilityId).tags : [])];
   const targetTags = unitTags(ctx, target);
   for (const row of ctx.db.rules.damageModifiers) {
-    if (sourceTags.includes(row.sourceTag) && targetTags.includes(row.targetTag)) amount *= row.factor;
+    if (sourceTags.includes(row.sourceTag) && targetTags.includes(row.targetTag)) factor *= row.factor;
   }
+  return factor * (resistance(ctx, actor, abilityId, target)?.factor ?? 1);
+}
+
+export function modifiedAmount(ctx: Ctx, actor: Id | null, abilityId: Id | null, packet: DamagePacket, target: Id): number {
+  const ev = evalCtxFor(ctx, actor ? subject(ctx, actor, abilityId ?? undefined) : { unit: target }, { unit: target });
+  let amount = evalNum(packet.amount, ev) * damageFactor(ctx, actor, abilityId, target);
   if (packet.crit !== undefined && chance(ctx.s.rng, evalNum(packet.crit, ev))) amount *= constant(ctx, "critFactor");
   return Math.max(0, amount);
 }
@@ -98,11 +106,12 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
       if (self.person) dispatchHook(ctx, "onHit", { person: self.person });
       dispatchHook(ctx, "onBeingHit", { unit: id });
       for (const seat of seatsOf(ctx, id)) dispatchHook(ctx, "onBeingHit", { person: seat.person });
+      const reach = resistance(ctx, actor, abilityId, id)?.reach;
       for (const packet of ability.packets) {
         const packetEv = evalCtxFor(ctx, self, { unit: id });
         const input = { type: packet.type, amount: modifiedAmount(ctx, actor, abilityId, packet, id),
           armorPen: evalNum(packet.armorPen ?? 0, packetEv), resistPen: evalNum(packet.resistPen ?? 0, packetEv),
-          layerFilter: packet.layerFilter, conductBonus: evalNum(packet.conductBonus ?? 0, packetEv) };
+          layerFilter: packet.layerFilter, conductBonus: evalNum(packet.conductBonus ?? 0, packetEv), ...(reach ? { reach } : {}) };
         applyPacket(ctx, id, part!, input, actor);
       }
     }

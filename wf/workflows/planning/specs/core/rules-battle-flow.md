@@ -2,7 +2,7 @@
 
 [core README](README.md)｜情境資料 [data-model-world](data-model-world.md)｜headless 跑法 [architecture](architecture.md)
 
-裁示：整機到地圖邊緣撤離、另支援棄機逃生（機甲留場可能被怪獸占或事後回收）；捕捉是生物系來源（核完整才能捕，取自 plan-world 暫定裁示）；戰後不補滿；一場不限機甲數、一局時長不限；傳統兵器十分之一（已在攻擊結算的全局修正表；2026-10-24 晚世界觀改為「抵抗性」，引擎待 backlog）。
+裁示：整機到地圖邊緣撤離、另支援棄機逃生（機甲留場可能被怪獸占或事後回收）；捕捉是生物系來源（核完整才能捕，取自 plan-world 暫定裁示）；戰後不補滿；一場不限機甲數、一局時長不限；傳統兵器十分之一（2026-10-24 晚世界觀改為「抵抗性」，2026-10-26 引擎落地於攻擊結算 ④）。
 
 ## 戰鬥生命週期
 
@@ -46,7 +46,7 @@ type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number
 
 ## 傳統兵器
 
-情境可放 `tags:["conventional-arms"]` 的單位（鐵翼、鐵龜）或由 `faction` 以「呼叫支援」能力投射（`target.kind:"ball"`、不需 LOS、冷卻長）；傷害經全局修正表對 `kaiju` ×0.1，對人類機甲全額——也就是傳統兵器在對人戰場完全正常，這是裁示的自然推論。
+情境可放 `tags:["conventional-arms"]` 的單位（鐵翼、鐵龜）或由 `faction` 以「呼叫支援」能力投射（`target.kind:"ball"`、不需 LOS、冷卻長）；傷害經抵抗性對 `kaiju` 只刮外甲層一成、內層與核 0（[rules-attack-resolution](rules-attack-resolution.md) ④），對人類機甲全額——也就是傳統兵器在對人戰場完全正常，這是裁示的自然推論。
 
 ## 替使用者做掉的決定
 

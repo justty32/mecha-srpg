@@ -153,10 +153,7 @@ export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(
         distance: q.distance(state.units[unit]!.pos, target.cell ?? state.units[target.unit ?? unit]!.pos),
         hitChance: target.unit ? displayNumber(q.hitChance(state, unit, id, target.unit, target.part)) : null,
         ...(target.unit ? { damageIfHit: displayNumber(def.packets.reduce((sum, packet) => {
-          const sourceTags = [...q.unitTags(state, unit), ...def.tags], targetTags = q.unitTags(state, target.unit!);
-          const factor = env.battleDb().rules.damageModifiers.filter(row => sourceTags.includes(row.sourceTag) && targetTags.includes(row.targetTag))
-            .reduce((value, row) => value * row.factor, 1);
-          return sum + Math.max(0, q.evalNum(state, packet.amount, unit, target.unit) * factor);
+          return sum + Math.max(0, q.evalNum(state, packet.amount, unit, target.unit) * s.damageFactor(unit, id, target.unit!));
         }, 0)) } : {}),
         action: { kind: "useAbility", actor: unit, ability: id, target },
       }));
@@ -171,10 +168,10 @@ export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(
     }) : [];
     const options = (["wait", "end", "retreat", "eject"] as const).filter(k => legal[k]).map(kind => ({ action: { kind, actor: unit! }, irreversible: kind === "retreat" || kind === "eject" }));
     return okResult(`${unit ?? "無行動者"}：${moves.length} 個可達格；${abilities.length ? abilities.map(v => `${v.name} ${v.targets.length}目標${v.reason ? `（${v.reason}）`
-      : v.targets.length ? `：${v.targets.slice(0, 4).map(t => `${t.target.unit ?? `${t.target.cell?.x},${t.target.cell?.y}`}${t.partName ? `/${t.partName}` : ""}${t.hitChance === null ? "" : ` 命中 ${t.hitChance}%／約 ${t.damageIfHit}`}`).join("、")}${v.targets.length > 4 ? "…" : ""}` : ""}`).join("；") : "無能力"}；${options.map(o => `${o.action.kind}${o.irreversible ? "（不可逆）" : ""}`).join("、")}\n傷害為估算：傷害包 × 全域修正，未計部位減傷、抗性與暴擊。`,
+      : v.targets.length ? `：${v.targets.slice(0, 4).map(t => `${t.target.unit ?? `${t.target.cell?.x},${t.target.cell?.y}`}${t.partName ? `/${t.partName}` : ""}${t.hitChance === null ? "" : ` 命中 ${t.hitChance}%／約 ${t.damageIfHit}`}`).join("、")}${v.targets.length > 4 ? "…" : ""}` : ""}`).join("；") : "無能力"}；${options.map(o => `${o.action.kind}${o.irreversible ? "（不可逆）" : ""}`).join("、")}\n傷害為估算：傷害包 × 增傷 × 全域修正 × 抵抗性，未計部位減傷、層抗性與暴擊；凡鐵打獸只刮得到外甲。`,
       displayValues({ actor: unit, playerTurn: unit === s.currentActor() && s.isHumanTurn(), moves, ...(Number.isFinite(maxMoves) ? { movesTotal: allMoves.length, movesOmitted: allMoves.length - moves.length } : {}),
         ...(Number.isFinite(maxTargets) ? { targetsOmitted } : {}), moveAction: '{"kind":"move","to":{"x":X,"y":Y}}', nearestEnemy: nearest, abilities, options,
-        damageEstimate: "傷害包 × 全域修正，未計部位減傷、抗性與暴擊" }));
+        damageEstimate: "傷害包 × 增傷 × 全域修正 × 抵抗性，未計部位減傷、層抗性與暴擊；凡鐵打獸只刮得到外甲" }));
   };
   const submitAction = (b: Battle, raw: Record<string, unknown>): Command => {
     const s = b.session, ended = s.outcome();

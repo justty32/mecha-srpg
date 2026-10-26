@@ -179,6 +179,8 @@ export type AiHints = {
 export type AbilityDef = {
   id: Id; nameEn?: string; etymology?: string; name: string; mode: AbilityMode;
   grade?: Grade;
+  /** 武器的精粹等級（抵抗性結算；engine-backlog 28）。省略＝取攻方機體等級；帶 conventional-arms 的一律算凡鐵。 */
+  essence?: Grade;
   actorRole?: SeatRole;
   costs: AbilityCost[];
   produces: CostLike[];

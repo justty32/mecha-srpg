@@ -23,9 +23,9 @@
   },
   {
    "領域": "rules",
-   "檔案": "`src/rules/`（17 模組＋`index.ts`）",
-   "職責": "全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢；MonsterDef `partsOverride`／`attrMods`／`extraAbilities`／tags 經 `UnitInit.monster.def` 生效（`state.ts` frameView／partDefs 快取）、`BattleResult.units[].monster`；spawner tether `dieWithParent`（`flow.ts`）；擊退判勝（`objectives.ts`：對手撤光＝勝、`BattleOutcome.detail:\"repelled\"`；無出口地圖四邊可撤）；control.ts cockpitOf／isDriven 判定座艙與核心驅動；command.ts abilitiesOf 普通開過濾；state.ts／pools.ts crew 池宣告與 scripted 成本；flow.ts 棄機後 crew 接手；無核心 unitTags conventional-arms。 command.ts abilitiesOf 在 driven 時合併活著座位人物天生及後天能力；state.ts UnitInit 承接人物能力與時數。",
-   "測試在哪": "`src/rules/*.test.ts`、黃金 `test/golden.test.ts`、回歸 `test/rules/regress.test.ts`（fuzz 抓到的 bug）、fuzz `test/fuzz/`（`gen.ts` 情境生成、`invariants.ts` 不變量、`drive.ts` 三模式驅動、`cli.ts`／`worker.ts` 平行 CLI；`npm run fuzz`）、`test/rules/{monster-def,tether,repel}.test.ts`；`src/rules/{control,attack}.test.ts`（五種座艙／普通開／crew 接手／AP／十分律）；`src/rules/control.test.ts`"
+   "檔案": "`src/rules/`（18 模組＋`index.ts`）",
+   "職責": "全部結算；對外只暴露 `tryCommand`／`previewCommand`／查詢；MonsterDef `partsOverride`／`attrMods`／`extraAbilities`／tags 經 `UnitInit.monster.def` 生效（`state.ts` frameView／partDefs 快取）、`BattleResult.units[].monster`；spawner tether `dieWithParent`（`flow.ts`）；擊退判勝（`objectives.ts`：對手撤光＝勝、`BattleOutcome.detail:\"repelled\"`；無出口地圖四邊可撤）；control.ts cockpitOf／isDriven 判定座艙與核心驅動；command.ts abilitiesOf 普通開過濾；state.ts／pools.ts crew 池宣告與 scripted 成本；flow.ts 棄機後 crew 接手；無核心 unitTags conventional-arms。 command.ts abilitiesOf 在 driven 時合併活著座位人物天生及後天能力；state.ts UnitInit 承接人物能力與時數。 resistance.ts 抵抗性（精粹等級差每級 ×resistancePerGrade、凡鐵只刮 layer-types `outer` 層、情境 conventionalFactor 覆蓋）與近戰／遠程增傷（`self.damage.melee|ranged` 貢獻），attack.ts damageFactor 串修正鏈、sim session.damageFactor 供 MCP 估算。",
+   "測試在哪": "`src/rules/*.test.ts`、黃金 `test/golden.test.ts`、回歸 `test/rules/regress.test.ts`（fuzz 抓到的 bug）、fuzz `test/fuzz/`（`gen.ts` 情境生成、`invariants.ts` 不變量、`drive.ts` 三模式驅動、`cli.ts`／`worker.ts` 平行 CLI；`npm run fuzz`）、`test/rules/{monster-def,tether,repel}.test.ts`；`src/rules/{control,attack}.test.ts`（五種座艙／普通開／crew 接手／AP／凡鐵）、`src/rules/resistance.test.ts`（等級差減半、凡鐵內層與核 0、近遠增傷）；`src/rules/control.test.ts`"
   },
   {
    "領域": "ai",

@@ -108,6 +108,7 @@ export type RulesRuntime = {
   moraleStreak: Record<Id, number>;   // 人物連續士氣檢定成功次數
   berserkFrom: Record<Id, FactionSlot>; // 失控單位的原 slot
   xpGained: Record<Id, number>;
+  conventionalFactor?: number;        // 情境 rules.conventionalFactor 覆蓋凡鐵外甲倍率（抵抗性）；省略＝用 constants
   fieldEffects: EffectInstance[];     // scope = cell／faction／battle 的效果
   objectives: Objective[]; maxRounds: number | null; exits: Cell[]; noRetreat: boolean;
   outcome: BattleOutcome | null;

@@ -9,7 +9,8 @@ import { recomputePool } from "./pools.ts";
 import { conduct } from "./conduct.ts";
 
 export type LayerSlot = { def: LayerDef; hp: number; broken: boolean };
-export type PacketIn = { type: DamageType; amount: number; armorPen?: number; resistPen?: number; layerFilter?: LayerType[] };
+/** reach：抵抗性（凡鐵對 kaiju）只刮得到這些層型；碰到其他未毀層（內層與核）傷害歸零、停止。 */
+export type PacketIn = { type: DamageType; amount: number; armorPen?: number; resistPen?: number; layerFilter?: LayerType[]; reach?: LayerType[] };
 export type LayerStep = { index: number; amount: number; broke: boolean };
 
 export function runLayers(layers: readonly LayerSlot[], p: PacketIn): { layers: LayerSlot[]; steps: LayerStep[]; remaining: number } {
@@ -18,7 +19,9 @@ export function runLayers(layers: readonly LayerSlot[], p: PacketIn): { layers: 
   for (const [index, layer] of result.entries()) {
     if (remaining <= 0) break;
     const d = layer.def;
-    if (layer.broken || (p.layerFilter && !p.layerFilter.includes(d.type))) continue;
+    if (layer.broken) continue;
+    if (p.reach && !p.reach.includes(d.type)) { remaining = 0; break; }
+    if (p.layerFilter && !p.layerFilter.includes(d.type)) continue;
     let pass = remaining * (d.passThrough[p.type] ?? 0), hit = remaining - pass;
     const bypass = hit * Math.max(0, Math.min(1, p.armorPen ?? 0));
     pass += bypass; hit -= bypass;

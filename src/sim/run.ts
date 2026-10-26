@@ -125,10 +125,10 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
     else if (units.some(u => u.id === target)) objective.params.unit = target;
     else throw new Error(`objective 目標不存在：${target}`);
   }
-  // SPEC-GAP：情境規則覆蓋尚無規則層入口。
   const setup: BattleSetup = { id: sc.id, factions, allies, map: { width: map.width, height: map.height,
     fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits),
-    ...(map.globals ? { globals: structuredClone(map.globals) } : {}) }, units, objectives };
+    ...(map.globals ? { globals: structuredClone(map.globals) } : {}) }, units, objectives,
+    ...(sc.rules?.conventionalFactor !== undefined ? { rules: { conventionalFactor: sc.rules.conventionalFactor } } : {}) };
   const rounds = opts?.rounds ?? sc.rounds;
   if (rounds !== undefined) {
     if (!Number.isInteger(rounds) || rounds < 1) throw new Error("rounds 必須是正整數");
