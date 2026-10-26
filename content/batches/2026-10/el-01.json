@@ -1,0 +1,154 @@
+{
+ "contract": "content-batch/1",
+ "id": "el-01",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "plan-epic v2／v3 裁示落地到 lore：前史收回（夸父推月改傳聞、刑天「下去」、先民社會史）、國家縮而不死（巴西退內陸、各國政府再撐四年）、中國朝廷字樣、塞勒涅錢上了月、六十億改九十億、埃吉爾「至今」；只改文字欄",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6-astra",
+  "reasoning": "high",
+  "line": "cx-el-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-epic-land",
+ "date": "2026-10-26",
+ "base": "30845e966f28eca5f0dc4189937dd84b9ce35f0f",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-epic-land/el-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-epic-land/el-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "wf/workflows/dispatch/handoffs/plan-epic/REPORT-v2.md",
+   "wf/workflows/dispatch/handoffs/plan-epic/v3.md",
+   "wf/workflows/dispatch/handoffs/lead-epic-land/cx-el-01.md"
+  ]
+ },
+ "maxFiles": 12,
+ "allow": {
+  "polishFiles": [
+   "content/lore/characters/kuafu.json",
+   "content/lore/characters/tenzin-dolma.json",
+   "content/lore/characters/xingtian.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/events/forerunners-seal.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/timeline.json",
+   "content/lore/eras/first-tide.json",
+   "content/lore/events/golmud-split.json",
+   "content/lore/eras/old-world.json",
+   "content/lore/factions/selene.json",
+   "content/lore/events/skagerrak-shell-found.json"
+  ],
+  "proseFields": [
+   "consequences",
+   "role",
+   "scale",
+   "doctrine",
+   "ideology",
+   "silhouette",
+   "status2108",
+   "region",
+   "hq",
+   "mechSeries",
+   "relation",
+   "tags"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T08:49:39",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "el-01",
+  "round": 1,
+  "at": "2026-10-26T08:49:39",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/lore/characters/kuafu.json",
+   "content/lore/characters/tenzin-dolma.json",
+   "content/lore/characters/xingtian.json",
+   "content/lore/eras/first-tide.json",
+   "content/lore/eras/forerunners.json",
+   "content/lore/eras/old-world.json",
+   "content/lore/events/forerunners-seal.json",
+   "content/lore/events/golmud-split.json",
+   "content/lore/events/skagerrak-shell-found.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/shell-wardens.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/characters/kuafu.json",
+  "content/lore/characters/tenzin-dolma.json",
+  "content/lore/characters/xingtian.json",
+  "content/lore/eras/forerunners.json",
+  "content/lore/events/forerunners-seal.json",
+  "content/lore/factions/shell-wardens.json",
+  "content/lore/timeline.json",
+  "content/lore/eras/first-tide.json",
+  "content/lore/events/golmud-split.json",
+  "content/lore/eras/old-world.json",
+  "content/lore/factions/selene.json",
+  "content/lore/events/skagerrak-shell-found.json"
+ ],
+ "ids": [
+  "character/kuafu",
+  "character/tenzin-dolma",
+  "character/xingtian",
+  "era/forerunners",
+  "event/forerunners-seal",
+  "faction/shell-wardens",
+  "content/lore/timeline.json",
+  "era/first-tide",
+  "event/golmud-split",
+  "era/old-world",
+  "faction/selene",
+  "event/skagerrak-shell-found"
+ ],
+ "gateRejections": [],
+ "summary": "12 檔 accepted（第 1 輪）；領導收件前在 worktree 再潤 3 處（kuafu／golmud 拒絕朝廷語序、kuafu／xingtian 關係 note「追到天上」→「一路在追」）"
+}

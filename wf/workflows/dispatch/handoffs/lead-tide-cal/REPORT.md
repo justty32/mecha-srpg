@@ -6,7 +6,7 @@ STATUS：**DONE**。commit `0c43b0f`（引擎＋十五條天象＋測試）、`8
 
 - **純函式**（`src/ops/state/omens.ts`）：`stage(dom)` 潮候五段（潮前三日／漲潮日／退潮三日／小潮／平潮日）、`omens(day)` 進行中天象、`tide(day)` 潮級 0–4、`eclipseYear`。潮級規則：平潮 0、小潮／潮前／退潮 1、漲潮 2；只在漲潮日疊天象——`tideDelta` 相加上限 3，`setTide` 優先、多個取最大（連珠 4 壓過枯潮 1、枯潮壓過迫月）。
 - **Clock** 加 `stage`／`tide`／`year`（`clock`／`skyAt`）；tick 段 1 與開局寫 `flags["omen:<名>"]=1`、窗外刪旗；cond 加 tag `tide:<stage>`，ref `calendar.tide`／`calendar.year` 直接可用。
-- **內容**：`calendar.json` 加 `monthsPerYear:13`、`epochMonth:247`（開局＝蝕曆二十年），取消 `special`（check 遇到報錯）；新 kind `world/omens/` 十五條（月相 2、迫月、重蝕、月隱、五星、四時、連珠潮），`effects` 先空著（39–42 再接）。相位把元年第一日定成迫月＋重蝕＋五星同在，所以「2089 第一次蝕潮是重蝕＋連珠」由公式自然成立。
+- **內容**：`calendar.json` 加 `monthsPerYear:13`、`epochMonth:247`（開局＝蝕曆二十年），取消 `special`（check 遇到報錯）；新 kind `world/omens/` 十五條（月相 2、迫月、重蝕、月隱、五星、四時、連珠潮），`effects` 先空著（39–42 再接）。相位把元年第一日定成迫月＋重蝕＋五星同在，所以「2089 第一次蝕潮是重蝕＋連珠」由公式自然成立。（2026-10-26 更正：迫月改 7.5 蝕月、`offsetDays` 56 以讓第 40 蝕月初一撞迫月後，元年第一日不再是迫月；頂層裁定 2089 那次是開局前的歷史，由年表與 lore 定，不要求公式重現。8036 日不被 210 整除，兩者不能同時由公式成立。）
 - **check** `omenErrors`：週期是整日數、窗長、排定日、湧現引用、效果 kind 屬八類，以及帶潮級修正的窗至少涵蓋一個漲潮日；已證明能變紅（五種壞資料各擋一條）。
 - **頻率**（200 年模擬）：大潮每年 2.21 次、枯潮 0.5、連珠 0.09（第 40 蝕月排定一次，下一次湧現在第 173 蝕月）；開局十年內只有第 40 蝕月一次連珠。
 - **醒魂**：`cockpit-growth.ts` 的潮骰改成當日潮級 ≥ 3（`GREAT_TIDE`，大潮或連珠）；pilots spec、drive 筆記的 SPEC-GAP 句同步。
