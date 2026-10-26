@@ -113,4 +113,5 @@ test("base 迫月週期 7.5 蝕月（210 日）：大潮輪流落在朔潮與望
     if (omens(day, c, defs).some(id => id.endsWith("omen/perigee")) && stage(day % c.daysPerMonth + 1, c) === "spring") doms.add(day % c.daysPerMonth + 1);
   }
   assert.deepEqual([...doms].sort((a, b) => a - b), [1, 15], "迫月漲潮日既落初一也落十五");
+  assert.ok(omens(40 * c.daysPerMonth, c, defs).some(id => id.endsWith("omen/perigee")), "第 40 蝕月初一是迫月（連珠潮＝迫月＋星候）");
 });
