@@ -1,0 +1,150 @@
+{
+ "contract": "content-batch/1",
+ "id": "ag-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "埃吉爾認主事件（開局未發生、hidden）＋歐傘那一盤 2108-01 群像：歐洲那把傘、內海諸家、第一張標單、埃吉爾的帳單、熱那亞船塢、阿爾卑斯之墟；年表與既有檔只插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-ag-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-aegir",
+ "date": "2026-10-26",
+ "base": "eef6c4211cdde8deafd7fd34e546c8dc800fc134",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-aegir/ag-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-aegir/ag-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/aegir.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md",
+   "wf/workflows/dispatch/handoffs/plan-epic/v3.md",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/places/skagerrak-shell.json",
+   "content/lore/events/skagerrak-shell-found.json",
+   "content/lore/events/skagerrak-incident.json",
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/events/hunter-license-act.json",
+   "content/lore/events/gull-anvil-truce.json",
+   "content/lore/factions/anvil.json",
+   "content/lore/places/saint-malo.json",
+   "content/lore/places/istanbul.json",
+   "wf/workflows/dispatch/handoffs/lead-aegir/cx-ag-01.md"
+  ]
+ },
+ "maxFiles": 13,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/salt-gull.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/skagerrak-shell.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/rotterdam-roost.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/hamburg.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/saint-malo.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/istanbul.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（領導定稿的提案名）",
+  "rows": [
+   {
+    "id": "faction/euro-umbrella",
+    "nameEn": "The European Umbrella",
+    "meaning": "傘名暫用描述句，正式命名另走 terms 流程",
+    "nameZh": "歐洲那把傘",
+    "method": "描述句"
+   },
+   {
+    "id": "faction/inner-sea-houses",
+    "nameEn": "The Inland Sea Houses",
+    "meaning": "地中海沿岸與內陸高地的老家族群像；家＝家族",
+    "nameZh": "內海諸家",
+    "method": "意譯"
+   },
+   {
+    "id": "event/first-bid-sheet",
+    "nameEn": "The First Bid Sheet",
+    "meaning": "歐傘把大潮援軍寫成競標的第一張標單",
+    "nameZh": "第一張標單",
+    "method": "意譯"
+   },
+   {
+    "id": "event/aegir-lien",
+    "nameEn": "Aegir's Bill",
+    "meaning": "獵牌法把埃吉爾登記成鹽鷗的裝備後，鹽鷗拿它向內海家族抵押",
+    "nameZh": "埃吉爾的帳單",
+    "method": "意譯"
+   },
+   {
+    "id": "event/aegir-wakes",
+    "nameEn": "The One Who Missed the Boat",
+    "meaning": "認主之夜：沒上船的拆件技工",
+    "nameZh": "沒上船的人",
+    "method": "意譯"
+   },
+   {
+    "id": "place/genoa-yards",
+    "nameEn": "Genoa Yards",
+    "meaning": "內海家族工坊造機、賒帳賣往大西洋岸",
+    "nameZh": "熱那亞船塢",
+    "method": "音譯＋意譯"
+   },
+   {
+    "id": "place/alpine-shell",
+    "nameEn": "The Alpine Shell",
+    "meaning": "家族獵場底下的墟",
+    "nameZh": "阿爾卑斯之墟",
+    "method": "音譯＋意譯"
+   }
+  ]
+ }
+}
