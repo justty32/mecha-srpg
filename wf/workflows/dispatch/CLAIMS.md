@@ -8,9 +8,17 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| `lead-engine-next` | `src/`（含測試）、`content/base/`、`content/index/`、`specs/`（最小必要）、`test/` 黃金與 fixtures、`wf/workflows/dispatch/handoffs/lead-engine-next/`、engine-backlog 第 57–61／68／73 列狀態 | `content/lore/`（sonnet-lore-insert）、`wf/workflows/content/mechs.md` | 2026-10-26 |
-| `lead-bigfill` | `content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開） | `src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔 | 2026-10-26 |
-| `lead-tidy2` | `wf/`（tidy：已收線 handoffs 資料夾移 done、inbox 已收線歸檔、STATE／SESSION-LOG／next-tidy、近 8 KB 文件拆檔：design-notes terms／world/scale／world/essence、specs/world setting／operations／factions／README／rifts-and-territory／machine-souls、specs/ops time-and-tick／data-model-faction-rnd／architecture-ops／mercenary-contracts、specs/core data-model-mech；連結修正）、`src/mcp/README.md`、行為不變拆檔：`src/ui-adapter/vm/wiki/cards.ts`、`src/ui-adapter/dom/wiki/mount.test.ts`、`src/mcp/campaign.ts`、`src/mcp/battle.ts`（＋拆出的新檔）、code-map 對應列 | `handoffs/lead-engine-next/`、`content/`、其餘 `src/`、黃金；不刪檔 | 2026-10-26 |
+| `lead-engine-next` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
+| `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
+| `lead-tidy2` | `wf/` 整理、拆檔與 src 四檔（細目見 `handoffs/lead-tidy2/common.md`） | lead-engine-next 交接區、`content/`、其餘 `src/` | 2026-10-26 |
+
+### 現役細目
+
+表格只放線名，完整領地寫在這裡（表格超過 1 KB 會被 wf-lint 判成大表）；收線時連同表格那格一起刪。
+
+**`lead-engine-next`**　可寫：`src/`（含測試）、`content/base/`、`content/index/`、`specs/`（最小必要）、`test/` 黃金與 fixtures、`wf/workflows/dispatch/handoffs/lead-engine-next/`、engine-backlog 第 57–61／68／73 列狀態。唯讀／禁區：`content/lore/`（sonnet-lore-insert）、`wf/workflows/content/mechs.md`。
+
+**`lead-bigfill`**　可寫：`content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔。
 
 ## 保留給調度者，任何線都不得寫
 

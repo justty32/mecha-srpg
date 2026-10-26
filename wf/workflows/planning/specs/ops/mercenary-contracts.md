@@ -19,30 +19,23 @@ type SupplyTier = "none" | "field" | "full" | "arsenal";
 
 ## 合編：友軍 slot、allies、指揮權
 
-`command` 三式。**independent**：勢力單位進 `ally` slot（`faction` 為雇主、`ai` 為其 `FactionDef.strategy`），`slots.player.allies=["ally"]`、`slots.ally.allies=["player"]`——AI 自己打，玩家只管自己人；核心 `eliminate` 只計敵對 slot，友軍死不算玩家的頭。**attached**：勢力撥一小隊（1–3 台，從分遣隊 `ForceUnit` 抽、人物由 `backgrounds` 臨時生成）**直接放進 `player` slot**，玩家完全指揮；它們的死傷寫回分遣隊折損並從賞金扣（每台 `gp × k`）。**mixed**：主力 independent＋一小隊 attached，是預設。指揮權的另一面是**軍令** `orders`：寫成玩家 slot 的 `optional` 目標（「守住西側」`hold`、「先殺錨」`killTarget`、「別碰砲台」`destructible` 計數），戰後由 `BattleResult` 判定；未達成 `violations++`，每次 `share −5%`、`rep −3`；`violations ≥ 3` 雇主解約並記 `memory: insubordinate`。玩家無法指揮 `ally` slot 的 AI（core `Assignment` 不外露）；想指揮就選 `attached`。
+見 [合編與勢力補給](mercenary-contracts/allies-and-supply.md#合編友軍-slotallies指揮權)：友軍 slot、指揮權與四檔勢力補給。
 
 ## 補給 SupplyTier（勢力給的，不走市場）
 
-| 檔 | 彈藥 | 維修 | 醫療 | 借機 | 情報 |
-|---|---|---|---|---|---|
-| none | — | — | — | — | 契約板只見作戰名與目標 |
-| field | 每場戰前 `ammo*` 池補滿 | — | 戰後 hp 回復 ×1.5（1 天） | — | 見敵方族／寬度 |
-| full | 同上 | 每日注入雇主 `techHours`（技師 2 人量級），`scrap` 由雇主出到上限 | 醫務 ×2，暫時傷時鐘 −1 額外 | 可借 `loan.models` 中 1 台 D／C | 見敵方完整 `EnemySnapshot` 與地圖模板 |
-| arsenal | 同上＋拘束彈 | 工時與材料不設上限（作戰期間） | 同上＋一次 `cleanse` 白名單傷 | 借到 `loan.max` 台、可到 B | 同上＋戰前 `scan` 注入（起手已揭露敵外層） |
-
-全是營運層效果：彈藥是 `Resupplied{reason:"faction-supply"}`、不扣 `cash`（外源、`ref` 指契約）；維修是 `techHours +`、材料帳 `stock:scrap` 由 `ledger` 外源入帳再被 job 吃掉（守恆仍可斷言）；醫療是 `ServiceDef` 乘數掛在船上到契約結束；情報是 `Sortie.injected` 一條 `effect/briefing`（perception contribution）或起手 `revealed`；借機是臨時 `MechState`（`owner:"faction"`、`loaned: contract`）進機庫位，契約結束必還、戰損照價從賞金扣、`derelict-lost` 或私吞 → 全額入 `cash` 負數並 `rep −20`。補給檔由 `rep` 分層決定，模板可覆寫；高檔補給是「跟大勢力混」的實質好處，也是其部隊機型外流的途徑（研發檔 `leakModel`：借來的機被玩家轉賣會流出）。
+見 [合編與勢力補給](mercenary-contracts/allies-and-supply.md#補給-supplytier勢力給的不走市場)。
 
 ## 條件、代價與結算
 
-結算在作戰 `aftermath`：`pay = base + share × 作戰賞金 × 貢獻比`，貢獻比＝玩家 slot 造成的敵方頭數／作戰總殲滅（抽象結算的頭數按 `enemyStr` 折算）；`join` 的 `perHead` 不另算（避免雙重計頭）。扣項：attached 單位損失、借機戰損、違令。rep：勝 `+5..+15`、敗 `+2`（出了力）、退場 `−5`。外交連帶：對手勢力 `rep −10..−25`、其盟友 `−5`、雇主盟友 `+2`（驅動表 `player-join`）。**凡鐵空援**照常（原稱十分律空援）：雇主補給不含空援券，城邦砲台在雇主的城才站你這邊。
+見 [結算、背叛與作戰情境](mercenary-contracts/settlement-and-scenarios.md#條件代價與結算)：契約報酬與代價、選邊背叛及作戰情境生成。
 
 ## 被雙方雇用、選邊、背叛
 
-`sides:"both"` 作戰的兩份 `join` 都在板上，接一份另一份立刻 `expired` 並記對方 `memory: refused-us`（不扣 rep——沒接不是罪）。**背叛**三種：接了 `exclusive` 又接對方（擋在 `accept` 檢查，不可能發生）；中途 `drop` 後 ≤ 7 天接對方 → 背叛；接了尋墟作戰的 `join`、戰場上自己把古代機帶走（`reachExit` 時古代機在玩家單位手上）→ **私吞**。背叛／私吞：被背者 `rep −40`、殘聯 `rep −15`（獵牌污點）、得利者 `rep +10`、flag `blacklist:<faction>` 3 蝕月；被背者對得利者 `relation −6`。私吞的古代機 `holder:"player"`、`knownBy` 含被背者——他們會來要。代理戰爭（雇主 `covert`）：玩家是曝光機率的主因（每個未撤退單位 +20%），曝光後對手把帳算在雇主與玩家兩邊。
+見 [結算、背叛與作戰情境](mercenary-contracts/settlement-and-scenarios.md#被雙方雇用選邊背叛)。
 
 ## 作戰情境生成（ScenarioGen 擴充）
 
-`Sortie.trigger:"operation"` 時 `generateScenario` 多做：(1) 地圖：目標格與八鄰的 `battle_pool`＋蝕深（對裂獸）或城邦地點模板（對人），同 battle-interface 第 (1) 步；`engage_objective` 查作戰種類表定目標。(2) 敵方：裂獸由 `rift` 快照；人類由目標勢力分遣隊 `ForceUnit` 按戰力預算抽 `UnitSpawn`（機型即其已釋出 `ModelDef`，人物臨時生成）。(3) 友軍：依 `command` 填 `ally` slot 或塞進 `player` slot；友軍規模＝分遣隊 `str × 0.3..0.6`（別讓 AI 搶光頭）。(4) 目標：玩家 `win` 目標＋`orders` optional＋敵方 `eliminate`。(5) 補給注入。回寫：`ally` 單位 `dead` → 分遣隊折損；進度 `+0.4×規模係數`；古代機在誰手上寫 `ShellState`。**依賴**：`BattleResult.units` 需涵蓋所有 slot（含 `ally`）——core 若只回玩家 slot，列為 core 建議。
+見 [結算、背叛與作戰情境](mercenary-contracts/settlement-and-scenarios.md#作戰情境生成scenariogen-擴充)。
 
 ## 替使用者做掉的決定
 
