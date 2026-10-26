@@ -8,7 +8,7 @@
 
 **天象**：每條 `world/omens/<名>.json` 是一個時間窗——`cycle:{periodMonths, offsetDays, durationDays}` 相位自蝕曆元年第一日起算、`at:[{month, dom}]` 是排定型（month 為開局後第幾蝕月）、`emerge:{requires, layer, min}` 是只在漲潮日判定的湧現型；`tideDelta`／`setTide` 只在漲潮日改潮級（delta 相加上限 3，`setTide` 優先、多個取最大，所以連珠 4 壓過枯潮 1、枯潮壓過迫月）；`effects` 是 OmenEffect 八類（tide、spawn、blight、unitEffect、ops、event、rule、faction，形狀見 design-notes/tide-sky 的 omen-effects），**目前引擎只載入與驗證、不執行**（engine-backlog 39–42）。
 
-**base 內容**：排定連珠潮在開局後第 40 蝕月初一一次，之後只靠湧現（迫月＋≥3 個星候）；check 驗週期是整日數、窗長、排定日、湧現引用，以及帶潮級修正的窗至少涵蓋一個漲潮日。
+**base 內容**：迫月週期 7.5 蝕月（210 日，2026-10-26 使用者裁示由 7 改），大潮輪流撞朔潮與望潮，約 1.9 次／年；排定連珠潮在開局後第 40 蝕月初一一次，之後只靠湧現（迫月＋≥3 個星候）；check 驗週期是整日數、窗長、排定日、湧現引用，以及帶潮級修正的窗至少涵蓋一個漲潮日。
 
 **對內容暴露**：ref `calendar.tide`／`calendar.year`（`calendar.stage` 是字串，用 tag）、tag `tide:<stage>`、每個進行中天象掛旗 `omen:<名>`（同時是 tag），事件／契約／行動牌的 `when` 直接寫 `{"tag":"omen:mars-at-heart"}` 或 `{"cmp":{"a":{"ref":"calendar.tide"},"op":">=","b":3}}`。
 

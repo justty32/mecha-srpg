@@ -102,3 +102,15 @@ test("check：天象週期驗證能擋壞資料、base 全過", async () => {
   const errors = omenErrors(fake);
   for (const id of ["frac", "never", "dom", "ref", "kind"]) assert.ok(errors.some(e => e.startsWith(`omen/${id}`)), `${id}: ${errors.join("; ")}`);
 });
+
+test("base 迫月週期 7.5 蝕月（210 日）：大潮輪流落在朔潮與望潮", () => {
+  const { world } = loadWorldDirs(["content/base"]);
+  const c = world.require("calendar", "base:calendar/tide"), defs = world.all("omen");
+  const perigee = defs.find(d => d.id.endsWith("omen/perigee"))!;
+  assert.equal(perigee.cycle!.periodMonths, 7.5);
+  const doms = new Set<number>();
+  for (let day = 0; day < 40 * 13 * 28; day++) {
+    if (omens(day, c, defs).some(id => id.endsWith("omen/perigee")) && stage(day % c.daysPerMonth + 1, c) === "spring") doms.add(day % c.daysPerMonth + 1);
+  }
+  assert.deepEqual([...doms].sort((a, b) => a - b), [1, 15], "迫月漲潮日既落初一也落十五");
+});
