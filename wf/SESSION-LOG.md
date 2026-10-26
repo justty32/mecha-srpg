@@ -13,6 +13,8 @@
 
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
+- [content] lead-fill open：lore 填充層（第 0 步落地使用者拍板 → 第一批 ≤15 檔：孟加拉灣周邊＋崩年後續代表地）→ handoffs/lead-fill/
+
 ## 各工作流 session-log
 
 | 工作流 | session-log | open 摘要 |

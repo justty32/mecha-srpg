@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| lead-fill（Opus，lore 填充層） | 新增：`content/lore/places/`、`content/lore/events/` 下本線新建檔；追加：`content/lore/timeline.json`（只追加）；`content/batches/2026-10/fill-*.json`、`content/index/`（本線批次重產）；第 0 步：`design-notes/world/city-types.md`、`polity.md`、`history-nodes.json`；`history-orphans.json`（標已填）；`wf/workflows/dispatch/handoffs/lead-fill/`、`codex-batches.json` 追加列 | lead-aegir 登記的檔（埃吉爾、鹽鷗、歐傘）；既有 lore 檔不改（bay-of-bengal-campaign、migrant-split 不重寫）；src、specs | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
