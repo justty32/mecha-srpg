@@ -1,0 +1,174 @@
+{
+ "contract": "content-batch/1",
+ "id": "am-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "南北美洲 2108-01 第一批：北美那把傘、內陸財團、拉美那把傘三個勢力；丹佛、紐約空城、休士頓井城（公司城）、巴拿馬閘城（自由城市）、里約（黑幫城市）、巴西利亞六地；改名的日子、商路約、刑天的戶籍三事件；年表與兩個既有地點只插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-am-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill-am",
+ "date": "2026-10-26",
+ "base": "3e6cead05346af706638485a9b6c2bbc195c54e2",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-am/am-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-am/am-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md",
+   "wf/workflows/planning/design-notes/world/history-lines/d-moon.md",
+   "content/lore/places/montreal.json",
+   "content/lore/places/mexico-city.json",
+   "content/lore/places/sao-paulo-blight.json",
+   "content/lore/places/ring-road.json",
+   "content/lore/places/great-lakes-mycelium.json",
+   "content/lore/factions/quito.json",
+   "content/lore/factions/ring-caravan.json",
+   "content/lore/factions/shell-society.json",
+   "content/lore/factions/remnant-wings.json",
+   "content/lore/characters/xingtian.json",
+   "content/lore/events/pune-falls.json",
+   "content/lore/events/singapore-conference.json",
+   "content/lore/events/credit-accord.json",
+   "content/lore/events/hunter-license-act.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/cx-am-01.md"
+  ]
+ },
+ "maxFiles": 15,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/montreal.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/mexico-city.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（領導定稿的提案名）",
+  "rows": [
+   {
+    "id": "faction/north-american-umbrella",
+    "nameEn": "The North American Umbrella",
+    "meaning": "外界對美國調度加拿大、墨西哥諸城的描述句；美國自己拒用傘字",
+    "nameZh": "北美那把傘",
+    "method": "描述句"
+   },
+   {
+    "id": "faction/heartland-capital",
+    "nameEn": "Heartland Capital",
+    "meaning": "沒跟塞勒涅上月、留在美國內陸的那一半資本；口語『地上的錢』對『穹頂下的錢』",
+    "nameZh": "內陸財團",
+    "method": "意譯"
+   },
+   {
+    "id": "faction/latam-umbrella",
+    "nameEn": "The Latin American Umbrella",
+    "meaning": "商人當政的聯盟型傘，按商路分保護",
+    "nameZh": "拉美那把傘",
+    "method": "描述句"
+   },
+   {
+    "id": "place/denver",
+    "nameEn": "Denver",
+    "meaning": "美國政府搬進洛磯山的山城（提案）",
+    "nameZh": "丹佛",
+    "method": "音譯"
+   },
+   {
+    "id": "place/new-york-hollow",
+    "nameEn": "The New York Hollow",
+    "meaning": "崩年斷鏈被棄的沿海空城，地契押在月上",
+    "nameZh": "紐約空城",
+    "method": "音譯＋意譯"
+   },
+   {
+    "id": "place/houston-wells",
+    "nameEn": "Houston Wellhead",
+    "meaning": "舊能源公司握地熱井當城主的守港城",
+    "nameZh": "休士頓井城",
+    "method": "音譯＋意譯"
+   },
+   {
+    "id": "place/panama-locks",
+    "nameEn": "Panama Locks",
+    "meaning": "商團與獵團庇護、立城約的運河閘城",
+    "nameZh": "巴拿馬閘城",
+    "method": "音譯＋意譯"
+   },
+   {
+    "id": "place/rio",
+    "nameEn": "Rio",
+    "meaning": "聖保羅蝕域旁空城帶上的黑幫城市",
+    "nameZh": "里約",
+    "method": "音譯"
+   },
+   {
+    "id": "place/brasilia",
+    "nameEn": "Brasília",
+    "meaning": "巴西退回內陸高原的首都",
+    "nameZh": "巴西利亞",
+    "method": "音譯"
+   },
+   {
+    "id": "event/renaming-day",
+    "nameEn": "The Day of Renaming",
+    "meaning": "美國把加拿大、墨西哥諸城納入國家調度、換掉調度名稱的那一天",
+    "nameZh": "改名的日子",
+    "method": "意譯"
+   },
+   {
+    "id": "event/trade-route-charter",
+    "nameEn": "The Trade-Route Charter",
+    "meaning": "拉美傘成立文件：保護按商路分，不按國界分",
+    "nameZh": "商路約",
+    "method": "意譯"
+   },
+   {
+    "id": "event/xingtian-registry",
+    "nameEn": "Xingtian's Registry",
+    "meaning": "刑天運進蒙特婁後，誰的登記簿上該寫它",
+    "nameZh": "刑天的戶籍",
+    "method": "意譯"
+   }
+  ]
+ }
+}
