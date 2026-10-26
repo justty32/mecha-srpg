@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| sonnet-rep-tune | `content/base/world/actions/board-presence.json`、`test/campaigns/`、`wf/workflows/common/code-map.json` | 其餘唯讀 | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
