@@ -1,0 +1,47 @@
+{
+  "id": "component/fm-subsahara-wellguard",
+  "name": "深井-II型護額",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 2,
+      "source": "component/fm-subsahara-wellguard"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -1,
+      "source": "component/fm-subsahara-wellguard"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "head",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 30,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Deepwell Browguard",
+  "etymology": "撒哈拉以南傘為守線駕駛員修造護額，以頭甲與定力陪他們向外洋迎獸。護額遮去些許視野；金山深井是送行的掛念，不是取獸材的地方。名稱與具體型錄均為提案。"
+}

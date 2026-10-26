@@ -1,0 +1,97 @@
+{
+  "batch": "fg-gm-03",
+  "round": 2,
+  "ok": true,
+  "at": "2026-10-26T18:56:59",
+  "steps": {
+    "gate": "ok (14 content files; manifest metadata temporarily moved outside worktree)",
+    "check": "ok",
+    "typecheck": "ok",
+    "focused-test": "ok",
+    "readlist": "ok",
+    "smoke": "ok",
+    "report": "ok"
+  },
+  "fixedCriteria": [
+    {
+      "n": 1,
+      "ok": true,
+      "contentFiles": 14,
+      "ids": 14,
+      "contentGateViolations": 0,
+      "existingFilesModified": 0,
+      "metadataCaveat": "content_gate不豁免未追蹤manifest；原文記gateRejections，清單驗後還原。"
+    },
+    {
+      "n": 2,
+      "ok": true,
+      "override": "使用者明示",
+      "commands": [
+        "npm run check",
+        "npm run typecheck",
+        "node --test src/content/content.test.ts"
+      ],
+      "exitCodes": [
+        0,
+        0,
+        0
+      ],
+      "checkErrors": 0,
+      "existingWarnings": 10,
+      "fullSuite": "由領導收件後跑；本線未跑"
+    },
+    {
+      "n": 3,
+      "ok": true,
+      "components": 10,
+      "seeds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "runs": 50,
+      "exceptions": 0,
+      "abilityUses": {
+        "base:ability/fm-america-aimed-shot": 28,
+        "base:ability/fm-court-align": 20,
+        "base:ability/fm-japan-common-shot": 6
+      },
+      "effectDelta": {
+        "accuracy": 6,
+        "resolve": 5
+      }
+    },
+    {
+      "n": 4,
+      "ok": true,
+      "readlist": 19,
+      "reviewRows": 14,
+      "namingRows": 14,
+      "maxBriefLength": 29,
+      "insertRows": 0,
+      "reportBytes": 4459
+    }
+  ],
+  "approved": [
+    "content/base/abilities/fm-america-aimed-shot.json",
+    "content/base/abilities/fm-court-align.json",
+    "content/base/abilities/fm-japan-common-shot.json",
+    "content/base/components/fm-america-perch.json",
+    "content/base/components/fm-court-standard.json",
+    "content/base/components/fm-europe-harborplate.json",
+    "content/base/components/fm-houses-mantle.json",
+    "content/base/components/fm-japan-portgun.json",
+    "content/base/components/fm-korea-groundline.json",
+    "content/base/components/fm-league-watchrack.json",
+    "content/base/components/fm-nairobi-tiller.json",
+    "content/base/components/fm-quito-visor.json",
+    "content/base/components/fm-russia-reservoir.json",
+    "content/base/effects/fm-line-steady.json"
+  ],
+  "gateViolations": [],
+  "gateEvidence": "gate.json",
+  "acceptSubchainEvidence": "accept/verdict-1.json",
+  "smokeEvidence": "smoke.json"
+}

@@ -1,0 +1,908 @@
+{
+ "contract": "wf-table/1",
+ "source": "cx-fg-ga-01.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "檔",
+  "批",
+  "類型",
+  "槽位",
+  "中文名",
+  "nameEn",
+  "定位",
+  "掛點",
+  "掛點來源",
+  "廠商",
+  "等級",
+  "關鍵數值帶",
+  "AI戰術鍵",
+  "聲望門檻",
+  "新名詞",
+  "差異與代價",
+  "安裝條件",
+  "示範載體",
+  "市場建議",
+  "研發建議",
+  "掉落建議",
+  "規格",
+  "驗證情境"
+ ],
+ "rows": [
+  {
+   "id": "component/fa-abutment",
+   "檔": "content/base/components/fa-abutment.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "坐山重甲",
+   "nameEn": "Abutment",
+   "定位": "承受正面衝擊；厚甲拖慢先手。",
+   "掛點": "鐵砧重裝隊把守點經驗做成有代價的掛件。 鐵砧守點工位寧可慢半拍，也要留在門前。",
+   "掛點來源": "content/lore/factions/anvil.json",
+   "廠商": "鐵砧獵團",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "鐵砧獵團 35；待部件門檻接通才上架",
+   "新名詞": "提案：坐山重甲",
+   "差異與代價": "承受正面衝擊；厚甲拖慢先手。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-abutment",
+    "name": "坐山重甲",
+    "nameEn": "Abutment",
+    "etymology": "提案名。鐵砧守點工位寧可慢半拍，也要留在門前。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-abutment"
+     }
+    ],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 45,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.25
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-brow-guard",
+   "檔": "content/base/components/fa-brow-guard.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "眉梁",
+   "nameEn": "Browguard",
+   "定位": "把胸甲掛位讓給頭部保護；胸口沒有加厚。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠替守牆機彎出一根眉梁，護住最容易被碎矢打瞎的地方。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "D",
+   "關鍵數值帶": "部件帶：D hp=12、mass=2；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：眉梁",
+   "差異與代價": "把胸甲掛位讓給頭部保護；胸口沒有加厚。",
+   "安裝條件": "須有 head 與 armorMount；舟架 mast、分翼 nose 不適用",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-brow-guard",
+    "name": "眉梁",
+    "nameEn": "Browguard",
+    "etymology": "提案名。舊廠替守牆機彎出一根眉梁，護住最容易被碎矢打瞎的地方。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "head",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-cinder-cloak",
+   "檔": "content/base/components/fa-cinder-cloak.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "拒燼披甲",
+   "nameEn": "Cinderward",
+   "定位": "隔絕灼燒；換來較慢的流光回復。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄甲面能留住灼痕，內襯卻要分走機體的流光。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：拒燼披甲",
+   "差異與代價": "隔絕灼燒；換來較慢的流光回復。",
+   "安裝條件": "torso＋armorMount；須有 charge，否則代價不成立",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/singapore",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-cinder-cloak",
+    "name": "拒燼披甲",
+    "nameEn": "Cinderward",
+    "etymology": "提案名。型錄甲面能留住灼痕，內襯卻要分走機體的流光。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [
+     {
+      "pool": "charge",
+      "regen": -2
+     }
+    ],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 40,
+       "ablative": true,
+       "resist": {
+        "thermal": 0.25
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-forefoot-shoe",
+   "檔": "content/base/components/fa-forefoot-shoe.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "踏礁護足",
+   "nameEn": "Reefshoe",
+   "定位": "四足左前武器足加甲；保住一側火力與支點。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠接到四足架鐵的修單後，把常折的左前足包了起來。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：踏礁護足",
+   "差異與代價": "四足左前武器足加甲；保住一側火力與支點。",
+   "安裝條件": "只用 bodyplan/m2-quadruped-c 的 front-left；不聲稱降低地形成本",
+   "示範載體": "frame/anvil-trestle-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-forefoot-shoe",
+    "name": "踏礁護足",
+    "nameEn": "Reefshoe",
+    "etymology": "提案名。舊廠接到四足架鐵的修單後，把常折的左前足包了起來。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "front-left",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.15
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-heel-lock",
+   "檔": "content/base/components/fa-heel-lock.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "定樁衍甲",
+   "nameEn": "Heelset Harness",
+   "定位": "解除牽滯後搶回先手；不解除定身。",
+   "掛點": "鐵砧重裝隊把守點經驗做成有代價的掛件。 鐵砧把重新站穩當成一個動作，不能靠這副甲憑空免掉撞擊。",
+   "掛點來源": "content/lore/factions/anvil.json",
+   "廠商": "鐵砧獵團",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "鐵砧獵團 35；待部件門檻接通才上架",
+   "新名詞": "提案：定樁衍甲",
+   "差異與代價": "解除牽滯後搶回先手；不解除定身。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-heel-lock",
+    "name": "定樁衍甲",
+    "nameEn": "Heelset Harness",
+    "etymology": "提案名。鐵砧把重新站穩當成一個動作，不能靠這副甲憑空免掉撞擊。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fa-regain-footing"
+    ],
+    "hp": 18,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 35,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.1
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-needle-stop",
+   "檔": "content/base/components/fa-needle-stop.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "攔針疊甲",
+   "nameEn": "Needlebreak Laminate",
+   "定位": "防穿刺疊甲；轉身閃避較差。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公刻工坊用疊片護住長槍胸前，捨去貼身轉步的餘裕。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：攔針疊甲",
+   "差異與代價": "防穿刺疊甲；轉身閃避較差。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-needle-stop",
+    "name": "攔針疊甲",
+    "nameEn": "Needlebreak Laminate",
+    "etymology": "提案名。公刻工坊用疊片護住長槍胸前，捨去貼身轉步的餘裕。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-needle-stop"
+     }
+    ],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 35,
+       "ablative": true,
+       "resist": {
+        "pierce": 0.25
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-salt-wash",
+   "檔": "content/base/components/fa-salt-wash.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "洗鹽覆甲",
+   "nameEn": "Saltwash Mantle",
+   "定位": "酸蝕場外甲；不替內層解毒。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 崩年後靠海修造棚擦不掉甲縫的鹽，只好把可換的覆片掛在外頭。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：洗鹽覆甲",
+   "差異與代價": "酸蝕場外甲；不替內層解毒。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-salt-wash",
+    "name": "洗鹽覆甲",
+    "nameEn": "Saltwash Mantle",
+    "etymology": "提案名。崩年後靠海修造棚擦不掉甲縫的鹽，只好把可換的覆片掛在外頭。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "acid": 0.25
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-silver-lining",
+   "檔": "content/base/components/fa-silver-lining.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "照雪衍甲",
+   "nameEn": "Argent Lining",
+   "定位": "擋流光的薄甲；能量抗性高，總厚度低。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠把修船棚留下的亮面板改接長槍公版，照亮艙門，也容易照出裂口。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：照雪衍甲",
+   "差異與代價": "擋流光的薄甲；能量抗性高，總厚度低。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-silver-lining",
+    "name": "照雪衍甲",
+    "nameEn": "Argent Lining",
+    "etymology": "提案名。舊廠把修船棚留下的亮面板改接長槍公版，照亮艙門，也容易照出裂口。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "energy": 0.25
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-slip-clasp",
+   "檔": "content/base/components/fa-slip-clasp.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "脫扣衍甲",
+   "nameEn": "Slipclasp",
+   "定位": "被縛網時主動解扣；次數有限、甲層偏薄。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠修過太多整台拖回來的守牆機，讓外甲扣能從艙裡扳開。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：脫扣衍甲",
+   "差異與代價": "被縛網時主動解扣；次數有限、甲層偏薄。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-slip-clasp",
+    "name": "脫扣衍甲",
+    "nameEn": "Slipclasp",
+    "etymology": "提案名。舊廠修過太多整台拖回來的守牆機，讓外甲扣能從艙裡扳開。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fa-shed-bonds"
+    ],
+    "hp": 16,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-wick-screen",
+   "檔": "content/base/components/fa-wick-screen.json",
+   "批": "fg-ga-01",
+   "類型": "component",
+   "槽位": "armorMount",
+   "中文名": "續燈光幕",
+   "nameEn": "Wicklight Screen",
+   "定位": "小光幕反覆補回；持續抽用流光。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把光幕縮成一圈細亮的邊，主砲要讓出維持它的流光。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：續燈光幕",
+   "差異與代價": "小光幕反覆補回；持續抽用流光。",
+   "安裝條件": "torso＋armorMount；須有 charge 支付每回合最多4回復",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/singapore",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-wick-screen",
+    "name": "續燈光幕",
+    "nameEn": "Wicklight Screen",
+    "etymology": "提案名。型錄把光幕縮成一圈細亮的邊，主砲要讓出維持它的流光。",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "armor"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "energy": 0.15
+       },
+       "passThrough": {},
+       "structural": false,
+       "regen": 4,
+       "regenPool": "charge"
+      }
+     }
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "ability/fa-regain-footing",
+   "檔": "content/base/abilities/fa-regain-footing.json",
+   "批": "fg-ga-01",
+   "類型": "ability",
+   "槽位": "隨來源部件",
+   "中文名": "落樁站穩",
+   "nameEn": "Regain Footing",
+   "定位": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "掛點": "鐵砧重裝隊把守點經驗做成有代價的掛件。 鐵砧把重新站穩當成一個動作，不能靠這副甲憑空免掉撞擊。",
+   "掛點來源": "content/lore/factions/anvil.json",
+   "廠商": "鐵砧獵團",
+   "等級": "B",
+   "關鍵數值帶": "B 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "{\"buff\": 1}",
+   "聲望門檻": "鐵砧獵團 35；待部件門檻接通才上架",
+   "新名詞": "提案：落樁站穩",
+   "差異與代價": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-heel-lock",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "cooldown": 3,
+    "usesPerBattle": 2,
+    "target": {
+     "kind": "self",
+     "range": {
+      "min": 0,
+      "max": 0
+     },
+     "los": false,
+     "friendly": "only"
+    },
+    "packets": [],
+    "effects": [
+     {
+      "on": "self",
+      "apply": [
+       "effect/fa-footed"
+      ]
+     }
+    ],
+    "tags": [
+     "buff"
+    ],
+    "ai": {
+     "tactics": {
+      "buff": 1
+     }
+    },
+    "id": "ability/fa-regain-footing",
+    "name": "落樁站穩",
+    "nameEn": "Regain Footing",
+    "etymology": "提案名。解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。"
+   },
+   "驗證情境": "預掛 effect/m2-dragged；清除牽滯；effect/mx-netted 留存。"
+  },
+  {
+   "id": "ability/fa-shed-bonds",
+   "檔": "content/base/abilities/fa-shed-bonds.json",
+   "批": "fg-ga-01",
+   "類型": "ability",
+   "槽位": "隨來源部件",
+   "中文名": "扳扣脫網",
+   "nameEn": "Shed the Net",
+   "定位": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠修過太多整台拖回來的守牆機，讓外甲扣能從艙裡扳開。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "C 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "{\"buff\": 1}",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：扳扣脫網",
+   "差異與代價": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-slip-clasp",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "cooldown": 3,
+    "usesPerBattle": 2,
+    "target": {
+     "kind": "self",
+     "range": {
+      "min": 0,
+      "max": 0
+     },
+     "los": false,
+     "friendly": "only"
+    },
+    "packets": [],
+    "effects": [
+     {
+      "on": "self",
+      "apply": [
+       "effect/fa-loosened"
+      ]
+     }
+    ],
+    "tags": [
+     "buff"
+    ],
+    "ai": {
+     "tactics": {
+      "buff": 1
+     }
+    },
+    "id": "ability/fa-shed-bonds",
+    "name": "扳扣脫網",
+    "nameEn": "Shed the Net",
+    "etymology": "提案名。解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。"
+   },
+   "驗證情境": "預掛 effect/mx-netted；發動後移除該效果、原負15撤回並加5；對 kx-breakwater-clinger-snared 不清除。"
+  },
+  {
+   "id": "effect/fa-footed",
+   "檔": "content/base/effects/fa-footed.json",
+   "批": "fg-ga-01",
+   "類型": "effect",
+   "槽位": "隨來源部件",
+   "中文名": "立穩",
+   "nameEn": "Footed",
+   "定位": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "掛點": "鐵砧重裝隊把守點經驗做成有代價的掛件。 鐵砧把重新站穩當成一個動作，不能靠這副甲憑空免掉撞擊。",
+   "掛點來源": "content/lore/factions/anvil.json",
+   "廠商": "鐵砧獵團",
+   "等級": "B",
+   "關鍵數值帶": "B 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "不適用（效果）",
+   "聲望門檻": "鐵砧獵團 35；待部件門檻接通才上架",
+   "新名詞": "提案：立穩",
+   "差異與代價": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-heel-lock",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "scope": "mech",
+    "clock": {
+     "kind": "ownerTurns",
+     "n": 1
+    },
+    "stack": {
+     "policy": "refresh"
+    },
+    "contribs": [
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 8,
+      "source": "effect/fa-footed"
+     }
+    ],
+    "hooks": {
+     "onApply": [
+      {
+       "do": "remove",
+       "tags": [
+        "stagger"
+       ]
+      }
+     ]
+    },
+    "tags": [
+     "buff"
+    ],
+    "ui": {
+     "badge": "立穩"
+    },
+    "id": "effect/fa-footed",
+    "name": "立穩",
+    "nameEn": "Footed",
+    "etymology": "提案名。解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。"
+   },
+   "驗證情境": "預掛 effect/m2-dragged；清除牽滯；effect/mx-netted 留存。"
+  },
+  {
+   "id": "effect/fa-loosened",
+   "檔": "content/base/effects/fa-loosened.json",
+   "批": "fg-ga-01",
+   "類型": "effect",
+   "槽位": "隨來源部件",
+   "中文名": "脫扣",
+   "nameEn": "Unclasped",
+   "定位": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠修過太多整台拖回來的守牆機，讓外甲扣能從艙裡扳開。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "C 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "不適用（效果）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：脫扣",
+   "差異與代價": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-slip-clasp",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "scope": "mech",
+    "clock": {
+     "kind": "ownerTurns",
+     "n": 1
+    },
+    "stack": {
+     "policy": "refresh"
+    },
+    "contribs": [
+     {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fa-loosened"
+     }
+    ],
+    "hooks": {
+     "onApply": [
+      {
+       "do": "remove",
+       "tags": [
+        "immobilized"
+       ]
+      }
+     ]
+    },
+    "tags": [
+     "buff"
+    ],
+    "ui": {
+     "badge": "脫扣"
+    },
+    "id": "effect/fa-loosened",
+    "name": "脫扣",
+    "nameEn": "Unclasped",
+    "etymology": "提案名。解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。"
+   },
+   "驗證情境": "預掛 effect/mx-netted；發動後移除該效果、原負15撤回並加5；對 kx-breakwater-clinger-snared 不清除。"
+  }
+ ]
+}

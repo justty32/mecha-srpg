@@ -1,0 +1,113 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gm-03",
+  "mode": "add",
+  "status": "draft",
+  "goal": "國家城邦特色件10＋能力3＋效果1",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gm-03",
+    "subagents": "上限1，同受本交接書約束",
+    "plan": {
+      "line": "cx-fg-plan-gm",
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md"
+    }
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-03",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-03/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-resist/REPORT.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/new-items.json"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/abilities",
+      "base/components",
+      "base/effects"
+    ],
+    "namePrefix": {
+      "base/*": "fm-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "files": [
+    "content/base/components/fm-america-perch.json",
+    "content/base/components/fm-court-standard.json",
+    "content/base/components/fm-europe-harborplate.json",
+    "content/base/components/fm-houses-mantle.json",
+    "content/base/components/fm-japan-portgun.json",
+    "content/base/components/fm-korea-groundline.json",
+    "content/base/components/fm-league-watchrack.json",
+    "content/base/components/fm-nairobi-tiller.json",
+    "content/base/components/fm-quito-visor.json",
+    "content/base/components/fm-russia-reservoir.json",
+    "content/base/abilities/fm-america-aimed-shot.json",
+    "content/base/abilities/fm-court-align.json",
+    "content/base/abilities/fm-japan-common-shot.json",
+    "content/base/effects/fm-line-steady.json"
+  ],
+  "ids": [
+    "component/fm-america-perch",
+    "component/fm-court-standard",
+    "component/fm-europe-harborplate",
+    "component/fm-houses-mantle",
+    "component/fm-japan-portgun",
+    "component/fm-korea-groundline",
+    "component/fm-league-watchrack",
+    "component/fm-nairobi-tiller",
+    "component/fm-quito-visor",
+    "component/fm-russia-reservoir",
+    "ability/fm-america-aimed-shot",
+    "ability/fm-court-align",
+    "ability/fm-japan-common-shot",
+    "effect/fm-line-steady"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "probe": {
+    "waivers": [
+      "本批不新增frame；依交接書固定第3條以scratch配裝runBattle驗證，禁止MCP；由領導審閱證據。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-03/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-03/playtest"
+  },
+  "naming": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-03/naming.json"
+  },
+  "dependencies": []
+}

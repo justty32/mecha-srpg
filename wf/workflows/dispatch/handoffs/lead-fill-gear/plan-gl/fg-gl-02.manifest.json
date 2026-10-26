@@ -1,0 +1,160 @@
+{
+ "contract": "content-batch/1",
+ "id": "fg-gl-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "新增五組來源明確的回收部件與拆存研究；掉落接線另案",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-fg-gl-02",
+  "subagents": "允許，模型隨意，上限 1；同受禁區約束"
+ },
+ "lead": "lead-fill-gear",
+ "date": "2026-10-26",
+ "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/ops-content.md",
+   "content/lore/style.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gl/plan.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "base/components",
+   "base/world/research"
+  ],
+  "namePrefix": {
+   "base/components": "fl-",
+   "base/world/research": "fl-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "waivers": [
+   "無新增 unit／ability，不跑單位探針；被動部件用指定 headless 裝配煙霧核對層、池與承擔。"
+  ]
+ },
+ "playtest": {
+  "required": 0,
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-02/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-02/logs",
+  "waiver": "本線禁 MCP；僅 headless，數值後期統調。"
+ },
+ "files": [
+  "content/base/components/fl-foam-bladder.json",
+  "content/base/world/research/fl-foam-bladder-study.json",
+  "content/base/components/fl-shelf-ridge.json",
+  "content/base/world/research/fl-shelf-ridge-study.json",
+  "content/base/components/fl-antler-cup.json",
+  "content/base/world/research/fl-antler-cup-study.json",
+  "content/base/components/fl-tidespine-keel.json",
+  "content/base/world/research/fl-tidespine-keel-study.json",
+  "content/base/components/fl-sac-fold.json",
+  "content/base/world/research/fl-sac-fold-study.json"
+ ],
+ "ids": [
+  "component/fl-foam-bladder",
+  "research/fl-foam-bladder-study",
+  "component/fl-shelf-ridge",
+  "research/fl-shelf-ridge-study",
+  "component/fl-antler-cup",
+  "research/fl-antler-cup-study",
+  "component/fl-tidespine-keel",
+  "research/fl-tidespine-keel-study",
+  "component/fl-sac-fold",
+  "research/fl-sac-fold-study"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "全為提案名；component/research 格式無 nameEn，英文原名只存本表，不新增資料欄。",
+  "rows": [
+   {
+    "id": "component/fl-foam-bladder",
+    "nameZh": "沫顎隔囊",
+    "nameEn": "Foam Bladder",
+    "meaning": "剖開沫顎胸囊，留一層擋蝕液的軟襯。"
+   },
+   {
+    "id": "research/fl-foam-bladder-study",
+    "nameZh": "沫顎隔囊拆存法",
+    "nameEn": "Foam Bladder Conservation",
+    "meaning": "耗用一份筋脂與拆料，學會保存及固定沫顎隔囊。"
+   },
+   {
+    "id": "component/fl-shelf-ridge",
+    "nameZh": "棧背梁",
+    "nameEn": "Shelf Ridge",
+    "meaning": "厚背梁護住胸腹，背得重也擋得久。"
+   },
+   {
+    "id": "research/fl-shelf-ridge-study",
+    "nameZh": "棧背梁拆存法",
+    "nameEn": "Shelf Ridge Conservation",
+    "meaning": "耗用一份梁髓與拆料，學會保存及固定棧背梁。"
+   },
+   {
+    "id": "component/fl-antler-cup",
+    "nameZh": "白冠角盞",
+    "nameEn": "White Crown Cup",
+    "meaning": "角盞能存一大口流光，自己不會再添滿。"
+   },
+   {
+    "id": "research/fl-antler-cup-study",
+    "nameZh": "白冠角盞拆存法",
+    "nameEn": "White Crown Cup Conservation",
+    "meaning": "耗用一份頸髓與拆料，學會保存及固定白冠角盞。"
+   },
+   {
+    "id": "component/fl-tidespine-keel",
+    "nameZh": "潮脊斷梁",
+    "nameEn": "Tidespine Keel",
+    "meaning": "巨獸脊梁抵住胸甲，護得厚也壓得人難以承擔。"
+   },
+   {
+    "id": "research/fl-tidespine-keel-study",
+    "nameZh": "潮脊斷梁拆存法",
+    "nameEn": "Tidespine Keel Conservation",
+    "meaning": "耗用一份脊璞與拆料，學會保存及固定潮脊斷梁。"
+   },
+   {
+    "id": "component/fl-sac-fold",
+    "nameZh": "囊褶襯",
+    "nameEn": "Saccular Fold",
+    "meaning": "薄囊隔開灼燒，硬物仍容易穿進去。"
+   },
+   {
+    "id": "research/fl-sac-fold-study",
+    "nameZh": "囊褶襯拆存法",
+    "nameEn": "Saccular Fold Conservation",
+    "meaning": "耗用一份囊褶與拆料，學會保存及固定囊褶襯。"
+   }
+  ]
+ }
+}

@@ -1,0 +1,4968 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "link_columns": [],
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "battleCount": 55,
+ "exceptions": [],
+ "summaryAbilityUses": {
+  "base:ability/fm-anvil-drive": 14,
+  "base:ability/fm-creed-ashen-call": 11,
+  "base:ability/fm-blade-reprise": 3
+ },
+ "effectEvidence": [
+  {
+   "seed": 1,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 4,
+      "y": 3
+     }
+    }
+   },
+   "event": {
+    "seq": 209,
+    "round": 5,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 3,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  },
+  {
+   "seed": 2,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 2,
+      "y": 0
+     }
+    }
+   },
+   "event": {
+    "seq": 163,
+    "round": 4,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 2,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  },
+  {
+   "seed": 2,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 1,
+      "y": 1
+     }
+    }
+   },
+   "event": {
+    "seq": 286,
+    "round": 6,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 3,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  },
+  {
+   "seed": 3,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 4,
+      "y": 2
+     }
+    }
+   },
+   "event": {
+    "seq": 347,
+    "round": 7,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 3,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  },
+  {
+   "seed": 5,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 4,
+      "y": 1
+     }
+    }
+   },
+   "event": {
+    "seq": 97,
+    "round": 2,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 2,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  },
+  {
+   "seed": 5,
+   "unit": "opponent",
+   "command": {
+    "kind": "useAbility",
+    "actor": "subject",
+    "ability": "base:ability/fm-creed-ashen-call",
+    "target": {
+     "cell": {
+      "x": 5,
+      "y": 1
+     }
+    }
+   },
+   "event": {
+    "seq": 295,
+    "round": 6,
+    "type": "EffectApplied",
+    "payload": {
+     "uid": 3,
+     "effect": "base:effect/fm-ash-blind",
+     "owner": "opponent",
+     "part": null,
+     "source": "subject"
+    },
+    "turn": "subject"
+   },
+   "before": 0,
+   "after": -8,
+   "delta": -8
+  }
+ ],
+ "fixture": {
+  "map": {
+   "width": 9,
+   "height": 7,
+   "fill": "terrain/plain"
+  },
+  "subjectAt": {
+   "x": 3,
+   "y": 3
+  },
+  "subjectPilot": "person/ren-kasai",
+  "enemy": {
+   "frame": "frame/moji-tern",
+   "at": {
+    "x": 4,
+    "y": 3
+   },
+   "pilot": "person/mara-okoye",
+   "loadout": "既有 defaultLoadout 全保留"
+  },
+  "maxRounds": 20,
+  "objectives": "雙方 eliminate",
+  "maxSteps": 1500,
+  "script": "/tmp/cx-fg-gm-02/smoke.mjs",
+  "bladeScript": "/tmp/cx-fg-gm-02/blade.mjs"
+ },
+ "limitations": [
+  "一般 tactical band=0.8 時回刃五場零使用；只以 band=0.5 擴大合法候選前段後補五場，使用三次。未改武器、機體或其他槽。",
+  "六部件的 attrMods／poolMods 未由基底引擎套用；before／after 保留實際零差異，不冒充已生效。",
+  "本批無研究；不聲稱商品已正式上架或有購買聲望門檻。"
+ ],
+ "columns": [
+  "id",
+  "mode",
+  "compatibility",
+  "replaced",
+  "loadout",
+  "before",
+  "after",
+  "abilityUses",
+  "runs",
+  "aiParams"
+ ],
+ "rows": [
+  {
+   "id": "component/fm-anvil-ram",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-rune-rifle",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/fm-anvil-ram",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings",
+    "system-1": "base:component/mx-cold-spring"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "rune-round": {
+      "cur": 12,
+      "max": 12,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-rifle"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/fm-anvil-ram"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-flare-dodge": 20,
+    "base:ability/mx-anvil-roar": 5,
+    "base:ability/fm-anvil-drive": 14,
+    "base:ability/mx-stake-drive": 20,
+    "base:ability/mx-cold-vent": 6,
+    "base:ability/mx-frame-strike": 34
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 6,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "2ac1be28f1d36317",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/fm-anvil-drive": 2,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 1
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "f7f57437e6bdd7d6",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/fm-anvil-drive": 1,
+      "base:ability/mx-frame-strike": 4
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "9907c8f5388e8613",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-frame-strike": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/fm-anvil-drive": 1
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "5db56d5853cfb3b4",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-frame-strike": 2,
+      "base:ability/fm-anvil-drive": 2,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 20,
+     "winner": null,
+     "reason": "timeout",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "102af98655798011",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-frame-strike": 23,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 2,
+      "base:ability/fm-anvil-drive": 8
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-anvil-skirt",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "torso",
+    "slot": "armor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-burst-scale",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-iron-gatling",
+    "armor-mount": "base:component/fm-anvil-skirt",
+    "back-1": "base:component/mx-flare-wings"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     },
+     "iron-belt": {
+      "cur": 30,
+      "max": 30,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-iron-gatling"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 38,
+       "broken": false
+      },
+      {
+       "hp": 43,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     },
+     "iron-belt": {
+      "cur": 30,
+      "max": 30,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/fm-anvil-skirt"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-iron-gatling"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 38,
+       "broken": false
+      },
+      {
+       "hp": 43,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-flare-dodge": 20,
+    "base:ability/mx-iron-sweep": 30,
+    "base:ability/mx-stake-drive": 11,
+    "base:ability/mx-frame-strike": 8
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "3ba46c8097bf237d",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/mx-stake-drive": 2,
+      "base:ability/mx-frame-strike": 1
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "0f1b9614e958c928",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/mx-stake-drive": 3
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "e51bea2afebbb307",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "b93aaa7263babdc8",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "5737e672d6d5329f",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/mx-stake-drive": 2,
+      "base:ability/mx-frame-strike": 1
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-backside-falseface",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-gatewarden",
+    "bodyplan": "bodyplan/mx-fortress-a",
+    "part": "shoulder",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-ember-pod",
+   "loadout": {
+    "left-weapon": "base:component/mx-rune-cannon",
+    "right-weapon": "base:component/mx-starscar-lance",
+    "back-1": "base:component/fm-backside-falseface",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-cold-spring"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 5,
+     "evasion": -5,
+     "initiative": 5,
+     "perception": 6,
+     "control": 0
+    },
+    "pools": {
+     "charge": {
+      "cur": 80,
+      "max": 80,
+      "regen": 15
+     },
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "ember-rocket": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 130,
+      "regen": -20
+     },
+     "rune-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "armor-mount-2": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-cannon"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-starscar-lance"
+     },
+     "back-1": {
+      "part": "shoulder",
+      "component": "base:component/mx-ember-pod"
+     },
+     "back-2": {
+      "part": "shoulder",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 98,
+       "broken": false
+      },
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 76,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 38,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 54,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 54,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 76,
+       "broken": false
+      },
+      {
+       "hp": 81,
+       "broken": false
+      }
+     ],
+     "shoulder": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 44,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 5,
+     "evasion": -5,
+     "initiative": 5,
+     "perception": 6,
+     "control": 0
+    },
+    "pools": {
+     "charge": {
+      "cur": 80,
+      "max": 80,
+      "regen": 15
+     },
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 130,
+      "regen": -20
+     },
+     "rune-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "armor-mount-2": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-cannon"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-starscar-lance"
+     },
+     "back-1": {
+      "part": "shoulder",
+      "component": "base:component/fm-backside-falseface"
+     },
+     "back-2": {
+      "part": "shoulder",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 98,
+       "broken": false
+      },
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 76,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 38,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 54,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 54,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 76,
+       "broken": false
+      },
+      {
+       "hp": 81,
+       "broken": false
+      }
+     ],
+     "shoulder": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 44,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-starscar-shot": 25,
+    "base:ability/m2-brace-deploy": 9,
+    "base:ability/mx-rune-cannon-fire": 2
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "06039d731055c82f",
+     "abilities": {
+      "base:ability/mx-starscar-shot": 5,
+      "base:ability/m2-brace-deploy": 2
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "3d7369a251de0b56",
+     "abilities": {
+      "base:ability/mx-starscar-shot": 5,
+      "base:ability/m2-brace-deploy": 2,
+      "base:ability/mx-rune-cannon-fire": 1
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 6,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 1,
+     "rejected": 0,
+     "hash": "89de807509028a4b",
+     "abilities": {
+      "base:ability/mx-starscar-shot": 5,
+      "base:ability/m2-brace-deploy": 1
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "1b60bc775266d0fd",
+     "abilities": {
+      "base:ability/mx-starscar-shot": 5,
+      "base:ability/m2-brace-deploy": 2,
+      "base:ability/mx-rune-cannon-fire": 1
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "7604ca65f415a2a1",
+     "abilities": {
+      "base:ability/mx-starscar-shot": 5,
+      "base:ability/m2-brace-deploy": 2
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-blade-return",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/bulwark-iv-rampart",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-scatter-rune",
+   "loadout": {
+    "left-weapon": "base:component/fm-blade-return",
+    "right-weapon": "base:component/mx-xingtian-replica",
+    "armor-mount": "base:component/mx-runeweave-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "back-2": "base:component/mx-falling-star-mortar",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-essence-cell"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "fm-blade-seal": {
+      "cur": 3,
+      "max": 3,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/fm-blade-return"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 20,
+    "base:ability/mx-ash-screen": 10,
+    "base:ability/mx-replica-lance": 17,
+    "base:ability/mx-falling-star": 10
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "2895bf530fc35eac",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 4,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "8cd635fa4a485102",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 3,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "aec72df09a27f025",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 4,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "22cc0e048e4c8146",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 2,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "d7c9c4ae2abadd4e",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 4,
+      "base:ability/mx-falling-star": 2
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-creed-ashbell",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-flare-wings",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/fm-creed-ashbell",
+    "system-1": "base:component/mx-cold-spring"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "rune-round": {
+      "cur": 12,
+      "max": 12,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-rifle"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "rune-round": {
+      "cur": 12,
+      "max": 12,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-rifle"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/fm-creed-ashbell"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-stake-drive": 20,
+    "base:ability/mx-anvil-roar": 5,
+    "base:ability/fm-creed-ashen-call": 11,
+    "base:ability/mx-rune-shot": 23,
+    "base:ability/mx-cold-vent": 5
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "9eefa526ab07c07d",
+     "abilities": {
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/fm-creed-ashen-call": 3,
+      "base:ability/mx-rune-shot": 4,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "a41869cee0c6caad",
+     "abilities": {
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/fm-creed-ashen-call": 2,
+      "base:ability/mx-rune-shot": 5,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "03d16f3699a4fe05",
+     "abilities": {
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/fm-creed-ashen-call": 2,
+      "base:ability/mx-rune-shot": 4,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "6485624f7cc3e1ad",
+     "abilities": {
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/fm-creed-ashen-call": 1,
+      "base:ability/mx-rune-shot": 5,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "cf371b33cfb9d9f6",
+     "abilities": {
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/fm-creed-ashen-call": 3,
+      "base:ability/mx-rune-shot": 5,
+      "base:ability/mx-cold-vent": 1
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-gull-outrigger",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-ash-mist",
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/fm-gull-outrigger"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "boom",
+      "component": "base:component/mx-molten-saw"
+     },
+     "right-weapon": {
+      "part": "counterweight",
+      "component": "base:component/m2-mooring-jaw"
+     },
+     "system-1": {
+      "part": "counterweight",
+      "component": "base:component/mx-frost-fins"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "boom": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "counterweight": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "left-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 21,
+       "broken": false
+      }
+     ],
+     "right-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "boom",
+      "component": "base:component/mx-molten-saw"
+     },
+     "right-weapon": {
+      "part": "counterweight",
+      "component": "base:component/m2-mooring-jaw"
+     },
+     "system-1": {
+      "part": "counterweight",
+      "component": "base:component/mx-frost-fins"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/fm-gull-outrigger"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "boom": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "counterweight": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "left-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 21,
+       "broken": false
+      }
+     ],
+     "right-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 19,
+    "base:ability/m2-catch-line": 18,
+    "base:ability/mx-molten-cut": 25
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "d22c7a8e2b2fbdc2",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "801b21f26ccc7ca1",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/mx-molten-cut": 6
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "70231f93e62c67c4",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 6,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "3d7926c2e456a3a7",
+     "abilities": {
+      "base:ability/mx-guard-stance": 3,
+      "base:ability/m2-catch-line": 2,
+      "base:ability/mx-molten-cut": 4
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "f505a5461f2f3901",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/mx-molten-cut": 5
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-scholar-plumb",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings",
+    "system-1": "base:component/mx-cold-spring",
+    "sensor-mount": "base:component/fm-scholar-plumb"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "rune-round": {
+      "cur": 12,
+      "max": 12,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-rifle"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "flare-fuel": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 100,
+      "regen": -15
+     },
+     "rune-round": {
+      "cur": 12,
+      "max": 12,
+      "regen": 0
+     },
+     "stake-wedge": {
+      "cur": 4,
+      "max": 4,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-burst-scale"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-cold-spring"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": "base:component/fm-scholar-plumb"
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-rune-rifle"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-brokenarm-stake"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-flare-wings"
+     },
+     "back-2": {
+      "part": "back",
+      "component": null
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 35,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 12,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-flare-dodge": 20,
+    "base:ability/mx-anvil-roar": 5,
+    "base:ability/mx-rune-shot": 25,
+    "base:ability/mx-stake-drive": 20,
+    "base:ability/mx-cold-vent": 6,
+    "base:ability/mx-frame-strike": 30
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 6,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "706a1edc04a5f3ff",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 4,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "46bf34d725a604d6",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-rune-shot": 4
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "e30fec0920eeb78a",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-rune-shot": 5,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "e146efe85ea66174",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 20,
+     "winner": null,
+     "reason": "timeout",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "a8af93b6cb2754f8",
+     "abilities": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 2,
+      "base:ability/mx-frame-strike": 30
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-selene-eyepiece",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/bulwark-iv-rampart",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-xingtian-replica",
+    "armor-mount": "base:component/mx-runeweave-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "back-2": "base:component/mx-falling-star-mortar",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-essence-cell",
+    "sensor-mount": "base:component/fm-selene-eyepiece"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": "base:component/fm-selene-eyepiece"
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 20,
+    "base:ability/mx-ash-screen": 10,
+    "base:ability/mx-scatter-blast": 14,
+    "base:ability/mx-replica-lance": 6,
+    "base:ability/mx-falling-star": 10
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "0ea56bd209b1bdbd",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 2,
+      "base:ability/mx-replica-lance": 2,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "4fdd020d8daf83ea",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 1,
+      "base:ability/mx-scatter-blast": 3,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "889d2174cf0a7c23",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 4,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "24e15cc75055b16c",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 2,
+      "base:ability/mx-scatter-blast": 2,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "4914c30f7f663d2d",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 3,
+      "base:ability/mx-falling-star": 2,
+      "base:ability/mx-replica-lance": 1
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-selene-veil",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/bulwark-iv-rampart",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "torso",
+    "slot": "armor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-runeweave-plate",
+   "loadout": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-xingtian-replica",
+    "armor-mount": "base:component/fm-selene-veil",
+    "back-1": "base:component/mx-ash-mist",
+    "back-2": "base:component/mx-falling-star-mortar",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-essence-cell"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/fm-selene-veil"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 20,
+    "base:ability/mx-ash-screen": 10,
+    "base:ability/mx-scatter-blast": 14,
+    "base:ability/mx-replica-lance": 6,
+    "base:ability/mx-falling-star": 10
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "0ea56bd209b1bdbd",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 2,
+      "base:ability/mx-replica-lance": 2,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "b88f4773b032863d",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 1,
+      "base:ability/mx-scatter-blast": 3,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "a3afc05535ea500a",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 4,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "66925e3ba87e29e7",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 2,
+      "base:ability/mx-scatter-blast": 2,
+      "base:ability/mx-falling-star": 2
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "5cc03c45d83554da",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-scatter-blast": 3,
+      "base:ability/mx-falling-star": 2,
+      "base:ability/mx-replica-lance": 1
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-yoke-palm",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "torso",
+    "slot": "cockpit",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "cockpit": "base:component/fm-yoke-palm"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "boom",
+      "component": "base:component/mx-molten-saw"
+     },
+     "right-weapon": {
+      "part": "counterweight",
+      "component": "base:component/m2-mooring-jaw"
+     },
+     "system-1": {
+      "part": "counterweight",
+      "component": "base:component/mx-frost-fins"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "boom": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "counterweight": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "left-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 21,
+       "broken": false
+      }
+     ],
+     "right-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -12
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": null
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": "base:component/fm-yoke-palm"
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "boom",
+      "component": "base:component/mx-molten-saw"
+     },
+     "right-weapon": {
+      "part": "counterweight",
+      "component": "base:component/m2-mooring-jaw"
+     },
+     "system-1": {
+      "part": "counterweight",
+      "component": "base:component/mx-frost-fins"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 43,
+       "broken": false
+      },
+      {
+       "hp": 47,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 24,
+       "broken": false
+      }
+     ],
+     "boom": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "counterweight": [
+      {
+       "hp": 28,
+       "broken": false
+      },
+      {
+       "hp": 33,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ],
+     "left-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 21,
+       "broken": false
+      }
+     ],
+     "right-track": [
+      {
+       "hp": 19,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 14,
+       "broken": false
+      },
+      {
+       "hp": 20,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 19,
+    "base:ability/mx-ash-screen": 10,
+    "base:ability/m2-catch-line": 15,
+    "base:ability/mx-molten-cut": 15
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "32df432c8bde1b13",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "e3a451a864c3f88f",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 4
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "ab77e5eacf2297ce",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 7,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "232bee985bb61df8",
+     "abilities": {
+      "base:ability/mx-guard-stance": 3,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 1
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "158ebd5c63672f2d",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ],
+   "aiParams": {}
+  },
+  {
+   "id": "component/fm-blade-return",
+   "mode": "AI tactical runBattle",
+   "compatibility": {
+    "frame": "frame/bulwark-iv-rampart",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-scatter-rune",
+   "loadout": {
+    "left-weapon": "base:component/fm-blade-return",
+    "right-weapon": "base:component/mx-xingtian-replica",
+    "armor-mount": "base:component/mx-runeweave-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "back-2": "base:component/mx-falling-star-mortar",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-essence-cell"
+   },
+   "before": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "scatter-shell": {
+      "cur": 8,
+      "max": 8,
+      "regen": 0
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/mx-scatter-rune"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "after": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "cur": 2,
+      "max": 2,
+      "regen": 0
+     },
+     "charge": {
+      "cur": 60,
+      "max": 60,
+      "regen": 12
+     },
+     "fm-blade-seal": {
+      "cur": 3,
+      "max": 3,
+      "regen": 0
+     },
+     "heat": {
+      "cur": 0,
+      "max": 110,
+      "regen": -18
+     },
+     "star-shell": {
+      "cur": 6,
+      "max": 6,
+      "regen": 0
+     }
+    },
+    "components": {
+     "armor-mount": {
+      "part": "torso",
+      "component": "base:component/mx-runeweave-plate"
+     },
+     "cockpit": {
+      "part": "torso",
+      "component": null
+     },
+     "soul-core": {
+      "part": "torso",
+      "component": null
+     },
+     "system-1": {
+      "part": "torso",
+      "component": "base:component/mx-frost-fins"
+     },
+     "system-2": {
+      "part": "torso",
+      "component": "base:component/mx-essence-cell"
+     },
+     "sensor-mount": {
+      "part": "head",
+      "component": null
+     },
+     "left-weapon": {
+      "part": "left-arm",
+      "component": "base:component/fm-blade-return"
+     },
+     "right-weapon": {
+      "part": "right-arm",
+      "component": "base:component/mx-xingtian-replica"
+     },
+     "back-1": {
+      "part": "back",
+      "component": "base:component/mx-ash-mist"
+     },
+     "back-2": {
+      "part": "back",
+      "component": "base:component/mx-falling-star-mortar"
+     }
+    },
+    "layers": {
+     "torso": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 70,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 10,
+       "broken": false
+      }
+     ],
+     "head": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      }
+     ],
+     "left-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 18,
+       "broken": false
+      }
+     ],
+     "right-arm": [
+      {
+       "hp": 40,
+       "broken": false
+      },
+      {
+       "hp": 45,
+       "broken": false
+      },
+      {
+       "hp": 22,
+       "broken": false
+      }
+     ],
+     "legs": [
+      {
+       "hp": 55,
+       "broken": false
+      },
+      {
+       "hp": 60,
+       "broken": false
+      }
+     ],
+     "back": [
+      {
+       "hp": 25,
+       "broken": false
+      },
+      {
+       "hp": 30,
+       "broken": false
+      },
+      {
+       "hp": 8,
+       "broken": false
+      },
+      {
+       "hp": 16,
+       "broken": false
+      }
+     ]
+    }
+   },
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 20,
+    "base:ability/mx-ash-screen": 10,
+    "base:ability/mx-replica-lance": 23,
+    "base:ability/mx-falling-star": 1,
+    "base:ability/fm-blade-reprise": 3
+   },
+   "runs": [
+    {
+     "seed": 1,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "2a1c60b7afef6414",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 6
+     }
+    },
+    {
+     "seed": 2,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "8b2a8fd466b18282",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-replica-lance": 5,
+      "base:ability/mx-falling-star": 1
+     }
+    },
+    {
+     "seed": 3,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "a93c56f9fefc4075",
+     "abilities": {
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-replica-lance": 4
+     }
+    },
+    {
+     "seed": 4,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "890c5a6ac9ffde55",
+     "abilities": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/fm-blade-reprise": 1,
+      "base:ability/mx-replica-lance": 4
+     }
+    },
+    {
+     "seed": 5,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "deaths": 0,
+     "rejected": 0,
+     "hash": "0788cd6de05b1805",
+     "abilities": {
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/fm-blade-reprise": 2,
+      "base:ability/mx-replica-lance": 4
+     }
+    }
+   ],
+   "aiParams": {
+    "band": 0.5
+   }
+  }
+ ]
+}

@@ -1,0 +1,88 @@
+{
+  "check": {
+    "exitCode": 0,
+    "lastLine": "OK 0 errors, 10 warnings"
+  },
+  "typecheck": {
+    "exitCode": 0
+  },
+  "test": {
+    "exitCode": 1,
+    "npmRuns": 1,
+    "filePasses": 117,
+    "fileFailures": [
+      {
+        "file": "src/mcp/campaign.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/mcp/cli.test.ts",
+        "signal": "~",
+        "exitCode": "1"
+      },
+      {
+        "file": "src/mcp/e2e.test.ts",
+        "signal": "~",
+        "exitCode": "1"
+      },
+      {
+        "file": "src/ops/content/worldgen.test.ts",
+        "signal": "~",
+        "exitCode": "1"
+      },
+      {
+        "file": "src/ops/sim/campaign.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ops/sim/health.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ops/sim/replay.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ops/sim/war-invariants.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ops/sortie/entry.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ops/world/lords.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ui-adapter/ops/vm/controller.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ui-adapter/vm/session.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "src/ui-adapter/vm/wiki/lore.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      },
+      {
+        "file": "test/ai/balance.test.ts",
+        "signal": "'SIGTERM'",
+        "exitCode": "~"
+      }
+    ],
+    "totalsPresent": false,
+    "regressionConclusion": "無新增失敗未獲證實；不宣稱為基底既有問題。完整原始輸出在 test.log。"
+  }
+}

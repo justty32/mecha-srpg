@@ -1,0 +1,160 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gl-01",
+  "mode": "add",
+  "status": "accepted",
+  "goal": "新增五組來源明確的回收部件與拆存研究；掉落接線另案",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gl-01",
+    "subagents": "允許，模型隨意，上限 1；同受禁區約束"
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-01",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-01/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "wf/workflows/content/ops-content.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gl/plan.md"
+    ]
+  },
+  "maxFiles": 10,
+  "allow": {
+    "kinds": [
+      "base/components",
+      "base/world/research"
+    ],
+    "namePrefix": {
+      "base/components": "fl-",
+      "base/world/research": "fl-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "lore",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "waivers": [
+      "無新增 unit／ability，不跑單位探針；被動部件用指定 headless 裝配煙霧核對層、池與承擔。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-01/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-01/logs",
+    "waiver": "本線禁 MCP；僅 headless，數值後期統調。"
+  },
+  "files": [
+    "content/base/components/fl-scale-leaf.json",
+    "content/base/world/research/fl-scale-leaf-study.json",
+    "content/base/components/fl-lantern-pith.json",
+    "content/base/world/research/fl-lantern-pith-study.json",
+    "content/base/components/fl-rack-rib.json",
+    "content/base/world/research/fl-rack-rib-study.json",
+    "content/base/components/fl-gate-flap.json",
+    "content/base/world/research/fl-gate-flap-study.json",
+    "content/base/components/fl-heel-cushion.json",
+    "content/base/world/research/fl-heel-cushion-study.json"
+  ],
+  "ids": [
+    "component/fl-scale-leaf",
+    "research/fl-scale-leaf-study",
+    "component/fl-lantern-pith",
+    "research/fl-lantern-pith-study",
+    "component/fl-rack-rib",
+    "research/fl-rack-rib-study",
+    "component/fl-gate-flap",
+    "research/fl-gate-flap-study",
+    "component/fl-heel-cushion",
+    "research/fl-heel-cushion-study"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "naming": {
+    "note": "全為提案名；component/research 格式無 nameEn，英文原名只存本表，不新增資料欄。",
+    "rows": [
+      {
+        "id": "component/fl-scale-leaf",
+        "nameZh": "節甲襯",
+        "nameEn": "Segment Lining",
+        "meaning": "薄甲墊在胸前，先替座艙吃下一擊。"
+      },
+      {
+        "id": "research/fl-scale-leaf-study",
+        "nameZh": "節甲襯拆存法",
+        "nameEn": "Segment Lining Conservation",
+        "meaning": "耗用一份甲葉與拆料，學會保存及固定節甲襯。"
+      },
+      {
+        "id": "component/fl-lantern-pith",
+        "nameZh": "燈髓囊",
+        "nameEn": "Lantern Marrow",
+        "meaning": "把燈腹拆下的囊掛在背後，少量續入流光。"
+      },
+      {
+        "id": "research/fl-lantern-pith-study",
+        "nameZh": "燈髓囊拆存法",
+        "nameEn": "Lantern Marrow Conservation",
+        "meaning": "耗用一份節髓與拆料，學會保存及固定燈髓囊。"
+      },
+      {
+        "id": "component/fl-rack-rib",
+        "nameZh": "櫛骨襯",
+        "nameEn": "Comb Rib",
+        "meaning": "擋直刺的窄骨排，遇蝕液仍會漏進胸甲。"
+      },
+      {
+        "id": "research/fl-rack-rib-study",
+        "nameZh": "櫛骨襯拆存法",
+        "nameEn": "Comb Rib Conservation",
+        "meaning": "耗用一份稜骨與拆料，學會保存及固定櫛骨襯。"
+      },
+      {
+        "id": "component/fl-gate-flap",
+        "nameZh": "闕甲裙",
+        "nameEn": "Gate Mantle",
+        "meaning": "厚甲向胸前合攏，擋硬矢卻怕燒。"
+      },
+      {
+        "id": "research/fl-gate-flap-study",
+        "nameZh": "闕甲裙拆存法",
+        "nameEn": "Gate Mantle Conservation",
+        "meaning": "耗用一份闕膜與拆料，學會保存及固定闕甲裙。"
+      },
+      {
+        "id": "component/fl-heel-cushion",
+        "nameZh": "蹄墊甲",
+        "nameEn": "Heel Cushion",
+        "meaning": "柔墊把鈍擊攤開，尖矢仍會穿過。"
+      },
+      {
+        "id": "research/fl-heel-cushion-study",
+        "nameZh": "蹄墊甲拆存法",
+        "nameEn": "Heel Cushion Conservation",
+        "meaning": "耗用一份足筋與拆料，學會保存及固定蹄墊甲。"
+      }
+    ]
+  }
+}

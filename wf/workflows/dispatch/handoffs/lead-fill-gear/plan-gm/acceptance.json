@@ -1,0 +1,87 @@
+{
+  "date": "2026-10-26",
+  "line": "cx-fg-plan-gm",
+  "scope": "只驗收計畫段四條，不執行內容產出測試",
+  "checks": [
+    {
+      "number": 1,
+      "result": "PASS",
+      "evidence": {
+        "planBytes": 10568,
+        "sections": [
+          "已讀清單",
+          "盤點",
+          "設計理念",
+          "新件表",
+          "四批",
+          "掛接",
+          "需求與待決"
+        ],
+        "newFiles": 56,
+        "components": 40,
+        "batches": 4,
+        "maxBatchFiles": 14,
+        "idCollisions": 0,
+        "unresolvedPayloadReferences": 0
+      }
+    },
+    {
+      "number": 2,
+      "result": "PASS",
+      "evidence": {
+        "rows": 56,
+        "columns": [
+          "檔",
+          "類別",
+          "名稱",
+          "白話",
+          "掛到"
+        ],
+        "longestPlainText": 44
+      }
+    },
+    {
+      "number": 3,
+      "result": "PASS",
+      "evidence": {
+        "briefLintExit": 0,
+        "briefLintOutput": "brief_lint: 0 違規／4 檔",
+        "manifests": [
+          {
+            "file": "fg-gm-01.manifest.json",
+            "files": 14,
+            "mode": "add",
+            "status": "draft",
+            "base": "TBD"
+          },
+          {
+            "file": "fg-gm-02.manifest.json",
+            "files": 14,
+            "mode": "add",
+            "status": "draft",
+            "base": "TBD"
+          },
+          {
+            "file": "fg-gm-03.manifest.json",
+            "files": 14,
+            "mode": "add",
+            "status": "draft",
+            "base": "TBD"
+          },
+          {
+            "file": "fg-gm-04.manifest.json",
+            "files": 14,
+            "mode": "add",
+            "status": "draft",
+            "base": "TBD"
+          }
+        ]
+      }
+    },
+    {
+      "number": 4,
+      "result": "FINAL-REPLY",
+      "evidence": "以5行摘要加plan.md路徑回覆。"
+    }
+  ]
+}

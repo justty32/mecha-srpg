@@ -1,0 +1,160 @@
+{
+ "contract": "content-batch/1",
+ "id": "fg-gl-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "新增五組來源明確的回收部件與拆存研究；掉落接線另案",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-fg-gl-03",
+  "subagents": "允許，模型隨意，上限 1；同受禁區約束"
+ },
+ "lead": "lead-fill-gear",
+ "date": "2026-10-26",
+ "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/ops-content.md",
+   "content/lore/style.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gl/plan.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "base/components",
+   "base/world/research"
+  ],
+  "namePrefix": {
+   "base/components": "fl-",
+   "base/world/research": "fl-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "waivers": [
+   "無新增 unit／ability，不跑單位探針；被動部件用指定 headless 裝配煙霧核對層、池與承擔。"
+  ]
+ },
+ "playtest": {
+  "required": 0,
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-03/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-03/logs",
+  "waiver": "本線禁 MCP；僅 headless，數值後期統調。"
+ },
+ "files": [
+  "content/base/components/fl-hollow-sail.json",
+  "content/base/world/research/fl-hollow-sail-study.json",
+  "content/base/components/fl-mirror-splinter.json",
+  "content/base/world/research/fl-mirror-splinter-study.json",
+  "content/base/components/fl-dusk-curtain.json",
+  "content/base/world/research/fl-dusk-curtain-study.json",
+  "content/base/components/fl-wick-felt.json",
+  "content/base/world/research/fl-wick-felt-study.json",
+  "content/base/components/fl-reed-screen.json",
+  "content/base/world/research/fl-reed-screen-study.json"
+ ],
+ "ids": [
+  "component/fl-hollow-sail",
+  "research/fl-hollow-sail-study",
+  "component/fl-mirror-splinter",
+  "research/fl-mirror-splinter-study",
+  "component/fl-dusk-curtain",
+  "research/fl-dusk-curtain-study",
+  "component/fl-wick-felt",
+  "research/fl-wick-felt-study",
+  "component/fl-reed-screen",
+  "research/fl-reed-screen-study"
+ ],
+ "acceptance": {},
+ "rounds": 0,
+ "gateRejections": [],
+ "naming": {
+  "note": "全為提案名；component/research 格式無 nameEn，英文原名只存本表，不新增資料欄。",
+  "rows": [
+   {
+    "id": "component/fl-hollow-sail",
+    "nameZh": "空帆片",
+    "nameEn": "Hollow Sail",
+    "meaning": "一片帆張成薄幕，幕破後能慢慢續回。"
+   },
+   {
+    "id": "research/fl-hollow-sail-study",
+    "nameZh": "空帆片拆存法",
+    "nameEn": "Hollow Sail Conservation",
+    "meaning": "耗用一份懸絮與拆料，學會保存及固定空帆片。"
+   },
+   {
+    "id": "component/fl-mirror-splinter",
+    "nameZh": "偏鏡甲",
+    "nameEn": "Oblique Mirror",
+    "meaning": "偏斜鏡面擋流光，凡鐵正面打來仍吃得住傷。"
+   },
+   {
+    "id": "research/fl-mirror-splinter-study",
+    "nameZh": "偏鏡甲拆存法",
+    "nameEn": "Oblique Mirror Conservation",
+    "meaning": "耗用一份鏡屑與拆料，學會保存及固定偏鏡甲。"
+   },
+   {
+    "id": "component/fl-dusk-curtain",
+    "nameZh": "暮帷掛",
+    "nameEn": "Dusk Curtain",
+    "meaning": "垂幕拆下的帷沿慢慢聚光，代價是持續承擔。"
+   },
+   {
+    "id": "research/fl-dusk-curtain-study",
+    "nameZh": "暮帷掛拆存法",
+    "nameEn": "Dusk Curtain Conservation",
+    "meaning": "耗用一份帷髓與拆料，學會保存及固定暮帷掛。"
+   },
+   {
+    "id": "component/fl-wick-felt",
+    "nameZh": "燈苔氈",
+    "nameEn": "Wick Felt",
+    "meaning": "胸前薄氈會補回細傷，燒穿後便救不回。"
+   },
+   {
+    "id": "research/fl-wick-felt-study",
+    "nameZh": "燈苔氈拆存法",
+    "nameEn": "Wick Felt Conservation",
+    "meaning": "耗用一份燈絨與拆料，學會保存及固定燈苔氈。"
+   },
+   {
+    "id": "component/fl-reed-screen",
+    "nameZh": "蘆網襯",
+    "nameEn": "Reed Screen",
+    "meaning": "編網狀的菌片讓一半蝕液穿走，換來較厚的緩衝。"
+   },
+   {
+    "id": "research/fl-reed-screen-study",
+    "nameZh": "蘆網襯拆存法",
+    "nameEn": "Reed Screen Conservation",
+    "meaning": "耗用一份網絲與拆料，學會保存及固定蘆網襯。"
+   }
+  ]
+ }
+}

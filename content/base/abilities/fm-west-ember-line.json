@@ -1,0 +1,56 @@
+{
+  "id": "ability/fm-west-ember-line",
+  "name": "燼門橫開",
+  "mode": "activated",
+  "grade": "B",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 14
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/fm-cinder-haze"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2,
+  "essence": "B",
+  "nameEn": "Ember Gate Opens",
+  "etymology": "西亞傘的海峽火牆術，橫開燼門灼傷一列敵人，讓命中者短暫失準。它耗費流光且有冷卻，帶來擾準的代價是壓低直接傷害。名稱與具體型錄均為提案。"
+}

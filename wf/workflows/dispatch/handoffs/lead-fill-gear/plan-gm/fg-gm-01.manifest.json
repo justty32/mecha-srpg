@@ -1,0 +1,111 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gm-01",
+  "mode": "add",
+  "status": "draft",
+  "goal": "公開舊廠非核心件14件",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gm-01",
+    "subagents": "上限1，同受本交接書約束",
+    "plan": {
+      "line": "cx-fg-plan-gm",
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md"
+    }
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-01",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-01/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-resist/REPORT.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/new-items.json"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/components"
+    ],
+    "namePrefix": {
+      "base/*": "fm-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "files": [
+    "content/base/components/fm-bellows-bridge.json",
+    "content/base/components/fm-bellows-keel.json",
+    "content/base/components/fm-bellows-trough.json",
+    "content/base/components/fm-breakwater-greave.json",
+    "content/base/components/fm-breakwater-scarf.json",
+    "content/base/components/fm-cradle-iris.json",
+    "content/base/components/fm-cradle-slit.json",
+    "content/base/components/fm-relay-spindle.json",
+    "content/base/components/fm-relay-yoke.json",
+    "content/base/components/fm-rivet-handguard.json",
+    "content/base/components/fm-rivet-harness.json",
+    "content/base/components/fm-rivet-hood.json",
+    "content/base/components/fm-sill-baffle.json",
+    "content/base/components/fm-sill-rest.json"
+  ],
+  "ids": [
+    "component/fm-bellows-bridge",
+    "component/fm-bellows-keel",
+    "component/fm-bellows-trough",
+    "component/fm-breakwater-greave",
+    "component/fm-breakwater-scarf",
+    "component/fm-cradle-iris",
+    "component/fm-cradle-slit",
+    "component/fm-relay-spindle",
+    "component/fm-relay-yoke",
+    "component/fm-rivet-handguard",
+    "component/fm-rivet-harness",
+    "component/fm-rivet-hood",
+    "component/fm-sill-baffle",
+    "component/fm-sill-rest"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "probe": {
+    "waivers": [
+      "本批不新增frame；依交接書固定第3條以scratch配裝runBattle驗證，禁止MCP；由領導審閱證據。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-01/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-01/playtest"
+  },
+  "naming": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-01/naming.json"
+  },
+  "dependencies": []
+}

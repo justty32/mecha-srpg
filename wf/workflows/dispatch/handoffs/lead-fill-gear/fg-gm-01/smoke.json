@@ -1,0 +1,1968 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "battleCount": 70,
+ "exceptions": 0,
+ "newAbilities": 0,
+ "newAbilityCoverage": "不適用：14件均無abilities，無新增effect或research檔",
+ "effectEvidence": "6件layersAdd共7層生效；部件attrMods/poolMods在基底未接線，11件含這些欄位，其中8件無其他設計增益；不將部件自身hp視為預期增益生效",
+ "method": "8x5平地，距離3格，單台指定相容frame與reaper-c對戰，20輪上限；指定槽替換，保留其他defaultLoadout；tactical AI；每次runBattle maxSteps=3000",
+ "snapshotComparison": "同機同配裝移除受測槽，startBattle後比較；不修改ContentDB、不手動套用部件貢獻",
+ "reproduce": "在本worktree執行 node /tmp/cx-fg-gm-01/smoke.mjs；輸入由tabledb find 批次=fg-gm-01擷取",
+ "columns": [
+  "id",
+  "compatibility",
+  "replaced",
+  "loadout",
+  "comparison",
+  "modifierEvidence",
+  "layerEvidence",
+  "intendedModifiersApplied",
+  "newAbilityUses",
+  "newAbilities",
+  "runs"
+ ],
+ "rows": [
+  {
+   "id": "component/fm-bellows-bridge",
+   "compatibility": {
+    "frame": "frame/bulwark-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "torso",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-frost-fins",
+   "loadout": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-porcelain-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "system-1": "component/fm-bellows-bridge"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "pool",
+     "path": "heat.regen",
+     "before": -15,
+     "after": -15,
+     "expectedDelta": -5,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "pool",
+     "path": "charge.max",
+     "before": 50,
+     "after": 50,
+     "expectedDelta": -10,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "94620086f370c6d0",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-scatter-blast": 8,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-rune-shot": 2
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "16b3cd954e190c69",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-scatter-blast": 8,
+      "base:ability/mx-rune-shot": 2
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "2765458a83bd8d1c",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-scatter-blast": 8,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-rune-shot": 3
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "2ce309eb030f6839",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-scatter-blast": 8,
+      "base:ability/reaper-charge": 2,
+      "base:ability/mx-rune-shot": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "e3436529f4f27b1f",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-scatter-blast": 8,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-rune-shot": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-bellows-keel",
+   "compatibility": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-flare-wings",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "component/fm-bellows-keel",
+    "system-1": "base:component/mx-cold-spring"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.initiative",
+     "before": 6,
+     "after": 6,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "pool",
+     "path": "heat.max",
+     "before": 100,
+     "after": 100,
+     "expectedDelta": 20,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "pool",
+     "path": "heat.regen",
+     "before": -15,
+     "after": -15,
+     "expectedDelta": -3,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "d355f7bd355c7832",
+     "abilityUses": {
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/reaper-charge": 3,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 3
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3a35613f1a2ea44a",
+     "abilityUses": {
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/reaper-charge": 2,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 2
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "9635ddf48f9dec9a",
+     "abilityUses": {
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/reaper-cleave": 9,
+      "base:ability/reaper-charge": 4,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 3
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "d6b5133e9d3bb1fb",
+     "abilityUses": {
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "d9a442f16470c636",
+     "abilityUses": {
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/reaper-charge": 3,
+      "base:ability/mx-anvil-roar": 1,
+      "base:ability/mx-rune-shot": 6,
+      "base:ability/mx-cold-vent": 1,
+      "base:ability/mx-frame-strike": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-bellows-trough",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-ash-mist",
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "component/fm-bellows-trough"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.evasion",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "pool",
+     "path": "heat.regen",
+     "before": -12,
+     "after": -12,
+     "expectedDelta": -6,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "958d09369e47f57a",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 3,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "2fbfe68a5fced5f5",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-molten-cut": 7
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "5f0f954fed6e21c9",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "08ad105ad2a6159d",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-molten-cut": 5,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "b208774082d61574",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 3,
+      "base:ability/reaper-charge": 3
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-breakwater-greave",
+   "compatibility": {
+    "frame": "frame/anvil-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "torso",
+    "slot": "armor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-burst-scale",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-iron-gatling",
+    "armor-mount": "component/fm-breakwater-greave",
+    "back-1": "base:component/mx-flare-wings"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.evasion",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": -1,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [
+    {
+     "part": "legs",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 30,
+      "ablative": true,
+      "resist": {
+       "acid": 0.2
+      },
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 38,
+     "afterArmorHp": 68,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "409b3a73c958e7b1",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-stake-drive": 3,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-frame-strike": 2
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "93294cbfc7d84bab",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-frame-strike": 4,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "31163b7cb593ce5d",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-frame-strike": 4,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "c46486e987fa2cb5",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "459c6b59fb8ddddd",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/reaper-charge": 2,
+      "base:ability/mx-stake-drive": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-breakwater-scarf",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-ash-mist",
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "component/fm-breakwater-scarf"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [],
+   "layerEvidence": [
+    {
+     "part": "back",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 35,
+      "ablative": true,
+      "resist": {
+       "kinetic": 0.1
+      },
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 14,
+     "afterArmorHp": 49,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": true,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3ad97cba9d3a2bb0",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "58ad0c721b294645",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-molten-cut": 7
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "7e97d86129211a77",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 3,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "2d7534bf633318f1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-molten-cut": 5,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "5d9935aa0473823f",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-cradle-iris",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "sensor-mount": "component/fm-cradle-iris"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.perception",
+     "before": 4,
+     "after": 4,
+     "expectedDelta": 4,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.initiative",
+     "before": 5,
+     "after": 5,
+     "expectedDelta": 1,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.accuracy",
+     "before": 2,
+     "after": 2,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "b0e091bb5eb813b1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "0135d52c7084a3b4",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-cradle-slit",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "sensor-mount": "component/fm-cradle-slit"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.accuracy",
+     "before": 2,
+     "after": 2,
+     "expectedDelta": 5,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.perception",
+     "before": 4,
+     "after": 4,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "b0e091bb5eb813b1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "0135d52c7084a3b4",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-relay-spindle",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "counterweight",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-frost-fins",
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "component/fm-relay-spindle",
+    "back-1": "base:component/mx-ash-mist"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.initiative",
+     "before": 5,
+     "after": 5,
+     "expectedDelta": 2,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.evasion",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": 2,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.accuracy",
+     "before": 2,
+     "after": 2,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "1e379bbe3831ffe1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "0135d52c7084a3b4",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-relay-yoke",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "counterweight",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-frost-fins",
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "component/fm-relay-yoke",
+    "back-1": "base:component/mx-ash-mist"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.accuracy",
+     "before": 2,
+     "after": 2,
+     "expectedDelta": 3,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.control",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": 3,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.evasion",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "1e379bbe3831ffe1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "0135d52c7084a3b4",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-rivet-handguard",
+   "compatibility": {
+    "frame": "frame/anvil-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-iron-gatling",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "component/fm-rivet-handguard",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.evasion",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": -1,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [
+    {
+     "part": "left-arm",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 35,
+      "ablative": true,
+      "resist": {
+       "kinetic": 0.2
+      },
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 28,
+     "afterArmorHp": 63,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "d243ce8bfbc5152f",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-frame-strike": 8,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "965cabfd13ddc2c6",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-frame-strike": 8
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "323ea80625ba992a",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-frame-strike": 6,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 16,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "2f47e871c4c2b294",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-cleave": 29,
+      "base:ability/mx-frame-strike": 22,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "96faf2e55c22c6bd",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-frame-strike": 7,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-stake-drive": 4,
+      "base:ability/reaper-charge": 1
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-rivet-harness",
+   "compatibility": {
+    "frame": "frame/anvil-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "torso",
+    "slot": "armor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": "base:component/mx-burst-scale",
+   "loadout": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-iron-gatling",
+    "armor-mount": "component/fm-rivet-harness",
+    "back-1": "base:component/mx-flare-wings"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [],
+   "layerEvidence": [
+    {
+     "part": "left-arm",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 25,
+      "ablative": true,
+      "resist": {},
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 28,
+     "afterArmorHp": 53,
+     "applied": true
+    },
+    {
+     "part": "right-arm",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 25,
+      "ablative": true,
+      "resist": {},
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 28,
+     "afterArmorHp": 53,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": true,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "bfd17582c7bf7163",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/mx-stake-drive": 3,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-frame-strike": 2
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "a758f5b9aeebbe58",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-frame-strike": 4,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "fad91268e04ea6d4",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-frame-strike": 4,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "f07c073206b8b6ba",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/reaper-charge": 1,
+      "base:ability/mx-stake-drive": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "c0a2175d704ad649",
+     "abilityUses": {
+      "base:ability/mx-flare-dodge": 4,
+      "base:ability/mx-iron-sweep": 6,
+      "base:ability/reaper-cleave": 11,
+      "base:ability/mx-frame-strike": 3,
+      "base:ability/reaper-charge": 2,
+      "base:ability/mx-stake-drive": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-rivet-hood",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "sensor-mount": "component/fm-rivet-hood"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.initiative",
+     "before": 5,
+     "after": 5,
+     "expectedDelta": -1,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [
+    {
+     "part": "head",
+     "insertAt": 0,
+     "layer": {
+      "type": "armor",
+      "hp": 25,
+      "ablative": true,
+      "resist": {
+       "kinetic": 0.15
+      },
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 19,
+     "afterArmorHp": 44,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "110de3cc6a6797e8",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "19dc94be215ce891",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3e34fa908368575f",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 3
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-sill-baffle",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "torso",
+    "slot": "cockpit",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "cockpit": "component/fm-sill-baffle"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [],
+   "layerEvidence": [
+    {
+     "part": "torso",
+     "insertAt": 1,
+     "layer": {
+      "type": "armor",
+      "hp": 25,
+      "ablative": true,
+      "resist": {
+       "thermal": 0.2
+      },
+      "passThrough": {},
+      "structural": false
+     },
+     "beforeArmorHp": 43,
+     "afterArmorHp": 68,
+     "applied": true
+    }
+   ],
+   "intendedModifiersApplied": true,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "b0e091bb5eb813b1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3e34fa908368575f",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 3
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  },
+  {
+   "id": "component/fm-sill-rest",
+   "compatibility": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "torso",
+    "slot": "cockpit",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "replaced": null,
+   "loadout": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "cockpit": "component/fm-sill-rest"
+   },
+   "comparison": "同配裝移除受測槽為對照；其他槽完全保留；快照在startBattle後",
+   "modifierEvidence": [
+    {
+     "kind": "attr",
+     "path": "self.attrs.control",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": 3,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.resolve",
+     "before": 0,
+     "after": 0,
+     "expectedDelta": 3,
+     "observedDelta": 0,
+     "applied": false
+    },
+    {
+     "kind": "attr",
+     "path": "self.attrs.initiative",
+     "before": 5,
+     "after": 5,
+     "expectedDelta": -2,
+     "observedDelta": 0,
+     "applied": false
+    }
+   ],
+   "layerEvidence": [],
+   "intendedModifiersApplied": false,
+   "newAbilityUses": {},
+   "newAbilities": 0,
+   "runs": [
+    {
+     "seed": 1,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "b0e091bb5eb813b1",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 2,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "player",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "77f269172155dee3",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/m2-catch-line": 4,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/mx-molten-cut": 5
+     }
+    },
+    {
+     "seed": 3,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "8e66f59c9749e208",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 13,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 4,
+      "base:ability/reaper-charge": 1
+     }
+    },
+    {
+     "seed": 4,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "0135d52c7084a3b4",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 12,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2,
+      "base:ability/reaper-charge": 2
+     }
+    },
+    {
+     "seed": 5,
+     "exceptions": 0,
+     "stopped": "outcome",
+     "rounds": 8,
+     "winner": "enemy",
+     "reason": "eliminate",
+     "rejected": 0,
+     "hash": "3922f667719fdaf7",
+     "abilityUses": {
+      "base:ability/mx-guard-stance": 4,
+      "base:ability/mx-ash-screen": 2,
+      "base:ability/reaper-cleave": 14,
+      "base:ability/m2-catch-line": 3,
+      "base:ability/mx-molten-cut": 2
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gl-04",
+  "mode": "add",
+  "status": "accepted",
+  "goal": "新增五組來源明確的回收部件與拆存研究；掉落接線另案",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gl-04",
+    "subagents": "允許，模型隨意，上限 1；同受禁區約束"
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-04",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-04/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "wf/workflows/content/ops-content.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gl/plan.md"
+    ]
+  },
+  "maxFiles": 10,
+  "allow": {
+    "kinds": [
+      "base/components",
+      "base/world/research"
+    ],
+    "namePrefix": {
+      "base/components": "fl-",
+      "base/world/research": "fl-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "lore",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "waivers": [
+      "無新增 unit／ability，不跑單位探針；被動部件用指定 headless 裝配煙霧核對層、池與承擔。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-04/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gl-04/logs",
+    "waiver": "本線禁 MCP；僅 headless，數值後期統調。"
+  },
+  "files": [
+    "content/base/components/fl-vault-ply.json",
+    "content/base/world/research/fl-vault-ply-study.json",
+    "content/base/components/fl-grove-shroud.json",
+    "content/base/world/research/fl-grove-shroud-study.json",
+    "content/base/components/fl-fallen-step.json",
+    "content/base/world/research/fl-fallen-step-study.json",
+    "content/base/components/fl-tomb-chime.json",
+    "content/base/world/research/fl-tomb-chime-study.json",
+    "content/base/components/fl-lake-votive.json",
+    "content/base/world/research/fl-lake-votive-study.json"
+  ],
+  "ids": [
+    "component/fl-vault-ply",
+    "research/fl-vault-ply-study",
+    "component/fl-grove-shroud",
+    "research/fl-grove-shroud-study",
+    "component/fl-fallen-step",
+    "research/fl-fallen-step-study",
+    "component/fl-tomb-chime",
+    "research/fl-tomb-chime-study",
+    "component/fl-lake-votive",
+    "research/fl-lake-votive-study"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "naming": {
+    "note": "全為提案名；component/research 格式無 nameEn，英文原名只存本表，不新增資料欄。",
+    "rows": [
+      {
+        "id": "component/fl-vault-ply",
+        "nameZh": "拱根疊甲",
+        "nameEn": "Vault Laminate",
+        "meaning": "外片擋尖矢、內片擋鈍擊，兩片分別耗損。"
+      },
+      {
+        "id": "research/fl-vault-ply-study",
+        "nameZh": "拱根疊甲拆存法",
+        "nameEn": "Vault Laminate Conservation",
+        "meaning": "耗用一份根箔與拆料，學會保存及固定拱根疊甲。"
+      },
+      {
+        "id": "component/fl-grove-shroud",
+        "nameZh": "白林菌帷",
+        "nameEn": "White Grove Shroud",
+        "meaning": "厚菌帷緩慢補回胸前損傷，持有者仍要扛住它。"
+      },
+      {
+        "id": "research/fl-grove-shroud-study",
+        "nameZh": "白林菌帷拆存法",
+        "nameEn": "White Grove Shroud Conservation",
+        "meaning": "耗用一份林絡與拆料，學會保存及固定白林菌帷。"
+      },
+      {
+        "id": "component/fl-fallen-step",
+        "nameZh": "墟階殘片",
+        "nameEn": "Fallen Step",
+        "meaning": "離開古代機的殘片能撐一層薄幕，須先過共鳴門檻。"
+      },
+      {
+        "id": "research/fl-fallen-step-study",
+        "nameZh": "墟階殘片拆存法",
+        "nameEn": "Fallen Step Conservation",
+        "meaning": "耗用一份階砂與拆料，學會保存及固定墟階殘片。"
+      },
+      {
+        "id": "component/fl-tomb-chime",
+        "nameZh": "古陵空鈴",
+        "nameEn": "Sepulchral Chime",
+        "meaning": "空鈴承住流光，沒有共鳴的人只能聽見空響。"
+      },
+      {
+        "id": "research/fl-tomb-chime-study",
+        "nameZh": "古陵空鈴拆存法",
+        "nameEn": "Sepulchral Chime Conservation",
+        "meaning": "耗用一份鈴灰與拆料，學會保存及固定古陵空鈴。"
+      },
+      {
+        "id": "component/fl-lake-votive",
+        "nameZh": "湖殿殘燈",
+        "nameEn": "Lake Votive",
+        "meaning": "殘燈撐起能復原的光幕，認不出來者不能借光。"
+      },
+      {
+        "id": "research/fl-lake-votive-study",
+        "nameZh": "湖殿殘燈拆存法",
+        "nameEn": "Lake Votive Conservation",
+        "meaning": "耗用一份燈石與拆料，學會保存及固定湖殿殘燈。"
+      }
+    ]
+  }
+}

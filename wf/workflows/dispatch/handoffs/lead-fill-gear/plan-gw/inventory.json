@@ -1,0 +1,776 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "名稱",
+  "類別",
+  "廠商／歸屬證據",
+  "來源",
+  "精粹",
+  "裝用等級",
+  "定位",
+  "既有能力",
+  "掛載",
+  "機型引用"
+ ],
+ "rows": [
+  {
+   "id": "component/arc-emitter",
+   "名稱": "裂晶弧光吼砲",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "無預設配裝",
+   "定位": "裂晶弧光 ball {'min': 1, 'max': 6}",
+   "既有能力": [
+    "ability/arc-pulse"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 18
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/autocannon-30",
+   "名稱": "凡鐵連吼",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "凡鐵",
+   "裝用等級": "無預設配裝",
+   "定位": "凡鐵三矢連吼 unit {'min': 1, 'max': 6}",
+   "既有能力": [
+    "ability/burst-30"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 20
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/cx3-crest-blade",
+   "名稱": "破浪鰭刃",
+   "類別": "近戰",
+   "廠商／歸屬證據": "第三刃血統（標籤證據，非製造者欄）",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B",
+   "定位": "破浪收鰭 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/cx3-crest-cut"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/cx3-flyingfish-iv",
+    "frame/cx3-flyingfish-ii"
+   ]
+  },
+  {
+   "id": "component/cx3-skimming-fin",
+   "名稱": "掠潮鳴鰭",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "第三刃血統（標籤證據，非製造者欄）",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C",
+   "定位": "掠潮飛鰭 unit {'min': 1, 'max': 4}",
+   "既有能力": [
+    "ability/cx3-skimming-fin"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": 12
+   },
+   "機型引用": [
+    "frame/cx3-flyingfish-d",
+    "frame/thirdblade-needlefish-ii"
+   ]
+  },
+  {
+   "id": "component/heat-lance",
+   "名稱": "熾流矛",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "無預設配裝",
+   "定位": "熾流突刺 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/heat-lance-thrust"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 15
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/ix-line-rifle",
+   "名稱": "列裝光矢槍",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "通用鐵劍（系列標籤）",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B",
+   "定位": "平射 unit {'min': 1, 'max': 5}",
+   "既有能力": [
+    "ability/ix-line-shot"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 18
+   },
+   "機型引用": [
+    "frame/ix-iii"
+   ]
+  },
+  {
+   "id": "component/ix-watch-rifle",
+   "名稱": "守望光矢槍",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "通用鐵劍（系列標籤）",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "A",
+   "定位": "守望一矢 unit {'min': 2, 'max': 6}",
+   "既有能力": [
+    "ability/ix-watch-shot"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 4,
+    "hp": 22
+   },
+   "機型引用": [
+    "frame/ix-homeward"
+   ]
+  },
+  {
+   "id": "component/m2-mooring-jaw",
+   "名稱": "繫泊鉗",
+   "類別": "純控制",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "無傷害",
+   "裝用等級": "D,C,B",
+   "定位": "攔路橫索 line {'min': 1, 'max': 3}",
+   "既有能力": [
+    "ability/m2-catch-line"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/ix-porter-ii",
+    "frame/anvil-hoist-ii",
+    "frame/quito-quay-iv",
+    "frame/innersea-brace-02"
+   ]
+  },
+  {
+   "id": "component/mx-binding-harpoon",
+   "名稱": "縛獸拘束矢",
+   "類別": "拘束",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C,B",
+   "定位": "拘束矢 unit {'min': 1, 'max': 5}",
+   "既有能力": [
+    "ability/mx-bind-shot"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": 12
+   },
+   "機型引用": [
+    "frame/longspear-v1-guild",
+    "frame/hound-mk2",
+    "frame/nairobi-crook-iii",
+    "frame/thirdblade-skate-iv",
+    "frame/shellsoc-tripod-c"
+   ]
+  },
+  {
+   "id": "component/mx-brokenarm-stake",
+   "名稱": "斷臂樁",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B,A",
+   "定位": "斷臂一樁 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-stake-drive"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 5,
+    "hp": 24
+   },
+   "機型引用": [
+    "frame/union-futu",
+    "frame/anvil-crimson-rivet",
+    "frame/anvil-trestle-ii",
+    "frame/anvil-iv-ram",
+    "frame/anvil-ii"
+   ]
+  },
+  {
+   "id": "component/mx-chain-maul",
+   "名稱": "鎖鏈戰錘",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B",
+   "定位": "戰錘橫掃 ball {'min': 1, 'max': 2}",
+   "既有能力": [
+    "ability/mx-maul-sweep"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 4,
+    "hp": 20
+   },
+   "機型引用": [
+    "frame/bulwark-ii-rivet",
+    "frame/anvil-iv-ram",
+    "frame/cn-jade-tablet-i"
+   ]
+  },
+  {
+   "id": "component/mx-cinder-breath",
+   "名稱": "燼焰吐息",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B",
+   "定位": "燼焰吐息 ball {'min': 1, 'max': 3}",
+   "既有能力": [
+    "ability/mx-cinder-spit"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 15
+   },
+   "機型引用": [
+    "frame/tidefaith-censer-iv",
+    "frame/tidefaith-redeemer-3"
+   ]
+  },
+  {
+   "id": "component/mx-graft-tidewolf-jaw",
+   "名稱": "潮狼顎移植臂",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "bio",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "無預設配裝",
+   "定位": "移植顎咬 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-jaw-graft-bite"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 22
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/mx-hush-pulse",
+   "名稱": "寂滅脈衝",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B,A,S",
+   "定位": "寂滅 ball {'min': 1, 'max': 6}",
+   "既有能力": [
+    "ability/mx-hush-burst"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 2,
+    "hp": 12
+   },
+   "機型引用": [
+    "frame/selene-aurora",
+    "frame/selene-iris-g6",
+    "frame/shellsoc-archive-b",
+    "frame/shellsoc-surveyor-b",
+    "frame/selene-eclipse-moonless"
+   ]
+  },
+  {
+   "id": "component/mx-iron-gatling",
+   "名稱": "凡鐵掃吼",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "凡鐵",
+   "裝用等級": "D,C",
+   "定位": "壓制掃吼 ball {'min': 1, 'max': 5}",
+   "既有能力": [
+    "ability/mx-iron-sweep"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 18
+   },
+   "機型引用": [
+    "frame/bulwark-i-beacon",
+    "frame/anvil-ii"
+   ]
+  },
+  {
+   "id": "component/mx-iron-repeater",
+   "名稱": "凡鐵連吼",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "凡鐵",
+   "裝用等級": "D,C",
+   "定位": "凡鐵點吼 unit {'min': 1, 'max': 6}",
+   "既有能力": [
+    "ability/mx-iron-burst"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 2,
+    "hp": 15
+   },
+   "機型引用": [
+    "frame/shellsoc-ls3",
+    "frame/longspear-v4-saltgull",
+    "frame/longspear-v1",
+    "frame/bulwark-i",
+    "frame/union-fr7"
+   ]
+  },
+  {
+   "id": "component/mx-molten-saw",
+   "名稱": "熔齒鋸",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C,B,A",
+   "定位": "熔齒切割 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-molten-cut"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/tidefaith-pilgrim",
+    "frame/longspear-v1-guild",
+    "frame/league-plough",
+    "frame/league-gantry-02",
+    "frame/anvil-hoist-ii",
+    "frame/quito-quay-iv"
+   ]
+  },
+  {
+   "id": "component/mx-purge-censer",
+   "名稱": "贖垢香爐",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B,A",
+   "定位": "贖垢之焰 ball {'min': 1, 'max': 3}",
+   "既有能力": [
+    "ability/mx-purge-flame"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 14
+   },
+   "機型引用": [
+    "frame/tidefaith-pilgrim",
+    "frame/tidefaith-censer-iv",
+    "frame/tidefaith-redeemer-3"
+   ]
+  },
+  {
+   "id": "component/mx-radiant-rifle",
+   "名稱": "輝光連吼",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C,B,A",
+   "定位": "光矢連吼 unit {'min': 1, 'max': 7}",
+   "既有能力": [
+    "ability/mx-radiant-shot"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 2,
+    "hp": 14
+   },
+   "機型引用": [
+    "frame/selene-aurora",
+    "frame/na-meridian",
+    "frame/na-kestrel-i",
+    "frame/ru-brazier-ii",
+    "frame/selene-iris-g6",
+    "frame/selene-valkyrie",
+    "frame/innersea-lantern",
+    "frame/longspear-kneeler-v2",
+    "frame/selene-silverring-g2",
+    "frame/longspear-v7",
+    "frame/quito-thunderbird",
+    "frame/moji-tern",
+    "frame/selene-silverring-g1",
+    "frame/na-sled-03",
+    "frame/longspear-v1",
+    "frame/longspear-v4"
+   ]
+  },
+  {
+   "id": "component/mx-relic-gauntlet",
+   "名稱": "古骸拳甲",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "ancient",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "無預設配裝",
+   "定位": "古骸拳 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-relic-fist"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 20
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/mx-rune-cannon",
+   "名稱": "紋刻吼砲",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,B,A",
+   "定位": "吼砲轟擊 unit {'min': 2, 'max': 9}",
+   "既有能力": [
+    "ability/mx-rune-cannon-fire"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 5,
+    "hp": 22
+   },
+   "機型引用": [
+    "frame/anvil-gatewarden",
+    "frame/ru-brazier-ii",
+    "frame/bulwark-old-city",
+    "frame/ru-hearth-i",
+    "frame/union-at12"
+   ]
+  },
+  {
+   "id": "component/mx-rune-rifle",
+   "名稱": "紋刻連吼",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C,B,A",
+   "定位": "紋刻一吼 unit {'min': 1, 'max': 6}",
+   "既有能力": [
+    "ability/mx-rune-shot"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 18
+   },
+   "機型引用": [
+    "frame/anvil-crimson-rivet",
+    "frame/longspear-piercing-cloud",
+    "frame/ix-ii-loom",
+    "frame/cx3-flyingfish-iv",
+    "frame/jp-si04",
+    "frame/bulwark-ii",
+    "frame/shellsoc-archive-b",
+    "frame/quito-vulture-ii",
+    "frame/cn-yoke-i",
+    "frame/saltgull-tidegull-longspear",
+    "frame/league-plough",
+    "frame/shellsoc-surveyor-b",
+    "frame/longspear-kneeler-v2",
+    "frame/longspear-v4-saltgull",
+    "frame/quito-andes-wall",
+    "frame/ix-01",
+    "frame/ix-wain-01",
+    "frame/selene-silverring-g1",
+    "frame/nairobi-crook-iii",
+    "frame/ix-ii",
+    "frame/nairobi-shepherd",
+    "frame/league-last-ferry",
+    "frame/union-fr7",
+    "frame/longspear-v4",
+    "frame/shellsoc-tripod-c",
+    "frame/cn-jade-tablet-i"
+   ]
+  },
+  {
+   "id": "component/mx-scatter-rune",
+   "名稱": "散紋吼砲",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "D,C,B,A",
+   "定位": "散紋轟吼 ball {'min': 1, 'max': 3}",
+   "既有能力": [
+    "ability/mx-scatter-blast"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/bulwark-iv-rampart",
+    "frame/bulwark-ii-rivet",
+    "frame/ix-ii-loom",
+    "frame/bulwark-ii",
+    "frame/ix-homeward",
+    "frame/cn-yoke-i",
+    "frame/bulwark-old-city",
+    "frame/quito-andes-wall",
+    "frame/bulwark-caisson-01",
+    "frame/ix-ii",
+    "frame/innersea-counterseal-ii",
+    "frame/ix-iii",
+    "frame/league-last-ferry",
+    "frame/bulwark-i"
+   ]
+  },
+  {
+   "id": "component/mx-shard-grenade",
+   "名稱": "碎鐵拋矢筒",
+   "類別": "範圍",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "凡鐵",
+   "裝用等級": "D,C",
+   "定位": "碎鐵拋矢 ball {'min': 2, 'max': 5}",
+   "既有能力": [
+    "ability/mx-shard-lob"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": 12
+   },
+   "機型引用": [
+    "frame/bulwark-i-beacon",
+    "frame/thirdblade-needlefish-ii",
+    "frame/shellsoc-pin-04",
+    "frame/innersea-brace-02"
+   ]
+  },
+  {
+   "id": "component/mx-singing-blade",
+   "名稱": "鳴刃",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B,A",
+   "定位": "鳴刃斬 unit {'min': 1, 'max': 1}; 回身鳴刃 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-singing-slash",
+    "ability/mx-singing-riposte"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": 14
+   },
+   "機型引用": [
+    "frame/na-kestrel-i",
+    "frame/thirdblade-swordfish-iii",
+    "frame/anvil-trestle-ii",
+    "frame/selene-valkyrie",
+    "frame/saltgull-tidegull-longspear",
+    "frame/hound-mk2",
+    "frame/ix-porter-ii",
+    "frame/thirdblade-swordfish-v5",
+    "frame/cx3-flyingfish-ii",
+    "frame/moji-tern-guard",
+    "frame/quito-thunderbird",
+    "frame/ru-hearth-i",
+    "frame/thirdblade-binary-swordfish"
+   ]
+  },
+  {
+   "id": "component/mx-starscar-lance",
+   "名稱": "星痕貫矛",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B,A,S",
+   "定位": "星痕貫射 unit {'min': 3, 'max': 12}",
+   "既有能力": [
+    "ability/mx-starscar-shot"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 4,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/na-meridian",
+    "frame/backside-white-night",
+    "frame/anvil-gatewarden",
+    "frame/longspear-piercing-cloud",
+    "frame/selene-eclipse-moonless",
+    "frame/longspear-v7",
+    "frame/selene-crescent-g5"
+   ]
+  },
+  {
+   "id": "component/mx-thunder-serpent",
+   "名稱": "弧光蛇鞭",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B,A",
+   "定位": "弧光蛇擊 unit {'min': 1, 'max': 2}",
+   "既有能力": [
+    "ability/mx-serpent-lash"
+   ],
+   "掛載": {
+    "size": 1,
+    "mass": 1,
+    "hp": 10
+   },
+   "機型引用": [
+    "frame/backside-white-night",
+    "frame/quito-vulture-ii",
+    "frame/innersea-lantern",
+    "frame/selene-silverring-g2",
+    "frame/selene-crescent-g5",
+    "frame/innersea-counterseal-ii",
+    "frame/nairobi-shepherd"
+   ]
+  },
+  {
+   "id": "component/mx-tidefin-twins",
+   "名稱": "潮鰭雙刃",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "C,B,A",
+   "定位": "潮鰭連斬 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/mx-fin-flurry"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 2,
+    "hp": 16
+   },
+   "機型引用": [
+    "frame/thirdblade-swordfish-iii",
+    "frame/thirdblade-swordfish-v5",
+    "frame/thirdblade-skate-iv",
+    "frame/thirdblade-binary-swordfish"
+   ]
+  },
+  {
+   "id": "component/mx-xingtian-replica",
+   "名稱": "衍・刑天之矛",
+   "類別": "單體射擊",
+   "廠商／歸屬證據": "未明載",
+   "來源": "mechanical",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "B,A",
+   "定位": "刑天之矛 unit {'min': 1, 'max': 4}",
+   "既有能力": [
+    "ability/mx-replica-lance"
+   ],
+   "掛載": {
+    "size": 3,
+    "mass": 5,
+    "hp": 22
+   },
+   "機型引用": [
+    "frame/bulwark-iv-rampart",
+    "frame/union-futu"
+   ]
+  },
+  {
+   "id": "component/oa-arm-mantlet",
+   "名稱": "擋矢臂甲",
+   "類別": "其他／臂甲",
+   "廠商／歸屬證據": "舊廠諸家（lore 點名）",
+   "來源": "mechanical",
+   "精粹": "無傷害",
+   "裝用等級": "無預設配裝",
+   "定位": "臂甲，不能當作一把武器",
+   "既有能力": [],
+   "掛載": {
+    "size": 1,
+    "mass": 2,
+    "hp": null
+   },
+   "機型引用": []
+  },
+  {
+   "id": "component/reaper-scythe-graft",
+   "名稱": "鐮肢移植臂",
+   "類別": "近戰",
+   "廠商／歸屬證據": "未明載",
+   "來源": "bio",
+   "精粹": "未明標；隨機體等級",
+   "裝用等級": "無預設配裝",
+   "定位": "移植鐮劈 unit {'min': 1, 'max': 1}",
+   "既有能力": [
+    "ability/scythe-graft-cleave"
+   ],
+   "掛載": {
+    "size": 2,
+    "mass": 3,
+    "hp": 25
+   },
+   "機型引用": []
+  }
+ ]
+}

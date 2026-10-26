@@ -1,0 +1,113 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "link_columns": [],
+ "columns": [
+  "檔",
+  "類別",
+  "名稱",
+  "白話",
+  "掛到"
+ ],
+ "rows": [
+  {
+   "檔": "content/base/components/fa-ash-vessel.json",
+   "類別": "component",
+   "名稱": "AV-2",
+   "白話": "多留一些積燼空間，代價是散得更慢。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠把報廢船上的留燼匣接回守牆機，一輪能撐，久打就悶。 frame/bulwark-ii；須有 heat；max 是緩衝上限，不降低燼帶門檻"
+  },
+  {
+   "檔": "content/base/components/fa-bridle-spool.json",
+   "類別": "component",
+   "名稱": "收韁輪",
+   "白話": "操縱更穩，承壓意志卻變弱，得由駕駛自己取捨。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠接在公版操縱筋上的輪只幫人握緊，不替人下決心。 frame/bulwark-ii；任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "檔": "content/base/components/fa-cold-return.json",
+   "類別": "component",
+   "名稱": "回霜環",
+   "白話": "燼散得快，流光回得慢，適合把出手間隔留長。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版機能換上這圈回路，遠射時卻得等下一口流光。 frame/bulwark-ii；須同時有 heat、charge"
+  },
+  {
+   "檔": "content/base/components/fa-deep-cup.json",
+   "類別": "component",
+   "名稱": "沉盞流光槽",
+   "白話": "多裝流光容量，不附初始儲量，搶先出手也較慢。",
+   "掛到": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄的深盞要背著走，不能把買來的空容量當成滿艙流光。 frame/bulwark-ii；須有 charge；poolMods.max 不增加 initial"
+  },
+  {
+   "檔": "content/base/components/fa-ember-dynamo.json",
+   "類別": "component",
+   "名稱": "借火輪",
+   "白話": "流光回得更勤，排燼卻變慢，久打要防積燼。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 崩年舊廠留下能轉的輪，現在只能借核心的餘光做小活。 frame/bulwark-ii；須同時有 heat、charge；不提高核心或精粹等級"
+  },
+  {
+   "檔": "content/base/components/fa-light-reel.json",
+   "類別": "component",
+   "名稱": "汲光卷",
+   "白話": "主動加快短時回光，代價是排燼放緩。",
+   "掛到": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。 frame/bulwark-ii；須有 charge、heat；流光至少缺20才啟動"
+  },
+  {
+   "檔": "content/base/components/fa-quick-turn.json",
+   "類別": "component",
+   "名稱": "搶步筋組",
+   "白話": "先手快一點，準頭少一點，適合搶先壓近。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 守牆舊機改作巡路後，修造棚先鬆開了僵硬的筋。 frame/bulwark-ii；任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "檔": "content/base/components/fa-quiet-bell.json",
+   "類別": "component",
+   "名稱": "定心鈴架",
+   "白話": "意志較穩，回手較慢，適合承壓守位。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 老機修造棚把艙內的晃動收成規律，駕駛能定住神，回手卻慢。 frame/bulwark-ii；任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "檔": "content/base/components/fa-steady-hand.json",
+   "類別": "component",
+   "名稱": "定肘筋組",
+   "白話": "準頭更穩，先手更慢，適合留位射擊。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠把長槍修造冊上的肘節做得更穩，轉槍卻慢了。 frame/bulwark-ii；任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "檔": "content/base/components/fa-vent-shutter.json",
+   "類別": "component",
+   "名稱": "開燼閘",
+   "白話": "主動短時強排燼，開閘期間準頭下降。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。 frame/bulwark-ii；須有 heat；使用前燼≥20，確保有排燼需求"
+  },
+  {
+   "檔": "content/base/abilities/fa-draw-light.json",
+   "類別": "ability",
+   "名稱": "收卷汲光",
+   "白話": "流光缺得夠多才能收卷，短時多回流光但較難排燼。",
+   "掛到": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。 frame/bulwark-ii；須有 charge、heat；流光至少缺20才啟動"
+  },
+  {
+   "檔": "content/base/abilities/fa-open-vents.json",
+   "類別": "ability",
+   "名稱": "開閘散燼",
+   "白話": "燼積得夠多才能開閘，短時加強排燼並犧牲準頭。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。 frame/bulwark-ii；須有 heat；使用前燼≥20，確保有排燼需求"
+  },
+  {
+   "檔": "content/base/effects/fa-light-drawn.json",
+   "類別": "effect",
+   "名稱": "汲光",
+   "白話": "汲光卷啟動後的短效：回光加快，排燼放緩。",
+   "掛到": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。 frame/bulwark-ii；須有 charge、heat；流光至少缺20才啟動"
+  },
+  {
+   "檔": "content/base/effects/fa-venting.json",
+   "類別": "effect",
+   "名稱": "散燼",
+   "白話": "開燼閘啟動後的短效：排燼加快，準頭降低。",
+   "掛到": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。 frame/bulwark-ii；須有 heat；使用前燼≥20，確保有排燼需求"
+  }
+ ]
+}

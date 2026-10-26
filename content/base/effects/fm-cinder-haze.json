@@ -1,0 +1,29 @@
+{
+  "id": "effect/fm-cinder-haze",
+  "name": "燼障",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/fm-cinder-haze"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "燼障"
+  },
+  "nameEn": "Cinder Haze",
+  "etymology": "西亞傘的燼門橫開命中後，燼障暫時擾亂對手機體的準頭。它只壓低準頭，並不困住行動；短暫時限過後消散，重複命中只刷新時限。名稱與具體型錄均為提案。"
+}

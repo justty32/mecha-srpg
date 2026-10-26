@@ -1,0 +1,739 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "交辦軌",
+  "市場",
+  "上架參數",
+  "聲望",
+  "發布條件",
+  "研發",
+  "掉落",
+  "載體",
+  "安裝條件"
+ ],
+ "rows": [
+  {
+   "id": "component/fa-abutment",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-abutment",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "鐵砧獵團 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-abutment；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-brow-guard",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-brow-guard",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 250
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-brow-guard；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 head 與 armorMount；舟架 mast、分翼 nose 不適用"
+  },
+  {
+   "id": "component/fa-cinder-cloak",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-cinder-cloak",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "塞勒涅工業 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-cinder-cloak；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "torso＋armorMount；須有 charge，否則代價不成立"
+  },
+  {
+   "id": "component/fa-forefoot-shoe",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-forefoot-shoe",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-forefoot-shoe；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/anvil-trestle-ii",
+   "安裝條件": "只用 bodyplan/m2-quadruped-c 的 front-left；不聲稱降低地形成本"
+  },
+  {
+   "id": "component/fa-heel-lock",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-heel-lock",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "鐵砧獵團 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-heel-lock；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-needle-stop",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-needle-stop",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-needle-stop；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-salt-wash",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-salt-wash",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-salt-wash；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-silver-lining",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-silver-lining",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-silver-lining；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-slip-clasp",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-slip-clasp",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-slip-clasp；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-wick-screen",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-wick-screen",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "塞勒涅工業 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-wick-screen；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "torso＋armorMount；須有 charge 支付每回合最多4回復"
+  },
+  {
+   "id": "component/fa-ash-vessel",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-ash-vessel",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 250
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-ash-vessel；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 heat；max 是緩衝上限，不降低燼帶門檻"
+  },
+  {
+   "id": "component/fa-bridle-spool",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-bridle-spool",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-bridle-spool；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-cold-return",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-cold-return",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-cold-return；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須同時有 heat、charge"
+  },
+  {
+   "id": "component/fa-deep-cup",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-deep-cup",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "塞勒涅工業 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-deep-cup；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 charge；poolMods.max 不增加 initial"
+  },
+  {
+   "id": "component/fa-ember-dynamo",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-ember-dynamo",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-ember-dynamo；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須同時有 heat、charge；不提高核心或精粹等級"
+  },
+  {
+   "id": "component/fa-light-reel",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-light-reel",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "塞勒涅工業 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-light-reel；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 charge、heat；流光至少缺20才啟動"
+  },
+  {
+   "id": "component/fa-quick-turn",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-quick-turn",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-quick-turn；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-quiet-bell",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-quiet-bell",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-quiet-bell；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-steady-hand",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-steady-hand",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-steady-hand；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-vent-shutter",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/war-armory",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-vent-shutter",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-vent-shutter；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 heat；使用前燼≥20，確保有排燼需求"
+  },
+  {
+   "id": "component/fa-close-watch",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-close-watch",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-close-watch；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-cool-watch",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-cool-watch",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-cool-watch；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 heat、charge；感測槽 size≥1"
+  },
+  {
+   "id": "component/fa-dazzle-shutter",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-dazzle-shutter",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-dazzle-shutter；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-first-bell",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-first-bell",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "稽古學會 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-first-bell；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-iron-brow",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-iron-brow",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-iron-brow；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "只適用 head＋sensorMount；mast／nose 不插頭甲"
+  },
+  {
+   "id": "component/fa-plumb-sight",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-plumb-sight",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "稽古學會 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-plumb-sight；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-shared-bearing",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-shared-bearing",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "稽古學會 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-shared-bearing；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-single-aperture",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-single-aperture",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-single-aperture；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-veiled-eye",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-veiled-eye",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "塞勒涅工業 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-veiled-eye；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 charge；不提供隱形、反隱或無視視線"
+  },
+  {
+   "id": "component/fa-wide-lantern",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-wide-lantern",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "稽古學會 20；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-wide-lantern；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-arm-sling",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-arm-sling",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-arm-sling；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "只限 left-arm＋backMount 的雙足；四足與舟架不可"
+  },
+  {
+   "id": "component/fa-ash-ballast",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-ash-ballast",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-ash-ballast；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 heat；燼帶門檻不隨 max 放寬"
+  },
+  {
+   "id": "component/fa-escort-lantern",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-escort-lantern",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-escort-lantern；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-gunner-stool",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-gunner-stool",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "鐵砧獵團 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-gunner-stool；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 heat；不冒充伏架的 immobilized 效果"
+  },
+  {
+   "id": "component/fa-hearth-screen",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-hearth-screen",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1400
+   },
+   "聲望": "塞勒涅工業 55；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-hearth-screen；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "須有 torso、charge；不代擋隊友傷害；每機最多一套"
+  },
+  {
+   "id": "component/fa-high-survey",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/old-array",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-high-survey",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "稽古學會 35；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-high-survey；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-quay-outrigger",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-quay-outrigger",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-quay-outrigger；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/quito-quay-iv",
+   "安裝條件": "限 bodyplan/m2-keel-b；port-float、starboard-float 均須存在"
+  },
+  {
+   "id": "component/fa-reserve-pannier",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-reserve-pannier",
+    "weight": 1,
+    "stockMax": 2,
+    "basePrice": 400
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-reserve-pannier；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-swift-sail",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/salt-flat",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-swift-sail",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 750
+   },
+   "聲望": "公開，0；舊廠公版非招牌件",
+   "發布條件": "可交 gm 規劃公開上架；不改 chittagong／dhaka",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-swift-sail；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/bulwark-ii",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id"
+  },
+  {
+   "id": "component/fa-wing-stays",
+   "交辦軌": "gm（市場／研發）；gl（人類戰損回收）",
+   "市場": "market/singapore",
+   "上架參數": {
+    "kind": "component",
+    "def": "component/fa-wing-stays",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1400
+   },
+   "聲望": "塞勒涅工業 55；待部件門檻接通才上架",
+   "發布條件": "待引擎部件聲望門檻＋gm核營運勢力，未就緒不公開上架",
+   "研發": "建議新非核心件研究分支，前置 research/forge-composite；不把解鎖當成製造已實作",
+   "掉落": "僅人類機甲裝備回收 component/fa-wing-stays；任何怪獸→本成品：無（機械製品非獸身上原件）",
+   "載體": "frame/selene-iris-g6",
+   "安裝條件": "限 bodyplan/m2-splitwing-a；每機最多一套，禁雙背槽重裝"
+  }
+ ]
+}

@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-northafrica-sluice",
+  "name": "閘渠-II型護膝",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "component/fm-northafrica-sluice"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "legs",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 45,
+        "ablative": true,
+        "resist": {
+          "acid": 0.1
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Sluicekeeper Greaves",
+  "etymology": "北非傘以守閘用甲護住機腿，讓守線機熬過迎面第一輪。厚甲拖慢起步，不能讓機體涉水如履平地；承接的是放閘後水困機殺的打法。名稱與具體型錄均為提案。"
+}

@@ -1,0 +1,2148 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "檔",
+  "類型",
+  "批",
+  "名稱",
+  "nameEn",
+  "定位",
+  "掛點",
+  "等級",
+  "AI戰術鍵",
+  "聲望",
+  "新名詞",
+  "前置需求",
+  "數值帶",
+  "逐檔規格",
+  "文案要點",
+  "供體"
+ ],
+ "rows": [
+  {
+   "id": "component/fl-scale-leaf",
+   "檔": "content/base/components/fl-scale-leaf.json",
+   "類型": "component",
+   "批": "fg-gl-01",
+   "名稱": "節甲襯",
+   "nameEn": "Segment Lining",
+   "定位": "薄甲墊在胸前，先替座艙吃下一擊。",
+   "掛點": "吉大港拆船幫：崩年拆船手改做拆屍工。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：節甲襯、甲葉",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 12／size 1／mass 2；burden 1/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-scale-leaf",
+    "name": "節甲襯",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-d",
+     "insect"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "pierce": 0.15
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "burden": 1
+   },
+   "文案要點": [
+    "薄甲墊在胸前，先替座艙吃下一擊。",
+    "吉大港拆船幫：崩年拆船手改做拆屍工。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "mite-d": "body",
+    "brinepin-d": "needle",
+    "grit-fan-d": "fan"
+   }
+  },
+  {
+   "id": "research/fl-scale-leaf-study",
+   "檔": "content/base/world/research/fl-scale-leaf-study.json",
+   "類型": "research",
+   "批": "fg-gl-01",
+   "名稱": "節甲襯拆存法",
+   "nameEn": "Segment Lining Conservation",
+   "定位": "耗用一份甲葉與拆料，學會保存及固定節甲襯。",
+   "掛點": "吉大港拆船幫：崩年拆船手改做拆屍工。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：節甲襯、甲葉",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "600 幣／40 工時；stock:fl-scale-leaf 1；scrap 1",
+   "逐檔規格": {
+    "id": "research/fl-scale-leaf-study",
+    "name": "節甲襯拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 600,
+     "techHours": 40
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-scale-leaf": 1,
+     "stock:scrap": 1
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-scale-leaf"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認甲葉是否還能用，再處理節甲襯的接口。",
+    "吉大港拆船幫：崩年拆船手改做拆屍工。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-scale-leaf"
+   }
+  },
+  {
+   "id": "component/fl-lantern-pith",
+   "檔": "content/base/components/fl-lantern-pith.json",
+   "類型": "component",
+   "批": "fg-gl-01",
+   "名稱": "燈髓囊",
+   "nameEn": "Lantern Marrow",
+   "定位": "把燈腹拆下的囊掛在背後，少量續入流光。",
+   "掛點": "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：燈髓囊、節髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 16／size 1／mass 3；burden 2/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-lantern-pith",
+    "name": "燈髓囊",
+    "slot": "backMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "bio",
+    "pools": [
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 1,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-c",
+     "insect"
+    ],
+    "burden": 2
+   },
+   "文案要點": [
+    "把燈腹拆下的囊掛在背後，少量續入流光。",
+    "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "lantern-keel-c": "lantern",
+    "lancewing-c": "lantern"
+   }
+  },
+  {
+   "id": "research/fl-lantern-pith-study",
+   "檔": "content/base/world/research/fl-lantern-pith-study.json",
+   "類型": "research",
+   "批": "fg-gl-01",
+   "名稱": "燈髓囊拆存法",
+   "nameEn": "Lantern Marrow Conservation",
+   "定位": "耗用一份節髓與拆料，學會保存及固定燈髓囊。",
+   "掛點": "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：燈髓囊、節髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "750 幣／60 工時；stock:fl-lantern-pith 1；scrap 2",
+   "逐檔規格": {
+    "id": "research/fl-lantern-pith-study",
+    "name": "燈髓囊拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 750,
+     "techHours": 60
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-lantern-pith": 1,
+     "stock:scrap": 2
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-lantern-pith"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認節髓是否還能用，再處理燈髓囊的接口。",
+    "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-lantern-pith"
+   }
+  },
+  {
+   "id": "component/fl-rack-rib",
+   "檔": "content/base/components/fl-rack-rib.json",
+   "類型": "component",
+   "批": "fg-gl-01",
+   "名稱": "櫛骨襯",
+   "nameEn": "Comb Rib",
+   "定位": "擋直刺的窄骨排，遇蝕液仍會漏進胸甲。",
+   "掛點": "矢櫛的高處射擊棲位；拆船幫回收矢架。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：櫛骨襯、稜骨",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 18／size 2／mass 4；burden 4/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-rack-rib",
+    "name": "櫛骨襯",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-b",
+     "insect"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 35,
+       "ablative": true,
+       "resist": {
+        "pierce": 0.25
+       },
+       "passThrough": {
+        "acid": 0.5
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 4
+   },
+   "文案要點": [
+    "擋直刺的窄骨排，遇蝕液仍會漏進胸甲。",
+    "矢櫛的高處射擊棲位；拆船幫回收矢架。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "needle-rack-b": "rack"
+   }
+  },
+  {
+   "id": "research/fl-rack-rib-study",
+   "檔": "content/base/world/research/fl-rack-rib-study.json",
+   "類型": "research",
+   "批": "fg-gl-01",
+   "名稱": "櫛骨襯拆存法",
+   "nameEn": "Comb Rib Conservation",
+   "定位": "耗用一份稜骨與拆料，學會保存及固定櫛骨襯。",
+   "掛點": "矢櫛的高處射擊棲位；拆船幫回收矢架。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：櫛骨襯、稜骨",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1000 幣／80 工時；stock:fl-rack-rib 1；scrap 3",
+   "逐檔規格": {
+    "id": "research/fl-rack-rib-study",
+    "name": "櫛骨襯拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1000,
+     "techHours": 80
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-rack-rib": 1,
+     "stock:scrap": 3
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-rack-rib"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認稜骨是否還能用，再處理櫛骨襯的接口。",
+    "矢櫛的高處射擊棲位；拆船幫回收矢架。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-rack-rib"
+   }
+  },
+  {
+   "id": "component/fl-gate-flap",
+   "檔": "content/base/components/fl-gate-flap.json",
+   "類型": "component",
+   "批": "fg-gl-01",
+   "名稱": "闕甲裙",
+   "nameEn": "Gate Mantle",
+   "定位": "厚甲向胸前合攏，擋硬矢卻怕燒。",
+   "掛點": "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：闕甲裙、闕膜",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 22／size 2／mass 5；burden 6/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-gate-flap",
+    "name": "闕甲裙",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 22,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-a",
+     "insect"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 50,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.25
+       },
+       "passThrough": {
+        "thermal": 0.5
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 6
+   },
+   "文案要點": [
+    "厚甲向胸前合攏，擋硬矢卻怕燒。",
+    "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "sluice-mother-a": "gate-left",
+    "siegebeetle-a": "gate-mantle"
+   }
+  },
+  {
+   "id": "research/fl-gate-flap-study",
+   "檔": "content/base/world/research/fl-gate-flap-study.json",
+   "類型": "research",
+   "批": "fg-gl-01",
+   "名稱": "闕甲裙拆存法",
+   "nameEn": "Gate Mantle Conservation",
+   "定位": "耗用一份闕膜與拆料，學會保存及固定闕甲裙。",
+   "掛點": "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：闕甲裙、闕膜",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1250 幣／100 工時；stock:fl-gate-flap 1；scrap 4",
+   "逐檔規格": {
+    "id": "research/fl-gate-flap-study",
+    "name": "闕甲裙拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1250,
+     "techHours": 100
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-gate-flap": 1,
+     "stock:scrap": 4
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-gate-flap"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認闕膜是否還能用，再處理闕甲裙的接口。",
+    "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-gate-flap"
+   }
+  },
+  {
+   "id": "component/fl-heel-cushion",
+   "檔": "content/base/components/fl-heel-cushion.json",
+   "類型": "component",
+   "批": "fg-gl-01",
+   "名稱": "蹄墊甲",
+   "nameEn": "Heel Cushion",
+   "定位": "柔墊把鈍擊攤開，尖矢仍會穿過。",
+   "掛點": "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：蹄墊甲、足筋",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 12／size 1／mass 2；burden 1/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-heel-cushion",
+    "name": "蹄墊甲",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-d",
+     "beast"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.2
+       },
+       "passThrough": {
+        "pierce": 0.4
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 1
+   },
+   "文案要點": [
+    "柔墊把鈍擊攤開，尖矢仍會穿過。",
+    "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "surf-runner-d": "forefeet",
+    "tidewolf-d": "front-left"
+   }
+  },
+  {
+   "id": "research/fl-heel-cushion-study",
+   "檔": "content/base/world/research/fl-heel-cushion-study.json",
+   "類型": "research",
+   "批": "fg-gl-01",
+   "名稱": "蹄墊甲拆存法",
+   "nameEn": "Heel Cushion Conservation",
+   "定位": "耗用一份足筋與拆料，學會保存及固定蹄墊甲。",
+   "掛點": "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：蹄墊甲、足筋",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "600 幣／40 工時；stock:fl-heel-cushion 1；scrap 1",
+   "逐檔規格": {
+    "id": "research/fl-heel-cushion-study",
+    "name": "蹄墊甲拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 600,
+     "techHours": 40
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-heel-cushion": 1,
+     "stock:scrap": 1
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-heel-cushion"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認足筋是否還能用，再處理蹄墊甲的接口。",
+    "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-heel-cushion"
+   }
+  },
+  {
+   "id": "component/fl-foam-bladder",
+   "檔": "content/base/components/fl-foam-bladder.json",
+   "類型": "component",
+   "批": "fg-gl-02",
+   "名稱": "沫顎隔囊",
+   "nameEn": "Foam Bladder",
+   "定位": "剖開沫顎胸囊，留一層擋蝕液的軟襯。",
+   "掛點": "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：沫顎隔囊、筋脂",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 16／size 1／mass 3；burden 2/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-foam-bladder",
+    "name": "沫顎隔囊",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-c",
+     "beast"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "acid": 0.25
+       },
+       "passThrough": {
+        "kinetic": 0.2
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 2
+   },
+   "文案要點": [
+    "剖開沫顎胸囊，留一層擋蝕液的軟襯。",
+    "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "foam-jaw-c": "chest"
+   }
+  },
+  {
+   "id": "research/fl-foam-bladder-study",
+   "檔": "content/base/world/research/fl-foam-bladder-study.json",
+   "類型": "research",
+   "批": "fg-gl-02",
+   "名稱": "沫顎隔囊拆存法",
+   "nameEn": "Foam Bladder Conservation",
+   "定位": "耗用一份筋脂與拆料，學會保存及固定沫顎隔囊。",
+   "掛點": "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：沫顎隔囊、筋脂",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "750 幣／60 工時；stock:fl-foam-bladder 1；scrap 2",
+   "逐檔規格": {
+    "id": "research/fl-foam-bladder-study",
+    "name": "沫顎隔囊拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 750,
+     "techHours": 60
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-foam-bladder": 1,
+     "stock:scrap": 2
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-foam-bladder"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認筋脂是否還能用，再處理沫顎隔囊的接口。",
+    "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-foam-bladder"
+   }
+  },
+  {
+   "id": "component/fl-shelf-ridge",
+   "檔": "content/base/components/fl-shelf-ridge.json",
+   "類型": "component",
+   "批": "fg-gl-02",
+   "名稱": "棧背梁",
+   "nameEn": "Shelf Ridge",
+   "定位": "厚背梁護住胸腹，背得重也擋得久。",
+   "掛點": "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：棧背梁、梁髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 18／size 2／mass 4；burden 4/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-shelf-ridge",
+    "name": "棧背梁",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-b",
+     "beast"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 55,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.15
+       },
+       "passThrough": {
+        "acid": 0.6
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 4
+   },
+   "文案要點": [
+    "厚背梁護住胸腹，背得重也擋得久。",
+    "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "shelf-back-b": "back",
+    "bulwark-b": "back"
+   }
+  },
+  {
+   "id": "research/fl-shelf-ridge-study",
+   "檔": "content/base/world/research/fl-shelf-ridge-study.json",
+   "類型": "research",
+   "批": "fg-gl-02",
+   "名稱": "棧背梁拆存法",
+   "nameEn": "Shelf Ridge Conservation",
+   "定位": "耗用一份梁髓與拆料，學會保存及固定棧背梁。",
+   "掛點": "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：棧背梁、梁髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1000 幣／80 工時；stock:fl-shelf-ridge 1；scrap 3",
+   "逐檔規格": {
+    "id": "research/fl-shelf-ridge-study",
+    "name": "棧背梁拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1000,
+     "techHours": 80
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-shelf-ridge": 1,
+     "stock:scrap": 3
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-shelf-ridge"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認梁髓是否還能用，再處理棧背梁的接口。",
+    "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-shelf-ridge"
+   }
+  },
+  {
+   "id": "component/fl-antler-cup",
+   "檔": "content/base/components/fl-antler-cup.json",
+   "類型": "component",
+   "批": "fg-gl-02",
+   "名稱": "白冠角盞",
+   "nameEn": "White Crown Cup",
+   "定位": "角盞能存一大口流光，自己不會再添滿。",
+   "掛點": "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：白冠角盞、頸髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 22／size 2／mass 5；burden 6/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-antler-cup",
+    "name": "白冠角盞",
+    "slot": "systemMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "bio",
+    "pools": [
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 30,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 22,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-a",
+     "beast"
+    ],
+    "burden": 6
+   },
+   "文案要點": [
+    "角盞能存一大口流光，自己不會再添滿。",
+    "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "reef-antler-a": "antler"
+   }
+  },
+  {
+   "id": "research/fl-antler-cup-study",
+   "檔": "content/base/world/research/fl-antler-cup-study.json",
+   "類型": "research",
+   "批": "fg-gl-02",
+   "名稱": "白冠角盞拆存法",
+   "nameEn": "White Crown Cup Conservation",
+   "定位": "耗用一份頸髓與拆料，學會保存及固定白冠角盞。",
+   "掛點": "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：白冠角盞、頸髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1250 幣／100 工時；stock:fl-antler-cup 1；scrap 4",
+   "逐檔規格": {
+    "id": "research/fl-antler-cup-study",
+    "name": "白冠角盞拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1250,
+     "techHours": 100
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-antler-cup": 1,
+     "stock:scrap": 4
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-antler-cup"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認頸髓是否還能用，再處理白冠角盞的接口。",
+    "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-antler-cup"
+   }
+  },
+  {
+   "id": "component/fl-tidespine-keel",
+   "檔": "content/base/components/fl-tidespine-keel.json",
+   "類型": "component",
+   "批": "fg-gl-02",
+   "名稱": "潮脊斷梁",
+   "nameEn": "Tidespine Keel",
+   "定位": "巨獸脊梁抵住胸甲，護得厚也壓得人難以承擔。",
+   "掛點": "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。",
+   "等級": "S",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：潮脊斷梁、脊璞",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 24／size 2／mass 5；burden 12/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-tidespine-keel",
+    "name": "潮脊斷梁",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 24,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-s",
+     "beast"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 55,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.25,
+        "pierce": 0.25,
+        "acid": 0.1
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "burden": 12
+   },
+   "文案要點": [
+    "巨獸脊梁抵住胸甲，護得厚也壓得人難以承擔。",
+    "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "tidespine-chittagong": "spine"
+   }
+  },
+  {
+   "id": "research/fl-tidespine-keel-study",
+   "檔": "content/base/world/research/fl-tidespine-keel-study.json",
+   "類型": "research",
+   "批": "fg-gl-02",
+   "名稱": "潮脊斷梁拆存法",
+   "nameEn": "Tidespine Keel Conservation",
+   "定位": "耗用一份脊璞與拆料，學會保存及固定潮脊斷梁。",
+   "掛點": "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。",
+   "等級": "S",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：潮脊斷梁、脊璞",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1500 幣／120 工時；stock:fl-tidespine-keel 1；scrap 6",
+   "逐檔規格": {
+    "id": "research/fl-tidespine-keel-study",
+    "name": "潮脊斷梁拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1500,
+     "techHours": 120
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-tidespine-keel": 1,
+     "stock:scrap": 6
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-tidespine-keel"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認脊璞是否還能用，再處理潮脊斷梁的接口。",
+    "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-tidespine-keel"
+   }
+  },
+  {
+   "id": "component/fl-sac-fold",
+   "檔": "content/base/components/fl-sac-fold.json",
+   "類型": "component",
+   "批": "fg-gl-02",
+   "名稱": "囊褶襯",
+   "nameEn": "Saccular Fold",
+   "定位": "薄囊隔開灼燒，硬物仍容易穿進去。",
+   "掛點": "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：囊褶襯、囊褶",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 12／size 1／mass 2；burden 1/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-sac-fold",
+    "name": "囊褶襯",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-d",
+     "alien"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "thermal": 0.25
+       },
+       "passThrough": {
+        "kinetic": 0.5
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 1
+   },
+   "文案要點": [
+    "薄囊隔開灼燒，硬物仍容易穿進去。",
+    "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "sac-d": "sac"
+   }
+  },
+  {
+   "id": "research/fl-sac-fold-study",
+   "檔": "content/base/world/research/fl-sac-fold-study.json",
+   "類型": "research",
+   "批": "fg-gl-02",
+   "名稱": "囊褶襯拆存法",
+   "nameEn": "Saccular Fold Conservation",
+   "定位": "耗用一份囊褶與拆料，學會保存及固定囊褶襯。",
+   "掛點": "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：囊褶襯、囊褶",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "600 幣／40 工時；stock:fl-sac-fold 1；scrap 1",
+   "逐檔規格": {
+    "id": "research/fl-sac-fold-study",
+    "name": "囊褶襯拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 600,
+     "techHours": 40
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-sac-fold": 1,
+     "stock:scrap": 1
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-sac-fold"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認囊褶是否還能用，再處理囊褶襯的接口。",
+    "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-sac-fold"
+   }
+  },
+  {
+   "id": "component/fl-hollow-sail",
+   "檔": "content/base/components/fl-hollow-sail.json",
+   "類型": "component",
+   "批": "fg-gl-03",
+   "名稱": "空帆片",
+   "nameEn": "Hollow Sail",
+   "定位": "一片帆張成薄幕，幕破後能慢慢續回。",
+   "掛點": "空帆的空中棲位；不賦予飛行或水域移動。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：空帆片、懸絮",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 16／size 1／mass 3；burden 2/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-hollow-sail",
+    "name": "空帆片",
+    "slot": "backMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-c",
+     "alien"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 2
+      }
+     }
+    ],
+    "burden": 2
+   },
+   "文案要點": [
+    "一片帆張成薄幕，幕破後能慢慢續回。",
+    "空帆的空中棲位；不賦予飛行或水域移動。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "hollow-sail-c": "sail-left",
+    "breakwater-clinger-c": "left-mantle"
+   }
+  },
+  {
+   "id": "research/fl-hollow-sail-study",
+   "檔": "content/base/world/research/fl-hollow-sail-study.json",
+   "類型": "research",
+   "批": "fg-gl-03",
+   "名稱": "空帆片拆存法",
+   "nameEn": "Hollow Sail Conservation",
+   "定位": "耗用一份懸絮與拆料，學會保存及固定空帆片。",
+   "掛點": "空帆的空中棲位；不賦予飛行或水域移動。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：空帆片、懸絮",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "750 幣／60 工時；stock:fl-hollow-sail 1；scrap 2",
+   "逐檔規格": {
+    "id": "research/fl-hollow-sail-study",
+    "name": "空帆片拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 750,
+     "techHours": 60
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-hollow-sail": 1,
+     "stock:scrap": 2
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-hollow-sail"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認懸絮是否還能用，再處理空帆片的接口。",
+    "空帆的空中棲位；不賦予飛行或水域移動。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-hollow-sail"
+   }
+  },
+  {
+   "id": "component/fl-mirror-splinter",
+   "檔": "content/base/components/fl-mirror-splinter.json",
+   "類型": "component",
+   "批": "fg-gl-03",
+   "名稱": "偏鏡甲",
+   "nameEn": "Oblique Mirror",
+   "定位": "偏斜鏡面擋流光，凡鐵正面打來仍吃得住傷。",
+   "掛點": "鏡肢的有甲側與裸側；不是另一件骸片透鏡。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：偏鏡甲、鏡屑",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 18／size 2／mass 4；burden 4/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-mirror-splinter",
+    "name": "偏鏡甲",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-b",
+     "alien"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 40,
+       "ablative": true,
+       "resist": {
+        "energy": 0.25
+       },
+       "passThrough": {
+        "kinetic": 0.3
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 4
+   },
+   "文案要點": [
+    "偏斜鏡面擋流光，凡鐵正面打來仍吃得住傷。",
+    "鏡肢的有甲側與裸側；不是另一件骸片透鏡。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "mirror-b": "mirror-side"
+   }
+  },
+  {
+   "id": "research/fl-mirror-splinter-study",
+   "檔": "content/base/world/research/fl-mirror-splinter-study.json",
+   "類型": "research",
+   "批": "fg-gl-03",
+   "名稱": "偏鏡甲拆存法",
+   "nameEn": "Oblique Mirror Conservation",
+   "定位": "耗用一份鏡屑與拆料，學會保存及固定偏鏡甲。",
+   "掛點": "鏡肢的有甲側與裸側；不是另一件骸片透鏡。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：偏鏡甲、鏡屑",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1000 幣／80 工時；stock:fl-mirror-splinter 1；scrap 3",
+   "逐檔規格": {
+    "id": "research/fl-mirror-splinter-study",
+    "name": "偏鏡甲拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1000,
+     "techHours": 80
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-mirror-splinter": 1,
+     "stock:scrap": 3
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-mirror-splinter"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認鏡屑是否還能用，再處理偏鏡甲的接口。",
+    "鏡肢的有甲側與裸側；不是另一件骸片透鏡。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-mirror-splinter"
+   }
+  },
+  {
+   "id": "component/fl-dusk-curtain",
+   "檔": "content/base/components/fl-dusk-curtain.json",
+   "類型": "component",
+   "批": "fg-gl-03",
+   "名稱": "暮帷掛",
+   "nameEn": "Dusk Curtain",
+   "定位": "垂幕拆下的帷沿慢慢聚光，代價是持續承擔。",
+   "掛點": "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：暮帷掛、帷髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 22／size 2／mass 5；burden 6/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-dusk-curtain",
+    "name": "暮帷掛",
+    "slot": "backMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "bio",
+    "pools": [
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 18,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 3,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 22,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-a",
+     "alien"
+    ],
+    "burden": 6
+   },
+   "文案要點": [
+    "垂幕拆下的帷沿慢慢聚光，代價是持續承擔。",
+    "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "dusk-fold-a": "mantle"
+   }
+  },
+  {
+   "id": "research/fl-dusk-curtain-study",
+   "檔": "content/base/world/research/fl-dusk-curtain-study.json",
+   "類型": "research",
+   "批": "fg-gl-03",
+   "名稱": "暮帷掛拆存法",
+   "nameEn": "Dusk Curtain Conservation",
+   "定位": "耗用一份帷髓與拆料，學會保存及固定暮帷掛。",
+   "掛點": "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：暮帷掛、帷髓",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1250 幣／100 工時；stock:fl-dusk-curtain 1；scrap 4",
+   "逐檔規格": {
+    "id": "research/fl-dusk-curtain-study",
+    "name": "暮帷掛拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1250,
+     "techHours": 100
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-dusk-curtain": 1,
+     "stock:scrap": 4
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-dusk-curtain"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認帷髓是否還能用，再處理暮帷掛的接口。",
+    "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-dusk-curtain"
+   }
+  },
+  {
+   "id": "component/fl-wick-felt",
+   "檔": "content/base/components/fl-wick-felt.json",
+   "類型": "component",
+   "批": "fg-gl-03",
+   "名稱": "燈苔氈",
+   "nameEn": "Wick Felt",
+   "定位": "胸前薄氈會補回細傷，燒穿後便救不回。",
+   "掛點": "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：燈苔氈、燈絨",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 12／size 1／mass 2；burden 1/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-wick-felt",
+    "name": "燈苔氈",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-d",
+     "mycelium"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 1
+      }
+     }
+    ],
+    "burden": 1
+   },
+   "文案要點": [
+    "胸前薄氈會補回細傷，燒穿後便救不回。",
+    "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "wick-mat-d": "wick",
+    "pod-d": "pod"
+   }
+  },
+  {
+   "id": "research/fl-wick-felt-study",
+   "檔": "content/base/world/research/fl-wick-felt-study.json",
+   "類型": "research",
+   "批": "fg-gl-03",
+   "名稱": "燈苔氈拆存法",
+   "nameEn": "Wick Felt Conservation",
+   "定位": "耗用一份燈絨與拆料，學會保存及固定燈苔氈。",
+   "掛點": "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。",
+   "等級": "D",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：燈苔氈、燈絨",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "600 幣／40 工時；stock:fl-wick-felt 1；scrap 1",
+   "逐檔規格": {
+    "id": "research/fl-wick-felt-study",
+    "name": "燈苔氈拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 600,
+     "techHours": 40
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-wick-felt": 1,
+     "stock:scrap": 1
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-wick-felt"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認燈絨是否還能用，再處理燈苔氈的接口。",
+    "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-wick-felt"
+   }
+  },
+  {
+   "id": "component/fl-reed-screen",
+   "檔": "content/base/components/fl-reed-screen.json",
+   "類型": "component",
+   "批": "fg-gl-03",
+   "名稱": "蘆網襯",
+   "nameEn": "Reed Screen",
+   "定位": "編網狀的菌片讓一半蝕液穿走，換來較厚的緩衝。",
+   "掛點": "蘆網採收提案；拆船幫用舊纜的手法固定它。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：蘆網襯、網絲",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 16／size 1／mass 3；burden 2/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-reed-screen",
+    "name": "蘆網襯",
+    "slot": "armorMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-c",
+     "mycelium"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 40,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.15
+       },
+       "passThrough": {
+        "acid": 0.5
+       },
+       "structural": false
+      }
+     }
+    ],
+    "burden": 2
+   },
+   "文案要點": [
+    "編網狀的菌片讓一半蝕液穿走，換來較厚的緩衝。",
+    "蘆網採收提案；拆船幫用舊纜的手法固定它。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "reed-lace-c": "crown",
+    "stalk-c": "crown"
+   }
+  },
+  {
+   "id": "research/fl-reed-screen-study",
+   "檔": "content/base/world/research/fl-reed-screen-study.json",
+   "類型": "research",
+   "批": "fg-gl-03",
+   "名稱": "蘆網襯拆存法",
+   "nameEn": "Reed Screen Conservation",
+   "定位": "耗用一份網絲與拆料，學會保存及固定蘆網襯。",
+   "掛點": "蘆網採收提案；拆船幫用舊纜的手法固定它。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：蘆網襯、網絲",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "750 幣／60 工時；stock:fl-reed-screen 1；scrap 2",
+   "逐檔規格": {
+    "id": "research/fl-reed-screen-study",
+    "name": "蘆網襯拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 750,
+     "techHours": 60
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-reed-screen": 1,
+     "stock:scrap": 2
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-reed-screen"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認網絲是否還能用，再處理蘆網襯的接口。",
+    "蘆網採收提案；拆船幫用舊纜的手法固定它。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-reed-screen"
+   }
+  },
+  {
+   "id": "component/fl-vault-ply",
+   "檔": "content/base/components/fl-vault-ply.json",
+   "類型": "component",
+   "批": "fg-gl-04",
+   "名稱": "拱根疊甲",
+   "nameEn": "Vault Laminate",
+   "定位": "外片擋尖矢、內片擋鈍擊，兩片分別耗損。",
+   "掛點": "拱根的高處棲位；拆解時保留疊根的先後。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：拱根疊甲、根箔",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 18／size 2／mass 4；burden 4/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-vault-ply",
+    "name": "拱根疊甲",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-b",
+     "mycelium"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "chitin",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "pierce": 0.2
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     },
+     {
+      "part": "torso",
+      "insertAt": 1,
+      "layer": {
+       "type": "flesh",
+       "hp": 25,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.2
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "burden": 4
+   },
+   "文案要點": [
+    "外片擋尖矢、內片擋鈍擊，兩片分別耗損。",
+    "拱根的高處棲位；拆解時保留疊根的先後。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "vault-root-b": "vault",
+    "stalk-b": "pillar"
+   }
+  },
+  {
+   "id": "research/fl-vault-ply-study",
+   "檔": "content/base/world/research/fl-vault-ply-study.json",
+   "類型": "research",
+   "批": "fg-gl-04",
+   "名稱": "拱根疊甲拆存法",
+   "nameEn": "Vault Laminate Conservation",
+   "定位": "耗用一份根箔與拆料，學會保存及固定拱根疊甲。",
+   "掛點": "拱根的高處棲位；拆解時保留疊根的先後。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：拱根疊甲、根箔",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1000 幣／80 工時；stock:fl-vault-ply 1；scrap 3",
+   "逐檔規格": {
+    "id": "research/fl-vault-ply-study",
+    "name": "拱根疊甲拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1000,
+     "techHours": 80
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-vault-ply": 1,
+     "stock:scrap": 3
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-vault-ply"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認根箔是否還能用，再處理拱根疊甲的接口。",
+    "拱根的高處棲位；拆解時保留疊根的先後。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-vault-ply"
+   }
+  },
+  {
+   "id": "component/fl-grove-shroud",
+   "檔": "content/base/components/fl-grove-shroud.json",
+   "類型": "component",
+   "批": "fg-gl-04",
+   "名稱": "白林菌帷",
+   "nameEn": "White Grove Shroud",
+   "定位": "厚菌帷緩慢補回胸前損傷，持有者仍要扛住它。",
+   "掛點": "五湖白汊與斷橋骸林；不是活捕、更不是種植。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：白林菌帷、林絡",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "hp 22／size 2／mass 5；burden 6/回合；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-grove-shroud",
+    "name": "白林菌帷",
+    "slot": "armorMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "bio",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 22,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-a",
+     "mycelium"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 45,
+       "ablative": true,
+       "resist": {
+        "acid": 0.15
+       },
+       "passThrough": {},
+       "structural": false,
+       "regen": 2
+      }
+     }
+    ],
+    "burden": 6
+   },
+   "文案要點": [
+    "厚菌帷緩慢補回胸前損傷，持有者仍要扛住它。",
+    "五湖白汊與斷橋骸林；不是活捕、更不是種植。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "drowned-grove-a": "crown",
+    "bed-white-night": "knot-1",
+    "bed-bellless-dream": "knot-1"
+   }
+  },
+  {
+   "id": "research/fl-grove-shroud-study",
+   "檔": "content/base/world/research/fl-grove-shroud-study.json",
+   "類型": "research",
+   "批": "fg-gl-04",
+   "名稱": "白林菌帷拆存法",
+   "nameEn": "White Grove Shroud Conservation",
+   "定位": "耗用一份林絡與拆料，學會保存及固定白林菌帷。",
+   "掛點": "五湖白汊與斷橋骸林；不是活捕、更不是種植。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：白林菌帷、林絡",
+   "前置需求": "G1 掉落／G3 取得閉環",
+   "數值帶": "1250 幣／100 工時；stock:fl-grove-shroud 1；scrap 4",
+   "逐檔規格": {
+    "id": "research/fl-grove-shroud-study",
+    "name": "白林菌帷拆存法",
+    "direction": "graft",
+    "cost": {
+     "coin": 1250,
+     "techHours": 100
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-grove-shroud": 1,
+     "stock:scrap": 4
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-grove-shroud"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認林絡是否還能用，再處理白林菌帷的接口。",
+    "五湖白汊與斷橋骸林；不是活捕、更不是種植。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-grove-shroud"
+   }
+  },
+  {
+   "id": "component/fl-fallen-step",
+   "檔": "content/base/components/fl-fallen-step.json",
+   "類型": "component",
+   "批": "fg-gl-04",
+   "名稱": "墟階殘片",
+   "nameEn": "Fallen Step",
+   "定位": "離開古代機的殘片能撐一層薄幕，須先過共鳴門檻。",
+   "掛點": "浦那外舊陣列；只撿散落遺物，不拆刑天。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：墟階殘片、階砂",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "hp 16／size 1／mass 3；resonance {'beliefs': ['seek-truth'], 'threshold': 0.5}；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-fallen-step",
+    "name": "墟階殘片",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "ancient",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-c",
+     "relic"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 1
+      }
+     }
+    ],
+    "resonance": {
+     "beliefs": [
+      "seek-truth"
+     ],
+     "threshold": 0.5
+    }
+   },
+   "文案要點": [
+    "離開古代機的殘片能撐一層薄幕，須先過共鳴門檻。",
+    "浦那外舊陣列；只撿散落遺物，不拆刑天。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "地點": "place/old-array"
+   }
+  },
+  {
+   "id": "research/fl-fallen-step-study",
+   "檔": "content/base/world/research/fl-fallen-step-study.json",
+   "類型": "research",
+   "批": "fg-gl-04",
+   "名稱": "墟階殘片拆存法",
+   "nameEn": "Fallen Step Conservation",
+   "定位": "耗用一份階砂與拆料，學會保存及固定墟階殘片。",
+   "掛點": "浦那外舊陣列；只撿散落遺物，不拆刑天。",
+   "等級": "C",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：墟階殘片、階砂",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "750 幣／60 工時；stock:fl-fallen-step 1；scrap 2",
+   "逐檔規格": {
+    "id": "research/fl-fallen-step-study",
+    "name": "墟階殘片拆存法",
+    "direction": "shell",
+    "cost": {
+     "coin": 750,
+     "techHours": 60
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-fallen-step": 1,
+     "stock:scrap": 2
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-fallen-step"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認階砂是否還能用，再處理墟階殘片的接口。",
+    "浦那外舊陣列；只撿散落遺物，不拆刑天。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-fallen-step"
+   }
+  },
+  {
+   "id": "component/fl-tomb-chime",
+   "檔": "content/base/components/fl-tomb-chime.json",
+   "類型": "component",
+   "批": "fg-gl-04",
+   "名稱": "古陵空鈴",
+   "nameEn": "Sepulchral Chime",
+   "定位": "空鈴承住流光，沒有共鳴的人只能聽見空響。",
+   "掛點": "慶州古陵；不聲稱取自處容身上。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：古陵空鈴、鈴灰",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "hp 18／size 2／mass 4；resonance {'beliefs': ['protect-kin', 'bring-them-home'], 'threshold': 0.5}；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-tomb-chime",
+    "name": "古陵空鈴",
+    "slot": "systemMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "ancient",
+    "pools": [
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 20,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 0,
+      "regen": 2,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-b",
+     "relic"
+    ],
+    "resonance": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "threshold": 0.5
+    }
+   },
+   "文案要點": [
+    "空鈴承住流光，沒有共鳴的人只能聽見空響。",
+    "慶州古陵；不聲稱取自處容身上。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "地點": "place/gyeongju-tombs"
+   }
+  },
+  {
+   "id": "research/fl-tomb-chime-study",
+   "檔": "content/base/world/research/fl-tomb-chime-study.json",
+   "類型": "research",
+   "批": "fg-gl-04",
+   "名稱": "古陵空鈴拆存法",
+   "nameEn": "Sepulchral Chime Conservation",
+   "定位": "耗用一份鈴灰與拆料，學會保存及固定古陵空鈴。",
+   "掛點": "慶州古陵；不聲稱取自處容身上。",
+   "等級": "B",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：古陵空鈴、鈴灰",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "1000 幣／80 工時；stock:fl-tomb-chime 1；scrap 3",
+   "逐檔規格": {
+    "id": "research/fl-tomb-chime-study",
+    "name": "古陵空鈴拆存法",
+    "direction": "shell",
+    "cost": {
+     "coin": 1000,
+     "techHours": 80
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-tomb-chime": 1,
+     "stock:scrap": 3
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-tomb-chime"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認鈴灰是否還能用，再處理古陵空鈴的接口。",
+    "慶州古陵；不聲稱取自處容身上。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-tomb-chime"
+   }
+  },
+  {
+   "id": "component/fl-lake-votive",
+   "檔": "content/base/components/fl-lake-votive.json",
+   "類型": "component",
+   "批": "fg-gl-04",
+   "名稱": "湖殿殘燈",
+   "nameEn": "Lake Votive",
+   "定位": "殘燈撐起能復原的光幕，認不出來者不能借光。",
+   "掛點": "的的喀喀遺跡；不交易維拉科查、不另寫認主。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：湖殿殘燈、燈石",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "hp 22／size 2／mass 5；resonance {'beliefs': ['protect-kin', 'bring-them-home'], 'threshold': 0.75}；層或池見逐檔規格",
+   "逐檔規格": {
+    "id": "component/fl-lake-votive",
+    "name": "湖殿殘燈",
+    "slot": "backMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "ancient",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 22,
+    "tags": [
+     "loot",
+     "salvage",
+     "grade-a",
+     "relic"
+    ],
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 40,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 3
+      }
+     }
+    ],
+    "resonance": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "threshold": 0.75
+    }
+   },
+   "文案要點": [
+    "殘燈撐起能復原的光幕，認不出來者不能借光。",
+    "的的喀喀遺跡；不交易維拉科查、不另寫認主。",
+    "研究的是保存、固定與辨識；不量產獸體或古代遺物。"
+   ],
+   "供體": {
+    "地點": "place/titicaca-ruin"
+   }
+  },
+  {
+   "id": "research/fl-lake-votive-study",
+   "檔": "content/base/world/research/fl-lake-votive-study.json",
+   "類型": "research",
+   "批": "fg-gl-04",
+   "名稱": "湖殿殘燈拆存法",
+   "nameEn": "Lake Votive Conservation",
+   "定位": "耗用一份燈石與拆料，學會保存及固定湖殿殘燈。",
+   "掛點": "的的喀喀遺跡；不交易維拉科查、不另寫認主。",
+   "等級": "A",
+   "AI戰術鍵": "不適用：無能力；不增加 abilities/effects 檔",
+   "聲望": "公開回收件；非勢力招牌，不設聲望門檻",
+   "新名詞": "提案：湖殿殘燈、燈石",
+   "前置需求": "G1 掉落／G3 取得閉環／G5 共鳴（暫緩投放）",
+   "數值帶": "1250 幣／100 工時；stock:fl-lake-votive 1；scrap 4",
+   "逐檔規格": {
+    "id": "research/fl-lake-votive-study",
+    "name": "湖殿殘燈拆存法",
+    "direction": "shell",
+    "cost": {
+     "coin": 1250,
+     "techHours": 100
+    },
+    "requires": [],
+    "consumes": {
+     "stock:fl-lake-votive": 1,
+     "stock:scrap": 4
+    },
+    "unlocks": [
+     {
+      "kind": "component",
+      "id": "component/fl-lake-votive"
+     }
+    ]
+   },
+   "文案要點": [
+    "先辨認燈石是否還能用，再處理湖殿殘燈的接口。",
+    "的的喀喀遺跡；不交易維拉科查、不另寫認主。",
+    "完成只寫 unlocked 旗標；現行不自動發部件、不會生成新的古代機或獸。"
+   ],
+   "供體": {
+    "研究對象": "component/fl-lake-votive"
+   }
+  }
+ ]
+}

@@ -1,0 +1,35 @@
+{
+  "id": "effect/fm-bearing-clear",
+  "name": "定向",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 6,
+      "source": "effect/fm-bearing-clear"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fm-bearing-clear"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "定向"
+  },
+  "nameEn": "Bearing Clear",
+  "etymology": "中亞傘的尋路盤校準後，駕駛員能暫時看得更清、瞄得更穩。定向只提振視野與準頭，時限一過便退去，反覆校準也不會層層加深。名稱與具體型錄均為提案。"
+}

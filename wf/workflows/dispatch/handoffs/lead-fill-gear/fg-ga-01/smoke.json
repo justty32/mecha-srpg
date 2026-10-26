@@ -1,0 +1,579 @@
+{
+  "scenario": "scratch-fg-ga-01 (worktree content; no formal scenario edits)",
+  "seed": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "installed": [
+    {
+      "component": "component/fa-abutment",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-0",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 45,
+            "ablative": true,
+            "resist": {
+              "kinetic": 0.25
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [
+        {
+          "attr": "initiative",
+          "before": 5,
+          "after": 5,
+          "expectedDelta": -2
+        }
+      ],
+      "pools": []
+    },
+    {
+      "component": "component/fa-brow-guard",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-1",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "head",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 25,
+            "ablative": true,
+            "resist": {},
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-cinder-cloak",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-2",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 40,
+            "ablative": true,
+            "resist": {
+              "thermal": 0.25
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": [
+        {
+          "pool": "charge",
+          "key": "regen",
+          "before": 10,
+          "after": 10,
+          "expectedDelta": -2
+        }
+      ]
+    },
+    {
+      "component": "component/fa-forefoot-shoe",
+      "frame": "frame/anvil-trestle-ii",
+      "bodyPlan": "base:bodyplan/m2-quadruped-c",
+      "unit": "ally-3",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-brokenarm-stake",
+        "base:component/mx-singing-blade"
+      ],
+      "layers": [
+        {
+          "part": "front-left",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 30,
+            "ablative": true,
+            "resist": {
+              "kinetic": 0.15
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-heel-lock",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-4",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 35,
+            "ablative": true,
+            "resist": {
+              "kinetic": 0.1
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-needle-stop",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-5",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 35,
+            "ablative": true,
+            "resist": {
+              "pierce": 0.25
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [
+        {
+          "attr": "evasion",
+          "before": -3,
+          "after": -3,
+          "expectedDelta": -2
+        }
+      ],
+      "pools": []
+    },
+    {
+      "component": "component/fa-salt-wash",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-6",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 30,
+            "ablative": true,
+            "resist": {
+              "acid": 0.25
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-silver-lining",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-7",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 25,
+            "ablative": true,
+            "resist": {
+              "energy": 0.25
+            },
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-slip-clasp",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-8",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "armor",
+            "hp": 25,
+            "ablative": true,
+            "resist": {},
+            "passThrough": {},
+            "structural": false
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    },
+    {
+      "component": "component/fa-wick-screen",
+      "frame": "frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "unit": "ally-9",
+      "slot": "armor-mount",
+      "mountedPart": "torso",
+      "core": true,
+      "pilot": "person/chen-xiaohai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "layers": [
+        {
+          "part": "torso",
+          "index": 0,
+          "layer": {
+            "type": "shield",
+            "hp": 25,
+            "ablative": true,
+            "resist": {
+              "energy": 0.15
+            },
+            "passThrough": {},
+            "structural": false,
+            "regen": 4,
+            "regenPool": "charge"
+          }
+        }
+      ],
+      "attrs": [],
+      "pools": []
+    }
+  ],
+  "abilityUses": [
+    {
+      "ability": "ability/fa-regain-footing",
+      "method": "manual tryCommand",
+      "command": {
+        "kind": "useAbility",
+        "actor": "ally-0",
+        "ability": "ability/fa-regain-footing"
+      },
+      "ok": true,
+      "bare": 5,
+      "attr": "initiative",
+      "before": 1,
+      "after": 13,
+      "delta": 12,
+      "removed": "m2-dragged",
+      "retained": "mx-netted",
+      "effects": [
+        "base:effect/mx-netted",
+        "base:effect/fa-footed"
+      ],
+      "apSpent": 3,
+      "cooldown": 3,
+      "usesSpent": 1,
+      "expiredNextOwnerTurn": true
+    },
+    {
+      "ability": "ability/fa-shed-bonds",
+      "method": "manual tryCommand",
+      "command": {
+        "kind": "useAbility",
+        "actor": "ally-0",
+        "ability": "ability/fa-shed-bonds"
+      },
+      "ok": true,
+      "bare": -3,
+      "attr": "evasion",
+      "before": -26,
+      "after": -6,
+      "delta": 20,
+      "removed": "mx-netted",
+      "retained": "kx-breakwater-clinger-snared",
+      "effects": [
+        "base:effect/kx-breakwater-clinger-snared",
+        "base:effect/fa-loosened"
+      ],
+      "apSpent": 3,
+      "cooldown": 3,
+      "usesSpent": 1,
+      "expiredNextOwnerTurn": true
+    }
+  ],
+  "aiUsed": {
+    "base:ability/fa-regain-footing": 1,
+    "base:ability/fa-shed-bonds": 1
+  },
+  "exceptions": [],
+  "mechanismMismatches": [
+    {
+      "component": "component/fa-abutment",
+      "path": "self.attrs.initiative",
+      "expectedDelta": -2,
+      "actualDelta": 0
+    },
+    {
+      "component": "component/fa-cinder-cloak",
+      "pool": "charge",
+      "key": "regen",
+      "expectedDelta": -2,
+      "actualDelta": 0
+    },
+    {
+      "component": "component/fa-needle-stop",
+      "path": "self.attrs.evasion",
+      "expectedDelta": -2,
+      "actualDelta": 0
+    }
+  ],
+  "observed": [
+    {
+      "component": "component/fa-wick-screen",
+      "scenario": "damaged screen owner turn",
+      "before": {
+        "hp": 15,
+        "charge": 30
+      },
+      "after": {
+        "hp": 19,
+        "charge": 36
+      },
+      "chargeRegen": 10,
+      "layerRegen": 4,
+      "chargeCost": 4
+    }
+  ],
+  "log": [
+    "manual-fa-regain-footing.json",
+    "manual-fa-shed-bonds.json",
+    "screen-regen.json"
+  ],
+  "runs": [
+    {
+      "scenario": "scratch-fg-ga-01",
+      "seed": 1,
+      "installed": [
+        "component/fa-abutment",
+        "component/fa-brow-guard"
+      ],
+      "abilityUses": [],
+      "aiUsed": [],
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 4,
+        "rejected": 0,
+        "winner": null,
+        "hash": "f09d57c45b68ba72"
+      },
+      "log": "run-seed-1.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-01",
+      "seed": 2,
+      "installed": [
+        "component/fa-cinder-cloak",
+        "component/fa-forefoot-shoe"
+      ],
+      "abilityUses": [],
+      "aiUsed": [],
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 4,
+        "rejected": 0,
+        "winner": null,
+        "hash": "e74d29eb2208282b"
+      },
+      "log": "run-seed-2.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-01",
+      "seed": 3,
+      "installed": [
+        "component/fa-heel-lock",
+        "component/fa-needle-stop"
+      ],
+      "abilityUses": [
+        {
+          "seq": 107,
+          "round": 2,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-regain-footing",
+            "target": "ally-0",
+            "part": null
+          },
+          "turn": "ally-0"
+        }
+      ],
+      "aiUsed": [
+        "base:ability/fa-regain-footing"
+      ],
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 4,
+        "rejected": 0,
+        "winner": null,
+        "hash": "e65af63bdb5ec046"
+      },
+      "log": "run-seed-3.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-01",
+      "seed": 4,
+      "installed": [
+        "component/fa-salt-wash",
+        "component/fa-silver-lining"
+      ],
+      "abilityUses": [],
+      "aiUsed": [],
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 4,
+        "rejected": 0,
+        "winner": null,
+        "hash": "f7e660b96319b0b9"
+      },
+      "log": "run-seed-4.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-01",
+      "seed": 5,
+      "installed": [
+        "component/fa-slip-clasp",
+        "component/fa-wick-screen"
+      ],
+      "abilityUses": [
+        {
+          "seq": 107,
+          "round": 2,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-shed-bonds",
+            "target": "ally-0",
+            "part": null
+          },
+          "turn": "ally-0"
+        }
+      ],
+      "aiUsed": [
+        "base:ability/fa-shed-bonds"
+      ],
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 4,
+        "rejected": 0,
+        "winner": null,
+        "hash": "4ec74cd1c357a61f"
+      },
+      "log": "run-seed-5.json"
+    }
+  ]
+}

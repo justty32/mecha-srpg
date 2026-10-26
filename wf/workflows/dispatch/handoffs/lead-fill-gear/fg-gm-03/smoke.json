@@ -1,0 +1,2069 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-26",
+ "batch": "fg-gm-03",
+ "method": "runBattle，全 tactical AI；8×6平地，指定相容機體與既有配裝換一槽，友軍一機、敵軍一機，最多12回合",
+ "seeds": [
+  1,
+  2,
+  3,
+  4,
+  5
+ ],
+ "components": [
+  {
+   "id": "component/fm-america-perch",
+   "相容範例": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-rune-rifle",
+   "components": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/fm-america-perch",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings",
+    "system-1": "base:component/mx-cold-spring"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "fm-perch-arrow": {
+      "max": 6,
+      "regen": 0,
+      "cur": 6
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-court-standard",
+   "相容範例": {
+    "frame": "frame/bulwark-iv-rampart",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-ash-mist",
+   "components": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-xingtian-replica",
+    "armor-mount": "base:component/mx-runeweave-plate",
+    "back-1": "base:component/fm-court-standard",
+    "back-2": "base:component/mx-falling-star-mortar",
+    "system-1": "base:component/mx-frost-fins",
+    "system-2": "base:component/mx-essence-cell"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 60,
+      "regen": 12,
+      "cur": 60
+     },
+     "heat": {
+      "max": 110,
+      "regen": -18,
+      "cur": 0
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     },
+     "star-shell": {
+      "max": 6,
+      "regen": 0,
+      "cur": 6
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -5,
+     "initiative": 4,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "charge": {
+      "max": 60,
+      "regen": 12,
+      "cur": 60
+     },
+     "heat": {
+      "max": 110,
+      "regen": -18,
+      "cur": 0
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     },
+     "star-shell": {
+      "max": 6,
+      "regen": 0,
+      "cur": 6
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-europe-harborplate",
+   "相容範例": {
+    "frame": "frame/anvil-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "left-arm",
+    "slot": "left-weapon",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-iron-gatling",
+   "components": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/fm-europe-harborplate",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     },
+     "iron-belt": {
+      "max": 30,
+      "regen": 0,
+      "cur": 30
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "layers": [
+    {
+     "part": "left-arm",
+     "layers": [
+      {
+       "type": "armor",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "acid": 0.2,
+        "kinetic": 0.1
+       },
+       "passThrough": {},
+       "structural": false
+      },
+      {
+       "type": "armor",
+       "hp": 28,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      },
+      {
+       "type": "structure",
+       "hp": 33,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": true
+      },
+      {
+       "type": "component",
+       "hp": 16,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "component/fm-houses-mantle",
+   "相容範例": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "torso",
+    "slot": "armor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": null,
+   "components": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/mx-frost-fins",
+    "back-1": "base:component/mx-ash-mist",
+    "armor-mount": "base:component/fm-houses-mantle"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     }
+    }
+   },
+   "layers": [
+    {
+     "part": "torso",
+     "layers": [
+      {
+       "type": "armor",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "energy": 0.15,
+        "thermal": 0.15
+       },
+       "passThrough": {},
+       "structural": false
+      },
+      {
+       "type": "armor",
+       "hp": 43,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      },
+      {
+       "type": "cockpit-shell",
+       "hp": 47,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": true
+      },
+      {
+       "type": "component",
+       "hp": 16,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "component/fm-japan-portgun",
+   "相容範例": {
+    "frame": "frame/bulwark-caisson-01",
+    "bodyplan": "bodyplan/m2-wheel-d",
+    "part": "front-axle",
+    "slot": "side-tool",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": null,
+   "components": {
+    "main-gun": "base:component/mx-scatter-rune",
+    "armor-mount": "base:component/mx-porcelain-plate",
+    "side-tool": "base:component/fm-japan-portgun"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -2,
+     "initiative": 4,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -2,
+     "initiative": 4,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "fm-port-arrow": {
+      "max": 6,
+      "regen": 0,
+      "cur": 6
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-korea-groundline",
+   "相容範例": {
+    "frame": "frame/bulwark-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "torso",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-frost-fins",
+   "components": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-porcelain-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "system-1": "base:component/fm-korea-groundline"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-league-watchrack",
+   "相容範例": {
+    "frame": "frame/bulwark-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "back",
+    "slot": "back-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-ash-mist",
+   "components": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-porcelain-plate",
+    "back-1": "base:component/fm-league-watchrack",
+    "system-1": "base:component/mx-frost-fins"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-nairobi-tiller",
+   "相容範例": {
+    "frame": "frame/anvil-hoist-ii",
+    "bodyplan": "bodyplan/m2-gantry-c",
+    "part": "counterweight",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-frost-fins",
+   "components": {
+    "left-weapon": "base:component/mx-molten-saw",
+    "right-weapon": "base:component/m2-mooring-jaw",
+    "system-1": "base:component/fm-nairobi-tiller",
+    "back-1": "base:component/mx-ash-mist"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 2,
+     "evasion": 0,
+     "initiative": 5,
+     "perception": 4,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "heat": {
+      "max": 110,
+      "regen": -12,
+      "cur": 0
+     }
+    }
+   },
+   "layers": []
+  },
+  {
+   "id": "component/fm-quito-visor",
+   "相容範例": {
+    "frame": "frame/bulwark-ii",
+    "bodyplan": "bodyplan/mx-biped-c",
+    "part": "head",
+    "slot": "sensor-mount",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": null,
+   "components": {
+    "left-weapon": "base:component/mx-scatter-rune",
+    "right-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-porcelain-plate",
+    "back-1": "base:component/mx-ash-mist",
+    "system-1": "base:component/mx-frost-fins",
+    "sensor-mount": "base:component/fm-quito-visor"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 0,
+     "evasion": -3,
+     "initiative": 5,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "ash-incense": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "charge": {
+      "max": 50,
+      "regen": 10,
+      "cur": 50
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "scatter-shell": {
+      "max": 8,
+      "regen": 0,
+      "cur": 8
+     }
+    }
+   },
+   "layers": [
+    {
+     "part": "head",
+     "layers": [
+      {
+       "type": "shield",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 3,
+       "regenPool": "charge"
+      },
+      {
+       "type": "armor",
+       "hp": 19,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      },
+      {
+       "type": "structure",
+       "hp": 24,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": true
+      },
+      {
+       "type": "component",
+       "hp": 16,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "component/fm-russia-reservoir",
+   "相容範例": {
+    "frame": "frame/anvil-crimson-rivet",
+    "bodyplan": "bodyplan/mx-biped-heavy",
+    "part": "torso",
+    "slot": "system-1",
+    "方式": "替換該槽原件；只作scratch驗證，不改既有defaultLoadout"
+   },
+   "方式": "只替換指定槽；其餘沿用既有 defaultLoadout",
+   "replaced": "base:component/mx-cold-spring",
+   "components": {
+    "right-weapon": "base:component/mx-brokenarm-stake",
+    "left-weapon": "base:component/mx-rune-rifle",
+    "armor-mount": "base:component/mx-burst-scale",
+    "back-1": "base:component/mx-flare-wings",
+    "system-1": "base:component/fm-russia-reservoir"
+   },
+   "baseline": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "cold-spring": {
+      "max": 2,
+      "regen": 0,
+      "cur": 2
+     },
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "equipped": {
+    "attrs": {
+     "accuracy": 4,
+     "evasion": 0,
+     "initiative": 6,
+     "perception": 5,
+     "resolve": 0,
+     "control": 0
+    },
+    "pools": {
+     "flare-fuel": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     },
+     "heat": {
+      "max": 100,
+      "regen": -15,
+      "cur": 0
+     },
+     "rune-round": {
+      "max": 12,
+      "regen": 0,
+      "cur": 12
+     },
+     "stake-wedge": {
+      "max": 4,
+      "regen": 0,
+      "cur": 4
+     }
+    }
+   },
+   "layers": []
+  }
+ ],
+ "abilityUses": {
+  "base:ability/fm-america-aimed-shot": 28,
+  "base:ability/fm-court-align": 20,
+  "base:ability/fm-japan-common-shot": 6
+ },
+ "effectEvidence": {
+  "seed": 1,
+  "command": {
+   "kind": "useAbility",
+   "actor": "probe",
+   "ability": "base:ability/fm-court-align",
+   "target": {
+    "unit": "ally"
+   }
+  },
+  "target": "ally",
+  "before": {
+   "accuracy": 0,
+   "evasion": -3,
+   "initiative": 5,
+   "perception": 5,
+   "resolve": 0,
+   "control": 0
+  },
+  "after": {
+   "accuracy": 6,
+   "evasion": -3,
+   "initiative": 5,
+   "perception": 5,
+   "resolve": 5,
+   "control": 0
+  },
+  "delta": {
+   "accuracy": 6,
+   "resolve": 5
+  },
+  "refresh": {
+   "sameUid": true,
+   "stacked": false
+  },
+  "afterTwoOwnerTurns": {
+   "accuracy": 0,
+   "evasion": -3,
+   "initiative": 5,
+   "perception": 5,
+   "resolve": 0,
+   "control": 0
+  }
+ },
+ "columns": [
+  "component",
+  "seed",
+  "rounds",
+  "winner",
+  "reason",
+  "stopped",
+  "rejected",
+  "deaths",
+  "abilityUses",
+  "effects",
+  "hash",
+  "ms",
+  "error"
+ ],
+ "rows": [
+  {
+   "component": "component/fm-america-perch",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-america-aimed-shot": 6
+   },
+   "effects": [],
+   "hash": "4c2a0d4da15207f8",
+   "ms": 454,
+   "error": null
+  },
+  {
+   "component": "component/fm-america-perch",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-america-aimed-shot": 6
+   },
+   "effects": [],
+   "hash": "18427c66fb5c2779",
+   "ms": 421,
+   "error": null
+  },
+  {
+   "component": "component/fm-america-perch",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-america-aimed-shot": 5
+   },
+   "effects": [],
+   "hash": "1e7e5047713f7cd7",
+   "ms": 434,
+   "error": null
+  },
+  {
+   "component": "component/fm-america-perch",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-america-aimed-shot": 6
+   },
+   "effects": [],
+   "hash": "6fc503ad28424272",
+   "ms": 390,
+   "error": null
+  },
+  {
+   "component": "component/fm-america-perch",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-america-aimed-shot": 5
+   },
+   "effects": [],
+   "hash": "e62f126104d3f325",
+   "ms": 409,
+   "error": null
+  },
+  {
+   "component": "component/fm-court-standard",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-court-align": 4
+   },
+   "effects": [
+    {
+     "seq": 58,
+     "round": 1,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 1,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 144,
+     "round": 3,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 3,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 232,
+     "round": 5,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 5,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 312,
+     "round": 7,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 7,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    }
+   ],
+   "hash": "027a331349d8c304",
+   "ms": 305,
+   "error": null
+  },
+  {
+   "component": "component/fm-court-standard",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-court-align": 4
+   },
+   "effects": [
+    {
+     "seq": 50,
+     "round": 1,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 1,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 134,
+     "round": 3,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 3,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 227,
+     "round": 5,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 5,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 314,
+     "round": 7,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 7,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    }
+   ],
+   "hash": "a5c48becad4a0d1b",
+   "ms": 343,
+   "error": null
+  },
+  {
+   "component": "component/fm-court-standard",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-court-align": 4
+   },
+   "effects": [
+    {
+     "seq": 44,
+     "round": 1,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 1,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 142,
+     "round": 3,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 3,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 238,
+     "round": 5,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 6,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 315,
+     "round": 7,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 8,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    }
+   ],
+   "hash": "9da1f44c99501d1b",
+   "ms": 332,
+   "error": null
+  },
+  {
+   "component": "component/fm-court-standard",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-court-align": 4
+   },
+   "effects": [
+    {
+     "seq": 50,
+     "round": 1,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 1,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 131,
+     "round": 3,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 3,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 230,
+     "round": 5,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 5,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 303,
+     "round": 7,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 7,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    }
+   ],
+   "hash": "e7f054aea38279b2",
+   "ms": 272,
+   "error": null
+  },
+  {
+   "component": "component/fm-court-standard",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-court-align": 4
+   },
+   "effects": [
+    {
+     "seq": 52,
+     "round": 1,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 1,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 133,
+     "round": 3,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 3,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 227,
+     "round": 5,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 5,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    },
+    {
+     "seq": 318,
+     "round": 7,
+     "type": "EffectApplied",
+     "payload": {
+      "uid": 7,
+      "effect": "base:effect/fm-line-steady",
+      "owner": "ally",
+      "part": null,
+      "source": "probe"
+     },
+     "turn": "probe"
+    }
+   ],
+   "hash": "62fea5f39b9cd038",
+   "ms": 313,
+   "error": null
+  },
+  {
+   "component": "component/fm-europe-harborplate",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "86d0037d6422b017",
+   "ms": 195,
+   "error": null
+  },
+  {
+   "component": "component/fm-europe-harborplate",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "4205b3108dcb1434",
+   "ms": 181,
+   "error": null
+  },
+  {
+   "component": "component/fm-europe-harborplate",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "e2a53619575ff0c0",
+   "ms": 180,
+   "error": null
+  },
+  {
+   "component": "component/fm-europe-harborplate",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a495b276cee44fa4",
+   "ms": 175,
+   "error": null
+  },
+  {
+   "component": "component/fm-europe-harborplate",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "c43b506bc423b7ea",
+   "ms": 189,
+   "error": null
+  },
+  {
+   "component": "component/fm-houses-mantle",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "8b1f128ef4ac115b",
+   "ms": 548,
+   "error": null
+  },
+  {
+   "component": "component/fm-houses-mantle",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "3bfcaae93f8598cd",
+   "ms": 604,
+   "error": null
+  },
+  {
+   "component": "component/fm-houses-mantle",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a6583608404d4014",
+   "ms": 720,
+   "error": null
+  },
+  {
+   "component": "component/fm-houses-mantle",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "4e4c12b1bd8c4ace",
+   "ms": 542,
+   "error": null
+  },
+  {
+   "component": "component/fm-houses-mantle",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "f46085d69dc005c2",
+   "ms": 668,
+   "error": null
+  },
+  {
+   "component": "component/fm-japan-portgun",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "6cbc0a4f46517591",
+   "ms": 180,
+   "error": null
+  },
+  {
+   "component": "component/fm-japan-portgun",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-japan-common-shot": 2
+   },
+   "effects": [],
+   "hash": "57b79319d739a88a",
+   "ms": 175,
+   "error": null
+  },
+  {
+   "component": "component/fm-japan-portgun",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-japan-common-shot": 2
+   },
+   "effects": [],
+   "hash": "ea1111cd9dc759f2",
+   "ms": 173,
+   "error": null
+  },
+  {
+   "component": "component/fm-japan-portgun",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {
+    "base:ability/fm-japan-common-shot": 2
+   },
+   "effects": [],
+   "hash": "8641a702bf30aed9",
+   "ms": 181,
+   "error": null
+  },
+  {
+   "component": "component/fm-japan-portgun",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "c2ea8177929a880b",
+   "ms": 177,
+   "error": null
+  },
+  {
+   "component": "component/fm-korea-groundline",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a4a02ce5857c9ede",
+   "ms": 483,
+   "error": null
+  },
+  {
+   "component": "component/fm-korea-groundline",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "2d2d6ec6ecf4ad62",
+   "ms": 515,
+   "error": null
+  },
+  {
+   "component": "component/fm-korea-groundline",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "6c871dc5d69cd1c9",
+   "ms": 523,
+   "error": null
+  },
+  {
+   "component": "component/fm-korea-groundline",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "38890ba48670020d",
+   "ms": 556,
+   "error": null
+  },
+  {
+   "component": "component/fm-korea-groundline",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "bebb4570123e2988",
+   "ms": 542,
+   "error": null
+  },
+  {
+   "component": "component/fm-league-watchrack",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "9316b9b44de3a05d",
+   "ms": 205,
+   "error": null
+  },
+  {
+   "component": "component/fm-league-watchrack",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "fe7515d195ce4f25",
+   "ms": 206,
+   "error": null
+  },
+  {
+   "component": "component/fm-league-watchrack",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a5fbeb80acd76e0b",
+   "ms": 210,
+   "error": null
+  },
+  {
+   "component": "component/fm-league-watchrack",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "1bcdd5118b542997",
+   "ms": 217,
+   "error": null
+  },
+  {
+   "component": "component/fm-league-watchrack",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "c013b7140a66ad9d",
+   "ms": 209,
+   "error": null
+  },
+  {
+   "component": "component/fm-nairobi-tiller",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "8b1f128ef4ac115b",
+   "ms": 494,
+   "error": null
+  },
+  {
+   "component": "component/fm-nairobi-tiller",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "3bfcaae93f8598cd",
+   "ms": 563,
+   "error": null
+  },
+  {
+   "component": "component/fm-nairobi-tiller",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a6583608404d4014",
+   "ms": 636,
+   "error": null
+  },
+  {
+   "component": "component/fm-nairobi-tiller",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "4e4c12b1bd8c4ace",
+   "ms": 505,
+   "error": null
+  },
+  {
+   "component": "component/fm-nairobi-tiller",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "f46085d69dc005c2",
+   "ms": 621,
+   "error": null
+  },
+  {
+   "component": "component/fm-quito-visor",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "a4a02ce5857c9ede",
+   "ms": 520,
+   "error": null
+  },
+  {
+   "component": "component/fm-quito-visor",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "2d2d6ec6ecf4ad62",
+   "ms": 557,
+   "error": null
+  },
+  {
+   "component": "component/fm-quito-visor",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "6c871dc5d69cd1c9",
+   "ms": 546,
+   "error": null
+  },
+  {
+   "component": "component/fm-quito-visor",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "38890ba48670020d",
+   "ms": 580,
+   "error": null
+  },
+  {
+   "component": "component/fm-quito-visor",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "bebb4570123e2988",
+   "ms": 563,
+   "error": null
+  },
+  {
+   "component": "component/fm-russia-reservoir",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "c97990ea0c72b7fa",
+   "ms": 277,
+   "error": null
+  },
+  {
+   "component": "component/fm-russia-reservoir",
+   "seed": 2,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "7aaae54d37bf3a86",
+   "ms": 267,
+   "error": null
+  },
+  {
+   "component": "component/fm-russia-reservoir",
+   "seed": 3,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "050affd58d85ea07",
+   "ms": 288,
+   "error": null
+  },
+  {
+   "component": "component/fm-russia-reservoir",
+   "seed": 4,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "1032c97920a2d699",
+   "ms": 277,
+   "error": null
+  },
+  {
+   "component": "component/fm-russia-reservoir",
+   "seed": 5,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "stopped": "outcome",
+   "rejected": 0,
+   "deaths": 0,
+   "abilityUses": {},
+   "effects": [],
+   "hash": "63cebfd0c1b3f0dc",
+   "ms": 280,
+   "error": null
+  }
+ ]
+}

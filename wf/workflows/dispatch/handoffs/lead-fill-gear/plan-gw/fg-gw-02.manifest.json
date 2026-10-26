@@ -1,0 +1,131 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gw-02",
+  "mode": "add",
+  "status": "draft",
+  "goal": "點射、雙矢與狙擊：6把武器與6條能力，沿審定暫值",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gw-02",
+    "subagents": "上限1，同受規矩約束"
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gw-02",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gw-02/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/WORKFLOWS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/common/data-files.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/README.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-mech2/report.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-fill-mech/REPORT.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-rep/REPORT.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-resist/REPORT.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-kaiju2/report.md",
+      "wf/workflows/planning/design-notes/world/magnates.md",
+      "wf/workflows/planning/specs/core/data-model-mech.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/planning/specs/ops/data-model-economy-research.md",
+      "wf/workflows/planning/specs/world/resistance.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/content/acceptance-playtest.md",
+      "wf/workflows/common/conventions.md",
+      "wf/workflows/common/code-map.md",
+      "wf/workflows/dev-env.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gw/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gw/new-items.json",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gw/grade-coverage.json",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gw/needs.json",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gw/cx-fg-gw-02.md"
+    ]
+  },
+  "maxFiles": 12,
+  "allow": {
+    "kinds": [
+      "base/components",
+      "base/abilities"
+    ],
+    "namePrefix": {
+      "base/*": "fw-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [
+      "frame/bulwark-i",
+      "frame/bulwark-ii",
+      "frame/bulwark-iv-rampart",
+      "frame/selene-aurora",
+      "frame/selene-eclipse-moonless"
+    ],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gw-02/smoke.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gw-02/smoke-log"
+  },
+  "files": [
+    "content/base/components/fw-pin-shot.json",
+    "content/base/abilities/fw-pin-shot-use.json",
+    "content/base/components/fw-shoal-light.json",
+    "content/base/abilities/fw-shoal-light-use.json",
+    "content/base/components/fw-paired-shot.json",
+    "content/base/abilities/fw-paired-shot-use.json",
+    "content/base/components/fw-seam-rifle.json",
+    "content/base/abilities/fw-seam-rifle-use.json",
+    "content/base/components/fw-moon-balance.json",
+    "content/base/abilities/fw-moon-balance-use.json",
+    "content/base/components/fw-sky-crossbow.json",
+    "content/base/abilities/fw-sky-crossbow-use.json"
+  ],
+  "ids": [
+    "component/fw-pin-shot",
+    "ability/fw-pin-shot-use",
+    "component/fw-shoal-light",
+    "ability/fw-shoal-light-use",
+    "component/fw-paired-shot",
+    "ability/fw-paired-shot-use",
+    "component/fw-seam-rifle",
+    "ability/fw-seam-rifle-use",
+    "component/fw-moon-balance",
+    "ability/fw-moon-balance-use",
+    "component/fw-sky-crossbow",
+    "ability/fw-sky-crossbow-use"
+  ],
+  "acceptance": {},
+  "rounds": [],
+  "gateRejections": [],
+  "deprecated": [],
+  "leadNotes": [
+    "此檔是計畫稿。領導建立worktree時將base換成實際HEAD，複製到content/batches/2026-10/fg-gw-02.json後才啟動產出線。",
+    "四批相互獨立，無新件跨批依賴。數值暫填，不做全庫平衡。",
+    "禁止MCP，改用runBattle本地headless煙霧。checks不含probe：新部件未掛預設frame，通用probe不保證找到載體；工人依grade-coverage明確配裝。",
+    "工人固定4條驗收，content_accept是領導整合閘門；不擴張工人可寫範圍。"
+  ]
+}

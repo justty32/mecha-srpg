@@ -1,0 +1,118 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gm-04",
+  "mode": "add",
+  "status": "draft",
+  "goal": "其餘傘特色件6＋能力2＋效果2＋研究4",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gm-04",
+    "subagents": "上限1，同受本交接書約束",
+    "plan": {
+      "line": "cx-fg-plan-gm",
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md"
+    }
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "6f20f4f12d593543c718f2f64b616755c00b715b",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-04",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-04/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-resist/REPORT.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/new-items.json",
+      "wf/workflows/content/ops-content.md",
+      "wf/workflows/planning/specs/ops/data-model-economy-research.md"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/abilities",
+      "base/components",
+      "base/effects",
+      "base/world/research"
+    ],
+    "namePrefix": {
+      "base/*": "fm-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "files": [
+    "content/base/components/fm-central-compass.json",
+    "content/base/components/fm-latam-convoycell.json",
+    "content/base/components/fm-northafrica-sluice.json",
+    "content/base/components/fm-subsahara-wellguard.json",
+    "content/base/components/fm-sydney-lookback.json",
+    "content/base/components/fm-west-firegate.json",
+    "content/base/abilities/fm-central-take-bearing.json",
+    "content/base/abilities/fm-west-ember-line.json",
+    "content/base/effects/fm-bearing-clear.json",
+    "content/base/effects/fm-cinder-haze.json",
+    "content/base/world/research/fm-bellows-pattern.json",
+    "content/base/world/research/fm-iris-pattern.json",
+    "content/base/world/research/fm-relay-pattern.json",
+    "content/base/world/research/fm-rivet-pattern.json"
+  ],
+  "ids": [
+    "component/fm-central-compass",
+    "component/fm-latam-convoycell",
+    "component/fm-northafrica-sluice",
+    "component/fm-subsahara-wellguard",
+    "component/fm-sydney-lookback",
+    "component/fm-west-firegate",
+    "ability/fm-central-take-bearing",
+    "ability/fm-west-ember-line",
+    "effect/fm-bearing-clear",
+    "effect/fm-cinder-haze",
+    "research/fm-bellows-pattern",
+    "research/fm-iris-pattern",
+    "research/fm-relay-pattern",
+    "research/fm-rivet-pattern"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "probe": {
+    "waivers": [
+      "本批不新增frame；依交接書固定第3條以scratch配裝runBattle驗證，禁止MCP；由領導審閱證據。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-04/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-04/playtest"
+  },
+  "naming": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-04/naming.json"
+  },
+  "dependencies": [
+    "fg-gm-01"
+  ]
+}

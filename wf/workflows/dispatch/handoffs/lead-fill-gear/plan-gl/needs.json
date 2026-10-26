@@ -1,0 +1,79 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "類別",
+  "證據",
+  "需求",
+  "本線決定",
+  "解除條件"
+ ],
+ "rows": [
+  {
+   "id": "G1",
+   "類別": "引擎／掉落",
+   "證據": "src/rules/flow.ts:170–171，BattleResult.loot 固定 []；src/ops/sortie/apply.ts:154–172 消費外來 loot",
+   "需求": "建立明確的物種＋個體＋等級掉落來源；用 entry.monster 保留個體身分，讀戰後來源部位／層的剩餘 HP；拆件實例不能因供體未預裝 component 而默認滿血。",
+   "本線決定": "monster-audit.json 是設計映射，不是可載入 lootTables；不新建未支援的內容目錄。核、拆件、材料由同一份屍體選擇結算一次。",
+   "解除條件": "引擎線落地合法 schema、回傳來源 part／HP／grade，領導另開接線批。"
+  },
+  {
+   "id": "G2",
+   "類別": "引擎／活捕與屍拆",
+   "證據": "src/ops/sortie/apply.ts 捕獲只 admitBeast；src/ops/content/opseffect.ts salvage 是戰後拆／留屍分支；workqueue.ts 無採樣或整屍拆解 job",
+   "需求": "補已入艙整屍的拆解命令，以及單一捕獲個體一次採樣（wear+10、sampled 記號）；採樣只取一份料，不出核或完整器官。菌絲禁止活捕取樣。",
+   "本線決定": "現階段只使用既有戰後拆／留整屍，其他列需求；不得用每日事件繞過拘束與來源。死亡掉落跟活捕不可同拿，已採樣量在後續死亡總額扣除。",
+   "解除條件": "個體來源、一次標記與扣料守恆有實作；全破供體無可裝完整件。"
+  },
+  {
+   "id": "G3",
+   "類別": "引擎／科研與市場",
+   "證據": "workqueue.ts research 分支讀 consumes；research.ts finishResearch 只寫 unlocked 旗標；market.ts 固定 component 列不查此旗標",
+   "需求": "研究完成後只解鎖該類回收件的保存／整備服務；需要持有拾得實物才能整備，不能憑研究量產獸器官或古代遺物。接線須辨識已解鎖旗標。",
+   "本線決定": "20 個 research 檔可合法載入且真扣材料，但不承諾取得新部件；初批不新增市場或虛構製造工作。",
+   "解除條件": "研究、持有殘件、整備與可裝實物的閉環定案；市場／服務改動交 gm 協調。"
+  },
+  {
+   "id": "G4",
+   "類別": "引擎／材料與遺物",
+   "證據": "types.ts Account 接受 stock:string；目前 base 只見 chitin/core-C/core-S/flesh/fuel/scrap；RelicInstance 有型別但無 relic 定義目錄及通用拾取投放",
+   "需求": "補 stock:fl-* 的中文名、來源與用途顯示；墟出獎勵須產 ComponentInstance(origin:loot)，或補真正 RelicDef 後再轉裝；不可虛構 relic/*.json。",
+   "本線決定": "20 個帳戶只在 consumes 合法引用，materials.json 留設計；遺物用現有 origin:ancient 部件格式，暫不投放。stock:mycelium 是 spec 已有但 base 尚無實際供給的缺口。",
+   "解除條件": "材料標籤與取得來源有合法資料入口；遺物只取散落件，不碰古代機本體。"
+  },
+  {
+   "id": "G5",
+   "類別": "引擎／部件生效",
+   "證據": "state.ts makeUnit 只合併 component.pools／layersAdd；component.attrMods／poolMods 未套用；will.ts 只計共鳴；command.ts abilitiesOf 未用 component.resonance.threshold 擋能力",
+   "需求": "使古代部件共鳴門檻確實管住能力、層及池。生物件 burden 已會相加；部件毀損後附加層／池的移除也需核對實際語義。",
+   "本線決定": "全 20 件只設空 attrMods／poolMods，以有效 pools／layersAdd 表現；3 遺物共鳴填真實門檻，但標暫緩投放，不以免代價遺物上架。",
+   "解除條件": "低於門檻不給效果、達門檻才啟用；不由內容工人修引擎。"
+  },
+  {
+   "id": "G6",
+   "類別": "引擎／等級與容量",
+   "證據": "apply.ts 屍體 grade 用 state.frame 反查 monster，否則取 capture.frame.grade；cargoUsed 以件數／材料數計，spec 說 size；core 修理按 frame.grade 精確帳戶",
+   "需求": "多級物種的屍體保留 entry.monster.grade，別把 B 獸拆成 C 級核；保留實例損傷，指定部位型材料品質；統一貨艙體積規則。",
+   "本線決定": "每屍各料上限 1/2/3/4/4；核按原始怪獸級、不得低級湊高級；現有 mount 消耗同級核而非自動替換更高級。",
+   "解除條件": "等級、戰損與容量結算可驗；本線不改既有數值。"
+  },
+  {
+   "id": "C1",
+   "類別": "跨軌／市場",
+   "證據": "hook-proposals.json 20 列；gm 持有市場與服務規劃",
+   "需求": "gm 審 D/C 普通材料在 salt-flat／singapore、遺物材料在 old-array 的插入建議；A/S 不補貨。",
+   "本線決定": "不寫市場、不加勢力招牌件；廠商是拆解與轉手掛點，故無 D10/C20/B35/A55/S80 門檻。若改成勢力招牌，必先支援部件 repGate。",
+   "解除條件": "領導協調 gm 接線並確定市場 RNG／黃金重錄安排。"
+  },
+  {
+   "id": "C2",
+   "類別": "lore／命名",
+   "證據": "magnates.md、既有拆船幫／軛鞍行／稽古學會與三處遺跡",
+   "需求": "審 20 部件名、20 材料採收名稱與研究名；研究名不是新組織或新技術階級。",
+   "本線決定": "全部標提案；現有掛點不等於既成採收史，未新增二名獸被殺的年表。",
+   "解除條件": "領導基調審；lore 如需補寫另派，不修改本輪數值。"
+  }
+ ]
+}

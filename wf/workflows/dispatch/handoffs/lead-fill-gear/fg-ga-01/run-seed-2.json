@@ -1,0 +1,4433 @@
+{
+  "seed": 2,
+  "sim": {
+    "scenario": null,
+    "setup": {
+      "id": "scratch-fg-ga-01",
+      "map": {
+        "width": 6,
+        "height": 6,
+        "fill": "terrain/plain",
+        "exits": []
+      },
+      "units": [
+        {
+          "id": "ally-0",
+          "owner": "A",
+          "pos": {
+            "x": 2,
+            "y": 1
+          },
+          "frame": "base:frame/bulwark-ii",
+          "core": true,
+          "components": {
+            "left-weapon": "base:component/mx-scatter-rune",
+            "right-weapon": "base:component/mx-rune-rifle",
+            "armor-mount": "base:component/fa-cinder-cloak",
+            "back-1": "base:component/mx-ash-mist",
+            "system-1": "base:component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "pilot-0",
+              "def": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "id": "enemy-0",
+          "owner": "B",
+          "pos": {
+            "x": 3,
+            "y": 1
+          },
+          "monster": {
+            "species": "base:species/reaper",
+            "grade": "C",
+            "def": "base:monster/reaper-c"
+          }
+        },
+        {
+          "id": "ally-1",
+          "owner": "A",
+          "pos": {
+            "x": 2,
+            "y": 3
+          },
+          "frame": "base:frame/anvil-trestle-ii",
+          "core": true,
+          "components": {
+            "left-weapon": "base:component/mx-brokenarm-stake",
+            "right-weapon": "base:component/mx-singing-blade",
+            "system-1": "base:component/mx-frost-fins",
+            "armor-mount": "base:component/fa-forefoot-shoe"
+          },
+          "persons": [
+            {
+              "id": "pilot-1",
+              "def": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "id": "enemy-1",
+          "owner": "B",
+          "pos": {
+            "x": 3,
+            "y": 3
+          },
+          "monster": {
+            "species": "base:species/reaper",
+            "grade": "C",
+            "def": "base:monster/reaper-c"
+          }
+        }
+      ],
+      "objectives": [],
+      "maxRounds": 4,
+      "noRetreat": true
+    },
+    "slotProfiles": {
+      "A": {
+        "policy": "tactical",
+        "params": {}
+      },
+      "B": {
+        "policy": "tactical",
+        "params": {}
+      }
+    },
+    "unitPolicies": {
+      "A": {},
+      "B": {}
+    }
+  },
+  "commands": [
+    {
+      "kind": "move",
+      "actor": "ally-0",
+      "path": [
+        {
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-guard-stance",
+      "target": {
+        "unit": "ally-0"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "ally-0",
+      "path": [
+        {
+          "x": 1,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-ash-screen",
+      "target": {
+        "unit": "ally-0"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "ally-0",
+      "path": [
+        {
+          "x": 2,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "end",
+      "actor": "ally-0"
+    },
+    {
+      "kind": "move",
+      "actor": "ally-1",
+      "path": [
+        {
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-stake-drive",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-singing-slash",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-1"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-0",
+      "path": [
+        {
+          "x": 4,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-0"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-1",
+      "path": [
+        {
+          "x": 2,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-1"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-ash-screen",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-scatter-blast",
+      "target": {
+        "cell": {
+          "x": 4,
+          "y": 2
+        }
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-scatter-blast",
+      "target": {
+        "cell": {
+          "x": 4,
+          "y": 2
+        }
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-0"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-stake-drive",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "ally-1",
+      "path": [
+        {
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-singing-slash",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-1"
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-0",
+      "path": [
+        {
+          "x": 3,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-0"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-charge",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-1",
+      "path": [
+        {
+          "x": 3,
+          "y": 2
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-1"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-guard-stance",
+      "target": {
+        "unit": "ally-0"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "ally-0",
+      "path": [
+        {
+          "x": 1,
+          "y": 3
+        },
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 0,
+          "y": 5
+        }
+      ]
+    },
+    {
+      "kind": "end",
+      "actor": "ally-0"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-stake-drive",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "ally-1",
+      "path": [
+        {
+          "x": 3,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-singing-slash",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-1"
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-0",
+      "path": [
+        {
+          "x": 4,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-0"
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-1",
+      "path": [
+        {
+          "x": 2,
+          "y": 1
+        },
+        {
+          "x": 2,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-1"
+    },
+    {
+      "kind": "move",
+      "actor": "ally-0",
+      "path": [
+        {
+          "x": 0,
+          "y": 4
+        },
+        {
+          "x": 0,
+          "y": 3
+        },
+        {
+          "x": 1,
+          "y": 2
+        },
+        {
+          "x": 2,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "base:ability/mx-scatter-blast",
+      "target": {
+        "cell": {
+          "x": 4,
+          "y": 0
+        }
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-0"
+    },
+    {
+      "kind": "move",
+      "actor": "ally-1",
+      "path": [
+        {
+          "x": 4,
+          "y": 1
+        },
+        {
+          "x": 5,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "ally-1",
+      "ability": "base:ability/mx-stake-drive",
+      "target": {
+        "unit": "enemy-0"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "ally-1"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-0",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-0"
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-charge",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "move",
+      "actor": "enemy-1",
+      "path": [
+        {
+          "x": 3,
+          "y": 0
+        },
+        {
+          "x": 4,
+          "y": 1
+        }
+      ]
+    },
+    {
+      "kind": "useAbility",
+      "actor": "enemy-1",
+      "ability": "base:ability/reaper-cleave",
+      "target": {
+        "unit": "ally-1"
+      }
+    },
+    {
+      "kind": "end",
+      "actor": "enemy-1"
+    }
+  ],
+  "events": [
+    {
+      "seq": 0,
+      "round": 0,
+      "type": "BattleStart",
+      "payload": {
+        "units": [
+          "ally-0",
+          "ally-1",
+          "enemy-0",
+          "enemy-1"
+        ]
+      }
+    },
+    {
+      "seq": 1,
+      "round": 1,
+      "type": "RoundStart",
+      "payload": {
+        "round": 1
+      }
+    },
+    {
+      "seq": 2,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 3,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 2,
+        "to": 2,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 4,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 5,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 6,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 7,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 8,
+        "to": 8,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 8,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 9,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 10,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 11,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 12,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          2,
+          1
+        ],
+        "to": [
+          2,
+          0
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 13,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 8,
+        "to": 5,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 14,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-guard-stance",
+        "target": "ally-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 15,
+      "round": 1,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "ally-0",
+        "ability": "base:ability/mx-guard-stance",
+        "chance": 100,
+        "roll": null,
+        "part": "left-arm"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 16,
+      "round": 1,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 0,
+        "effect": "base:effect/mx-guarding",
+        "owner": "ally-0",
+        "part": null,
+        "source": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 17,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 5,
+        "to": 4,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 18,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          2,
+          0
+        ],
+        "to": [
+          1,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 19,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 2,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 20,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 2,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 21,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-ash-screen",
+        "target": "ally-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 22,
+      "round": 1,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "ally-0",
+        "ability": "base:ability/mx-ash-screen",
+        "chance": 100,
+        "roll": null,
+        "part": "left-arm"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 23,
+      "round": 1,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 1,
+        "effect": "base:effect/mx-ash-veiled",
+        "owner": "ally-0",
+        "part": null,
+        "source": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 24,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 2,
+        "to": 1,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 25,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          1,
+          1
+        ],
+        "to": [
+          2,
+          2
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 26,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 27,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-1",
+        "resumed": false
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 28,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 29,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 4,
+        "to": 4,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 30,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 31,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 32,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 33,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 34,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-1",
+        "from": [
+          2,
+          3
+        ],
+        "to": [
+          3,
+          2
+        ],
+        "cost": 1
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 35,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 8,
+        "to": 3,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 36,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 4,
+        "to": 3,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 37,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-stake-drive",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 38,
+      "round": 1,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-stake-drive",
+        "chance": 44,
+        "roll": 96,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 39,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 0,
+        "to": 20,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 40,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 3,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 41,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-singing-slash",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 42,
+      "round": 1,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-singing-slash",
+        "chance": 44,
+        "roll": 67,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 43,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 20,
+        "to": 30,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 44,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-1"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 45,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-0",
+        "resumed": false
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 46,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 47,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "instinct",
+        "from": 20,
+        "to": 25,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 48,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 5,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 49,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 50,
+      "round": 1,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 80,
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 51,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 5,
+        "to": 4,
+        "reason": "move"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 52,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-0",
+        "from": [
+          3,
+          1
+        ],
+        "to": [
+          4,
+          2
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 53,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 54,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 55,
+      "round": 1,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 36,
+        "part": "head"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 56,
+      "round": 1,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "head",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "pierce",
+        "amount": 19,
+        "hp": 0
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 57,
+      "round": 1,
+      "type": "LayerBroken",
+      "payload": {
+        "unit": "ally-1",
+        "part": "head",
+        "layer": 0,
+        "layerType": "armor"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 58,
+      "round": 1,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "head",
+        "layer": 1,
+        "layerType": "structure",
+        "damageType": "pierce",
+        "amount": 1,
+        "hp": 23
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 59,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-0"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 60,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-1",
+        "resumed": false
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 61,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 62,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "instinct",
+        "from": 20,
+        "to": 25,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 63,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 5,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 64,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 65,
+      "round": 1,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 57,
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 66,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 5,
+        "to": 4,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 67,
+      "round": 1,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          3,
+          3
+        ],
+        "to": [
+          2,
+          3
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 68,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 4,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 69,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 70,
+      "round": 1,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 50,
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 71,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-1"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 72,
+      "round": 1,
+      "type": "RoundEnd",
+      "payload": {
+        "round": 1
+      }
+    },
+    {
+      "seq": 73,
+      "round": 2,
+      "type": "RoundStart",
+      "payload": {
+        "round": 2
+      }
+    },
+    {
+      "seq": 74,
+      "round": 2,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 75,
+      "round": 2,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 0,
+        "effect": "base:effect/mx-guarding",
+        "owner": "ally-0",
+        "reason": "expired"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 76,
+      "round": 2,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 1,
+        "effect": "base:effect/mx-ash-veiled",
+        "owner": "ally-0",
+        "reason": "expired"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 77,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 1,
+        "to": 1,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 78,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 79,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 80,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 81,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 8,
+        "to": 8,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 82,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 1,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 83,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 84,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 85,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 7,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 86,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 1,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 87,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-ash-screen",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 88,
+      "round": 2,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "ally-1",
+        "ability": "base:ability/mx-ash-screen",
+        "chance": 100,
+        "roll": null,
+        "part": "front-right"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 89,
+      "round": 2,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 2,
+        "effect": "base:effect/mx-ash-veiled",
+        "owner": "ally-1",
+        "part": null,
+        "source": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 90,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 7,
+        "to": 4,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 91,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 8,
+        "to": 7,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 92,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "target": null,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 93,
+      "round": 2,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-0",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "chance": 40,
+        "roll": 65,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 94,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 12,
+        "reason": "produces"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 95,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 96,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 7,
+        "to": 6,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 97,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "target": null,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 98,
+      "round": 2,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-0",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "chance": 40,
+        "roll": 90,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 99,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 12,
+        "to": 24,
+        "reason": "produces"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 100,
+      "round": 2,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 101,
+      "round": 2,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-1",
+        "resumed": false
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 102,
+      "round": 2,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 2,
+        "effect": "base:effect/mx-ash-veiled",
+        "owner": "ally-1",
+        "reason": "expired"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 103,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 30,
+        "to": 18,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 104,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 3,
+        "to": 3,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 105,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 106,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 107,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 108,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 4,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 109,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 3,
+        "to": 2,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 110,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-stake-drive",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 111,
+      "round": 2,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-stake-drive",
+        "chance": 44,
+        "roll": 42,
+        "part": "left-scythe"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 112,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "enemy-0",
+        "part": "left-scythe",
+        "layer": 0,
+        "layerType": "chitin",
+        "damageType": "kinetic",
+        "amount": 30.8,
+        "hp": 4.199999999999999
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 113,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "enemy-0",
+        "part": "left-scythe",
+        "layer": 1,
+        "layerType": "flesh",
+        "damageType": "kinetic",
+        "amount": 9.24,
+        "hp": 20.759999999999998
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 114,
+      "round": 2,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 3,
+        "effect": "base:effect/mx-staggered",
+        "owner": "enemy-0",
+        "part": null,
+        "source": "ally-1"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 115,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 18,
+        "to": 38,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 116,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 4,
+        "to": 3,
+        "reason": "move"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 117,
+      "round": 2,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-1",
+        "from": [
+          3,
+          2
+        ],
+        "to": [
+          4,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 118,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 3,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 119,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-singing-slash",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 120,
+      "round": 2,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-singing-slash",
+        "chance": 52,
+        "roll": 92,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 121,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 38,
+        "to": 48,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 122,
+      "round": 2,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-1"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 123,
+      "round": 2,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-0",
+        "resumed": false
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 124,
+      "round": 2,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 3,
+        "effect": "base:effect/mx-staggered",
+        "owner": "enemy-0",
+        "reason": "expired"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 125,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 126,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "instinct",
+        "from": 25,
+        "to": 30,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 127,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 128,
+      "round": 2,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-0",
+        "from": [
+          4,
+          2
+        ],
+        "to": [
+          3,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 129,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 8,
+        "to": 4,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 130,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 131,
+      "round": 2,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 5,
+        "part": "torso"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 132,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "torso",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "pierce",
+        "amount": 20,
+        "hp": 23
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 133,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 134,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 135,
+      "round": 2,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 41,
+        "part": "torso"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 136,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "torso",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "pierce",
+        "amount": 20,
+        "hp": 3
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 137,
+      "round": 2,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-0"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 138,
+      "round": 2,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-1",
+        "resumed": false
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 139,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 140,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "instinct",
+        "from": 25,
+        "to": 30,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 141,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 6,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 142,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-charge",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 143,
+      "round": 2,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-charge",
+        "chance": 41,
+        "roll": 48,
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 144,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 6,
+        "to": 5,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 145,
+      "round": 2,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          2,
+          3
+        ],
+        "to": [
+          3,
+          2
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 146,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 5,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 147,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 148,
+      "round": 2,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 15,
+        "part": "rear-left"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 149,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "pierce",
+        "amount": 19,
+        "hp": 0
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 150,
+      "round": 2,
+      "type": "LayerBroken",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left",
+        "layer": 0,
+        "layerType": "armor"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 151,
+      "round": 2,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left",
+        "layer": 1,
+        "layerType": "structure",
+        "damageType": "pierce",
+        "amount": 1,
+        "hp": 20
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 152,
+      "round": 2,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-1"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 153,
+      "round": 2,
+      "type": "RoundEnd",
+      "payload": {
+        "round": 2
+      }
+    },
+    {
+      "seq": 154,
+      "round": 3,
+      "type": "RoundStart",
+      "payload": {
+        "round": 3
+      }
+    },
+    {
+      "seq": 155,
+      "round": 3,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 156,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 157,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 158,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 24,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 159,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 160,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 6,
+        "to": 6,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 161,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 1,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 162,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 163,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 164,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 6,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 165,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-guard-stance",
+        "target": "ally-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 166,
+      "round": 3,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "ally-0",
+        "ability": "base:ability/mx-guard-stance",
+        "chance": 100,
+        "roll": null,
+        "part": "head"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 167,
+      "round": 3,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 4,
+        "effect": "base:effect/mx-guarding",
+        "owner": "ally-0",
+        "part": null,
+        "source": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 168,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 6,
+        "to": 5,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 169,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          2,
+          2
+        ],
+        "to": [
+          1,
+          3
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 170,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 5,
+        "to": 4,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 171,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          1,
+          3
+        ],
+        "to": [
+          0,
+          4
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 172,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 3,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 173,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          0,
+          4
+        ],
+        "to": [
+          0,
+          5
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 174,
+      "round": 3,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 175,
+      "round": 3,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-1",
+        "resumed": false
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 176,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 48,
+        "to": 36,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 177,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 2,
+        "to": 2,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 178,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 179,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 180,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 181,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 4,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 182,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 2,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 183,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-stake-drive",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 184,
+      "round": 3,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-stake-drive",
+        "chance": 44,
+        "roll": 98,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 185,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 36,
+        "to": 56,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 186,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 4,
+        "to": 3,
+        "reason": "move"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 187,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-1",
+        "from": [
+          4,
+          1
+        ],
+        "to": [
+          3,
+          0
+        ],
+        "cost": 1
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 188,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 3,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 189,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-singing-slash",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 190,
+      "round": 3,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-singing-slash",
+        "chance": 44,
+        "roll": 84,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 191,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 56,
+        "to": 66,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 192,
+      "round": 3,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-1"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 193,
+      "round": 3,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-0",
+        "resumed": false
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 194,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 195,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "instinct",
+        "from": 30,
+        "to": 35,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 196,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 197,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-0",
+        "from": [
+          3,
+          1
+        ],
+        "to": [
+          4,
+          0
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 198,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 8,
+        "to": 4,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 199,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 200,
+      "round": 3,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 21,
+        "part": "rear-left"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 201,
+      "round": 3,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left",
+        "layer": 1,
+        "layerType": "structure",
+        "damageType": "pierce",
+        "amount": 20,
+        "hp": 0
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 202,
+      "round": 3,
+      "type": "LayerBroken",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left",
+        "layer": 1,
+        "layerType": "structure"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 203,
+      "round": 3,
+      "type": "PartBroken",
+      "payload": {
+        "unit": "ally-1",
+        "part": "rear-left"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 204,
+      "round": 3,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 5,
+        "effect": "base:effect/morale-shaken",
+        "owner": "pilot-1",
+        "part": null,
+        "source": "morale:pilot-1"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 205,
+      "round": 3,
+      "type": "MoraleChanged",
+      "payload": {
+        "person": "pilot-1",
+        "from": "steady",
+        "to": "shaken"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 206,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 4,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 207,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 208,
+      "round": 3,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 55,
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 209,
+      "round": 3,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-0"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 210,
+      "round": 3,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-1",
+        "resumed": false
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 211,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 1,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 212,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "instinct",
+        "from": 30,
+        "to": 35,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 213,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 214,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          3,
+          2
+        ],
+        "to": [
+          2,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 215,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 8,
+        "to": 7,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 216,
+      "round": 3,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          2,
+          1
+        ],
+        "to": [
+          2,
+          0
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 217,
+      "round": 3,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 7,
+        "to": 3,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 218,
+      "round": 3,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 219,
+      "round": 3,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 57,
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 220,
+      "round": 3,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-1"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 221,
+      "round": 3,
+      "type": "RoundEnd",
+      "payload": {
+        "round": 3
+      }
+    },
+    {
+      "seq": 222,
+      "round": 4,
+      "type": "RoundStart",
+      "payload": {
+        "round": 4
+      }
+    },
+    {
+      "seq": 223,
+      "round": 4,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 224,
+      "round": 4,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 4,
+        "effect": "base:effect/mx-guarding",
+        "owner": "ally-0",
+        "reason": "expired"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 225,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 226,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 227,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 9,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 228,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 229,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 6,
+        "to": 6,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 230,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 3,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 231,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 232,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 233,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 8,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 234,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          0,
+          5
+        ],
+        "to": [
+          0,
+          4
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 235,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 8,
+        "to": 7,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 236,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          0,
+          4
+        ],
+        "to": [
+          0,
+          3
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 237,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 7,
+        "to": 6,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 238,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          0,
+          3
+        ],
+        "to": [
+          1,
+          2
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 239,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 6,
+        "to": 5,
+        "reason": "move"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 240,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-0",
+        "from": [
+          1,
+          2
+        ],
+        "to": [
+          2,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 241,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 5,
+        "to": 2,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 242,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 6,
+        "to": 5,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 243,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "target": null,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 244,
+      "round": 4,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-scatter-blast",
+        "chance": 40,
+        "roll": 14,
+        "part": "left-scythe"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 245,
+      "round": 4,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "enemy-0",
+        "part": "left-scythe",
+        "layer": 0,
+        "layerType": "chitin",
+        "damageType": "kinetic",
+        "amount": 4.199999999999999,
+        "hp": 0
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 246,
+      "round": 4,
+      "type": "LayerBroken",
+      "payload": {
+        "unit": "enemy-0",
+        "part": "left-scythe",
+        "layer": 0,
+        "layerType": "chitin"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 247,
+      "round": 4,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "enemy-0",
+        "part": "left-scythe",
+        "layer": 1,
+        "layerType": "flesh",
+        "damageType": "kinetic",
+        "amount": 10.620000000000001,
+        "hp": 10.139999999999997
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 248,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 12,
+        "reason": "produces"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 249,
+      "round": 4,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 250,
+      "round": 4,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-1",
+        "resumed": false
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 251,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 66,
+        "to": 54,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 252,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 1,
+        "to": 1,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 253,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 0,
+        "to": 8,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 254,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 255,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 256,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 8,
+        "to": 7,
+        "reason": "move"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 257,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-1",
+        "from": [
+          3,
+          0
+        ],
+        "to": [
+          4,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 258,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 7,
+        "to": 6,
+        "reason": "move"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 259,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "ally-1",
+        "from": [
+          4,
+          1
+        ],
+        "to": [
+          5,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 260,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-1",
+        "pool": "ap",
+        "from": 6,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 261,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "stake-wedge",
+        "from": 1,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 262,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-1",
+        "ability": "base:ability/mx-stake-drive",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 263,
+      "round": 4,
+      "type": "Miss",
+      "payload": {
+        "unit": "ally-1",
+        "target": "enemy-0",
+        "ability": "base:ability/mx-stake-drive",
+        "chance": 34,
+        "roll": 91,
+        "part": null
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 264,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-1",
+        "pool": "heat",
+        "from": 54,
+        "to": 74,
+        "reason": "produces"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 265,
+      "round": 4,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-1"
+      },
+      "turn": "ally-1"
+    },
+    {
+      "seq": 266,
+      "round": 4,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-0",
+        "resumed": false
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 267,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 0,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 268,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "instinct",
+        "from": 35,
+        "to": 40,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 269,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 5,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 270,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 271,
+      "round": 4,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 10,
+        "part": "front-left"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 272,
+      "round": 4,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "front-left",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "pierce",
+        "amount": 20,
+        "hp": 10
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 273,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 5,
+        "to": 1,
+        "reason": "ability"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 274,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 275,
+      "round": 4,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-0",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 68,
+        "part": null
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 276,
+      "round": 4,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-0"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 277,
+      "round": 4,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-1",
+        "resumed": false
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 278,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 3,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 279,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "instinct",
+        "from": 35,
+        "to": 40,
+        "reason": "regen"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 280,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 9,
+        "to": 6,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 281,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-charge",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 282,
+      "round": 4,
+      "type": "Hit",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-charge",
+        "chance": 39,
+        "roll": 36,
+        "part": "torso"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 283,
+      "round": 4,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "torso",
+        "layer": 0,
+        "layerType": "armor",
+        "damageType": "kinetic",
+        "amount": 3,
+        "hp": 0
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 284,
+      "round": 4,
+      "type": "LayerBroken",
+      "payload": {
+        "unit": "ally-1",
+        "part": "torso",
+        "layer": 0,
+        "layerType": "armor"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 285,
+      "round": 4,
+      "type": "LayerDamaged",
+      "payload": {
+        "unit": "ally-1",
+        "part": "torso",
+        "layer": 1,
+        "layerType": "cockpit-shell",
+        "damageType": "kinetic",
+        "amount": 11,
+        "hp": 36
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 286,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 6,
+        "to": 5,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 287,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          2,
+          0
+        ],
+        "to": [
+          3,
+          0
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 288,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 5,
+        "to": 4,
+        "reason": "move"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 289,
+      "round": 4,
+      "type": "Moved",
+      "payload": {
+        "unit": "enemy-1",
+        "from": [
+          3,
+          0
+        ],
+        "to": [
+          4,
+          1
+        ],
+        "cost": 1
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 290,
+      "round": 4,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-1",
+        "pool": "ap",
+        "from": 4,
+        "to": 0,
+        "reason": "ability"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 291,
+      "round": 4,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "enemy-1",
+        "ability": "base:ability/reaper-cleave",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 292,
+      "round": 4,
+      "type": "Miss",
+      "payload": {
+        "unit": "enemy-1",
+        "target": "ally-1",
+        "ability": "base:ability/reaper-cleave",
+        "chance": 43,
+        "roll": 93,
+        "part": null
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 293,
+      "round": 4,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-1"
+      },
+      "turn": "enemy-1"
+    },
+    {
+      "seq": 294,
+      "round": 4,
+      "type": "RoundEnd",
+      "payload": {
+        "round": 4
+      }
+    },
+    {
+      "seq": 295,
+      "round": 4,
+      "type": "BattleEnd",
+      "payload": {
+        "winner": null,
+        "reason": "timeout"
+      }
+    }
+  ]
+}

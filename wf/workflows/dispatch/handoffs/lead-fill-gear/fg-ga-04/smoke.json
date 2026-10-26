@@ -1,0 +1,4437 @@
+{
+  "scenario": "scratch-fg-ga-04",
+  "seed": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "installed": [
+    {
+      "component": "component/fa-arm-sling",
+      "unit": "gear-0",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-ash-ballast",
+      "unit": "gear-1",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-escort-lantern",
+      "unit": "gear-2",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-gunner-stool",
+      "unit": "gear-3",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-hearth-screen",
+      "unit": "gear-4",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-high-survey",
+      "unit": "gear-5",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-quay-outrigger",
+      "unit": "gear-6",
+      "frame": "frame/quito-quay-iv"
+    },
+    {
+      "component": "component/fa-reserve-pannier",
+      "unit": "gear-7",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-swift-sail",
+      "unit": "gear-8",
+      "frame": "frame/bulwark-ii"
+    },
+    {
+      "component": "component/fa-wing-stays",
+      "unit": "gear-9",
+      "frame": "frame/selene-iris-g6"
+    }
+  ],
+  "abilityUses": {
+    "base:ability/fa-catch-wind": 10,
+    "base:ability/fa-cover-companion": 10
+  },
+  "aiUsed": {
+    "base:ability/fa-catch-wind": true,
+    "base:ability/fa-cover-companion": true
+  },
+  "exceptions": [],
+  "observed": {
+    "installationCount": 10,
+    "knownMismatches": [
+      {
+        "case": "component/fa-ash-ballast",
+        "field": "attrs",
+        "actual": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "expected": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 3,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        }
+      },
+      {
+        "case": "component/fa-ash-ballast",
+        "field": "pool.heat",
+        "actual": {
+          "max": 100,
+          "regen": -15,
+          "cur": 0
+        },
+        "expected": {
+          "max": 130,
+          "regen": -11,
+          "cur": 0
+        }
+      },
+      {
+        "case": "component/fa-gunner-stool",
+        "field": "attrs",
+        "actual": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "expected": {
+          "accuracy": 4,
+          "evasion": -6,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        }
+      },
+      {
+        "case": "component/fa-gunner-stool",
+        "field": "pool.heat",
+        "actual": {
+          "max": 100,
+          "regen": -15,
+          "cur": 0
+        },
+        "expected": {
+          "max": 100,
+          "regen": -17,
+          "cur": 0
+        }
+      },
+      {
+        "case": "component/fa-high-survey",
+        "field": "attrs",
+        "actual": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "expected": {
+          "accuracy": -3,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 9,
+          "resolve": 0,
+          "control": 0
+        }
+      },
+      {
+        "case": "component/fa-reserve-pannier",
+        "field": "pool.charge",
+        "actual": {
+          "max": 70,
+          "regen": 10,
+          "cur": 50
+        },
+        "expected": {
+          "max": 70,
+          "regen": 10,
+          "cur": 70
+        }
+      },
+      {
+        "case": "component/fa-wing-stays",
+        "field": "attrs",
+        "actual": {
+          "accuracy": 5,
+          "evasion": 12,
+          "initiative": 9,
+          "perception": 7,
+          "resolve": 0,
+          "control": 0
+        },
+        "expected": {
+          "accuracy": 5,
+          "evasion": 12,
+          "initiative": 7,
+          "perception": 7,
+          "resolve": 0,
+          "control": 0
+        }
+      }
+    ]
+  },
+  "log": [
+    "battle-seed-1.log.json",
+    "battle-seed-2.log.json",
+    "battle-seed-3.log.json",
+    "battle-seed-4.log.json",
+    "battle-seed-5.log.json"
+  ],
+  "installation": [
+    {
+      "component": "component/fa-arm-sling",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-arm-sling"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            30,
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            16
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": [
+        {
+          "part": "left-arm",
+          "actual": [
+            {
+              "type": "armor",
+              "hp": 30,
+              "ablative": true,
+              "resist": {
+                "pierce": 0.1
+              },
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 28,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "structure",
+              "hp": 33,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 30,
+              "broken": false
+            },
+            {
+              "hp": 28,
+              "broken": false
+            },
+            {
+              "hp": 33,
+              "broken": false
+            },
+            {
+              "hp": 16,
+              "broken": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "component/fa-ash-ballast",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-ash-ballast"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            18
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 3,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 130,
+            "regen": -11,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-escort-lantern",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-escort-lantern"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            16
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-gunner-stool",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-gunner-stool"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            18
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 4,
+        "evasion": -6,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -17,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-hearth-screen",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-hearth-screen"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            35,
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            22
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": [
+        {
+          "part": "torso",
+          "actual": [
+            {
+              "type": "shield",
+              "hp": 35,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false,
+              "regen": 3,
+              "regenPool": "charge"
+            },
+            {
+              "type": "armor",
+              "hp": 30,
+              "ablative": true,
+              "resist": {
+                "thermal": 0.3,
+                "energy": 0.2
+              },
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 43,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "cockpit-shell",
+              "hp": 47,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 33,
+              "broken": false
+            },
+            {
+              "hp": 30,
+              "broken": false
+            },
+            {
+              "hp": 43,
+              "broken": false
+            },
+            {
+              "hp": 47,
+              "broken": false
+            },
+            {
+              "hp": 8,
+              "broken": false
+            }
+          ]
+        }
+      ],
+      "regen": {
+        "before": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              22
+            ]
+          }
+        },
+        "after": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 47,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              33,
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              22
+            ]
+          }
+        },
+        "expectedShield": 33,
+        "expectedCharge": 47
+      }
+    },
+    {
+      "component": "component/fa-high-survey",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-high-survey"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            18
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": -3,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 9,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-quay-outrigger",
+      "frame": "base:frame/quito-quay-iv",
+      "bodyPlan": "base:bodyplan/m2-keel-b",
+      "core": true,
+      "installation": [
+        {
+          "part": "stern",
+          "slot": "back-1",
+          "component": "base:component/fa-quay-outrigger"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -5,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 80,
+            "max": 80,
+            "regen": 14,
+            "band": -1
+          },
+          "cold-spring": {
+            "cur": 2,
+            "max": 2,
+            "regen": 0,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 110,
+            "regen": -18,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            55,
+            55
+          ],
+          "mast": [
+            20,
+            25
+          ],
+          "bow": [
+            35,
+            40,
+            16
+          ],
+          "stern": [
+            55,
+            65,
+            16
+          ],
+          "port-float": [
+            22,
+            25,
+            8
+          ],
+          "starboard-float": [
+            23,
+            25,
+            8
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -5,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 80,
+            "max": 80,
+            "regen": 14,
+            "band": -1
+          },
+          "cold-spring": {
+            "cur": 2,
+            "max": 2,
+            "regen": 0,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 110,
+            "regen": -18,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            55,
+            55
+          ],
+          "mast": [
+            20,
+            25
+          ],
+          "bow": [
+            35,
+            40,
+            16
+          ],
+          "stern": [
+            55,
+            65,
+            18,
+            16
+          ],
+          "port-float": [
+            25,
+            22,
+            25,
+            8
+          ],
+          "starboard-float": [
+            25,
+            23,
+            25,
+            8
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -5,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 80,
+            "max": 80,
+            "regen": 14,
+            "band": -1
+          },
+          "actual": {
+            "max": 80,
+            "regen": 14,
+            "cur": 80
+          },
+          "expected": {
+            "max": 80,
+            "regen": 14,
+            "cur": 80
+          }
+        },
+        "cold-spring": {
+          "baseline": {
+            "cur": 2,
+            "max": 2,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 2,
+            "regen": 0,
+            "cur": 2
+          },
+          "expected": {
+            "max": 2,
+            "regen": 0,
+            "cur": 2
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 110,
+            "regen": -18,
+            "band": -1
+          },
+          "actual": {
+            "max": 110,
+            "regen": -18,
+            "cur": 0
+          },
+          "expected": {
+            "max": 110,
+            "regen": -18,
+            "cur": 0
+          }
+        }
+      },
+      "layers": [
+        {
+          "part": "port-float",
+          "actual": [
+            {
+              "type": "armor",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 22,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "structure",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 22,
+              "broken": false
+            },
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 8,
+              "broken": false
+            }
+          ]
+        },
+        {
+          "part": "starboard-float",
+          "actual": [
+            {
+              "type": "armor",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 23,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "structure",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 23,
+              "broken": false
+            },
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 8,
+              "broken": false
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "component": "component/fa-reserve-pannier",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-reserve-pannier"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 70,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            16
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 70,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 70,
+            "regen": 10,
+            "cur": 70
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-swift-sail",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "core": true,
+      "installation": [
+        {
+          "part": "back",
+          "slot": "back-1",
+          "component": "base:component/fa-swift-sail"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 0,
+          "evasion": -3,
+          "initiative": 5,
+          "perception": 5,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "rune-round": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "scatter-shell": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            30,
+            43,
+            47,
+            8
+          ],
+          "head": [
+            19,
+            24
+          ],
+          "left-arm": [
+            28,
+            33,
+            16
+          ],
+          "right-arm": [
+            28,
+            33,
+            18
+          ],
+          "legs": [
+            38,
+            43
+          ],
+          "back": [
+            14,
+            20,
+            18
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 0,
+        "evasion": -3,
+        "initiative": 5,
+        "perception": 5,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 50,
+            "max": 50,
+            "regen": 10,
+            "band": -1
+          },
+          "actual": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          },
+          "expected": {
+            "max": 50,
+            "regen": 10,
+            "cur": 50
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -15,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -15,
+            "cur": 0
+          }
+        },
+        "rune-round": {
+          "baseline": {
+            "cur": 12,
+            "max": 12,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          },
+          "expected": {
+            "max": 12,
+            "regen": 0,
+            "cur": 12
+          }
+        },
+        "scatter-shell": {
+          "baseline": {
+            "cur": 8,
+            "max": 8,
+            "regen": 0,
+            "band": -1
+          },
+          "actual": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          },
+          "expected": {
+            "max": 8,
+            "regen": 0,
+            "cur": 8
+          }
+        }
+      },
+      "layers": []
+    },
+    {
+      "component": "component/fa-wing-stays",
+      "frame": "base:frame/selene-iris-g6",
+      "bodyPlan": "base:bodyplan/m2-splitwing-a",
+      "core": true,
+      "installation": [
+        {
+          "part": "left-wing",
+          "slot": "back-1",
+          "component": "base:component/fa-wing-stays"
+        }
+      ],
+      "baseline": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 5,
+          "evasion": 12,
+          "initiative": 9,
+          "perception": 7,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 120,
+            "max": 120,
+            "regen": 20,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -20,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            64,
+            70
+          ],
+          "nose": [
+            23,
+            29,
+            10
+          ],
+          "left-wing": [
+            58,
+            71,
+            12
+          ],
+          "right-wing": [
+            59,
+            70,
+            14
+          ],
+          "tail-left": [
+            17,
+            21,
+            10
+          ],
+          "tail-right": [
+            18,
+            20,
+            8
+          ]
+        }
+      },
+      "actual": {
+        "pos": {
+          "x": 2,
+          "y": 2
+        },
+        "attrs": {
+          "accuracy": 5,
+          "evasion": 12,
+          "initiative": 9,
+          "perception": 7,
+          "resolve": 0,
+          "control": 0
+        },
+        "pools": {
+          "charge": {
+            "cur": 120,
+            "max": 120,
+            "regen": 20,
+            "band": -1
+          },
+          "heat": {
+            "cur": 0,
+            "max": 100,
+            "regen": -20,
+            "band": -1
+          }
+        },
+        "effects": [],
+        "hp": {
+          "torso": [
+            64,
+            70
+          ],
+          "nose": [
+            23,
+            29,
+            10
+          ],
+          "left-wing": [
+            25,
+            58,
+            71,
+            22,
+            12
+          ],
+          "right-wing": [
+            25,
+            59,
+            70,
+            14
+          ],
+          "tail-left": [
+            17,
+            21,
+            10
+          ],
+          "tail-right": [
+            18,
+            20,
+            8
+          ]
+        }
+      },
+      "expectedAttrs": {
+        "accuracy": 5,
+        "evasion": 12,
+        "initiative": 7,
+        "perception": 7,
+        "resolve": 0,
+        "control": 0
+      },
+      "poolChanges": {
+        "charge": {
+          "baseline": {
+            "cur": 120,
+            "max": 120,
+            "regen": 20,
+            "band": -1
+          },
+          "actual": {
+            "max": 120,
+            "regen": 20,
+            "cur": 120
+          },
+          "expected": {
+            "max": 120,
+            "regen": 20,
+            "cur": 120
+          }
+        },
+        "heat": {
+          "baseline": {
+            "cur": 0,
+            "max": 100,
+            "regen": -20,
+            "band": -1
+          },
+          "actual": {
+            "max": 100,
+            "regen": -20,
+            "cur": 0
+          },
+          "expected": {
+            "max": 100,
+            "regen": -20,
+            "cur": 0
+          }
+        }
+      },
+      "layers": [
+        {
+          "part": "left-wing",
+          "actual": [
+            {
+              "type": "armor",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 58,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "structure",
+              "hp": 71,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 58,
+              "broken": false
+            },
+            {
+              "hp": 71,
+              "broken": false
+            },
+            {
+              "hp": 22,
+              "broken": false
+            },
+            {
+              "hp": 12,
+              "broken": false
+            }
+          ]
+        },
+        {
+          "part": "right-wing",
+          "actual": [
+            {
+              "type": "armor",
+              "hp": 25,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "armor",
+              "hp": 59,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": false
+            },
+            {
+              "type": "structure",
+              "hp": 70,
+              "ablative": true,
+              "resist": {},
+              "passThrough": {},
+              "structural": true
+            }
+          ],
+          "states": [
+            {
+              "hp": 25,
+              "broken": false
+            },
+            {
+              "hp": 59,
+              "broken": false
+            },
+            {
+              "hp": 70,
+              "broken": false
+            },
+            {
+              "hp": 14,
+              "broken": false
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "runs": [
+    {
+      "scenario": "scratch-fg-ga-04-group",
+      "seed": 1,
+      "installed": [
+        {
+          "component": "component/fa-arm-sling",
+          "unit": "gear-0",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-ash-ballast",
+          "unit": "gear-1",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-escort-lantern",
+          "unit": "gear-2",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-gunner-stool",
+          "unit": "gear-3",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-hearth-screen",
+          "unit": "gear-4",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-high-survey",
+          "unit": "gear-5",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-quay-outrigger",
+          "unit": "gear-6",
+          "frame": "frame/quito-quay-iv"
+        },
+        {
+          "component": "component/fa-reserve-pannier",
+          "unit": "gear-7",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-swift-sail",
+          "unit": "gear-8",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-wing-stays",
+          "unit": "gear-9",
+          "frame": "frame/selene-iris-g6"
+        }
+      ],
+      "abilityUses": {
+        "base:ability/fa-catch-wind": 2,
+        "base:ability/fa-cover-companion": 2
+      },
+      "aiUsed": {
+        "base:ability/fa-catch-wind": true,
+        "base:ability/fa-cover-companion": true
+      },
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 11,
+        "rejected": 0,
+        "winner": "allies",
+        "hash": "c7c22d3a95bb1e5e",
+        "effectApplications": {
+          "base:effect/fa-windward": 2,
+          "base:effect/fa-escorted": 2
+        }
+      },
+      "log": "battle-seed-1.log.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-04-group",
+      "seed": 2,
+      "installed": [
+        {
+          "component": "component/fa-arm-sling",
+          "unit": "gear-0",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-ash-ballast",
+          "unit": "gear-1",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-escort-lantern",
+          "unit": "gear-2",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-gunner-stool",
+          "unit": "gear-3",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-hearth-screen",
+          "unit": "gear-4",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-high-survey",
+          "unit": "gear-5",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-quay-outrigger",
+          "unit": "gear-6",
+          "frame": "frame/quito-quay-iv"
+        },
+        {
+          "component": "component/fa-reserve-pannier",
+          "unit": "gear-7",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-swift-sail",
+          "unit": "gear-8",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-wing-stays",
+          "unit": "gear-9",
+          "frame": "frame/selene-iris-g6"
+        }
+      ],
+      "abilityUses": {
+        "base:ability/fa-catch-wind": 2,
+        "base:ability/fa-cover-companion": 2
+      },
+      "aiUsed": {
+        "base:ability/fa-catch-wind": true,
+        "base:ability/fa-cover-companion": true
+      },
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 10,
+        "rejected": 0,
+        "winner": "allies",
+        "hash": "6c5dc164f3a9123a",
+        "effectApplications": {
+          "base:effect/fa-windward": 2,
+          "base:effect/fa-escorted": 2
+        }
+      },
+      "log": "battle-seed-2.log.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-04-group",
+      "seed": 3,
+      "installed": [
+        {
+          "component": "component/fa-arm-sling",
+          "unit": "gear-0",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-ash-ballast",
+          "unit": "gear-1",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-escort-lantern",
+          "unit": "gear-2",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-gunner-stool",
+          "unit": "gear-3",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-hearth-screen",
+          "unit": "gear-4",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-high-survey",
+          "unit": "gear-5",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-quay-outrigger",
+          "unit": "gear-6",
+          "frame": "frame/quito-quay-iv"
+        },
+        {
+          "component": "component/fa-reserve-pannier",
+          "unit": "gear-7",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-swift-sail",
+          "unit": "gear-8",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-wing-stays",
+          "unit": "gear-9",
+          "frame": "frame/selene-iris-g6"
+        }
+      ],
+      "abilityUses": {
+        "base:ability/fa-catch-wind": 2,
+        "base:ability/fa-cover-companion": 2
+      },
+      "aiUsed": {
+        "base:ability/fa-catch-wind": true,
+        "base:ability/fa-cover-companion": true
+      },
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 11,
+        "rejected": 0,
+        "winner": "allies",
+        "hash": "91d289a9cd5cae3e",
+        "effectApplications": {
+          "base:effect/fa-windward": 2,
+          "base:effect/fa-escorted": 2
+        }
+      },
+      "log": "battle-seed-3.log.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-04-group",
+      "seed": 4,
+      "installed": [
+        {
+          "component": "component/fa-arm-sling",
+          "unit": "gear-0",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-ash-ballast",
+          "unit": "gear-1",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-escort-lantern",
+          "unit": "gear-2",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-gunner-stool",
+          "unit": "gear-3",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-hearth-screen",
+          "unit": "gear-4",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-high-survey",
+          "unit": "gear-5",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-quay-outrigger",
+          "unit": "gear-6",
+          "frame": "frame/quito-quay-iv"
+        },
+        {
+          "component": "component/fa-reserve-pannier",
+          "unit": "gear-7",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-swift-sail",
+          "unit": "gear-8",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-wing-stays",
+          "unit": "gear-9",
+          "frame": "frame/selene-iris-g6"
+        }
+      ],
+      "abilityUses": {
+        "base:ability/fa-catch-wind": 2,
+        "base:ability/fa-cover-companion": 2
+      },
+      "aiUsed": {
+        "base:ability/fa-catch-wind": true,
+        "base:ability/fa-cover-companion": true
+      },
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 8,
+        "rejected": 0,
+        "winner": "allies",
+        "hash": "e898851ae1bdd894",
+        "effectApplications": {
+          "base:effect/fa-windward": 2,
+          "base:effect/fa-escorted": 2
+        }
+      },
+      "log": "battle-seed-4.log.json"
+    },
+    {
+      "scenario": "scratch-fg-ga-04-group",
+      "seed": 5,
+      "installed": [
+        {
+          "component": "component/fa-arm-sling",
+          "unit": "gear-0",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-ash-ballast",
+          "unit": "gear-1",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-escort-lantern",
+          "unit": "gear-2",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-gunner-stool",
+          "unit": "gear-3",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-hearth-screen",
+          "unit": "gear-4",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-high-survey",
+          "unit": "gear-5",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-quay-outrigger",
+          "unit": "gear-6",
+          "frame": "frame/quito-quay-iv"
+        },
+        {
+          "component": "component/fa-reserve-pannier",
+          "unit": "gear-7",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-swift-sail",
+          "unit": "gear-8",
+          "frame": "frame/bulwark-ii"
+        },
+        {
+          "component": "component/fa-wing-stays",
+          "unit": "gear-9",
+          "frame": "frame/selene-iris-g6"
+        }
+      ],
+      "abilityUses": {
+        "base:ability/fa-catch-wind": 2,
+        "base:ability/fa-cover-companion": 2
+      },
+      "aiUsed": {
+        "base:ability/fa-catch-wind": true,
+        "base:ability/fa-cover-companion": true
+      },
+      "exceptions": [],
+      "observed": {
+        "stopped": "outcome",
+        "rounds": 8,
+        "rejected": 0,
+        "winner": "allies",
+        "hash": "d465519c3fc62148",
+        "effectApplications": {
+          "base:effect/fa-windward": 2,
+          "base:effect/fa-escorted": 2
+        }
+      },
+      "log": "battle-seed-5.log.json"
+    }
+  ],
+  "manual": [
+    {
+      "scenario": "scratch-fa-catch-wind",
+      "seed": 1,
+      "installed": [
+        "component/fa-swift-sail"
+      ],
+      "abilityUses": {
+        "ability/fa-catch-wind": 1
+      },
+      "aiUsed": false,
+      "exceptions": [],
+      "observed": {
+        "before": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              18
+            ]
+          }
+        },
+        "after": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": -8,
+            "evasion": 5,
+            "initiative": 17,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [
+            {
+              "uid": 0,
+              "effect": "base:effect/fa-windward",
+              "source": "caster",
+              "scope": "mech",
+              "owner": {
+                "unit": "caster"
+              },
+              "remaining": 1,
+              "magnitude": 1,
+              "stacks": 1,
+              "contribIds": [
+                "c0",
+                "c1",
+                "c2"
+              ]
+            }
+          ],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              18
+            ]
+          }
+        },
+        "casterBefore": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              18
+            ]
+          }
+        },
+        "casterAfter": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": -8,
+            "evasion": 5,
+            "initiative": 17,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [
+            {
+              "uid": 0,
+              "effect": "base:effect/fa-windward",
+              "source": "caster",
+              "scope": "mech",
+              "owner": {
+                "unit": "caster"
+              },
+              "remaining": 1,
+              "magnitude": 1,
+              "stacks": 1,
+              "contribIds": [
+                "c0",
+                "c1",
+                "c2"
+              ]
+            }
+          ],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              18
+            ]
+          }
+        },
+        "apSpent": 3,
+        "cooldown": 3,
+        "effectClock": {
+          "kind": "ownerTurns",
+          "n": 1
+        },
+        "effectHooks": {},
+        "misses": [],
+        "expiry": [
+          {
+            "effects": [],
+            "attrs": {
+              "accuracy": 0,
+              "evasion": -3,
+              "initiative": 5,
+              "perception": 5,
+              "resolve": 0,
+              "control": 0
+            },
+            "inspection": 1
+          }
+        ],
+        "lifecycle": [
+          {
+            "effect": "base:effect/fa-windward",
+            "appliedSeq": 13,
+            "expiredSeq": 31,
+            "ownerTurns": 1,
+            "turnStartSeqs": [
+              30
+            ]
+          }
+        ]
+      },
+      "result": {
+        "ok": true,
+        "events": [
+          {
+            "seq": 10,
+            "round": 1,
+            "type": "PoolChanged",
+            "payload": {
+              "owner": "caster-pilot",
+              "pool": "ap",
+              "from": 9,
+              "to": 6,
+              "reason": "ability"
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 11,
+            "round": 1,
+            "type": "AbilityUsed",
+            "payload": {
+              "unit": "caster",
+              "ability": "base:ability/fa-catch-wind",
+              "target": "caster",
+              "part": null
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 12,
+            "round": 1,
+            "type": "Hit",
+            "payload": {
+              "unit": "caster",
+              "target": "caster",
+              "ability": "base:ability/fa-catch-wind",
+              "chance": 100,
+              "roll": null,
+              "part": "right-arm"
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 13,
+            "round": 1,
+            "type": "EffectApplied",
+            "payload": {
+              "uid": 0,
+              "effect": "base:effect/fa-windward",
+              "owner": "caster",
+              "part": null,
+              "source": "caster"
+            },
+            "turn": "caster"
+          }
+        ]
+      },
+      "log": "manual-fa-catch-wind.log.json"
+    },
+    {
+      "scenario": "scratch-fa-cover-companion",
+      "seed": 1,
+      "installed": [
+        "component/fa-escort-lantern"
+      ],
+      "abilityUses": {
+        "ability/fa-cover-companion": 1
+      },
+      "aiUsed": false,
+      "exceptions": [],
+      "observed": {
+        "before": {
+          "pos": {
+            "x": 4,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20
+            ]
+          }
+        },
+        "after": {
+          "pos": {
+            "x": 4,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": -5,
+            "evasion": 7,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [
+            {
+              "uid": 0,
+              "effect": "base:effect/fa-escorted",
+              "source": "caster",
+              "scope": "mech",
+              "owner": {
+                "unit": "companion"
+              },
+              "remaining": 2,
+              "magnitude": 1,
+              "stacks": 1,
+              "contribIds": [
+                "c0",
+                "c1"
+              ]
+            }
+          ],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20
+            ]
+          }
+        },
+        "casterBefore": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              16
+            ]
+          }
+        },
+        "casterAfter": {
+          "pos": {
+            "x": 2,
+            "y": 2
+          },
+          "attrs": {
+            "accuracy": 0,
+            "evasion": -3,
+            "initiative": 5,
+            "perception": 5,
+            "resolve": 0,
+            "control": 0
+          },
+          "pools": {
+            "charge": {
+              "cur": 50,
+              "max": 50,
+              "regen": 10,
+              "band": -1
+            },
+            "heat": {
+              "cur": 0,
+              "max": 100,
+              "regen": -15,
+              "band": -1
+            },
+            "rune-round": {
+              "cur": 12,
+              "max": 12,
+              "regen": 0,
+              "band": -1
+            },
+            "scatter-shell": {
+              "cur": 8,
+              "max": 8,
+              "regen": 0,
+              "band": -1
+            }
+          },
+          "effects": [],
+          "hp": {
+            "torso": [
+              30,
+              43,
+              47,
+              8
+            ],
+            "head": [
+              19,
+              24
+            ],
+            "left-arm": [
+              28,
+              33,
+              16
+            ],
+            "right-arm": [
+              28,
+              33,
+              18
+            ],
+            "legs": [
+              38,
+              43
+            ],
+            "back": [
+              14,
+              20,
+              16
+            ]
+          }
+        },
+        "apSpent": 3,
+        "cooldown": 3,
+        "effectClock": {
+          "kind": "ownerTurns",
+          "n": 2
+        },
+        "effectHooks": {},
+        "misses": [],
+        "attackAfterSupport": {
+          "ability": "base:ability/reaper-charge",
+          "result": {
+            "ok": true,
+            "events": [
+              {
+                "seq": 27,
+                "round": 1,
+                "type": "PoolChanged",
+                "payload": {
+                  "owner": "reaper",
+                  "pool": "ap",
+                  "from": 9,
+                  "to": 6,
+                  "reason": "ability"
+                },
+                "turn": "reaper"
+              },
+              {
+                "seq": 28,
+                "round": 1,
+                "type": "AbilityUsed",
+                "payload": {
+                  "unit": "reaper",
+                  "ability": "base:ability/reaper-charge",
+                  "target": "caster",
+                  "part": null
+                },
+                "turn": "reaper"
+              },
+              {
+                "seq": 29,
+                "round": 1,
+                "type": "Hit",
+                "payload": {
+                  "unit": "reaper",
+                  "target": "caster",
+                  "ability": "base:ability/reaper-charge",
+                  "chance": 48,
+                  "roll": 40,
+                  "part": "legs"
+                },
+                "turn": "reaper"
+              },
+              {
+                "seq": 30,
+                "round": 1,
+                "type": "LayerDamaged",
+                "payload": {
+                  "unit": "caster",
+                  "part": "legs",
+                  "layer": 0,
+                  "layerType": "armor",
+                  "damageType": "kinetic",
+                  "amount": 14,
+                  "hp": 24
+                },
+                "turn": "reaper"
+              }
+            ]
+          },
+          "caster": {
+            "pos": {
+              "x": 2,
+              "y": 2
+            },
+            "attrs": {
+              "accuracy": 0,
+              "evasion": -3,
+              "initiative": 5,
+              "perception": 5,
+              "resolve": 0,
+              "control": 0
+            },
+            "pools": {
+              "charge": {
+                "cur": 50,
+                "max": 50,
+                "regen": 10,
+                "band": -1
+              },
+              "heat": {
+                "cur": 0,
+                "max": 100,
+                "regen": -15,
+                "band": -1
+              },
+              "rune-round": {
+                "cur": 12,
+                "max": 12,
+                "regen": 0,
+                "band": -1
+              },
+              "scatter-shell": {
+                "cur": 8,
+                "max": 8,
+                "regen": 0,
+                "band": -1
+              }
+            },
+            "effects": [],
+            "hp": {
+              "torso": [
+                30,
+                43,
+                47,
+                8
+              ],
+              "head": [
+                19,
+                24
+              ],
+              "left-arm": [
+                28,
+                33,
+                16
+              ],
+              "right-arm": [
+                28,
+                33,
+                18
+              ],
+              "legs": [
+                24,
+                43
+              ],
+              "back": [
+                14,
+                20,
+                16
+              ]
+            }
+          },
+          "companion": {
+            "pos": {
+              "x": 4,
+              "y": 2
+            },
+            "attrs": {
+              "accuracy": -5,
+              "evasion": 7,
+              "initiative": 5,
+              "perception": 5,
+              "resolve": 0,
+              "control": 0
+            },
+            "pools": {
+              "charge": {
+                "cur": 50,
+                "max": 50,
+                "regen": 10,
+                "band": -1
+              },
+              "heat": {
+                "cur": 0,
+                "max": 100,
+                "regen": -15,
+                "band": -1
+              },
+              "rune-round": {
+                "cur": 12,
+                "max": 12,
+                "regen": 0,
+                "band": -1
+              },
+              "scatter-shell": {
+                "cur": 8,
+                "max": 8,
+                "regen": 0,
+                "band": -1
+              }
+            },
+            "effects": [
+              {
+                "uid": 0,
+                "effect": "base:effect/fa-escorted",
+                "source": "caster",
+                "scope": "mech",
+                "owner": {
+                  "unit": "companion"
+                },
+                "remaining": 1,
+                "magnitude": 1,
+                "stacks": 1,
+                "contribIds": [
+                  "c0",
+                  "c1"
+                ]
+              }
+            ],
+            "hp": {
+              "torso": [
+                30,
+                43,
+                47,
+                8
+              ],
+              "head": [
+                19,
+                24
+              ],
+              "left-arm": [
+                28,
+                33,
+                16
+              ],
+              "right-arm": [
+                28,
+                33,
+                18
+              ],
+              "legs": [
+                38,
+                43
+              ],
+              "back": [
+                14,
+                20
+              ]
+            }
+          }
+        },
+        "expiry": [
+          {
+            "effects": [],
+            "attrs": {
+              "accuracy": 0,
+              "evasion": -3,
+              "initiative": 5,
+              "perception": 5,
+              "resolve": 0,
+              "control": 0
+            },
+            "inspection": 1
+          },
+          {
+            "effects": [],
+            "attrs": {
+              "accuracy": 0,
+              "evasion": -3,
+              "initiative": 5,
+              "perception": 5,
+              "resolve": 0,
+              "control": 0
+            },
+            "inspection": 2
+          }
+        ],
+        "lifecycle": [
+          {
+            "effect": "base:effect/fa-escorted",
+            "appliedSeq": 13,
+            "expiredSeq": 44,
+            "ownerTurns": 2,
+            "turnStartSeqs": [
+              15,
+              43
+            ]
+          }
+        ]
+      },
+      "result": {
+        "ok": true,
+        "events": [
+          {
+            "seq": 10,
+            "round": 1,
+            "type": "PoolChanged",
+            "payload": {
+              "owner": "caster-pilot",
+              "pool": "ap",
+              "from": 9,
+              "to": 6,
+              "reason": "ability"
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 11,
+            "round": 1,
+            "type": "AbilityUsed",
+            "payload": {
+              "unit": "caster",
+              "ability": "base:ability/fa-cover-companion",
+              "target": "companion",
+              "part": null
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 12,
+            "round": 1,
+            "type": "Hit",
+            "payload": {
+              "unit": "caster",
+              "target": "companion",
+              "ability": "base:ability/fa-cover-companion",
+              "chance": 100,
+              "roll": null,
+              "part": "right-arm"
+            },
+            "turn": "caster"
+          },
+          {
+            "seq": 13,
+            "round": 1,
+            "type": "EffectApplied",
+            "payload": {
+              "uid": 0,
+              "effect": "base:effect/fa-escorted",
+              "owner": "companion",
+              "part": null,
+              "source": "caster"
+            },
+            "turn": "caster"
+          }
+        ]
+      },
+      "log": "manual-fa-cover-companion.log.json"
+    }
+  ],
+  "aiGaps": [],
+  "status": "FAILED"
+}

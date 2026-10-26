@@ -1,0 +1,39 @@
+{
+  "status": "FAILED",
+  "head": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "manifestExists": true,
+  "contentFilesProduced": 10,
+  "contentGate": "10 content approved; 1 PATH violation for batch manifest",
+  "baselineWorktreeCreated": false,
+  "smokeAttempts": 25,
+  "smokePassed": 10,
+  "smokeIncompatible": 15,
+  "validation": {
+    "check": {
+      "exitCode": 0,
+      "errors": 0,
+      "existingWarnings": 10,
+      "log": "logs/check.txt"
+    },
+    "typecheck": {
+      "exitCode": 0,
+      "log": "logs/typecheck.txt"
+    },
+    "singleFile": {
+      "exitCode": 1,
+      "tests": 25,
+      "pass": 10,
+      "fail": 15,
+      "log": "logs/assembly.tap"
+    },
+    "readlist": {
+      "exitCode": 0,
+      "listed": 14,
+      "log": "logs/readlist.json"
+    },
+    "contentFiles": 10,
+    "existingTrackedChanges": 0,
+    "goldenChanged": false,
+    "status": "FAILED"
+  }
+}

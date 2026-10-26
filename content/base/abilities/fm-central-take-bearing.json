@@ -1,0 +1,45 @@
+{
+  "id": "ability/fm-central-take-bearing",
+  "name": "循山定向",
+  "mode": "activated",
+  "grade": "C",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fm-bearing-clear"
+      ]
+    }
+  ],
+  "tags": [
+    "support"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 3,
+  "nameEn": "Take the Pass Bearing",
+  "etymology": "中亞傘的護糧商路改裝術，先循山勢定向，再校準視野與準頭。觀察要先花一段行動，校準也有冷卻，不能輪輪兼顧射擊。名稱與具體型錄均為提案。"
+}

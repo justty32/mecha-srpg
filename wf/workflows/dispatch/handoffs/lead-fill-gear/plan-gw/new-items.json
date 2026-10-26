@@ -1,0 +1,4480 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "批次",
+  "id",
+  "類型",
+  "中文名",
+  "nameEn",
+  "一句定位",
+  "掛點",
+  "廠商",
+  "等級",
+  "精粹",
+  "關鍵數值帶",
+  "AI戰術鍵",
+  "聲望門檻",
+  "新名詞",
+  "取捨",
+  "既有範本",
+  "檔",
+  "欄位規格"
+ ],
+ "rows": [
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-pry-axe",
+   "類型": "components",
+   "中文名": "凡撬斧",
+   "nameEn": "Dock Pry Axe",
+   "一句定位": "不吃燼與流光，貼身拆人造機甲的掛件",
+   "掛點": "舊廠諸家；崩年庫房改做護貨生意",
+   "廠商": "舊廠諸家通用品",
+   "等級": "D",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 9,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡撬斧",
+   "取捨": "只能貼身，對獸碰不到內層與核",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-pry-axe.json",
+   "欄位規格": {
+    "id": "component/fw-pry-axe",
+    "name": "凡撬斧",
+    "nameEn": "Dock Pry Axe",
+    "etymology": "提案名；舊廠諸家；崩年庫房改做護貨生意。不吃燼與流光，貼身拆人造機甲的掛件；只能貼身，對獸碰不到內層與核。",
+    "slot": "weaponMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-pry-axe-use"
+    ],
+    "hp": 12,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee",
+     "conventional-arms"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-pry-axe-use",
+   "類型": "abilities",
+   "中文名": "凡斧撬落",
+   "nameEn": "Pry Loose",
+   "一句定位": "不吃燼與流光，貼身拆人造機甲的掛件",
+   "掛點": "舊廠諸家；崩年庫房改做護貨生意",
+   "廠商": "舊廠諸家通用品",
+   "等級": "D",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 9,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    },
+    "targetPref": {
+     "parts": [
+      "weaponMount"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡斧撬落",
+   "取捨": "只能貼身，對獸碰不到內層與核",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-pry-axe-use.json",
+   "欄位規格": {
+    "id": "ability/fw-pry-axe-use",
+    "name": "凡斧撬落",
+    "nameEn": "Pry Loose",
+    "etymology": "提案名；不吃燼與流光，貼身拆人造機甲的掛件。只能貼身，對獸碰不到內層與核。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "kinetic",
+      "amount": 9,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "melee",
+     "conventional-arms"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     },
+     "targetPref": {
+      "parts": [
+       "weaponMount"
+      ]
+     }
+    },
+    "partAim": {
+     "allowed": true,
+     "penalty": 12
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-wedge-blade",
+   "類型": "components",
+   "中文名": "楔刃",
+   "nameEn": "Wedge Edge",
+   "一句定位": "小槽精粹短刃，瞄掛件但沒有鳴刃的反擊",
+   "掛點": "堅盾公刻後的共用修造棚；通用鐵劍近戰配件",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 2,
+    "傷害包總和": 8,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 4,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：楔刃",
+   "取捨": "射程只有一格，換到高階機也仍是 D 級精粹",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-wedge-blade.json",
+   "欄位規格": {
+    "id": "component/fw-wedge-blade",
+    "name": "楔刃",
+    "nameEn": "Wedge Edge",
+    "etymology": "提案名；堅盾公刻後的共用修造棚；通用鐵劍近戰配件。小槽精粹短刃，瞄掛件但沒有鳴刃的反擊；射程只有一格，換到高階機也仍是 D 級精粹。",
+    "slot": "weaponMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-wedge-blade-use"
+    ],
+    "hp": 12,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-wedge-blade-use",
+   "類型": "abilities",
+   "中文名": "楔入",
+   "nameEn": "Drive the Wedge",
+   "一句定位": "小槽精粹短刃，瞄掛件但沒有鳴刃的反擊",
+   "掛點": "堅盾公刻後的共用修造棚；通用鐵劍近戰配件",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 2,
+    "傷害包總和": 8,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 4,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    },
+    "targetPref": {
+     "parts": [
+      "weaponMount"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：楔入",
+   "取捨": "射程只有一格，換到高階機也仍是 D 級精粹",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-wedge-blade-use.json",
+   "欄位規格": {
+    "id": "ability/fw-wedge-blade-use",
+    "name": "楔入",
+    "nameEn": "Drive the Wedge",
+    "etymology": "提案名；小槽精粹短刃，瞄掛件但沒有鳴刃的反擊。射程只有一格，換到高階機也仍是 D 級精粹。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 4
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 8,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "melee",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     },
+     "targetPref": {
+      "parts": [
+       "weaponMount"
+      ]
+     }
+    },
+    "essence": "D",
+    "partAim": {
+     "allowed": true,
+     "penalty": 12
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-rivet-drill",
+   "類型": "components",
+   "中文名": "旋鉚鑿",
+   "nameEn": "Rivet Borer",
+   "一句定位": "用失衡幫後排接刀的低耗重鑿",
+   "掛點": "2096 斷臂殘骸、2104 鐵砧-II型；借重臂壓住接合處",
+   "廠商": "鐵砧獵團",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 16,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 12,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0.1,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果傷害＝C 級20×0.8"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 20,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：旋鉚鑿",
+   "取捨": "冷卻兩回合，不能連續鑿擊",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-rivet-drill.json",
+   "欄位規格": {
+    "id": "component/fw-rivet-drill",
+    "name": "旋鉚鑿",
+    "nameEn": "Rivet Borer",
+    "etymology": "提案名；2096 斷臂殘骸、2104 鐵砧-II型；借重臂壓住接合處。用失衡幫後排接刀的低耗重鑿；冷卻兩回合，不能連續鑿擊。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-rivet-drill-use"
+    ],
+    "hp": 16,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-rivet-drill-use",
+   "類型": "abilities",
+   "中文名": "旋鑿沉肩",
+   "nameEn": "Bore and Set",
+   "一句定位": "用失衡幫後排接刀的低耗重鑿",
+   "掛點": "2096 斷臂殘骸、2104 鐵砧-II型；借重臂壓住接合處",
+   "廠商": "鐵砧獵團",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 16,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 12,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0.1,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果傷害＝C 級20×0.8"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1,
+     "disable": 0.6
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 20,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：旋鑿沉肩",
+   "取捨": "冷卻兩回合，不能連續鑿擊",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-rivet-drill-use.json",
+   "欄位規格": {
+    "id": "ability/fw-rivet-drill-use",
+    "name": "旋鑿沉肩",
+    "nameEn": "Bore and Set",
+    "etymology": "提案名；用失衡幫後排接刀的低耗重鑿。冷卻兩回合，不能連續鑿擊。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 12
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 16,
+      "armorPen": 0.1,
+      "crit": 0
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-staggered"
+      ]
+     }
+    ],
+    "tags": [
+     "melee"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1,
+      "disable": 0.6
+     }
+    },
+    "essence": "C",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-shoal-hook",
+   "類型": "components",
+   "中文名": "掠水長鉤",
+   "nameEn": "Shoal Hook",
+   "一句定位": "隔一格挑腳，舟架不用貼住獸身就能拆腿",
+   "掛點": "第三刃潮鰭血統與舟架近戰；不新增造機血統",
+   "廠商": "第三刃委託工坊",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 20,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 8,
+    "流光成本": 10,
+    "accuracy": 0,
+    "armorPen": 0.15,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "第三刃：營運 id 尚缺，不冒用鹽鷗",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：掠水長鉤",
+   "取捨": "只做部位瞄準，不拉位、不拖動目標",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-shoal-hook.json",
+   "欄位規格": {
+    "id": "component/fw-shoal-hook",
+    "name": "掠水長鉤",
+    "nameEn": "Shoal Hook",
+    "etymology": "提案名；第三刃潮鰭血統與舟架近戰；不新增造機血統。隔一格挑腳，舟架不用貼住獸身就能拆腿；只做部位瞄準，不拉位、不拖動目標。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-shoal-hook-use"
+    ],
+    "hp": 20,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-shoal-hook-use",
+   "類型": "abilities",
+   "中文名": "挑浪回鉤",
+   "nameEn": "Hook the Wake",
+   "一句定位": "隔一格挑腳，舟架不用貼住獸身就能拆腿",
+   "掛點": "第三刃潮鰭血統與舟架近戰；不新增造機血統",
+   "廠商": "第三刃委託工坊",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 20,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 8,
+    "流光成本": 10,
+    "accuracy": 0,
+    "armorPen": 0.15,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    },
+    "targetPref": {
+     "parts": [
+      "locomotion"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": "第三刃：營運 id 尚缺，不冒用鹽鷗",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：挑浪回鉤",
+   "取捨": "只做部位瞄準，不拉位、不拖動目標",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-shoal-hook-use.json",
+   "欄位規格": {
+    "id": "ability/fw-shoal-hook-use",
+    "name": "挑浪回鉤",
+    "nameEn": "Hook the Wake",
+    "etymology": "提案名；隔一格挑腳，舟架不用貼住獸身就能拆腿。只做部位瞄準，不拉位、不拖動目標。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 10
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 2
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 20,
+      "armorPen": 0.15,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "melee"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     },
+     "targetPref": {
+      "parts": [
+       "locomotion"
+      ]
+     }
+    },
+    "essence": "B",
+    "partAim": {
+     "allowed": true,
+     "penalty": 10
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-breaktide-axe",
+   "類型": "components",
+   "中文名": "折潮重斧",
+   "nameEn": "Tidebreaker",
+   "一句定位": "放棄失衡，單包重斬穿厚外甲",
+   "掛點": "鐵砧破口作風；封門-鐵砧的近身備案",
+   "廠商": "鐵砧獵團",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 34,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 25,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0.3,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：折潮重斧",
+   "取捨": "用掉半回合以上指令，斬後要等兩回合",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-breaktide-axe.json",
+   "欄位規格": {
+    "id": "component/fw-breaktide-axe",
+    "name": "折潮重斧",
+    "nameEn": "Tidebreaker",
+    "etymology": "提案名；鐵砧破口作風；封門-鐵砧的近身備案。放棄失衡，單包重斬穿厚外甲；用掉半回合以上指令，斬後要等兩回合。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-breaktide-axe-use"
+    ],
+    "hp": 22,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-breaktide-axe-use",
+   "類型": "abilities",
+   "中文名": "斧落潮分",
+   "nameEn": "Part the Tide",
+   "一句定位": "放棄失衡，單包重斬穿厚外甲",
+   "掛點": "鐵砧破口作風；封門-鐵砧的近身備案",
+   "廠商": "鐵砧獵團",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 34,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 25,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0.3,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：斧落潮分",
+   "取捨": "用掉半回合以上指令，斬後要等兩回合",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-breaktide-axe-use.json",
+   "欄位規格": {
+    "id": "ability/fw-breaktide-axe-use",
+    "name": "斧落潮分",
+    "nameEn": "Part the Tide",
+    "etymology": "提案名；放棄失衡，單包重斬穿厚外甲。用掉半回合以上指令，斬後要等兩回合。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 25
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 34,
+      "armorPen": 0.3,
+      "crit": 0.15
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "melee"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     }
+    },
+    "essence": "A",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "component/fw-city-borer",
+   "類型": "components",
+   "中文名": "斷城鏜",
+   "nameEn": "Citadel Borer",
+   "一句定位": "S 級近身打斷節奏，接同伴集火",
+   "掛點": "斷臂重拳的機械仿件；須外購 S 級精粹，非古代機殘肢",
+   "廠商": "鐵砧獵團試裝",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 32,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 28,
+    "流光成本": 30,
+    "accuracy": 10,
+    "armorPen": 0.3,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "帶效果傷害＝S 級40×0.8；S 裝備是提案，不宣稱量產"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：斷城鏜",
+   "取捨": "三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-city-borer.json",
+   "欄位規格": {
+    "id": "component/fw-city-borer",
+    "name": "斷城鏜",
+    "nameEn": "Citadel Borer",
+    "etymology": "提案名；斷臂重拳的機械仿件；須外購 S 級精粹，非古代機殘肢。S 級近身打斷節奏，接同伴集火；三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-city-borer-use"
+    ],
+    "hp": 24,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-01",
+   "id": "ability/fw-city-borer-use",
+   "類型": "abilities",
+   "中文名": "沉城一鑿",
+   "nameEn": "Citadel Stroke",
+   "一句定位": "S 級近身打斷節奏，接同伴集火",
+   "掛點": "斷臂重拳的機械仿件；須外購 S 級精粹，非古代機殘肢",
+   "廠商": "鐵砧獵團試裝",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 32,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 28,
+    "流光成本": 30,
+    "accuracy": 10,
+    "armorPen": 0.3,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "帶效果傷害＝S 級40×0.8；S 裝備是提案，不宣稱量產"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1,
+     "disable": 0.6
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/anvil-hunters",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：沉城一鑿",
+   "取捨": "三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-city-borer-use.json",
+   "欄位規格": {
+    "id": "ability/fw-city-borer-use",
+    "name": "沉城一鑿",
+    "nameEn": "Citadel Stroke",
+    "etymology": "提案名；S 級近身打斷節奏，接同伴集火。三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 28
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 10,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 32,
+      "armorPen": 0.3,
+      "crit": 0.2
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-staggered"
+      ]
+     }
+    ],
+    "tags": [
+     "melee"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1,
+      "disable": 0.6
+     }
+    },
+    "essence": "S",
+    "cooldown": 3,
+    "usesPerBattle": 3
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-pin-shot",
+   "類型": "components",
+   "中文名": "凡點吼",
+   "nameEn": "Pinshot",
+   "一句定位": "單槽低負擔射擊，讓小機不用扛雙槽連吼",
+   "掛點": "舊廠庫存護貨槍；人打人便宜的凡鐵生意",
+   "廠商": "舊廠諸家通用品",
+   "等級": "D",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 10,
+    "射程": [
+     1,
+     4
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵10為D基準8×1.25"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡點吼",
+   "取捨": "傷害換成 D 級量級，對獸不能收命",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-pin-shot.json",
+   "欄位規格": {
+    "id": "component/fw-pin-shot",
+    "name": "凡點吼",
+    "nameEn": "Pinshot",
+    "etymology": "提案名；舊廠庫存護貨槍；人打人便宜的凡鐵生意。單槽低負擔射擊，讓小機不用扛雙槽連吼；傷害換成 D 級量級，對獸不能收命。",
+    "slot": "weaponMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-pin-shot-use"
+    ],
+    "hp": 12,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-pin-shot-use",
+   "類型": "abilities",
+   "中文名": "凡矢點射",
+   "nameEn": "Single Pin",
+   "一句定位": "單槽低負擔射擊，讓小機不用扛雙槽連吼",
+   "掛點": "舊廠庫存護貨槍；人打人便宜的凡鐵生意",
+   "廠商": "舊廠諸家通用品",
+   "等級": "D",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 10,
+    "射程": [
+     1,
+     4
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵10為D基準8×1.25"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡矢點射",
+   "取捨": "傷害換成 D 級量級，對獸不能收命",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-pin-shot-use.json",
+   "欄位規格": {
+    "id": "ability/fw-pin-shot-use",
+    "name": "凡矢點射",
+    "nameEn": "Single Pin",
+    "etymology": "提案名；單槽低負擔射擊，讓小機不用扛雙槽連吼。傷害換成 D 級量級，對獸不能收命。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 1
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 4
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "kinetic",
+      "amount": 10,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     }
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-shoal-light",
+   "類型": "components",
+   "中文名": "汀光矢槍",
+   "nameEn": "Shoal Lamp",
+   "一句定位": "不產燼的靈目點射，用流光換乾淨的射擊節奏",
+   "掛點": "通用長槍逆向圖的短槍分支；精粹仍須另購",
+   "廠商": "共用修造棚",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 16,
+    "射程": [
+     1,
+     5
+    ],
+    "燼成本": 0,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：汀光矢槍",
+   "取捨": "每發流光20，沒有流光池就不能用",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-shoal-light.json",
+   "欄位規格": {
+    "id": "component/fw-shoal-light",
+    "name": "汀光矢槍",
+    "nameEn": "Shoal Lamp",
+    "etymology": "提案名；通用長槍逆向圖的短槍分支；精粹仍須另購。不產燼的靈目點射，用流光換乾淨的射擊節奏；每發流光20，沒有流光池就不能用。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-shoal-light-use"
+    ],
+    "hp": 16,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-shoal-light-use",
+   "類型": "abilities",
+   "中文名": "照汀一矢",
+   "nameEn": "Light the Shoal",
+   "一句定位": "不產燼的靈目點射，用流光換乾淨的射擊節奏",
+   "掛點": "通用長槍逆向圖的短槍分支；精粹仍須另購",
+   "廠商": "共用修造棚",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 16,
+    "射程": [
+     1,
+     5
+    ],
+    "燼成本": 0,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    },
+    "targetPref": {
+     "parts": [
+      "sensor"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：照汀一矢",
+   "取捨": "每發流光20，沒有流光池就不能用",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-shoal-light-use.json",
+   "欄位規格": {
+    "id": "ability/fw-shoal-light-use",
+    "name": "照汀一矢",
+    "nameEn": "Light the Shoal",
+    "etymology": "提案名；不產燼的靈目點射，用流光換乾淨的射擊節奏。每發流光20，沒有流光池就不能用。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 5
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 16,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     },
+     "targetPref": {
+      "parts": [
+       "sensor"
+      ]
+     }
+    },
+    "essence": "C",
+    "partAim": {
+     "allowed": true,
+     "penalty": 8
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-paired-shot",
+   "類型": "components",
+   "中文名": "凡疊矢砲",
+   "nameEn": "Double Knock",
+   "一句定位": "兩個傷害包各過一次層，對薄層機甲施壓",
+   "掛點": "崩年護貨隊把舊雙矢架留在機甲手上",
+   "廠商": "舊廠諸家通用品",
+   "等級": "C",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 4,
+    "傷害包總和": 24,
+    "射程": [
+     2,
+     5
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵24＝C上緣20×1.2；總傷害算24"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡疊矢砲",
+   "取捨": "每發兩矢，貼身不能開，厚減傷層會分別擋矢",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-paired-shot.json",
+   "欄位規格": {
+    "id": "component/fw-paired-shot",
+    "name": "凡疊矢砲",
+    "nameEn": "Double Knock",
+    "etymology": "提案名；崩年護貨隊把舊雙矢架留在機甲手上。兩個傷害包各過一次層，對薄層機甲施壓；每發兩矢，貼身不能開，厚減傷層會分別擋矢。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-paired-shot-use"
+    ],
+    "hp": 16,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-paired-shot-use",
+   "類型": "abilities",
+   "中文名": "凡矢疊敲",
+   "nameEn": "Two Knocks",
+   "一句定位": "兩個傷害包各過一次層，對薄層機甲施壓",
+   "掛點": "崩年護貨隊把舊雙矢架留在機甲手上",
+   "廠商": "舊廠諸家通用品",
+   "等級": "C",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 4,
+    "傷害包總和": 24,
+    "射程": [
+     2,
+     5
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵24＝C上緣20×1.2；總傷害算24"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡矢疊敲",
+   "取捨": "每發兩矢，貼身不能開，厚減傷層會分別擋矢",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-paired-shot-use.json",
+   "欄位規格": {
+    "id": "ability/fw-paired-shot-use",
+    "name": "凡矢疊敲",
+    "nameEn": "Two Knocks",
+    "etymology": "提案名；兩個傷害包各過一次層，對薄層機甲施壓。每發兩矢，貼身不能開，厚減傷層會分別擋矢。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 2
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 2,
+      "max": 5
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "kinetic",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+     },
+     {
+      "type": "kinetic",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     }
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-seam-rifle",
+   "類型": "components",
+   "中文名": "照隙長槍",
+   "nameEn": "Seam Finder",
+   "一句定位": "打掛件並替後續射手留下兩回合標記",
+   "掛點": "稽古學會只解析、委外製造；護勘隊要看見先射哪裡",
+   "廠商": "稽古學會授權工坊",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 20,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 16,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0.1,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果20＝B基準25×0.8"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：照隙長槍",
+   "取捨": "最小射程兩格，兩回合冷卻",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-seam-rifle.json",
+   "欄位規格": {
+    "id": "component/fw-seam-rifle",
+    "name": "照隙長槍",
+    "nameEn": "Seam Finder",
+    "etymology": "提案名；稽古學會只解析、委外製造；護勘隊要看見先射哪裡。打掛件並替後續射手留下兩回合標記；最小射程兩格，兩回合冷卻。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-seam-rifle-use"
+    ],
+    "hp": 20,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-seam-rifle-use",
+   "類型": "abilities",
+   "中文名": "循隙點名",
+   "nameEn": "Name the Seam",
+   "一句定位": "打掛件並替後續射手留下兩回合標記",
+   "掛點": "稽古學會只解析、委外製造；護勘隊要看見先射哪裡",
+   "廠商": "稽古學會授權工坊",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 20,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 16,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0.1,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果20＝B基準25×0.8"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1,
+     "scout": 0.6
+    },
+    "targetPref": {
+     "parts": [
+      "weaponMount"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：循隙點名",
+   "取捨": "最小射程兩格，兩回合冷卻",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-seam-rifle-use.json",
+   "欄位規格": {
+    "id": "ability/fw-seam-rifle-use",
+    "name": "循隙點名",
+    "nameEn": "Name the Seam",
+    "etymology": "提案名；打掛件並替後續射手留下兩回合標記。最小射程兩格，兩回合冷卻。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 16
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 2,
+      "max": 6
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 20,
+      "armorPen": 0.1,
+      "crit": 0
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-marked"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1,
+      "scout": 0.6
+     },
+     "targetPref": {
+      "parts": [
+       "weaponMount"
+      ]
+     }
+    },
+    "essence": "B",
+    "cooldown": 2,
+    "partAim": {
+     "allowed": true,
+     "penalty": 10
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-moon-balance",
+   "類型": "components",
+   "中文名": "月衡長弓",
+   "nameEn": "Lunar Balance",
+   "一句定位": "七格狙擊但不吃實體矢，適合能維持流光的射手",
+   "掛點": "銀環型錄的精粹裝槍路線；公司只能供昂貴少量件",
+   "廠商": "塞勒涅型錄",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 4,
+    "傷害包總和": 32,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 20,
+    "流光成本": 30,
+    "accuracy": 10,
+    "armorPen": 0.25,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：月衡長弓",
+   "取捨": "三格盲區，不能取代近身槍",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-moon-balance.json",
+   "欄位規格": {
+    "id": "component/fw-moon-balance",
+    "name": "月衡長弓",
+    "nameEn": "Lunar Balance",
+    "etymology": "提案名；銀環型錄的精粹裝槍路線；公司只能供昂貴少量件。七格狙擊但不吃實體矢，適合能維持流光的射手；三格盲區，不能取代近身槍。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-moon-balance-use"
+    ],
+    "hp": 22,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-moon-balance-use",
+   "類型": "abilities",
+   "中文名": "衡月開弦",
+   "nameEn": "Draw the Balance",
+   "一句定位": "七格狙擊但不吃實體矢，適合能維持流光的射手",
+   "掛點": "銀環型錄的精粹裝槍路線；公司只能供昂貴少量件",
+   "廠商": "塞勒涅型錄",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 4,
+    "傷害包總和": 32,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 20,
+    "流光成本": 30,
+    "accuracy": 10,
+    "armorPen": 0.25,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：衡月開弦",
+   "取捨": "三格盲區，不能取代近身槍",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-moon-balance-use.json",
+   "欄位規格": {
+    "id": "ability/fw-moon-balance-use",
+    "name": "衡月開弦",
+    "nameEn": "Draw the Balance",
+    "etymology": "提案名；七格狙擊但不吃實體矢，適合能維持流光的射手。三格盲區，不能取代近身槍。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 3,
+      "max": 7
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 10,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 32,
+      "armorPen": 0.25,
+      "crit": 0.15
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     }
+    },
+    "essence": "A",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "component/fw-sky-crossbow",
+   "類型": "components",
+   "中文名": "巡天長弩",
+   "nameEn": "Sky Vigil",
+   "一句定位": "以巨大盲區換十格定點射擊",
+   "掛點": "蝕光-無月的遠射換裝提案；精粹須實有 S 級料",
+   "廠商": "塞勒涅特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 6,
+    "傷害包總和": 40,
+    "射程": [
+     4,
+     10
+    ],
+    "燼成本": 30,
+    "流光成本": 40,
+    "accuracy": 15,
+    "armorPen": 0.35,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：巡天長弩",
+   "取捨": "僅三次、冷卻三回合，移動後常無足夠指令開弩",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-sky-crossbow.json",
+   "欄位規格": {
+    "id": "component/fw-sky-crossbow",
+    "name": "巡天長弩",
+    "nameEn": "Sky Vigil",
+    "etymology": "提案名；蝕光-無月的遠射換裝提案；精粹須實有 S 級料。以巨大盲區換十格定點射擊；僅三次、冷卻三回合，移動後常無足夠指令開弩。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-sky-crossbow-use"
+    ],
+    "hp": 24,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-02",
+   "id": "ability/fw-sky-crossbow-use",
+   "類型": "abilities",
+   "中文名": "巡天落矢",
+   "nameEn": "Skyfall Bolt",
+   "一句定位": "以巨大盲區換十格定點射擊",
+   "掛點": "蝕光-無月的遠射換裝提案；精粹須實有 S 級料",
+   "廠商": "塞勒涅特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 6,
+    "傷害包總和": 40,
+    "射程": [
+     4,
+     10
+    ],
+    "燼成本": 30,
+    "流光成本": 40,
+    "accuracy": 15,
+    "armorPen": 0.35,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "沿同級 numeric-bands；近戰與定位性成本依本文說明"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 1
+    },
+    "targetPref": {
+     "parts": [
+      "core"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：巡天落矢",
+   "取捨": "僅三次、冷卻三回合，移動後常無足夠指令開弩",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-sky-crossbow-use.json",
+   "欄位規格": {
+    "id": "ability/fw-sky-crossbow-use",
+    "name": "巡天落矢",
+    "nameEn": "Skyfall Bolt",
+    "etymology": "提案名；以巨大盲區換十格定點射擊。僅三次、冷卻三回合，移動後常無足夠指令開弩。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 6
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 30
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 4,
+      "max": 10
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 15,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 40,
+      "armorPen": 0.35,
+      "crit": 0.2
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 1
+     },
+     "targetPref": {
+      "parts": [
+       "core"
+      ]
+     }
+    },
+    "essence": "S",
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "partAim": {
+     "allowed": true,
+     "penalty": 15
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-ankle-pin",
+   "類型": "components",
+   "中文名": "扣足矢",
+   "nameEn": "Ankle Pin",
+   "一句定位": "零傷收捕，不把已經打殘的目標補死",
+   "掛點": "共用拘束修造棚；崩年後活捕要壓住而非馴養",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 0,
+    "射程": [
+     1,
+     3
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "拘束零傷、四矢是數值帶明示例外；D 精粹不構成捕捉等級鎖"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：扣足矢",
+   "取捨": "只有四矢，三格射程；需滿足物種捕捉部位條件",
+   "既有範本": "content/base/components/mx-binding-harpoon.json",
+   "檔": "content/base/components/fw-ankle-pin.json",
+   "欄位規格": {
+    "id": "component/fw-ankle-pin",
+    "name": "扣足矢",
+    "nameEn": "Ankle Pin",
+    "etymology": "提案名；共用拘束修造棚；崩年後活捕要壓住而非馴養。零傷收捕，不把已經打殘的目標補死；只有四矢，三格射程；需滿足物種捕捉部位條件。",
+    "slot": "weaponMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-ankle-pin-use"
+    ],
+    "hp": 12,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-ankle-pin-use",
+   "類型": "abilities",
+   "中文名": "扣足",
+   "nameEn": "Pin the Step",
+   "一句定位": "零傷收捕，不把已經打殘的目標補死",
+   "掛點": "共用拘束修造棚；崩年後活捕要壓住而非馴養",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 0,
+    "射程": [
+     1,
+     3
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "拘束零傷、四矢是數值帶明示例外；D 精粹不構成捕捉等級鎖"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "disable": 1,
+     "capture": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：扣足",
+   "取捨": "只有四矢，三格射程；需滿足物種捕捉部位條件",
+   "既有範本": "content/base/abilities/mx-bind-shot.json",
+   "檔": "content/base/abilities/fw-ankle-pin-use.json",
+   "欄位規格": {
+    "id": "ability/fw-ankle-pin-use",
+    "name": "扣足",
+    "nameEn": "Pin the Step",
+    "etymology": "提案名；零傷收捕，不把已經打殘的目標補死。只有四矢，三格射程；需滿足物種捕捉部位條件。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "ammo-fw-bind",
+      "owner": "mech",
+      "amount": 1
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 3
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-netted"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "disable": 1,
+      "capture": 1
+     }
+    },
+    "essence": "D"
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-stayline",
+   "類型": "components",
+   "中文名": "停步索",
+   "nameEn": "Stayline",
+   "一句定位": "不耗矢的短距拘束，空矢後仍能留獸",
+   "掛點": "護勘隊短距拘束器；學會授權修造棚製索",
+   "廠商": "稽古學會委製",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 4,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 8,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "拘束副傷不按單體傷害下限填大"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 20,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：停步索",
+   "取捨": "必須逼近，命中仍會造成4點傷害",
+   "既有範本": "content/base/components/mx-binding-harpoon.json",
+   "檔": "content/base/components/fw-stayline.json",
+   "欄位規格": {
+    "id": "component/fw-stayline",
+    "name": "停步索",
+    "nameEn": "Stayline",
+    "etymology": "提案名；護勘隊短距拘束器；學會授權修造棚製索。不耗矢的短距拘束，空矢後仍能留獸；必須逼近，命中仍會造成4點傷害。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-stayline-use"
+    ],
+    "hp": 16,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-stayline-use",
+   "類型": "abilities",
+   "中文名": "拋索留步",
+   "nameEn": "Cast and Hold",
+   "一句定位": "不耗矢的短距拘束，空矢後仍能留獸",
+   "掛點": "護勘隊短距拘束器；學會授權修造棚製索",
+   "廠商": "稽古學會委製",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 3,
+    "傷害包總和": 4,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 8,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "拘束副傷不按單體傷害下限填大"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "disable": 1,
+     "capture": 0.8
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 20,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：拋索留步",
+   "取捨": "必須逼近，命中仍會造成4點傷害",
+   "既有範本": "content/base/abilities/mx-bind-shot.json",
+   "檔": "content/base/abilities/fw-stayline-use.json",
+   "欄位規格": {
+    "id": "ability/fw-stayline-use",
+    "name": "拋索留步",
+    "nameEn": "Cast and Hold",
+    "etymology": "提案名；不耗矢的短距拘束，空矢後仍能留獸。必須逼近，命中仍會造成4點傷害。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 2
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 4,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-netted"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ],
+    "ai": {
+     "tactics": {
+      "disable": 1,
+      "capture": 0.8
+     }
+    },
+    "essence": "C"
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-weight-harpoon",
+   "類型": "components",
+   "中文名": "千鈞拘束槍",
+   "nameEn": "Ballast Harpoon",
+   "一句定位": "六格外零傷收捕，避開瀕死獸的反擊距離",
+   "掛點": "合印拘束工位；家族護港隊承接拘束材料生意",
+   "廠商": "內海諸家委製",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 0,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 12,
+    "流光成本": 0,
+    "accuracy": 10,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "拘束零傷；準頭與距離是B級工位差異，非跨級保證捕捉"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/inner-sea-houses",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：千鈞拘束槍",
+   "取捨": "貼身不能開，四矢用盡就得換備用武器",
+   "既有範本": "content/base/components/mx-binding-harpoon.json",
+   "檔": "content/base/components/fw-weight-harpoon.json",
+   "欄位規格": {
+    "id": "component/fw-weight-harpoon",
+    "name": "千鈞拘束槍",
+    "nameEn": "Ballast Harpoon",
+    "etymology": "提案名；合印拘束工位；家族護港隊承接拘束材料生意。六格外零傷收捕，避開瀕死獸的反擊距離；貼身不能開，四矢用盡就得換備用武器。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-weight-harpoon-use"
+    ],
+    "hp": 20,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-weight-harpoon-use",
+   "類型": "abilities",
+   "中文名": "沉矢鎮步",
+   "nameEn": "Set the Ballast",
+   "一句定位": "六格外零傷收捕，避開瀕死獸的反擊距離",
+   "掛點": "合印拘束工位；家族護港隊承接拘束材料生意",
+   "廠商": "內海諸家委製",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 0,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 12,
+    "流光成本": 0,
+    "accuracy": 10,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": null,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "拘束零傷；準頭與距離是B級工位差異，非跨級保證捕捉"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "disable": 1,
+     "capture": 1.2
+    },
+    "targetPref": {
+     "parts": [
+      "locomotion"
+     ]
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/inner-sea-houses",
+    "need": 35,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：沉矢鎮步",
+   "取捨": "貼身不能開，四矢用盡就得換備用武器",
+   "既有範本": "content/base/abilities/mx-bind-shot.json",
+   "檔": "content/base/abilities/fw-weight-harpoon-use.json",
+   "欄位規格": {
+    "id": "ability/fw-weight-harpoon-use",
+    "name": "沉矢鎮步",
+    "nameEn": "Set the Ballast",
+    "etymology": "提案名；六格外零傷收捕，避開瀕死獸的反擊距離。貼身不能開，四矢用盡就得換備用武器。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 12
+     },
+     {
+      "pool": "ammo-fw-bind",
+      "owner": "mech",
+      "amount": 1
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 2,
+      "max": 6
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 10,
+    "packets": [],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-netted"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ],
+    "ai": {
+     "tactics": {
+      "disable": 1,
+      "capture": 1.2
+     },
+     "targetPref": {
+      "parts": [
+       "locomotion"
+      ]
+     }
+    },
+    "essence": "B",
+    "partAim": {
+     "allowed": true,
+     "penalty": 10
+    }
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-press-gun",
+   "類型": "components",
+   "中文名": "凡壓陣砲",
+   "nameEn": "Covering Beat",
+   "一句定位": "對單一射手壓制準頭，替近戰同伴開接近的空檔",
+   "掛點": "護糧與貨車保全的凡鐵火力；不新增國家專屬型錄",
+   "廠商": "舊廠諸家通用品",
+   "等級": "B",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 3,
+    "傷害包總和": 18,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "18落B帶內；控制副作用不提高凡鐵傷害，也不取得capture標籤"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡壓陣砲",
+   "取捨": "兩格盲區與冷卻，不能把壓制寫成解除武裝",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-press-gun.json",
+   "欄位規格": {
+    "id": "component/fw-press-gun",
+    "name": "凡壓陣砲",
+    "nameEn": "Covering Beat",
+    "etymology": "提案名；護糧與貨車保全的凡鐵火力；不新增國家專屬型錄。對單一射手壓制準頭，替近戰同伴開接近的空檔；兩格盲區與冷卻，不能把壓制寫成解除武裝。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-press-gun-use"
+    ],
+    "hp": 20,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-press-gun-use",
+   "類型": "abilities",
+   "中文名": "凡矢壓陣",
+   "nameEn": "Keep Heads Down",
+   "一句定位": "對單一射手壓制準頭，替近戰同伴開接近的空檔",
+   "掛點": "護糧與貨車保全的凡鐵火力；不新增國家專屬型錄",
+   "廠商": "舊廠諸家通用品",
+   "等級": "B",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 3,
+    "傷害包總和": 18,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 0,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "18落B帶內；控制副作用不提高凡鐵傷害，也不取得capture標籤"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 0.8,
+     "disable": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡矢壓陣",
+   "取捨": "兩格盲區與冷卻，不能把壓制寫成解除武裝",
+   "既有範本": "content/base/abilities/ix-line-shot.json",
+   "檔": "content/base/abilities/fw-press-gun-use.json",
+   "欄位規格": {
+    "id": "ability/fw-press-gun-use",
+    "name": "凡矢壓陣",
+    "nameEn": "Keep Heads Down",
+    "etymology": "提案名；對單一射手壓制準頭，替近戰同伴開接近的空檔。兩格盲區與冷卻，不能把壓制寫成解除武裝。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 1
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 2,
+      "max": 6
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "kinetic",
+      "amount": 18,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-suppressed"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 0.8,
+      "disable": 1
+     }
+    },
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-reef-jaw",
+   "類型": "components",
+   "中文名": "抱礁拘束鉗",
+   "nameEn": "Reef Clasp",
+   "一句定位": "近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口",
+   "掛點": "留燈-合印護撤工位；護港隊將近身鉗做成壓獸器",
+   "廠商": "內海諸家委製",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 4,
+    "傷害包總和": 24,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 18,
+    "流光成本": 20,
+    "accuracy": 10,
+    "armorPen": 0.15,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果24＝A基準30×0.8"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/inner-sea-houses",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：抱礁拘束鉗",
+   "取捨": "可能誤殺瀕死目標，不是零傷捕捉槍",
+   "既有範本": "content/base/components/mx-binding-harpoon.json",
+   "檔": "content/base/components/fw-reef-jaw.json",
+   "欄位規格": {
+    "id": "component/fw-reef-jaw",
+    "name": "抱礁拘束鉗",
+    "nameEn": "Reef Clasp",
+    "etymology": "提案名；留燈-合印護撤工位；護港隊將近身鉗做成壓獸器。近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口；可能誤殺瀕死目標，不是零傷捕捉槍。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-reef-jaw-use"
+    ],
+    "hp": 22,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee",
+     "restraint",
+     "capture"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-reef-jaw-use",
+   "類型": "abilities",
+   "中文名": "合鉗抱礁",
+   "nameEn": "Close the Reef",
+   "一句定位": "近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口",
+   "掛點": "留燈-合印護撤工位；護港隊將近身鉗做成壓獸器",
+   "廠商": "內海諸家委製",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 4,
+    "傷害包總和": 24,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 18,
+    "流光成本": 20,
+    "accuracy": 10,
+    "armorPen": 0.15,
+    "crit": 0.15,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "帶效果24＝A基準30×0.8"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attack": 0.8,
+     "disable": 1,
+     "capture": 0.8
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/inner-sea-houses",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：合鉗抱礁",
+   "取捨": "可能誤殺瀕死目標，不是零傷捕捉槍",
+   "既有範本": "content/base/abilities/mx-bind-shot.json",
+   "檔": "content/base/abilities/fw-reef-jaw-use.json",
+   "欄位規格": {
+    "id": "ability/fw-reef-jaw-use",
+    "name": "合鉗抱礁",
+    "nameEn": "Close the Reef",
+    "etymology": "提案名；近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口。可能誤殺瀕死目標，不是零傷捕捉槍。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 18
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 10,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 24,
+      "armorPen": 0.15,
+      "crit": 0.15
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-netted"
+      ]
+     }
+    ],
+    "tags": [
+     "melee",
+     "restraint",
+     "capture"
+    ],
+    "ai": {
+     "tactics": {
+      "attack": 0.8,
+      "disable": 1,
+      "capture": 0.8
+     }
+    },
+    "essence": "A",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "component/fw-shore-stay",
+   "類型": "components",
+   "中文名": "留岸拘束柱",
+   "nameEn": "Shore Stay",
+   "一句定位": "不用實體矢的零傷近距拘束，供晚期昂貴配裝",
+   "掛點": "護勘隊重拘束器；外購S級精粹而非把低級料聚煉成S",
+   "廠商": "稽古學會授權特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 0,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 24,
+    "流光成本": 40,
+    "accuracy": 15,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "S拘束非殺傷；品級不新增捕捉資格"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：留岸拘束柱",
+   "取捨": "三次上限、流光40；不保證捕捉S獸或不可捕物種",
+   "既有範本": "content/base/components/mx-binding-harpoon.json",
+   "檔": "content/base/components/fw-shore-stay.json",
+   "欄位規格": {
+    "id": "component/fw-shore-stay",
+    "name": "留岸拘束柱",
+    "nameEn": "Shore Stay",
+    "etymology": "提案名；護勘隊重拘束器；外購S級精粹而非把低級料聚煉成S。不用實體矢的零傷近距拘束，供晚期昂貴配裝；三次上限、流光40；不保證捕捉S獸或不可捕物種。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-shore-stay-use"
+    ],
+    "hp": 24,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-03",
+   "id": "ability/fw-shore-stay-use",
+   "類型": "abilities",
+   "中文名": "立柱留岸",
+   "nameEn": "Anchor the Shore",
+   "一句定位": "不用實體矢的零傷近距拘束，供晚期昂貴配裝",
+   "掛點": "護勘隊重拘束器；外購S級精粹而非把低級料聚煉成S",
+   "廠商": "稽古學會授權特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 0,
+    "射程": [
+     1,
+     2
+    ],
+    "燼成本": 24,
+    "流光成本": 40,
+    "accuracy": 15,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "S拘束非殺傷；品級不新增捕捉資格"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "disable": 1.2,
+     "capture": 1.2
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/shell-society",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：立柱留岸",
+   "取捨": "三次上限、流光40；不保證捕捉S獸或不可捕物種",
+   "既有範本": "content/base/abilities/mx-bind-shot.json",
+   "檔": "content/base/abilities/fw-shore-stay-use.json",
+   "欄位規格": {
+    "id": "ability/fw-shore-stay-use",
+    "name": "立柱留岸",
+    "nameEn": "Anchor the Shore",
+    "etymology": "提案名；不用實體矢的零傷近距拘束，供晚期昂貴配裝。三次上限、流光40；不保證捕捉S獸或不可捕物種。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 24
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 1,
+      "max": 2
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 15,
+    "packets": [],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-netted"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged",
+     "restraint",
+     "capture"
+    ],
+    "ai": {
+     "tactics": {
+      "disable": 1.2,
+      "capture": 1.2
+     }
+    },
+    "essence": "S",
+    "cooldown": 3,
+    "usesPerBattle": 3
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-fan-tube",
+   "類型": "components",
+   "中文名": "扇潮矢筒",
+   "nameEn": "Tide Fan",
+   "一句定位": "近距扇形掃開並排小獸，保留單體武器換位空間",
+   "掛點": "堅盾守門用共用件；公刻後工坊把散紋改為近身扇面",
+   "廠商": "共用修造棚",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 4,
+    "傷害包總和": 12,
+    "射程": [
+     1,
+     3
+    ],
+    "燼成本": 16,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍12＝C基準18×0.67"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：扇潮矢筒",
+   "取捨": "需接近且兩回合冷卻；不宣稱燒地形或留下火區",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-fan-tube.json",
+   "欄位規格": {
+    "id": "component/fw-fan-tube",
+    "name": "扇潮矢筒",
+    "nameEn": "Tide Fan",
+    "etymology": "提案名；堅盾守門用共用件；公刻後工坊把散紋改為近身扇面。近距扇形掃開並排小獸，保留單體武器換位空間；需接近且兩回合冷卻；不宣稱燒地形或留下火區。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-fan-tube-use"
+    ],
+    "hp": 16,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-fan-tube-use",
+   "類型": "abilities",
+   "中文名": "扇矢開潮",
+   "nameEn": "Open the Fan",
+   "一句定位": "近距扇形掃開並排小獸，保留單體武器換位空間",
+   "掛點": "堅盾守門用共用件；公刻後工坊把散紋改為近身扇面",
+   "廠商": "共用修造棚",
+   "等級": "C",
+   "精粹": "C",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 16,
+     "size": 2,
+     "mass": 3
+    },
+    "AP": 4,
+    "傷害包總和": 12,
+    "射程": [
+     1,
+     3
+    ],
+    "燼成本": 16,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍12＝C基準18×0.67"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：扇矢開潮",
+   "取捨": "需接近且兩回合冷卻；不宣稱燒地形或留下火區",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-fan-tube-use.json",
+   "欄位規格": {
+    "id": "ability/fw-fan-tube-use",
+    "name": "扇矢開潮",
+    "nameEn": "Open the Fan",
+    "etymology": "提案名；近距扇形掃開並排小獸，保留單體武器換位空間。需接近且兩回合冷卻；不宣稱燒地形或留下火區。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 16
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "cone",
+     "range": {
+      "min": 1,
+      "max": 3
+     },
+     "los": true,
+     "friendly": "no",
+     "radius": 1
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1
+     }
+    },
+    "essence": "C",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-wake-lance",
+   "類型": "components",
+   "中文名": "截浪貫矛",
+   "nameEn": "Wake Cutter",
+   "一句定位": "把排成一線的目標一起穿過，無標記或拘束",
+   "掛點": "通用長槍支線；以直線射擊換掉散紋圓域",
+   "廠商": "共用修造棚",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 16,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 18,
+    "流光成本": 15,
+    "accuracy": 0,
+    "armorPen": 0.15,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍16＝B基準24×0.67"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：截浪貫矛",
+   "取捨": "兩格盲區，敵人散開後每目標火力弱於單射",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-wake-lance.json",
+   "欄位規格": {
+    "id": "component/fw-wake-lance",
+    "name": "截浪貫矛",
+    "nameEn": "Wake Cutter",
+    "etymology": "提案名；通用長槍支線；以直線射擊換掉散紋圓域。把排成一線的目標一起穿過，無標記或拘束；兩格盲區，敵人散開後每目標火力弱於單射。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-wake-lance-use"
+    ],
+    "hp": 20,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-wake-lance-use",
+   "類型": "abilities",
+   "中文名": "一線截浪",
+   "nameEn": "Cut the Wake",
+   "一句定位": "把排成一線的目標一起穿過，無標記或拘束",
+   "掛點": "通用長槍支線；以直線射擊換掉散紋圓域",
+   "廠商": "共用修造棚",
+   "等級": "B",
+   "精粹": "B",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 20,
+     "size": 2,
+     "mass": 4
+    },
+    "AP": 4,
+    "傷害包總和": 16,
+    "射程": [
+     2,
+     6
+    ],
+    "燼成本": 18,
+    "流光成本": 15,
+    "accuracy": 0,
+    "armorPen": 0.15,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍16＝B基準24×0.67"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：一線截浪",
+   "取捨": "兩格盲區，敵人散開後每目標火力弱於單射",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-wake-lance-use.json",
+   "欄位規格": {
+    "id": "ability/fw-wake-lance-use",
+    "name": "一線截浪",
+    "nameEn": "Cut the Wake",
+    "etymology": "提案名；把排成一線的目標一起穿過，無標記或拘束。兩格盲區，敵人散開後每目標火力弱於單射。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 18
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 15
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "line",
+     "range": {
+      "min": 2,
+      "max": 6
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 16,
+      "armorPen": 0.15,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1
+     }
+    },
+    "essence": "B",
+    "cooldown": 2
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-harbor-gun",
+   "類型": "components",
+   "中文名": "凡守港砲",
+   "nameEn": "Harbor Watch",
+   "一句定位": "七格圓域對人火力，一次兩矢換成封口一擊",
+   "掛點": "崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲",
+   "廠商": "舊廠諸家通用品",
+   "等級": "A",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 26,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 20,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 3,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵範圍26卡硬上限；沿A單體30×0.67×1.3"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡守港砲",
+   "取捨": "三格盲區，三回合冷卻，打獸仍不能穿核",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-harbor-gun.json",
+   "欄位規格": {
+    "id": "component/fw-harbor-gun",
+    "name": "凡守港砲",
+    "nameEn": "Harbor Watch",
+    "etymology": "提案名；崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲。七格圓域對人火力，一次兩矢換成封口一擊；三格盲區，三回合冷卻，打獸仍不能穿核。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-harbor-gun-use"
+    ],
+    "hp": 22,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-harbor-gun-use",
+   "類型": "abilities",
+   "中文名": "凡矢封港",
+   "nameEn": "Close the Harbor",
+   "一句定位": "七格圓域對人火力，一次兩矢換成封口一擊",
+   "掛點": "崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲",
+   "廠商": "舊廠諸家通用品",
+   "等級": "A",
+   "精粹": "凡鐵",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 26,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 20,
+    "流光成本": 0,
+    "accuracy": 5,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 3,
+    "usesPerBattle": null,
+    "矢池": [
+     {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+     }
+    ],
+    "帶外說明": "凡鐵範圍26卡硬上限；沿A單體30×0.67×1.3"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：凡矢封港",
+   "取捨": "三格盲區，三回合冷卻，打獸仍不能穿核",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-harbor-gun-use.json",
+   "欄位規格": {
+    "id": "ability/fw-harbor-gun-use",
+    "name": "凡矢封港",
+    "nameEn": "Close the Harbor",
+    "etymology": "提案名；七格圓域對人火力，一次兩矢換成封口一擊。三格盲區，三回合冷卻，打獸仍不能穿核。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+     },
+     {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 2
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "ball",
+     "range": {
+      "min": 3,
+      "max": 7
+     },
+     "los": true,
+     "friendly": "no",
+     "radius": 1
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "kinetic",
+      "amount": 26,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged",
+     "conventional-arms"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1
+     }
+    },
+    "cooldown": 3
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-cinder-rain",
+   "類型": "components",
+   "中文名": "燼雨爐",
+   "nameEn": "Cinder Rain",
+   "一句定位": "打較遠的小圓域並壓低準頭，與短距解拘香爐分工",
+   "掛點": "行香六足的範圍火路；教團禁仿與私造矛盾仍保留",
+   "廠商": "沐蝕會私造工坊",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 20,
+    "射程": [
+     2,
+     5
+    ],
+    "燼成本": 28,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0.15,
+    "crit": 0.15,
+    "cooldown": 3,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍20＝A基準30×0.67；沿既有機體範圍壓制，沒有新效果檔"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/tide-faith",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：燼雨爐",
+   "取捨": "高積燼、冷卻三回合；不焚地形、不解除拘束",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-cinder-rain.json",
+   "欄位規格": {
+    "id": "component/fw-cinder-rain",
+    "name": "燼雨爐",
+    "nameEn": "Cinder Rain",
+    "etymology": "提案名；行香六足的範圍火路；教團禁仿與私造矛盾仍保留。打較遠的小圓域並壓低準頭，與短距解拘香爐分工；高積燼、冷卻三回合；不焚地形、不解除拘束。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-cinder-rain-use"
+    ],
+    "hp": 22,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-cinder-rain-use",
+   "類型": "abilities",
+   "中文名": "開爐落燼",
+   "nameEn": "Loose the Cinders",
+   "一句定位": "打較遠的小圓域並壓低準頭，與短距解拘香爐分工",
+   "掛點": "行香六足的範圍火路；教團禁仿與私造矛盾仍保留",
+   "廠商": "沐蝕會私造工坊",
+   "等級": "A",
+   "精粹": "A",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 22,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 20,
+    "射程": [
+     2,
+     5
+    ],
+    "燼成本": 28,
+    "流光成本": 20,
+    "accuracy": 5,
+    "armorPen": 0.15,
+    "crit": 0.15,
+    "cooldown": 3,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍20＝A基準30×0.67；沿既有機體範圍壓制，沒有新效果檔"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/tide-faith",
+    "need": 55,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：開爐落燼",
+   "取捨": "高積燼、冷卻三回合；不焚地形、不解除拘束",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-cinder-rain-use.json",
+   "欄位規格": {
+    "id": "ability/fw-cinder-rain-use",
+    "name": "開爐落燼",
+    "nameEn": "Loose the Cinders",
+    "etymology": "提案名；打較遠的小圓域並壓低準頭，與短距解拘香爐分工。高積燼、冷卻三回合；不焚地形、不解除拘束。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 28
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "ball",
+     "range": {
+      "min": 2,
+      "max": 5
+     },
+     "los": true,
+     "friendly": "no",
+     "radius": 1
+    },
+    "accuracy": 5,
+    "packets": [
+     {
+      "type": "thermal",
+      "amount": 20,
+      "armorPen": 0.15,
+      "crit": 0.15
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/mx-suppressed"
+      ]
+     }
+    ],
+    "tags": [
+     "ranged"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1
+     }
+    },
+    "essence": "A",
+    "cooldown": 3
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-sea-light",
+   "類型": "components",
+   "中文名": "照海紋砲",
+   "nameEn": "Sea Lantern",
+   "一句定位": "直線掃去光幕與掛件，為另一把主傷武器開路",
+   "掛點": "蝕光-無月重火力換裝；高級精粹產能稀少且保留型錄門檻",
+   "廠商": "塞勒涅特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 26,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 30,
+    "流光成本": 40,
+    "accuracy": 10,
+    "armorPen": 0.25,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "範圍26＝S基準40×0.65，未超範圍硬上限"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：照海紋砲",
+   "取捨": "只傷光幕與部件，不能獨自殺敵；三次、流光40",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-sea-light.json",
+   "欄位規格": {
+    "id": "component/fw-sea-light",
+    "name": "照海紋砲",
+    "nameEn": "Sea Lantern",
+    "etymology": "提案名；蝕光-無月重火力換裝；高級精粹產能稀少且保留型錄門檻。直線掃去光幕與掛件，為另一把主傷武器開路；只傷光幕與部件，不能獨自殺敵；三次、流光40。",
+    "slot": "weaponMount",
+    "size": 2,
+    "mass": 5,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-sea-light-use"
+    ],
+    "hp": 24,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "ranged"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-sea-light-use",
+   "類型": "abilities",
+   "中文名": "照海成線",
+   "nameEn": "Light Across the Sea",
+   "一句定位": "直線掃去光幕與掛件，為另一把主傷武器開路",
+   "掛點": "蝕光-無月重火力換裝；高級精粹產能稀少且保留型錄門檻",
+   "廠商": "塞勒涅特訂",
+   "等級": "S",
+   "精粹": "S",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 24,
+     "size": 2,
+     "mass": 5
+    },
+    "AP": 5,
+    "傷害包總和": 26,
+    "射程": [
+     3,
+     7
+    ],
+    "燼成本": 30,
+    "流光成本": 40,
+    "accuracy": 10,
+    "armorPen": 0.25,
+    "crit": 0.2,
+    "cooldown": 3,
+    "usesPerBattle": 3,
+    "矢池": [],
+    "帶外說明": "範圍26＝S基準40×0.65，未超範圍硬上限"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1
+    }
+   },
+   "聲望門檻": {
+    "faction": "faction/selene-whitegloves",
+    "need": 80,
+    "state": "提案門檻；部件購買目前未接鎖，暫緩上架"
+   },
+   "新名詞": "提案：照海成線",
+   "取捨": "只傷光幕與部件，不能獨自殺敵；三次、流光40",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-sea-light-use.json",
+   "欄位規格": {
+    "id": "ability/fw-sea-light-use",
+    "name": "照海成線",
+    "nameEn": "Light Across the Sea",
+    "etymology": "提案名；直線掃去光幕與掛件，為另一把主傷武器開路。只傷光幕與部件，不能獨自殺敵；三次、流光40。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 30
+     },
+     {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "line",
+     "range": {
+      "min": 3,
+      "max": 7
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "accuracy": 10,
+    "packets": [
+     {
+      "type": "energy",
+      "amount": 26,
+      "armorPen": 0.25,
+      "crit": 0.2,
+      "layerFilter": [
+       "shield",
+       "component"
+      ]
+     }
+    ],
+    "effects": [],
+    "tags": [
+     "ranged"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1
+     }
+    },
+    "essence": "S",
+    "cooldown": 3,
+    "usesPerBattle": 3
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "component/fw-door-sweep",
+   "類型": "components",
+   "中文名": "門鉤",
+   "nameEn": "Door Hook",
+   "一句定位": "貼身小圓域掃低敵人閃避與先手，留給同伴接刀",
+   "掛點": "堅盾公刻的窄門守備件；窮修造棚用D精粹守住入口",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 5,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 8,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍5低於D單體帶；以範圍牽滯補償，非主傷武器"
+   },
+   "AI戰術鍵": "由配套能力承接",
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：門鉤",
+   "取捨": "傷害低且只能選相鄰格；沒有地形障礙或擊退能力",
+   "既有範本": "content/base/components/autocannon-30.json",
+   "檔": "content/base/components/fw-door-sweep.json",
+   "欄位規格": {
+    "id": "component/fw-door-sweep",
+    "name": "門鉤",
+    "nameEn": "Door Hook",
+    "etymology": "提案名；堅盾公刻的窄門守備件；窮修造棚用D精粹守住入口。貼身小圓域掃低敵人閃避與先手，留給同伴接刀；傷害低且只能選相鄰格；沒有地形障礙或擊退能力。",
+    "slot": "weaponMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fw-door-sweep-use"
+    ],
+    "hp": 12,
+    "onBroken": [
+     "effect/weapon-jammed"
+    ],
+    "tags": [
+     "melee",
+     "universal"
+    ]
+   }
+  },
+  {
+   "批次": "fg-gw-04",
+   "id": "ability/fw-door-sweep-use",
+   "類型": "abilities",
+   "中文名": "掃門",
+   "nameEn": "Sweep the Door",
+   "一句定位": "貼身小圓域掃低敵人閃避與先手，留給同伴接刀",
+   "掛點": "堅盾公刻的窄門守備件；窮修造棚用D精粹守住入口",
+   "廠商": "共用修造棚",
+   "等級": "D",
+   "精粹": "D",
+   "關鍵數值帶": {
+    "部件": {
+     "hp": 12,
+     "size": 1,
+     "mass": 2
+    },
+    "AP": 3,
+    "傷害包總和": 5,
+    "射程": [
+     1,
+     1
+    ],
+    "燼成本": 8,
+    "流光成本": 0,
+    "accuracy": 0,
+    "armorPen": 0,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": null,
+    "矢池": [],
+    "帶外說明": "範圍5低於D單體帶；以範圍牽滯補償，非主傷武器"
+   },
+   "AI戰術鍵": {
+    "tactics": {
+     "attackArea": 1,
+     "disable": 0.6
+    }
+   },
+   "聲望門檻": {
+    "faction": null,
+    "need": 0,
+    "state": "公開通用品；不增設聲望鎖"
+   },
+   "新名詞": "提案：掃門",
+   "取捨": "傷害低且只能選相鄰格；沒有地形障礙或擊退能力",
+   "既有範本": "content/base/abilities/mx-maul-sweep.json",
+   "檔": "content/base/abilities/fw-door-sweep-use.json",
+   "欄位規格": {
+    "id": "ability/fw-door-sweep-use",
+    "name": "掃門",
+    "nameEn": "Sweep the Door",
+    "etymology": "提案名；貼身小圓域掃低敵人閃避與先手，留給同伴接刀。傷害低且只能選相鄰格；沒有地形障礙或擊退能力。",
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     },
+     {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+     }
+    ],
+    "produces": [],
+    "require": [],
+    "target": {
+     "kind": "ball",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no",
+     "radius": 1
+    },
+    "accuracy": 0,
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 5,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "effects": [
+     {
+      "on": "hit",
+      "apply": [
+       "effect/m2-dragged"
+      ]
+     }
+    ],
+    "tags": [
+     "melee",
+     "universal"
+    ],
+    "ai": {
+     "tactics": {
+      "attackArea": 1,
+      "disable": 0.6
+     }
+    },
+    "essence": "D",
+    "cooldown": 2
+   }
+  }
+ ]
+}

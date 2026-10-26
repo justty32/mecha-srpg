@@ -1,0 +1,34 @@
+{
+  "status": "FAILED",
+  "acceptance": {
+    "1": "FAIL: preexisting batch manifest PATH violation",
+    "2": "PASS: user-scoped checks",
+    "3": "FAIL: 7 mechanism mismatches",
+    "4": "PASS"
+  },
+  "commands": {
+    "npm run check": 0,
+    "npm run typecheck": 0,
+    "node --test src/rules/state.test.ts": 0,
+    "node --test src/rules/effects.test.ts": 0
+  },
+  "fullSuiteRunThisSession": false,
+  "contentGate": {
+    "exitCode": 1,
+    "approvedCount": 14,
+    "violations": [
+      {
+        "path": "content/batches/2026-10/fg-ga-04.json",
+        "code": "PATH",
+        "message": "不在允許目錄（allow.kinds=['base/components', 'base/abilities', 'base/effects']）"
+      }
+    ]
+  },
+  "exceptions": 0,
+  "mismatches": 7,
+  "aiUsed": {
+    "base:ability/fa-catch-wind": 10,
+    "base:ability/fa-cover-companion": 10
+  },
+  "reportBytes": 7936
+}

@@ -1,0 +1,1414 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan-*/review-draft.json（只含已入庫件）",
+ "extracted": "2026-10-26",
+ "columns": [
+  "檔",
+  "類別",
+  "名稱",
+  "白話",
+  "掛到"
+ ],
+ "rows": [
+  {
+   "檔": "content/base/components/fa-abutment.json",
+   "類別": "component",
+   "名稱": "坐山重甲",
+   "白話": "承受正面衝擊；厚甲拖慢先手。",
+   "掛到": "content/lore/factions/anvil.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-brow-guard.json",
+   "類別": "component",
+   "名稱": "眉梁",
+   "白話": "把胸甲掛位讓給頭部保護；胸口沒有加厚。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-cinder-cloak.json",
+   "類別": "component",
+   "名稱": "拒燼披甲",
+   "白話": "隔絕灼燒；換來較慢的流光回復。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/components/fa-forefoot-shoe.json",
+   "類別": "component",
+   "名稱": "踏礁護足",
+   "白話": "四足左前武器足加甲；保住一側火力與支點。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-heel-lock.json",
+   "類別": "component",
+   "名稱": "定樁衍甲",
+   "白話": "解除牽滯後搶回先手；不解除定身。",
+   "掛到": "content/lore/factions/anvil.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-needle-stop.json",
+   "類別": "component",
+   "名稱": "攔針疊甲",
+   "白話": "防穿刺疊甲；轉身閃避較差。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-salt-wash.json",
+   "類別": "component",
+   "名稱": "洗鹽覆甲",
+   "白話": "酸蝕場外甲；不替內層解毒。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-silver-lining.json",
+   "類別": "component",
+   "名稱": "照雪衍甲",
+   "白話": "擋流光的薄甲；能量抗性高，總厚度低。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-slip-clasp.json",
+   "類別": "component",
+   "名稱": "脫扣衍甲",
+   "白話": "被縛網時主動解扣；次數有限、甲層偏薄。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-wick-screen.json",
+   "類別": "component",
+   "名稱": "續燈光幕",
+   "白話": "小光幕反覆補回；持續抽用流光。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/abilities/fa-regain-footing.json",
+   "類別": "ability",
+   "名稱": "落樁站穩",
+   "白話": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "掛到": "content/lore/factions/anvil.json；不單獨販售；隨 component/fa-heel-lock"
+  },
+  {
+   "檔": "content/base/abilities/fa-shed-bonds.json",
+   "類別": "ability",
+   "名稱": "扳扣脫網",
+   "白話": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-slip-clasp"
+  },
+  {
+   "檔": "content/base/effects/fa-footed.json",
+   "類別": "effect",
+   "名稱": "立穩",
+   "白話": "解除 stagger 並先手+8一回合；不能把衝擊傷害倒回去。",
+   "掛到": "content/lore/factions/anvil.json；不單獨販售；隨 component/fa-heel-lock"
+  },
+  {
+   "檔": "content/base/effects/fa-loosened.json",
+   "類別": "effect",
+   "名稱": "脫扣",
+   "白話": "解除帶 immobilized 的效果並閃避+5一回合；不解只有 debuff 的絆足。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-slip-clasp"
+  },
+  {
+   "檔": "content/base/components/fa-ash-vessel.json",
+   "類別": "component",
+   "名稱": "AV-2",
+   "白話": "增加積燼餘量；散燼速度反而更慢。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-bridle-spool.json",
+   "類別": "component",
+   "名稱": "收韁輪",
+   "白話": "偏重控制；意志加成反向，並非生物馴養器。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-cold-return.json",
+   "類別": "component",
+   "名稱": "回霜環",
+   "白話": "常駐排燼；犧牲流光回復。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-deep-cup.json",
+   "類別": "component",
+   "名稱": "沉盞流光槽",
+   "白話": "擴大流光容量；先手變慢，初始儲量不加。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/components/fa-ember-dynamo.json",
+   "類別": "component",
+   "名稱": "借火輪",
+   "白話": "慢速補流光；長戰積燼是代價。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-light-reel.json",
+   "類別": "component",
+   "名稱": "汲光卷",
+   "白話": "主動兩回合回流光；同時增加燼。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/components/fa-quick-turn.json",
+   "類別": "component",
+   "名稱": "搶步筋組",
+   "白話": "先手換準頭；便於先動後壓近。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-quiet-bell.json",
+   "類別": "component",
+   "名稱": "定心鈴架",
+   "白話": "承壓意志換先手；不治療傷勢。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-steady-hand.json",
+   "類別": "component",
+   "名稱": "定肘筋組",
+   "白話": "準頭換先手；適合留位射擊。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/components/fa-vent-shutter.json",
+   "類別": "component",
+   "名稱": "開燼閘",
+   "白話": "主動兩回合強排燼；期間準頭降低。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/war-armory"
+  },
+  {
+   "檔": "content/base/abilities/fa-draw-light.json",
+   "類別": "ability",
+   "名稱": "收卷汲光",
+   "白話": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "掛到": "content/lore/factions/selene.json；不單獨販售；隨 component/fa-light-reel"
+  },
+  {
+   "檔": "content/base/abilities/fa-open-vents.json",
+   "類別": "ability",
+   "名稱": "開閘散燼",
+   "白話": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-vent-shutter"
+  },
+  {
+   "檔": "content/base/effects/fa-light-drawn.json",
+   "類別": "effect",
+   "名稱": "汲光",
+   "白話": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "掛到": "content/lore/factions/selene.json；不單獨販售；隨 component/fa-light-reel"
+  },
+  {
+   "檔": "content/base/effects/fa-venting.json",
+   "類別": "effect",
+   "名稱": "散燼",
+   "白話": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-vent-shutter"
+  },
+  {
+   "檔": "content/base/components/fa-close-watch.json",
+   "類別": "component",
+   "名稱": "近哨靈目",
+   "白話": "近身閃避換觀測範圍；不額外增加射程。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-cool-watch.json",
+   "類別": "component",
+   "名稱": "寒燈靈目",
+   "白話": "觀測兼微量排燼；流光回復減少。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-dazzle-shutter.json",
+   "類別": "component",
+   "名稱": "晃眼靈目",
+   "白話": "干擾單一敵人的準頭與觀測；須看得見且可能失手。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-first-bell.json",
+   "類別": "component",
+   "名稱": "先鳴靈目",
+   "白話": "搶先察覺並行動；分神時更難閃身。",
+   "掛到": "content/lore/factions/shell-society.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-iron-brow.json",
+   "類別": "component",
+   "名稱": "鐵眉靈目",
+   "白話": "靈目槽兼護頭；準頭略增、閃避下降。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-plumb-sight.json",
+   "類別": "component",
+   "名稱": "垂準靈目",
+   "白話": "瞄準與操縱穩定；先手較慢。",
+   "掛到": "content/lore/factions/shell-society.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-shared-bearing.json",
+   "類別": "component",
+   "名稱": "同準靈目",
+   "白話": "短距替一名隊友對準；佔用自己的行動。",
+   "掛到": "content/lore/factions/shell-society.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-single-aperture.json",
+   "類別": "component",
+   "名稱": "獨眼瞄座",
+   "白話": "集中準頭而收窄觀測；適合隊友報點。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-veiled-eye.json",
+   "類別": "component",
+   "名稱": "遮燈靈目",
+   "白話": "閃避與觀測兼顧；常駐吃掉部分回光。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/components/fa-wide-lantern.json",
+   "類別": "component",
+   "名稱": "分燈靈目",
+   "白話": "看得更廣卻瞄得較差；用於先找人。",
+   "掛到": "content/lore/factions/shell-society.json；market/old-array"
+  },
+  {
+   "檔": "content/base/abilities/fa-dazzle-mark.json",
+   "類別": "ability",
+   "名稱": "晃燈遮眼",
+   "白話": "射程1–5且要視線；命中後敵準頭-8、觀測-3兩回合。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-dazzle-shutter"
+  },
+  {
+   "檔": "content/base/abilities/fa-lend-bearing.json",
+   "類別": "ability",
+   "名稱": "同燈引路",
+   "白話": "替射程0–4一名友方準頭+8、觀測+3一回合；必中。",
+   "掛到": "content/lore/factions/shell-society.json；不單獨販售；隨 component/fa-shared-bearing"
+  },
+  {
+   "檔": "content/base/effects/fa-aligned.json",
+   "類別": "effect",
+   "名稱": "同準",
+   "白話": "替射程0–4一名友方準頭+8、觀測+3一回合；必中。",
+   "掛到": "content/lore/factions/shell-society.json；不單獨販售；隨 component/fa-shared-bearing"
+  },
+  {
+   "檔": "content/base/effects/fa-dazzled.json",
+   "類別": "effect",
+   "名稱": "晃眼",
+   "白話": "射程1–5且要視線；命中後敵準頭-8、觀測-3兩回合。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-dazzle-shutter"
+  },
+  {
+   "檔": "content/base/components/fa-arm-sling.json",
+   "類別": "component",
+   "名稱": "護肘背梁",
+   "白話": "背槽保護左臂武器；不給胸口加甲。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-ash-ballast.json",
+   "類別": "component",
+   "名稱": "壓燼背艙",
+   "白話": "大幅增加積燼餘量；笨重且更難排清。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-escort-lantern.json",
+   "類別": "component",
+   "名稱": "送行煙燈",
+   "白話": "只替一名隊友遮掩；隊友也看不清準星。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-gunner-stool.json",
+   "類別": "component",
+   "名稱": "坐砲背座",
+   "白話": "穩定準頭兼排燼；閃避降低，仍可移動。",
+   "掛到": "content/lore/factions/anvil.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-hearth-screen.json",
+   "類別": "component",
+   "名稱": "守燈背幕",
+   "白話": "胸前光幕慢回復；耗流光並占用重背位。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/components/fa-high-survey.json",
+   "類別": "component",
+   "名稱": "高燈背桅",
+   "白話": "背位擴大觀測；槍口準頭下降。",
+   "掛到": "content/lore/factions/shell-society.json；market/old-array"
+  },
+  {
+   "檔": "content/base/components/fa-quay-outrigger.json",
+   "類別": "component",
+   "名稱": "靠岸護舷",
+   "白話": "舟架兩側浮架各加甲；本身不授予涉水。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-reserve-pannier.json",
+   "類別": "component",
+   "名稱": "留光背匣",
+   "白話": "自帶一份開場流光；不增加每回合回復。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-swift-sail.json",
+   "類別": "component",
+   "名稱": "轉風背帆",
+   "白話": "短時搶先、閃避換準頭；不改移動格數。",
+   "掛到": "content/lore/factions/old-arms-makers.json；market/salt-flat"
+  },
+  {
+   "檔": "content/base/components/fa-wing-stays.json",
+   "類別": "component",
+   "名稱": "留翼背索",
+   "白話": "兩主翼加甲保火力；先手更慢，不讓陸機飛。",
+   "掛到": "content/lore/factions/selene.json；market/singapore"
+  },
+  {
+   "檔": "content/base/abilities/fa-catch-wind.json",
+   "類別": "ability",
+   "名稱": "轉帆搶步",
+   "白話": "一回合先手+12、閃避+8、準頭-8；位置不變。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-swift-sail"
+  },
+  {
+   "檔": "content/base/abilities/fa-cover-companion.json",
+   "類別": "ability",
+   "名稱": "借煙送行",
+   "白話": "友方閃避+10、準頭-5兩回合；不能免疫或代擋。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-escort-lantern"
+  },
+  {
+   "檔": "content/base/effects/fa-escorted.json",
+   "類別": "effect",
+   "名稱": "煙護",
+   "白話": "友方閃避+10、準頭-5兩回合；不能免疫或代擋。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-escort-lantern"
+  },
+  {
+   "檔": "content/base/effects/fa-windward.json",
+   "類別": "effect",
+   "名稱": "轉風",
+   "白話": "一回合先手+12、閃避+8、準頭-8；位置不變。",
+   "掛到": "content/lore/factions/old-arms-makers.json；不單獨販售；隨 component/fa-swift-sail"
+  },
+  {
+   "檔": "content/base/components/fl-scale-leaf.json",
+   "類別": "component",
+   "名稱": "節甲襯",
+   "白話": "薄甲墊在胸前，先替座艙吃下一擊。",
+   "掛到": "吉大港拆船幫：崩年拆船手改做拆屍工。"
+  },
+  {
+   "檔": "content/base/world/research/fl-scale-leaf-study.json",
+   "類別": "research",
+   "名稱": "節甲襯拆存法",
+   "白話": "耗用一份甲葉與拆料，學會保存及固定節甲襯。",
+   "掛到": "吉大港拆船幫：崩年拆船手改做拆屍工。"
+  },
+  {
+   "檔": "content/base/components/fl-lantern-pith.json",
+   "類別": "component",
+   "名稱": "燈髓囊",
+   "白話": "把燈腹拆下的囊掛在背後，少量續入流光。",
+   "掛到": "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。"
+  },
+  {
+   "檔": "content/base/world/research/fl-lantern-pith-study.json",
+   "類別": "research",
+   "名稱": "燈髓囊拆存法",
+   "白話": "耗用一份節髓與拆料，學會保存及固定燈髓囊。",
+   "掛到": "燈腹與弔燈蜂的採收提案；拆船幫只保囊口不漏。"
+  },
+  {
+   "檔": "content/base/components/fl-rack-rib.json",
+   "類別": "component",
+   "名稱": "櫛骨襯",
+   "白話": "擋直刺的窄骨排，遇蝕液仍會漏進胸甲。",
+   "掛到": "矢櫛的高處射擊棲位；拆船幫回收矢架。"
+  },
+  {
+   "檔": "content/base/world/research/fl-rack-rib-study.json",
+   "類別": "research",
+   "名稱": "櫛骨襯拆存法",
+   "白話": "耗用一份稜骨與拆料，學會保存及固定櫛骨襯。",
+   "掛到": "矢櫛的高處射擊棲位；拆船幫回收矢架。"
+  },
+  {
+   "檔": "content/base/components/fl-gate-flap.json",
+   "類別": "component",
+   "名稱": "闕甲裙",
+   "白話": "厚甲向胸前合攏，擋硬矢卻怕燒。",
+   "掛到": "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。"
+  },
+  {
+   "檔": "content/base/world/research/fl-gate-flap-study.json",
+   "類別": "research",
+   "名稱": "闕甲裙拆存法",
+   "白話": "耗用一份闕膜與拆料，學會保存及固定闕甲裙。",
+   "掛到": "八打雁外閘與閘母；未宣稱已擊殺閉港千扉。"
+  },
+  {
+   "檔": "content/base/components/fl-heel-cushion.json",
+   "類別": "component",
+   "名稱": "蹄墊甲",
+   "白話": "柔墊把鈍擊攤開，尖矢仍會穿過。",
+   "掛到": "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。"
+  },
+  {
+   "檔": "content/base/world/research/fl-heel-cushion-study.json",
+   "類別": "research",
+   "名稱": "蹄墊甲拆存法",
+   "白話": "耗用一份足筋與拆料，學會保存及固定蹄墊甲。",
+   "掛到": "軛鞍行：先拆濺蹄的足墊，再談能否接上鐵架。"
+  },
+  {
+   "檔": "content/base/components/fl-foam-bladder.json",
+   "類別": "component",
+   "名稱": "沫顎隔囊",
+   "白話": "剖開沫顎胸囊，留一層擋蝕液的軟襯。",
+   "掛到": "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。"
+  },
+  {
+   "檔": "content/base/world/research/fl-foam-bladder-study.json",
+   "類別": "research",
+   "名稱": "沫顎隔囊拆存法",
+   "白話": "耗用一份筋脂與拆料，學會保存及固定沫顎隔囊。",
+   "掛到": "軛鞍行的外洋拆解工作；不把獸囊說成廠製標準件。"
+  },
+  {
+   "檔": "content/base/components/fl-shelf-ridge.json",
+   "類別": "component",
+   "名稱": "棧背梁",
+   "白話": "厚背梁護住胸腹，背得重也擋得久。",
+   "掛到": "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。"
+  },
+  {
+   "檔": "content/base/world/research/fl-shelf-ridge-study.json",
+   "類別": "research",
+   "名稱": "棧背梁拆存法",
+   "白話": "耗用一份梁髓與拆料，學會保存及固定棧背梁。",
+   "掛到": "棧背的港口棲位；拆船幫把斷梁當船肋般架上機。"
+  },
+  {
+   "檔": "content/base/components/fl-antler-cup.json",
+   "類別": "component",
+   "名稱": "白冠角盞",
+   "白話": "角盞能存一大口流光，自己不會再添滿。",
+   "掛到": "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。"
+  },
+  {
+   "檔": "content/base/world/research/fl-antler-cup-study.json",
+   "類別": "research",
+   "名稱": "白冠角盞拆存法",
+   "白話": "耗用一份頸髓與拆料，學會保存及固定白冠角盞。",
+   "掛到": "西雅圖外糧埠礁角；折桅白冠的斷角取得仍待戰果。"
+  },
+  {
+   "檔": "content/base/components/fl-tidespine-keel.json",
+   "類別": "component",
+   "名稱": "潮脊斷梁",
+   "白話": "巨獸脊梁抵住胸甲，護得厚也壓得人難以承擔。",
+   "掛到": "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。"
+  },
+  {
+   "檔": "content/base/world/research/fl-tidespine-keel-study.json",
+   "類別": "research",
+   "名稱": "潮脊斷梁拆存法",
+   "白話": "耗用一份脊璞與拆料，學會保存及固定潮脊斷梁。",
+   "掛到": "吉大港的那隻；萬潮葬王唯一例外，不新增出場與討伐。"
+  },
+  {
+   "檔": "content/base/components/fl-sac-fold.json",
+   "類別": "component",
+   "名稱": "囊褶襯",
+   "白話": "薄囊隔開灼燒，硬物仍容易穿進去。",
+   "掛到": "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。"
+  },
+  {
+   "檔": "content/base/world/research/fl-sac-fold-study.json",
+   "類別": "research",
+   "名稱": "囊褶襯拆存法",
+   "白話": "耗用一份囊褶與拆料，學會保存及固定囊褶襯。",
+   "掛到": "浮囊的異形拆件提案；軛鞍行只接懸囊，不聲稱懂牠。"
+  },
+  {
+   "檔": "content/base/components/fl-hollow-sail.json",
+   "類別": "component",
+   "名稱": "空帆片",
+   "白話": "一片帆張成薄幕，幕破後能慢慢續回。",
+   "掛到": "空帆的空中棲位；不賦予飛行或水域移動。"
+  },
+  {
+   "檔": "content/base/world/research/fl-hollow-sail-study.json",
+   "類別": "research",
+   "名稱": "空帆片拆存法",
+   "白話": "耗用一份懸絮與拆料，學會保存及固定空帆片。",
+   "掛到": "空帆的空中棲位；不賦予飛行或水域移動。"
+  },
+  {
+   "檔": "content/base/components/fl-mirror-splinter.json",
+   "類別": "component",
+   "名稱": "偏鏡甲",
+   "白話": "偏斜鏡面擋流光，凡鐵正面打來仍吃得住傷。",
+   "掛到": "鏡肢的有甲側與裸側；不是另一件骸片透鏡。"
+  },
+  {
+   "檔": "content/base/world/research/fl-mirror-splinter-study.json",
+   "類別": "research",
+   "名稱": "偏鏡甲拆存法",
+   "白話": "耗用一份鏡屑與拆料，學會保存及固定偏鏡甲。",
+   "掛到": "鏡肢的有甲側與裸側；不是另一件骸片透鏡。"
+  },
+  {
+   "檔": "content/base/components/fl-dusk-curtain.json",
+   "類別": "component",
+   "名稱": "暮帷掛",
+   "白話": "垂幕拆下的帷沿慢慢聚光，代價是持續承擔。",
+   "掛到": "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。"
+  },
+  {
+   "檔": "content/base/world/research/fl-dusk-curtain-study.json",
+   "類別": "research",
+   "名稱": "暮帷掛拆存法",
+   "白話": "耗用一份帷髓與拆料，學會保存及固定暮帷掛。",
+   "掛到": "奧克蘭空泊與掩舟暮帷；不重寫該獸之夜。"
+  },
+  {
+   "檔": "content/base/components/fl-wick-felt.json",
+   "類別": "component",
+   "名稱": "燈苔氈",
+   "白話": "胸前薄氈會補回細傷，燒穿後便救不回。",
+   "掛到": "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。"
+  },
+  {
+   "檔": "content/base/world/research/fl-wick-felt-study.json",
+   "類別": "research",
+   "名稱": "燈苔氈拆存法",
+   "白話": "耗用一份燈絨與拆料，學會保存及固定燈苔氈。",
+   "掛到": "菌絲沿淡水的例外；採收燈苔，不拘束菌絲。"
+  },
+  {
+   "檔": "content/base/components/fl-reed-screen.json",
+   "類別": "component",
+   "名稱": "蘆網襯",
+   "白話": "編網狀的菌片讓一半蝕液穿走，換來較厚的緩衝。",
+   "掛到": "蘆網採收提案；拆船幫用舊纜的手法固定它。"
+  },
+  {
+   "檔": "content/base/world/research/fl-reed-screen-study.json",
+   "類別": "research",
+   "名稱": "蘆網襯拆存法",
+   "白話": "耗用一份網絲與拆料，學會保存及固定蘆網襯。",
+   "掛到": "蘆網採收提案；拆船幫用舊纜的手法固定它。"
+  },
+  {
+   "檔": "content/base/components/fl-vault-ply.json",
+   "類別": "component",
+   "名稱": "拱根疊甲",
+   "白話": "外片擋尖矢、內片擋鈍擊，兩片分別耗損。",
+   "掛到": "拱根的高處棲位；拆解時保留疊根的先後。"
+  },
+  {
+   "檔": "content/base/world/research/fl-vault-ply-study.json",
+   "類別": "research",
+   "名稱": "拱根疊甲拆存法",
+   "白話": "耗用一份根箔與拆料，學會保存及固定拱根疊甲。",
+   "掛到": "拱根的高處棲位；拆解時保留疊根的先後。"
+  },
+  {
+   "檔": "content/base/components/fl-grove-shroud.json",
+   "類別": "component",
+   "名稱": "白林菌帷",
+   "白話": "厚菌帷緩慢補回胸前損傷，持有者仍要扛住它。",
+   "掛到": "五湖白汊與斷橋骸林；不是活捕、更不是種植。"
+  },
+  {
+   "檔": "content/base/world/research/fl-grove-shroud-study.json",
+   "類別": "research",
+   "名稱": "白林菌帷拆存法",
+   "白話": "耗用一份林絡與拆料，學會保存及固定白林菌帷。",
+   "掛到": "五湖白汊與斷橋骸林；不是活捕、更不是種植。"
+  },
+  {
+   "檔": "content/base/components/fl-fallen-step.json",
+   "類別": "component",
+   "名稱": "墟階殘片",
+   "白話": "離開古代機的殘片能撐一層薄幕，須先過共鳴門檻。",
+   "掛到": "浦那外舊陣列；只撿散落遺物，不拆刑天。"
+  },
+  {
+   "檔": "content/base/world/research/fl-fallen-step-study.json",
+   "類別": "research",
+   "名稱": "墟階殘片拆存法",
+   "白話": "耗用一份階砂與拆料，學會保存及固定墟階殘片。",
+   "掛到": "浦那外舊陣列；只撿散落遺物，不拆刑天。"
+  },
+  {
+   "檔": "content/base/components/fl-tomb-chime.json",
+   "類別": "component",
+   "名稱": "古陵空鈴",
+   "白話": "空鈴承住流光，沒有共鳴的人只能聽見空響。",
+   "掛到": "慶州古陵；不聲稱取自處容身上。"
+  },
+  {
+   "檔": "content/base/world/research/fl-tomb-chime-study.json",
+   "類別": "research",
+   "名稱": "古陵空鈴拆存法",
+   "白話": "耗用一份鈴灰與拆料，學會保存及固定古陵空鈴。",
+   "掛到": "慶州古陵；不聲稱取自處容身上。"
+  },
+  {
+   "檔": "content/base/components/fl-lake-votive.json",
+   "類別": "component",
+   "名稱": "湖殿殘燈",
+   "白話": "殘燈撐起能復原的光幕，認不出來者不能借光。",
+   "掛到": "的的喀喀遺跡；不交易維拉科查、不另寫認主。"
+  },
+  {
+   "檔": "content/base/world/research/fl-lake-votive-study.json",
+   "類別": "research",
+   "名稱": "湖殿殘燈拆存法",
+   "白話": "耗用一份燈石與拆料，學會保存及固定湖殿殘燈。",
+   "掛到": "的的喀喀遺跡；不交易維拉科查、不另寫認主。"
+  },
+  {
+   "檔": "content/base/components/fm-bellows-bridge.json",
+   "類別": "component",
+   "名稱": "長風-II型分燼橋",
+   "白話": "以流光餘量換系統槽排燼，適合少用流光的守牆機；charge 上限減少，不能給缺池機體造池",
+   "掛到": "舊廠諸家／長風修造（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-bellows-keel.json",
+   "類別": "component",
+   "名稱": "長風-III型回燼梁",
+   "白話": "拉大燼池又稍加排燼，讓重裝機撐住第一輪連打；重梁拖慢先手，仍會燼滯",
+   "掛到": "舊廠諸家／長風修造（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-bellows-trough.json",
+   "類別": "component",
+   "名稱": "長風-II型燼槽",
+   "白話": "把排燼量留在背掛，供耗燼的長槍連續射擊；燼槽更敞，迴避較差",
+   "掛到": "舊廠諸家／長風修造（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-breakwater-greave.json",
+   "類別": "component",
+   "名稱": "退浪-II型脛甲",
+   "白話": "船材改成防蝕腿甲，供淺灘邊的站樁射手；只護 legs，迴避略降",
+   "掛到": "舊廠諸家／退浪船材（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-breakwater-scarf.json",
+   "類別": "component",
+   "名稱": "退浪-II型披板",
+   "白話": "後棚甲板改護背掛，讓背部系統不先掉；占背槽，無法同裝燼槽",
+   "掛到": "舊廠諸家／退浪船材（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-cradle-iris.json",
+   "類別": "component",
+   "名稱": "照野-II型巡目",
+   "白話": "放寬靈目與先手，供巡守機先看清再選位置；捨去部分射擊準頭",
+   "掛到": "舊廠諸家／照野儀器（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-cradle-slit.json",
+   "類別": "component",
+   "名稱": "照野-II型窄目",
+   "白話": "只盯一處的便宜準具，適合已有偵察搭檔的射手；準頭提高但看得較窄",
+   "掛到": "舊廠諸家／照野儀器（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-relay-spindle.json",
+   "類別": "component",
+   "名稱": "回梭-II型轉筋",
+   "白話": "先手與迴避兼顧的小筋組，適合搶轉角；準頭稍差，不能代替機動類別",
+   "掛到": "舊廠諸家／回梭筋廠（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-relay-yoke.json",
+   "類別": "component",
+   "名稱": "回梭-II型定腕組",
+   "白話": "穩住持械臂，兼顧準頭與操控；轉身較慢",
+   "掛到": "舊廠諸家／回梭筋廠（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-rivet-handguard.json",
+   "類別": "component",
+   "名稱": "鉚門-II型左擋板",
+   "白話": "留右手打擊，左側先承一輪矢雨；左武器位改作防護，不替隊友擋矢",
+   "掛到": "舊廠諸家／鉚門工業（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-rivet-harness.json",
+   "類別": "component",
+   "名稱": "鉚門-II型交臂甲",
+   "白話": "一個胸掛位分護雙臂，保留兩手武器；雙臂各薄一層，不能再掛胸甲",
+   "掛到": "舊廠諸家／鉚門工業（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-rivet-hood.json",
+   "類別": "component",
+   "名稱": "鉚門-II型眉甲",
+   "白話": "把可換甲片罩住靈目，適合要抬頭看火線的守牆機；頭部防護換少許先手",
+   "掛到": "舊廠諸家／鉚門工業（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-sill-baffle.json",
+   "類別": "component",
+   "名稱": "留艙-II型隔燼板",
+   "白話": "胸甲裡添抗燼薄板，給巡守機留下座艙退路；占座艙槽，仍不能阻斷傳導",
+   "掛到": "舊廠諸家／留艙座具（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-sill-rest.json",
+   "類別": "component",
+   "名稱": "留艙-II型扶背座",
+   "白話": "穩住駕駛姿勢，操控與定力一起補；先手變慢；不保證免失控",
+   "掛到": "舊廠諸家／留艙座具（廠名提案）；崩年軍工縮成非核心件加工，通用公刻接口延續生意"
+  },
+  {
+   "檔": "content/base/components/fm-anvil-ram.json",
+   "類別": "component",
+   "名稱": "鐵砧-III型抵門樁",
+   "白話": "貼牆近打的低矢耗重樁；產燼高且隔回合再撞",
+   "掛到": "鐵砧獵團／斷臂仿造重拳厚甲"
+  },
+  {
+   "檔": "content/base/components/fm-anvil-skirt.json",
+   "類別": "component",
+   "名稱": "鐵砧-II型裙甲",
+   "白話": "抗穿刺腿甲讓守點機留在原地；先手降低，不加移動能力",
+   "掛到": "鐵砧獵團／結陣推進、慢而不倒"
+  },
+  {
+   "檔": "content/base/components/fm-backside-falseface.json",
+   "類別": "component",
+   "名稱": "偷天-偏光面",
+   "白話": "以較難瞄準換低準頭的走私護面；不隱形、不免聲望；背架且昂貴",
+   "掛到": "月之暗面／2097 封鎖後拆裝流出的靜海部件"
+  },
+  {
+   "檔": "content/base/components/fm-blade-return.json",
+   "類別": "component",
+   "名稱": "劍魚-IV型回刃",
+   "白話": "少矢次的近戰貫刃，用於切進火線；三次後只剩其他武器，需有人驅動核心",
+   "掛到": "第三刃／處容血統的一刀開一刀收"
+  },
+  {
+   "檔": "content/base/components/fm-creed-ashbell.json",
+   "類別": "component",
+   "名稱": "贖垢者-IV型灰鈴",
+   "白話": "撒灰擾亂敵方準頭，給接近者留空隙；耗燼且兩回合間隔；不解除拘束",
+   "掛到": "沐蝕會／解拘者私造贖垢者，不把教義寫成量產古代機"
+  },
+  {
+   "檔": "content/base/components/fm-gull-outrigger.json",
+   "類別": "component",
+   "名稱": "鹽鷗-II型展舷架",
+   "白話": "加先手兼排燼，留給散開後再會合的射手；背架占掉矢莢位置，不授予兩棲移動",
+   "掛到": "鹽鷗獵團／2104 失約之後快散不守的海上作風"
+  },
+  {
+   "檔": "content/base/components/fm-scholar-plumb.json",
+   "類別": "component",
+   "名稱": "測墟-B垂準目",
+   "白話": "加視野與操控的探勘頭具；準頭稍減；不生成世界座標情報",
+   "掛到": "稽古學會／買刻痕賣座標的測繪傳統"
+  },
+  {
+   "檔": "content/base/components/fm-selene-eyepiece.json",
+   "類別": "component",
+   "名稱": "銀環-G3分目座",
+   "白話": "準頭與視野並重的型錄準具；流光上限被準具占去一部分",
+   "掛到": "塞勒涅／靜海型錄的靈目工藝；公司掌高階料卻非萬能"
+  },
+  {
+   "檔": "content/base/components/fm-selene-veil.json",
+   "類別": "component",
+   "名稱": "弦月-G5薄幕",
+   "白話": "較薄卻能續補的胸前光幕；補幕吃 charge，不能同時全力射擊",
+   "掛到": "塞勒涅／靜海光幕與型錄高價供貨"
+  },
+  {
+   "檔": "content/base/components/fm-yoke-palm.json",
+   "類別": "component",
+   "名稱": "軛鞍-II型握環",
+   "白話": "補操控的座艙握環，供已有拘束裝置的駕駛員；少了隔板防護；不降低營運磨損",
+   "掛到": "軛鞍行／修拘束艙而非馴獸"
+  },
+  {
+   "檔": "content/base/abilities/fm-anvil-drive.json",
+   "類別": "ability",
+   "名稱": "抵門一樁",
+   "白話": "打穿貼身外甲；燼成本18、冷卻2",
+   "掛到": "鐵砧斷臂重樁"
+  },
+  {
+   "檔": "content/base/abilities/fm-blade-reprise.json",
+   "類別": "ability",
+   "名稱": "回刃截潮",
+   "白話": "三次近身貫擊，精粹等級不隨低級機體冒升；耗封片1與流光20",
+   "掛到": "第三刃的一刀開收"
+  },
+  {
+   "檔": "content/base/abilities/fm-creed-ashen-call.json",
+   "類別": "ability",
+   "名稱": "灰鈴掩目",
+   "白話": "範圍擾準，讓友軍走近敵人；不是解拘動詞，不能砸開拘束艙",
+   "掛到": "贖垢者灰鈴"
+  },
+  {
+   "檔": "content/base/effects/fm-ash-blind.json",
+   "類別": "effect",
+   "名稱": "灰障",
+   "白話": "只改列出的機體屬性；時限結束自動退去；同效果刷新不堆疊",
+   "掛到": "灰鈴掩目命中"
+  },
+  {
+   "檔": "content/base/components/fm-america-perch.json",
+   "類別": "component",
+   "名稱": "隼翼-II型定羽吼",
+   "白話": "留在後排的精準少矢長射程武器；近身打不了，六矢要省",
+   "掛到": "北美／隼翼射手、內陸試製工廠"
+  },
+  {
+   "檔": "content/base/components/fm-court-standard.json",
+   "類別": "component",
+   "名稱": "玉圭-II型列旗",
+   "白話": "近距離點名一名友軍穩住準頭；要花指揮者 AP 與流光，不能全隊無限加成",
+   "掛到": "朝廷／2107 玉圭閱兵、線列與衡梁指揮工藝"
+  },
+  {
+   "檔": "content/base/components/fm-europe-harborplate.json",
+   "類別": "component",
+   "名稱": "西港-II型潮門甲",
+   "白話": "左臂專擋酸液與矢，替廉價守港機續命；犧牲一手武器；不等同內海家族招牌",
+   "掛到": "歐洲聯盟／大西洋港城付錢購機"
+  },
+  {
+   "檔": "content/base/components/fm-houses-mantle.json",
+   "類別": "component",
+   "名稱": "合印-III型繡甲",
+   "白話": "胸前兼抗能量與燼的家紋薄甲；護甲薄且價高，仍要雇人守門",
+   "掛到": "內海諸家／留地分支工坊維持舊家門"
+  },
+  {
+   "檔": "content/base/components/fm-japan-portgun.json",
+   "類別": "component",
+   "名稱": "SI-05凡鐵守口吼",
+   "白話": "便宜對人守口武器，遠端機只能沿普通開規則使用；凡鐵碰不到獸核，六矢且最短射程二格",
+   "掛到": "日本／瀨戶內船廠、SI-04守牆機"
+  },
+  {
+   "檔": "content/base/components/fm-korea-groundline.json",
+   "類別": "component",
+   "名稱": "守岸-II型留線組",
+   "白話": "給殘存工坊換來的系統留先手與流光餘量；占系統槽，靈目略受遮擋",
+   "掛到": "韓國／財閥上月後接收地面工廠，釜山雙籤城"
+  },
+  {
+   "檔": "content/base/components/fm-league-watchrack.json",
+   "類別": "component",
+   "名稱": "燕鷗-II型巡燈架",
+   "白話": "先看到敵人且少積燼的巡哨背架；流光儲量少些，沒有全圖視野",
+   "掛到": "殘聯軍械庫／2106評等與長時間哨戒"
+  },
+  {
+   "檔": "content/base/components/fm-nairobi-tiller.json",
+   "類別": "component",
+   "名稱": "牧杖-III型壓舵",
+   "白話": "操控與定力偏向守住座艙裡的人；犧牲迴避；不讓活獸變聽話",
+   "掛到": "奈洛比／恩凱軛骨仿造拘束器的工藝"
+  },
+  {
+   "檔": "content/base/components/fm-quito-visor.json",
+   "類別": "component",
+   "名稱": "禿鷲-II型仰幕",
+   "白話": "把光幕罩在靈目上，留胸甲給重裝配件；吃流光、不授予古代異能或高地免抗",
+   "掛到": "基多／高地輕骨光幕、2102商路約後供貨"
+  },
+  {
+   "檔": "content/base/components/fm-russia-reservoir.json",
+   "類別": "component",
+   "名稱": "長爐-II型留燼匣",
+   "白話": "加大燼餘量撐過密集交火；排燼反而變慢，不是假造耐寒地形加成",
+   "掛到": "俄羅斯／長爐耐久重裝與腹地工業"
+  },
+  {
+   "檔": "content/base/abilities/fm-america-aimed-shot.json",
+   "類別": "ability",
+   "名稱": "定羽一吼",
+   "白話": "最短三格的精準指定部位射擊；六矢用盡即停",
+   "掛到": "隼翼後排射手"
+  },
+  {
+   "檔": "content/base/abilities/fm-court-align.json",
+   "類別": "ability",
+   "名稱": "並肩列陣",
+   "白話": "點名一個友軍準備迎擊；自己付AP3、流光15、冷卻2",
+   "掛到": "朝廷衡梁與玉圭的線列指揮"
+  },
+  {
+   "檔": "content/base/abilities/fm-japan-common-shot.json",
+   "類別": "ability",
+   "名稱": "凡鐵守口",
+   "白話": "對人單發便宜，明示不負責殺獸；射程2–4、每發一矢",
+   "掛到": "SI-05守口凡鐵吼"
+  },
+  {
+   "檔": "content/base/effects/fm-line-steady.json",
+   "類別": "effect",
+   "名稱": "列陣",
+   "白話": "只改列出的機體屬性；時限結束自動退去；同效果刷新不堆疊",
+   "掛到": "並肩列陣友方必中"
+  },
+  {
+   "檔": "content/base/components/fm-central-compass.json",
+   "類別": "component",
+   "名稱": "山口-II型尋路盤",
+   "白話": "短時間看清敵情再校準一輪射擊；花 AP 作準備，不改世界航行或地形成本",
+   "掛到": "中亞／墟多獸少、通用堅盾修造與護糧商路"
+  },
+  {
+   "檔": "content/base/components/fm-latam-convoycell.json",
+   "類別": "component",
+   "名稱": "商路-II型接光匣",
+   "白話": "以先手換流光餘量，供護航機留一發回程火力；不增流光回復；不挪用古代機異能",
+   "掛到": "拉美傘／商團付護航費、調不動維拉科查"
+  },
+  {
+   "檔": "content/base/components/fm-northafrica-sluice.json",
+   "類別": "component",
+   "名稱": "閘渠-II型護膝",
+   "白話": "較厚腿甲供守閘機熬住第一輪；重而慢；不憑件改水域移動",
+   "掛到": "北非／2093後水困機殺、2102成傘"
+  },
+  {
+   "檔": "content/base/components/fm-subsahara-wellguard.json",
+   "類別": "component",
+   "名稱": "深井-II型護額",
+   "白話": "頭甲加定力，供帶獸機甲的守線駕駛員；少些視野；不是從內陸冒獸造素材",
+   "掛到": "撒哈拉以南傘／金山深井與向外洋送行的駕駛員"
+  },
+  {
+   "檔": "content/base/components/fm-sydney-lookback.json",
+   "類別": "component",
+   "名稱": "南灣-II型回望目",
+   "白話": "看得較廣又易避矢，供殿後守港機；準頭降低；無古代機複製或背向射界",
+   "掛到": "雪梨／守住烏魯魯、不挖彩虹蛇的守港者"
+  },
+  {
+   "檔": "content/base/components/fm-west-firegate.json",
+   "類別": "component",
+   "名稱": "海峽-III型燼門",
+   "白話": "精粹燼線壓一列敵人並擾準；流光昂貴，會隔兩回合才再放",
+   "掛到": "西亞／2102成傘、海峽通行與火牆工藝"
+  },
+  {
+   "檔": "content/base/abilities/fm-central-take-bearing.json",
+   "類別": "ability",
+   "名稱": "循山定向",
+   "白話": "短時自我校準視野與準頭；AP3先花在觀察，冷卻3",
+   "掛到": "山口商路與通用機改裝"
+  },
+  {
+   "檔": "content/base/abilities/fm-west-ember-line.json",
+   "類別": "ability",
+   "名稱": "燼門橫開",
+   "白話": "一列敵人受燼傷並短暫擾準；流光25、冷卻2，命中效果壓低直傷",
+   "掛到": "西亞海峽火牆"
+  },
+  {
+   "檔": "content/base/effects/fm-bearing-clear.json",
+   "類別": "effect",
+   "名稱": "定向",
+   "白話": "只改列出的機體屬性；時限結束自動退去；同效果刷新不堆疊",
+   "掛到": "循山定向自身"
+  },
+  {
+   "檔": "content/base/effects/fm-cinder-haze.json",
+   "類別": "effect",
+   "名稱": "燼障",
+   "白話": "只改列出的機體屬性；時限結束自動退去；同效果刷新不堆疊",
+   "掛到": "燼門橫開命中"
+  },
+  {
+   "檔": "content/base/world/research/fm-bellows-pattern.json",
+   "類別": "research",
+   "名稱": "回燼梁試配",
+   "白話": "開啟一件新配件的型錄資格；付幣與技師工時；現行只設旗標，接線前不宣稱能造出實物",
+   "掛到": "舊廠諸家／公開接口研究，從崩年前整機專利轉向修造手藝"
+  },
+  {
+   "檔": "content/base/world/research/fm-iris-pattern.json",
+   "類別": "research",
+   "名稱": "巡目座校修",
+   "白話": "開啟一件新配件的型錄資格；付幣與技師工時；現行只設旗標，接線前不宣稱能造出實物",
+   "掛到": "舊廠諸家／公開接口研究，從崩年前整機專利轉向修造手藝"
+  },
+  {
+   "檔": "content/base/world/research/fm-relay-pattern.json",
+   "類別": "research",
+   "名稱": "定腕組公刻",
+   "白話": "開啟一件新配件的型錄資格；付幣與技師工時；現行只設旗標，接線前不宣稱能造出實物",
+   "掛到": "舊廠諸家／公開接口研究，從崩年前整機專利轉向修造手藝"
+  },
+  {
+   "檔": "content/base/world/research/fm-rivet-pattern.json",
+   "類別": "research",
+   "名稱": "交臂甲公刻",
+   "白話": "開啟一件新配件的型錄資格；付幣與技師工時；現行只設旗標，接線前不宣稱能造出實物",
+   "掛到": "舊廠諸家／公開接口研究，從崩年前整機專利轉向修造手藝"
+  },
+  {
+   "檔": "content/base/components/fw-pry-axe.json",
+   "類別": "武器",
+   "名稱": "凡撬斧",
+   "白話": "不吃燼與流光，貼身拆人造機甲的掛件；只能貼身，對獸碰不到內層與核",
+   "掛到": "舊廠諸家；崩年庫房改做護貨生意；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-pry-axe-use.json",
+   "類別": "能力",
+   "名稱": "凡斧撬落",
+   "白話": "不吃燼與流光，貼身拆人造機甲的掛件；只能貼身，對獸碰不到內層與核",
+   "掛到": "舊廠諸家；崩年庫房改做護貨生意；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-wedge-blade.json",
+   "類別": "武器",
+   "名稱": "楔刃",
+   "白話": "小槽精粹短刃，瞄掛件但沒有鳴刃的反擊；射程只有一格，換到高階機也仍是 D 級精粹",
+   "掛到": "堅盾公刻後的共用修造棚；通用鐵劍近戰配件；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-wedge-blade-use.json",
+   "類別": "能力",
+   "名稱": "楔入",
+   "白話": "小槽精粹短刃，瞄掛件但沒有鳴刃的反擊；射程只有一格，換到高階機也仍是 D 級精粹",
+   "掛到": "堅盾公刻後的共用修造棚；通用鐵劍近戰配件；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-rivet-drill.json",
+   "類別": "武器",
+   "名稱": "旋鉚鑿",
+   "白話": "用失衡幫後排接刀的低耗重鑿；冷卻兩回合，不能連續鑿擊",
+   "掛到": "2096 斷臂殘骸、2104 鐵砧-II型；借重臂壓住接合處；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-rivet-drill-use.json",
+   "類別": "能力",
+   "名稱": "旋鑿沉肩",
+   "白話": "用失衡幫後排接刀的低耗重鑿；冷卻兩回合，不能連續鑿擊",
+   "掛到": "2096 斷臂殘骸、2104 鐵砧-II型；借重臂壓住接合處；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-shoal-hook.json",
+   "類別": "武器",
+   "名稱": "掠水長鉤",
+   "白話": "隔一格挑腳，舟架不用貼住獸身就能拆腿；只做部位瞄準，不拉位、不拖動目標",
+   "掛到": "第三刃潮鰭血統與舟架近戰；不新增造機血統；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-shoal-hook-use.json",
+   "類別": "能力",
+   "名稱": "挑浪回鉤",
+   "白話": "隔一格挑腳，舟架不用貼住獸身就能拆腿；只做部位瞄準，不拉位、不拖動目標",
+   "掛到": "第三刃潮鰭血統與舟架近戰；不新增造機血統；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-breaktide-axe.json",
+   "類別": "武器",
+   "名稱": "折潮重斧",
+   "白話": "放棄失衡，單包重斬穿厚外甲；用掉半回合以上指令，斬後要等兩回合",
+   "掛到": "鐵砧破口作風；封門-鐵砧的近身備案；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-breaktide-axe-use.json",
+   "類別": "能力",
+   "名稱": "斧落潮分",
+   "白話": "放棄失衡，單包重斬穿厚外甲；用掉半回合以上指令，斬後要等兩回合",
+   "掛到": "鐵砧破口作風；封門-鐵砧的近身備案；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-city-borer.json",
+   "類別": "武器",
+   "名稱": "斷城鏜",
+   "白話": "S 級近身打斷節奏，接同伴集火；三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法",
+   "掛到": "斷臂重拳的機械仿件；須外購 S 級精粹，非古代機殘肢；fg-gw-01"
+  },
+  {
+   "檔": "content/base/abilities/fw-city-borer-use.json",
+   "類別": "能力",
+   "名稱": "沉城一鑿",
+   "白話": "S 級近身打斷節奏，接同伴集火；三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法",
+   "掛到": "斷臂重拳的機械仿件；須外購 S 級精粹，非古代機殘肢；fg-gw-01"
+  },
+  {
+   "檔": "content/base/components/fw-pin-shot.json",
+   "類別": "武器",
+   "名稱": "凡點吼",
+   "白話": "單槽低負擔射擊，讓小機不用扛雙槽連吼；傷害換成 D 級量級，對獸不能收命",
+   "掛到": "舊廠庫存護貨槍；人打人便宜的凡鐵生意；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-pin-shot-use.json",
+   "類別": "能力",
+   "名稱": "凡矢點射",
+   "白話": "單槽低負擔射擊，讓小機不用扛雙槽連吼；傷害換成 D 級量級，對獸不能收命",
+   "掛到": "舊廠庫存護貨槍；人打人便宜的凡鐵生意；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-shoal-light.json",
+   "類別": "武器",
+   "名稱": "汀光矢槍",
+   "白話": "不產燼的靈目點射，用流光換乾淨的射擊節奏；每發流光20，沒有流光池就不能用",
+   "掛到": "通用長槍逆向圖的短槍分支；精粹仍須另購；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-shoal-light-use.json",
+   "類別": "能力",
+   "名稱": "照汀一矢",
+   "白話": "不產燼的靈目點射，用流光換乾淨的射擊節奏；每發流光20，沒有流光池就不能用",
+   "掛到": "通用長槍逆向圖的短槍分支；精粹仍須另購；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-paired-shot.json",
+   "類別": "武器",
+   "名稱": "凡疊矢砲",
+   "白話": "兩個傷害包各過一次層，對薄層機甲施壓；每發兩矢，貼身不能開，厚減傷層會分別擋矢",
+   "掛到": "崩年護貨隊把舊雙矢架留在機甲手上；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-paired-shot-use.json",
+   "類別": "能力",
+   "名稱": "凡矢疊敲",
+   "白話": "兩個傷害包各過一次層，對薄層機甲施壓；每發兩矢，貼身不能開，厚減傷層會分別擋矢",
+   "掛到": "崩年護貨隊把舊雙矢架留在機甲手上；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-seam-rifle.json",
+   "類別": "武器",
+   "名稱": "照隙長槍",
+   "白話": "打掛件並替後續射手留下兩回合標記；最小射程兩格，兩回合冷卻",
+   "掛到": "稽古學會只解析、委外製造；護勘隊要看見先射哪裡；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-seam-rifle-use.json",
+   "類別": "能力",
+   "名稱": "循隙點名",
+   "白話": "打掛件並替後續射手留下兩回合標記；最小射程兩格，兩回合冷卻",
+   "掛到": "稽古學會只解析、委外製造；護勘隊要看見先射哪裡；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-moon-balance.json",
+   "類別": "武器",
+   "名稱": "月衡長弓",
+   "白話": "七格狙擊但不吃實體矢，適合能維持流光的射手；三格盲區，不能取代近身槍",
+   "掛到": "銀環型錄的精粹裝槍路線；公司只能供昂貴少量件；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-moon-balance-use.json",
+   "類別": "能力",
+   "名稱": "衡月開弦",
+   "白話": "七格狙擊但不吃實體矢，適合能維持流光的射手；三格盲區，不能取代近身槍",
+   "掛到": "銀環型錄的精粹裝槍路線；公司只能供昂貴少量件；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-sky-crossbow.json",
+   "類別": "武器",
+   "名稱": "巡天長弩",
+   "白話": "以巨大盲區換十格定點射擊；僅三次、冷卻三回合，移動後常無足夠指令開弩",
+   "掛到": "蝕光-無月的遠射換裝提案；精粹須實有 S 級料；fg-gw-02"
+  },
+  {
+   "檔": "content/base/abilities/fw-sky-crossbow-use.json",
+   "類別": "能力",
+   "名稱": "巡天落矢",
+   "白話": "以巨大盲區換十格定點射擊；僅三次、冷卻三回合，移動後常無足夠指令開弩",
+   "掛到": "蝕光-無月的遠射換裝提案；精粹須實有 S 級料；fg-gw-02"
+  },
+  {
+   "檔": "content/base/components/fw-ankle-pin.json",
+   "類別": "武器",
+   "名稱": "扣足矢",
+   "白話": "零傷收捕，不把已經打殘的目標補死；只有四矢，三格射程；需滿足物種捕捉部位條件",
+   "掛到": "共用拘束修造棚；崩年後活捕要壓住而非馴養；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-ankle-pin-use.json",
+   "類別": "能力",
+   "名稱": "扣足",
+   "白話": "零傷收捕，不把已經打殘的目標補死；只有四矢，三格射程；需滿足物種捕捉部位條件",
+   "掛到": "共用拘束修造棚；崩年後活捕要壓住而非馴養；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-stayline.json",
+   "類別": "武器",
+   "名稱": "停步索",
+   "白話": "不耗矢的短距拘束，空矢後仍能留獸；必須逼近，命中仍會造成4點傷害",
+   "掛到": "護勘隊短距拘束器；學會授權修造棚製索；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-stayline-use.json",
+   "類別": "能力",
+   "名稱": "拋索留步",
+   "白話": "不耗矢的短距拘束，空矢後仍能留獸；必須逼近，命中仍會造成4點傷害",
+   "掛到": "護勘隊短距拘束器；學會授權修造棚製索；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-weight-harpoon.json",
+   "類別": "武器",
+   "名稱": "千鈞拘束槍",
+   "白話": "六格外零傷收捕，避開瀕死獸的反擊距離；貼身不能開，四矢用盡就得換備用武器",
+   "掛到": "合印拘束工位；家族護港隊承接拘束材料生意；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-weight-harpoon-use.json",
+   "類別": "能力",
+   "名稱": "沉矢鎮步",
+   "白話": "六格外零傷收捕，避開瀕死獸的反擊距離；貼身不能開，四矢用盡就得換備用武器",
+   "掛到": "合印拘束工位；家族護港隊承接拘束材料生意；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-press-gun.json",
+   "類別": "武器",
+   "名稱": "凡壓陣砲",
+   "白話": "對單一射手壓制準頭，替近戰同伴開接近的空檔；兩格盲區與冷卻，不能把壓制寫成解除武裝",
+   "掛到": "護糧與貨車保全的凡鐵火力；不新增國家專屬型錄；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-press-gun-use.json",
+   "類別": "能力",
+   "名稱": "凡矢壓陣",
+   "白話": "對單一射手壓制準頭，替近戰同伴開接近的空檔；兩格盲區與冷卻，不能把壓制寫成解除武裝",
+   "掛到": "護糧與貨車保全的凡鐵火力；不新增國家專屬型錄；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-reef-jaw.json",
+   "類別": "武器",
+   "名稱": "抱礁拘束鉗",
+   "白話": "近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口；可能誤殺瀕死目標，不是零傷捕捉槍",
+   "掛到": "留燈-合印護撤工位；護港隊將近身鉗做成壓獸器；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-reef-jaw-use.json",
+   "類別": "能力",
+   "名稱": "合鉗抱礁",
+   "白話": "近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口；可能誤殺瀕死目標，不是零傷捕捉槍",
+   "掛到": "留燈-合印護撤工位；護港隊將近身鉗做成壓獸器；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-shore-stay.json",
+   "類別": "武器",
+   "名稱": "留岸拘束柱",
+   "白話": "不用實體矢的零傷近距拘束，供晚期昂貴配裝；三次上限、流光40；不保證捕捉S獸或不可捕物種",
+   "掛到": "護勘隊重拘束器；外購S級精粹而非把低級料聚煉成S；fg-gw-03"
+  },
+  {
+   "檔": "content/base/abilities/fw-shore-stay-use.json",
+   "類別": "能力",
+   "名稱": "立柱留岸",
+   "白話": "不用實體矢的零傷近距拘束，供晚期昂貴配裝；三次上限、流光40；不保證捕捉S獸或不可捕物種",
+   "掛到": "護勘隊重拘束器；外購S級精粹而非把低級料聚煉成S；fg-gw-03"
+  },
+  {
+   "檔": "content/base/components/fw-fan-tube.json",
+   "類別": "武器",
+   "名稱": "扇潮矢筒",
+   "白話": "近距扇形掃開並排小獸，保留單體武器換位空間；需接近且兩回合冷卻；不宣稱燒地形或留下火區",
+   "掛到": "堅盾守門用共用件；公刻後工坊把散紋改為近身扇面；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-fan-tube-use.json",
+   "類別": "能力",
+   "名稱": "扇矢開潮",
+   "白話": "近距扇形掃開並排小獸，保留單體武器換位空間；需接近且兩回合冷卻；不宣稱燒地形或留下火區",
+   "掛到": "堅盾守門用共用件；公刻後工坊把散紋改為近身扇面；fg-gw-04"
+  },
+  {
+   "檔": "content/base/components/fw-wake-lance.json",
+   "類別": "武器",
+   "名稱": "截浪貫矛",
+   "白話": "把排成一線的目標一起穿過，無標記或拘束；兩格盲區，敵人散開後每目標火力弱於單射",
+   "掛到": "通用長槍支線；以直線射擊換掉散紋圓域；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-wake-lance-use.json",
+   "類別": "能力",
+   "名稱": "一線截浪",
+   "白話": "把排成一線的目標一起穿過，無標記或拘束；兩格盲區，敵人散開後每目標火力弱於單射",
+   "掛到": "通用長槍支線；以直線射擊換掉散紋圓域；fg-gw-04"
+  },
+  {
+   "檔": "content/base/components/fw-harbor-gun.json",
+   "類別": "武器",
+   "名稱": "凡守港砲",
+   "白話": "七格圓域對人火力，一次兩矢換成封口一擊；三格盲區，三回合冷卻，打獸仍不能穿核",
+   "掛到": "崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-harbor-gun-use.json",
+   "類別": "能力",
+   "名稱": "凡矢封港",
+   "白話": "七格圓域對人火力，一次兩矢換成封口一擊；三格盲區，三回合冷卻，打獸仍不能穿核",
+   "掛到": "崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲；fg-gw-04"
+  },
+  {
+   "檔": "content/base/components/fw-cinder-rain.json",
+   "類別": "武器",
+   "名稱": "燼雨爐",
+   "白話": "打較遠的小圓域並壓低準頭，與短距解拘香爐分工；高積燼、冷卻三回合；不焚地形、不解除拘束",
+   "掛到": "行香六足的範圍火路；教團禁仿與私造矛盾仍保留；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-cinder-rain-use.json",
+   "類別": "能力",
+   "名稱": "開爐落燼",
+   "白話": "打較遠的小圓域並壓低準頭，與短距解拘香爐分工；高積燼、冷卻三回合；不焚地形、不解除拘束",
+   "掛到": "行香六足的範圍火路；教團禁仿與私造矛盾仍保留；fg-gw-04"
+  },
+  {
+   "檔": "content/base/components/fw-sea-light.json",
+   "類別": "武器",
+   "名稱": "照海紋砲",
+   "白話": "直線掃去光幕與掛件，為另一把主傷武器開路；只傷光幕與部件，不能獨自殺敵；三次、流光40",
+   "掛到": "蝕光-無月重火力換裝；高級精粹產能稀少且保留型錄門檻；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-sea-light-use.json",
+   "類別": "能力",
+   "名稱": "照海成線",
+   "白話": "直線掃去光幕與掛件，為另一把主傷武器開路；只傷光幕與部件，不能獨自殺敵；三次、流光40",
+   "掛到": "蝕光-無月重火力換裝；高級精粹產能稀少且保留型錄門檻；fg-gw-04"
+  },
+  {
+   "檔": "content/base/components/fw-door-sweep.json",
+   "類別": "武器",
+   "名稱": "門鉤",
+   "白話": "貼身小圓域掃低敵人閃避與先手，留給同伴接刀；傷害低且只能選相鄰格；沒有地形障礙或擊退能力",
+   "掛到": "堅盾公刻的窄門守備件；窮修造棚用D精粹守住入口；fg-gw-04"
+  },
+  {
+   "檔": "content/base/abilities/fw-door-sweep-use.json",
+   "類別": "能力",
+   "名稱": "掃門",
+   "白話": "貼身小圓域掃低敵人閃避與先手，留給同伴接刀；傷害低且只能選相鄰格；沒有地形障礙或擊退能力",
+   "掛到": "堅盾公刻的窄門守備件；窮修造棚用D精粹守住入口；fg-gw-04"
+  }
+ ]
+}

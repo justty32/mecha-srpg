@@ -1,0 +1,851 @@
+{
+  "scenario": "scratch/fg-ga-03",
+  "seed": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "installed": [
+    {
+      "component": "component/fa-close-watch",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.evasion",
+          "expectedDelta": 3,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": -1,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-cool-watch",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": 2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.pools.heat.regen",
+          "expectedDelta": -2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.pools.charge.regen",
+          "expectedDelta": -2,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-dazzle-shutter",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [],
+      "pass": true
+    },
+    {
+      "component": "component/fa-first-bell",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.initiative",
+          "expectedDelta": 4,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": 1,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.evasion",
+          "expectedDelta": -3,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-iron-brow",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.accuracy",
+          "expectedDelta": 2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.evasion",
+          "expectedDelta": -2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "layersAdd.head.0",
+          "expected": {
+            "type": "armor",
+            "hp": 25,
+            "ablative": true,
+            "resist": {},
+            "passThrough": {},
+            "structural": false
+          },
+          "actual": {
+            "type": "armor",
+            "hp": 25,
+            "ablative": true,
+            "resist": {},
+            "passThrough": {},
+            "structural": false
+          },
+          "pass": true
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-plumb-sight",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.accuracy",
+          "expectedDelta": 2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.control",
+          "expectedDelta": 3,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.initiative",
+          "expectedDelta": -3,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-shared-bearing",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [],
+      "pass": true
+    },
+    {
+      "component": "component/fa-single-aperture",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.accuracy",
+          "expectedDelta": 4,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": -2,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-veiled-eye",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": 2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.evasion",
+          "expectedDelta": 2,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.pools.charge.regen",
+          "expectedDelta": -3,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    },
+    {
+      "component": "component/fa-wide-lantern",
+      "frame": "base:frame/bulwark-ii",
+      "bodyPlan": "base:bodyplan/mx-biped-c",
+      "part": "head",
+      "slot": "sensor-mount",
+      "core": true,
+      "pilot": "person/ren-kasai",
+      "weapons": [
+        "base:component/mx-scatter-rune",
+        "base:component/mx-rune-rifle"
+      ],
+      "checks": [
+        {
+          "field": "self.attrs.perception",
+          "expectedDelta": 3,
+          "actualDelta": 0,
+          "pass": false
+        },
+        {
+          "field": "self.attrs.accuracy",
+          "expectedDelta": -2,
+          "actualDelta": 0,
+          "pass": false
+        }
+      ],
+      "pass": false
+    }
+  ],
+  "abilityUses": [
+    {
+      "mode": "ai",
+      "seed": 2,
+      "seq": 87,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/fa-dazzle-mark",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "mode": "ai",
+      "seed": 2,
+      "seq": 292,
+      "round": 5,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/fa-dazzle-mark",
+        "target": "enemy-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "mode": "ai",
+      "seed": 4,
+      "seq": 88,
+      "round": 2,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/fa-lend-bearing",
+        "target": "ally-1",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "mode": "ai",
+      "seed": 4,
+      "seq": 301,
+      "round": 5,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/fa-lend-bearing",
+        "target": "ally-0",
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "mode": "manual",
+      "seed": 1,
+      "ability": "base:ability/fa-lend-bearing",
+      "target": "z-ally",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": 8,
+        "perception": 3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 1,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "m-monster",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 1,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "z-human",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 2,
+      "ability": "base:ability/fa-lend-bearing",
+      "target": "z-ally",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": 8,
+        "perception": 3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 2,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "m-monster",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": -8,
+        "perception": -3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 2,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "z-human",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": -8,
+        "perception": -3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 3,
+      "ability": "base:ability/fa-lend-bearing",
+      "target": "z-ally",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": 8,
+        "perception": 3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 3,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "m-monster",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 3,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "z-human",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 4,
+      "ability": "base:ability/fa-lend-bearing",
+      "target": "z-ally",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": 8,
+        "perception": 3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 4,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "m-monster",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 4,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "z-human",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 5,
+      "ability": "base:ability/fa-lend-bearing",
+      "target": "z-ally",
+      "applied": true,
+      "effective": true,
+      "delta": {
+        "accuracy": 8,
+        "perception": 3
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 5,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "m-monster",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    },
+    {
+      "mode": "manual",
+      "seed": 5,
+      "ability": "base:ability/fa-dazzle-mark",
+      "target": "z-human",
+      "applied": false,
+      "effective": false,
+      "delta": {
+        "accuracy": 0,
+        "perception": 0
+      }
+    }
+  ],
+  "aiUsed": {
+    "base:ability/fa-dazzle-mark": 2,
+    "base:ability/fa-lend-bearing": 2
+  },
+  "exceptions": [],
+  "observed": {
+    "installations": "installation-observations.json",
+    "failures": 20,
+    "effectiveManual": 7
+  },
+  "log": [
+    "runBattle-seed-1.json",
+    "runBattle-seed-2.json",
+    "runBattle-seed-3.json",
+    "runBattle-seed-4.json",
+    "runBattle-seed-5.json",
+    "manual-commands.json",
+    "smoke-runner.mjs",
+    "installation-observations.json"
+  ],
+  "failures": [
+    {
+      "component": "component/fa-close-watch",
+      "field": "self.attrs.evasion",
+      "expectedDelta": 3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-close-watch",
+      "field": "self.attrs.perception",
+      "expectedDelta": -1,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-cool-watch",
+      "field": "self.attrs.perception",
+      "expectedDelta": 2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-cool-watch",
+      "field": "self.pools.heat.regen",
+      "expectedDelta": -2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-cool-watch",
+      "field": "self.pools.charge.regen",
+      "expectedDelta": -2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-first-bell",
+      "field": "self.attrs.initiative",
+      "expectedDelta": 4,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-first-bell",
+      "field": "self.attrs.perception",
+      "expectedDelta": 1,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-first-bell",
+      "field": "self.attrs.evasion",
+      "expectedDelta": -3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-iron-brow",
+      "field": "self.attrs.accuracy",
+      "expectedDelta": 2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-iron-brow",
+      "field": "self.attrs.evasion",
+      "expectedDelta": -2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-plumb-sight",
+      "field": "self.attrs.accuracy",
+      "expectedDelta": 2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-plumb-sight",
+      "field": "self.attrs.control",
+      "expectedDelta": 3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-plumb-sight",
+      "field": "self.attrs.initiative",
+      "expectedDelta": -3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-single-aperture",
+      "field": "self.attrs.accuracy",
+      "expectedDelta": 4,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-single-aperture",
+      "field": "self.attrs.perception",
+      "expectedDelta": -2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-veiled-eye",
+      "field": "self.attrs.perception",
+      "expectedDelta": 2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-veiled-eye",
+      "field": "self.attrs.evasion",
+      "expectedDelta": 2,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-veiled-eye",
+      "field": "self.pools.charge.regen",
+      "expectedDelta": -3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-wide-lantern",
+      "field": "self.attrs.perception",
+      "expectedDelta": 3,
+      "actualDelta": 0,
+      "pass": false
+    },
+    {
+      "component": "component/fa-wide-lantern",
+      "field": "self.attrs.accuracy",
+      "expectedDelta": -2,
+      "actualDelta": 0,
+      "pass": false
+    }
+  ],
+  "runs": [
+    {
+      "scenario": "scratch/fg-ga-03-all-sensors",
+      "seed": 1,
+      "installed": [
+        "component/fa-close-watch",
+        "component/fa-cool-watch"
+      ],
+      "abilityUses": [],
+      "stopped": "outcome",
+      "rounds": 5,
+      "result": "timeout",
+      "winner": null,
+      "exceptions": [],
+      "log": "runBattle-seed-1.json"
+    },
+    {
+      "scenario": "scratch/fg-ga-03-all-sensors",
+      "seed": 2,
+      "installed": [
+        "component/fa-dazzle-shutter",
+        "component/fa-first-bell"
+      ],
+      "abilityUses": [
+        {
+          "seq": 87,
+          "round": 2,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-dazzle-mark",
+            "target": "enemy-0",
+            "part": null
+          },
+          "turn": "ally-0"
+        },
+        {
+          "seq": 292,
+          "round": 5,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-dazzle-mark",
+            "target": "enemy-0",
+            "part": null
+          },
+          "turn": "ally-0"
+        }
+      ],
+      "stopped": "outcome",
+      "rounds": 5,
+      "result": "timeout",
+      "winner": null,
+      "exceptions": [],
+      "log": "runBattle-seed-2.json"
+    },
+    {
+      "scenario": "scratch/fg-ga-03-all-sensors",
+      "seed": 3,
+      "installed": [
+        "component/fa-iron-brow",
+        "component/fa-plumb-sight"
+      ],
+      "abilityUses": [],
+      "stopped": "outcome",
+      "rounds": 5,
+      "result": "timeout",
+      "winner": null,
+      "exceptions": [],
+      "log": "runBattle-seed-3.json"
+    },
+    {
+      "scenario": "scratch/fg-ga-03-all-sensors",
+      "seed": 4,
+      "installed": [
+        "component/fa-shared-bearing",
+        "component/fa-single-aperture"
+      ],
+      "abilityUses": [
+        {
+          "seq": 88,
+          "round": 2,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-lend-bearing",
+            "target": "ally-1",
+            "part": null
+          },
+          "turn": "ally-0"
+        },
+        {
+          "seq": 301,
+          "round": 5,
+          "type": "AbilityUsed",
+          "payload": {
+            "unit": "ally-0",
+            "ability": "base:ability/fa-lend-bearing",
+            "target": "ally-0",
+            "part": null
+          },
+          "turn": "ally-0"
+        }
+      ],
+      "stopped": "outcome",
+      "rounds": 5,
+      "result": "timeout",
+      "winner": null,
+      "exceptions": [],
+      "log": "runBattle-seed-4.json"
+    },
+    {
+      "scenario": "scratch/fg-ga-03-all-sensors",
+      "seed": 5,
+      "installed": [
+        "component/fa-veiled-eye",
+        "component/fa-wide-lantern"
+      ],
+      "abilityUses": [],
+      "stopped": "outcome",
+      "rounds": 5,
+      "result": "timeout",
+      "winner": null,
+      "exceptions": [],
+      "log": "runBattle-seed-5.json"
+    }
+  ],
+  "aiGaps": [],
+  "coverage": [
+    {
+      "ability": "ability/fa-dazzle-mark",
+      "effectiveUses": 2,
+      "aiUses": 2
+    },
+    {
+      "ability": "ability/fa-lend-bearing",
+      "effectiveUses": 5,
+      "aiUses": 2
+    }
+  ],
+  "verdict": "FAILED"
+}

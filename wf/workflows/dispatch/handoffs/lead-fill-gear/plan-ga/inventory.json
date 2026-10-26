@@ -1,0 +1,641 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "名稱",
+  "槽位",
+  "廠商",
+  "等級",
+  "定位",
+  "實際機制",
+  "來源"
+ ],
+ "rows": [
+  {
+   "id": "component/composite-plate",
+   "名稱": "外掛複合裝甲",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/composite-plate.json"
+  },
+  {
+   "id": "component/ix-field-plate",
+   "名稱": "野戰鎧甲",
+   "槽位": "armorMount",
+   "廠商": "通用鐵劍；無獨佔廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor,series-ironsword",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 35,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/ix-field-plate.json"
+  },
+  {
+   "id": "component/m2-relief-cradle",
+   "名稱": "排燼扶架",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "support",
+   "實際機制": {
+    "abilities": [
+     "ability/m2-relieve-ally"
+    ]
+   },
+   "來源": "content/base/components/m2-relief-cradle.json"
+  },
+  {
+   "id": "component/mx-ash-mist",
+   "名稱": "灰霧香",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "support",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-ash-screen"
+    ]
+   },
+   "來源": "content/base/components/mx-ash-mist.json"
+  },
+  {
+   "id": "component/mx-burst-scale",
+   "名稱": "裂鱗爆甲",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 35,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.25,
+        "pierce": 0.15
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-burst-scale.json"
+  },
+  {
+   "id": "component/mx-cold-spring",
+   "名稱": "寒泉洩燼",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "cooling",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-cold-vent"
+    ]
+   },
+   "來源": "content/base/components/mx-cold-spring.json"
+  },
+  {
+   "id": "component/mx-ember-pod",
+   "名稱": "凡火矢莢",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "ranged,explosive,conventional-arms",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-ember-salvo"
+    ]
+   },
+   "來源": "content/base/components/mx-ember-pod.json"
+  },
+  {
+   "id": "component/mx-essence-cell",
+   "名稱": "流光囊",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "power",
+   "實際機制": {
+    "poolMods": [
+     {
+      "pool": "charge",
+      "max": 40
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-essence-cell.json"
+  },
+  {
+   "id": "component/mx-falling-star-mortar",
+   "名稱": "墜星吼砲",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "ranged,artillery,conventional-arms",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-falling-star"
+    ]
+   },
+   "來源": "content/base/components/mx-falling-star-mortar.json"
+  },
+  {
+   "id": "component/mx-flare-wings",
+   "名稱": "疾焰背翼",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "propulsion",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 1,
+      "source": "component/mx-flare-wings"
+     },
+     {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 3,
+      "source": "component/mx-flare-wings"
+     }
+    ],
+    "abilities": [
+     "ability/mx-flare-dodge"
+    ]
+   },
+   "來源": "content/base/components/mx-flare-wings.json"
+  },
+  {
+   "id": "component/mx-frost-fins",
+   "名稱": "霜鰭排燼片",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "cooling",
+   "實際機制": {
+    "poolMods": [
+     {
+      "pool": "heat",
+      "regen": -8
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-frost-fins.json"
+  },
+  {
+   "id": "component/mx-hawk-eye",
+   "名稱": "鷹瞳靈目",
+   "槽位": "sensorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "sensor",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 6,
+      "source": "component/mx-hawk-eye"
+     },
+     {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "component/mx-hawk-eye"
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-hawk-eye.json"
+  },
+  {
+   "id": "component/mx-hunter-darts",
+   "名稱": "凡鐵追矢匣",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "ranged,missile,conventional-arms",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-hunter-launch"
+    ]
+   },
+   "來源": "content/base/components/mx-hunter-darts.json"
+  },
+  {
+   "id": "component/mx-moonveil",
+   "名稱": "月輝光幕",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "shield",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "energy": 0.2
+       },
+       "passThrough": {},
+       "structural": false,
+       "regen": 8,
+       "regenPool": "charge"
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-moonveil.json"
+  },
+  {
+   "id": "component/mx-mycelium-skin",
+   "名稱": "菌絲共生層",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "bio,armor,symbiote",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "flesh",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "acid": 0.3
+       },
+       "passThrough": {},
+       "structural": false,
+       "regen": 5
+      }
+     }
+    ],
+    "abilities": [],
+    "burden": 2
+   },
+   "來源": "content/base/components/mx-mycelium-skin.json"
+  },
+  {
+   "id": "component/mx-porcelain-plate",
+   "名稱": "白瓷鎧甲",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 30,
+       "ablative": true,
+       "resist": {
+        "thermal": 0.3,
+        "energy": 0.2
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-porcelain-plate.json"
+  },
+  {
+   "id": "component/mx-reaper-spine",
+   "名稱": "鐮肢背刺",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "bio,melee,graft",
+   "實際機制": {
+    "abilities": [
+     "ability/mx-spine-lash"
+    ],
+    "burden": 4
+   },
+   "來源": "content/base/components/mx-reaper-spine.json"
+  },
+  {
+   "id": "component/mx-relic-halo",
+   "名稱": "冕環骸片",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "ancient,shield,relic",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "shield",
+       "hp": 35,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false,
+       "regen": 10
+      }
+     }
+    ],
+    "abilities": [],
+    "resonance": {
+     "beliefs": [
+      "protect-kin",
+      "bring-them-home"
+     ],
+     "threshold": 0.5
+    }
+   },
+   "來源": "content/base/components/mx-relic-halo.json"
+  },
+  {
+   "id": "component/mx-rift-heart",
+   "名稱": "裂晶心爐",
+   "槽位": "systemMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "power,rift",
+   "實際機制": {
+    "poolMods": [
+     {
+      "pool": "charge",
+      "regen": 12
+     },
+     {
+      "pool": "heat",
+      "regen": 5
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-rift-heart.json"
+  },
+  {
+   "id": "component/mx-rift-needle",
+   "名稱": "裂晶嗅針",
+   "槽位": "sensorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "sensor,rift",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 3,
+      "source": "component/mx-rift-needle"
+     }
+    ],
+    "abilities": [
+     "ability/mx-rift-trace"
+    ]
+   },
+   "來源": "content/base/components/mx-rift-needle.json"
+  },
+  {
+   "id": "component/mx-runeweave-plate",
+   "名稱": "古紋聖甲",
+   "槽位": "armorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor,shellwork",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 55,
+       "ablative": true,
+       "resist": {
+        "kinetic": 0.15,
+        "energy": 0.15,
+        "thermal": 0.15,
+        "pierce": 0.1
+       },
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/mx-runeweave-plate.json"
+  },
+  {
+   "id": "component/mx-thousand-eye",
+   "名稱": "千目靈目",
+   "槽位": "sensorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "sensor",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "component/mx-thousand-eye"
+     }
+    ],
+    "abilities": [
+     "ability/mx-thousand-gaze"
+    ]
+   },
+   "來源": "content/base/components/mx-thousand-eye.json"
+  },
+  {
+   "id": "component/mx-tide-leap",
+   "名稱": "躍潮噴口",
+   "槽位": "backMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "propulsion",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "component/mx-tide-leap"
+     }
+    ],
+    "abilities": [
+     "ability/mx-tide-leap-up"
+    ]
+   },
+   "來源": "content/base/components/mx-tide-leap.json"
+  },
+  {
+   "id": "component/oa-hydraulic-assist",
+   "名稱": "順行筋組",
+   "槽位": "systemMount",
+   "廠商": "舊廠諸家（etymology 明載）",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "system",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "component/oa-hydraulic-assist"
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/oa-hydraulic-assist.json"
+  },
+  {
+   "id": "component/oa-leg-brace",
+   "名稱": "承步腿架",
+   "槽位": "armorMount",
+   "廠商": "舊廠諸家（etymology 明載）",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "armor",
+   "實際機制": {
+    "layersAdd": [
+     {
+      "part": "legs",
+      "insertAt": 0,
+      "layer": {
+       "type": "armor",
+       "hp": 25,
+       "ablative": true,
+       "resist": {},
+       "passThrough": {},
+       "structural": false
+      }
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/oa-leg-brace.json"
+  },
+  {
+   "id": "component/oa-sight-cradle",
+   "名稱": "定準靈目座",
+   "槽位": "sensorMount",
+   "廠商": "舊廠諸家（etymology 明載）",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "sensor",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 6,
+      "source": "component/oa-sight-cradle"
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/oa-sight-cradle.json"
+  },
+  {
+   "id": "component/oa-vent-rack",
+   "名稱": "敞背排燼架",
+   "槽位": "backMount",
+   "廠商": "舊廠諸家（etymology 明載）",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "cooling",
+   "實際機制": {
+    "poolMods": [
+     {
+      "pool": "heat",
+      "regen": -8
+     }
+    ],
+    "abilities": []
+   },
+   "來源": "content/base/components/oa-vent-rack.json"
+  },
+  {
+   "id": "component/shell-shard-lens",
+   "名稱": "骸片透鏡",
+   "槽位": "sensorMount",
+   "廠商": "未登記；不從 mx 前綴推定廠商",
+   "等級": "未登記（ComponentDef 無 grade；不可由裝配機等級倒填）",
+   "定位": "ancient,sensor",
+   "實際機制": {
+    "attrMods": [
+     {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 3,
+      "source": "component/shell-shard-lens"
+     }
+    ],
+    "abilities": [
+     "ability/shard-gaze"
+    ],
+    "resonance": {
+     "beliefs": [
+      "seek-truth"
+     ],
+     "threshold": 0.4
+    }
+   },
+   "來源": "content/base/components/shell-shard-lens.json"
+  }
+ ]
+}

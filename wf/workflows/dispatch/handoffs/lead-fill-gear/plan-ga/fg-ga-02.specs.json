@@ -1,0 +1,840 @@
+{
+ "contract": "wf-table/1",
+ "source": "cx-fg-ga-02.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "id",
+  "檔",
+  "批",
+  "類型",
+  "槽位",
+  "中文名",
+  "nameEn",
+  "定位",
+  "掛點",
+  "掛點來源",
+  "廠商",
+  "等級",
+  "關鍵數值帶",
+  "AI戰術鍵",
+  "聲望門檻",
+  "新名詞",
+  "差異與代價",
+  "安裝條件",
+  "示範載體",
+  "市場建議",
+  "研發建議",
+  "掉落建議",
+  "規格",
+  "驗證情境"
+ ],
+ "rows": [
+  {
+   "id": "component/fa-ash-vessel",
+   "檔": "content/base/components/fa-ash-vessel.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "AV-2",
+   "nameEn": "Ash Vessel",
+   "定位": "增加積燼餘量；散燼速度反而更慢。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠把報廢船上的留燼匣接回守牆機，一輪能撐，久打就悶。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "D",
+   "關鍵數值帶": "部件帶：D hp=12、mass=2；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：AV-2",
+   "差異與代價": "增加積燼餘量；散燼速度反而更慢。",
+   "安裝條件": "須有 heat；max 是緩衝上限，不降低燼帶門檻",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-ash-vessel",
+    "name": "AV-2",
+    "nameEn": "Ash Vessel",
+    "etymology": "提案名。舊廠把報廢船上的留燼匣接回守牆機，一輪能撐，久打就悶。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 2,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [
+     {
+      "pool": "heat",
+      "max": 20,
+      "regen": 3
+     }
+    ],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 12,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-bridle-spool",
+   "檔": "content/base/components/fa-bridle-spool.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "收韁輪",
+   "nameEn": "Bridle Spool",
+   "定位": "偏重控制；意志加成反向，並非生物馴養器。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠接在公版操縱筋上的輪只幫人握緊，不替人下決心。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：收韁輪",
+   "差異與代價": "偏重控制；意志加成反向，並非生物馴養器。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-bridle-spool",
+    "name": "收韁輪",
+    "nameEn": "Bridle Spool",
+    "etymology": "提案名。舊廠接在公版操縱筋上的輪只幫人握緊，不替人下決心。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-bridle-spool"
+     },
+     {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-bridle-spool"
+     }
+    ],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-cold-return",
+   "檔": "content/base/components/fa-cold-return.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "回霜環",
+   "nameEn": "Rime Return",
+   "定位": "常駐排燼；犧牲流光回復。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版機能換上這圈回路，遠射時卻得等下一口流光。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：回霜環",
+   "差異與代價": "常駐排燼；犧牲流光回復。",
+   "安裝條件": "須同時有 heat、charge",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-cold-return",
+    "name": "回霜環",
+    "nameEn": "Rime Return",
+    "etymology": "提案名。公版機能換上這圈回路，遠射時卻得等下一口流光。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [
+     {
+      "pool": "heat",
+      "regen": -5
+     },
+     {
+      "pool": "charge",
+      "regen": -3
+     }
+    ],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-deep-cup",
+   "檔": "content/base/components/fa-deep-cup.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "沉盞流光槽",
+   "nameEn": "Deepcup Reservoir",
+   "定位": "擴大流光容量；先手變慢，初始儲量不加。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄的深盞要背著走，不能把買來的空容量當成滿艙流光。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：沉盞流光槽",
+   "差異與代價": "擴大流光容量；先手變慢，初始儲量不加。",
+   "安裝條件": "須有 charge；poolMods.max 不增加 initial",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/singapore",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-deep-cup",
+    "name": "沉盞流光槽",
+    "nameEn": "Deepcup Reservoir",
+    "etymology": "提案名。型錄的深盞要背著走，不能把買來的空容量當成滿艙流光。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [
+     {
+      "pool": "charge",
+      "max": 25
+     }
+    ],
+    "attrMods": [
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-deep-cup"
+     }
+    ],
+    "abilities": [],
+    "hp": 18,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-ember-dynamo",
+   "檔": "content/base/components/fa-ember-dynamo.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "借火輪",
+   "nameEn": "Borrowed Ember",
+   "定位": "慢速補流光；長戰積燼是代價。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 崩年舊廠留下能轉的輪，現在只能借核心的餘光做小活。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：借火輪",
+   "差異與代價": "慢速補流光；長戰積燼是代價。",
+   "安裝條件": "須同時有 heat、charge；不提高核心或精粹等級",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-ember-dynamo",
+    "name": "借火輪",
+    "nameEn": "Borrowed Ember",
+    "etymology": "提案名。崩年舊廠留下能轉的輪，現在只能借核心的餘光做小活。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [
+     {
+      "pool": "charge",
+      "regen": 5
+     },
+     {
+      "pool": "heat",
+      "regen": 5
+     }
+    ],
+    "attrMods": [],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-light-reel",
+   "檔": "content/base/components/fa-light-reel.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "汲光卷",
+   "nameEn": "Lightwind Reel",
+   "定位": "主動兩回合回流光；同時增加燼。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "部件帶：B hp=18、mass=4；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：汲光卷",
+   "差異與代價": "主動兩回合回流光；同時增加燼。",
+   "安裝條件": "須有 charge、heat；流光至少缺20才啟動",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/singapore",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-light-reel",
+    "name": "汲光卷",
+    "nameEn": "Lightwind Reel",
+    "etymology": "提案名。型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 4,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fa-draw-light"
+    ],
+    "hp": 18,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-quick-turn",
+   "檔": "content/base/components/fa-quick-turn.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "搶步筋組",
+   "nameEn": "Quickturn Linkage",
+   "定位": "先手換準頭；便於先動後壓近。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 守牆舊機改作巡路後，修造棚先鬆開了僵硬的筋。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：搶步筋組",
+   "差異與代價": "先手換準頭；便於先動後壓近。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-quick-turn",
+    "name": "搶步筋組",
+    "nameEn": "Quickturn Linkage",
+    "etymology": "提案名。守牆舊機改作巡路後，修造棚先鬆開了僵硬的筋。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-quick-turn"
+     },
+     {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-quick-turn"
+     }
+    ],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-quiet-bell",
+   "檔": "content/base/components/fa-quiet-bell.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "定心鈴架",
+   "nameEn": "Quiet Bell",
+   "定位": "承壓意志換先手；不治療傷勢。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 老機修造棚把艙內的晃動收成規律，駕駛能定住神，回手卻慢。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：定心鈴架",
+   "差異與代價": "承壓意志換先手；不治療傷勢。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-quiet-bell",
+    "name": "定心鈴架",
+    "nameEn": "Quiet Bell",
+    "etymology": "提案名。老機修造棚把艙內的晃動收成規律，駕駛能定住神，回手卻慢。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-quiet-bell"
+     },
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-quiet-bell"
+     }
+    ],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-steady-hand",
+   "檔": "content/base/components/fa-steady-hand.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "定肘筋組",
+   "nameEn": "Steadyhand Linkage",
+   "定位": "準頭換先手；適合留位射擊。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 舊廠把長槍修造冊上的肘節做得更穩，轉槍卻慢了。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：定肘筋組",
+   "差異與代價": "準頭換先手；適合留位射擊。",
+   "安裝條件": "任一具同型槽的 mechanical 骨架；插層另核 part id",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-steady-hand",
+    "name": "定肘筋組",
+    "nameEn": "Steadyhand Linkage",
+    "etymology": "提案名。舊廠把長槍修造冊上的肘節做得更穩，轉槍卻慢了。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [
+     {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-steady-hand"
+     },
+     {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-steady-hand"
+     }
+    ],
+    "abilities": [],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "component/fa-vent-shutter",
+   "檔": "content/base/components/fa-vent-shutter.json",
+   "批": "fg-ga-02",
+   "類型": "component",
+   "槽位": "systemMount",
+   "中文名": "開燼閘",
+   "nameEn": "Cinder Shutter",
+   "定位": "主動兩回合強排燼；期間準頭降低。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "部件帶：C hp=16、mass=3；非武器 size 依已存在槽容量取 1／背掛 2；插層25–55、resist≤0.25；詳見規格",
+   "AI戰術鍵": "不適用（部件；能力另列）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：開燼閘",
+   "差異與代價": "主動兩回合強排燼；期間準頭降低。",
+   "安裝條件": "須有 heat；使用前燼≥20，確保有排燼需求",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "market/war-armory",
+   "研發建議": "research/forge-composite 後接非核心件分支（只提案；不改原節點）",
+   "掉落建議": "人類機甲戰後實物回收，保留戰損；怪獸不直接掉整套機械成品",
+   "規格": {
+    "id": "component/fa-vent-shutter",
+    "name": "開燼閘",
+    "nameEn": "Cinder Shutter",
+    "etymology": "提案名。公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。",
+    "slot": "systemMount",
+    "size": 1,
+    "mass": 3,
+    "origin": "mechanical",
+    "pools": [],
+    "poolMods": [],
+    "attrMods": [],
+    "abilities": [
+     "ability/fa-open-vents"
+    ],
+    "hp": 16,
+    "tags": [
+     "system"
+    ]
+   },
+   "驗證情境": "於示範載體安裝一次，核屬性／池／插層與規格一致；非支援骨架不得當作有效裝法。"
+  },
+  {
+   "id": "ability/fa-draw-light",
+   "檔": "content/base/abilities/fa-draw-light.json",
+   "批": "fg-ga-02",
+   "類型": "ability",
+   "槽位": "隨來源部件",
+   "中文名": "收卷汲光",
+   "nameEn": "Draw the Reel",
+   "定位": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "B 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "{\"buff\": 1}",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：收卷汲光",
+   "差異與代價": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "安裝條件": "須有 charge、heat；流光至少缺20才啟動",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-light-reel",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     }
+    ],
+    "produces": [],
+    "require": [
+     {
+      "cmp": {
+       "a": {
+        "sum": [
+         {
+          "ref": "self.pools.charge.cur"
+         },
+         20
+        ]
+       },
+       "op": "<=",
+       "b": {
+        "ref": "self.pools.charge.max"
+       }
+      }
+     }
+    ],
+    "cooldown": 3,
+    "usesPerBattle": 2,
+    "target": {
+     "kind": "self",
+     "range": {
+      "min": 0,
+      "max": 0
+     },
+     "los": false,
+     "friendly": "only"
+    },
+    "packets": [],
+    "effects": [
+     {
+      "on": "self",
+      "apply": [
+       "effect/fa-light-drawn"
+      ]
+     }
+    ],
+    "tags": [
+     "buff"
+    ],
+    "ai": {
+     "tactics": {
+      "buff": 1
+     }
+    },
+    "id": "ability/fa-draw-light",
+    "name": "收卷汲光",
+    "nameEn": "Draw the Reel",
+    "etymology": "提案名。兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。"
+   },
+   "驗證情境": "載體charge降到max-30且有heat；比較有無效果的回復與加燼；滿光時不可發動。"
+  },
+  {
+   "id": "ability/fa-open-vents",
+   "檔": "content/base/abilities/fa-open-vents.json",
+   "批": "fg-ga-02",
+   "類型": "ability",
+   "槽位": "隨來源部件",
+   "中文名": "開閘散燼",
+   "nameEn": "Open the Cinder Gate",
+   "定位": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "C 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "{\"buff\": 1}",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：開閘散燼",
+   "差異與代價": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "安裝條件": "須有 heat；使用前燼≥20，確保有排燼需求",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-vent-shutter",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "mode": "activated",
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+     }
+    ],
+    "produces": [],
+    "require": [
+     {
+      "cmp": {
+       "a": {
+        "ref": "self.pools.heat.cur"
+       },
+       "op": ">=",
+       "b": 20
+      }
+     }
+    ],
+    "cooldown": 3,
+    "usesPerBattle": 2,
+    "target": {
+     "kind": "self",
+     "range": {
+      "min": 0,
+      "max": 0
+     },
+     "los": false,
+     "friendly": "only"
+    },
+    "packets": [],
+    "effects": [
+     {
+      "on": "self",
+      "apply": [
+       "effect/fa-venting"
+      ]
+     }
+    ],
+    "tags": [
+     "buff"
+    ],
+    "ai": {
+     "tactics": {
+      "buff": 1
+     }
+    },
+    "id": "ability/fa-open-vents",
+    "name": "開閘散燼",
+    "nameEn": "Open the Cinder Gate",
+    "etymology": "提案名。兩回合 heat.regen-10、準頭-5；先排燼再射。"
+   },
+   "驗證情境": "載體初始heat40；比較兩次回合更新與移除後regen、accuracy；heat不足20不可發動。"
+  },
+  {
+   "id": "effect/fa-light-drawn",
+   "檔": "content/base/effects/fa-light-drawn.json",
+   "批": "fg-ga-02",
+   "類型": "effect",
+   "槽位": "隨來源部件",
+   "中文名": "汲光",
+   "nameEn": "Light Drawn",
+   "定位": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "掛點": "塞勒涅型錄供貨仍仰賴流光與專用維護，並非萬能。 型錄把短時回光做成可開可關的卷，關慢了仍要付排燼代價。",
+   "掛點來源": "content/lore/factions/selene.json",
+   "廠商": "塞勒涅工業",
+   "等級": "B",
+   "關鍵數值帶": "B 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "不適用（效果）",
+   "聲望門檻": "塞勒涅工業 35；待部件門檻接通才上架",
+   "新名詞": "提案：汲光",
+   "差異與代價": "兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。",
+   "安裝條件": "須有 charge、heat；流光至少缺20才啟動",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-light-reel",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "scope": "mech",
+    "clock": {
+     "kind": "ownerTurns",
+     "n": 2
+    },
+    "stack": {
+     "policy": "refresh"
+    },
+    "contribs": [
+     {
+      "path": "self.pools.charge.regen",
+      "op": "add",
+      "value": 10,
+      "source": "effect/fa-light-drawn"
+     },
+     {
+      "path": "self.pools.heat.regen",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fa-light-drawn"
+     }
+    ],
+    "hooks": {},
+    "tags": [
+     "buff"
+    ],
+    "ui": {
+     "badge": "汲光"
+    },
+    "id": "effect/fa-light-drawn",
+    "name": "汲光",
+    "nameEn": "Light Drawn",
+    "etymology": "提案名。兩回合 charge.regen+10、heat.regen+5；不是提升精粹等級。"
+   },
+   "驗證情境": "載體charge降到max-30且有heat；比較有無效果的回復與加燼；滿光時不可發動。"
+  },
+  {
+   "id": "effect/fa-venting",
+   "檔": "content/base/effects/fa-venting.json",
+   "批": "fg-ga-02",
+   "類型": "effect",
+   "槽位": "隨來源部件",
+   "中文名": "散燼",
+   "nameEn": "Venting",
+   "定位": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "掛點": "崩年後舊廠縮成修造棚，替公開三系加工非核心件。 公版鐵劍的後棚工單常寫同一句：先把燼放出去，再談準頭。",
+   "掛點來源": "content/lore/factions/old-arms-makers.json",
+   "廠商": "舊廠諸家",
+   "等級": "C",
+   "關鍵數值帶": "C 純支援招；AP 3／短效1–2回合；各項加值依效果帶；詳見規格",
+   "AI戰術鍵": "不適用（效果）",
+   "聲望門檻": "公開，0；舊廠公版非招牌件",
+   "新名詞": "提案：散燼",
+   "差異與代價": "兩回合 heat.regen-10、準頭-5；先排燼再射。",
+   "安裝條件": "須有 heat；使用前燼≥20，確保有排燼需求",
+   "示範載體": "frame/bulwark-ii",
+   "市場建議": "不單獨販售；隨 component/fa-vent-shutter",
+   "研發建議": "隨來源部件",
+   "掉落建議": "隨來源部件",
+   "規格": {
+    "scope": "mech",
+    "clock": {
+     "kind": "ownerTurns",
+     "n": 2
+    },
+    "stack": {
+     "policy": "refresh"
+    },
+    "contribs": [
+     {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/fa-venting"
+     },
+     {
+      "path": "self.pools.heat.regen",
+      "op": "add",
+      "value": -10,
+      "source": "effect/fa-venting"
+     }
+    ],
+    "hooks": {},
+    "tags": [
+     "buff"
+    ],
+    "ui": {
+     "badge": "散燼"
+    },
+    "id": "effect/fa-venting",
+    "name": "散燼",
+    "nameEn": "Venting",
+    "etymology": "提案名。兩回合 heat.regen-10、準頭-5；先排燼再射。"
+   },
+   "驗證情境": "載體初始heat40；比較兩次回合更新與移除後regen、accuracy；heat不足20不可發動。"
+  }
+ ]
+}

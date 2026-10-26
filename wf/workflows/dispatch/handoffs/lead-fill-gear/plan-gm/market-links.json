@@ -1,0 +1,740 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "市場",
+  "地點",
+  "現有檔",
+  "城市口味",
+  "部件",
+  "插入位置",
+  "上市條件",
+  "聲望規則",
+  "研究規則",
+  "建議item",
+  "重要限制"
+ ],
+ "rows": [
+  {
+   "市場": "market/salt-flat",
+   "地點": "place/salt-flat",
+   "現有檔": "content/base/world/markets/salt-flat.json",
+   "城市口味": "轉手拆件／灰鈴與走私貨／低量高門檻",
+   "部件": "component/fm-bellows-bridge",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-bellows-bridge",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 370
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-bellows-keel",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋研究解鎖購買接線完成後",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "research/fm-bellows-pattern",
+   "建議item": {
+    "def": "component/fm-bellows-keel",
+    "weight": 3,
+    "stockMax": 1,
+    "basePrice": 820
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-bellows-trough",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-bellows-trough",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 340
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/salt-flat",
+   "地點": "place/salt-flat",
+   "現有檔": "content/base/world/markets/salt-flat.json",
+   "城市口味": "轉手拆件／灰鈴與走私貨／低量高門檻",
+   "部件": "component/fm-breakwater-greave",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-breakwater-greave",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 350
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-breakwater-scarf",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-breakwater-scarf",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 310
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-cradle-iris",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋研究解鎖購買接線完成後",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "research/fm-iris-pattern",
+   "建議item": {
+    "def": "component/fm-cradle-iris",
+    "weight": 3,
+    "stockMax": 1,
+    "basePrice": 450
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-cradle-slit",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-cradle-slit",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 300
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/dhaka",
+   "地點": "place/dhaka",
+   "現有檔": "content/base/world/markets/dhaka.json",
+   "城市口味": "公刻工坊／筋組與護艙／公開維修手藝",
+   "部件": "component/fm-relay-spindle",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-relay-spindle",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 320
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/dhaka",
+   "地點": "place/dhaka",
+   "現有檔": "content/base/world/markets/dhaka.json",
+   "城市口味": "公刻工坊／筋組與護艙／公開維修手藝",
+   "部件": "component/fm-relay-yoke",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋研究解鎖購買接線完成後",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "research/fm-relay-pattern",
+   "建議item": {
+    "def": "component/fm-relay-yoke",
+    "weight": 3,
+    "stockMax": 1,
+    "basePrice": 410
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-rivet-handguard",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-rivet-handguard",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 320
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/dhaka",
+   "地點": "place/dhaka",
+   "現有檔": "content/base/world/markets/dhaka.json",
+   "城市口味": "公刻工坊／筋組與護艙／公開維修手藝",
+   "部件": "component/fm-rivet-harness",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋研究解鎖購買接線完成後",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "research/fm-rivet-pattern",
+   "建議item": {
+    "def": "component/fm-rivet-harness",
+    "weight": 3,
+    "stockMax": 1,
+    "basePrice": 480
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/dhaka",
+   "地點": "place/dhaka",
+   "現有檔": "content/base/world/markets/dhaka.json",
+   "城市口味": "公刻工坊／筋組與護艙／公開維修手藝",
+   "部件": "component/fm-rivet-hood",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-rivet-hood",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 300
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-sill-baffle",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-sill-baffle",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 360
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/dhaka",
+   "地點": "place/dhaka",
+   "現有檔": "content/base/world/markets/dhaka.json",
+   "城市口味": "公刻工坊／筋組與護艙／公開維修手藝",
+   "部件": "component/fm-sill-rest",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場",
+   "聲望規則": "公開（通用接口供貨）",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-sill-rest",
+    "weight": 3,
+    "stockMax": 2,
+    "basePrice": 330
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-anvil-ram",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/anvil-hunters",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-anvil-ram",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 960
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-anvil-skirt",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/anvil-hunters",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-anvil-skirt",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 520
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/salt-flat",
+   "地點": "place/salt-flat",
+   "現有檔": "content/base/world/markets/salt-flat.json",
+   "城市口味": "轉手拆件／灰鈴與走私貨／低量高門檻",
+   "部件": "component/fm-backside-falseface",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "A55；缺營運勢力：backside",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-backside-falseface",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1680
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-blade-return",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "B35；缺營運勢力：third-blade",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-blade-return",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1040
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/salt-flat",
+   "地點": "place/salt-flat",
+   "現有檔": "content/base/world/markets/salt-flat.json",
+   "城市口味": "轉手拆件／灰鈴與走私貨／低量高門檻",
+   "部件": "component/fm-creed-ashbell",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/tide-faith",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-creed-ashbell",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 860
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-gull-outrigger",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/salt-gull-hunters",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-gull-outrigger",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 560
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-scholar-plumb",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/shell-society",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-scholar-plumb",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 880
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-selene-eyepiece",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/selene-whitegloves",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-selene-eyepiece",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1180
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-selene-veil",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/selene-whitegloves",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-selene-veil",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1260
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-yoke-palm",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：yoke-saddle-works",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-yoke-palm",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 570
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-america-perch",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/north-american-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-america-perch",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1100
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-court-standard",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/imperial-court",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-court-standard",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 980
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-europe-harborplate",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：euro-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-europe-harborplate",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 500
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-houses-mantle",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/inner-sea-houses",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-houses-mantle",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 650
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-japan-portgun",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "D10；faction-ops/japan-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-japan-portgun",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 240
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-korea-groundline",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：korea-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-korea-groundline",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 580
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-league-watchrack",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/residual-league",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-league-watchrack",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 540
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-nairobi-tiller",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/nairobi",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-nairobi-tiller",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 620
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-quito-visor",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "C20；faction-ops/quito",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-quito-visor",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 720
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-russia-reservoir",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後",
+   "聲望規則": "B35；faction-ops/russia-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-russia-reservoir",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 820
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-central-compass",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：central-asia-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-central-compass",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 610
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-latam-convoycell",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：latam-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-latam-convoycell",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 590
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/chittagong",
+   "地點": "place/chittagong",
+   "現有檔": "content/base/world/markets/chittagong.json",
+   "城市口味": "拆船棚／舊廠換件／獵團出海前整備",
+   "部件": "component/fm-northafrica-sluice",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：north-africa-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-northafrica-sluice",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 520
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/old-array",
+   "地點": "place/old-array",
+   "現有檔": "content/base/world/markets/old-array.json",
+   "城市口味": "探勘靈目／測繪／護獸駕駛員的守望",
+   "部件": "component/fm-subsahara-wellguard",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：sub-saharan-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-subsahara-wellguard",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 550
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/singapore",
+   "地點": "place/singapore",
+   "現有檔": "content/base/world/markets/singapore.json",
+   "城市口味": "高價型錄／港務代辦／國家與公司窗口",
+   "部件": "component/fm-sydney-lookback",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "C20；缺營運勢力：sydney",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-sydney-lookback",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 640
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  },
+  {
+   "市場": "market/war-armory",
+   "地點": "place/delta",
+   "現有檔": "content/base/world/markets/war-armory.json",
+   "城市口味": "正式授權／國家與獵團的戰線軍需",
+   "部件": "component/fm-west-firegate",
+   "插入位置": "lists[kind=component].items；按def去重，僅插入",
+   "上市條件": "需領導授權插入既有市場＋部件聲望檢查完成後＋本勢力獨立營運聲望來源建立後",
+   "聲望規則": "B35；缺營運勢力：west-asia-umbrella",
+   "研究規則": "無",
+   "建議item": {
+    "def": "component/fm-west-firegate",
+    "weight": 1,
+    "stockMax": 1,
+    "basePrice": 1180
+   },
+   "重要限制": "條件是計畫欄，不能把它塞進未支援的MarketDef；未接線先不上架。"
+  }
+ ]
+}

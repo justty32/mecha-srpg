@@ -1,0 +1,448 @@
+{
+  "observed": {
+    "ability": "ability/fa-regain-footing",
+    "method": "manual tryCommand",
+    "command": {
+      "kind": "useAbility",
+      "actor": "ally-0",
+      "ability": "ability/fa-regain-footing"
+    },
+    "ok": true,
+    "bare": 5,
+    "attr": "initiative",
+    "before": 1,
+    "after": 13,
+    "delta": 12,
+    "removed": "m2-dragged",
+    "retained": "mx-netted",
+    "effects": [
+      "base:effect/mx-netted",
+      "base:effect/fa-footed"
+    ],
+    "apSpent": 3,
+    "cooldown": 3,
+    "usesSpent": 1,
+    "expiredNextOwnerTurn": true
+  },
+  "events": [
+    {
+      "seq": 0,
+      "round": 0,
+      "type": "BattleStart",
+      "payload": {
+        "units": [
+          "ally-0",
+          "enemy-0"
+        ]
+      }
+    },
+    {
+      "seq": 1,
+      "round": 1,
+      "type": "RoundStart",
+      "payload": {
+        "round": 1
+      }
+    },
+    {
+      "seq": 2,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 3,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 2,
+        "to": 2,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 4,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 5,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 6,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 7,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 8,
+        "to": 8,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 8,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 9,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 10,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 11,
+      "round": 1,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 0,
+        "effect": "base:effect/m2-dragged",
+        "owner": "ally-0",
+        "part": null,
+        "source": "scratch-fixture"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 12,
+      "round": 1,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 1,
+        "effect": "base:effect/mx-netted",
+        "owner": "ally-0",
+        "part": null,
+        "source": "scratch-fixture"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 13,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 6,
+        "reason": "ability"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 14,
+      "round": 1,
+      "type": "AbilityUsed",
+      "payload": {
+        "unit": "ally-0",
+        "ability": "base:ability/fa-regain-footing",
+        "target": null,
+        "part": null
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 15,
+      "round": 1,
+      "type": "Hit",
+      "payload": {
+        "unit": "ally-0",
+        "target": "ally-0",
+        "ability": "base:ability/fa-regain-footing",
+        "chance": 100,
+        "roll": null,
+        "part": "right-arm"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 16,
+      "round": 1,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 0,
+        "effect": "base:effect/m2-dragged",
+        "owner": "ally-0",
+        "reason": "tags-removed"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 17,
+      "round": 1,
+      "type": "EffectApplied",
+      "payload": {
+        "uid": 2,
+        "effect": "base:effect/fa-footed",
+        "owner": "ally-0",
+        "part": null,
+        "source": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 18,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "ally-0"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 19,
+      "round": 1,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "enemy-0",
+        "resumed": false
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 20,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "ap",
+        "from": 9,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 21,
+      "round": 1,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "enemy-0",
+        "pool": "instinct",
+        "from": 20,
+        "to": 25,
+        "reason": "regen"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 22,
+      "round": 1,
+      "type": "TurnEnd",
+      "payload": {
+        "unit": "enemy-0"
+      },
+      "turn": "enemy-0"
+    },
+    {
+      "seq": 23,
+      "round": 1,
+      "type": "RoundEnd",
+      "payload": {
+        "round": 1
+      }
+    },
+    {
+      "seq": 24,
+      "round": 2,
+      "type": "RoundStart",
+      "payload": {
+        "round": 2
+      }
+    },
+    {
+      "seq": 25,
+      "round": 2,
+      "type": "TurnStart",
+      "payload": {
+        "unit": "ally-0",
+        "resumed": false
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 26,
+      "round": 2,
+      "type": "EffectExpired",
+      "payload": {
+        "uid": 2,
+        "effect": "base:effect/fa-footed",
+        "owner": "ally-0",
+        "reason": "expired"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 27,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "ash-incense",
+        "from": 2,
+        "to": 2,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 28,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "charge",
+        "from": 50,
+        "to": 50,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 29,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "heat",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 30,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "rune-round",
+        "from": 12,
+        "to": 12,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 31,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "ally-0",
+        "pool": "scatter-shell",
+        "from": 8,
+        "to": 8,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 32,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "ap",
+        "from": 6,
+        "to": 9,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 33,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "fatigue",
+        "from": 0,
+        "to": 0,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    },
+    {
+      "seq": 34,
+      "round": 2,
+      "type": "PoolChanged",
+      "payload": {
+        "owner": "pilot-0",
+        "pool": "hp",
+        "from": 60,
+        "to": 60,
+        "reason": "regen"
+      },
+      "turn": "ally-0"
+    }
+  ]
+}
