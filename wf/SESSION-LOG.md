@@ -17,6 +17,7 @@
 - [content] lead-aegir open：埃吉爾認主事件＋歐傘那一盤 2108-01 填充（≤15 檔，codex 批次 ag-01）→ handoffs/lead-aegir/
 - [content] lead-fill-am open：lore 填充層南北美洲（北美傘、內陸財團、拉美傘、空城／自由／黑幫／公司城代表地、人物與事件；codex 批次 am-01 起）→ handoffs/lead-fill-am/
 - [content] lead-fill-af open：lore 填充層撒南＋北非＋西亞（三把傘、放閘夜／燃夜／金山夜／斷橋夜／運河夜、城邦類型代表地、人物；codex 批次 af-01 起）→ handoffs/lead-fill-af/
+- [content] lead-fill-ea open：lore 填充層中日韓俄＋中亞邊緣（朝廷／日傘／韓傘／俄、江口夜／棄東令／瀨戶內鎖海／樺太默契、空城與公司城代表地、人物；codex 批次 ea-01 起）→ handoffs/lead-fill-ea/
 
 ## 各工作流 session-log
 
