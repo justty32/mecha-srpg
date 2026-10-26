@@ -1,0 +1,89 @@
+{
+ "contract": "content-batch/1",
+ "id": "mech2-04",
+ "mode": "add",
+ "status": "draft",
+ "goal": "機甲種類擴充第 04 批：thirdblade-needlefish-ii、shellsoc-archive-b、quito-quay-iv、anvil-gatewarden、tidefaith-pilgrim、league-last-ferry、cn-yoke-i",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-m2-04",
+  "subagents": "允許，模型隨意，上限 2"
+ },
+ "lead": "lead-mech2",
+ "date": "2026-10-26",
+ "base": "67506fa954aedd43e9fb6f6b558ff6a80b15256e",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/ability-forms.json",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/playtest-baselines.json",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/mechs.md",
+   "wf/workflows/planning/design-notes/mechs/mechanical.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/world/drive.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "src/mcp/README.md",
+   "wf/workflows/dispatch/handoffs/lead-mech2/plan/PLAN.md",
+   "wf/workflows/dispatch/handoffs/lead-mech2/m2-common.md",
+   "wf/workflows/dispatch/handoffs/lead-mech2/cx-m2-04.md"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/cx3-flyingfish-ii",
+   "frame/shellsoc-surveyor-b",
+   "frame/quito-andes-wall",
+   "frame/union-futu",
+   "frame/thirdblade-binary-swordfish",
+   "frame/ix-homeward",
+   "frame/cn-jade-tablet-i"
+  ],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 2,
+  "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/mcp-log"
+ }
+}
