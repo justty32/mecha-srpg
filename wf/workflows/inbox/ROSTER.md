@@ -127,3 +127,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-fill-af`）
 - **領地**：CLAIMS「lead-fill-af」列；工人照交接書 `handoffs/lead-fill-af/cx-af-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-fill-ea`（含代登記工人 `cx-ea-01`、`cx-ea-02`）
+- **狀態**：現役（2026-10-26 上線）
+- **我是誰**：Opus 領導：lore 填充層中日韓俄＋東北亞與中亞邊緣；工人是 codex（lore add 批次 ea-01、ea-02）。
+- **團隊**：`teams/fill-ea`
+- **上游**：`dispatcher`（工人的上游是 `lead-fill-ea`）
+- **領地**：CLAIMS「lead-fill-ea」列；工人照交接書 `handoffs/lead-fill-ea/cx-ea-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
