@@ -1,0 +1,119 @@
+{
+ "contract": "content-batch/1",
+ "id": "kj-05",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "岸線常見的獸族 D 級新物種「礁背」（breaksurf）全套 7 檔",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-kj-05",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": {
+   "model": "gpt-6-astra",
+   "line": "cx-kj-05p",
+   "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-05-plan/plan.md"
+  }
+ },
+ "lead": "lead-fill-kaiju",
+ "date": "2026-10-26",
+ "base": "9c1ab02590e7d3088fcc6f7faa6064f453832ad2",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-05",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-05/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/bio-monsters.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/playtest.md",
+   "content/lore/style.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-05-plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/cx-kj-05.md"
+  ]
+ },
+ "maxFiles": 7,
+ "allow": {
+  "kinds": [
+   "base/species",
+   "base/bodyplans",
+   "base/frames",
+   "base/monsters",
+   "base/abilities"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "probe",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "monster/tidewolf-d",
+   "monster/mite-d"
+  ],
+  "waivers": [
+   {
+    "id": "ability/kx-breaksurf-gore",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、最後統一調，本輪不平衡；對 mite-d 全勝與對兩台堅盾-I 全敗皆為 D 帶兩端的預期"
+   },
+   {
+    "id": "ability/kx-breaksurf-roll",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、最後統一調，本輪不平衡；對 mite-d 全勝與對兩台堅盾-I 全敗皆為 D 帶兩端的預期"
+   },
+   {
+    "id": "frame/bio-breaksurf",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、最後統一調，本輪不平衡；對 mite-d 全勝與對兩台堅盾-I 全敗皆為 D 帶兩端的預期"
+   },
+   {
+    "id": "frame/corpse-breaksurf",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、最後統一調，本輪不平衡；對 mite-d 全勝與對兩台堅盾-I 全敗皆為 D 帶兩端的預期"
+   },
+   {
+    "id": "monster/breaksurf-d",
+    "flag": "winrate",
+    "reason": "使用者 2026-10-26：數值照同級暫填、最後統一調，本輪不平衡；對 mite-d 全勝與對兩台堅盾-I 全敗皆為 D 帶兩端的預期"
+   }
+  ]
+ },
+ "playtest": null,
+ "rounds": 2,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-05/accept/verdict-2.json",
+  "note": "第 2 輪只加 probe waivers（不平衡）；計畫 gpt-6-astra → 產出 gpt-6.1-sol；領導另把 breaksurf 接進 world/rifts/beast.json（monsters、vanguard），黃金不變"
+ },
+ "files": [
+  "content/base/abilities/kx-breaksurf-gore.json",
+  "content/base/abilities/kx-breaksurf-roll.json",
+  "content/base/bodyplans/quadruped-breaksurf.json",
+  "content/base/frames/bio-breaksurf.json",
+  "content/base/frames/corpse-breaksurf.json",
+  "content/base/monsters/breaksurf-d.json",
+  "content/base/species/breaksurf.json"
+ ],
+ "ids": [
+  "ability/kx-breaksurf-gore",
+  "ability/kx-breaksurf-roll",
+  "bodyplan/quadruped-breaksurf",
+  "frame/bio-breaksurf",
+  "frame/corpse-breaksurf",
+  "monster/breaksurf-d",
+  "species/breaksurf"
+ ],
+ "gateRejections": []
+}

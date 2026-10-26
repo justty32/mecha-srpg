@@ -1,0 +1,35 @@
+{
+  "id": "frame/bio-breaksurf",
+  "name": "生物機甲・礁背",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/quadruped-breaksurf",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 6
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-breaksurf-gore",
+    "ability/kx-breaksurf-roll"
+  ],
+  "burden": 2,
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "beast",
+    "kaiju"
+  ]
+}

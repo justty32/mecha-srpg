@@ -1,0 +1,41 @@
+{
+  "id": "ability/kx-breaksurf-roll",
+  "name": "翻背碾岸",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 5
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 0.8
+    }
+  },
+  "cooldown": 2
+}
