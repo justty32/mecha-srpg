@@ -479,6 +479,24 @@
    "影響": "lore 已寫認主事件（開局未發生），營運層沒有「非玩家認主」的世界事件與旗標，鹽鷗與埃吉爾狀態永遠停在開局",
    "建議做法": "接第 36 列潮勢加權：營運每漲潮對指定 NPC 古代機擲一次，命中則設旗標、換勢力名冊與該古代機為盟軍單位（接第 50 列）；玩家若有鹽鷗同場契約可觸發見證事件；歸矢（一階進化）接第 10 列，不在本列",
    "規模": "中"
+  },
+  {
+   "序": "53",
+   "優先": "P3",
+   "項目": "窄裂縫的蝕錨按寬度取同種縮小版：rift 定義只有單一 anchor（A 級），寬度 C／B 的裂縫核心仍放 A 級錨",
+   "來源": "[lead-fill-kaiju](lead-fill-kaiju/kj-02/REPORT.md)、specs/world/monsters「等級觀」",
+   "影響": "巢母 C／B（monster/nestmother-c、-b，2026-10-26 入庫）在營運不會當錨出現；年表「寬度 C 的巢母」與遊戲不一致",
+   "建議做法": "rifts 定義加可選 anchorByWidth（寬度→monster）；scenario.ts／start.ts／rifts.ts 取錨時先查它，缺省退回 anchor；會動戰役黃金",
+   "規模": "小"
+  },
+  {
+   "序": "54",
+   "優先": "P3",
+   "項目": "活捕 frame 隨等級：一族一台 bio frame（grade 固定），C／B 巢母活捕後會得到 A 級 bio-nestmother，血量與等級跳變",
+   "來源": "[lead-fill-kaiju](lead-fill-kaiju/kj-02/REPORT.md)",
+   "影響": "npm run check 對 nestmother-c／-b 警告 capture layer HP differs；同理 tidewolf（D／C／B 共用 C frame）",
+   "建議做法": "species.capture 允許 frameByGrade，或活捕時以 monster.partsOverride 與 grade 覆寫 frame；屬引擎與規則題，先定規則",
+   "規模": "小"
   }
  ]
 }
