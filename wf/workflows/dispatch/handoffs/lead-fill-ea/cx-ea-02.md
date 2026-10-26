@@ -1,6 +1,6 @@
 # 任務：在隔離 worktree 新增東亞與中亞的人物、地點與事件 15 件，並在既有三檔純插入勢力引用（batch ea-02）
 
-先讀：`/home/lorkhan/repo/game_dev/mecha-srpg/AGENTS.md`（**親自讀，不靠本交接書的摘要**；REPORT 開頭要列「已讀清單」，本行每個路徑都要出現，驗收會逐條比對）、`AGENTS.md`、`wf/workflows/common/user.md`、`wf/workflows/content/README.md`、`wf/workflows/content/batch.md`、`wf/workflows/content/polish.md`、`wf/workflows/content/lore-text.md`、`wf/workflows/content/world-pillars.md`、`content/lore/style.md`、`content/lore/style/people.md`、`content/lore/README.md`（含「可見度」一節）、`wf/workflows/planning/design-notes/world/history-lines.md`（含「崩年的底色」十三句）、`wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md`、`wf/workflows/planning/design-notes/world/history-lines/b-ancient.md`、`wf/workflows/planning/design-notes/world/before-collapse.md`、`wf/workflows/planning/design-notes/world/before-collapse-powers.md`、`wf/workflows/planning/design-notes/world/polity.md`、`wf/workflows/planning/design-notes/world/city-types.md`、`wf/workflows/planning/design-notes/world/magnates.md`、`wf/workflows/planning/design-notes/world/drive.md`、`wf/workflows/dispatch/handoffs/lead-fill-ea/cx-ea-02.md`（本檔）。相對路徑都相對你的工作目錄 worktree；內容與主 repo 相同。`wf/workflows/content/` 其餘檔也請讀過。
+先讀：`/home/lorkhan/repo/game_dev/mecha-srpg/AGENTS.md`（**親自讀，不靠本交接書的摘要**；REPORT 開頭要列「已讀清單」，本行每個路徑都要出現，驗收會逐條比對）、`AGENTS.md`、`wf/workflows/common/user.md`、`wf/workflows/content/README.md`、`wf/workflows/content/batch.md`、`wf/workflows/content/polish.md`、`wf/workflows/content/lore-text.md`、`wf/workflows/content/world-pillars.md`、`content/lore/style.md`、`content/lore/style/people.md`、`content/lore/README.md`（含「可見度」一節）、`wf/workflows/planning/design-notes/world/history-lines.md`（含「崩年的底色」十三句）、`wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md`、`wf/workflows/planning/design-notes/world/history-lines/b-ancient.md`、`wf/workflows/planning/design-notes/world/before-collapse.md`、`wf/workflows/planning/design-notes/world/before-collapse-powers.md`、`wf/workflows/planning/design-notes/world/polity.md`、`wf/workflows/planning/design-notes/world/city-types.md`、`wf/workflows/planning/design-notes/world/magnates.md`、`wf/workflows/planning/design-notes/world/drive.md`、`wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02-plan/PLAN.md`（**領導已審核批准的計畫書，本批的權威清單**）、`wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02-plan/review-draft.json`、`wf/workflows/dispatch/handoffs/lead-fill-ea/cx-ea-02.md`（本檔）。相對路徑都相對你的工作目錄 worktree；內容與主 repo 相同。`wf/workflows/content/` 其餘檔也請讀過。
 
 ## 背景與唯一目標
 
@@ -25,6 +25,10 @@
 
 只做下面列出的事；**沒列的一律不做**，遇到「順手也該改」的寫進 REPORT 的「需要決定的事」，不要動手。工作目錄是 `/tmp/claude-1000/-home-lorkhan-repo-game-dev-mecha-srpg/0f9b4c05-fb1f-4c91-bdb2-4d3d26486a03/scratchpad/lead-fill-ea/wt-ea-02/`。
 
+**清單以 `ea-02-plan/PLAN.md` 第④節 15 件為準**（檔名、顯示名、日期、人名、掛點、前因後果、2108-01 狀態、「這件的光」都照 PLAN；PLAN 第⑦節列的限制照守）。下列是領導的初稿，與 PLAN 衝突時**以 PLAN 為準**；唯一已定的替換：第 14 項 `places/murmansk.json` 改為 `places/tiksi.json`（季克西），人物檔名照 PLAN（`wen-zhaoheng`、`mase-tomonori`、`wall-tomori`、`seo-haegyeom`、`nina-belova`）。
+
+**基調（領導審 ea-01 後加）**：ea-01 文筆紮實但偏冷、偏公文；本批照 style.md 總綱「敢誇張、敢浪漫、敢中二；冷硬潮濕的底色上蓋一層神話的光」，每件把 PLAN 寫的「這件的光」實際寫進 body（一個意象、一聲吼、一個名字），不要寫成報告。
+
 **新增恰好 15 檔**（檔名＝下列，不得改名；顯示名是領導給的工作名，人名由你取，可依兩步命名提更好的中文名，在 naming.json 寫理由）：
 
 勢力（1）：
@@ -41,7 +45,7 @@
 （人物檔第 7–11 項見下）
 12. `content/lore/places/sendai-wall.json`——工作名**仙台**：日傘十城之一，太平洋岸、遙控機與算核自走機守牆的城；第 3 項事件發生地。`kind` `城邦`。
 13. `content/lore/places/incheon.json`——**仁川**：韓傘八城之一（不是釜山），黃海岸。`kind` `城邦`。
-14. `content/lore/places/murmansk.json`——**摩爾曼斯克**：俄羅斯那把傘的北極岸港；冰封使損失小（已定），它是俄國型傘「北極岸」的代表。`kind` `港` 或 `城邦`。
+14. `content/lore/places/tiksi.json`——**季克西**：俄羅斯那把傘的北極岸港（取代初稿的摩爾曼斯克，因其地理屬歐洲）；冰封使損失小（已定）。`kind` `港`。
 15. `content/lore/places/almaty.json`——**阿拉木圖**：中亞那把傘的後方交易城、天山墟的出入口；第 2 項事件的舞台之一。`kind` `城邦`。
 
 人物（5，`kind` 依實際；每人 `events` 至少一件本批或既有事件；`relations` 至少一列；`faction` 指向既有或本批勢力）：
@@ -88,7 +92,7 @@
 
 ## 工作
 
-1. 讀「先讀」全部；整檔讀 ea-01 入庫的 14 檔；讀「背景」列出的既有條目，以及 `content/lore/eras/` 全部、`content/lore/factions/{selene,league,salt-gull}.json`（大勢力範本與關係寫法）、`timeline.json` 中 2089–2108 的東亞條目（grep 夸父、格爾木、釜山、慶州、雅庫茨克、老爹）。
+1. 讀「先讀」全部（PLAN.md 整份）；整檔讀 ea-01 入庫的 14 檔；讀「背景」列出的既有條目，以及 `content/lore/eras/` 全部、`content/lore/factions/{selene,league,salt-gull}.json`（大勢力範本與關係寫法）、`timeline.json` 中 2089–2108 的東亞條目（grep 夸父、格爾木、釜山、慶州、雅庫茨克、老爹）。
 2. 定 15 件清單（id、顯示名、date／region、掛哪個節點／線／底色、一句梗）與命名表；人名先 `grep -r` 全庫避免撞名。
 3. 寫檔、做 3 處純插入；每檔後 `node content/lore/check.ts`。
 4. 寫 `timeline-add.json`、`naming.json`、`review.json`；`npm run check`、`npm test` 收尾；寫 REPORT 並回報。
@@ -109,7 +113,7 @@
 
 `naming.json` 用 wf-table/1：`{"contract":"wf-table/1","source":"REPORT.md","extracted":"2026-10-26","columns":["id","nameEn","meaning","nameZh","method","status"],"rows":[…]}`，`method` 填意譯／音譯／混用／描述句，`status` 填「既有」或「提案」；涵蓋每個新檔的顯示名與文中新出現的專名。
 
-`review.json` 用 wf-table/1：`{"contract":"wf-table/1","source":"REPORT.md","extracted":"2026-10-26","columns":["檔","類別","名稱","白話","掛到"],"rows":[…]}`，15 個新檔各一列：`檔`＝相對 repo 根的路徑、`類別`＝勢力／事件／地點／人物、`名稱`＝顯示名、`白話`＝一到兩句、**不超過 60 字**、給沒讀過設定的人看的白話（說它是什麼、為什麼存在，不堆術語）、`掛到`＝節點／主線／年表／底色條（例「N01；G 線；底色 1.6」）。使用者與規劃者會拿這張表審敘事基調。
+`review.json` 從 `ea-02-plan/review-draft.json` 起改（白話隨成品修正），用 wf-table/1：`{"contract":"wf-table/1","source":"REPORT.md","extracted":"2026-10-26","columns":["檔","類別","名稱","白話","掛到"],"rows":[…]}`，15 個新檔各一列：`檔`＝相對 repo 根的路徑、`類別`＝勢力／事件／地點／人物、`名稱`＝顯示名、`白話`＝一到兩句、**不超過 60 字**、給沒讀過設定的人看的白話（說它是什麼、為什麼存在，不堆術語）、`掛到`＝節點／主線／年表／底色條（例「N01；G 線；底色 1.6」）。使用者與規劃者會拿這張表審敘事基調。
 
 REPORT 結構：**第一段「已讀清單」**（逐行列你親自讀過的檔路徑）；接著四段（做了什麼；產出——每件一行：id、date 或 region、掛到哪個節點／線／年表條目／底色、前因→後果一句；沒做到或證據不足的；需要決定的事，含你發現的既有 lore 或設定筆記矛盾、需要的新機型或怪獸）；再一段「子代理」；末尾「以後交接書該點名的工具」（沒有就寫「無」）。
 

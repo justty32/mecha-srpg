@@ -1,0 +1,76 @@
+{
+ "contract": "content-batch/1",
+ "id": "ea-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "中日韓俄＋中亞周邊第二批（兩段式：astra 計畫 ea-02-plan 領導已批准）：中亞那把傘；哈薩克賣墟案、空艙有名、赴牆詔、眾肩擎城四事件；成都行在、仙台、仁川、季克西、阿拉木圖五地；溫照衡、真瀨友則、守燈、徐海謙、妮娜・別洛娃五人；夸父之窩、白夜菌床、釜山三地各插一個勢力引用；年表由領導插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-ea-02",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill-ea",
+ "date": "2026-10-26",
+ "base": "2608fc73b004876d33503387a5d8878df04d9f62",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md",
+   "wf/workflows/planning/design-notes/world/history-lines/b-ancient.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/drive.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02-plan/PLAN.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-ea/ea-02-plan/review-draft.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-ea/cx-ea-02.md"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions",
+   "lore/places",
+   "lore/characters"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/places/golmud-nest.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/yakutsk-bed.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/busan.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
