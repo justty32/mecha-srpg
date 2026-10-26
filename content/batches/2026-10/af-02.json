@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "af-02",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "撒南＋北非＋西亞周邊：自由城市吉布地、公司城達蘭、杜拜空城、雙籤城蒙巴薩、拉哥斯歸還黨、遠牧獵團、吉布地城約、軛騎出洋、三個人物；年表增列由領導插入",
  "author": {
   "agent": "codex",
@@ -151,5 +151,84 @@
     "method": "音譯"
    }
   ]
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T10:12:59",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "af-02",
+  "round": 1,
+  "at": "2026-10-26T10:12:59",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/characters/farida-naseri.json",
+   "content/lore/characters/juma-kiprop.json",
+   "content/lore/characters/nadia-sabri.json",
+   "content/lore/events/djibouti-charter.json",
+   "content/lore/events/yoke-riders-abroad.json",
+   "content/lore/factions/far-herd.json",
+   "content/lore/factions/lagos-returners.json",
+   "content/lore/places/dhahran.json",
+   "content/lore/places/djibouti.json",
+   "content/lore/places/dubai.json",
+   "content/lore/places/mombasa.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 31,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/places/djibouti.json",
+  "content/lore/places/dhahran.json",
+  "content/lore/places/dubai.json",
+  "content/lore/places/mombasa.json",
+  "content/lore/factions/lagos-returners.json",
+  "content/lore/factions/far-herd.json",
+  "content/lore/events/djibouti-charter.json",
+  "content/lore/events/yoke-riders-abroad.json",
+  "content/lore/characters/nadia-sabri.json",
+  "content/lore/characters/juma-kiprop.json",
+  "content/lore/characters/farida-naseri.json"
+ ],
+ "ids": [
+  "place/djibouti",
+  "place/dhahran",
+  "place/dubai",
+  "place/mombasa",
+  "faction/lagos-returners",
+  "faction/far-herd",
+  "event/djibouti-charter",
+  "event/yoke-riders-abroad",
+  "character/nadia-sabri",
+  "character/juma-kiprop",
+  "character/farida-naseri"
+ ],
+ "gateRejections": [],
+ "acceptanceNote": "第 1 輪 test 唯一 fail 是 content/index 一致性（worktree 未重產索引，預期）；帶回後重產索引、主 repo npm test 綠。年表 2 筆由領導插入。計畫 cx-af-02p（gpt-6-astra）PLAN.md 超 12 KB 容量 gate 自停回 FAILED，內容完整，領導採用並裁定 7 條風險。"
 }
