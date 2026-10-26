@@ -8,6 +8,7 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
+| `lead-engine-next` | `src/`（含測試）、`content/base/`、`content/index/`、`specs/`（最小必要）、`test/` 黃金與 fixtures、`wf/workflows/dispatch/handoffs/lead-engine-next/`、engine-backlog 第 57–61／68／73 列狀態 | `content/lore/`（sonnet-lore-insert）、`wf/workflows/content/mechs.md` | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
