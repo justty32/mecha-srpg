@@ -12,6 +12,7 @@
 ## 最新進度
 
 - [dispatch] 2026-10-26 lead-bigfill open：下一輪大填充（月面、可玩內容、加深）；codex 大量平行（計畫 astra → 產出 sol）→ 交接區 `wf/workflows/dispatch/handoffs/lead-bigfill/`
+- [tidy] 2026-10-26 lead-tidy2 open：wf 整理（handoffs 收線歸檔、inbox、近 8 KB 拆檔、STATE 改寫）＋src 四檔行為不變拆檔 → 交接區 `wf/workflows/dispatch/handoffs/lead-tidy2/`
 - [dispatch] 2026-10-26 lead-engine-next open：AI 自護／友方支援招（backlog 68、73）＋萬潮葬王副線引擎（57–61）＋黃金重錄 → 交接區 `wf/workflows/dispatch/handoffs/lead-engine-next/`
 - [dispatch] 2026-10-26 晚：填充七線、去重、Fable 基調審查已完成；現役 lead-tone-fix（照 Fable 方向 1–5）、lead-mech2、lead-kaiju2、plan-wanchao（Fable）、sonnet-rep-tune；使用者外出，授權「隨意、繼續」；排定：mech2／kaiju2 收線後派萬潮葬王引擎（backlog 57–61）
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
