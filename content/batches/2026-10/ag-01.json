@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "ag-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "埃吉爾認主事件（開局未發生、hidden）＋歐傘那一盤 2108-01 群像：歐洲那把傘、內海諸家、第一張標單、埃吉爾的帳單、熱那亞船塢、阿爾卑斯之墟；年表與既有檔只插入",
  "author": {
   "agent": "codex",
@@ -47,7 +47,7 @@
    "wf/workflows/dispatch/handoffs/lead-aegir/cx-ag-01.md"
   ]
  },
- "maxFiles": 13,
+ "maxFiles": 14,
  "allow": {
   "kinds": [
    "lore/events",
@@ -146,5 +146,122 @@
     "method": "音譯＋意譯"
    }
   ]
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T09:21:05",
+   "ok": false,
+   "steps": {
+    "gate": "fail"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-26T09:25:53",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  },
+  {
+   "round": 3,
+   "at": "2026-10-26T09:39:29",
+   "ok": false,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "ag-01",
+  "round": 3,
+  "at": "2026-10-26T09:39:29",
+  "ok": false,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "approved": [
+   "content/lore/events/aegir-lien.json",
+   "content/lore/events/aegir-wakes.json",
+   "content/lore/events/first-bid-sheet.json",
+   "content/lore/factions/euro-umbrella.json",
+   "content/lore/factions/inner-sea-houses.json",
+   "content/lore/places/alpine-shell.json",
+   "content/lore/places/genoa-yards.json",
+   "content/lore/factions/salt-gull.json",
+   "content/lore/places/hamburg.json",
+   "content/lore/places/istanbul.json",
+   "content/lore/places/rotterdam-roost.json",
+   "content/lore/places/saint-malo.json",
+   "content/lore/places/skagerrak-shell.json",
+   "content/lore/timeline.json"
+  ],
+  "gateViolations": [],
+  "readlist": {
+   "ok": true,
+   "listed": 27,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/lore/events/aegir-lien.json",
+  "content/lore/events/aegir-wakes.json",
+  "content/lore/events/first-bid-sheet.json",
+  "content/lore/factions/euro-umbrella.json",
+  "content/lore/factions/inner-sea-houses.json",
+  "content/lore/places/alpine-shell.json",
+  "content/lore/places/genoa-yards.json",
+  "content/lore/factions/salt-gull.json",
+  "content/lore/places/hamburg.json",
+  "content/lore/places/istanbul.json",
+  "content/lore/places/rotterdam-roost.json",
+  "content/lore/places/saint-malo.json",
+  "content/lore/places/skagerrak-shell.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/aegir-lien",
+  "event/aegir-wakes",
+  "event/first-bid-sheet",
+  "faction/euro-umbrella",
+  "faction/inner-sea-houses",
+  "place/alpine-shell",
+  "place/genoa-yards"
+ ],
+ "summary": "歐傘群像 5 檔＋埃吉爾 2 事件（認主之夜 hidden、未發生；2106 抵押帳單）；既有 6 檔與年表純插入；閘門 0 違規",
+ "gateRejections": [],
+ "waivers": [
+  {
+   "step": "test",
+   "reason": "唯一失敗是 content/index 一致性：_summary.json 已超過 8192 B（main 上同樣失敗，因多條線新增 manifest，非本批內容問題）；頂層已派線修 content_index.py，修好後重產 index 再跑 npm test"
+  },
+  {
+   "step": "round1",
+   "reason": "maxFiles 誤寫 13（實為 14），領導改 manifest 後重跑"
+  },
+  {
+   "step": "lead-fix",
+   "reason": "領導帶回前手改兩處錯字：alpine-shell「上月的上月」、euro-umbrella「背修機賒帳」"
+  }
+ ]
 }
