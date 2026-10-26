@@ -14,7 +14,6 @@
 - [dispatch] 2026-10-26 晚：填充七線、去重、Fable 基調審查已完成；現役 lead-tone-fix（照 Fable 方向 1–5）、lead-mech2、lead-kaiju2、plan-wanchao（Fable）、sonnet-rep-tune；使用者外出，授權「隨意、繼續」
 - [content] lead-mech2 open 2026-10-26：擴充機甲種類 20–30 台（盤點→astra 計畫→sol 產出分批）→ handoffs/lead-mech2/
 - [content] lead-kaiju2 open 2026-10-26：擴充怪獸種類 20–30 種（盤點→astra 計畫→sol 分批）→ handoffs/lead-kaiju2/
-- [content] lead-tone-fix 開工：照 Fable 基調審查落地方向 1–5（美洲補光、錢與法理收斂、殘聯機甲史、機械清理、八項矛盾）→ handoffs/lead-tone-fix/
 - [content] lead-wanchao open 2026-10-26：萬潮葬王副線落地（F1–F5 lore、E1–E5 engine-backlog）→ handoffs/lead-wanchao/
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 

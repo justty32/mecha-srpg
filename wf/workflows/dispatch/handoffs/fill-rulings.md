@@ -28,3 +28,7 @@
 - Fable 基調審查（plan-tone-review/review.md）照 Fable：第三節八項推薦、第二節提案名（季克西→提克西、順行液壓組→順行筋組，其餘留）、第四節方向 1–5 落地（lead-tone-fix），方向 6 萬潮葬王交 Fable 規劃線（plan-wanchao）。
 - lead-rep 待決：新勢力專用發包冷卻 8→16 天；既有勢力機上鎖維持（照「勢力機甲也是」）；基多借新加坡窗口暫留；門檻暫值不動。
 - 新開機甲擴充（lead-mech2）與怪獸擴充（lead-kaiju2）：使用者認為種類太少。
+
+## 已落地（lead-tone-fix，2026-10-26，commit 9364f46）
+
+基調審查方向 1–5 落地（美洲 5 新事件、撤 4 件改 hidden 併主檔、殘聯機甲史 4 件、機械清理、八項矛盾）；第二節定案名已拿掉提案標記。例外：漲潮倒數依 spec opening.md 定十一天（非 Fable 推薦的三天）。base 轉交與刪檔建議見 [lead-tone-fix/report](lead-tone-fix/report.md)。
