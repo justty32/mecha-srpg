@@ -1,0 +1,38 @@
+{
+  "id": "component/fm-selene-eyepiece",
+  "name": "銀環-G3分目座",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "hp": 18,
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "charge",
+      "max": -10
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 4,
+      "source": "component/fm-selene-eyepiece"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 3,
+      "source": "component/fm-selene-eyepiece"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "nameEn": "Silverring Split Optic",
+  "etymology": "塞勒涅以靜海型錄的靈目工藝製作分目座，兼顧準頭與視野。公司掌著高階料也得付代價：準具占去一部分流光餘量，無法把每一樣都推到最好。名稱與具體型錄均為提案。"
+}

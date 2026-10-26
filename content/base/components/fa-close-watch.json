@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-close-watch",
+  "name": "近哨靈目",
+  "nameEn": "Nearwatch",
+  "etymology": "提案名，取近身守哨之意。崩年後的舊廠替巡牆機把靈目收向腳邊，閃身較從容，遠處的燈卻少看一盞。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-close-watch"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -1,
+      "source": "component/fa-close-watch"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "sensor"
+  ]
+}

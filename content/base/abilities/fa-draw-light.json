@@ -1,0 +1,61 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "sum": [
+            {
+              "ref": "self.pools.charge.cur"
+            },
+            20
+          ]
+        },
+        "op": "<=",
+        "b": {
+          "ref": "self.pools.charge.max"
+        }
+      }
+    }
+  ],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fa-light-drawn"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "id": "ability/fa-draw-light",
+  "name": "收卷汲光",
+  "nameEn": "Draw the Reel",
+  "etymology": "提案名「收卷汲光」是塞勒涅汲光卷的操作名，像把鬆散的光一圈圈收回。短時加快流光回復，也拖慢排燼，須先留出缺光的空位。"
+}

@@ -1,0 +1,54 @@
+{
+  "id": "ability/fm-blade-reprise",
+  "name": "回刃截潮",
+  "mode": "activated",
+  "grade": "B",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "fm-blade-seal",
+      "owner": "mech",
+      "amount": 1
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 24,
+      "armorPen": 0.2
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "essence": "B",
+  "nameEn": "Reprise at the Tide",
+  "etymology": "第三刃讓回刃貼身貫擊，再收刃準備下一次切入。每擊消耗封片與流光，只能出手三次；精粹的等級也不會因配裝而讓低級機體冒升。名稱與具體型錄均為提案。"
+}

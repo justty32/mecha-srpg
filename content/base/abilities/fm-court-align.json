@@ -1,0 +1,50 @@
+{
+  "id": "ability/fm-court-align",
+  "name": "並肩列陣",
+  "mode": "activated",
+  "grade": "B",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "only"
+  },
+  "accuracy": 0,
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/fm-line-steady"
+      ]
+    }
+  ],
+  "tags": [
+    "support"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "cooldown": 2,
+  "nameEn": "Stand in Line",
+  "etymology": "朝廷把衡梁與玉圭的線列指揮用在列旗上，點名近處一機，穩住友軍迎擊的準頭。指揮者得分出心力與流光，兩次號令之間也須等候。名稱與具體型錄均為提案。"
+}

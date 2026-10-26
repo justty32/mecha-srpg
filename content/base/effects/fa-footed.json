@@ -1,0 +1,38 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 8,
+      "source": "effect/fa-footed"
+    }
+  ],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "remove",
+        "tags": [
+          "stagger"
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "立穩"
+  },
+  "id": "effect/fa-footed",
+  "name": "立穩",
+  "nameEn": "Footed",
+  "etymology": "Footed 取腳下重新踏實之意，立穩是鐵砧定樁衍甲的提案狀態名。先手只回升一瞬，牽滯雖解，縛網仍須另想辦法。"
+}

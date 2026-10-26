@@ -1,0 +1,34 @@
+{
+  "id": "component/fa-arm-sling",
+  "name": "護肘背梁",
+  "nameEn": "Armward Sling",
+  "etymology": "護肘背梁為提案名，取背後托住左肘的意思。舊廠修造棚沿長槍的公版掛位做出這道背梁，讓左臂多挨幾矢；背位交給它，右臂與胸口仍得另想辦法。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "support"
+  ],
+  "layersAdd": [
+    {
+      "part": "left-arm",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+          "pierce": 0.1
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

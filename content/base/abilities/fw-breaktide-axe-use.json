@@ -1,0 +1,50 @@
+{
+  "id": "ability/fw-breaktide-axe-use",
+  "name": "斧落潮分",
+  "nameEn": "Part the Tide",
+  "etymology": "提案名；放棄失衡，單包重斬穿厚外甲。用掉半回合以上指令，斬後要等兩回合。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 25
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 34,
+      "armorPen": 0.3,
+      "crit": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "essence": "A",
+  "cooldown": 2
+}

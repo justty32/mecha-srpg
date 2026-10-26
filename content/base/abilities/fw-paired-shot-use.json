@@ -1,0 +1,55 @@
+{
+  "id": "ability/fw-paired-shot-use",
+  "name": "凡矢疊敲",
+  "nameEn": "Two Knocks",
+  "etymology": "提案名；兩個傷害包各過一次層，對薄層機甲施壓。每發兩矢，貼身不能開，厚減傷層會分別擋矢。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+    },
+    {
+      "type": "kinetic",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

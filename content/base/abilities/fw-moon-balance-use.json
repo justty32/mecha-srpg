@@ -1,0 +1,55 @@
+{
+  "id": "ability/fw-moon-balance-use",
+  "name": "衡月開弦",
+  "nameEn": "Draw the Balance",
+  "etymology": "提案名；七格狙擊但不吃實體矢，適合能維持流光的射手。三格盲區，不能取代近身槍。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 3,
+      "max": 7
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 10,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 32,
+      "armorPen": 0.25,
+      "crit": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "essence": "A",
+  "cooldown": 2
+}

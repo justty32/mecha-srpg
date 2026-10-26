@@ -1,0 +1,66 @@
+{
+  "id": "ability/fw-reef-jaw-use",
+  "name": "合鉗抱礁",
+  "nameEn": "Close the Reef",
+  "etymology": "提案名；近身破甲兼拘束，耗光矢時仍有帶精粹的鉗口。可能誤殺瀕死目標，不是零傷捕捉槍。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 18
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 10,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 24,
+      "armorPen": 0.15,
+      "crit": 0.15
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "restraint",
+    "capture"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.8,
+      "disable": 1,
+      "capture": 0.8
+    }
+  },
+  "essence": "A",
+  "cooldown": 2
+}

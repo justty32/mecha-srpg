@@ -1,0 +1,56 @@
+{
+  "id": "ability/fw-harbor-gun-use",
+  "name": "凡矢封港",
+  "nameEn": "Close the Harbor",
+  "etymology": "提案名；七格圓域對人火力，一次兩矢換成封口一擊。三格盲區，三回合冷卻，打獸仍不能穿核。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 20
+    },
+    {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 3,
+      "max": 7
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 26,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 3
+}

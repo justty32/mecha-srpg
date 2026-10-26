@@ -1,0 +1,35 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.charge.regen",
+      "op": "add",
+      "value": 10,
+      "source": "effect/fa-light-drawn"
+    },
+    {
+      "path": "self.pools.heat.regen",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fa-light-drawn"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "汲光"
+  },
+  "id": "effect/fa-light-drawn",
+  "name": "汲光",
+  "nameEn": "Light Drawn",
+  "etymology": "提案名「汲光」是塞勒涅汲光卷收緊後的短時狀態。流光回得更快，排燼卻放緩，卷上的光還得靠機甲核心供給。"
+}

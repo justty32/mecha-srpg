@@ -1,0 +1,113 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-gm-02",
+  "mode": "add",
+  "status": "accepted",
+  "goal": "獵團公司教團特色件10＋能力3＋效果1",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-gm-02",
+    "subagents": "上限1，同受本交接書約束",
+    "plan": {
+      "line": "cx-fg-plan-gm",
+      "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md"
+    }
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-02",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-02/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-resist/REPORT.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-gm/new-items.json"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/abilities",
+      "base/components",
+      "base/effects"
+    ],
+    "namePrefix": {
+      "base/*": "fm-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "files": [
+    "content/base/components/fm-anvil-ram.json",
+    "content/base/components/fm-anvil-skirt.json",
+    "content/base/components/fm-backside-falseface.json",
+    "content/base/components/fm-blade-return.json",
+    "content/base/components/fm-creed-ashbell.json",
+    "content/base/components/fm-gull-outrigger.json",
+    "content/base/components/fm-scholar-plumb.json",
+    "content/base/components/fm-selene-eyepiece.json",
+    "content/base/components/fm-selene-veil.json",
+    "content/base/components/fm-yoke-palm.json",
+    "content/base/abilities/fm-anvil-drive.json",
+    "content/base/abilities/fm-blade-reprise.json",
+    "content/base/abilities/fm-creed-ashen-call.json",
+    "content/base/effects/fm-ash-blind.json"
+  ],
+  "ids": [
+    "component/fm-anvil-ram",
+    "component/fm-anvil-skirt",
+    "component/fm-backside-falseface",
+    "component/fm-blade-return",
+    "component/fm-creed-ashbell",
+    "component/fm-gull-outrigger",
+    "component/fm-scholar-plumb",
+    "component/fm-selene-eyepiece",
+    "component/fm-selene-veil",
+    "component/fm-yoke-palm",
+    "ability/fm-anvil-drive",
+    "ability/fm-blade-reprise",
+    "ability/fm-creed-ashen-call",
+    "effect/fm-ash-blind"
+  ],
+  "acceptance": {},
+  "rounds": 0,
+  "gateRejections": [],
+  "probe": {
+    "waivers": [
+      "本批不新增frame；依交接書固定第3條以scratch配裝runBattle驗證，禁止MCP；由領導審閱證據。"
+    ]
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-02/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-02/playtest"
+  },
+  "naming": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-gm-02/naming.json"
+  },
+  "dependencies": []
+}

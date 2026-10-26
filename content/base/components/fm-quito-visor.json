@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-quito-visor",
+  "name": "禿鷲-II型仰幕",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "component/fm-quito-visor"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "head",
+      "insertAt": 0,
+      "layer": {
+        "type": "shield",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false,
+        "regen": 3,
+        "regenPool": "charge"
+      }
+    }
+  ],
+  "nameEn": "Condor High Veil",
+  "etymology": "基多工坊沿高地輕骨光幕的手藝製作仰幕，在商路約後供貨。光幕罩住靈目，胸甲便能留給重裝配件；修復光幕要耗流光，也不授予古代異能或免除抵抗性。名稱與具體型錄均為提案。"
+}

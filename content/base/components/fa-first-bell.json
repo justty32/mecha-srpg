@@ -1,0 +1,37 @@
+{
+  "id": "component/fa-first-bell",
+  "name": "先鳴靈目",
+  "nameEn": "First Bell",
+  "etymology": "提案名，取急報先鳴之意。稽古學會的測隊讓靈目先報動靜，駕駛搶得先機，分神轉頭時卻更難閃身。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-first-bell"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 1,
+      "source": "component/fa-first-bell"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -3,
+      "source": "component/fa-first-bell"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "sensor"
+  ]
+}

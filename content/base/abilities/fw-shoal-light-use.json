@@ -1,0 +1,59 @@
+{
+  "id": "ability/fw-shoal-light-use",
+  "name": "照汀一矢",
+  "nameEn": "Light the Shoal",
+  "etymology": "提案名；不產燼的靈目點射，用流光換乾淨的射擊節奏。每發流光20，沒有流光池就不能用。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 16,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "universal"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "sensor"
+      ]
+    }
+  },
+  "essence": "C",
+  "partAim": {
+    "allowed": true,
+    "penalty": 8
+  }
+}

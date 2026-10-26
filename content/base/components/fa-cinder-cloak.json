@@ -1,0 +1,39 @@
+{
+  "id": "component/fa-cinder-cloak",
+  "name": "拒燼披甲",
+  "nameEn": "Cinderward",
+  "etymology": "Cinderward 取擋住燼火之意，拒燼披甲是塞勒涅型錄的提案名。胸前甲面能多受灼燒，內襯卻分走流光，讓回復慢下來。",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "charge",
+      "regen": -2
+    }
+  ],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "armor"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 40,
+        "ablative": true,
+        "resist": {
+          "thermal": 0.25
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

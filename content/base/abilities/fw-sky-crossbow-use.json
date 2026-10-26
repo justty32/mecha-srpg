@@ -1,0 +1,65 @@
+{
+  "id": "ability/fw-sky-crossbow-use",
+  "name": "巡天落矢",
+  "nameEn": "Skyfall Bolt",
+  "etymology": "提案名；以巨大盲區換十格定點射擊。僅三次、冷卻三回合，移動後常無足夠指令開弩。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 6
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 30
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 4,
+      "max": 10
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 15,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 40,
+      "armorPen": 0.35,
+      "crit": 0.2
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "core"
+      ]
+    }
+  },
+  "essence": "S",
+  "cooldown": 3,
+  "usesPerBattle": 3,
+  "partAim": {
+    "allowed": true,
+    "penalty": 15
+  }
+}

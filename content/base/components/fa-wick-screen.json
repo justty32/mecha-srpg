@@ -1,0 +1,36 @@
+{
+  "id": "component/fa-wick-screen",
+  "name": "續燈光幕",
+  "nameEn": "Wicklight Screen",
+  "etymology": "Wicklight Screen 取燈芯細光不斷之意，續燈光幕是塞勒涅型錄的提案名。胸前細幕能續回缺口，主砲便得讓出維持它的流光。",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "armor"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "shield",
+        "hp": 25,
+        "ablative": true,
+        "resist": {
+          "energy": 0.15
+        },
+        "passThrough": {},
+        "structural": false,
+        "regen": 4,
+        "regenPool": "charge"
+      }
+    }
+  ]
+}

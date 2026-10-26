@@ -1,0 +1,44 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fa-windward"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "id": "ability/fa-catch-wind",
+  "name": "轉帆搶步",
+  "nameEn": "Catch the Wind",
+  "etymology": "轉帆搶步為提案名，取轉過短帆先占出手時機的意思。舊廠巡路機收轉背帆時，駕駛暫把準星讓給身法；先手與閃避只維持一回合，位置仍在原格。"
+}

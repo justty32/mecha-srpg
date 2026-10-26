@@ -1,0 +1,59 @@
+{
+  "id": "ability/fw-stayline-use",
+  "name": "拋索留步",
+  "nameEn": "Cast and Hold",
+  "etymology": "提案名；不耗矢的短距拘束，空矢後仍能留獸。必須逼近，命中仍會造成4點傷害。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 4,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "restraint",
+    "capture"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1,
+      "capture": 0.8
+    }
+  },
+  "essence": "C"
+}

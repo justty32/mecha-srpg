@@ -1,0 +1,41 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 12,
+      "source": "effect/fa-windward"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 8,
+      "source": "effect/fa-windward"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -8,
+      "source": "effect/fa-windward"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "轉風"
+  },
+  "id": "effect/fa-windward",
+  "name": "轉風",
+  "nameEn": "Windward",
+  "etymology": "轉風為提案名，取轉風背帆換出手次序的意思。舊廠巡路機借短帆搶得一回合先手與閃避，代價是槍口失準；身位沒有移開，通行本領也照舊。"
+}

@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-breakwater-greave",
+  "name": "退浪-II型脛甲",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -1,
+      "source": "component/fm-breakwater-greave"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "legs",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+          "acid": 0.2
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Recedingwater Greave",
+  "etymology": "舊廠諸家的退浪船材（廠名提案）出品。崩年軍工縮成非核心件加工後，仍靠通用公刻接口接活。將船材做成防蝕腿甲，讓淺灘邊的射手站穩再打；只護雙腿，添上的重量也讓閃避略慢。廠名、裝備名與具體型錄均為提案。"
+}

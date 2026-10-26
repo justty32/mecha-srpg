@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-wide-lantern",
+  "name": "分燈靈目",
+  "nameEn": "Widewatch",
+  "etymology": "提案名，取分燈兩望之意。稽古學會的測隊讓燈分看兩邊，找人較快，槍口最後一次瞄準卻難兼顧。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-wide-lantern"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-wide-lantern"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "sensor"
+  ]
+}

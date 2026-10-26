@@ -1,0 +1,34 @@
+{
+  "id": "component/fa-salt-wash",
+  "name": "洗鹽覆甲",
+  "nameEn": "Saltwash Mantle",
+  "etymology": "Saltwash Mantle 取洗去鹽蝕、換下覆片之意，洗鹽覆甲是崩年後沿海修造棚的提案名。它把酸蝕留在胸前外甲，覆片以外的部位仍靠原甲支撐。",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "armor"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+          "acid": 0.25
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "id": "component/fa-needle-stop",
+  "name": "攔針疊甲",
+  "nameEn": "Needlebreak Laminate",
+  "etymology": "Needlebreak Laminate 取層層攔下尖刺之意，攔針疊甲是舊廠公刻工坊的提案名。胸前疊片抵擋穿刺，卻擠掉了貼身轉步的餘裕。",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-needle-stop"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "armor"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 35,
+        "ablative": true,
+        "resist": {
+          "pierce": 0.25
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

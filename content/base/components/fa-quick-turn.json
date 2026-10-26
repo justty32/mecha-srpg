@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-quick-turn",
+  "name": "搶步筋組",
+  "nameEn": "Quickturn Linkage",
+  "etymology": "提案名「搶步筋組」出自崩年舊廠替守牆舊機換筋的路數。它讓機體搶先動手，準頭卻鬆了，壓近前得先想好怎麼接招。",
+  "slot": "systemMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-quick-turn"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-quick-turn"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "system"
+  ]
+}

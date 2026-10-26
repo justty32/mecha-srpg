@@ -1,0 +1,38 @@
+{
+  "id": "component/fl-foam-bladder",
+  "name": "沫顎隔囊",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "bio",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "loot",
+    "salvage",
+    "grade-c",
+    "beast"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "flesh",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+          "acid": 0.25
+        },
+        "passThrough": {
+          "kinetic": 0.2
+        },
+        "structural": false
+      }
+    }
+  ],
+  "burden": 2
+}

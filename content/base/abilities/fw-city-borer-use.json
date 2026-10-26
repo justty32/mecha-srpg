@@ -1,0 +1,64 @@
+{
+  "id": "ability/fw-city-borer-use",
+  "name": "沉城一鑿",
+  "nameEn": "Citadel Stroke",
+  "etymology": "提案名；S 級近身打斷節奏，接同伴集火。三次上限且三回合冷卻，鐵砧不因此取得 S 級煉法。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 28
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 30
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 10,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 32,
+      "armorPen": 0.3,
+      "crit": 0.2
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-staggered"
+      ]
+    }
+  ],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "disable": 0.6
+    }
+  },
+  "essence": "S",
+  "cooldown": 3,
+  "usesPerBattle": 3
+}

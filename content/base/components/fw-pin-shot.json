@@ -1,0 +1,36 @@
+{
+  "id": "component/fw-pin-shot",
+  "name": "凡點吼",
+  "nameEn": "Pinshot",
+  "etymology": "提案名；舊廠庫存護貨槍；人打人便宜的凡鐵生意。單槽低負擔射擊，讓小機不用扛雙槽連吼；傷害換成 D 級量級，對獸不能收命。",
+  "slot": "weaponMount",
+  "size": 1,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 12,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 12,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [
+    "ability/fw-pin-shot-use"
+  ],
+  "hp": 12,
+  "onBroken": [
+    "effect/weapon-jammed"
+  ],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ]
+}

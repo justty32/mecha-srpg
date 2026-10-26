@@ -1,0 +1,35 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -8,
+      "source": "effect/fa-dazzled"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -3,
+      "source": "effect/fa-dazzled"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "晃眼"
+  },
+  "id": "effect/fa-dazzled",
+  "name": "晃眼",
+  "nameEn": "Dazzled",
+  "etymology": "提案名，取燈影晃目之意。舊廠靈目的反晃使敵機暫時難看清、難瞄準，干擾只留兩回，並不損傷機體。"
+}

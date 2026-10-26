@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-quiet-bell",
+  "name": "定心鈴架",
+  "nameEn": "Quiet Bell",
+  "etymology": "提案名「定心鈴架」借鈴聲有節的意象，承接舊廠修造棚替老機整艙的手藝。晃動收得規律，駕駛較能定神，回手卻慢了。",
+  "slot": "systemMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-quiet-bell"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-quiet-bell"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "system"
+  ]
+}

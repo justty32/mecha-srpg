@@ -1,0 +1,35 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/fa-venting"
+    },
+    {
+      "path": "self.pools.heat.regen",
+      "op": "add",
+      "value": -10,
+      "source": "effect/fa-venting"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "散燼"
+  },
+  "id": "effect/fa-venting",
+  "name": "散燼",
+  "nameEn": "Venting",
+  "etymology": "提案名「散燼」沿舊廠修造棚的操作口吻，指公版機開閘後的短時狀態。燼退得更快，準頭同時受損，閘合後仍得自己瞄穩。"
+}

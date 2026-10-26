@@ -1,0 +1,66 @@
+{
+  "id": "ability/fw-weight-harpoon-use",
+  "name": "沉矢鎮步",
+  "nameEn": "Set the Ballast",
+  "etymology": "提案名；六格外零傷收捕，避開瀕死獸的反擊距離。貼身不能開，四矢用盡就得換備用武器。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 12
+    },
+    {
+      "pool": "ammo-fw-bind",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 10,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "restraint",
+    "capture"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1,
+      "capture": 1.2
+    },
+    "targetPref": {
+      "parts": [
+        "locomotion"
+      ]
+    }
+  },
+  "essence": "B",
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
+}

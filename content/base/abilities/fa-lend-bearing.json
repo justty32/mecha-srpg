@@ -1,0 +1,45 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/fa-aligned"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "scout": 0.6
+    }
+  },
+  "id": "ability/fa-lend-bearing",
+  "name": "同燈引路",
+  "nameEn": "Lend a Bearing",
+  "etymology": "提案名，取同燈報點之意。稽古學會的測隊替近旁一名隊友引準，自己得停下手頭動作，這份照應也只能短留。"
+}

@@ -1,0 +1,41 @@
+{
+  "id": "component/fa-abutment",
+  "name": "坐山重甲",
+  "nameEn": "Abutment",
+  "etymology": "Abutment 指撐住重壓的支座，坐山重甲是鐵砧守點掛件的提案名。厚片只護胸前，換來較慢的先手。",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-abutment"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "armor"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 45,
+        "ablative": true,
+        "resist": {
+          "kinetic": 0.25
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

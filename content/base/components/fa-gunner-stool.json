@@ -1,0 +1,36 @@
+{
+  "id": "component/fa-gunner-stool",
+  "name": "坐砲背座",
+  "nameEn": "Gunner Seat",
+  "etymology": "坐砲背座為提案名，取展座穩住砲位的意思。鐵砧重裝隊把守點的習慣做進背架，換來準頭與排燼餘裕；機體仍能走，駕駛卻更難閃過來矢。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "heat",
+      "regen": -2
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-gunner-stool"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -3,
+      "source": "component/fa-gunner-stool"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "support"
+  ]
+}

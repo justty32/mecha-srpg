@@ -1,0 +1,34 @@
+{
+  "id": "component/fa-cool-watch",
+  "name": "寒燈靈目",
+  "nameEn": "Coldwatch",
+  "etymology": "提案名，取寒燈巡夜之意。舊廠修造棚把觀測與排燼合在一處，省下掛位，卻挪用了原本回補流光的餘裕。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "heat",
+      "regen": -2
+    },
+    {
+      "pool": "charge",
+      "regen": -2
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "component/fa-cool-watch"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "sensor"
+  ]
+}

@@ -1,0 +1,49 @@
+{
+  "id": "ability/fw-pin-shot-use",
+  "name": "凡矢點射",
+  "nameEn": "Single Pin",
+  "etymology": "提案名；單槽低負擔射擊，讓小機不用扛雙槽連吼。傷害換成 D 級量級，對獸不能收命。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 10,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  }
+}

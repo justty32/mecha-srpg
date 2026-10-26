@@ -1,0 +1,38 @@
+{
+  "id": "component/fw-ankle-pin",
+  "name": "扣足矢",
+  "nameEn": "Ankle Pin",
+  "etymology": "提案名；共用拘束修造棚；崩年後活捕要壓住而非馴養。零傷收捕，不把已經打殘的目標補死；只有四矢，三格射程；需滿足物種捕捉部位條件。",
+  "slot": "weaponMount",
+  "size": 1,
+  "mass": 2,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "ammo-fw-bind",
+      "name": "拘束矢",
+      "min": 0,
+      "max": 4,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 4,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [
+    "ability/fw-ankle-pin-use"
+  ],
+  "hp": 12,
+  "onBroken": [
+    "effect/weapon-jammed"
+  ],
+  "tags": [
+    "ranged",
+    "restraint",
+    "capture",
+    "universal"
+  ]
+}

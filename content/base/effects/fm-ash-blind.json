@@ -1,0 +1,29 @@
+{
+  "id": "effect/fm-ash-blind",
+  "name": "灰障",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -8,
+      "source": "effect/fm-ash-blind"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "灰障"
+  },
+  "nameEn": "Ash Veil",
+  "etymology": "沐蝕會的灰鈴命中後，灰障便遮住敵機的準頭。它只干擾命中，時限一過就散去；重複施加只延續時限，不會層層加重。名稱與具體型錄均為提案。"
+}

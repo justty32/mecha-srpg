@@ -1,0 +1,34 @@
+{
+  "id": "component/fa-hearth-screen",
+  "name": "守燈背幕",
+  "nameEn": "Hearthward Screen",
+  "etymology": "守燈背幕為提案名，取替胸前留住一盞燈的意思。塞勒涅護送型錄把光幕支架背在身後，僅向胸前撐開；重背位和持續耗用的流光，都是慢慢續幕的代價。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 5,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [],
+  "hp": 22,
+  "tags": [
+    "support"
+  ],
+  "layersAdd": [
+    {
+      "part": "torso",
+      "insertAt": 0,
+      "layer": {
+        "type": "shield",
+        "hp": 35,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false,
+        "regen": 3,
+        "regenPool": "charge"
+      }
+    }
+  ]
+}

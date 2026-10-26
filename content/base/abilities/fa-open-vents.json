@@ -1,0 +1,54 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [
+    {
+      "cmp": {
+        "a": {
+          "ref": "self.pools.heat.cur"
+        },
+        "op": ">=",
+        "b": 20
+      }
+    }
+  ],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fa-venting"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "id": "ability/fa-open-vents",
+  "name": "開閘散燼",
+  "nameEn": "Open the Cinder Gate",
+  "etymology": "提案名「開閘散燼」沿舊廠修造棚的說法，先把公版機悶住的燼放出去。閘開時排燼加快，準頭卻下降，得等積燼夠多才值得動手。"
+}

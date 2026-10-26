@@ -1,0 +1,60 @@
+{
+  "id": "ability/fw-door-sweep-use",
+  "name": "掃門",
+  "nameEn": "Sweep the Door",
+  "etymology": "提案名；貼身小圓域掃低敵人閃避與先手，留給同伴接刀。傷害低且只能選相鄰格；沒有地形障礙或擊退能力。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 5,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/m2-dragged"
+      ]
+    }
+  ],
+  "tags": [
+    "melee",
+    "universal"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1,
+      "disable": 0.6
+    }
+  },
+  "essence": "D",
+  "cooldown": 2
+}

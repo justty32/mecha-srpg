@@ -1,0 +1,45 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/fa-dazzled"
+      ]
+    }
+  ],
+  "tags": [
+    "scout"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1,
+      "scout": 0.6
+    }
+  },
+  "id": "ability/fa-dazzle-mark",
+  "name": "晃燈遮眼",
+  "nameEn": "Dazzle Mark",
+  "etymology": "提案名，取晃燈遮目之意。舊廠靈目反晃眼前一敵，暫擾準頭與觀測；駕駛得花時間對燈，照見了也未必晃得中。"
+}

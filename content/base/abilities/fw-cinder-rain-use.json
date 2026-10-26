@@ -1,0 +1,63 @@
+{
+  "id": "ability/fw-cinder-rain-use",
+  "name": "開爐落燼",
+  "nameEn": "Loose the Cinders",
+  "etymology": "提案名；打較遠的小圓域並壓低準頭，與短距解拘香爐分工。高積燼、冷卻三回合；不焚地形、不解除拘束。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 28
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 2,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 20,
+      "armorPen": 0.15,
+      "crit": 0.15
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-suppressed"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "essence": "A",
+  "cooldown": 3
+}

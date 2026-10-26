@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-anvil-skirt",
+  "name": "鐵砧-II型裙甲",
+  "slot": "armorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fm-anvil-skirt"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "legs",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 40,
+        "ablative": true,
+        "resist": {
+          "pierce": 0.15
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Anvil Siege Skirt",
+  "etymology": "鐵砧獵團替結陣慢進的機隊製作裙甲，讓守點機的腿能多擋幾下穿刺。厚甲拖慢先手，也不會多出趕路的本事。名稱與具體型錄均為提案。"
+}

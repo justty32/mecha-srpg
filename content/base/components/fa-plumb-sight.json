@@ -1,0 +1,37 @@
+{
+  "id": "component/fa-plumb-sight",
+  "name": "垂準靈目",
+  "nameEn": "Plumb Sight",
+  "etymology": "提案名，取沿垂線定準之意。稽古學會的測隊沿舊墟垂線校準靈目，瞄準與操縱更穩，觀測者得把動作放慢。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 2,
+      "source": "component/fa-plumb-sight"
+    },
+    {
+      "path": "self.attrs.control",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-plumb-sight"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -3,
+      "source": "component/fa-plumb-sight"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "sensor"
+  ]
+}

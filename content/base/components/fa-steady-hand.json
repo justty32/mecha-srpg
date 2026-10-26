@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-steady-hand",
+  "name": "定肘筋組",
+  "nameEn": "Steadyhand Linkage",
+  "etymology": "提案名「定肘筋組」從舊廠替公版長槍修肘節的手藝取意。肘定住，準頭便穩些，代價是搶先轉槍的動作更慢。",
+  "slot": "systemMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 3,
+      "source": "component/fa-steady-hand"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-steady-hand"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "system"
+  ]
+}

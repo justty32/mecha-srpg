@@ -1,0 +1,35 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 10,
+      "source": "effect/fa-escorted"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -5,
+      "source": "effect/fa-escorted"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "煙護"
+  },
+  "id": "effect/fa-escorted",
+  "name": "煙護",
+  "nameEn": "Escorted",
+  "etymology": "煙護為提案名，取送行煙燈護住同伴輪廓的意思。舊廠背燈的煙讓近處隊友兩回合較易避矢，準星卻也模糊；煙散前仍會受傷，並沒有誰替他挨打。"
+}

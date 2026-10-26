@@ -1,0 +1,35 @@
+{
+  "id": "effect/fm-line-steady",
+  "name": "列陣",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 6,
+      "source": "effect/fm-line-steady"
+    },
+    {
+      "path": "self.attrs.resolve",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fm-line-steady"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "列陣"
+  },
+  "nameEn": "Line Steady",
+  "etymology": "朝廷列旗點名後留下的列陣之勢，讓受令友軍暫時穩住準頭與定力。時限一過便退去，再次受令只會延續，不能層層堆高。名稱與具體型錄均為提案。"
+}

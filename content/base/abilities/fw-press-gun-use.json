@@ -1,0 +1,58 @@
+{
+  "id": "ability/fw-press-gun-use",
+  "name": "凡矢壓陣",
+  "nameEn": "Keep Heads Down",
+  "etymology": "提案名；對單一射手壓制準頭，替近戰同伴開接近的空檔。兩格盲區與冷卻，不能把壓制寫成解除武裝。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "ammo-30",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 18,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-suppressed"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.8,
+      "disable": 1
+    }
+  },
+  "cooldown": 2
+}

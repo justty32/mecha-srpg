@@ -1,0 +1,52 @@
+{
+  "id": "ability/fm-creed-ashen-call",
+  "name": "灰鈴掩目",
+  "mode": "activated",
+  "grade": "B",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "accuracy": 5,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/fm-ash-blind"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "debuff"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1
+    }
+  },
+  "cooldown": 2,
+  "nameEn": "Ashbell Veiling",
+  "etymology": "沐蝕會讓贖垢者搖響灰鈴，以灰障擾亂一片敵人的準頭，替友軍逼近開路。這招只能掩目，不能砸開拘束艙，也不能替人解拘。名稱與具體型錄均為提案。"
+}

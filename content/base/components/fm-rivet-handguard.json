@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-rivet-handguard",
+  "name": "鉚門-II型左擋板",
+  "slot": "weaponMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -1,
+      "source": "component/fm-rivet-handguard"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "left-arm",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 35,
+        "ablative": true,
+        "resist": {
+          "kinetic": 0.2
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Rivetgate Offhand",
+  "etymology": "舊廠諸家的鉚門工業（廠名提案）出品。崩年軍工縮成非核心件加工後，仍靠通用公刻接口接活。以左側擋板先接一輪矢雨，留下右手繼續打擊；左武器位須讓給防護，機體也略難閃避，擋板只護自己。廠名、裝備名與具體型錄均為提案。"
+}

@@ -1,0 +1,52 @@
+{
+  "id": "ability/fw-fan-tube-use",
+  "name": "扇矢開潮",
+  "nameEn": "Open the Fan",
+  "etymology": "提案名；近距扇形掃開並排小獸，保留單體武器換位空間。需接近且兩回合冷卻；不宣稱燒地形或留下火區。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 16
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "cone",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 12,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "universal"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "essence": "C",
+  "cooldown": 2
+}

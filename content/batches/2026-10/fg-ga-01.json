@@ -1,0 +1,116 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-ga-01",
+  "mode": "add",
+  "status": "accepted",
+  "goal": "裝甲防禦分工：10部件＋2能力＋2效果",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-ga-01",
+    "subagents": "上限 1；同受範圍與禁區約束"
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-01",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-01/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/README.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/planning/specs/core/data-model-mech.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-ga/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-ga/fg-ga-01.specs.json"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/components",
+      "base/abilities",
+      "base/effects"
+    ],
+    "namePrefix": {
+      "base/*": "fa-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [
+      "frame/bulwark-ii",
+      "frame/longspear-v4"
+    ],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-01/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-01/mcp-log"
+  },
+  "files": [
+    "content/base/components/fa-abutment.json",
+    "content/base/components/fa-brow-guard.json",
+    "content/base/components/fa-cinder-cloak.json",
+    "content/base/components/fa-forefoot-shoe.json",
+    "content/base/components/fa-heel-lock.json",
+    "content/base/components/fa-needle-stop.json",
+    "content/base/components/fa-salt-wash.json",
+    "content/base/components/fa-silver-lining.json",
+    "content/base/components/fa-slip-clasp.json",
+    "content/base/components/fa-wick-screen.json",
+    "content/base/abilities/fa-regain-footing.json",
+    "content/base/abilities/fa-shed-bonds.json",
+    "content/base/effects/fa-footed.json",
+    "content/base/effects/fa-loosened.json"
+  ],
+  "ids": [
+    "component/fa-abutment",
+    "component/fa-brow-guard",
+    "component/fa-cinder-cloak",
+    "component/fa-forefoot-shoe",
+    "component/fa-heel-lock",
+    "component/fa-needle-stop",
+    "component/fa-salt-wash",
+    "component/fa-silver-lining",
+    "component/fa-slip-clasp",
+    "component/fa-wick-screen",
+    "ability/fa-regain-footing",
+    "ability/fa-shed-bonds",
+    "effect/fa-footed",
+    "effect/fa-loosened"
+  ],
+  "acceptance": {},
+  "rounds": [],
+  "gateRejections": [],
+  "leadNotes": [
+    "草稿，領導核定後填 base，建隔離 worktree；不由計畫線執行。",
+    "gear-common 禁用 MCP 優先：不要求 MCP 場次；用 scratch runBattle 5 seeds 與人工 tryCommand 證據，固定驗收第3條。",
+    "自動 probe 尋不到未掛現有 frame 的新能力載體；本批使用 scratch 注入配裝，不新增 frame/scenario。",
+    "只加列明14檔，allow.kinds/prefix 是外層閘門，不授權未列出的 fa- 檔。",
+    "數值暫填，勝率記錄而不為平衡擴寫；例外與能力不可用不能豁免。"
+  ]
+}

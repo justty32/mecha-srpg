@@ -1,0 +1,45 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 0,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/fa-escorted"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1,
+      "protect": 0.6
+    }
+  },
+  "id": "ability/fa-cover-companion",
+  "name": "借煙送行",
+  "nameEn": "Cover a Companion",
+  "etymology": "借煙送行為提案名，取借背燈的煙送同伴一程的意思。舊廠修造棚的煙燈只能照顧近處一名隊友，兩回合裡較易避矢，也較難瞄準；放煙的人仍須自己承受來矢。"
+}

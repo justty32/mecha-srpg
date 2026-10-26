@@ -1,0 +1,36 @@
+{
+  "id": "component/fa-veiled-eye",
+  "name": "遮燈靈目",
+  "nameEn": "Hooded Vigil",
+  "etymology": "提案名，取遮燈留光之意。塞勒涅的型錄靈目遮住餘光以便閃身觀測，仍須由機體分出流光，回補也跟著減少。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "charge",
+      "regen": -3
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 2,
+      "source": "component/fa-veiled-eye"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "component/fa-veiled-eye"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "sensor"
+  ]
+}

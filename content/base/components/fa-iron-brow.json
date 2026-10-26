@@ -1,0 +1,45 @@
+{
+  "id": "component/fa-iron-brow",
+  "name": "鐵眉靈目",
+  "nameEn": "Ironbrow Sight",
+  "etymology": "提案名，取厚眉護目之意。舊廠把靈目安在頭部厚眉底下，替頭部添一層護甲並穩住準頭，轉身卻不輕巧。",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 2,
+      "source": "component/fa-iron-brow"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-iron-brow"
+    }
+  ],
+  "abilities": [],
+  "hp": 16,
+  "tags": [
+    "sensor"
+  ],
+  "layersAdd": [
+    {
+      "part": "head",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

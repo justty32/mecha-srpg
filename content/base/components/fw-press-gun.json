@@ -1,0 +1,36 @@
+{
+  "id": "component/fw-press-gun",
+  "name": "凡壓陣砲",
+  "nameEn": "Covering Beat",
+  "etymology": "提案名；護糧與貨車保全的凡鐵火力；不新增國家專屬型錄。對單一射手壓制準頭，替近戰同伴開接近的空檔；兩格盲區與冷卻，不能把壓制寫成解除武裝。",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [
+    "ability/fw-press-gun-use"
+  ],
+  "hp": 20,
+  "onBroken": [
+    "effect/weapon-jammed"
+  ],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "id": "ability/fw-pry-axe-use",
+  "name": "凡斧撬落",
+  "nameEn": "Pry Loose",
+  "etymology": "提案名；不吃燼與流光，貼身拆人造機甲的掛件。只能貼身，對獸碰不到內層與核。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 9,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee",
+    "conventional-arms"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "weaponMount"
+      ]
+    }
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 12
+  }
+}

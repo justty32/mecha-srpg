@@ -1,0 +1,36 @@
+{
+  "id": "component/fw-harbor-gun",
+  "name": "凡守港砲",
+  "nameEn": "Harbor Watch",
+  "etymology": "提案名；崩年後縮回守港城的舊廠；昂貴砲架仍打人造機甲。七格圓域對人火力，一次兩矢換成封口一擊；三格盲區，三回合冷卻，打獸仍不能穿核。",
+  "slot": "weaponMount",
+  "size": 2,
+  "mass": 5,
+  "origin": "mechanical",
+  "pools": [
+    {
+      "id": "ammo-30",
+      "name": "凡鐵矢",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 0,
+      "bands": []
+    }
+  ],
+  "poolMods": [],
+  "attrMods": [],
+  "abilities": [
+    "ability/fw-harbor-gun-use"
+  ],
+  "hp": 22,
+  "onBroken": [
+    "effect/weapon-jammed"
+  ],
+  "tags": [
+    "ranged",
+    "conventional-arms"
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fa-loosened"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "id": "ability/fa-shed-bonds",
+  "name": "扳扣脫網",
+  "nameEn": "Shed the Net",
+  "etymology": "Shed the Net 取從縛網中脫出之意，扳扣脫網是舊廠脫扣衍甲的提案招名。駕駛花心力扳開甲扣，換來一瞬閃避，沒有縛網扣可解的絆足仍留著。"
+}

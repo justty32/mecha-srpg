@@ -1,0 +1,44 @@
+{
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "cooldown": 3,
+  "usesPerBattle": 2,
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/fa-footed"
+      ]
+    }
+  ],
+  "tags": [
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  },
+  "id": "ability/fa-regain-footing",
+  "name": "落樁站穩",
+  "nameEn": "Regain Footing",
+  "etymology": "Regain Footing 取受撞後重新站穩之意，落樁站穩是鐵砧定樁衍甲的提案招名。駕駛花心力解開牽滯、搶回一瞬先手，縛網與已受的傷仍留著。"
+}

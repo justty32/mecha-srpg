@@ -1,0 +1,35 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 8,
+      "source": "effect/fa-aligned"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 3,
+      "source": "effect/fa-aligned"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "同準"
+  },
+  "id": "effect/fa-aligned",
+  "name": "同準",
+  "nameEn": "Aligned",
+  "etymology": "提案名，取兩機同準之意。稽古學會的報點讓隊友暫時看得清、瞄得準，到隊友下一次行動時，這份引準便散去。"
+}

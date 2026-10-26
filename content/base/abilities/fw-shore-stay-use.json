@@ -1,0 +1,59 @@
+{
+  "id": "ability/fw-shore-stay-use",
+  "name": "立柱留岸",
+  "nameEn": "Anchor the Shore",
+  "etymology": "提案名；不用實體矢的零傷近距拘束，供晚期昂貴配裝。三次上限、流光40；不保證捕捉S獸或不可捕物種。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 24
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 40
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 15,
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged",
+    "restraint",
+    "capture"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1.2,
+      "capture": 1.2
+    }
+  },
+  "essence": "S",
+  "cooldown": 3,
+  "usesPerBattle": 3
+}

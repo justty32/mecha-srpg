@@ -1,0 +1,43 @@
+{
+  "id": "component/fm-rivet-hood",
+  "name": "鉚門-II型眉甲",
+  "slot": "sensorMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -1,
+      "source": "component/fm-rivet-hood"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "layersAdd": [
+    {
+      "part": "head",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 25,
+        "ablative": true,
+        "resist": {
+          "kinetic": 0.15
+        },
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ],
+  "nameEn": "Rivetgate Brow",
+  "etymology": "舊廠諸家的鉚門工業（廠名提案）出品。崩年軍工縮成非核心件加工後，仍靠通用公刻接口接活。將可換的甲片罩在靈目上，讓守牆機抬頭看火線時多些防護；眉甲護住頭部，也稍稍拖慢先手。廠名、裝備名與具體型錄均為提案。"
+}

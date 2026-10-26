@@ -1,0 +1,56 @@
+{
+  "id": "ability/fw-wake-lance-use",
+  "name": "一線截浪",
+  "nameEn": "Cut the Wake",
+  "etymology": "提案名；把排成一線的目標一起穿過，無標記或拘束。兩格盲區，敵人散開後每目標火力弱於單射。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 18
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 15
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 16,
+      "armorPen": 0.15,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "universal"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "essence": "B",
+  "cooldown": 2
+}

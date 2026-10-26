@@ -1,0 +1,30 @@
+{
+  "id": "component/fa-deep-cup",
+  "name": "沉盞流光槽",
+  "nameEn": "Deepcup Reservoir",
+  "etymology": "提案名「沉盞流光槽」把塞勒涅型錄裡的深儲槽叫成一只沉盞。它多留空位卻不附滿盞流光，背上後連搶先出手都慢了。",
+  "slot": "systemMount",
+  "size": 1,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "charge",
+      "max": 25
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-deep-cup"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "system"
+  ]
+}

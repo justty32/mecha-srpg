@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-ash-ballast",
+  "name": "壓燼背艙",
+  "nameEn": "Ash Ballast",
+  "etymology": "壓燼背艙為提案名，取把燼壓在背後扛走的意思。崩年後，拆船場的大艙料流進舊廠修造棚，換來較大的積燼餘量；背艙卻拖慢先手，也更難排清，原有燼滯門檻照舊。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [
+    {
+      "pool": "heat",
+      "max": 30,
+      "regen": 4
+    }
+  ],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-ash-ballast"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "support"
+  ]
+}

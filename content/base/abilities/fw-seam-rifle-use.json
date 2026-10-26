@@ -1,0 +1,72 @@
+{
+  "id": "ability/fw-seam-rifle-use",
+  "name": "循隙點名",
+  "nameEn": "Name the Seam",
+  "etymology": "提案名；打掛件並替後續射手留下兩回合標記。最小射程兩格，兩回合冷卻。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 16
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 20
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 2,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 5,
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 20,
+      "armorPen": 0.1,
+      "crit": 0
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-marked"
+      ]
+    }
+  ],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1,
+      "scout": 0.6
+    },
+    "targetPref": {
+      "parts": [
+        "weaponMount"
+      ]
+    }
+  },
+  "essence": "B",
+  "cooldown": 2,
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
+}

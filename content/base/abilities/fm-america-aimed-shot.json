@@ -1,0 +1,58 @@
+{
+  "id": "ability/fm-america-aimed-shot",
+  "name": "定羽一吼",
+  "mode": "activated",
+  "grade": "B",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "fm-perch-arrow",
+      "owner": "mech",
+      "amount": 1
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 3,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 8,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 24,
+      "armorPen": 0.15
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "weaponMount"
+      ]
+    }
+  },
+  "essence": "B",
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  },
+  "nameEn": "Perched Shot",
+  "etymology": "北美內陸試製工廠為隼翼後排射手配的瞄準打法，留出距離後直指敵機部位。每吼都耗一支定羽精粹矢，六矢用盡便得停手。名稱與具體型錄均為提案。"
+}

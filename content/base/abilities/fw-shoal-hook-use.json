@@ -1,0 +1,63 @@
+{
+  "id": "ability/fw-shoal-hook-use",
+  "name": "挑浪回鉤",
+  "nameEn": "Hook the Wake",
+  "etymology": "提案名；隔一格挑腳，舟架不用貼住獸身就能拆腿。只做部位瞄準，不拉位、不拖動目標。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    },
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 8
+    },
+    {
+      "pool": "charge",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 20,
+      "armorPen": 0.15,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    },
+    "targetPref": {
+      "parts": [
+        "locomotion"
+      ]
+    }
+  },
+  "essence": "B",
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
+}

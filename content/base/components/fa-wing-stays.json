@@ -1,0 +1,51 @@
+{
+  "id": "component/fa-wing-stays",
+  "name": "留翼背索",
+  "nameEn": "Wingstay",
+  "etymology": "留翼背索為提案名，取把兩片主翼留在戰線上的意思。塞勒涅分翼型錄用背索牽住左右主翼的掛甲，保住各翼火力；沉重索架拖慢先手，也占去一處背掛。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 5,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -2,
+      "source": "component/fa-wing-stays"
+    }
+  ],
+  "abilities": [],
+  "hp": 22,
+  "tags": [
+    "support"
+  ],
+  "layersAdd": [
+    {
+      "part": "left-wing",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+      }
+    },
+    {
+      "part": "right-wing",
+      "insertAt": 0,
+      "layer": {
+        "type": "armor",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+      }
+    }
+  ]
+}

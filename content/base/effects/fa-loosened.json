@@ -1,0 +1,38 @@
+{
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 5,
+      "source": "effect/fa-loosened"
+    }
+  ],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "remove",
+        "tags": [
+          "immobilized"
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "buff"
+  ],
+  "ui": {
+    "badge": "脫扣"
+  },
+  "id": "effect/fa-loosened",
+  "name": "脫扣",
+  "nameEn": "Unclasped",
+  "etymology": "Unclasped 取甲扣已鬆開之意，脫扣是舊廠脫扣衍甲的提案狀態名。縛網鬆開後有一瞬閃避餘裕，沒有定身標記的絆足仍留著。"
+}

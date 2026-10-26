@@ -1,0 +1,116 @@
+{
+  "contract": "content-batch/1",
+  "id": "fg-ga-02",
+  "mode": "add",
+  "status": "accepted",
+  "goal": "系統資源取捨：10部件＋2能力＋2效果",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fg-ga-02",
+    "subagents": "上限 1；同受範圍與禁區約束"
+  },
+  "lead": "lead-fill-gear",
+  "date": "2026-10-26",
+  "base": "a1463faeb0712226b1e537e48844e6727829f83f",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-02",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-02/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/numeric-bands.md",
+      "wf/workflows/content/numeric-bands.json",
+      "wf/workflows/content/engine-facts.json",
+      "wf/workflows/content/world-pillars.md",
+      "wf/workflows/content/polish.md",
+      "content/lore/README.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/gear-common.md",
+      "wf/workflows/dispatch/handoffs/fill-rulings.md",
+      "wf/workflows/planning/specs/core/data-model-mech.md",
+      "wf/workflows/planning/specs/core/data-model-mech/equipment-and-state.md",
+      "wf/workflows/planning/specs/core/data-model-abilities-effects.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-ga/plan.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-gear/plan-ga/fg-ga-02.specs.json"
+    ]
+  },
+  "maxFiles": 14,
+  "allow": {
+    "kinds": [
+      "base/components",
+      "base/abilities",
+      "base/effects"
+    ],
+    "namePrefix": {
+      "base/*": "fa-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "test",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [
+      "frame/bulwark-ii",
+      "frame/longspear-v4"
+    ],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 0,
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-02/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/lead-fill-gear/fg-ga-02/mcp-log"
+  },
+  "files": [
+    "content/base/components/fa-ash-vessel.json",
+    "content/base/components/fa-bridle-spool.json",
+    "content/base/components/fa-cold-return.json",
+    "content/base/components/fa-deep-cup.json",
+    "content/base/components/fa-ember-dynamo.json",
+    "content/base/components/fa-light-reel.json",
+    "content/base/components/fa-quick-turn.json",
+    "content/base/components/fa-quiet-bell.json",
+    "content/base/components/fa-steady-hand.json",
+    "content/base/components/fa-vent-shutter.json",
+    "content/base/abilities/fa-draw-light.json",
+    "content/base/abilities/fa-open-vents.json",
+    "content/base/effects/fa-light-drawn.json",
+    "content/base/effects/fa-venting.json"
+  ],
+  "ids": [
+    "component/fa-ash-vessel",
+    "component/fa-bridle-spool",
+    "component/fa-cold-return",
+    "component/fa-deep-cup",
+    "component/fa-ember-dynamo",
+    "component/fa-light-reel",
+    "component/fa-quick-turn",
+    "component/fa-quiet-bell",
+    "component/fa-steady-hand",
+    "component/fa-vent-shutter",
+    "ability/fa-draw-light",
+    "ability/fa-open-vents",
+    "effect/fa-light-drawn",
+    "effect/fa-venting"
+  ],
+  "acceptance": {},
+  "rounds": [],
+  "gateRejections": [],
+  "leadNotes": [
+    "草稿，領導核定後填 base，建隔離 worktree；不由計畫線執行。",
+    "gear-common 禁用 MCP 優先：不要求 MCP 場次；用 scratch runBattle 5 seeds 與人工 tryCommand 證據，固定驗收第3條。",
+    "自動 probe 尋不到未掛現有 frame 的新能力載體；本批使用 scratch 注入配裝，不新增 frame/scenario。",
+    "只加列明14檔，allow.kinds/prefix 是外層閘門，不授權未列出的 fa- 檔。",
+    "數值暫填，勝率記錄而不為平衡擴寫；例外與能力不可用不能豁免。"
+  ]
+}

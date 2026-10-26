@@ -1,0 +1,39 @@
+{
+  "id": "component/fm-relay-spindle",
+  "name": "回梭-II型轉筋",
+  "slot": "systemMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 16,
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": 2,
+      "source": "component/fm-relay-spindle"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 2,
+      "source": "component/fm-relay-spindle"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -2,
+      "source": "component/fm-relay-spindle"
+    }
+  ],
+  "abilities": [],
+  "tags": [
+    "mechanical",
+    "fm-supplier",
+    "equipment"
+  ],
+  "nameEn": "Returnshuttle Spindle",
+  "etymology": "舊廠諸家的回梭筋廠（廠名提案）出品。崩年軍工縮成非核心件加工後，仍靠通用公刻接口接活。以小筋組兼顧先手與閃避，讓機體搶過轉角再出手；步態靈活了，準頭卻稍差，也不能靠它改換機動類別。廠名、裝備名與具體型錄均為提案。"
+}

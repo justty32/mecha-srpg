@@ -1,0 +1,31 @@
+{
+  "id": "component/fa-high-survey",
+  "name": "高燈背桅",
+  "nameEn": "Highwatch Mast",
+  "etymology": "高燈背桅為提案名，取把觀測燈抬高的意思。稽古測隊在背桅上留出觀測工位，換來更廣的察看；邊走邊看，槍口的準頭便顧不上。",
+  "slot": "backMount",
+  "size": 2,
+  "mass": 4,
+  "origin": "mechanical",
+  "pools": [],
+  "poolMods": [],
+  "attrMods": [
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": 4,
+      "source": "component/fa-high-survey"
+    },
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -3,
+      "source": "component/fa-high-survey"
+    }
+  ],
+  "abilities": [],
+  "hp": 18,
+  "tags": [
+    "support"
+  ]
+}
