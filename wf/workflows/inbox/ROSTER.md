@@ -69,3 +69,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-tone-fix`）
 - **領地**：CLAIMS「lead-tone-fix」列；工人在隔離 worktree，照交接書 `handoffs/lead-tone-fix/cx-tf-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-kaiju2`（含代登記工人 `cx-kj2-plan`、`cx-kj2-01`…`cx-kj2-06`）
+- **狀態**：現役（2026-10-26）
+- **我是誰**：Opus 領導：擴充怪獸種類 20–30 種；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
+- **團隊**：`teams/kaiju2`
+- **上游**：`dispatcher`（工人的上游是 `lead-kaiju2`）
+- **領地**：CLAIMS「lead-kaiju2」列；工人在隔離 worktree，照交接書 `handoffs/lead-kaiju2/cx-kj2-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
