@@ -93,3 +93,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-wanchao`）
 - **領地**：CLAIMS「lead-wanchao」列；工人在隔離 worktree，照交接書 `handoffs/lead-wanchao/cx-wc-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-engine-next`（含代登記工人 `cx-en-ai-plan`、`cx-en-ai`、`cx-en-wc-plan`、`cx-en-wc`）
+- **狀態**：現役（2026-10-26 上線）
+- **我是誰**：Opus 領導：引擎一批——AI 自護／友方支援招（backlog 68、73）、萬潮葬王副線引擎（57–61）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
+- **團隊**：`teams/engnext`
+- **上游**：`dispatcher`（工人的上游是 `lead-engine-next`）
+- **領地**：CLAIMS「lead-engine-next」列；工人在隔離 worktree，照交接書 `handoffs/lead-engine-next/cx-en-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
