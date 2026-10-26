@@ -1,0 +1,73 @@
+{
+  "id": "frame/league-last-ferry",
+  "name": "歸燈-燕鷗",
+  "nameEn": "Tern Last Ferry",
+  "etymology": "Last Ferry 取仍在等同行者的末班渡船，歸燈-燕鷗為提案名。崩年留下以點名代哀悼的習慣，軍械庫遂依共用修造冊試做少數有人駕的撤退聯絡機，讓受雇獵團在撤路上接得上號令。兩翼分掛掩護槍，左尾扶架替同伴排燼，遠護只有一次；翼上槍與背架灰霧也能被分別打掉。它傳號、護撤，殘聯仍靠城邦與受雇者出戰，沒有因此多出常備軍。",
+  "cls": "mechanical",
+  "grade": "A",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 7,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "from": 120,
+          "to": 150.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 150.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 90,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 90,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/m2-splitwing-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-rifle",
+    "right-weapon": "component/mx-scatter-rune",
+    "system-1": "component/m2-relief-cradle",
+    "system-2": "component/mx-frost-fins",
+    "back-1": "component/mx-ash-mist"
+  },
+  "innateAbilities": [
+    "ability/mx-old-city-wall"
+  ],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-league",
+    "series-ironsword",
+    "captain",
+    "flight"
+  ]
+}

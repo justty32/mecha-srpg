@@ -1,0 +1,69 @@
+{
+  "id": "frame/shellsoc-archive-b",
+  "name": "拓影-B",
+  "nameEn": "Survey Palimpsest B",
+  "etymology": "Palimpsest 是舊字跡下仍留痕的抄本，拓影-B為提案名。南極探勘失散後，學會要買的是護衛帶著抄本回來的時間，遂委託工坊把多目觀測接口接上六足架。新護衛工位學會掘進測繪，可鑽殘牆卻不能下水；前足分掛干擾與連吼，後足保冷泉與排燼片，背架藏灰霧，標記完便留煙撤出。它仍是雇用護衛的委製機，不是學會自建軍隊。",
+  "cls": "mechanical",
+  "grade": "B",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/m2-hexapod-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-hush-pulse",
+    "right-weapon": "component/mx-rune-rifle",
+    "sensor-mount": "component/mx-rift-needle",
+    "system-1": "component/mx-cold-spring",
+    "system-2": "component/mx-frost-fins",
+    "back-1": "component/mx-ash-mist"
+  },
+  "innateAbilities": [],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-many-eyes",
+    "faction-shell-society",
+    "burrow"
+  ]
+}

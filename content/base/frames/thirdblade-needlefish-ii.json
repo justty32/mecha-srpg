@@ -1,0 +1,58 @@
+{
+  "id": "frame/thirdblade-needlefish-ii",
+  "name": "針魚-II型",
+  "nameEn": "Third Blade Needlefish II",
+  "etymology": "Needlefish 取長嘴小魚探入縫隙之意，針魚-II型為提案名。同旗之約重訂了釜山與第三刃的接應責任，突擊隊帶船回港時仍缺能在側翼指路的火力。釜山研發線沿鰭刃血統試配標定靈目、曲射矢筒與鳴鰭，讓護船者先指出敵影，再掩護雙刃機退回；躍潮噴口只給短暫增益，移動仍靠原有浮行架。",
+  "cls": "mechanical",
+  "grade": "C",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 5,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/mx-hover-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-shard-grenade",
+    "right-weapon": "component/cx3-skimming-fin",
+    "sensor-mount": "component/mx-thousand-eye",
+    "back-1": "component/mx-tide-leap"
+  },
+  "innateAbilities": [],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "series-needlefish",
+    "hover"
+  ]
+}

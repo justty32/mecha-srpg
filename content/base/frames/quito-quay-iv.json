@@ -1,0 +1,69 @@
+{
+  "id": "frame/quito-quay-iv",
+  "name": "棧橋-IV型",
+  "nameEn": "Quito Quay IV",
+  "etymology": "Quay 取船塢末端供人站穩的岸，棧橋-IV型為提案名。基多船廠出售以後，港工仍須留住修造與回收的手藝，便依源自夸父公刻的通用修造冊改作舟架。首部熔齒鋸切開阻路件，尾部繫泊鉗讓來敵遲緩；兩側浮架分放排燼片與冷泉，哪側損毀就少一種續工手段。鋸與鉗只做戰場切割、牽制，回收舊機仍要有人下來搬。",
+  "cls": "mechanical",
+  "grade": "B",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 110,
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 137.5,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 14,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/m2-keel-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-molten-saw",
+    "right-weapon": "component/m2-mooring-jaw",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-cold-spring"
+  },
+  "innateAbilities": [],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-quito",
+    "series-ironsword",
+    "hover"
+  ]
+}

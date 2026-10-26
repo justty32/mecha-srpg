@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mech2-04",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "機甲種類擴充第 04 批：thirdblade-needlefish-ii、shellsoc-archive-b、quito-quay-iv、anvil-gatewarden、tidefaith-pilgrim、league-last-ferry、cn-yoke-i",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-mech2",
  "date": "2026-10-26",
- "base": "67506fa954aedd43e9fb6f6b558ff6a80b15256e",
+ "base": "89e2582fe18e8c636f2cd5454348b33ab81d069d",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/REPORT.md",
@@ -79,11 +79,314 @@
    "frame/ix-homeward",
    "frame/cn-jade-tablet-i"
   ],
-  "waivers": []
+  "waivers": [
+   {
+    "id": "frame/league-last-ferry",
+    "flag": "band",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+   },
+   {
+    "id": "frame/league-last-ferry",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 20%"
+   },
+   {
+    "id": "frame/quito-quay-iv",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：monster/siegebeetle-b ×1 勝率 20%"
+   },
+   {
+    "id": "frame/thirdblade-needlefish-ii",
+    "flag": "band",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 285 < C 級下限 300"
+   }
+  ]
  },
  "playtest": {
   "required": 2,
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-04/mcp-log"
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T14:36:46",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-26T14:54:32",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "mech2-04",
+  "round": 2,
+  "at": "2026-10-26T14:54:32",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/frames/anvil-gatewarden.json",
+   "content/base/frames/cn-yoke-i.json",
+   "content/base/frames/league-last-ferry.json",
+   "content/base/frames/quito-quay-iv.json",
+   "content/base/frames/shellsoc-archive-b.json",
+   "content/base/frames/thirdblade-needlefish-ii.json",
+   "content/base/frames/tidefaith-pilgrim.json",
+   "content/lore/events/lamplit-return-trials.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 100%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "high",
+     "id": "frame/anvil-gatewarden",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/anvil-gatewarden",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/anvil-gatewarden",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/anvil-gatewarden",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/cn-yoke-i",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/cn-yoke-i",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/cn-yoke-i",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/cn-yoke-i",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 520 < A 級下限 560",
+     "key": "band:base:frame/league-last-ferry:衍型機總層 HP",
+     "id": "frame/league-last-ferry",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 20%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "low",
+     "id": "frame/league-last-ferry",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 20%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/league-last-ferry",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/league-last-ferry",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 20% 敗 80% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/league-last-ferry",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/quito-quay-iv",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 20%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "low",
+     "id": "frame/quito-quay-iv",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：monster/siegebeetle-b ×1 勝率 20%"
+    },
+    {
+     "id": "frame/quito-quay-iv",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 7.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/quito-quay-iv",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 20% 敗 80% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/shellsoc-archive-b",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/shellsoc-archive-b",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/shellsoc-archive-b",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/shellsoc-archive-b",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 285 < C 級下限 300",
+     "key": "band:base:frame/thirdblade-needlefish-ii:衍型機總層 HP",
+     "id": "frame/thirdblade-needlefish-ii",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 285 < C 級下限 300"
+    },
+    {
+     "id": "frame/thirdblade-needlefish-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 40% 敗 60% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/thirdblade-needlefish-ii",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 40% 敗 60% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 100%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "high",
+     "id": "frame/tidefaith-pilgrim",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/tidefaith-pilgrim",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/tidefaith-pilgrim",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/tidefaith-pilgrim",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 2,
+   "rows": 2,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 30,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "leadNotes": [
+  "第 1 輪 test 紅 3 項皆逾時（三批驗收並行跑造成：stdio e2e 60s、隨機圖效能、隨機小情境生成 30 秒），第 2 輪改單獨跑。"
+ ],
+ "files": [
+  "content/base/frames/anvil-gatewarden.json",
+  "content/base/frames/cn-yoke-i.json",
+  "content/base/frames/league-last-ferry.json",
+  "content/base/frames/quito-quay-iv.json",
+  "content/base/frames/shellsoc-archive-b.json",
+  "content/base/frames/thirdblade-needlefish-ii.json",
+  "content/base/frames/tidefaith-pilgrim.json",
+  "content/lore/events/lamplit-return-trials.json"
+ ],
+ "ids": [
+  "frame/anvil-gatewarden",
+  "frame/cn-yoke-i",
+  "frame/league-last-ferry",
+  "frame/quito-quay-iv",
+  "frame/shellsoc-archive-b",
+  "frame/thirdblade-needlefish-ii",
+  "frame/tidefaith-pilgrim",
+  "event/lamplit-return-trials"
+ ]
 }

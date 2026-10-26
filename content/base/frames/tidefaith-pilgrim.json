@@ -1,0 +1,59 @@
+{
+  "id": "frame/tidefaith-pilgrim",
+  "name": "渡厄-贖垢者",
+  "nameEn": "Redeemer Pilgrim",
+  "etymology": "Pilgrim 是親自走入危難的行路者，渡厄-贖垢者為提案名。解拘者為突入拘束場，私下照受供奉古代機的衣紋拼出少數 A 級有人機；教義反對衍型機，造機者沒有替這樁矛盾找出公認答案。它沿贖垢者的禱焰拆壞外掛件，再用熔齒鋸灼切近身目標；兩種行動都積燼，駕駛員得在收刀與再念一遍之間選擇，冷泉也有用盡的時候。",
+  "cls": "mechanical",
+  "grade": "A",
+  "baseAttrs": {
+    "initiative": 10,
+    "perception": 7,
+    "accuracy": 4,
+    "evasion": 12
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -22,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-molten-saw",
+    "right-weapon": "component/mx-purge-censer",
+    "system-1": "component/mx-cold-spring",
+    "system-2": "component/mx-frost-fins"
+  },
+  "innateAbilities": [
+    "ability/mx-unbind-rite"
+  ],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-robe",
+    "faction-tidefaith"
+  ]
+}

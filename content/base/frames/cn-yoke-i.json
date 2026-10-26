@@ -1,0 +1,71 @@
+{
+  "id": "frame/cn-yoke-i",
+  "name": "衡梁-I型",
+  "nameEn": "Court Yoke I",
+  "etymology": "Yoke 取承托並分擔重荷的橫梁，衡梁-I型為提案名，沿朝廷禮器與工器的命名語感。朝廷閱兵亮出了續造 B 級的產線，沒有讓地方補給和駕駛員一起出廠。衡梁沿夸父公刻的堅盾支系，改用六足分掛火力與扶架，將玉圭的自身守備換成友方遠護與排燼接力；後足掛件一斷，這段接力就少一手。",
+  "cls": "mechanical",
+  "grade": "B",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "evasion": -3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/m2-hexapod-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-rifle",
+    "right-weapon": "component/mx-scatter-rune",
+    "system-1": "component/m2-relief-cradle",
+    "system-2": "component/mx-frost-fins"
+  },
+  "innateAbilities": [
+    "ability/mx-old-city-wall"
+  ],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-imperial-court",
+    "series-bulwark",
+    "captain"
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "id": "frame/anvil-gatewarden",
+  "name": "封門-鐵砧",
+  "nameEn": "Anvil Gatewarden",
+  "etymology": "Gatewarden 取門關之前留在外側的守門者，封門-鐵砧為提案名。浦那撤退留下的老駕駛員缺口沒有被工坊補滿，鐵砧只試做少數有人駕的斷後砲座。斷臂血統的重架改承吼砲、貫矛與火矢莢，伏架瞄準時鎖住腳下，以移動換準頭。主砲須隔開距離才有射界，敵人貼近便得靠隊友開路，厚鐵架也替不了座艙裡的人。",
+  "cls": "mechanical",
+  "grade": "A",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "accuracy": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 130,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 162.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 130
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 162.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/mx-fortress-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-cannon",
+    "right-weapon": "component/mx-starscar-lance",
+    "back-1": "component/mx-ember-pod",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-cold-spring"
+  },
+  "innateAbilities": [
+    "ability/m2-brace-deploy"
+  ],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-broken-arm",
+    "faction-anvil"
+  ]
+}
