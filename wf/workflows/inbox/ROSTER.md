@@ -146,3 +146,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-fill-mech`）
 - **領地**：CLAIMS「lead-fill-mech」列；工人照交接書 `handoffs/lead-fill-mech/cx-mf-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-rep`（含代登記工人 `cx-rep-01`）
+- **狀態**：現役（2026-10-26）
+- **我是誰**：Opus 領導：國家／勢力機甲走聲望取得、補營運勢力資料、舊廠件上架、戰役黃金重錄；工人 codex gpt-6.1-sol。
+- **團隊**：`teams/rep`
+- **上游**：`dispatcher`（工人的上游是 `lead-rep`）
+- **領地**：CLAIMS「lead-rep」列；工人在隔離 worktree，照交接書 `handoffs/lead-rep/cx-rep-01.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
