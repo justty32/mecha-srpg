@@ -515,6 +515,51 @@
    "影響": "承步腿架等六件只在百科可見，玩家買不到",
    "建議做法": "在 war-armory 或新開一個「舊廠修造棚」市場列 component 篩選器（data-model-faction-rnd 已規劃市場改篩選器），或交 content 線加一個新市場檔；動市場會改戰役黃金",
    "規模": "小"
+  },
+  {
+   "序": "57",
+   "優先": "P3",
+   "項目": "萬潮葬王 E1：蝕訊多一欄「王跡」（提案名）——具名 S 個體的世界位置旗標，三態「在／往北／不見了」",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "影響": "萬潮葬王的副線在營運層看不到：玩家只能在百科讀到拍二、拍三，蝕訊與市場沒有「牠在哪」，拍一開局狀態「吉大港外灘：在」無處顯示",
+   "建議做法": "接第 43 列蝕訊四來源：state 加 namedLords[id]={loc,heading,sinceDay}；殘聯免費報上個漲潮的位置、塞勒涅訂閱報下一次大潮的方向、沐蝕會讖語「王將北行」沿用三成不準規則、哨所以市場商品賣一張天網影像；顯示文案三句已備在 lead-wanchao/base-drafts.json",
+   "規模": "小"
+  },
+  {
+   "序": "58",
+   "優先": "P3",
+   "項目": "萬潮葬王 E2：具名 S 個體的世界移動——大潮當夜照資料腳本從甲區走到乙區（非 AI 決策），沿途區抬一級；全遊戲只此一隻",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "影響": "拍二「牠再走一次」（開局後第 8–24 蝕月間某次大潮夜、吉大港外灘→第七哨外海→達卡北郊河口）無法發生，副線停在開局狀態",
+   "建議做法": "world 資料加 lordRoutes（lord、候選窗口蝕月、觸發＝大潮夜、路徑格序列、抬級量）；riftsDaily2 在大潮日查表、移 namedLords 旗標並對沿途 patch 走第 40 列 gradeByWidth 位移；落點依大潮表擲、不定死；達卡北郊裂縫未封時其寬度抬一級（天氣效果）；動作戰黃金需重錄",
+   "規模": "中"
+  },
+  {
+   "序": "59",
+   "優先": "P3",
+   "項目": "萬潮葬王 E3：戰場「不可交戰的在場單位」——站在地圖邊緣、不可選取、不可被瞄準、帶光環（滅港潮懼）",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "影響": "拍二的跟蹤偵察契約裡牠只能缺席或變成可打的 boss，違反「拍一拍二不交戰」守則",
+   "建議做法": "scenario 部署加 presence 類單位：不進行動序、targetable=false、不佔格或佔邊緣不可進入格，掛既有 unitEffect 光環 EffectRef（敵我皆受潮懼）；AI 目標選擇與 UI 選取都要排除；先做最小版（固定邊緣格＋光環），可測於 headless",
+   "規模": "小"
+  },
+  {
+   "序": "60",
+   "優先": "P3",
+   "項目": "萬潮葬王 E4：事件改區鉤子——事件能把指定蝕域一區轉深淺或解封水面，不只由錨驅動",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "影響": "拍二的不可逆後果「孟加拉灣北岸一段重畫一區」寫不進營運：目前 patch 深淺只由 sinceDay 與錨（patchDepth）決定，事件改不了",
+   "建議做法": "ops 事件 effect 加 blightShift{patch|cells, to: shallow|clear}：shallow＝重設 sinceDay、clear＝移出 patch cells 後 rebuildBlightIndex；E2 走完時呼叫一次（第七哨外海或北郊一區轉淺蝕，或外灘解封）；需 spec 補欄位，屬規則題先定",
+   "規模": "小"
+  },
+  {
+   "序": "61",
+   "優先": "P3",
+   "項目": "萬潮葬王 E5：N10 旗標——連珠潮夜（第 40 蝕月）在吉大港觸發守牆情境，牠為可選 boss、capture-once",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "影響": "拍三「牠停在吉大港城門口，轉身回海或玩家守牆開打」沒有入口；spec 已寫 S 領主捕捉只允許一次、留給劇情，但沒有掛點",
+   "建議做法": "連珠潮日若玩家在孟加拉灣圖，推一則可接可拒的守牆情境（不接＝牠轉身回海）；情境裡 tidespine-chittagong 為 boss、開打需玩家主動選；capture 走一次性旗標 lordCaptured，用過即鎖；吉大港守住或失守由前四十蝕月狀態與那夜結果決定，不預寫；情境文案大綱在 lead-wanchao/base-drafts.json",
+   "規模": "中"
   }
  ]
 }

@@ -1,0 +1,58 @@
+{
+ "contract": "wf-table/1",
+ "source": "../cx-wc-01.md",
+ "extracted": "2026-10-26",
+ "套用規則": "讀 timeline.json.entries；各 entry 插入並依 lore 日期排序（同年年-only先於年月），不改既有 entry；先同批建立對應事件，事件根置 occurs:possible。",
+ "可見度": "事件 visibility:rumor；年表保留 rumor tag。aegir-wakes 的 hidden 屬其秘密，不沿抄；百科依 possible 排除已發生年表。",
+ "columns": [
+  "op",
+  "entry",
+  "理由"
+ ],
+ "rows": [
+  {
+   "op": "insert",
+   "entry": {
+    "date": "2109",
+    "title": "黑脊北行",
+    "summary": "若大潮那夜萬潮葬王北行，沿岸的人將撤人、跟船與重插界旗；日子未定。",
+    "event": "event/wanchao-northward",
+    "era": "era/league",
+    "factions": [
+     "faction/bay-seventh-post",
+     "faction/dhaka-weavers",
+     "faction/salt-gull",
+     "faction/chittagong-breakers",
+     "faction/league",
+     "faction/shell-society",
+     "faction/unbinders"
+    ],
+    "tags": [
+     "rumor",
+     "tide"
+    ]
+   },
+   "理由": "F5 拍二；代表年固定 2109，實際在第 8–24 蝕月某次大潮且已經歷至少一次大潮，依大潮表落點，不把代表年當觸發日。"
+  },
+  {
+   "op": "insert",
+   "entry": {
+    "date": "2111",
+    "title": "城門未開",
+    "summary": "若連珠潮那夜萬潮葬王停在吉大港門外，牆上的人將同時看見斷桅；其後尚無定局。",
+    "event": "event/wanchao-at-gate",
+    "era": "era/league",
+    "factions": [
+     "faction/chittagong-breakers",
+     "faction/anvil",
+     "faction/league-armory"
+    ],
+    "tags": [
+     "rumor",
+     "tide"
+    ]
+   },
+   "理由": "F5 拍三；great-tide.md 定第 40 蝕月，tide-sky.md 與 omens.md 定一蝕月 28 日；約 40×28＝1120 日，從 2108-01 起約三年，取 2111 為代表年。首月計數與朔望日可能跨年，這不是固定公曆日期。"
+  }
+ ]
+}

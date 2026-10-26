@@ -85,3 +85,11 @@
 - **上游**：`dispatcher`（工人的上游是 `lead-mech2`）
 - **領地**：CLAIMS「lead-mech2」列；工人在隔離 worktree，照交接書 `handoffs/lead-mech2/cx-m2-*.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
+
+### `lead-wanchao`（含代登記工人 `cx-wc-plan`、`cx-wc-01`）
+- **狀態**：已收線（2026-10-26）
+- **我是誰**：Opus 領導：萬潮葬王副線落地（F1–F5 lore 填充、E1–E5 engine-backlog）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
+- **團隊**：`teams/wanchao`
+- **上游**：`dispatcher`（工人的上游是 `lead-wanchao`）
+- **領地**：CLAIMS「lead-wanchao」列；工人在隔離 worktree，照交接書 `handoffs/lead-wanchao/cx-wc-*.md`
+- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
