@@ -1,0 +1,164 @@
+{
+ "contract": "content-batch/1",
+ "id": "am-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "南北美洲第二批（人與事）：5 名具名人物（刑天看守崗長、紐約地契估價員、巴拿馬閘城議長、五湖收殮人、巴西糧商代表）＋5 事件（政府進山、紐約地契、閘城立約、另一本帳、墨西哥城徵召令）；年表與 4 個既有檔只插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-am-02",
+  "subagents": "允許，模型隨意，上限 2",
+  "planner": "cx-am-plan（gpt-6-astra）"
+ },
+ "lead": "lead-fill-am",
+ "date": "2026-10-26",
+ "base": "4cbc936c5b563a59a4ba71e8b8cd4423b5daf6d7",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-am/am-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-am/am-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/cx-am-01.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/am-plan/PLAN.md",
+   "content/lore/places/montreal.json",
+   "content/lore/places/new-york-hollow.json",
+   "content/lore/places/panama-locks.json",
+   "content/lore/places/brasilia.json",
+   "content/lore/places/denver.json",
+   "content/lore/events/xingtian-registry.json",
+   "content/lore/events/renaming-day.json",
+   "content/lore/events/bellless-dawn.json",
+   "content/lore/events/rust-banner.json",
+   "content/lore/events/credit-accord.json",
+   "content/lore/characters/xingtian.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/cx-am-02.md"
+  ]
+ },
+ "maxFiles": 15,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/quito.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/factions/ring-caravan.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/great-lakes-mycelium.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/places/sao-paulo-blight.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（計畫線提案、領導定稿）",
+  "rows": [
+   {
+    "id": "character/maelle-bellerive",
+    "nameEn": "Maëlle Bellerive",
+    "meaning": "法語裔加拿大人，替美國守刑天的崗",
+    "nameZh": "瑪艾爾・貝勒里夫",
+    "method": "音譯"
+   },
+   {
+    "id": "character/evan-cresswell",
+    "nameEn": "Evan Cresswell",
+    "meaning": "內陸財團的地契估價員",
+    "nameZh": "伊文・克雷斯維爾",
+    "method": "音譯"
+   },
+   {
+    "id": "character/dario-urena",
+    "nameEn": "Darío Ureña",
+    "meaning": "巴拿馬閘城議長",
+    "nameZh": "達里奧・烏雷尼亞",
+    "method": "音譯"
+   },
+   {
+    "id": "character/silas-mercer",
+    "nameEn": "Silas Mercer",
+    "meaning": "五湖岸收殮人、唱名",
+    "nameZh": "賽拉斯・默瑟",
+    "method": "音譯"
+   },
+   {
+    "id": "character/livia-avelar",
+    "nameEn": "Lívia Avelar",
+    "meaning": "坐巴西席位的糧商",
+    "nameZh": "莉維亞・阿維拉爾",
+    "method": "音譯"
+   },
+   {
+    "id": "event/government-inland",
+    "nameEn": "Government Inland",
+    "meaning": "美國政府搬進山裡",
+    "nameZh": "政府進山",
+    "method": "意譯"
+   },
+   {
+    "id": "event/new-york-deeds",
+    "nameEn": "New York Deeds",
+    "meaning": "空城地契押給穹頂下的錢",
+    "nameZh": "紐約地契",
+    "method": "意譯"
+   },
+   {
+    "id": "event/lock-city-charter",
+    "nameEn": "Lock City Charter",
+    "meaning": "商團獵團立城約",
+    "nameZh": "閘城立約",
+    "method": "意譯"
+   },
+   {
+    "id": "event/another-ledger",
+    "nameEn": "Another Ledger",
+    "meaning": "地上的錢另放一本帳",
+    "nameZh": "另一本帳",
+    "method": "意譯"
+   },
+   {
+    "id": "event/mexico-muster",
+    "nameEn": "Mexico Muster",
+    "meaning": "國家徵召令撞上墨西哥城議會",
+    "nameZh": "墨西哥城徵召令",
+    "method": "意譯"
+   }
+  ]
+ }
+}

@@ -1,0 +1,116 @@
+{
+ "contract": "content-batch/1",
+ "id": "am-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "南北美洲第三批（補地圖）：西雅圖、溫尼伯、哈瓦那、瓦爾帕萊索、貝倫五地＋河口換糧一事件；年表只插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-am-03",
+  "subagents": "允許，模型隨意，上限 2",
+  "planner": "cx-am-plan（gpt-6-astra）"
+ },
+ "lead": "lead-fill-am",
+ "date": "2026-10-26",
+ "base": "4cbc936c5b563a59a4ba71e8b8cd4423b5daf6d7",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-am/am-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-am/am-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/cx-am-01.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/am-plan/PLAN.md",
+   "content/lore/places/denver.json",
+   "content/lore/places/montreal.json",
+   "content/lore/places/brasilia.json",
+   "content/lore/places/cartagena.json",
+   "content/lore/events/renaming-day.json",
+   "content/lore/events/trade-route-charter.json",
+   "content/lore/factions/quito.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-am/cx-am-03.md"
+  ]
+ },
+ "maxFiles": 7,
+ "allow": {
+  "kinds": [
+   "lore/places",
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（計畫線提案、領導定稿）",
+  "rows": [
+   {
+    "id": "place/seattle",
+    "nameEn": "Seattle",
+    "meaning": "太平洋岸蝕線上的守港城",
+    "nameZh": "西雅圖",
+    "method": "音譯"
+   },
+   {
+    "id": "place/winnipeg",
+    "nameEn": "Winnipeg",
+    "meaning": "加拿大草原糧城，歸屬裂痕樣本",
+    "nameZh": "溫尼伯",
+    "method": "音譯"
+   },
+   {
+    "id": "place/havana",
+    "nameEn": "Havana",
+    "meaning": "古巴縮守的島港",
+    "nameZh": "哈瓦那",
+    "method": "音譯"
+   },
+   {
+    "id": "place/valparaiso",
+    "nameEn": "Valparaíso",
+    "meaning": "智利守港城",
+    "nameZh": "瓦爾帕萊索",
+    "method": "音譯"
+   },
+   {
+    "id": "place/belem",
+    "nameEn": "Belém",
+    "meaning": "亞馬遜河口轉運港",
+    "nameZh": "貝倫",
+    "method": "音譯"
+   },
+   {
+    "id": "event/estuary-exchange",
+    "nameEn": "Estuary Exchange",
+    "meaning": "河口先撥護航口糧的慣例",
+    "nameZh": "河口換糧",
+    "method": "意譯"
+   }
+  ]
+ }
+}
