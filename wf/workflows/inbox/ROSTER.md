@@ -105,7 +105,7 @@
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
 
 ### `lead-fill`（含代登記工人 `cx-fill-01`／`cx-fill-02`／`cx-fill-03p`／`cx-fill-03`）
-- **狀態**：現役（2026-10-26 上線）
+- **狀態**：已收線（2026-10-26）；團隊 `teams/fill` 已關；REPORT 在回傳頂層的匯報（待頂層代存為 `handoffs/lead-fill/REPORT.md`）
 - **我是誰**：Opus 領導：lore 填充層（開局舞台周邊、崩年後續代表地）；工人是 codex。
 - **團隊**：`teams/fill`
 - **上游**：`dispatcher`（工人的上游是 `lead-fill`）
