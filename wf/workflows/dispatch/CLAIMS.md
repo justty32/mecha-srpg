@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| lead-fill-kaiju（Opus，怪獸填充：二名之夜、物種、蝕域生態） | 新增：`content/lore/events/{landlord-sits,red-eye-first-seen,white-night-first-seen,first-nest-taken,star-grave-named,last-vesper-named}.json`（第二批另列於 `kj-*` manifest）；`content/base/` 下怪獸新檔（`monsters/nestmother-{c,b}.json`；新物種的 `species/`、`bodyplans/`、`frames/{bio,corpse}-<物種>.json`、`monsters/`、`abilities/kx-<物種>-*`、`effects/kx-<物種>-*`，檔名見 `kj-*` manifest）；修改（只插入）：`content/base/species/nestmother.json`、`content/base/world/rifts/{alien,insect}.json`；修改文字：`content/lore/factions/rift-beasts.json` 的 body；追加：`content/lore/timeline.json`（只追加，既有怪獸條目只補 `event` 欄）；重錄時 `test/campaigns/*.json`、`test/golden/`、`src/ops/sim/fixtures/campaign-hash.json`；`content/batches/2026-10/kj-*.json`、`content/index/`（重產）；`history-orphans.json`（標已填）、`codex-batches.json`／`engine-backlog.json` 追加列；`wf/workflows/dispatch/handoffs/lead-fill-kaiju/` | 他線登記的檔（yakutsk-bed 歸 ea、nairobi／lagos-blight 歸 af、sao-paulo-blight／great-lakes 歸 am）；既有 lore 事件不重寫；既有怪獸數值；src、specs、design-notes | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 

@@ -132,7 +132,7 @@
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
 
 ### `lead-fill-kaiju`（含代登記工人 `cx-kj-01`、`cx-kj-02`、`cx-kj-03p`、`cx-kj-03`、`cx-kj-05p`、`cx-kj-05`）
-- **狀態**：現役（2026-10-26 上線）
+- **狀態**：已收線（2026-10-26）；團隊 `teams/kaiju` 已關；REPORT 在回傳頂層的匯報（待頂層代存為 `handoffs/lead-fill-kaiju/REPORT.md`）
 - **我是誰**：Opus 領導：怪獸填充（二名之夜、物種、蝕域生態）；工人是 codex（kj-01 lore、kj-02 base、kj-03／04 lore＋本文、kj-05 base；計畫 gpt-6-astra、產出 gpt-6.1-sol）。
 - **團隊**：`teams/kaiju`
 - **上游**：`dispatcher`（工人的上游是 `lead-fill-kaiju`）
