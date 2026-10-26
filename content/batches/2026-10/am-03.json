@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "am-03",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "南北美洲第三批（補地圖）：西雅圖、溫尼伯、哈瓦那、瓦爾帕萊索、貝倫五地＋河口換糧一事件；年表只插入",
  "author": {
   "agent": "codex",
@@ -14,7 +14,7 @@
  },
  "lead": "lead-fill-am",
  "date": "2026-10-26",
- "base": "4cbc936c5b563a59a4ba71e8b8cd4423b5daf6d7",
+ "base": "cb8808801efa9a179a5fa8aecdf8b7e036beaf83",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-am/am-03",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-fill-am/am-03/REPORT.md",
@@ -112,5 +112,37 @@
     "method": "意譯"
    }
   ]
- }
+ },
+ "rounds": 1,
+ "acceptance": {
+  "round1": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "waiver": "test 唯一失敗＝worktree 內 content/index 過時（_batches-2026-10、_summary 未重產），主 repo 重產後一起提交；內容步驟全過",
+  "carry": "timeline.json 因別線已改被拒，由領導以 tl_merge 只插入本批條目到 HEAD 版"
+ },
+ "files": [
+  "content/lore/events/estuary-exchange.json",
+  "content/lore/places/belem.json",
+  "content/lore/places/havana.json",
+  "content/lore/places/seattle.json",
+  "content/lore/places/valparaiso.json",
+  "content/lore/places/winnipeg.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/estuary-exchange",
+  "place/belem",
+  "place/havana",
+  "place/seattle",
+  "place/valparaiso",
+  "place/winnipeg"
+ ],
+ "gateRejections": []
 }

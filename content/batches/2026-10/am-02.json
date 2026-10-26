@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "am-02",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "南北美洲第二批（人與事）：5 名具名人物（刑天看守崗長、紐約地契估價員、巴拿馬閘城議長、五湖收殮人、巴西糧商代表）＋5 事件（政府進山、紐約地契、閘城立約、另一本帳、墨西哥城徵召令）；年表與 4 個既有檔只插入",
  "author": {
   "agent": "codex",
@@ -14,7 +14,7 @@
  },
  "lead": "lead-fill-am",
  "date": "2026-10-26",
- "base": "4cbc936c5b563a59a4ba71e8b8cd4423b5daf6d7",
+ "base": "cb8808801efa9a179a5fa8aecdf8b7e036beaf83",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-am/am-02",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-fill-am/am-02/REPORT.md",
@@ -160,5 +160,53 @@
     "method": "意譯"
    }
   ]
- }
+ },
+ "rounds": 1,
+ "acceptance": {
+  "round1": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "waiver": "test 唯一失敗＝worktree 內 content/index 過時（_batches-2026-10、_summary 未重產），主 repo 重產後一起提交；內容步驟全過",
+  "carry": "timeline.json 因別線已改被拒，由領導以 tl_merge 只插入本批條目到 HEAD 版"
+ },
+ "files": [
+  "content/lore/characters/dario-urena.json",
+  "content/lore/characters/evan-cresswell.json",
+  "content/lore/characters/livia-avelar.json",
+  "content/lore/characters/maelle-bellerive.json",
+  "content/lore/characters/silas-mercer.json",
+  "content/lore/events/another-ledger.json",
+  "content/lore/events/government-inland.json",
+  "content/lore/events/lock-city-charter.json",
+  "content/lore/events/mexico-muster.json",
+  "content/lore/events/new-york-deeds.json",
+  "content/lore/factions/quito.json",
+  "content/lore/factions/ring-caravan.json",
+  "content/lore/places/great-lakes-mycelium.json",
+  "content/lore/places/sao-paulo-blight.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "character/dario-urena",
+  "character/evan-cresswell",
+  "character/livia-avelar",
+  "character/maelle-bellerive",
+  "character/silas-mercer",
+  "event/another-ledger",
+  "event/government-inland",
+  "event/lock-city-charter",
+  "event/mexico-muster",
+  "event/new-york-deeds",
+  "faction/quito",
+  "faction/ring-caravan",
+  "place/great-lakes-mycelium",
+  "place/sao-paulo-blight"
+ ],
+ "gateRejections": []
 }
