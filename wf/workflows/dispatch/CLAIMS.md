@@ -9,6 +9,7 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | sonnet-rep-tune | `content/base/world/actions/board-presence.json`、`test/campaigns/`、`wf/workflows/common/code-map.json` | 其餘唯讀 | 2026-10-26 |
+| lead-mech2 | `content/base/{frames,bodyplans,components,abilities,lineages,research,markets,world/models}/` 新檔、`content/lore/` 機甲相關新檔、`content/batches/2026-10/mech2-*`、`content/index/`、`test/golden/`＋`test/campaigns/`＋`src/ops/sim/fixtures/`（僅重錄時，錯開他線）、`wf/workflows/dispatch/handoffs/lead-mech2/`、engine-backlog 追加 | src、specs、design-notes；lead-tone-fix／lead-kaiju2 登記的檔 | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
