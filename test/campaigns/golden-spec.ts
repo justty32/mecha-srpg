@@ -29,11 +29,11 @@ export const sequences: Record<string, Step[]> = {
     { type: "ModelReleased", field: "model", value: "base:model/old-array-ii" },
   ],
   "ops-merc-join": [
-    { type: "ContractAccepted", field: "contract", value: "contract-128" },
+    { type: "ContractAccepted", field: "contract", value: "contract-126" },
     { type: "Arrived", field: "place", value: "base:place/ridge" },
     { type: "BattleResolved", field: "operation", value: "operation-5" },
     { type: "OperationResolved", field: "operation", value: "operation-5" },
-    { type: "JoinSettled", field: "contract", value: "contract-128" },
+    { type: "JoinSettled", field: "contract", value: "contract-126" },
   ],
   "ops-betrayal": [
     { type: "ContractAccepted", field: "contract", value: "contract-66" },

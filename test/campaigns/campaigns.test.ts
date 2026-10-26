@@ -29,7 +29,7 @@ for (const [name, sequence] of Object.entries(sequences)) test(`黃金戰役 ${n
   }
   assert(containsInOrder(state.log, sequence), `${name} 事件子序列缺失`);
   if (name === "ops-merc-join") {
-    assert(state.contracts["contract-128"]?.merc?.attachedLoss && state.contracts["contract-128"]!.merc!.attachedLoss > 0);
+    assert(state.contracts["contract-126"]?.merc?.attachedLoss && state.contracts["contract-126"]!.merc!.attachedLoss > 0);
     assert(state.ledger.entries.some(e => e.reason === "join-pay" && e.ref));
   }
   if (name === "ops-betrayal") {

@@ -57,7 +57,8 @@ test("通用三系在聲望 0 可買；流出與 maker generic 不設門檻（c�
 test("新國家私有機只在 maker 開局釋出與研發；流出後公開（d）", () => {
   const { s, ctx } = setup();
   const names = ["imperial-court", "russia-umbrella", "north-american-umbrella", "japan-umbrella", "inner-sea-houses", "quito", "nairobi"];
-  const models = ctx.world.all("model").filter(m => names.some(n => m.maker === `base:faction/${n}`));
+  // 開局即有的 10 台；lead-mech2 加的國家機 availableFrom.month ≥1、要前代，不在開局釋出之列。
+  const models = ctx.world.all("model").filter(m => names.some(n => m.maker === `base:faction/${n}`) && !(m.availableFrom && "month" in m.availableFrom && m.availableFrom.month > 0));
   assert.equal(models.length, 10);
   for (const model of models) {
     const maker = factionId(s, ctx, model.maker)!;
