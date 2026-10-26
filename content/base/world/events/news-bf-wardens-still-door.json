@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-wardens-still-door",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-wardens-still-door"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊聞到香灰味，守寢人的來客正看慶州古陵舊影。釜山城邦守衛輪值的門前，叩門回聲一圈圈散開，影像始終停在內殿外。有人問裡頭還等著誰，來客先把擠到前頭的人喝住：「門外先站穩！」他沒替門裡作答，只問你要不要讓船員把這段看完。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-wardens-still-door"
+        }
+      ]
+    },
+    {
+      "text": "付放映費，帶船員看完門影（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-wardens-still-door"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-wardens-still-door"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

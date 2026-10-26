@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ilse-brandt-paid-window",
+  "person": "person/ilse-brandt",
+  "topics": [
+    {
+      "topic": "挪盾也算贏",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ilse-brandt-paid-window"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "伊爾瑟翻著百燈破圍的舊訊，用手比出盾邊的空隙。",
+        "「伊沃給第三刃的傷機讓了路，修盾的錢照討。」",
+        "「小氣。可他那面盾，確實挪得漂亮。」",
+        "她抬肘側身。「留這麼寬。活路也算戰績，別堵了。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-paid-window"
+            }
+          ],
+          "text": "和她一起嫌伊沃小氣。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-paid-window"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "請她示範挪盾，留出傷機的路。"
+        }
+      ]
+    }
+  ]
+}

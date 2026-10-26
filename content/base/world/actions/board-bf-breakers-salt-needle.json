@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-breakers-salt-needle",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-breakers-salt-needle"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/residual-league.rep"
+          },
+          "op": ">=",
+          "b": -10
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-breakers-salt-needle",
+      "near": "place/chittagong"
+    },
+    {
+      "flag": "bf-posted-breakers-salt-needle"
+    }
+  ]
+}

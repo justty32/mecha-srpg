@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-moon-earthward-screen",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-moon-earthward-screen"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "choices": [
+    {
+      "text": "看完長廊影像收起投影",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-earthward-screen",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "拿2廢料學退架（技術工時+5）",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-earthward-screen",
+          "value": 1
+        },
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-moon-earthward-screen"
+          }
+        },
+        {
+          "techHours": 5
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ],
+  "text": "你在新加坡看返港搬景工放出2107年的工作舊影，幕布灰味從他的行囊裡散開。望地長廊的巨幕升起，整顆地球倒映在鏡面深處；主人抬手，搬工便把故鄉遮住。影像裡幕架滑響，他在你面前抬臂喊：「退架，人先退！」你跟著讓開半步，他指指本船的廢料，說可以教你拆一回。"
+}

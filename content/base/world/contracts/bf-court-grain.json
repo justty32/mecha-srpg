@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-court-grain",
+  "kind": "defend",
+  "issuerKinds": [
+    "state"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/brinepin-d"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "朝廷糧船待卸：頂住新加坡渡輪港卸船坡的鹽針八回合；外派人吼著赴牆詔：「糧先進門！」",
+  "encounter": [
+    "encounter/rift-z-bf-court-grain"
+  ]
+}

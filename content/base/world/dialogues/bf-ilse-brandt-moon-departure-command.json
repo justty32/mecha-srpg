@@ -1,0 +1,64 @@
+{
+  "id": "dialogue/bf-ilse-brandt-moon-departure-command",
+  "person": "person/ilse-brandt",
+  "topics": [
+    {
+      "topic": "鐵姨的開船令",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "tag": "bf-receive-singapore"
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-bf-ilse-brandt-moon-departure-command"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你學望鄉號船員喊「踏板收，向地球！」",
+        "伊爾瑟笑出聲：「咱們沒那道白光，嗓門倒不用付錢。」",
+        "「人還在踏板上就別收。等他下來，老娘陪你吼。」"
+      ],
+      "choices": [
+        {
+          "text": "聽完回去當班",
+          "effects": [
+            {
+              "flag": "dlg-bf-ilse-brandt-moon-departure-command",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "等撤人手勢再跟她喊開船（本人士氣+1）",
+          "effects": [
+            {
+              "flag": "dlg-bf-ilse-brandt-moon-departure-command",
+              "value": 1
+            },
+            {
+              "mood": {
+                "person/ilse-brandt": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

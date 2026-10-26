@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-quito-coast-beacon",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-quito-coast-beacon"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/quito.rep"
+          },
+          "op": ">=",
+          "b": -5
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-quito-coast-beacon",
+      "near": "place/singapore"
+    },
+    {
+      "flag": "bf-posted-quito-coast-beacon"
+    }
+  ]
+}

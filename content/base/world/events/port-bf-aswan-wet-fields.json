@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-aswan-wet-fields",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-aswan-wet-fields"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚聞見來客靴上的河泥味，他正回放亞斯文城邦的守閘舊影，特地指明這是2093年堅盾公刻後的戰法。閘水轟響，獸困在淹田裡，機甲踏水逼近。「水困，機殺！」他喊完又指著水下的田，告訴你，那也是閘工自家的收成。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-aswan-wet-fields"
+        }
+      ]
+    },
+    {
+      "text": "付展示費，帶船員看完守閘舊影（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-aswan-wet-fields"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-aswan-wet-fields"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

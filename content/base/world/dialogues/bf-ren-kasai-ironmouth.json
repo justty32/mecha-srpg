@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ren-kasai-ironmouth",
+  "person": "person/ren-kasai",
+  "topics": [
+    {
+      "topic": "鐵嘴也有拆不動的",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ren-kasai-ironmouth"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "蓮摸過舊件的鉚頭。「吉大港拆船幫的手法，難看。」",
+        "他擦著扳手。「鐵嘴那混蛋，價錢比鉚釘還咬人。」",
+        "「我家那時……」他停住，將工具又擦了一遍。",
+        "「鐵嘴會拆價錢，我會拆甲。別教我拆心。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-ironmouth"
+            }
+          ],
+          "text": "等他擦完工具。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-ironmouth"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "替他收工具，讓那句話停著。"
+        }
+      ]
+    }
+  ]
+}

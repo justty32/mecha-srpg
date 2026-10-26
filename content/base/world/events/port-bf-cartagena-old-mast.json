@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-cartagena-old-mast",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-cartagena-old-mast"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭看卡塔赫納抵港水手演示故鄉換班，鹹木味從折桅裂口飄來。他將舊桅立起，旗扣叩響：「桅折，旗照升！」旗才到半截便纏住他的肩，你船上的人笑得直拍腿。他從旗底鑽出，仍扶牢折桅，招呼想試的人過來，別光笑不接班。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-cartagena-old-mast"
+        }
+      ]
+    },
+    {
+      "text": "買練習旗布，讓船員和水手再升一次（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-cartagena-old-mast"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-cartagena-old-mast"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

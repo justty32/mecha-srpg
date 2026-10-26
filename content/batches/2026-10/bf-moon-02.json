@@ -1,0 +1,199 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-moon-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "渡月起落、船員與白手套下船；只新增12個lore檔，既有檔插入與年表另交建議。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-moon-02",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "27e6ea2f3481a4df855b19bfbf2760a65433fbf1",
+ "reportDir": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-02",
+ "report": {
+  "file": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/d-moon.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-rulings.md",
+   "content/lore/places/ferry-lane.json",
+   "content/lore/places/tranquility-city.json",
+   "content/lore/events/equator-ports-accord.json",
+   "content/lore/events/nairobi-port-incident.json",
+   "content/lore/events/whiteglove-incident.json",
+   "content/lore/events/credit-accord.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/places/singapore.json",
+   "content/lore/characters/old-pigeon.json",
+   "content/lore/characters/mina-darzi.json",
+   "content/lore/factions/migrant-crew.json",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/plan.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/cx-bf-moon-02.md"
+  ]
+ },
+ "maxFiles": 12,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原意先行；中文名全為提案。英文僅供命名溯源，不自動寫入aka。",
+  "rows": [
+   {
+    "id": "place/ferry-nostos",
+    "nameEn": "Nostos",
+    "meaning": "望鄉號從赤道港拖光尾升起，窗裡的人看著地球漸小，月亮漸滿。",
+    "nameZh": "望鄉號",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/tranquility-repair-dock",
+    "nameEn": "White Hull Dock",
+    "meaning": "渡月船在塢裡展開白色艙板，工人站在巨影下喊撤架，讓它再升上黑天。",
+    "nameZh": "靜海修船塢",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/lunar-letter-counter",
+    "nameEn": "Letters in Departure Light",
+    "meaning": "渡月船升空的光掃過候領櫃，沒人來取的家書仍朝地球擺著。",
+    "nameZh": "靜海家書候領處",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "faction/lunar-ferry-crews",
+    "nameEn": "Ferry Hands",
+    "meaning": "開船令從艙首傳到艙尾，渡月船員把同一船人的姓名喊進離港白光。",
+    "nameZh": "渡月船員",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/aliya-nasser",
+    "nameEn": "Aliya Nasser",
+    "meaning": "最後一個搬工退出踏板，阿莉雅才抬手吼開船，把望鄉號送向藍色地球。",
+    "nameZh": "阿莉雅・納瑟",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/ivo-marot",
+    "nameEn": "Ivo Marot",
+    "meaning": "伊沃在渡月船白光裡割斷卡住的空貨網，吼人退後，自己最後離開踏板。",
+    "nameZh": "伊沃・馬洛",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/chen-yuehe",
+    "nameEn": "Chen Yuehe",
+    "meaning": "滿牆離港光照著逆流的人潮，陳月河爬上欄杆喊方向，把回程隊伍帶到船邊。",
+    "nameZh": "陳月河",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/sara-kett",
+    "nameEn": "Sara Kett",
+    "meaning": "莎拉站在渡月船巨大的艙門下，喊先撤人再撤架，自己的影子被白船吞沒。",
+    "nameZh": "莎拉・凱特",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/ferry-first-departure",
+    "nameEn": "Departure at Half Moon",
+    "meaning": "定班首日，無名船員朝全船吼下一班還回來，渡月船的光尾越過赤道港。",
+    "nameZh": "弦月啟航",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/return-fare-queue",
+    "nameEn": "The Homeward Queue",
+    "meaning": "回程隊伍擠進靜海港的離船白光，有人朝穹頂喊這次換月亮送我走。",
+    "nameZh": "回程排到門外",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/whitegloves-come-ashore",
+    "nameEn": "White Gloves Ashore",
+    "meaning": "渡月船停進新加坡港，白手套鐵偶踏下舷梯，催收聲先於白甲走進人群。",
+    "nameZh": "白手套下船",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/last-empty-berth",
+    "nameEn": "The Last Berth",
+    "meaning": "若最後一人趕不上踏板，望鄉號的開船令便卡在船長舉起的手裡。",
+    "nameZh": "空位留到開船",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   }
+  ]
+ },
+ "rounds": 1,
+ "acceptance": {
+  "gate": "OK",
+  "mergedVia": "bf-merge",
+  "leadChecks": "lore check 0/0; npm run check 0 errors; typecheck 0; npm test 1028/1028 (merge worktree, once)"
+ },
+ "files": [
+  "content/lore/characters/aliya-nasser.json",
+  "content/lore/characters/chen-yuehe.json",
+  "content/lore/characters/ivo-marot.json",
+  "content/lore/characters/sara-kett.json",
+  "content/lore/events/ferry-first-departure.json",
+  "content/lore/events/last-empty-berth.json",
+  "content/lore/events/return-fare-queue.json",
+  "content/lore/events/whitegloves-come-ashore.json",
+  "content/lore/factions/lunar-ferry-crews.json",
+  "content/lore/places/ferry-nostos.json",
+  "content/lore/places/lunar-letter-counter.json",
+  "content/lore/places/tranquility-repair-dock.json"
+ ],
+ "ids": [
+  "character/aliya-nasser",
+  "character/chen-yuehe",
+  "character/ivo-marot",
+  "character/sara-kett",
+  "event/ferry-first-departure",
+  "event/last-empty-berth",
+  "event/return-fare-queue",
+  "event/whitegloves-come-ashore",
+  "faction/lunar-ferry-crews",
+  "place/ferry-nostos",
+  "place/lunar-letter-counter",
+  "place/tranquility-repair-dock"
+ ],
+ "gateRejections": []
+}

@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-almaty-mountain-oath",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-almaty-mountain-oath"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊聞見乾麥味，阿拉木圖來的帶隊者踩上貨箱，搖響貨鈴，重述高地運糧時迎面壓來的暴雪。他抬頭望著帆上山形的暗影：「山不替人讓路！」船員問他怎麼過，他跳下箱，指著演練場的坡，說先把肩膀借來，場租可得你出。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-almaty-mountain-oath"
+        }
+      ]
+    },
+    {
+      "text": "付演練場租，和船員練搬機越坡（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-almaty-mountain-oath"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-almaty-mountain-oath"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

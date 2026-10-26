@@ -1,0 +1,52 @@
+{
+  "id": "contract/bf-seattle-return-gun",
+  "kind": "scout",
+  "issuerKinds": [
+    "state"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/surf-runner-d"
+      }
+    }
+  ],
+  "pay": {
+    "base": 3600
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 5,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4,
+  "name": "歸船砲件待入港：西雅圖斷座紀念件卡在新加坡渡輪港卸砲坡；截下濺蹄，「歸船仍朝海！」",
+  "encounter": [
+    "encounter/rift-z-bf-seattle-return-gun"
+  ]
+}

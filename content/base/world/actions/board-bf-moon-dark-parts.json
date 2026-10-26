@@ -1,0 +1,68 @@
+{
+  "id": "action/board-bf-moon-dark-parts",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-moon-dark-parts"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/salt-gull-hunters.rep"
+          },
+          "op": ">=",
+          "b": -10
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.farside-prices-known"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 8,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-moon-dark-parts",
+      "near": "place/singapore"
+    },
+    {
+      "flag": "bf-posted-moon-dark-parts",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-tiksi-lantern",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-tiksi-lantern"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你循著燈油味走到港邊，提克西的抵港者正唱故鄉出港號。歌裡的岸燈迎著傷機，歌外的破嗓子偏要唱過風聲：「極夜照樣起航！」船員笑他唱得比燈還亮，他拍拍空出的歌場，說亮歸亮，下一輪場租總得有人付。你身後已有人在找調。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-tiksi-lantern"
+        }
+      ]
+    },
+    {
+      "text": "付歌場租，帶船員跟北方來船合唱（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-tiksi-lantern"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-tiksi-lantern"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-winnipeg-last-name",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-winnipeg-last-name"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聽溫尼伯歷年初雪唱名夜的舊錄音，身旁曬暖的乾衣味蓋過海鹽。錄音念到尾頁，一名抵港來客挺直背吼：「最後一個也響亮！」你船上的人跟著接唱，走音合唱壓過了底噪。來客自己也唱岔，卻用手指催下一拍，不肯把最後一聲吞掉。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-winnipeg-last-name"
+        }
+      ]
+    },
+    {
+      "text": "租播音棚，讓船員合唱末段唱名（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-winnipeg-last-name"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-winnipeg-last-name"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-mara-okoye-temo",
+  "person": "person/mara-okoye",
+  "topics": [
+    {
+      "topic": "光漂亮，先接穩",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-mara-okoye-temo"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "瑪拉翻看金山深井的井口舊影，光從籠底映上人臉。",
+        "「泰莫那口井，有墟，沒獸。別又亂猜誰在底下叫。」",
+        "「光漂亮。接不好，修的人先見祖宗。」",
+        "她指著籠旁的人。「這個修工睡了沒？先問這個。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-temo"
+            }
+          ],
+          "text": "讓她繼續挑毛病。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-temo"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "陪她找出舊影裡值班的人。"
+        }
+      ]
+    }
+  ]
+}

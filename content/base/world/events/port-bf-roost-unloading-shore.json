@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-roost-unloading-shore",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-roost-unloading-shore"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聞見鹽水味，鹿特丹鹽鷗巢的船員正踩著卸下的傷甲，說要學「踏浪為岸」。衍甲踏響，他一腳踩歪，被同伴攔腰扶住，還指著腳底喊：「岸是搶回來的！」他轉頭告訴你，這是鹽鷗獵團的水上卸貨表演，今天誰也別搶他的卸貨位。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-roost-unloading-shore"
+        }
+      ]
+    },
+    {
+      "text": "付演練場租，帶船員試卸傷甲（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-roost-unloading-shore"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-roost-unloading-shore"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

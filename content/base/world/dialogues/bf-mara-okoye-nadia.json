@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-mara-okoye-nadia",
+  "person": "person/mara-okoye",
+  "topics": [
+    {
+      "topic": "水不會替妳殺獸",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-mara-okoye-nadia"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "瑪拉拿壞件排出亞斯文城邦的水閘，敲了敲桌。",
+        "「娜迪雅・薩布里，放閘夜。二〇九一年，水只困獸。」",
+        "「二〇九三年公刻後有了機甲，才逐漸能收命。」",
+        "「水會困獸，不會替你上班。機甲開出去。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-nadia"
+            }
+          ],
+          "text": "等她收回演示的壞件。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-nadia"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "幫她排好壞件，照次序重演。"
+        }
+      ]
+    }
+  ]
+}

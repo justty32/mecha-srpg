@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-seattle-gun-name",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-seattle-gun-name"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭看西雅圖二一〇六年歸船斷座夜的舊影，雨鐵味從棚邊飄來。礁角白角壓向港門，砲座斷裂聲把交談截斷，歪倒的岸砲仍由機甲頂著。抵港水手拍桌吼：「斷了也朝海！」你身旁的船員跟著抬頭，放映人伸手指向續映的價牌。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-seattle-gun-name"
+        }
+      ]
+    },
+    {
+      "text": "付放映費，和船員看完歸船斷座夜（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-seattle-gun-name"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-seattle-gun-name"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

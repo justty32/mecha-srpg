@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-seventh-child-watch",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-dhaka"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-seventh-child-watch"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你走過港邊貼告示的棚，膠糊味還沒散，送信的孩子已試喊起孟加拉灣第七哨的換班警號。尾音裂成兩截，他揉揉喉嚨，又衝你喊：「先喊到天亮！」旁邊的哨兵把信袋收好，說今夜只比嗓門。船員捲起袖子，等你決定要不要租棚應戰。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-seventh-child-watch"
+        }
+      ]
+    },
+    {
+      "text": "付練聲棚租，讓船員和孩子比喊（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-seventh-child-watch"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-seventh-child-watch"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

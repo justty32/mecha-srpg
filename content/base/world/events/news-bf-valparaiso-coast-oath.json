@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-valparaiso-coast-oath",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-valparaiso-coast-oath"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聽瓦爾帕萊索來客重述借山空返，焦帆味黏在他的外衣上。他張開雙臂，重演守岸人的吼聲：「海不能替人答！」回響撞過棚頂。基多渡月港城邦肯賣備件，沒有借出古代機；他問你，山沒下來，今夜的缺口還要不要有人站。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-valparaiso-coast-oath"
+        }
+      ]
+    },
+    {
+      "text": "租練習場，和船員練一次岸上斷後（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-valparaiso-coast-oath"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-valparaiso-coast-oath"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

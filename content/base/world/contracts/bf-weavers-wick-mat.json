@@ -1,0 +1,52 @@
+{
+  "id": "contract/bf-weavers-wick-mat",
+  "kind": "scout",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/wick-mat-d"
+      }
+    }
+  ],
+  "pay": {
+    "base": 3600
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 5,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4,
+  "name": "達卡補天院當班染水將斷：燈苔照亮淡水取水岸，達卡紡織公會染工捲袖喊「把水路還來！」",
+  "encounter": [
+    "encounter/rift-z-bf-weavers-wick-mat"
+  ]
+}

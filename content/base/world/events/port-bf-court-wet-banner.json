@@ -1,0 +1,66 @@
+{
+  "id": "event/port-bf-court-wet-banner",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-court-wet-banner"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在新加坡的卸貨棚聞見濕旗味，朝廷外派人正演練傷機進棚。他扛旗搶上前：「赴牆的人先過！」旗角卡住矮門，額頭隨即撞出一聲悶響。他捂著頭還在催修甲班開工，旁人笑得扶不住甲板。你看向本船的人，今晚趕工就得取消休息。",
+  "choices": [
+    {
+      "text": "照原班表回船，保留船員休息",
+      "effects": [
+        {
+          "flag": "seen-port-bf-court-wet-banner"
+        }
+      ]
+    },
+    {
+      "text": "取消本船休息，替外派修甲班趕工並記工序（全員士氣−1、科研工時＋3）",
+      "effects": [
+        {
+          "techHours": 3
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "flag": "seen-port-bf-court-wet-banner"
+        }
+      ]
+    }
+  ]
+}

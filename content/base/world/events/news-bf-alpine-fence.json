@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-alpine-fence",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-alpine-fence"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚坐到稽古學會學徒旁，聞見他行囊裡的松脂味。阿爾卑斯之墟的舊影把圍籬照得發白，雪水沿刻痕滴下，護衛移步時圍籬碰響。有人催他講光從哪來，他先朝畫面吼：「光到這裡就夠！」再向你攤手，說多收一份錢也補不出答案。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-alpine-fence"
+        }
+      ]
+    },
+    {
+      "text": "付放映費，讓船員看完整段墟光（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-alpine-fence"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-alpine-fence"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-court-grain",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-court-grain"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/imperial-court.rep"
+          },
+          "op": ">=",
+          "b": -5
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-court-grain",
+      "near": "place/singapore"
+    },
+    {
+      "flag": "bf-posted-court-grain"
+    }
+  ]
+}

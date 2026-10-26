@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-seattle-return-gun",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-seattle-return-gun"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/north-american-umbrella.rep"
+          },
+          "op": ">=",
+          "b": -10
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-seattle-return-gun",
+      "near": "place/singapore"
+    },
+    {
+      "flag": "bf-posted-seattle-return-gun"
+    }
+  ]
+}

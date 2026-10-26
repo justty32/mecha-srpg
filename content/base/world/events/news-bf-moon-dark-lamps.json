@@ -1,0 +1,77 @@
+{
+  "id": "event/news-bf-moon-dark-lamps",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-moon-dark-lamps"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.farside-prices-known"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "choices": [
+    {
+      "text": "記下缺件等下一批",
+      "effects": [
+        {
+          "flag": "seen-news-bf-moon-dark-lamps",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "催修繕班補缺（全員士氣-1、技術工時+3）",
+      "effects": [
+        {
+          "flag": "seen-news-bf-moon-dark-lamps",
+          "value": 1
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "techHours": 3
+        }
+      ]
+    }
+  ],
+  "text": "你在新加坡聞著舊機油味，聽暗面熟客說起2107年的查貨。他推動貨車，輪聲夾著舊影裡的喊聲：「收燈，人先散！」暗埠外側入口的黃光被白甲截斷，搬工退開，普通箱件被夾走。你聽他說暗埠仍開，眼前這批替代備件卻還沒到齊；本船修繕班望著缺件處，等你決定是否加班補缺。"
+}

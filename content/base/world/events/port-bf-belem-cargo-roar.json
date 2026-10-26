@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-belem-cargo-roar",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-belem-cargo-roar"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聞見木箱味，貝倫抵港貨工正教人按故鄉的次序裝卸。箱扣一響，裂晶貨光照亮他抬起的手臂：「人先上，貨會等！」他攔住搶道的精粹箱，讓卸甲工先過艙口。你跟著挪開腳下的障礙，卸甲工便攤出修造紀錄，要收學這門手藝的錢。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-belem-cargo-roar"
+        }
+      ]
+    },
+    {
+      "text": "買卸甲工的修造紀錄，研究艙口損耗（現金−160，科研工時＋8）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -160,
+            "reason": "event-port-bf-belem-cargo-roar"
+          }
+        },
+        {
+          "techHours": 8
+        },
+        {
+          "flag": "seen-port-bf-belem-cargo-roar"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 160
+        }
+      }
+    }
+  ]
+}

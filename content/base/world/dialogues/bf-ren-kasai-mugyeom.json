@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ren-kasai-mugyeom",
+  "person": "person/ren-kasai",
+  "topics": [
+    {
+      "topic": "零分的好手藝",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ren-kasai-mugyeom"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "蓮照釜山城邦的舊訊擺好吊具，撐住一截支架。",
+        "「崔武謙喊魚骨撐門，報表竟只給他個零。」",
+        "「零擊殺？那活人都是誰吊回來的？」",
+        "他把救援欄畫得最大。「吊活人比擺英雄姿勢難。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-mugyeom"
+            }
+          ],
+          "text": "笑報表漏算了活人。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-mugyeom"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "請他再示範一次救人的吊法。"
+        }
+      ]
+    }
+  ]
+}

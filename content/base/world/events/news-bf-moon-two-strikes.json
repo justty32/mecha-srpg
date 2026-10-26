@@ -1,0 +1,81 @@
+{
+  "id": "event/news-bf-moon-two-strikes",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-moon-two-strikes"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "choices": [
+    {
+      "text": "記下年份離開放映處",
+      "effects": [
+        {
+          "flag": "seen-news-bf-moon-two-strikes",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "付100現金續放舊影（全員士氣+1）",
+      "effects": [
+        {
+          "flag": "seen-news-bf-moon-two-strikes",
+          "value": 1
+        },
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-moon-two-strikes"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ],
+  "text": "你在新加坡的潮濕布幕前，看船員帶來的月弓舊影。2098年，人駕的無核心女武神保全機原型壓退人牆，「井裡有人，別叫我們回去！」的喊聲撞出幕外。影像跳到2105年，無人無魂鐵偶踏出白光，凡鐵矢打散工具，人退入維修井，通氣閥隨後關閉。你聽著舊影口號，放映費的匣子從身旁傳過。"
+}

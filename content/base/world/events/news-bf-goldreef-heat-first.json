@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-goldreef-heat-first",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-goldreef-heat-first"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚聞到來客衣上的礦塵味，眼前正回放金山夜後金山深井的採晶與取暖舊影。絞盤聲把裂晶送出井口，城裡整排窗逐盞亮起。井工朝光裡喊：「把地底的光舉起！」你看來客舉起手，又停在半空，說金山夜那班人終究沒有上來。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-goldreef-heat-first"
+        }
+      ]
+    },
+    {
+      "text": "付展示費，帶船員看完金山夜後的舊影（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-goldreef-heat-first"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-goldreef-heat-first"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

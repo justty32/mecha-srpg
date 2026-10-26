@@ -1,0 +1,64 @@
+{
+  "id": "dialogue/bf-mara-okoye-moon-white-armour",
+  "person": "person/mara-okoye",
+  "topics": [
+    {
+      "topic": "瑪拉看白甲",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "tag": "bf-receive-singapore"
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-bf-mara-okoye-moon-white-armour"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你說白甲走得像同一個人。瑪拉把手往你眼前一拍。",
+        "「看清楚，空的。轉來一句催款聲，也不會多長一顆魂。」",
+        "「白甲站住，活人先走！要我教它們幾遍？」"
+      ],
+      "choices": [
+        {
+          "text": "聽完回去當班",
+          "effects": [
+            {
+              "flag": "dlg-bf-mara-okoye-moon-white-armour",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "陪她把搬工通道讓出來（本人士氣+1）",
+          "effects": [
+            {
+              "flag": "dlg-bf-mara-okoye-moon-white-armour",
+              "value": 1
+            },
+            {
+              "mood": {
+                "person/mara-okoye": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

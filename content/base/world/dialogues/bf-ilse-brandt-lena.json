@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ilse-brandt-lena",
+  "person": "person/ilse-brandt",
+  "topics": [
+    {
+      "topic": "退路也算我的戰績",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ilse-brandt-lena"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "伊爾瑟讀著鹿特丹鹽鷗巢的來信，劃開靠岸的路。",
+        "「莉娜還留著卸貨的岸。傷機回去，別堵住糧船。」",
+        "「退路？叫它我替你們打下來的路。」",
+        "她冷笑。「岸可以借，舊仗沒替誰勾掉。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-lena"
+            }
+          ],
+          "text": "照她的名字標出那條路。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-lena"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "請她也畫出卸傷機的位置。"
+        }
+      ]
+    }
+  ]
+}

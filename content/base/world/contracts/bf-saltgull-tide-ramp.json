@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-saltgull-tide-ramp",
+  "kind": "defend",
+  "issuerKinds": [
+    "band"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 6
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/split-fin-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "鹽鷗獵團換班未到：岔鰭前守住卸甲坡",
+  "encounter": [
+    "encounter/rift-z-bf-saltgull-tide-ramp"
+  ]
+}

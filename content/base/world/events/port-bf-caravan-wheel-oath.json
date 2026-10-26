@@ -1,0 +1,66 @@
+{
+  "id": "event/port-bf-caravan-wheel-oath",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-caravan-wheel-oath"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭看環線商隊抵港車手演示崩年逃出的修車法，軸油味從他袖口滲出。他把壞輪豎成旗，敲得輪緣響亮：「輪子壞了人推！」他問你，護航的人還在路上，車怎能先走。說完他蹲回修件旁，要學的人得留下趕工，你的船員望向休息班表。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-caravan-wheel-oath"
+        }
+      ]
+    },
+    {
+      "text": "取消本船休息，趕完車手示範的修件工班（全員士氣−1，科研工時＋3）",
+      "effects": [
+        {
+          "techHours": 3
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "flag": "seen-port-bf-caravan-wheel-oath"
+        }
+      ]
+    }
+  ]
+}

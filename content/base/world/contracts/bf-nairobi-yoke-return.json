@@ -1,0 +1,52 @@
+{
+  "id": "contract/bf-nairobi-yoke-return",
+  "kind": "scout",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/shell-ear-d"
+      }
+    }
+  ],
+  "pay": {
+    "base": 3600
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 5,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4,
+  "name": "奈洛比高地城邦破軛待裝船：驅除伏耳",
+  "encounter": [
+    "encounter/rift-z-bf-nairobi-yoke-return"
+  ]
+}

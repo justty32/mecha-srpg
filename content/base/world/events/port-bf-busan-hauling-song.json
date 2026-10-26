@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-busan-hauling-song",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-busan-hauling-song"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊的油布味裡聽見吊臂卡響。釜山城邦的拖機手拿舊吊臂重演第三刃那回機庫救人，支座才抬半尺，他已吼出：「零分也撐門！」船員問救回來的機怎麼修，他拍著一冊沾油的工序紀錄，笑說嗓門白送，這個得買。",
+  "choices": [
+    {
+      "text": "留好現金，照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-busan-hauling-song"
+        }
+      ]
+    },
+    {
+      "text": "買拖機手的修造紀錄，學搬回後怎麼修（現金−160、科研工時＋8）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -160,
+            "reason": "event-port-bf-busan-hauling-song"
+          }
+        },
+        {
+          "techHours": 8
+        },
+        {
+          "flag": "seen-port-bf-busan-hauling-song"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 160
+        }
+      }
+    }
+  ]
+}

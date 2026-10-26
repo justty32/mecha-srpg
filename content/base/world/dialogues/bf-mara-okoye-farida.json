@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-mara-okoye-farida",
+  "person": "person/mara-okoye",
+  "topics": [
+    {
+      "topic": "先喊回來再算錢",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-mara-okoye-farida"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "荷姆茲海峽的燃夜舊錄音沙沙響，瑪拉抬手止住你。",
+        "「法莉妲・納賽里在喊援船。你急著往下念什麼？」",
+        "「船沒回來，先喊。葬詞不急著省工。」",
+        "她跟著錄音接唱船名，破了嗓，伸手叫你接下一聲。"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-farida"
+            }
+          ],
+          "text": "把舊錄音留給她。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-mara-okoye-farida"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "接唱下一個船名，等那段回聲。"
+        }
+      ]
+    }
+  ]
+}

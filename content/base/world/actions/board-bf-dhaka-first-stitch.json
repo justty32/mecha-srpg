@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-dhaka-first-stitch",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-dhaka"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-dhaka-first-stitch"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/dhaka-weavers.rep"
+          },
+          "op": ">=",
+          "b": -5
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-dhaka-first-stitch",
+      "near": "place/dhaka"
+    },
+    {
+      "flag": "bf-posted-dhaka-first-stitch"
+    }
+  ]
+}

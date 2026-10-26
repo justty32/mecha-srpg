@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-surat-keys",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-surat-keys"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港口茶渣味裡聽見鑰匙相撞。蘇拉特還鄉院的來客甩起一串舊鑰匙，燈光從齒間飛過：「門還沒倒，人先站直！」他說院裡有人想回孟買，有人只想守住如今睡的地方。你問鑰匙還能開哪扇門，他收住手，指向要買的修門材料。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-surat-keys"
+        }
+      ]
+    },
+    {
+      "text": "替蘇拉特還鄉院來客付修門材料費（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-surat-keys"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-surat-keys"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

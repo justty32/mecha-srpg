@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-dhaka-first-stitch",
+  "kind": "defend",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 6
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/reed-lace-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "達卡補天院撤料：守住蘆網河岸",
+  "encounter": [
+    "encounter/rift-z-bf-dhaka-first-stitch"
+  ]
+}

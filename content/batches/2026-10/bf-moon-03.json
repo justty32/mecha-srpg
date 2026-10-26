@@ -1,0 +1,201 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-moon-03",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "暗面疾行、白甲出庫與背面遠光；只新增12個lore檔，既有檔插入與年表另交建議。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-moon-03",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "57928949b0ee4f41ed91e82c850ff93f17adbb42",
+ "reportDir": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-03",
+ "report": {
+  "file": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/d-moon.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-rulings.md",
+   "content/lore/places/farside-ruin-belt.json",
+   "content/lore/places/endymion-vault.json",
+   "content/lore/places/dark-quay.json",
+   "content/lore/factions/backside.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/events/moonless-evacuation.json",
+   "content/lore/events/hidden-lantern-pact.json",
+   "content/lore/events/dark-quay-surety.json",
+   "content/lore/characters/lu-zhaoyin.json",
+   "content/lore/characters/shen-yanqiao.json",
+   "content/lore/characters/m3.json",
+   "content/lore/places/ferry-lane.json",
+   "content/lore/places/singapore.json",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/plan.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/cx-bf-moon-03.md"
+  ]
+ },
+ "maxFiles": 12,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原意先行；中文名全為提案。英文僅供命名溯源，不自動寫入aka。",
+  "rows": [
+   {
+    "id": "place/grey-edge-rest-stop",
+    "nameEn": "Grey Verge",
+    "meaning": "背面墟帶的遠光壓在窗上，外圍工人停下車，誰也不把那道光當作招手。",
+    "nameZh": "灰沿歇腳站",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/farside-light-ridge",
+    "nameEn": "Ridge of Distant Stars",
+    "meaning": "外圍測路人爬上灰脊，看見墟帶像一列沒走完的星，然後轉身回報可走的路。",
+    "nameZh": "望墟脊",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/white-armour-loading-hall",
+    "nameEn": "White Armour Hall",
+    "meaning": "白庫開門，女武神鐵偶整排走向貨架，搬工只敢在它們停步後收回吊帶。",
+    "nameZh": "白甲候裝廳",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/dark-quay-night-slip",
+    "nameEn": "Night Slip",
+    "meaning": "暗埠的黃光跟著貨車一路奔到密封門，接貨人喊換手，名字留在光照不到的地方。",
+    "nameZh": "暗埠夜棧",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "faction/farside-shift-workers",
+    "nameEn": "Farside Watches",
+    "meaning": "灰原上的勤務車向墟光排開，輪班人喊把這一班帶回去，才放下車尾的扶欄。",
+    "nameZh": "背面輪班人",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/sora-maen",
+    "nameEn": "Sora Maen",
+    "meaning": "索拉替暗面捎貨，手仍按正式船班掌舵；離開靜海那一刻，她只喊向地球。",
+    "nameZh": "索拉・梅恩",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/xu-ji",
+    "nameEn": "Xu Ji",
+    "meaning": "許霽在暗埠黃光裡推貨穿過人群，喊接住這趟，下一趟不作保。",
+    "nameZh": "許霽",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/tomo-vell",
+    "nameEn": "Tomo Vell",
+    "meaning": "白甲走上貨架時，陶莫喊停，把同伴從鐵偶腳下的吊帶拖出來。",
+    "nameZh": "陶莫・維爾",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/dark-run-under-bow",
+    "nameEn": "Under the Bowlight",
+    "meaning": "暗面的貨在月弓光下趕上正班船，三天後隨新加坡舷梯落地，沒有另一條天路。",
+    "nameZh": "借月弓的光",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/white-armour-departure",
+    "nameEn": "White Armour Outbound",
+    "meaning": "白庫的鐵偶一路列隊進船，地球掛在艙口外，搬工拉下最後一道攔繩。",
+    "nameZh": "白甲離月",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/dark-quay-inspection",
+    "nameEn": "When the Quay Dims",
+    "meaning": "白手套在暗埠入口展開白甲，黃燈一盞盞背過身，接應人把搬工帶離查貨線。",
+    "nameZh": "暗埠收燈",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/help-outside-the-belt",
+    "nameEn": "Help Beyond the Cordon",
+    "meaning": "若勤務車困在封鎖線外，墟帶遠光只照著它，回應呼救的仍得是人。",
+    "nameZh": "墟外待救",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   }
+  ]
+ },
+ "rounds": 1,
+ "acceptance": {
+  "gate": "OK",
+  "mergedVia": "bf-merge",
+  "leadChecks": "lore check 0/0; npm run check 0 errors; typecheck 0; npm test 1028/1028 (merge worktree, once)"
+ },
+ "files": [
+  "content/lore/characters/sora-maen.json",
+  "content/lore/characters/tomo-vell.json",
+  "content/lore/characters/xu-ji.json",
+  "content/lore/events/dark-quay-inspection.json",
+  "content/lore/events/dark-run-under-bow.json",
+  "content/lore/events/help-outside-the-belt.json",
+  "content/lore/events/white-armour-departure.json",
+  "content/lore/factions/farside-shift-workers.json",
+  "content/lore/places/dark-quay-night-slip.json",
+  "content/lore/places/farside-light-ridge.json",
+  "content/lore/places/grey-edge-rest-stop.json",
+  "content/lore/places/white-armour-loading-hall.json"
+ ],
+ "ids": [
+  "character/sora-maen",
+  "character/tomo-vell",
+  "character/xu-ji",
+  "event/dark-quay-inspection",
+  "event/dark-run-under-bow",
+  "event/help-outside-the-belt",
+  "event/white-armour-departure",
+  "faction/farside-shift-workers",
+  "place/dark-quay-night-slip",
+  "place/farside-light-ridge",
+  "place/grey-edge-rest-stop",
+  "place/white-armour-loading-hall"
+ ],
+ "gateRejections": []
+}

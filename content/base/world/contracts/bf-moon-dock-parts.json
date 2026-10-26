@@ -1,0 +1,59 @@
+{
+  "id": "contract/bf-moon-dock-parts",
+  "kind": "defend",
+  "issuerKinds": [
+    "company"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/brinepin-d"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "靜海修船件待卸：頂住鹽針",
+  "encounter": [
+    "encounter/rift-z-bf-moon-dock-parts"
+  ]
+}

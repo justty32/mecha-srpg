@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-golmud-raised-arm",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-golmud-raised-arm"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你聞著炭味走近港邊修甲棚，從夸父之窩外舊工坊來的工匠正講衍一聯合還在的年月。他把報廢展示機臂吊向山形帆影，關節格格作響：「給我舉過去！」學徒扶住晃動的架腳，問當年是不是也少裝一顆栓。工匠瞪他一眼，轉頭問你肯不肯拿修料重做。",
+  "choices": [
+    {
+      "text": "留好本船修料，照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-golmud-raised-arm"
+        }
+      ]
+    },
+    {
+      "text": "拿本船修料重做舉臂工序（廢料−2、科研工時＋5）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-port-bf-golmud-raised-arm"
+          }
+        },
+        {
+          "techHours": 5
+        },
+        {
+          "flag": "seen-port-bf-golmud-raised-arm"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

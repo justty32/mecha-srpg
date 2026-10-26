@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-brasilia-clock-oath",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-brasilia-clock-oath"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭看巴西利亞崩年接納沿海撤來者的舊影，鐘影掠過接人的長桌。木油味從旁邊的貨箱飄來，抵港來客迎著舊影裡的鐘聲拍箱吼：「鐘沒停，人別停！」你看見搬運者抬起肩，他卻先揉揉腰，承認自己喊得比搬得久；船員笑著把他扶回箱邊。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-brasilia-clock-oath"
+        }
+      ]
+    },
+    {
+      "text": "付放映費，帶船員看完崩年舊影（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-brasilia-clock-oath"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-brasilia-clock-oath"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

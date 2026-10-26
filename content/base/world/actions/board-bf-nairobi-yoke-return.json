@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-nairobi-yoke-return",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-nairobi-yoke-return"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/nairobi.rep"
+          },
+          "op": ">=",
+          "b": -10
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-nairobi-yoke-return",
+      "near": "place/chittagong"
+    },
+    {
+      "flag": "bf-posted-nairobi-yoke-return"
+    }
+  ]
+}

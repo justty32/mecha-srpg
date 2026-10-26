@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-wings-ground-chorus",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-wings-ground-chorus"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聞到紙煙味，從伊斯坦堡城邦抵港的殘翼航空地勤，正張開雙臂重演鐵翼掠過屋頂的救援記憶。胸前的機翼掛飾碰響，他忽然把嗓子吼破：「地上還有人！」你旁邊的船員舉手接應，他咳著笑，罵大家手再低就只剩屋頂看得見。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-wings-ground-chorus"
+        }
+      ]
+    },
+    {
+      "text": "租練習棚，讓船員練地面接應信號（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-wings-ground-chorus"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-wings-ground-chorus"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

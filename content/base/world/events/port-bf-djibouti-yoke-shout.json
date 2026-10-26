@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-djibouti-yoke-shout",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-djibouti-yoke-shout"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊的鐵鏽味裡，看見遠牧獵團的來客把從吉布地帶來的破軛抬上修架。修理人一錘敲偏，先把聲音吼正：「軛斷，人別散！」騎手扶住軛架，回他少說兩句先敲準。你蹲下看裂口，偏錘聲又響，這回兩人都沒鬆手。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-djibouti-yoke-shout"
+        }
+      ]
+    },
+    {
+      "text": "拿本船修料替騎手修軛，學下接合手法（廢料−2，科研工時＋5）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-port-bf-djibouti-yoke-shout"
+          }
+        },
+        {
+          "techHours": 5
+        },
+        {
+          "flag": "seen-port-bf-djibouti-yoke-shout"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

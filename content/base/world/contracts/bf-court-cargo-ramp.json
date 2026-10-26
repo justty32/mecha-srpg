@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-court-cargo-ramp",
+  "kind": "defend",
+  "issuerKinds": [
+    "state"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/hinge-crab-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "朝廷在新加坡渡月港卸甲未完：扣甲堵住傷機退路，外派隊員邊打邊吼「赴牆的人先過！」",
+  "encounter": [
+    "encounter/rift-z-bf-court-cargo-ramp"
+  ]
+}

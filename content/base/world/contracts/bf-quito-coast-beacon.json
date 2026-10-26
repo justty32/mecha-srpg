@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-quito-coast-beacon",
+  "kind": "defend",
+  "issuerKinds": [
+    "city"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/hollow-sail-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "基多渡月港城邦外站急約：空帆遮住新加坡渡輪港接應燈；撐八回合，讓傷機趕上離岸窗口",
+  "encounter": [
+    "encounter/rift-z-bf-quito-coast-beacon"
+  ]
+}

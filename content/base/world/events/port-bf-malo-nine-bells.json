@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-malo-nine-bells",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-malo-nine-bells"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊走進滿是石粉味的播音棚，聖馬洛城邦的來客把九門同喪的舊鐘聲放得艙壁發顫。重鐘聲裡有人低頭數到九，來客卻抬手催大家接下一聲：「九門同聲，今天還！」你身旁的船員跟著吼，最後一聲破了音，還不肯停。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-malo-nine-bells"
+        }
+      ]
+    },
+    {
+      "text": "付播音棚租，讓全船聽完九門鐘聲（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-malo-nine-bells"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-malo-nine-bells"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

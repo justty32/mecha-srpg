@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-zamboanga-answer",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-zamboanga-answer"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聽一艘從三寶顏空城回來的船敲銅鈴，濕木味從船舷漫過來。船工說回鄉找人時敲了很久，仍沒等到要找的那聲。你身旁的小船員忽然吼：「回聲算我一份！」另一艘船跟著答鈴。船工抬手致意，接著繼續報失聯者的去處，沒有把回聲當成歸訊。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-zamboanga-answer"
+        }
+      ]
+    },
+    {
+      "text": "租碼頭播音時段，讓船員幫忙傳尋人訊（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-zamboanga-answer"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-zamboanga-answer"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

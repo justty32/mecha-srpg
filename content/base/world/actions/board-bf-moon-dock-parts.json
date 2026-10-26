@@ -1,0 +1,59 @@
+{
+  "id": "action/board-bf-moon-dock-parts",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-moon-dock-parts"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/selene-whitegloves.rep"
+          },
+          "op": ">=",
+          "b": -5
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 8,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-moon-dock-parts",
+      "near": "place/singapore"
+    },
+    {
+      "flag": "bf-posted-moon-dock-parts",
+      "value": 1
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-anvil-shield-turn",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-anvil-shield-turn"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/anvil-hunters.rep"
+          },
+          "op": ">=",
+          "b": -5
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-anvil-shield-turn",
+      "near": "place/chittagong"
+    },
+    {
+      "flag": "bf-posted-anvil-shield-turn"
+    }
+  ]
+}

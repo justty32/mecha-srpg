@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ilse-brandt-watch",
+  "person": "person/ilse-brandt",
+  "topics": [
+    {
+      "topic": "接班機要長腿",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ilse-brandt-watch"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "伊爾瑟翻過蘇伊士運河的換班記錄，站到門口。",
+        "「賽芙娜吃過等章的虧。現在得等機甲到船旁。」",
+        "「章不會長腿。接班的機甲到了再叫我。」",
+        "你問她又要最後撤？她側身讓路。「這回先換你站。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-watch"
+            }
+          ],
+          "text": "提醒她別又站到最後。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-watch"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "陪她把換班路線走完。"
+        }
+      ]
+    }
+  ]
+}

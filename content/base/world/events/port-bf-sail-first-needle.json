@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-sail-first-needle",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-dhaka"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-sail-first-needle"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊聞見布灰味，達卡補天院的學徒把破帆撐過頭，漏光全落在臉上。他敲著甲板上的大針，叫你別笑：「這一針，補天！」達卡紡織公會的老師傅抬手指那道破口：「先補好那個漏。」學徒仍不放下帆，只把針柄往你這邊推。",
+  "choices": [
+    {
+      "text": "留好本船修料，照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-sail-first-needle"
+        }
+      ]
+    },
+    {
+      "text": "用本船修料和學徒試補，記下工序（廢料−2、科研工時＋5）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-port-bf-sail-first-needle"
+          }
+        },
+        {
+          "techHours": 5
+        },
+        {
+          "flag": "seen-port-bf-sail-first-needle"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

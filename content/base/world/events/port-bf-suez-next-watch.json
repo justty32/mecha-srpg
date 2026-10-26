@@ -1,0 +1,66 @@
+{
+  "id": "event/port-bf-suez-next-watch",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-suez-next-watch"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊聽見踏板聲，蘇伊士運河來的護航隊員滿身汗味，正重演運河夜之後的換班。他困得報錯自己的名字，卻一把攔住想先走的同伴：「人到了才換班！」你聽同伴笑問他究竟等誰，他揉著臉，把下一步接機的動作重新做了一遍。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-suez-next-watch"
+        }
+      ]
+    },
+    {
+      "text": "取消本船休息，加班把換班機的修造心得整理完（全員士氣−1，科研工時＋3）",
+      "effects": [
+        {
+          "techHours": 3
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "flag": "seen-port-bf-suez-next-watch"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,142 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-play-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "守住交班的岸；只新增18個營運檔",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-play-02",
+  "subagents": "允許，模型隨意，上限1；同範圍同規則",
+  "plan": {
+   "model": "gpt-6-astra",
+   "line": "cx-bf-play-plan",
+   "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md"
+  }
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "8a48e7ef3e982b278e382d8a166cfc05a8564428",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/ops-content.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/dispatch/handoffs/done/2026-10-26/lead-rep/REPORT.md",
+   "wf/workflows/planning/specs/ops/content-format-ops.md",
+   "wf/workflows/planning/specs/ops/content-format-ops/crew-text.md",
+   "wf/workflows/planning/specs/ops/content-format-ops/factions-war.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/play-rulings.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/cx-bf-play-02.md"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "kinds": [
+   "base/world/actions",
+   "base/world/contracts",
+   "base/world/encounters"
+  ],
+  "namePrefix": {
+   "base/world/actions": "board-bf-",
+   "base/world/contracts": "bf-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "checkNotes": {
+  "ops": "content_accept 自動跑 node src/ops/content/check.ts content/base；工人亦須於worktree執行並記結果",
+  "lore": "不新增lore，無此步",
+  "probe": "純營運資料，無新戰鬥單位或能力，無此步",
+  "playtest": "本交接書不要求MCP或GUI",
+  "golden": "會：接入 port tags／contractKinds 後加入世界抽選與新契約軌跡；新檔孤立尚未接線時預期不變。 工人不重錄，不改任何期望值。golden檔未修改檢查仍應通過；測試軌跡差異需領導人工核准豁免。",
+  "test": "黃金紅時列測試與fixture檔名、原始錯誤；其他fail不可當黃金豁免。content_accept目前不讀自訂waiver欄，不能把本註記當自動ACCEPT。"
+ },
+ "probe": {
+  "n": 5,
+  "reference": [],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 0,
+  "file": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-02/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-bigfill/bf-play-02/mcp-log"
+ },
+ "files": [
+  "content/base/world/actions/board-bf-anvil-shield-turn.json",
+  "content/base/world/actions/board-bf-breakers-salt-needle.json",
+  "content/base/world/actions/board-bf-dhaka-first-stitch.json",
+  "content/base/world/actions/board-bf-league-lantern-keel.json",
+  "content/base/world/actions/board-bf-nairobi-yoke-return.json",
+  "content/base/world/actions/board-bf-saltgull-tide-ramp.json",
+  "content/base/world/contracts/bf-anvil-shield-turn.json",
+  "content/base/world/contracts/bf-breakers-salt-needle.json",
+  "content/base/world/contracts/bf-dhaka-first-stitch.json",
+  "content/base/world/contracts/bf-league-lantern-keel.json",
+  "content/base/world/contracts/bf-nairobi-yoke-return.json",
+  "content/base/world/contracts/bf-saltgull-tide-ramp.json",
+  "content/base/world/encounters/rift-z-bf-anvil-shield-turn.json",
+  "content/base/world/encounters/rift-z-bf-breakers-salt-needle.json",
+  "content/base/world/encounters/rift-z-bf-dhaka-first-stitch.json",
+  "content/base/world/encounters/rift-z-bf-league-lantern-keel.json",
+  "content/base/world/encounters/rift-z-bf-nairobi-yoke-return.json",
+  "content/base/world/encounters/rift-z-bf-saltgull-tide-ramp.json"
+ ],
+ "ids": [
+  "action/board-bf-anvil-shield-turn",
+  "action/board-bf-breakers-salt-needle",
+  "action/board-bf-dhaka-first-stitch",
+  "action/board-bf-league-lantern-keel",
+  "action/board-bf-nairobi-yoke-return",
+  "action/board-bf-saltgull-tide-ramp",
+  "contract/bf-anvil-shield-turn",
+  "contract/bf-breakers-salt-needle",
+  "contract/bf-dhaka-first-stitch",
+  "contract/bf-league-lantern-keel",
+  "contract/bf-nairobi-yoke-return",
+  "contract/bf-saltgull-tide-ramp",
+  "encounter/rift-z-bf-anvil-shield-turn",
+  "encounter/rift-z-bf-breakers-salt-needle",
+  "encounter/rift-z-bf-dhaka-first-stitch",
+  "encounter/rift-z-bf-league-lantern-keel",
+  "encounter/rift-z-bf-nairobi-yoke-return",
+  "encounter/rift-z-bf-saltgull-tide-ramp"
+ ],
+ "acceptance": {
+  "gate": "OK",
+  "mergedVia": "bf-merge",
+  "leadChecks": "lore check 0/0; npm run check 0 errors; typecheck 0; npm test 1028/1028 (merge worktree, once)"
+ },
+ "rounds": 1,
+ "gateRejections": [],
+ "deprecated": [],
+ "planning": {
+  "golden": "會：接入 port tags／contractKinds 後加入世界抽選與新契約軌跡；新檔孤立尚未接線時預期不變。",
+  "reviewRows": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/review-draft.json",
+  "plannedFiles": 18,
+  "ready": "領導填base並預置worktree/manifest後才能派產出；合併線套inserts後才宣告可達"
+ }
+}

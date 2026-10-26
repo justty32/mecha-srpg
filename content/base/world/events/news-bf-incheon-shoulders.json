@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-incheon-shoulders",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-incheon-shoulders"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊翻開帶墨味的舊影說明，仁川來客正回顧眾肩擎城：傷機相抵，讓修門的人多得一點時間。影裡守城像的石肩掛滿姓名牌，身旁的人一掌拍響衍甲：「肩借給城！」你的船員也抬起手，來客卻先笑著指向展示費，叫他別拍壞自己的甲。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-news-bf-incheon-shoulders"
+        }
+      ]
+    },
+    {
+      "text": "付展示費，帶全船看完守城舊影（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-incheon-shoulders"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-incheon-shoulders"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

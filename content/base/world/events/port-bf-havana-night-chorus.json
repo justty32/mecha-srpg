@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-havana-night-chorus",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-havana-night-chorus"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聞到顏料味，哈瓦那抵港水手正把故鄉港燈畫上衍甲。他說糧船晚歸時，岸上的燈一直留著，隨即拍甲唱起班歌：「海上那班還醒著！」掌擊甲聲催得你船員跟唱。他指著一個閉眼打拍子的人：「輪到你，別裝睡。」",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-havana-night-chorus"
+        }
+      ]
+    },
+    {
+      "text": "買彩繪材料，讓全船留下當班記號（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-havana-night-chorus"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-havana-night-chorus"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

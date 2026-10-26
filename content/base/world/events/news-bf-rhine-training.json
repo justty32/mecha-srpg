@@ -1,0 +1,77 @@
+{
+  "id": "event/news-bf-rhine-training",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-rhine-training"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚看萊茵蝕溝清剿的舊影，鐵砧獵團來客的外衣散著燼灰味。獸甲撞上盾牆，盾撞聲震得棚柱發響；他按住畫面，朝擠在前排的新人吼：「別拿牆練死法！」你看他指向盾後留下的退路，說訓練場也不收第二條命。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-rhine-training"
+        }
+      ]
+    },
+    {
+      "text": "買下獸撞盾後的修造紀錄（現金−160，科研工時＋8）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -160,
+            "reason": "event-news-bf-rhine-training"
+          }
+        },
+        {
+          "techHours": 8
+        },
+        {
+          "flag": "seen-news-bf-rhine-training"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 160
+        }
+      }
+    }
+  ]
+}

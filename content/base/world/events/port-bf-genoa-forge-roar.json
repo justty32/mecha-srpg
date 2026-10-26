@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-genoa-forge-roar",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 19
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-genoa-forge-roar"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚聞見熱木屑味，兩位從熱那亞船塢抵港的工匠，正為機臂該蓋內海諸家哪一家的印吵架。衍甲往下一滑，兩人同時伸手托住，雙錘聲一前一後追上來：「別讓它跪！」你看他們敲完同一處接縫，又開始爭誰的錘先響。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-genoa-forge-roar"
+        }
+      ]
+    },
+    {
+      "text": "拿本船修料跟兩家工匠合修機臂（廢料−2，科研工時＋5）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-port-bf-genoa-forge-roar"
+          }
+        },
+        {
+          "techHours": 5
+        },
+        {
+          "flag": "seen-port-bf-genoa-forge-roar"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

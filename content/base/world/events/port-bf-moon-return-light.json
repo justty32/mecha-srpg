@@ -1,0 +1,81 @@
+{
+  "id": "event/port-bf-moon-return-light",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-moon-return-light"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "choices": [
+    {
+      "text": "讓出出口看人潮散開",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-return-light",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "付100現金畫出口標記（全員士氣+1）",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-return-light",
+          "value": 1
+        },
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-moon-return-light"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ],
+  "text": "你在新加坡讓開舷梯，望鄉號的白光把抵岸工人的影子拉過半座卸貨場。密封衣的舊布味隨人潮湧來，腳步聲蓋過港口呼喊。有人說去程貴，回程反倒便宜，忽然學起2107年的喊聲：「這次換月亮送我走！」你看見他回頭揮手，出口的標記卻被人群遮住。"
+}

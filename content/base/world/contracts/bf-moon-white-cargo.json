@@ -1,0 +1,59 @@
+{
+  "id": "contract/bf-moon-white-cargo",
+  "kind": "defend",
+  "issuerKinds": [
+    "company"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 6
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/breakwater-clinger-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "白甲候卸：抱樁下守住泊位",
+  "encounter": [
+    "encounter/rift-z-bf-moon-white-cargo"
+  ]
+}

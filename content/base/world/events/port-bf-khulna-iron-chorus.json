@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-khulna-iron-chorus",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-khulna-iron-chorus"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你循著鏽味走到空棚，剛從庫爾納抵港的拆鐵人正把廢獸甲吊起作鼓。他說那座空城的廠房不響了，手裡的鐵還能響。吉大港拆船幫的舊工衣隨鼓聲抖動：「死鐵也要吼！」船員伸手想敲，他先停槌，指給你看棚租的價。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-khulna-iron-chorus"
+        }
+      ]
+    },
+    {
+      "text": "租棚帶船員敲一輪獸甲（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-khulna-iron-chorus"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-khulna-iron-chorus"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

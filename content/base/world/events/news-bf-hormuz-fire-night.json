@@ -1,0 +1,79 @@
+{
+  "id": "event/news-bf-hormuz-fire-night",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-hormuz-fire-night"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚看荷姆茲海峽燃夜的救援舊影，抵港水手的外衣帶著鹽煙味。天網斷續喊聲裡，黑油火牆照亮海峽，遠處的船光一點點穿過煙。水手抬手朝那些光吼：「燃夜還有船！」你身旁的船員也喊起來，下一艘船的光還沒從畫面裡露頭。",
+  "choices": [
+    {
+      "text": "看完就回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-hormuz-fire-night"
+        }
+      ]
+    },
+    {
+      "text": "付播映費，讓船員把救援舊影看完（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-news-bf-hormuz-fire-night"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-news-bf-hormuz-fire-night"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

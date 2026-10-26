@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ren-kasai-needle",
+  "person": "person/ren-kasai",
+  "topics": [
+    {
+      "topic": "第一針不是第一刀",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ren-kasai-needle"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "蓮扯開補片。「拆甲我一刀就準，縫布能有多難？」",
+        "「達卡補天院的羅凱婭偏要學徒下第一針。」",
+        "「我能拆一頭獸，這個針眼倒管起我了。」",
+        "他戳了半晌，把針放下。「行，下回讓學徒先來。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-needle"
+            }
+          ],
+          "text": "讓他繼續和針眼較勁。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-needle"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "替他扶住布，也學著下針。"
+        }
+      ]
+    }
+  ]
+}

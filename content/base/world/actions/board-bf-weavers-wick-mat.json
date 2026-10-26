@@ -1,0 +1,58 @@
+{
+  "id": "action/board-bf-weavers-wick-mat",
+  "actor": "world",
+  "valid": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-dhaka"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.bf-posted-weavers-wick-mat"
+          },
+          "op": "==",
+          "b": 0
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "campaign.factions.base:faction-ops/dhaka-weavers.rep"
+          },
+          "op": ">=",
+          "b": -10
+        }
+      }
+    ]
+  },
+  "weight": 100,
+  "cooldownDays": 16,
+  "effects": [
+    {
+      "spawnContract": "contract/bf-weavers-wick-mat",
+      "near": "place/dhaka"
+    },
+    {
+      "flag": "bf-posted-weavers-wick-mat"
+    }
+  ]
+}

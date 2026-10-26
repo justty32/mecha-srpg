@@ -1,0 +1,64 @@
+{
+  "id": "dialogue/bf-ren-kasai-moon-dock-command",
+  "person": "person/ren-kasai",
+  "topics": [
+    {
+      "topic": "蓮的撤架令",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "tag": "bf-receive-singapore"
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.dlg-bf-ren-kasai-moon-dock-command"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "你學起月面工班的撤架令。蓮把眉一挑。",
+        "「船能亮半片天，撤架還不是靠嗓子。這活我熟。」",
+        "「架可以再搭，人先退！……別光看我，你也退。」"
+      ],
+      "choices": [
+        {
+          "text": "聽完回去當班",
+          "effects": [
+            {
+              "flag": "dlg-bf-ren-kasai-moon-dock-command",
+              "value": 1
+            }
+          ]
+        },
+        {
+          "text": "跟他把撤架手勢演完（本人士氣+1）",
+          "effects": [
+            {
+              "flag": "dlg-bf-ren-kasai-moon-dock-command",
+              "value": 1
+            },
+            {
+              "mood": {
+                "person/ren-kasai": 1
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

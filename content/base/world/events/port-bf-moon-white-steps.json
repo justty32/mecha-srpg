@@ -1,0 +1,70 @@
+{
+  "id": "event/port-bf-moon-white-steps",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 12
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-moon-white-steps"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "choices": [
+    {
+      "text": "退到搬工身後等放行",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-white-steps",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "text": "喊先讓人過（白手套聲望-2、全員士氣+1）",
+      "effects": [
+        {
+          "flag": "seen-port-bf-moon-white-steps",
+          "value": 1
+        },
+        {
+          "rep": {
+            "faction-ops/selene-whitegloves": -2
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        }
+      ]
+    }
+  ],
+  "text": "你站在新加坡舷梯旁，油味裡響起白甲落地的重聲。白手套鐵偶沿船光排開，攔住待交貨物，搬工的手停在半空。轉來的催收通告一遍遍響，白甲只照術式移動，空艙裡沒有魂，也沒有機甲核心。你身前的人側著身，仍過不去；「收貨可以，先讓人過！」這句話已頂到你的喉頭。"
+}

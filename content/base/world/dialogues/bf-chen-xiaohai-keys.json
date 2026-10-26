@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-chen-xiaohai-keys",
+  "person": "person/chen-xiaohai",
+  "topics": [
+    {
+      "topic": "門要連人一起開",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-chen-xiaohai-keys"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "小海讀完蘇拉特還鄉院的來信，拋起一把舊鑰匙。",
+        "「德維卡給難民留門，怎麼就沒給傭兵留退路？」",
+        "「只接回機甲算什麼回家？人呢？」他險些漏接。",
+        "「門敢只認機甲，我就站門中間。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-keys"
+            }
+          ],
+          "text": "提醒他接住鑰匙。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-keys"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "答應回程先點人，再點機甲。"
+        }
+      ]
+    }
+  ]
+}

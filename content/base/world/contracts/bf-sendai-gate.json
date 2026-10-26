@@ -1,0 +1,60 @@
+{
+  "id": "contract/bf-sendai-gate",
+  "kind": "defend",
+  "issuerKinds": [
+    "state"
+  ],
+  "requiresRep": -5,
+  "gradeRange": [
+    "D",
+    "C",
+    "B"
+  ],
+  "objectives": [
+    {
+      "kind": "hold",
+      "params": {
+        "rounds": 6
+      }
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/breakwater-clinger-c"
+      },
+      "optional": true
+    }
+  ],
+  "pay": {
+    "base": 3400
+  },
+  "advanceMax": 0.4,
+  "deadlineDays": 8,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 2,
+  "name": "仙台傷機待卸：抱樁攀住新加坡渡輪港泊位；守坡六回合，讓傷機進港",
+  "encounter": [
+    "encounter/rift-z-bf-sendai-gate"
+  ]
+}

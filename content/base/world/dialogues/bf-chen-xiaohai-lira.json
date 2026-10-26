@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-chen-xiaohai-lira",
+  "person": "person/chen-xiaohai",
+  "topics": [
+    {
+      "topic": "鈴小，嗓子借妳",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-chen-xiaohai-lira"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "小海攤開莉拉的尋人信，敲了一下手邊的小鈴。",
+        "「三寶顏空城那麼大，這點響，哪傳得過去？」",
+        "「鈴小，嗓子借妳。找不到也得有人聽見。」",
+        "他吸足氣又停下。「先念準。喊響了也不算找著。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-lira"
+            }
+          ],
+          "text": "請他先把信讀清楚。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-lira"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "陪他再喊一遍尋人訊。"
+        }
+      ]
+    }
+  ]
+}

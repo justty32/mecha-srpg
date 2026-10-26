@@ -1,0 +1,77 @@
+{
+  "id": "event/news-bf-greenline-old-chain",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-chittagong"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-greenline-old-chain"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港棚看綠線清剿舊影，讀訊人帶來的外套還有焦布味。巢母倒在裂口前，斷繫的子體散開，破裂聲後那道縫仍亮著。他翻到下個漲潮冒出新獸的紀錄，朝起身的看客喊：「死的是獸，蝕還在！」你看清剿隊把撤機路線重描一遍，沒有人把封口寫成成功。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-greenline-old-chain"
+        }
+      ]
+    },
+    {
+      "text": "買下清剿隊的修甲紀錄，研究封口失敗後如何撤機（現金−160，科研工時＋8）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -160,
+            "reason": "event-news-bf-greenline-old-chain"
+          }
+        },
+        {
+          "techHours": 8
+        },
+        {
+          "flag": "seen-news-bf-greenline-old-chain"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 160
+        }
+      }
+    }
+  ]
+}

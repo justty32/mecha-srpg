@@ -1,0 +1,77 @@
+{
+  "id": "event/port-bf-makassar-top-sail",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-makassar-top-sail"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭聞見濕布味，望加錫抵港水手正教人補帆，說故鄉換防時最高桅杆就留給它。滑輪吱響，補帆越過你船員頭頂，天光從補綴間灑下。他仰頭吼：「破帆也遮得住天！」雨點隨即漏上鼻尖，他趕緊叫你幫忙擋雨，學工序還得自備修料。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-port-bf-makassar-top-sail"
+        }
+      ]
+    },
+    {
+      "text": "拆用本船備料，向水手學補帆工序（廢料−2，科研工時＋5）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "stock:scrap",
+            "delta": -2,
+            "reason": "event-port-bf-makassar-top-sail"
+          }
+        },
+        {
+          "techHours": 5
+        },
+        {
+          "flag": "seen-port-bf-makassar-top-sail"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.stock:scrap"
+          },
+          "op": ">=",
+          "b": 2
+        }
+      }
+    }
+  ]
+}

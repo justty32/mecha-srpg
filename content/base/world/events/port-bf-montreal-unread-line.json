@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-montreal-unread-line",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-montreal-unread-line"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭遇見從蒙特婁城邦抵港的稽古學會學徒，墨味隨翻紙聲散開。他舉起缺行拓本吼：「不懂也別跪！」你等他往下讀，他卻壓低聲說自己真的看不懂。譯文停在空白前，他仍把公開刻痕攤平，請你的人借光一起看，誰也沒替那一行編出答案。",
+  "choices": [
+    {
+      "text": "看完就回船，留錢供下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-montreal-unread-line"
+        }
+      ]
+    },
+    {
+      "text": "買照明材料，和船員讀完公開刻痕（現金−100，全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-montreal-unread-line"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-montreal-unread-line"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

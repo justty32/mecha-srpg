@@ -1,0 +1,66 @@
+{
+  "id": "event/news-bf-denver-grainline",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 26
+        }
+      },
+      {
+        "tag": "bf-receive-singapore"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-news-bf-denver-grainline"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在碼頭看丹佛糧車隊的舊影，穀塵味從抵港護衛的大衣抖出。畫面裡隊列停下修故障車，車輪空轉聲拖得人牙酸。他拍胸吼：「斷車不斷隊！」手卻先算接應要耗多少浮料。你問少了怎辦，他的手指停住，轉而攤開修造紀錄，催你的人今晚一起做完。",
+  "choices": [
+    {
+      "text": "照原班表回船",
+      "effects": [
+        {
+          "flag": "seen-news-bf-denver-grainline"
+        }
+      ]
+    },
+    {
+      "text": "取消本船休息，把故障車接應的修造紀錄做完（全員士氣−1，科研工時＋3）",
+      "effects": [
+        {
+          "techHours": 3
+        },
+        {
+          "mood": {
+            "all": -1
+          }
+        },
+        {
+          "flag": "seen-news-bf-denver-grainline"
+        }
+      ]
+    }
+  ]
+}

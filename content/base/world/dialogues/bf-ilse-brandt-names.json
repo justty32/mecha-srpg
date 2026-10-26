@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ilse-brandt-names",
+  "person": "person/ilse-brandt",
+  "topics": [
+    {
+      "topic": "別把活人鑄死",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ilse-brandt-names"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "伊爾瑟端詳仁川傳來的舊影，指著徐海謙的石像。",
+        "「姿勢倒好看。真這樣站，排燼片誰換？」",
+        "她沿石肩的姓名牌逐個讀。「這些人才替他撐住。」",
+        "「活人得換班。別只記吼第一聲的那個。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-names"
+            }
+          ],
+          "text": "跟她一起挑雕像的毛病。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ilse-brandt-names"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "問那些同伴當時站在哪裡。"
+        }
+      ]
+    }
+  ]
+}

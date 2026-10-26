@@ -1,0 +1,79 @@
+{
+  "id": "event/port-bf-sermon-no-kneeling",
+  "where": "node",
+  "when": {
+    "all": [
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.month"
+          },
+          "op": ">=",
+          "b": 1
+        }
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "calendar.dom"
+          },
+          "op": "==",
+          "b": 5
+        }
+      },
+      {
+        "tag": "bf-receive-dhaka"
+      },
+      {
+        "cmp": {
+          "a": {
+            "ref": "flags.seen-port-bf-sermon-no-kneeling"
+          },
+          "op": "==",
+          "b": 0
+        }
+      }
+    ]
+  },
+  "weight": 2,
+  "text": "你在港邊聞見薑味，一名從孟買門來的沐蝕會施助者正講活下來的恩典。船員一掌拍響桌面：「神若要我跪，先替我守一夜！」施助者也站起來，唱起自己的那一段。兩邊誰都不肯坐，棚主敲敲門框，提醒你這場爭論得續付棚租。",
+  "choices": [
+    {
+      "text": "看完就回船，把錢留給下次出擊",
+      "effects": [
+        {
+          "flag": "seen-port-bf-sermon-no-kneeling"
+        }
+      ]
+    },
+    {
+      "text": "付棚租，讓船員把反調唱完（現金−100、全員士氣＋1）",
+      "effects": [
+        {
+          "ledger": {
+            "account": "cash",
+            "delta": -100,
+            "reason": "event-port-bf-sermon-no-kneeling"
+          }
+        },
+        {
+          "mood": {
+            "all": 1
+          }
+        },
+        {
+          "flag": "seen-port-bf-sermon-no-kneeling"
+        }
+      ],
+      "requires": {
+        "cmp": {
+          "a": {
+            "ref": "ledger.balances.cash"
+          },
+          "op": ">=",
+          "b": 100
+        }
+      }
+    }
+  ]
+}

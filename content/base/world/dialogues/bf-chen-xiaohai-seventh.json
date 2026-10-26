@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-chen-xiaohai-seventh",
+  "person": "person/chen-xiaohai",
+  "topics": [
+    {
+      "topic": "我也喊得動一座牆",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-chen-xiaohai-seventh"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "小海指著舊訊。「努爾守第七哨，我也能報警號。」",
+        "「哈米德上尉聽見我的嗓子，隔牆也知道是我！」",
+        "「我也喊得動一座牆！先別叫鐵姨來。」",
+        "他忽然壓低聲音。「上回鐵姨就回我兩字：小聲。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-seventh"
+            }
+          ],
+          "text": "請他小聲再試一次。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-seventh"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "陪他練一遍警號。"
+        }
+      ]
+    }
+  ]
+}

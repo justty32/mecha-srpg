@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-chen-xiaohai-silas",
+  "person": "person/chen-xiaohai",
+  "topics": [
+    {
+      "topic": "走音也要到最後",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-chen-xiaohai-silas"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "小海學舊錄音裡賽拉斯的腔，拖長尾音，當場破了。",
+        "「我走音又沒少喊人。你來，你也會破。」",
+        "錄音翻到下一頁，他收起怪腔，跟著念準那個姓。",
+        "「溫尼伯雪再大，最後一個字我也得唱過去。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-silas"
+            }
+          ],
+          "text": "笑著請他降低一個調。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-chen-xiaohai-silas"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "跟他唱完最後一個名字。"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "id": "dialogue/bf-ren-kasai-kamchatka",
+  "person": "person/ren-kasai",
+  "topics": [
+    {
+      "topic": "北方的手比火硬",
+      "when": {
+        "all": [
+          {
+            "cmp": {
+              "a": {
+                "ref": "calendar.month"
+              },
+              "op": ">=",
+              "b": 1
+            }
+          },
+          {
+            "any": [
+              {
+                "tag": "bf-receive-dhaka"
+              },
+              {
+                "tag": "bf-receive-chittagong"
+              },
+              {
+                "tag": "bf-receive-singapore"
+              }
+            ]
+          },
+          {
+            "cmp": {
+              "a": {
+                "ref": "flags.seen-bf-ren-kasai-kamchatka"
+              },
+              "op": "==",
+              "b": 0
+            }
+          }
+        ]
+      },
+      "lines": [
+        "蓮翻著北方來信。「妮娜帶人撤了，手沒鬆。」",
+        "「堪察加井城修機的才硬，凍住的接件照敲！」",
+        "他說完把手縮進袖裡，見你在看，又抽出來。",
+        "「凍住就敲開。別看我，我只是手冷。」"
+      ],
+      "choices": [
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-kamchatka"
+            }
+          ],
+          "text": "笑他也怕冷。"
+        },
+        {
+          "effects": [
+            {
+              "flag": "seen-bf-ren-kasai-kamchatka"
+            },
+            {
+              "mood": {
+                "all": 1
+              }
+            }
+          ],
+          "text": "接過他的活，讓他先暖手。"
+        }
+      ]
+    }
+  ]
+}

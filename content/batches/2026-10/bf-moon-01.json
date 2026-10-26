@@ -1,0 +1,196 @@
+{
+ "contract": "content-batch/1",
+ "id": "bf-moon-01",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "穹頂奇觀、月弓與罷工對峙；只新增12個lore檔，既有檔插入與年表另交建議。",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-bf-moon-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-bigfill",
+ "date": "2026-10-26",
+ "base": "27e6ea2f3481a4df855b19bfbf2760a65433fbf1",
+ "reportDir": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-01",
+ "report": {
+  "file": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/bf-moon-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "wf/workflows/dispatch/handoffs/lead-bigfill/bf-common.md",
+   "wf/workflows/dispatch/handoffs/fill-rulings.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/history-lines/d-moon.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-rulings.md",
+   "content/lore/places/tranquility-city.json",
+   "content/lore/places/moonbow.json",
+   "content/lore/events/chaebol-ascent.json",
+   "content/lore/events/tranquility-strike.json",
+   "content/lore/events/whiteglove-incident.json",
+   "content/lore/factions/whitegloves.json",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/ground-union.json",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/plan.md",
+   "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-bigfill/moon-plan/cx-bf-moon-01.md"
+  ]
+ },
+ "maxFiles": 12,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原意先行；中文名全為提案。英文僅供命名溯源，不自動寫入aka。",
+  "rows": [
+   {
+    "id": "place/tranquility-ferry-port",
+    "nameEn": "Tranquility Arrival",
+    "meaning": "渡月船拖光尾落進靜海，地勤舉起雙臂，把離家的人接進白城。",
+    "nameZh": "靜海渡月港",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/earthward-gallery",
+    "nameEn": "Terra Framed",
+    "meaning": "富戶把整顆地球框進長廊，受僱者抬著巨幕，把別人的故鄉遮住。",
+    "nameZh": "望地長廊",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/prism-stair",
+    "nameEn": "Prismatic Stair",
+    "meaning": "穹頂的七色光落在侍役搬景的階上，台上換一個白晝，階下便換一班人。",
+    "nameZh": "分光階",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/moonbow-shift-house",
+    "nameEn": "Bow Watch",
+    "meaning": "月弓的光環逐節亮起，換班屋裡的人先喊清場，再看月壤奔向地球。",
+    "nameZh": "月弓換班屋",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "place/lunar-glass-garden",
+    "nameEn": "Canopy of Exiles",
+    "meaning": "巨樹的枝冠在穹頂藍光裡連成異鄉，園丁從樹影下推過自己的工具車。",
+    "nameZh": "穹頂花房",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "faction/dome-households",
+    "nameEn": "Dome Households",
+    "meaning": "同一顆地球照著各家的舞廳，主人隔窗舉手，管家替他們把門打開。",
+    "nameZh": "穹頂住戶",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/eira-vey",
+    "nameEn": "Eira Vey",
+    "meaning": "艾拉在地球藍光裡截住滑落的巨幕，喊人退開；她管一座廳，錢卻不歸她。",
+    "nameZh": "艾拉・維伊",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/han-yeon",
+    "nameEn": "Han Yeon",
+    "meaning": "韓妍攀上穹頂樹冠剪去病枝，身後是整片藍色地球，腳下是別人的故鄉。",
+    "nameZh": "韓妍",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "character/lin-shuqin",
+    "nameEn": "Lin Shuqin",
+    "meaning": "罷工後林淑琴敲響飯盆，朝月弓復亮的窗喊：活著的，坐過來！",
+    "nameZh": "林淑琴",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/rain-under-glass",
+    "nameEn": "Rain of Glass",
+    "meaning": "富戶為一夜歡宴落下滿廳光雨，侍役在地球的倒影裡把巨幕拉到天頂。",
+    "nameZh": "玻璃上的雨",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/moonbow-silent-line",
+    "nameEn": "Before the Silent Bow",
+    "meaning": "月弓停亮後，地勤在人駕白甲前喊不返工，最後先退的是血肉那一排。",
+    "nameZh": "弓前不返工",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   },
+   {
+    "id": "event/whitewall-at-gate",
+    "nameEn": "The White Wall Steps",
+    "meaning": "鐵偶從港閘白光裡踏出，人牆喊別退；凡鐵矢落下，地勤先退進維修井。",
+    "nameZh": "白牆先踏一步",
+    "method": "人名音譯／其餘依意涵取中文，不回譯aka"
+   }
+  ]
+ },
+ "rounds": 1,
+ "acceptance": {
+  "gate": "OK",
+  "mergedVia": "bf-merge",
+  "leadChecks": "lore check 0/0; npm run check 0 errors; typecheck 0; npm test 1028/1028 (merge worktree, once)"
+ },
+ "files": [
+  "content/lore/characters/eira-vey.json",
+  "content/lore/characters/han-yeon.json",
+  "content/lore/characters/lin-shuqin.json",
+  "content/lore/events/moonbow-silent-line.json",
+  "content/lore/events/rain-under-glass.json",
+  "content/lore/events/whitewall-at-gate.json",
+  "content/lore/factions/dome-households.json",
+  "content/lore/places/earthward-gallery.json",
+  "content/lore/places/lunar-glass-garden.json",
+  "content/lore/places/moonbow-shift-house.json",
+  "content/lore/places/prism-stair.json",
+  "content/lore/places/tranquility-ferry-port.json"
+ ],
+ "ids": [
+  "character/eira-vey",
+  "character/han-yeon",
+  "character/lin-shuqin",
+  "event/moonbow-silent-line",
+  "event/rain-under-glass",
+  "event/whitewall-at-gate",
+  "faction/dome-households",
+  "place/earthward-gallery",
+  "place/lunar-glass-garden",
+  "place/moonbow-shift-house",
+  "place/prism-stair",
+  "place/tranquility-ferry-port"
+ ],
+ "gateRejections": []
+}

@@ -1,0 +1,52 @@
+{
+  "id": "contract/bf-genoa-shared-forge",
+  "kind": "scout",
+  "issuerKinds": [
+    "company"
+  ],
+  "requiresRep": -10,
+  "gradeRange": [
+    "D",
+    "C"
+  ],
+  "objectives": [
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/hinge-crab-c"
+      }
+    }
+  ],
+  "pay": {
+    "base": 3600
+  },
+  "advanceMax": 0.2,
+  "deadlineDays": 5,
+  "supplies": [],
+  "onComplete": [
+    {
+      "rep": {
+        "issuer": 5
+      }
+    }
+  ],
+  "onFail": [
+    {
+      "rep": {
+        "issuer": -5
+      }
+    }
+  ],
+  "onCancel": [
+    {
+      "rep": {
+        "issuer": -3
+      }
+    }
+  ],
+  "annoyanceMax": 4,
+  "name": "熱那亞船塢修甲班待料：拆掉夾住新加坡渡輪港卸料道的扣甲；工匠吼「今晚輪到我們拆你！」",
+  "encounter": [
+    "encounter/rift-z-bf-genoa-shared-forge"
+  ]
+}

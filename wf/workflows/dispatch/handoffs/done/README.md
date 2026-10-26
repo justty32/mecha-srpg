@@ -90,4 +90,3 @@
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。
 - 2026-10-26 lead-web：網頁介面補強（營運聲望灰按鈕與門檻、漲潮用字、潮級／天象／下次大潮、戰鬥資源池／移動類別／能力說明／部件／怪獸個體名、百科分類與搜尋與徽章）；交接與盤點在 [done/2026-10-26/lead-web](2026-10-26/lead-web/inv/REPORT.md)
-- 2026-10-26 lead-fill-scen：新增 48 戰鬥情境＋15 戰場地圖（fs-01..07，24 機／24 獸全出場、均不入遭遇池、黃金不變）；計畫與 7 批交接在 [lead-fill-scen](lead-fill-scen/plan/plan.md)，review 在 lead-fill-scen/review.json（commit dc20d7f4）
