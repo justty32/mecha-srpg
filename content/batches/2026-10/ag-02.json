@@ -1,0 +1,56 @@
+{
+ "contract": "content-batch/1",
+ "id": "ag-02",
+ "mode": "polish",
+ "status": "draft",
+ "goal": "ag-01 新設定咬回既有條目：鹽鷗、茉莉、聖馬洛、鹿特丹 body 各補一兩句（一小時必撤、懷錶、抵押帳單、標單）",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-ag-02",
+  "subagents": "0"
+ },
+ "lead": "lead-aegir",
+ "date": "2026-10-26",
+ "base": "",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-aegir/ag-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-aegir/ag-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/world/aegir.md",
+   "content/lore/events/aegir-wakes.json",
+   "content/lore/events/aegir-lien.json",
+   "content/lore/events/first-bid-sheet.json",
+   "content/lore/factions/euro-umbrella.json",
+   "content/lore/factions/inner-sea-houses.json",
+   "wf/workflows/dispatch/handoffs/lead-aegir/cx-ag-02.md"
+  ]
+ },
+ "maxFiles": 4,
+ "allow": {
+  "polishFiles": [
+   "content/lore/factions/salt-gull.json",
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/places/saint-malo.json",
+   "content/lore/places/rotterdam-roost.json"
+  ],
+  "textFields": [
+   "body"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
