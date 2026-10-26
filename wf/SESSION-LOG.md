@@ -14,7 +14,6 @@
 - [dispatch] 2026-10-26 填充層七線（lead-fill 南亞東南亞、lead-aegir 歐洲、lead-fill-am、lead-fill-af、lead-fill-ea、lead-fill-mech、lead-fill-kaiju）進行中；每線交 handoffs/<線>/review.json（每件一兩句白話）→ 全收後開**去重線** → 再交 Fable＋使用者審敘事基調（使用者 2026-10-26 定的流程）
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
-- [content] lead-fill-ea open：ea-01 已入庫（67e0cd8，四把傘＋七事件＋三地）；ea-02 計畫段（astra cx-ea-02p）進行中 → handoffs/lead-fill-ea/
 - [content] lead-fill-kaiju open：怪獸填充（二名之夜孤兒、巢母 C／B、新物種、蝕域群像；codex 批次 kj-01 起）→ handoffs/lead-fill-kaiju/
 
 ## 各工作流 session-log
