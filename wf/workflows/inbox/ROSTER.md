@@ -96,7 +96,7 @@
 - **領地**：CLAIMS「lead-epic-land」列；工人照交接書 `handoffs/lead-epic-land/cx-el-01.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
 
-### `lead-aegir`（含代登記工人 `cx-ag-01`、`cx-ag-02`）
+### `lead-aegir`（含代登記工人 `cx-ag-01`、`cx-ag-02`、`cx-ag-03-plan`、`cx-ag-03`）
 - **狀態**：上線（2026-10-26）
 - **我是誰**：Opus 領導：埃吉爾認主事件與歐傘那一盤的 lore 填充；工人是 codex（lore add 批次 ag-01、polish 批次 ag-02）。
 - **團隊**：`teams/aegir`
@@ -104,7 +104,7 @@
 - **領地**：CLAIMS「lead-aegir」列；工人照交接書 `handoffs/lead-aegir/cx-ag-01.md`、`cx-ag-02.md`
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
 
-### `lead-fill`（含代登記工人 `cx-fill-01`／`cx-fill-02`）
+### `lead-fill`（含代登記工人 `cx-fill-01`／`cx-fill-02`／`cx-fill-03p`／`cx-fill-03`）
 - **狀態**：現役（2026-10-26 上線）
 - **我是誰**：Opus 領導：lore 填充層（開局舞台周邊、崩年後續代表地）；工人是 codex。
 - **團隊**：`teams/fill`

@@ -1,0 +1,96 @@
+{
+ "contract": "content-batch/1",
+ "id": "ag-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "歐洲具名人物 4（港務糧倉協調人、國家派駐專員、公會議價人、熱那亞總匠）與歷史事件 3（鹿特丹沉堤 2089、遷簿令 2093、空城押契 2099）；年表三條、茉莉 relations 與第一張標單 characters 純插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-ag-03",
+  "subagents": "允許，模型隨意，上限 2",
+  "planner": {
+   "model": "gpt-6-astra",
+   "line": "cx-ag-03-plan",
+   "plan": "wf/workflows/dispatch/handoffs/lead-aegir/ag-03/plan.md"
+  }
+ },
+ "lead": "lead-aegir",
+ "date": "2026-10-26",
+ "base": "",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-aegir/ag-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-aegir/ag-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/dispatch/handoffs/lead-aegir/ag-03/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-aegir/cx-ag-03.md"
+  ]
+ },
+ "maxFiles": 10,
+ "allow": {
+  "kinds": [
+   "lore/characters",
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": [
+   {
+    "path": "content/lore/timeline.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/characters/molly-van-den-berg.json",
+    "rule": "superset"
+   },
+   {
+    "path": "content/lore/events/first-bid-sheet.json",
+    "rule": "superset"
+   }
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "見 plan.md 第 4 節：人物英文名放 aka；事件英文原名",
+  "rows": [
+   {
+    "id": "event/rotterdam-breach",
+    "nameEn": "The Broken Dikes of Rotterdam",
+    "meaning": "堤防與補給失去後活人仍留在水邊",
+    "nameZh": "鹿特丹沉堤",
+    "method": "意譯"
+   },
+   {
+    "id": "event/inland-registers",
+    "nameEn": "The Registers Go Inland",
+    "meaning": "國家帶著法理退守，命令仍送回海岸",
+    "nameZh": "遷簿令",
+    "method": "意譯"
+   },
+   {
+    "id": "event/coastal-mortgage",
+    "nameEn": "The Coast in Pledge",
+    "meaning": "拿無人住的沿海土地換活人城牆的錢",
+    "nameZh": "空城押契",
+    "method": "意譯"
+   }
+  ]
+ }
+}
