@@ -1,47 +1,51 @@
-# STATE — 交棒：新 session 的起點（2026-10-25 段落收尾）
+# STATE — 交棒：新 session 的起點（2026-10-26 段落）
 
-[handoffs](README.md)｜非 codex 工作 [engine-backlog](engine-backlog.md)｜下次整理 [next-tidy](next-tidy.md)｜roadmap [planning-roadmap.json](../../planning-roadmap.json)
+[handoffs](README.md)｜非 codex 工作 [engine-backlog](engine-backlog.md)｜下次整理 [next-tidy](next-tidy.md)｜[roadmap](../../planning-roadmap.json)
 
 ## 現況一屏
 
-**遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（節點圖世界、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地；方格大地圖已落地（lead-grid）。
+**遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（方格大地圖、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地。
 
-**測試**：`npm test` 935／935、`npm run check` 0 錯 8 警告（2026-10-25，lead-cockpit 收線時）；`npm run typecheck` 0；`node content/lore/check.ts` 0 錯 2 警告；`npm run test:e2e` 13／13。
+**測試**：[本輪基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。
 
 **網頁**：`npm run dev` → `http://localhost:5173/`：`#/` 戰鬥（`?scenario=<id>&seed=<n>`）、`#/wiki` 百科（F1／Shift+W）、`#/ops` 營運（`?seed=<n>`，`&spectate=1` 全 AI 出戰）。
 
-**MCP**：`.mcp.json` 已掛 `mecha-srpg`（`npm run mcp`，stdio）；codex 試玩用自起 socket（`node src/mcp/cli.ts serve --socket <名>.sock`）。用法 `src/mcp/README.md`。
+**MCP**：`.mcp.json` 已掛 `mecha-srpg`（`npm run mcp`，stdio）；codex 試玩可自起 socket（`node src/mcp/cli.ts serve --socket <名>.sock`），沙箱改 stdio；用法 `src/mcp/README.md`。
 
-**主要指令**：`npm test`、`npm run check`、`npm run typecheck`、`npm run test:e2e`、`npm run sim -- …`、`npm run sim:campaign -- --months N`、`npm run fuzz -- --runs N --mode mix`、`npm run content:probe -- <id…>`、`npm run content:index`、`npm run build`。驗證表全貌見 [testing](../../testing.md)，環境見 [dev-env](../../dev-env.md)。
+**主要指令**：`npm test`、`npm run check`、`npm run typecheck`、`npm run test:e2e`、`npm run sim -- …`、`npm run sim:campaign -- --months N`、`npm run fuzz -- --runs N --mode mix`、`npm run content:probe -- <id…>`、`npm run content:index`、`npm run build`。見 [testing](../../testing.md)、[dev-env](../../dev-env.md)。
 
-**團隊**：頂層 Fable → 領導 Opus → 工人 codex `gpt-6-astra`（reasoning high）；規劃 Fable（[team-model](../../team-model.md)）。
+**團隊**：頂層 Fable → 領導 Opus → 工人 codex（預設 sol；內容計畫 astra → 產出 sol）；規劃 Fable，見 [team-model](../../team-model.md)。
 
 ## 現役
 
-- **無現役線**（2026-10-25 收尾）；CLAIMS 現役表空、`git worktree list` 只有主目錄、無本專案 `cx-*` tmux、inbox 無未 ack 信。
-- 使用者 2026-10-25 已試玩但沒給具體回饋，見 [WAIT_USER](../../../WAIT_USER.md)。延後不派：B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門等數值微調。
+依 [CLAIMS](../CLAIMS.md) 與 [SESSION-LOG](../../../SESSION-LOG.md)：
 
-## 本段落（2026-10-25）做了什麼
+- **lead-engine-next**：AI 自護／友方支援招（68、73）、萬潮葬王副線引擎（57–61）、黃金重錄。
+- **lead-bigfill**：下一輪大填充（月面、可玩內容、加深）。
 
-各線 REPORT 見 [done 索引](done/README.md)：
+## 本段落（2026-10-26）做了什麼
 
-- tidy：01735b4（收線驗收證據入版控）、ff7f3a4（inbox 歸檔）、4b21a50（收尾整理）。
-- [talk-decide](talk-decide/REPORT.md)：Fable 對談八題拍板（機甲核心不耗損、機魂能獨駕、AI 醒魂、精粹改人、大潮全球同一時刻）。
-- [lead-decide-land](done/2026-10-25/lead-decide-land/REPORT.md)：裁示落地到 design-notes／specs／守則／style（頂層代存 4b6992d）。
-- [lead-cockpit](done/2026-10-25/lead-cockpit/REPORT.md)：引擎——機甲核心與座艙、無人機普通開、人帶能力、驅動時數與外貌年齡、AI 醒魂、no-pilots 終局；暫值在 `content/base/rules/cockpit.json`（代存 62ca3ed）。
-- [lead-polish](done/2026-10-25/lead-polish/REPORT.md)：翻譯腔五批 225 檔審、161 檔改。
-- lead-lore-fix（218b154）：阿鏽人格早熟記為特例伏筆；老爹維持釜山育成（身世提案不採）；montreal 學會為買方。
+完整列見 [done 索引](done/README.md)；以下連到各線 REPORT。
+
+<!-- wf-nav -->
+- [secret](done/2026-10-26/lead-secret/REPORT.md)：lore 可見度與百科隱藏真相落地（45）。
+- [tide-cal](done/2026-10-26/lead-tide-cal/REPORT.md)：曆函式與天象旗落地，醒魂改讀大潮（38）。
+- [ironsword](done/2026-10-26/lead-ironsword/REPORT.md)／[resist](done/2026-10-26/lead-resist/REPORT.md)：鐵劍與飛魚入庫、抵抗性與近遠增傷落地，黃金依各線重錄。
+- [epic-land](done/2026-10-26/lead-epic-land/REPORT.md)：plan-epic 已裁示部分落地到世界觀與 lore。
+- 填充七線 [fill](done/2026-10-26/lead-fill/REPORT.md)／[am](done/2026-10-26/lead-fill-am/REPORT.md)／[aegir](done/2026-10-26/lead-aegir/REPORT.md)／[af](done/2026-10-26/lead-fill-af/REPORT.md)／[ea](done/2026-10-26/lead-fill-ea/REPORT.md)／[mech](done/2026-10-26/lead-fill-mech/REPORT.md)／[kaiju](done/2026-10-26/lead-fill-kaiju/REPORT.md)：各區、機甲與怪獸填充收線。
+- [dedup](done/2026-10-26/lead-dedup/REPORT.md)／[tone-fix](done/2026-10-26/lead-tone-fix/report.md)：去重、矛盾統一與 Fable 基調方向 1–5 落地。
+- [rep](done/2026-10-26/lead-rep/REPORT.md)：勢力招牌機聲望門檻、七家營運資料與舊廠件上架（55、56）。
+- [wanchao](done/2026-10-26/lead-wanchao/report.md)：副線 lore 與文案草稿完成，引擎轉 backlog 57–61。
+- [tidy2](lead-tidy2/REPORT.md)：已收線 32 線資料夾移 done、inbox 歸檔、近 8 KB 文件 15 份拆檔、src 四檔行為不變拆檔。
+- [kaiju2](done/2026-10-26/lead-kaiju2/report.md)／[mech2](done/2026-10-26/lead-mech2/report.md)：各增 24 種怪獸／機甲，缺口轉 backlog 62–73。
+
+上段未另存的紀錄：2026-10-25 tidy commits 01735b4／ff7f3a4／4b21a50（驗收證據／inbox／收尾）；當時無現役線、CLAIMS 空、worktree 只主目錄、無本專案 cx-* tmux、inbox 無未 ack 信。
 
 ## 新 session 的第一步
 
-1. 照 `AGENTS.md` 開場（SESSION-LOG／WAIT_USER 計數、`inbox_read.sh wf/inbox/new`）。
-2. 讀本檔 → [codex-handover](codex-handover.md) → [engine-backlog](engine-backlog.md)。
-3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md)、`git worktree list`、`tmux ls | grep '^cx-'`）。
-4. 使用者回饋到了先派修正線（見 WAIT_USER，含 cockpit REPORT 四點）。
-5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆已完成（2026-10-26 lead-tide-cal，醒魂已改讀大潮；天象效果接 39–43，醒魂潮骰機率待使用者定，見 [lead-tide-cal REPORT](done/2026-10-26/lead-tide-cal/REPORT.md)）；第 28 列抵抗性已完成（2026-10-26 lead-resist，17a2fbf；強化打擊／遠程已分近戰遠程增傷 ×1.1 暫值；A 級頭目對 C／B 隊伍變難殺、減半率是否放寬待使用者，見 done 索引）；第 45 列隱藏真相標記已完成（2026-10-26 lead-secret，lore 可見度欄見 content/lore/README「可見度」）；P2 `nameEn`／`etymology` 可另開小線；第 55、56 列國家機進營運與舊廠件上架已完成（2026-10-26 lead-rep，2f4bf2c：勢力招牌機走聲望門檻 `ops-world` rules.repGate，戰役黃金已重錄；待定見 done 索引）；鐵劍（與飛魚）models 入庫已完成（2026-10-26 lead-ironsword，黃金戰役已重錄，以後軌跡變了用 `node test/campaigns/rerecord.ts` 重錄，見 lead-ironsword REPORT（待頂層代存）、done 索引）。
-6. 世界觀：plan-epic 三輪已裁示部分已落地（2026-10-26 lead-epic-land，入口 `design-notes/world.md` 末節：崩年前世界、國家縮而不死、塞勒涅管家、城邦類型、埃吉爾、崩年的底色）；自由城市與黑幫城市的數量、分布、獵牌與催收規則、吉大港（黑幫城市）與環線商隊（自由城市）歸屬 2026-10-26 已定（lead-fill 第 0 步），其餘細節仍提案；填充層已按區開線（lead-fill 南亞＋東南亞＋群島已收線：25 檔 lore＋年表 13 條，白話審稿表 `handoffs/done/2026-10-26/lead-fill/review.json`，矛盾清單在其 REPORT；lead-fill-am 已收線；歐洲 lead-aegir 已收線（埃吉爾認主事件 hidden、開局未發生；歐傘群像 14 檔新增；engine-backlog 50–52；白話審稿表 `handoffs/done/2026-10-26/lead-aegir/review.json` 14 列，矛盾 8 條在其 REPORT）；非洲西亞 af、東北亞 ea、機甲 mech、怪獸 kaiju 見 CLAIMS）；城邦類型欄（engine-backlog）待開；v1 殘項 A2／A4／A5／A6／A7／B2／B4 未裁示。
-7. 內容：阿鏽人格早熟支線待寫（[codex-batches](codex-batches.json) 第 15 列，需使用者定方向再動筆）；其餘 add／polish 批次照 codex-handover。
-8. 整理：設定筆記 `world/essence.md`、`world/scale.md`、`terms.md` 逼近 8 KB，下次動它們前先按主題拆；其餘照 [next-tidy](next-tidy.md)。
-9. 延後的數值微調（B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門；2026-10-26 追加：通用血統拖慢招牌機研發（lead-ironsword）、A 級頭目難殺與 ×1.1 近遠增傷（lead-resist））等使用者開口再排——使用者 2026-10-26：「數值微調這塊可以後期再做」。醒魂機率維持極稀少，不調。
+1. 照 `AGENTS.md` 開場；讀本檔、[codex-handover](codex-handover.md)、[engine-backlog](engine-backlog.md)，再核對 CLAIMS、worktree、tmux 現役與領地。
+2. 先讀 [fill-rulings](fill-rulings.md) 的已定與落地記錄；世界觀未裁示 v1 殘項 A2／A4／A5／A6／A7／B2／B4、城邦類型欄待開；阿鏽早熟支線需使用者定方向再寫（codex-batches 第 15 列）。
+3. 使用者已試玩、尚無具體回饋；有回饋先派修正，見 [WAIT_USER](../../../WAIT_USER.md)（戰鬥九項、cockpit 四點）。數值微調等使用者開口：B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門、通用血統拖慢招牌機、A 級頭目難殺與 ×1.1 增傷；使用者 2026-10-26：「數值微調這塊可以後期再做」。醒魂機率維持極稀少，不調。
+4. 內容批次先查生效表；引擎缺口照 engine-backlog，整理照 [next-tidy](next-tidy.md)。
 
-> `inbox_ack.sh --state` 的 ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`，不再追加到本檔；之前的流水在 `wf/inbox/done/2026-10-24/`。
+> ack 流水自 2026-10-24（lead-tidy）起預設寫 `wf/inbox/done/ack-log.md`；之前在 `wf/inbox/done/2026-10-24/`。

@@ -85,5 +85,6 @@
 | 2026-10-24 | `lead-rename` | 全庫用語改名與翻譯腔重審；定案詞表 69 列與 codex 批次完成 | [lead-rename/](2026-10-24/lead-rename/) |
 | 2026-10-24 | `lead-tidy` | next-tidy 六節整理完成一輪，wf-lint 全 0、測試綠 | [lead-tidy/](2026-10-24/lead-tidy/) |
 | 2026-10-24 | `lead-wrapup` | 兩階段段落收尾：新裁示落地、守則同步與交棒文件更新 | [lead-wrapup/](2026-10-24/lead-wrapup/) |
+| 2026-10-26 | `lead-tidy2` | wf 整理＋重構拆檔：inbox 已收線信 30 封／orders 5／團隊 9 歸檔（7a00591）；近 8 KB 文件 15 份按語意拆（a6b2781）；已收線 32 線資料夾移 done（4472b98，moves.tsv）；src mcp battle／campaign、wiki cards／mount.test 拆檔、行為不變（d65eb1c）；STATE／next-tidy 改寫；不刪檔，建議刪除與殘留見 REPORT | [lead-tidy2/](../lead-tidy2/REPORT.md) |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。

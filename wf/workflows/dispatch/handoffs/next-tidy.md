@@ -1,23 +1,30 @@
-# next-tidy — 重構拆檔與 tidy 清單（2026-10-24 lead-tidy 做完一輪）
+# next-tidy — 重構拆檔與 tidy 清單（2026-10-26 lead-tidy2 做完一輪）
 
-[handoffs](README.md)｜交棒 [STATE](STATE.md)｜流程 [tidy](../../tidy/README.md)、[refactor](../../refactor/README.md)、結構原則 [STRUCTURE](../../../STRUCTURE.md)｜本輪報告 `lead-tidy/REPORT.md`（頂層代存）
+[handoffs](README.md)｜交棒 [STATE](STATE.md)｜流程 [tidy](../../tidy/README.md)、[refactor](../../refactor/README.md)｜結構 [STRUCTURE](../../../STRUCTURE.md)｜[本輪清單](lead-tidy2/done-this-round.md)
 
-2026-10-24 收尾時盤點的六節清單，已由 lead-tidy 跑完一輪。下面分「已完成」與「殘留」；下次動手前重跑 `bash wf/tools/wf-lint.sh --strict .` 與 `git worktree list` 取新數字，刪檔一律先問使用者。
+下次動手前重跑 `bash wf/tools/wf-lint.sh --strict .` 與 `git worktree list` 取新數字；刪檔一律先問使用者。
 
-## 已完成（2026-10-24，lead-tidy）
+## 已完成（2026-10-26，lead-tidy2）
 
-- **wf-lint**：`OVERSIZE ROSTER.md`（24569 B）→ 已收線 38 格封存 `inbox/archive/ROSTER-2026-10-24-c.md`，入口 3.8 KB；`BIGLIST CLAIMS.md` → 已收線三列移除、歷史段改指 [done/README](done/README.md)。lint 從 `oversize=1 biglist=1` 降到全 0（只剩 2 條連結表 warning，見殘留）。
-- **近 8 KB 檔**：design-notes `mechs.md`／`world.md`、`content/world-pillars/{mechs,world,bio-battle}.md`、`decisions.md`（2026-10-23 五筆）、`team-model.md`（分級與消耗速度表）、spec `core/data-model-world.md`、`ops/{battle-interface,data-model-factions-contracts,README,text-ui-contract,data-model-operations-war}.md` 都按主題拆成子檔，原路徑保留當入口、措辭不改、被錨定的標題留入口；`check_anchors.py` 0。
-- **活狀態與收信**：`inbox/new/` 的 lead-gaps-ops REQUEST（`part:undefined`）已在 [engine-backlog](engine-backlog.md) → ack；`mail/` 7 格 41 封已收線工人信 ack，空信箱移除；`teams/` 已收的 ancient／content-monster／content-world／playtest 用 `inbox_team.sh close` 歸檔；已收線的 orders 移 `inbox/done/2026-10-24/orders/`；`done/2026-10-24/teams/` 16 隊名冊進版控。`inbox_ack.sh --state` 預設改寫 `wf/inbox/done/ack-log.md`，STATE.md 不再混 ack 流水。
-- **handoffs**：43 個已收線 `<線名>/` 與 `plan-ops-spec.md` 以 `git mv` 移 `done/<收線日>/`（2026-10-23 四線放 `done/2026-10-23/`，跟它們的交接書同處），開 [done/README](done/README.md) 索引；`fix_moved_links.py` 修 49 檔；搬入的量測工具（`balance-probe.ts`、`bench-ops.ts`、`battle-bench.ts`、`scenario-measure.ts`、`anchored-tally.ts`、`sweep.ts`、`gen_maps.py`、`lint_world.py`）相對 import 補兩層並實跑確認；`testing-checks.json`、content 子流程檔、e2e 註解的工具路徑同步。7 個 `trash/` 與 repo 根 `tmp/` 移進 gitignored 的 `lead-tidy/trash/`（待使用者決定刪不刪）。
-- **worktree**：lead-codex-pilot 收線時已自行清掉，`git worktree list` 只剩主工作樹。
-- **文件同步**：`decisions/2026-10-24-bio-ui.md` 導航改指 `design-notes/bio-mechs.md`（UI 部分指 `mechanics.md`）；spec 殘留三處（`core/rules-battle-flow.md:49` 戰機、砲兵→鐵翼、鐵龜；world-grid json「兩百公里」→「十格」（月面一格 20 km）；`specs/world/README.md` 月弓改 2043 與 lore 一致）；`planning.md` 想法表清空；roadmap 移除已完成 3 列；testing-checks 與 `package.json` scripts 對過（`test:dom`／`test:e2e` 寫在 testing.md）。pilot 收線後追加：`content/README.md` 件數重數（frames 7→89 等，補 `world/` 一列）並標 wf-nav；`content/acceptance-playtest.md` 的 sweep 跑法（`--content` 只吃單一目錄）與 MCP 連線（改 stdio，同 playtest.md）修正；SESSION-LOG 的 pilot 行改已收線。
+<!-- wf-nav -->
+- [inbox REPORT](lead-tidy2/inbox/REPORT.md)（7a00591）：已收線 30 封信 ack、orders 5 份與團隊信箱 9 個歸檔 `wf/inbox/done/2026-10-26/`；ROSTER 已收線格封存，入口 4.4 KB。
+- 拆檔（a6b2781）：近 8 KB 文件 15 份按語意拆成入口＋子檔，措辭不改、錨點 0；design-notes terms／scale／essence、world 六份、ops 四份、core data-model-mech、MCP README；CLAIMS 長格移到「現役細目」。見 [split-a](lead-tidy2/split-a/REPORT.md)／[split-b](lead-tidy2/split-b/REPORT.md)／[split-c](lead-tidy2/split-c/REPORT.md)。
+- [handoffs REPORT](lead-tidy2/move/REPORT.md)（4472b98）：已收線 32 個線資料夾移 `done/<收線日>/`，修連結與 manifest reportDir；done 索引補五線。根層保留活文件、現役線、永久留原處的 lead-codex-pilot、plan-*、talk-*；[moves.tsv](lead-tidy2/moves.tsv)。
+- [程式重構 REPORT](lead-tidy2/code/REPORT.md)（d65eb1c）：MCP battle／campaign、百科 cards／mount.test 四檔按職責拆出 battle-hub／campaign-support／card-builder／pages.test，原匯出不變；`npm test` 966／966。
+
+上一輪（2026-10-24，lead-tidy）六節整理與證據見 [done/README 的 lead-tidy 列](done/README.md)。
 
 ## 殘留（下次）
 
-- `BIGLIST-LINKS`（warning）：`legacy/docs/README.md`（legacy 只讀，要加 `<!-- wf-nav -->` 需使用者同意動 legacy）。
-- `src/ai/adapters/rules-adapter.ts:3`、`src/rules/index.ts:4` 的註解仍寫舊路徑 `handoffs/lead-impl-ai`／`lead-impl-rules`（現在在 `handoffs/done/2026-10-24/`）；下次動那兩檔的程式線順手改。
-- `handoffs/lead-codex-pilot/` **永久留原處**（四份 batch manifest 指向它）；`lead-wrapup/`、`lead-tidy/` 等 lead-wrapup 第二階段（`codex-handover.md`）寫完後移 `done/2026-10-24/` 並在 done/README 追加列（lead-tidy 的 trash 先由使用者決定刪除）。
-- [STATE](STATE.md)「現役」段仍寫 pilot 進行中、wrapup 待第二階段——交給 lead-wrapup 第二階段改。
-- code-map：world-grid 落地後補列；`wf/tools/content_*` 的列由 content 線補。
-- 待使用者決定刪除：`handoffs/done/2026-10-24/lead-tidy/trash/`（約 9.2 MB：7 線的 codex log／pid 與 repo 根誤建的 pilot `tmp/`，清單在 lead-tidy REPORT）。
+<!-- wf-nav -->
+- `BIGLIST-LINKS` warning：`legacy/docs/README.md`；legacy 只讀，加 `<!-- wf-nav -->` 需使用者同意。
+- `src/ai/adapters/rules-adapter.ts:3`、`src/rules/index.ts:4` 註解舊路徑 `handoffs/lead-impl-ai`／`lead-impl-rules`：下次動這兩檔的程式線順手改為 `handoffs/done/2026-10-24/`。
+- `handoffs/lead-codex-pilot/` 永久留原處（四份 batch manifest 指向它）。
+- code-map：`wf/tools/content_*` 的列由 content 線補；world-grid 已列在 code-map.json ops 列。
+- 待使用者決定刪除：`handoffs/done/2026-10-24/lead-tidy/trash/` 約 9.2 MB（7 線 codex log／pid、repo 根誤建 pilot tmp），清單見該線 REPORT。
+- 仍超過 300 行的程式檔都在 lead-engine-next 領地，收線後再拆：`src/ops/sortie/scenario.ts` 382、`ui-adapter/vm/controller.ts` 345、`ops/world/actors.ts` 342、`ops/sim/policies.ts` 329、`sim/probe.ts` 323、`core/types-def.ts` 313、`content/loader.ts` 307、`test/ai/intent.test.ts` 301。
+- `content/lore/README.md` 8131 B 逼近上限（lead-bigfill 領地，收線後拆）；一批 7.5–8.1 KB spec／流程檔（`specs/core/ai.md`、`inbox/README.md`、`content/lore/style.md` 等）下次動前先拆。
+- `.gitignore` 的 `handoffs/*/trash/` 只蓋一層；搬進 `done/<日>/<線>/trash/` 不會被忽略，調度者決定要不要加 `handoffs/done/*/*/trash/`。
+- `content/batches/2026-10/` 92 份清單扁平放，可按線分子資料夾，先確認 content 工具找清單方式。
+- 封存檔與歷史 REPORT 正文的舊 handoffs 路徑照規則不改，清單 `handoffs/lead-tidy2/move/residual-paths.json`。
+- 驗收 `find … -size +8192c` 若未排除 `dispatch/handoffs/`（REPORT 證據）與 gitignored `wf/inbox/.state/` 會數到數百個；建議範圍與 wf-lint 一致（它本來排除 handoffs）。

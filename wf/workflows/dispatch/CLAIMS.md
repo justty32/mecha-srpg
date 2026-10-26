@@ -10,7 +10,6 @@
 |----|---------|------------|---------|
 | `lead-engine-next` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-tidy2` | `wf/` 整理、拆檔與 src 四檔（細目見 `handoffs/lead-tidy2/common.md`） | lead-engine-next 交接區、`content/`、其餘 `src/` | 2026-10-26 |
 
 ### 現役細目
 
