@@ -1,0 +1,70 @@
+{
+  "id": "frame/ru-brazier-ii",
+  "name": "長爐-II型・爐座",
+  "nameEn": "Long Hearth Brazier II",
+  "etymology": "Brazier 是盛住長火的爐座，沿長爐系列取爐座，為提案名。俄國保有資源調度與內陸產能，棄東令留下的北岸據點卻仍補不滿人手與核心，於是沿公刻堅盾圖系試做長守砲架。兩前足與背架分擔三種射擊，撤掉近戰刃與盾陣，改用架砲穩住準頭；停步與較低迴避就是代價，被貼近仍須等同伴解圍。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/m2-hexapod-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-cannon",
+    "right-weapon": "component/mx-radiant-rifle",
+    "back-1": "component/mx-falling-star-mortar",
+    "system-1": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 3,
+    "perception": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 150,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 187.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 150
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 187.5
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/m2-brace-deploy"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-russia-umbrella",
+    "series-hearth"
+  ]
+}

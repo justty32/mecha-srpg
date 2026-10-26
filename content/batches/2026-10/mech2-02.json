@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mech2-02",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "機甲種類擴充第 02 批：ix-wain-01、league-gantry-02、shellsoc-pin-04、ix-porter-ii、longspear-kneeler-v2、thirdblade-skate-iv、ru-brazier-ii、selene-iris-g6",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-mech2",
  "date": "2026-10-26",
- "base": "67506fa954aedd43e9fb6f6b558ff6a80b15256e",
+ "base": "89e2582fe18e8c636f2cd5454348b33ab81d069d",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-02",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-02/REPORT.md",
@@ -79,11 +79,354 @@
    "frame/ru-hearth-i",
    "frame/selene-valkyrie"
   ],
-  "waivers": []
+  "waivers": [
+   {
+    "id": "frame/ix-wain-01",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+   },
+   {
+    "id": "frame/league-gantry-02",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+   },
+   {
+    "id": "frame/longspear-kneeler-v2",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：monster/reaper-c ×1 勝率 0%"
+   },
+   {
+    "id": "frame/selene-iris-g6",
+    "flag": "band",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+   },
+   {
+    "id": "frame/selene-iris-g6",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 0%"
+   },
+   {
+    "id": "frame/shellsoc-pin-04",
+    "flag": "winrate",
+    "reason": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+   }
+  ]
  },
  "playtest": {
   "required": 2,
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-02/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-02/mcp-log"
- }
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T14:36:50",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "fail"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-26T14:42:53",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "mech2-02",
+  "round": 2,
+  "at": "2026-10-26T14:42:53",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/frames/ix-porter-ii.json",
+   "content/base/frames/ix-wain-01.json",
+   "content/base/frames/league-gantry-02.json",
+   "content/base/frames/longspear-kneeler-v2.json",
+   "content/base/frames/ru-brazier-ii.json",
+   "content/base/frames/selene-iris-g6.json",
+   "content/base/frames/shellsoc-pin-04.json",
+   "content/base/frames/thirdblade-skate-iv.json",
+   "content/lore/events/harbor-last-watch.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/ix-porter-ii",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 100%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "high",
+     "id": "frame/ix-porter-ii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ix-porter-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-porter-ii",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.4 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "frame/ix-wain-01",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 20%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "low",
+     "id": "frame/ix-wain-01",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+    },
+    {
+     "id": "frame/ix-wain-01",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ix-wain-01",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 20% 敗 40% 平 40% 輪 13.6 原因 {\"eliminate:repelled\": 3, \"timeout\": 2}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "frame/league-gantry-02",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+    },
+    {
+     "id": "frame/league-gantry-02",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/league-gantry-02",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 60% 敗 20% 平 20% 輪 12.2 原因 {\"eliminate\": 3, \"eliminate:repelled\": 1, \"timeout\": 1}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/longspear-kneeler-v2",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 0%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "low",
+     "id": "frame/longspear-kneeler-v2",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：monster/reaper-c ×1 勝率 0%"
+    },
+    {
+     "id": "frame/longspear-kneeler-v2",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 7.8 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/longspear-kneeler-v2",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/ru-brazier-ii",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/ru-brazier-ii",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/ru-brazier-ii",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/ru-brazier-ii",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 520 < A 級下限 560",
+     "key": "band:base:frame/selene-iris-g6:衍型機總層 HP",
+     "id": "frame/selene-iris-g6",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：衍型機總層 HP 520 < A 級下限 560"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 0%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "low",
+     "id": "frame/selene-iris-g6",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/selene-aurora ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/selene-iris-g6",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/selene-iris-g6",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/selene-iris-g6",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-i ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-i ×1",
+     "side": "low",
+     "id": "frame/shellsoc-pin-04",
+     "waived": "使用者裁示數值後期統一調（2026-10-26）；本批數值照計畫比照機暫填，不做平衡。首例：frame/bulwark-i ×1 勝率 0%"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 100%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "high",
+     "id": "frame/shellsoc-pin-04",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/shellsoc-pin-04",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 0% 敗 100% 平 0% 輪 7.8 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/shellsoc-pin-04",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 100% 敗 0% 平 0% 輪 10.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/thirdblade-skate-iv",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/thirdblade-skate-iv",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/thirdblade-skate-iv",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/thirdblade-skate-iv",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 2,
+   "rows": 2,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 30,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "leadNotes": [
+  "第 1 輪 test 紅 3 項皆逾時（三批驗收並行跑造成：stdio e2e 60s、隨機圖效能、隨機小情境生成 30 秒），第 2 輪改單獨跑。"
+ ],
+ "files": [
+  "content/base/frames/ix-porter-ii.json",
+  "content/base/frames/ix-wain-01.json",
+  "content/base/frames/league-gantry-02.json",
+  "content/base/frames/longspear-kneeler-v2.json",
+  "content/base/frames/ru-brazier-ii.json",
+  "content/base/frames/selene-iris-g6.json",
+  "content/base/frames/shellsoc-pin-04.json",
+  "content/base/frames/thirdblade-skate-iv.json",
+  "content/lore/events/harbor-last-watch.json"
+ ],
+ "ids": [
+  "frame/ix-porter-ii",
+  "frame/ix-wain-01",
+  "frame/league-gantry-02",
+  "frame/longspear-kneeler-v2",
+  "frame/ru-brazier-ii",
+  "frame/selene-iris-g6",
+  "frame/shellsoc-pin-04",
+  "frame/thirdblade-skate-iv",
+  "event/harbor-last-watch"
+ ]
 }

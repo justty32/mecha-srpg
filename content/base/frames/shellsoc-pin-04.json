@@ -1,0 +1,56 @@
+{
+  "id": "frame/shellsoc-pin-04",
+  "name": "LS-4",
+  "nameEn": "Survey Pin 4",
+  "etymology": "Survey Pin 是測繪落針的意象；沿 LS-3 編為 LS-4，代號為提案名。南極探勘失散後，學會委託工坊替受雇護衛改裝多目血統的輕機，讓探路者先留下標記再退回隊列。標記改成內建，右手換曲射拋矢筒，背部煙幕掩護撤離。學會仍靠雇用護衛，這份委製沒有替它建起軍隊；凡鐵拋矢也不能替代隊友的對獸兵器。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-biped-scout",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-shard-grenade",
+    "back-1": "component/mx-ash-mist"
+  },
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 7,
+    "evasion": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 90,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 112.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 90
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 112.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-rift-trace"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-many-eyes",
+    "faction-shell-society",
+    "mech",
+    "human"
+  ]
+}

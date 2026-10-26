@@ -1,0 +1,68 @@
+{
+  "id": "frame/longspear-kneeler-v2",
+  "name": "長槍-V2・伏架",
+  "nameEn": "Longspear Kneeler V2",
+  "etymology": "Kneeler 取伏低支架的姿勢，意譯伏架，為提案名。長槍-V4 定版後，工坊依公開圖另試四足低伏支系；V2 只是這條支系的迭代，沒有改寫長槍圖紙的來歷。兩把槍分掛前足，省去背架齊射，流光不足還能改用矢池。架砲可穩住準頭，卻會降低迴避並停住本回合的移動；斷一隻前足便少一種射擊。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-quadruped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/mx-rune-rifle",
+    "sensor-mount": "component/mx-hawk-eye"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "accuracy": 4
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/m2-brace-deploy"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "mech",
+    "human"
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "id": "frame/thirdblade-skate-iv",
+  "name": "鰩魚-IV型",
+  "nameEn": "Third Blade Skate IV",
+  "etymology": "Skate 是寬鰭海魚，取名鰩魚，為提案名。百燈破圍讓釜山研發線看見撤船側衛的缺口，第三刃因而沿既有鰭刃血統試做舟形機。刃在舟首，拘束矢在舟尾，側浮架承載排燼片；隊友能看出要保哪一側，也能各拆一職。懸行移動沿地形規則，背部噴口只給短暫增益；舟身仍佔一格，不承諾載人或拖船。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/m2-keel-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-tidefin-twins",
+    "right-weapon": "component/mx-binding-harpoon",
+    "system-1": "component/mx-frost-fins",
+    "back-1": "component/mx-tide-leap"
+  },
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6,
+    "evasion": 10
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "mech",
+    "human",
+    "hover"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "frame/ix-porter-ii",
+  "name": "鐵劍-II型・扶梁",
+  "nameEn": "Ironsword Porter II",
+  "etymology": "Porter 是承托重物的人，取意為扶梁，為提案名。鐵劍共用修造冊公開後，港邊吊工能照冊修造，便把熟悉的跨架輪廓改成護撤工位。吊臂的鳴刃負責自衛，配重同掛繫泊鉗與排燼扶架，替正在退下的同伴爭一息。配重一破，牽滯與排燼便一起失去；橫索只擾亂來敵，不能把人或機拖走。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-gantry-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-singing-blade",
+    "right-weapon": "component/m2-mooring-jaw",
+    "system-1": "component/m2-relief-cradle"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5,
+    "evasion": -1
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "track"
+  ]
+}

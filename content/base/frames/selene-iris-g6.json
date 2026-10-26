@@ -1,0 +1,73 @@
+{
+  "id": "frame/selene-iris-g6",
+  "name": "虹使-G6",
+  "nameEn": "Selene Iris G6",
+  "etymology": "Iris 取神話中傳話虹使的意涵，中文虹使為提案名。塞勒涅接到護航標單後，沿靜海血統試做少數有人駕駛的分翼機；公司能供型錄，卻補不出可靠駕駛員，這批試翼也不能代替地面軍隊。它放棄女武神的俯衝傷害，改以標記、範圍干擾與自身光幕護航。兩翼各掛一把主武器，尾段分放流光囊與排燼片；飛行依地形規則，失翼仍會折損火力。",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/m2-splitwing-a",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-hush-pulse",
+    "right-weapon": "component/mx-radiant-rifle",
+    "sensor-mount": "component/mx-thousand-eye",
+    "system-1": "component/mx-essence-cell",
+    "system-2": "component/mx-frost-fins",
+    "back-1": "component/mx-tide-leap"
+  },
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 7,
+    "accuracy": 5,
+    "evasion": 12
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 120,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 120,
+      "regen": 20,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-aurora-veil"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "mech",
+    "human",
+    "flight"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "id": "frame/league-gantry-02",
+  "name": "GL-02",
+  "nameEn": "League Gantry 02",
+  "etymology": "Gantry 取跨架工位之意，GL-02 是軍械庫工位代號，為提案名。崩年斷鏈留下的舊機仍須有人回收，軍械庫沿夸父圖系授權工坊，把犁的工具裝到舊履帶車上，省下另購機甲核心的錢。切割鋸集中在砲塔，扶架留在車體，放棄盾陣換來替同伴排燼的工位；它能近戰切割，不能拖走傷機或補回裝甲。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/mx-tracked-d",
+  "defaultLoadout": {
+    "main-gun": "component/mx-molten-saw",
+    "system-1": "component/m2-relief-cradle"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 30,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 30,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "faction-league",
+    "series-plough",
+    "engineering",
+    "track"
+  ]
+}

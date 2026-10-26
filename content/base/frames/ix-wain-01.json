@@ -1,0 +1,67 @@
+{
+  "id": "frame/ix-wain-01",
+  "name": "IX-08",
+  "nameEn": "Ironsword Wain 08",
+  "etymology": "Wain 指承重的輪車；沿鐵劍共用修造冊編為 IX-08，中文代號為提案名。鐵劍於二一〇六年公開圖紙後，小工坊能修機，卻仍缺跟得上撤隊的救急人手，於是把排燼扶架安在後軸。它循夸父公刻圖系的共通接口，用砲塔護住同伴；後軸毀損便失去排燼，沒有拖機或修復本領。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "defaultLoadout": {
+    "main-gun": "component/mx-rune-rifle",
+    "system-1": "component/m2-relief-cradle"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 5,
+    "evasion": -1
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 40,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 40,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-ironsword",
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "track"
+  ]
+}
