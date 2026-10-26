@@ -1,0 +1,290 @@
+{
+  "id": "bodyplan/m2-quadruped-c",
+  "name": "四足-C",
+  "nameEn": "Trestle C",
+  "etymology": "讓重拳分落四個支點",
+  "parts": [
+    {
+      "id": "torso",
+      "name": "軀幹",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 43,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 47,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        },
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        },
+        {
+          "id": "armor-mount",
+          "type": "armorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "name": "頭部",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 19,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 24,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "front-left",
+      "name": "左前足",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 28,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 33,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "left-weapon",
+          "type": "weaponMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "locomotion",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "front-right",
+      "name": "右前足",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 28,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 33,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "right-weapon",
+          "type": "weaponMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "locomotion",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "rear-left",
+      "name": "左後足",
+      "exposure": 0.5,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 19,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 21,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "rear-right",
+      "name": "右後足",
+      "exposure": 0.5,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 19,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 22,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "back",
+      "name": "背架",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 14,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "back-1",
+          "type": "backMount",
+          "size": 2
+        }
+      ],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

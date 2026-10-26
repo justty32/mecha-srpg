@@ -1,0 +1,50 @@
+{
+  "id": "ability/m2-catch-line",
+  "name": "攔路橫索",
+  "nameEn": "Crossline",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [
+    {
+      "pool": "heat",
+      "owner": "mech",
+      "amount": 10
+    }
+  ],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/m2-dragged"
+      ]
+    }
+  ],
+  "cooldown": 2,
+  "tags": [
+    "control",
+    "debuff"
+  ],
+  "ai": {
+    "tactics": {
+      "debuff": 1,
+      "disable": 1
+    }
+  }
+}

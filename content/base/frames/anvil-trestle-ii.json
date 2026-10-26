@@ -1,0 +1,57 @@
+{
+  "id": "frame/anvil-trestle-ii",
+  "name": "鐵砧-II型・架鐵",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-quadruped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-brokenarm-stake",
+    "right-weapon": "component/mx-singing-blade",
+    "system-1": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 4,
+    "accuracy": 2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "mech",
+    "human"
+  ],
+  "nameEn": "Anvil Trestle II",
+  "etymology": "Trestle 取承重支架之意，架鐵把斷臂血統的重拳分落四足。2104 年鐵砧-II型下線後，受雇破口部隊仍會因單側掛件損壞停手；守線工坊因而提出四足改型，把樁與刃分掛前足，後足另負排燼，不替獵團添出無限產能。"
+}

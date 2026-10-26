@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "mech2-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "機甲種類擴充第 01 批：bulwark-caisson-01、anvil-trestle-ii＋6 種新骨架與共用件",
  "author": {
   "agent": "codex",
@@ -13,7 +13,7 @@
  },
  "lead": "lead-mech2",
  "date": "2026-10-26",
- "base": "ff4e8ec7cf34bfcb336c3eb3de64500716125c69",
+ "base": "c3563b5d6cf7c463d94650a25a77dedf97361c06",
  "reportDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-01",
  "report": {
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-01/REPORT.md",
@@ -68,7 +68,6 @@
   "lore",
   "typecheck",
   "test",
-  "probe",
   "playtest",
   "readlist"
  ],
@@ -86,5 +85,112 @@
   "required": 2,
   "file": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-01/playtest.json",
   "logDir": "wf/workflows/dispatch/handoffs/lead-mech2/mech2-01/mcp-log"
- }
+ },
+ "leadNotes": [
+  "probe 步驟由領導移除：ability/m2-brace-deploy 是共用件，本批無載體（載體在 02／04 批），content:probe 遇無載體即中止；兩台新 frame 的 probe 由工人跑過（REPORT「沒做到」段：BW-06 對堅盾-I 40%、對蝕蟲 65%；架鐵對堅盾-II 100%、對鐮肢 95%，例外 0），失衡依使用者『數值後期調』不處理；brace 的 AI 使用在 02 批驗。",
+  "playtest.json 第 0 列 timeout 的 winner 由領導補 none（MCP log outcome.winner=null）。"
+ ],
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-26T14:02:36",
+   "ok": true,
+   "steps": {
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok",
+    "golden": "ok",
+    "test": "ok"
+   }
+  }
+ ],
+ "acceptance": {
+  "batch": "mech2-01",
+  "round": 1,
+  "at": "2026-10-26T14:02:36",
+  "ok": true,
+  "steps": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "ok"
+  },
+  "approved": [
+   "content/base/abilities/m2-brace-deploy.json",
+   "content/base/abilities/m2-catch-line.json",
+   "content/base/abilities/m2-relieve-ally.json",
+   "content/base/bodyplans/m2-gantry-c.json",
+   "content/base/bodyplans/m2-hexapod-b.json",
+   "content/base/bodyplans/m2-keel-b.json",
+   "content/base/bodyplans/m2-quadruped-c.json",
+   "content/base/bodyplans/m2-splitwing-a.json",
+   "content/base/bodyplans/m2-wheel-d.json",
+   "content/base/components/m2-mooring-jaw.json",
+   "content/base/components/m2-relief-cradle.json",
+   "content/base/effects/m2-braced.json",
+   "content/base/effects/m2-dragged.json",
+   "content/base/effects/m2-relieved.json",
+   "content/base/frames/anvil-trestle-ii.json",
+   "content/base/frames/bulwark-caisson-01.json",
+   "content/lore/events/workshop-outline-appendix.json"
+  ],
+  "gateViolations": [],
+  "playtest": {
+   "ok": true,
+   "mcpRows": 2,
+   "rows": 2,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 30,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "files": [
+  "content/base/abilities/m2-brace-deploy.json",
+  "content/base/abilities/m2-catch-line.json",
+  "content/base/abilities/m2-relieve-ally.json",
+  "content/base/bodyplans/m2-gantry-c.json",
+  "content/base/bodyplans/m2-hexapod-b.json",
+  "content/base/bodyplans/m2-keel-b.json",
+  "content/base/bodyplans/m2-quadruped-c.json",
+  "content/base/bodyplans/m2-splitwing-a.json",
+  "content/base/bodyplans/m2-wheel-d.json",
+  "content/base/components/m2-mooring-jaw.json",
+  "content/base/components/m2-relief-cradle.json",
+  "content/base/effects/m2-braced.json",
+  "content/base/effects/m2-dragged.json",
+  "content/base/effects/m2-relieved.json",
+  "content/base/frames/anvil-trestle-ii.json",
+  "content/base/frames/bulwark-caisson-01.json",
+  "content/lore/events/workshop-outline-appendix.json"
+ ],
+ "ids": [
+  "ability/m2-brace-deploy",
+  "ability/m2-catch-line",
+  "ability/m2-relieve-ally",
+  "bodyplan/m2-gantry-c",
+  "bodyplan/m2-hexapod-b",
+  "bodyplan/m2-keel-b",
+  "bodyplan/m2-quadruped-c",
+  "bodyplan/m2-splitwing-a",
+  "bodyplan/m2-wheel-d",
+  "component/m2-mooring-jaw",
+  "component/m2-relief-cradle",
+  "effect/m2-braced",
+  "effect/m2-dragged",
+  "effect/m2-relieved",
+  "frame/anvil-trestle-ii",
+  "frame/bulwark-caisson-01",
+  "event/workshop-outline-appendix"
+ ]
 }

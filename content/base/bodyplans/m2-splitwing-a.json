@@ -1,0 +1,268 @@
+{
+  "id": "bodyplan/m2-splitwing-a",
+  "name": "分翼-A",
+  "nameEn": "Pinion A",
+  "etymology": "武器隨左右翼段分掛",
+  "parts": [
+    {
+      "id": "torso",
+      "name": "軀幹",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 64,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 70,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        },
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        },
+        {
+          "id": "armor-mount",
+          "type": "armorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "nose",
+      "name": "前靈目",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 23,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 29,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "left-wing",
+      "name": "左主翼",
+      "exposure": 1.2,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 58,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 71,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "left-weapon",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "back-1",
+          "type": "backMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "locomotion",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "right-wing",
+      "name": "右主翼",
+      "exposure": 1.2,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 59,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 70,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "right-weapon",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "back-2",
+          "type": "backMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "locomotion",
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "tail-left",
+      "name": "左尾翼",
+      "exposure": 0.4,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 17,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 21,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "tail-right",
+      "name": "右尾翼",
+      "exposure": 0.4,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 18,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "system-2",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ability/m2-relieve-ally",
+  "name": "借我一息",
+  "nameEn": "A Breathing Space",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/m2-relieved"
+      ]
+    }
+  ],
+  "cooldown": 2,
+  "tags": [
+    "support",
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1,
+      "buff": 0.8
+    }
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "id": "ability/m2-brace-deploy",
+  "name": "伏架瞄準",
+  "nameEn": "Brace",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "self",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false,
+    "friendly": "only"
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "self",
+      "apply": [
+        "effect/m2-braced"
+      ]
+    }
+  ],
+  "cooldown": 2,
+  "tags": [
+    "support",
+    "buff"
+  ],
+  "ai": {
+    "tactics": {
+      "buff": 1
+    }
+  }
+}

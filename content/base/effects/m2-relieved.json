@@ -1,0 +1,38 @@
+{
+  "id": "effect/m2-relieved",
+  "name": "緩燼",
+  "nameEn": "Relief",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": 6,
+      "source": "effect/m2-relieved"
+    }
+  ],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "heat",
+        "delta": -15
+      }
+    ]
+  },
+  "tags": [
+    "buff",
+    "guard"
+  ],
+  "ui": {
+    "badge": "緩燼"
+  }
+}

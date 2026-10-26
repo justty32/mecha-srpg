@@ -1,0 +1,58 @@
+{
+  "id": "frame/bulwark-caisson-01",
+  "name": "BW-06",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "defaultLoadout": {
+    "main-gun": "component/mx-scatter-rune",
+    "armor-mount": "component/mx-porcelain-plate"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "track"
+  ],
+  "nameEn": "Bulwark Caisson 06",
+  "etymology": "Caisson 取守住堤腳的沉箱意象，中文沿守備代號 BW-06。2093 年堅盾公刻後，城門民兵能沿公開圖修造；這款輪座提案把胸甲、砲塔與可換輪軸拆開，讓守備班能輪換修機，仍由座艙裡的人驅動機甲核心。"
+}

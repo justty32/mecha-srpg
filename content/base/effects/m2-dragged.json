@@ -1,0 +1,35 @@
+{
+  "id": "effect/m2-dragged",
+  "name": "牽滯",
+  "nameEn": "Held Fast",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -8,
+      "source": "effect/m2-dragged"
+    },
+    {
+      "path": "self.attrs.initiative",
+      "op": "add",
+      "value": -4,
+      "source": "effect/m2-dragged"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "stagger"
+  ],
+  "ui": {
+    "badge": "牽滯"
+  }
+}

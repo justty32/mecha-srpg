@@ -1,0 +1,35 @@
+{
+  "id": "effect/m2-braced",
+  "name": "伏架",
+  "nameEn": "Braced",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": 10,
+      "source": "effect/m2-braced"
+    },
+    {
+      "path": "self.attrs.evasion",
+      "op": "add",
+      "value": -5,
+      "source": "effect/m2-braced"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "buff",
+    "rooted"
+  ],
+  "ui": {
+    "badge": "伏架"
+  }
+}

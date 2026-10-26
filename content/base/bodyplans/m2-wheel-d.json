@@ -1,0 +1,194 @@
+{
+  "id": "bodyplan/m2-wheel-d",
+  "name": "輪座-D",
+  "nameEn": "Wain D",
+  "etymology": "載重輪座，守住低處",
+  "parts": [
+    {
+      "id": "torso",
+      "name": "軀幹",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "slots": [
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        },
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        },
+        {
+          "id": "armor-mount",
+          "type": "armorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 60,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 54,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turret",
+      "name": "砲塔",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 42,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 42,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "main-gun",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "weaponMount",
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "front-axle",
+      "name": "前輪軸",
+      "exposure": 0.6,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 24,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 27,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "side-tool",
+          "type": "weaponMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "rear-axle",
+      "name": "後輪軸",
+      "exposure": 0.6,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 24,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 27,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}
