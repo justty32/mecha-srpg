@@ -1,0 +1,66 @@
+{
+ "contract": "content-batch/1",
+ "id": "mf-03",
+ "mode": "add",
+ "status": "draft",
+ "goal": "機甲史 lore：堅盾三城出廠、銀環入型錄、堅盾-II 定版、長槍-V4 定版、燕鷗、FR-7／AT-12 公發、獵犬-II 授權 7 事件＋舊廠諸家群像，依 plan-02",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-mf-03",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": {
+   "line": "cx-mf-plan02",
+   "model": "gpt-6-astra",
+   "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/plan-02/PLAN.md"
+  }
+ },
+ "lead": "lead-fill-mech",
+ "date": "2026-10-26",
+ "base": "",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/history-lines/c-essence.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-mech/plan-02/PLAN.md",
+   "wf/workflows/content/lore-text.md",
+   "content/lore/README.md",
+   "content/lore/style/people.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "content/lore/factions/mimic-works.json",
+   "content/lore/factions/league-armory.json",
+   "content/lore/events/shield-open-carving.json",
+   "content/lore/events/longspear-leak.json",
+   "content/lore/events/lance-v4.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-mech/cx-mf-03.md",
+   "plan-02/PLAN.md"
+  ]
+ },
+ "maxFiles": 8,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}

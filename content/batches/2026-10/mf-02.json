@@ -1,0 +1,62 @@
+{
+ "contract": "content-batch/1",
+ "id": "mf-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "舊軍工非核心件型錄 6 件（腿架、液壓、臂甲、靈目座、護艙隔板、排燼背架），依 plan-02",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-mf-02",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": {
+   "line": "cx-mf-plan02",
+   "model": "gpt-6-astra",
+   "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/plan-02/PLAN.md"
+  }
+ },
+ "lead": "lead-fill-mech",
+ "date": "2026-10-26",
+ "base": "",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/history-lines/c-essence.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-mech/plan-02/PLAN.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-mech/cx-mf-02.md",
+   "plan-02/PLAN.md"
+  ]
+ },
+ "maxFiles": 6,
+ "allow": {
+  "kinds": [
+   "base/components"
+  ],
+  "namePrefix": {
+   "base/*": "oa-"
+  },
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "readlist"
+ ]
+}
