@@ -317,7 +317,7 @@ export class BattleController {
     const ability = this.mode.kind === "target" ? this.mode.ability : null;
     const range = ability && actor ? q.abilityRange(s, actor, ability) : null;
     for (let y = v.y; y < v.y + v.h; y++) for (let x = v.x; x < v.x + v.w; x++) {
-      const cell = this.vm.cell(x, y), key = cellKey(x, y);
+      const cell = this.vm.cell(x, y, this.selected), key = cellKey(x, y);
       if (x === this.cursor.x && y === this.cursor.y) cell.cursor = true;
       if (cell.unit?.id === this.selected) cell.selected = true;
       if (move?.has(key)) cell.highlight = "reach";
@@ -335,7 +335,7 @@ export class BattleController {
     const viewportKey = JSON.stringify(v), dirty = viewportKey !== this.lastViewport ? "all" : [...changed];
     this.lastViewport = viewportKey; this.lastCells = fingerprints;
     this.presentation.collect(this.session);
-    const inspected = this.vm.cell(this.cursor.x, this.cursor.y), terrain = db.require("terrain", inspected.terrain.id);
+    const inspected = this.vm.cell(this.cursor.x, this.cursor.y, this.selected), terrain = db.require("terrain", inspected.terrain.id);
     const outcome = this.session.outcome();
     const commands = this.commands();
     return { title: this.title, round: s.round, maxRounds: s.rt?.maxRounds ?? null, activeUnit: actor,
@@ -343,7 +343,7 @@ export class BattleController {
         text: outcome.winner === null ? "戰鬥結束：平局" : outcome.winner === this.session.playerSlot ? "戰鬥結束：我方勝利" : "戰鬥結束：我方戰敗" } : null,
       map: { width: s.map.width, height: s.map.height }, viewport: { ...v }, cells, dirty,
       cursor: { ...this.cursor }, mode: structuredClone(this.mode), selected: this.selected ? this.vm.unit(this.selected) : null,
-      inspect: { ...this.cursor, terrainName: terrain.name, terrainNote: `高度 ${terrain.height}／掩護 ${terrain.cover}${terrain.blocksLos ? "／阻擋視線" : ""}`,
+      inspect: { ...this.cursor, terrainName: terrain.name, terrainNote: `高度 ${terrain.height}／掩護 ${terrain.cover}${terrain.blocksLos ? "／阻擋視線" : ""}${inspected.travelNote ? `\n${inspected.travelNote}` : ""}`,
         ...(inspected.unit ? { unit: this.vm.unit(inspected.unit.id) } : {}) },
       commands, log: structuredClone(this.presentation.log), message: this.message,
       busy: this.busy(), confirm: this.confirmation ? { ...this.confirmation } : null, fx: structuredClone(this.presentation.fx),

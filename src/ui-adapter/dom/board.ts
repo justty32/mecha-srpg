@@ -8,7 +8,7 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
   node.className = ["battle-cell", cell.highlight && `highlight-${cell.highlight}`,
     cell.cursor && "cursor", cell.selected && "selected", cell.intent && "intent"].filter(Boolean).join(" ");
   node.style.backgroundColor = cell.terrain.color;
-  node.title = `${cell.terrain.name}${cell.unit ? ` · ${cell.unit.name}` : ""}`;
+  node.title = `${cell.terrain.name}${cell.unit ? ` · ${cell.unit.name}` : ""}${cell.unit?.notice ? `\n${cell.unit.notice}` : ""}${cell.travelNote ? `\n${cell.travelNote}` : ""}`;
   node.dataset.tip = node.title;
   node.setAttribute("aria-label", `${cell.x},${cell.y} ${node.title}`);
   const glyph = doc.createElement("span");
@@ -19,6 +19,12 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
     const badge = doc.createElement("span");
     badge.className = `unit-badge side-${cell.unit.side}${cell.unit.active ? " active" : ""}${cell.unit.stale ? " stale" : ""} status-${cell.unit.status}`;
     badge.textContent = cell.unit.label;
+    if (cell.unit.status === "presence") {
+      const marker = doc.createElement("span");
+      marker.className = "presence-marker";
+      marker.textContent = "在場";
+      badge.append(marker);
+    }
     const hp = doc.createElement("span");
     hp.className = "cell-hp";
     const fill = doc.createElement("span");

@@ -17,6 +17,7 @@ export type UnitBadge = {
   hpRatio: number;                  // 0..1，所有可見層 hp 和／max 和；未偵察的層不計
   status: "active" | "derelict" | "presence";
   selectable?: boolean;
+  notice?: string;
   stale?: boolean;                  // [lead-ui-fix] 不在視野內：畫在最後所見位置、灰色殘影（不擋點擊）
 };
 
@@ -26,6 +27,7 @@ export type Highlight = "reach" | "path" | "target" | "range";
 export type CellView = {
   x: number; y: number;
   terrain: { id: Id; name: string; glyph: string; color: string };
+  travelNote?: string;              // 選中單位的靜態地形通行說明；不代表實際可達
   unit?: UnitBadge;
   selectable?: boolean;
   highlight?: Highlight;
@@ -35,7 +37,8 @@ export type CellView = {
 };
 
 export type LayerView = { type: string; hp: number | null; max: number; broken: boolean };   // type＝中文名；hp null＝未偵察
-export type PartView = { id: string; name: string; broken: boolean; layers: LayerView[] };
+export type PartView = { id: string; name: string; broken: boolean; layers: LayerView[];
+  functions?: string[]; components?: { id: Id; slot: string; name: string; functions: string[] }[] };
 export type PoolView = { id: string; name: string; cur: number; max: number | null };         // max null＝無上限
 export type EffectView = { id: Id; name: string; stacks: number; remaining: number | null };
 export type PersonView = { id: Id; name: string; seat: string; role: string; morale: string };
@@ -45,6 +48,9 @@ export type UnitView = {
   selectable?: boolean;
   id: Id; name: string; frameName: string; owner: FactionSlot; side: Side;
   pos: Cell; controlMode: string; status: string;
+  movementName?: string; frameClassName?: string;
+  familyName?: string; ecologyNotes?: string[];
+  presenceNote?: string; auraNotes?: string[];
   persons: PersonView[]; parts: PartView[]; pools: PoolView[]; effects: EffectView[];
   /** [lead-ui-fix] 敵方：視野內＝全部部件與每層即時血量（stale false）；離開視野＝最後所見快照（stale true、seenRound 為所見輪）。
    *  我方恆為 false／null。從未見過的敵方：stale true、parts 只有結構、hp null。 */

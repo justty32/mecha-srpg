@@ -29,12 +29,20 @@ function unitPanel(node: HTMLElement, unit: UnitView | null): void {
   node.append(element(doc, "h3", unit.name, `side-${unit.side}`),
     element(doc, "p", `${unit.frameName} · ${unit.pos.x},${unit.pos.y} · ${unit.controlMode} · ${unit.status}`));
   if (unit.stale) node.append(element(doc, "p", unit.seenRound === null ? "尚未觀測" : `最後所見：第 ${unit.seenRound} 輪`, "stale-note"));
+  if (unit.movementName || unit.frameClassName) node.append(element(doc, "p", [unit.frameClassName, unit.movementName].filter(Boolean).join(" · ")));
+  if (unit.familyName) node.append(element(doc, "p", `怪獸家族：${unit.familyName}`));
+  for (const note of unit.ecologyNotes ?? []) node.append(element(doc, "p", note));
+  if (unit.presenceNote) node.append(element(doc, "p", unit.presenceNote, "presence-note"));
+  for (const note of unit.auraNotes ?? []) node.append(element(doc, "p", note, "aura-note"));
   for (const person of unit.persons) {
     node.append(element(doc, "p", `${person.role}：${person.name} · 士氣 ${person.morale}`));
   }
   for (const part of unit.parts) {
     const section = element(doc, "section", "", part.broken ? "broken" : "");
     section.append(element(doc, "h4", `${part.name}${part.broken ? "（損毀）" : ""}`));
+    if (part.functions?.length) section.append(element(doc, "p", `部位功能：${part.functions.join("、")}`));
+    for (const component of part.components ?? []) section.append(element(doc, "p",
+      `${component.slot}：${component.name} · ${component.functions.join("、") || "被動部件"}`, "installed-component"));
     for (const layer of part.layers) section.append(meter(doc, `${layer.type}${layer.broken ? "（損毀）" : ""}`, layer.hp, layer.max));
     node.append(section);
   }
@@ -97,6 +105,8 @@ export function createPanels(nodes: PanelNodes): (s: UiSnapshot) => void {
       nodes.inspect.replaceChildren(element(doc, "h2", `查看 ${info.x},${info.y}`),
         element(doc, "h3", info.terrainName), element(doc, "p", info.terrainNote));
       if (info.unit) nodes.inspect.append(element(doc, "p", `${info.unit.name} · ${info.unit.frameName} · ${info.unit.status}`, `side-${info.unit.side}`));
+      if (info.unit?.presenceNote) nodes.inspect.append(element(doc, "p", info.unit.presenceNote, "presence-note"));
+      for (const note of info.unit?.auraNotes ?? []) nodes.inspect.append(element(doc, "p", note, "aura-note"));
     }
     if (changed("log", s.log)) {
       nodes.log.replaceChildren(...s.log.map(line => {

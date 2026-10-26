@@ -89,3 +89,4 @@
 | 2026-10-26 | `lead-engine-next` | 引擎一批：AI 會用自護／原地側閃／友方卸燼支援招（新 `src/ai/support.ts`，以預覽前後差值估實際增閃、治療、有需求的燼卸載；protect 免護衛指派、berserk 可自增益；盾甲舉盾 0→38、叩闕甲豎甲 0→28 次，排燼扶架高燼用低燼不用；kaiju2 權宜 8 招改回 protect／escape）；萬潮葬王副線引擎 57–61（王跡欄、8–24 蝕月大潮夜腳本北行、presence 不可交戰在場單位、北岸新增淺蝕區、第 40 蝕月守牆＋主動迎戰＋capture-once）、base-drafts 14 列落 content/base；ops-relic 重錄、戰鬥黃金不變；grid-health 換 seed 2；engine-backlog 57–61／68／73 完成；codex 4 條（計畫 astra 2、產出 sol 2）；commit 1d3cc64、16114d1、c948641 | [lead-engine-next/](../lead-engine-next/)（交接書 4 份、ai-plan／wc-plan 計畫、ai-01／wc-01 REPORT；總 REPORT 在回傳頂層的匯報） |
 
 其他：`2026-10-23/wf-team-install-REPORT.md`（wf 團隊工具安裝）、`2026-10-24/cx-mon-*.md`（lead-content-monster 四份工人交接書）。
+- 2026-10-26 lead-web：網頁介面補強（營運聲望灰按鈕與門檻、漲潮用字、潮級／天象／下次大潮、戰鬥資源池／移動類別／能力說明／部件／怪獸個體名、百科分類與搜尋與徽章）；交接與盤點在 [done/2026-10-26/lead-web](2026-10-26/lead-web/inv/REPORT.md)

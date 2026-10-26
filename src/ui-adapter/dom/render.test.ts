@@ -114,3 +114,39 @@ test("showHelp 顯示 keyHints 表與 kbd", t => {
   assert.equal(help.querySelector("table th")!.textContent, "結束回合");
   assert.equal(help.querySelector("table kbd")!.textContent, "e");
 });
+
+test("B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料", t => {
+  const { root, view, snapshot } = setup(t), unit = snapshot.selected!;
+  unit.movementName = "潮行"; unit.frameClassName = "古代機";
+  unit.familyName = "菌絲"; unit.ecologyNotes = ["蛻皮：條件成熟時會蛻變成另一形態。", "育幼：會孵育子獸加入戰場。", "預告：具備攻擊前兆；並非當下攻擊意圖。"];
+  unit.parts[0]!.functions = ["移動"];
+  unit.parts[0]!.components = [{ id: "component/test", slot: "插槽 1", name: "潮行足", functions: ["能力：踏潮"] }];
+  snapshot.cells[0]!.travelNote = "地形基礎通行（潮行）：成本 1；實際可達格依移動預覽";
+  snapshot.dirty = "all"; view.render(snapshot);
+  const panel = root.querySelector('[data-ui="unit"]')!.textContent!;
+  assert.match(panel, /古代機 · 潮行/); assert.match(panel, /怪獸家族：菌絲/);
+  assert.match(panel, /蛻皮/); assert.match(panel, /育幼/); assert.match(panel, /並非當下攻擊意圖/);
+  assert.match(panel, /部位功能：移動/); assert.match(panel, /插槽 1：潮行足 · 能力：踏潮/);
+  const cell = root.querySelector('[data-x="12"][data-y="18"]')!;
+  assert.match(cell.getAttribute("data-tip")!, /地形基礎通行（潮行）：成本 1/);
+});
+
+test("K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因", t => {
+  const { root, view, snapshot } = setup(t), unit = snapshot.selected!;
+  unit.name = "吉大港的那隻「萬潮葬王」"; unit.status = "在場／不可交戰";
+  unit.presenceNote = "在場／不可交戰：迎戰前不能攻擊或捕捉，仍佔據此格。";
+  unit.auraNotes = ["光環：滅港潮懼（影響全場敵我作戰單位）"];
+  snapshot.inspect.unit = unit;
+  const badge = snapshot.cells[0]!.unit!;
+  badge.status = "presence"; badge.selectable = false; badge.name = unit.name;
+  badge.notice = [unit.presenceNote, ...unit.auraNotes].join("\n");
+  snapshot.commands.push({ id: "engagePresence:lord", label: "迎戰萬潮葬王", group: "system",
+    tooltip: "確認後迎戰", enabled: false, reason: "此戰場不可主動迎戰", action: { type: "engagePresence", target: "lord" } });
+  snapshot.dirty = "all"; view.render(snapshot);
+  assert.equal(root.querySelector(".unit-badge.status-presence .presence-marker")!.textContent, "在場");
+  assert.match(root.querySelector('[data-ui="inspect"]')!.textContent!, /不可交戰.*不能攻擊或捕捉/);
+  assert.match(root.querySelector('[data-ui="inspect"]')!.textContent!, /滅港潮懼.*全場敵我/);
+  const button = root.querySelector('[data-cmd="engagePresence:lord"]')!;
+  assert.equal(button.hasAttribute("disabled"), true);
+  assert.match(button.parentElement!.getAttribute("data-tip")!, /此戰場不可主動迎戰/);
+});

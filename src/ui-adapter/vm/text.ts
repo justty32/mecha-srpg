@@ -7,8 +7,11 @@ import { layerTypeLabel } from "./labels.ts";
 export function unitName(db: ContentDB, state: BattleState, id: string): string {
   const u = state.units[id];
   if (!u) return id || "單位";
-  const namedPresence = state.rt?.presences?.[id] && state.rt.monsters[id]?.def;
-  if (namedPresence) return db.require("monster", namedPresence).name ?? db.require("species", u.frame).name;
+  const monsterId = state.rt?.monsters[id]?.def;
+  if (monsterId) {
+    const monster = db.require("monster", monsterId);
+    if (monster.name || monster.epithet) return [monster.name, monster.epithet ? `「${monster.epithet}」` : ""].filter(Boolean).join("");
+  }
   const body = db.get("frame", u.frame) ?? db.get("species", u.frame);
   const pilot = Object.values(u.seats).map(pid => pid ? state.persons[pid] : undefined).find(p => p?.seat?.role === "pilot");
   return pilot ? `${db.require("person", pilot.def).name}／${body?.name ?? u.frame}` : body?.name ?? u.frame;
