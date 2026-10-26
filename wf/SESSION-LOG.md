@@ -13,6 +13,8 @@
 
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
+- [dispatch] lead-epic-land open：plan-epic v1–v3 已裁示部分落地到設定筆記與 lore → handoffs/lead-epic-land/
+
 ## 各工作流 session-log
 
 | 工作流 | session-log | open 摘要 |
