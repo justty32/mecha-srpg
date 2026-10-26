@@ -2,7 +2,7 @@
  "contract": "content-batch/1",
  "id": "am-01",
  "mode": "add",
- "status": "draft",
+ "status": "accepted",
  "goal": "南北美洲 2108-01 第一批：北美那把傘、內陸財團、拉美那把傘三個勢力；丹佛、紐約空城、休士頓井城（公司城）、巴拿馬閘城（自由城市）、里約（黑幫城市）、巴西利亞六地；改名的日子、商路約、刑天的戶籍三事件；年表與兩個既有地點只插入",
  "author": {
   "agent": "codex",
@@ -170,5 +170,54 @@
     "method": "意譯"
    }
   ]
- }
+ },
+ "rounds": 1,
+ "acceptance": {
+  "round1": {
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "check": "ok",
+   "gate": "ok",
+   "golden": "ok",
+   "test": "fail"
+  },
+  "waiver": "test 唯一失敗＝content/index 一致性（_summary.json 8317 B > 8192 B，索引摘要隨批次數撐大，屬工具層問題；工作樹內 content_index.py 已有他方未提交修正把逐批資料移出 summary）；內容相關步驟 gate／check／lore／typecheck／golden／readlist 全過",
+  "carry": "timeline.json 因別線已改被拒，由領導以 tl_merge 只插入本批 3 條到 HEAD 版",
+  "leadEdits": "north-american-umbrella.json 兩句去掉後設語（「仍是提案」「玩家」）"
+ },
+ "files": [
+  "content/lore/events/renaming-day.json",
+  "content/lore/events/trade-route-charter.json",
+  "content/lore/events/xingtian-registry.json",
+  "content/lore/factions/heartland-capital.json",
+  "content/lore/factions/latam-umbrella.json",
+  "content/lore/factions/north-american-umbrella.json",
+  "content/lore/places/brasilia.json",
+  "content/lore/places/denver.json",
+  "content/lore/places/houston-wells.json",
+  "content/lore/places/new-york-hollow.json",
+  "content/lore/places/panama-locks.json",
+  "content/lore/places/rio.json",
+  "content/lore/places/mexico-city.json",
+  "content/lore/places/montreal.json",
+  "content/lore/timeline.json"
+ ],
+ "ids": [
+  "event/renaming-day",
+  "event/trade-route-charter",
+  "event/xingtian-registry",
+  "faction/heartland-capital",
+  "faction/latam-umbrella",
+  "faction/north-american-umbrella",
+  "place/brasilia",
+  "place/denver",
+  "place/houston-wells",
+  "place/new-york-hollow",
+  "place/panama-locks",
+  "place/rio",
+  "place/mexico-city",
+  "place/montreal"
+ ],
+ "gateRejections": []
 }
