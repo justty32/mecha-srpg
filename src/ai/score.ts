@@ -11,6 +11,7 @@ import { shouldRetreat } from "./retreat.ts";
 import { OBJECTIVE_DEFAULTS, objectiveInfo, objectiveMoveValue, objectiveTargetFactor } from "./objectives.ts";
 import type { AiParams } from "./policy.ts";
 import { pursuitCells } from "./knowledge.ts";
+import { isSupport, supportKind, supportDelta, supportCost, supportUsed, SUPPORT_DEFAULTS } from "./support.ts";
 
 const DEFAULTS = {
   survive: 1, heal: 1, buff: 0.5, attack: 1, disable: 0.5, debuff: 0.5, capture: 0, protect: 1, scout: 0.3,
@@ -109,7 +110,7 @@ export function want(ctx: AiCtx, unitId: Id, target?: Id): Record<string, number
   return {
     survive, attack: p.attack, attackArea: p.attack, disable: p.disable, debuff: p.debuff,
     capture: p.capture + (target && objectiveInfo(ctx.q, ctx.view, ctx.slot).spare.includes(target) ? p.objCapture : 0),
-    protect: ctx.assignment?.protect ? p.protect : 0, heal: p.heal, buff: p.buff,
+    protect: p.protect, heal: p.heal, buff: p.buff,
     scout: ctx.know.visible.length === 0 ? p.scout : p.scout * 0.2, escape: survive,
     retreat: shouldRetreat(ctx, morale, forceRatio(ctx.q, ctx.s, ctx.view, ctx.slot), p, unitId) ? p.retreat : 0,
   };
@@ -187,10 +188,16 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     state = moved.state;
   }
   const def = q.abilityDef(cmd.ability), target = cmd.target?.unit ?? (def.target.kind === "self" ? agent.unit : undefined);
+  const support = isSupport(def) ? supportKind(ctx, def, agent.unit) : undefined;
+  if (support && supportUsed(agent, view.round, cmd.ability)) return -Infinity;
+  let supportValue = 0, offensiveChanged = false;
   const areaTargets = new Set<Id>(), effects: Record<Id, number> = {}, hits: Record<Id, number> = {};
   const inspectEffects = def.effects.length > 0 && (def.ai.tactics.debuff !== undefined || def.ai.tactics.disable !== undefined);
   const outcome = previewOutcome(q, state, cmd, undefined, DEFAULTS.tries, ({ result, state: after }, before) => {
     if (!result.ok) return;
+    if (support?.measured) supportValue += supportDelta(ctx, agent.unit, def, before, after);
+    if (support?.measured && support.offensive) offensiveChanged ||= Object.keys(before.units).some(id => after.units[id]
+      && (["accuracy", "initiative"] as const).some(attr => q.roleAttr(after, id, attr) > q.roleAttr(before, id, attr)));
     const affected = new Set<Id>();
     for (const e of result.events) if ((e.type === "Hit" || e.type === "Miss") && e.payload.unit === cmd.actor
       && e.payload.ability === cmd.ability && typeof e.payload.target === "string") {
@@ -216,7 +223,7 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     return value * Math.min(2, factor > 1 ? Math.max(ratio, damage / Math.max(1, p.objHpScale)) : ratio) +
       (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0);
   };
-  let score = 0;
+  let score = 0, oldSupport = 0;
   for (const tactic of Object.keys(weights).sort()) {
     let value = 0;
     if (["attack", "disable", "debuff", "capture"].includes(tactic)) {
@@ -253,7 +260,20 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     } else if (tactic === "escape") {
       value = Math.max(0, dangerAt(ctx.danger, actor.pos) - dangerAt(ctx.danger, destination));
     }
-    score += weights[tactic]! * (needs[tactic] ?? 0) * value * hit;
+    const term = weights[tactic]! * (needs[tactic] ?? 0) * value * hit;
+    if (support?.measured && ["heal", "buff", "protect"].includes(tactic)) oldSupport += term;
+    else score += term;
+  }
+  if (support?.measured) {
+    const sp = { ...SUPPORT_DEFAULTS, ...ctx.params };
+    const benefit = supportValue / Math.max(1, outcome.runs);
+    const multiplier = Math.max((weights.buff ?? 0) * p.buff * sp.supportBuffScale,
+      (weights.protect ?? 0) * p.protect, (weights.heal ?? 0) * p.heal, (weights.escape ?? 0) * sp.supportEscape);
+    const measured = multiplier * benefit - supportCost(ctx, agent.unit, def, state);
+    const useful = support.offensive && offensiveChanged ? Math.max(measured, oldSupport) : measured;
+    // 位移進展仍可用純 Move；無收益施法不得靠任務分／逃離分復活。
+    if (useful <= 0 && !["attack", "attackArea", "disable", "debuff", "scout"].some(t => (weights[t] ?? 0) > 0)) return -Infinity;
+    score += useful;
   }
   return score - p.moveCost * steps - danger + objectiveMove;
 }

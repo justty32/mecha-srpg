@@ -7,7 +7,7 @@
 
 import type { Id, CellKey } from "../core/ids.ts";
 import type { FactionSlot } from "../core/types-def.ts";
-import type { AbilityDef, Cell, Grade, LayerDef, NumExpr, PartDef, PartId } from "../core/types-def.ts";
+import type { AbilityDef, Cell, EffectDef, Grade, LayerDef, NumExpr, PartDef, PartId, PoolDecl } from "../core/types-def.ts";
 import type { BattleState, Command } from "../core/types-state.ts";
 import type { GameEvent } from "../core/events.ts";
 
@@ -56,6 +56,10 @@ export interface RulesQuery {
   /** innateAbilities ∪ 未毀部件的 abilities，排序去重。 */
   abilitiesOf(s: BattleState, unitId: Id): Id[];
   abilityDef(abilityId: Id): AbilityDef;
+  effectDef(effectId: Id): EffectDef;
+  poolDecls(s: BattleState, unitId: Id): PoolDecl[];
+  /** 戰鬥角色屬性＝機體與指令權者合計；evalNum 的 attrs 只讀指令權者。 */
+  roleAttr(s: BattleState, unitId: Id, role: "evasion" | "accuracy" | "initiative"): number;
   /** target.range 以 unitId 為 self 求值。 */
   abilityRange(s: BattleState, unitId: Id, abilityId: Id): { min: number; max: number };
   /** 行動入口 ①②③（含成本、冷卻、射程、LOS），無副作用；合法＝null。 */

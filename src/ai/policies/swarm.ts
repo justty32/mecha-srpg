@@ -2,7 +2,7 @@ import type { Id } from "../../core/ids.ts";
 import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { scoreCandidate } from "../score.ts";
-import { proposeTactical } from "./tactical.ts";
+import { proposeTactical, stationarySupport } from "./tactical.ts";
 
 const DEFAULTS = { leash: 3, swarmReturn: 1 };
 
@@ -29,7 +29,7 @@ registerPolicy({
     const distance = ctx.q.distance(pos, home);
     const leash = ctx.params.leash ?? DEFAULTS.leash;
     if (distance > leash) {
-      const candidates: Candidate[] = [];
+      const candidates: Candidate[] = stationarySupport(ctx, agent);
       for (const key of Object.keys(ctx.q.reachable(ctx.view, agent.unit)).sort()) {
         const [x, y] = key.split(",").map(Number);
         const cell = { x: x!, y: y! };

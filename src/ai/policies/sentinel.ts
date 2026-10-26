@@ -2,7 +2,7 @@ import type { Cell } from "../../core/types-def.ts";
 import type { Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { scoreCandidate } from "../score.ts";
-import { proposeTactical } from "./tactical.ts";
+import { proposeTactical, stationarySupport } from "./tactical.ts";
 
 function isCell(value: unknown): value is Cell {
   return typeof value === "object" && value !== null && "x" in value && "y" in value
@@ -20,7 +20,7 @@ registerPolicy({
     if (distance === 0) {
       return proposeTactical(ctx, agent, { maxMoves: 0 }).filter((c) => c.cmd.kind === "useAbility" || c.cmd.kind === "end");
     }
-    const candidates: Candidate[] = [];
+    const candidates: Candidate[] = stationarySupport(ctx, agent);
     for (const key of Object.keys(ctx.q.reachable(ctx.view, agent.unit)).sort()) {
       const [x, y] = key.split(",").map(Number);
       const cell = { x: x!, y: y! };

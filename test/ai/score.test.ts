@@ -156,7 +156,8 @@ test("scoreCandidate 移動、支援、偵察及結束候選依固定公式估�
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "end", actor: "a" } }), 0.01);
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "retreat", actor: "a" } }), 0);
   const repair: Command = { kind: "useAbility", actor: "a", ability: "stub:ability/repair", target: { unit: "a" } };
-  assert.ok(scoreCandidate(ctx, agent, { cmd: repair }) > 0);
+  // 替身 repair 不執行真正治療，滿血施放沒有邊際收益。
+  assert.equal(scoreCandidate(ctx, agent, { cmd: repair }), -Infinity);
   const scan: Command = { kind: "useAbility", actor: "a", ability: "stub:ability/scan", target: { unit: "b" } };
   const initialScan = scoreCandidate(ctx, agent, { cmd: scan });
   ctx.know.lastSeen.hidden = { cell: { x: 8, y: 4 }, round: 0 };

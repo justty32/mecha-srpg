@@ -85,6 +85,9 @@ export function createStubRules(abilities: Record<Id, AbilityDef> = loadStubAbil
     return found;
   }
   const q: RulesQuery = {
+    effectDef: id => { throw new Error(`未知替身效果：${id}`); },
+    poolDecls: () => [],
+    roleAttr: () => 0,
     inBounds: (s, c) => c.x >= 0 && c.y >= 0 && c.x < s.map.width && c.y < s.map.height,
     distance: (a, b) => Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)),
     unitAt: (s, c) => Object.keys(s.units).sort().find(id =>

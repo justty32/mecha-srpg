@@ -1,12 +1,14 @@
 import { registerPolicy } from "../policy.ts";
 import type { Candidate } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
+import { stationarySupport } from "./tactical.ts";
+import { scoreCandidate } from "../score.ts";
 
 const DEFAULTS = { rearDistance: 1, rearCohesion: 0.2, rearDanger: 0.05 };
 registerPolicy({
   id: "regroup", band: 1,
   propose(ctx, agent) {
-    const candidates: Candidate[] = [];
+    const candidates: Candidate[] = stationarySupport(ctx, agent);
     for (const key of Object.keys(ctx.q.reachable(ctx.view, agent.unit)).sort()) {
       const [x, y] = key.split(",").map(Number);
       const path = ctx.q.pathTo(ctx.view, agent.unit, { x: x!, y: y! });
@@ -15,7 +17,7 @@ registerPolicy({
     return candidates;
   },
   score(ctx, agent, candidate) {
-    if (candidate.cmd.kind !== "move") return 0;
+    if (candidate.cmd.kind !== "move") return scoreCandidate(ctx, agent, candidate);
     const { q, view } = ctx, p = { ...DEFAULTS, ...ctx.params }, from = view.units[agent.unit]!.pos;
     const to = candidate.cmd.path.at(-1) ?? from;
     const enemies = Object.keys(view.units).filter(id => q.isActive(view, id) && q.hostile(view, agent.unit, id));

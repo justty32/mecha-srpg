@@ -14,6 +14,8 @@ interface Policy   { id: Id; propose(ctx, agent): Candidate[]; score(ctx, agent,
 
 `Strategy` 持有陣營知識與分工（例：接敵登記，AI-15；守／攻模式，AI-06 改造成單一 `stance` 值），每輪輪始產生 `Assignment`（目標優先、要守的格、要護的單位）給各 Agent 當 `want` 的輸入。`Policy` 是純函式插件，用 id 登記在 `ai/policies/`；內容包的 `aiProfile` 指向一個 Policy＋參數。預設提供：`tactical`（下述通用流程）、`berserk`（只攻最近者、不退）、`swarm`（子體跟母體）、`sentinel`（守格不追）、`flee`（士氣逃跑用）、`scripted`（情境腳本序列）。
 
+SPEC-GAP 補（2026-10-26 lead-engine-next）：berserk 保持追敵與不退的狂攻評分，容許目標僅自身且有正邊際收益的自護／自增益。攻擊增益沿用既有公式，須預覽確認新增屬性且施放後仍有合法、可付成本的攻擊；不做攻擊 lookahead。自護依當前威脅與實際增閃收益，按 berserkDefenseThreshold／berserkDefenseCap 比較既有攻擊；不插入友方支援。
+
 ## 知識模型（AI-05 不採用「全知名單」）
 
 `FactionKnowledge = { visible: Set<unitId>; lastSeen: Record<unitId, { cell, round }>; revealed: Record<unitId, Record<PartId, LayerKnowledge>> }`。感測＝該 slot 所有單位 `perception` 半徑（含感測部件 contribs）的聯集，每輪重算；離開視野的單位保留 `lastSeen`、過期 `k` 輪後移除。對手內層 HP 預設只知道 body plan 的**公開欄**（層的種類與順序、最大 HP），`revealed` 由偵察能力（`tags:["scan"]`）寫入實際值。估值讀 `FactionKnowledge`，**不讀真實狀態**；玩家 UI 讀同一份（所以玩家也看不到未偵察的內層實值）。
@@ -25,6 +27,8 @@ interface Policy   { id: Id; propose(ctx, agent): Candidate[]; score(ctx, agent,
 **第 2 步・候選生成**（AI-09 改造：不是「先抽技能再找目標」）：對每個可負擔的能力 × 合法目標（含 `part` 選項若 `partAim.allowed`）× 必要時的站位（移動後能打到的格，AI-13/14：先粗篩距離與危險，再對前 N 個做尋路）生成 `Candidate = { move?: Cell; cmd: Command }`；加上 `Wait`、`End`、`Retreat`、`Eject`（hp 池極低且 Assignment 允許）。
 
 **第 3 步・評分**：`score = Σ_tactic ability.ai.tactics[t] × want[t] × targetValue(t, target) × hitChance − cost(c) − danger(move)`。`targetValue`（AI-08 改造）：預估傷害用 `previewCommand` 在知識狀態上跑（不是真實狀態）、乘上目標價值（grade、威脅＝其能力權重總和、剩餘層數、是否 Assignment 目標、是否可收尾）；`disable` 看目標部位 `functions` 的價值表；`capture` 看捕捉條件接近度；`escape` 看危險圖（AI-18：由已知敵人射程與 ZoC 疊成的 heat map，接敵與撤退共用）。
+
+SPEC-GAP 補（2026-10-26 lead-engine-next）：`support.ts` 共用現有預覽的 before／after，按實際增閃×可見威脅、層 HP 恢復及 inverted 池需求計算支援收益，扣施放成本；buff／protect／heal／escape 取最大分類係數，不重乘命中率。護衛指派只加目標優先係數；原地側閃可計防護收益。卸載主用途在低池量、沒有該池或沒有實際卸載時，不為附帶增閃計分。純攻擊增益保留舊公式，混合招取新收益與實際新增攻擊屬性的舊公式較大者；召喚等未識別作用保留舊分支。零收益純支援不得由 objectiveMove 救回；支援招成功後以 actor＋round 記憶防同招重放，refresh／ignore 無新增量不計分。tactical 最多額外保留 maxSupportMoves 個低成本合法支援格；sentinel／regroup／swarm 回防或回巢只插不移位支援，flee／scripted 維持原策略。
 
 **第 4 步・選擇**（AI-03 改造＋TM-26）：候選依分數排序，取 `score >= topScore × band`（參數，預設 0.8）的前段，按分數加權抽一個；`berserk`／`scripted` 用 band=1（取最高）。無正分候選→`End`。
 

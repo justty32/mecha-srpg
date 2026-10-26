@@ -66,6 +66,7 @@ test("友軍範圍增益候選、多人加分與敵方受益扣分", () => {
     const a = ability(kind, { packets: [], target: { kind, radius: 1, range: { min: 0, max: 9 }, los: false, friendly: "only" },
       effects: [{ on: "always", apply: [buff.id] }], ai: { tactics: { buff: 1, heal: 1, protect: 1 } } });
     const ctx = context([a]);
+    ctx.danger = { "4,3": 6, "5,3": 6 };
     ctx.assignment = { unit: "a", stance: "hold", protect: "c", allowRetreat: false };
     ctx.view.units.c!.pos = { x: 5, y: 3 };
     const c = use(a, { cell: { ...ctx.view.units.c!.pos } });
@@ -76,6 +77,7 @@ test("友軍範圍增益候選、多人加分與敵方受益扣分", () => {
     assert.ok(two > one && one > 0);
     // 另建 yes 的 DB 檢查敵方受益對稱扣分。
     const mixed = context([{ ...a, target: { ...a.target, friendly: "yes" } }]);
+    mixed.danger = { "4,3": 6, "5,3": 6 };
     mixed.view.units.c!.pos = { x: 5, y: 3 };
     const penalized = score(mixed, c);
     mixed.params.enemyBuffPenalty = 0;

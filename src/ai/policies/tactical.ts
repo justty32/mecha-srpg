@@ -7,12 +7,13 @@ import { lethalParts, scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
 import { pursuitCells } from "../knowledge.ts";
 import { mobile } from "../intent.ts";
+import { isSupport, supportUsed } from "../support.ts";
 
-const DEFAULTS = { maxMoves: 8 };
+const DEFAULTS = { maxMoves: 8, maxSupportMoves: 4 };
 // 經 AiCtx 取 RulesQuery 的目標型別（policies 不直接 import rules-query，讓「rules 只在 adapters/」的 grep 乾淨）。
 type AbilityTarget = NonNullable<Parameters<AiCtx["q"]["checkAbility"]>[3]>;
 
-export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: number; hostileOnly?: boolean; allowMove?: (cell: Cell) => boolean }): Candidate[] {
+export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: number; hostileOnly?: boolean; allowMove?: (cell: Cell) => boolean; supportOnly?: boolean }): Candidate[] {
   const { q, view } = ctx;
   const actor = agent.unit;
   const self = view.units[actor];
@@ -54,8 +55,32 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
     }
   }
   for (const cell of firingMoves) if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
+  // 支援位置以最低移動成本選取；預覽後仍須付得起施放且有實際收益。
+  if (moveLimit > 0 && agent.policy === "tactical") {
+    const supportMoves: Cell[] = [];
+    const limit = Math.max(0, Math.floor(ctx.params.maxSupportMoves ?? DEFAULTS.maxSupportMoves));
+    for (const cell of [...reachable].sort((a, b) => reachCosts[cellKey(a.x, a.y)]! - reachCosts[cellKey(b.x, b.y)]! || a.x - b.x || a.y - b.y)) {
+      if (supportMoves.length >= limit) break;
+      const abilities = q.abilitiesOf(view, actor).filter(id => isSupport(q.abilityDef(id))
+        && q.abilityDef(id).target.kind !== "self" && !supportUsed(agent, view.round, id));
+      if (!abilities.length) break;
+      const path = q.pathTo(view, actor, cell);
+      if (!path) continue;
+      const moved = q.previewCommand(view, { kind: "move", actor, path });
+      if (!moved.result.ok) continue;
+      const legal = abilities.some(ability => others.some(unit => {
+        if (q.hostile(view, actor, unit)) return false;
+        const def = q.abilityDef(ability), target = def.target.kind === "unit" || def.target.kind === "part"
+          ? { unit } : { cell: moved.state.units[unit]!.pos };
+        if (q.checkAbility(moved.state, actor, ability, target) !== null) return false;
+        return scoreCandidate({ ...ctx, view: moved.state }, agent, { cmd: { kind: "useAbility", actor, ability, target } }) > 0;
+      }));
+      if (legal) supportMoves.push(cell);
+    }
+    for (const cell of supportMoves) if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
+  }
   // berserk 共用候選產生器，但仍維持只追敵的原有行為。
-  if (agent.policy !== "berserk" && opts?.hostileOnly !== false) {
+  if (opts?.maxMoves !== 0 && agent.policy !== "berserk" && opts?.hostileOnly !== false) {
     const objectiveMoves = reachable.map(cell => ({ cell, value: objectiveMoveValue(ctx, actor, self.pos, cell) }))
       .filter(c => c.value > 0).sort((a, b) => b.value - a.value || a.cell.x - b.cell.x || a.cell.y - b.cell.y)
       .slice(0, Math.max(0, Math.floor(ctx.params.objMoves ?? OBJECTIVE_DEFAULTS.objMoves)));
@@ -75,6 +100,8 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
     }
     for (const ability of [...q.abilitiesOf(state, actor)].sort()) {
       const def = q.abilityDef(ability);
+      if (opts?.supportOnly && !isSupport(def)) continue;
+      if (isSupport(def) && supportUsed(agent, state.round, ability)) continue;
       if (def.mode !== "activated" && def.mode !== "sustained") continue;
       if (def.mode === "sustained" && state.units[actor]!.sustained.includes(ability)) continue;
       const targets: AbilityTarget[] = [];
@@ -134,3 +161,8 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
 }
 
 registerPolicy({ id: "tactical", propose: proposeTactical, score: scoreCandidate });
+
+export function stationarySupport(ctx: AiCtx, agent: Agent): Candidate[] {
+  return proposeTactical(ctx, agent, { maxMoves: 0, supportOnly: true }).filter(c => !c.move && c.cmd.kind === "useAbility"
+    && scoreCandidate(ctx, agent, c) > 0);
+}

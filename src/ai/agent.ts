@@ -8,6 +8,7 @@ import { maskedState, observe, updateKnowledge } from "./knowledge.ts";
 import { dangerMap } from "./danger.ts";
 import { individualRetreat, mobile } from "./intent.ts";
 import { individualRetreatReady } from "./retreat.ts";
+import { isSupport, rememberSupport, supportUsed } from "./support.ts";
 
 const DEFAULTS = { maxActions: 8, maxRetries: 3, maxPureMoves: 1, band: 0.8 };
 
@@ -34,6 +35,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     cachedContext = undefined;
     const result = env.exec(s, cmd);
     if (result.ok) {
+      if (cmd.kind === "useAbility" && isSupport(q.abilityDef(cmd.ability))) rememberSupport(agent, s.round, cmd.ability);
       commands.push(structuredClone(cmd));
       env.know = observe(q, s, updateKnowledge(q, s, env.slot, env.know), env.slot, result.events);
     }
@@ -70,7 +72,8 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
     // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
     const limitMoves = ["tactical", "sentinel", "swarm"].includes(policy.id);
-    let candidates = policy.propose(ctx, agent).filter(c => !limitMoves || c.cmd.kind !== "move" || pureMoves < maxPureMoves);
+    let candidates = policy.propose(ctx, agent).filter(c => (!limitMoves || c.cmd.kind !== "move" || pureMoves < maxPureMoves)
+      && (policy.id === "scripted" || policy.id === "flee" || c.cmd.kind !== "useAbility" || !supportUsed(agent, s.round, c.cmd.ability)));
     let failures = 0;
     const reject = (candidate: Candidate): void => {
       const key = candidateKey(candidate);

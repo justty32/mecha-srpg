@@ -94,6 +94,9 @@ export function createRulesQuery(db: ContentDB, snapshot?: BattleState): RulesQu
     },
     abilitiesOf: (s, id) => R.abilitiesOf(c(s), id),
     abilityDef: (abilityId) => db.require("ability", abilityId),
+    effectDef: id => db.require("effect", id),
+    poolDecls: (s, id) => R.poolDecls(c(s), { unit: id }),
+    roleAttr: (s, id, role) => R.roleAttr(c(s), subjectOf(c(s), id), role),
     abilityRange(s, id, abilityId) {
       const a = db.require("ability", abilityId), ev = R.evalCtxFor(c(s), subjectOf(c(s), id));
       return { min: evalNum(a.target.range.min, ev), max: evalNum(a.target.range.max, ev) };
