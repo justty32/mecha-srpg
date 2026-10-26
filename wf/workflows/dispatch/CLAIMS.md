@@ -8,7 +8,6 @@
 
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
-| lead-resist（engine-backlog 28＋近遠增傷）| `src/rules/{attack,layers,resistance}.ts`＋同名 test、`src/rules/flow.ts`（BattleSetup.rules）、`src/core/types-state.ts`（RulesRuntime 一欄）、`src/sim/{run,session}.ts`、`src/mcp/battle.ts`、`src/mcp/README.md`、`src/mcp/battle-info.test.ts`、`test/scenarios/combat-tenth.json`、`src/content/lint.test.ts`、`content/base/rules/{constants,damage-modifiers}.json`、`content/base/registries/layer-types.json`、`content/base/effects/pa-{melee,ranged}-boost.json`、`content/base/abilities/` 精粹等級欄（只加欄）、`test/scenarios/pack/`（只加欄）、戰鬥黃金 `test/golden/`＋`test/campaigns/*.hash.json`＋`src/ops/sim/fixtures/campaign-hash.json`（重產；與 ironsword／tide-cal 錯開）、types-def／content.schema 的 `AbilityDef.essence` 一欄（等 sonnet 提交後）、`specs/core/{rules-attack-resolution.md,rules-battle-flow.md,data-model-world/scenario.md,glossary.json,constraints.json}`、`specs/world/{resistance,operations}.md`、`code-map.json` rules 列、`wf/workflows/dispatch/handoffs/lead-resist/`、engine-backlog.json 第 28 列 | war（ironsword）、曆天象與 cockpit-growth（tide-cal）、lore（secret）| 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 

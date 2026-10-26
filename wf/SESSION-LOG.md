@@ -13,8 +13,6 @@
 
 2026-10-25 段落已收尾，無現役線 → 從 [STATE](workflows/dispatch/handoffs/STATE.md) 開始。
 
-- [feature-dev] lead-resist open：engine-backlog 28 抵抗性結算＋強化打擊／遠程分近遠增傷 → 收線刪本行
-
 ## 各工作流 session-log
 
 | 工作流 | session-log | open 摘要 |
