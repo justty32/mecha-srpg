@@ -1,0 +1,92 @@
+{
+ "contract": "content-batch/1",
+ "id": "mf-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "機甲填充第一批：國家型傘與單國小傘的招牌衍型機（中傘 B 級量產、俄與北美跟進 B、日傘普通開守牆機 D）、歐傘內海家族工坊機 C、塞勒涅第一款型錄機銀環-G1；frame＋必要部件；models 由領導另寫",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-mf-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill-mech",
+ "date": "2026-10-26",
+ "base": "fb5f1577121c435fb457db6522f76fdc5d128631",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/world-pillars/world.md",
+   "wf/workflows/content/world-pillars/mechs.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/numeric-bands.md",
+   "wf/workflows/content/numeric-bands.json",
+   "wf/workflows/content/engine-facts.json",
+   "wf/workflows/content/templates.json",
+   "wf/workflows/content/abilities-effects.md",
+   "wf/workflows/content/ability-forms.json",
+   "wf/workflows/content/acceptance-playtest.md",
+   "wf/workflows/content/playtest-baselines.json",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/content/polish.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/design-notes/mechs.md",
+   "wf/workflows/planning/design-notes/terms.md",
+   "wf/workflows/planning/design-notes/world/drive.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/history-lines/c-essence.md",
+   "wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md",
+   "content/lore/factions/selene.json",
+   "content/lore/factions/singapore-exchange.json",
+   "content/lore/factions/mimic-works.json",
+   "content/lore/factions/league-armory.json",
+   "src/mcp/README.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-mech/cx-mf-01.md"
+  ]
+ },
+ "maxFiles": 9,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "base/components",
+   "base/abilities",
+   "base/effects"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "typecheck",
+  "test",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/union-fr7",
+   "frame/bulwark-i",
+   "frame/bulwark-ii",
+   "frame/selene-silverring-g2",
+   "frame/longspear-v7",
+   "frame/bulwark-iv-rampart",
+   "frame/selene-crescent-g5"
+  ],
+  "waivers": []
+ },
+ "playtest": {
+  "required": 2,
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/lead-fill-mech/mf-01/mcp-log"
+ }
+}
