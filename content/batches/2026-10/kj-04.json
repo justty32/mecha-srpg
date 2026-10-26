@@ -1,0 +1,69 @@
+{
+ "contract": "content-batch/1",
+ "id": "kj-04",
+ "mode": "polish",
+ "status": "accepted",
+ "goal": "rift-beasts 本文追加三節（舊物記下的二十年、名字另裝一冊、舊港仍有人望著），既有文字不動",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-kj-03",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": {
+   "model": "gpt-6-astra",
+   "line": "cx-kj-03p",
+   "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03-plan/plan.md"
+  }
+ },
+ "lead": "lead-fill-kaiju",
+ "date": "2026-10-26",
+ "base": "67e0cd8e3d6be73bed2cba17cd1f6032388a3453",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-04",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03-plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/cx-kj-03.md"
+  ]
+ },
+ "maxFiles": 1,
+ "allow": {
+  "polishFiles": [
+   "content/lore/factions/rift-beasts.json"
+  ],
+  "textFields": [
+   "body"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": null,
+ "playtest": null,
+ "files": [
+  "content/lore/factions/rift-beasts.json"
+ ],
+ "ids": [
+  "faction/rift-beasts"
+ ],
+ "rounds": 1,
+ "gateRejections": [],
+ "acceptance": {
+  "verdict": "content_gate polish OK（approved=1、violations=0）；lore check 0 錯；新 body 以舊 body 原字串開頭（追加 889 字）",
+  "note": "計畫 gpt-6-astra（cx-kj-03p，領導審過）→ 產出 gpt-6.1-sol（cx-kj-03）；年表 3 條由領導追加"
+ }
+}

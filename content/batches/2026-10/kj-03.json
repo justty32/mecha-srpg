@@ -1,0 +1,72 @@
+{
+ "contract": "content-batch/1",
+ "id": "kj-03",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "蝕域群像與升級：斷軛留蛻（蛻皮）、橋下舊街（蝕域內部）、眾名成冊（二名變多）3 件 lore 事件",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-kj-03",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": {
+   "model": "gpt-6-astra",
+   "line": "cx-kj-03p",
+   "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03-plan/plan.md"
+  }
+ },
+ "lead": "lead-fill-kaiju",
+ "date": "2026-10-26",
+ "base": "67e0cd8e3d6be73bed2cba17cd1f6032388a3453",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/README.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03-plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-kaiju/cx-kj-03.md"
+  ]
+ },
+ "maxFiles": 3,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "probe": null,
+ "playtest": null,
+ "rounds": 1,
+ "acceptance": {
+  "verdict": "wf/workflows/dispatch/handoffs/lead-fill-kaiju/kj-03/accept/verdict-1.json",
+  "note": "計畫 gpt-6-astra（cx-kj-03p，領導審過）→ 產出 gpt-6.1-sol（cx-kj-03）；年表 3 條由領導追加"
+ },
+ "files": [
+  "content/lore/events/broken-yoke-molt.json",
+  "content/lore/events/street-beneath-the-nest.json",
+  "content/lore/events/epithet-register.json"
+ ],
+ "ids": [
+  "event/broken-yoke-molt",
+  "event/street-beneath-the-nest",
+  "event/epithet-register"
+ ],
+ "gateRejections": []
+}
