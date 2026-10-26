@@ -16,7 +16,7 @@
 
 ## 藍本血統與通用系列
 
-每台衍型機 tags 必含一個 `lineage-*` 與（若屬系列）`series-*`；血統對照：殘聯／堅盾／燕鷗／獵犬＝`lineage-kuafu`（夸父，經衍一）、塞勒涅＝`lineage-jinghai`（靜海）、鐵砧＝`lineage-broken-arm`（斷臂）、第三刃＝`lineage-tide-fin`（潮鰭）、沐蝕會＝`lineage-tide-robe`、稽古學會＝`lineage-many-eyes`、月之暗面＝`lineage-jinghai-stolen`、長槍＝`lineage-xingtian`（刑天刻痕）。血統決定**設計語彙**：partsBias（厚哪個部位）、慣用池（鐵砧發熱、塞勒涅流光多）、能力 tags（guard／pierce／veil）、輪廓一句（`world/lineages/*.json` 的 `traits.silhouette`）。同血統的機彼此像、不同血統差很多——新機先讀它血統的 lineage 檔再動筆。
+每台衍型機 tags 必含一個 `lineage-*` 與（若屬系列）`series-*`；血統對照：殘聯／堅盾／獵犬＝`lineage-kuafu`（夸父，經衍一）、塞勒涅＝`lineage-jinghai`（靜海）、鐵砧＝`lineage-broken-arm`（斷臂）、第三刃＝`lineage-tide-fin`（潮鰭）、沐蝕會＝`lineage-tide-robe`、稽古學會＝`lineage-many-eyes`、月之暗面＝`lineage-jinghai-stolen`、燕鷗（moji-tern）＝`lineage-xingtian`（刑天；2026-10-26 由夸父改）、長槍＝藍本是銀環、`lineage-xingtian`（刑天刻痕）是後加授權。血統決定**設計語彙**：partsBias（厚哪個部位）、慣用池（鐵砧發熱、塞勒涅流光多）、能力 tags（guard／pierce／veil）、輪廓一句（`world/lineages/*.json` 的 `traits.silhouette`）。同血統的機彼此像、不同血統差很多——新機先讀它血統的 lineage 檔再動筆。
 
 **通用系列**（tags `universal`）至少堅盾、長槍兩條：各勢力都能造、市場都買得到、`world/models` 的 `generic:true`、`exportPolicy:"open"`。新通用系列要有「為什麼大家都會」的一句（開源、逆向、流出、年代早）寫進 lore 事件；專屬系列 `exportPolicy` 不開放。
 
