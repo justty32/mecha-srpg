@@ -1,0 +1,155 @@
+{
+ "contract": "content-batch/1",
+ "id": "af-02",
+ "mode": "add",
+ "status": "draft",
+ "goal": "撒南＋北非＋西亞周邊：自由城市吉布地、公司城達蘭、杜拜空城、雙籤城蒙巴薩、拉哥斯歸還黨、遠牧獵團、吉布地城約、軛騎出洋、三個人物；年表增列由領導插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-af-02",
+  "subagents": "允許，模型隨意，上限 1",
+  "plan": "cx-af-02p（gpt-6-astra）af-02/PLAN.md"
+ },
+ "lead": "lead-fill-af",
+ "date": "2026-10-26",
+ "base": "cb8808801efa9a179a5fa8aecdf8b7e036beaf83",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-af/af-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-af/af-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "content/lore/factions/sub-saharan-umbrella.json",
+   "content/lore/factions/north-africa-umbrella.json",
+   "content/lore/factions/west-asia-umbrella.json",
+   "content/lore/factions/yoke-saddle-works.json",
+   "content/lore/events/aswan-sluice-night.json",
+   "content/lore/events/hormuz-burning-night.json",
+   "content/lore/places/aswan.json",
+   "content/lore/places/hormuz.json",
+   "content/lore/factions/green-line.json",
+   "content/lore/factions/mumbai-returners.json",
+   "content/lore/factions/accra.json",
+   "content/lore/places/lagos-blight.json",
+   "content/lore/characters/babatunde.json",
+   "content/lore/characters/adebayo-oluwaseyi.json",
+   "content/lore/places/cotonou.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-af/af-02/PLAN.md",
+   "wf/workflows/dispatch/handoffs/lead-fill-af/cx-af-02.md"
+  ]
+ },
+ "maxFiles": 11,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions",
+   "lore/places",
+   "lore/characters"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（領導定稿的提案名）",
+  "rows": [
+   {
+    "id": "place/djibouti",
+    "nameEn": "Djibouti",
+    "meaning": "曼德海峽西岸的自由城市",
+    "nameZh": "吉布地",
+    "method": "音譯"
+   },
+   {
+    "id": "place/dhahran",
+    "nameEn": "Dhahran",
+    "meaning": "舊油公司管的公司城",
+    "nameZh": "達蘭",
+    "method": "音譯"
+   },
+   {
+    "id": "place/dubai",
+    "nameEn": "Dubai, the Empty City",
+    "meaning": "鏈斷即死的空城",
+    "nameZh": "杜拜空城",
+    "method": "音譯＋意譯"
+   },
+   {
+    "id": "place/mombasa",
+    "nameEn": "Mombasa",
+    "meaning": "雙籤城、騎手出洋港",
+    "nameZh": "蒙巴薩",
+    "method": "音譯"
+   },
+   {
+    "id": "faction/lagos-returners",
+    "nameEn": "Lagos Returners",
+    "meaning": "歸還黨拉哥斯支",
+    "nameZh": "拉哥斯歸還黨",
+    "method": "意譯（沿既有孟買歸還黨）"
+   },
+   {
+    "id": "faction/far-herd",
+    "nameEn": "The Far Herd",
+    "meaning": "牧人遠走：奈洛比命名取牧人器物，獵團帶獸出洋",
+    "nameZh": "遠牧獵團",
+    "method": "意譯"
+   },
+   {
+    "id": "event/djibouti-charter",
+    "nameEn": "The Djibouti Charter",
+    "meaning": "城約",
+    "nameZh": "吉布地城約",
+    "method": "意譯"
+   },
+   {
+    "id": "event/yoke-riders-abroad",
+    "nameEn": "Yoke-Riders Abroad",
+    "meaning": "軛騎走海路出洋接約",
+    "nameZh": "軛騎出洋",
+    "method": "意譯"
+   },
+   {
+    "id": "character/nadia-sabri",
+    "nameEn": "Nadia Sabri",
+    "meaning": "老閘長",
+    "nameZh": "娜迪雅・薩布里",
+    "method": "音譯"
+   },
+   {
+    "id": "character/juma-kiprop",
+    "nameEn": "Juma Kiprop",
+    "meaning": "遠牧團長",
+    "nameZh": "朱瑪・基普羅普",
+    "method": "音譯"
+   },
+   {
+    "id": "character/farida-naseri",
+    "nameEn": "Farida Naseri",
+    "meaning": "燃夜名冊官",
+    "nameZh": "法莉妲・納賽里",
+    "method": "音譯"
+   }
+  ]
+ }
+}
