@@ -48,8 +48,8 @@
   {
    "領域": "ui-adapter",
    "檔案": "`src/ui-adapter/{vm,dom}/`",
-   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM；只依賴 core＋sim（`vm/boundary.test.ts` 守：不得 import rules／ai）；網頁殼 hash 路由（`vm/route.ts`、`dom/shell.ts`）切換戰鬥／百科／營運，百科 `vm/wiki/`（索引、搜尋、資料卡、年表、關係、markdown）＋`dom/wiki/`（`boot.ts` 懶載入）；vm/labels.ts 的 scripted 顯示「無人（普通開）」，MCP battle-view.ts 共用。 vm/wiki/cards.ts 人物卡以同 pack cockpit.growth、day 0 顯示外貌與實齡。",
-   "測試在哪": "同目錄 `*.test.ts`、`e2e/`；`src/ui-adapter/vm/wiki/cards.test.ts`"
+   "職責": "vm 純邏輯→`UiSnapshot`；dom 唯一碰 DOM；只依賴 core＋sim（`vm/boundary.test.ts` 守：不得 import rules／ai）；網頁殼 hash 路由（`vm/route.ts`、`dom/shell.ts`）切換戰鬥／百科／營運，百科 `vm/wiki/`（索引、搜尋、資料卡、年表、關係、markdown）＋`dom/wiki/`（`boot.ts` 懶載入）；vm/labels.ts 的 scripted 顯示「無人（普通開）」，MCP battle-view.ts 共用。 vm/wiki/cards.ts 組裝 entryPage，card-builder.ts 共用欄位、部位與關係資料卡；人物卡以同 pack cockpit.growth、day 0 顯示外貌與實齡。",
+   "測試在哪": "同目錄 `*.test.ts`、`e2e/`；`src/ui-adapter/vm/wiki/cards.test.ts`；`src/ui-adapter/dom/wiki/mount.test.ts` 掛載／導航／搜尋／生命週期、`pages.test.ts` 詳情／markdown／年表／關係頁"
   },
   {
    "領域": "ui-ops",
@@ -59,7 +59,7 @@
   },
   {
    "領域": "mcp",
-   "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`（含共用戰鬥表 `createBattleHub`）＋`battle-view.ts`、`campaign.ts`＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
+   "檔案": "`src/mcp/`（`server.ts` 入口、`protocol.ts`、`schema.ts`、`tool.ts` 工具契約、`battle.ts`（保留 `createBattleHub` 轉出）＋`battle-hub.ts`（共用戰鬥 session 表與 AI 推進）＋`battle-view.ts`、`campaign.ts`＋`campaign-support.ts`（出戰候選、參數驗證與戰果記錄）＋`campaign-view.ts`、`ui.ts`、`cli.ts` socket 客戶端）",
    "職責": "stdio MCP server（JSON-RPC 2.0、零執行期依賴）：戰鬥工具走 sim `BattleSession`（不 import rules／ai）、營運工具走 ops 對外 API（`campaign_sortie_begin`／`finish`／`cancel` 兩段式互動出戰：begin 用唯讀 `sortieBattleSetup` 建戰鬥 session，finish 以同一筆 sortie 指令回寫，語意同 UI `battleDone`）、`ui_screenshot` 用 headless Chromium；工具清單見 `src/mcp/README.md`；戰鬥輸出含 objectives 進度、預估傷害 damageIfHit、出口不受迷霧；營運輸出含機庫狀態、出戰 preview（`campaign_sortie_preview`）與戰果 report；批次工具 `battle_act_many`、`battle_legal_actions unit:\"all\"`、`battle_step_ai until:\"player\"`（大地圖每回合呼叫數約減半）；情境 name／brief 顯示 campaign.ts 出戰 schema 支援 sortie.units[].crew=ai；campaign-view.ts 人物名冊／look 顯示驅動時數與外貌／實齡。",
    "測試在哪": "同目錄 `*.test.ts`（`e2e.test.ts` 以子行程走 stdio，hash 等於 `runBattle`；`sortie.test.ts` 證互動觀戰出戰與 AI 自動出戰 campaignHash 相同；`battle-info.test.ts` 目標／敵我／地圖符號／預估傷害／cli 解耦；`campaign-info.test.ts` 機庫狀態、出戰 preview、戰果報告）；`batch.test.ts` 批次工具；`sortie.test.ts` 改固定程序找出戰點（不依賴 greedy）；`src/mcp/campaign-info.test.ts`"
   }
