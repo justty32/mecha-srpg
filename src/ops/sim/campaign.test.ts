@@ -37,8 +37,8 @@ test("船位置不變量：存在的圖與可進格；未知圖和不可進格�
 test("idle 12 蝕月：每天不變量全空", () => {
   const { s, ctx } = fixture(); let days = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
-  // 世界軌跡重錄：本線七勢力與派駐契約入庫後，seed 7 無駕駛員終局由118改為132天；專用發包牌冷卻 8→16 天後再改為90天；lead-mech2 新增 24 個 world model 後改為132天。
-  assert.equal(days, 132); assert.equal(result.summary.length, 4);
+  // 世界軌跡重錄：新增 40 個招募池改變亂數消耗，seed 7 無駕駛員終局改為第 104 天，完成 3 蝕月。
+  assert.equal(days, 104); assert.equal(result.summary.length, 3);
   assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "no-pilots").length, 1);
   // 同一條測試也確認檢查器確實會擋錯帳、斷引用與 mastery 越界。
   s.ledger.balances.cash++; s.restraint.beasts["missing"] = { mech: "missing", kind: "live", wear: 0, vitality: 100, bond: {} };

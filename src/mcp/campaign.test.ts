@@ -140,15 +140,15 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
     view = acted.view;
   }
   assert.equal(view.clock.day, 28 + evadeDays);
-  // 世界內容（事件／契約）持續增加，第 28 天不一定剛好有契約：逐日推進（處理待選）直到能承接，最多 30 天。
+  // 世界內容（事件／契約）持續增加，第 28 天不一定剛好有契約：逐日推進（處理待選）直到能承接，最多 60 次。
   const actionsNow = async () => data(await call("campaign_actions", { id })).actions as Screen["actions"];
   // 本案走一般契約航行與出戰；join 還需要作戰階段與部隊資格，另有履約測試。
   const normalAccept = (actions: Screen["actions"]) => actions.find(a => {
     if (a.cmd.v !== "accept" || a.disabled) return false;
     const id = a.cmd.contract, contract = view.panels.contracts.find((c: { id: string }) => c.id === id);
-    // 承接時仍在期限內，不代表航行後能履約；保留兩日給途中事件。
+    // 新招募池改變遭遇軌跡；保留七日給途中事件，避免五日航程被拖到第十一日才抵達。
     return contract && world.require("contract", contract.template).kind !== "join" && contract.travel
-      && view.clock.day + contract.travel.days + 2 <= contract.deadlineDay;
+      && view.clock.day + contract.travel.days + 7 <= contract.deadlineDay;
   });
   let accept = normalAccept(await actionsNow());
   for (let i = 0; !accept && i < 60; i++) {
@@ -171,7 +171,7 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   }
 
   if (!view.pendingBattle) assert.ok(view.panels.contracts.some((c: { id: string; status: string }) =>
-    c.id === active.id && c.status === "active"), `抵達時契約已失效：${active.id} day=${view.clock.day}`);
+    c.id === active.id && c.status === "active"), `抵達時契約已失效：${JSON.stringify(active)} day=${view.clock.day}`);
   const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: view.pendingBattle
     ? { units } : { contract: active.id, place: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);

@@ -11,6 +11,7 @@ import { applyName, cmdAccompany, cmdHire, cmdPay, cmdQueue, cmdReorder, cmdWake
   ledgerDaily6, openSoulNode, recruitsDaily7, soulDaily5, workqueueDaily5 } from "./index.ts";
 import { crew, rules } from "./shared.ts";
 import { leave } from "./roster.ts";
+import { isDocked } from "../world/move.ts";
 
 const { db, world } = loadWorldDirs(["content/base"]);
 function setup() {
@@ -134,7 +135,9 @@ test("recruit：弦月候選決定性，聘金入帳、名冊多一人且 id 可
     const existing = Object.keys(s.roster.persons).find(id => s.roster.persons[id]!.def === db.require("person", "person/chen-xiaohai").id)!;
     leave(s, ctx, existing);
     s.clock = clock(6, world.require("calendar", s.calendar)); recruitsDaily7(s, ctx);
-    const candidate = crew(s).candidates[Object.keys(crew(s).candidates).sort()[0]!]!, count = Object.keys(s.roster.persons).length, cash = s.ledger.balances.cash;
+    // 池數增加後，第一個候選不一定在船所在地；選可當場雇用的人，仍比較兩次抽樣與聘用的完整 state。
+    const candidate = Object.values(crew(s).candidates).find(c => isDocked(s, ctx, c.place) && c.fee <= s.ledger.balances.cash)!;
+    const count = Object.keys(s.roster.persons).length, cash = s.ledger.balances.cash;
     assert.equal(cmdHire(s, ctx, { v: "hire", candidate: candidate.id }).ok, true);
     assert.equal(Object.keys(s.roster.persons).length, count + 1); assert.equal(s.ledger.balances.cash, cash - candidate.fee); assert.deepEqual(checkLedger(s), []);
   }
