@@ -1,0 +1,74 @@
+{
+ "contract": "content-batch/1",
+ "id": "tf-02",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "基調審查落地：美洲補光五件新事件（兩夜二名獸、借山空返、雪底留名、空碗迎船）",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-tf-02",
+  "subagents": "≤2"
+ },
+ "lead": "lead-tone-fix",
+ "date": "2026-10-26",
+ "base": "c3563b5d6cf7c463d94650a25a77dedf97361c06",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-tone-fix/tf-02",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-tone-fix/tf-02/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/polish.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/README.md",
+   "content/lore/style.md",
+   "wf/workflows/dispatch/handoffs/plan-tone-review/review.md",
+   "wf/workflows/dispatch/handoffs/lead-tone-fix/plan/plan.md",
+   "wf/workflows/dispatch/handoffs/lead-tone-fix/plan/items.json",
+   "wf/workflows/dispatch/handoffs/lead-tone-fix/plan/new-events.json",
+   "wf/workflows/dispatch/handoffs/lead-tone-fix/cx-tf-02.md"
+  ]
+ },
+ "maxFiles": 5,
+ "allow": {
+  "kinds": [
+   "lore/events"
+  ]
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "acceptance": {
+  "gate": "ok（approved=5）",
+  "check": "ok，新警告 0",
+  "lore": "ok",
+  "typecheck": "ok",
+  "test": "worktree 內逾時未完；帶回後主 repo npm test 代驗",
+  "carry": "content_gate --carry"
+ },
+ "files": [
+  "content/lore/events/seattle-broken-gun.json",
+  "content/lore/events/valparaiso-borrowed-stretcher.json",
+  "content/lore/events/valparaiso-cut-cable.json",
+  "content/lore/events/winnipeg-first-snow-names.json",
+  "content/lore/events/havana-bowls-of-light.json"
+ ],
+ "ids": [
+  "event/seattle-broken-gun",
+  "event/valparaiso-borrowed-stretcher",
+  "event/valparaiso-cut-cable",
+  "event/winnipeg-first-snow-names",
+  "event/havana-bowls-of-light"
+ ],
+ "rounds": 1,
+ "gateRejections": []
+}
