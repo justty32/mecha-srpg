@@ -1,0 +1,169 @@
+{
+ "contract": "content-batch/1",
+ "id": "af-01",
+ "mode": "add",
+ "status": "draft",
+ "goal": "撒南＋北非＋西亞骨架：三把傘、軛鞍行、五個群像種子事件（放閘夜／燃夜／金山夜／斷橋夜／運河夜）與五個地點；年表增列由領導帶回時插入",
+ "author": {
+  "agent": "codex",
+  "model": "gpt-6.1-sol",
+  "reasoning": "high",
+  "line": "cx-af-01",
+  "subagents": "允許，模型隨意，上限 1"
+ },
+ "lead": "lead-fill-af",
+ "date": "2026-10-26",
+ "base": "834acfb29dd9176f4cf65bc98f7e853d49f49a77",
+ "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-af/af-01",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/lead-fill-af/af-01/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/world-pillars.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md",
+   "wf/workflows/planning/design-notes/world/history-lines.md",
+   "wf/workflows/planning/design-notes/world/before-collapse.md",
+   "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+   "wf/workflows/planning/design-notes/world/magnates.md",
+   "wf/workflows/planning/design-notes/world/polity.md",
+   "wf/workflows/planning/design-notes/world/city-types.md",
+   "wf/workflows/planning/design-notes/world/history-lines/g-umbrella.md",
+   "content/lore/factions/nairobi.json",
+   "content/lore/factions/accra.json",
+   "content/lore/factions/green-line.json",
+   "content/lore/places/lagos-blight.json",
+   "content/lore/places/rift-valley-seat.json",
+   "content/lore/events/green-line-purge.json",
+   "content/lore/events/lagos-night.json",
+   "content/lore/factions/league.json",
+   "content/lore/factions/remnant-wings.json",
+   "wf/workflows/dispatch/handoffs/lead-fill-af/cx-af-01.md"
+  ]
+ },
+ "maxFiles": 14,
+ "allow": {
+  "kinds": [
+   "lore/events",
+   "lore/factions",
+   "lore/places"
+  ],
+  "namePrefix": {},
+  "modify": []
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "test",
+  "readlist"
+ ],
+ "naming": {
+  "note": "英文原名｜意涵｜中文名（領導定稿的提案名）",
+  "rows": [
+   {
+    "id": "faction/sub-saharan-umbrella",
+    "nameEn": "The Sub-Saharan Umbrella",
+    "meaning": "傘名暫用描述句，正式命名另走 terms 流程",
+    "nameZh": "撒哈拉以南非洲那把傘（口語撒南傘）",
+    "method": "描述句"
+   },
+   {
+    "id": "faction/north-africa-umbrella",
+    "nameEn": "The North African Umbrella",
+    "meaning": "同上",
+    "nameZh": "北非那把傘（口語北非傘）",
+    "method": "描述句"
+   },
+   {
+    "id": "faction/west-asia-umbrella",
+    "nameEn": "The West Asian Umbrella",
+    "meaning": "同上",
+    "nameZh": "西亞那把傘（口語西亞傘）",
+    "method": "描述句"
+   },
+   {
+    "id": "faction/yoke-saddle-works",
+    "nameEn": "Yoke and Saddle House",
+    "meaning": "既有名，奈洛比的軛、鞍、拘束矢工坊",
+    "nameZh": "軛鞍行",
+    "method": "既有"
+   },
+   {
+    "id": "event/aswan-sluice-night",
+    "nameEn": "Night of the Open Sluices",
+    "meaning": "群像種子 7.7 既有名",
+    "nameZh": "放閘夜",
+    "method": "既有"
+   },
+   {
+    "id": "event/hormuz-burning-night",
+    "nameEn": "The Burning Night",
+    "meaning": "群像種子 7.7 既有名",
+    "nameZh": "燃夜",
+    "method": "既有"
+   },
+   {
+    "id": "event/gold-reef-night",
+    "nameEn": "Gold Reef Night",
+    "meaning": "群像種子 7.7 既有名；金山＝約翰尼斯堡舊稱",
+    "nameZh": "金山夜",
+    "method": "既有"
+   },
+   {
+    "id": "event/twin-rivers-night",
+    "nameEn": "Night of the Broken Bridges",
+    "meaning": "群像種子 7.7 既有名",
+    "nameZh": "斷橋夜",
+    "method": "既有"
+   },
+   {
+    "id": "event/suez-canal-night",
+    "nameEn": "Canal Night",
+    "meaning": "群像種子 7.7 既有名",
+    "nameZh": "運河夜",
+    "method": "既有"
+   },
+   {
+    "id": "place/aswan",
+    "nameEn": "Aswan",
+    "meaning": "尼羅河的水閘總控所在",
+    "nameZh": "亞斯文城邦",
+    "method": "音譯"
+   },
+   {
+    "id": "place/hormuz",
+    "nameEn": "Hormuz",
+    "meaning": "海峽本身",
+    "nameZh": "荷姆茲海峽",
+    "method": "音譯"
+   },
+   {
+    "id": "place/gold-reef",
+    "nameEn": "The Deep Shafts of Gold Reef",
+    "meaning": "深礦井底下的墟",
+    "nameZh": "金山深井",
+    "method": "意譯"
+   },
+   {
+    "id": "place/suez",
+    "nameEn": "Suez Canal",
+    "meaning": "運河",
+    "nameZh": "蘇伊士運河",
+    "method": "音譯"
+   },
+   {
+    "id": "place/twin-rivers",
+    "nameEn": "The Broken Bridges",
+    "meaning": "兩河下游斷了不修的橋",
+    "nameZh": "兩河斷橋",
+    "method": "意譯"
+   }
+  ]
+ }
+}
