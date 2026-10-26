@@ -47,7 +47,7 @@
 - 領導 `lead-grid`（Opus）代登記，團隊 `teams/grid`，交接書在 `wf/workflows/dispatch/handoffs/lead-grid/`。已收線：core、maps、migrate、blight、ui、actors、verify、verify2（原格見 `archive/ROSTER-2026-10-24-grid.md`）；現役：`cx-grid-terms`（舊詞顯示字串，orders `wf/inbox/orders/cx-grid-terms.md`）。
 
 ### `lead-dedup`（含代登記工人 `cx-dd-plan`、`cx-dd-01`）
-- **狀態**：現役（2026-10-26）
+- **狀態**：已收線（2026-10-26）；團隊 `teams/dedup` 已關
 - **我是誰**：Opus 領導：填充層去重與矛盾統一、審核包；工人是 codex（計畫 gpt-6-astra、改寫 gpt-6.1-sol）。
 - **團隊**：`teams/dedup`
 - **上游**：`dispatcher`（工人的上游是 `lead-dedup`）
