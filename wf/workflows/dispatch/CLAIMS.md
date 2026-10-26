@@ -9,7 +9,6 @@
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | lead-mech2 | `content/base/{frames,bodyplans,components,abilities,effects,lineages,research,markets,world/models}/` 新檔（effects 限 `m2-` 前綴；frames 不含 bio／corpse）、既有 `world/markets`／`world/lineages` 只插入、`content/lore/` 機甲相關**新檔**（既有 lore 檔與 timeline 屬 lead-tone-fix，不動）、`content/batches/2026-10/mech2-*`、`content/index/`、`test/golden/`＋`test/campaigns/`＋`src/ops/sim/fixtures/`（僅重錄時，錯開他線）、`wf/workflows/dispatch/handoffs/lead-mech2/`、engine-backlog 追加 | src、specs、design-notes；lead-tone-fix／lead-kaiju2 登記的檔 | 2026-10-26 |
-| lead-kaiju2 | `content/base/{species,monsters,bodyplans,abilities,aiprofiles,effects,world/beasts,world/rifts,world/encounters}/` 新檔與 rifts 名單插入、`content/base/frames/{bio,corpse}-*` 新檔、展示用 `content/base/scenarios/` 新檔、`content/lore/` 怪獸相關新檔（＋timeline.json 只插入）、`content/batches/2026-10/kaiju2-*`、`content/index/`、`test/golden/`＋`test/campaigns/`＋`src/ops/sim/fixtures/`（僅必要重錄，錯開他線）、`wf/workflows/dispatch/handoffs/lead-kaiju2/`、engine-backlog 追加、history-orphans | src、specs、design-notes；lead-tone-fix／lead-mech2 登記的檔；萬潮葬王 | 2026-10-26 |
 
 ## 保留給調度者，任何線都不得寫
 
