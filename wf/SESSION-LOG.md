@@ -19,6 +19,6 @@
 | 工作流 | session-log | open 摘要 |
 |--------|-------------|----------|
 
-- [dispatch] 2026-10-26 lead-fill-gear open：填充機甲部件、武器、戰利品與市場商品 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-gear/`
-- [dispatch] 2026-10-26 lead-fill-pilots open：填充可玩駕駛員與船員（招募池、背景、persons、少數 lore 人物）；codex 兩段式 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-pilots/`
+- [dispatch] 2026-10-26 lead-fill-gear open：填充機甲部件、武器、戰利品與市場商品 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-gear/`（暫停 2026-10-26 晚→接續見 report.md）
+- [dispatch] 2026-10-26 lead-fill-pilots open：暫停（2026-10-26 晚）→ 接續見 report.md；填充可玩駕駛員與船員（招募池、背景、persons、少數 lore 人物）；codex 兩段式 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-pilots/`
 - [dispatch] 2026-10-26 lead-small open：北岸改區擴大（既有蝕區轉淺蝕）＋第三刃營運勢力 → 交接區 `wf/workflows/dispatch/handoffs/lead-small/`
