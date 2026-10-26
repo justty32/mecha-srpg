@@ -1,0 +1,308 @@
+{
+ "contract": "wf-table/1",
+ "source": "lead-mech2 四批 review-rows 彙整",
+ "extracted": "2026-10-26",
+ "columns": [
+  "檔",
+  "類別",
+  "名稱",
+  "白話",
+  "掛到"
+ ],
+ "rows": [
+  {
+   "檔": "content/base/effects/m2-relieved.json",
+   "類別": "效果",
+   "名稱": "緩燼",
+   "白話": "替隊友排燼，並短暫增加閃避；不回復裝甲。",
+   "掛到": "共用修造冊；排燼扶架"
+  },
+  {
+   "檔": "content/base/effects/m2-dragged.json",
+   "類別": "效果",
+   "名稱": "牽滯",
+   "白話": "短暫降低閃避與先手，不會被拖走或定住。",
+   "掛到": "共用修造冊；繫泊鉗"
+  },
+  {
+   "檔": "content/base/effects/m2-braced.json",
+   "類別": "效果",
+   "名稱": "伏架",
+   "白話": "本回合提高命中、降低閃避，並且不能移動。",
+   "掛到": "m2-common 修正3；三款後批架砲機"
+  },
+  {
+   "檔": "content/base/abilities/m2-relieve-ally.json",
+   "類別": "能力",
+   "名稱": "借我一息",
+   "白話": "替一至三格內的隊友排燼護撤，不能對自己使用。",
+   "掛到": "排燼扶架；後批支援機"
+  },
+  {
+   "檔": "content/base/abilities/m2-catch-line.json",
+   "類別": "能力",
+   "名稱": "攔路橫索",
+   "白話": "沿短直線施加牽滯，沒有傷害，也不能拖機。",
+   "掛到": "繫泊鉗；後批工程與拘束機"
+  },
+  {
+   "檔": "content/base/abilities/m2-brace-deploy.json",
+   "類別": "能力",
+   "名稱": "伏架瞄準",
+   "白話": "花兩點行動伏架，提高命中，本回合不能再移動。",
+   "掛到": "m2-common 修正3；ru-brazier-ii、anvil-gatewarden、longspear-kneeler-v2"
+  },
+  {
+   "檔": "content/base/components/m2-relief-cradle.json",
+   "類別": "部件",
+   "名稱": "排燼扶架",
+   "白話": "提供友方排燼能力；支撐部位被打斷就失去支援。",
+   "掛到": "共用修造冊；後批指定工具掛點"
+  },
+  {
+   "檔": "content/base/components/m2-mooring-jaw.json",
+   "類別": "部件",
+   "名稱": "繫泊鉗",
+   "白話": "提供短直線牽滯，不能捕獸、拖機或修復。",
+   "掛到": "共用修造冊；後批指定工具掛點"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-wheel-d.json",
+   "類別": "骨架",
+   "名稱": "輪座-D",
+   "白話": "胸甲與砲塔分開；兩輪軸各有可打斷的掛件。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-tracked-d"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-quadruped-c.json",
+   "類別": "骨架",
+   "名稱": "四足-C",
+   "白話": "兩前足各掛一把武器；左後足承載系統。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-biped-c"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-hexapod-b.json",
+   "類別": "骨架",
+   "名稱": "六足-B",
+   "白話": "前足分掛武器，後足分掛系統；多腳不增加總血量。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-biped-heavy"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-gantry-c.json",
+   "類別": "骨架",
+   "名稱": "吊架-C",
+   "白話": "打吊臂斷主工具，打配重斷副武器與支援。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-biped-c"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-keel-b.json",
+   "類別": "骨架",
+   "名稱": "舟架-B",
+   "白話": "首尾火力分開，兩側浮架各承載一件系統。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-biped-b"
+  },
+  {
+   "檔": "content/base/bodyplans/m2-splitwing-a.json",
+   "類別": "骨架",
+   "名稱": "分翼-A",
+   "白話": "兩翼各掛武器與背件；尾翼受損會斷一件系統。",
+   "掛到": "PLAN 六種共用骨架；參照 mx-winged-a"
+  },
+  {
+   "檔": "content/base/frames/bulwark-caisson-01.json",
+   "類別": "衍型機",
+   "名稱": "BW-06",
+   "白話": "輪座守牆機，胸甲與砲塔分開打；以盾陣掩護近距範圍射擊。",
+   "掛到": "event/shield-open-carving"
+  },
+  {
+   "檔": "content/base/frames/anvil-trestle-ii.json",
+   "類別": "衍型機",
+   "名稱": "鐵砧-II型・架鐵",
+   "白話": "四足近戰機，樁與刃各在一隻前足；斷足便少一種攻擊。",
+   "掛到": "2104 鐵砧-II型下線；faction/anvil"
+  },
+  {
+   "檔": "content/lore/events/workshop-outline-appendix.json",
+   "類別": "lore 事件",
+   "名稱": "共用修造冊外形補編",
+   "白話": "工坊傳閱新骨架與工具的提案，缺料缺人仍要自己解決。",
+   "掛到": "event/ironsword-open-pattern；event/shield-open-carving；faction/anvil"
+  },
+  {
+   "檔": "content/base/frames/ix-wain-01.json",
+   "類別": "frame",
+   "名稱": "IX-08",
+   "白話": "輪座替同伴排燼；後軸一壞就少了支援。",
+   "掛到": "event/ironsword-open-pattern"
+  },
+  {
+   "檔": "content/base/frames/league-gantry-02.json",
+   "類別": "frame",
+   "名稱": "GL-02",
+   "白話": "砲塔掛鋸、車體掛排燼；工程車也要有人掩護。",
+   "掛到": "faction/league-armory"
+  },
+  {
+   "檔": "content/base/frames/shellsoc-pin-04.json",
+   "類別": "frame",
+   "名稱": "LS-4",
+   "白話": "先標記來敵，再拋矢放煙撤離；不適合獨自殺獸。",
+   "掛到": "faction/shell-society"
+  },
+  {
+   "檔": "content/base/frames/ix-porter-ii.json",
+   "類別": "frame",
+   "名稱": "鐵劍-II型・扶梁",
+   "白話": "吊臂自衛、配重牽制兼排燼；打配重可一併拆掉兩職。",
+   "掛到": "event/ironsword-open-pattern"
+  },
+  {
+   "檔": "content/base/frames/longspear-kneeler-v2.json",
+   "類別": "frame",
+   "名稱": "長槍-V2・伏架",
+   "白話": "兩把槍分掛前足；架砲換命中，這回合便不能走。",
+   "掛到": "event/longspear-v4-standard"
+  },
+  {
+   "檔": "content/base/frames/thirdblade-skate-iv.json",
+   "類別": "frame",
+   "名稱": "鰩魚-IV型",
+   "白話": "舟首持刃、舟尾牽制；側浮架一破就斷排燼。",
+   "掛到": "event/hundred-lanterns"
+  },
+  {
+   "檔": "content/base/frames/ru-brazier-ii.json",
+   "類別": "frame",
+   "名稱": "長爐-II型・爐座",
+   "白話": "六足分掛直射與曲射，架砲後停步；貼近就難還手。",
+   "掛到": "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+  },
+  {
+   "檔": "content/base/frames/selene-iris-g6.json",
+   "類別": "frame",
+   "名稱": "虹使-G6",
+   "白話": "分翼各帶主武器，以標記與干擾護航；折翼便少一把。",
+   "掛到": "faction/selene"
+  },
+  {
+   "檔": "content/lore/events/harbor-last-watch.json",
+   "類別": "lore event",
+   "名稱": "港燈未熄",
+   "白話": "各港試做護撤與守備機，各自缺核心、缺人，是否採用仍未定。",
+   "掛到": "event/ironsword-open-pattern；event/hundred-lanterns；faction/league-armory"
+  },
+  {
+   "檔": "content/base/frames/na-sled-03.json",
+   "類別": "frame",
+   "名稱": "NR-03",
+   "白話": "輪座單槍兼標記，砲塔一壞兩樣都停。",
+   "掛到": "wf/workflows/planning/design-notes/world/before-collapse-powers.md：美國內陸工業與兩岸哨線"
+  },
+  {
+   "檔": "content/base/frames/innersea-brace-02.json",
+   "類別": "frame",
+   "名稱": "IS-02",
+   "白話": "曲射自衛，前軸橫索短暫牽滯一排來敵。",
+   "掛到": "content/lore/factions/inner-sea-houses.json：工坊與標單"
+  },
+  {
+   "檔": "content/base/frames/shellsoc-tripod-c.json",
+   "類別": "frame",
+   "名稱": "定盤-C",
+   "白話": "四足分掛射擊與束矢，頭部標記保住探路工作。",
+   "掛到": "content/lore/factions/shell-society.json：先探後挖、多目與 LS-3"
+  },
+  {
+   "檔": "content/base/frames/anvil-hoist-ii.json",
+   "類別": "frame",
+   "名稱": "鐵砧-II型・吊鉚",
+   "白話": "吊臂熔鋸、配重橫索；瞄不同部位可拆掉不同工具。",
+   "掛到": "content/lore/factions/anvil.json：2096 斷臂與受雇推牆"
+  },
+  {
+   "檔": "content/base/frames/tidefaith-censer-iv.json",
+   "類別": "frame",
+   "名稱": "贖垢者-IV型・行香",
+   "白話": "雙前足各掛範圍火器；打掉後足冷泉就難再連燒。",
+   "掛到": "content/lore/factions/tide-creed.json：私造贖垢者、綠線養裂帶失去依靠"
+  },
+  {
+   "檔": "content/base/frames/na-meridian.json",
+   "類別": "frame",
+   "名稱": "長晝-隼翼",
+   "白話": "分翼射手：左翼遠射、右翼掩護，尾翼各負責流光與排燼。",
+   "掛到": "wf/workflows/planning/design-notes/world/before-collapse-powers.md：地面資本、北美 B 級跟進"
+  },
+  {
+   "檔": "content/base/frames/innersea-lantern.json",
+   "類別": "frame",
+   "名稱": "留燈-合印",
+   "白話": "留在撤離口替隊友反覆排燼，另有一次遠護與近衛武器。",
+   "掛到": "content/lore/factions/inner-sea-houses.json：聖馬洛九門同喪與港城賒帳"
+  },
+  {
+   "檔": "content/lore/events/seven-seals-diverge.json",
+   "類別": "lore 事件",
+   "名稱": "七印分途",
+   "白話": "同用授權接口，各家缺的巡哨、探路與守撤口卻不同。",
+   "掛到": "content/lore/factions/inner-sea-houses.json；各機原有掛點"
+  },
+  {
+   "檔": "content/base/frames/thirdblade-needlefish-ii.json",
+   "類別": "機械系 frame",
+   "名稱": "針魚-II型",
+   "白話": "跟著船側標出敵影、拋矢掩護；貼身雙刃改成引路火力。",
+   "掛到": "event/one-banner-compact"
+  },
+  {
+   "檔": "content/base/frames/shellsoc-archive-b.json",
+   "類別": "機械系 frame",
+   "名稱": "拓影-B",
+   "白話": "六足分掛探勘武器，鑽牆標記後放煙退走；後足被斷就少排燼。",
+   "掛到": "faction/shell-society：2105 南極探勘失散"
+  },
+  {
+   "檔": "content/base/frames/quito-quay-iv.json",
+   "類別": "機械系 frame",
+   "名稱": "棧橋-IV型",
+   "白話": "舟首用鋸、舟尾牽制，側架管排燼；港工得自己走近才能切開。",
+   "掛到": "2096 基多船廠出售；world/history-lines/c-essence.md"
+  },
+  {
+   "檔": "content/base/frames/anvil-gatewarden.json",
+   "類別": "機械系 frame",
+   "名稱": "封門-鐵砧",
+   "白話": "伏架換準頭、分層守射界；敵人貼上來，重砲得等同伴解圍。",
+   "掛到": "faction/anvil：浦那撤退後果"
+  },
+  {
+   "檔": "content/base/frames/tidefaith-pilgrim.json",
+   "類別": "機械系 frame",
+   "名稱": "渡厄-贖垢者",
+   "白話": "私造突擊機以禱焰拆件、鋸齒灼切；出手越急，越得留意積燼。",
+   "掛到": "faction/tide-creed：解拘者私造"
+  },
+  {
+   "檔": "content/base/frames/league-last-ferry.json",
+   "類別": "機械系 frame",
+   "名稱": "歸燈-燕鷗",
+   "白話": "分翼槍護撤、尾架替同伴排燼；遠護只一次，斷翼就少一側火力。",
+   "掛到": "world/history-lines.md：崩年底色 1.8 哀悼"
+  },
+  {
+   "檔": "content/base/frames/cn-yoke-i.json",
+   "類別": "機械系 frame",
+   "名稱": "衡梁-I型",
+   "白話": "六足隊長機替隊友排燼、遠護一次；後足扶架是看得見的支援弱點。",
+   "掛到": "event/court-parade"
+  },
+  {
+   "檔": "content/lore/events/lamplit-return-trials.json",
+   "類別": "lore 可能事件",
+   "名稱": "留燈試機",
+   "白話": "各家試議護撤新機，圖紙仍在等核心與駕駛員，末機未歸便不唱名。",
+   "掛到": "同旗之約、朝廷閱兵、浦那撤退、南極探勘失散與崩年哀悼"
+  }
+ ]
+}
