@@ -16,7 +16,7 @@
 
 不做（不搬）：`done/`、`lead-engine-next`、`lead-bigfill`、`lead-tidy2`、`lead-codex-pilot`（永久留原處）、所有 `plan-*`、`talk-*`、頂層 md／json（活依據）。
 
-步驟：
+步驟（**第 2 輪**：第 1、2 步領導已在沙箱外做完——資料夾已用 `mv` 搬到 `done/DATE/`，moves.tsv 已寫好；你從第 3 步開始，**不用 git mv、不碰 git**）：
 1. 每個資料夾：`git mv DIR done/DATE/DIR`（已追蹤檔）；之後原處若還剩未追蹤／gitignored 的檔（log、pid、trash），用 `mv` 搬到同一個目標資料夾裡（保持相對位置），原處空了就留空目錄不管。
 2. 寫 `ROOT/wf/workflows/dispatch/handoffs/lead-tidy2/moves.tsv`（`舊路徑TAB新路徑`，ROOT 相對，一個資料夾一列）。
 3. `python3 wf/tools/fix_moved_links.py ROOT/wf/workflows/dispatch/handoffs/lead-tidy2/moves.tsv`（先 dry-run 看清單，再 `--apply`）。
@@ -48,7 +48,7 @@ REPORT 寫到 `/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/hand
 ## 驗收（固定 5 條）
 
 1. `ls wf/workflows/dispatch/handoffs/` 不再有搬移表裡的任何資料夾名（空目錄也搬走或不存在；若留空目錄，REPORT 列出）。
-2. `git diff --cached --name-status -M HEAD -- wf/workflows/dispatch/handoffs | grep -c '^D'` → 0（全是 R，不是 D＋A；先 `git add` 新位置時只加被搬的路徑）。注意：本條若因 index 共用不便，改報 `git status --short wf/workflows/dispatch/handoffs | grep -c '^ D'` 為 0。
+2. （領導核）跳過，寫「領導核」。
 3. `grep -rnE 'handoffs/(lead-(content|grid|history-lines|pilot-essence|reconcile|rename|settle|tidy|tune|world-land|wrapup|cockpit|decide-land|polish|aegir|dedup|epic-land|fill|fill-af|fill-am|fill-ea|fill-kaiju|fill-mech|ironsword|kaiju2|mech2|rep|resist|secret|tide-cal|tone-fix|wanchao))/' wf content/batches --include='*.md' --include='*.json' | grep -v '/archive/' | grep -v 'handoffs/done/' | wc -l` → 0（或只剩 REPORT 列明的歷史正文）。
 4. `bash wf/tools/wf-lint.sh --strict .` → `TOTAL broken=0 residue=0 oversize=0 biglist=0 querycmd=0 local=0`。
 5. `python3 wf/tools/check_anchors.py` → 0。

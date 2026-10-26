@@ -11,7 +11,7 @@
 - 待和解 32 列與採用的建議 → [history-reconcile.json](../../../planning/design-notes/world/history-reconcile.json)。
 - 2、3、4、7 題與「總覽裡提」「tide-sky／intrigue 十題」兩段 → 已由下方第 9 條暫值定，2026-10-24 轉已定。
 
-**2026-10-24 lead-settle：暫值全部轉已定。** 使用者原話：「就用暫定答案」。下面標「暫定／暫值」的第 1、8、9 條（及第 1.5 條的三型與分配機制、landing A′ 第 16–18 條）改為**已定**，落地清單見 [lead-settle guide](../../lead-settle/guide.md) D1–D16；只標「提案」的第 5、6、7.5、7.7、7.8、7.9 條維持提案。
+**2026-10-24 lead-settle：暫值全部轉已定。** 使用者原話：「就用暫定答案」。下面標「暫定／暫值」的第 1、8、9 條（及第 1.5 條的三型與分配機制、landing A′ 第 16–18 條）改為**已定**，落地清單見 [lead-settle guide](../../done/2026-10-24/lead-settle/guide.md) D1–D16；只標「提案」的第 5、6、7.5、7.7、7.8、7.9 條維持提案。
 
 **2026-10-25 talk-decide：第 5、6、7.5、7.7、7.8、7.9 條全部轉已定。** 7.5 大潮全球同一時刻為使用者裁示（「大潮這塊，全球就是同一時刻」），(a)–(e) 使用者「都OK」；其餘「隨意」，照 talk-decide 暫值定。定案全文見 design-notes [world/great-tide](../../../planning/design-notes/world/great-tide.md)，對談紀錄 [talk-decide/decisions/world](../../talk-decide/decisions/world.md)。
 

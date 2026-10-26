@@ -42,7 +42,7 @@
 
 已抽到 [codex-batches.json](codex-batches.json)（10 列）。欄位：`序`、`批次`、`模式`（add／polish）、`允許的 kind`（相對 `content/`，寫進 manifest 的 `allow`）、`規模`、`注意`、`狀態`。
 
-**第一批是用語改名＋翻譯腔重審**（polish 模式，全庫按類別切成多批；**已完成**，見 `handoffs/lead-rename/REPORT.md`）：
+**第一批是用語改名＋翻譯腔重審**（polish 模式，全庫按類別切成多批；**已完成**，見 `handoffs/done/2026-10-24/lead-rename/REPORT.md`）：
 
 - 依 terms.md 換詞，配 agy 審查。
 - 衍生詞已依使用者授權由改名線經 agy 審查定案（terms.md 末段）。

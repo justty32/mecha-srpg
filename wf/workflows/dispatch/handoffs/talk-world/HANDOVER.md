@@ -28,7 +28,7 @@
 | 3 | [handover/numbers.md](handover/numbers.md) | 第一代提的世界尺度數字（v1）；v2 重算在 design-notes/world/scale（2026-10-24 已定） |
 | 4 | [handover/open.md](handover/open.md) | 瘦身版：線與節點指向 history-*.json，留 1、1.5、5、6、7.5、7.7、7.9、8、9、10 條 |
 | 5 | [handover/landing.md](handover/landing.md) | 【可落地】清單 A／A′／B |
-| 7 | 已執行 | 八條長線派工草稿已由 lead-history-lines 完成，見其 [REPORT](../lead-history-lines/REPORT.md) |
+| 7 | 已執行 | 八條長線派工草稿已由 lead-history-lines 完成，見其 [REPORT](../done/2026-10-24/lead-history-lines/REPORT.md) |
 
 ## 6. 對談語氣與使用者偏好
 

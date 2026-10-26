@@ -2,7 +2,7 @@
 
 [world](../world.md)｜[design-notes 入口](../../design-notes.md)｜前提（抵抗性、精粹、機魂不可複製）→ [essence.md](essence.md)｜誰驅得動機甲核心、無人機、機魂獨駕 → [drive.md](drive.md)
 
-> **已定（2026-10-25，talk-decide）。** 2026-10-24 使用者先給 A、B 兩段原話並說「先放著，下次由 Fable 對談一起想」；2026-10-25 對談定案，記錄在 `wf/workflows/dispatch/handoffs/talk-decide/decisions/essence-pilots.md`。A（無人化）的定案在 [drive.md](drive.md)；本檔是 B（精粹改人）。數值全部是**暫值、可改**，留微調場。原本的讀法草稿與提案 P1–P9 已併入下文或刪除（P2 出擊次數改驅動時數、P4 副作用改三系代價、P6「機魂不長能力」改成會長但慢、P7 併入 drive.md），原文見 git 歷史與 `handoffs/lead-pilot-essence/`。
+> **已定（2026-10-25，talk-decide）。** 2026-10-24 使用者先給 A、B 兩段原話並說「先放著，下次由 Fable 對談一起想」；2026-10-25 對談定案，記錄在 `wf/workflows/dispatch/handoffs/talk-decide/decisions/essence-pilots.md`。A（無人化）的定案在 [drive.md](drive.md)；本檔是 B（精粹改人）。數值全部是**暫值、可改**，留微調場。原本的讀法草稿與提案 P1–P9 已併入下文或刪除（P2 出擊次數改驅動時數、P4 副作用改三系代價、P6「機魂不長能力」改成會長但慢、P7 併入 drive.md），原文見 git 歷史與 `handoffs/done/2026-10-24/lead-pilot-essence/`。
 
 ## 原話（照錄）
 
@@ -26,7 +26,7 @@
 
 **社會。** 普遍知道「開機甲會不老」，但不張揚；獵團行話叫這種人「不老的」；勢力搶老手；殘聯獵牌登記駕駛年資。沐蝕會把不老讀成「蝕的恩賜」（提案，可寫進 lore）。
 
-**點名五人。** 丹增・卓瑪、伊內絲・瓦曼、尹瑞英、格雷格・奧爾森、伊爾瑟・布蘭特——lore 寫出「不老」（丹增寫成老得慢）。其餘候選（茉莉、薩米爾、M-3、金河娜）留給填充層，本輪不點出。盤點清單在 `wf/workflows/dispatch/handoffs/lead-pilot-essence/pe-scan/`。
+**點名五人。** 丹增・卓瑪、伊內絲・瓦曼、尹瑞英、格雷格・奧爾森、伊爾瑟・布蘭特——lore 寫出「不老」（丹增寫成老得慢）。其餘候選（茉莉、薩米爾、M-3、金河娜）留給填充層，本輪不點出。盤點清單在 `wf/workflows/dispatch/handoffs/done/2026-10-24/lead-pilot-essence/pe-scan/`。
 
 ## 暫值一覽（暫值、可改）
 

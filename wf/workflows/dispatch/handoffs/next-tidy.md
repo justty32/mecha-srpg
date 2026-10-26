@@ -20,4 +20,4 @@
 - `handoffs/lead-codex-pilot/` **永久留原處**（四份 batch manifest 指向它）；`lead-wrapup/`、`lead-tidy/` 等 lead-wrapup 第二階段（`codex-handover.md`）寫完後移 `done/2026-10-24/` 並在 done/README 追加列（lead-tidy 的 trash 先由使用者決定刪除）。
 - [STATE](STATE.md)「現役」段仍寫 pilot 進行中、wrapup 待第二階段——交給 lead-wrapup 第二階段改。
 - code-map：world-grid 落地後補列；`wf/tools/content_*` 的列由 content 線補。
-- 待使用者決定刪除：`handoffs/lead-tidy/trash/`（約 9.2 MB：7 線的 codex log／pid 與 repo 根誤建的 pilot `tmp/`，清單在 lead-tidy REPORT）。
+- 待使用者決定刪除：`handoffs/done/2026-10-24/lead-tidy/trash/`（約 9.2 MB：7 線的 codex log／pid 與 repo 根誤建的 pilot `tmp/`，清單在 lead-tidy REPORT）。

@@ -15,7 +15,7 @@
   {
    "序": "1",
    "優先": "P1",
-   "項目": "已完成（lead-grid，2026-10-24，commit 9b561da／1a0ae23／2c8d2d5／77137ff／c9c42f8）：方格大地圖實作（world-grid 七段切線）；剩餘：另外四張地球圖與完整月面內容（交內容線，用 src/ops/content/worldgen.ts）、地點模板 encounters/place-*、護送綁商隊／join 綁 force、交涉對白、carriesShip:false 月面載具，見 handoffs/lead-grid/REPORT.md",
+   "項目": "已完成（lead-grid，2026-10-24，commit 9b561da／1a0ae23／2c8d2d5／77137ff／c9c42f8）：方格大地圖實作（world-grid 七段切線）；剩餘：另外四張地球圖與完整月面內容（交內容線，用 src/ops/content/worldgen.ts）、地點模板 encounters/place-*、護送綁商隊／join 綁 force、交涉對白、carriesShip:false 月面載具，見 handoffs/done/2026-10-24/lead-grid/REPORT.md",
    "來源": "[plan-world-grid](done/2026-10-24/plan-world-grid/REPORT.md)、[plan-spec-integrate](done/2026-10-24/plan-spec-integrate/REPORT.md)",
    "影響": "營運仍是節點圖：places／maps／lanes／regions／actors 與 `encounters/place-*` 填了不生效；沙盒、野外遭遇、追擊迴避、每洲一張圖都卡在這",
    "建議做法": "照 plan-world-grid 切線：(1) ops/content＋grid＋40×40 測試圖 →(2) move／places／tick 段 3 →(3) 蝕塊 →(4) actors／fog／遭遇 →(5) scenario／contracts／text →(6) 六張正式圖產生器＋地點座標＋航道 →(7) ui-ops 大地圖面板（GridView 共用）；驗收 `sim:campaign --months 12`＋六組測試、退化判準 12 潮月蝕格 <15%、行動者 [40,200]、遭遇 0.1–0.4／天",
@@ -42,7 +42,7 @@
   {
    "序": "4",
    "優先": "P1",
-   "項目": "已查清（lead-tune）：營運出戰數減半——不是戰鬥問題：greedy 336 天裡『無進行中契約』等待佔 141–255 天（約 75%），舊數字含撤退→重打的灌水；出戰數由契約供給決定，併入第 5 列在大地圖上重調（工具 `handoffs/lead-tune/tools/day-tally.ts`）",
+   "項目": "已查清（lead-tune）：營運出戰數減半——不是戰鬥問題：greedy 336 天裡『無進行中契約』等待佔 141–255 天（約 75%），舊數字含撤退→重打的灌水；出戰數由契約供給決定，併入第 5 列在大地圖上重調（工具 `handoffs/done/2026-10-24/lead-tune/tools/day-tally.ts`）",
    "來源": "[lead-tune-battle](done/2026-10-24/lead-tune-battle/REPORT.md)",
    "影響": "非裂縫出戰 169→83、勝 87→35（意圖調校後）",
    "建議做法": "調 `intentGiveUpLoss`／`intentMinRound` 時一併跑 sweep 與 `anchored-tally.ts`，對照出戰數",
@@ -241,7 +241,7 @@
    "序": "26",
    "優先": "P2",
    "項目": "lc-mech-01 七台人類對手機入營運：world/models、人類遭遇編成、市場；維拉科查／恩凱／埃吉爾專屬血統",
-   "來源": "[lc-mech-01](lead-content/lc-mech-01/REPORT.md)",
+   "來源": "[lc-mech-01](done/2026-10-24/lead-content/lc-mech-01/REPORT.md)",
    "影響": "新機只在兩個展示情境出現；基多／奈洛比／鹽鷗在營運仍用別家機；血統 tag 暫借 kuafu／jinghai／xingtian",
    "建議做法": "models 照 bulwark-* 範本（tier＝grade、requires 前代）；遭遇編成由平衡線決定是否換入（人類遭遇難度 lead-tune 剛下修）；新血統要先修研發模擬讀新血統 undefined（序 鐵劍 models 同源）；另 lore 安地斯壁「堅盾之祖」與堅盾公刻 2093 年代先後待規劃線釐清",
    "規模": "中（非 codex：models／lineages 不歸 codex）"
@@ -250,7 +250,7 @@
    "序": "27",
    "優先": "P3",
    "項目": "lore 事件允許 gameRefs（連到 base:monster 等）",
-   "來源": "[lc-lore-03](lead-content/lc-lore-03/REPORT.md)",
+   "來源": "[lc-lore-03](done/2026-10-24/lead-content/lc-lore-03/REPORT.md)",
    "影響": "lore README 規定 event 無 gameRefs，check.ts 對它警告「未登記欄位」；二名由來事件無法機器連到怪獸，百科交叉連結缺一條",
    "建議做法": "content/lore/check.ts 與 README 把 gameRefs 列為 event 可選欄（格式驗證已存在），百科 event 頁顯示連結；之後由內容批次補 lc-lore-03 六件的 gameRefs",
    "規模": "小"
@@ -259,7 +259,7 @@
    "序": "28",
    "優先": "P2",
    "項目": "已完成（17a2fbf，lead-resist 2026-10-26）：抵抗性結算取代十分律：精粹等級差每級減半、凡鐵只刮外甲層；順帶強化打擊／強化遠程改為近戰／遠程增傷",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence；數值 2026-10-24 已定（lead-settle，「就用暫定答案」，仍可微調）",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence；數值 2026-10-24 已定（lead-settle，「就用暫定答案」，仍可微調）",
    "影響": "世界觀已廢十分律；引擎仍是 rules/damage-modifiers.json 一列 conventional-arms × kaiju → 0.1，凡鐵還打得進內層與核、殺得死獸",
    "建議做法": "武器／能力加精粹等級（缺省＝凡鐵）；對 kaiju 結算時 factor＝0.5^(目標等級−武器等級)（同級以上 1）；凡鐵對外甲層 0.1、內層與核 0；古代異能「一格抵抗性失效」沿用 rules.conventionalFactor 覆蓋；類別鍵與 conventional-arms tag 不改名；改後黃金重產",
    "規模": "中（core rules＋content 標記，1 codex）"
@@ -268,7 +268,7 @@
    "序": "29",
    "優先": "P3",
    "項目": "conventional-arms 標記改讀為「凡鐵」與精粹矢",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence",
    "影響": "tag 名保留但語意變成「無精粹」；精粹矢（殘翼空援券、高級矢）沒有對應標記與價格",
    "建議做法": "tag id 不改；顯示名與 battle-info 說明改「凡鐵」；新增精粹矢的能力標記或 ammo 型別（例 essence-shot），空援券分凡鐵券／精粹矢券兩種 supplies",
    "規模": "小"
@@ -277,7 +277,7 @@
    "序": "30",
    "優先": "P2",
    "項目": "✅ 已完成（2026-10-25，lead-cockpit／cx-cockpit-core，commit 9bf9da5）：機甲核心與座艙狀態（合併原第 30、35、46 列）：`core` 標記、座艙 `cockpitOf`（human／soul／ai／remote／empty）、`crew` 與 `controlMode:\"scripted\"` 普通開；白手套六情境改無人機；營運終局 no-pilots 算機魂",
-   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots、[lead-world-land](lead-world-land/REPORT.md)、[lead-pilot-essence](lead-pilot-essence/REPORT.md)",
+   "來源": "[talk-decide](talk-decide/REPORT.md)、design-notes/world/drive、specs/world/pilots、[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、[lead-pilot-essence](done/2026-10-24/lead-pilot-essence/REPORT.md)",
    "影響": "裁示：只有人（或機魂）在座艙裡才驅得動機甲核心、才有能力；遙控與傳統 AI 只能普通開（會動會打，機上精粹武器對獸只算材料等級的抵抗性結算，無招式、無附魔）；機魂能獨駕、成長慢（推翻 2026-10-24 晚「不能獨駕」——原列「移除機魂獨駕」作廢，引擎現行的機魂接手／替駕／autonomy 單獨駕駛不必移除）。現況：引擎沒有核心與座艙標記，白手套情境用機甲 frame 坐 `seat:\"soul\"` 的 `person/glove`（`skirmish-whitegloves` 4 台、`rift-edge-nest` 5 台、`quarry-duel`、`crater-three-way`、`lunar-blockade-run`、`shell-excavation-escort` 各 1 台），`faction/selene-whitegloves` tag `soul-driven`",
    "建議做法": "(1) frame 或單位加核心標記（`core: true|false`，預設 true；false 的武器一律當凡鐵，接第 28 列抵抗性）；(2) 單位座艙狀態由座位人物推出：有 `actorRole` 人類＝人、只有 soul＝機魂、無座位人物＋aiprofile＝AI 或遙控（仿 `instinct` 加 `scripted` 控制模式，遙控另帶 `remote` 標記）；(3) AI／遙控／空座艙：禁用機體招式與附魔、person 能力與 perk 不生效，只留武器與基本動作，精粹武器傷害照材料等級；(4) 機魂接手、替駕、autonomy 單獨駕駛照現行保留；(5) 白手套情境：打人場改無核心鐵偶、守牆場改有核心遙控機，移除 `seat:\"soul\"` 複坐，faction tag 改 `unmanned`；女武神 A 級保留；(6) 終局「駕駛員為零」是否算機魂：建議算（機魂能獨駕），需同步 specs/ops time-and-tick 與 specs/core rules-people（本表範圍外，派線時一併授權）；改後黃金重產",
    "規模": "小–中（src/rules control＋content 情境 6 檔＋黃金重產；1 位領導帶 1–2 codex）"
@@ -286,7 +286,7 @@
    "序": "31",
    "優先": "P2",
    "項目": "tide-sky 潮候程式碼與漲潮命名",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/tide-sky（2026-10-24 晚改名）",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/tide-sky（2026-10-24 晚改名）",
    "影響": "UI 與文本仍把每月兩次的朔望叫「大潮」（src/ui-adapter/ops/vm/labels.ts、dom/tabs.ts、dom/fixtures.ts、not-spring-night 文案）；tide-sky 的 calendar.stage／tide 潮勢（枯潮＜漲潮＜大潮＜連珠潮）尚未實作",
    "建議做法": "顯示字串 spring→「漲潮」、「須等到漲潮之夜」；識別字 spring 不改；實作 tide-sky spec-proposal 的 stage／tide 與大潮抬級（裂縫等級上限 +1、數量 ×1.4），大潮＝每年兩三次；src/ops 部分等 lead-grid 收線；2026-10-26 lead-tide-cal：stage／tide 已隨第 38 列落地，本列只剩顯示字串改名（spring→漲潮、not-spring-night）與大潮抬級（＝第 40 列）",
    "規模": "中"
@@ -295,7 +295,7 @@
    "序": "32",
    "優先": "P3",
    "項目": "numeric-bands 與凡兵數值帶重算（抵抗性落地後）",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、wf/workflows/content/numeric-bands.md「抵抗性怎麼影響兩類武器」",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence、wf/workflows/content/numeric-bands.md「抵抗性怎麼影響兩類武器」",
    "影響": "凡兵帶以 ×0.1 為前提（對人 1.2–1.5 倍單發）；改成「只刮外甲」後凡兵對獸的期望傷害改變，人打人便宜、打獸貴的兩套武器經濟沒有數值",
    "建議做法": "第 28 列落地後跑 tools/stats.ts 重算；numeric-bands.json 類別鍵不改，只改建議區間；補精粹矢價格帶（暫值 D 一／C 十／B 百／A 千，待使用者確認）",
    "規模": "小"
@@ -304,7 +304,7 @@
    "序": "33",
    "優先": "P3",
    "項目": "constraints 數值列跟引擎改版核對",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence",
    "影響": "core DN-W-14、ops DN-W-10／WV-04／WV-22 已改寫成抵抗性，但 note 仍記 conventionalFactor 0.1 為現行",
    "建議做法": "第 28 列落地後把 note 改成新結算、spec_section 指到新段落",
    "規模": "小"
@@ -313,7 +313,7 @@
    "序": "34",
    "優先": "P3",
    "項目": "全球產能曲線與「大潮後重洗」行動牌（時代）",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/world/scale",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence、design-notes/world/scale",
    "影響": "世界有時代、人與獸都爆產能（人類年產約五年翻倍）、大潮後重洗五步（失守與露出→人動→債動→傘動→古代機動）沒有引擎載體",
    "建議做法": "全球產能曲線兩條（人類機甲、怪獸）＋大潮後的世界行動牌；全球基準數字以 design-notes/world/scale-v2.json 為準（2026-10-24 使用者「OK」，已定）；產能翻倍與重洗五步仍是提案層讀法；等方格大地圖與 tide-sky 潮勢落地後做",
    "規模": "中"
@@ -322,7 +322,7 @@
    "序": "35",
    "優先": "P3",
    "項目": "✅ 已隨第 30 列完成（2026-10-25，lead-cockpit）：白手套單位改讀為無機甲核心的鐵偶",
-   "來源": "[lead-world-land](lead-world-land/REPORT.md)、design-notes/world/essence",
+   "來源": "[lead-world-land](done/2026-10-24/lead-world-land/REPORT.md)、design-notes/world/essence",
    "影響": "白手套在內容裡是衍型機 frame（IX-01 等）＋glove-line aiprofile；新設定下它們只打得了人、對獸無效，三方戰情境（crater-three-way 等）裡白手套打獸不合設定",
    "建議做法": "需要決定：①保留衍型機 frame、只靠文案改讀；②給白手套單位加「凡鐵」標記（第 28 列後對獸只刮甲）；③新 kind 鐵偶。建議②，數值不動",
    "規模": "小"
@@ -340,7 +340,7 @@
    "序": "37",
    "優先": "P3",
    "項目": "新裂縫落點以海岸、河口為主，環太平洋最密、內陸少（2026-10-24 裁示）",
-   "來源": "使用者 2026-10-24 裁示（怪獸從海洋來、環太平洋、內陸盡量少；不用潮差＝威脅）、[lead-reconcile](lead-reconcile/guide.md)、specs/world/rifts-and-territory",
+   "來源": "使用者 2026-10-24 裁示（怪獸從海洋來、環太平洋、內陸盡量少；不用潮差＝威脅）、[lead-reconcile](done/2026-10-24/lead-reconcile/guide.md)、specs/world/rifts-and-territory",
    "影響": "方格大地圖的新裂縫落格與 content/base/world/rifts 族偏好沒有海岸權重；內陸會和沿海一樣常開新裂",
    "建議做法": "新裂縫落格加權：海岸格與通海河口格高、環太平洋區再加權、內陸格只允許菌絲族或沿河口；不讀潮差、潮高等潮汐物理量；等 lead-grid 收線後由引擎線做，權重數字為提案",
    "規模": "小"
@@ -457,7 +457,7 @@
    "序": "50",
    "優先": "P3",
    "項目": "友軍／敵軍古代機單位：別人的古代機（例：認主後的埃吉爾）以友軍或敵軍身分進戰場，玩家不能招募",
-   "來源": "[lead-aegir](lead-aegir/REPORT.md)、design-notes/world/aegir、plan-epic v3 第 1 節",
+   "來源": "[lead-aegir](done/2026-10-26/lead-aegir/REPORT.md)、design-notes/world/aegir、plan-epic v3 第 1 節",
    "影響": "埃吉爾醒後是「友軍或對手的古代機單位」，現行只有玩家自己的古代機與敵方怪獸，NPC 古代機無載體",
    "建議做法": "情境 deployment 允許第三方／盟軍持有古代機 frame（不進玩家名冊、不可擄獲）；營運側由事件旗標決定鹽鷗是否帶它出戰；AI 沿用盟軍撤退規則",
    "規模": "小"
@@ -466,7 +466,7 @@
    "序": "51",
    "優先": "P3",
    "項目": "水格視同陸地與海獸浮出：古代機異能「踏浪為岸」（提案名）——它站的水格視同陸地、鄰格海獸不能潛行",
-   "來源": "[lead-aegir](lead-aegir/REPORT.md)、design-notes/world/aegir",
+   "來源": "[lead-aegir](done/2026-10-26/lead-aegir/REPORT.md)、design-notes/world/aegir",
    "影響": "埃吉爾在白天從海裡上岸的獸群前作戰的畫面無法呈現；引擎現無潛行狀態，也沒有逐單位改寫地形",
    "建議做法": "能力效果加「自身所在格與鄰格地形覆寫」光環＋「鄰格某族不能隱匿」；若潛行本身未做，先只做水格視同陸地；給方向不給數字",
    "規模": "小～中"
@@ -475,7 +475,7 @@
    "序": "52",
    "優先": "P3",
    "項目": "世界中他人認主事件：NPC 的古代機在漲潮夜可擲認主（大潮夜機率高），結果改寫勢力狀態，玩家可在場見證、不由玩家觸發（首例：埃吉爾「沒上船的人」）",
-   "來源": "[lead-aegir](lead-aegir/REPORT.md)、content/lore/events/aegir-wakes（hidden）、design-notes/world/essence 認主時機",
+   "來源": "[lead-aegir](done/2026-10-26/lead-aegir/REPORT.md)、content/lore/events/aegir-wakes（hidden）、design-notes/world/essence 認主時機",
    "影響": "lore 已寫認主事件（開局未發生），營運層沒有「非玩家認主」的世界事件與旗標，鹽鷗與埃吉爾狀態永遠停在開局",
    "建議做法": "接第 36 列潮勢加權：營運每漲潮對指定 NPC 古代機擲一次，命中則設旗標、換勢力名冊與該古代機為盟軍單位（接第 50 列）；玩家若有鹽鷗同場契約可觸發見證事件；歸矢（一階進化）接第 10 列，不在本列",
    "規模": "中"
@@ -484,7 +484,7 @@
    "序": "53",
    "優先": "P3",
    "項目": "窄裂縫的蝕錨按寬度取同種縮小版：rift 定義只有單一 anchor（A 級），寬度 C／B 的裂縫核心仍放 A 級錨",
-   "來源": "[lead-fill-kaiju](lead-fill-kaiju/kj-02/REPORT.md)、specs/world/monsters「等級觀」",
+   "來源": "[lead-fill-kaiju](done/2026-10-26/lead-fill-kaiju/kj-02/REPORT.md)、specs/world/monsters「等級觀」",
    "影響": "巢母 C／B（monster/nestmother-c、-b，2026-10-26 入庫）在營運不會當錨出現；年表「寬度 C 的巢母」與遊戲不一致",
    "建議做法": "rifts 定義加可選 anchorByWidth（寬度→monster）；scenario.ts／start.ts／rifts.ts 取錨時先查它，缺省退回 anchor；會動戰役黃金",
    "規模": "小"
@@ -493,7 +493,7 @@
    "序": "54",
    "優先": "P3",
    "項目": "活捕 frame 隨等級：一族一台 bio frame（grade 固定），C／B 巢母活捕後會得到 A 級 bio-nestmother，血量與等級跳變",
-   "來源": "[lead-fill-kaiju](lead-fill-kaiju/kj-02/REPORT.md)",
+   "來源": "[lead-fill-kaiju](done/2026-10-26/lead-fill-kaiju/kj-02/REPORT.md)",
    "影響": "npm run check 對 nestmother-c／-b 警告 capture layer HP differs；同理 tidewolf（D／C／B 共用 C frame）",
    "建議做法": "species.capture 允許 frameByGrade，或活捕時以 monster.partsOverride 與 grade 覆寫 frame；屬引擎與規則題，先定規則",
    "規模": "小"
@@ -502,7 +502,7 @@
    "序": "55",
    "優先": "P3",
    "項目": "已完成（2f4bf2c，lead-rep 2026-10-26）：七家（朝廷、俄、北美、日、內海諸家、基多、奈洛比）factions-ops＋core faction、10 台 model；國家／勢力機走聲望門檻（ops-world rules.repGate）；韓傘無 frame 未建。原：國家型傘與單國小傘（朝廷、俄、北美、日、韓）及基多、奈洛比沒有 factions-ops，它們的機型只能有 frame，不能進研發、補員、市場",
-   "來源": "[lead-fill-mech](lead-fill-mech/REPORT.md)、mf-01",
+   "來源": "[lead-fill-mech](done/2026-10-26/lead-fill-mech/REPORT.md)、mf-01",
    "影響": "玉圭-I型、長爐-I型、隼翼-I型、SI-04、合印-II型與安地斯壁、禿鷲-II、雷鳥、牧杖-III、牧者只活在戰鬥資料與百科；N09「軍售在國與國之間」在營運層看不到",
    "建議做法": "先定國家型雇主（polity「雇主多一類國家」）怎麼進營運：最小解是為各傘加 factions-ops（scale state、roster、territory）＋專屬血統或以通用血統掛 maker；會動作戰模擬與全部戰役黃金，需一次重錄",
    "規模": "中"
@@ -511,7 +511,7 @@
    "序": "56",
    "優先": "P3",
    "項目": "已完成（2f4bf2c，lead-rep 2026-10-26）：oa-* 六件以固定 items 上架 war-armory（公開、300）。原：舊軍工非核心件 oa-* 六件沒有任何上架或配裝入口（市場是死清單、既有 frame 配裝不改）",
-   "來源": "[lead-fill-mech](lead-fill-mech/REPORT.md)、mf-02",
+   "來源": "[lead-fill-mech](done/2026-10-26/lead-fill-mech/REPORT.md)、mf-02",
    "影響": "承步腿架等六件只在百科可見，玩家買不到",
    "建議做法": "在 war-armory 或新開一個「舊廠修造棚」市場列 component 篩選器（data-model-faction-rnd 已規劃市場改篩選器），或交 content 線加一個新市場檔；動市場會改戰役黃金",
    "規模": "小"
@@ -520,7 +520,7 @@
    "序": "57",
    "優先": "P3",
    "項目": "萬潮葬王 E1：蝕訊多一欄「王跡」（提案名）——具名 S 個體的世界位置旗標，三態「在／往北／不見了」",
-   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](done/2026-10-26/lead-wanchao/review.json)",
    "影響": "萬潮葬王的副線在營運層看不到：玩家只能在百科讀到拍二、拍三，蝕訊與市場沒有「牠在哪」，拍一開局狀態「吉大港外灘：在」無處顯示",
    "建議做法": "接第 43 列蝕訊四來源：state 加 namedLords[id]={loc,heading,sinceDay}；殘聯免費報上個漲潮的位置、塞勒涅訂閱報下一次大潮的方向、沐蝕會讖語「王將北行」沿用三成不準規則、哨所以市場商品賣一張天網影像；顯示文案三句已備在 lead-wanchao/base-drafts.json",
    "規模": "小"
@@ -529,7 +529,7 @@
    "序": "58",
    "優先": "P3",
    "項目": "萬潮葬王 E2：具名 S 個體的世界移動——大潮當夜照資料腳本從甲區走到乙區（非 AI 決策），沿途區抬一級；全遊戲只此一隻",
-   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](done/2026-10-26/lead-wanchao/review.json)",
    "影響": "拍二「牠再走一次」（開局後第 8–24 蝕月間某次大潮夜、吉大港外灘→第七哨外海→達卡北郊河口）無法發生，副線停在開局狀態",
    "建議做法": "world 資料加 lordRoutes（lord、候選窗口蝕月、觸發＝大潮夜、路徑格序列、抬級量）；riftsDaily2 在大潮日查表、移 namedLords 旗標並對沿途 patch 走第 40 列 gradeByWidth 位移；落點依大潮表擲、不定死；達卡北郊裂縫未封時其寬度抬一級（天氣效果）；動作戰黃金需重錄",
    "規模": "中"
@@ -538,7 +538,7 @@
    "序": "59",
    "優先": "P3",
    "項目": "萬潮葬王 E3：戰場「不可交戰的在場單位」——站在地圖邊緣、不可選取、不可被瞄準、帶光環（滅港潮懼）",
-   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](done/2026-10-26/lead-wanchao/review.json)",
    "影響": "拍二的跟蹤偵察契約裡牠只能缺席或變成可打的 boss，違反「拍一拍二不交戰」守則",
    "建議做法": "scenario 部署加 presence 類單位：不進行動序、targetable=false、不佔格或佔邊緣不可進入格，掛既有 unitEffect 光環 EffectRef（敵我皆受潮懼）；AI 目標選擇與 UI 選取都要排除；先做最小版（固定邊緣格＋光環），可測於 headless",
    "規模": "小"
@@ -547,7 +547,7 @@
    "序": "60",
    "優先": "P3",
    "項目": "萬潮葬王 E4：事件改區鉤子——事件能把指定蝕域一區轉深淺或解封水面，不只由錨驅動",
-   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](done/2026-10-26/lead-wanchao/review.json)",
    "影響": "拍二的不可逆後果「孟加拉灣北岸一段重畫一區」寫不進營運：目前 patch 深淺只由 sinceDay 與錨（patchDepth）決定，事件改不了",
    "建議做法": "ops 事件 effect 加 blightShift{patch|cells, to: shallow|clear}：shallow＝重設 sinceDay、clear＝移出 patch cells 後 rebuildBlightIndex；E2 走完時呼叫一次（第七哨外海或北郊一區轉淺蝕，或外灘解封）；需 spec 補欄位，屬規則題先定",
    "規模": "小"
@@ -556,7 +556,7 @@
    "序": "61",
    "優先": "P3",
    "項目": "萬潮葬王 E5：N10 旗標——連珠潮夜（第 40 蝕月）在吉大港觸發守牆情境，牠為可選 boss、capture-once",
-   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](lead-wanchao/review.json)",
+   "來源": "[plan-wanchao](plan-wanchao/plan.md) §四、[lead-wanchao](done/2026-10-26/lead-wanchao/review.json)",
    "影響": "拍三「牠停在吉大港城門口，轉身回海或玩家守牆開打」沒有入口；spec 已寫 S 領主捕捉只允許一次、留給劇情，但沒有掛點",
    "建議做法": "連珠潮日若玩家在孟加拉灣圖，推一則可接可拒的守牆情境（不接＝牠轉身回海）；情境裡 tidespine-chittagong 為 boss、開打需玩家主動選；capture 走一次性旗標 lordCaptured，用過即鎖；吉大港守住或失守由前四十蝕月狀態與那夜結果決定，不預寫；情境文案大綱在 lead-wanchao/base-drafts.json",
    "規模": "中"
@@ -565,7 +565,7 @@
    "序": "62",
    "優先": "P2",
    "項目": "空中與水域移動：`locomotion` 的 flight 等登記值只影響既有移動成本，沒有高度／水深狀態、跨水與攻擊關係",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "燈腹、空帆（空中）與淵顎、垂幕、岔鰭（深海／游水）只能用地面行走＋增閃／遠射近似；「空中來獸」「海裡上岸」在戰場上不成立",
    "建議做法": "先定高度與水深兩個狀態、可達性、誰打得到誰，再接尋路與 AI；可與第 51 列水格合併評估",
    "規模": "大"
@@ -574,7 +574,7 @@
    "序": "63",
    "優先": "P3",
    "項目": "地下穿越與現身：鑽地、從崖洞或橋底現身",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "泥母、鐘蠹、拱根的地下形態只是文字，戰場上與地面單位無異",
    "建議做法": "定進出地下的成本與可攻擊性，接意圖顯示（意圖可見原則）",
    "規模": "中"
@@ -583,7 +583,7 @@
    "序": "64",
    "優先": "P2",
    "項目": "武器部位綁內建招式：部位破壞後該招不可用並讓 AI 重估",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "矢櫛背架、閘母囊閘、鐘蠹胸鐘等「打掉武器部位」只能用 onBroken 降命中／AP 近似，玩家看不到「拆了就不會再放這招」",
    "建議做法": "能力加可選 `sourcePart`，部位 broken 時列為不可用；AI 候選同步過濾",
    "規模": "中"
@@ -592,7 +592,7 @@
    "序": "65",
    "優先": "P3",
    "項目": "spawner 週期與活子體上限硬閘：behaviors 的 cadence／max 不參與戰鬥出生",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "泥母、閘母等新母體與既有巢母只靠能力 cooldown＋usesPerBattle 限次，場上活子體沒有上限",
    "建議做法": "出生動詞讀活子體數與週期；與世界層七日離巢語義對齊",
    "規模": "中"
@@ -601,7 +601,7 @@
    "序": "66",
    "優先": "P2",
    "項目": "生態位選獸與多候選錨：遭遇只按族＋等級從 rift.monsters 抽，不分海岸／港口／河口；每族只有一隻 A 錨",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "24 種新獸雖接入裂縫，但港口獸也會在內陸蝕域出現；6 隻新二名 A（閉港千扉、碎燈鳴塚、折桅白冠、斷纜青鬣、掩舟暮帷、斷橋骸林）未列入 rift.monsters（避免二名重複出場），營運遇不到，只在展示情境出現",
    "建議做法": "encounter／rift 加可選物種白名單與棲位條件、`anchor` 改按地域／寬度選池；與第 53 列合併成一條",
    "規模": "中"
@@ -610,7 +610,7 @@
    "序": "67",
    "優先": "P3",
    "項目": "純採收物種的 capture 欄位改可選（或明確的採收動作）",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "菌絲新種（燈苔、蘆網、拱根、沉林）沿用菌床的「requireIntact＝requireBroken＝core」互斥寫法＋借 frame/bio-bed 佔位",
    "建議做法": "`capture` 改可選，或新增 harvest 定義",
    "規模": "小"
@@ -619,7 +619,7 @@
    "序": "68",
    "優先": "P2",
    "項目": "AI：自護招不被使用——`protect` 只在有護衛指派時計分、原地 `escape` 評分為 0、berserk 不評增益",
-   "來源": "[lead-kaiju2](lead-kaiju2/report.md)、kj2-plan 第 10 段",
+   "來源": "[lead-kaiju2](done/2026-10-26/lead-kaiju2/report.md)、kj2-plan 第 10 段",
    "影響": "新招自護／側閃 8 招已改用 buff 鍵近似；既有盾甲舉盾、叩闕甲豎甲同病；青鬣豎鬣（berserk）與伏耳（sniper-perch D）在 probe 中從未出手",
    "建議做法": "protect 在自身受威脅時給基礎分；原地 escape 依危險度計分；berserk 允許 self buff",
    "規模": "小"
@@ -628,7 +628,7 @@
    "序": "69",
    "優先": "P2",
    "項目": "無人機母艦／艦載機：effect `spawn` 只收 species（怪獸），不能生出機甲單位",
-   "來源": "[lead-mech2](lead-mech2/report.md)、plan 第五節",
+   "來源": "[lead-mech2](done/2026-10-26/lead-mech2/report.md)、plan 第五節",
    "影響": "無人機母艦定位做不出；本輪 0 台，歸燈-燕鷗只做撤退指揮，不是母艦",
    "建議做法": "spawn 支援 frame（配裝、核心／座艙來源、出場容量、AI 指派）；先等使用者定無人機題材（鐵偶／遙控機）",
    "規模": "中"
@@ -637,7 +637,7 @@
    "序": "70",
    "優先": "P3",
    "項目": "多足斷足無移動懲罰：`locomotionOf` 只要還剩一個 locomotion 部位就照常移動",
-   "來源": "[lead-mech2](lead-mech2/report.md)、plan 第五節",
+   "來源": "[lead-mech2](done/2026-10-26/lead-mech2/report.md)、plan 第五節",
    "影響": "四足、六足、輪座斷足只少掛件不減速，多足的差異只在受擊分散",
    "建議做法": "移動力或 moveCost 按 locomotion 部位毀損比例遞減；寫成 rules 參數",
    "規模": "小"
@@ -646,7 +646,7 @@
    "序": "71",
    "優先": "P3",
    "項目": "工程與戰場修復動詞：沒有修復機械層、拖動友方、施作地形的 HookAction",
-   "來源": "[lead-mech2](lead-mech2/report.md)、plan 第五節",
+   "來源": "[lead-mech2](done/2026-10-26/lead-mech2/report.md)、plan 第五節",
    "影響": "GL-02、鐵劍-II型・扶梁、鐵砧-II型・吊鉚、棧橋-IV型的「工程」只能用排燼扶架與繫泊鉗（減益）近似",
    "建議做法": "加 repair（限 armor／structure、有上限）、tow（友方位移）兩動詞與工程 AI 戰術鍵；營運側可接戰後回收",
    "規模": "中"
@@ -655,7 +655,7 @@
    "序": "72",
    "優先": "P3",
    "項目": "多格機體與首尾射界：所有單位佔一格、無面向",
-   "來源": "[lead-mech2](lead-mech2/report.md)、plan 第五節",
+   "來源": "[lead-mech2](done/2026-10-26/lead-mech2/report.md)、plan 第五節",
    "影響": "舟架（鰩魚-IV型、棧橋-IV型）的首尾只是可瞄準部位，沒有側舷或面向差異",
    "建議做法": "footprint／facing 資料契約與碰撞、射界；需正式引擎計畫",
    "規模": "大"
@@ -664,7 +664,7 @@
    "序": "73",
    "優先": "P2",
    "項目": "AI 不用友方排燼招 `ability/m2-relieve-ally`（排燼扶架）",
-   "來源": "[lead-mech2](lead-mech2/report.md)、plan 第五節",
+   "來源": "[lead-mech2](done/2026-10-26/lead-mech2/report.md)、plan 第五節",
    "影響": "六台支援機（IX-08、衡梁-I型、GL-02、扶梁、留燈-合印、歸燈-燕鷗）在 AI 手上不會用招，只手動試玩用過；與第 68 列同源",
    "建議做法": "友方 buff／protect 估值納入目標燼量（高燼者給分）；或改 ai.tactics 權重後重量測",
    "規模": "小"

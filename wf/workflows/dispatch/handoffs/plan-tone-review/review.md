@@ -1,6 +1,6 @@
 # plan-tone-review — 填充層 183 件的基調審查（Fable 規劃線，2026-10-26）
 
-[handoffs](../README.md)｜逐件判定 [verdicts.json](verdicts.json)（只列 ⚠️／❌）｜審的是 [lead-dedup/review-all.json](../lead-dedup/review-all.json) 183 列｜尺是 [style.md](../../../../../content/lore/style.md)
+[handoffs](../README.md)｜逐件判定 [verdicts.json](verdicts.json)（只列 ⚠️／❌）｜審的是 [lead-dedup/review-all.json](../done/2026-10-26/lead-dedup/review-all.json) 183 列｜尺是 [style.md](../../../../../content/lore/style.md)
 
 只讀不改、不派工、不 commit。文筆不評，只評合不合基調。
 

@@ -21,7 +21,7 @@
 
 ## 已落地（lead-dedup，2026-10-26，commit 3d79f69）
 
-上列裁定已在 lore 與設定筆記落地：吉大港讀法與黑幫城市進貨（city-types、年表 2106 量產條）、鹿特丹自由城市、埃吉爾 2106 抵押（aegir.md 轉已定）與認主事件 `occurs: possible`、茉莉一小時規矩、長槍藍本銀環／刑天刻痕後加授權、衍二・堅盾守牆、放閘夜改讀（核過已一致）、金山夜進年表、北非／西亞 2102 成傘與運河輪值（核過已一致）、金山深井刪出獸句、釜山雙籤城、雅庫茨克 2100 夏失守、白夜 2100 首燒、萬潮葬王唯一例外（rift-beasts、wreck-crown 各補一句）。舊檔矛盾 8 項年表判斷不了，列在 [lead-dedup/review-guide](lead-dedup/review-guide.md) 末節待使用者裁定。
+上列裁定已在 lore 與設定筆記落地：吉大港讀法與黑幫城市進貨（city-types、年表 2106 量產條）、鹿特丹自由城市、埃吉爾 2106 抵押（aegir.md 轉已定）與認主事件 `occurs: possible`、茉莉一小時規矩、長槍藍本銀環／刑天刻痕後加授權、衍二・堅盾守牆、放閘夜改讀（核過已一致）、金山夜進年表、北非／西亞 2102 成傘與運河輪值（核過已一致）、金山深井刪出獸句、釜山雙籤城、雅庫茨克 2100 夏失守、白夜 2100 首燒、萬潮葬王唯一例外（rift-beasts、wreck-crown 各補一句）。舊檔矛盾 8 項年表判斷不了，列在 [lead-dedup/review-guide](done/2026-10-26/lead-dedup/review-guide.md) 末節待使用者裁定。
 
 ## 2026-10-26 晚（使用者：「隨意，我人在外面不方便，你們就繼續。我其實覺得，機甲種類和怪物種類太少了」）
 
@@ -31,5 +31,5 @@
 
 ## 已落地（lead-tone-fix，2026-10-26，commit 9364f46）
 
-基調審查方向 1–5 落地（美洲 5 新事件、撤 4 件改 hidden 併主檔、殘聯機甲史 4 件、機械清理、八項矛盾）；第二節定案名已拿掉提案標記。例外：漲潮倒數依 spec opening.md 定十一天（非 Fable 推薦的三天）。base 轉交與刪檔建議見 [lead-tone-fix/report](lead-tone-fix/report.md)。
+基調審查方向 1–5 落地（美洲 5 新事件、撤 4 件改 hidden 併主檔、殘聯機甲史 4 件、機械清理、八項矛盾）；第二節定案名已拿掉提案標記。例外：漲潮倒數依 spec opening.md 定十一天（非 Fable 推薦的三天）。base 轉交與刪檔建議見 [lead-tone-fix/report](done/2026-10-26/lead-tone-fix/report.md)。
 - 使用者選項回覆（2026-10-26）：漲潮倒數十一天（照開場規格）；4 個撤件（estuary-exchange、another-ledger、djibouti-charter、inland-registers）**授權刪除**並清引用；萬潮葬王引擎（engine-backlog 57–61）待 lead-mech2、lead-kaiju2 收線後再派；「黑脊北行」「城門未開」「王跡」定案，〈沉船加冕〉正面斬擊與老鷺／老鸛寫法交潤飾。

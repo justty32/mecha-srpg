@@ -21,7 +21,7 @@
 | 工具 | 用在哪一步 |
 |---|---|
 | `npm run typecheck`、`npm run check` | 每拆一檔就跑 |
-| `node --test src/mcp src/ui-adapter` | 驗測試 |
+| `node --test 'src/mcp/**/*.test.ts'` | 驗測試 |
 
 ## 資源與禁區
 
@@ -35,6 +35,6 @@ REPORT 寫到 `/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/hand
 
 1. `wc -l` 這 4 個原檔與所有新檔都 ≤ 300。
 2. `npm run typecheck` 0 錯；`npm run check` 錯誤數 0。
-3. `node --test src/ui-adapter src/mcp` 全綠（沙箱計數不準可註明，領導沙箱外重跑 `npm test`）。
-4. `git diff --stat` 只含上列 4 檔、新檔與 code-map 兩檔。
+3. `node --test 'src/ui-adapter/**/*.test.ts' 'src/mcp/**/*.test.ts'` 全綠（沙箱計數不準可註明，領導沙箱外重跑 `npm test`）。
+4. `git diff --stat -- src wf/workflows/common` 裡屬於你的只有上列 4 檔、新檔與 code-map 兩檔（工作樹裡別的線的改動不算，不要碰）。
 

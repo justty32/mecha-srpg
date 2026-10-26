@@ -27,9 +27,9 @@
 
 - tidy：01735b4（收線驗收證據入版控）、ff7f3a4（inbox 歸檔）、4b21a50（收尾整理）。
 - [talk-decide](talk-decide/REPORT.md)：Fable 對談八題拍板（機甲核心不耗損、機魂能獨駕、AI 醒魂、精粹改人、大潮全球同一時刻）。
-- [lead-decide-land](lead-decide-land/REPORT.md)：裁示落地到 design-notes／specs／守則／style（頂層代存 4b6992d）。
-- [lead-cockpit](lead-cockpit/REPORT.md)：引擎——機甲核心與座艙、無人機普通開、人帶能力、驅動時數與外貌年齡、AI 醒魂、no-pilots 終局；暫值在 `content/base/rules/cockpit.json`（代存 62ca3ed）。
-- [lead-polish](lead-polish/REPORT.md)：翻譯腔五批 225 檔審、161 檔改。
+- [lead-decide-land](done/2026-10-25/lead-decide-land/REPORT.md)：裁示落地到 design-notes／specs／守則／style（頂層代存 4b6992d）。
+- [lead-cockpit](done/2026-10-25/lead-cockpit/REPORT.md)：引擎——機甲核心與座艙、無人機普通開、人帶能力、驅動時數與外貌年齡、AI 醒魂、no-pilots 終局；暫值在 `content/base/rules/cockpit.json`（代存 62ca3ed）。
+- [lead-polish](done/2026-10-25/lead-polish/REPORT.md)：翻譯腔五批 225 檔審、161 檔改。
 - lead-lore-fix（218b154）：阿鏽人格早熟記為特例伏筆；老爹維持釜山育成（身世提案不採）；montreal 學會為買方。
 
 ## 新 session 的第一步
@@ -38,8 +38,8 @@
 2. 讀本檔 → [codex-handover](codex-handover.md) → [engine-backlog](engine-backlog.md)。
 3. 確認沒有殘留現役線（[CLAIMS](../CLAIMS.md)、`git worktree list`、`tmux ls | grep '^cx-'`）。
 4. 使用者回饋到了先派修正線（見 WAIT_USER，含 cockpit REPORT 四點）。
-5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆已完成（2026-10-26 lead-tide-cal，醒魂已改讀大潮；天象效果接 39–43，醒魂潮骰機率待使用者定，見 [lead-tide-cal REPORT](lead-tide-cal/REPORT.md)）；第 28 列抵抗性已完成（2026-10-26 lead-resist，17a2fbf；強化打擊／遠程已分近戰遠程增傷 ×1.1 暫值；A 級頭目對 C／B 隊伍變難殺、減半率是否放寬待使用者，見 done 索引）；第 45 列隱藏真相標記已完成（2026-10-26 lead-secret，lore 可見度欄見 content/lore/README「可見度」）；P2 `nameEn`／`etymology` 可另開小線；第 55、56 列國家機進營運與舊廠件上架已完成（2026-10-26 lead-rep，2f4bf2c：勢力招牌機走聲望門檻 `ops-world` rules.repGate，戰役黃金已重錄；待定見 done 索引）；鐵劍（與飛魚）models 入庫已完成（2026-10-26 lead-ironsword，黃金戰役已重錄，以後軌跡變了用 `node test/campaigns/rerecord.ts` 重錄，見 lead-ironsword REPORT（待頂層代存）、done 索引）。
-6. 世界觀：plan-epic 三輪已裁示部分已落地（2026-10-26 lead-epic-land，入口 `design-notes/world.md` 末節：崩年前世界、國家縮而不死、塞勒涅管家、城邦類型、埃吉爾、崩年的底色）；自由城市與黑幫城市的數量、分布、獵牌與催收規則、吉大港（黑幫城市）與環線商隊（自由城市）歸屬 2026-10-26 已定（lead-fill 第 0 步），其餘細節仍提案；填充層已按區開線（lead-fill 南亞＋東南亞＋群島已收線：25 檔 lore＋年表 13 條，白話審稿表 `handoffs/lead-fill/review.json`，矛盾清單在其 REPORT；lead-fill-am 已收線；歐洲 lead-aegir 已收線（埃吉爾認主事件 hidden、開局未發生；歐傘群像 14 檔新增；engine-backlog 50–52；白話審稿表 `handoffs/lead-aegir/review.json` 14 列，矛盾 8 條在其 REPORT）；非洲西亞 af、東北亞 ea、機甲 mech、怪獸 kaiju 見 CLAIMS）；城邦類型欄（engine-backlog）待開；v1 殘項 A2／A4／A5／A6／A7／B2／B4 未裁示。
+5. 下一批可派：engine-backlog 剩餘列——第 38 列大潮曆已完成（2026-10-26 lead-tide-cal，醒魂已改讀大潮；天象效果接 39–43，醒魂潮骰機率待使用者定，見 [lead-tide-cal REPORT](done/2026-10-26/lead-tide-cal/REPORT.md)）；第 28 列抵抗性已完成（2026-10-26 lead-resist，17a2fbf；強化打擊／遠程已分近戰遠程增傷 ×1.1 暫值；A 級頭目對 C／B 隊伍變難殺、減半率是否放寬待使用者，見 done 索引）；第 45 列隱藏真相標記已完成（2026-10-26 lead-secret，lore 可見度欄見 content/lore/README「可見度」）；P2 `nameEn`／`etymology` 可另開小線；第 55、56 列國家機進營運與舊廠件上架已完成（2026-10-26 lead-rep，2f4bf2c：勢力招牌機走聲望門檻 `ops-world` rules.repGate，戰役黃金已重錄；待定見 done 索引）；鐵劍（與飛魚）models 入庫已完成（2026-10-26 lead-ironsword，黃金戰役已重錄，以後軌跡變了用 `node test/campaigns/rerecord.ts` 重錄，見 lead-ironsword REPORT（待頂層代存）、done 索引）。
+6. 世界觀：plan-epic 三輪已裁示部分已落地（2026-10-26 lead-epic-land，入口 `design-notes/world.md` 末節：崩年前世界、國家縮而不死、塞勒涅管家、城邦類型、埃吉爾、崩年的底色）；自由城市與黑幫城市的數量、分布、獵牌與催收規則、吉大港（黑幫城市）與環線商隊（自由城市）歸屬 2026-10-26 已定（lead-fill 第 0 步），其餘細節仍提案；填充層已按區開線（lead-fill 南亞＋東南亞＋群島已收線：25 檔 lore＋年表 13 條，白話審稿表 `handoffs/done/2026-10-26/lead-fill/review.json`，矛盾清單在其 REPORT；lead-fill-am 已收線；歐洲 lead-aegir 已收線（埃吉爾認主事件 hidden、開局未發生；歐傘群像 14 檔新增；engine-backlog 50–52；白話審稿表 `handoffs/done/2026-10-26/lead-aegir/review.json` 14 列，矛盾 8 條在其 REPORT）；非洲西亞 af、東北亞 ea、機甲 mech、怪獸 kaiju 見 CLAIMS）；城邦類型欄（engine-backlog）待開；v1 殘項 A2／A4／A5／A6／A7／B2／B4 未裁示。
 7. 內容：阿鏽人格早熟支線待寫（[codex-batches](codex-batches.json) 第 15 列，需使用者定方向再動筆）；其餘 add／polish 批次照 codex-handover。
 8. 整理：設定筆記 `world/essence.md`、`world/scale.md`、`terms.md` 逼近 8 KB，下次動它們前先按主題拆；其餘照 [next-tidy](next-tidy.md)。
 9. 延後的數值微調（B1 經濟目標、B2 出戰前士氣、黃金 month>=7 閘門；2026-10-26 追加：通用血統拖慢招牌機研發（lead-ironsword）、A 級頭目難殺與 ×1.1 近遠增傷（lead-resist））等使用者開口再排——使用者 2026-10-26：「數值微調這塊可以後期再做」。醒魂機率維持極稀少，不調。
