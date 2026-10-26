@@ -1,0 +1,172 @@
+{
+  "id": "scenario/fs-05-grain-return",
+  "name": "糧車後的輪座",
+  "nameEn": "Grain Return",
+  "etymology": "Grain Return 意指糧車回程仍留輪座殿後。掛到 place/seattle-outer-grain-quay；補充事件 event/lamplit-return-trials。本場為2108可能遭遇的試機配置，可重播；人物僅為參考編隊，不宣稱史實在場或轉投勢力，戰果不作二名永久死亡的史實。",
+  "brief": "空糧車往回走，輪座還把槍口朝著斷桅。",
+  "map": "map/fs-05-seattle",
+  "slots": {
+    "player": {
+      "faction": "faction/north-american-umbrella",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/ix-wain-01",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-sled-03",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-caisson-01",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/surf-runner-d",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/shell-ear-d",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        }
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/league-plough",
+          "at": {
+            "x": 17,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/union-fr7",
+          "at": {
+            "x": 18,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/league-plough"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/union-fr7"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082635
+}

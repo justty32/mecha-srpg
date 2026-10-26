@@ -1,0 +1,7565 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "batch",
+  "id",
+  "檔",
+  "名稱",
+  "nameEn",
+  "brief",
+  "map",
+  "slots",
+  "objectives",
+  "rounds",
+  "seed",
+  "類型配方",
+  "展示",
+  "掛到",
+  "補充事件",
+  "遭遇池／契約引用",
+  "入口",
+  "人員口徑",
+  "配裝"
+ ],
+ "rows": [
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-mud-mouth",
+   "檔": "content/base/scenarios/fs-01-mud-mouth.json",
+   "名稱": "泥背下的針（提案）",
+   "nameEn": "Mud Mouth",
+   "brief": "泥背一抖，細針沿閘肩亮起；先拆囊口！",
+   "map": "map/fs-01-batangas",
+   "slots": {
+    "player": {
+     "faction": "faction/imperial-court",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/silt-mother-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/brinepin-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/brinepin-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/silt-mother-b"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082601,
+   "類型配方": "斬首",
+   "展示": "先破囊口減AP，舟架走裂渠、六足砲走平橋",
+   "掛到": "place/batangas-outer-sluices",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-mud-mouth",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-wing-lantern",
+   "檔": "content/base/scenarios/fs-01-wing-lantern.json",
+   "名稱": "燈腹過閘（提案）",
+   "nameEn": "Wing Lantern",
+   "brief": "薄翼在閘上連成一線，橋頭的燈一盞也不能熄。",
+   "map": "map/fs-01-batangas",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/sluice-mother-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/lantern-keel-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/lantern-keel-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/japan-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082602,
+   "類型配方": "守區8輪",
+   "展示": "分翼越巢壁，潮行走渠；閘母生C燈腹",
+   "掛到": "place/batangas-outer-sluices",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-wing-lantern",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-fan-feet",
+   "檔": "content/base/scenarios/fs-01-fan-feet.json",
+   "名稱": "砂扇掃腳（提案）",
+   "nameEn": "Fan Feet",
+   "brief": "砂從低處貼地掃來，架鐵把四隻腳錯開站穩。",
+   "map": "map/fs-01-sendai",
+   "slots": {
+    "player": {
+     "faction": "faction/japan-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/anvil-trestle-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-caisson-01",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/grit-fan-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/hinge-crab-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/grit-fan-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082603,
+   "類型配方": "清剿",
+   "展示": "扇面逼散開；輪座繞殘牆、四足分掛武器",
+   "掛到": "place/sendai-bell-cliff",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-fan-feet",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-bell-break",
+   "檔": "content/base/scenarios/fs-01-bell-break.json",
+   "名稱": "胸鐘停息（提案）",
+   "nameEn": "Bell Break",
+   "brief": "崖燈碎落在盾上，砲手喊：別打厚肋，找那口鐘！",
+   "map": "map/fs-01-sendai",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/bell-borer-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/needle-rack-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/japan-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/bell-borer-a"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/bell-borer-a"
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082604,
+   "類型配方": "斬首",
+   "展示": "點射死角與胸鐘AP上限；分翼跨牆側切",
+   "掛到": "place/sendai-bell-cliff",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-bell-break",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-sluice-eight",
+   "檔": "content/base/scenarios/fs-01-sluice-eight.json",
+   "名稱": "閘前八拍（提案）",
+   "nameEn": "Sluice Eight",
+   "brief": "每扇囊閘都在吐光，守過這八拍，再把傷機接回來。",
+   "map": "map/fs-01-batangas",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-needlefish-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/sluice-mother-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/silt-mother-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/brinepin-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/japan-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082605,
+   "類型配方": "撐8輪撤守",
+   "展示": "同圖比較B→D與A→C生成鏈；出生子體才有繫",
+   "掛到": "place/batangas-outer-sluices",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-sluice-eight",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-needle-ledge",
+   "檔": "content/base/scenarios/fs-01-needle-ledge.json",
+   "名稱": "矢架之下（提案）",
+   "nameEn": "Needle Ledge",
+   "brief": "背矢架從斷崖探出，伏架壓低身子替同伴開路。",
+   "map": "map/fs-01-sendai",
+   "slots": {
+    "player": {
+     "faction": "faction/russia-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/needle-rack-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/grit-fan-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/lantern-keel-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082606,
+   "類型配方": "守區8輪",
+   "展示": "遠射三格死角，低扇與薄翼護群混合",
+   "掛到": "place/sendai-bell-cliff",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-needle-ledge",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-01",
+   "id": "scenario/fs-01-last-cliff-lamp",
+   "檔": "content/base/scenarios/fs-01-last-cliff-lamp.json",
+   "名稱": "崖邊留燈（提案）",
+   "nameEn": "Last Cliff Lamp",
+   "brief": "鐘聲又來了，封門的砲光把回程路照亮。",
+   "map": "map/fs-01-sendai",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-trestle-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/bell-borer-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/hinge-crab-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/japan-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082607,
+   "類型配方": "撐8輪撤守",
+   "展示": "斷胸鐘減AP；貼身扣甲護圈使拆群有價值",
+   "掛到": "place/sendai-bell-cliff",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-01-last-cliff-lamp",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-chain-alley",
+   "檔": "content/base/scenarios/fs-02-chain-alley.json",
+   "名稱": "吊索斷處（提案）",
+   "nameEn": "Chain Alley",
+   "brief": "棚頂的吊索一齊斷下，拆船工只喊：給擔架留條巷！",
+   "map": "map/fs-02-chittagong",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ix-wain-01",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-caisson-01",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-pin-04",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/hound-mk2",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-01",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/hound-mk2"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082608,
+   "類型配方": "人對人點殺",
+   "展示": "輪座守巷、輕足標記，兩台敵機不靠獸級減傷",
+   "掛到": "place/chittagong",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-chain-alley",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-three-sheds",
+   "檔": "content/base/scenarios/fs-02-three-sheds.json",
+   "名稱": "三棚爭路（提案）",
+   "nameEn": "Three Sheds",
+   "brief": "三面槍口照亮舊棚，候鳥的人先搶到那段通路。",
+   "map": "map/fs-02-chittagong",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-hoist-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/tide-faith",
+     "units": [
+      {
+       "mech": "frame/longspear-v4",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/hound-mk2",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/focus-fire"
+    },
+    "third": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/guerrilla",
+     "units": [
+      {
+       "mech": "frame/saltgull-tidegull-longspear",
+       "at": {
+        "x": 18,
+        "y": 17
+       },
+       "persons": [
+        {
+         "id": "person/mara-okoye",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v4-saltgull",
+       "at": {
+        "x": 20,
+        "y": 17
+       },
+       "persons": [
+        {
+         "id": "person/adewale-balogun",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "enemy",
+     "onComplete": "win"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "third",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "third",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082609,
+   "類型配方": "三方混戰",
+   "展示": "拓影穿牆；吊鉚與扶梁沿巷，第三方有獨立勝利",
+   "掛到": "place/chittagong",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-three-sheds",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-gantry-home",
+   "檔": "content/base/scenarios/fs-02-gantry-home.json",
+   "名稱": "吊架歸巷（提案）",
+   "nameEn": "Gantry Home",
+   "brief": "鋸臂已經抬不起來，別等它回頭，護住回城的路！",
+   "map": "map/fs-02-chittagong",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-hoist-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/ix-ii",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v1",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082610,
+   "類型配方": "雙機護送",
+   "展示": "只護送兩台工程機到西口，沒有拖拽或修血",
+   "掛到": "place/chittagong",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-gantry-home",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-acid-dryline",
+   "檔": "content/base/scenarios/fs-02-acid-dryline.json",
+   "名稱": "酸光之外（提案）",
+   "nameEn": "Acid Dryline",
+   "brief": "廠渠浮著酸光，輪座沿乾道替採菌人擋住白枝。",
+   "map": "map/fs-02-khulna",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ix-wain-01",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-needlefish-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082611,
+   "類型配方": "清剿",
+   "展示": "履帶不能入酸沼；潮行cost1但仍吃酸蝕",
+   "掛到": "place/khulna",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-acid-dryline",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-root-window",
+   "檔": "content/base/scenarios/fs-02-root-window.json",
+   "名稱": "白根穿窗（提案）",
+   "nameEn": "Root Window",
+   "brief": "空窗裡伸出拱根，伏架的第一矢釘住最細的結。",
+   "map": "map/fs-02-khulna",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/vault-root-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/vault-root-b"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082612,
+   "類型配方": "斬首",
+   "展示": "掘進穿殘牆卻不能入酸沼，拱根厚外拱可再生",
+   "掛到": "place/khulna",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-root-window",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-mill-lamps",
+   "檔": "content/base/scenarios/fs-02-mill-lamps.json",
+   "名稱": "廠燈八輪（提案）",
+   "nameEn": "Mill Lamps",
+   "brief": "停工的長廠重新亮了一排燈，這回照的是歸路。",
+   "map": "map/fs-02-khulna",
+   "slots": {
+    "player": {
+     "faction": "faction/dhaka-weavers",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-needlefish-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/vault-root-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082613,
+   "類型配方": "守區8輪",
+   "展示": "菌絲不動；在乾道守區，避免把全滅當唯一答案",
+   "掛到": "place/khulna",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-mill-lamps",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-02",
+   "id": "scenario/fs-02-smoke-exit",
+   "檔": "content/base/scenarios/fs-02-smoke-exit.json",
+   "名稱": "煙後有人（提案）",
+   "nameEn": "Smoke Exit",
+   "brief": "棚屋間只剩燼煙，探路機的靈目還看得見出口。",
+   "map": "map/fs-02-chittagong",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/convoy-runner",
+     "units": [
+      {
+       "mech": "frame/shellsoc-pin-04",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-caisson-01",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-wain-01",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/longspear-v1",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/hound-mk2",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "unit": "player-0"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "reachExit",
+     "params": {
+      "unit": "player-0"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082614,
+   "類型配方": "指定機撤離",
+   "展示": "指定player-0到西口；其餘兩台輪座掩護",
+   "掛到": "place/chittagong",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-02-smoke-exit",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-wet-moorings",
+   "檔": "content/base/scenarios/fs-03-wet-moorings.json",
+   "名稱": "半沉的泊位（提案）",
+   "nameEn": "Wet Moorings",
+   "brief": "泊位鐵索唱起來了，潮鷗的槍聲從水面接上。",
+   "map": "map/fs-03-rotterdam",
+   "slots": {
+    "player": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-brace-02",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v4-saltgull",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/foam-jaw-c",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/split-fin-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/shell-ear-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082615,
+   "類型配方": "清剿",
+   "展示": "兩種hover與輪座的渠岸分工，沫顎扇面逼散",
+   "掛到": "place/rotterdam-roost",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-wet-moorings",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-brace-the-quay",
+   "檔": "content/base/scenarios/fs-03-brace-the-quay.json",
+   "名稱": "扶住港門（提案）",
+   "nameEn": "Brace The Quay",
+   "brief": "小輪座橫過港門，後面的吊架替歸隊者留出一口氣。",
+   "map": "map/fs-03-rotterdam",
+   "slots": {
+    "player": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/innersea-brace-02",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/shelf-back-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/hinge-crab-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/brinepin-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082616,
+   "類型配方": "守區8輪",
+   "展示": "棧背護圈與短線牽滯；舟架跨渠接防",
+   "掛到": "place/rotterdam-roost",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-brace-the-quay",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-deep-breath",
+   "檔": "content/base/scenarios/fs-03-deep-breath.json",
+   "名稱": "淵口吐息（提案）",
+   "nameEn": "Deep Breath",
+   "brief": "深水來的顎停在岸上，第一口酸息劃過空泊。",
+   "map": "map/fs-03-rotterdam",
+   "slots": {
+    "player": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/trench-maw-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/paired-wake-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/trench-maw-b"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082617,
+   "類型配方": "斬首",
+   "展示": "只在岸上打深海來源獸，兩核與厚甲分開處理",
+   "掛到": "place/rotterdam-roost",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-deep-breath",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-wall-shadow",
+   "檔": "content/base/scenarios/fs-03-wall-shadow.json",
+   "名稱": "墟牆拓影（提案）",
+   "nameEn": "Wall Shadow",
+   "brief": "舊刻痕藏在殘牆後，拓影從牆腹裡先露出靈目。",
+   "map": "map/fs-03-alpine",
+   "slots": {
+    "player": {
+     "faction": "faction/shell-society",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-silverring-g1",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-crescent-g5",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/selene-silverring-g1"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082618,
+   "類型配方": "斬首",
+   "展示": "掘進穿牆、四足繞坡；部位標記與遠射配合",
+   "掛到": "place/alpine-shell",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-wall-shadow",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-high-pass-order",
+   "檔": "content/base/scenarios/fs-03-high-pass-order.json",
+   "名稱": "風口借道（提案）",
+   "nameEn": "High Pass Order",
+   "brief": "白旗下的槍口壓住風口，學會護衛把盾先送上坡。",
+   "map": "map/fs-03-alpine",
+   "slots": {
+    "player": {
+     "faction": "faction/shell-society",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/anvil-trestle-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-pin-04",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-silverring-g1",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-ii",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082619,
+   "類型配方": "守區8輪",
+   "展示": "高差加成本，六成平地保留步行繞路",
+   "掛到": "place/alpine-shell",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-high-pass-order",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-wing-over-ridge",
+   "檔": "content/base/scenarios/fs-03-wing-over-ridge.json",
+   "名稱": "分翼越脊（提案）",
+   "nameEn": "Wing Over Ridge",
+   "brief": "一片翼影越過墟牆，兩邊都不肯讓出回程的口。",
+   "map": "map/fs-03-alpine",
+   "slots": {
+    "player": {
+     "faction": "faction/shell-society",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-crescent-g5",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/selene-iris-g6"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082620,
+   "類型配方": "人對人點殺",
+   "展示": "飛行可跨牆但不能穿單位；失翼與失武器同源",
+   "掛到": "place/alpine-shell",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-wing-over-ridge",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-03",
+   "id": "scenario/fs-03-moorline-return",
+   "檔": "content/base/scenarios/fs-03-moorline-return.json",
+   "名稱": "索上歸程（提案）",
+   "nameEn": "Moorline Return",
+   "brief": "潮行機先到對岸，岸上的砲手守到最後一架離開。",
+   "map": "map/fs-03-rotterdam",
+   "slots": {
+    "player": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v4-saltgull",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/hollow-sail-c",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/foam-jaw-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082621,
+   "類型配方": "雙機護送",
+   "展示": "護送沿上方乾道走足17格，水道只供護衛繞行",
+   "掛到": "place/rotterdam-roost",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-03-moorline-return",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-lock-turn",
+   "檔": "content/base/scenarios/fs-04-lock-turn.json",
+   "名稱": "閘肩換班（提案）",
+   "nameEn": "Lock Turn",
+   "brief": "兩岸哨燈交替亮起，輪值獵團從閘肩接過第一口火。",
+   "map": "map/fs-04-panama",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-brace-02",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/trench-maw-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/hollow-sail-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/bent-needle-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082622,
+   "類型配方": "守區8輪",
+   "展示": "固定渠岸cost差，遠射薄帆與點射曲針互補",
+   "掛到": "place/panama-locks",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-lock-turn",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-canal-pin",
+   "檔": "content/base/scenarios/fs-04-canal-pin.json",
+   "名稱": "通海針雨（提案）",
+   "nameEn": "Canal Pin",
+   "brief": "針雨落在濕堤上，封門把砲身轉向那團泥背。",
+   "map": "map/fs-04-suez",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/silt-mother-b",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/brinepin-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/hinge-crab-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "monster/silt-mother-b"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082623,
+   "類型配方": "斬首",
+   "展示": "泥母生子留空格；渠道不等於可動水位",
+   "掛到": "place/suez",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-canal-pin",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-ferry-watch",
+   "檔": "content/base/scenarios/fs-04-ferry-watch.json",
+   "名稱": "渡船的火（提案）",
+   "nameEn": "Ferry Watch",
+   "brief": "船影離岸以前，守軍的槍火一刻也沒有斷。",
+   "map": "map/fs-04-suez",
+   "slots": {
+    "player": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/league-gantry-02",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/foam-jaw-c",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/shelf-back-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/surf-runner-d",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082624,
+   "類型配方": "撐8輪撤守",
+   "展示": "分翼跨渠回援，低階工程機需掩護且不修橋",
+   "掛到": "place/suez",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-ferry-watch",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-upland-inspection",
+   "檔": "content/base/scenarios/fs-04-upland-inspection.json",
+   "名稱": "高原對槍（提案）",
+   "nameEn": "Upland Inspection",
+   "brief": "渡月港外的風把兩面旗吹直，誰也沒有先收槍。",
+   "map": "map/fs-04-nairobi",
+   "slots": {
+    "player": {
+     "faction": "faction/nairobi",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-sled-03",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-pin-04",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/nairobi-crook-iii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-silverring-g1",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-01",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/selene-silverring-g1"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082625,
+   "類型配方": "人對人點殺",
+   "展示": "地面輪座受高台限制，拘束矢作牽制而非抓人",
+   "掛到": "place/nairobi",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-upland-inspection",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-anvil-crossing",
+   "檔": "content/base/scenarios/fs-04-anvil-crossing.json",
+   "名稱": "鐵砧守岔（提案）",
+   "nameEn": "Anvil Crossing",
+   "brief": "貨隊還在風裡，架鐵把前足釘進岔路口。",
+   "map": "map/fs-04-nairobi",
+   "slots": {
+    "player": {
+     "faction": "faction/anvil-hunters",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/anvil-hoist-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-trestle-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/nairobi-shepherd",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/thirdblade-swordfish-v5",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v4",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082626,
+   "類型配方": "守區8輪",
+   "展示": "吊臂與前足武器分開可拆，守區不是拆橋",
+   "掛到": "place/nairobi",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-anvil-crossing",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-pilgrim-crossfire",
+   "檔": "content/base/scenarios/fs-04-pilgrim-crossfire.json",
+   "名稱": "香火越線（提案）",
+   "nameEn": "Pilgrim Crossfire",
+   "brief": "六足香爐把路口燒亮，護送隊在火光背後轉彎。",
+   "map": "map/fs-04-nairobi",
+   "slots": {
+    "player": {
+     "faction": "faction/nairobi",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-sled-03",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/nairobi-crook-iii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/tidefaith-censer-iv",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/tidefaith-pilgrim",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082627,
+   "類型配方": "雙機護送",
+   "展示": "人類範圍壓制對上分翼側護；沒有高原獸潮",
+   "掛到": "place/nairobi",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-pilgrim-crossfire",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-04",
+   "id": "scenario/fs-04-three-bank-fire",
+   "檔": "content/base/scenarios/fs-04-three-bank-fire.json",
+   "名稱": "三岸照火（提案）",
+   "nameEn": "Three Bank Fire",
+   "brief": "第三面旗從閘肩升起，岸邊每一道火都指向不同的敵人。",
+   "map": "map/fs-04-panama",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/tide-faith",
+     "units": [
+      {
+       "mech": "frame/tidefaith-censer-iv",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/focus-fire"
+    },
+    "third": {
+     "faction": "faction/salt-gull-hunters",
+     "ai": "aiprofile/guerrilla",
+     "units": [
+      {
+       "mech": "frame/saltgull-tidegull-longspear",
+       "at": {
+        "x": 18,
+        "y": 17
+       },
+       "persons": [
+        {
+         "id": "person/mara-okoye",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v4-saltgull",
+       "at": {
+        "x": 20,
+        "y": 17
+       },
+       "persons": [
+        {
+         "id": "person/adewale-balogun",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "enemy",
+     "onComplete": "win"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "third",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "third",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082628,
+   "類型配方": "三方混戰",
+   "展示": "三方各自有win；渠橋把遠射與突進拉開",
+   "掛到": "place/panama-locks",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-04-three-bank-fire",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-grain-spray",
+   "檔": "content/base/scenarios/fs-05-grain-spray.json",
+   "名稱": "糧埠飛沫（提案）",
+   "nameEn": "Grain Spray",
+   "brief": "第一批糧袋剛落地，濺蹄已從空桅下衝來。",
+   "map": "map/fs-05-seattle",
+   "slots": {
+    "player": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-sled-03",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-kestrel-i",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-caisson-01",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/surf-runner-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/foam-jaw-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/shelf-back-b",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082629,
+   "類型配方": "清剿",
+   "展示": "快步逼近加護圈；輪座砲塔與腳部代價不同",
+   "掛到": "place/seattle-outer-grain-quay",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-grain-spray",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-white-antler",
+   "檔": "content/base/scenarios/fs-05-white-antler.json",
+   "名稱": "白角前分列（提案）",
+   "nameEn": "White Antler",
+   "brief": "白角橫過空桅，守軍把一條線拆成三段火。",
+   "map": "map/fs-05-seattle",
+   "slots": {
+    "player": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-sled-03",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/reef-antler-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/surf-runner-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/foam-jaw-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082630,
+   "類型配方": "守區8輪",
+   "展示": "線狀掃角使橫向分散有用；分翼越短牆",
+   "掛到": "place/seattle-outer-grain-quay",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-white-antler",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-grain-last-watch",
+   "檔": "content/base/scenarios/fs-05-grain-last-watch.json",
+   "名稱": "卸糧未完（提案）",
+   "nameEn": "Grain Last Watch",
+   "brief": "折斷的桅杆還掛著白角，最後一車糧已經看見門。",
+   "map": "map/fs-05-seattle",
+   "slots": {
+    "player": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/reef-antler-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/shelf-back-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082631,
+   "類型配方": "撐8輪撤守",
+   "展示": "厚頸與藏核選擇；只守時間，不宣稱殺掉二名",
+   "掛到": "place/seattle-outer-grain-quay",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-grain-last-watch",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-outer-step",
+   "檔": "content/base/scenarios/fs-05-outer-step.json",
+   "名稱": "階外酸息（提案）",
+   "nameEn": "Outer Step",
+   "brief": "酸息沿石階拉成長線，棧橋先把船首偏向另一條路。",
+   "map": "map/fs-05-valparaiso",
+   "slots": {
+    "player": {
+     "faction": "faction/quito",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-needlefish-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-vulture-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/shell-ear-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/split-fin-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/trench-maw-b",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082632,
+   "類型配方": "清剿",
+   "展示": "舟架走淺灘；伏耳近距死角與吐息線互補",
+   "掛到": "place/valparaiso-outer-steps",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-outer-step",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-mane-cutline",
+   "檔": "content/base/scenarios/fs-05-mane-cutline.json",
+   "名稱": "長鬣斷纜（提案）",
+   "nameEn": "Mane Cutline",
+   "brief": "長鬣掃過舊纜，守軍喊：新索走內階！",
+   "map": "map/fs-05-valparaiso",
+   "slots": {
+    "player": {
+     "faction": "faction/quito",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/storm-mane-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/shell-ear-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/split-fin-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082633,
+   "類型配方": "守區8輪",
+   "展示": "高本能連招與錯位站隊，兩足全破才停",
+   "掛到": "place/valparaiso-outer-steps",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-mane-cutline",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-inner-rope",
+   "檔": "content/base/scenarios/fs-05-inner-rope.json",
+   "名稱": "內階接索（提案）",
+   "nameEn": "Inner Rope",
+   "brief": "深顎還在吐息，青鬣已踏上空階，回程燈從內側亮起。",
+   "map": "map/fs-05-valparaiso",
+   "slots": {
+    "player": {
+     "faction": "faction/quito",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-thunderbird",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/storm-mane-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/trench-maw-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082634,
+   "類型配方": "撐8輪撤守",
+   "展示": "兩種節奏逼避開同一直線，保留內階退路",
+   "掛到": "place/valparaiso-outer-steps",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-inner-rope",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-05",
+   "id": "scenario/fs-05-grain-return",
+   "檔": "content/base/scenarios/fs-05-grain-return.json",
+   "名稱": "糧車後的輪座（提案）",
+   "nameEn": "Grain Return",
+   "brief": "空糧車往回走，輪座還把槍口朝著斷桅。",
+   "map": "map/fs-05-seattle",
+   "slots": {
+    "player": {
+     "faction": "faction/north-american-umbrella",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ix-wain-01",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-sled-03",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/bulwark-caisson-01",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/surf-runner-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/shell-ear-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082635,
+   "類型配方": "雙機護送",
+   "展示": "D級輪座守乾道；兩台運載工程機自行撤離",
+   "掛到": "place/seattle-outer-grain-quay",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-05-grain-return",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-sail-shadows",
+   "檔": "content/base/scenarios/fs-06-sail-shadows.json",
+   "名稱": "帆影之間（提案）",
+   "nameEn": "Sail Shadows",
+   "brief": "空帆翻過短牆，曲針的亮點已貼上護衛的武器。",
+   "map": "map/fs-06-auckland",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/bent-needle-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/hollow-sail-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/paired-wake-b",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082636,
+   "類型配方": "清剿",
+   "展示": "玩家掘進穿牆；異形空中外形仍按leg走格",
+   "掛到": "place/auckland-empty-berths",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-sail-shadows",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-folding-dusk",
+   "檔": "content/base/scenarios/fs-06-folding-dusk.json",
+   "名稱": "暮帷壓港（提案）",
+   "nameEn": "Folding Dusk",
+   "brief": "舊船上方垂下暮帷，巡守把內泊的燈抱成一圈。",
+   "map": "map/fs-06-auckland",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-skate-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/dusk-fold-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/bent-needle-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/hollow-sail-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082637,
+   "類型配方": "守區8輪",
+   "展示": "三核分布與失準線；飛行不等於免疫地面效果",
+   "掛到": "place/auckland-empty-berths",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-folding-dusk",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-three-lights",
+   "檔": "content/base/scenarios/fs-06-three-lights.json",
+   "名稱": "幕上三燈（提案）",
+   "nameEn": "Three Lights",
+   "brief": "幕上三處漏光忽明忽暗，這班只守到船離泊。",
+   "map": "map/fs-06-auckland",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/quito-quay-iv",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/dusk-fold-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/paired-wake-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082638,
+   "類型配方": "撐8輪撤守",
+   "展示": "垂幕低AP回復與雙影雙核，選削弱而非全殲",
+   "掛到": "place/auckland-empty-berths",
+   "補充事件": "event/seven-seals-diverge",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-three-lights",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-reed-knot",
+   "檔": "content/base/scenarios/fs-06-reed-knot.json",
+   "名稱": "蘆結封腳（提案）",
+   "nameEn": "Reed Knot",
+   "brief": "白蘆纏住橋頭的腳，拓影從乾岸找那道細根。",
+   "map": "map/fs-06-five-lakes",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-kneeler-v2",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/vault-root-b",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "eliminate",
+     "params": {},
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082639,
+   "類型配方": "清剿",
+   "展示": "定點菌絲與真rooted；掘進不能下水",
+   "掛到": "place/five-lakes-white-ford",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-reed-knot",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-white-ford",
+   "檔": "content/base/scenarios/fs-06-white-ford.json",
+   "名稱": "白汊留步（提案）",
+   "nameEn": "White Ford",
+   "brief": "斷橋下五簇白結亮起，採菌隊的回程索繃得筆直。",
+   "map": "map/fs-06-five-lakes",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/drowned-grove-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      },
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 16,
+        "y": 9
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082640,
+   "類型配方": "守區8輪",
+   "展示": "五核全破才死，逐結降命中可先換站位安全",
+   "掛到": "place/five-lakes-white-ford",
+   "補充事件": "event/workshop-outline-appendix",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-white-ford",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-arch-under-bridge",
+   "檔": "content/base/scenarios/fs-06-arch-under-bridge.json",
+   "名稱": "橋根八息（提案）",
+   "nameEn": "Arch Under Bridge",
+   "brief": "白林遮住橋根，砲手只朝最細的結連開兩矢。",
+   "map": "map/fs-06-five-lakes",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/drowned-grove-a",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/vault-root-b",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/bodyguard",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/bulwark-iv-rampart",
+       "at": {
+        "x": 4,
+        "y": 13
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/longspear-v7",
+       "at": {
+        "x": 4,
+        "y": 15
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-iii",
+       "at": {
+        "x": 5,
+        "y": 14
+       },
+       "persons": [
+        {
+         "id": "person/ilse-brandt",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/moji-tern",
+       "at": {
+        "x": 5,
+        "y": 16
+       },
+       "persons": [
+        {
+         "id": "person/nuala-byrne",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082641,
+   "類型配方": "撐8輪撤守",
+   "展示": "厚拱再生與五結命中衰減，各有拆部位理由",
+   "掛到": "place/five-lakes-white-ford",
+   "補充事件": "event/harbor-last-watch",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-arch-under-bridge",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-06",
+   "id": "scenario/fs-06-dry-bank-return",
+   "檔": "content/base/scenarios/fs-06-dry-bank-return.json",
+   "名稱": "乾岸歸隊（提案）",
+   "nameEn": "Dry Bank Return",
+   "brief": "纏根追不到的乾岸上，兩副舊輪架一前一後回家。",
+   "map": "map/fs-06-five-lakes",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/league-gantry-02",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/shellsoc-tripod-c",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/rift-insects",
+     "units": [
+      {
+       "monster": "monster/reed-lace-c",
+       "at": {
+        "x": 18,
+        "y": 8
+       }
+      },
+      {
+       "monster": "monster/wick-mat-d",
+       "at": {
+        "x": 18,
+        "y": 11
+       }
+      }
+     ]
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082642,
+   "類型配方": "雙機護送",
+   "展示": "履帶繞菌毯、四足遠射護撤，護送路程不縮短",
+   "掛到": "place/five-lakes-white-ford",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-06-dry-bank-return",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-quay-no-name",
+   "檔": "content/base/scenarios/fs-07-quay-no-name.json",
+   "名稱": "暗埠不報名（提案）",
+   "nameEn": "Quay No Name",
+   "brief": "黃燈一盞盞熄下去，舊貨棧的門口只剩兩道槍光。",
+   "map": "map/fs-07-dark-quay",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/shellsoc-archive-b",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-porter-ii",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/thirdblade-needlefish-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-silverring-g1",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-crescent-g5",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/selene-silverring-g1"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082643,
+   "類型配方": "斬首",
+   "展示": "地下場景仍只一層；穿牆不等於隱形",
+   "掛到": "place/dark-quay",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-quay-no-name",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-underwing",
+   "檔": "content/base/scenarios/fs-07-underwing.json",
+   "名稱": "穹頂翼影（提案）",
+   "nameEn": "Underwing",
+   "brief": "翼影擦過貨棧短牆，巷底的人把燈再往內移一格。",
+   "map": "map/fs-07-dark-quay",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-brace-02",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/na-meridian"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 30
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 30,
+   "seed": 21082644,
+   "類型配方": "人對人點殺",
+   "展示": "同類分翼遠射與干擾，輪座必須循路",
+   "掛到": "place/dark-quay",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-underwing",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-lamp-procession",
+   "檔": "content/base/scenarios/fs-07-lamp-procession.json",
+   "名稱": "香火進舊棧（提案）",
+   "nameEn": "Lamp Procession",
+   "brief": "私造的香爐壓進舊棧，渡厄的鋸光照出一條退路。",
+   "map": "map/fs-07-dark-quay",
+   "slots": {
+    "player": {
+     "faction": "faction/tide-faith",
+     "ai": "aiprofile/convoy-runner",
+     "units": [
+      {
+       "mech": "frame/tidefaith-pilgrim",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/tidefaith-censer-iv",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ix-wain-01",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-silverring-g2",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "unit": "player-0"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "reachExit",
+     "params": {
+      "unit": "player-0"
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082645,
+   "類型配方": "指定機撤離",
+   "展示": "機械系月面假想試機；燼池互搶與翼裝追擊",
+   "掛到": "place/dark-quay",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-lamp-procession",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-silver-dust",
+   "檔": "content/base/scenarios/fs-07-silver-dust.json",
+   "名稱": "銀塵起火（提案）",
+   "nameEn": "Silver Dust",
+   "brief": "銀塵在港坪邊翻起來，分翼機先跨過那道灰脊。",
+   "map": "map/fs-07-moon-apron",
+   "slots": {
+    "player": {
+     "faction": "faction/selene-whitegloves",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/ru-brazier-ii",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-valkyrie",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-crescent-g5",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "hold",
+     "params": {
+      "zone": [
+       {
+        "x": 12,
+        "y": 9
+       },
+       {
+        "x": 13,
+        "y": 9
+       },
+       {
+        "x": 12,
+        "y": 10
+       },
+       {
+        "x": 13,
+        "y": 10
+       }
+      ],
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082646,
+   "類型配方": "守區8輪",
+   "展示": "飛行仍付向上高度成本，月壤效果不是窒息引擎",
+   "掛到": "place/tranquility-city",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-silver-dust",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-departure-lights",
+   "檔": "content/base/scenarios/fs-07-departure-lights.json",
+   "名稱": "發船燈列（提案）",
+   "nameEn": "Departure Lights",
+   "brief": "發船燈亮到最後兩盞，護衛的槍口仍守著外坪。",
+   "map": "map/fs-07-moon-apron",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/league-last-ferry",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/innersea-lantern",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/league-gantry-02",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "allies": [
+      "ally"
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-silverring-g2",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/selene-crescent-g5",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    },
+    "ally": {
+     "faction": "faction/residual-league",
+     "ai": "aiprofile/convoy-runner",
+     "allies": [
+      "player"
+     ],
+     "units": [
+      {
+       "mech": "frame/league-plough",
+       "at": {
+        "x": 17,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/farida-rahman",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/union-fr7",
+       "at": {
+        "x": 18,
+        "y": 2
+       },
+       "persons": [
+        {
+         "id": "person/mitali-das",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/league-plough"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "killTarget",
+     "params": {
+      "target": "frame/union-fr7"
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "escort",
+     "params": {
+      "units": [
+       "ally-0",
+       "ally-1"
+      ]
+     },
+     "for": "ally",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082647,
+   "類型配方": "雙機護送",
+   "展示": "月面純機械護送，乾坪與灰坑提供不同成本",
+   "掛到": "place/tranquility-city",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-departure-lights",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  },
+  {
+   "batch": "fs-07",
+   "id": "scenario/fs-07-ash-eight",
+   "檔": "content/base/scenarios/fs-07-ash-eight.json",
+   "名稱": "灰脊八拍（提案）",
+   "nameEn": "Ash Eight",
+   "brief": "灰脊後的火越來越密，衡梁把同伴最後一口燼接走。",
+   "map": "map/fs-07-moon-apron",
+   "slots": {
+    "player": {
+     "faction": "faction/migrant-crew",
+     "ai": "aiprofile/focus-fire",
+     "units": [
+      {
+       "mech": "frame/cn-yoke-i",
+       "at": {
+        "x": 2,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/chen-xiaohai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/anvil-gatewarden",
+       "at": {
+        "x": 2,
+        "y": 10
+       },
+       "persons": [
+        {
+         "id": "person/ren-kasai",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/tidefaith-pilgrim",
+       "at": {
+        "x": 3,
+        "y": 9
+       },
+       "persons": [
+        {
+         "id": "person/hana-sato",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ]
+    },
+    "enemy": {
+     "faction": "faction/selene-whitegloves",
+     "units": [
+      {
+       "mech": "frame/selene-iris-g6",
+       "at": {
+        "x": 18,
+        "y": 8
+       },
+       "persons": [
+        {
+         "id": "person/salim-haddad",
+         "seat": "pilot"
+        }
+       ]
+      },
+      {
+       "mech": "frame/na-meridian",
+       "at": {
+        "x": 18,
+        "y": 11
+       },
+       "persons": [
+        {
+         "id": "person/nadia-el-masri",
+         "seat": "pilot"
+        }
+       ]
+      }
+     ],
+     "ai": "aiprofile/glove-line"
+    }
+   },
+   "objectives": [
+    {
+     "kind": "eliminate",
+     "params": {
+      "slots": [
+       "player"
+      ]
+     },
+     "for": "player",
+     "onComplete": "lose"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 8
+     },
+     "for": "player",
+     "onComplete": "win"
+    },
+    {
+     "kind": "survive",
+     "params": {
+      "rounds": 20
+     },
+     "for": "enemy",
+     "onComplete": "win"
+    }
+   ],
+   "rounds": 20,
+   "seed": 21082648,
+   "類型配方": "撐8輪撤守",
+   "展示": "六足支援、要塞死角與分翼側襲；不給低重力額外規則",
+   "掛到": "place/tranquility-city",
+   "補充事件": "event/lamplit-return-trials",
+   "遭遇池／契約引用": false,
+   "入口": "?scenario=fs-07-ash-eight",
+   "人員口徑": "試機參考編隊，非史實在場／轉投勢力的宣告；每人全場只一台。",
+   "配裝": "所有mech省略components，逐台沿現有frame.defaultLoadout；不改既有配裝／數值。"
+  }
+ ]
+}

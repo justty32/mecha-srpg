@@ -1,0 +1,134 @@
+{
+  "id": "map/fs-03-rotterdam",
+  "nameEn": "Half-Sunken Berths",
+  "etymology": "半沉泊道：Half-Sunken Berths 取半沉泊位間仍可往返的岸道之意。掛點：place/rotterdam-roost。舊泊位一半入水，潮行沿渠與步行繞岸分工。",
+  "width": 24,
+  "height": 20,
+  "cells": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbccccbbbaaabbbbbbbbbbbbbbccccbbbaaabbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbccccbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbddbbbbbbbbbbbbbbbbbbbbbbddbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbffffeeebbbbbbbbbbbbbbbbbffffeeebbbbbbbbbbbbbbbbbffffeeebbbbbbbbbbbbbbbbbffffeeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "legend": {
+    "a": "terrain/rubble",
+    "b": "terrain/ruin-street",
+    "c": "terrain/shallows",
+    "d": "terrain/supply-depot",
+    "e": "terrain/tidal-flat",
+    "f": "terrain/tide-channel"
+  },
+  "deployZones": {
+    "player": [
+      {
+        "x": 2,
+        "y": 8
+      },
+      {
+        "x": 2,
+        "y": 10
+      },
+      {
+        "x": 3,
+        "y": 9
+      },
+      {
+        "x": 3,
+        "y": 11
+      }
+    ],
+    "enemy": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 11
+      },
+      {
+        "x": 16,
+        "y": 9
+      },
+      {
+        "x": 16,
+        "y": 12
+      },
+      {
+        "x": 20,
+        "y": 7
+      },
+      {
+        "x": 20,
+        "y": 13
+      }
+    ],
+    "ally": [
+      {
+        "x": 4,
+        "y": 13
+      },
+      {
+        "x": 4,
+        "y": 15
+      },
+      {
+        "x": 5,
+        "y": 14
+      },
+      {
+        "x": 5,
+        "y": 16
+      },
+      {
+        "x": 17,
+        "y": 2
+      },
+      {
+        "x": 18,
+        "y": 2
+      }
+    ],
+    "third": [
+      {
+        "x": 18,
+        "y": 17
+      },
+      {
+        "x": 20,
+        "y": 17
+      }
+    ]
+  },
+  "exits": [
+    {
+      "x": 0,
+      "y": 2
+    },
+    {
+      "x": 0,
+      "y": 3
+    },
+    {
+      "x": 0,
+      "y": 4
+    },
+    {
+      "x": 0,
+      "y": 5
+    }
+  ],
+  "globals": {
+    "light": 1,
+    "tide": {
+      "pick": {
+        "if": {
+          "cmp": {
+            "a": {
+              "ref": "battle.round"
+            },
+            "op": "<",
+            "b": 6
+          }
+        },
+        "then": 0,
+        "else": 1
+      }
+    }
+  }
+}

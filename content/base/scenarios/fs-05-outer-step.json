@@ -1,0 +1,109 @@
+{
+  "id": "scenario/fs-05-outer-step",
+  "name": "階外酸息",
+  "nameEn": "Outer Step",
+  "etymology": "Outer Step 意指外港石階邊的遭遇。掛到 place/valparaiso-outer-steps；補充事件 event/workshop-outline-appendix。本場為2108可能遭遇的試機配置，可重播；人物僅為參考編隊，不宣稱史實在場或轉投勢力，戰果不作二名永久死亡的史實。",
+  "brief": "酸息沿石階拉成長線，棧橋先把船首偏向另一條路。",
+  "map": "map/fs-05-valparaiso",
+  "slots": {
+    "player": {
+      "faction": "faction/quito",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/quito-quay-iv",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/thirdblade-needlefish-ii",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/quito-vulture-ii",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/shell-ear-d",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/split-fin-c",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/trench-maw-b",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 21082632
+}

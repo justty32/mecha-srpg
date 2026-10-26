@@ -1,0 +1,47 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-26",
+ "columns": [
+  "kind",
+  "params",
+  "語義"
+ ],
+ "rows": [
+  {
+   "kind": "eliminate",
+   "params": "slots?: slot[]；省略＝for的所有敵對slot",
+   "語義": "目標slot沒有active且非berserk單位即成；撤離亦可能算排除；不是只有死亡。"
+  },
+  {
+   "kind": "survive",
+   "params": "rounds: number",
+   "語義": "輪末round達門檻即成，本身不檢查for仍有存活者；玩家lose必列在前。"
+  },
+  {
+   "kind": "hold",
+   "params": "zone?: Cell[]；rounds:正數",
+   "語義": "有for本人單位、區內無敵對者的連續輪末數；盟軍不阻擋但不能代for站區。省略zone變存活計時；role:anchor無特殊實作。"
+  },
+  {
+   "kind": "escort",
+   "params": "units?: string[]／unit?: string",
+   "語義": "全部指定單位已撤離或active站在任一出口；不限制owner。只寫runtime id，逐護送frame另寫killTarget lose。"
+  },
+  {
+   "kind": "capture",
+   "params": "unit: string",
+   "語義": "指定單位status=captured且owner==for；不能把target def映成units就期待有效。需要真拘束能力、可捕對象及條件；本批不做活捕主目標。"
+  },
+  {
+   "kind": "reachExit",
+   "params": "unit: string",
+   "語義": "指定單位owner==for且已撤離或active在出口；同理不接受只有units。"
+  },
+  {
+   "kind": "killTarget",
+   "params": "target: def id 或 unit id；或unit／units",
+   "語義": "scenarioToSetup把def target轉為全部匹配units，須全部dead；已撤離／已捕獲不算死。不可雙方共用同def當點殺目標。"
+  }
+ ]
+}

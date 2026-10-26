@@ -1,0 +1,185 @@
+{
+  "id": "scenario/fs-04-pilgrim-crossfire",
+  "name": "香火越線",
+  "nameEn": "Pilgrim Crossfire",
+  "etymology": "Crossfire 指護撤路口交錯的槍火，香火越線取六足香爐照亮護送轉彎處的畫面。掛到 place/nairobi；補充事件 event/lamplit-return-trials。2108可能遭遇的試機配置，人物僅作參考編隊，可重播，不宣告歷史在場或轉投勢力。白手套陣營作保全代理，出場機甲皆有機甲核心與在艙駕駛員。",
+  "brief": "六足香爐把路口燒亮，護送隊在火光背後轉彎。",
+  "map": "map/fs-04-nairobi",
+  "slots": {
+    "player": {
+      "faction": "faction/nairobi",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/na-meridian",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-sled-03",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/nairobi-crook-iii",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/tidefaith-censer-iv",
+          "at": {
+            "x": 18,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/tidefaith-pilgrim",
+          "at": {
+            "x": 18,
+            "y": 11
+          },
+          "persons": [
+            {
+              "id": "person/nadia-el-masri",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/glove-line"
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/league-plough",
+          "at": {
+            "x": 17,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/union-fr7",
+          "at": {
+            "x": 18,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/league-plough"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/union-fr7"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082627
+}

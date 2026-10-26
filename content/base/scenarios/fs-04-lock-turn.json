@@ -1,0 +1,129 @@
+{
+  "id": "scenario/fs-04-lock-turn",
+  "name": "閘肩換班",
+  "nameEn": "Lock Turn",
+  "etymology": "Turn 指輪值交接，閘肩換班取兩岸哨燈之間接過守夜火線的意象。掛到 place/panama-locks；補充事件 event/seven-seals-diverge。2108可能遭遇的試機配置，人物僅作參考編隊，可重播，不宣告歷史在場或轉投勢力。",
+  "brief": "兩岸哨燈交替亮起，輪值獵團從閘肩接過第一口火。",
+  "map": "map/fs-04-panama",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/league-last-ferry",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/quito-quay-iv",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/innersea-brace-02",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/trench-maw-b",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/hollow-sail-c",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/bent-needle-d",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 12,
+            "y": 9
+          },
+          {
+            "x": 13,
+            "y": 9
+          },
+          {
+            "x": 12,
+            "y": 10
+          },
+          {
+            "x": 13,
+            "y": 10
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082622
+}

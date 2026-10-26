@@ -1,0 +1,117 @@
+{
+  "id": "scenario/fs-07-ash-eight",
+  "nameEn": "Ash Eight",
+  "brief": "灰脊後的火越來越密，衡梁把同伴最後一口燼接走。",
+  "map": "map/fs-07-moon-apron",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/cn-yoke-i",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/anvil-gatewarden",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/tidefaith-pilgrim",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/selene-iris-g6",
+          "at": {
+            "x": 18,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-meridian",
+          "at": {
+            "x": 18,
+            "y": 11
+          },
+          "persons": [
+            {
+              "id": "person/nadia-el-masri",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/glove-line"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082648,
+  "name": "灰脊八拍",
+  "etymology": "Ash Eight，取灰脊後接住同伴燼息、撐過八輪的節拍。掛到 place/tranquility-city；補充事件 event/lamplit-return-trials。這是2108可能遭遇的試機配置，可重播；人物為參考編隊，不宣告史實在場或轉投勢力。白手套陣營在此代理保全試機，場上是有機甲核心、有人駕駛的機械系機體。六足支援、要塞死角與分翼側襲；不給低重力額外規則。"
+}

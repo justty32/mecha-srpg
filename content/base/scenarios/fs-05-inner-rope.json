@@ -1,0 +1,176 @@
+{
+  "id": "scenario/fs-05-inner-rope",
+  "name": "內階接索",
+  "nameEn": "Inner Rope",
+  "etymology": "Inner Rope 意指沿內階接續新索的意象。掛到 place/valparaiso-outer-steps；補充事件 event/seven-seals-diverge。本場為2108可能遭遇的試機配置，可重播；人物僅為參考編隊，不宣稱史實在場或轉投勢力，戰果不作二名永久死亡的史實。",
+  "brief": "深顎還在吐息，青鬣已踏上空階，回程燈從內側亮起。",
+  "map": "map/fs-05-valparaiso",
+  "slots": {
+    "player": {
+      "faction": "faction/quito",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/league-last-ferry",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-meridian",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/quito-thunderbird",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/storm-mane-a",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/trench-maw-b",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        }
+      ]
+    },
+    "ally": {
+      "faction": "faction/north-american-umbrella",
+      "ai": "aiprofile/bodyguard",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/bulwark-iv-rampart",
+          "at": {
+            "x": 4,
+            "y": 13
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/longspear-v7",
+          "at": {
+            "x": 4,
+            "y": 15
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/ix-iii",
+          "at": {
+            "x": 5,
+            "y": 14
+          },
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/moji-tern",
+          "at": {
+            "x": 5,
+            "y": 16
+          },
+          "persons": [
+            {
+              "id": "person/nuala-byrne",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 8
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082634
+}

@@ -1,0 +1,167 @@
+{
+  "id": "scenario/fs-04-three-bank-fire",
+  "name": "三岸照火",
+  "nameEn": "Three Bank Fire",
+  "etymology": "Three Bank 指閘城三方各守一岸的對峙，三岸照火取三面旗各有敵手的意象。掛到 place/panama-locks；補充事件 event/workshop-outline-appendix。2108可能遭遇的試機配置，人物僅作參考編隊，可重播，不宣告歷史在場或轉投勢力。",
+  "brief": "第三面旗從閘肩升起，岸邊每一道火都指向不同的敵人。",
+  "map": "map/fs-04-panama",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/cn-yoke-i",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/quito-quay-iv",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/ru-brazier-ii",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/tide-faith",
+      "units": [
+        {
+          "mech": "frame/tidefaith-censer-iv",
+          "at": {
+            "x": 18,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/ix-iii",
+          "at": {
+            "x": 18,
+            "y": 11
+          },
+          "persons": [
+            {
+              "id": "person/nadia-el-masri",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "third": {
+      "faction": "faction/salt-gull-hunters",
+      "ai": "aiprofile/guerrilla",
+      "units": [
+        {
+          "mech": "frame/saltgull-tidegull-longspear",
+          "at": {
+            "x": 18,
+            "y": 17
+          },
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/longspear-v4-saltgull",
+          "at": {
+            "x": 20,
+            "y": 17
+          },
+          "persons": [
+            {
+              "id": "person/adewale-balogun",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "third",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "third",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 21082628
+}

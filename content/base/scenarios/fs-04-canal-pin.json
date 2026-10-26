@@ -1,0 +1,111 @@
+{
+  "id": "scenario/fs-04-canal-pin",
+  "name": "通海針雨",
+  "nameEn": "Canal Pin",
+  "etymology": "Pin 指針雨與釘住通海口的攻勢，通海針雨取濕堤前的細密火光。掛到 place/suez；補充事件 event/lamplit-return-trials。2108可能遭遇的試機配置，人物僅作參考編隊，可重播，不宣告歷史在場或轉投勢力。泥母周圍留有產子空格；初始鹽針獨立入場，不預設與泥母繫連。",
+  "brief": "針雨落在濕堤上，長爐把砲身轉向那團泥背。",
+  "map": "map/fs-04-suez",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/ru-brazier-ii",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/cn-yoke-i",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/quito-quay-iv",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/silt-mother-b",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/brinepin-d",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/hinge-crab-c",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "monster/silt-mother-b"
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 21082623
+}

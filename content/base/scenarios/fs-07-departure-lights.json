@@ -1,0 +1,185 @@
+{
+  "id": "scenario/fs-07-departure-lights",
+  "nameEn": "Departure Lights",
+  "brief": "發船燈亮到最後兩盞，護衛的槍口仍守著外坪。",
+  "map": "map/fs-07-moon-apron",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/league-last-ferry",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/innersea-lantern",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/league-gantry-02",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/selene-silverring-g2",
+          "at": {
+            "x": 18,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/selene-crescent-g5",
+          "at": {
+            "x": 18,
+            "y": 11
+          },
+          "persons": [
+            {
+              "id": "person/nadia-el-masri",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/glove-line"
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/league-plough",
+          "at": {
+            "x": 17,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/union-fr7",
+          "at": {
+            "x": 18,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/league-plough"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/union-fr7"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082647,
+  "name": "發船燈列",
+  "etymology": "Departure Lights，取等到末機離開才熄滅的發船燈列。掛到 place/tranquility-city；補充事件 event/lamplit-return-trials。這是2108可能遭遇的試機配置，可重播；人物為參考編隊，不宣告史實在場或轉投勢力。白手套陣營在此代理保全試機，場上是有機甲核心、有人駕駛的機械系機體。月面純機械護送，乾坪與灰坑提供不同成本。"
+}

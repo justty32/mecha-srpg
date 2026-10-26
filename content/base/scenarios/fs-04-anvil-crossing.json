@@ -1,0 +1,135 @@
+{
+  "id": "scenario/fs-04-anvil-crossing",
+  "name": "鐵砧守岔",
+  "nameEn": "Anvil Crossing",
+  "etymology": "Crossing 指貨隊必經的岔路，鐵砧守岔取前足立在路口承住火線的意象。掛到 place/nairobi；補充事件 event/seven-seals-diverge。2108可能遭遇的試機配置，人物僅作參考編隊，可重播，不宣告歷史在場或轉投勢力。白手套陣營作保全代理，出場機甲皆有機甲核心與在艙駕駛員。",
+  "brief": "貨隊還在風裡，架鐵把前足釘進岔路口。",
+  "map": "map/fs-04-nairobi",
+  "slots": {
+    "player": {
+      "faction": "faction/anvil-hunters",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/anvil-hoist-ii",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/anvil-trestle-ii",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/nairobi-shepherd",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "mech": "frame/thirdblade-swordfish-v5",
+          "at": {
+            "x": 18,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/salim-haddad",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "at": {
+            "x": 18,
+            "y": 11
+          },
+          "persons": [
+            {
+              "id": "person/nadia-el-masri",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "ai": "aiprofile/glove-line"
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 12,
+            "y": 9
+          },
+          {
+            "x": 13,
+            "y": 9
+          },
+          {
+            "x": 12,
+            "y": 10
+          },
+          {
+            "x": 13,
+            "y": 10
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082626
+}

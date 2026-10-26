@@ -1,0 +1,219 @@
+{
+  "id": "scenario/fs-05-white-antler",
+  "name": "白角前分列",
+  "nameEn": "White Antler",
+  "etymology": "White Antler 意指白角前拆開陣列的意象。掛到 place/seattle-outer-grain-quay；補充事件 event/seven-seals-diverge。本場為2108可能遭遇的試機配置，可重播；人物僅為參考編隊，不宣稱史實在場或轉投勢力，戰果不作二名永久死亡的史實。",
+  "brief": "白角橫過空桅，守軍把一條線拆成三段火。",
+  "map": "map/fs-05-seattle",
+  "slots": {
+    "player": {
+      "faction": "faction/north-american-umbrella",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/na-meridian",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/anvil-gatewarden",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-sled-03",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reef-antler-a",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/surf-runner-d",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/foam-jaw-c",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    },
+    "ally": {
+      "faction": "faction/north-american-umbrella",
+      "ai": "aiprofile/bodyguard",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/bulwark-iv-rampart",
+          "at": {
+            "x": 4,
+            "y": 13
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/longspear-v7",
+          "at": {
+            "x": 4,
+            "y": 15
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/ix-iii",
+          "at": {
+            "x": 5,
+            "y": 14
+          },
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/moji-tern",
+          "at": {
+            "x": 5,
+            "y": 16
+          },
+          "persons": [
+            {
+              "id": "person/nuala-byrne",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 12,
+            "y": 9
+          },
+          {
+            "x": 13,
+            "y": 9
+          },
+          {
+            "x": 12,
+            "y": 10
+          },
+          {
+            "x": 13,
+            "y": 10
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 12,
+            "y": 9
+          },
+          {
+            "x": 13,
+            "y": 9
+          },
+          {
+            "x": 12,
+            "y": 10
+          },
+          {
+            "x": 13,
+            "y": 10
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082630
+}

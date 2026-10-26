@@ -1,0 +1,109 @@
+{
+  "id": "scenario/fs-05-grain-spray",
+  "name": "糧埠飛沫",
+  "nameEn": "Grain Spray",
+  "etymology": "Grain Spray 意指卸糧時岸邊飛沫四濺的意象。掛到 place/seattle-outer-grain-quay；補充事件 event/harbor-last-watch。本場為2108可能遭遇的試機配置，可重播；人物僅為參考編隊，不宣稱史實在場或轉投勢力，戰果不作二名永久死亡的史實。",
+  "brief": "第一批糧袋剛落地，濺蹄已從空桅下衝來。",
+  "map": "map/fs-05-seattle",
+  "slots": {
+    "player": {
+      "faction": "faction/north-american-umbrella",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/na-sled-03",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/na-kestrel-i",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/bulwark-caisson-01",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/surf-runner-d",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/foam-jaw-c",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/shelf-back-b",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 21082629
+}

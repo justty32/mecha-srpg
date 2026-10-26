@@ -1,0 +1,98 @@
+{
+  "contract": "content-batch/1",
+  "id": "fs-01",
+  "mode": "add",
+  "status": "draft",
+  "goal": "只新增7個可玩戰鬥情境與2張專用地圖；不接營運池、不調平衡",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "cx-fs-01",
+    "subagents": "允許，上限1，同範圍；非必要不派",
+    "plan": {
+      "model": "gpt-6-astra",
+      "line": "cx-fs-plan",
+      "file": "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-scen/plan/plan.md"
+    }
+  },
+  "lead": "lead-fill-scen",
+  "date": "2026-10-26",
+  "base": "TBD",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-fill-scen/fs-01",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-fill-scen/fs-01/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/dispatch/handoffs/lead-fill-scen/fs-common.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/battle-field.md",
+      "wf/workflows/content/playtest.md",
+      "wf/workflows/content/polish.md",
+      "wf/workflows/content/world-pillars.md",
+      "content/lore/style.md",
+      "content/lore/README.md",
+      "wf/workflows/planning/specs/core/data-model-world.md",
+      "wf/workflows/planning/specs/core/data-model-world/scenario.md",
+      "content/base/scenarios/kj2-03-demo.json",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-scen/plan/plan.md",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-scen/plan/scenarios.json",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-scen/plan/maps.json",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/lead-fill-scen/plan/roster-coverage.json"
+    ]
+  },
+  "maxFiles": 9,
+  "allow": {
+    "kinds": [
+      "base/scenarios",
+      "base/maps",
+      "base/terrains"
+    ],
+    "namePrefix": {
+      "base/scenarios": "fs-01-",
+      "base/maps": "fs-01-",
+      "base/terrains": "fs-01-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "check",
+    "typecheck",
+    "readlist"
+  ],
+  "probe": null,
+  "playtest": null,
+  "files": [
+    "content/base/scenarios/fs-01-mud-mouth.json",
+    "content/base/scenarios/fs-01-wing-lantern.json",
+    "content/base/scenarios/fs-01-fan-feet.json",
+    "content/base/scenarios/fs-01-bell-break.json",
+    "content/base/scenarios/fs-01-sluice-eight.json",
+    "content/base/scenarios/fs-01-needle-ledge.json",
+    "content/base/scenarios/fs-01-last-cliff-lamp.json",
+    "content/base/maps/fs-01-batangas.json",
+    "content/base/maps/fs-01-sendai.json"
+  ],
+  "ids": [
+    "scenario/fs-01-mud-mouth",
+    "scenario/fs-01-wing-lantern",
+    "scenario/fs-01-fan-feet",
+    "scenario/fs-01-bell-break",
+    "scenario/fs-01-sluice-eight",
+    "scenario/fs-01-needle-ledge",
+    "scenario/fs-01-last-cliff-lamp",
+    "map/fs-01-batangas",
+    "map/fs-01-sendai"
+  ],
+  "acceptance": {},
+  "rounds": [],
+  "gateRejections": [],
+  "deprecated": [],
+  "leadNotes": [
+    "固定四條工人驗收；sim逐場結果人工對照REPORT，content_accept的checks沒有sim步驟，不以probe:null偽稱免跑。",
+    "領導建worktree前將base=TBD換真commit；工人不建worktree、不寫manifest、不commit。",
+    "地形0件；allow.kinds維持任務指定三類，實際只准files名單。"
+  ]
+}

@@ -1,0 +1,109 @@
+{
+  "id": "scenario/fs-06-sail-shadows",
+  "name": "帆影之間",
+  "nameEn": "Sail Shadows",
+  "etymology": "Sail Shadows 取意為帆影相錯、從遮蔽間辨形。掛到 place/auckland-empty-berths；補充事件 event/workshop-outline-appendix。本場為2108可能遭遇的試機配置，可重播的參考編隊不宣告人物史實在場或轉投勢力，也不宣告二名個體已被永久殺死。",
+  "brief": "空帆翻過短牆，曲針的亮點已貼上護衛的武器。",
+  "map": "map/fs-06-auckland",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/thirdblade-skate-iv",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/shellsoc-archive-b",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/shellsoc-tripod-c",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/bent-needle-d",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/hollow-sail-c",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        },
+        {
+          "monster": "monster/paired-wake-b",
+          "at": {
+            "x": 16,
+            "y": 9
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 30
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 21082636
+}

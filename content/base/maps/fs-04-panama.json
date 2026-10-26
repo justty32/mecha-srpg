@@ -1,0 +1,133 @@
+{
+  "id": "map/fs-04-panama",
+  "nameEn": "Two Oceans",
+  "etymology": "Two Oceans 指巴拿馬兩洋中繼的地勢，兩洋閘城取固定堤路分接乾道、護衛爭守閘肩的畫面。掛到 place/panama-locks。兩洋閘城的固定堤路分接上下乾道，護衛爭中央閘肩。2108可能遭遇的試機配置所用戰場，可重播。",
+  "width": 24,
+  "height": 20,
+  "cells": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbeeebbabbbbbbbbbbbbbbbbbbeeebbabbbbbbbbbbbbbbbbbbeeebbabbbbbbbbbbbbbbbbbbeeebbabbbbbbbbbbbbbbbbbbeeebbbbbbbbbbbbbbbbbbbbbeeddbbbbbbbbbbbbbbbbbbbbeeddbbbbbbbbbbbbbbbbbbbbeeebbbbbbbbbbbbbbbbbbccceeebbbbbbbbbbbbbbbbbbccceeebbbbbbbbbbbbbbbbbbccceeebbbbbbbbbbbbbbbbbbbbbeeebbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "legend": {
+    "a": "terrain/barricade",
+    "b": "terrain/ruin-street",
+    "c": "terrain/shallows",
+    "d": "terrain/supply-depot",
+    "e": "terrain/tide-channel"
+  },
+  "deployZones": {
+    "player": [
+      {
+        "x": 2,
+        "y": 8
+      },
+      {
+        "x": 2,
+        "y": 10
+      },
+      {
+        "x": 3,
+        "y": 9
+      },
+      {
+        "x": 3,
+        "y": 11
+      }
+    ],
+    "enemy": [
+      {
+        "x": 18,
+        "y": 8
+      },
+      {
+        "x": 18,
+        "y": 11
+      },
+      {
+        "x": 16,
+        "y": 9
+      },
+      {
+        "x": 16,
+        "y": 12
+      },
+      {
+        "x": 20,
+        "y": 7
+      },
+      {
+        "x": 20,
+        "y": 13
+      }
+    ],
+    "ally": [
+      {
+        "x": 4,
+        "y": 13
+      },
+      {
+        "x": 4,
+        "y": 15
+      },
+      {
+        "x": 5,
+        "y": 14
+      },
+      {
+        "x": 5,
+        "y": 16
+      },
+      {
+        "x": 17,
+        "y": 2
+      },
+      {
+        "x": 18,
+        "y": 2
+      }
+    ],
+    "third": [
+      {
+        "x": 18,
+        "y": 17
+      },
+      {
+        "x": 20,
+        "y": 17
+      }
+    ]
+  },
+  "exits": [
+    {
+      "x": 0,
+      "y": 2
+    },
+    {
+      "x": 0,
+      "y": 3
+    },
+    {
+      "x": 0,
+      "y": 4
+    },
+    {
+      "x": 0,
+      "y": 5
+    }
+  ],
+  "globals": {
+    "light": 1,
+    "tide": {
+      "pick": {
+        "if": {
+          "cmp": {
+            "a": {
+              "ref": "battle.round"
+            },
+            "op": "<",
+            "b": 6
+          }
+        },
+        "then": 0,
+        "else": 1
+      }
+    }
+  }
+}

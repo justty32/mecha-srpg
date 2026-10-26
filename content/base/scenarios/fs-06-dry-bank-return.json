@@ -1,0 +1,172 @@
+{
+  "id": "scenario/fs-06-dry-bank-return",
+  "name": "乾岸歸隊",
+  "nameEn": "Dry Bank Return",
+  "etymology": "Dry Bank Return 取意為循乾岸帶同行者歸隊。掛到 place/five-lakes-white-ford；補充事件 event/lamplit-return-trials。本場為2108可能遭遇的試機配置，可重播的參考編隊不宣告人物史實在場或轉投勢力，也不宣告二名個體已被永久殺死。",
+  "brief": "纏根追不到的乾岸上，兩副舊輪架一前一後回家。",
+  "map": "map/fs-06-five-lakes",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "ai": "aiprofile/focus-fire",
+      "units": [
+        {
+          "mech": "frame/ix-porter-ii",
+          "at": {
+            "x": 2,
+            "y": 8
+          },
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/league-gantry-02",
+          "at": {
+            "x": 2,
+            "y": 10
+          },
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/shellsoc-tripod-c",
+          "at": {
+            "x": 3,
+            "y": 9
+          },
+          "persons": [
+            {
+              "id": "person/hana-sato",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ],
+      "allies": [
+        "ally"
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reed-lace-c",
+          "at": {
+            "x": 18,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/wick-mat-d",
+          "at": {
+            "x": 18,
+            "y": 11
+          }
+        }
+      ]
+    },
+    "ally": {
+      "faction": "faction/residual-league",
+      "ai": "aiprofile/convoy-runner",
+      "allies": [
+        "player"
+      ],
+      "units": [
+        {
+          "mech": "frame/league-plough",
+          "at": {
+            "x": 17,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ]
+        },
+        {
+          "mech": "frame/union-fr7",
+          "at": {
+            "x": 18,
+            "y": 2
+          },
+          "persons": [
+            {
+              "id": "person/mitali-das",
+              "seat": "pilot"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/league-plough"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "killTarget",
+      "params": {
+        "target": "frame/union-fr7"
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "escort",
+      "params": {
+        "units": [
+          "ally-0",
+          "ally-1"
+        ]
+      },
+      "for": "ally",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 21082642
+}
