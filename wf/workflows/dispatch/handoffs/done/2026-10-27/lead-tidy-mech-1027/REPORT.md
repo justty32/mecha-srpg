@@ -33,4 +33,4 @@ wf `STATE.md` 8210→363 bytes、`user.md` 7391→1725 bytes，原路徑作入�
 
 ## 收線記錄
 
-本線實質 60 檔（4 交接＋56 實作／文件／子報告）已提交，`git diff --binary f494406d 8e215b25` 為318,926 bytes；另加本報告、moves及done索引與歸檔清理仍低於80檔／10MB gate。歸檔搬移表見 [moves.tsv](moves.tsv)。三位原生工人均以 DONE 結束；`ps` 查無本線 Node／Python／agent 子行程，`tmux list-sessions` 無 `cx-` session。本線 SESSION／CLAIMS open 已移除，原有他線未追蹤 inbox／handoff／logs 未納提交且仍可見。歸檔與最終推送提交識別於收線後見 git log。
+本輪從基線共63個實質變更檔，`git diff --binary f494406d 6953944f` 為327,499 bytes，低於80檔／10MB gate。歸檔搬移表見 [moves.tsv](moves.tsv)；歸檔與清活條目為 `6953944f`，已普通 push，當時 `HEAD` 與 `origin/main` 均為 `6953944f23e0091581e6d8967860c55bc7a617dc`。三位原生工人均以 DONE 結束；`ps` 查無本線 Node／Python／agent 子行程，`tmux list-sessions` 無 `cx-` session。本線 SESSION／CLAIMS open 已移除，原有他線未追蹤 inbox／handoff／logs 未納提交且仍可見。
