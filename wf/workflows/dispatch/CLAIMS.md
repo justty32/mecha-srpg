@@ -6,14 +6,25 @@
 
 ## 現役
 
+2026-10-27 核對：下列四線均為暫停、未完成行政收線，不代表目前有工人在跑；內容入庫與驗收狀態以 [STATE](handoffs/STATE.md) 為準。small 已於 `69924b0` 入庫，本 checkout 缺該線 report；公司僅盤點，整合驗收留回家。
+
 | 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
 |----|---------|------------|---------|
 | `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-fill-pilots` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-fill-gear` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
 | `lead-small`（暫停 2026-10-26 晚）| 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
+| `lead-world-life-1027` | 見下「六類填充」 | 其他線領地與引擎唯讀 | 2026-10-27 |
+
+| `lead-world-next-1027`（內容已帶回，完整驗收待回家） | `wn-*` 五類新內容、獨立 worktrees、批次帳本、索引與本線報告 | 舊內容與其他線唯讀 | 2026-10-27 |
+
+| `lead-world-more-1027`（內容已帶回，驗收待回家） | `wm-*` 新內容、隔離區、批次、索引及本線報告 | 舊內容及其他線唯讀 | 2026-10-27 |
 
 ### 現役細目
+
+**第4至7輪 `lead-world-more-1027`**：24概念／36新JSON已帶回及暫存，索引完成，領導與子agent均已結束。全部draft、未commit，worktrees保留；整合與平衡待回家。詳見 [交付報告](handoffs/lead-world-more-1027/REPORT.md)。
+
+**六類填充 `lead-world-life-1027`**（創作與查重已完成，無運行中工人；34 概念、52 個新 JSON 與六條年表已全部帶回，完整驗收待回家）：astra 規劃、sol 六類分批、同時最多三工人。各批僅可寫 repo 內 `.git/wf-worktrees/wl-{mechs,monsters,characters,places,events,factions}-1027/` 的 manifest 允許路徑與 `handoffs/lead-world-life-1027/` 對應類別報告；主線管理 `content/batches/2026-10/wl-*-1027.json` 與收件。2026-10-27 使用者授權年表 WSL MODE 誤報本次例外手動帶回，原 gate 失敗歷史保留，並非改為通過。全部 draft、未 commit；具體六份交接書為 `handoffs/wl-*-1027.md`。events 只准插入年表，其他不改舊內容；不安裝，整合驗收／試玩／平衡留回家。
 
 表格只放線名，完整領地寫在這裡（表格超過 1 KB 會被 wf-lint 判成大表）；收線時連同表格那格一起刪。
 

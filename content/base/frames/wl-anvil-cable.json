@@ -1,0 +1,61 @@
+{
+  "id": "frame/wl-anvil-cable",
+  "name": "鐵砧-II斷纜型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-brokenarm-stake",
+    "left-weapon": "component/mx-singing-blade",
+    "armor-mount": "component/mx-burst-scale",
+    "back-1": "component/mx-flare-wings",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 4,
+    "accuracy": 2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "mech",
+    "human",
+    "series-anvil"
+  ],
+  "nameEn": "Anvil II Cablebreaker",
+  "etymology": "Cablebreaker 是港口技師替開路機取的勤務名。鐵砧-II斷纜型仍仿斷臂的關節，厚重的樁臂與裂鱗爆甲都照原圖留下，左手則換成鳴刃。鐵砧獵團保留這支系的造機與外售規矩，碼頭工替它起了名字，也沒有拿到把整套圖紙轉賣出去的資格。\n\n漲潮後的貨棧外，一頭厚甲獸壓住撤船的轉角。駕駛員沿斷纜堆挪近，把斷臂樁抵向擋路的甲縫；樁楔沉進去時，貨棧裡的燈都跟著晃了一下。他沒有接著把剩下的楔全打完，而是抽回右臂，讓左手鳴刃接住追來的爪子。疾焰背翼亮起，機體退過轉角，把路讓給扛傷員的同伴。\n\n技師說的斷纜，是要把被纜索、殘貨和獸身堵住的人帶出來。纜索仍得由工人解開或割斷，機甲靠樁與刃趕開厚甲，沒有隔空斷繩的本事。回塢時，護艙隔板上積了一層鹽，駕駛員的手還扣著握把。工人先清掉樁口的碎甲，再檢查魂核掛位與座艙扣件；耗掉的楔記在鐵砧帳上。下一班來接機，從樁匣裡看過剩餘的楔，便把厚甲獸的位置重新問了一遍。"
+}

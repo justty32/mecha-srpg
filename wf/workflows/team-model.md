@@ -10,19 +10,19 @@
 ## Done when
 
 - 這一輪要開的每一層都**指名了誰**——頂層、領導、工人各自是哪一格（預設照下表）。
-- [grades](team-model/grades.md) 的分級表與消耗速度表若有新模型，已加列並標日期。
+- 交接書已填角色模型、啟動工具與回報通道；[grades](team-model/grades.md) 若更新，已附評等證據與日期。
 
-## 一、角色三層（本專案固定配置，使用者 2026-10-23 定）
+## 一、角色三層（現行配置，使用者 2026-10-27 裁示）
 
 <!-- wf-nav -->
 | 層 | 誰 | 怎麼開 | 職責 | 不做 |
 |---|---|---|---|---|
-| **頂層** | 主 session，**Fable 5.1** | 使用者直接對話的那一個 | 只跟使用者溝通、做最終決策、分配資源與授權；開領導、收領導的匯報 | **不實作**；**不親自逐則讀信**（信由領導消化後匯報） |
-| **領導（隊長）** | **Opus** | 頂層用 Claude Code 的 Agent tool 在行程內派出 | 讀交接書、拆工、寫子線交接書、派 codex 工人、監看、驗收、收線；向頂層匯報時**重寫標題、帶判斷** | 不越過交接書授權；不親自做工人的量 |
-| **工人（隊員）** | **codex gpt**（預設 `gpt-6.1-sol`，`gpt-6-astra`／`gpt-6-sol` 亦可）；Claude Sonnet／Opus 子 agent 為輔 | 領導用 `codex exec`（[codex-exec](dispatch/codex-exec.md)）或 tmux（[cx_launch](dispatch/driving-cli-agents.md)）派；Claude 子 agent 由領導用 Agent tool 開 | 照交接書做一件事、寫 REPORT 檔、回報終局狀態 | 不改交接書範圍、不自行加碼驗證 |
-| **規劃（spec／plan、架構設計）** | **Fable**（主 session 或 Fable 子 agent） | 頂層自己寫，或用 Agent tool 開 Fable 子 agent | 產出 spec／plan 交給領導執行 | 不派工、不監看 |
+| **頂層** | 主 session，**gpt-6-astra** | 使用者直接對話的那一個 | 只跟使用者溝通、做最終決策、分配資源與授權；開領導、收領導的匯報 | **不實作**；**不親自逐則讀信**（信由領導消化後匯報） |
+| **領導（隊長）** | **gpt-6.1-sol** | 原生 agent 工具；需要外部線時用 `codex exec` | 讀交接書、拆工、寫子線交接書、派工、監看、驗收、收線；向頂層匯報時**重寫標題、帶判斷** | 不越過交接書授權；不親自做工人的量 |
+| **工人（隊員）** | 普通工作 **gpt-6.1-sol**；簡單工作 **gpt-6.1-terra** | 原生 agent 工具或 `codex exec`（[codex-exec](dispatch/codex-exec.md)）；互動式備選見 [cx_launch](dispatch/driving-cli-agents.md) | 照交接書做一件事、寫 REPORT 檔、回報終局狀態 | 不改交接書範圍、不自行加碼驗證 |
+| **規劃（spec／plan、架構設計）** | **gpt-6-astra** | 頂層自己寫，或開規劃子 agent | 產出 spec／plan 交給領導執行 | 不派工、不監看 |
 
-**派誰的預設**：實作與量大的活**盡量派 codex gpt**，模型隨意（對 ChatGPT 帳號**不要用 `gpt-sol` 這個別名**，會被拒；用 `gpt-6.1-sol`／`gpt-6-astra`／`gpt-6-sol` 全名）。Claude Sonnet／Opus 子 agent 適合 merge、查資料、要和 Claude 頻繁來回的活。規劃類交給 Fable，因為領導拆工的品質取決於 plan。
+**派誰的預設**：頂層與規劃用 `gpt-6-astra`，領導與普通工作用 `gpt-6.1-sol`，簡單工作用 `gpt-6.1-terra`。agent 可再派子 agent，**模型無限制**；這是角色預設，不是可用模型白名單。對 ChatGPT 帳號不要用 `gpt-sol` 別名（既有拒絕實測見 [codex-exec](dispatch/codex-exec.md)），派線明給模型全名。原生子 agent 用工具回傳，外部 `codex exec` 線用 inbox，通訊方式不由模型名稱決定。
 
 **隊伍數量無上限**，以協調得過來為度；**領導層不要開太多**——量壓在工人層。判準是「領導監看得過來嗎」：**開了卻沒人盯的線比不開更糟**。單一、有界、驗收寫得死的工作可以直接開一條 codex 線掛在頂層底下，不必配領導。
 
@@ -34,18 +34,18 @@
 
 **領導**自己 context 吃緊時寫 state 檔交棒（`dispatch/handoffs/STATE.md`），不硬撐；交接書的**範圍詞會被線遞移展開**，範圍用排除法寫死、件數 gate 與容量 gate 並列（見 [dispatch](dispatch/README.md)）。
 
-**工人**再開子 agent 我們不管——它在那一層就是領導；交接書只寫它能用多少（「子代理上限」）。
+**agent 可再派子 agent，模型無限制**；它在那一層就是領導，交接書仍須寫「子代理上限」。既有資源節制照舊：平行工人最多 3，全機同時最多一個重負載，細則見 [common/user](common/user.md)。
 
 ## 二、三、聰明度分級與 token 消耗速度
 
-兩張表（哪個模型幾級、消耗速度與性價比結論）拆到 [grades](team-model/grades.md)；有新模型就在那裡加列並標日期。結論一句：**gpt-6.1-sol（預設）／gpt-6-astra／gpt-6-sol 是聰明度 A、消耗 C 的性價比之神，工人層主力**；Fable 只留給頂層與規劃。
+歷史評等與 token 消耗判斷見 [grades](team-model/grades.md)，保留原模型名稱與日期；只有新證據才更新評等。現行角色以本檔第一節為準，`gpt-6.1-terra` 尚無本專案性能評等，不由派工預設推論性能。
 
 ## 四、選人判準（按序看這六項）
 
-1. **任務難度／內容**——決定聰明度下限；規劃與架構固定給 Fable。
+1. **任務難度／內容**——決定聰明度下限；規劃與架構預設給 `gpt-6-astra`。
 2. **使用者給的 headcount**——外生的上限；沒給就以「協調得過來」為度，不自己加碼。
-3. **token 消耗速度**——工人層大量用 codex gpt，Claude 額度留給頂層、規劃與領導。
-4. **溝通方便與否**——跨體系即使有 inbox 仍有成本，所以**領導用 Opus 不用 codex**。
+3. **token 消耗速度**——依既有實測與帳號額度調整，不把角色配置當成性能評等。
+4. **溝通方便與否**——依啟動方式選通道：原生子 agent 工具回傳，外部 `codex exec` 線走 inbox。
 5. **管理上限**——**開太多領導不好管**；寧可少開領導、把量壓在工人層。
 6. **時程**——用「產出速度 × 繞圈數 × 模型癖好」反推每段派誰、排多久，算法與逐模型心得見 [speed](team-model/speed.md)。
 
@@ -55,15 +55,15 @@
 
 ## 六、context 管理
 
-每層管自己下級的 context：頂層（Fable）的 compact 跟使用者商量；領導（Opus）管自己的 Claude 子 agent；codex 自帶 auto-compact。五條規則見 [context](team-model/context.md)。
+每層管自己下級的 context：頂層（`gpt-6-astra`）的 compact 跟使用者商量；領導（`gpt-6.1-sol`）管自己開的子 agent；外部 codex CLI 的 auto-compact 依工具能力處理。五條規則見 [context](team-model/context.md)。
 
 ## 七、信箱——三句話版
 
-Opus 領導與 Claude 子 agent 都在行程內（Agent tool 回傳），**codex 工人在行程外，走 [inbox](inbox/README.md)（放信處 `wf/inbox/`）**。誰為哪些 STATUS 醒以 [inbox/wake-policy](inbox/wake-policy.md) 為準：
+**原生子 agent 用工具回傳；外部 `codex exec` 線走 [inbox](inbox/README.md)（放信處 `wf/inbox/`）**，不依模型區分。誰為哪些 STATUS 醒以 [inbox/wake-policy](inbox/wake-policy.md) 為準：
 
-- **頂層（Fable）**平時不掛醒鐘、不逐則讀信；只等領導在行程內回傳的匯報，以及 `NEEDS-USER`、`FAILED`、資源／授權請求。
-- **領導（Opus）**對自己 codex 工人的五種 STATUS 全醒：前景跑 `wf/tools/inbox_poll.sh <領導> --wait --timeout 540` 或 `wf/tools/cx_watch.sh`，**不可用結束回合當等待**；上呈時**重寫標題、帶自己的判斷**，不是原文轉貼。
-- **工人（codex）**沒有醒鐘，每完成一個工作步驟跑一次 `inbox_poll.sh <我> --once` 讀 orders，終局用 `inbox_mail.sh <我> --up`。
+- **頂層（gpt-6-astra）**平時不掛醒鐘、不逐則讀信；只等領導匯報，以及 `NEEDS-USER`、`FAILED`、資源／授權請求。原生領導用工具回傳，外部領導用 inbox 回報。
+- **領導（gpt-6.1-sol）**對自己外部工人的五種 STATUS 全醒：前景跑 `wf/tools/inbox_poll.sh <領導> --wait --timeout 540` 或 `wf/tools/cx_watch.sh`，**不可用結束回合當等待**；原生工人用工具收回傳。上呈時**重寫標題、帶自己的判斷**。
+- **外部工人**沒有醒鐘，每完成一個工作步驟跑一次 `inbox_poll.sh <我> --once` 讀 orders，終局用 `inbox_mail.sh <我> --up`；原生工人直接用工具回傳。
 
 ## 內容
 

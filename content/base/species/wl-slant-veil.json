@@ -1,0 +1,64 @@
+{
+  "id": "species/wl-slant-veil",
+  "name": "斜帷",
+  "family": "alien",
+  "bodyPlan": "bodyplan/alien-mirror",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 10,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-glare-pulse",
+    "ability/kx-bare-rend"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wl-bio-slant-veil"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-alien-stalker",
+  "tags": [
+    "kaiju",
+    "alien"
+  ],
+  "etymology": "夜班守堤人先看見浪裡掛著半幅亮衣。那幅衣斜斜垂著，照見了堤燈，底下卻拖著一隻赤裸的長手。接近的機甲才舉起武器，衣側便露出凝視的異瞳。駕駛員看漏了從水邊抬起的祈手，回神時，鎧甲上已被撕出深痕。天網裡有人喊牠的方向，幾聲回報卻撞在一起，守堤人只好提燈往後跑。\n斜帷把鏡衣偏向迎面的攻擊，另一邊的裸手仍在浪裡拖行。護堤機退開一步，讓後方同伴看清衣下折返的肢體；精粹矢打在鏡衣上，接著一擊才落到裸側。異瞳再次轉來時，駕駛員按同伴的呼喊移開機身，祈手擦過肩旁，撕下了一片護欄。岸上的人趁這個空隙往堤後退，留下那盞燈在水裡一明一滅。\n行走肢體受重創後，斜帷拖著亮衣退向浪中，裸手還在抓近處的石沿。拘束隊若要帶走牠，就得留住錯位心龕、逐一破壞行走肢體，再為這副不對稱的身軀裝上懸囊。即使鎖具已合，量身裁好的囊壁也總有一側先受力。技師巡艙時先查那一側，查完才在班簿上落筆。"
+}

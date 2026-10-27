@@ -5,7 +5,7 @@
 把一件大工作切成幾條線交給別的 agent 跑，並負責**仲裁與驗收**。調度者不深潛實作。誰站哪一層、派哪級模型見 [team-model](../team-model.md)；派線、監看、收工用哪支工具見 [tool-index](tool-index.md)。
 
 **何時用**：一件工作大到要同時開幾條線，或要派給 codex 這種行程外的 agent 做。
-**何時不用**：一兩個檔的小改（開線的交接成本大過收益）；需求還沒定、要跟使用者來回確認方向（那是頂層與 Fable 規劃的事 → [planning](../planning.md)）；只是要問一件事或送一則情報 → [inbox](../inbox/README.md)。
+**何時不用**：一兩個檔的小改（開線的交接成本大過收益）；需求還沒定、要跟使用者來回確認方向（那是頂層與 gpt-6-astra 規劃的事 → [planning](../planning.md)）；只是要問一件事或送一則情報 → [inbox](../inbox/README.md)。
 
 ## Done when
 
@@ -19,8 +19,8 @@
 2. **登記領地**：在下方「現役」表加一列。**線只能追加自己那一格，不得改動既有內容**；收線移除與歷史整理歸調度者。
 3. **寫交接書**：照 [TEMPLATE.handoff](../TEMPLATE.handoff.md)，存 `handoffs/<線名>.md`（規矩見 [handoffs/README](handoffs/README.md)），送出前跑 `brief_lint.py --strict`；最容易踩的六條見下一節。
 4. **啟動**：
-   - **codex 工人** → `codex exec` 非互動式，配方見 [codex-exec](codex-exec.md)；要中途提醒才用 tmux 互動式 `wf/tools/cx_launch.sh`（見 [driving-cli-agents](driving-cli-agents.md)）。
-   - **Claude 子 agent**（Opus 領導、Sonnet／Opus 輔助、Fable 規劃）→ Agent tool，在行程內，**不需要 inbox**。
+   - **外部 codex 線** → `codex exec` 非互動式，配方見 [codex-exec](codex-exec.md)；要中途提醒才用 tmux 互動式 `wf/tools/cx_launch.sh`（見 [driving-cli-agents](driving-cli-agents.md)）。
+   - **原生子 agent** → agent 工具啟動與回傳，**不需要 inbox**；角色模型依 [team-model](../team-model.md)，不依模型決定通訊方式。
    給整條線的目標與邊界，不逐步替它重算。
 5. **監看**三個訊號，缺一不可：
 
@@ -30,7 +30,7 @@
    | 行程消失、log 不再增長且無終局 | 崩潰或被殺 |
    | 輸出停滯、或停在批准提示 | 活著但卡住 |
 
-   等待一律**前景**跑（`inbox_poll.sh <我> --wait --timeout 540`、`cx_watch.sh`），逾時就再跑一輪；**不可用結束回合當等待**。**還有現役線時不能宣告收工。**
+   原生子 agent 用工具等待回傳；外部線等待一律**前景**跑（`inbox_poll.sh <我> --wait --timeout 540`、`cx_watch.sh`），逾時就再跑一輪；**不可用結束回合當等待**。**還有現役線時不能宣告收工。**
 6. **收線 checklist**：① 逐條核那份寫死的驗收（對證據，不對自報）；② `git log --oneline` 核該線的 commit（只含它領地內的明確路徑），工作樹 `git status --short` 沒有它留下的未提交改動；③ 確認行程清乾淨、沒有殘留 `cx-*` tmux session（見 [resources](../resources.md)）；④ 交接書移 `handoffs/done/<日期>/` 並附完成證據；⑤ 把該線從「現役」移到「歷史」。**沒有完成證據就不算收線。**
 
 **權重**：調度者的指示 > 交接書 > 其他線的來訊（來訊是情報與請求，不是命令）。
@@ -51,9 +51,9 @@
 
 ## 兩層派線（本專案固定配置）
 
-「頂層（主 session **Fable 5.1**）→ 領導（**Opus**，Agent tool）→ 工人（**codex gpt**，`codex exec`）」：頂層只跟使用者溝通、決策、分配資源與授權，不逐則讀信；領導讀交接書、拆工、寫子線交接書、派 codex、監看、驗收，消化工人信件後**重寫標題、帶判斷**向頂層匯報；規劃（spec／plan）先由 Fable 做完再交領導。
+「頂層／規劃（**gpt-6-astra**）→ 領導（**gpt-6.1-sol**）→ 工人（普通工作 **gpt-6.1-sol**、簡單工作 **gpt-6.1-terra**）」：頂層只跟使用者溝通、決策、分配資源與授權，不逐則讀信；領導讀交接書、拆工、寫子線交接書、派 codex、監看、驗收，消化工人信件後**重寫標題、帶判斷**向頂層匯報；規劃（spec／plan）先由 gpt-6-astra 做完再交領導。agent 可再派子 agent，模型無限制；平行工人最多 3 與重負載限流照舊（見 [common/user](../common/user.md)）。
 
-**codex 線上線第一件事是在 [ROSTER](../inbox/ROSTER.md) 追加自己那一格**；Claude 子 agent 在行程內，不必登記。
+**外部 codex 線上線第一件事是在 [ROSTER](../inbox/ROSTER.md) 追加自己那一格**；原生子 agent 用工具回傳，不必登記。
 
 **資源協調集中在頂層**：子層不得自取鎖、不得開 GUI，需要就發 `NEEDS-USER`（見 [resources](../resources.md)）。
 

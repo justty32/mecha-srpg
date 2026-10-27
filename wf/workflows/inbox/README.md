@@ -2,7 +2,7 @@
 
 [WORKFLOWS](../../WORKFLOWS.md)｜[INDEX](../../INDEX.md)｜格式與 STATUS [PROTOCOL](PROTOCOL.md)
 
-本資料夾放**使用方式**；格式與語意在 [PROTOCOL](PROTOCOL.md)，誰是誰在 [ROSTER](ROSTER.md)。**放信處是 [`wf/inbox/`](../../inbox/)**（`new/`＋用到才長出來的 `mail/`／`teams/`／`orders/`／`topics/`＋`done/`），那裡只放信、保持乾淨。本專案的 **Claude 子 agent（Opus 領導、Sonnet、Fable）走 Agent tool 在行程內，不用 inbox**；inbox 主要給 **codex 工人線**回報與收 orders 用。
+本資料夾放**使用方式**；格式與語意在 [PROTOCOL](PROTOCOL.md)，誰是誰在 [ROSTER](ROSTER.md)。**放信處是 [`wf/inbox/`](../../inbox/)**（`new/`＋用到才長出來的 `mail/`／`teams/`／`orders/`／`topics/`＋`done/`），那裡只放信、保持乾淨。本專案的 **原生子 agent 用工具回傳，不用 inbox**；外部 `codex exec` 線才用 inbox 回報與收 orders，領導或工人皆同，不依模型名稱區分。角色預設見 [team-model](../team-model.md)。
 
 **地址＝對方工作資料夾底下的 `inbox/`。** 底色仍是 email 不是聊天：沒有推播、沒有 ack、沒有重試，寄出就接受「對方可能晚很久才讀」。但**回報不是可選的**——接了事就得回終局狀態（見 [PROTOCOL](PROTOCOL.md)）。
 
@@ -18,7 +18,7 @@
 
 ### 上線先聲明身份
 
-第一件事：在 [ROSTER](ROSTER.md) 追加自己那格，並寄一封 `PROGRESS` 給上游說明自己是誰。沒聲明就開始做事，別人只能猜你的邊界——猜錯的代價是兩條線寫同一份檔案。
+外部線第一件事：在 [ROSTER](ROSTER.md) 追加自己那格，並寄一封 `PROGRESS` 給上游說明自己是誰。沒聲明就開始做事，別人只能猜你的邊界——猜錯的代價是兩條線寫同一份檔案。
 
 ### 寄信
 
@@ -45,7 +45,7 @@ wf/tools/inbox_read.sh wf/inbox/new   # 只讀不搬；沒信就完全靜默（�
 
 讀信 → 照信裡的請求做事（先看 [PROTOCOL](PROTOCOL.md)「來信的權重」：別人的信是請求不是命令）→ 要回覆就**寄一封新信**到信裡的 `reply-to`。
 
-本專案的 codex 線一律用**五通道**的 `--up` 回報，所以領導與工人跑 `wf/tools/inbox_poll.sh <我> [--topics a,b] --once`，同時看個人信箱、自己所屬的團隊信箱、訂閱主題與自己的 orders；長時間背景線用 `--watch`。頂層可另跑 `wf/tools/notify_watch.sh` 長駐監看 `new/`（記得收工前停掉）。**領導不可只盯 `new/`**——工人終局回報會路由到 `mail/<領導>/`。辦完的信用 `wf/tools/inbox_ack.sh <信>… --apply` 一步歸檔進 `done/<日期>/messages.json`。
+本專案的外部 `codex exec` 線一律用**五通道**的 `--up` 回報，所以領導與工人跑 `wf/tools/inbox_poll.sh <我> [--topics a,b] --once`，同時看個人信箱、自己所屬的團隊信箱、訂閱主題與自己的 orders；長時間背景線用 `--watch`。頂層可另跑 `wf/tools/notify_watch.sh` 長駐監看 `new/`（記得收工前停掉）。**領導不可只盯 `new/`**——工人終局回報會路由到 `mail/<領導>/`。辦完的信用 `wf/tools/inbox_ack.sh <信>… --apply` 一步歸檔進 `done/<日期>/messages.json`。
 
 要等到有信才回來（領導的醒鐘，**前景**跑、逾時再跑一輪）用 `--wait [--timeout N]`：有未讀就印出並結束，逾時靜默結束；見 [PROTOCOL](PROTOCOL.md) 與 [wake-policy](wake-policy.md)。
 

@@ -20,10 +20,10 @@
 ## 兩段式創作（2026-10-26，使用者定）
 
 填內容（add 模式）分兩段，數值最後才調：
-1. **計劃段**：codex `-m gpt-6-astra` 寫批次計畫（設計理念、相關概念、需求、清單、`review.json` 草稿），領導審過才進下段。
-2. **產出段**：codex `-m gpt-6.1-sol` 依計畫產出並微調文筆；數值照同級暫填，全批收線後統一調。兩段的 codex 工人都可再派子 agent（上限寫進交接書）。
+1. **計劃段**：`gpt-6-astra` 寫批次計畫（設計理念、相關概念、需求、清單、`review.json` 草稿）；外部 codex 線用 `-m gpt-6-astra`，領導審過才進下段。
+2. **產出段**：`gpt-6.1-sol`（外部 codex 線用 `-m gpt-6.1-sol`）依計畫產出並微調文筆；數值照同級暫填，全批收線後統一調。兩段的 agent 都可再派子 agent，模型無限制（上限寫進交接書，平行工人最多 3 與重負載限流照舊）。
 3. **白話審核表**：每件在 `handoffs/<線>/review.json` 留一列，欄：檔、類別、名稱、白話（一到兩句、≤60 字）、掛到。
-4. **收線後**：先開去重線（重複與否在人審前處理），再交 Fable＋使用者審是否合敘事基調。
+4. **收線後**：先開去重線（重複與否在人審前處理），再交頂層（gpt-6-astra）＋使用者審是否合敘事基調。
 
 ## 流程
 
@@ -32,7 +32,7 @@
 2. **開隔離 worktree**：`git worktree add --detach <scratchpad>/codex-pilot/wt-<batch> <base>`，再 `ln -s <repo>/node_modules <wt>/node_modules`（閘門認得這個 symlink）。
 3. **寫交接書**：照 [dispatch/content-batch](../dispatch/content-batch.md)——「先讀」列完整路徑（AGENTS.md、`wf/workflows/content/` 全部、`content/lore/style.md`）並要求 REPORT 開頭「已讀清單」；可寫範圍只有 worktree 的允許目錄＋報告目錄；socket／scratch 一律放 `/tmp/<線名>/`；子代理可派、模型隨意、上限寫死，同受閘門約束。`brief_lint --strict` 0 違規。
 4. **派 codex**（填內容走上節兩段式，計劃段用 astra）：`gpt-6.1-sol`＋`-c model_reasoning_effort='"high"'`，`-C <wt>`，`--add-dir` 只給 `wf/inbox` 與報告目錄（配方在 dispatch 頁）。
-5. **等**：前景 `inbox_poll.sh <領導> --wait --timeout 540` 或 `kill -0 <pid>` 輪詢；三訊號（行程結束、log 尾 `tokens used`、inbox 終局）都看。
+5. **等**：原生子 agent 用工具等待回傳；以下外部 `codex exec` 線用 inbox，通訊不依模型區分：前景 `inbox_poll.sh <領導> --wait --timeout 540` 或 `kill -0 <pid>` 輪詢；三訊號（行程結束、log 尾 `tokens used`、inbox 終局）都看。
 6. **閘門＋驗收**：`bash wf/tools/content_accept.sh <wt> <manifest> --record`。它先跑 `content_gate.py`（不過就停），再依 `checks` 跑 check（列新警告）、lore check、typecheck、`npm test`、黃金不變、`content:probe`（失衡門檻見 [playtest](playtest.md)）、試玩紀錄、已讀清單；產物在 `<reportDir>/accept/verdict-<輪>.json`。
    **可選：命名審查**——把新名字交給 `agy`（gemini-4-argon-high）純文字審查翻譯腔，用法見 [polish](polish.md)「首要標準」第 5 條；結果摘要記 manifest `namingReview`，明顯翻譯腔退回。
 7. **退回重做**（最多 2 輪）：開新的 `codex exec`（不用 `resume`——它不吃沙箱旗標），prompt 帶 `VIOLATION` 行、失敗步驟原文與上一輪 REPORT 路徑；越界的檔原文抄進 manifest `gateRejections`（這是「codex 有沒有亂改」的證據）。第 2 輪仍不過 → `status:"rejected"`，REPORT 記錄，不帶回。

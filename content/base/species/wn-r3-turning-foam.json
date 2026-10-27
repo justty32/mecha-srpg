@@ -1,0 +1,64 @@
+{
+  "id": "species/wn-r3-turning-foam",
+  "name": "旋沫",
+  "family": "beast",
+  "bodyPlan": "bodyplan/beast-split-fin",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 20,
+      "regen": 7,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-foam-jaw-foam",
+    "ability/kx-split-fin-swerve"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wn-r3-bio-turning-foam"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/guerrilla",
+  "tags": [
+    "kaiju",
+    "beast"
+  ],
+  "etymology": "採樣匣還掛在坡下，船長已經把領款章收進了口袋。契約寫得清楚，岩樣得裝匣帶回，空手離岸就沒有這筆錢。甲板上有人喊再放一截纜，作業機的駕駛員卻一直看著坡口：旋沫伏在那裡，蹼足踩住濕石，岔尾搭在匣旁。機甲再向前，牠便翻顎噴沫，剛收攏的白色一下潑滿坡面，甲板上的人全往艙口縮。\n匣子不重，絞盤已拉得起來，卡住的是拖纜的方向。若把機甲留在坡上，船可以慢慢挪到另一邊；駕駛員剛報完這句，肩甲又挨了一片蝕沫。船長望了一眼返船梯，發現收纜人還站在下端，手裡攥著本要套匣的空環。白沫退下去，機甲往匣邊逼了一步，那獸甩尾避開迎面的流刃，接著便踏著蹼足往坡口挪。那一瞬匣子露了出來，駕駛員也報了，船長的手已按在絞盤上。\n他把纜放鬆，叫人上梯。匣子落回石間時發出一聲悶響，旋沫偏過顎，白色又從嘴邊湧起；作業機退上了船，收纜人最後一個翻過欄杆。船離開後，舷邊只拖著一截割斷的繩，沫花繞了幾圈便散了。領款章留在船長口袋裡，晚飯前也沒拿出來。\n當夜填回報時，駕駛員問要不要記「樣本毀損」。船長說匣子還在，寫沒取回來。他簽完才讓出座位，讓肩甲的補修單接著送過來。甲板上的人知道旋沫還占著那段坡，明天若再去，得另算一趟；今晚的飯照常開，收纜人把那隻空環帶進了餐艙。"
+}

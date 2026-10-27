@@ -1,0 +1,77 @@
+{
+  "id": "frame/wl-aurora-star",
+  "name": "極光-遮星型",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-ace-a",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-hush-pulse",
+    "left-weapon": "component/mx-singing-blade",
+    "sensor-mount": "component/mx-thousand-eye",
+    "back-1": "component/mx-ash-mist",
+    "back-2": "component/mx-tide-leap",
+    "armor-mount": "component/mx-moonveil",
+    "system-1": "component/mx-essence-cell",
+    "system-2": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 9,
+    "accuracy": 4,
+    "evasion": 6
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 150,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 150,
+      "regen": 25,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-aurora-veil"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-jinghai",
+    "faction-selene",
+    "mech",
+    "series-aurora",
+    "human"
+  ],
+  "nameEn": "Aurora Starveil",
+  "etymology": "Starveil 取遮住星光的帷幕之意。極光-遮星型沿塞勒涅的靜海王牌支系改裝，保留寂滅脈衝，左臂換成鳴刃；原有流光囊旁的裂晶心爐改由霜鰭排燼片接替。這台機仍要在白手套的型錄裡申領，護送勤務沒有替買主打開受限的外售名單。\n\n護送隊過棧橋時，追兵從高處舉起吼砲。遮星型先把寂滅送向那片護盾與外露部件，趁對方失去準頭，讓運送傷員的同伴先過橋。它自己展開極光帷幕，收起右臂，拔刃靠向狹口。月輝光幕挨了一記，護艙隔板後的駕駛員縮了縮肩，仍把機身往橋側挪開，給最後一副擔架留下轉身的位置。\n\n帷幕只護得住它自己。同伴要穿過空隙，仍得看腳下與追兵的槍口；灰霧香是另備的支援，躍潮噴口也只讓本機暫時離開險處。霜鰭讓燼退得順些，卻換走了原先心爐補回流光的餘裕，護送隊得重新估量下一輪寂滅。上船後，駕駛員將鳴刃橫放在維修架上，技師先查看魂核與座艙，再摸過光幕座的裂痕。甲板上有人數完擔架，他才鬆開一直握著的帶扣。"
+}

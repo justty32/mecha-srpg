@@ -1,0 +1,1044 @@
+{
+ "contract": "wf-table/1",
+ "source": "lore-plan.md",
+ "extracted": "2026-10-27",
+ "ready_categories": [
+  "characters",
+  "events",
+  "factions"
+ ],
+ "revision": "2026-10-27 冷硬底色修訂：人物非全員和解、事件保留背約傷損、組織各有生計衝突",
+ "batch_file_counts": {
+  "characters": 6,
+  "events": 7,
+  "factions": 6
+ },
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "continent",
+  "region",
+  "allowed_files",
+  "template",
+  "existing_refs",
+  "concept",
+  "boundaries",
+  "sources",
+  "plain",
+  "new_dependencies",
+  "dedup"
+ ],
+ "rows": [
+  {
+   "category": "characters",
+   "id": "character/wl-choi-eunsol",
+   "name": "崔恩率",
+   "continent": "亞洲",
+   "region": "釜山",
+   "allowed_files": [
+    "content/lore/characters/wl-choi-eunsol.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/busan",
+    "faction/busan"
+   ],
+   "concept": {
+    "born": "2077",
+    "kind": "human",
+    "faction": "faction/busan",
+    "role": "第三刃休養兵的民間步法教練",
+    "action_and_flaw": "她以模仿第三刃報招替街坊助興，如今靠教普通退役兵跳舞掙錢。失去一腿的學員不肯讓傷腿成為招攬看客的招牌，她卻認為滿座才能付房租，擅自把他的獨舞排到開場。學員當眾退場，她剪掉海報上他的名字，收好已賣出的票，自己頂上。她確有耐心教舞，也確實把學生的身體當生意；這次不道歉、不和解。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "腿傷只屬匿名新背景退役兵，不涉及朴仁哲未決傷因；不賦予舞蹈療效、不讓既有領袖替她背書。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/busan.json",
+    "content/lore/factions/busan.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "教練拿退役兵的傷腿招攬看客；學員退場，她收好票錢，自己跳開場。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名已查content/lore與content/base/persons，無同名命中",
+    "scene_boundary": "腿傷只屬匿名新背景退役兵，不涉及朴仁哲未決傷因；不賦予舞蹈療效、不讓既有領袖替她背書。"
+   }
+  },
+  {
+   "category": "characters",
+   "id": "character/wl-park-doyun",
+   "name": "朴度允",
+   "continent": "亞洲",
+   "region": "慶州古陵",
+   "allowed_files": [
+    "content/lore/characters/wl-park-doyun.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/gyeongju-tombs",
+    "faction/busan"
+   ],
+   "concept": {
+    "born": "2081",
+    "kind": "human",
+    "faction": "faction/busan",
+    "role": "古陵外照看草坡的雜役",
+    "action_and_flaw": "他以把草坡修得整齊自豪，總驅趕在陵外踢布球的孩子。孩子撞倒香架，賣香者要他賠錢；他扣下球抵損，發現縫球布料其實來自自己丟棄的舊衣，也不肯承認。孩子改在坡外踢石子，吵得朝聖者更煩。他把球鎖進工具櫃，翌日仍提剪刀出門；草坡整齊了，人情沒修好。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "不是修鼓人，不取代韓寶羅；不進內殿、不新增骸片或古代聲音；玩耍限陵外普通草坡。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/gyeongju-tombs.json",
+    "content/lore/factions/busan.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "雜役扣住孩子的布球抵香架，孩子改踢石子；他把球鎖好，照舊修草。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名已查content/lore與content/base/persons，無同名命中",
+    "scene_boundary": "不是修鼓人，不取代韓寶羅；不進內殿、不新增骸片或古代聲音；玩耍限陵外普通草坡。"
+   }
+  },
+  {
+   "category": "characters",
+   "id": "character/wl-amalia-quispe",
+   "name": "阿瑪莉亞・基斯佩",
+   "continent": "南美",
+   "region": "基多",
+   "allowed_files": [
+    "content/lore/characters/wl-amalia-quispe.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/quito",
+    "faction/quito"
+   ],
+   "concept": {
+    "born": "2066",
+    "kind": "human",
+    "faction": "faction/quito",
+    "role": "已退役的高原衛機械系駕駛員",
+    "action_and_flaw": "她習慣用軍中口氣管家，退休後逐漸顯老，成年兒子仍拿她過去的照片招攬修理生意。她把招牌照片取下換成自己如今的肖像；兒子以為她反對開店，她反而把積攢的工具搬進去，要求學徒先教她新的修理手法。她怕成累贅，卻不肯承認不會。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "退役只恢復正常老化，無加速衰老或返老還童；機械系無神性／獸化；不指定未核的frame，不設招募池。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/quito.json",
+    "content/lore/factions/quito.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "退役駕駛員摘下店門上的年輕照片，搬來工具，請兒子的學徒重新教她。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名無命中；另外避開既有 event/valparaiso-borrowed-stretcher 的露西亞名字，改阿瑪莉亞。",
+    "scene_boundary": "退役只恢復正常老化，無加速衰老或返老還童；機械系無神性／獸化；不指定未核的frame，不設招募池。"
+   }
+  },
+  {
+   "category": "characters",
+   "id": "character/wl-mateo-yupanqui",
+   "name": "馬特奧・尤潘基",
+   "continent": "南美",
+   "region": "的的喀喀湖畔",
+   "allowed_files": [
+    "content/lore/characters/wl-mateo-yupanqui.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/titicaca-ruin",
+    "faction/quito"
+   ],
+   "concept": {
+    "born": "2078",
+    "kind": "human",
+    "faction": "faction/quito",
+    "role": "蘆葦村的識字教師",
+    "action_and_flaw": "他愛用城裡帶來的漂亮課圖，拿孩子畫得歪斜的屋頂當笑話；大風掀掉教室遮雨布，正是那個孩子指給他看自家屋頂怎樣綁繩。他讓孩子上前示範，自己把錯圖翻面重畫，卻仍忍不住糾正字跡。願望是留下能讓村人看懂的教材，缺點是把識字當作懂事。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "不是引船老人、不釋讀先民刻痕；繩結是普通民生手藝，無能量效果；不創全洲教育制度。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/titicaca-ruin.json",
+    "content/lore/factions/quito.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "城裡課圖救不了漏雨教室；教師請被他嘲笑的孩子站上桌，教大家綁繩。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名已查content/lore與content/base/persons，無同名命中",
+    "scene_boundary": "不是引船老人、不釋讀先民刻痕；繩結是普通民生手藝，無能量效果；不創全洲教育制度。"
+   }
+  },
+  {
+   "category": "characters",
+   "id": "character/wl-marta-riedler",
+   "name": "瑪爾塔・里德爾",
+   "continent": "歐洲",
+   "region": "阿爾卑斯山區",
+   "allowed_files": [
+    "content/lore/characters/wl-marta-riedler.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/alpine-shell",
+    "faction/inner-sea-houses"
+   ],
+   "concept": {
+    "born": "2070",
+    "kind": "human",
+    "faction": "faction/inner-sea-houses",
+    "role": "替家族帶路的山林嚮導",
+    "action_and_flaw": "她靠認路吃飯，也靠誇大危險多收賞錢。家族青年要在學者面前逞能走碎石坡，她先附和，等看見濕石滾落才拔回路杖，親自擋在坡口承認剛才吹牛。她帶眾人繞回，賞錢沒了，回去卻仍要青年替她扛自己的獵具。不是聖人，是知道此刻再要面子會死人。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "獵具與獵場只涉及普通動物；不新增內陸獸災、不解鎖墟口、不發明貴族家系；不與共爐房情節重複。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/alpine-shell.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "靠誇口掙賞錢的嚮導，在碎石坡前收回大話，讓家族少爺替她扛獵具。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名已查content/lore與content/base/persons，無同名命中",
+    "scene_boundary": "獵具與獵場只涉及普通動物；不新增內陸獸災、不解鎖墟口、不發明貴族家系；不與共爐房情節重複。"
+   }
+  },
+  {
+   "category": "characters",
+   "id": "character/wl-nico-bellini",
+   "name": "尼科・貝利尼",
+   "continent": "歐洲",
+   "region": "熱那亞船塢",
+   "allowed_files": [
+    "content/lore/characters/wl-nico-bellini.json"
+   ],
+   "template": "content/lore/characters/han-bora.json",
+   "existing_refs": [
+    "place/genoa-yards",
+    "faction/inner-sea-houses"
+   ],
+   "concept": {
+    "born": "2080",
+    "kind": "human",
+    "faction": "faction/inner-sea-houses",
+    "role": "船塢磨刃工與業餘競技選手",
+    "action_and_flaw": "他在下班投環賽從不肯輸，發現外來學徒拿不順手的環也故意不說。學徒照樣命中，他藉口風向要求重比，旁人不理。他連夜磨出一副偏合自己手勢的環，翌日一面大方借給對方，一面押上自己的酒錢。手藝是真的，體面是裝的；不揭曉誰贏，收在他盯住學徒手腕、把酒錢推進圈中的動作。",
+    "relations": [],
+    "events": [],
+    "gameRefs": []
+   },
+   "boundaries": "比賽是普通手拋木環／金屬環，無機甲競技新規則；不寫工傷驗收、還印或出塢試合；不改家族工坊制度。；只新增lore人物，300–600字；不掛本輪新place／faction／event，不新增base person。；不套六篇一致的犯錯醒悟骨架。崔恩率、朴度允、尼科明確保留自利與未解衝突；其餘也不由旁白判為好人。結尾落在具體動作，不說教、不替對方宣告原諒。",
+   "sources": [
+    "content/lore/places/genoa-yards.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/characters/han-bora.json",
+    "content/lore/style/people.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md"
+   ],
+   "plain": "磨刃工輸了投環，連夜做出偏合自己手勢的新環，再笑著借給對手。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "全名已查content/lore與content/base/persons，無同名命中",
+    "scene_boundary": "比賽是普通手拋木環／金屬環，無機甲競技新規則；不寫工傷驗收、還印或出塢試合；不改家族工坊制度。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-busan-fishmarket-ceasefire",
+   "name": "魚市止火",
+   "continent": "亞洲",
+   "region": "釜山魚市",
+   "allowed_files": [
+    "content/lore/events/wl-busan-fishmarket-ceasefire.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/busan",
+    "era/league",
+    "faction/busan",
+    "faction/third-blade"
+   ],
+   "concept": {
+    "date": "2107-02-06",
+    "period": "era/league",
+    "kind": "戰役",
+    "factions": [
+     "faction/busan",
+     "faction/third-blade"
+    ],
+    "characters": [],
+    "places": [
+     "place/busan"
+    ],
+    "tags": [
+     "war"
+    ],
+    "plot": "一夥匿名武裝勒索者躲進仍有人擺攤的魚市，逼攤主替他們擋槍。第三刃的小隊想用機甲踏穿棚頂，市場老婦卻把凳子推進射線，迫使帶隊者改以分頭逼近、留下投降出口。勒索者丟槍，帶隊者親手拆開被自己機甲卡住的攤架；不是打獸，也不是港口大捷。",
+    "consequences": [
+     "勒索者在魚市局部交火後棄械，市場倖存但毀了幾排棚架。",
+     "參與小隊留下修攤，攤主沒有因此原諒最先踏進市場的機甲。"
+    ],
+    "timeline_entry": {
+     "date": "2107-02-06",
+     "title": "魚市止火",
+     "summary": "第三刃在魚市追勒索者，攤主先擋住自家守軍，逼他們留出投降的路。",
+     "event": "event/wl-busan-fishmarket-ceasefire",
+     "era": "era/league",
+     "factions": [
+      "faction/busan",
+      "faction/third-blade"
+     ],
+     "tags": [
+      "war"
+     ]
+    }
+   },
+   "boundaries": "只是一場地方人對人交火；凡鐵可傷人，不引入新大幫派、不改第三刃指揮層或全城治安；不使用未來試作機。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。",
+   "sources": [
+    "content/lore/places/busan.json",
+    "content/lore/factions/busan.json",
+    "content/lore/factions/third-blade.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "第三刃在魚市追勒索者，攤主先擋住自家守軍，逼他們留出投降的路。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-busan-fishmarket-ceasefire",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。只是一場地方人對人交火；凡鐵可傷人，不引入新大幫派、不改第三刃指揮層或全城治安；不使用未來試作機。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-gyeongju-rain-roof",
+   "name": "雨揭舊頂",
+   "continent": "亞洲",
+   "region": "慶州古陵外木架",
+   "allowed_files": [
+    "content/lore/events/wl-gyeongju-rain-roof.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/gyeongju-tombs",
+    "era/league",
+    "faction/busan",
+    "faction/shell-society"
+   ],
+   "concept": {
+    "date": "2107-03-08",
+    "period": "era/league",
+    "kind": "挖掘",
+    "factions": [
+     "faction/busan",
+     "faction/shell-society"
+    ],
+    "characters": [],
+    "places": [
+     "place/gyeongju-tombs"
+    ],
+    "tags": [
+     "dig"
+    ],
+    "plot": "雨水浸垮陵口外後搭的遮棚，學會助手堅持舊拓紙未乾不能動，守衛卻聽見木架開裂。助手自行鑽入搶紙，同行搬工遭落梁壓傷手；守衛截斷繩索拆棚，只救回殘拓。助手試圖把傷寫成搬運失誤，搬工把沾血的手套丟在他紙上。結尾助手挪開手套，紙上的掌印仍在；不替他認錯。",
+    "consequences": [
+     "當代遮棚拆除重搭，外圍抄錄暫停，未開出新內殿。",
+     "搬工手傷未癒，助手與他各執事故說法，救回殘拓留有空缺。"
+    ],
+    "timeline_entry": {
+     "date": "2107-03-08",
+     "title": "雨揭舊頂",
+     "summary": "學會助手搶救拓紙，搬工卻被落梁壓傷；紙救回了，血手套丟到他的圖上。",
+     "event": "event/wl-gyeongju-rain-roof",
+     "era": "era/league",
+     "factions": [
+      "faction/busan",
+      "faction/shell-society"
+     ],
+     "tags": [
+      "dig"
+     ]
+    }
+   },
+   "boundaries": "不開新內殿、不新增古代機或先民史；遮棚為當代搭建，原古陵已挖空狀態不變；不用韓寶羅骸片亮光橋段。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。",
+   "sources": [
+    "content/lore/places/gyeongju-tombs.json",
+    "content/lore/factions/busan.json",
+    "content/lore/factions/shell-society.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "學會助手搶救拓紙，搬工卻被落梁壓傷；紙救回了，血手套丟到他的圖上。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-gyeongju-rain-roof",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。不開新內殿、不新增古代機或先民史；遮棚為當代搭建，原古陵已挖空狀態不變；不用韓寶羅骸片亮光橋段。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-quito-withdrawn-seats",
+   "name": "撤席之夜",
+   "continent": "南美",
+   "region": "基多舊船廠附近",
+   "allowed_files": [
+    "content/lore/events/wl-quito-withdrawn-seats.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/quito",
+    "era/league",
+    "faction/quito",
+    "faction/selene"
+   ],
+   "concept": {
+    "date": "2107-04-10",
+    "period": "era/league",
+    "kind": "政治",
+    "factions": [
+     "faction/quito",
+     "faction/selene"
+    ],
+    "characters": [],
+    "places": [
+     "place/quito"
+    ],
+    "tags": [],
+    "plot": "船廠地方主管以共食為名，邀停工者的代表進院，口頭保證不追究堵門。代表交出隨身短刀後，受雇保全撤走座椅，堵住出口，把其中幾人押進工具房。一名跑腿工帶保全認出帶頭者，只求放走自己的弟弟；弟弟獲釋卻不肯跟他回家。門外工人撤開堵門材料，仍留人盯著工具房，地方主管獲得復工，沒有得到信任。",
+    "consequences": [
+     "該船廠的一次停工以拘押地方代表和局部復工告終，沒有形成全城罷工或新法律。",
+     "提供辨認的跑腿工換回弟弟，家人與工友卻知道他出賣了誰；拘押者仍待地方交涉。"
+    ],
+    "timeline_entry": {
+     "date": "2107-04-10",
+     "title": "撤席之夜",
+     "summary": "船廠借聚餐誘來停工代表再扣人；跑腿工出賣帶頭者，換回不肯跟他走的弟弟。",
+     "event": "event/wl-quito-withdrawn-seats",
+     "era": "era/league",
+     "factions": [
+      "faction/quito",
+      "faction/selene"
+     ],
+     "tags": []
+    }
+   },
+   "boundaries": "不改2096船廠出售、渡月港協定與faction關係；不寫塞勒涅總部授意或全城工權改革；人物全匿名。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。；背約由地方主管負責，保全是匿名受雇人員，不動用手套或新鐵偶科技；不新增永久拘禁制度。",
+   "sources": [
+    "content/lore/places/quito.json",
+    "content/lore/factions/quito.json",
+    "content/lore/factions/selene.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "船廠借聚餐誘來停工代表再扣人；跑腿工出賣帶頭者，換回不肯跟他走的弟弟。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-quito-withdrawn-seats",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。不改2096船廠出售、渡月港協定與faction關係；不寫塞勒涅總部授意或全城工權改革；人物全匿名。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-titicaca-unfinished-wedding-cloth",
+   "name": "婚毯留白",
+   "continent": "南美",
+   "region": "的的喀喀湖畔村落",
+   "allowed_files": [
+    "content/lore/events/wl-titicaca-unfinished-wedding-cloth.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/titicaca-ruin",
+    "era/league",
+    "faction/quito"
+   ],
+   "concept": {
+    "date": "2107-05-12",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/quito"
+    ],
+    "characters": [],
+    "places": [
+     "place/titicaca-ruin"
+    ],
+    "tags": [],
+    "plot": "一戶原定成婚的人家等不到在外討生活的新郎，兩家長輩爭著把未完成的婚毯掛到遺跡石階求答案。新娘不肯讓傳聞替她定喪，也不肯照常辦宴；她收回婚毯，把席上食物分給已來幫忙的鄰居，留白的半幅搭在自家床尾。寫單一家庭如何改辦聚席，不替失聯者揭曉生死。",
+    "consequences": [
+     "原定婚宴改成親友共食，新娘保留婚毯未織完的一半。",
+     "兩家人仍各自打聽失聯者，沒有在遺跡得到回音或正式死訊。"
+    ],
+    "timeline_entry": {
+     "date": "2107-05-12",
+     "title": "婚毯留白",
+     "summary": "新郎失聯，兩家要向空寢求答案；新娘收回婚毯，留白半幅，請來客先吃飯。",
+     "event": "event/wl-titicaca-unfinished-wedding-cloth",
+     "era": "era/league",
+     "factions": [
+      "faction/quito"
+     ],
+     "tags": []
+    }
+   },
+   "boundaries": "不把新娘寫成本批新人物；不創全湖婚俗、不使遺跡預言婚喪、不把失蹤釘到未核戰役；無渡船營救。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。",
+   "sources": [
+    "content/lore/places/titicaca-ruin.json",
+    "content/lore/factions/quito.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "新郎失聯，兩家要向空寢求答案；新娘收回婚毯，留白半幅，請來客先吃飯。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-titicaca-unfinished-wedding-cloth",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。不把新娘寫成本批新人物；不創全湖婚俗、不使遺跡預言婚喪、不把失蹤釘到未核戰役；無渡船營救。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-alpine-carbon-sheets",
+   "name": "炭紙換主",
+   "continent": "歐洲",
+   "region": "阿爾卑斯之墟圍籬外",
+   "allowed_files": [
+    "content/lore/events/wl-alpine-carbon-sheets.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/alpine-shell",
+    "era/league",
+    "faction/inner-sea-houses",
+    "faction/shell-society"
+   ],
+   "concept": {
+    "date": "2107-06-11",
+    "period": "era/league",
+    "kind": "其他",
+    "factions": [
+     "faction/inner-sea-houses",
+     "faction/shell-society"
+    ],
+    "characters": [],
+    "places": [
+     "place/alpine-shell"
+    ],
+    "tags": [],
+    "plot": "一位家族地方代理答應替學會看管雨濕的外圍測繪草稿，卻把學徒畫的山路與草坡擦去署名，送作自家侄子的作品。幫忙晾紙的女僕認出紙背有她袖子的速寫，將尚未分開的炭紙拿到兩人面前；學徒當場在空白處畫回那只袖子。代理收回送展的紙，女僕失了這趟賞錢。",
+    "consequences": [
+     "被挪名的草稿退回，這次地方展示沒有展出侄子的署名作品。",
+     "參與學徒開始隨身保管草稿；女僕仍在家族做事，與代理的嫌隙留到開場。"
+    ],
+    "timeline_entry": {
+     "date": "2107-06-11",
+     "title": "炭紙換主",
+     "summary": "家族代理偷換測繪草稿署名，晾紙女僕認出紙背的袖子，拿炭紙當面拆穿。",
+     "event": "event/wl-alpine-carbon-sheets",
+     "era": "era/league",
+     "factions": [
+      "faction/inner-sea-houses",
+      "faction/shell-society"
+     ],
+     "tags": []
+    }
+   },
+   "boundaries": "畫的是當代地表與人物，不是新刻痕證據；不解決地權、不建立全歐著作權制度；不因此改兩大勢力外交。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。",
+   "sources": [
+    "content/lore/places/alpine-shell.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/factions/shell-society.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "家族代理偷換測繪草稿署名，晾紙女僕認出紙背的袖子，拿炭紙當面拆穿。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-alpine-carbon-sheets",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。畫的是當代地表與人物，不是新刻痕證據；不解決地權、不建立全歐著作權制度；不因此改兩大勢力外交。"
+   }
+  },
+  {
+   "category": "events",
+   "id": "event/wl-genoa-cold-oven",
+   "name": "共灶斷煙",
+   "continent": "歐洲",
+   "region": "熱那亞船塢工人住處",
+   "allowed_files": [
+    "content/lore/events/wl-genoa-cold-oven.json",
+    "content/lore/timeline.json"
+   ],
+   "template": "content/lore/events/valparaiso-borrowed-stretcher.json",
+   "existing_refs": [
+    "place/genoa-yards",
+    "era/league",
+    "faction/inner-sea-houses"
+   ],
+   "concept": {
+    "date": "2107-08-09",
+    "period": "era/league",
+    "kind": "災難",
+    "factions": [
+     "faction/inner-sea-houses"
+    ],
+    "characters": [],
+    "places": [
+     "place/genoa-yards"
+    ],
+    "tags": [],
+    "plot": "工人共用烤灶旁的堆布失火，屋主先搶出銅鍋，租客以為他只顧值錢物。火壓住後，鍋架到石階煮水，失去床鋪的租客有了熱水卻沒有地方睡。工頭仍催翌日交工；有人拿自己唯一乾毯換夜班空床，有人趁亂搶先占位。屋主把鍋柄纏好防燙，另一手把欠租者的被褥推回門外。",
+    "consequences": [
+     "共用烤灶停用，住戶暫在石階煮食，部分人仍找不到乾床。",
+     "工期與租金沒有減免，失火留下的是住戶間的新怨與換床的人情債。"
+    ],
+    "timeline_entry": {
+     "date": "2107-08-09",
+     "title": "共灶斷煙",
+     "summary": "共灶失火，銅鍋煮出熱水，卻變不出床位；屋主照樣把欠租者的被褥推回門外。",
+     "event": "event/wl-genoa-cold-oven",
+     "era": "era/league",
+     "factions": [
+      "faction/inner-sea-houses"
+     ],
+     "tags": []
+    }
+   },
+   "boundaries": "普通局部火災，不稱新蝕潮災變；不用機甲救船或護糧；不補科技因果、不設全城救災機制。；均為開場前的地方小事，不新增全球歷史錨點；body 300–700字，3–5小節；timeline只插入本批六條、日期排序，不改舊條目；不設occurs=possible。",
+   "sources": [
+    "content/lore/places/genoa-yards.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/eras/league.json",
+    "content/lore/README.md",
+    "content/lore/events/valparaiso-borrowed-stretcher.json"
+   ],
+   "plain": "共灶失火，銅鍋煮出熱水，卻變不出床位；屋主照樣把欠租者的被褥推回門外。",
+   "new_dependencies": [
+    {
+     "within_batch_only": "event/wl-genoa-cold-oven",
+     "consumer": "content/lore/timeline.json"
+    }
+   ],
+   "dedup": {
+    "name_search": "候選中文名已查無命中",
+    "scene_boundary": "已逐條看六處既有事件摘要；避開百燈破圍／同旗之約／釜山還印／出塢一踏／兩處古代機出土與船廠出售。普通局部火災，不稱新蝕潮災變；不用機甲救船或護糧；不補科技因果、不設全城救災機制。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-afterbeat-hunters",
+   "name": "餘拍獵團",
+   "continent": "亞洲",
+   "region": "釜山",
+   "allowed_files": [
+    "content/lore/factions/wl-afterbeat-hunters.json"
+   ],
+   "template": "content/lore/factions/third-blade.json",
+   "existing_refs": [
+    "place/busan",
+    "faction/busan",
+    "faction/third-blade",
+    "faction/korea-umbrella"
+   ],
+   "concept": {
+    "type": "獵團",
+    "scale": "僅在釜山活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "釜山（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "你的喝采，留到我下機。",
+    "places": [
+     "place/busan"
+    ],
+    "relations": [
+     {
+      "faction": "faction/busan",
+      "stance": "友好",
+      "note": "在釜山受雇辦地方護衛，無城邦軍指揮權。"
+     },
+     {
+      "faction": "faction/third-blade",
+      "stance": "緊張",
+      "note": "敬其守城聲望，卻爭地方委託和觀眾。"
+     },
+     {
+      "faction": "faction/korea-umbrella",
+      "stance": "中立",
+      "note": "受韓國法理管束，救援仍由既有韓傘調度。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/korea-umbrella",
+    "culture_livelihood_conflict": "釜山本地的小獵團，以短促擊掌取代整段報招，沿街賣對練入場位，靠近距護衛與城內人對人追捕付修機錢。喜歡把敗退剪成漂亮故事；一名匿名副手收下對手家屬的錢，同意取消公開羞辱敗者，團員卻已收看客的票。團內爭的是名聲、飯碗與誰能代人承諾，不是又成立一支第三刃。"
+   },
+   "boundaries": "購用既有通用機，不持有處容血統、不另開研發；城邦與第三刃仍握守備。只表現自家用擊掌約定行動的習慣，非新戰鬥能力。不得讓它全城壟斷對練或合法私刑。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/busan.json",
+    "content/lore/factions/busan.json",
+    "content/lore/factions/third-blade.json",
+    "content/lore/factions/korea-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "靠對練看客養機的小獵團，副手收錢保敗者體面，卻得罪已買票等羞辱的人。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。購用既有通用機，不持有處容血統、不另開研發；城邦與第三刃仍握守備。只表現自家用擊掌約定行動的習慣，非新戰鬥能力。不得讓它全城壟斷對練或合法私刑。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-kept-bowl-circle",
+   "name": "留碗會",
+   "continent": "亞洲",
+   "region": "慶州古陵外",
+   "allowed_files": [
+    "content/lore/factions/wl-kept-bowl-circle.json"
+   ],
+   "template": "content/lore/factions/inner-sea-houses.json",
+   "existing_refs": [
+    "place/gyeongju-tombs",
+    "faction/busan",
+    "faction/korea-umbrella"
+   ],
+   "concept": {
+    "type": "小勢力",
+    "scale": "僅在慶州古陵外活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "慶州古陵外（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "碗可以空，名字不能替人答。",
+    "places": [
+     "place/gyeongju-tombs"
+    ],
+    "relations": [
+     {
+      "faction": "faction/busan",
+      "stance": "友好",
+      "note": "接受既有守衛管理，靠朝聖人流維生。"
+     },
+     {
+      "faction": "faction/korea-umbrella",
+      "stance": "中立",
+      "note": "仍在韓國法理內，不主張自治或獨立庇護。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/korea-umbrella",
+    "culture_livelihood_conflict": "古陵外幾戶供朝聖者短宿的住家合成小會，替遠行家屬留一只餐碗，收的是住宿與照料費，不賣神諭。資深住戶不准外人把客人哭泣寫成求神應驗的廣告，自己卻向不肯結清欠款的人索回碗位。一次親屬失聯，管碗者明知客人拿不出錢仍把碗翻扣；另一戶偷偷放回，兩戶此後不再共用灶火。"
+   },
+   "boundaries": "地方接待組織而非新宗教或守寢人分支；不真能聯絡亡者、不讓留碗成半島統一葬俗；不接管古陵守備、不取代韓寶羅修鼓。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/gyeongju-tombs.json",
+    "content/lore/factions/busan.json",
+    "content/lore/factions/korea-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "陵外住戶替遠行家屬留碗，也會向欠費的人收回；偷放回的那只碗讓兩戶翻臉。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。地方接待組織而非新宗教或守寢人分支；不真能聯絡亡者、不讓留碗成半島統一葬俗；不接管古陵守備、不取代韓寶羅修鼓。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-slant-sun-rope",
+   "name": "斜陽索獵團",
+   "continent": "南美",
+   "region": "基多山區",
+   "allowed_files": [
+    "content/lore/factions/wl-slant-sun-rope.json"
+   ],
+   "template": "content/lore/factions/third-blade.json",
+   "existing_refs": [
+    "place/quito",
+    "faction/quito",
+    "faction/latam-umbrella"
+   ],
+   "concept": {
+    "type": "獵團",
+    "scale": "僅在基多山區活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "基多山區（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "山不欠你第二條路。",
+    "places": [
+     "place/quito"
+    ],
+    "relations": [
+     {
+      "faction": "faction/quito",
+      "stance": "友好",
+      "note": "接基多境內地方工作，補給依雇約，不可調遣高原衛。"
+     },
+     {
+      "faction": "faction/latam-umbrella",
+      "stance": "中立",
+      "note": "在既有拉美傘地區接單，沒有國家席位。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/latam-umbrella",
+    "culture_livelihood_conflict": "基多山區接高坡搜索、墜架現場警戒與陸路護衛的地方獵團，租用既有通用機，離機後靠普通繩索上陡坡。成員出發前互摸繩結，回來卻各自爭功。一次雇主要求加找遺失的昂貴器物，團長帶走自己的報酬撤離，副手留下，欠下別隊幫忙的錢；兩人仍同團，下一次誰領隊每晚都吵。"
+   },
+   "boundaries": "不創越地形機制或機甲登山保證，不擁維拉科查／新古代機，不以古代機協調認主；不宣稱全傘山地救援唯一權。搜救不保證成功，器物非新古代遺物。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/quito.json",
+    "content/lore/factions/quito.json",
+    "content/lore/factions/latam-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "上坡前互摸繩結的獵團，為要不要替雇主找回貴物分裂，第二天卻還得同團接活。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。不創越地形機制或機甲登山保證，不擁維拉科查／新古代機，不以古代機協調認主；不宣稱全傘山地救援唯一權。搜救不保證成功，器物非新古代遺物。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-reed-knot-seed-circle",
+   "name": "蘆結種籽社",
+   "continent": "南美",
+   "region": "的的喀喀湖畔村落",
+   "allowed_files": [
+    "content/lore/factions/wl-reed-knot-seed-circle.json"
+   ],
+   "template": "content/lore/factions/inner-sea-houses.json",
+   "existing_refs": [
+    "place/titicaca-ruin",
+    "faction/quito",
+    "faction/latam-umbrella"
+   ],
+   "concept": {
+    "type": "小勢力",
+    "scale": "僅在的的喀喀湖畔村落活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "的的喀喀湖畔村落（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "吃掉的可以賠，留種的別混。",
+    "places": [
+     "place/titicaca-ruin"
+    ],
+    "relations": [
+     {
+      "faction": "faction/quito",
+      "stance": "中立",
+      "note": "湖畔住民往來受既有守備照看，不替高原衛承諾供糧。"
+     },
+     {
+      "faction": "faction/latam-umbrella",
+      "stance": "中立",
+      "note": "位於既有拉美傘下，無跨國席位或商路調度權。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/latam-umbrella",
+    "culture_livelihood_conflict": "幾戶湖畔住民合存普通作物種籽，用各家的繩結識袋，交換種籽時也交換種植失敗的故事。資深戶仗著種袋多，逼年輕戶先替自家整地；年輕人索性把自留種拿去直接換，不再進社屋。輪值保管者扣住對方留下的空袋，另一戶卻邀那人照常來吃收成飯。組織能守住種籽，守不住所有人的面子。"
+   },
+   "boundaries": "只用普通作物，不創抗蝕種、菌絲共生或新農業機制；非新商團大勢力，無獨立稅權；不寫運糧護船、不把蘆結誤寫先民文字。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/titicaca-ruin.json",
+    "content/lore/factions/quito.json",
+    "content/lore/factions/latam-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "互存種籽的住戶仗著老袋子使喚新人，新人私下交換，保管者只扣得住空袋。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。只用普通作物，不創抗蝕種、菌絲共生或新農業機制；非新商團大勢力，無獨立稅權；不寫運糧護船、不把蘆結誤寫先民文字。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-snowkey-guides",
+   "name": "雪匙引路社",
+   "continent": "歐洲",
+   "region": "阿爾卑斯山區",
+   "allowed_files": [
+    "content/lore/factions/wl-snowkey-guides.json"
+   ],
+   "template": "content/lore/factions/inner-sea-houses.json",
+   "existing_refs": [
+    "place/alpine-shell",
+    "faction/inner-sea-houses",
+    "faction/shell-society",
+    "faction/euro-umbrella"
+   ],
+   "concept": {
+    "type": "小勢力",
+    "scale": "僅在阿爾卑斯山區活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "阿爾卑斯山區（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "我帶你到門口，不替你開門。",
+    "places": [
+     "place/alpine-shell"
+    ],
+    "relations": [
+     {
+      "faction": "faction/inner-sea-houses",
+      "stance": "緊張",
+      "note": "能帶客到獵場邊，不能越過家族圍籬或免入場費。"
+     },
+     {
+      "faction": "faction/shell-society",
+      "stance": "友好",
+      "note": "常接學者的引路工作，收費而非附屬軍隊。"
+     },
+     {
+      "faction": "faction/euro-umbrella",
+      "stance": "中立",
+      "note": "歐傘範圍內的地方生計，無傘席位與軍事調度。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/euro-umbrella",
+    "culture_livelihood_conflict": "在家族獵場外接送學者與來客的山地嚮導小組，不握地權，握的是走過那些山路的人。彼此以舊獵具辨同行，不向陌生客說全路。有人私接高價差事，把另一人的熟客帶走；被搶客者故意不借乾繩，但天色壞了仍在岔路等，不為和解，只是不想整個行當再被扣上坑客的名聲。人送回後兩人當眾搶著報價。"
+   },
+   "boundaries": "不另發入墟許可、不新增捷徑密道到內殿；無怪獸馴養，不把普通山險解釋為蝕潮。家族、學會既有緊張關係不被小組調停消除。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/alpine-shell.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/factions/shell-society.json",
+    "content/lore/factions/euro-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "山路嚮導互搶熟客、扣繩不借，卻不願同行死在路上壞了所有人的生意。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。不另發入墟許可、不新增捷徑密道到內殿；無怪獸馴養，不把普通山險解釋為蝕潮。家族、學會既有緊張關係不被小組調停消除。"
+   }
+  },
+  {
+   "category": "factions",
+   "id": "faction/wl-torn-curtain-troupe",
+   "name": "破幕班",
+   "continent": "歐洲",
+   "region": "熱那亞船塢周邊",
+   "allowed_files": [
+    "content/lore/factions/wl-torn-curtain-troupe.json"
+   ],
+   "template": "content/lore/factions/inner-sea-houses.json",
+   "existing_refs": [
+    "place/genoa-yards",
+    "faction/inner-sea-houses",
+    "faction/euro-umbrella"
+   ],
+   "concept": {
+    "type": "小勢力",
+    "scale": "僅在熱那亞船塢周邊活動的地方小組織；不指定未決人口／機數",
+    "founded": "不明（2108開場前已活動）",
+    "hq": "熱那亞船塢周邊（依既有地點，不另建總部place）",
+    "leaders": [],
+    "ideology": "幕破了，底下的人也要收錢。",
+    "places": [
+     "place/genoa-yards"
+    ],
+    "relations": [
+     {
+      "faction": "faction/inner-sea-houses",
+      "stance": "緊張",
+      "note": "受家族雇用也嘲諷雇主，只是地方往來，不影響家族總體外交。"
+     },
+     {
+      "faction": "faction/euro-umbrella",
+      "stance": "中立",
+      "note": "在歐傘法理範圍內接演出，無政治席位。"
+     }
+    ],
+    "gameRefs": [],
+    "umbrella_context": "faction/euro-umbrella",
+    "culture_livelihood_conflict": "由工坊散工、唱曲人與縫補手湊成的小戲班，白天做活，晚上借院唱戲。給工人演家族笑話，也接家族慶宴唱頌詞；某次受雇刪掉嘲笑欠薪的段落，領唱收了錢卻瞞住同伴。上臺後伴奏故意留下原段起調，領唱只得一個人唱空拍；雇主不付尾款，班內爭的是誰吞了預付，而非宣言能不能救世界。"
+   },
+   "boundaries": "不是全城工會／革命黨，無傳媒壟斷；不引用本輪牽線小戲棚，場景為既有船塢周邊借院；木偶如出現只作凡俗道具，不是機魂或鐵偶；不新增全球文化規律。；body 300–600字，不照抄大勢力四章；不給藍本古代機／新研發血統、不設base faction、不改既有relations反向資料；不得互引本輪character/place/event/faction，人物用匿名職分。結尾留爭執或具體動作，無集體醒悟說教。",
+   "sources": [
+    "content/lore/places/genoa-yards.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/factions/euro-umbrella.json",
+    "content/lore/README.md",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/design-notes/world/polity.md",
+    "wf/workflows/planning/specs/world/factions/hunters-and-structure.md"
+   ],
+   "plain": "戲班替工人罵家族，也收家族錢刪戲；伴奏在臺上起了被刪的調，逼領唱唱空拍。",
+   "new_dependencies": [],
+   "dedup": {
+    "name_search": "六個中文組織名已在content/lore查無命中",
+    "scene_boundary": "既有本地組織已核對；依生活手藝／地方受雇立足，不分走第三刃守城、基多古代機或家族地權。不是全城工會／革命黨，無傳媒壟斷；不引用本輪牽線小戲棚，場景為既有船塢周邊借院；木偶如出現只作凡俗道具，不是機魂或鐵偶；不新增全球文化規律。"
+   }
+  }
+ ]
+}

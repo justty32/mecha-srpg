@@ -8,7 +8,7 @@ mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite�
 - **設計契約**：[SPEC.md](SPEC.md) 指向唯一真實來源 [specs/core](wf/workflows/planning/specs/core/README.md)（＋世界觀 specs/world）；背景見 [PROJECT.md](PROJECT.md)。
 - **碰原始碼前**：慣例與 code map → [workflows/common/conventions.md](wf/workflows/common/conventions.md)、[workflows/common/code-map.md](wf/workflows/common/code-map.md)；環境與指令 → [workflows/dev-env.md](wf/workflows/dev-env.md)。
 - 開場也跑 `wf/tools/inbox_read.sh wf/inbox/new`（升級後五通道的頂層格；跨 repo 投進 `wf/inbox/` 頂層的信用不帶參數的 `wf/tools/inbox_read.sh`）：有信就先讀（信件軸，見 [workflows/inbox/](wf/workflows/inbox/README.md)）。
-- 要開 agent 團隊、決定各層派哪級模型 → 先看 [workflows/team-model.md](wf/workflows/team-model.md)（本專案固定配置：頂層 Fable 5.1 → 領導 Opus → 工人 codex gpt）。
+- 要開 agent 團隊、決定各層派哪級模型 → 先看 [workflows/team-model.md](wf/workflows/team-model.md)（本專案固定配置：頂層／規劃 gpt-6-astra → 領導／普通工 gpt-6.1-sol；簡單工作 gpt-6.1-terra）。
 <!-- wf-insert:AGENTS -->
 - **要你動手做事** → [WORKFLOWS.md](wf/WORKFLOWS.md) 依意圖派發，再讀該工作流入口檔。
 - **想看專案結構** → [INDEX.md](wf/INDEX.md)。

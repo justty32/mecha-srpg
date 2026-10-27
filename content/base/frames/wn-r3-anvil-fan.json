@@ -1,0 +1,59 @@
+{
+  "id": "frame/wn-r3-anvil-fan",
+  "name": "鐵砧-II型・開扇",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-quadruped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/fw-fan-tube",
+    "right-weapon": "component/mx-molten-saw",
+    "system-1": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "accuracy": 2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "mech",
+    "human",
+    "series-anvil"
+  ],
+  "nameEn": "Anvil Fan II",
+  "etymology": "Fan 取折扇展開的扇面，開扇沿鐵砧-II型架鐵的四足分支改裝，前足分掛扇潮矢筒與熔齒鋸。斷臂血統的重關節仍在，前足既承機身，也承武器。工坊替近距清獸的承包隊試這套掛件時，訂單還沒有落到哪一班手裡。\n\n試機院把廢鎧甲掛成一排，兩班駕駛站在白線外等領班點頭。開扇一吼，幾副甲面同時亮起焦痕，領班便在工單上添了幾筆，說一台能抵原來好幾份工。掌鋸的老師傅把單子按住，請他等矢筒再響一次。眾人站著，只有排燼片在落灰；等過再吼所需的間隔，老師傅才讓試機員把鋸齒抵住剩下的那副甲。扇面與鋸口咬出的傷不同，近身做的活也不同。\n\n領班仍想按扇面一併中靶的數目派工。試機員於是關掉武器，讓左前足慢慢抬起，露出掛架下那道舊裂。他把行走與舉筒都要靠的關節指給領班看，要求把前足檢修另留工時。兩班駕駛誰也沒搶著上機；有人把散在地上的工單撿起，重新鋪平。當晚第一筆錢先付給了修腿的那一班，開扇的矢筒隔天才再掛回去。"
+}

@@ -1,0 +1,1234 @@
+{
+ "contract": "wf-table/1",
+ "source": "combat-plan.md",
+ "extracted": "2026-10-27",
+ "ready_categories": [
+  "mechs",
+  "monsters"
+ ],
+ "batches": {
+  "mechs": {
+   "concepts": 6,
+   "content_files": 12,
+   "maxFiles": 20
+  },
+  "monsters": {
+   "concepts": 6,
+   "content_files": 18,
+   "new_species": 4,
+   "existing_species_individuals": 2,
+   "maxFiles": 20
+  }
+ },
+ "status": "planning-only; not integrated or accepted",
+ "path_basis": "allowed_files/template/sources 均相對 repo 根；不宣告 link_columns。",
+ "scope_note": "mechs 為既有血統六件同級勤務改型；frame+model 已獲主線同意。monsters 四新種加兩既有種新個體，四族俱備。",
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "allowed_files",
+  "template",
+  "existing_refs",
+  "concept",
+  "boundaries",
+  "sources",
+  "plain",
+  "new_dependencies",
+  "dedup",
+  "decision"
+ ],
+ "rows": [
+  {
+   "category": "mechs",
+   "id": "frame/wl-bulwark-ferry",
+   "name": "堅盾-II渡口型",
+   "allowed_files": [
+    "content/base/frames/wl-bulwark-ferry.json",
+    "content/base/world/models/wl-bulwark-ferry.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/bulwark-ii.json",
+    "model": "content/base/world/models/bulwark-ii.json"
+   },
+   "existing_refs": [
+    "frame/bulwark-ii",
+    "model/bulwark-ii",
+    "bodyplan/mx-biped-c",
+    "lineage/universal-bulwark",
+    "component/mx-scatter-rune",
+    "component/mx-singing-blade",
+    "ability/mx-guard-stance",
+    "ability/mx-scatter-blast",
+    "ability/mx-singing-slash",
+    "ability/mx-singing-riposte"
+   ],
+   "concept": {
+    "world": "沿堅盾開源圖紙改成碼頭輪守機；盾陣頂住狹口，散紋砲掃近身，鳴刃攔追。船走後人機一同撤回，不把守線寫成死守。",
+    "role": "渡口守線",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-scatter-rune",
+     "left-weapon": "component/mx-singing-blade"
+    },
+    "innateAbilities": [
+     "ability/mx-guard-stance"
+    ],
+    "tags_add": [
+     "lineage-kuafu",
+     "series-bulwark",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-bulwark-ferry",
+     "frame": "frame/wl-bulwark-ferry",
+     "lineage": "lineage/universal-bulwark",
+     "maker": "generic",
+     "series": "universal-bulwark",
+     "mark": 2,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [
+      "model/bulwark-ii"
+     ],
+     "availableFrom": {
+      "month": 1
+     },
+     "exportPolicy": "open",
+     "generic": true,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/bulwark-ii.json",
+    "content/base/world/models/bulwark-ii.json",
+    "content/base/world/lineages/universal-bulwark.json",
+    "content/base/bodyplans/mx-biped-c.json",
+    "content/base/components/mx-scatter-rune.json",
+    "content/base/abilities/mx-scatter-blast.json",
+    "content/base/components/mx-singing-blade.json",
+    "content/base/abilities/mx-singing-slash.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "渡船離岸前，它守住最後一段跳板；船走了，駕駛也要回家。",
+   "new_dependencies": [
+    "model/wl-bulwark-ferry -> frame/wl-bulwark-ferry"
+   ],
+   "dedup": {
+    "query": "堅盾-II渡口型|wl-bulwark-ferry",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wl-longspear-lamp",
+   "name": "長槍-V4守燈型",
+   "allowed_files": [
+    "content/base/frames/wl-longspear-lamp.json",
+    "content/base/world/models/wl-longspear-lamp.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/longspear-v4.json",
+    "model": "content/base/world/models/longspear-v4.json"
+   },
+   "existing_refs": [
+    "frame/longspear-v4",
+    "model/longspear-v4",
+    "bodyplan/mx-biped-c",
+    "lineage/universal-longspear",
+    "component/mx-radiant-rifle",
+    "component/mx-singing-blade",
+    "ability/mx-head-vulcan",
+    "ability/mx-radiant-shot",
+    "ability/mx-singing-slash",
+    "ability/mx-singing-riposte"
+   ],
+   "concept": {
+    "world": "沿銀環逆向流出的長槍支系，岸燈守備捨棄雙吼砲，以流光射擊與鳴刃應付拉近的敵人；守燈是勤務，不新增照明能力。",
+    "role": "中遠程節矢射手",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-radiant-rifle",
+     "left-weapon": "component/mx-singing-blade"
+    },
+    "innateAbilities": [
+     "ability/mx-head-vulcan"
+    ],
+    "tags_add": [
+     "lineage-jinghai",
+     "series-longspear",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-longspear-lamp",
+     "frame": "frame/wl-longspear-lamp",
+     "lineage": "lineage/universal-longspear",
+     "maker": "generic",
+     "series": "universal-longspear",
+     "mark": 4,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [
+      "model/longspear-v4"
+     ],
+     "availableFrom": {
+      "month": 2
+     },
+     "exportPolicy": "open",
+     "generic": true,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/longspear-v4.json",
+    "content/base/world/models/longspear-v4.json",
+    "content/base/world/lineages/universal-longspear.json",
+    "content/base/bodyplans/mx-biped-c.json",
+    "content/base/components/mx-radiant-rifle.json",
+    "content/base/abilities/mx-radiant-shot.json",
+    "content/base/components/mx-singing-blade.json",
+    "content/base/abilities/mx-singing-slash.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "守燈人買不起整夜的精粹矢，便把長槍改成流光遠射、近身拔刃。",
+   "new_dependencies": [
+    "model/wl-longspear-lamp -> frame/wl-longspear-lamp"
+   ],
+   "dedup": {
+    "query": "長槍-V4守燈型|wl-longspear-lamp",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wl-anvil-cable",
+   "name": "鐵砧-II斷纜型",
+   "allowed_files": [
+    "content/base/frames/wl-anvil-cable.json",
+    "content/base/world/models/wl-anvil-cable.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/anvil-ii.json",
+    "model": "content/base/world/models/anvil-ii.json"
+   },
+   "existing_refs": [
+    "frame/anvil-ii",
+    "model/anvil-ii",
+    "bodyplan/mx-biped-c",
+    "lineage/broken-arm",
+    "component/mx-brokenarm-stake",
+    "component/mx-singing-blade",
+    "ability/mx-frame-strike",
+    "ability/mx-stake-drive",
+    "ability/mx-singing-slash",
+    "ability/mx-singing-riposte"
+   ],
+   "concept": {
+    "world": "鐵砧仿斷臂關節的港口攻堅改型；有限樁楔留給擋路厚甲，鳴刃承接回身反擊。斷纜是技師對開路工作的稱呼，不新增切繩判定。",
+    "role": "近接破甲與反擊",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-brokenarm-stake",
+     "left-weapon": "component/mx-singing-blade"
+    },
+    "innateAbilities": [
+     "ability/mx-frame-strike"
+    ],
+    "tags_add": [
+     "lineage-broken-arm",
+     "series-anvil",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-anvil-cable",
+     "frame": "frame/wl-anvil-cable",
+     "lineage": "lineage/broken-arm",
+     "maker": "faction/anvil-hunters",
+     "series": "broken-arm",
+     "mark": 2,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [
+      "model/anvil-ii"
+     ],
+     "availableFrom": {
+      "month": 2
+     },
+     "exportPolicy": "restricted",
+     "generic": false,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/anvil-ii.json",
+    "content/base/world/models/anvil-ii.json",
+    "content/base/world/lineages/broken-arm.json",
+    "content/base/bodyplans/mx-biped-c.json",
+    "content/base/components/mx-brokenarm-stake.json",
+    "content/base/abilities/mx-stake-drive.json",
+    "content/base/components/mx-singing-blade.json",
+    "content/base/abilities/mx-singing-slash.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "樁楔只留給最厚的甲；碼頭工說，能替撤船開路的才算好鐵砧。",
+   "new_dependencies": [
+    "model/wl-anvil-cable -> frame/wl-anvil-cable"
+   ],
+   "dedup": {
+    "query": "鐵砧-II斷纜型|wl-anvil-cable",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wl-swordfish-return",
+   "name": "劍魚-III回舷型",
+   "allowed_files": [
+    "content/base/frames/wl-swordfish-return.json",
+    "content/base/world/models/wl-swordfish-return.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/thirdblade-swordfish-iii.json",
+    "model": "content/base/world/models/thirdblade-swordfish-iii.json"
+   },
+   "existing_refs": [
+    "frame/thirdblade-swordfish-iii",
+    "model/thirdblade-swordfish-iii",
+    "bodyplan/mx-hover-c",
+    "lineage/tide-fin",
+    "component/mx-tidefin-twins",
+    "component/mx-rune-rifle",
+    "ability/mx-frame-strike",
+    "ability/mx-fin-flurry",
+    "ability/mx-rune-shot"
+   ],
+   "concept": {
+    "world": "第三刃的潮鰭支系保留潮行裙；雙刃貼身、紋刻連吼打撤開的敵人。與原型雙近戰不同，給船邊輪換小隊留一隻能遠咬的手。",
+    "role": "潮行側翼追擊",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-hover-c",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-tidefin-twins",
+     "left-weapon": "component/mx-rune-rifle"
+    },
+    "innateAbilities": [
+     "ability/mx-frame-strike"
+    ],
+    "tags_add": [
+     "lineage-tide-fin",
+     "series-swordfish",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-swordfish-return",
+     "frame": "frame/wl-swordfish-return",
+     "lineage": "lineage/tide-fin",
+     "maker": "faction/third-blade",
+     "series": "tide-fin",
+     "mark": 3,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [
+      "model/thirdblade-swordfish-iii"
+     ],
+     "availableFrom": {
+      "month": 3
+     },
+     "exportPolicy": "restricted",
+     "generic": false,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/thirdblade-swordfish-iii.json",
+    "content/base/world/models/thirdblade-swordfish-iii.json",
+    "content/base/world/lineages/tide-fin.json",
+    "content/base/bodyplans/mx-hover-c.json",
+    "content/base/components/mx-tidefin-twins.json",
+    "content/base/abilities/mx-fin-flurry.json",
+    "content/base/components/mx-rune-rifle.json",
+    "content/base/abilities/mx-rune-shot.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "第三刃的船邊隊輪流追擊與回舷，雙刃旁多一把連吼，免得追到無路可退。",
+   "new_dependencies": [
+    "model/wl-swordfish-return -> frame/wl-swordfish-return"
+   ],
+   "dedup": {
+    "query": "劍魚-III回舷型|wl-swordfish-return",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wl-surveyor-trace",
+   "name": "測墟-B拾痕型",
+   "allowed_files": [
+    "content/base/frames/wl-surveyor-trace.json",
+    "content/base/world/models/wl-surveyor-trace.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/shellsoc-surveyor-b.json",
+    "model": "content/base/world/models/shellsoc-surveyor-b.json"
+   },
+   "existing_refs": [
+    "frame/shellsoc-surveyor-b",
+    "model/shellsoc-surveyor-b",
+    "bodyplan/mx-biped-b",
+    "lineage/many-eyes",
+    "component/mx-rune-rifle",
+    "component/mx-radiant-rifle",
+    "component/mx-thousand-eye",
+    "ability/mx-head-vulcan",
+    "ability/mx-rune-shot",
+    "ability/mx-radiant-shot",
+    "ability/mx-thousand-gaze"
+   ],
+   "concept": {
+    "world": "稽古學會沿多目靈目路線做護勘改型；千目先標定，再用矢或流光交替射擊。目的是讓護衛看見同一個敵人，不解讀裏側、不賦予新探測規則。",
+    "role": "標定與混合火力",
+    "grade": "B",
+    "bodyPlan": "bodyplan/mx-biped-b",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-rune-rifle",
+     "left-weapon": "component/mx-radiant-rifle",
+     "sensor-mount": "component/mx-thousand-eye"
+    },
+    "innateAbilities": [
+     "ability/mx-head-vulcan"
+    ],
+    "tags_add": [
+     "lineage-many-eyes",
+     "series-surveyor",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-surveyor-trace",
+     "frame": "frame/wl-surveyor-trace",
+     "lineage": "lineage/many-eyes",
+     "maker": "faction/shell-society",
+     "series": "many-eyes",
+     "mark": 4,
+     "role": "variant",
+     "tier": "B",
+     "cost": 40,
+     "requires": [
+      "model/shellsoc-surveyor-b"
+     ],
+     "availableFrom": {
+      "month": 6
+     },
+     "exportPolicy": "restricted",
+     "generic": false,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/shellsoc-surveyor-b.json",
+    "content/base/world/models/shellsoc-surveyor-b.json",
+    "content/base/world/lineages/many-eyes.json",
+    "content/base/bodyplans/mx-biped-b.json",
+    "content/base/components/mx-rune-rifle.json",
+    "content/base/abilities/mx-rune-shot.json",
+    "content/base/components/mx-radiant-rifle.json",
+    "content/base/abilities/mx-radiant-shot.json",
+    "content/base/components/mx-thousand-eye.json",
+    "content/base/abilities/mx-thousand-gaze.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "拾痕隊不搶著進墟，先把岸邊那隻獸指給護衛看，再帶回還活著的勘察員。",
+   "new_dependencies": [
+    "model/wl-surveyor-trace -> frame/wl-surveyor-trace"
+   ],
+   "dedup": {
+    "query": "測墟-B拾痕型|wl-surveyor-trace",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wl-aurora-star",
+   "name": "極光-遮星型",
+   "allowed_files": [
+    "content/base/frames/wl-aurora-star.json",
+    "content/base/world/models/wl-aurora-star.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/selene-aurora.json",
+    "model": "content/base/world/models/selene-aurora.json"
+   },
+   "existing_refs": [
+    "frame/selene-aurora",
+    "model/selene-aurora",
+    "bodyplan/mx-ace-a",
+    "lineage/jinghai",
+    "component/mx-hush-pulse",
+    "component/mx-singing-blade",
+    "component/mx-essence-cell",
+    "component/mx-frost-fins",
+    "ability/mx-aurora-veil",
+    "ability/mx-hush-burst",
+    "ability/mx-singing-slash",
+    "ability/mx-singing-riposte"
+   ],
+   "concept": {
+    "world": "塞勒涅沿靜海王牌支系作護送改型，以寂滅削弱護盾／部件，鳴刃接近身；帷幕只保護自己，爭取撤離空隙來自走位，不宣稱全隊隱形。",
+    "role": "干擾後近接牽制",
+    "grade": "A",
+    "bodyPlan": "bodyplan/mx-ace-a",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-hush-pulse",
+     "left-weapon": "component/mx-singing-blade",
+     "system-1": "component/mx-essence-cell",
+     "system-2": "component/mx-frost-fins"
+    },
+    "innateAbilities": [
+     "ability/mx-aurora-veil"
+    ],
+    "tags_add": [
+     "lineage-jinghai",
+     "series-aurora",
+     "mech",
+     "human"
+    ],
+    "model": {
+     "id": "model/wl-aurora-star",
+     "frame": "frame/wl-aurora-star",
+     "lineage": "lineage/jinghai",
+     "maker": "faction/selene-whitegloves",
+     "series": "jinghai",
+     "mark": 6,
+     "role": "variant",
+     "tier": "A",
+     "cost": 100,
+     "requires": [
+      "model/selene-aurora"
+     ],
+     "availableFrom": {
+      "month": 6
+     },
+     "exportPolicy": "restricted",
+     "generic": false,
+     "tags": []
+    },
+    "numeric": "baseAttrs、pools 完整沿用 frame 範本；同級勤務改型非升代。",
+    "tags_remove": [
+     "captain"
+    ]
+   },
+   "boundaries": "只新增所列 frame/model；cls=mechanical、repair-or-replace。型錄 role=variant（既有枚舉），戰術定位由配裝表現。保留原 tags 並補 tags_add；不動舊數值、勢力 mechSeries、市場、情境或古代機。既有能力超建議帶不在此批調整。",
+   "sources": [
+    "content/base/frames/selene-aurora.json",
+    "content/base/world/models/selene-aurora.json",
+    "content/base/world/lineages/jinghai.json",
+    "content/base/bodyplans/mx-ace-a.json",
+    "content/base/components/mx-hush-pulse.json",
+    "content/base/abilities/mx-hush-burst.json",
+    "content/base/components/mx-singing-blade.json",
+    "content/base/abilities/mx-singing-slash.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "content/base/components/mx-essence-cell.json",
+    "content/base/components/mx-frost-fins.json",
+    "wf/workflows/planning/specs/ops/data-model-faction-rnd/models-and-markets.md"
+   ],
+   "plain": "極光先壓住追兵的吼聲，再拔刃守住空隙；昂貴的帷幕只護得住它自己。",
+   "new_dependencies": [
+    "model/wl-aurora-star -> frame/wl-aurora-star"
+   ],
+   "dedup": {
+    "query": "極光-遮星型|wl-aurora-star",
+    "result": "content/base 與 content/lore 無同名或同 ID；相對範本改用不同武器組合，六列的角色與配裝彼此不同；未作全庫戰術稽核。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-fold-scythe-c",
+   "name": "折鐮（C級種稱）",
+   "allowed_files": [
+    "content/base/monsters/wl-fold-scythe-c.json",
+    "content/base/species/wl-fold-scythe.json",
+    "content/base/frames/wl-bio-fold-scythe.json",
+    "content/base/frames/wl-corpse-fold-scythe.json"
+   ],
+   "template": {
+    "species": "content/base/species/reaper.json",
+    "monster": "content/base/monsters/reaper-c.json",
+    "bio": "content/base/frames/bio-reaper.json",
+    "corpse": "content/base/frames/corpse-reaper.json"
+   },
+   "existing_refs": [
+    "species/reaper",
+    "bodyplan/insect-reaper",
+    "aiprofile/reaper-vanguard",
+    "ability/restrain",
+    "ability/reaper-cleave",
+    "ability/kx-acid-sting",
+    "frame/bio-reaper",
+    "frame/corpse-reaper",
+    "monster/reaper-c"
+   ],
+   "concept": {
+    "world": "折鐮沿海堤背面伏成一列，鐮端滴下蝕露，近身才張開胸節。牠們隨既有蟲巢潮節出入，不是會列陣的士兵；割草般的齊伏只是讓港工認出下一波獸影。",
+    "role": "蟲族近岸伏擊",
+    "tactics": "先用蝕露浸身，再近身劈斬；不帶原鐮肢衝撞。",
+    "grade": "C",
+    "family": "insect",
+    "species": "species/wl-fold-scythe",
+    "bodyPlan": "bodyplan/insect-reaper",
+    "bodyPlan_total_hp": 425,
+    "abilities": [
+     "ability/reaper-cleave",
+     "ability/kx-acid-sting"
+    ],
+    "aiProfile": "aiprofile/reaper-vanguard",
+    "behaviors": {
+     "telegraph": true
+    },
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion",
+      "manipulator"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wl-bio-fold-scythe"
+    },
+    "species_tags": [
+     "kaiju",
+     "insect"
+    ],
+    "gradeRange": [
+     "C"
+    ],
+    "numeric": "只取範本 baseAttrsByGrade 的本級，pools 原樣沿用；不寫虛構的部位覆寫。",
+    "monster": {
+     "id": "monster/wl-fold-scythe-c",
+     "species": "species/wl-fold-scythe",
+     "grade": "C",
+     "tags": [
+      "kaiju",
+      "insect"
+     ]
+    },
+    "companions": {
+     "bio": {
+      "id": "frame/wl-bio-fold-scythe",
+      "name": "生物機甲・折鐮",
+      "grade": "C",
+      "bodyPlan": "bodyplan/insect-reaper",
+      "innateAbilities": [
+       "ability/reaper-cleave",
+       "ability/kx-acid-sting"
+      ],
+      "burden": 6,
+      "tags": [
+       "bio",
+       "insect",
+       "kaiju"
+      ],
+      "note": "其餘照專屬 bio 範本，只有 instinct 池；不可共用其他 species 的 capture.frame。"
+     },
+     "corpse": {
+      "id": "frame/wl-corpse-fold-scythe",
+      "name": "屍體改裝・折鐮",
+      "grade": "C",
+      "bodyPlan": "bodyplan/insect-reaper",
+      "innateAbilities": [
+       "ability/reaper-cleave",
+       "ability/kx-acid-sting"
+      ],
+      "pools": [],
+      "burden": 0,
+      "tags": [
+       "bio",
+       "insect",
+       "corpse",
+       "kaiju"
+      ],
+      "note": "其餘照 corpse 範本；不加本能池或活體意識，不修改既有骨架。"
+     }
+    }
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 species 的 abilities 與兩個配套 frame.innateAbilities 一致；不改能力顯示名。 不複製 spawned 標籤宣稱新巢母配套；不新增生殖或巢錨。",
+   "sources": [
+    "content/base/species/reaper.json",
+    "content/base/bodyplans/insect-reaper.json",
+    "content/base/frames/bio-reaper.json",
+    "content/base/frames/corpse-reaper.json",
+    "content/base/monsters/reaper-c.json",
+    "content/base/aiprofiles/reaper-vanguard.json",
+    "content/base/species/lancewing.json",
+    "content/base/abilities/reaper-cleave.json",
+    "content/base/abilities/kx-acid-sting.json"
+   ],
+   "plain": "鐮肢折在胸前，像堤背一排濕鉤；滴下的蝕露讓守岸人知道蟲潮又到了。",
+   "new_dependencies": [
+    "monster/wl-fold-scythe-c -> species/wl-fold-scythe",
+    "species/wl-fold-scythe -> frame/wl-bio-fold-scythe",
+    "配套 frame/wl-corpse-fold-scythe（無跨列新引用）"
+   ],
+   "dedup": {
+    "query": "折鐮|wl-fold-scythe",
+    "result": "content/base 與 content/lore 查無名稱或 ID；種稱只放 species.name，個體不取二名；先用蝕露浸身，再近身劈斬；不帶原鐮肢衝撞。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-gravel-mane-c",
+   "name": "礫鬃（C級種稱）",
+   "allowed_files": [
+    "content/base/monsters/wl-gravel-mane-c.json",
+    "content/base/species/wl-gravel-mane.json",
+    "content/base/frames/wl-bio-gravel-mane.json",
+    "content/base/frames/wl-corpse-gravel-mane.json"
+   ],
+   "template": {
+    "species": "content/base/species/hound.json",
+    "monster": "content/base/monsters/hound-c.json",
+    "bio": "content/base/frames/bio-hound.json",
+    "corpse": "content/base/frames/corpse-hound.json"
+   },
+   "existing_refs": [
+    "species/hound",
+    "bodyplan/quadruped-hound",
+    "aiprofile/pack-hunter",
+    "ability/restrain",
+    "ability/kx-shovel-ram",
+    "ability/kx-foam-jaw-foam",
+    "frame/bio-hound",
+    "frame/corpse-hound",
+    "monster/hound-c"
+   ],
+   "concept": {
+    "world": "礫鬃以背板刮過礫灘，迎頭用雙鏟叩擊，張口噴出混著碎礫的蝕沫；不挖地穿越、不靠吞屍回血，也不接掘犬蛻皮。離開海水的足跡能讓人判斷牠曾在哪段岸邊停留。",
+    "role": "獸族近接壓迫",
+    "tactics": "叩擊單體、噴沫壓近距扇面；不用掘犬遠擊與吞屍招。",
+    "grade": "C",
+    "family": "beast",
+    "species": "species/wl-gravel-mane",
+    "bodyPlan": "bodyplan/quadruped-hound",
+    "bodyPlan_total_hp": 420,
+    "abilities": [
+     "ability/kx-shovel-ram",
+     "ability/kx-foam-jaw-foam"
+    ],
+    "aiProfile": "aiprofile/pack-hunter",
+    "behaviors": {
+     "telegraph": true
+    },
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wl-bio-gravel-mane"
+    },
+    "species_tags": [
+     "kaiju",
+     "beast"
+    ],
+    "gradeRange": [
+     "C"
+    ],
+    "numeric": "只取範本 baseAttrsByGrade 的本級，pools 原樣沿用；不寫虛構的部位覆寫。",
+    "monster": {
+     "id": "monster/wl-gravel-mane-c",
+     "species": "species/wl-gravel-mane",
+     "grade": "C",
+     "tags": [
+      "kaiju",
+      "beast"
+     ]
+    },
+    "companions": {
+     "bio": {
+      "id": "frame/wl-bio-gravel-mane",
+      "name": "生物機甲・礫鬃",
+      "grade": "C",
+      "bodyPlan": "bodyplan/quadruped-hound",
+      "innateAbilities": [
+       "ability/kx-shovel-ram",
+       "ability/kx-foam-jaw-foam"
+      ],
+      "burden": 5,
+      "tags": [
+       "bio",
+       "beast",
+       "kaiju"
+      ],
+      "note": "其餘照專屬 bio 範本，只有 instinct 池；不可共用其他 species 的 capture.frame。"
+     },
+     "corpse": {
+      "id": "frame/wl-corpse-gravel-mane",
+      "name": "屍體改裝・礫鬃",
+      "grade": "C",
+      "bodyPlan": "bodyplan/quadruped-hound",
+      "innateAbilities": [
+       "ability/kx-shovel-ram",
+       "ability/kx-foam-jaw-foam"
+      ],
+      "pools": [],
+      "burden": 0,
+      "tags": [
+       "bio",
+       "beast",
+       "corpse",
+       "kaiju"
+      ],
+      "note": "其餘照 corpse 範本；不加本能池或活體意識，不修改既有骨架。"
+     }
+    }
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 species 的 abilities 與兩個配套 frame.innateAbilities 一致；不改能力顯示名。 不繼承 hound 的 molt，無成長升級。",
+   "sources": [
+    "content/base/species/hound.json",
+    "content/base/bodyplans/quadruped-hound.json",
+    "content/base/frames/bio-hound.json",
+    "content/base/frames/corpse-hound.json",
+    "content/base/monsters/hound-c.json",
+    "content/base/aiprofiles/pack-hunter.json",
+    "content/base/species/foam-jaw.json",
+    "content/base/abilities/kx-shovel-ram.json",
+    "content/base/abilities/kx-foam-jaw-foam.json"
+   ],
+   "plain": "背板刮得礫灘作響，雙鏟一抬就噴出蝕沫；守岸人先躲它的正面。",
+   "new_dependencies": [
+    "monster/wl-gravel-mane-c -> species/wl-gravel-mane",
+    "species/wl-gravel-mane -> frame/wl-bio-gravel-mane",
+    "配套 frame/wl-corpse-gravel-mane（無跨列新引用）"
+   ],
+   "dedup": {
+    "query": "礫鬃|wl-gravel-mane",
+    "result": "content/base 與 content/lore 查無名稱或 ID；種稱只放 species.name，個體不取二名；叩擊單體、噴沫壓近距扇面；不用掘犬遠擊與吞屍招。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-slant-veil-b",
+   "name": "斜帷（B級種稱）",
+   "allowed_files": [
+    "content/base/monsters/wl-slant-veil-b.json",
+    "content/base/species/wl-slant-veil.json",
+    "content/base/frames/wl-bio-slant-veil.json",
+    "content/base/frames/wl-corpse-slant-veil.json"
+   ],
+   "template": {
+    "species": "content/base/species/mirror.json",
+    "monster": "content/base/monsters/mirror-b.json",
+    "bio": "content/base/frames/bio-mirror.json",
+    "corpse": "content/base/frames/corpse-mirror.json"
+   },
+   "existing_refs": [
+    "species/mirror",
+    "bodyplan/alien-mirror",
+    "aiprofile/kx-alien-stalker",
+    "ability/restrain",
+    "ability/kx-glare-pulse",
+    "ability/kx-bare-rend",
+    "frame/bio-mirror",
+    "frame/corpse-mirror",
+    "monster/mirror-b"
+   ],
+   "concept": {
+    "world": "斜帷一側像掛歪的鏡衣，另一側赤裸祈手拖在浪裡；牠先凝視再撕近身者。鏡側抗性全沿既有骨架，凝視只降低感知與閃避，不讀心、不換臉、不製造幻象。",
+    "role": "異形削弱感知後近撕",
+    "tactics": "以異瞳減益取代鏡衣翻面保護，保留裸側與藏核弱點。",
+    "grade": "B",
+    "family": "alien",
+    "species": "species/wl-slant-veil",
+    "bodyPlan": "bodyplan/alien-mirror",
+    "bodyPlan_total_hp": 950,
+    "abilities": [
+     "ability/kx-glare-pulse",
+     "ability/kx-bare-rend"
+    ],
+    "aiProfile": "aiprofile/kx-alien-stalker",
+    "behaviors": {
+     "telegraph": true
+    },
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wl-bio-slant-veil"
+    },
+    "species_tags": [
+     "kaiju",
+     "alien"
+    ],
+    "gradeRange": [
+     "B"
+    ],
+    "numeric": "只取範本 baseAttrsByGrade 的本級，pools 原樣沿用；不寫虛構的部位覆寫。",
+    "monster": {
+     "id": "monster/wl-slant-veil-b",
+     "species": "species/wl-slant-veil",
+     "grade": "B",
+     "tags": [
+      "kaiju",
+      "alien"
+     ]
+    },
+    "companions": {
+     "bio": {
+      "id": "frame/wl-bio-slant-veil",
+      "name": "生物機甲・斜帷",
+      "grade": "B",
+      "bodyPlan": "bodyplan/alien-mirror",
+      "innateAbilities": [
+       "ability/kx-glare-pulse",
+       "ability/kx-bare-rend"
+      ],
+      "burden": 9,
+      "tags": [
+       "bio",
+       "alien",
+       "kaiju"
+      ],
+      "note": "其餘照專屬 bio 範本，只有 instinct 池；不可共用其他 species 的 capture.frame。"
+     },
+     "corpse": {
+      "id": "frame/wl-corpse-slant-veil",
+      "name": "屍體改裝・斜帷",
+      "grade": "B",
+      "bodyPlan": "bodyplan/alien-mirror",
+      "innateAbilities": [
+       "ability/kx-glare-pulse",
+       "ability/kx-bare-rend"
+      ],
+      "pools": [],
+      "burden": 0,
+      "tags": [
+       "bio",
+       "alien",
+       "corpse",
+       "kaiju"
+      ],
+      "note": "其餘照 corpse 範本；不加本能池或活體意識，不修改既有骨架。"
+     }
+    }
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 species 的 abilities 與兩個配套 frame.innateAbilities 一致；不改能力顯示名。",
+   "sources": [
+    "content/base/species/mirror.json",
+    "content/base/bodyplans/alien-mirror.json",
+    "content/base/frames/bio-mirror.json",
+    "content/base/frames/corpse-mirror.json",
+    "content/base/monsters/mirror-b.json",
+    "content/base/aiprofiles/kx-alien-stalker.json",
+    "content/base/species/sac.json",
+    "content/base/abilities/kx-glare-pulse.json",
+    "content/base/abilities/kx-bare-rend.json"
+   ],
+   "plain": "一邊掛著鏡衣，一邊拖著赤手；被它盯住的人總慢半拍才看見那一下撕扯。",
+   "new_dependencies": [
+    "monster/wl-slant-veil-b -> species/wl-slant-veil",
+    "species/wl-slant-veil -> frame/wl-bio-slant-veil",
+    "配套 frame/wl-corpse-slant-veil（無跨列新引用）"
+   ],
+   "dedup": {
+    "query": "斜帷|wl-slant-veil",
+    "result": "content/base 與 content/lore 查無名稱或 ID；種稱只放 species.name，個體不取二名；以異瞳減益取代鏡衣翻面保護，保留裸側與藏核弱點。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-salt-shroud-c",
+   "name": "鹽紗（C級種稱）",
+   "allowed_files": [
+    "content/base/monsters/wl-salt-shroud-c.json",
+    "content/base/species/wl-salt-shroud.json",
+    "content/base/frames/wl-bio-salt-shroud.json",
+    "content/base/frames/wl-corpse-salt-shroud.json"
+   ],
+   "template": {
+    "species": "content/base/species/stalk.json",
+    "monster": "content/base/monsters/stalk-c.json",
+    "bio": "content/base/frames/bio-stalk.json",
+    "corpse": "content/base/frames/corpse-stalk.json"
+   },
+   "existing_refs": [
+    "species/stalk",
+    "bodyplan/mycel-stalk",
+    "aiprofile/kx-mycel-creep",
+    "ability/restrain",
+    "ability/kx-root-snare",
+    "ability/kx-reed-lace-spit",
+    "frame/bio-stalk",
+    "frame/corpse-stalk",
+    "monster/stalk-c"
+   ],
+   "concept": {
+    "world": "河口廢鹽棚垂下紗狀菌冠，根藏在舊水溝，抖落的酸珠逼人繞行。沿淡水上溯的蔓延只作生態描述；它是連成一片的菌體，不是能聽令的個體。",
+    "role": "菌絲河口定點牽制",
+    "tactics": "地衣減初動、落珠單體射擊；取代菌柱範圍孢霧，sentinel 定點。",
+    "grade": "C",
+    "family": "mycelium",
+    "species": "species/wl-salt-shroud",
+    "bodyPlan": "bodyplan/mycel-stalk",
+    "bodyPlan_total_hp": 450,
+    "abilities": [
+     "ability/kx-root-snare",
+     "ability/kx-reed-lace-spit"
+    ],
+    "aiProfile": "aiprofile/kx-mycel-creep",
+    "behaviors": {
+     "telegraph": true
+    },
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "core"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wl-bio-salt-shroud"
+    },
+    "species_tags": [
+     "kaiju",
+     "mycelium",
+     "harvest-only"
+    ],
+    "gradeRange": [
+     "C"
+    ],
+    "numeric": "只取範本 baseAttrsByGrade 的本級，pools 原樣沿用；不寫虛構的部位覆寫。",
+    "monster": {
+     "id": "monster/wl-salt-shroud-c",
+     "species": "species/wl-salt-shroud",
+     "grade": "C",
+     "tags": [
+      "kaiju",
+      "mycelium"
+     ]
+    },
+    "companions": {
+     "bio": {
+      "id": "frame/wl-bio-salt-shroud",
+      "name": "生物機甲・鹽紗",
+      "grade": "C",
+      "bodyPlan": "bodyplan/mycel-stalk",
+      "innateAbilities": [
+       "ability/kx-root-snare",
+       "ability/kx-reed-lace-spit"
+      ],
+      "burden": 5,
+      "tags": [
+       "bio",
+       "mycelium",
+       "kaiju",
+       "harvest-only"
+      ],
+      "note": "其餘照專屬 bio 範本，只有 instinct 池；不可共用其他 species 的 capture.frame。"
+     },
+     "corpse": {
+      "id": "frame/wl-corpse-salt-shroud",
+      "name": "屍體改裝・鹽紗",
+      "grade": "C",
+      "bodyPlan": "bodyplan/mycel-stalk",
+      "innateAbilities": [
+       "ability/kx-root-snare",
+       "ability/kx-reed-lace-spit"
+      ],
+      "pools": [],
+      "burden": 0,
+      "tags": [
+       "bio",
+       "mycelium",
+       "corpse",
+       "kaiju",
+       "harvest-only"
+      ],
+      "note": "其餘照 corpse 範本；不加本能池或活體意識，不修改既有骨架。"
+     }
+    }
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 species 的 abilities 與兩個配套 frame.innateAbilities 一致；不改能力顯示名。 capture 的 core/core 互斥，專屬 bio 只是不可捕的必要佔位，標 harvest-only；不准因骨架預留 cockpit 就寫成可拘束。三處肉層均無 regen；沿用的 chitin regen 不是肉層再生，這次不裁決或改寫骨架。rooted 只減 initiative，不承諾定身。",
+   "sources": [
+    "content/base/species/stalk.json",
+    "content/base/bodyplans/mycel-stalk.json",
+    "content/base/frames/bio-stalk.json",
+    "content/base/frames/corpse-stalk.json",
+    "content/base/monsters/stalk-c.json",
+    "content/base/aiprofiles/kx-mycel-creep.json",
+    "content/base/species/reed-lace.json",
+    "content/base/abilities/kx-root-snare.json",
+    "content/base/abilities/kx-reed-lace-spit.json"
+   ],
+   "plain": "舊鹽棚垂滿白紗，靠近才看見紗在抖；根下沒有心臟，只有一片連著一片。",
+   "new_dependencies": [
+    "monster/wl-salt-shroud-c -> species/wl-salt-shroud",
+    "species/wl-salt-shroud -> frame/wl-bio-salt-shroud",
+    "配套 frame/wl-corpse-salt-shroud（無跨列新引用）"
+   ],
+   "dedup": {
+    "query": "鹽紗|wl-salt-shroud",
+    "result": "content/base 與 content/lore 查無名稱或 ID；種稱只放 species.name，個體不取二名；地衣減初動、落珠單體射擊；取代菌柱範圍孢霧，sentinel 定點。"
+   },
+   "decision": "approved"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-mite-seawall",
+   "name": "海堤蝕蟲目擊個體",
+   "allowed_files": [
+    "content/base/monsters/wl-mite-seawall.json"
+   ],
+   "template": {
+    "monster": "content/base/monsters/mite-d.json",
+    "species_reference_only": "content/base/species/mite.json"
+   },
+   "existing_refs": [
+    "species/mite",
+    "bodyplan/insect-mite",
+    "aiprofile/swarm-mite",
+    "frame/bio-mite",
+    "ability/mite-swarm-bite"
+   ],
+   "concept": {
+    "world": "海堤修補隊在舊石縫間目擊的蝕蟲個體；噬咬與多足腹核沿原族。不給此 D 級個體新種稱；礫縫伏藏是場景畫面，不加潛行或穿牆。",
+    "monster": {
+     "id": "monster/wl-mite-seawall",
+     "species": "species/mite",
+     "grade": "D",
+     "tags": [
+      "kaiju",
+      "insect"
+     ]
+    },
+    "family": "insect",
+    "bodyPlan": "bodyplan/insect-mite",
+    "abilities": [
+     "ability/mite-swarm-bite"
+    ],
+    "aiProfile": "aiprofile/swarm-mite",
+    "companions": "沿用既有 species/capture.frame，無新 species 或 frame。"
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 此列明確為既有物種的新目擊個體，戰鬥數值與原個體相同，不宣稱新物種或新戰術；不加場景觸發或遭遇入口。",
+   "sources": [
+    "content/base/species/mite.json",
+    "content/base/monsters/mite-d.json",
+    "content/base/bodyplans/insect-mite.json"
+   ],
+   "plain": "修堤人看見石縫一節節亮起，便知道不是海水反光；這次只是蝕蟲，也得撤開。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "wl-mite-seawall",
+    "result": "content/base 與 content/lore 無此 ID；沿用原種稱屬有意重用，不偽裝成新種。計畫標籤不是遊戲顯示名。"
+   },
+   "decision": "不實作：只增同數值目擊個體，缺少新增內容價值"
+  },
+  {
+   "category": "monsters",
+   "id": "monster/wl-foam-jaw-slipway",
+   "name": "船臺沫顎目擊個體",
+   "allowed_files": [
+    "content/base/monsters/wl-foam-jaw-slipway.json"
+   ],
+   "template": {
+    "monster": "content/base/monsters/foam-jaw-c.json",
+    "species_reference_only": "content/base/species/foam-jaw.json"
+   },
+   "existing_refs": [
+    "species/foam-jaw",
+    "bodyplan/beast-foam-jaw",
+    "aiprofile/pack-hunter",
+    "frame/bio-foam-jaw",
+    "ability/kx-foam-jaw-bite",
+    "ability/kx-foam-jaw-foam"
+   ],
+   "concept": {
+    "world": "退潮船臺旁出現的沫顎個體；先翻顎噴沫、近身啃咬沿既有族。把船臺危險留作目擊敘事，無新傷害、二名或固定事件；不寫牠守候熟悉的人。",
+    "monster": {
+     "id": "monster/wl-foam-jaw-slipway",
+     "species": "species/foam-jaw",
+     "grade": "C",
+     "tags": [
+      "kaiju",
+      "beast"
+     ]
+    },
+    "family": "beast",
+    "bodyPlan": "bodyplan/beast-foam-jaw",
+    "abilities": [
+     "ability/kx-foam-jaw-bite",
+     "ability/kx-foam-jaw-foam"
+    ],
+    "aiProfile": "aiprofile/pack-hunter",
+    "companions": "沿用既有 species/capture.frame，無新 species 或 frame。"
+   },
+   "boundaries": "只新增 allowed_files；不改舊 species/bodyPlan/能力/數值。monster 只寫 id/species/grade/tags，不寫 name/epithet/named、partsOverride、attrMods、extraAbilities；計畫 name 是審閱標籤。無馴養、餵食、人物意識、新 registry 或新 AI 規則。生態與退意只留交接敘事，不新增 territorial/spawner/molt。 此列明確為既有物種的新目擊個體，戰鬥數值與原個體相同，不宣稱新物種或新戰術；不加場景觸發或遭遇入口。",
+   "sources": [
+    "content/base/species/foam-jaw.json",
+    "content/base/monsters/foam-jaw-c.json",
+    "content/base/bodyplans/beast-foam-jaw.json"
+   ],
+   "plain": "退潮後船臺還在冒白沫；工人先看見顎，才知道船底那片影子一直沒走。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "wl-foam-jaw-slipway",
+    "result": "content/base 與 content/lore 無此 ID；沿用原種稱屬有意重用，不偽裝成新種。計畫標籤不是遊戲顯示名。"
+   },
+   "decision": "不實作：只增同數值目擊個體，缺少新增內容價值"
+  }
+ ]
+}

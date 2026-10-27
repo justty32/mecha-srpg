@@ -1,0 +1,409 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-27",
+ "columns": [
+  "id",
+  "files",
+  "category",
+  "name",
+  "plain",
+  "hooks",
+  "nearestExisting",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "fullTextRead",
+  "desire",
+  "mainAction",
+  "conflict",
+  "result",
+  "requiredConstraints"
+ ],
+ "rows": [
+  {
+   "id": "character/wm-r4-sandro-veiga",
+   "files": [
+    "content/lore/characters/wm-r4-sandro-veiga.json"
+   ],
+   "category": "character",
+   "name": "桑德羅・維加",
+   "plain": "想成名的甜點廚輸了造型評比，卻賣光碎片，仍不放棄下一艘甜船。",
+   "hooks": [
+    "place/accra"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/anja-vestli",
+     "file": "content/lore/characters/anja-vestli.json"
+    },
+    {
+     "id": "character/kweku-danquah",
+     "file": "content/lore/characters/kweku-danquah.json"
+    }
+   ],
+   "similarity": "同船廚職業；同阿克拉廚務",
+   "substantiveDifference": "安雅在末班船分最後麵餅、奎庫戰時烤餅接傷，兩者以照護與生存為用途。桑德羅自願參賽，用船形手藝爭名，倒塌後堅持原規格受評；落選與散裝暢銷並存，不把分食變成救濟或道德勝利。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/anja-vestli",
+     "file": "content/lore/characters/anja-vestli.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "856d2ad80d64f0cc21b0ca0431e3832bbac80dc02e6ec8bfcf69acca8028b5e2",
+     "bytes": 1697,
+     "evidence": "撤站末班撕開最後麵餅，讓排在最末的人先吃；如今仍以船廚醫護照看害怕的人。"
+    },
+    {
+     "id": "character/kweku-danquah",
+     "file": "content/lore/characters/kweku-danquah.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "0035c77e52ce5f4519a95502e68fc8d0ebdbf55d931967536c609514523f11d0",
+     "bytes": 1534,
+     "evidence": "留門之戰傷員湧入，整張麵團入灶供熱食；如今找船廚補給工作。"
+    }
+   ],
+   "desire": "想讓人為他的手藝專程來吃一口，不只在當班時把他當分飯的人。",
+   "mainAction": "借一場民間試吃會端出能拆開分食的帆船形甜點；搬上桌時船身塌開，他把散落的可食部分分成小碟，仍要求評手按原訂作品評。",
+   "conflict": "評手要看完整造型，圍觀者卻搶先把碎片吃光；他不肯把受歡迎自稱等同贏得手藝評比。",
+   "result": "造型落選，碎片卻有人隔天來買；他開始賣散裝，同時偷偷保留下一艘完整甜船的架子。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "甜船是普通食物與手工造型，無可食精粹或超常烹調。",
+    "不得追加物資匱乏迫使他分食／傷員湧入／把獎金捐掉等照護轉折。"
+   ]
+  },
+  {
+   "id": "character/wm-r4-bae-hyeonju",
+   "files": [
+    "content/lore/characters/wm-r4-bae-hyeonju.json"
+   ],
+   "category": "character",
+   "name": "裴賢珠",
+   "plain": "想露臉的替身演員演紅了布獸，觀眾追到後臺，她卻仍不是海報主角。",
+   "hooks": [
+    "place/busan"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/wl-choi-eunsol",
+     "file": "content/lore/characters/wl-choi-eunsol.json"
+    },
+    {
+     "id": "character/wn-r2-lin-cangxu",
+     "file": "content/lore/characters/wn-r2-lin-cangxu.json"
+    }
+   ],
+   "similarity": "都在釜山民間舞臺爭取觀眾；都是把機甲世界變成手作展示",
+   "substantiveDifference": "崔恩率挪用別人的傷腿售票，退出後自己頂場；林藏序以相斥戰史小景引發真實責任爭辯。裴賢珠主動編排自己的布獸追逐，成果是角色受歡迎而演員仍難露臉；後臺示範牽繩及爭名字延續身分衝突。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/wl-choi-eunsol",
+     "file": "content/lore/characters/wl-choi-eunsol.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "41efc1f8b1ad8dabe264eb5fdcc234e10c2d96891d59c2dddbb947880ad0c48c",
+     "bytes": 1696,
+     "evidence": "拿退役學員傷腿作宣傳，學員離去後收起票錢，自己獨舞頂場。"
+    },
+    {
+     "id": "character/wn-r2-lin-cangxu",
+     "file": "content/lore/characters/wn-r2-lin-cangxu.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "eb40837f2902c06b1f3203bdbb28617f76a0e1ec26cb5463c819568a3d9ec0c9",
+     "bytes": 2548,
+     "evidence": "將朝海舉刃及武器互向的小景並置，保留署名及價牌，不互證真相。"
+    }
+   ],
+   "desire": "想讓觀眾記住自己的臉，厭倦永遠躲在大布獸後面替主演挪道具。",
+   "mainAction": "主動要求把自己的布獸出場排成完整一段，演出時用牽繩、笨重布頭與自己的步伐把等待換景的空檔變成滑稽追逐。",
+   "conflict": "主演嫌她搶走掌聲，班主只肯給布獸加戲、不肯給她人類主角；她最受歡迎的仍是看不見臉的角色。",
+   "result": "孩子與工人到後臺找布獸，她摘下頭套見客；招牌仍未印她的名字，她卻開始替自己的角色記動作，準備下一次爭取署名。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "布獸是人操的普通戲服，不是活獸、機魂或能自主活動的機甲。",
+    "不是憑藝術治好創傷；不讓既有第三刃人物到場背書。"
+   ]
+  },
+  {
+   "id": "character/wm-r4-mina-voss",
+   "files": [
+    "content/lore/characters/wm-r4-mina-voss.json"
+   ],
+   "category": "character",
+   "name": "米娜・沃斯",
+   "plain": "她等花陪伴侶一起開，花卻晚了一天；相聚沒有白過，下一次仍懸著。",
+   "hooks": [
+    "place/earthward-gallery"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/wn-r2-tang-wanling",
+     "file": "content/lore/characters/wn-r2-tang-wanling.json"
+    },
+    {
+     "id": "place/wn-r2-tranquility-steam-bath",
+     "file": "content/lore/places/wn-r2-tranquility-steam-bath.json"
+    }
+   ],
+   "similarity": "同月面親密關係與席位意象",
+   "substantiveDifference": "唐婉綾是替別人辦婚宴並維持生意；霧瓷浴堂以未告知的傷勢及提前返役造成質問。米娜與伴侶從開始就共同知道票期，動作是吃冷飯、繞果皮、走長廊及合照，花真的晚開；相聚與遺憾沒有靠揭露或改票解決。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/wn-r2-tang-wanling",
+     "file": "content/lore/characters/wn-r2-tang-wanling.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "e7ef5eb5d326117aa97fc24f2d5559658bedd9e096318e598aac9d0e0c1836ae",
+     "bytes": 2481,
+     "evidence": "替聯姻宴拆連座、分問意願、重談尾款，配偶選側門後改送花線。"
+    },
+    {
+     "id": "place/wn-r2-tranquility-steam-bath",
+     "file": "content/lore/places/wn-r2-tranquility-steam-bath.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "71fe100a250c5bfe17745764129db67f46208b6bb5512a6073962ad083530465",
+     "bytes": 2450,
+     "evidence": "擦背發現隱傷，送洗工作衣滑出提前返役回條，伴侶質問原先未說的日期。"
+    }
+   ],
+   "desire": "想與長期在地面工作的伴侶一起看自己照看的花開一次，不想每次只把開過的花寄出去。",
+   "mainAction": "把尚未綻開的一盆搬到可坐下等候的窗邊，為難得到月面的伴侶留出相聚時間；花遲遲不開，她重新排自己的照料工作，但不催折花苞。",
+   "conflict": "伴侶返程將近，願意留下的這個人卻不能替花決定時刻；她越盯著花，越少看坐在身邊的人。",
+   "result": "兩人共度一晚但仍錯過花開；伴侶返地後花才綻放。她留下空椅，寄去自己也在畫面中的花照，下一次相聚仍未約定。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "普通栽培花，不創造新品種、精粹催花或改變月面生態；可用花房與普通窗邊，不補硬科幻維生設定。",
+    "伴侶不是唐婉綾的花架配偶，不建立兩者親屬或工作關係。",
+    "不讓伴侶放棄生計或返程證明愛，也不以女方認錯作收尾。",
+    "渡月相聚是罕有旅程，勿寫成廉價每天通勤；保留真正共度一晚的具體動作。"
+   ]
+  },
+  {
+   "id": "character/wm-r4-noura-sayegh",
+   "files": [
+    "content/lore/characters/wm-r4-noura-sayegh.json"
+   ],
+   "category": "character",
+   "name": "努拉・薩耶格",
+   "plain": "書攤主改了匿名謎題的終點想逮出題人，對方卻把新題藏進她手上的書。",
+   "hooks": [
+    "place/singapore"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/bruno-azzari",
+     "file": "content/lore/characters/bruno-azzari.json"
+    },
+    {
+     "id": "character/wn-r2-maia-raukura",
+     "file": "content/lore/characters/wn-r2-maia-raukura.json"
+    }
+   ],
+   "similarity": "同好奇心與追問；都迷戀可拿在手上的舊物",
+   "substantiveDifference": "布魯諾以救人優先處理古物未知，瑪伊雅替自己的船鐘占有辯護。努拉以當代謎卡與對手互出題，自己設伏卻因愛談書而錯過人；得到續題但沒有解開身分，舊書是遊戲媒介而非要索還的遺物。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/bruno-azzari",
+     "file": "content/lore/characters/bruno-azzari.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "a5e2fa42038b2e13595e13b620f903b8646bcf215706b01b2ac0cc183079d961",
+     "bytes": 1550,
+     "evidence": "骸片發亮時仍讓勘測者先從練習機腳間撤出，不替沉默編答案。"
+    },
+    {
+     "id": "character/wn-r2-maia-raukura",
+     "file": "content/lore/characters/wn-r2-maia-raukura.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "e09cc9eadd1ebfc02baba74dd758126130a1e000e48f66288dbddaa85e69bae1",
+     "bytes": 2487,
+     "evidence": "以打撈約對抗後人舊畫及家族歸屬主張，讓對方敲鐘仍不願交出。"
+    }
+   ],
+   "desire": "想找出港邊匿名出題者是誰，並搶到讓對方也追著自己線索走一次的樂趣。",
+   "mainAction": "沿幾張人手製作的解謎卡找到最後一站，征得攤主同意後換上自己的續題，把終點引回書攤，再躲著看誰先到。",
+   "conflict": "她想抓到出題者，對方卻比她更熟悉書攤；答案被塞進她正在讀的書，她錯過了來客。",
+   "result": "她得到一張新題而沒有見到人，將本來要賣的書留作下一次題面；追索繼續，但不升級成危險陰謀。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "所有謎題皆當代人造；不解讀先民文字、夢召或裏側聲音。",
+    "路線限可進的普通書攤與港邊街巷，無擅闖封鎖區、偷改航標、私開他人信件。",
+    "謎面可短述，不必實作可解謎遊戲或新增事件檔；匿名對手保持未具名。"
+   ]
+  },
+  {
+   "id": "character/wm-r4-inez-duarte",
+   "files": [
+    "content/lore/characters/wm-r4-inez-duarte.json"
+   ],
+   "category": "character",
+   "name": "伊內絲・杜阿爾特",
+   "plain": "她舉旗招隊，來的人各有主意；散場只留下一名修工，她仍約了下一次。",
+   "hooks": [
+    "place/singapore"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/juma-kiprop",
+     "file": "content/lore/characters/juma-kiprop.json"
+    },
+    {
+     "id": "character/molly-van-den-berg",
+     "file": "content/lore/characters/molly-van-den-berg.json"
+    }
+   ],
+   "similarity": "同由同行聚成獵隊；同從港口人脈組隊",
+   "substantiveDifference": "朱瑪已有遠牧及生物機、負擔匯款；茉莉從已有機甲勤務成團，背叛導向契約信用。伊內絲的隊伍尚不存在，搬架邀約者各有班次，沒承諾留下；她爭領頭位置卻只約成下一次與一名修工見面，並未受創後改革或被救援成就。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/juma-kiprop",
+     "file": "content/lore/characters/juma-kiprop.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "5f3f434dc5d6c031c75b315d9c72a3d4ba0f3b9aae00286dcc37f871cf910329",
+     "bytes": 2227,
+     "evidence": "軛騎出洋共同經歷後成立遠牧，已有拘束獸、接約與家鄉匯款責任。"
+    },
+    {
+     "id": "character/molly-van-den-berg",
+     "file": "content/lore/characters/molly-van-den-berg.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "1972fef821866d3481b31173784f798c2a81d4453b02c34ac21a3e25b84eff87",
+     "bytes": 5475,
+     "evidence": "港務機甲勤務形成鹽鷗，遭背盟折損後修改補給與等候條款。"
+    }
+   ],
+   "desire": "想第一次由自己挑同伴與出發方向，對團長頭銜的熱情比手上的人馬更大。",
+   "mainAction": "借空地安排一次無危險的搬架演練，邀熟識工人與駕駛來試合作；她帶來大旗與自己畫的分工，卻接連被候選人重新安排位置。",
+   "conflict": "有經驗的人只願來看看、各自有班次與主張，沒人答應照她那套隊形長留；她急著當領頭者，別人只看見一場臨時聚會。",
+   "result": "人散後只有一名年輕修工肯約下一次；她與對方把過大的旗收短，繼續找船與隊友，尚未成立獵團。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "大旗無正式團名，不新增第六類勢力、獵團編制或強制招募；新修工不命名、不另建檔。",
+    "只搬普通空架，不開機甲表演新招、不讓外行操作核心；她的護運工作不保證能駕機。",
+    "不挪用既有領袖資產與承諾，不安排茉莉／朱瑪出面收編。"
+   ]
+  },
+  {
+   "id": "character/wm-r4-song-jaeyun",
+   "files": [
+    "content/lore/characters/wm-r4-song-jaeyun.json"
+   ],
+   "category": "character",
+   "name": "宋在潤",
+   "plain": "領航手想獨自休假，父親帶竿跟來；兩人暗比一上午，空桶回家也沒說誰贏。",
+   "hooks": [
+    "place/incheon"
+   ],
+   "nearestExisting": [
+    {
+     "id": "character/seo-haegyeom",
+     "file": "content/lore/characters/seo-haegyeom.json"
+    },
+    {
+     "id": "character/wl-amalia-quispe",
+     "file": "content/lore/characters/wl-amalia-quispe.json"
+    }
+   ],
+   "similarity": "同想從港口勤務取回私人時間；同成年子女與父母仍較勁",
+   "substantiveDifference": "徐海謙因居民期待沒休成假；阿瑪莉亞爭店內肖像與專業位置、重新學修理。宋在潤已休到假，與父親用選釣位、藏換餌手法及拖延收竿暗自較勁；兩人空桶回家，下一次要獨處還是同行仍含混。",
+   "decision": "adopt",
+   "reason": "按六列核准計畫成稿，主要欲望、行動、對手與結果具體可辨；保留小成功及未滿足之處，交領導再審。",
+   "fullTextRead": [
+    {
+     "id": "character/seo-haegyeom",
+     "file": "content/lore/characters/seo-haegyeom.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "2c2b0c6c036b928bfcc08d92074f857eb083759a7583eb0d7630476b5bf17ed7",
+     "bytes": 2636,
+     "evidence": "在自己石像掛同伴姓名，因守城期待把休假紙摺回衣裡。"
+    },
+    {
+     "id": "character/wl-amalia-quispe",
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "fullTextRead": true,
+     "reader": "本創作線",
+     "version": "主樹最新版完整JSON，含正文、關係及可見度欄",
+     "sha256": "599aa9a064179c63efa538658812fdce694951f8b76a0bfd9888f2c7beaeff4f",
+     "bytes": 1836,
+     "evidence": "退役後摘下年輕肖像，在兒子店裡向學徒重學扣座，仍愛指揮。"
+    }
+   ],
+   "desire": "想在已排好的休息日獨自坐一上午，不報船名、不替家人安排下一件事。",
+   "mainAction": "準備在獲准停留的內港釣點消磨假日，臨行才發現父親帶著另一根釣竿等他；他刻意不說哪裡容易上魚，父親也不問。",
+   "conflict": "父親把同行當成難得相聚，他把相聚看成又一班要應付的勤務；兩人都要贏釣魚這件小事，卻不願先承認在較勁。",
+   "result": "兩人空手回家，誰都沒談出海工作；他下一次只告知地點，不發邀請，父親仍把自己的釣竿留在門邊。",
+   "requiredConstraints": [
+    "僅新增一個 content/lore/characters JSON；不加base person、事件、勢力、場所或年表，gameRefs/events/relations 均可為空。",
+    "kind human；born/faction/role/relations/events及通用欄完整。faction null表示獨立居民或承攬者，不以所在城市自動冒認官方身分。",
+    "按人物模板欄位寫；aka存英文原名。故事定位2107或2108-01開場已具備的私人經歷，不預寫開場後確定歷史。",
+    "從主要行動開篇，不照抄崩前／崩後履歷模板。body 300–1500字、繁中第三人稱；本文僅規劃，sol另寫正文。",
+    "不套入遇獸撤船、認錯公示、退錢分帳、舊帳作證；不以結尾道德判語收束。欲望可保留，失敗不必變成教訓。",
+    "未具名的親友／同行可以作當篇配角，不另建角色ID；不替已有人物增加承諾、親屬關係或過往行動。",
+    "只引用本列 HEAD oldIds；wl/wn 僅供相似比較，不在新正文或結構引用。沒有新機甲能力、低級機魂人格或裏側答案。",
+    "釣的是普通魚，場所在允許停留的內港岸邊，不把外海寫成安全休閒區，也不偷改航標或擅離值更。",
+    "父親不是已有人物，不寫機甲延壽或退休逆齡；兩人年齡照普通人。",
+    "不用暴潮、落水或怪獸救援迫成和解；結尾不是父親死訊或最後一次相聚。"
+   ]
+  }
+ ]
+}

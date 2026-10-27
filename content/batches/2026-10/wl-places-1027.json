@@ -1,0 +1,102 @@
+{
+  "contract": "content-batch/1",
+  "id": "wl-places-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "新增六個地點概念，沿用既有世界規則並附白話審閱",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wl-places-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-life-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-life-1027/places",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/places/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "lore/places"
+    ],
+    "namePrefix": {
+      "lore/places": "wl-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist",
+    "lore"
+  ],
+  "deferredChecks": "使用者在公司不安裝；整合測試、戰鬥試玩、平衡與正式收線留回家處理，完成前不得聲稱完整 accepted。",
+  "worktree": ".git/wf-worktrees/wl-places-1027",
+  "files": [
+    "content/lore/places/wl-alpine-common-hearth.json",
+    "content/lore/places/wl-busan-sleeve-court.json",
+    "content/lore/places/wl-genoa-string-stage.json",
+    "content/lore/places/wl-gyeongju-paper-face-slope.json",
+    "content/lore/places/wl-quito-corn-terrace.json",
+    "content/lore/places/wl-titicaca-new-weave-house.json"
+  ],
+  "ids": [
+    "place/wl-alpine-common-hearth",
+    "place/wl-busan-sleeve-court",
+    "place/wl-genoa-string-stage",
+    "place/wl-gyeongju-paper-face-slope",
+    "place/wl-quito-corn-terrace",
+    "place/wl-titicaca-new-weave-house"
+  ],
+  "acceptance": {
+    "batch": "wl-places-1027",
+    "round": 1,
+    "at": "2026-10-27T09:14:40",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "lore": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/lore/places/wl-alpine-common-hearth.json",
+      "content/lore/places/wl-busan-sleeve-court.json",
+      "content/lore/places/wl-genoa-string-stage.json",
+      "content/lore/places/wl-gyeongju-paper-face-slope.json",
+      "content/lore/places/wl-quito-corn-terrace.json",
+      "content/lore/places/wl-titicaca-new-weave-house.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T09:14:40",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "integrationStatus": "deferred-by-user",
+  "carriedToMain": true,
+  "acceptanceScope": "僅gate/lore/readlist；不代表整合測試或敘事人審完成"
+}

@@ -1,0 +1,653 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-27",
+ "status": "draft",
+ "sharedFullTextRead": [
+  {
+   "file": "AGENTS.md",
+   "sha256": "2e3e38c4f6e33528a6a17b8f79a470c4c1179995422f0f3cd4b5a4a8c2c77d9b"
+  },
+  {
+   "file": "wf/WORKFLOWS.md",
+   "sha256": "446a8d1ce133e329ba3aab2e84a99ef8c47a94379f3a1df5bda54b04f519338c"
+  },
+  {
+   "file": "wf/workflows/common/user.md",
+   "sha256": "ad2df100b0421642f4f8250039a7e9db1cca87498c68a31270954d37ebf62175"
+  },
+  {
+   "file": "wf/workflows/team-model.md",
+   "sha256": "a9a2393c8f8d2835a67fabef5a695279af2e6d4bd0f0b2abaa087dc35e9be5f7"
+  },
+  {
+   "file": "wf/workflows/dispatch/README.md",
+   "sha256": "f5243cfe55e91c743150efe90b8ba07386aa92f93d099ffea821043d69ea4925"
+  },
+  {
+   "file": "wf/workflows/dispatch/content-batch.md",
+   "sha256": "02203457fc0d2935d1a579a76e598f63ebbdae012d050ed83c9d7b13fedc8695"
+  },
+  {
+   "file": "wf/workflows/content/README.md",
+   "sha256": "8be1ed31b461f8d8ca670c52a2186e8ba01e948cfe3895b4c80f6a7cf3ac813f"
+  },
+  {
+   "file": "wf/workflows/content/batch.md",
+   "sha256": "6128df9d493e80da3504e744c390db07e652dab25768d5024b86cef959e38ef4"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars.md",
+   "sha256": "1138ac230ca3405175ac433e82e51b1f14cdec9e4b043ad236e6f1d3d05de077"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world.md",
+   "sha256": "f91f4a46ac832e0c5c0434e0a1c36a4a39d4ab718de4149132723f6a006361e3"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/tone-and-rules.md",
+   "sha256": "db27acb6ae4045c33236b63f1914dc7f536be82546901429738c624c6ce19b2a"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/factions-and-sandbox.md",
+   "sha256": "d9262f203db0f812f1ba5957c93512fba94c714c10764c5c01eca4669ea014de"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/monsters.md",
+   "sha256": "8fa819161269f91565493ea475d02fd15774afe5f2d7e3cb163dc86af287e84d"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs.md",
+   "sha256": "e2bae81e3be36bb29376bacf1523d28526690a416c0d8fdfd60aa9b0e3784eb5"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/bonds.md",
+   "sha256": "c09859ffdeb72fed260fa0c09317aa5631bc0959a9dc927b8d35d46f271dbd46"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/mechanical.md",
+   "sha256": "43a443197d58fcb28c8fffb43c4a8e7da9b1920e7c17270844d6832f03dc5522"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/ancient.md",
+   "sha256": "79f26a309651706eb8bfcc89f1c94fc441b4361e2a97f561e7198923d9967b62"
+  },
+  {
+   "file": "wf/workflows/content/mechs.md",
+   "sha256": "eb8bed39934eb738627957515bf83ba79eefbeacd6596d0eb16ddb39987d3d2b"
+  },
+  {
+   "file": "wf/workflows/content/polish.md",
+   "sha256": "1bb83f3aa809fabde38802c20b41b31740804d883aa546c562014e98a001772d"
+  },
+  {
+   "file": "wf/workflows/content/numeric-bands.md",
+   "sha256": "21e196c387c69e92efc93706308e57d1eacee9daec562445914c4c7db789c018"
+  },
+  {
+   "file": "content/lore/style.md",
+   "sha256": "be73c2893717e6fe4f9e0fcd5a5791324b1c85cd600117931ce9248b8152342c"
+  },
+  {
+   "file": "wf/workflows/common/data-files.md",
+   "sha256": "199d4fb6d4d082016eeefe5bed083b6c94aaedbf8a7c14600a7086bfb15a73bb"
+  }
+ ],
+ "directedTableRead": [
+  {
+   "file": "wf/workflows/content/templates.json",
+   "selection": "mech/frame、model/lineage 相關列"
+  },
+  {
+   "file": "wf/workflows/content/numeric-bands.json",
+   "selection": "前5列衍型機數值帶"
+  },
+  {
+   "file": "wf/workflows/content/engine-facts.json",
+   "selection": "pool、heat、cost、座艙、core、範圍、拘束、機魂相關列"
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3-plan.json",
+   "selection": "category=mech、decision=adopt，3列"
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3-plan-review.json",
+   "selection": "3列approve-with-constraints與requiredConstraints"
+  }
+ ],
+ "revision": "主線正式退修一輪；三篇主要場景全改；舊etymology完整留各列rejectedEtymology。",
+ "columns": [
+  "id",
+  "files",
+  "category",
+  "name",
+  "plain",
+  "hooks",
+  "nearestExisting",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "fullTextRead",
+  "requiredConstraints",
+  "legality",
+  "rejectedEtymology",
+  "etymologyRevisionReason",
+  "newSceneDifference",
+  "revisedEtymologySha256"
+ ],
+ "rows": [
+  {
+   "id": "wn-r3-anvil-fan",
+   "files": [
+    "content/base/frames/wn-r3-anvil-fan.json",
+    "content/base/world/models/wn-r3-anvil-fan.json"
+   ],
+   "category": "mech",
+   "name": "鐵砧-II型・開扇",
+   "plain": "四足扇射與熔鋸試機時，領班想一機抵多份工，駕駛要求先留修腿工時。",
+   "hooks": {
+    "maker": "faction/anvil-hunters",
+    "bodyplan": "bodyplan/m2-quadruped-c",
+    "predecessor": "model/anvil-trestle-ii",
+    "loadout": {
+     "left-weapon": "component/fw-fan-tube",
+     "right-weapon": "component/mx-molten-saw",
+     "system-1": "component/mx-frost-fins",
+     "cockpit": "component/oa-cockpit-baffle"
+    },
+    "abilities": [
+     "ability/mx-frame-strike"
+    ]
+   },
+   "nearestExisting": {
+    "id": "frame/anvil-hoist-ii",
+    "file": "content/base/frames/anvil-hoist-ii.json",
+    "comparison": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+   },
+   "similarity": "同級鐵砧工程／破口機接近，但攻擊目標形態、傷害型及失去的控制手段均不同。",
+   "substantiveDifference": "把 C 級鐵砧的單體樁刃或拘束鋸改成 cone energy＋unit thermal；以射程僅 3、扇招冷卻 2 和無盾陣交換多目標能力。",
+   "decision": "adopt",
+   "reason": "依主線退修重寫主要場景、目標與人際衝突，合法配裝及所有非etymology欄維持原稿。仍為draft，待主線複審與回家整合平衡。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/anvil-trestle-ii.json",
+     "sha256": "bf69b02b303442746d0ccf2a2df4691c6f08de1607c7dbb8bfc3f11fa430997d",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同四足斷臂 C 架；原為有限樁楔＋鳴刃的單體近戰。本列捨棄重樁穿甲與離身反擊，改扇形範圍＋thermal 單體。"
+    },
+    {
+     "file": "content/base/world/models/anvil-trestle-ii.json",
+     "sha256": "23606d1145fe365493b1c2100e37f74defb232435e6878f06bf4864fd1192d6f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/m2-quadruped-c.json",
+     "sha256": "cabfb8f177ead3dc82c1316dc2ede997a83f3307846d7c80963d8072d4d3bc8e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "實讀為7部位：軀幹、頭、左右前足、左右後足、背架；前足兼locomotion/weaponMount，torso有core與pilot座。計畫8部位誤述依領導改正。"
+    },
+    {
+     "file": "content/base/frames/anvil-hoist-ii.json",
+     "sha256": "8f918ff209bb0addfc2f38f9a2f28ee9ecce0c982b54f03ce58959fd66afc32e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "貨棧外厚甲獸壓住撤船轉角，樁刃退轉角讓傷員走，回塢清樁；新稿不再以獸前開路掩護撤船。"
+    },
+    {
+     "file": "content/base/frames/tidefaith-censer-iv.json",
+     "sha256": "09f43e75f52c157056d2aa942d892ec1ead55b8e876117ef1749706e83ea943b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "B 六足雙火器範圍燃燒；本列 C 四足且僅一把 energy 扇面，另一把是貼身單體熱鋸，不是雙火器複刻。"
+    },
+    {
+     "file": "content/base/components/fw-fan-tube.json",
+     "sha256": "d6197d4f09babd99fc38de681ba7ffb9383d4ec86453babd3d04fd6ff11d65a7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fw-fan-tube-use.json",
+     "sha256": "2bff2de942223df4c11b2dbf01c3733d9c6768abe5d871c8fca033c7f6a053d7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-molten-saw.json",
+     "sha256": "f69bec618249df2802300e6ad64ed851b67c09b6451f6113c7bee3bacc124e92",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-molten-cut.json",
+     "sha256": "40a8c7381a52938e58e577de2fafee97ab96014378b1160735a7af16f589bfb9",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-frame-strike.json",
+     "sha256": "beafbf8fa04f8762aa60cbb5433f3d7bb3b9364be8221e79fd5126adf3c9e285",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "保留既有內建能力，成本與池相容"
+    },
+    {
+     "file": "content/base/world/lineages/broken-arm.json",
+     "sha256": "43564eaccda58cb0f321f2920abfe36db7bbbf57a971c1832659d4a96f4eace3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "碼頭遇獸、盾陣刃砲護棉被車上渡船，沿守備同伴退回；新稿主事件非物資上船。"
+    },
+    {
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "海岸礁間獸阻回程，碎坡標定＋連吼＋灰霧，勘察員抱拓片退坡後登船；新版同燈改爭獸首、煙護失準與支援工錢推責。"
+    }
+   ],
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 實查m2-quadruped-c為7部位，計畫8部位描述誤差請按真骨架；扇招range1–3/cooldown2，不寫燒地形或留下火區。",
+   "legality": {
+    "mass": 9,
+    "limit": 9,
+    "heat": "熱鋸兩次8AP/+36燼為本案9AP內最大主動產燼；扇招4AP/+16、鋸4AP/+18，混用+34。基底regen-12，霜鰭再-8。",
+    "attrs": "initiative 5/perception 5/accuracy 2；保留其餘模板值。",
+    "model": "lineage/broken-arm；maker faction/anvil-hunters；requires model/anvil-trestle-ii；tier C/cost15/month5/restricted/generic false；series broken-arm、mark2、role variant；tags series-anvil。",
+    "exception": "沿既有 C 四足7部位；heat110/-12沿架鐵模板，未加強；全9AP最大36燼，低於66。"
+   },
+   "rejectedEtymology": "Fan 取折扇展開的扇面，開扇沿鐵砧-II型架鐵的四足分支改裝，兩隻前足分掛扇潮矢筒與熔齒鋸。斷臂血統的重關節仍在，前足既要承住機身，也要把武器對準獸影；駕駛員坐在胸前隔板後，親自驅動機甲核心。鐵砧獵團替受雇守港的機隊保留這份配裝，讓靠近貨棧的幾隻小獸能一同吃到扇矢。\n\n漲潮後，卸到一半的吊籃還懸在棧橋上。駕駛員把四足踏進鹽水，等並排的獸影進入矢筒近前，才喊出「開扇」。光矢散亮，打在幾片不同的甲上；扇面收去，他便把右前足的鋸齒抵向仍貼著棧柱的那一隻。矢筒要歇過一陣才能再吼，熔鋸於是接過眼前的工位。後足排出的燼落進積水，吊籃裡的人趁這段空隙爬上岸。\n\n下一聲獸吼從貨棧另一側傳來時，駕駛員得重新轉向。扇矢照不到遠處，鋸齒也只咬得到近身的目標。領班把空吊籃收回船上，朝座艙打了個撤班的手勢；開扇沿原路退回，左前足的掛架每落下一步，都在濕木上留一聲重響。回塢先查那條腿，再查矢筒，兩件活得排在同一張修單上。",
+   "etymologyRevisionReason": "主線正式退修：三篇反覆使用碼頭／護勘遇獸→護搬運工撤船；與wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace情節功能過近。同燈的海岸、拓袋、報點、灰煙、登船組合尤其近。原稿完整保留於rejectedEtymology。",
+   "newSceneDifference": "主場由港口遇獸掩護吊籃撤離，改為無活獸的工坊試機院；目標是爭取合理派工與檢修工時。領班欲將扇面中靶當作多份工產能，老師傅及駕駛以冷卻與前足共用關節反駁；結果是重排工單，沒有救援或撤船。",
+   "revisedEtymologySha256": "295e262444474a2042516401c2145ff877904787378e4340fb60c5b1383d304d"
+  },
+  {
+   "id": "wn-r3-needlefish-stay",
+   "files": [
+    "content/base/frames/wn-r3-needlefish-stay.json",
+    "content/base/world/models/wn-r3-needlefish-stay.json"
+   ],
+   "category": "mech",
+   "name": "針魚-II型・留潮",
+   "plain": "留潮型縛住持槍敵機，拒殺舉手者；同伴要復仇，他選擇放棄斬首加錢。",
+   "hooks": {
+    "maker": "faction/third-blade",
+    "bodyplan": "bodyplan/mx-hover-c",
+    "predecessor": "model/thirdblade-needlefish-ii",
+    "loadout": {
+     "left-weapon": "component/fw-stayline",
+     "right-weapon": "component/mx-singing-blade",
+     "system-1": "component/mx-frost-fins",
+     "cockpit": "component/oa-cockpit-baffle"
+    },
+    "abilities": []
+   },
+   "nearestExisting": {
+    "id": "frame/shellsoc-tripod-c",
+    "file": "content/base/frames/shellsoc-tripod-c.json",
+    "comparison": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+   },
+   "similarity": "與定盤共享拘束目的，與針魚／回舷共享 C 級浮行線；差異在接戰距離及續航成本。",
+   "substantiveDifference": "既有定盤以三發遠距矢保距離；本列以燼換無限次數的射程2拘束，承受近戰風險。鳴刃離身反應只在 enemyLeavesAdjacent，不能寫成受擊反擊或拖拉敵人。",
+   "decision": "adopt",
+   "reason": "依主線退修重寫主要場景、目標與人際衝突，合法配裝及所有非etymology欄維持原稿。仍為draft，待主線複審與回家整合平衡。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/thirdblade-needlefish-ii.json",
+     "sha256": "9f9bf5a9349517ba865fe6ba97945372c2be4c6b541ce01551be9466b7af6e20",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級同骨架；原針魚為曲射矢筒＋鳴鰭＋千目＋躍潮，偏遠距標定。本列換成持續拘束與近戰，沒有千目或躍潮增益。"
+    },
+    {
+     "file": "content/base/world/models/thirdblade-needlefish-ii.json",
+     "sha256": "ec22039a127455aaf195d76c11b60b5c7a64733fbca5d3d9dbe441d0cdd9a82b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/mx-hover-c.json",
+     "sha256": "4cd05733871c5fcc27bc5e8f3a652c13c7e93e424fc975a49f36cf4dc21063b7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "6部位；軀幹core/cockpit與pilot座；槽型及size均承載本案固定配裝。"
+    },
+    {
+     "file": "content/base/frames/shellsoc-tripod-c.json",
+     "sha256": "c67d7a4681bf04ff4edce154088ba4e7ce742c87728ca725ae0bf11d92c2dee3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+    },
+    {
+     "file": "content/base/frames/wl-swordfish-return.json",
+     "sha256": "6cace0fe87e406cb13b249bd774ebce802609c970e195d4fc7f27d330ff50c9e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同骨架近戰第三刃改型；回舷用連吼接雙刃、背翼避讓。本列無射程6火力及背翼，保留對方無法持續的無矢池留置。"
+    },
+    {
+     "file": "content/base/components/fw-stayline.json",
+     "sha256": "8054308931336367b16e23991987653274a2eae1f4c5b4d70b4756aafca89afb",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fw-stayline-use.json",
+     "sha256": "aa3b4c31ed45aad92ea883a35973148eda5594baf1d6f056338fd40d80253536",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-singing-blade.json",
+     "sha256": "bf947c3ef56405776aae3a620dbb61697f6f817d9964c4caf61472a79e2a9e1b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-slash.json",
+     "sha256": "d60708a8eabd3fffe0004214dc0a0d5f3c9d492b3cb07e80189f7862d7682a8a",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-riposte.json",
+     "sha256": "730e56e232fa1f1962b50cab6f71ffb305957953be76218df7f1f92ac98892a7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/world/lineages/tide-fin.json",
+     "sha256": "9f64b0e26b4bf9930b3201edb658bac2ca9ce2f1f1c5577198626e0145d8c232",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    },
+    {
+     "file": "content/base/effects/mx-netted.json",
+     "sha256": "d8127e0912412f25e99afbfebe7ea49312586f8ea7b956098cd5b01b93503159",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "mech兩回合縛網，evasion-15，immobilized/restraint tags"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "碼頭遇獸、盾陣刃砲護棉被車上渡船，沿守備同伴退回；新稿主事件非物資上船。"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "貨棧外厚甲獸壓住撤船轉角，樁刃退轉角讓傷員走，回塢清樁；新稿不再以獸前開路掩護撤船。"
+    },
+    {
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "海岸礁間獸阻回程，碎坡標定＋連吼＋灰霧，勘察員抱拓片退坡後登船；新版同燈改爭獸首、煙護失準與支援工錢推責。"
+    }
+   ],
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 留步索命中仍有4傷，不保證安全活捕；只immobilized/evasion減益，不拖拉敵人。鳴刃只在敵離鄰格反應。",
+   "legality": {
+    "mass": 8,
+    "limit": 9,
+    "heat": "沿針魚 heat100/-15，霜鰭再 -8。拋索3AP/+8燼、鳴刃3AP/+10燼；滿9AP至多30燼，另離身反應+6仍 <60。",
+    "attrs": "沿針魚 initiative7/perception5/evasion0。",
+    "model": "lineage/tide-fin；maker faction/third-blade；requires model/thirdblade-needlefish-ii；tier C/cost15/month5/restricted/generic false；series 針魚、mark2、role variant；tags series-needlefish、hover。",
+    "exception": "停步索沿既有學會授權製索來源作採購掛件，不另立血統或新授權事件。拘束仍有4傷，不能寫成安全無傷活捕。"
+   },
+   "rejectedEtymology": "Stayline 是讓腳步暫停的繫索，留潮取它留住岸邊獸影的意思。第三刃沿針魚-II型的潮行架換裝，向既有學會授權的修造棚採購停步索，右臂留鳴刃，胸前加護艙隔板。潮鰭仍是它的血統；採購來的索具，接在原有的臂架上。\n\n船邊隊收吊梯時，一隻獸沿破舷向岸上的搬運工逼近。留潮型從側面滑近，駕駛員直到能看清獸腳間的碎木才拋索。索光勒進外甲，獸身一頓，血順著甲縫滴下來；搬運工抱住箱角，從牠碰不到的另一邊繞過。鳴刃抬在右側，等鄰近的獸要離身時，才回刃追斬。牠若停下來回爪，駕駛員便得另作打算。\n\n停步索省下補矢的往返，連續拋用積起的燼卻仍得排。遠處再有獸影，留潮型要靠潮行裙接近，才能再把索拋出去。接班者問岸上那隻能不能活著帶走，駕駛員先報了甲縫出血的位置，讓捕獲隊自己判斷。他坐在機甲核心前等對方回話，右臂的鳴刃收低，左手仍對著尚未退去的獸影。",
+   "etymologyRevisionReason": "主線正式退修：三篇反覆使用碼頭／護勘遇獸→護搬運工撤船；與wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace情節功能過近。同燈的海岸、拓袋、報點、灰煙、登船組合尤其近。原稿完整保留於rejectedEtymology。",
+   "newSceneDifference": "主場由獸襲搬運工撤船，改為鹽場人類機隊交火後的停火現場；留潮型以索約束仍持槍的敵方僚機，拒絕順手斬殺已舉手的敵領隊。衝突是喪親同伴、斬首加錢與駕駛選擇，最後開艙對話並放棄領款；不索擊友機、不新增奪槍或無傷拘束。",
+   "revisedEtymologySha256": "3826ce19c6272bb65c0df1cfe2e9a555e3333b8e6de13343e4128c03628e2369"
+  },
+  {
+   "id": "wn-r3-surveyor-bearer",
+   "files": [
+    "content/base/frames/wn-r3-surveyor-bearer.json",
+    "content/base/world/models/wn-r3-surveyor-bearer.json"
+   ],
+   "category": "mech",
+   "name": "測墟-B・同燈",
+   "plain": "聯隊獵場爭獸首，兩家都推掉同燈工錢；拆甲工替報點與煙護的貢獻作證。",
+   "hooks": {
+    "maker": "faction/shell-society",
+    "bodyplan": "bodyplan/m2-hexapod-b",
+    "predecessor": "model/shellsoc-archive-b",
+    "loadout": {
+     "left-weapon": "component/mx-radiant-rifle",
+     "right-weapon": "component/mx-thunder-serpent",
+     "sensor-mount": "component/fa-shared-bearing",
+     "back-1": "component/fa-escort-lantern",
+     "cockpit": "component/oa-cockpit-baffle"
+    },
+    "abilities": []
+   },
+   "nearestExisting": {
+    "id": "frame/cn-yoke-i",
+    "file": "content/base/frames/cn-yoke-i.json",
+    "comparison": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+   },
+   "similarity": "都在護勘／友方支援群；最接近衡梁，但效果目標、效果代價與資源競爭不同。",
+   "substantiveDifference": "同準與煙護不能當無條件全隊增益：一次一人、各3AP/冷卻3/限2次；煙護降低目標命中。雙武器共用charge60/regen10，不能像實矢＋扶架組合長時間兼顧輸出與排燼。",
+   "decision": "adopt",
+   "reason": "依主線退修重寫主要場景、目標與人際衝突，合法配裝及所有非etymology欄維持原稿。仍為draft，待主線複審與回家整合平衡。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/shellsoc-archive-b.json",
+     "sha256": "86bc0557baaad86d693f108813e1a9e3808662ffe1eedbc7a0ea8071a1532434",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同血統 B 六足；拓影用干擾、標記、自煙與冷泉。本列沒有敵方標記或自煙能力，兩件支援給 friendly only 目標且各限兩次。"
+    },
+    {
+     "file": "content/base/world/models/shellsoc-archive-b.json",
+     "sha256": "5b1878d75a3fe152d15c75ac4f949e7cc9ef1ec085d5e5df0f3b3fbf46bcdc68",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/m2-hexapod-b.json",
+     "sha256": "559404531fbd764b6ef97ae0355603684bc6d72e67e303a47de9933c81265f38",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "9部位；軀幹core/cockpit與pilot座；槽型及size均承載本案固定配裝。"
+    },
+    {
+     "file": "content/base/frames/cn-yoke-i.json",
+     "sha256": "e2f5773c16674f2ead175e28de4337f5a679b25eced62e56b031c308ddb3648c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+    },
+    {
+     "file": "content/base/frames/nairobi-shepherd.json",
+     "sha256": "11cefcf419f9d3ae58c888f8b12456359ce6d9792dbe3f5d84a66d82dcfb3008",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同B蛇鞭支援；牧者雙足、內建盾陣和護壁。本列六足、無護壁，輸出改雙流光競用charge。"
+    },
+    {
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "海岸礁間獸阻回程，碎坡標定＋連吼＋灰霧，勘察員抱拓片退坡後登船；新版同燈改爭獸首、煙護失準與支援工錢推責。"
+    },
+    {
+     "file": "content/base/components/mx-radiant-rifle.json",
+     "sha256": "ac25d5f351413fc4222b46fd98c9d1e29e62fb69a8863a7b388df971b736a60b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-radiant-shot.json",
+     "sha256": "01ea0b49efa4ddf8357194b86bd3c78f5bc4b696feaf3a3e83028eb70cc855de",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-thunder-serpent.json",
+     "sha256": "42b30ea4bf5c3e16525ec33c7006d5765157970436d37118cce8cb9ba95739f2",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-serpent-lash.json",
+     "sha256": "5d7ca27f03dabb2036104730f32704b792e5cd0fa319af519149d0bf00487987",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/fa-shared-bearing.json",
+     "sha256": "8bd941c57d61355e8e7ed96a65d245e589d7719ca545d80cd898da77f7628224",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fa-lend-bearing.json",
+     "sha256": "633d46dd303bee6ffa6814084227367773a5724ed9d2a50a821f5288403b03c4",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/fa-escort-lantern.json",
+     "sha256": "c02a1604e47382f576adaeed659a257b27a220447c3604e8bbb5cd3a3cf1af36",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fa-cover-companion.json",
+     "sha256": "f0369dec15648b25424107ed5fac2610e4bc7fe22ed689de43085f93d970a0df",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/world/lineages/many-eyes.json",
+     "sha256": "eee47e65f089a47ed72e7c8fce6efbb4978302fe209c63ed7bf4b75c5f1f1220",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    },
+    {
+     "file": "content/base/effects/fa-aligned.json",
+     "sha256": "345c0cf548a3314a3c9c930e31d49eb73364ce1b6826ec085d400181c69525e8",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "單友命中+8、感知+3、一回合"
+    },
+    {
+     "file": "content/base/effects/fa-escorted.json",
+     "sha256": "c66748ec18c2ac2821b5390e1ac60c81966e8da977954cd2784313cabe5dab43",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "閃避+10、命中-5、兩回合"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "碼頭遇獸、盾陣刃砲護棉被車上渡船，沿守備同伴退回；新稿主事件非物資上船。"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "貨棧外厚甲獸壓住撤船轉角，樁刃退轉角讓傷員走，回塢清樁；新稿不再以獸前開路掩護撤船。"
+    }
+   ],
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 同準／煙護各2次、3AP、cooldown3；煙護目標accuracy-5，非全隊buff或替人受傷；雙武器競用流光。",
+   "legality": {
+    "mass": 12,
+    "limit": 12,
+    "heat": "沿拓影 heat100/-15、charge60/initial60/regen10。光矢3AP/charge15/+15燼，蛇鞭3AP/charge10/+10燼；9AP全射光矢45燼 <60。支援僅AP。",
+    "attrs": "initiative6/perception7；其餘沿模板，perception由模板8回到B建議範圍。",
+    "model": "lineage/many-eyes；maker faction/shell-society；requires model/shellsoc-archive-b；tier B/cost40/month5/restricted/generic false；series 測墟、mark1、role variant；tags series-surveyor、burrow 沿模板。",
+    "exception": "為 mass12 不再加霜鰭、魂核或鎧甲；有人座艙與 core 已在骨架，護艙隔板附加25HP。沿既有 B 九部位骨架；不宣稱精密協同自動 AI 或傳送視野。"
+   },
+   "rejectedEtymology": "Shared Lantern 取兩人趕夜路時共看一盞燈的意思，同燈因此沿測墟系列命名。稽古學會委製的護勘配裝接續拓影-B六足架，頭部換同準靈目，背架掛送行煙燈。它仿多目的觀測接口，讓受雇護衛能向近旁另一台機報點；勘察員仍抱著自己的拓袋，跟在護衛背後走。\n\n海岸護勘隊撤離那晚，碎坡上的獸影攔住登船路。同燈的駕駛員先停下射擊，把靈目裡辨出的肩甲缺口報給前方友機。對方舉刃時，他轉而看住坡腳。等搬拓袋的人走過，背燈的煙便罩住那台友機；牠的輪廓淡了，友機自己的準星也蒙上一層白。駕駛員隔著天網提醒同伴收刃退下，再用左前足的輝光連吼接住逼近的獸。\n\n同準靈目與煙燈各只能照應有限幾回，每次都要占去駕駛員自己的動作。出發前，他把各能用兩次的記號畫在手套上，用過便抹掉一道。貼近的獸交給右前足蛇鞭，遠處的交給連吼，兩把武器分的是同一池流光。護勘隊最後一人登船時，手套上的煙燈記號已擦乾淨；駕駛員讓同伴先走，自己坐在護艙隔板後看著流光慢慢回升。",
+   "etymologyRevisionReason": "主線正式退修：三篇反覆使用碼頭／護勘遇獸→護搬運工撤船；與wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace情節功能過近。同燈的海岸、拓袋、報點、灰煙、登船組合尤其近。原稿完整保留於rejectedEtymology。",
+   "newSceneDifference": "主場由海岸護勘遇獸、護拓袋登船，改為河口廢堰聯隊清剿後爭獸首與工錢。目標是承認跨獵團支援貢獻；單友報點造成選邊抱怨，煙護降命中導致錯失尾刀，兩家都推付工錢，拆甲工以見證補記功勞。無拓袋、撤離、登船或以灰煙護人回程。",
+   "revisedEtymologySha256": "8eebfeb446ce91539f9bbc32f7f46f7dd8b12befe9abe0663d51c330ba7975ec"
+  }
+ ]
+}

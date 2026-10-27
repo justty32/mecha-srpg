@@ -1,0 +1,750 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan-r7-REPORT.md",
+ "extracted": "2026-10-27",
+ "baseHead": "f24420b079a59a7f8e93123930665aaa824f9d00",
+ "link_columns": [],
+ "scope": "第7輪機甲3／怪獸3，兩批6+12檔；repo根相對路徑。",
+ "status": "ready-for-lead-review",
+ "integrationStatus": "deferred-by-user",
+ "sharedConstraints": "只寫wm-r7新檔。敘事寫frame/species的etymology，不另加lore或事件。先欲望事件結果，數字不進正文。原有骨架、能力、效果、池、屬性及機型經濟值沿同級模板；只改本列指定配裝/能力與新檔自身引用。無新能力/骨架/規則，不新增具名NPC。機甲aka省略，若填必為{faction,name}物件陣列；保留駕駛需求。model維持maker/lineage/series/exportPolicy/cost/tier，role設variant，requires指本列HEAD模板model，availableFrom不早於模板。不改34警告基線與旋沫。 怪獸gradeRange僅指定級；baseAttrsByGrade、AP/本能池及aiProfile沿模板。telegraph=true，不增molt/spawner。bio與corpse能力必同步新species，所有新檔自引用按targetFiles重連。",
+ "readRules": "共通與戰鬥規矩沿第3輪已讀；本輪重讀mechs.md、bio-monsters.md及新線總brief，定向讀schema的frame.aka。來源全文含wl/wn；wm最新輪無機甲或species，無強塞不相干來源。",
+ "verification": {
+  "concepts": 6,
+  "contentFiles": 18,
+  "batches": [
+   6,
+   12
+  ],
+  "nearestFullTexts": 12,
+  "mechMass": [
+   5,
+   6,
+   4
+  ],
+  "integration": "deferred-by-user",
+  "balance": "not-run",
+  "aiRuntime": "not-run",
+  "baselineWarnings": 34,
+  "existingTurningFoam": "unchanged"
+ },
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "nameEn",
+  "desire",
+  "event",
+  "conflict",
+  "result",
+  "targetFiles",
+  "template",
+  "grade",
+  "bodyPlan",
+  "structure",
+  "role",
+  "loadout",
+  "mass",
+  "abilities",
+  "abilityFacts",
+  "nearest",
+  "difference",
+  "oldIds",
+  "implementation",
+  "decision",
+  "capture",
+  "companions",
+  "rejectedRevision",
+  "planCorrection"
+ ],
+ "rows": [
+  {
+   "category": "mechs",
+   "id": "frame/wm-r7-longspear-keepsake",
+   "name": "長槍-V2・留像",
+   "nameEn": "Longspear Keepsake V2",
+   "desire": "兩名搭班駕駛想留一張兩人都站在自己機前的合照。",
+   "event": "山路出勤時，同伴先破壞怪獸捕捉部位，留像遠射掩護後靠近扣足；解除現場危險後才等攝影。",
+   "conflict": "獸架、修工與等通行的車隊擠滿畫面，兩人一直被推到邊角。",
+   "result": "照片只拍進半幅機身；兩人仍指著小小的背影互相辨認。",
+   "targetFiles": [
+    "content/base/frames/wm-r7-longspear-keepsake.json",
+    "content/base/world/models/wm-r7-longspear-keepsake.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/longspear-kneeler-v2.json",
+    "model": "content/base/world/models/longspear-kneeler-v2.json"
+   },
+   "grade": "C",
+   "bodyPlan": "bodyplan/m2-quadruped-c",
+   "structure": "7部位；core/cockpit及pilot座沿原骨架；不增槽。",
+   "role": "四足低伏射手兼零傷收捕；放棄第二把傷害槍，捕捉距離較主槍短。",
+   "loadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/fw-ankle-pin",
+    "sensor-mount": "component/mx-hawk-eye"
+   },
+   "mass": 5,
+   "abilities": [
+    "ability/m2-brace-deploy",
+    "ability/mx-radiant-shot",
+    "ability/fw-ankle-pin-use"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/m2-brace-deploy",
+     "cost": "2 ap",
+     "produces": "",
+     "target": {
+      "kind": "self",
+      "range": {
+       "min": 0,
+       "max": 0
+      },
+      "los": false,
+      "friendly": "only"
+     },
+     "damage": "零傷",
+     "cooldown": 2,
+     "effects": [
+      "effect/m2-braced"
+     ]
+    },
+    {
+     "id": "ability/mx-radiant-shot",
+     "cost": "3 ap,15 charge",
+     "produces": "15 heat",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 7
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "22 energy",
+     "cooldown": 0,
+     "effects": []
+    },
+    {
+     "id": "ability/fw-ankle-pin-use",
+     "cost": "3 ap,1 ammo-fw-bind",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 3
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "零傷",
+     "cooldown": 0,
+     "effects": [
+      "effect/mx-netted"
+     ]
+    }
+   ],
+   "nearest": [
+    {
+     "id": "frame/longspear-kneeler-v2",
+     "file": "content/base/frames/longspear-kneeler-v2.json",
+     "sha256": "c60ecb0167e62547f54ca0f649136f5337dbddc0709ce06850e684aaeac5948a",
+     "comparison": "同四足伏架；伏架原為雙傷害槍分流資源，本案只一把流光槍，另一槽四矢零傷收捕。"
+    },
+    {
+     "id": "frame/wl-longspear-lamp",
+     "file": "content/base/frames/wl-longspear-lamp.json",
+     "sha256": "6057786fe155d8be1c55fbe1aa60a6f63e8fc48a4ee8f83c055373d5d1e56134",
+     "comparison": "同輝光長槍；守燈為雙足刃槍兼退路，本案無刃、凡火莢或流光囊，敘事是出勤後合照。"
+    }
+   ],
+   "difference": "低伏提高命中但犧牲移動；捕捉不補傷害、須先滿足species條件。前足破損同時傷行走與武器。不是守燈換名。",
+   "oldIds": [
+    "ability/fw-ankle-pin-use",
+    "ability/m2-brace-deploy",
+    "ability/mx-radiant-shot",
+    "bodyplan/m2-quadruped-c",
+    "component/fw-ankle-pin",
+    "component/mx-hawk-eye",
+    "component/mx-radiant-rifle",
+    "effect/m2-braced",
+    "effect/mx-netted",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "frame/longspear-kneeler-v2",
+    "lineage/universal-longspear",
+    "model/longspear-kneeler-v2",
+    "model/longspear-v4"
+   ],
+   "implementation": "新增tags lineage-jinghai；承銀環逆向來源，model保留universal-longspear。aka省略。扣足不能捕人、隔空拖曳或略過部位條件。",
+   "decision": "adopt"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wm-r7-anvil-downbeat",
+   "name": "鐵砧-II型・踏拍",
+   "nameEn": "Anvil Downbeat II",
+   "desire": "幾個兼奏鼓樂的駕駛想奪回被敵隊占住的老排練室。",
+   "event": "街區反攻時，踏拍在隊友掩護下貼近，以掃門壓低近敵準備，再用旋鉚鑿接單體重擊。",
+   "conflict": "入口搶回，裡面的地板已毀；他們原想照舊演奏的站位全不見了。",
+   "result": "當晚把鼓搬到空地，修工也跟著敲拍；排練室還待修，他們先把曲子接下去。",
+   "targetFiles": [
+    "content/base/frames/wm-r7-anvil-downbeat.json",
+    "content/base/world/models/wm-r7-anvil-downbeat.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/anvil-ii.json",
+    "model": "content/base/world/models/anvil-ii.json"
+   },
+   "grade": "C",
+   "bodyPlan": "bodyplan/mx-biped-c",
+   "structure": "6部位；core/cockpit及pilot座沿原骨架；不增槽。",
+   "role": "雙足近距群體壓制加單體破甲；放棄樁楔爆發、遠射與背翼逃脫。",
+   "loadout": {
+    "left-weapon": "component/fw-door-sweep",
+    "right-weapon": "component/fw-rivet-drill",
+    "system-1": "component/mx-frost-fins"
+   },
+   "mass": 6,
+   "abilities": [
+    "ability/mx-frame-strike",
+    "ability/fw-door-sweep-use",
+    "ability/fw-rivet-drill-use"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/mx-frame-strike",
+     "cost": "3 ap",
+     "produces": "8 heat",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "14 kinetic",
+     "cooldown": 0,
+     "effects": []
+    },
+    {
+     "id": "ability/fw-door-sweep-use",
+     "cost": "3 ap,8 heat",
+     "produces": "",
+     "target": {
+      "kind": "ball",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no",
+      "radius": 1
+     },
+     "damage": "5 pierce",
+     "cooldown": 2,
+     "effects": [
+      "effect/m2-dragged"
+     ]
+    },
+    {
+     "id": "ability/fw-rivet-drill-use",
+     "cost": "3 ap,12 heat",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "16 pierce",
+     "cooldown": 2,
+     "effects": [
+      "effect/mx-staggered"
+     ]
+    }
+   ],
+   "nearest": [
+    {
+     "id": "frame/wl-anvil-cable",
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "comparison": "同C雙足鐵砧近戰；斷纜是樁刃爆發與背翼退開，本案全靠低耗牽滯、旋鑿和排燼。"
+    },
+    {
+     "id": "frame/wn-r3-anvil-fan",
+     "file": "content/base/frames/wn-r3-anvil-fan.json",
+     "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+     "comparison": "同鐵砧範圍武器；開扇四足扇射接熱鋸，本案雙足近鄰小圓域，非試機派工教學。"
+    }
+   ],
+   "difference": "兩掛件冷卻皆2，範圍低傷與單體16傷分工；牽滯/失衡皆減閃避先手，不寫成兩種物理控制或保證疊倍。",
+   "oldIds": [
+    "ability/fw-door-sweep-use",
+    "ability/fw-rivet-drill-use",
+    "ability/mx-frame-strike",
+    "bodyplan/mx-biped-c",
+    "component/fw-door-sweep",
+    "component/fw-rivet-drill",
+    "component/mx-frost-fins",
+    "effect/m2-dragged",
+    "effect/mx-staggered",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "frame/anvil-ii",
+    "lineage/broken-arm",
+    "model/anvil-ii"
+   ],
+   "implementation": "tags加series-anvil；沿斷臂血統、restricted外售。踏拍是鼓手暱稱，沒有音波能力；不拆牆開路或擊退。aka省略。",
+   "decision": "adopt"
+  },
+  {
+   "category": "mechs",
+   "id": "frame/wm-r7-bw08",
+   "name": "BW-08",
+   "nameEn": "Bulwark Wedge 08",
+   "desire": "即將退班的駕駛想讓母親在巡行時看見自己開過窗前。",
+   "event": "最後一班巡行遇街口交戰，BW-08貼住窄口以楔刃對付近身掛件，和其他守備輪替。",
+   "conflict": "交班時巡行早散，家那條街已暗，他仍想完成答應的那一圈。",
+   "result": "依許可回程繞到窗下，母親留著一盞燈；機身有刮痕，他把輪座停正才揮手。",
+   "targetFiles": [
+    "content/base/frames/wm-r7-bw08.json",
+    "content/base/world/models/wm-r7-bw08.json"
+   ],
+   "template": {
+    "frame": "content/base/frames/bulwark-caisson-01.json",
+    "model": "content/base/world/models/bulwark-caisson-01.json"
+   },
+   "grade": "D",
+   "bodyPlan": "bodyplan/m2-wheel-d",
+   "structure": "4部位；core/cockpit及pilot座沿原骨架；不增槽。",
+   "role": "輪座貼身精準守備；單一小槽楔刃，無遠射、群傷或移動突進。",
+   "loadout": {
+    "main-gun": "component/fw-wedge-blade",
+    "armor-mount": "component/mx-porcelain-plate"
+   },
+   "mass": 4,
+   "abilities": [
+    "ability/mx-guard-stance",
+    "ability/fw-wedge-blade-use"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/mx-guard-stance",
+     "cost": "3 ap",
+     "produces": "",
+     "target": {
+      "kind": "self",
+      "range": {
+       "min": 0,
+       "max": 0
+      },
+      "los": false,
+      "friendly": "only"
+     },
+     "damage": "零傷",
+     "cooldown": 2,
+     "effects": [
+      "effect/mx-guarding"
+     ]
+    },
+    {
+     "id": "ability/fw-wedge-blade-use",
+     "cost": "2 ap,4 heat",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "8 pierce",
+     "cooldown": 0,
+     "effects": []
+    }
+   ],
+   "nearest": [
+    {
+     "id": "frame/bulwark-caisson-01",
+     "file": "content/base/frames/bulwark-caisson-01.json",
+     "sha256": "0ed7f7c6efc070298ebcd2a328e4a8b1223d478578298fefd1063ce3b7792016",
+     "comparison": "同D輪座及自守；BW-06散紋吼砲有範圍壓力，本案改一格單體瞄掛件，完全放棄射程。"
+    },
+    {
+     "id": "frame/wl-bulwark-ferry",
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "comparison": "同堅盾窄口；渡口型C雙足刃砲、灰霧配套，本案D輪座無煙護，敘事是母子晚到相見。"
+    }
+   ],
+   "difference": "四部位輪座：楔刃在砲塔槽，可被打壞；白瓷只加胸層、自守只護本機。低傷8與部位瞄準取代原範圍砲。",
+   "oldIds": [
+    "ability/fw-wedge-blade-use",
+    "ability/mx-guard-stance",
+    "bodyplan/m2-wheel-d",
+    "component/fw-wedge-blade",
+    "component/mx-porcelain-plate",
+    "effect/mx-guarding",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "frame/bulwark-caisson-01",
+    "lineage/universal-bulwark",
+    "model/bulwark-caisson-01",
+    "model/bulwark-i"
+   ],
+   "implementation": "沿夸父公刻堅盾；08為勤務代號，非新世代升級。無手掌揮舞，揮手的是下艙後的人。aka省略。",
+   "decision": "adopt"
+  },
+  {
+   "category": "monsters",
+   "id": "species/wm-r7-folded-lamp",
+   "name": "疊燈",
+   "nameEn": "Folded Lamp",
+   "desire": "夜巡獵手想邀搭檔搬進自己的住艙。",
+   "event": "兩人巡查疊燈出沒的海堤，完成警戒後，獵手把同住邀請說得像值勤交代。",
+   "conflict": "搭檔以為只是勤務安排，直到聽見「床位留給你」才明白私人的邀請。",
+   "result": "搭檔答應前要求親自挑床位；生活安排由兩人選，不是接下命令。",
+   "targetFiles": [
+    "content/base/species/wm-r7-folded-lamp.json",
+    "content/base/monsters/wm-r7-folded-lamp-c.json",
+    "content/base/frames/wm-r7-bio-folded-lamp.json",
+    "content/base/frames/wm-r7-corpse-folded-lamp.json"
+   ],
+   "template": {
+    "species": "content/base/species/lantern-keel.json",
+    "monster": "content/base/monsters/lantern-keel-c.json",
+    "bio": "content/base/frames/bio-lantern-keel.json",
+    "corpse": "content/base/frames/corpse-lantern-keel.json"
+   },
+   "grade": "C",
+   "bodyPlan": "bodyplan/insect-lantern-keel",
+   "structure": "5部位/總HP400；core/cockpit/restraint及pilot座沿模板；末層structural，無regen。",
+   "role": "薄翼支援蟲：有間隔的穿刺攻擊與近身友方閃避增益爭用AP，沒有常駐酸射。",
+   "loadout": {},
+   "mass": null,
+   "abilities": [
+    "ability/kx-wing-dive",
+    "ability/kx-lantern-keel-gather"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/kx-wing-dive",
+     "cost": "3 ap",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 4
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "18 pierce",
+     "cooldown": 2,
+     "effects": []
+    },
+    {
+     "id": "ability/kx-lantern-keel-gather",
+     "cost": "3 ap",
+     "produces": "",
+     "target": {
+      "kind": "ball",
+      "range": {
+       "min": 0,
+       "max": 0
+      },
+      "los": true,
+      "friendly": "only",
+      "radius": 1
+     },
+     "damage": "零傷",
+     "cooldown": 2,
+     "effects": [
+      "effect/kx-lantern-keel-screen"
+     ]
+    }
+   ],
+   "nearest": [
+    {
+     "id": "species/lantern-keel",
+     "file": "content/base/species/lantern-keel.json",
+     "sha256": "11afea544acc48538f1b9c1d253f199a94d746fa9542f23b281ab16d65ee6806",
+     "comparison": "同5部位薄翼骨架及並翼；原種3AP酸16無冷卻，本案3AP穿刺18/CD2，攻擊有空窗且完全失去酸傷。"
+    },
+    {
+     "id": "species/lancewing",
+     "file": "content/base/species/lancewing.json",
+     "sha256": "86bd21e910d1d187617d45ac2a80f6c5290914d37c5dfb82173ada5466a2b405",
+     "comparison": "同垂幡墜星；弔燈蜂6部位另有針、酸與群呼，本案無針部位、無酸蝕效果或群呼，只護近鄰。"
+    }
+   ],
+   "difference": "腹核暴露2、雙翼為行走部位；亮囊破壞永久減先手2/命中5。並翼只加閃避8一回合，無護盾、無暗幕。命名來自翼影重疊；故事是私生活邀請被誤聽成勤務交代，再由搭檔提出選擇，沒有戰損紀念物或補做活動。",
+   "oldIds": [
+    "ability/kx-lantern-keel-gather",
+    "ability/kx-wing-dive",
+    "ability/restrain",
+    "aiprofile/bodyguard",
+    "bodyplan/insect-lantern-keel",
+    "effect/kx-lantern-keel-dimmed",
+    "effect/kx-lantern-keel-screen",
+    "frame/bio-lantern-keel",
+    "frame/corpse-lantern-keel",
+    "monster/lantern-keel-c",
+    "species/lantern-keel"
+   ],
+   "implementation": "保留bodyguard AI但不保證其實戰時序。墜星只造成傷害，無移動/俯衝位移；亮囊不控制投影、燈火或人的記憶。",
+   "decision": "adopt",
+   "capture": {
+    "requireIntact": [
+     "core"
+    ],
+    "requireBroken": [
+     "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wm-r7-bio-folded-lamp"
+   },
+   "companions": "monster僅此C級，無name/epithet；bio/corpse同骨架及本列能力；bio只本能池、burden5，corpse空池/burden0；不得保留模板舊species/frame引用。",
+   "rejectedRevision": {
+    "desire": "放映師想把故鄉街景投到廢牆，讓搬離的工人看最後一場露天影戲。",
+    "event": "附近疊燈並翼的亮影穿過投影，護衛在既定警戒線阻擊接近的蟲；眾人暫停放映。",
+    "conflict": "攻擊打破牆面，原想完整展現的街景缺了大角，告別時刻也已過去。",
+    "result": "警戒解除後補放，工人仍爭相指認殘幅裡自家的窗；缺角沒有被補成完整故鄉。",
+    "reason": "主線同輪交叉查重：完整影像→缺角→指認自己/家撞留像；戰損場地後補活動撞踏拍。機制保留，故事換主要欲望行動結果。"
+   }
+  },
+  {
+   "category": "monsters",
+   "id": "species/wm-r7-kickbead",
+   "name": "踢珠",
+   "nameEn": "Kickbead",
+   "desire": "兩班獵手都想帶回廢站那口最大的舊鐘，掛在自己的駐地。",
+   "event": "踢珠伏在鐘架附近吐丸，逼近時又踢向機甲；兩班按原警戒分工擊殺後才入場搬鐘。",
+   "conflict": "最大的鐘在交火中裂了，另一班找到的小鐘卻還能敲響。",
+   "result": "兩班各帶一口回去；抱大鐘的仍說自己的最好看，得到小鐘的隔街就敲給他聽。",
+   "targetFiles": [
+    "content/base/species/wm-r7-kickbead.json",
+    "content/base/monsters/wm-r7-kickbead-d.json",
+    "content/base/frames/wm-r7-bio-kickbead.json",
+    "content/base/frames/wm-r7-corpse-kickbead.json"
+   ],
+   "template": {
+    "species": "content/base/species/shell-ear.json",
+    "monster": "content/base/monsters/shell-ear-d.json",
+    "bio": "content/base/frames/bio-shell-ear.json",
+    "corpse": "content/base/frames/corpse-shell-ear.json"
+   },
+   "grade": "D",
+   "bodyPlan": "bodyplan/beast-shell-ear",
+   "structure": "4部位/總HP130；core/cockpit/restraint及pilot座沿模板；末層structural，無regen。",
+   "role": "伏足遠射獸，近身補低傷踢擊；捨去抖耳減益，沒有逃脫或高速增益。",
+   "loadout": {},
+   "mass": null,
+   "abilities": [
+    "ability/kx-shell-ear-spit",
+    "ability/kx-surf-runner-kick"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/kx-shell-ear-spit",
+     "cost": "2 ap",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 2,
+       "max": 5
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "7 energy",
+     "cooldown": 0,
+     "effects": []
+    },
+    {
+     "id": "ability/kx-surf-runner-kick",
+     "cost": "2 ap",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "6 kinetic",
+     "cooldown": 0,
+     "effects": []
+    }
+   ],
+   "nearest": [
+    {
+     "id": "species/shell-ear",
+     "file": "content/base/species/shell-ear.json",
+     "sha256": "5c7500d765b370170465d81412a5f1eb3a4ac0d3b2e5f0150b3f0008a048e863",
+     "comparison": "同4部位胸核、雙耳及伏足；原種吐丸配零傷減益，本案一格6傷補原2–5格吐丸的近身空缺。"
+    },
+    {
+     "id": "species/surf-runner",
+     "file": "content/base/species/surf-runner.json",
+     "sha256": "3e559dda3abe8aea57a64e1658a9338a114690a5b7ee7ecaf1e6993b68a8bfbb",
+     "comparison": "同踢踏；濺蹄分前後蹄、10AP且自增益，本案單一伏足、6AP/回5，無掠浪增益並新增有下限的遠射。"
+    }
+   ],
+   "difference": "雙耳仍是弱點，每破一耳命中永久-4，捕捉還需毀伏足與雙耳；不是換名跑獸。吐丸與踢擊都2AP，遠射7能量、貼身6動能，無控制。",
+   "oldIds": [
+    "ability/kx-shell-ear-spit",
+    "ability/kx-surf-runner-kick",
+    "ability/restrain",
+    "aiprofile/sniper-perch",
+    "bodyplan/beast-shell-ear",
+    "effect/kx-shell-ear-deafened",
+    "frame/bio-shell-ear",
+    "frame/corpse-shell-ear",
+    "monster/shell-ear-d",
+    "species/shell-ear"
+   ],
+   "implementation": "踢踏由既有伏足完成，不能長出另四條腿；不以踢擊推飛鐘架或移動敵機。珠指吐出的攻擊亮點，非可回收彈藥資源。",
+   "decision": "adopt",
+   "capture": {
+    "requireIntact": [
+     "core"
+    ],
+    "requireBroken": [
+     "locomotion",
+     "sensor"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wm-r7-bio-kickbead"
+   },
+   "companions": "monster僅此D級，無name/epithet；bio/corpse同骨架及本列能力；bio只本能池、burden2，corpse空池/burden0；不得保留模板舊species/frame引用。"
+  },
+  {
+   "category": "monsters",
+   "id": "species/wm-r7-riven-torch",
+   "name": "裂炬",
+   "nameEn": "Riven Torch",
+   "desire": "兩支敵對小隊的領隊想用一次決鬥爭到廢哨臺上插旗的資格。",
+   "event": "對峙時裂炬從哨臺陰影接近，遠處射芒、近處裸臂撕打；兩隊短暫轉火同一頭獸。",
+   "conflict": "獸被擊倒，誰先登臺的爭執仍在，雙方都不願承認剛才並肩算友好。",
+   "result": "兩面旗分插哨臺兩端，領隊約改日再比；一次合擊沒有替他們決定歸屬。",
+   "targetFiles": [
+    "content/base/species/wm-r7-riven-torch.json",
+    "content/base/monsters/wm-r7-riven-torch-c.json",
+    "content/base/frames/wm-r7-bio-riven-torch.json",
+    "content/base/frames/wm-r7-corpse-riven-torch.json"
+   ],
+   "template": {
+    "species": "content/base/species/breakwater-clinger.json",
+    "monster": "content/base/monsters/breakwater-clinger-c.json",
+    "bio": "content/base/frames/bio-breakwater-clinger.json",
+    "corpse": "content/base/frames/corpse-breakwater-clinger.json"
+   },
+   "grade": "C",
+   "bodyPlan": "bodyplan/alien-breakwater-clinger",
+   "structure": "5部位/總HP420；core/cockpit/restraint及pilot座沿模板；末層structural，無regen。",
+   "role": "非對稱近遠雙傷害異形：一格動能18、2–6格能量16，各3AP；沒有拖行減益。",
+   "loadout": {},
+   "mass": null,
+   "abilities": [
+    "ability/kx-breakwater-clinger-rend",
+    "ability/kx-hollow-sail-cast"
+   ],
+   "abilityFacts": [
+    {
+     "id": "ability/kx-breakwater-clinger-rend",
+     "cost": "3 ap",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "18 kinetic",
+     "cooldown": 0,
+     "effects": []
+    },
+    {
+     "id": "ability/kx-hollow-sail-cast",
+     "cost": "3 ap",
+     "produces": "",
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 2,
+       "max": 6
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "damage": "16 energy",
+     "cooldown": 0,
+     "effects": []
+    }
+   ],
+   "nearest": [
+    {
+     "id": "species/breakwater-clinger",
+     "file": "content/base/species/breakwater-clinger.json",
+     "sha256": "94d1b5403d1ed49c891582c5dd7142243cad6bebd262650077c8d79ff0b191db",
+     "comparison": "同5部位偏披骨架與近撕；原種拖足減益改成遠射，失去降低敵閃避/先手的控制。"
+    },
+    {
+     "id": "species/wn-r3-trailing-sail",
+     "file": "content/base/species/wn-r3-trailing-sail.json",
+     "sha256": "0d4c4584da6ba798c62fc5fb2a8c997ca721129a03e8091ba8ab02d86accb707",
+     "comparison": "同鼓帆射芒；垂帆薄帆長足配3AP、1–2格12動能/CD2掛足拖行與減益，本案左厚甲/裸垂臂與近撕，AP9回9，非AP10回7的控射。"
+    }
+   ],
+   "difference": "左披甲抗動能/能量0.3，裸臂與偏心囊無抗；核暴露0.5、鉤足拖足為捕捉破壞目標。遠近都耗AP，無凝視標記、無披甲反射或新位移；敘事是敵手暫合後仍競逐。",
+   "oldIds": [
+    "ability/kx-breakwater-clinger-rend",
+    "ability/kx-hollow-sail-cast",
+    "ability/restrain",
+    "aiprofile/kx-alien-stalker",
+    "bodyplan/alien-breakwater-clinger",
+    "frame/bio-breakwater-clinger",
+    "frame/corpse-breakwater-clinger",
+    "monster/breakwater-clinger-c",
+    "species/breakwater-clinger"
+   ],
+   "implementation": "射芒由既有偏披形態描寫，不長出帆/新武器部位；名稱取披緣明滅如裂開火炬，非放火或永久照明能力。",
+   "decision": "adopt",
+   "capture": {
+    "requireIntact": [
+     "core"
+    ],
+    "requireBroken": [
+     "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wm-r7-bio-riven-torch"
+   },
+   "companions": "monster僅此C級，無name/epithet；bio/corpse同骨架及本列能力；bio只本能池、burden6，corpse空池/burden0；不得保留模板舊species/frame引用。",
+   "planCorrection": {
+    "old": "同鼓帆射芒；垂帆薄帆長足配零傷拖行，本案左厚甲/裸垂臂與近撕，AP9回9，非AP10回7的控射。",
+    "reason": "親讀ability/kx-breakwater-clinger-drag：12動能、射程1–2、CD2，並非零傷。",
+    "source": "content/base/abilities/kx-breakwater-clinger-drag.json"
+   }
+  }
+ ]
+}

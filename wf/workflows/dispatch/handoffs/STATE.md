@@ -1,4 +1,4 @@
-# STATE — 交棒：新 session 的起點（2026-10-26 段落）
+# STATE — 交棒：新 session 的起點（2026-10-27 公司 WSL 校正）
 
 [handoffs](README.md)｜非 codex 工作 [engine-backlog](engine-backlog.md)｜下次整理 [next-tidy](next-tidy.md)｜[roadmap](../../planning-roadmap.json)
 
@@ -6,7 +6,7 @@
 
 **遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（方格大地圖、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地。
 
-**測試**：[本輪基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。
+**測試（歷史，不代表 HEAD 綠燈）**：[2026-10-26 整理基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。目前核對 HEAD `f24420b079a59a7f8e93123930665aaa824f9d00`；沒有涵蓋目前 HEAD 的新整合驗收證據。本輪不執行測試或黃金重錄，回家再驗收。
 
 **網頁**：`npm run dev` → `http://localhost:5173/`：`#/` 戰鬥（`?scenario=<id>&seed=<n>`）、`#/wiki` 百科（F1／Shift+W）、`#/ops` 營運（`?seed=<n>`，`&spectate=1` 全 AI 出戰）。
 
@@ -14,14 +14,21 @@
 
 **主要指令**：`npm test`、`npm run check`、`npm run typecheck`、`npm run test:e2e`、`npm run sim -- …`、`npm run sim:campaign -- --months N`、`npm run fuzz -- --runs N --mode mix`、`npm run content:probe -- <id…>`、`npm run content:index`、`npm run build`。見 [testing](../../testing.md)、[dev-env](../../dev-env.md)。
 
-**團隊**：頂層 Fable → 領導 Opus → 工人 codex（預設 sol；內容計畫 astra → 產出 sol）；規劃 Fable，見 [team-model](../../team-model.md)。
+**團隊**：現行配置依 [team-model](../../team-model.md)：頂層／規劃 `gpt-6-astra`，領導／普通工 `gpt-6.1-sol`，簡單工作 `gpt-6.1-terra`。歷史 Fable／Opus 記錄保留；本任務的困難架構問題另由使用者開 Claude Fable 做報告，裁決後才實作。
 
-## 現役
+## 現役（四線暫停，未收線）
 
-依 [CLAIMS](../CLAIMS.md) 與 [SESSION-LOG](../../../SESSION-LOG.md)：
+[CLAIMS](../CLAIMS.md) 與 [SESSION-LOG](../../../SESSION-LOG.md) 保留四線未收事項；登記不代表目前有行程正在跑。續線與驗收由主線接手，原生 agent 用工具回報。
 
-- **lead-engine-next**：AI 自護／友方支援招（68、73）、萬潮葬王副線引擎（57–61）、黃金重錄。
-- **lead-bigfill**：下一輪大填充（月面、可玩內容、加深）。
+**bigfill**：[報告](lead-bigfill/report.md) 存在。215 件入庫在目前歷史的提交是 `c8e0e0a`，報告所載 `634e7ad0` 是舊識別；去重、基調送審與引擎缺口仍待處理。
+
+**pilots**：[報告](lead-fill-pilots/report.md) 存在。148 組人物與 40 招募池為 `299d084`；黃金／軌跡相依測試已由 `de65154` 入庫，接續不用舊 `a3c53115` 或報告舊內容提交 `f3592fef`。其 [golden 報告](lead-fill-pilots/golden/REPORT.md) 的 31 pass 是舊 worktree 指定五檔結果，不是目前 HEAD 全套通過。
+
+**gear**：[報告](lead-fill-gear/report.md) 存在。第一輪 `fbe0a33`、第二輪 `a66cd46`；四市場 13 列已在第二輪提交。`4b0db24` 新增的 `markets-residue.patch` 是 0 bytes，不能當待套市場改動；目前無市場／index 未提交殘檔。舊 fg-golden 產出不得直接覆蓋 `de65154`；被動修正與槽位等問題仍待裁決。
+
+**small**：`lead-small/report.md` 不存在，不能以缺失報告作驗收。第三刃營運、北岸改區、勢力數 7→8 與 index 已在 `69924b0`；提交訊息只記當時單檔／check／typecheck 結果，並明寫全套與戰役黃金待處理，不再視為未提交半成品。
+
+**公司 WSL 邊界**：本輪只做交接校正、內容去重盤點與送審；不安裝、不跑整合驗收或重錄 golden、不改遊戲內容、不刪檔或清 worktree。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../notes/investigations/content-review-2026-10-27/README.md)。
 
 ## 本段落（2026-10-26）做了什麼
 

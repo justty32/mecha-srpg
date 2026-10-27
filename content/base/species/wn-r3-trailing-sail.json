@@ -1,0 +1,64 @@
+{
+  "id": "species/wn-r3-trailing-sail",
+  "name": "垂帆",
+  "family": "alien",
+  "bodyPlan": "bodyplan/alien-hollow-sail",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 10,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 10
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 7,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-hollow-sail-cast",
+    "ability/kx-breakwater-clinger-drag"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wn-r3-bio-trailing-sail"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-alien-stalker",
+  "tags": [
+    "kaiju",
+    "alien"
+  ],
+  "etymology": "腿甲送到修理棚時，工單上只填了「換板」。學徒刮開鹽泥，沿著凹痕畫了一條粉筆線，才發現下緣還粘著卸船架的紅漆。船主看了便把單子擱下：獸傷算公帳，撞架得找當班駕駛員。機甲還架在棚內，駕駛員已被人從飯桌叫來，手裡的半塊餅也沒放。\n他把當天的記錄翻給師傅看。垂帆曾停在舊渡口卸船架旁，記錄上的速寫只有偏垂的帆和一條長足。遠處射來的芒先擦傷了機甲肩甲，近身後，那條足又掛中腿側；駕駛員當時只顧站穩，回身慢了一拍，退開時便蹭上了架腳。船主問牠是不是把機甲拖過去，他搖頭，說是自己退的。師傅順著粉筆線摸到板緣，請他把那一步再比畫一遍，然後把紅漆刮進小碟，與卸船架剝下的一片並排放著。\n等到晚上，船主還在算那條新板該由誰付錢。駕駛員認那一撞，卻不肯認工單上後加的「失手」：挨掛足那一下之後，他連閃躲都比先前遲，沒有自己摔過去。學徒在旁邊重新抄單，將獸擊、退行、碰架分成三行，遞過來讓兩人各指自己有異議的地方。師傅趁這段工夫把肩甲卸下，棚裡接連響了幾聲，誰也沒能再把整張單推回去。\n最後拆板的工錢先從公帳支，新板款留到回港結算。駕駛員把冷掉的餅吃完，幫學徒將舊板搬到牆邊。垂帆的速寫還壓在單下，露出那條垂足；學徒原想把紙翻過來算料，看到兩個人的指印，便另找了一張。"
+}

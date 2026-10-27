@@ -1,0 +1,102 @@
+{
+  "contract": "content-batch/1",
+  "id": "wm-r6-factions-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "第6輪新增6個factions實質差異概念",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wm-r6-factions-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-more-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round6/factions",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round6/factions/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "lore/factions"
+    ],
+    "namePrefix": {
+      "lore/factions": "wm-r6-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist",
+    "lore"
+  ],
+  "integrationStatus": "deferred-by-user",
+  "deferredChecks": "公司僅有限靜態檢查；整合、平衡、試玩與正式驗收留回家。",
+  "worktree": ".git/wf-worktrees/wm-r6-factions-1027",
+  "files": [
+    "content/lore/factions/wm-r6-high-pennant-hunters.json",
+    "content/lore/factions/wm-r6-joined-eaves.json",
+    "content/lore/factions/wm-r6-late-star-relief.json",
+    "content/lore/factions/wm-r6-open-step-workers.json",
+    "content/lore/factions/wm-r6-reedspan-company.json",
+    "content/lore/factions/wm-r6-turning-page-caravan.json"
+  ],
+  "ids": [
+    "faction/wm-r6-high-pennant-hunters",
+    "faction/wm-r6-joined-eaves",
+    "faction/wm-r6-late-star-relief",
+    "faction/wm-r6-open-step-workers",
+    "faction/wm-r6-reedspan-company",
+    "faction/wm-r6-turning-page-caravan"
+  ],
+  "acceptanceScope": "僅路徑、JSON、引用、lore與已讀清單及有限語義去重；整合／平衡／試玩未驗，非完整accepted。",
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T12:16:31",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "acceptance": {
+    "batch": "wm-r6-factions-1027",
+    "round": 1,
+    "at": "2026-10-27T12:16:31",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "lore": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/lore/factions/wm-r6-high-pennant-hunters.json",
+      "content/lore/factions/wm-r6-joined-eaves.json",
+      "content/lore/factions/wm-r6-late-star-relief.json",
+      "content/lore/factions/wm-r6-open-step-workers.json",
+      "content/lore/factions/wm-r6-reedspan-company.json",
+      "content/lore/factions/wm-r6-turning-page-caravan.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "carriedToMain": true,
+  "dedupEvidence": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round6-dedup.json"
+}

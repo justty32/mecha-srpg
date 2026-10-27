@@ -1,0 +1,132 @@
+{
+  "contract": "content-batch/1",
+  "id": "wm-r7-monsters-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "第7輪新增3個monsters實質差異概念",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wm-r7-monsters-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-more-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/monsters",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/monsters/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "base/monsters",
+      "base/species",
+      "base/frames"
+    ],
+    "namePrefix": {
+      "base/monsters": "wm-r7-",
+      "base/species": "wm-r7-",
+      "base/frames": "wm-r7-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist"
+  ],
+  "integrationStatus": "deferred-by-user",
+  "deferredChecks": "公司僅有限靜態檢查；整合、平衡、試玩與正式驗收留回家。",
+  "worktree": ".git/wf-worktrees/wm-r7-monsters-1027",
+  "files": [
+    "content/base/frames/wm-r7-bio-folded-lamp.json",
+    "content/base/frames/wm-r7-bio-kickbead.json",
+    "content/base/frames/wm-r7-bio-riven-torch.json",
+    "content/base/frames/wm-r7-corpse-folded-lamp.json",
+    "content/base/frames/wm-r7-corpse-kickbead.json",
+    "content/base/frames/wm-r7-corpse-riven-torch.json",
+    "content/base/monsters/wm-r7-folded-lamp-c.json",
+    "content/base/monsters/wm-r7-kickbead-d.json",
+    "content/base/monsters/wm-r7-riven-torch-c.json",
+    "content/base/species/wm-r7-folded-lamp.json",
+    "content/base/species/wm-r7-kickbead.json",
+    "content/base/species/wm-r7-riven-torch.json"
+  ],
+  "ids": [
+    "frame/wm-r7-bio-folded-lamp",
+    "frame/wm-r7-bio-kickbead",
+    "frame/wm-r7-bio-riven-torch",
+    "frame/wm-r7-corpse-folded-lamp",
+    "frame/wm-r7-corpse-kickbead",
+    "frame/wm-r7-corpse-riven-torch",
+    "monster/wm-r7-folded-lamp-c",
+    "monster/wm-r7-kickbead-d",
+    "monster/wm-r7-riven-torch-c",
+    "species/wm-r7-folded-lamp",
+    "species/wm-r7-kickbead",
+    "species/wm-r7-riven-torch"
+  ],
+  "acceptanceScope": "僅路徑、JSON、引用、已讀、loader與適用ops及有限功能/敘事去重；整合／平衡／試玩未驗，非完整accepted。",
+  "loaderEvidence": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/monsters/loader.txt",
+  "loaderResult": {
+    "errors": 0,
+    "warnings": 34,
+    "mainBaselineWarnings": 34,
+    "newWarnings": [
+      "WARNING [soft-overflow-band] content/base/frames/wm-r7-bio-kickbead.json $.pools[0].bands instinct: no band covers values above max",
+      "WARNING [soft-overflow-band] content/base/species/wm-r7-kickbead.json $.pools[0].bands instinct: no band covers values above max"
+    ],
+    "note": "HEAD隔離區缺前輪旋沫2警告，踢珠沿伏耳soft本能空bands帶來species/bio各1警告；預期主樹36。保留模板語義，整合留家中。"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T12:39:37",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "acceptance": {
+    "batch": "wm-r7-monsters-1027",
+    "round": 1,
+    "at": "2026-10-27T12:39:37",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/base/frames/wm-r7-bio-folded-lamp.json",
+      "content/base/frames/wm-r7-bio-kickbead.json",
+      "content/base/frames/wm-r7-bio-riven-torch.json",
+      "content/base/frames/wm-r7-corpse-folded-lamp.json",
+      "content/base/frames/wm-r7-corpse-kickbead.json",
+      "content/base/frames/wm-r7-corpse-riven-torch.json",
+      "content/base/monsters/wm-r7-folded-lamp-c.json",
+      "content/base/monsters/wm-r7-kickbead-d.json",
+      "content/base/monsters/wm-r7-riven-torch-c.json",
+      "content/base/species/wm-r7-folded-lamp.json",
+      "content/base/species/wm-r7-kickbead.json",
+      "content/base/species/wm-r7-riven-torch.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "carriedToMain": true,
+  "dedupEvidence": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7-dedup.json"
+}

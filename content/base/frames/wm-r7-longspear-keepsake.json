@@ -1,0 +1,69 @@
+{
+  "id": "frame/wm-r7-longspear-keepsake",
+  "name": "長槍-V2・留像",
+  "nameEn": "Longspear Keepsake V2",
+  "etymology": "Keepsake 是想留在身邊的一點念物。長槍-V2・留像沿銀環逆向圖紙的四足伏架支系改裝，前足一邊持輝光連吼，一邊掛扣足矢。兩名搭班駕駛替它取名那天，想的是一張合照：兩人都站在自己的機前，不戴頭盔，也不要總是只有替對方照的那個人缺席。\n\n他們把照相的人約到山路轉彎處，出勤卻比預想拖得長。下方河口溯來的獸攀上路基，另一台機先接近，留像便伏在高處射擊。等同伴打壞牠掙脫所需的部位，捉獸手逐處確認可以收捕，留像才收起伏架，沿坡下去補扣足矢。獸架推來時，照相的人還蹲在路邊護著鏡頭，問他們現在可不可以把頭盔摘了。\n\n危險已除，路卻忙了起來。修工蹲在兩台機腳邊，獸架遮住左側，等通行的車隊又把鏡頭前的空隙擠得只剩一道。兩個人挪到一起，剛站正，便有人請他們借過。最後一聲「看這裡」喊得倉促，照片只容下半幅機身，兩個背影小得幾乎分不開。\n\n晚飯時，一個人拿著照片，堅持戴白袖套的才是自己；另一個說那是修工的布。他們爭到湯都涼了，終於認出其中一人腰後露著的手套。照片從這邊傳到那邊，誰也不肯再剪去旁邊的獸架。留像只剩半台，兩個人倒都在。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/m2-quadruped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/fw-ankle-pin",
+    "sensor-mount": "component/mx-hawk-eye"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "accuracy": 4
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/m2-brace-deploy"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "mech",
+    "human",
+    "lineage-jinghai"
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "species/wl-salt-shroud",
+  "name": "鹽紗",
+  "family": "mycelium",
+  "bodyPlan": "bodyplan/mycel-stalk",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-root-snare",
+    "ability/kx-reed-lace-spit"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "core"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wl-bio-salt-shroud"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-mycel-creep",
+  "tags": [
+    "kaiju",
+    "mycelium",
+    "harvest-only"
+  ],
+  "etymology": "河口廢鹽棚的屋梁上，垂下了一層白紗。巡岸人原以為是舊布，伸長燈桿照過去，才看見紗邊綴著一排濁亮的珠子。棚下的水溝早已被根填滿，根又穿過破牆，沿著通往淡水的溝渠鋪開。掩護工人撤出的機甲剛踩進棚影，地衣便擦上足邊，駕駛員慢了一拍才轉過身；冠頂跟著抖動，落珠打在肩上，咬出一片濕白的痕。\n守岸隊停下搬運車，把工人帶到溝外。有人試著用骨刃砍開柱身，裂口裡翻出的仍是層層菌肉，找不到一顆能單獨擊碎的心臟。隊長改讓帶焰的機甲上前，其他人守住通往河口的缺口。火光沿著垂紗爬過去，棚下的白影縮在煙裡，遠處溝渠仍露著濕亮的根。工人等到落珠停下，才繞過棚外，把最後一車工具拖走。\n拘束手收起了矢，沒有往鹽棚裡走。這片菌體只能採收，無法靠保住一處核、打斷幾條腿帶回船上。採收隊在燒過的棚邊分段作業，把取下的菌材裝箱，準備留作屍體改裝。箱子運到吊架下時，屋梁上還掛著燒黑的紗邊，風一吹，細灰便落在封箱的手套上。"
+}

@@ -1,0 +1,735 @@
+{
+ "contract": "wf-table/1",
+ "source": "people.md",
+ "extracted": "2026-10-27",
+ "scope": {
+  "content_json_parsed": 2695,
+  "base_persons": 186,
+  "lore_characters": 271,
+  "pairwise_name_comparisons": 104196,
+  "lore_body_pairs": 36585,
+  "pilots_lore": 148,
+  "pilots_persons": 148,
+  "pilots_backgrounds": 148,
+  "bigfill_lore": 34,
+  "batch_path_intersection": 0,
+  "lore_person_links": 155,
+  "background_link_mismatches": 0,
+  "normalized_duplicate_body_groups": 0,
+  "body_jaccard_at_least_0_27": 0,
+  "semantic_pair_candidates": 16,
+  "background_people_missing": [],
+  "background_duplicate_person_refs": {}
+ },
+ "method": {
+  "name": "457 人物 name/aka 去標點空白並小寫；比較主名、別名，排除同一檔與明示 person+lore 配套；主名 SequenceMatcher >=0.8 另列候選（本次 0）。同名跨 kind 不直接視為重複。",
+  "body": "271 lore 全部 36,585 組正文正規化二字集合 Jaccard；>=0.27 為高相似（0 組）。另取含 bigfill 的前 8 組與 bigfill×148 人物前 8 組，共 16 組人工讀 role/summary/body，不以分數代替語義。",
+  "links": "tabledb 讀兩批審核表（pilots 表混用 list/dict，按 columns 解碼），核目前 content。核155條 lore→person姓名（唯一差異七號為別名）與148 background.person。 background檔名可帶-crew等後綴，不能用檔名相等判錯；本次124份後綴差異皆改按實際person引用核對，未視為問題。",
+  "limits": "全量機械比對不等於逐句全量語義審查；base 數值/特質模板相同不作重複證據；未做全面事件年表、人口知情D線、引擎與架構稽核。讀取其餘 content JSON 只作範圍與引用背景，不宣稱2695檔均已語義審過。未跑測試、整合、golden、lint。"
+ },
+ "columns": [
+  "id",
+  "status",
+  "priority",
+  "topic",
+  "evidence",
+  "judgment",
+  "next_step"
+ ],
+ "rows": [
+  {
+   "id": "P01",
+   "status": "確定問題",
+   "priority": "P1",
+   "topic": "朴仁哲失腿機制仍矛盾",
+   "evidence": [
+    {
+     "file": "content/lore/characters/park-incheol.json",
+     "line": 13,
+     "field": "body",
+     "quote": "朴仁哲在碼頭上被一面前盾撞碎了左腿。"
+    },
+    {
+     "file": "content/lore/events/whiteglove-incident.json",
+     "line": 8,
+     "field": "body",
+     "quote": "閘門夾斷了他的一條腿。"
+    },
+    {
+     "file": "content/lore/characters/sara-kett.json",
+     "line": 25,
+     "field": "body",
+     "quote": "白手套事變後朴仁哲失去的一條腿。"
+    }
+   ],
+   "judgment": "同一人物、同次2105罷工，人物檔與事件檔直接描述不同致傷機制；莎拉只寫失腿，與兩者皆相容，不列矛盾方。此題由舊 report 指出，本輪核現檔證實仍在，未見 fill-rulings 決定致傷方式。",
+   "next_step": "請使用者選前盾撞傷或閘門夾斷；若刻意保留不同說法，應明示傳聞或證詞。本輪不改內容。"
+  },
+  {
+   "id": "P02",
+   "status": "待人審",
+   "priority": "P2",
+   "topic": "三地堅盾擋潮狼、護船卸糧的畫面重疊",
+   "evidence": [
+    {
+     "file": "content/lore/characters/davi-moura.json",
+     "line": 22,
+     "field": "body",
+     "quote": "讓堅盾-I型迎上側面，把牠逼離船邊。"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 22,
+     "field": "body",
+     "quote": "露絲在座艙裡催動機甲核心，迎著撲勢讓堅盾-I型壓低機身。"
+    },
+    {
+     "file": "content/lore/characters/yani-saleh.json",
+     "line": 24,
+     "field": "body",
+     "quote": "機甲的肩始終擋在獸與船之間。"
+    }
+   ],
+   "judgment": "達維守貝倫、露絲守哈瓦那、雅妮守望加錫，沒有同一身分或功勞衝突。共同機型、獸種、護船構圖與喊話節奏相近，屬可辨識度審閱，不是確定重複。",
+   "next_step": "排在P01之後，讓使用者/Fable判斷是否需差異化其中一場動作；不建議合併人物。"
+  },
+  {
+   "id": "C01",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：江燕／千田 千代",
+   "evidence": [
+    {
+     "file": "content/lore/characters/jiang-yan.json",
+     "line": 6,
+     "field": "role",
+     "quote": "江口回收隊駕駛"
+    },
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 6,
+     "field": "role",
+     "quote": "仙台外岸輪守駕駛"
+    },
+    {
+     "file": "content/lore/characters/jiang-yan.json",
+     "line": 23,
+     "field": "summary",
+     "quote": "江口回收駕駛把機甲跪成一道堤，喊「這條街還有人！」。"
+    },
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 24,
+     "field": "summary",
+     "quote": "千代在胸鐘震響時推起傷機，喊「把背交過來！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0815；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C02",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：達維・莫拉／露絲・阿蘭達",
+   "evidence": [
+    {
+     "file": "content/lore/characters/davi-moura.json",
+     "line": 6,
+     "field": "role",
+     "quote": "貝倫河口駕駛"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 6,
+     "field": "role",
+     "quote": "哈瓦那護岸駕駛"
+    },
+    {
+     "file": "content/lore/characters/davi-moura.json",
+     "line": 21,
+     "field": "summary",
+     "quote": "達維守在貝倫近海河口，吼「這口飯，從我身後過！」。"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 21,
+     "field": "summary",
+     "quote": "露絲以機甲攔住哈瓦那近岸的獸，喊「港還沒閉眼！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0768；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C03",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：江燕／雅妮・薩利赫",
+   "evidence": [
+    {
+     "file": "content/lore/characters/jiang-yan.json",
+     "line": 6,
+     "field": "role",
+     "quote": "江口回收隊駕駛"
+    },
+    {
+     "file": "content/lore/characters/yani-saleh.json",
+     "line": 6,
+     "field": "role",
+     "quote": "望加錫護航駕駛"
+    },
+    {
+     "file": "content/lore/characters/jiang-yan.json",
+     "line": 23,
+     "field": "summary",
+     "quote": "江口回收駕駛把機甲跪成一道堤，喊「這條街還有人！」。"
+    },
+    {
+     "file": "content/lore/characters/yani-saleh.json",
+     "line": 23,
+     "field": "summary",
+     "quote": "雅妮在望加錫開護航機守住船頭，吼「破船也有船頭！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0767；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C04",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：千田 千代／索蓮・勒戈夫",
+   "evidence": [
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 6,
+     "field": "role",
+     "quote": "仙台外岸輪守駕駛"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 6,
+     "field": "role",
+     "quote": "聖馬洛傷後復役駕駛"
+    },
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 24,
+     "field": "summary",
+     "quote": "千代在胸鐘震響時推起傷機，喊「把背交過來！」。"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "索蓮把拐杖留給同伴，重新開上守門機，喊「門缺一人，我補！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0763；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C05",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：比娜・森／魯帕・達斯",
+   "evidence": [
+    {
+     "file": "content/lore/characters/bina-sen.json",
+     "line": 6,
+     "field": "role",
+     "quote": "第七哨修盾駕駛"
+    },
+    {
+     "file": "content/lore/characters/rupa-das.json",
+     "line": 6,
+     "field": "role",
+     "quote": "達卡護帆隊駕駛"
+    },
+    {
+     "file": "content/lore/characters/bina-sen.json",
+     "line": 23,
+     "field": "summary",
+     "quote": "比娜拖著裂盾還敢喊「缺口算我的！」，把退潮的哨線守到換班。"
+    },
+    {
+     "file": "content/lore/characters/rupa-das.json",
+     "line": 22,
+     "field": "summary",
+     "quote": "魯帕托起塌向補天院的帆骨，明知誇張仍喊「借我一片天！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0763；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C06",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：莉娜・菲瑟／尼克・沃斯",
+   "evidence": [
+    {
+     "file": "content/lore/characters/lena-visser.json",
+     "line": 9,
+     "field": "role",
+     "quote": "鹿特丹民用糧倉與泊位協調人"
+    },
+    {
+     "file": "content/lore/characters/niek-vos.json",
+     "line": 6,
+     "field": "role",
+     "quote": "鹿特丹護駁駕駛"
+    },
+    {
+     "file": "content/lore/characters/lena-visser.json",
+     "line": 11,
+     "field": "summary",
+     "quote": "沉堤時解開糧駁纜繩的港務工，留在鹿特丹管糧與泊位，替出海的人留一處能卸貨的岸。"
+    },
+    {
+     "file": "content/lore/characters/niek-vos.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "怕水的護駁駕駛把機甲踏向浪邊，喊「岸還在！」。"
+    }
+   ],
+   "judgment": "莉娜負責民用糧倉泊位，尼克開機護駁且明示由莉娜指泊位，為正常互補配套。 二字集合 Jaccard=0.0755；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C07",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：安珂・雷姆／埃利亞・孔蒂",
+   "evidence": [
+    {
+     "file": "content/lore/characters/anke-rehm.json",
+     "line": 6,
+     "field": "role",
+     "quote": "漢堡機庫拖機駕駛"
+    },
+    {
+     "file": "content/lore/characters/elia-conti.json",
+     "line": 6,
+     "field": "role",
+     "quote": "熱那亞工坊試機駕駛"
+    },
+    {
+     "file": "content/lore/characters/anke-rehm.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "安珂將機甲肩架扛進倒塌的機庫，喊「先卸人，再卸鐵！」。"
+    },
+    {
+     "file": "content/lore/characters/elia-conti.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "埃利亞替別人的合印試機，出塢前總喊「把名字留在這一步！」。"
+    }
+   ],
+   "judgment": "安珂漢堡拖機救吊架，埃利亞熱那亞合印試步，均先清工位但無身分或功勞衝突。 二字集合 Jaccard=0.0751；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C08",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：露絲・阿蘭達／雅妮・薩利赫",
+   "evidence": [
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 6,
+     "field": "role",
+     "quote": "哈瓦那護岸駕駛"
+    },
+    {
+     "file": "content/lore/characters/yani-saleh.json",
+     "line": 6,
+     "field": "role",
+     "quote": "望加錫護航駕駛"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 21,
+     "field": "summary",
+     "quote": "露絲以機甲攔住哈瓦那近岸的獸，喊「港還沒閉眼！」。"
+    },
+    {
+     "file": "content/lore/characters/yani-saleh.json",
+     "line": 23,
+     "field": "summary",
+     "quote": "雅妮在望加錫開護航機守住船頭，吼「破船也有船頭！」。"
+    }
+   ],
+   "judgment": "姓名、職位與地方事件不同；共用護人/唱名/肩背承重意象，不能推定同一人物或重複檔。 二字集合 Jaccard=0.0730；含bigfill前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C09",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：西拉・巴爾德斯／露絲・阿蘭達",
+   "evidence": [
+    {
+     "file": "content/lore/characters/cira-valdes.json",
+     "line": 7,
+     "field": "role",
+     "quote": "哈瓦那隨船老砲手"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 6,
+     "field": "role",
+     "quote": "哈瓦那護岸駕駛"
+    },
+    {
+     "file": "content/lore/characters/cira-valdes.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "哈瓦那隨船老砲手；認得人心虛時的咳嗽聲，肯當面拆穿，也肯替他守下一班。"
+    },
+    {
+     "file": "content/lore/characters/luz-aranda.json",
+     "line": 21,
+     "field": "summary",
+     "quote": "露絲以機甲攔住哈瓦那近岸的獸，喊「港還沒閉眼！」。"
+    }
+   ],
+   "judgment": "西拉是隨船砲手且未驅核心，露絲是岸防駕駛；同港互補，沒有搶同一事蹟。 二字集合 Jaccard=0.0620；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C10",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：伊內絲・維達爾／羅西奧・阿雷納爾",
+   "evidence": [
+    {
+     "file": "content/lore/characters/ines-vidal.json",
+     "line": 6,
+     "field": "role",
+     "quote": "瓦爾帕萊索岸隊拘束手"
+    },
+    {
+     "file": "content/lore/characters/rocio-arenal.json",
+     "line": 7,
+     "field": "role",
+     "quote": "瓦港坡街護送駕駛"
+    },
+    {
+     "file": "content/lore/characters/ines-vidal.json",
+     "line": 19,
+     "field": "summary",
+     "quote": "瓦港拘束手站上傷機的背，喊「還會咬，就還沒完！」。"
+    },
+    {
+     "file": "content/lore/characters/rocio-arenal.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "瓦港坡街護送駕駛；不甘心總被放在後排，仍會照交代護著最慢的那人走。"
+    }
+   ],
+   "judgment": "羅西奧為內街盾護擔架；伊內絲是獸顎警戒與岸隊拘束，或索蓮的聖馬洛復役；職務、地點或行動不同。 二字集合 Jaccard=0.0617；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C11",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：尼克・沃斯／珊娜・德弗里斯",
+   "evidence": [
+    {
+     "file": "content/lore/characters/niek-vos.json",
+     "line": 6,
+     "field": "role",
+     "quote": "鹿特丹護駁駕駛"
+    },
+    {
+     "file": "content/lore/characters/sanne-de-vries.json",
+     "line": 7,
+     "field": "role",
+     "quote": "鹿特丹拖機轉駕駛"
+    },
+    {
+     "file": "content/lore/characters/niek-vos.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "怕水的護駁駕駛把機甲踏向浪邊，喊「岸還在！」。"
+    },
+    {
+     "file": "content/lore/characters/sanne-de-vries.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "鹿特丹拖機轉駕駛；平常不搶話，認定撤離方向後誰都別想把她推回去。"
+    }
+   ],
+   "judgment": "珊娜長槍扳貨櫃救艇，現到新加坡候雇；尼克岸上堅盾頂駁留鹿特丹，非同一救援。 二字集合 Jaccard=0.0575；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C12",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：阿登・赫爾西／比仁・杜塔",
+   "evidence": [
+    {
+     "file": "content/lore/characters/aden-hersi.json",
+     "line": 6,
+     "field": "role",
+     "quote": "吉布地岸上救援駕駛"
+    },
+    {
+     "file": "content/lore/characters/biren-dutta.json",
+     "line": 8,
+     "field": "role",
+     "quote": "鐵砧巡修老駕駛，駕駛兼技師"
+    },
+    {
+     "file": "content/lore/characters/aden-hersi.json",
+     "line": 22,
+     "field": "summary",
+     "quote": "阿登聽見破船裡還有人，將機掌壓進船腹，喊「海別想替你收聲！」。"
+    },
+    {
+     "file": "content/lore/characters/biren-dutta.json",
+     "line": 9,
+     "field": "summary",
+     "quote": "駕駛兼技師，修好別人的機甲才肯誇自己的手藝。"
+    }
+   ],
+   "judgment": "比仁吉大港巡修托吊架，阿登在破船救人，地點及事蹟不同。 二字集合 Jaccard=0.0551；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C13",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：喬・馬洛／瑪倫・惠特科姆",
+   "evidence": [
+    {
+     "file": "content/lore/characters/jo-marlow.json",
+     "line": 6,
+     "field": "role",
+     "quote": "西雅圖守港駕駛"
+    },
+    {
+     "file": "content/lore/characters/maren-whitcomb.json",
+     "line": 7,
+     "field": "role",
+     "quote": "西雅圖退勤守港駕駛"
+    },
+    {
+     "file": "content/lore/characters/jo-marlow.json",
+     "line": 21,
+     "field": "summary",
+     "quote": "喬在西雅圖裂座岸砲旁開機，喊「這回船頭朝家！」。"
+    },
+    {
+     "file": "content/lore/characters/maren-whitcomb.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "西雅圖退勤守港駕駛；脾氣直，知道自己錯時會當著全班重新報一次。"
+    }
+   ],
+   "judgment": "瑪倫在歸船斷座夜旁巷撐貨棚；喬明說沒趕上那夜，守後續卸糧班，無重複歸功。 二字集合 Jaccard=0.0542；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C14",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：羅西奧・阿雷納爾／索蓮・勒戈夫",
+   "evidence": [
+    {
+     "file": "content/lore/characters/rocio-arenal.json",
+     "line": 7,
+     "field": "role",
+     "quote": "瓦港坡街護送駕駛"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 6,
+     "field": "role",
+     "quote": "聖馬洛傷後復役駕駛"
+    },
+    {
+     "file": "content/lore/characters/rocio-arenal.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "瓦港坡街護送駕駛；不甘心總被放在後排，仍會照交代護著最慢的那人走。"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "索蓮把拐杖留給同伴，重新開上守門機，喊「門缺一人，我補！」。"
+    }
+   ],
+   "judgment": "羅西奧為內街盾護擔架；伊內絲是獸顎警戒與岸隊拘束，或索蓮的聖馬洛復役；職務、地點或行動不同。 二字集合 Jaccard=0.0530；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C15",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：黛莉雅・梅里克／千田 千代",
+   "evidence": [
+    {
+     "file": "content/lore/characters/dahlia-merrick.json",
+     "line": 7,
+     "field": "role",
+     "quote": "休士頓井城轉職駕駛"
+    },
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 6,
+     "field": "role",
+     "quote": "仙台外岸輪守駕駛"
+    },
+    {
+     "file": "content/lore/characters/dahlia-merrick.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "休士頓井城轉職駕駛；不肯叫舊雇主恩人，也不抹去同班人救過自己的事。"
+    },
+    {
+     "file": "content/lore/characters/senda-chiyo.json",
+     "line": 24,
+     "field": "summary",
+     "quote": "千代在胸鐘震響時推起傷機，喊「把背交過來！」。"
+    }
+   ],
+   "judgment": "黛莉雅休士頓長槍護糧，千代仙台堅盾推傷機，無同一人物或事蹟。 二字集合 Jaccard=0.0529；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "C16",
+   "status": "正常／候選排除",
+   "priority": "P3",
+   "topic": "相似正文候選：艾里安・沃克萊／索蓮・勒戈夫",
+   "evidence": [
+    {
+     "file": "content/lore/characters/elian-vauclerc.json",
+     "line": 7,
+     "field": "role",
+     "quote": "內海家族旁支守門駕駛"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 6,
+     "field": "role",
+     "quote": "聖馬洛傷後復役駕駛"
+    },
+    {
+     "file": "content/lore/characters/elian-vauclerc.json",
+     "line": 8,
+     "field": "summary",
+     "quote": "內海家族旁支守門駕駛；愛逞體面，敗退時卻肯當眾承認自己害怕。"
+    },
+    {
+     "file": "content/lore/characters/solene-le-goff.json",
+     "line": 28,
+     "field": "summary",
+     "quote": "索蓮把拐杖留給同伴，重新開上守門機，喊「門缺一人，我補！」。"
+    }
+   ],
+   "judgment": "艾里安是九門同喪次晨托鐘架、後到新加坡；索蓮是聖馬洛傷後有限巡牆，未宣稱同一功勞。 二字集合 Jaccard=0.0507；bigfill×pilots前8組",
+   "next_step": "保留各自人物；本輪不需內容修改。"
+  },
+  {
+   "id": "N01",
+   "status": "正常配套",
+   "priority": "P3",
+   "topic": "155條lore→person與148背景配套",
+   "evidence": {
+    "lore_person_links": 155,
+    "background_person_links": 148,
+    "background_mismatch": [],
+    "name_mismatch_candidates": [
+     [
+      "content/lore/characters/unit-07.json",
+      "base:person/unit-07"
+     ]
+    ],
+    "background_people_missing": [],
+    "background_duplicate_person_refs": {},
+    "valid_background_filename_suffix_differences": 124
+   },
+   "judgment": "person是可玩資料，lore承載設定，background連招募模板；148組三件不是444名人物或重複內容。",
+   "next_step": "維持；是否每人一份lore屬另行架構裁決，本輪不解。"
+  },
+  {
+   "id": "N02",
+   "status": "正常配套",
+   "priority": "P3",
+   "topic": "七號主名／別名",
+   "evidence": [
+    {
+     "file": "content/lore/characters/unit-07.json",
+     "line": 3,
+     "field": "name",
+     "quote": "七號"
+    },
+    {
+     "file": "content/lore/characters/unit-07.json",
+     "line": 4,
+     "field": "aka",
+     "quote": "七號機魂"
+    },
+    {
+     "file": "content/base/persons/unit-07.json",
+     "line": 3,
+     "field": "name",
+     "quote": "七號機魂"
+    }
+   ],
+   "judgment": "唯一明示lore→person主名不同候選；lore aka已含base名且gameRefs明確對應同一人，不是第二個七號。",
+   "next_step": "保留，無需去重。"
+  },
+  {
+   "id": "N03",
+   "status": "正常稱謂",
+   "priority": "P3",
+   "topic": "兩個「會長」",
+   "evidence": [
+    {
+     "file": "content/lore/characters/eugenia-ferrero.json",
+     "line": 4,
+     "field": "aka",
+     "quote": "會長"
+    },
+    {
+     "file": "content/lore/characters/park-incheol.json",
+     "line": 4,
+     "field": "aka",
+     "quote": "會長"
+    }
+   ],
+   "judgment": "費雷羅與朴仁哲分屬不同組織；通用職稱不是同名人物。單一not-yet檔內「還沒」正規化重複只屬同檔別名，不算跨檔候選。",
+   "next_step": "保留；查稱謂時附組織。"
+  },
+  {
+   "id": "R01",
+   "status": "既修復／不重報",
+   "priority": "P3",
+   "topic": "舊report線索不直接沿用",
+   "evidence": [
+    {
+     "file": "content/lore/characters/fatima-begum.json",
+     "line": 12,
+     "field": "body",
+     "quote": "崩年後，公會開始排守牆班。二一〇一年，她四十五歲，接手的已是一個守城的公會。"
+    },
+    {
+     "file": "content/lore/characters/unit-07.json",
+     "line": 14,
+     "field": "body",
+     "quote": "老爹在 2101 年就已登錄；七號則是第一個被認為有自己意志的機魂。"
+    }
+   ],
+   "judgment": "fill-rulings列明lead-tone-fix已修八項矛盾；現人物檔法蒂瑪接手時點與機魂首登錄區分已有明文。未將舊review-guide八題照抄成新未解清單；P01另經目前檔核實。",
+   "next_step": "沿用現檔與fill-rulings；其他跨領域舊題交統籌報告核定，不重開。"
+  }
+ ]
+}

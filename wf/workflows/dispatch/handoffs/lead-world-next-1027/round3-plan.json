@@ -1,0 +1,1428 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan-r3-REPORT.md",
+ "extracted": "2026-10-27",
+ "baseHead": "f24420b079a59a7f8e93123930665aaa824f9d00",
+ "status": "ready-for-lead-review",
+ "pathBase": "repo root (file/targetFiles/fullTextRead)，不是 link_columns",
+ "scope": "規劃機甲3＋怪獸3；總18新內容檔；本檔並非內容驗收",
+ "link_columns": [],
+ "dedupMethod": "先解析主樹全frames/species（含wl-*）的骨架、配裝與能力組合縮候選，再讀最近全文及所用骨架/部件/能力/效果。round3-signatures定向查六個最近species作定位；未拿含ID指紋當功能去重證明。",
+ "naming": "Pin Fan→帶針的扇面→針扇；Turning Foam→甩轉噴沫→旋沫；Trailing Sail→垂足偏帆→垂帆；機甲英文原名與中文同列，皆提案名。",
+ "readRules": [
+  {
+   "file": "AGENTS.md",
+   "read": "全文",
+   "sha256": "2e3e38c4f6e33528a6a17b8f79a470c4c1179995422f0f3cd4b5a4a8c2c77d9b"
+  },
+  {
+   "file": "wf/WORKFLOWS.md",
+   "read": "全文",
+   "sha256": "446a8d1ce133e329ba3aab2e84a99ef8c47a94379f3a1df5bda54b04f519338c"
+  },
+  {
+   "file": "wf/SESSION-LOG.md",
+   "read": "全文",
+   "sha256": "bc750d8051ce3bc85d68e4394db9b8bde34e731b76b0522a0b53114b85891500"
+  },
+  {
+   "file": "wf/WAIT_USER.md",
+   "read": "全文",
+   "sha256": "16f719163c449c9fbff56a0e128e4c494914f7e87c99be0b71391204982a70ed"
+  },
+  {
+   "file": "wf/workflows/common/user.md",
+   "read": "全文",
+   "sha256": "ad2df100b0421642f4f8250039a7e9db1cca87498c68a31270954d37ebf62175"
+  },
+  {
+   "file": "wf/workflows/common/data-files.md",
+   "read": "全文",
+   "sha256": "199d4fb6d4d082016eeefe5bed083b6c94aaedbf8a7c14600a7086bfb15a73bb"
+  },
+  {
+   "file": "wf/workflows/team-model.md",
+   "read": "全文",
+   "sha256": "a9a2393c8f8d2835a67fabef5a695279af2e6d4bd0f0b2abaa087dc35e9be5f7"
+  },
+  {
+   "file": "wf/workflows/dispatch/README.md",
+   "read": "全文",
+   "sha256": "f5243cfe55e91c743150efe90b8ba07386aa92f93d099ffea821043d69ea4925"
+  },
+  {
+   "file": "wf/workflows/dispatch/content-batch.md",
+   "read": "全文",
+   "sha256": "02203457fc0d2935d1a579a76e598f63ebbdae012d050ed83c9d7b13fedc8695"
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/wn-plan-r3-1027.md",
+   "read": "全文",
+   "sha256": "06fe30c1a0e5128668cd53a4602828f8f1cc478babcb682bd894f8dd86d2fc3d"
+  },
+  {
+   "file": "wf/workflows/content/README.md",
+   "read": "全文",
+   "sha256": "8be1ed31b461f8d8ca670c52a2186e8ba01e948cfe3895b4c80f6a7cf3ac813f"
+  },
+  {
+   "file": "wf/workflows/content/batch.md",
+   "read": "全文",
+   "sha256": "6128df9d493e80da3504e744c390db07e652dab25768d5024b86cef959e38ef4"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars.md",
+   "read": "全文",
+   "sha256": "1138ac230ca3405175ac433e82e51b1f14cdec9e4b043ad236e6f1d3d05de077"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs.md",
+   "read": "全文",
+   "sha256": "e2bae81e3be36bb29376bacf1523d28526690a416c0d8fdfd60aa9b0e3784eb5"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/mechanical.md",
+   "read": "全文",
+   "sha256": "43a443197d58fcb28c8fffb43c4a8e7da9b1920e7c17270844d6832f03dc5522"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/bonds.md",
+   "read": "全文",
+   "sha256": "c09859ffdeb72fed260fa0c09317aa5631bc0959a9dc927b8d35d46f271dbd46"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/bio-battle.md",
+   "read": "全文",
+   "sha256": "438501bd0c301176b2414b0d8d7d1b977f7406d01e375fcd37f7f0088531cbc4"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/bio-battle/bio.md",
+   "read": "全文",
+   "sha256": "623fcdccf0d3498228555beb93def71ccf303a46abc43a89f447193efec0f333"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/bio-battle/battle.md",
+   "read": "全文",
+   "sha256": "7b0b0c8d632a3edd46932851378c8ffdc20beeb4d73d872d33848c555c80546d"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world.md",
+   "read": "全文",
+   "sha256": "f91f4a46ac832e0c5c0434e0a1c36a4a39d4ab718de4149132723f6a006361e3"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/tone-and-rules.md",
+   "read": "全文",
+   "sha256": "db27acb6ae4045c33236b63f1914dc7f536be82546901429738c624c6ce19b2a"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/monsters.md",
+   "read": "全文",
+   "sha256": "8fa819161269f91565493ea475d02fd15774afe5f2d7e3cb163dc86af287e84d"
+  },
+  {
+   "file": "wf/workflows/content/mechs.md",
+   "read": "全文",
+   "sha256": "eb8bed39934eb738627957515bf83ba79eefbeacd6596d0eb16ddb39987d3d2b"
+  },
+  {
+   "file": "wf/workflows/content/bio-monsters.md",
+   "read": "全文",
+   "sha256": "520f94d4ed1cb34941279871e296ddce0d20c87627318b10fa1ca637a7107180"
+  },
+  {
+   "file": "wf/workflows/content/abilities-effects.md",
+   "read": "全文",
+   "sha256": "b371b17f6960070826103c9fd45dd364ef2d942a2e217a7b881fbf2f1621ed96"
+  },
+  {
+   "file": "wf/workflows/content/numeric-bands.md",
+   "read": "全文",
+   "sha256": "21e196c387c69e92efc93706308e57d1eacee9daec562445914c4c7db789c018"
+  },
+  {
+   "file": "wf/workflows/content/polish.md",
+   "read": "全文",
+   "sha256": "1bb83f3aa809fabde38802c20b41b31740804d883aa546c562014e98a001772d"
+  },
+  {
+   "file": "content/lore/style.md",
+   "read": "全文",
+   "sha256": "be73c2893717e6fe4f9e0fcd5a5791324b1c85cd600117931ce9248b8152342c"
+  }
+ ],
+ "tableQueries": [
+  {
+   "file": "wf/workflows/content/templates.json",
+   "selection": "衍型機與怪獸範本列（grep）"
+  },
+  {
+   "file": "wf/workflows/content/numeric-bands.json",
+   "selection": "衍型機0–5、怪獸12–15、生物16與傷害/AP6–8（slice/grep）"
+  },
+  {
+   "file": "wf/workflows/content/engine-facts.json",
+   "selection": "EF-01至EF-16、EF-20/21定向grep；以實際同級HEAD資料補足過時敘述，不改規矩"
+  },
+  {
+   "file": "wf/workflows/content/ability-forms.json",
+   "selection": "範圍攻擊、控制、逃脫、拘束"
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3-signatures.json",
+   "selection": "grit-fan/brinepin/split-fin/foam-jaw/hollow-sail/breakwater-clinger六列，Python tabledb load後定向投影；僅定位來源"
+  }
+ ],
+ "verification": {
+  "adoptMechs": 3,
+  "adoptMonsters": 3,
+  "rejects": 0,
+  "contentFiles": 18,
+  "mechFiles": 6,
+  "monsterFiles": 12,
+  "mass": [
+   9,
+   8,
+   12
+  ],
+  "slots": "槽id、type與size逐件符合所選骨架",
+  "capture": "三種都有core/restraint/cockpit/pilot及對應locomotion；三個骨架均無regen，屍改可沿用",
+  "head": "所有實作範本、骨架、部件、能力與AI profile可在baseHead取得；最近全文wl-*僅查重",
+  "integration": "未執行",
+  "balance": "未執行",
+  "aiRuntime": "未執行"
+ },
+ "postPlanningProseReviews": [
+  {
+   "category": "mechs",
+   "authority": "主線正文抽查",
+   "decision": "revise-prose",
+   "evidence": "round3-mech-rejected-prose.json",
+   "requirements": "至少2篇、同燈必改；三篇遇獸護工撤船撞wl-*。配裝不改。"
+  },
+  {
+   "category": "monsters",
+   "authority": "主線正文抽查",
+   "decision": "revise-prose",
+   "evidence": "round3-monster-rejected-prose.json",
+   "requirements": "至少2篇、垂帆必改；三篇岸邊發現試招捕獲說明同構；垂帆撞wl-slant-veil完整意象。配套不改。"
+  }
+ ],
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "nameEn",
+  "targetFiles",
+  "concept",
+  "role",
+  "template",
+  "grade",
+  "bodyplan",
+  "loadout",
+  "abilities",
+  "companionFiles",
+  "nearestExisting",
+  "similarCandidates",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "fullTextRead",
+  "writingConstraints",
+  "legality",
+  "planCorrections"
+ ],
+ "rows": [
+  {
+   "category": "mech",
+   "id": "wn-r3-anvil-fan",
+   "name": "鐵砧-II型・開扇",
+   "nameEn": "Anvil Fan II",
+   "targetFiles": [
+    "content/base/frames/wn-r3-anvil-fan.json",
+    "content/base/world/models/wn-r3-anvil-fan.json"
+   ],
+   "concept": "近距扇面清開並列小獸，單體熱鋸處理貼身目標；四足前肢同時負擔武器與行走。",
+   "role": "近距範圍壓制／熱鋸單體；沒有拘束或護友。",
+   "template": {
+    "frame": "content/base/frames/anvil-trestle-ii.json",
+    "model": "content/base/world/models/anvil-trestle-ii.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "C",
+   "bodyplan": "bodyplan/m2-quadruped-c",
+   "loadout": {
+    "left-weapon": "component/fw-fan-tube",
+    "right-weapon": "component/mx-molten-saw",
+    "system-1": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle"
+   },
+   "abilities": [
+    "ability/mx-frame-strike"
+   ],
+   "companionFiles": [
+    "content/base/world/models/wn-r3-anvil-fan.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/anvil-hoist-ii",
+    "file": "content/base/frames/anvil-hoist-ii.json",
+    "comparison": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+   },
+   "similarCandidates": [
+    {
+     "id": "frame/anvil-hoist-ii",
+     "file": "content/base/frames/anvil-hoist-ii.json",
+     "comparison": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+    },
+    {
+     "id": "frame/anvil-trestle-ii",
+     "file": "content/base/frames/anvil-trestle-ii.json",
+     "comparison": "同四足斷臂 C 架；原為有限樁楔＋鳴刃的單體近戰。本列捨棄重樁穿甲與離身反擊，改扇形範圍＋thermal 單體。"
+    },
+    {
+     "id": "frame/wl-anvil-cable",
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "comparison": "同血統 C 級；雙足樁刃、爆甲背翼，仍是單體破甲與脫離。本列無背翼爆甲，增加方向性掃面。"
+    },
+    {
+     "id": "frame/tidefaith-censer-iv",
+     "file": "content/base/frames/tidefaith-censer-iv.json",
+     "comparison": "B 六足雙火器範圍燃燒；本列 C 四足且僅一把 energy 扇面，另一把是貼身單體熱鋸，不是雙火器複刻。"
+    }
+   ],
+   "similarity": "同級鐵砧工程／破口機接近，但攻擊目標形態、傷害型及失去的控制手段均不同。",
+   "substantiveDifference": "把 C 級鐵砧的單體樁刃或拘束鋸改成 cone energy＋unit thermal；以射程僅 3、扇招冷卻 2 和無盾陣交換多目標能力。",
+   "decision": "adopt",
+   "reason": "現有同級骨架與部件可承載，具明確能力形態／資源／距離交換；交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/anvil-trestle-ii.json",
+     "sha256": "bf69b02b303442746d0ccf2a2df4691c6f08de1607c7dbb8bfc3f11fa430997d",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同四足斷臂 C 架；原為有限樁楔＋鳴刃的單體近戰。本列捨棄重樁穿甲與離身反擊，改扇形範圍＋thermal 單體。"
+    },
+    {
+     "file": "content/base/world/models/anvil-trestle-ii.json",
+     "sha256": "23606d1145fe365493b1c2100e37f74defb232435e6878f06bf4864fd1192d6f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/m2-quadruped-c.json",
+     "sha256": "cabfb8f177ead3dc82c1316dc2ede997a83f3307846d7c80963d8072d4d3bc8e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核 core/pilot seat、slot type/size 與結構層"
+    },
+    {
+     "file": "content/base/frames/anvil-hoist-ii.json",
+     "sha256": "8f918ff209bb0addfc2f38f9a2f28ee9ecce0c982b54f03ce58959fd66afc32e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同血統 C 級；雙足樁刃、爆甲背翼，仍是單體破甲與脫離。本列無背翼爆甲，增加方向性掃面。"
+    },
+    {
+     "file": "content/base/frames/tidefaith-censer-iv.json",
+     "sha256": "09f43e75f52c157056d2aa942d892ec1ead55b8e876117ef1749706e83ea943b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "B 六足雙火器範圍燃燒；本列 C 四足且僅一把 energy 扇面，另一把是貼身單體熱鋸，不是雙火器複刻。"
+    },
+    {
+     "file": "content/base/components/fw-fan-tube.json",
+     "sha256": "d6197d4f09babd99fc38de681ba7ffb9383d4ec86453babd3d04fd6ff11d65a7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fw-fan-tube-use.json",
+     "sha256": "2bff2de942223df4c11b2dbf01c3733d9c6768abe5d871c8fca033c7f6a053d7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-molten-saw.json",
+     "sha256": "f69bec618249df2802300e6ad64ed851b67c09b6451f6113c7bee3bacc124e92",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-molten-cut.json",
+     "sha256": "40a8c7381a52938e58e577de2fafee97ab96014378b1160735a7af16f589bfb9",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-frame-strike.json",
+     "sha256": "beafbf8fa04f8762aa60cbb5433f3d7bb3b9364be8221e79fd5126adf3c9e285",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "保留既有內建能力，成本與池相容"
+    },
+    {
+     "file": "content/base/world/lineages/broken-arm.json",
+     "sha256": "43564eaccda58cb0f321f2920abfe36db7bbbf57a971c1832659d4a96f4eace3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    }
+   ],
+   "writingConstraints": [
+    "只產 frame 與 world/model，各一檔；不新增能力、部件、骨架或示例情境。",
+    "nameEn 保留英文原名；中文為提案名；敘事只寫既有 etymology 欄，保持計畫中的戰場取捨，不編入新機制。",
+    "有 pilot 座與軀幹 core；護艙隔板是附加防護，不等於機甲核心。沿同級 frame 的核心／座艙表達，不新增 soul 人物，不宣稱無人可用招式。",
+    "只引用 HEAD 既有 ID 與本列配套；wl-* 僅供查重。數值待全批統調，本文不聲稱平衡或整合已驗。",
+    "沿既有 C 四足七部位，不新增骨架；110 燼沿同級範本，非額外強化。"
+   ],
+   "legality": {
+    "mass": 9,
+    "limit": 9,
+    "heat": "沿模板 heat 110/-12；霜鰭再 -8。扇招 4AP/+16燼、鋸 4AP/+18燼，合 8AP/+34燼 < 66；鐵拳 3AP/+8燼。",
+    "attrs": "initiative 5/perception 5/accuracy 2；保留其餘模板值。",
+    "model": "lineage/broken-arm；maker faction/anvil-hunters；requires model/anvil-trestle-ii；tier C/cost15/month5/restricted/generic false；series broken-arm、mark2、role variant；tags series-anvil。",
+    "exception": "沿既有 C 四足七部位，不新增骨架；110 燼沿同級範本，非額外強化。"
+   }
+  },
+  {
+   "category": "mech",
+   "id": "wn-r3-needlefish-stay",
+   "name": "針魚-II型・留潮",
+   "nameEn": "Needlefish Stayline II",
+   "targetFiles": [
+    "content/base/frames/wn-r3-needlefish-stay.json",
+    "content/base/world/models/wn-r3-needlefish-stay.json"
+   ],
+   "concept": "浮行架逼近後反覆拋索留獸，鳴刃負責自衛及離身反擊；捨棄遠距束矢與標定。",
+   "role": "無矢池近距拘束／接敵留置。",
+   "template": {
+    "frame": "content/base/frames/thirdblade-needlefish-ii.json",
+    "model": "content/base/world/models/thirdblade-needlefish-ii.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "C",
+   "bodyplan": "bodyplan/mx-hover-c",
+   "loadout": {
+    "left-weapon": "component/fw-stayline",
+    "right-weapon": "component/mx-singing-blade",
+    "system-1": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle"
+   },
+   "abilities": [],
+   "companionFiles": [
+    "content/base/world/models/wn-r3-needlefish-stay.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/shellsoc-tripod-c",
+    "file": "content/base/frames/shellsoc-tripod-c.json",
+    "comparison": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+   },
+   "similarCandidates": [
+    {
+     "id": "frame/shellsoc-tripod-c",
+     "file": "content/base/frames/shellsoc-tripod-c.json",
+     "comparison": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+    },
+    {
+     "id": "frame/thirdblade-needlefish-ii",
+     "file": "content/base/frames/thirdblade-needlefish-ii.json",
+     "comparison": "同級同骨架；原針魚為曲射矢筒＋鳴鰭＋千目＋躍潮，偏遠距標定。本列換成持續拘束與近戰，沒有千目或躍潮增益。"
+    },
+    {
+     "id": "frame/wl-swordfish-return",
+     "file": "content/base/frames/wl-swordfish-return.json",
+     "comparison": "同骨架近戰第三刃改型；回舷用連吼接雙刃、背翼避讓。本列無射程6火力及背翼，保留對方無法持續的無矢池留置。"
+    }
+   ],
+   "similarity": "與定盤共享拘束目的，與針魚／回舷共享 C 級浮行線；差異在接戰距離及續航成本。",
+   "substantiveDifference": "既有定盤以三發遠距矢保距離；本列以燼換無限次數的射程2拘束，承受近戰風險。鳴刃離身反應只在 enemyLeavesAdjacent，不能寫成受擊反擊或拖拉敵人。",
+   "decision": "adopt",
+   "reason": "現有同級骨架與部件可承載，具明確能力形態／資源／距離交換；交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/thirdblade-needlefish-ii.json",
+     "sha256": "9f9bf5a9349517ba865fe6ba97945372c2be4c6b541ce01551be9466b7af6e20",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級同骨架；原針魚為曲射矢筒＋鳴鰭＋千目＋躍潮，偏遠距標定。本列換成持續拘束與近戰，沒有千目或躍潮增益。"
+    },
+    {
+     "file": "content/base/world/models/thirdblade-needlefish-ii.json",
+     "sha256": "ec22039a127455aaf195d76c11b60b5c7a64733fbca5d3d9dbe441d0cdd9a82b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/mx-hover-c.json",
+     "sha256": "4cd05733871c5fcc27bc5e8f3a652c13c7e93e424fc975a49f36cf4dc21063b7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核 core/pilot seat、slot type/size 與結構層"
+    },
+    {
+     "file": "content/base/frames/shellsoc-tripod-c.json",
+     "sha256": "c67d7a4681bf04ff4edce154088ba4e7ce742c87728ca725ae0bf11d92c2dee3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+    },
+    {
+     "file": "content/base/frames/wl-swordfish-return.json",
+     "sha256": "6cace0fe87e406cb13b249bd774ebce802609c970e195d4fc7f27d330ff50c9e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同骨架近戰第三刃改型；回舷用連吼接雙刃、背翼避讓。本列無射程6火力及背翼，保留對方無法持續的無矢池留置。"
+    },
+    {
+     "file": "content/base/components/fw-stayline.json",
+     "sha256": "8054308931336367b16e23991987653274a2eae1f4c5b4d70b4756aafca89afb",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fw-stayline-use.json",
+     "sha256": "aa3b4c31ed45aad92ea883a35973148eda5594baf1d6f056338fd40d80253536",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-singing-blade.json",
+     "sha256": "bf947c3ef56405776aae3a620dbb61697f6f817d9964c4caf61472a79e2a9e1b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-slash.json",
+     "sha256": "d60708a8eabd3fffe0004214dc0a0d5f3c9d492b3cb07e80189f7862d7682a8a",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-riposte.json",
+     "sha256": "730e56e232fa1f1962b50cab6f71ffb305957953be76218df7f1f92ac98892a7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/world/lineages/tide-fin.json",
+     "sha256": "9f64b0e26b4bf9930b3201edb658bac2ca9ce2f1f1c5577198626e0145d8c232",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    },
+    {
+     "file": "content/base/effects/mx-netted.json",
+     "sha256": "d8127e0912412f25e99afbfebe7ea49312586f8ea7b956098cd5b01b93503159",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "mech兩回合縛網，evasion-15，immobilized/restraint tags"
+    }
+   ],
+   "writingConstraints": [
+    "只產 frame 與 world/model，各一檔；不新增能力、部件、骨架或示例情境。",
+    "nameEn 保留英文原名；中文為提案名；敘事只寫既有 etymology 欄，保持計畫中的戰場取捨，不編入新機制。",
+    "有 pilot 座與軀幹 core；護艙隔板是附加防護，不等於機甲核心。沿同級 frame 的核心／座艙表達，不新增 soul 人物，不宣稱無人可用招式。",
+    "只引用 HEAD 既有 ID 與本列配套；wl-* 僅供查重。數值待全批統調，本文不聲稱平衡或整合已驗。",
+    "停步索沿既有學會授權製索來源作採購掛件，不另立血統或新授權事件。拘束仍有4傷，不能寫成安全無傷活捕。"
+   ],
+   "legality": {
+    "mass": 8,
+    "limit": 9,
+    "heat": "沿針魚 heat100/-15，霜鰭再 -8。拋索3AP/+8燼、鳴刃3AP/+10燼；滿9AP至多30燼，另離身反應+6仍 <60。",
+    "attrs": "沿針魚 initiative7/perception5/evasion0。",
+    "model": "lineage/tide-fin；maker faction/third-blade；requires model/thirdblade-needlefish-ii；tier C/cost15/month5/restricted/generic false；series 針魚、mark2、role variant；tags series-needlefish、hover。",
+    "exception": "停步索沿既有學會授權製索來源作採購掛件，不另立血統或新授權事件。拘束仍有4傷，不能寫成安全無傷活捕。"
+   }
+  },
+  {
+   "category": "mech",
+   "id": "wn-r3-surveyor-bearer",
+   "name": "測墟-B・同燈",
+   "nameEn": "Surveyor Shared Lantern B",
+   "targetFiles": [
+    "content/base/frames/wn-r3-surveyor-bearer.json",
+    "content/base/world/models/wn-r3-surveyor-bearer.json"
+   ],
+   "concept": "六足護勘機把報點交給單一隊友，或以煙護降低隊友受擊機率；兩種照應耗自己的出手時間且各只兩次。",
+   "role": "單友命中支援／有限次煙護，雙流光武器自衛。",
+   "template": {
+    "frame": "content/base/frames/shellsoc-archive-b.json",
+    "model": "content/base/world/models/shellsoc-archive-b.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "B",
+   "bodyplan": "bodyplan/m2-hexapod-b",
+   "loadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/mx-thunder-serpent",
+    "sensor-mount": "component/fa-shared-bearing",
+    "back-1": "component/fa-escort-lantern",
+    "cockpit": "component/oa-cockpit-baffle"
+   },
+   "abilities": [],
+   "companionFiles": [
+    "content/base/world/models/wn-r3-surveyor-bearer.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/cn-yoke-i",
+    "file": "content/base/frames/cn-yoke-i.json",
+    "comparison": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+   },
+   "similarCandidates": [
+    {
+     "id": "frame/cn-yoke-i",
+     "file": "content/base/frames/cn-yoke-i.json",
+     "comparison": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+    },
+    {
+     "id": "frame/shellsoc-archive-b",
+     "file": "content/base/frames/shellsoc-archive-b.json",
+     "comparison": "同血統 B 六足；拓影用干擾、標記、自煙與冷泉。本列沒有敵方標記或自煙能力，兩件支援給 friendly only 目標且各限兩次。"
+    },
+    {
+     "id": "frame/nairobi-shepherd",
+     "file": "content/base/frames/nairobi-shepherd.json",
+     "comparison": "同B蛇鞭支援；牧者雙足、內建盾陣和護壁。本列六足、無護壁，輸出改雙流光競用charge。"
+    },
+    {
+     "id": "frame/wl-surveyor-trace",
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "comparison": "同測墟B支系；拾痕雙足千目標敵＋雙槍與古代冕環。本列六足、不用古代件，報點直接增益友機；放棄共鳴光幕與自煙。"
+    }
+   ],
+   "similarity": "都在護勘／友方支援群；最接近衡梁，但效果目標、效果代價與資源競爭不同。",
+   "substantiveDifference": "同準與煙護不能當無條件全隊增益：一次一人、各3AP/冷卻3/限2次；煙護降低目標命中。雙武器共用charge60/regen10，不能像實矢＋扶架組合長時間兼顧輸出與排燼。",
+   "decision": "adopt",
+   "reason": "現有同級骨架與部件可承載，具明確能力形態／資源／距離交換；交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/shellsoc-archive-b.json",
+     "sha256": "86bc0557baaad86d693f108813e1a9e3808662ffe1eedbc7a0ea8071a1532434",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同血統 B 六足；拓影用干擾、標記、自煙與冷泉。本列沒有敵方標記或自煙能力，兩件支援給 friendly only 目標且各限兩次。"
+    },
+    {
+     "file": "content/base/world/models/shellsoc-archive-b.json",
+     "sha256": "5b1878d75a3fe152d15c75ac4f949e7cc9ef1ec085d5e5df0f3b3fbf46bcdc68",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級 model、血統與前代格式"
+    },
+    {
+     "file": "content/base/bodyplans/m2-hexapod-b.json",
+     "sha256": "559404531fbd764b6ef97ae0355603684bc6d72e67e303a47de9933c81265f38",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核 core/pilot seat、slot type/size 與結構層"
+    },
+    {
+     "file": "content/base/frames/cn-yoke-i.json",
+     "sha256": "e2f5773c16674f2ead175e28de4337f5a679b25eced62e56b031c308ddb3648c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+    },
+    {
+     "file": "content/base/frames/nairobi-shepherd.json",
+     "sha256": "11cefcf419f9d3ae58c888f8b12456359ce6d9792dbe3f5d84a66d82dcfb3008",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同B蛇鞭支援；牧者雙足、內建盾陣和護壁。本列六足、無護壁，輸出改雙流光競用charge。"
+    },
+    {
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同測墟B支系；拾痕雙足千目標敵＋雙槍與古代冕環。本列六足、不用古代件，報點直接增益友機；放棄共鳴光幕與自煙。"
+    },
+    {
+     "file": "content/base/components/mx-radiant-rifle.json",
+     "sha256": "ac25d5f351413fc4222b46fd98c9d1e29e62fb69a8863a7b388df971b736a60b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-radiant-shot.json",
+     "sha256": "01ea0b49efa4ddf8357194b86bd3c78f5bc4b696feaf3a3e83028eb70cc855de",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/mx-thunder-serpent.json",
+     "sha256": "42b30ea4bf5c3e16525ec33c7006d5765157970436d37118cce8cb9ba95739f2",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/mx-serpent-lash.json",
+     "sha256": "5d7ca27f03dabb2036104730f32704b792e5cd0fa319af519149d0bf00487987",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/fa-shared-bearing.json",
+     "sha256": "8bd941c57d61355e8e7ed96a65d245e589d7719ca545d80cd898da77f7628224",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fa-lend-bearing.json",
+     "sha256": "633d46dd303bee6ffa6814084227367773a5724ed9d2a50a821f5288403b03c4",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/fa-escort-lantern.json",
+     "sha256": "c02a1604e47382f576adaeed659a257b27a220447c3604e8bbb5cd3a3cf1af36",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/abilities/fa-cover-companion.json",
+     "sha256": "f0369dec15648b25424107ed5fac2610e4bc7fe22ed689de43085f93d970a0df",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核target、costs、produces、AI鍵與限制"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核槽型、size、mass、能力與池；用於本列固定配裝"
+    },
+    {
+     "file": "content/base/world/lineages/many-eyes.json",
+     "sha256": "eee47e65f089a47ed72e7c8fce6efbb4978302fe209c63ed7bf4b75c5f1f1220",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "血統輪廓與持有者沿既有資料；不修訂舊設定"
+    },
+    {
+     "file": "content/base/effects/fa-aligned.json",
+     "sha256": "345c0cf548a3314a3c9c930e31d49eb73364ce1b6826ec085d400181c69525e8",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "單友命中+8、感知+3、一回合"
+    },
+    {
+     "file": "content/base/effects/fa-escorted.json",
+     "sha256": "c66748ec18c2ac2821b5390e1ac60c81966e8da977954cd2784313cabe5dab43",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "閃避+10、命中-5、兩回合"
+    }
+   ],
+   "writingConstraints": [
+    "只產 frame 與 world/model，各一檔；不新增能力、部件、骨架或示例情境。",
+    "nameEn 保留英文原名；中文為提案名；敘事只寫既有 etymology 欄，保持計畫中的戰場取捨，不編入新機制。",
+    "有 pilot 座與軀幹 core；護艙隔板是附加防護，不等於機甲核心。沿同級 frame 的核心／座艙表達，不新增 soul 人物，不宣稱無人可用招式。",
+    "只引用 HEAD 既有 ID 與本列配套；wl-* 僅供查重。數值待全批統調，本文不聲稱平衡或整合已驗。",
+    "為 mass12 不再加霜鰭、魂核或鎧甲；有人座艙與 core 已在骨架，護艙隔板附加25HP。沿既有 B 九部位骨架；不宣稱精密協同自動 AI 或傳送視野。"
+   ],
+   "legality": {
+    "mass": 12,
+    "limit": 12,
+    "heat": "沿拓影 heat100/-15、charge60/initial60/regen10。光矢3AP/charge15/+15燼，蛇鞭3AP/charge10/+10燼；9AP全射光矢45燼 <60。支援僅AP。",
+    "attrs": "initiative6/perception7；其餘沿模板，perception由模板8回到B建議範圍。",
+    "model": "lineage/many-eyes；maker faction/shell-society；requires model/shellsoc-archive-b；tier B/cost40/month5/restricted/generic false；series 測墟、mark1、role variant；tags series-surveyor、burrow 沿模板。",
+    "exception": "為 mass12 不再加霜鰭、魂核或鎧甲；有人座艙與 core 已在骨架，護艙隔板附加25HP。沿既有 B 九部位骨架；不宣稱精密協同自動 AI 或傳送視野。"
+   }
+  },
+  {
+   "category": "monster",
+   "id": "wn-r3-pin-fan",
+   "name": "針扇",
+   "nameEn": "Pin Fan",
+   "targetFiles": [
+    "content/base/species/wn-r3-pin-fan.json",
+    "content/base/monsters/wn-r3-pin-fan-d.json",
+    "content/base/frames/wn-r3-bio-pin-fan.json",
+    "content/base/frames/wn-r3-corpse-pin-fan.json"
+   ],
+   "concept": "扁足扇腹蟲在窄面掃砂與單體飛針之間選招；只有6AP，必須分配追近與射擊。",
+   "role": "短距單體／定向掃面二選一的低AP蟲獸。",
+   "template": {
+    "species": "content/base/species/grit-fan.json",
+    "monster": "content/base/monsters/grit-fan-d.json",
+    "bio": "content/base/frames/bio-grit-fan.json",
+    "corpse": "content/base/frames/corpse-grit-fan.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "D",
+   "bodyplan": "bodyplan/insect-grit-fan",
+   "loadout": {},
+   "abilities": [
+    "ability/kx-brinepin-prick",
+    "ability/kx-grit-fan-scatter"
+   ],
+   "companionFiles": [
+    "content/base/monsters/wn-r3-pin-fan-d.json",
+    "content/base/frames/wn-r3-bio-pin-fan.json",
+    "content/base/frames/wn-r3-corpse-pin-fan.json"
+   ],
+   "nearestExisting": {
+    "id": "species/grit-fan",
+    "file": "content/base/species/grit-fan.json",
+    "comparison": "同骨架120HP三部位；原僅射程1–2 cone kinetic5/2AP/CD1。本列加射程1–3 unit pierce8/2AP，新增對散開目標的單體選擇；仍維持6AP，並改用既有tactical profile使兩種target都有候選。"
+   },
+   "similarCandidates": [
+    {
+     "id": "species/grit-fan",
+     "file": "content/base/species/grit-fan.json",
+     "comparison": "同骨架120HP三部位；原僅射程1–2 cone kinetic5/2AP/CD1。本列加射程1–3 unit pierce8/2AP，新增對散開目標的單體選擇；仍維持6AP，並改用既有tactical profile使兩種target都有候選。"
+    },
+    {
+     "id": "species/brinepin",
+     "file": "content/base/species/brinepin.json",
+     "comparison": "同D蟲族單體飛針；原9AP、尾針破損效果、腹心exposure1。本列6AP、扇腹core exposure2、扇葉weaponMount，新增近距cone；捨棄單體連射餘裕與尾針結構。"
+    },
+    {
+     "id": "species/breaksurf",
+     "file": "content/base/species/breaksurf.json",
+     "comparison": "跨族但同D且也有單體＋範圍攻擊，必須比較：礁背是貼身unit1＋ball1/radius1雙kinetic、180HP四部位、core exposure0.5、swarm。本列unit3＋cone2、pierce/kinetic混合、120HP三部位、core exposure2、tactical；以易被擊核和少AP換較遠的單體接敵線。"
+    },
+    {
+     "id": "species/spitter",
+     "file": "content/base/species/spitter.json",
+     "comparison": "C吐棘者是unit2–7＋ball2–6遠距範圍且有貼身死角；本列D近距cone不是降數值重出，射程1仍能出招但核暴露。"
+    }
+   ],
+   "similarity": "最接近砂扇的形體與鹽針的飛針；跨族礁背也有兩種目標形態，因此不能只看能力ID不同。",
+   "substantiveDifference": "骨架仍是砂扇，真正新增的是單體pierce／近距cone的選擇；相對鹽針少3AP且腹核更暴露，相對礁背從貼身球面改成有方向的短距扇面。不得把此差異寫成單純更強的砂扇。",
+   "decision": "adopt",
+   "reason": "同級既有骨架與純AP能力可以配成不同戰場選擇；無新增規則，交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/species/grit-fan.json",
+     "sha256": "491f2565a492510dd8bab6bf1d18575df9c2371e9441329bd5ef34a0d95b99f1",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同骨架120HP三部位；原僅射程1–2 cone kinetic5/2AP/CD1。本列加射程1–3 unit pierce8/2AP，新增對散開目標的單體選擇；仍維持6AP，並改用既有tactical profile使兩種target都有候選。"
+    },
+    {
+     "file": "content/base/monsters/grit-fan-d.json",
+     "sha256": "fbac49aff00369bac3a4495f7d837330f1567c8d57b6b3d5fb59e16df4b63d5f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/frames/bio-grit-fan.json",
+     "sha256": "95599777e5bfdf37942fd6d48b4b6c2c511e30f7e6cea234edd4ce169cd6f7d3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/frames/corpse-grit-fan.json",
+     "sha256": "322504d5563371adf7a57aad8998066d0470d44a206a3097d6749cf5f16d1a86",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/bodyplans/insect-grit-fan.json",
+     "sha256": "1d377b2d97afb8ab2d0c6312eff3ac7e932cd4c839c59d00f1c2d6807689dc2a",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "完整核部位、層、HP、core、捕捉functions與座槽；heart：chitin10/flesh20/organ20，exposure2，末層structural；restraint size2/cockpit size1/pilot座。"
+    },
+    {
+     "file": "content/base/aiprofiles/reaper-vanguard.json",
+     "sha256": "778ad6364823004d24cf72cfb5cf32766ae02e2b8ca0a901cac252aa36f8f8b4",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "aiprofile/reaper-vanguard tactical；attack與attackArea由兩招現有tactics給值。不寫成軍隊陣形或必定先掃再射。"
+    },
+    {
+     "file": "content/base/abilities/restrain.json",
+     "sha256": "3e9456b6fc9456517de4fbdc0863b75eeadc98ce8620141cd73ef31d9cc2c02f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "既有capture能力，species.capture沿用；不把netted或絆足直接當捕獲。"
+    },
+    {
+     "file": "content/base/species/brinepin.json",
+     "sha256": "b3f3d8a3adace3c74a62de85c79b2ef27096dcb8acf80f3afc7c7194ef1aa815",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同D蟲族單體飛針；原9AP、尾針破損效果、腹心exposure1。本列6AP、扇腹core exposure2、扇葉weaponMount，新增近距cone；捨棄單體連射餘裕與尾針結構。"
+    },
+    {
+     "file": "content/base/species/breaksurf.json",
+     "sha256": "4aa1a06465a58726bd533044a0fd79d45da13fa7da31fcf7853775fabe179695",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "跨族但同D且也有單體＋範圍攻擊，必須比較：礁背是貼身unit1＋ball1/radius1雙kinetic、180HP四部位、core exposure0.5、swarm。本列unit3＋cone2、pierce/kinetic混合、120HP三部位、core exposure2、tactical；以易被擊核和少AP換較遠的單體接敵線。"
+    },
+    {
+     "file": "content/base/species/spitter.json",
+     "sha256": "3a8399e3d2df42fa4f151c82026652739ba6d2e0a178ce45e9353b74bb2e392b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "C吐棘者是unit2–7＋ball2–6遠距範圍且有貼身死角；本列D近距cone不是降數值重出，射程1仍能出招但核暴露。"
+    },
+    {
+     "file": "content/base/abilities/kx-brinepin-prick.json",
+     "sha256": "009bb52ceb1d0f4ffedb517393e8760d6e0c97f734c87c11083ec7bd21758d28",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；每招2AP；不移動最多三次單體，但cone仍CD1且不可由文案取消。"
+    },
+    {
+     "file": "content/base/abilities/kx-grit-fan-scatter.json",
+     "sha256": "fc9f7bf8405caf904e804aae2f04dfeb5afc31d42b5302a26152fb5ee24adf12",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；每招2AP；不移動最多三次單體，但cone仍CD1且不可由文案取消。"
+    },
+    {
+     "file": "content/base/bodyplans/insect-brinepin.json",
+     "sha256": "28e078ee218d6ac73e7387430f6680bd38ad65951a2c1f9f13ef401fb2f6e052",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "鹽針腹核exposure1與尾針破損結構，非同骨架換名"
+    },
+    {
+     "file": "content/base/bodyplans/quadruped-breaksurf.json",
+     "sha256": "82cda89fe3dcb5b3e1e57c98862872e64d44e99de6d668d5ff82915413cd2994",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "礁背180HP四部位、core exposure0.5，對照功能最近跨族"
+    },
+    {
+     "file": "content/base/abilities/kx-breaksurf-gore.json",
+     "sha256": "85d37646037d773800233947d4c2b8bc6fa097eb4ef5dbaf44c91eaa9a4d7b24",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "礁背原組合unit1＋ball1 radius1，不能僅按異ID排除重複"
+    },
+    {
+     "file": "content/base/abilities/kx-breaksurf-roll.json",
+     "sha256": "8e9f0577a09858d84db1d92889218dd23c5b24e23ef993d2b933b5a00f4517d3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "礁背原組合unit1＋ball1 radius1，不能僅按異ID排除重複"
+    }
+   ],
+   "writingConstraints": [
+    "只產species、monster、bio frame、corpse frame四檔；不新增bodyplan/ability/effect/AI profile或情境。",
+    "species.name是種名；D/C個體monster不填name或epithet、不帶named；bio用生物機甲・種名的登記式名，corpse用屍體改裝・種名。",
+    "敘事只寫既有etymology；英文原名及意涵在本計畫保留；不新增欄位或命名資料檔。沿海來處，不替潮汐補科學解釋、不設全球首領。",
+    "活捕是壓制與對抗，不馴化、不餵養、不寫怪獸對白；屍改無意識無成長、burden0、pools[]，不可描寫暴走。",
+    "species/bio帶kaiju與正確family；corpse沿模板另補kaiju以符合bio防凡鐵要求。三者abilities完全同組，僅AP成本，無heat/charge/instinct依賴。",
+    "species.capture.frame只指本列bio；保核、破壞列明locomotion後才可拘束。pilot/restraint/cockpit沿既有骨架，不加魂座，不聲稱攻擊可自動捕捉。",
+    "不以不同ID、種名或出沒地區判為差異；本文只採用以下實際target/成本/效果與骨架交換。"
+   ],
+   "legality": {
+    "hp": 120,
+    "parts": 3,
+    "core": "heart：chitin10/flesh20/organ20，exposure2，末層structural；restraint size2/cockpit size1/pilot座。",
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wn-r3-bio-pin-fan"
+    },
+    "weakness": "thermal/acid/energy/pierce外甲抗性0；核心暴露，沒有保護或脫離招。",
+    "pools": "species沿grit-fan：AP6/initial6/regen6；instinct100 hard inverted initial10/regen3；bio僅同instinct、burden2；corpse pools[] burden0。",
+    "ai": "aiprofile/reaper-vanguard tactical；attack與attackArea由兩招現有tactics給值。不寫成軍隊陣形或必定先掃再射。",
+    "tradeoff": "每招2AP；不移動最多三次單體，但cone仍CD1且不可由文案取消。",
+    "family": "insect",
+    "aiProfile": "aiprofile/reaper-vanguard"
+   }
+  },
+  {
+   "category": "monster",
+   "id": "wn-r3-turning-foam",
+   "name": "旋沫",
+   "nameEn": "Turning Foam",
+   "targetFiles": [
+    "content/base/species/wn-r3-turning-foam.json",
+    "content/base/monsters/wn-r3-turning-foam-c.json",
+    "content/base/frames/wn-r3-bio-turning-foam.json",
+    "content/base/frames/wn-r3-corpse-turning-foam.json"
+   ],
+   "concept": "岔尾蹼足獸以範圍蝕沫逼人散開，噴沫後只剩短效閃避招；追進冷卻空窗就是對付牠的機會。",
+   "role": "有傷害空窗的酸霧游擊獸。",
+   "template": {
+    "species": "content/base/species/split-fin.json",
+    "monster": "content/base/monsters/split-fin-c.json",
+    "bio": "content/base/frames/bio-split-fin.json",
+    "corpse": "content/base/frames/corpse-split-fin.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "C",
+   "bodyplan": "bodyplan/beast-split-fin",
+   "loadout": {},
+   "abilities": [
+    "ability/kx-foam-jaw-foam",
+    "ability/kx-split-fin-swerve"
+   ],
+   "companionFiles": [
+    "content/base/monsters/wn-r3-turning-foam-c.json",
+    "content/base/frames/wn-r3-bio-turning-foam.json",
+    "content/base/frames/wn-r3-corpse-turning-foam.json"
+   ],
+   "nearestExisting": {
+    "id": "species/split-fin",
+    "file": "content/base/species/split-fin.json",
+    "comparison": "同400HP五部位骨架與self閃避+8/先手+2一回合、2AP/CD3；原unit1–3/pierce18/3AP/CD2，換成cone1–3/acid10/3AP/CD2。兩者都無傷害填空，交換的是單體較重傷害與扇面酸傷。"
+   },
+   "similarCandidates": [
+    {
+     "id": "species/split-fin",
+     "file": "content/base/species/split-fin.json",
+     "comparison": "同400HP五部位骨架與self閃避+8/先手+2一回合、2AP/CD3；原unit1–3/pierce18/3AP/CD2，換成cone1–3/acid10/3AP/CD2。兩者都無傷害填空，交換的是單體較重傷害與扇面酸傷。"
+    },
+    {
+     "id": "species/foam-jaw",
+     "file": "content/base/species/foam-jaw.json",
+     "comparison": "同噴沫；原單體bite16作填空，群獵profile，胸板＋顎、kinetic甲抗。本列完全沒有bite，改guerrilla及self evasion+8/initiative+2，蹼足＋尾、energy甲抗；尾破壞永久evasion-6。"
+    },
+    {
+     "id": "species/wl-gravel-mane",
+     "file": "content/base/species/wl-gravel-mane.json",
+     "comparison": "同cone acid；礫鬃還有shovel-ram16＋stagger填空、掘犬骨架、pack-hunter。本列不帶撞擊或錯步，空窗不能靠名字補攻擊，沒有掘進能力。"
+    }
+   ],
+   "similarity": "與岔鰭共享骨架與短效自保，與沫顎／礫鬃共享噴沫；未重出其「單體＋範圍」組合。",
+   "substantiveDifference": "相對岔鰭，3AP/CD2與骨架不變，以單體pierce18換定向cone acid10，失去單體集中傷害而取得範圍，並非新增冷卻代價。相對沫顎／礫鬃，刪除其單體啃咬／撞擊填空，改短效自保；尾破永久閃避-6，捕捉不要求manipulator。",
+   "decision": "adopt",
+   "reason": "同級既有骨架與純AP能力可以配成不同戰場選擇；無新增規則，交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/species/split-fin.json",
+     "sha256": "48505a19ce9652069c2f858995f37f016bc7d7202820b31891bfe991bda1f4a5",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同400HP五部位與甩尾增益；原傷害unit1–3/pierce18/3AP/CD2，新傷害cone1–3/acid10/3AP/CD2。兩者都存在傷害冷卻空窗，差異在單體／範圍與傷害型。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/monsters/split-fin-c.json",
+     "sha256": "ca1c93167b1c18033ff349e0d9bdcb2e420181c075f2bd72127fe410b2315cd0",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/frames/bio-split-fin.json",
+     "sha256": "3f7d9105e082ce68beee49ec408a6a65f0dcf1bde4f5effb74ee33a2cf5eee20",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/frames/corpse-split-fin.json",
+     "sha256": "db1b4858be81d20e1e255eccc3bb2b8380ca3ebdf2b4a8f404b8e1cf7abad6f1",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/bodyplans/beast-split-fin.json",
+     "sha256": "6a9dfb9f5abbcd8c18d7e8797111ad7b9cfc63ba9cb2debb07378daddb55dc5f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "完整核部位、層、HP、core、捕捉functions與座槽；heart：chitin20/flesh50/organ70，core/cockpit、restraint2/cockpit1/pilot座；五部位末層均structural。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/aiprofiles/guerrilla.json",
+     "sha256": "bb1a84f393a8d7b81682b35769fbce0b4e43def2ee00ad89ed93d3e4ea9c841c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "aiprofile/guerrilla tactical：cone有attackArea1；self有escape1，危險時可選，實際使用未驗。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/abilities/restrain.json",
+     "sha256": "3e9456b6fc9456517de4fbdc0863b75eeadc98ce8620141cd73ef31d9cc2c02f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "既有capture能力，species.capture沿用；不把netted或絆足直接當捕獲。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/species/foam-jaw.json",
+     "sha256": "7da856ad8c698bf0a4737df634b024d2e0b6d88a78d31551cd4a53d43e7947dd",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同噴沫；原單體bite16作填空，群獵profile，胸板＋顎、kinetic甲抗。本列完全沒有bite，改guerrilla及self evasion+8/initiative+2，蹼足＋尾、energy甲抗；尾破壞永久evasion-6。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/species/wl-gravel-mane.json",
+     "sha256": "85e91fa06821abf68782341d4ce5ac71595df15c8dc5f6d576146fd418e5eb26",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同cone acid；礫鬃還有shovel-ram16＋stagger填空、掘犬骨架、pack-hunter。本列不帶撞擊或錯步，空窗不能靠名字補攻擊，沒有掘進能力。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/abilities/kx-foam-jaw-foam.json",
+     "sha256": "c5d86fbf6bb05651c33af967abe8a726a43d97e141dbbfe3f70277638dc6f83e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；噴沫3AP/CD2/acid10，甩尾2AP/CD3；效果只有一回合evasion+8、initiative+2，移動仍花原行動。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/abilities/kx-split-fin-swerve.json",
+     "sha256": "40473d1a30ad095065d81e82a83bab5500334c60f6f79f17c9f695b1530e5278",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；噴沫3AP/CD2/acid10，甩尾2AP/CD3；效果只有一回合evasion+8、initiative+2，移動仍花原行動。",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/effects/kx-split-fin-swerving.json",
+     "sha256": "32957721f998c67f1321dbe9f12e71aef355014209ea80ff92946b0a81c62749",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核實際scope/clock/contribs/hooks，不能由技能名推新動作",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/effects/kx-split-fin-torn.json",
+     "sha256": "f7dee698db10f4ea6e9aad4430b021186a0fb5c6617527f76ca708199193cf83",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "尾破損永久閃避-6，無禁用能力hook",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/bodyplans/beast-foam-jaw.json",
+     "sha256": "d43f3e194b5caa6ec90cb1c3693218d167e4cd5eac802dd290b75907bdff93d8",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "原沫顎為顎/胸板與四足，甲抗kinetic，捕捉另需manipulator",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀"
+    },
+    {
+     "file": "content/base/abilities/kx-split-fin-rush.json",
+     "sha256": "2221d9cb837ddd37734a741ca1acf0de4cfdc717dd648c0457fa156eabfed683",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀",
+     "keyFacts": "HEAD全文確認：unit1–3/pierce18/3AP/CD2，原計畫「無冷卻」誤記；不構成新增空窗的差異。"
+    },
+    {
+     "file": "content/base/abilities/kx-foam-jaw-bite.json",
+     "sha256": "9c4083b90939ac833587a33ac88697575ed52016c37515e567dc9600f414ca55",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀",
+     "keyFacts": "沫顎保留unit1/pierce16/3AP/CD0作填空；旋沫沒有該招。"
+    },
+    {
+     "file": "content/base/abilities/kx-shovel-ram.json",
+     "sha256": "f43c8e80f0c3722ca25a67e64b7acaa3739f20e55495932041ea2a1aea2b0694",
+     "reader": "wn-r3-monsters-1027，主樹全文親讀",
+     "keyFacts": "礫鬃近身kinetic16/3AP並命中附加錯步；旋沫沒有撞擊或減益。"
+    }
+   ],
+   "writingConstraints": [
+    "只產species、monster、bio frame、corpse frame四檔；不新增bodyplan/ability/effect/AI profile或情境。",
+    "species.name是種名；D/C個體monster不填name或epithet、不帶named；bio用生物機甲・種名的登記式名，corpse用屍體改裝・種名。",
+    "敘事只寫既有etymology；英文原名及意涵在本計畫保留；不新增欄位或命名資料檔。沿海來處，不替潮汐補科學解釋、不設全球首領。",
+    "活捕是壓制與對抗，不馴化、不餵養、不寫怪獸對白；屍改無意識無成長、burden0、pools[]，不可描寫暴走。",
+    "species/bio帶kaiju與正確family；corpse沿模板另補kaiju以符合bio防凡鐵要求。三者abilities完全同組，僅AP成本，無heat/charge/instinct依賴。",
+    "species.capture.frame只指本列bio；保核、破壞列明locomotion後才可拘束。pilot/restraint/cockpit沿既有骨架，不加魂座，不聲稱攻擊可自動捕捉。",
+    "不以不同ID、種名或出沒地區判為差異；本文只採用以下實際target/成本/效果與骨架交換。"
+   ],
+   "legality": {
+    "hp": 400,
+    "parts": 5,
+    "core": "heart：chitin20/flesh50/organ70，core/cockpit、restraint2/cockpit1/pilot座；五部位末層均structural。",
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wn-r3-bio-turning-foam"
+    },
+    "weakness": "chitin energy0.3，其餘型0；tail破壞effect/kx-split-fin-torn永久evasion-6；不能寫成尾斷自動禁招。",
+    "pools": "沿split-fin species AP10/initial10/regen6；instinct100 soft inverted initial20/regen7；bio僅同instinct、burden5；corpse pools[] burden0。",
+    "ai": "aiprofile/guerrilla tactical：cone有attackArea1；self有escape1，危險時可選，實際使用未驗。",
+    "tradeoff": "噴沫3AP/CD2/acid10，甩尾2AP/CD3；效果只有一回合evasion+8、initiative+2，移動仍花原行動。",
+    "family": "beast",
+    "aiProfile": "aiprofile/guerrilla"
+   },
+   "planCorrections": [
+    {
+     "field": "nearestExisting.comparison/fullTextRead/species-split-fin",
+     "planned": "分水追咬無冷卻，旋沫新增傷害空窗",
+     "actual": "HEAD分水追咬cooldown=2，與翻顎噴沫同CD2；兩者原本皆有空窗。",
+     "evidence": "content/base/abilities/kx-split-fin-rush.json",
+     "resolution": "不改計畫或能力；審核差異改採unit/pierce18對cone/acid10。與沫顎／礫鬃比較時，移除單體填空的差異仍成立。"
+    }
+   ]
+  },
+  {
+   "category": "monster",
+   "id": "wn-r3-trailing-sail",
+   "name": "垂帆",
+   "nameEn": "Trailing Sail",
+   "targetFiles": [
+    "content/base/species/wn-r3-trailing-sail.json",
+    "content/base/monsters/wn-r3-trailing-sail-c.json",
+    "content/base/frames/wn-r3-bio-trailing-sail.json",
+    "content/base/frames/wn-r3-corpse-trailing-sail.json"
+   ],
+   "concept": "偏帆異形在遠處射芒，敵人貼近時以垂足絆亂先手；拿掉捲帆自保，近身招冷卻時仍有射程死角。",
+   "role": "遠射／短距減益交替的脆核異形。",
+   "template": {
+    "species": "content/base/species/hollow-sail.json",
+    "monster": "content/base/monsters/hollow-sail-c.json",
+    "bio": "content/base/frames/bio-hollow-sail.json",
+    "corpse": "content/base/frames/corpse-hollow-sail.json",
+    "revision": "f24420b079a59a7f8e93123930665aaa824f9d00"
+   },
+   "grade": "C",
+   "bodyplan": "bodyplan/alien-hollow-sail",
+   "loadout": {},
+   "abilities": [
+    "ability/kx-hollow-sail-cast",
+    "ability/kx-breakwater-clinger-drag"
+   ],
+   "companionFiles": [
+    "content/base/monsters/wn-r3-trailing-sail-c.json",
+    "content/base/frames/wn-r3-bio-trailing-sail.json",
+    "content/base/frames/wn-r3-corpse-trailing-sail.json"
+   ],
+   "nearestExisting": {
+    "id": "species/hollow-sail",
+    "file": "content/base/species/hollow-sail.json",
+    "comparison": "同不對稱400HP骨架與unit2–6 energy16；原第二招self閃避+10/先手+2且guerrilla。本列換unit1–2 kinetic12＋敵evasion-8/initiative-2兩回合/CD2，profile改stalker；不再自保。"
+   },
+   "similarCandidates": [
+    {
+     "id": "species/hollow-sail",
+     "file": "content/base/species/hollow-sail.json",
+     "comparison": "同不對稱400HP骨架與unit2–6 energy16；原第二招self閃避+10/先手+2且guerrilla。本列換unit1–2 kinetic12＋敵evasion-8/initiative-2兩回合/CD2，profile改stalker；不再自保。"
+    },
+    {
+     "id": "species/breakwater-clinger",
+     "file": "content/base/species/breakwater-clinger.json",
+     "comparison": "同短距絆足；抱樁是近距rend18＋drag12，420HP偏核/雙行走足/懸臂。本列去掉rend，採2–6遠射、單垂足及偏帆，保留靠近一格且拖行冷卻時無可用傷害的破口。"
+    },
+    {
+     "id": "species/wl-slant-veil",
+     "file": "content/base/species/wl-slant-veil.json",
+     "comparison": "B鏡肢骨架＋凝視減益＋裸手近戰；本列C偏帆、主力遠射帶min2，不是減益後貼身高傷撕裂。"
+    },
+    {
+     "id": "species/spitter",
+     "file": "content/base/species/spitter.json",
+     "comparison": "同C遠射異形；吐棘為pierce單體＋遠距ball、雙招min2，本列遠程單體energy＋短距減益，失去遠距範圍且拖行不是位移。"
+    }
+   ],
+   "similarity": "最近空帆，保留遠射但第二個動詞從保自己改為絆近敵；抱樁則是純近戰減益。",
+   "substantiveDifference": "self防禦替換為對敵短距減益並改AI意圖，付出失去捲帆的代價；其近距招CD2不能保證無縫近戰，不能把拖行名稱解讀成推拉、拘束或移動封鎖。",
+   "decision": "adopt",
+   "reason": "同級既有骨架與純AP能力可以配成不同戰場選擇；無新增規則，交領導審。",
+   "fullTextRead": [
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "sha256": "3263707653a2abc929dcbd990daab1df04a98d3c047c19893c79801f1e8fcbf8",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同不對稱400HP骨架與unit2–6 energy16；原第二招self閃避+10/先手+2且guerrilla。本列換unit1–2 kinetic12＋敵evasion-8/initiative-2兩回合/CD2，profile改stalker；不再自保。"
+    },
+    {
+     "file": "content/base/monsters/hollow-sail-c.json",
+     "sha256": "0d9fccdafd58c48a215829f310b6ee172b2f01571ee28eaf06740dec406b5603",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/frames/bio-hollow-sail.json",
+     "sha256": "a5ea209da2aa57390bb6c04cad008c8ccf6c553e77a34702a7173abbc81e1b54",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/frames/corpse-hollow-sail.json",
+     "sha256": "4345429fdbc90b67a16092d9886783496d122bac2655cf49c880a5b369d17297",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級四檔範本全文；按本列改ID、引用、能力與敘事，不搬新規則"
+    },
+    {
+     "file": "content/base/bodyplans/alien-hollow-sail.json",
+     "sha256": "a4a33d97cb8dc184da6ab9837c34389c91ccd3267909a5d0c720eaa132cc4385",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "完整核部位、層、HP、core、捕捉functions與座槽；heart只有flesh50/organ70、exposure2；core/cockpit與restraint2/cockpit1/pilot座；所有末層structural。"
+    },
+    {
+     "file": "content/base/aiprofiles/kx-alien-stalker.json",
+     "sha256": "b5c7f3af88718c08edafbbf413d358f982eeaeb11148be7b671cd573a0879b77",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "aiprofile/kx-alien-stalker tactical：attack1/disable1/debuff0.8；主射attack1、拖行attack0.8/debuff1。能力tactics與現有profile相容，不宣稱必定連段。"
+    },
+    {
+     "file": "content/base/abilities/restrain.json",
+     "sha256": "3e9456b6fc9456517de4fbdc0863b75eeadc98ce8620141cd73ef31d9cc2c02f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "既有capture能力，species.capture沿用；不把netted或絆足直接當捕獲。"
+    },
+    {
+     "file": "content/base/species/breakwater-clinger.json",
+     "sha256": "94d1b5403d1ed49c891582c5dd7142243cad6bebd262650077c8d79ff0b191db",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同短距絆足；抱樁是近距rend18＋drag12，420HP偏核/雙行走足/懸臂。本列去掉rend，採2–6遠射、單垂足及偏帆，保留靠近一格且拖行冷卻時無可用傷害的破口。"
+    },
+    {
+     "file": "content/base/species/wl-slant-veil.json",
+     "sha256": "973955fb59eb2296baa0955d635aa17c28b20754846a43cd2b486c6e6e57aa00",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "B鏡肢骨架＋凝視減益＋裸手近戰；本列C偏帆、主力遠射帶min2，不是減益後貼身高傷撕裂。"
+    },
+    {
+     "file": "content/base/species/spitter.json",
+     "sha256": "3a8399e3d2df42fa4f151c82026652739ba6d2e0a178ce45e9353b74bb2e392b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同C遠射異形；吐棘為pierce單體＋遠距ball、雙招min2，本列遠程單體energy＋短距減益，失去遠距範圍且拖行不是位移。"
+    },
+    {
+     "file": "content/base/abilities/kx-hollow-sail-cast.json",
+     "sha256": "37c5c6f1d5ff1deb3d4f86d53cd1af7ccaec01ea8cf4940ab013da29154a9e74",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；主射3AP/energy16/range2–6無CD，拖行3AP/kinetic12/range1–2/CD2，僅扣evasion與initiative，無immobilized或位移。"
+    },
+    {
+     "file": "content/base/abilities/kx-breakwater-clinger-drag.json",
+     "sha256": "315c75af6036381438f372b2073467310cf89dc1d955807cfb106079484b5a64",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核costs/produces/target/CD/AI；主射3AP/energy16/range2–6無CD，拖行3AP/kinetic12/range1–2/CD2，僅扣evasion與initiative，無immobilized或位移。"
+    },
+    {
+     "file": "content/base/effects/kx-breakwater-clinger-snared.json",
+     "sha256": "d4a2357058a6dd0059cdb752126094347b11f8c14b458a58474616fda41f92e2",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "全文核實際scope/clock/contribs/hooks，不能由技能名推新動作"
+    },
+    {
+     "file": "content/base/abilities/kx-hollow-sail-fold.json",
+     "sha256": "28ae8d1d2ab04aeb3b4216fd3009209f63cfe7670c26b433ae9d2fb7d1a076ea",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "被替換的self escape，成本2AP/CD2"
+    },
+    {
+     "file": "content/base/effects/kx-hollow-sail-folded.json",
+     "sha256": "2b1a0f10456ad1c134104c5080056c4b3e7191dfce5cbc65326dfcc6dc244d61",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "被替換的閃避+10/先手+2一回合；新種不保留"
+    }
+   ],
+   "writingConstraints": [
+    "只產species、monster、bio frame、corpse frame四檔；不新增bodyplan/ability/effect/AI profile或情境。",
+    "species.name是種名；D/C個體monster不填name或epithet、不帶named；bio用生物機甲・種名的登記式名，corpse用屍體改裝・種名。",
+    "敘事只寫既有etymology；英文原名及意涵在本計畫保留；不新增欄位或命名資料檔。沿海來處，不替潮汐補科學解釋、不設全球首領。",
+    "活捕是壓制與對抗，不馴化、不餵養、不寫怪獸對白；屍改無意識無成長、burden0、pools[]，不可描寫暴走。",
+    "species/bio帶kaiju與正確family；corpse沿模板另補kaiju以符合bio防凡鐵要求。三者abilities完全同組，僅AP成本，無heat/charge/instinct依賴。",
+    "species.capture.frame只指本列bio；保核、破壞列明locomotion後才可拘束。pilot/restraint/cockpit沿既有骨架，不加魂座，不聲稱攻擊可自動捕捉。",
+    "不以不同ID、種名或出沒地區判為差異；本文只採用以下實際target/成本/效果與骨架交換。"
+   ],
+   "legality": {
+    "hp": 400,
+    "parts": 5,
+    "core": "heart只有flesh50/organ70、exposure2；core/cockpit與restraint2/cockpit1/pilot座；所有末層structural。",
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/wn-r3-bio-trailing-sail"
+    },
+    "weakness": "右帆chitin energy0.3，左帆與核無甲且全型0；沒有self escape或protect，貼身拖行CD時主射min2無法使用。",
+    "pools": "沿hollow-sail species AP10/initial10/regen7；instinct100 hard inverted initial5/regen2；bio僅同instinct、burden5；corpse pools[] burden0。",
+    "ai": "aiprofile/kx-alien-stalker tactical：attack1/disable1/debuff0.8；主射attack1、拖行attack0.8/debuff1。能力tactics與現有profile相容，不宣稱必定連段。",
+    "tradeoff": "主射3AP/energy16/range2–6無CD，拖行3AP/kinetic12/range1–2/CD2，僅扣evasion與initiative，無immobilized或位移。",
+    "family": "alien",
+    "aiProfile": "aiprofile/kx-alien-stalker"
+   }
+  }
+ ]
+}

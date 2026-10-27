@@ -1,0 +1,1332 @@
+{
+ "contract": "wf-table/1",
+ "source": "../wn-plan-r2-1027.md",
+ "extracted": "2026-10-27",
+ "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+ "status": "plan-for-lead-review",
+ "integrationStatus": "deferred-by-user",
+ "pathConvention": "targetFiles、template 與證據 file 均為 repo-root 相對路徑；不是可寫授權。",
+ "dedupScope": {
+  "roots": [
+   "content/lore",
+   "content/base"
+  ],
+  "idRecordsScanned": 2733,
+  "wlRecordsScanned": 52,
+  "method": "全庫 JSON 內容定向主題檢索；含未提交 wl-*；兩個以上候選比較後親讀最相近全文。摘要只作定位，不當閱讀證據。"
+ },
+ "referencePolicy": "hooks 僅 HEAD 既有 ID；wl-* 僅比較，不作創作引用。每類可獨立落檔，不依賴另兩類新檔。",
+ "commonConstraints": [
+  "本表是概念計畫，不是已完成 lore；領導審核後才由 sol 創作。",
+  "每概念只新增一個指定 lore JSON；不新增 base、事件、年表、機制、欄位或索引。",
+  "新人物均 human；born 自由文字可不明，events 可空，不硬掛未參與的既有戰役。",
+  "新地方組織無全球法權、傘席位或新血統；有武裝者只採購既有通用衍型機。",
+  "月面全在靜海市既有生活區，不新增城市、自由渡月線或背面裂縫。",
+  "新地點為既有城內小場所，不取代既有城邦或擴大自治。",
+  "關係為新項一方有限接觸；不替既有領袖寫新決策，也不改既有勢力整體外交。",
+  "日期止於2108-01現況；先前地方小事可不定年月，不冒充年表大事。",
+  "不得揭露裏側答案；不涉及彩虹蛇是否醒來、認主、開墟或血統定案。"
+ ],
+ "rejectedRevisions": [
+  {
+   "id": "place/wn-r2-tranquility-steam-bath",
+   "name": "霧瓷浴堂",
+   "decision": "reject-original-concept",
+   "reason": "領導審核退修：權客占位、管理者移物破特權與 wl-alpine-common-hearth 相同，手套換徽章、爐換浴池不構成實質差異。",
+   "originalConcept": "工人與穹頂侍役都會來的小浴堂，離開工作衣後仍有人想憑袖章安排上座。",
+   "originalAction": "老客把外衣上的雇主徽章掛在入口，要求替自己留池邊；看堂者將所有徽章移到同一根衣架，自己的也掛上。",
+   "nearestExisting": {
+    "id": "place/wl-alpine-common-hearth",
+    "file": "content/lore/places/wl-alpine-common-hearth.json"
+   },
+   "replacement": "同一浴堂改寫返役隱瞞、傷勢暴露與伴侶信任；不再用移占位物或普遍平等規矩收束。"
+  },
+  {
+   "id": "character/wn-r2-tang-wanling",
+   "authority": "主線人物退修",
+   "originalConcept": "受雇安排家族婚宴的席次師，擅長把不願見面的人排成一場漂亮的和睦；她自己的配偶卻不肯坐在安排好的位置。",
+   "originalAction": "在聯姻宴前把夫妻席拆成各自可選的席位，先公開自己替兩家隱瞞的拒婚回話；仍保留自己的招牌落款。",
+   "decision": "reject",
+   "reason": "替兩家隱瞞拒婚回話，再公開自己過錯、拆夫妻席以完成改正。",
+   "replacementConcept": "婚約當事人只肯赴宴，席次師從接案起就分別詢問，改賣保留外觀的可選席圖；自己的配偶也拒按她安排坐。"
+  },
+  {
+   "id": "character/wn-r2-lin-cangxu",
+   "authority": "主線人物退修",
+   "originalConcept": "靠做機甲戰史小景替月上住戶粉飾地上戰事的模型匠；曾把親見的誤擊做成得勝姿勢。",
+   "originalAction": "在展覽開幕時拆下自己的勝利小景，將兩台誤擊的機甲轉向彼此，留下自己當年的署名讓老兵質問。",
+   "decision": "reject",
+   "reason": "先將誤擊冒作得勝，開幕拆下舊勝利小景，再公開改回真相。",
+   "replacementConcept": "老兵帶來另一種交火姿勢委託；模型匠並置兩件互斥小景，原勝利款照交貨收費，無揭弊或道歉儀式。"
+  },
+  {
+   "id": "character/wn-r2-zawadi-mbeki",
+   "authority": "主線人物退修",
+   "originalConcept": "替生物系老駕駛做便服的裁衣師；用華麗領口把小角與鱗片變成招牌，也曾擅自用顧客身體招攬生意。",
+   "originalAction": "顧客要穿普通外衣出席家宴，她當場拆掉為自己宣傳的誇張領冠，按本人選擇重裁，卻仍想留下衣角的店印。",
+   "decision": "reject",
+   "reason": "擅自以顧客小角或鱗片作宣傳，受抗議後拆領冠並改衣；此主行動與崔恩率利用傷腿賣票重複。",
+   "replacementConcept": "裁衣師追求自己的華麗名作，客人要便於家宴端碗的普通外衣；兩人共同試裁，衣樣獨用價格仍談不攏。"
+  },
+  {
+   "id": "character/wn-r2-adjoa-senyo",
+   "authority": "主線人物退修",
+   "originalConcept": "曾替一支地方護衛隊保管俘虜名單的翻譯，如今在單次換俘時被雙方家屬認出她當年的假名。",
+   "originalAction": "交換前自揭假名、承認曾把一名俘虜錯列為死者，讓雙方親屬重新逐人辨認；拒絕替不認識的人擔保。",
+   "decision": "reject",
+   "reason": "以自揭假名及認錯換取受害家屬原諒，或靠換俘行動完成確定贖罪。",
+   "replacementConcept": "被親屬當場叫破假名，提出本人筆跡與底冊；錯列及不追查仍受追究，換俘按逐人辨認進行，沒有赦免。"
+  },
+  {
+   "id": "character/wn-r2-maia-raukura",
+   "authority": "主線人物退修",
+   "originalConcept": "在安全內泊打撈舊船用品的女潛工，迷戀船鐘的聲音，為自己的收藏曾謊稱一口鐘已碎。",
+   "originalAction": "失主後人憑鐘內裂痕認出藏品時，她帶鐘到岸邊請對方親自敲響，談共同保管而非偷偷換一口還回。",
+   "decision": "reject",
+   "reason": "先謊稱船鐘已碎，失主認出後才承認占有並交還；改為有效打撈約與未定家族主張正面對立。",
+   "replacementConcept": "依打撈約取得留件後，被舊船主後人主張家族歸屬；她提共同保管仍想保有鐘，雙方沒有談妥。"
+  },
+  {
+   "id": "character/wn-r2-elsie-morrow",
+   "authority": "主線人物退修",
+   "originalConcept": "替城郊家庭重畫田界的測量人，早年為幫親族把公共步道畫進自家地界，如今面對別人照她的圖封路。",
+   "originalAction": "帶自己的舊圖走完爭議田邊，親手把誤移的界樁搬回來，再向親族交出另一份未被改過的底圖。",
+   "decision": "reject",
+   "reason": "搬樁、交出未改底圖便視為修好偏私並恢復鄰里和睦。",
+   "replacementConcept": "面對親族照偏私舊圖封路，攤開兩份圖重走田界；移樁只供核對，繼續替親族說話並拒判土地。"
+  }
+ ],
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "targetFiles",
+  "region",
+  "concept",
+  "action",
+  "conflict",
+  "sceneFunction",
+  "hooks",
+  "template",
+  "nearestExisting",
+  "similarCandidates",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "fullTextRead",
+  "writingConstraints"
+ ],
+ "rows": [
+  {
+   "category": "characters",
+   "id": "character/wn-r2-tang-wanling",
+   "name": "唐婉綾",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-tang-wanling.json"
+   ],
+   "region": "月面・靜海住宅穹頂",
+   "concept": "婚約當事人只肯赴宴，席次師從接案起就分別詢問，改賣保留外觀的可選席圖；自己的配偶也拒按她安排坐。",
+   "action": "婚約當事人只肯赴宴，席次師從接案起就分別詢問，改賣保留外觀的可選席圖；自己的配偶也拒按她安排坐。",
+   "conflict": "當事人的拒絕對上家族體面；她既想保住生意，又不肯承認自己曾用沉默促成假同意。",
+   "sceneFunction": "以婚姻選擇與宴席距離寫月上資本的私人裂痕，可讓獵團作賓客或見證人。",
+   "hooks": [
+    "place/earthward-gallery",
+    "faction/dome-households",
+    "faction/selene"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/eira-vey",
+    "file": "content/lore/characters/eira-vey.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/eira-vey",
+     "file": "content/lore/characters/eira-vey.json",
+     "comparison": "最相近；同在月面替富戶或旅客安排事情，職業權力有限。"
+    },
+    {
+     "id": "character/naruse-itsuki",
+     "file": "content/lore/characters/naruse-itsuki.json",
+     "comparison": "成瀨在魚骨窄道保護傷員，不替缺席者承諾；其核心仍是渡月掮客與逃避追索。"
+    }
+   ],
+   "similarity": "同在月面替富戶或旅客安排事情，職業權力有限。",
+   "substantiveDifference": "艾拉以身體托幕救工並維持排班；成瀨掀桶護傷員。唐的行動是拆分席位、重談價單及為配偶改送花線，衝突是宴席外觀能否代表婚姻同意，不發生救工或自揭欺瞞。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/eira-vey",
+     "file": "content/lore/characters/eira-vey.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "72d9557aa63bcac5e9267313c7ceab4702d78b78b9aa0da82458a4a159789136",
+     "bytes": 1772,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "頂住滑落幕架，受僱管事沒有替主人補償或放款權。"
+    },
+    {
+     "id": "character/naruse-itsuki",
+     "file": "content/lore/characters/naruse-itsuki.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "d50e09a9c2f0a3e40acefc16398c9e98f20613eb08fc17b0c25288f8d9f52e14",
+     "bytes": 1662,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "拒替缺席者承諾，掀翻魚骨桶護傷員離開窄道。"
+    }
+   ],
+   "writingConstraints": "faction 可 null；不得把席次師寫成婚姻法官，也不讓既有具名角色突然成為婚約當事人。"
+  },
+  {
+   "category": "characters",
+   "id": "character/wn-r2-lin-cangxu",
+   "name": "林藏序",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-lin-cangxu.json"
+   ],
+   "region": "月面・靜海市",
+   "concept": "老兵帶來另一種交火姿勢委託；模型匠並置兩件互斥小景，原勝利款照交貨收費，無揭弊或道歉儀式。",
+   "action": "老兵帶來另一種交火姿勢委託；模型匠並置兩件互斥小景，原勝利款照交貨收費，無揭弊或道歉儀式。",
+   "conflict": "買家要體面、老兵要承認誤擊；他承認造假卻仍不願退還所有舊作的錢。",
+   "sceneFunction": "讓地月戰爭透過人造景物與記憶爭辯進入日常，不靠新戰役或神諭。",
+   "hooks": [
+    "place/tranquility-city",
+    "faction/dome-households"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/seo-haegyeom",
+    "file": "content/lore/characters/seo-haegyeom.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/seo-haegyeom",
+     "file": "content/lore/characters/seo-haegyeom.json",
+     "comparison": "最相近；都反對把活人或死者塑造成無缺英雄。"
+    },
+    {
+     "id": "place/wl-gyeongju-paper-face-slope",
+     "file": "content/lore/places/wl-gyeongju-paper-face-slope.json",
+     "comparison": "紙面坡客人擦掉整齊白牙，畫師重畫亡兄缺牙，核心是私人肖像的真實。"
+    }
+   ],
+   "similarity": "都反對把活人或死者塑造成無缺英雄。",
+   "substantiveDifference": "徐海謙替同伴補姓名、自己仍被守城期待綁住；紙面坡以擦白牙後重畫缺牙恢復私人肖像。林從頭出售有立場的小景，並置兩種不互證的姿勢，收費與作者自負延續，沒有改真後消滅假像。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/seo-haegyeom",
+     "file": "content/lore/characters/seo-haegyeom.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "2c2b0c6c036b928bfcc08d92074f857eb083759a7583eb0d7630476b5bf17ed7",
+     "bytes": 2636,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "把同伴姓名牌掛上自己的像，休假紙仍未送出。"
+    },
+    {
+     "id": "place/wl-gyeongju-paper-face-slope",
+     "file": "content/lore/places/wl-gyeongju-paper-face-slope.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "314609dc21503a9d1c488710daae648833f2bd26eabc2542e33b5f03ec098a8c",
+     "bytes": 2416,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "客人擦掉亡兄肖像的整齊白牙，畫師重新畫出缺牙。"
+    }
+   ],
+   "writingConstraints": "模型是普通人工小景，無魂、無作戰能力；地方誤擊不冠既有大戰名稱，不改任何既有戰史。"
+  },
+  {
+   "category": "characters",
+   "id": "character/wn-r2-zawadi-mbeki",
+   "name": "札瓦迪・姆貝基",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-zawadi-mbeki.json"
+   ],
+   "region": "非洲・奈洛比",
+   "concept": "裁衣師追求自己的華麗名作，客人要便於家宴端碗的普通外衣；兩人共同試裁，衣樣獨用價格仍談不攏。",
+   "action": "裁衣師追求自己的華麗名作，客人要便於家宴端碗的普通外衣；兩人共同試裁，衣樣獨用價格仍談不攏。",
+   "conflict": "身體是否要成為英雄象徵，由穿衣者還是賣衣者決定；她的虛榮並未因改衣就消失。",
+   "sceneFunction": "把精粹改人的既有設定落在私人美感與商業展示，保留體面、幽默與不情願。",
+   "hooks": [
+    "place/nairobi",
+    "faction/yoke-saddle-works"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/wl-choi-eunsol",
+    "file": "content/lore/characters/wl-choi-eunsol.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/rokeya-karim",
+     "file": "content/lore/characters/rokeya-karim.json",
+     "comparison": "最相近；都以衣物或手藝處理機甲時代的人與自我形象。"
+    },
+    {
+     "id": "character/wl-amalia-quispe",
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "comparison": "阿瑪莉亞換掉年輕肖像，退役後常速老化，最後接受新扣座教學但仍愛發號施令。"
+    }
+   ],
+   "similarity": "原案與崔恩率都以服務對象身體特徵攬客，引發本人抗議；原案主行動重複，已退回並改為共同試裁及衣樣交易。",
+   "substantiveDifference": "崔恩率擅自以傷腿售票，學員離場後自己上臺，與原案利用身體作宣傳的動作同構，故退回。札瓦迪的新案從雙方不同穿衣目標出發，透過端碗測袖與合裁協作，後續爭衣樣獨用價；無擅用身體、抗議撤廣告。羅凱婭授藝缺接班、阿瑪莉亞退役學修理、借袖院拆隊色，也都不是此合作及設計權爭議。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/rokeya-karim",
+     "file": "content/lore/characters/rokeya-karim.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "90a635ca4696589fcdfd68c58716ebf337bcf32435b404c597bd423ceb53f066",
+     "bytes": 2586,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "災後搭棚、教補帆第一針，要求離職學徒再教會一人。"
+    },
+    {
+     "id": "character/wl-amalia-quispe",
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "599aa9a064179c63efa538658812fdce694951f8b76a0bfd9888f2c7beaeff4f",
+     "bytes": 1836,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "換年輕肖像、退役後常速老化，向學徒重學新扣座仍愛發號施令。"
+    },
+    {
+     "id": "character/wl-choi-eunsol",
+     "file": "content/lore/characters/wl-choi-eunsol.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "41efc1f8b1ad8dabe264eb5fdcc234e10c2d96891d59c2dddbb947880ad0c48c",
+     "bytes": 1696,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "未問許可就替傷腿描金賣票，學員拒演離場，她保留票錢自己上臺。"
+    },
+    {
+     "id": "place/wl-busan-sleeve-court",
+     "file": "content/lore/places/wl-busan-sleeve-court.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "d61f40c0aa9c2ebdf95446133ebe8c4e142d8425df2a742b132c1b4407636185",
+     "bytes": 2544,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "舞者拆隊色、拒報招，照演自己選的竹簍小舞。"
+    }
+   ],
+   "writingConstraints": "本人非駕駛、不獲不老；顧客僅既定小角或小鱗，不增生、不醜化；衣服無拘束或治療效果。"
+  },
+  {
+   "category": "characters",
+   "id": "character/wn-r2-adjoa-senyo",
+   "name": "阿喬亞・塞尼奧",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-adjoa-senyo.json"
+   ],
+   "region": "非洲・阿克拉",
+   "concept": "被親屬當場叫破假名，提出本人筆跡與底冊；錯列及不追查仍受追究，換俘按逐人辨認進行，沒有赦免。",
+   "action": "被親屬當場叫破假名，提出本人筆跡與底冊；錯列及不追查仍受追究，換俘按逐人辨認進行，沒有赦免。",
+   "conflict": "她想促成交換，也怕自己成為下一個被扣押的人；受害家屬不必原諒她。",
+   "sceneFunction": "從敵我交界寫小規模人對人戰爭的後果，緊張來自身分與責任，非趕船撤傷。",
+   "hooks": [
+    "place/accra",
+    "faction/accra",
+    "faction/lagos-returners"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/sahen-darim",
+    "file": "content/lore/characters/sahen-darim.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/sahen-darim",
+     "file": "content/lore/characters/sahen-darim.json",
+     "comparison": "最相近；同為戰後仍與另一方接觸、持有名冊或回程責任的人。"
+    },
+    {
+     "id": "character/farida-naseri",
+     "file": "content/lore/characters/farida-naseri.json",
+     "comparison": "法莉妲核燃夜船名兌現免費過海峽，不容新船買名或冒認。"
+    }
+   ],
+   "similarity": "同為戰後仍與另一方接觸、持有名冊或回程責任的人。",
+   "substantiveDifference": "薩赫恩是炸橋受害者，犧牲載糧空位接傷；法莉妲守免費通行舊約、防冒名。阿喬亞掌名冊且曾錯列、不追查，當下要處理指認、底冊保護與可能被扣的自保，承擔的是過往責任而非救援善舉。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/sahen-darim",
+     "file": "content/lore/characters/sahen-darim.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "eb7fae10ce1946f60dfc0a3f95f06fc5169990f3f56539e259be6c06ad9794d6",
+     "bytes": 2410,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "不原諒炸橋，仍留回程空位載對岸傷員，糧袋等在旁邊。"
+    },
+    {
+     "id": "character/farida-naseri",
+     "file": "content/lore/characters/farida-naseri.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "793daece0ba821aed73a50babf45790d3f87f8ef9f1b49e7d5a93705b09ac370",
+     "bytes": 1986,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "保管燃夜永久免費海峽名冊，拒買名及冒認，修甲買糧仍付費。"
+    }
+   ],
+   "writingConstraints": "faction null；無國際赦免權。交換對象只用未具名地方隊；不把綠線清剿責任改寫，不自動化解任何既有敵對。"
+  },
+  {
+   "category": "characters",
+   "id": "character/wn-r2-maia-raukura",
+   "name": "瑪伊雅・勞庫拉",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-maia-raukura.json"
+   ],
+   "region": "大洋洲・奧克蘭內港",
+   "concept": "依打撈約取得留件後，被舊船主後人主張家族歸屬；她提共同保管仍想保有鐘，雙方沒有談妥。",
+   "action": "依打撈約取得留件後，被舊船主後人主張家族歸屬；她提共同保管仍想保有鐘，雙方沒有談妥。",
+   "conflict": "尋獲者的勞動與持有慾，碰上家屬對舊物的記憶；她不想失去它，也不能再聲稱只有自己懂它。",
+   "sceneFunction": "提供一次可交涉的遺物歸屬場景，以平凡聲音承載遠航歷史。",
+   "hooks": [
+    "place/auckland",
+    "faction/sydney"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/shen-yanqiao",
+    "file": "content/lore/characters/shen-yanqiao.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/shen-yanqiao",
+     "file": "content/lore/characters/shen-yanqiao.json",
+     "comparison": "最相近；具辨識舊物與打撈經驗，工作涉及物件來歷。"
+    },
+    {
+     "id": "character/bahir-saffar",
+     "file": "content/lore/characters/bahir-saffar.json",
+     "comparison": "巴希爾回杜拜短期打撈，轉鏡導人出空樓，不在危樓久住。"
+    }
+   ],
+   "similarity": "具辨識舊物與打撈經驗，工作涉及物件來歷。",
+   "substantiveDifference": "沈雁橋中立辨認貨傷收費；巴希爾轉鏡指路救同伴。瑪伊雅是持物的利益當事人，主動拿出打撈約而非冒作中立鑑定，願供家屬敲鐘卻不願交出，爭的是勞動與家族記憶對歸屬的權重。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/shen-yanqiao",
+     "file": "content/lore/characters/shen-yanqiao.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "8728b7901311c53c8204e821066f1a85c62dd7003931843f853235e50348a258",
+     "bytes": 1792,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "用骨針挑漆、只認親見貨傷，不承諾古代機醒來。"
+    },
+    {
+     "id": "character/bahir-saffar",
+     "file": "content/lore/characters/bahir-saffar.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "b0db3127ba175ecdd10b35890f96706a9d963cb03ffb1bfa4635fd628c245b44",
+     "bytes": 1398,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "短期回杜拜打撈，轉鏡照出空樓出口，引導同行者。"
+    }
+   ],
+   "writingConstraints": "普通舊船鐘，無古代機聲音或神秘指令；只在港方允許的內泊作業，不潛入顎影岸或把安全城寫成無危險全海域。"
+  },
+  {
+   "category": "characters",
+   "id": "character/wn-r2-elsie-morrow",
+   "name": "艾爾西・莫羅",
+   "targetFiles": [
+    "content/lore/characters/wn-r2-elsie-morrow.json"
+   ],
+   "region": "大洋洲・雪梨牆外既有聚落",
+   "concept": "面對親族照偏私舊圖封路，攤開兩份圖重走田界；移樁只供核對，繼續替親族說話並拒判土地。",
+   "action": "面對親族照偏私舊圖封路，攤開兩份圖重走田界；移樁只供核對，繼續替親族說話並拒判土地。",
+   "conflict": "親族利益與多年建立的專業聲譽衝突；她能指出舊錯，不能單方面裁定土地所有權。",
+   "sceneFunction": "補寫沒有獸災的內陸日常政治，讓地圖成為可信度與相鄰生活的證據。",
+   "hooks": [
+    "place/sydney",
+    "faction/sydney"
+   ],
+   "template": "content/lore/characters/ren-kasai.json",
+   "nearestExisting": {
+    "id": "character/zhou-suyan",
+    "file": "content/lore/characters/zhou-suyan.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/zhou-suyan",
+     "file": "content/lore/characters/zhou-suyan.json",
+     "comparison": "最相近；都畫圖、標出可走之路，圖會影響別人的行動。"
+    },
+    {
+     "id": "character/azamat-tursun",
+     "file": "content/lore/characters/azamat-tursun.json",
+     "comparison": "阿扎馬特在亮起的骸片前先畫回程箭頭，將不可讀的拓片與未通道路一併記下。"
+    }
+   ],
+   "similarity": "都畫圖、標出可走之路，圖會影響別人的行動。",
+   "substantiveDifference": "周素硯擦斷路帶人撤離、阿扎馬特先標探墟退路；艾爾西量的是仍可走的普通田邊路，自己留下偏私筆跡，重走與搬樁只呈證，且親族偏袒和門的占有持續。",
+   "decision": "adopt",
+   "reason": "主線授權sol修訂，領導全文審稿後同步；舊動作留rejectedRevisions。",
+   "fullTextRead": [
+    {
+     "id": "character/zhou-suyan",
+     "file": "content/lore/characters/zhou-suyan.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "ae13c5f653f2c0b82ad582ea707cf33cbdb0ee78420b8b4d7ad98d1a0cf5a8b6",
+     "bytes": 1358,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "在浦那外圍擦去被蝕吞沒舊路，圖上缺口引撤退。"
+    },
+    {
+     "id": "character/azamat-tursun",
+     "file": "content/lore/characters/azamat-tursun.json",
+     "read": "本人已讀完整 JSON：body、relations、events 及存在的可見度欄",
+     "sha256": "8908efa9f3043a694d058dba141b29cb77cb404fb92ea2eda30574510e89e250",
+     "bytes": 1407,
+     "version": "主樹最新版（wl-* 僅查重，不進正文引用）",
+     "evidence": "骸片亮起仍先畫回程箭頭，看不懂的拓片與未通的路一起記下。"
+    }
+   ],
+   "writingConstraints": "普通繩尺與界樁，不測天象或發現新墟；搬樁是呈證與協商動作，無全城法權，不創造內陸獸災。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-tranquility-steam-bath",
+   "name": "霧瓷浴堂",
+   "targetFiles": [
+    "content/lore/places/wn-r2-tranquility-steam-bath.json"
+   ],
+   "region": "月面・靜海市生活區",
+   "concept": "靜海生活區的小浴堂，工作衣能脫下，瞞著家人的舊傷與下一班承諾卻會在擦身時被看見。",
+   "action": "一名駕駛聲稱只來休養，伴侶替他擦背才發現肩傷仍使手抬不起來；返役回條又從送洗衣袋落出。伴侶把回條攤在乾巾上，要他自己念出接班日期；看堂者關上簾，不替任何一方回答。",
+   "conflict": "駕駛想保住能繼續出勤的自我形象，伴侶要知道會影響共同生活的真相；知道傷勢不等於有權代他辭職，私下對質也不保證他肯取消出勤。",
+   "sceneFunction": "把浴堂寫成身體隱私與工作責任相遇的私人空間；休息場所容得下爭執與尷尬，沒有危難救援或全體制度勝利。",
+   "hooks": [
+    "place/tranquility-city",
+    "faction/ground-union",
+    "faction/dome-households"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "place/wl-alpine-common-hearth",
+    "file": "content/lore/places/wl-alpine-common-hearth.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "place/wl-alpine-common-hearth",
+     "file": "content/lore/places/wl-alpine-common-hearth.json",
+     "comparison": "最相近；共爐房也在生活空間打斷有權者占位，望地長廊讓階級透過空間可見。"
+    },
+    {
+     "id": "place/earthward-gallery",
+     "file": "content/lore/places/earthward-gallery.json",
+     "comparison": "望地長廊專用迎客以巨幕遮工人的地球視線，散場由工人落幕。"
+    }
+   ],
+   "similarity": "共爐房同為讓勞動者短暫卸下裝備的休息空間；望地長廊同有工作身分與私人生活交錯。相似只在場所外框，原占位情節已退回。",
+   "substantiveDifference": "共爐房的外部衝突是護衛替權客占座，老婦移靴讓座；新版浴堂沒有權客、移物清位或階級規矩。核心是伴侶因擦背看見被隱瞞的傷、再以返役回條逼對方親口承認未來選擇，利害在兩人信任與共同生活，保持未解。",
+   "decision": "adopt",
+   "reason": "修訂採用、待領導確認：依正式退修改掉相同情節骨架。新的具體行動是擦背發現、出示回條、親口念日期；不是管理者主持平等或以制度消除衝突。",
+   "fullTextRead": [
+    {
+     "id": "place/wl-alpine-common-hearth",
+     "file": "content/lore/places/wl-alpine-common-hearth.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "d8c37f8b5969a674b130b687548b70b3a0f6302e9eeb58fc76304bf610bb0f1a",
+     "bytes": 2527,
+     "evidence": "共爐房護衛以手套占座，老婦挪靴保住濕學徒，護衛最後添柴。",
+     "version": "主樹未提交 wl-*"
+    },
+    {
+     "id": "place/earthward-gallery",
+     "file": "content/lore/places/earthward-gallery.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "3aed96cb720ea0b5d9a5b8a951ba6a85e448d1fbf99863262ecfcecfd0fd5183",
+     "bytes": 1772,
+     "evidence": "望地長廊專用迎客以巨幕遮工人的地球視線，散場由工人落幕。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "月面密封生活區普通浴堂，kind 其他、world moon；傷勢是普通舊傷，與三系代價無關。人物匿名且皆成人，擦背點到為止；不寫醫療診斷、治療技術或伴侶有權代簽辭職，不替新制度定案，不以關簾救人或共同承諾大團圓收束。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-tranquility-bannerless-chess-walk",
+   "name": "無旗棋廊",
+   "targetFiles": [
+    "content/lore/places/wn-r2-tranquility-bannerless-chess-walk.json"
+   ],
+   "region": "月面・靜海市舊商廊",
+   "concept": "用無標記的普通棋子下自創戰棋的公共廊道，地球各方來客都想把棋子塗成自己一方。",
+   "action": "兩名敵對出身者交換座位續下同一盤，旁觀者卻把逆轉說成自家軍隊的勝利；棋主把勝負留在黑板，拒掛國旗。",
+   "conflict": "遊戲可否只屬於下棋的人，還是必須替家鄉贏；交換座位沒有交換各自政治立場。",
+   "sceneFunction": "以可笑又認真的競爭寫和平月面如何消費地球戰爭，提供閒談與對手相識場景。",
+   "hooks": [
+    "place/tranquility-city",
+    "faction/dome-households",
+    "faction/ground-union"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "faction/wl-afterbeat-hunters",
+    "file": "content/lore/factions/wl-afterbeat-hunters.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/wl-afterbeat-hunters",
+     "file": "content/lore/factions/wl-afterbeat-hunters.json",
+     "comparison": "最相近；同有觀眾把私人競技當成某種勢力體面的投射。"
+    },
+    {
+     "id": "place/earthward-gallery",
+     "file": "content/lore/places/earthward-gallery.json",
+     "comparison": "望地長廊由富戶專用迎賓，管事與巨幕維持上下分際。"
+    }
+   ],
+   "similarity": "同有觀眾把私人競技當成某種勢力體面的投射。",
+   "substantiveDifference": "餘拍靠真機對練、門票與羞辱壓軸維生；棋廊沒有傭兵演出、退款或修機債，核心是互換執子位置後的陣營認同，輸贏仍不構成和解。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/wl-afterbeat-hunters",
+     "file": "content/lore/factions/wl-afterbeat-hunters.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "21bf0b22d7825702d30a6968ab43eb4147d33f43085bd074de41f3d1d1d7c8ba",
+     "bytes": 2344,
+     "evidence": "餘拍副手收錢取消羞辱，票房已許諾壓軸，遭看客堵棚退款。",
+     "version": "主樹未提交 wl-*"
+    },
+    {
+     "id": "place/earthward-gallery",
+     "file": "content/lore/places/earthward-gallery.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "3aed96cb720ea0b5d9a5b8a951ba6a85e448d1fbf99863262ecfcecfd0fd5183",
+     "bytes": 1772,
+     "evidence": "望地長廊由富戶專用迎賓，管事與巨幕維持上下分際。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "棋只是敘事活動，不新增遊戲規則、玩法介面或預測能力；不把棋盤勝負當成戰況情報。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-accra-cross-banner-ground",
+   "name": "異旗墓圃",
+   "targetFiles": [
+    "content/lore/places/wn-r2-accra-cross-banner-ground.json"
+   ],
+   "region": "非洲・阿克拉守區邊緣",
+   "concept": "一塊已有匿名敵我死者分區安葬的墓地，墓旁家屬要親人被記住，也怕別人的旗把墓變成招兵場。",
+   "action": "葬禮當日有人把勝者長旗橫過整排墓，死者親屬將旗拆成各家小布條；敵方一位母親保留自己那條不同色的。",
+   "conflict": "悼亡是否等於認同死者參戰的那一方；家屬可同在場，不必原諒或共用一個英雄名目。",
+   "sceneFunction": "讓人對人衝突在戰後仍有形狀，提供弔唁、認親與敵對家屬共處場景。",
+   "hooks": [
+    "place/accra",
+    "faction/accra",
+    "faction/lagos-returners"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "character/silas-mercer",
+    "file": "content/lore/characters/silas-mercer.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/silas-mercer",
+     "file": "content/lore/characters/silas-mercer.json",
+     "comparison": "最相近；以個別名字或舊物保存戰後家屬記憶，拒絕把所有人合成一個故事。"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "comparison": "還鄉院掛鑰與地址副本，住戶爭守新床或奪舊家，募兵桌仍在門口。"
+    }
+   ],
+   "similarity": "以個別名字或舊物保存戰後家屬記憶，拒絕把所有人合成一個故事。",
+   "substantiveDifference": "賽拉斯處理帶不回的遺體與唱名；還鄉院連著復鄉募兵與房屋抵押。墓圃已有墓位，當下衝突是誰能在死者上方插旗，不找遺骨、不募兵、不代裁舊家。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "character/silas-mercer",
+     "file": "content/lore/characters/silas-mercer.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "3bf272180127e03fa5e3a485a0dcf2d332e5538913081baf9cf24f66fd5f0c89",
+     "bytes": 1805,
+     "evidence": "賽拉斯分開兩場喪亡名冊，不替空匣塞物，逐名念完。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "5c22e95f25ca04ff6a59045b806a7ee343aa90e30f76dc0a9878e0ab259faf3e",
+     "bytes": 2506,
+     "evidence": "還鄉院掛鑰與地址副本，住戶爭守新床或奪舊家，募兵桌仍在門口。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "墓中人物與戰事均地方未具名者；不改綠線清剿死者名單，也不宣告阿克拉承認敵方政權。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-mombasa-cleft-blade-shore",
+   "name": "斷刃試灘",
+   "targetFiles": [
+    "content/lore/places/wn-r2-mombasa-cleft-blade-shore.json"
+   ],
+   "region": "非洲・蒙巴薩港內維修岸",
+   "concept": "租給小獵團驗收修好武器的普通試用岸，留下的斷刃使華麗招牌與實際手藝互相拆台。",
+   "action": "買方帶舊傷刀重現卡刃，賣方要求由自己的人再試；最後雙方交換同型刀與試用者，在眾目下找出錯配握具。",
+   "conflict": "誰負責失手：修工、駕駛還是買方自己配的零件；現場可呈證，不能裁全港索賠。",
+   "sceneFunction": "在備戰日常保留機甲的重量與誇張喊招，故事以互換器材釐清責任而非事故救援收束。",
+   "hooks": [
+    "place/mombasa",
+    "faction/yoke-saddle-works",
+    "faction/far-herd"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "character/shen-yanqiao",
+    "file": "content/lore/characters/shen-yanqiao.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "character/shen-yanqiao",
+     "file": "content/lore/characters/shen-yanqiao.json",
+     "comparison": "最相近；都對物件原傷、交易責任與同業往來有依賴。"
+    },
+    {
+     "id": "place/salt-flat",
+     "file": "content/lore/places/salt-flat.json",
+     "comparison": "鹽灘交換核與屍體，老桂口約只談價錢，繼任者是否延續未定。"
+    }
+   ],
+   "similarity": "都對物件原傷、交易責任與同業往來有依賴。",
+   "substantiveDifference": "沈雁橋辨的是古代骸片來歷與原傷，鹽灘交易屍體；試灘是可公開重做的現場驗收，故障可由人與普通器材交叉試用分辨，不靠神秘真偽與信用承諾。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "character/shen-yanqiao",
+     "file": "content/lore/characters/shen-yanqiao.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "8728b7901311c53c8204e821066f1a85c62dd7003931843f853235e50348a258",
+     "bytes": 1792,
+     "evidence": "沈雁橋保留缺角拓紙，釜山試合後據此分辨新舊傷。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "place/salt-flat",
+     "file": "content/lore/places/salt-flat.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "60d604b17b6048c171f2db2d1b006ba858b49d21d2fea0a9b04a774c6cb80e7d",
+     "bytes": 2079,
+     "evidence": "鹽灘交換核與屍體，老桂口約只談價錢，繼任者是否延續未定。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "不作活獸標靶、不宣稱測出精粹等級的新技術；只試普通通用衍型武具，無新招式效果、數值或程序。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-sydney-broken-sail-hearing",
+   "name": "折帆聽庭",
+   "targetFiles": [
+    "content/lore/places/wn-r2-sydney-broken-sail-hearing.json"
+   ],
+   "region": "大洋洲・雪梨內港",
+   "concept": "港務准許民船在舊帆架下提出損害爭議的小聽證場，船身碎片常比慷慨證言更難搬動。",
+   "action": "兩船主都稱對方撞船，旁聽的船工把折帆搬轉方向，讓雙方按各自說法站位；一人只得承認自己倒著拖船。",
+   "conflict": "當面敘事與實物矛盾、同行情面與賠付責任衝突；調解失敗仍交既有港務處理。",
+   "sceneFunction": "以物證、站位與丟臉提供非戰鬥交涉場所，玩家可作證或旁聽，無強制任務鏈。",
+   "hooks": [
+    "place/sydney",
+    "faction/sydney",
+    "faction/league"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "place/salt-flat",
+    "file": "content/lore/places/salt-flat.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "place/salt-flat",
+     "file": "content/lore/places/salt-flat.json",
+     "comparison": "最相近；都是不同利害方見面並談物件歸屬、舊承諾的民間空間。"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "comparison": "還鄉院明示沒有審地契的權，地址副本與募兵相鄰。"
+    }
+   ],
+   "similarity": "都是不同利害方見面並談物件歸屬、舊承諾的民間空間。",
+   "substantiveDifference": "鹽灘是避開抽成的同業交易，還鄉院保存被拒的索認；聽庭重演一次普通撞船的物理位置，處理當下可爭證責任，不承擔難民安置或黑市保證。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "place/salt-flat",
+     "file": "content/lore/places/salt-flat.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "60d604b17b6048c171f2db2d1b006ba858b49d21d2fea0a9b04a774c6cb80e7d",
+     "bytes": 2079,
+     "evidence": "鹽灘不問貨物來源，靠口頭約定維持交換。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "5c22e95f25ca04ff6a59045b806a7ee343aa90e30f76dc0a9878e0ab259faf3e",
+     "bytes": 2506,
+     "evidence": "還鄉院明示沒有審地契的權，地址副本與募兵相鄰。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "只提案地方調解慣例，無獨立司法權、新國際法或強制遊戲裁判系統；kind 其他。"
+  },
+  {
+   "category": "places",
+   "id": "place/wn-r2-auckland-driftwood-yard",
+   "name": "漂木遊場",
+   "targetFiles": [
+    "content/lore/places/wn-r2-auckland-driftwood-yard.json"
+   ],
+   "region": "大洋洲・奧克蘭長屋間",
+   "concept": "難民長屋旁用漂木與舊船舵搭出的遊場，大人希望孩子重演返鄉，孩子卻把所有船連成沒有目的地的屋子。",
+   "action": "家長把舵擺朝故鄉方向，孩子轉過舵、把船頭接成圓桌；一名家長想拆回去，發現自己的孩子只會這裡的地名。",
+   "conflict": "父母保存故鄉的願望與下一代對此地的歸屬衝突；日常親情有尷尬，也有不肯讓步。",
+   "sceneFunction": "寫難民終點站長出第二代的安定生活，不靠災難或新戰爭製造重量。",
+   "hooks": [
+    "place/auckland",
+    "faction/sydney",
+    "faction/league"
+   ],
+   "template": "content/lore/places/auckland.json",
+   "nearestExisting": {
+    "id": "place/wl-busan-sleeve-court",
+    "file": "content/lore/places/wl-busan-sleeve-court.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "place/wl-busan-sleeve-court",
+     "file": "content/lore/places/wl-busan-sleeve-court.json",
+     "comparison": "最相近；年輕人改用公共物件說自己的生活，與大人的英雄或故鄉期待不同。"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "comparison": "還鄉院的孩子擦父母舊鑰匙，成人仍爭守床或復鄉。"
+    }
+   ],
+   "similarity": "年輕人改用公共物件說自己的生活，與大人的英雄或故鄉期待不同。",
+   "substantiveDifference": "借袖院是成熟表演者面對觀眾與團色；還鄉院是家長的政治去留。遊場是孩子改造遊戲地理，無演出、收費、募兵或手藝考核，歸屬差異透過親子一起玩卻玩不到一起呈現。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "place/wl-busan-sleeve-court",
+     "file": "content/lore/places/wl-busan-sleeve-court.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "d61f40c0aa9c2ebdf95446133ebe8c4e142d8425df2a742b132c1b4407636185",
+     "bytes": 2544,
+     "evidence": "借袖院年輕舞者拆團色，拒把竹簍短舞改成拔刀報招。",
+     "version": "主樹未提交 wl-*"
+    },
+    {
+     "id": "place/surat-key-court",
+     "file": "content/lore/places/surat-key-court.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "5c22e95f25ca04ff6a59045b806a7ee343aa90e30f76dc0a9878e0ab259faf3e",
+     "bytes": 2506,
+     "evidence": "還鄉院的孩子擦父母舊鑰匙，成人仍爭守床或復鄉。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "器材只用安全普通木料，不讓孩子玩精粹、武器或古代骸片；不替全部難民下一個同化結論。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-empty-crown-circle",
+   "name": "空冠社",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-empty-crown-circle.json"
+   ],
+   "region": "月面・靜海住宅穹頂",
+   "concept": "幾名老家族後輩結成的退銜社，願在宴上不用姓氏特權，卻有人仍暗中靠家印使喚侍役。",
+   "action": "社眾把家徽鎖在展示櫃，自稱平等；一次分派雜務時揭出有人借家印免差，成員要求連自己也照名輪值。",
+   "conflict": "反家族表演與仍在使用的財產便利相撞；社團不會因退銜自動失去或轉讓法律財產。",
+   "sceneFunction": "月面上層內部的世代群像與偽善，讓反叛者也有可指責之處。",
+   "hooks": [
+    "place/tranquility-city",
+    "faction/inner-sea-houses",
+    "faction/dome-households",
+    "faction/selene"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/inner-sea-houses",
+    "file": "content/lore/factions/inner-sea-houses.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/inner-sea-houses",
+     "file": "content/lore/factions/inner-sea-houses.json",
+     "comparison": "最相近；成員來自同一上月家族與穹頂生活，依賴地球資產及受僱者。"
+    },
+    {
+     "id": "faction/dome-households",
+     "file": "content/lore/factions/dome-households.json",
+     "comparison": "穹頂住戶各有錢與門，沒有共同首領，管事不因受託而得到財富。"
+    }
+   ],
+   "similarity": "成員來自同一上月家族與穹頂生活，依賴地球資產及受僱者。",
+   "substantiveDifference": "內海諸家維持土地、工坊、援軍；穹頂住戶是無共同首領的財富群像。空冠社是範圍有限且主動結社的家族後輩，爭的是自己宣示與實際特權的落差，不掌家產、軍隊或新傘。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/inner-sea-houses",
+     "file": "content/lore/factions/inner-sea-houses.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "5f8f77252432ed7dbd350735fb44567f9b48e8be5f7cc54260ef4ad7fcc5144f",
+     "bytes": 3452,
+     "evidence": "內海諸家家主上月，分支管地，地契與季付帳單仍運作。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/dome-households",
+     "file": "content/lore/factions/dome-households.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "c3c2276a209881bbb03d48d95cd40de97cf7a4e2742459247962bffb55a52f61",
+     "bytes": 2185,
+     "evidence": "穹頂住戶各有錢與門，沒有共同首領，管事不因受託而得到財富。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "type 小勢力；leaders 可空；無藍本、研發血統與兵權。不替所有家族宣布退銜，不假設每家都有爵位；社名是諷喻。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-chipped-cast-collectors",
+   "name": "缺角藏會",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-chipped-cast-collectors.json"
+   ],
+   "region": "月面・靜海市商廊",
+   "concept": "交換普通骸片翻模與舊物摹件的收藏同好，明知仿品仍迷戀某一件的經手故事。",
+   "action": "一名會員把普通翻模冒充親歷封鎖的原件，會眾公開打開底座比對匠記；揭穿者卻要求保留仿件的展位。",
+   "conflict": "稀有來歷帶來的身分與共享觀賞的樂趣互相拉扯；真假揭穿不自動抹去造物的價值。",
+   "sceneFunction": "以收藏者的欲望寫古代遺產如何進入月面庶民審美，保留熱愛機甲的世界常識。",
+   "hooks": [
+    "place/tranquility-city",
+    "faction/backside",
+    "faction/shell-society"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/backside",
+    "file": "content/lore/factions/backside.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/backside",
+     "file": "content/lore/factions/backside.json",
+     "comparison": "最相近；都與骸片、拓本及其價值網路相鄰。"
+    },
+    {
+     "id": "faction/shell-society",
+     "file": "content/lore/factions/shell-society.json",
+     "comparison": "稽古學會抄錄刻痕、保管刑天並授權解析，與月面封鎖直接衝突。"
+    }
+   ],
+   "similarity": "都與骸片、拓本及其價值網路相鄰。",
+   "substantiveDifference": "暗面販售真骸片、野魂與座標；學會解析古代記憶和研發刻痕。藏會只持普通人工摹件，關心藏品名譽與共同展示，沒有走私貨道、古代知識解碼或鑑定權威。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/backside",
+     "file": "content/lore/factions/backside.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "c150b71aa2574aa2f284ccf01af7a2e293c87bc540c990f990fb4fc3cb7d79cd",
+     "bytes": 6044,
+     "evidence": "暗面交易三類實貨並可能出售客人姓名，靠封鎖與護貨約生利。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/shell-society",
+     "file": "content/lore/factions/shell-society.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "2841a0660c80068d02ef11cbd5de038449b691c96b1454de082418384af890a3",
+     "bytes": 6950,
+     "evidence": "稽古學會抄錄刻痕、保管刑天並授權解析，與月面封鎖直接衝突。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "type 小勢力；普通模具無源流、無魂、無能力，不能複製機魂或古代機；不賣新座標或揭露背面秘密。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-white-knot-exchangers",
+   "name": "白結換俘社",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-white-knot-exchangers.json"
+   ],
+   "region": "非洲・阿克拉周邊守區",
+   "concept": "由地方人類衝突的前俘虜與親屬組成的小中介社，靠雙方逐次授權陪同交換，沒有免罪權。",
+   "action": "一方臨時用陌生替身湊交換數目，社內有人要裝作不知趕快交人，另一批成員解除自己那邊的結繩並要求重新辨認。",
+   "conflict": "救回自家人和不能把別人的人當成等價物互撞；退出換俘可能失去下次被信任的機會。",
+   "sceneFunction": "提供人類戰爭的停頓與脆弱互信，雙方仍可敵對，沒有一次交換便大和解。",
+   "hooks": [
+    "place/accra",
+    "faction/accra",
+    "faction/league"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/far-herd",
+    "file": "content/lore/factions/far-herd.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/far-herd",
+     "file": "content/lore/factions/far-herd.json",
+     "comparison": "最相近；同樣在敵對環境依賴契約與同伴，協作邊界必須說清。"
+    },
+    {
+     "id": "faction/anvil",
+     "file": "content/lore/factions/anvil.json",
+     "comparison": "鐵砧可分戰場但不分屍體，曾推老桂扛責，既有合作不等於公道。"
+    }
+   ],
+   "similarity": "同樣在敵對環境依賴契約與同伴，協作邊界必須說清。",
+   "substantiveDifference": "遠牧接外洋守城、匯款與壓獸；鐵砧結陣戰鬥並分配屍體。白結沒有戰鬥部隊，工作是雙邊都同意時的人身交接，爭議在辨認與同意，不是護航撤離或工資。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/far-herd",
+     "file": "content/lore/factions/far-herd.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "6ee93e895f9bd3490e134a239a4775805bb9628db8de4121f61c59aa6a2a0203",
+     "bytes": 2908,
+     "evidence": "遠牧依拘束艙與出洋船單接守城契約，獸始終反抗，匯款回內陸。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/anvil",
+     "file": "content/lore/factions/anvil.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "001bcd49252573b5d031f407fee811802b40fac9fd179a6c9a5fae550ad58c7c",
+     "bytes": 5201,
+     "evidence": "鐵砧可分戰場但不分屍體，曾推老桂扛責，既有合作不等於公道。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "type 小勢力；不通行蝕域、不與獸談判、不受理國際赦免；必要護衛另雇，無自有血統或傘調度權。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-salt-mark-hunt-compact",
+   "name": "鹽印分獵盟",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-salt-mark-hunt-compact.json"
+   ],
+   "region": "非洲・蒙巴薩外岸",
+   "concept": "數支小獵團為聯合獵殺暫結的地方分獵盟，出戰前把各隊想取的屍材畫在同一張獸形布上。",
+   "action": "得手後發現最值錢的部位被一名盟友提前割走，聯盟不再追獸，先把各船的拖索互綁，等違約者交回再各自分割。",
+   "conflict": "盟友的戰功自述與約定份額對不上；互扣拖索也可能使守約者失去離岸窗口。",
+   "sceneFunction": "用戰後分獵寫捕鯨船底色、利益聯盟與自發脅迫，勝利後仍有戲。",
+   "hooks": [
+    "place/mombasa",
+    "faction/far-herd",
+    "faction/yoke-saddle-works",
+    "faction/league"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/anvil",
+    "file": "content/lore/factions/anvil.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/anvil",
+     "file": "content/lore/factions/anvil.json",
+     "comparison": "最相近；都依賴裂獸屍材與同業作戰後的利益分配。"
+    },
+    {
+     "id": "faction/chittagong-breakers",
+     "file": "content/lore/factions/chittagong-breakers.json",
+     "comparison": "拆船幫將屍體殘骸拆件造廉價機，不問來源，不保證品質。"
+    }
+   ],
+   "similarity": "都依賴裂獸屍材與同業作戰後的利益分配。",
+   "substantiveDifference": "鐵砧是一家集中清點戰利品的強團；拆船幫是有場子與工人的加工供應者。鹽印是小隊橫向結約、沒有共同廠場，互相扣船的程序可被濫用，故事主軸是勝後同盟內鬥。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/anvil",
+     "file": "content/lore/factions/anvil.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "001bcd49252573b5d031f407fee811802b40fac9fd179a6c9a5fae550ad58c7c",
+     "bytes": 5201,
+     "evidence": "鐵砧讓友軍站側翼，裂晶歸自己清點，盟友權力不對等。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/chittagong-breakers",
+     "file": "content/lore/factions/chittagong-breakers.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "cbc865da7fe37ab35caa932f80c59e20af2b3a0ea39cba22553945d4a779ce90",
+     "bytes": 4086,
+     "evidence": "拆船幫將屍體殘骸拆件造廉價機，不問來源，不保證品質。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "type 小勢力；所用通用機從既有渠道買，不自造血統。只處理已死獸，不寫餵養、御獸或用低階核堆成高階；不新增分獵遊戲機制。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-sunken-arrow-hunters",
+   "name": "沉矢獵團",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-sunken-arrow-hunters.json"
+   ],
+   "region": "大洋洲・雪梨港外",
+   "concept": "接地方繳械與銷毀舊凡鐵武器差事的小獵團，自稱讓一批武器永不回到人身上，卻靠轉賣拆件活下去。",
+   "action": "受託銷毀的舊吼砲重新出現在競爭隊船上，團內公開拆開自家備件箱，把偷偷保留的砲件和正當回收件分開交回。",
+   "conflict": "拆件維生和履行銷兵承諾相撞；團長不能以武器打不了獸為藉口淡化對人的傷害。",
+   "sceneFunction": "把人類軍火與戰後處理寫成有瑕疵的傭兵生意，提供追查、交割與同行對峙。",
+   "hooks": [
+    "place/sydney",
+    "faction/sydney",
+    "faction/old-arms-makers",
+    "faction/league"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/old-arms-makers",
+    "file": "content/lore/factions/old-arms-makers.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/old-arms-makers",
+     "file": "content/lore/factions/old-arms-makers.json",
+     "comparison": "最相近；同處舊軍備與非核心件回收市場，生意未因凡鐵打不了獸而消失。"
+    },
+    {
+     "id": "faction/chittagong-breakers",
+     "file": "content/lore/factions/chittagong-breakers.json",
+     "comparison": "拆船幫以來歷不明的殘骸拼廉價機，不承擔來源保證。"
+    }
+   ],
+   "similarity": "同處舊軍備與非核心件回收市場，生意未因凡鐵打不了獸而消失。",
+   "substantiveDifference": "舊廠供貨、拆船幫回收再造；沉矢的商品是某批武器不再流通的承諾，回收反成違約證據。它用購買的通用機做受託拆械，不研發也不自主禁止全港持武。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/old-arms-makers",
+     "file": "content/lore/factions/old-arms-makers.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "9619acdce331786a6c1e89bfa0e0297166fb7c12b15e6a41ce0331aec5286ba7",
+     "bytes": 3969,
+     "evidence": "舊廠凡鐵庫存對獸無法收命，對人仍有效；改接零件與保全。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/chittagong-breakers",
+     "file": "content/lore/factions/chittagong-breakers.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "cbc865da7fe37ab35caa932f80c59e20af2b3a0ea39cba22553945d4a779ce90",
+     "bytes": 4086,
+     "evidence": "拆船幫以來歷不明的殘骸拼廉價機，不承擔來源保證。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "type 獵團；僅敘事既有通用機與凡鐵武器，不新增 base。社名不代表往海裡傾倒物料；銷毀在指定岸場，不寫精粹核被日常耗光。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-many-tastes-table",
+   "name": "百味航桌",
+   "targetFiles": [
+    "content/lore/factions/wn-r2-many-tastes-table.json"
+   ],
+   "region": "大洋洲・奧克蘭長屋與魚市",
+   "concept": "不同流亡家庭合辦的移民食宴社，販售家鄉菜名籌宴，卻有人以會眾名義把別家的菜改成迎合客人的味道。",
+   "action": "宴前將被改配方的招牌翻面，讓原做菜者與改菜者各擺一鍋、各署名字，客人逐碗選；社內不再用一個故鄉名義替兩鍋說話。",
+   "conflict": "傳承、改味與共同招牌的所有權相撞，年輕做菜者也可能堅持改味，不能簡化成長輩正確。",
+   "sceneFunction": "保留戰後移民的歡宴、嘴饞與競爭，讓世界有不靠危機才能開始的聚會。",
+   "hooks": [
+    "place/auckland",
+    "faction/sydney",
+    "faction/league"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/wl-kept-bowl-circle",
+    "file": "content/lore/factions/wl-kept-bowl-circle.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/wl-kept-bowl-circle",
+     "file": "content/lore/factions/wl-kept-bowl-circle.json",
+     "comparison": "最相近；都用民間集體勞動經營日常相聚，成員內有分歧。"
+    },
+    {
+     "id": "faction/wl-torn-curtain-troupe",
+     "file": "content/lore/factions/wl-torn-curtain-troupe.json",
+     "comparison": "破幕班領唱私收預付刪段，伴奏保留舊調，引發未付尾款與分工報酬爭議。"
+    }
+   ],
+   "similarity": "都用民間集體勞動經營日常相聚，成員內有分歧。",
+   "substantiveDifference": "留碗會因欠住費與失聯者照護分灶；破幕班為隱瞞預付刪戲而爭尾款。航桌不是救濟、住宿或受雇刪作，問題是集體招牌能否抹平配方作者與多種移民身份。",
+   "decision": "adopt",
+   "reason": "採用：具體行動、利益衝突與場景用途至少兩軸不同；差異須由成稿事件呈現。",
+   "fullTextRead": [
+    {
+     "id": "faction/wl-kept-bowl-circle",
+     "file": "content/lore/factions/wl-kept-bowl-circle.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "0fb456b21afc28dbad00e38797545d07822d6b99899194f475837d15de863ef3",
+     "bytes": 2246,
+     "evidence": "留碗會管碗者扣碗追欠費，另一戶暗中添水但不肯付帳，最後分鍋。",
+     "version": "主樹未提交 wl-*"
+    },
+    {
+     "id": "faction/wl-torn-curtain-troupe",
+     "file": "content/lore/factions/wl-torn-curtain-troupe.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "24a8b092bc779486dd212861e14753556668f444685bc25ff11c5da90a0dd0bd",
+     "bytes": 2313,
+     "evidence": "破幕班領唱私收預付刪段，伴奏保留舊調，引發未付尾款與分工報酬爭議。",
+     "version": "主樹未提交 wl-*"
+    }
+   ],
+   "writingConstraints": "type 小勢力；不做食物供應鏈或飢餓制度，無免費救濟條件、欠費趕人或怪獸食材；使用普通食材，食宴是地方活動。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-rejected-lunar-duel-show",
+   "name": "月面對練表演團（退回）",
+   "targetFiles": [],
+   "region": "月面・靜海市",
+   "concept": "以機甲對練門票維持修機費。",
+   "action": "副手答應取消敗者受辱後遭觀眾要求退票。",
+   "conflict": "保敗者體面與票房承諾衝突。",
+   "sceneFunction": "公開競技與欠修理費。",
+   "hooks": [
+    "place/tranquility-city"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/wl-afterbeat-hunters",
+    "file": "content/lore/factions/wl-afterbeat-hunters.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/wl-afterbeat-hunters",
+     "file": "content/lore/factions/wl-afterbeat-hunters.json",
+     "comparison": "最相近；對練門票、取消羞辱、看客退款與修機債完全重合。"
+    },
+    {
+     "id": "faction/wl-torn-curtain-troupe",
+     "file": "content/lore/factions/wl-torn-curtain-troupe.json",
+     "comparison": "破幕班也有對外收錢後私改內容、內部利益未同意的結構。"
+    }
+   ],
+   "similarity": "對練門票、取消羞辱、看客退款與修機債完全重合。",
+   "substantiveDifference": "換月面與招式名仍是同一情節，沒有實質差異。",
+   "decision": "reject",
+   "reason": "退回：與 wl-afterbeat-hunters 是情節及功能重複，不因換地區採用。",
+   "fullTextRead": [
+    {
+     "id": "faction/wl-afterbeat-hunters",
+     "file": "content/lore/factions/wl-afterbeat-hunters.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "21bf0b22d7825702d30a6968ab43eb4147d33f43085bd074de41f3d1d1d7c8ba",
+     "bytes": 2344,
+     "evidence": "餘拍副手私自取消跪地壓軸，售票人已將票款許給修機欠件。",
+     "version": "主樹未提交 wl-*"
+    },
+    {
+     "id": "faction/wl-torn-curtain-troupe",
+     "file": "content/lore/factions/wl-torn-curtain-troupe.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "24a8b092bc779486dd212861e14753556668f444685bc25ff11c5da90a0dd0bd",
+     "bytes": 2313,
+     "evidence": "破幕班也有對外收錢後私改內容、內部利益未同意的結構。",
+     "version": "主樹未提交 wl-*"
+    }
+   ],
+   "writingConstraints": "不交創作、不建檔；位置由沉矢獵團的銷兵承諾衝突取代。"
+  },
+  {
+   "category": "factions",
+   "id": "faction/wn-r2-rejected-redsand-no-dig",
+   "name": "紅砂止掘團（退回）",
+   "targetFiles": [],
+   "region": "大洋洲・紅心外圍",
+   "concept": "守住彩虹蛇不讓人偷挖的小護衛團。",
+   "action": "攔下鑽具，喝令偷挖者走回雪梨。",
+   "conflict": "學者要挖與守土者拒絕衝突。",
+   "sceneFunction": "禁掘與守望。",
+   "hooks": [
+    "place/uluru-heart",
+    "faction/sydney"
+   ],
+   "template": "content/lore/factions/anvil.json",
+   "nearestExisting": {
+    "id": "faction/sydney",
+    "file": "content/lore/factions/sydney.json"
+   },
+   "similarCandidates": [
+    {
+     "id": "faction/sydney",
+     "file": "content/lore/factions/sydney.json",
+     "comparison": "最相近；既有雪梨已完整承擔紅心拒挖、巡邏與扣鑽具的功能。"
+    },
+    {
+     "id": "faction/shell-wardens",
+     "file": "content/lore/factions/shell-wardens.json",
+     "comparison": "守寢人拒徵調與收購，守住古代機的主體性，不提供量產血統。"
+    }
+   ],
+   "similarity": "既有雪梨已完整承擔紅心拒挖、巡邏與扣鑽具的功能。",
+   "substantiveDifference": "另立團名不能新增功能；若為求差異寫彩虹蛇醒來，反而替未定設定定案。",
+   "decision": "reject",
+   "reason": "退回：功能已被雪梨占有；不靠改動彩虹蛇未知設定製造差異。",
+   "fullTextRead": [
+    {
+     "id": "faction/sydney",
+     "file": "content/lore/factions/sydney.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "31645695b7bdd058fed928a189f56d1478705495b6116f561b276208f48528da",
+     "bytes": 3816,
+     "evidence": "雪梨拒挖三年，南十字衛巡紅心，偷推鑽具者被迫徒步回去，沒有彩虹蛇血統。",
+     "version": "主樹最新版"
+    },
+    {
+     "id": "faction/shell-wardens",
+     "file": "content/lore/factions/shell-wardens.json",
+     "read": "完整 JSON 全文，含 body、relations 及可見度欄；寫差異前已親讀",
+     "sha256": "f025a8f4ea37ff6c7a1d6a16e22ed841cdae03a728db5f8355d950058d10f60f",
+     "bytes": 5143,
+     "evidence": "守寢人拒徵調與收購，守住古代機的主體性，不提供量產血統。",
+     "version": "主樹最新版"
+    }
+   ],
+   "writingConstraints": "不交創作、不建檔；保留彩虹蛇狀態未知，採其他已可寫生活與地方政治。"
+  }
+ ]
+}

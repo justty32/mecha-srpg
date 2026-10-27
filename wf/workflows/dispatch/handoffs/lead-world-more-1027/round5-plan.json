@@ -1,0 +1,287 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan-r5-REPORT.md",
+ "extracted": "2026-10-27",
+ "baseHead": "f24420b079a59a7f8e93123930665aaa824f9d00",
+ "integrationStatus": "deferred-by-user",
+ "link_columns": [],
+ "scope": "規劃地點6列／6新檔；來源路徑以repo根為準。",
+ "template": "content/lore/places/dhaka-sail-court.json",
+ "sharedConstraints": "僅lore places，必填欄沿範本；factions/gameRefs可空。aka保留英文提案名。body需寫持續用途、具體一幕及2108狀態，不把本計畫直接當正文。只引用oldIds；wl/wn/wm來源僅查重。不改事件、年表、人物、地圖與任何遊戲規則，不另建勢力或固定NPC。",
+ "readAdded": [
+  "wf/workflows/content/world-pillars/world/factions-and-sandbox.md",
+  "wf/workflows/content/lore-text.md 地點段",
+  "content/lore/README.md places欄位段"
+ ],
+ "readInherited": "共通規矩沿前輪；本次重讀最新總brief。每列兩近似全文，含wl/wn/wm最新；母地點metadata僅核地區，不擴普查。",
+ "columns": [
+  "id",
+  "name",
+  "aka",
+  "targetFiles",
+  "region",
+  "continent",
+  "world",
+  "kind",
+  "sceneUse",
+  "desire",
+  "action",
+  "conflict",
+  "result",
+  "nearest",
+  "difference",
+  "oldIds",
+  "status2108",
+  "constraints",
+  "decision",
+  "category"
+ ],
+ "rows": [
+  {
+   "id": "place/wm-r5-almaty-blind-books",
+   "name": "盲封書閣",
+   "aka": [
+    "Blindbound Books"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-almaty-blind-books.json"
+   ],
+   "region": "阿拉木圖城內",
+   "continent": "亞洲",
+   "world": "earth",
+   "kind": "其他",
+   "sceneUse": "讀者先按封皮上的一句話借普通讀物，還書時才揭書名。",
+   "desire": "熟客想讀到平日絕不會挑的書。",
+   "action": "熟客蒙住自己帶來的小說，與別人的包書交換，讀完留下相反評語。",
+   "conflict": "主人想推薦佳作，客人偏愛他覺得最差的一本。",
+   "result": "借書者要求續篇，主人不情願地把自己的偏愛藏回架後。",
+   "nearest": [
+    {
+     "id": "character/wm-r4-noura-sayegh",
+     "file": "content/lore/characters/wm-r4-noura-sayegh.json",
+     "sha256": "eeff3ddd0d8b04eebb5d210b42892fd84ac5155458fe500a5c10b059e557dfa3",
+     "comparison": "書與好奇相近；此處無追人謎卡，意外來自閱讀偏好。"
+    },
+    {
+     "id": "place/wn-r2-tranquility-bannerless-chess-walk",
+     "file": "content/lore/places/wn-r2-tranquility-bannerless-chess-walk.json",
+     "sha256": "b92fc238770a28aa63e5d9db1c9096d0493eb1ad8db3cbf16b1c25810be46c3c",
+     "comparison": "同公共消遣；此處無勝負、國旗或故鄉辯護。"
+    }
+   ],
+   "difference": "以交換閱讀和互異趣味維持場所，不把匿名包裝變成破案或身分和解。",
+   "oldIds": [
+    "place/almaty"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "只收普通書，不收藏先民秘密；不發明官營禁書制度。",
+   "decision": "adopt",
+   "category": "places"
+  },
+  {
+   "id": "place/wm-r5-sendai-rain-drum",
+   "name": "雨鼓長棚",
+   "aka": [
+    "Rain Drum Shed"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-sendai-rain-drum.json"
+   ],
+   "region": "仙台城內民居街棚",
+   "continent": "亞洲",
+   "world": "earth",
+   "kind": "其他",
+   "sceneUse": "居民以普通鼓、木片與空罐排練，沒有固定臺口。",
+   "desire": "來訪樂手想完整奏完一支長曲。",
+   "action": "樂手請眾人停敲後起奏；路過的人仍把手上節拍接進來。",
+   "conflict": "他的獨奏反覆被接走，卻又捨不得離開熱鬧。",
+   "result": "曲子始終沒奏完，收棚時他留了凳子，預備再來搶回起拍。",
+   "nearest": [
+    {
+     "id": "place/wl-genoa-string-stage",
+     "file": "content/lore/places/wl-genoa-string-stage.json",
+     "sha256": "25d51b89d04327da9f977c9c8ceac5f0ee489eaeab76d36e35c486e18f80bf51",
+     "comparison": "同工餘表演；本列無諷刺雇主或工頭入戲。"
+    },
+    {
+     "id": "place/wl-busan-sleeve-court",
+     "file": "content/lore/places/wl-busan-sleeve-court.json",
+     "sha256": "d61f40c0aa9c2ebdf95446133ebe8c4e142d8425df2a742b132c1b4407636185",
+     "comparison": "同民間排演；本列不爭團色，爭的是誰能控制合奏節奏。"
+    }
+   ],
+   "difference": "無觀眾／演員硬分界的合奏場；獨奏欲望未被滿足，也未被說服放棄。",
+   "oldIds": [
+    "place/sendai-wall"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "聲響無治療或作戰效果；不改值更、警報與守燈設定。",
+   "decision": "adopt",
+   "category": "places"
+  },
+  {
+   "id": "place/wm-r5-winnipeg-snow-turns",
+   "name": "雪轉迷庭",
+   "aka": [
+    "Snowturn Yard"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-winnipeg-snow-turns.json"
+   ],
+   "region": "溫尼伯居民院地",
+   "continent": "北美",
+   "world": "earth",
+   "kind": "其他",
+   "sceneUse": "冬季把鏟起的雪堆成低牆迷庭，居民輪流改岔口。",
+   "desire": "築牆者想留住一條沒人能一眼看穿的路。",
+   "action": "熟客背熟舊路來挑戰，築牆者拆開一道牆、封上另一個出口。",
+   "conflict": "玩者嫌換路耍賴，築牆者不肯讓迷庭永遠照舊。",
+   "result": "兩人各搭半邊，交界處反而走不通；散場後還在鑿新的轉口。",
+   "nearest": [
+    {
+     "id": "place/wn-r2-auckland-driftwood-yard",
+     "file": "content/lore/places/wn-r2-auckland-driftwood-yard.json",
+     "sha256": "303a0cf9e0af2937312ac4b84ee58a3d11b7ceb766217bf28627db2f20b56167",
+     "comparison": "同可改造遊場；此處是同輩爭設計，不是父子故鄉認同。"
+    },
+    {
+     "id": "place/wn-r2-tranquility-bannerless-chess-walk",
+     "file": "content/lore/places/wn-r2-tranquility-bannerless-chess-walk.json",
+     "sha256": "b92fc238770a28aa63e5d9db1c9096d0493eb1ad8db3cbf16b1c25810be46c3c",
+     "comparison": "同競技消遣；地形本身能重搭，沒有借勝負爭國族。"
+    }
+   ],
+   "difference": "參與者同時造路與闖路，結果是共同做出新的難題，非換座下棋或親子講和。",
+   "oldIds": [
+    "place/winnipeg"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "低雪牆露天院地，不是地道；無暴雪困人、法術迷宮或新增小遊戲機制。",
+   "decision": "adopt",
+   "category": "places"
+  },
+  {
+   "id": "place/wm-r5-montreal-discard-loft",
+   "name": "棄稿吊樓",
+   "aka": [
+    "Unfinished Loft"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-montreal-discard-loft.json"
+   ],
+   "region": "蒙特婁民間工坊樓內",
+   "continent": "北美",
+   "world": "earth",
+   "kind": "其他",
+   "sceneUse": "普通匠人暫掛做不成的木模與布形，借手工吊架試看全貌。",
+   "desire": "一名匠人想第一次看見自己的巨鳥雙翼全部展開。",
+   "action": "眾人將折翼木鳥分段吊起，作者移開它的底座讓翼展過中庭。",
+   "conflict": "展開後佔去別人的試作位置，沒有地方能永久容下完整作品。",
+   "result": "只展了一晚便拆回兩翼；作者保留吊繩長度，下次仍想再拼。",
+   "nearest": [
+    {
+     "id": "place/dhaka-sail-court",
+     "file": "content/lore/places/dhaka-sail-court.json",
+     "sha256": "a2b4776b8149150c8f69368789387320207ea01f05dbfcb1a1d54078e134a995",
+     "comparison": "同共用工位與吊起大件；這裡不修營生船帆或解決學徒斷層。"
+    },
+    {
+     "id": "character/wm-r4-sandro-veiga",
+     "file": "content/lore/characters/wm-r4-sandro-veiga.json",
+     "sha256": "902cf3c94ec75a7c50d0e6e7da919f1498c8b73024a35a0f0396cf42a54c04c3",
+     "comparison": "同未竟手作；本列無評比、倒塌或碎片熱賣，只有短暫看見全貌。"
+    }
+   ],
+   "difference": "場所提供暫時的空間與試掛，衝突無法用作品賣出或改配方消除。",
+   "oldIds": [
+    "place/montreal"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "木鳥非機甲、古代機或機魂；不增科研加成，不替學會設新軍工部門。",
+   "decision": "adopt",
+   "category": "places"
+  },
+  {
+   "id": "place/wm-r5-nostos-gift-table",
+   "name": "換禮角",
+   "aka": [
+    "Gifts Afloat"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-nostos-gift-table.json"
+   ],
+   "region": "望鄉號既有乘客艙角落",
+   "continent": "軌道",
+   "world": "orbit",
+   "kind": "其他",
+   "sceneUse": "乘客在不擋通道的小桌上交換普通伴手禮，交談收桌即止。",
+   "desire": "返鄉者想替家人挑出不像上回那樣敷衍的禮物。",
+   "action": "帶木船的人與帶飾鍊的人互換，談著談著，各自試玩、試戴起新得的物件。",
+   "conflict": "他們發現自己比想像中的收禮人更喜歡換來的東西。",
+   "result": "兩人先把禮物留給自己，還未決定回家帶什麼，小桌已收起。",
+   "nearest": [
+    {
+     "id": "place/ferry-nostos",
+     "file": "content/lore/places/ferry-nostos.json",
+     "sha256": "551ec1c2213108064ca645ab6806934c46165aea736c3f8a909e9739d22b0c48",
+     "comparison": "同船與返鄉旅途；新點只寫乘客相互挑禮，不再寫觀地與船班總覽。"
+    },
+    {
+     "id": "character/wm-r4-mina-voss",
+     "file": "content/lore/characters/wm-r4-mina-voss.json",
+     "sha256": "7f42f1e71cc314e34ec1a54d72ab8b1d95eb60fdef9ea09e57aa4706d82eafed",
+     "comparison": "同遠行與親密期待；無等候花期或錯過相聚，而是自己的欲望打亂送禮打算。"
+    }
+   ],
+   "difference": "短暫交換讓返鄉者先滿足自己，沒有要他們認錯或證明家人更重要。",
+   "oldIds": [
+    "place/ferry-nostos"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "不得改三天航程、弦月定班、拒載拘束艙及艙等；無新增舖位、市場系統或船員承諾。",
+   "decision": "adopt",
+   "category": "places"
+  },
+  {
+   "id": "place/wm-r5-phoenix-empty-doors",
+   "name": "空門樣屋",
+   "aka": [
+    "Doors to Nowhere"
+   ],
+   "targetFiles": [
+    "content/lore/places/wm-r5-phoenix-empty-doors.json"
+   ],
+   "region": "鳳凰城舊家具展售樓",
+   "continent": "北美",
+   "world": "earth",
+   "kind": "其他",
+   "sceneUse": "取件工班停工時，可在獲准進入的樣屋走道看未曾住過的房間。",
+   "desire": "同行者想走完這排門，試想自己若住在其中會怎樣。",
+   "action": "他在不同樣間試開門、擺空椅；工班按本次許可拆下可取走的門板。",
+   "conflict": "他的遊逛需要完整房間，取件卻使一間間樣屋失去邊界。",
+   "result": "最後一扇門暫立在空走道；他照樣開一次，門後仍是剛站過的地方。",
+   "nearest": [
+    {
+     "id": "place/phoenix",
+     "file": "content/lore/places/phoenix.json",
+     "sha256": "052edab4a41bf60a39b17aef515c05de9b6bf52902339d8629202689340d477f",
+     "comparison": "同撤空內陸城及許可取件；新點聚焦樣屋空間被拆開，不重演缺水撤民。"
+    },
+    {
+     "id": "place/new-york-hollow",
+     "file": "content/lore/places/new-york-hollow.json",
+     "sha256": "f5f6331bae08d8636462ed1f54f32a2d34881a9106f909810c647f3bf658b450",
+     "comparison": "同空城打撈；無地契抵押爭議或兩套貨權，拆取權在入場前已確認。"
+    }
+   ],
+   "difference": "無人曾居住的展示家屋承接私人想像，衝突是空間消失，非遺物歸屬或公帳作證。",
+   "oldIds": [
+    "place/phoenix"
+   ],
+   "status2108": "既有場域內的小場所，按本列用途開放；不擴大母地點安全範圍。",
+   "constraints": "不是先民遺跡或蝕域；不增常住聚落、供水或觀光航線，來客隨合法工班並自備回程水糧。",
+   "decision": "adopt",
+   "category": "places"
+  }
+ ]
+}

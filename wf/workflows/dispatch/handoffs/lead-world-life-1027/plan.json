@@ -1,0 +1,204 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan.md",
+ "extracted": "2026-10-27",
+ "ready_categories": [
+  "places"
+ ],
+ "columns": [
+  "category",
+  "id",
+  "name",
+  "continent",
+  "region",
+  "allowed_files",
+  "template",
+  "existing_refs",
+  "concept",
+  "boundaries",
+  "sources",
+  "plain",
+  "new_dependencies",
+  "dedup"
+ ],
+ "rows": [
+  {
+   "category": "places",
+   "id": "place/wl-busan-sleeve-court",
+   "name": "借袖院",
+   "continent": "亞洲",
+   "region": "亞洲・釜山城內山坡",
+   "allowed_files": [
+    "content/lore/places/wl-busan-sleeve-court.json"
+   ],
+   "template": "content/lore/places/busan.json",
+   "existing_refs": [
+    "place/busan",
+    "faction/busan",
+    "faction/third-blade"
+   ],
+   "concept": "裁衣人替街坊借出舞袖；年輕舞者拒絕把謝幕改成第三刃的報招，當場拆下租衣上的隊色，帶同伴跳自己的小舞。衝突是市民娛樂與英雄崇拜，不是罷工。",
+   "boundaries": "不讓民間舞蹈產生逐疫效果；不叫金河娜或尹瑞英出場裁決。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/busan.json",
+    "content/lore/factions/busan.json",
+    "content/lore/factions/third-blade.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "街坊借舞袖上臺，年輕舞者偏不把自己的舞跳成第三刃的頌歌。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "借袖|戲衣|舞袖",
+    "result": "金河娜既有個人願望是自由跳舞；此處寫匿名居民如何排戲借衣，不複述她的心願。"
+   }
+  },
+  {
+   "category": "places",
+   "id": "place/wl-gyeongju-paper-face-slope",
+   "name": "紙面坡",
+   "continent": "亞洲",
+   "region": "亞洲・慶州古陵外坡",
+   "allowed_files": [
+    "content/lore/places/wl-gyeongju-paper-face-slope.json"
+   ],
+   "template": "content/lore/places/gyeongju-tombs.json",
+   "existing_refs": [
+    "place/gyeongju-tombs",
+    "faction/busan"
+   ],
+   "concept": "陵外攤販替朝聖者畫紙面具。一名家屬只要逝者原本的歪笑，畫師卻習慣把每張臉都畫成處容；家屬拿濕布擦掉白牙，畫師重新畫那顆缺牙。衝突是私人記憶與聖地標準形象。",
+   "boundaries": "不增第二修鼓人、不重演韓寶羅繃鼓／骸片發光；紙面不通靈、不新增葬俗通則。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/gyeongju-tombs.json",
+    "content/lore/factions/busan.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "朝聖者不肯讓亡者都長成處容，逼畫面具的人留下親人的缺牙。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "面具|畫像|紙面|修鼓",
+    "result": "已讀 character/han-bora 與 character/kim-haneul；改用喪親者的畫像選擇，避開修鼓與異象。"
+   }
+  },
+  {
+   "category": "places",
+   "id": "place/wl-quito-corn-terrace",
+   "name": "烤穗臺",
+   "continent": "南美",
+   "region": "南美・基多城內石階",
+   "allowed_files": [
+    "content/lore/places/wl-quito-corn-terrace.json"
+   ],
+   "template": "content/lore/places/quito.json",
+   "existing_refs": [
+    "place/quito",
+    "faction/quito"
+   ],
+   "concept": "賣烤玉米的母親替整排食客抹辣醬，唯獨把女兒的行囊壓在凳下；女兒要去高原衛修理場學手藝，不肯接攤。她當著熟客收拾爐灰，留下自己補好的烤架才走。衝突是家業與自己的前途。",
+   "boundaries": "不創招募制度或新機型；不把學徒寫成上機即不老；不寫出洲或渡月行程。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/quito.json",
+    "content/lore/factions/quito.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "烤玉米攤主想留女兒接攤，女兒修好最後一只烤架，仍要去學修機。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "烤玉米|烤穗|接攤|烤架",
+    "result": "place/quito 只有烤玉米氣味；把背景食物展成家庭選擇，不寫護糧。"
+   }
+  },
+  {
+   "category": "places",
+   "id": "place/wl-titicaca-new-weave-house",
+   "name": "新紋屋",
+   "continent": "南美",
+   "region": "南美・的的喀喀遺跡外村落",
+   "allowed_files": [
+    "content/lore/places/wl-titicaca-new-weave-house.json"
+   ],
+   "template": "content/lore/places/titicaca-ruin.json",
+   "existing_refs": [
+    "place/titicaca-ruin",
+    "faction/quito"
+   ],
+   "concept": "村屋裡織披肩的長者只肯織遺跡升日圖；年輕織手把母親洗衣的身影織進下緣，朝聖客要她拆掉。長者先拆自己的邊線替她接好，把那條披肩掛到門外。衝突是紀念品市場與活人的創作。",
+   "boundaries": "紋樣是當代人創作，不釋讀先民、不給披肩護身功效；不用湖面異象或引船老人。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/titicaca-ruin.json",
+    "content/lore/factions/quito.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "織手把母親洗衣的樣子織進聖地披肩，買家嫌不神聖，長者卻替她收邊。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "織毯|織披肩|編蓆|織席",
+    "result": "已讀 place/titicaca-empty-dawn；改寫住民的織作與審美，不再乘船看刻痕。"
+   }
+  },
+  {
+   "category": "places",
+   "id": "place/wl-alpine-common-hearth",
+   "name": "共爐房",
+   "continent": "歐洲",
+   "region": "歐洲・阿爾卑斯之墟外山路",
+   "allowed_files": [
+    "content/lore/places/wl-alpine-common-hearth.json"
+   ],
+   "template": "content/lore/places/alpine-shell.json",
+   "existing_refs": [
+    "place/alpine-shell",
+    "faction/inner-sea-houses",
+    "faction/shell-society"
+   ],
+   "concept": "家族獵場外供短宿的爐房，返山護衛把上首長凳留給家族來客；替他縫靴的老婦已讓濕透的學會學徒坐下。護衛要人起身，老婦把他的靴子也挪到門邊，他自己搬來小凳守火。衝突是階級座次與熟人情分。",
+   "boundaries": "不改墟的地權／入場費，不讓人因此取得入墟特權；不新增爵位家系。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/alpine-shell.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "content/lore/factions/shell-society.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "護衛要把學徒趕離上首，替他縫靴的老婦先把他的靴子挪到門口。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "共爐|爐房|上首|縫靴",
+    "result": "place/alpine-shell 寫圍籬和收費；本則寫圍籬外人情，避開又談收據。"
+   }
+  },
+  {
+   "category": "places",
+   "id": "place/wl-genoa-string-stage",
+   "name": "牽線小戲棚",
+   "continent": "歐洲",
+   "region": "歐洲・熱那亞船塢旁石階",
+   "allowed_files": [
+    "content/lore/places/wl-genoa-string-stage.json"
+   ],
+   "template": "content/lore/places/genoa-yards.json",
+   "existing_refs": [
+    "place/genoa-yards",
+    "faction/inner-sea-houses"
+   ],
+   "concept": "夜班工人用木偶演一個只會蓋章的胖家主，工頭要撤幕免得雇主看見。操偶人把自己的膽怯也做成另一只偶，逼工頭親手替它牽線；工頭最後躲幕後配音，翌日照常共事。衝突是嘲諷雇主的快意與飯碗。",
+   "boundaries": "木偶是凡俗道具不是鐵偶／機魂；不宣告勞資法改革或全城起義，不新增大戰。；僅新地點，world=earth、kind=其他、gameRefs=[]；不新增日期、人物檔、機制或世界規律。",
+   "sources": [
+    "content/lore/places/genoa-yards.json",
+    "content/lore/factions/inner-sea-houses.json",
+    "wf/workflows/planning/design-notes/world/before-collapse-powers.md",
+    "wf/workflows/planning/specs/world/ruins-and-ancient.md"
+   ],
+   "plain": "工頭怕工人木偶戲得罪家族，最後躲進幕後，替那個膽小的自己配音。",
+   "new_dependencies": [],
+   "dedup": {
+    "query": "偶戲|木偶|皮影|戲棚",
+    "result": "本庫題材搜尋未見木偶戲；接家族工坊階級底色，避開造機出貨與賒帳。"
+   }
+  }
+ ]
+}

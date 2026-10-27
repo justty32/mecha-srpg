@@ -1,0 +1,64 @@
+{
+  "id": "species/wn-r3-pin-fan",
+  "name": "針扇",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-grit-fan",
+  "gradeRange": [
+    "D"
+  ],
+  "baseAttrsByGrade": {
+    "D": {
+      "initiative": 8,
+      "perception": 5,
+      "accuracy": 50,
+      "evasion": 5
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 10,
+      "regen": 3,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 6,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 6,
+      "regen": 6,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-brinepin-prick",
+    "ability/kx-grit-fan-scatter"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wn-r3-bio-pin-fan"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/reaper-vanguard",
+  "tags": [
+    "kaiju",
+    "insect"
+  ],
+  "etymology": "值夜簿上寫著「針雨，蟲群」。白班記錄員把那頁攤在卸貨棚裡，兩個搬運工便又吵起來。一個說帆布被接連穿透，聲音從棚外一路追到棚內；另一個只記得滿肩碎砂，堅持蟲已爬到腳邊。值夜人還裹著傷布，坐在旁邊聽，誰說錯一處，他就敲一下椅腳。那頁簿子很快多了好幾道塗改。\n記錄員去拆下受損的舊帆。細孔沿著帆角排開，另一幅上卻有一大片擦破的毛邊，兩個搬運工的話各有一樣東西作證。她翻過值夜人夾在簿裡的速寫，背面只有一隻蟲：扇腹攤開，下面幾筆扁足，針芒畫在扇緣。他說當時整片灘都在響，沒有空數；護港機追近時，牠跑一段才停下射針，展扇揚砂又是另一陣聲音。搬運工照著各自逃跑的方向比畫，這才發現一個先進棚，一個還滯在坡上，兩人說的根本不是同一刻。\n記錄員把「蟲群」圈了起來，在旁邊添了「數目未核」，卻沒有把「針雨」劃掉。她另畫了一把插著細針的扇，將針扇兩字寫到種名欄。值夜人翻看那幅畫，伸手把扇腹下面補得更寬；那一處直迎著護港機，他記得最清楚。舊帆留在棚裡等補，簿子送回值夜桌。下個班的人先讀到針雨，再看見那個小小的圈，於是把靈目多轉向灘邊一會兒。"
+}

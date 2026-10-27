@@ -1,0 +1,58 @@
+{
+  "id": "frame/wm-r7-bw08",
+  "name": "BW-08",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "defaultLoadout": {
+    "main-gun": "component/fw-wedge-blade",
+    "armor-mount": "component/mx-porcelain-plate"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "track"
+  ],
+  "nameEn": "Bulwark Wedge 08",
+  "etymology": "Bulwark Wedge 08 沿堅盾公刻輪座的勤務代號寫成 BW-08。砲塔的小掛位裝了楔刃，胸前仍是白瓷鎧甲。母親聽不懂兒子說的掛件，只記住他答應，這回巡行會從窗前經過；她想親眼看看他坐在裡頭的那台機。\n\n臨近交班，街口的交火截住了巡行。BW-08輪到守窄口時，駕駛把砲塔轉向貼近的敵機，以楔刃找對方掛件的接合處；後一台守備接上，他才退回隊列。天色暗下來，窗前那條街早過了原定時辰。他看見胸甲又添一道刮痕，想到母親若只等來這樣一台，會不會比沒看見更擔心。\n\n交班後，他問能否沿回程繞過家門。值班長看了看那段仍可通行的街，准他過去；這一天的班結束了，下一班仍有他的名字。他開到窗下，發現母親沒熄燈，還把窗扇全推開，像怕自己錯過。BW-08停正輪座，他從座艙下到街面，抬頭揮手。窗裡的人先看機身，找了半天，才低下頭找到他。\n\n母親笑著問，怎麼換了這麼矮的一台。他指著自己，說下來的這個才是她要看的。她把留著的晚飯端到窗邊，問他能不能上來；他轉頭確認輪座停得妥當，才沿熟悉的樓梯往上走。吃到一半，母親又站到窗前，替他認出白瓷上的那道刮痕。他沒有急著解釋，她也沒追問，只把那扇窗留開了一會。"
+}

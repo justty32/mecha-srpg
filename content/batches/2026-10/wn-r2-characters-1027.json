@@ -1,0 +1,103 @@
+{
+  "contract": "content-batch/1",
+  "id": "wn-r2-characters-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "第2輪新增6個characters實質差異概念",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wn-r2-characters-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-next-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round2/characters",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round2/characters/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "lore/characters"
+    ],
+    "namePrefix": {
+      "lore/characters": "wn-r2-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist",
+    "lore"
+  ],
+  "integrationStatus": "deferred-by-user",
+  "deferredChecks": "公司僅有限靜態檢查；整合、平衡、試玩與正式驗收留回家。",
+  "worktree": ".git/wf-worktrees/wn-r2-characters-1027",
+  "files": [
+    "content/lore/characters/wn-r2-adjoa-senyo.json",
+    "content/lore/characters/wn-r2-elsie-morrow.json",
+    "content/lore/characters/wn-r2-lin-cangxu.json",
+    "content/lore/characters/wn-r2-maia-raukura.json",
+    "content/lore/characters/wn-r2-tang-wanling.json",
+    "content/lore/characters/wn-r2-zawadi-mbeki.json"
+  ],
+  "ids": [
+    "character/wn-r2-adjoa-senyo",
+    "character/wn-r2-elsie-morrow",
+    "character/wn-r2-lin-cangxu",
+    "character/wn-r2-maia-raukura",
+    "character/wn-r2-tang-wanling",
+    "character/wn-r2-zawadi-mbeki"
+  ],
+  "acceptance": {
+    "batch": "wn-r2-characters-1027",
+    "round": 1,
+    "at": "2026-10-27T10:09:30",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "lore": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/lore/characters/wn-r2-adjoa-senyo.json",
+      "content/lore/characters/wn-r2-elsie-morrow.json",
+      "content/lore/characters/wn-r2-lin-cangxu.json",
+      "content/lore/characters/wn-r2-maia-raukura.json",
+      "content/lore/characters/wn-r2-tang-wanling.json",
+      "content/lore/characters/wn-r2-zawadi-mbeki.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T10:09:30",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "carriedToMain": true,
+  "acceptanceScope": "僅路徑、JSON、引用、lore與已讀清單及有限語義去重；整合／平衡／試玩未驗，非完整accepted。",
+  "dedupEvidence": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round2-dedup.json"
+}

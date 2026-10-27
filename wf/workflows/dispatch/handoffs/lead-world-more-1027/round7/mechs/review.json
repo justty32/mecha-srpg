@@ -1,0 +1,671 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-27",
+ "status": "draft",
+ "integrationStatus": "deferred-by-user",
+ "sharedReadingsReusedThisSession": [
+  {
+   "file": "AGENTS.md",
+   "sha256": "2e3e38c4f6e33528a6a17b8f79a470c4c1179995422f0f3cd4b5a4a8c2c77d9b"
+  },
+  {
+   "file": "wf/WORKFLOWS.md",
+   "sha256": "446a8d1ce133e329ba3aab2e84a99ef8c47a94379f3a1df5bda54b04f519338c"
+  },
+  {
+   "file": "wf/workflows/common/user.md",
+   "sha256": "ad2df100b0421642f4f8250039a7e9db1cca87498c68a31270954d37ebf62175"
+  },
+  {
+   "file": "wf/workflows/team-model.md",
+   "sha256": "a9a2393c8f8d2835a67fabef5a695279af2e6d4bd0f0b2abaa087dc35e9be5f7"
+  },
+  {
+   "file": "wf/workflows/dispatch/README.md",
+   "sha256": "f5243cfe55e91c743150efe90b8ba07386aa92f93d099ffea821043d69ea4925"
+  },
+  {
+   "file": "wf/workflows/dispatch/content-batch.md",
+   "sha256": "02203457fc0d2935d1a579a76e598f63ebbdae012d050ed83c9d7b13fedc8695"
+  },
+  {
+   "file": "wf/workflows/content/README.md",
+   "sha256": "8be1ed31b461f8d8ca670c52a2186e8ba01e948cfe3895b4c80f6a7cf3ac813f"
+  },
+  {
+   "file": "wf/workflows/content/batch.md",
+   "sha256": "6128df9d493e80da3504e744c390db07e652dab25768d5024b86cef959e38ef4"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars.md",
+   "sha256": "1138ac230ca3405175ac433e82e51b1f14cdec9e4b043ad236e6f1d3d05de077"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world.md",
+   "sha256": "f91f4a46ac832e0c5c0434e0a1c36a4a39d4ab718de4149132723f6a006361e3"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/tone-and-rules.md",
+   "sha256": "db27acb6ae4045c33236b63f1914dc7f536be82546901429738c624c6ce19b2a"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/factions-and-sandbox.md",
+   "sha256": "d9262f203db0f812f1ba5957c93512fba94c714c10764c5c01eca4669ea014de"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/world/monsters.md",
+   "sha256": "8fa819161269f91565493ea475d02fd15774afe5f2d7e3cb163dc86af287e84d"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs.md",
+   "sha256": "e2bae81e3be36bb29376bacf1523d28526690a416c0d8fdfd60aa9b0e3784eb5"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/bonds.md",
+   "sha256": "c09859ffdeb72fed260fa0c09317aa5631bc0959a9dc927b8d35d46f271dbd46"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/mechanical.md",
+   "sha256": "43a443197d58fcb28c8fffb43c4a8e7da9b1920e7c17270844d6832f03dc5522"
+  },
+  {
+   "file": "wf/workflows/content/world-pillars/mechs/ancient.md",
+   "sha256": "79f26a309651706eb8bfcc89f1c94fc441b4361e2a97f561e7198923d9967b62"
+  },
+  {
+   "file": "wf/workflows/content/mechs.md",
+   "sha256": "eb8bed39934eb738627957515bf83ba79eefbeacd6596d0eb16ddb39987d3d2b"
+  },
+  {
+   "file": "wf/workflows/content/polish.md",
+   "sha256": "1bb83f3aa809fabde38802c20b41b31740804d883aa546c562014e98a001772d"
+  },
+  {
+   "file": "wf/workflows/content/numeric-bands.md",
+   "sha256": "21e196c387c69e92efc93706308e57d1eacee9daec562445914c4c7db789c018"
+  },
+  {
+   "file": "content/lore/style.md",
+   "sha256": "be73c2893717e6fe4f9e0fcd5a5791324b1c85cd600117931ce9248b8152342c"
+  },
+  {
+   "file": "wf/workflows/common/data-files.md",
+   "sha256": "199d4fb6d4d082016eeefe5bed083b6c94aaedbf8a7c14600a7086bfb15a73bb"
+  }
+ ],
+ "directedPlanRead": {
+  "plan": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7-plan.json",
+  "selection": "category=mechs, decision=adopt, 3 rows",
+  "approval": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7-plan-review.json",
+  "approvalSelection": "category=mechs, decision=approve, 3 rows; BW新增約束已讀"
+ },
+ "newBriefsRead": [
+  "wf/workflows/dispatch/handoffs/lead-world-more-1027.md",
+  "wf/workflows/dispatch/handoffs/wm-r7-mechs-1027.md"
+ ],
+ "columns": [
+  "id",
+  "files",
+  "category",
+  "name",
+  "plain",
+  "hooks",
+  "nearestExisting",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "story",
+  "fullTextRead",
+  "requiredConstraints",
+  "legality"
+ ],
+ "rows": [
+  {
+   "id": "frame/wm-r7-longspear-keepsake",
+   "files": [
+    "content/base/frames/wm-r7-longspear-keepsake.json",
+    "content/base/world/models/wm-r7-longspear-keepsake.json"
+   ],
+   "category": "mechs",
+   "name": "長槍-V2・留像",
+   "plain": "搭班駕駛想同框留念，出勤後卻擠不進鏡頭；半幅機身旁仍有兩個人的小背影。",
+   "hooks": {
+    "lineage": "lineage/universal-longspear",
+    "series": "universal-longspear",
+    "bodyPlan": "bodyplan/m2-quadruped-c",
+    "loadout": {
+     "left-weapon": "component/mx-radiant-rifle",
+     "right-weapon": "component/fw-ankle-pin",
+     "sensor-mount": "component/mx-hawk-eye"
+    }
+   },
+   "nearestExisting": [
+    {
+     "id": "frame/longspear-kneeler-v2",
+     "file": "content/base/frames/longspear-kneeler-v2.json",
+     "sha256": "c60ecb0167e62547f54ca0f649136f5337dbddc0709ce06850e684aaeac5948a",
+     "comparison": "同四足伏架；伏架原為雙傷害槍分流資源，本案只一把流光槍，另一槽四矢零傷收捕。"
+    },
+    {
+     "id": "frame/wl-longspear-lamp",
+     "file": "content/base/frames/wl-longspear-lamp.json",
+     "sha256": "6057786fe155d8be1c55fbe1aa60a6f63e8fc48a4ee8f83c055373d5d1e56134",
+     "comparison": "同輝光長槍；守燈為雙足刃槍兼退路，本案無刃、凡火莢或流光囊，敘事是出勤後合照。"
+    }
+   ],
+   "similarity": "同四足伏架；伏架原為雙傷害槍分流資源，本案只一把流光槍，另一槽四矢零傷收捕。；同輝光長槍；守燈為雙足刃槍兼退路，本案無刃、凡火莢或流光囊，敘事是出勤後合照。",
+   "substantiveDifference": "低伏提高命中但犧牲移動；捕捉不補傷害、須先滿足species條件。前足破損同時傷行走與武器。不是守燈換名。 敘事：主要欲望是兩名搭班者都被拍進自己的合照；戰鬥僅拖延照片，危險解除後獸架／修工／車隊擠畫面，結果是接受半幅機身與小背影，晚飯互認照片。伏架範本只有配裝來歷，守燈則是霧夜保護送油工退路，兩者都沒有這段合照與辨認事件。",
+   "decision": "adopt",
+   "reason": "領導approve後依requiredConstraints產出draft；人物欲望、主要行動、衝突、結果均寫入etymology，功能差異與敘事差異分別核對。",
+   "story": {
+    "desire": "兩名搭班駕駛想留一張兩人都站在自己機前的合照。",
+    "event": "山路出勤時，同伴先破壞怪獸捕捉部位，留像遠射掩護後靠近扣足；解除現場危險後才等攝影。",
+    "conflict": "獸架、修工與等通行的車隊擠滿畫面，兩人一直被推到邊角。",
+    "result": "照片只拍進半幅機身；兩人仍指著小小的背影互相辨認。",
+    "differenceFromExisting": "主要欲望是兩名搭班者都被拍進自己的合照；戰鬥僅拖延照片，危險解除後獸架／修工／車隊擠畫面，結果是接受半幅機身與小背影，晚飯互認照片。伏架範本只有配裝來歷，守燈則是霧夜保護送油工退路，兩者都沒有這段合照與辨認事件。",
+    "etymologySha256": "12d6d8b51078020652b2a48d608b3916623ce156209474ef811d42b0dec82086"
+   },
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/longspear-kneeler-v2.json",
+     "sha256": "c60ecb0167e62547f54ca0f649136f5337dbddc0709ce06850e684aaeac5948a",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級frame數值／池／內建能力沿用；四足低伏射手兼零傷收捕；放棄第二把傷害槍，捕捉距離較主槍短。"
+    },
+    {
+     "file": "content/base/world/models/longspear-kneeler-v2.json",
+     "sha256": "fb326403e18429ea29033944731c64c2f44033690b38f123ad540eb8830fe9a0",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級tier/cost、requires、availableFrom、generic及exportPolicy合法模板。"
+    },
+    {
+     "file": "content/base/bodyplans/m2-quadruped-c.json",
+     "sha256": "cabfb8f177ead3dc82c1316dc2ede997a83f3307846d7c80963d8072d4d3bc8e",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "7部位；core/cockpit及pilot座沿原骨架；不增槽。"
+    },
+    {
+     "file": "content/base/frames/wl-longspear-lamp.json",
+     "sha256": "6057786fe155d8be1c55fbe1aa60a6f63e8fc48a4ee8f83c055373d5d1e56134",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同輝光長槍；守燈為雙足刃槍兼退路，本案無刃、凡火莢或流光囊，敘事是出勤後合照。 敘事差異：主要欲望是兩名搭班者都被拍進自己的合照；戰鬥僅拖延照片，危險解除後獸架／修工／車隊擠畫面，結果是接受半幅機身與小背影，晚飯互認照片。伏架範本只有配裝來歷，守燈則是霧夜保護送油工退路，兩者都沒有這段合照與辨認事件。"
+    },
+    {
+     "file": "content/base/components/mx-radiant-rifle.json",
+     "sha256": "ac25d5f351413fc4222b46fd98c9d1e29e62fb69a8863a7b388df971b736a60b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "武器槽size2/mass2，輝光連吼供給遠射。"
+    },
+    {
+     "file": "content/base/abilities/mx-radiant-shot.json",
+     "sha256": "01ea0b49efa4ddf8357194b86bd3c78f5bc4b696feaf3a3e83028eb70cc855de",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "射程1–7，3AP/15流光，產燼15，22energy。"
+    },
+    {
+     "file": "content/base/components/fw-ankle-pin.json",
+     "sha256": "c5bac619e3e541bc9f874b1e3334ed2ac5ce5475d1628fa8d3d879d94d9f6a1f",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "武器槽size1/mass2，四矢硬池，零回復。"
+    },
+    {
+     "file": "content/base/abilities/fw-ankle-pin-use.json",
+     "sha256": "9b3b7ddf4e736790f9bf00227392d13f991cdc960101906c96e943f869fc73c6",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "射程1–3，3AP/1拘束矢，無傷害包，命中縛網；不替代物種捕捉條件。"
+    },
+    {
+     "file": "content/base/components/mx-hawk-eye.json",
+     "sha256": "a74f99135376bcf31498e69b3b95b54af784b0e6c6e94ebf87616ab002529eca",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "sensorMount/size1/mass1，命中+6、感知+1。"
+    },
+    {
+     "file": "content/base/abilities/m2-brace-deploy.json",
+     "sha256": "972ab519e042fea210464aab2adb9f117409e4aab21704bcdd7aabef4082146b",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "伏架2AP/cooldown2，self-only，套m2-braced。"
+    },
+    {
+     "file": "content/base/effects/m2-braced.json",
+     "sha256": "30e67b57e69f0a953b536d882e68d2d4731087401dc950440d02928eebe400fc",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "一回合命中+10/閃避-5，rooted；不能同回合起伏後移動。"
+    },
+    {
+     "file": "content/base/effects/mx-netted.json",
+     "sha256": "d8127e0912412f25e99afbfebe7ea49312586f8ea7b956098cd5b01b93503159",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "兩回合immobilized/restraint、閃避-15，無拖曳。"
+    },
+    {
+     "file": "content/base/world/lineages/universal-longspear.json",
+     "sha256": "3c416f4a9bc41bfd69b3b025086b88410b2ec918b6935596dfe9b3dc5ae76e77",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "銀環殘骸逆向後圖紙流出；generic通用系列，非新增專屬血統。"
+    },
+    {
+     "file": "content/base/effects/overheat-1.json",
+     "sha256": "18610422af24f84f015d23ccbe1419b3f4614a076ec1dd01586ff53d929b9f65",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯I池帶。"
+    },
+    {
+     "file": "content/base/effects/overheat-2.json",
+     "sha256": "11a6b40ed3bffe5d3438504ae535403fe4b7d8b5d98d71908993c435c424df44",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯II池帶。"
+    }
+   ],
+   "requiredConstraints": [
+    "依同級範本保留數值/合法核心座艙結構與model限制，不加新規則。",
+    "故事主要目標與後果寫進etymology；不以收捕/試招/返塢檢修教學蓋過人物事件。",
+    "新增tags lineage-jinghai；承銀環逆向來源，model保留universal-longspear。aka省略。扣足不能捕人、隔空拖曳或略過部位條件。",
+    "合照為主要願望，狩獵不是又一篇護工撤船；捕捉嚴守部位條件。"
+   ],
+   "legality": {
+    "parts": 7,
+    "mass": 5,
+    "massLimit": 9,
+    "heatUpperBoundPer9AP": 45,
+    "model": {
+     "id": "model/wm-r7-longspear-keepsake",
+     "frame": "frame/wm-r7-longspear-keepsake",
+     "lineage": "lineage/universal-longspear",
+     "maker": "generic",
+     "series": "universal-longspear",
+     "mark": 2,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [
+      "model/longspear-v4"
+     ],
+     "availableFrom": {
+      "month": 2
+     },
+     "exportPolicy": "open",
+     "generic": true,
+     "tags": []
+    },
+    "coreCockpit": "沿bodyplan的torso core/cockpit、pilot座與結構層，未加魂核或將掛件當核心。",
+    "scope": "只引用HEAD既有或本概念配套；不引用wl/wn/其他wm。"
+   }
+  },
+  {
+   "id": "frame/wm-r7-anvil-downbeat",
+   "files": [
+    "content/base/frames/wm-r7-anvil-downbeat.json",
+    "content/base/world/models/wm-r7-anvil-downbeat.json"
+   ],
+   "category": "mechs",
+   "name": "鐵砧-II型・踏拍",
+   "plain": "鼓手駕駛奪回老排練室，地板卻已毀；當晚將鼓搬到空地，把曲子繼續奏下去。",
+   "hooks": {
+    "lineage": "lineage/broken-arm",
+    "series": "broken-arm",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "loadout": {
+     "left-weapon": "component/fw-door-sweep",
+     "right-weapon": "component/fw-rivet-drill",
+     "system-1": "component/mx-frost-fins"
+    }
+   },
+   "nearestExisting": [
+    {
+     "id": "frame/wl-anvil-cable",
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "comparison": "同C雙足鐵砧近戰；斷纜是樁刃爆發與背翼退開，本案全靠低耗牽滯、旋鑿和排燼。"
+    },
+    {
+     "id": "frame/wn-r3-anvil-fan",
+     "file": "content/base/frames/wn-r3-anvil-fan.json",
+     "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+     "comparison": "同鐵砧範圍武器；開扇四足扇射接熱鋸，本案雙足近鄰小圓域，非試機派工教學。"
+    }
+   ],
+   "similarity": "同C雙足鐵砧近戰；斷纜是樁刃爆發與背翼退開，本案全靠低耗牽滯、旋鑿和排燼。；同鐵砧範圍武器；開扇四足扇射接熱鋸，本案雙足近鄰小圓域，非試機派工教學。",
+   "substantiveDifference": "兩掛件冷卻皆2，範圍低傷與單體16傷分工；牽滯/失衡皆減閃避先手，不寫成兩種物理控制或保證疊倍。 敘事：主角為兼奏鼓樂的駕駛，想奪回敵隊占用的老排練室；獲勝後發現地板連原有站位都毀，年輕鼓手問今晚是否照練，眾人改在空地換曲子。不同於斷纜護傷員撤船，也不同於開扇試機院勞務／檢修爭工；修工跟拍只是結尾參與，沒有節奏能力、起拍裁決或公帳結案。",
+   "decision": "adopt",
+   "reason": "領導approve後依requiredConstraints產出draft；人物欲望、主要行動、衝突、結果均寫入etymology，功能差異與敘事差異分別核對。",
+   "story": {
+    "desire": "幾個兼奏鼓樂的駕駛想奪回被敵隊占住的老排練室。",
+    "event": "街區反攻時，踏拍在隊友掩護下貼近，以掃門壓低近敵準備，再用旋鉚鑿接單體重擊。",
+    "conflict": "入口搶回，裡面的地板已毀；他們原想照舊演奏的站位全不見了。",
+    "result": "當晚把鼓搬到空地，修工也跟著敲拍；排練室還待修，他們先把曲子接下去。",
+    "differenceFromExisting": "主角為兼奏鼓樂的駕駛，想奪回敵隊占用的老排練室；獲勝後發現地板連原有站位都毀，年輕鼓手問今晚是否照練，眾人改在空地換曲子。不同於斷纜護傷員撤船，也不同於開扇試機院勞務／檢修爭工；修工跟拍只是結尾參與，沒有節奏能力、起拍裁決或公帳結案。",
+    "etymologySha256": "7f3f981d7d4b636268fd74f2a63243bf0491b04ef09c018442ee367aeaf3fd7d"
+   },
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/anvil-ii.json",
+     "sha256": "e9b15e50d7c5d7bffcba8962902d1cdcba791dad9b6c9bae00c3d5f541a150ea",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級frame數值／池／內建能力沿用；雙足近距群體壓制加單體破甲；放棄樁楔爆發、遠射與背翼逃脫。"
+    },
+    {
+     "file": "content/base/world/models/anvil-ii.json",
+     "sha256": "c3180f812d5f24a7afa941e08fe6570577f3cc6c5000d1f45fb49789c979eab8",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級tier/cost、requires、availableFrom、generic及exportPolicy合法模板。"
+    },
+    {
+     "file": "content/base/bodyplans/mx-biped-c.json",
+     "sha256": "19e5611680e147ed1edac47ebc0e29cbe148c3054a4856c1abb31e98b423ad56",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "6部位；core/cockpit及pilot座沿原骨架；不增槽。"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同C雙足鐵砧近戰；斷纜是樁刃爆發與背翼退開，本案全靠低耗牽滯、旋鑿和排燼。 敘事差異：主角為兼奏鼓樂的駕駛，想奪回敵隊占用的老排練室；獲勝後發現地板連原有站位都毀，年輕鼓手問今晚是否照練，眾人改在空地換曲子。不同於斷纜護傷員撤船，也不同於開扇試機院勞務／檢修爭工；修工跟拍只是結尾參與，沒有節奏能力、起拍裁決或公帳結案。"
+    },
+    {
+     "file": "content/base/frames/wn-r3-anvil-fan.json",
+     "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同鐵砧範圍武器；開扇四足扇射接熱鋸，本案雙足近鄰小圓域，非試機派工教學。 敘事差異：主角為兼奏鼓樂的駕駛，想奪回敵隊占用的老排練室；獲勝後發現地板連原有站位都毀，年輕鼓手問今晚是否照練，眾人改在空地換曲子。不同於斷纜護傷員撤船，也不同於開扇試機院勞務／檢修爭工；修工跟拍只是結尾參與，沒有節奏能力、起拍裁決或公帳結案。"
+    },
+    {
+     "file": "content/base/components/fw-door-sweep.json",
+     "sha256": "02a13e4c9e38953b9808d8cbce96ba880c697becc07024b733fb984a7ad0fdaf",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "武器槽size1/mass2，門鉤。"
+    },
+    {
+     "file": "content/base/abilities/fw-door-sweep-use.json",
+     "sha256": "1cc47cd7f842fe819b3f0309bc6c732f93c00a4c35be310d1c7738e064c47ea7",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "3AP/+8燼，range1的ball/radius1，5pierce，冷卻2，命中牽滯。"
+    },
+    {
+     "file": "content/base/components/fw-rivet-drill.json",
+     "sha256": "5255a21a6ef252525f8b02b17f790184a4aa37da264027cfde99e05b63c6be69",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "武器槽size2/mass3，旋鉚鑿。"
+    },
+    {
+     "file": "content/base/abilities/fw-rivet-drill-use.json",
+     "sha256": "e78b3dbd0a64417a844ee34d1714ded97b0b120f7f40abd0a1569b59f68f332c",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "3AP/+12燼，range1單體16pierce/pen0.1，冷卻2，失衡。"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "systemMount/size1/mass1，heat regen再-8。"
+    },
+    {
+     "file": "content/base/abilities/mx-frame-strike.json",
+     "sha256": "beafbf8fa04f8762aa60cbb5433f3d7bb3b9364be8221e79fd5126adf3c9e285",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "3AP/產燼8，range1單體14kinetic。"
+    },
+    {
+     "file": "content/base/effects/m2-dragged.json",
+     "sha256": "f6cef6d04d1096449a6e6501263851e02f71c2c28429246089509062cd5b4244",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "一回合閃避-8、先手-4，不移位。"
+    },
+    {
+     "file": "content/base/effects/mx-staggered.json",
+     "sha256": "8ad801794bdc6814fa333610713ee9f282f0d4e1eb6d29623e20147e1f63f74a",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "一回合先手-4、閃避-8，與牽滯相同屬性差值；不宣稱物理控制或疊倍。"
+    },
+    {
+     "file": "content/base/world/lineages/broken-arm.json",
+     "sha256": "43564eaccda58cb0f321f2920abfe36db7bbbf57a971c1832659d4a96f4eace3",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "鐵砧仿斷臂關節，holder anvil-hunters，不新增血統。"
+    },
+    {
+     "file": "content/base/effects/overheat-1.json",
+     "sha256": "18610422af24f84f015d23ccbe1419b3f4614a076ec1dd01586ff53d929b9f65",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯I池帶。"
+    },
+    {
+     "file": "content/base/effects/overheat-2.json",
+     "sha256": "11a6b40ed3bffe5d3438504ae535403fe4b7d8b5d98d71908993c435c424df44",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯II池帶。"
+    }
+   ],
+   "requiredConstraints": [
+    "依同級範本保留數值/合法核心座艙結構與model限制，不加新規則。",
+    "故事主要目標與後果寫進etymology；不以收捕/試招/返塢檢修教學蓋過人物事件。",
+    "tags加series-anvil；沿斷臂血統、restricted外售。踏拍是鼓手暱稱，沒有音波能力；不拆牆開路或擊退。aka省略。",
+    "爭回排練室與地板毀壞後續為主，不重演雨鼓長棚的合奏起拍衝突；音樂無能力效果。"
+   ],
+   "legality": {
+    "parts": 6,
+    "mass": 6,
+    "massLimit": 9,
+    "heatUpperBoundPer9AP": 28,
+    "model": {
+     "id": "model/wm-r7-anvil-downbeat",
+     "frame": "frame/wm-r7-anvil-downbeat",
+     "lineage": "lineage/broken-arm",
+     "maker": "faction/anvil-hunters",
+     "series": "broken-arm",
+     "mark": 2,
+     "role": "variant",
+     "tier": "C",
+     "cost": 15,
+     "requires": [],
+     "availableFrom": {
+      "month": 0
+     },
+     "exportPolicy": "restricted",
+     "generic": false,
+     "tags": []
+    },
+    "coreCockpit": "沿bodyplan的torso core/cockpit、pilot座與結構層，未加魂核或將掛件當核心。",
+    "scope": "只引用HEAD既有或本概念配套；不引用wl/wn/其他wm。"
+   }
+  },
+  {
+   "id": "frame/wm-r7-bw08",
+   "files": [
+    "content/base/frames/wm-r7-bw08.json",
+    "content/base/world/models/wm-r7-bw08.json"
+   ],
+   "category": "mechs",
+   "name": "BW-08",
+   "plain": "交班拖過巡行時辰，BW-08仍依許可繞到窗下；兒子下艙揮手，母親終於認出他。",
+   "hooks": {
+    "lineage": "lineage/universal-bulwark",
+    "series": "universal-bulwark",
+    "bodyPlan": "bodyplan/m2-wheel-d",
+    "loadout": {
+     "main-gun": "component/fw-wedge-blade",
+     "armor-mount": "component/mx-porcelain-plate"
+    }
+   },
+   "nearestExisting": [
+    {
+     "id": "frame/bulwark-caisson-01",
+     "file": "content/base/frames/bulwark-caisson-01.json",
+     "sha256": "0ed7f7c6efc070298ebcd2a328e4a8b1223d478578298fefd1063ce3b7792016",
+     "comparison": "同D輪座及自守；BW-06散紋吼砲有範圍壓力，本案改一格單體瞄掛件，完全放棄射程。"
+    },
+    {
+     "id": "frame/wl-bulwark-ferry",
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "comparison": "同堅盾窄口；渡口型C雙足刃砲、灰霧配套，本案D輪座無煙護，敘事是母子晚到相見。"
+    }
+   ],
+   "similarity": "同D輪座及自守；BW-06散紋吼砲有範圍壓力，本案改一格單體瞄掛件，完全放棄射程。；同堅盾窄口；渡口型C雙足刃砲、灰霧配套，本案D輪座無煙護，敘事是母子晚到相見。",
+   "substantiveDifference": "四部位輪座：楔刃在砲塔槽，可被打壞；白瓷只加胸層、自守只護本機。低傷8與部位瞄準取代原範圍砲。 敘事：兒子想讓母親親眼看到自己駕駛的機體；交火拖延巡行後仍完成交班、依許可繞路，他停妥輪座才下艙揮手，母親先找錯高度再認出兒子，最後窗前親見刮痕與一起吃飯。非渡口守船與輪替救援；沒有錯過共同觀賞後靠照片補遺憾，也不以退役或追悼作結。",
+   "decision": "adopt",
+   "reason": "領導approve後依requiredConstraints產出draft；人物欲望、主要行動、衝突、結果均寫入etymology，功能差異與敘事差異分別核對。",
+   "story": {
+    "desire": "即將退班的駕駛想讓母親在巡行時看見自己開過窗前。",
+    "event": "最後一班巡行遇街口交戰，BW-08貼住窄口以楔刃對付近身掛件，和其他守備輪替。",
+    "conflict": "交班時巡行早散，家那條街已暗，他仍想完成答應的那一圈。",
+    "result": "依許可回程繞到窗下，母親留著一盞燈；機身有刮痕，他把輪座停正才揮手。",
+    "differenceFromExisting": "兒子想讓母親親眼看到自己駕駛的機體；交火拖延巡行後仍完成交班、依許可繞路，他停妥輪座才下艙揮手，母親先找錯高度再認出兒子，最後窗前親見刮痕與一起吃飯。非渡口守船與輪替救援；沒有錯過共同觀賞後靠照片補遺憾，也不以退役或追悼作結。",
+    "etymologySha256": "ae1649deb16ec22fc0ba45e1649128ce6080c3c9802d0b64f63d07e10ab4747f"
+   },
+   "fullTextRead": [
+    {
+     "file": "content/base/frames/bulwark-caisson-01.json",
+     "sha256": "0ed7f7c6efc070298ebcd2a328e4a8b1223d478578298fefd1063ce3b7792016",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級frame數值／池／內建能力沿用；輪座貼身精準守備；單一小槽楔刃，無遠射、群傷或移動突進。"
+    },
+    {
+     "file": "content/base/world/models/bulwark-caisson-01.json",
+     "sha256": "b18c3c993971344fdc4b821995e644c835f64a5c1752504c3873dd938ae31137",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "同級tier/cost、requires、availableFrom、generic及exportPolicy合法模板。"
+    },
+    {
+     "file": "content/base/bodyplans/m2-wheel-d.json",
+     "sha256": "21ba36cca058a68eef37d25e67408758327716d8331a0d7e621a8a29a8cdcc9d",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "4部位；core/cockpit及pilot座沿原骨架；不增槽。"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae",
+     "headTracked": false,
+     "sameAsHead": false,
+     "keyFacts": "同堅盾窄口；渡口型C雙足刃砲、灰霧配套，本案D輪座無煙護，敘事是母子晚到相見。 敘事差異：兒子想讓母親親眼看到自己駕駛的機體；交火拖延巡行後仍完成交班、依許可繞路，他停妥輪座才下艙揮手，母親先找錯高度再認出兒子，最後窗前親見刮痕與一起吃飯。非渡口守船與輪替救援；沒有錯過共同觀賞後靠照片補遺憾，也不以退役或追悼作結。"
+    },
+    {
+     "file": "content/base/components/fw-wedge-blade.json",
+     "sha256": "b6ab4bde85776ac223bb5a9621c4e0cf906c1c769b398172b682e4a4f1fee019",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "武器槽size1/mass2；D精粹短刃，沒有反擊。"
+    },
+    {
+     "file": "content/base/abilities/fw-wedge-blade-use.json",
+     "sha256": "fb12427d0585797f66a6274089a539fda25d4de4f7298acb655cc590e0299dbe",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "2AP/+4燼，射程1單體8pierce，允許瞄部位/penalty12，無衝刺或奪武器效果。"
+    },
+    {
+     "file": "content/base/components/mx-porcelain-plate.json",
+     "sha256": "cb5153c8a228d0273d5d232f24f7f8fd87730a737bf25047a41238ea9e04502d",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "armorMount/size1/mass2，僅torso外加30HP鎧甲，thermal0.3/energy0.2抗性。"
+    },
+    {
+     "file": "content/base/abilities/mx-guard-stance.json",
+     "sha256": "241e0427e134f3a151b46578c4b89e2ebd21452115478aadf53643776849ac47",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "3AP/cooldown2，self-only盾陣。"
+    },
+    {
+     "file": "content/base/effects/mx-guarding.json",
+     "sha256": "cb9550e4486568a7de9874f87b58d3b404784e8457d378d3a1267ebc711d6199",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "一回合自身閃避+12；不替友軍受傷。"
+    },
+    {
+     "file": "content/base/world/lineages/universal-bulwark.json",
+     "sha256": "5216d097644629c0bbd13acc4800d2ed7d62ac0763f4f23242ed3a0573b3bb76",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "2093公刻堅盾公開圖紙來源，generic通用系列。"
+    },
+    {
+     "file": "content/base/effects/overheat-1.json",
+     "sha256": "18610422af24f84f015d23ccbe1419b3f4614a076ec1dd01586ff53d929b9f65",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯I池帶。"
+    },
+    {
+     "file": "content/base/effects/overheat-2.json",
+     "sha256": "11a6b40ed3bffe5d3438504ae535403fe4b7d8b5d98d71908993c435c424df44",
+     "headTracked": true,
+     "sameAsHead": true,
+     "keyFacts": "沿模板燼滯II池帶。"
+    }
+   ],
+   "requiredConstraints": [
+    "依同級範本保留數值/合法核心座艙結構與model限制，不加新規則。",
+    "故事主要目標與後果寫進etymology；不以收捕/試招/返塢檢修教學蓋過人物事件。",
+    "沿夸父公刻堅盾；08為勤務代號，非新世代升級。無手掌揮舞，揮手的是下艙後的人。aka省略。",
+    "明確只是交班而非正式退役；輪座無手，揮手者下艙後才做，不加機械手臂。",
+    "主線抽查：母親留燈可留，重點是退班駕駛想讓母親認出自己與機體；不重演米娜錯過觀賞後影像補遺憾，BW不以照片收尾。"
+   ],
+   "legality": {
+    "parts": 4,
+    "mass": 4,
+    "massLimit": 6,
+    "heatUpperBoundPer9AP": 16,
+    "model": {
+     "id": "model/wm-r7-bw08",
+     "frame": "frame/wm-r7-bw08",
+     "lineage": "lineage/universal-bulwark",
+     "maker": "generic",
+     "series": "universal-bulwark",
+     "mark": 1,
+     "role": "variant",
+     "tier": "D",
+     "cost": 5,
+     "requires": [
+      "model/bulwark-i"
+     ],
+     "availableFrom": {
+      "month": 1
+     },
+     "exportPolicy": "open",
+     "generic": true,
+     "tags": []
+    },
+    "coreCockpit": "沿bodyplan的torso core/cockpit、pilot座與結構層，未加魂核或將掛件當核心。",
+    "scope": "只引用HEAD既有或本概念配套；不引用wl/wn/其他wm。"
+   }
+  }
+ ]
+}

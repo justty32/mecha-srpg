@@ -16,6 +16,7 @@ mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite�
 | `wf/archive/` | 封存：建立期的 [session_log](archive/session_log-2026-06-26.md)（2026-06-26，只讀）|
 | 頂層 `package.json`／`tsconfig.json`／`.nvmrc` | 專案設定（無執行期依賴；由實作線建立）|
 | `wf/inbox/` | agent 之間的信件放信處：`new/`＝給頂層的終局回報、`mail/`／`teams/`／`orders/`／`topics/` 用到才長出來、`done/`＝已處理；使用方式 [workflows/inbox/](workflows/inbox/README.md) |
+| [notes/](notes/README.md) | 調查證據與待審閱問題；不代替設計契約或驗收結果 |
 | `wf/tools/`（multi-agent 部分）| inbox 腳本 `inbox_send.sh`／`inbox_read.sh`／`inbox_mail.sh`／`inbox_poll.sh`／`inbox_team.sh`／`inbox_ack.sh`／`notify_watch.sh`／`test_inbox.sh`；派線 `cx_launch.sh`／`cx_watch.sh`；交接書自查 `brief_lint.py`。對照表見 [dispatch/tool-index](workflows/dispatch/tool-index.md) |
 <!-- wf-insert:INDEX -->
 

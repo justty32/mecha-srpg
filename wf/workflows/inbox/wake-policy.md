@@ -4,7 +4,7 @@
 
 本頁由 [PROTOCOL](PROTOCOL.md) 拆出。
 
-本專案三層：頂層 Fable 5.1、領導 Opus、工人 codex gpt（見 [team-model](../team-model.md)）。Claude 層之間在行程內回傳，下表主要管 codex 工人的信。
+本專案三層：頂層／規劃 gpt-6-astra、領導／普通工 gpt-6.1-sol、簡單工作 gpt-6.1-terra（見 [team-model](../team-model.md)）。原生子 agent 用工具回傳；下表只管外部 `codex exec` 線的 inbox 信件，不依模型區分通訊方式。
 
 ## 為什麼要分層
 
@@ -14,9 +14,9 @@
 
 | 層 | 誰的信進我這格 | 哪些 STATUS 我要醒 | 其餘怎麼辦 |
 |---|---|---|---|
-| 頂層＝**Fable 5.1** 主 session（`new/` ＋ `mail/dispatcher/`） | 領導、不在任何團隊的線 | `NEEDS-USER`、`FAILED`、**領導的 `DONE`**（整團隊收工）、資源／鎖請求 | 領導的 `PROGRESS`／`BLOCKED` 不另設醒鐘，下次使用者輸入時順帶看到 |
-| 領導＝**Opus**（`mail/<領導>/` ＋ `teams/<團隊>/`） | 自己團隊的工人 | **五種全醒**，用 `--wait` 當醒鐘 | 自己判斷要不要上呈，只有自己解不了的才往上送 |
-| 工人＝**codex gpt**（`mail/<我>/` ＋ 團隊格 ＋ `orders/`） | 領導、隊友 | 沒有醒鐘，**每完成一個工作步驟 `--once`** | 延遲上限就是一個工作步驟 |
+| 頂層＝**gpt-6-astra** 主 session（`new/` ＋ `mail/dispatcher/`） | 領導、不在任何團隊的線 | `NEEDS-USER`、`FAILED`、**領導的 `DONE`**（整團隊收工）、資源／鎖請求 | 領導的 `PROGRESS`／`BLOCKED` 不另設醒鐘，下次使用者輸入時順帶看到 |
+| 領導＝**gpt-6.1-sol**（`mail/<領導>/` ＋ `teams/<團隊>/`） | 自己團隊的工人 | **五種全醒**，用 `--wait` 當醒鐘 | 自己判斷要不要上呈，只有自己解不了的才往上送 |
+| 外部工人（普通 **gpt-6.1-sol**／簡單 **gpt-6.1-terra**）（`mail/<我>/` ＋ 團隊格 ＋ `orders/`） | 領導、隊友 | 沒有醒鐘，**每完成一個工作步驟 `--once`** | 延遲上限就是一個工作步驟 |
 
 ## `--wait` 怎麼當醒鐘
 
@@ -26,8 +26,8 @@ inbox_poll.sh <我> --wait [--timeout N] [--interval N]
 
 阻塞到個人信箱、團隊信箱、`orders/` 任一有未讀才印出並 `exit 0`；逾時 `exit 3` 且不印任何東西；沒給 `--timeout` 就永不逾時。
 
-- **領導（Opus）**：**前景**跑（例：`--timeout 540`，逾時 exit 3 就再跑一輪）；**不可「結束回合＋背景輪詢」當等待**——行程內的 Claude 子 agent 結束回合後不保證會被叫醒（見 [dispatch/lessons](../dispatch/lessons.md)）。醒來先讀那幾行，再決定要不要進團隊格看正文。
-- **頂層（Fable）**：本專案頂層不逐則讀信，領導的匯報走 Agent tool 回傳；`dispatcher` 這個名字會**額外掃 `new/`**，所以沒有使用者輸入的時段也能被外部 agent 叫醒。
+- **領導（gpt-6.1-sol）**：**前景**跑（例：`--timeout 540`，逾時 exit 3 就再跑一輪）；**不可「結束回合＋背景輪詢」當等待**——原生子 agent 結束回合後不保證會被叫醒（見 [dispatch/lessons](../dispatch/lessons.md)）。醒來先讀那幾行，再決定要不要進團隊格看正文。
+- **頂層（gpt-6-astra）**：本專案頂層不逐則讀信，原生領導的匯報走工具回傳，外部領導用 inbox 回報；`dispatcher` 這個名字會**額外掃 `new/`**，所以沒有使用者輸入的時段也能被外部 agent 叫醒。
 - **收線前務必確認沒有殘留的背景輪詢**（`--wait`／`--watch` 都是長駐）。
 
 ## 領導轉發的三條規矩

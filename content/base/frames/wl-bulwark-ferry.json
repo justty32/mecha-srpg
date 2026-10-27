@@ -1,0 +1,73 @@
+{
+  "id": "frame/wl-bulwark-ferry",
+  "name": "堅盾-II渡口型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-singing-blade",
+    "right-weapon": "component/mx-scatter-rune",
+    "armor-mount": "component/mx-porcelain-plate",
+    "back-1": "component/mx-ash-mist",
+    "system-1": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "evasion": -3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-bulwark",
+    "mech",
+    "human",
+    "lineage-kuafu"
+  ],
+  "nameEn": "Bulwark II Ferrywatch",
+  "etymology": "Ferrywatch 指渡船靠離岸時的末班守備。堅盾公刻圖紙傳進港口後，各家船塢都替它留過一套備件；渡口型沿用夸父經衍一傳下的厚胸寬臂，沒有另開新代。碼頭把勤務名添在堅盾-II後面，讓修機的人一眼知道，這台下次仍要回到跳板旁。\n\n漲潮那晚，末班渡船的艙門卡著一車濕棉被。渡口型先立起盾陣，右臂的散紋吼砲朝堆滿斷木的狹口轟去，左手鳴刃攔住貼近舷邊的獸爪。白瓷鎧甲被刮出一道黑口，背上的灰霧香卻還剩著；駕駛員把那縷灰霧留給拖車的同伴，等棉被車翻過門檻才往後退。\n\n船已離岸，岸上的燈夫仍舉著手。駕駛員沒有轉身追進水裡，而是沿碼頭退到同班守備身旁，讓另一台機接過缺口。霜鰭排燼片在背後落下細灰，護艙隔板裡傳來他喘氣的聲音。這套改裝保留了座艙與魂核掛位的配套；裝上魂核，也還得有人入座，或由住在其中的機魂接手。回塢後，工人把裂開的白瓷片放進舊桶，先替他卸下濕透的肩帶。"
+}

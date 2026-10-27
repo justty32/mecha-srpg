@@ -1,0 +1,142 @@
+{
+  "contract": "content-batch/1",
+  "id": "wl-monsters-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "新增四族各一新怪獸物種及個體、活體與屍改配套，共16檔；不複製既有目擊個體湊數",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wl-monsters-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-life-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-life-1027/monsters",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/monsters/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "base/monsters",
+      "base/species",
+      "base/frames"
+    ],
+    "namePrefix": {
+      "base/monsters": "wl-",
+      "base/species": "wl-",
+      "base/frames": "wl-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist"
+  ],
+  "deferredChecks": "使用者在公司不安裝；整合測試、戰鬥試玩、平衡與正式收線留回家處理，完成前不得聲稱完整 accepted。",
+  "worktree": ".git/wf-worktrees/wl-monsters-1027",
+  "files": [
+    "content/base/frames/wl-bio-fold-scythe.json",
+    "content/base/frames/wl-bio-gravel-mane.json",
+    "content/base/frames/wl-bio-salt-shroud.json",
+    "content/base/frames/wl-bio-slant-veil.json",
+    "content/base/frames/wl-corpse-fold-scythe.json",
+    "content/base/frames/wl-corpse-gravel-mane.json",
+    "content/base/frames/wl-corpse-salt-shroud.json",
+    "content/base/frames/wl-corpse-slant-veil.json",
+    "content/base/monsters/wl-fold-scythe-c.json",
+    "content/base/monsters/wl-gravel-mane-c.json",
+    "content/base/monsters/wl-salt-shroud-c.json",
+    "content/base/monsters/wl-slant-veil-b.json",
+    "content/base/species/wl-fold-scythe.json",
+    "content/base/species/wl-gravel-mane.json",
+    "content/base/species/wl-salt-shroud.json",
+    "content/base/species/wl-slant-veil.json"
+  ],
+  "ids": [
+    "frame/wl-bio-fold-scythe",
+    "frame/wl-bio-gravel-mane",
+    "frame/wl-bio-salt-shroud",
+    "frame/wl-bio-slant-veil",
+    "frame/wl-corpse-fold-scythe",
+    "frame/wl-corpse-gravel-mane",
+    "frame/wl-corpse-salt-shroud",
+    "frame/wl-corpse-slant-veil",
+    "monster/wl-fold-scythe-c",
+    "monster/wl-gravel-mane-c",
+    "monster/wl-salt-shroud-c",
+    "monster/wl-slant-veil-b",
+    "species/wl-fold-scythe",
+    "species/wl-gravel-mane",
+    "species/wl-salt-shroud",
+    "species/wl-slant-veil"
+  ],
+  "acceptance": {
+    "batch": "wl-monsters-1027",
+    "round": 2,
+    "at": "2026-10-27T09:24:10",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/base/frames/wl-bio-fold-scythe.json",
+      "content/base/frames/wl-bio-gravel-mane.json",
+      "content/base/frames/wl-bio-salt-shroud.json",
+      "content/base/frames/wl-bio-slant-veil.json",
+      "content/base/frames/wl-corpse-fold-scythe.json",
+      "content/base/frames/wl-corpse-gravel-mane.json",
+      "content/base/frames/wl-corpse-salt-shroud.json",
+      "content/base/frames/wl-corpse-slant-veil.json",
+      "content/base/monsters/wl-fold-scythe-c.json",
+      "content/base/monsters/wl-gravel-mane-c.json",
+      "content/base/monsters/wl-salt-shroud-c.json",
+      "content/base/monsters/wl-slant-veil-b.json",
+      "content/base/species/wl-fold-scythe.json",
+      "content/base/species/wl-gravel-mane.json",
+      "content/base/species/wl-salt-shroud.json",
+      "content/base/species/wl-slant-veil.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T09:23:26",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "gate": "ok"
+      }
+    },
+    {
+      "round": 2,
+      "at": "2026-10-27T09:24:10",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "integrationStatus": "deferred-by-user",
+  "carriedToMain": true,
+  "acceptanceScope": "僅路徑閘門、資料格式、引用與已讀清單；整合與平衡未驗"
+}

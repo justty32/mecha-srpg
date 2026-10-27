@@ -1,0 +1,110 @@
+{
+  "contract": "content-batch/1",
+  "id": "wm-r7-mechs-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "第7輪新增3個mechs實質差異概念",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wm-r7-mechs-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-more-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/mechs",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/mechs/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "base/frames",
+      "base/world/models"
+    ],
+    "namePrefix": {
+      "base/frames": "wm-r7-",
+      "base/world/models": "wm-r7-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist"
+  ],
+  "integrationStatus": "deferred-by-user",
+  "deferredChecks": "公司僅有限靜態檢查；整合、平衡、試玩與正式驗收留回家。",
+  "worktree": ".git/wf-worktrees/wm-r7-mechs-1027",
+  "files": [
+    "content/base/frames/wm-r7-anvil-downbeat.json",
+    "content/base/frames/wm-r7-bw08.json",
+    "content/base/frames/wm-r7-longspear-keepsake.json",
+    "content/base/world/models/wm-r7-anvil-downbeat.json",
+    "content/base/world/models/wm-r7-bw08.json",
+    "content/base/world/models/wm-r7-longspear-keepsake.json"
+  ],
+  "ids": [
+    "frame/wm-r7-anvil-downbeat",
+    "frame/wm-r7-bw08",
+    "frame/wm-r7-longspear-keepsake",
+    "model/wm-r7-anvil-downbeat",
+    "model/wm-r7-bw08",
+    "model/wm-r7-longspear-keepsake"
+  ],
+  "acceptanceScope": "僅路徑、JSON、引用、已讀、loader與適用ops及有限功能/敘事去重；整合／平衡／試玩未驗，非完整accepted。",
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T12:30:11",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "ops": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "acceptance": {
+    "batch": "wm-r7-mechs-1027",
+    "round": 1,
+    "at": "2026-10-27T12:30:11",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "ops": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/base/frames/wm-r7-anvil-downbeat.json",
+      "content/base/frames/wm-r7-bw08.json",
+      "content/base/frames/wm-r7-longspear-keepsake.json",
+      "content/base/world/models/wm-r7-anvil-downbeat.json",
+      "content/base/world/models/wm-r7-bw08.json",
+      "content/base/world/models/wm-r7-longspear-keepsake.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "loaderEvidence": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7/mechs/loader.txt",
+  "loaderResult": {
+    "errors": 0,
+    "warnings": 32,
+    "mainBaselineWarnings": 34,
+    "note": "HEAD隔離區無前輪旋沫兩警告；本批未增加警告。"
+  },
+  "carriedToMain": true,
+  "dedupEvidence": "wf/workflows/dispatch/handoffs/lead-world-more-1027/round7-dedup.json"
+}

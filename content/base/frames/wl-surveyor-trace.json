@@ -1,0 +1,72 @@
+{
+  "id": "frame/wl-surveyor-trace",
+  "name": "測墟-B拾痕型",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "defaultLoadout": {
+    "sensor-mount": "component/mx-thousand-eye",
+    "right-weapon": "component/mx-rune-rifle",
+    "left-weapon": "component/mx-radiant-rifle",
+    "system-1": "component/mx-relic-halo",
+    "back-1": "component/mx-ash-mist",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-many-eyes",
+    "faction-shell-society",
+    "mech",
+    "human",
+    "series-surveyor"
+  ],
+  "nameEn": "Surveyor B Tracekeeper",
+  "etymology": "Tracekeeper 指把勘察留下的痕跡與人一同帶回來。測墟-B拾痕型沿多目的靈目路線改裝，用千目替下原有嗅針，兩臂分持紋刻連吼與輝光連吼。稽古學會保留原來的冕環骸片與灰霧香，沒有因為換了勤務名，就把那塊古代部件的共鳴條件從帳上抹掉。\n\n有次護勘隊還未離開海岸，獸影已從礁間擋住回程。拾痕型先停在碎石坡上，以千目標定那個移動的輪廓，讓護衛對準同一個敵人。右臂打完一輪紋刻矢，駕駛員便轉用左臂的流光射擊；勘察員抱著刻痕拓片往後跑，背上的灰霧香在他們身邊散開。護衛跟著退到坡後，沒有為了撿回落水的箱子再衝一次。\n\n千目看得到目標，不會替學者讀出裏側的答案。冕環骸片是否回應，也仍看入座者能否與它共鳴；不合條件時，護勘隊得照能用的裝備安排退路，不能把那層光幕當成人人都有。出發前，技師逐一扣好護艙隔板與魂核掛位，勘察員則把空拓袋綁在機腿旁。回程上船，他們把濕拓片攤在艙口，駕駛員最後才打開座艙，低頭找掉在踏板上的手套。"
+}

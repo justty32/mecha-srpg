@@ -1,13 +1,29 @@
-# next-session — 2026-10-26 晚暫停後的接續清單（給明天的 codex／Claude）
+# next-session — 2026-10-27 公司 WSL 校正後接續
 
 [handoffs](README.md)｜進度 [SESSION-LOG](../../../SESSION-LOG.md)｜現況 [STATE](STATE.md)｜裁定彙整 [fill-rulings](fill-rulings.md)
 
-先照 `AGENTS.md` 開場，讀 `wf/workflows/common/user.md`（**資源節制**：全機一次一個重負載，`npm test` 等已有 `scripts/heavy-lock.sh` 鎖；工人只跑單檔測試）。
+先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本次核對 HEAD `f24420b079a59a7f8e93123930665aaa824f9d00`；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
 
-1. **核對主工作樹殘檔**：`content/base/world/markets/{old-array,salt-flat,singapore,war-armory}.json`、`content/index/{base-map,base-scenario}.json` 有未提交改動（疑 lead-fill-gear）。對照 `handoffs/lead-fill-gear/report.md` 決定提交或還原。
-2. **戰役黃金**：lead-fill-pilots 已重錄（a3c53115），lead-fill-gear 仍報 5 紅；`handoffs/lead-fill-gear/fg-golden/` 與 pilots 的 golden worktree 兩份產出只採一份，以 HEAD 為基底重錄後跑一次全套 `npm test`。
-3. **收暫停中的四線**：lead-bigfill、lead-fill-pilots、lead-fill-gear、lead-small——各自 `handoffs/<線>/report.md` 有接續；lead-small 的第三刃營運（剩一個測試勢力數 7→8、重產 index）與北岸改區（半成品）在 scratchpad worktree。收線：CLAIMS 格、SESSION-LOG 行移除，done 索引追加，worktree 清掉。
-4. **尺度表**：重開 plan-scale（機甲各骨架／怪獸各族各級體型、戰鬥一格幾公尺、lore 尺度稽核，例：亞斯文放閘夜放水擋獸）。交使用者拍板後落地。
-5. **去重與送審**：lead-bigfill 215 件＋lead-fill-pilots 148 人物＋lead-fill-gear 約 200 件＋lead-fill-scen 63 件，先去重，再交 Fable＋使用者審基調（流程見 `wf/workflows/content/batch.md`）。
-6. **登記 engine-backlog**：lead-bigfill 報告列的 5 條（外洲地圖、在地人物對話、指定物種遭遇池、新聞欄、月面營運）。
-7. **待使用者決定**：`352e589b` 夾帶約 320 萬行戰鬥紀錄要不要刪；148 人物每人一 lore 檔或改加 person 描述欄；勢力特色件是否無門檻先上架；部件被動數值引擎修復排程；百科 38 種 kind 專用卡。
+## 公司內容填充與送審
+
+公司 WSL 不安裝任何東西，整合驗收與黃金核對留回家。使用者後續已授權六類世界觀填充，進度見 [本輪入口](lead-world-life-1027/README.md)。公司可寫內容並做零依賴資料格式檢查；不刪檔／清 worktree，格式檢查不代表整合驗收。原生 agent 用工具回報，資源節制照使用者偏好。
+
+去重盤點以 bigfill 215 件、pilots 148 組人物、gear 約 200 件、fill-scen 63 件為入口，查各自 review 資料（wf-table 一律用 tabledb 選取，不整份讀入）。先整理跨批重複、設定矛盾與待裁決問題，送頂層與使用者審敘事基調，不直接改內容。歷史 Fable 審閱記錄保留；現行角色配置依 [team-model](../../team-model.md)（astra／sol／terra）。
+
+2026-10-27 盤點已交付 [審閱入口](../../../notes/investigations/content-review-2026-10-27/README.md)：1 項人物敘述矛盾、9 件槽尺寸缺口；未確認應刪除的重複內容。這是靜態證據與候選送審，不是全庫逐句審閱或整合驗收。
+
+困難架構問題只列證據、影響與待裁決問題，請使用者另開 Claude Fable 做報告，裁決後才實作。候選含尺度／格距、人物 lore 檔與 person 描述欄的承載方式、部件被動數值生效、百科 kind 專用卡；不能把盤點當成已授權架構改造。
+
+## 回家再驗收與處理收線
+
+先重查當時 HEAD 與差異：pilots 內容 `299d084`、黃金 `de65154` 已入庫；small `69924b0` 已含第三刃、北岸、勢力數測試 7→8 與 index。gear 市場已在 `a66cd46`，`4b0db24` 的市場 patch 為空；不要照舊清單重套、重做或還原。bigfill 入庫提交是 `c8e0e0a`。
+
+目前沒有 HEAD 整合驗收新證據。回家由主線比較 `de65154` 之後（尤其 `69924b0`）的軌跡影響，再決定黃金是否需要重錄；舊 fg-golden patch 不直接套。依 testing workflow 與資源節制安排驗收，全機一次一個重負載；歷史 966／966、1028／1028、31 pass 均不得冒充目前 HEAD 綠燈。
+
+四線報告依 STATE 導航；small 的 `report.md` 缺失，先補查完成證據。去重／審閱／驗收與其餘收線條件滿足後，才由有授權主線處理 CLAIMS、SESSION-LOG、done 索引與 worktree；公司本輪不關閉四線、不宣稱收完。
+
+## 留待裁決與補核
+
+bigfill 報告的五項引擎需求（外洲地圖、在地人物對話、指定物種遭遇池、新聞欄、月面營運）先對 engine-backlog 去重再提追加；現有資料為 92 列，不能把舊 md 的 52 列摘要當現況。`ae7b204` 已入庫 74–92（gear 74–77、pilots 78–84、scenarios 85–92），不要重登。
+
+另留待使用者決定：大量原始戰鬥紀錄的保留方式（目前歷史 gear 第二輪為 `a66cd46`，不沿用舊 `352e589b` 識別作刪除依據）、人物承載、勢力特色件無聲望門檻放行、部件被動引擎修復優先序與百科卡片。尺度表與格距先報告再拍板；數值統一調整維持後期處理。

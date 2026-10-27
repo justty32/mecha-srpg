@@ -1,0 +1,69 @@
+{
+  "id": "frame/wn-r3-surveyor-bearer",
+  "name": "測墟-B・同燈",
+  "nameEn": "Surveyor Shared Lantern B",
+  "etymology": "Shared Lantern 取趕夜路時共看一盞燈的意思，同燈沿測墟系列命名。稽古學會委製的六足護勘配裝接續拓影-B，頭掛同準靈目，背掛送行煙燈。受雇駕駛要停下自己的動作，才能替近旁一名友機引準或借煙；兩份照應各有兩次，出發時他便在手套上各畫了兩道記號。\n\n河口廢堰的聯隊清剿，兩家獵團都想把堵在堰門間的獸首算到自己帳上。同燈先替左翼報出甲縫，右翼隊長立刻在天網裡問，自己難道少付了錢。左翼逼近後遭獸爪刮中，同燈借煙讓它較易避過下一擊，煙也蒙住了它自己的準星。那台機最後一刀落空，另一家的長槍接著命中；方才還催煙的駕駛，當場又怪起那盞燈來。\n\n清點獸骸時，兩家隊長各攤一張工單，都把同燈列在對方那邊。駕駛員沒忙著把自己的連吼舉給他們看。連吼與蛇鞭共用的流光還在回升，剛才為報點放下的出手機會也補不回來。他將手套擺在獸甲上，讓兩人看已擦掉的記號，問先前是哪兩台機答應接他的照應。一直蹲著拆甲的工人站起來，在兩張單上都按了沾血的手印，寫下自己親眼看見的配合。那顆獸首歸誰，兩家留到晚上再吵；這台機當天的工錢，誰也沒再推走。",
+  "cls": "mechanical",
+  "grade": "B",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 7
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/m2-hexapod-b",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-radiant-rifle",
+    "right-weapon": "component/mx-thunder-serpent",
+    "sensor-mount": "component/fa-shared-bearing",
+    "back-1": "component/fa-escort-lantern",
+    "cockpit": "component/oa-cockpit-baffle"
+  },
+  "innateAbilities": [],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-many-eyes",
+    "faction-shell-society",
+    "burrow",
+    "series-surveyor"
+  ]
+}

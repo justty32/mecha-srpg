@@ -1,0 +1,132 @@
+{
+  "contract": "content-batch/1",
+  "id": "wn-r3-monsters-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "第3輪新增3個monsters合法實質差異概念及完整配套",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wn-r3-monsters-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-next-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3/monsters",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3/monsters/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "base/monsters",
+      "base/species",
+      "base/frames"
+    ],
+    "namePrefix": {
+      "base/monsters": "wn-r3-",
+      "base/species": "wn-r3-",
+      "base/frames": "wn-r3-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist"
+  ],
+  "integrationStatus": "deferred-by-user",
+  "deferredChecks": "公司僅有限靜態檢查；整合、平衡、試玩與正式驗收留回家。",
+  "worktree": ".git/wf-worktrees/wn-r3-monsters-1027",
+  "files": [
+    "content/base/frames/wn-r3-bio-pin-fan.json",
+    "content/base/frames/wn-r3-bio-trailing-sail.json",
+    "content/base/frames/wn-r3-bio-turning-foam.json",
+    "content/base/frames/wn-r3-corpse-pin-fan.json",
+    "content/base/frames/wn-r3-corpse-trailing-sail.json",
+    "content/base/frames/wn-r3-corpse-turning-foam.json",
+    "content/base/monsters/wn-r3-pin-fan-d.json",
+    "content/base/monsters/wn-r3-trailing-sail-c.json",
+    "content/base/monsters/wn-r3-turning-foam-c.json",
+    "content/base/species/wn-r3-pin-fan.json",
+    "content/base/species/wn-r3-trailing-sail.json",
+    "content/base/species/wn-r3-turning-foam.json"
+  ],
+  "ids": [
+    "frame/wn-r3-bio-pin-fan",
+    "frame/wn-r3-bio-trailing-sail",
+    "frame/wn-r3-bio-turning-foam",
+    "frame/wn-r3-corpse-pin-fan",
+    "frame/wn-r3-corpse-trailing-sail",
+    "frame/wn-r3-corpse-turning-foam",
+    "monster/wn-r3-pin-fan-d",
+    "monster/wn-r3-trailing-sail-c",
+    "monster/wn-r3-turning-foam-c",
+    "species/wn-r3-pin-fan",
+    "species/wn-r3-trailing-sail",
+    "species/wn-r3-turning-foam"
+  ],
+  "acceptance": {
+    "batch": "wn-r3-monsters-1027",
+    "round": 1,
+    "at": "2026-10-27T10:47:41",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/base/frames/wn-r3-bio-pin-fan.json",
+      "content/base/frames/wn-r3-bio-trailing-sail.json",
+      "content/base/frames/wn-r3-bio-turning-foam.json",
+      "content/base/frames/wn-r3-corpse-pin-fan.json",
+      "content/base/frames/wn-r3-corpse-trailing-sail.json",
+      "content/base/frames/wn-r3-corpse-turning-foam.json",
+      "content/base/monsters/wn-r3-pin-fan-d.json",
+      "content/base/monsters/wn-r3-trailing-sail-c.json",
+      "content/base/monsters/wn-r3-turning-foam-c.json",
+      "content/base/species/wn-r3-pin-fan.json",
+      "content/base/species/wn-r3-trailing-sail.json",
+      "content/base/species/wn-r3-turning-foam.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T10:47:41",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "carriedToMain": true,
+  "acceptanceScope": "僅路徑、JSON、引用、已讀、loader與適用ops及有限功能/敘事去重；整合／平衡／試玩未驗，非完整accepted。",
+  "dedupEvidence": "wf/workflows/dispatch/handoffs/lead-world-next-1027/round3-dedup.json",
+  "loaderEvidence": "round3/monsters/loader.txt",
+  "loaderResult": {
+    "errors": 0,
+    "warnings": 34,
+    "newWarnings": [
+      "WARNING [soft-overflow-band] content/base/frames/wn-r3-bio-turning-foam.json $.pools[0].bands instinct: no band covers values above max",
+      "WARNING [soft-overflow-band] content/base/species/wn-r3-turning-foam.json $.pools[0].bands instinct: no band covers values above max"
+    ]
+  },
+  "retainedRisk": "旋沫species及bio沿岔鰭同級soft本能池且bands空，新增兩條同型soft-overflow-band警告；原範本同樣警告。不改數值或規則，平衡與本能溢位處理留回家。"
+}

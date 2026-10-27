@@ -1,0 +1,61 @@
+{
+  "id": "frame/wl-swordfish-return",
+  "name": "劍魚-III回舷型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-hover-c",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-rune-rifle",
+    "right-weapon": "component/mx-tidefin-twins",
+    "back-1": "component/mx-flare-wings",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 5,
+    "evasion": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "mech",
+    "human",
+    "hover",
+    "series-swordfish"
+  ],
+  "nameEn": "Swordfish III Homeward",
+  "etymology": "Homeward 是回到自己船舷的方向。劍魚-III回舷型沿潮鰭支系留下的潮行裙與臂架改裝，右手持潮鰭雙刃，左手換紋刻連吼。第三刃的船邊隊原本習慣雙手貼身作戰，這次留下一隻能遠咬的手，讓換班的人隔著碎浪也能接上同伴。\n\n撤船前，靠外的一台劍魚追過浮橋，雙刃把獸肩的碎甲挑進水裡。獸退開後，船邊隊長沒有叫他繼續追，只讓內側的回舷型舉起連吼。紋刻矢打在獸腳前，追出去的機便順著空隙退回來；輪到它接守，另一台才沿船身滑向外側。潮行裙掃過斷木，疾焰背翼的光映在濕舷上，工人趁機收回掛在外面的吊鉤。\n\n這套改裝沒有讓劍魚多出替同伴換位的招，輪換仍靠駕駛員看清船與獸的位置。紋刻連吼的矢匣也有限，船邊隊把剩矢報給下一班，才讓雙刃收鞘。護艙隔板仍裝在胸甲內，標準魂核留在自己的掛位，沒有人替它寫會催促同伴的脾氣。最後一台回舷時，岸上的照明已經熄了；甲板工握住扶索，拍了拍仍在滴水的裙緣，再把登船的燈朝後挪。"
+}

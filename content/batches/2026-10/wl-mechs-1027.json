@@ -1,0 +1,121 @@
+{
+  "contract": "content-batch/1",
+  "id": "wl-mechs-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "新增六個機甲概念，沿用既有世界規則並附白話審閱",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wl-mechs-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-life-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-life-1027/mechs",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/mechs/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "base/frames",
+      "base/world/models"
+    ],
+    "namePrefix": {
+      "base/frames": "wl-",
+      "base/world/models": "wl-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "readlist"
+  ],
+  "deferredChecks": "使用者在公司不安裝；整合測試、戰鬥試玩、平衡與正式收線留回家處理，完成前不得聲稱完整 accepted。",
+  "worktree": ".git/wf-worktrees/wl-mechs-1027",
+  "files": [
+    "content/base/frames/wl-anvil-cable.json",
+    "content/base/frames/wl-aurora-star.json",
+    "content/base/frames/wl-bulwark-ferry.json",
+    "content/base/frames/wl-longspear-lamp.json",
+    "content/base/frames/wl-surveyor-trace.json",
+    "content/base/frames/wl-swordfish-return.json",
+    "content/base/world/models/wl-anvil-cable.json",
+    "content/base/world/models/wl-aurora-star.json",
+    "content/base/world/models/wl-bulwark-ferry.json",
+    "content/base/world/models/wl-longspear-lamp.json",
+    "content/base/world/models/wl-surveyor-trace.json",
+    "content/base/world/models/wl-swordfish-return.json"
+  ],
+  "ids": [
+    "frame/wl-anvil-cable",
+    "frame/wl-aurora-star",
+    "frame/wl-bulwark-ferry",
+    "frame/wl-longspear-lamp",
+    "frame/wl-surveyor-trace",
+    "frame/wl-swordfish-return",
+    "model/wl-anvil-cable",
+    "model/wl-aurora-star",
+    "model/wl-bulwark-ferry",
+    "model/wl-longspear-lamp",
+    "model/wl-surveyor-trace",
+    "model/wl-swordfish-return"
+  ],
+  "acceptance": {
+    "batch": "wl-mechs-1027",
+    "round": 1,
+    "at": "2026-10-27T09:22:40",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "ops": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/base/frames/wl-anvil-cable.json",
+      "content/base/frames/wl-aurora-star.json",
+      "content/base/frames/wl-bulwark-ferry.json",
+      "content/base/frames/wl-longspear-lamp.json",
+      "content/base/frames/wl-surveyor-trace.json",
+      "content/base/frames/wl-swordfish-return.json",
+      "content/base/world/models/wl-anvil-cable.json",
+      "content/base/world/models/wl-aurora-star.json",
+      "content/base/world/models/wl-bulwark-ferry.json",
+      "content/base/world/models/wl-longspear-lamp.json",
+      "content/base/world/models/wl-surveyor-trace.json",
+      "content/base/world/models/wl-swordfish-return.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 5,
+      "problems": []
+    }
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T09:22:40",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "ops": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "integrationStatus": "deferred-by-user",
+  "carriedToMain": true,
+  "acceptanceScope": "僅路徑閘門、資料格式、引用與已讀清單；整合與平衡未驗"
+}

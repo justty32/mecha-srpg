@@ -1,0 +1,64 @@
+{
+  "id": "species/wl-gravel-mane",
+  "name": "礫鬃",
+  "family": "beast",
+  "bodyPlan": "bodyplan/quadruped-hound",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-shovel-ram",
+    "ability/kx-foam-jaw-foam"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wl-bio-gravel-mane"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/pack-hunter",
+  "tags": [
+    "kaiju",
+    "beast"
+  ],
+  "etymology": "退潮後，礫灘上留下了兩道深溝。守岸人順著溝望去，看見一隻四足獸側身擦過灘石，背板颳得碎礫翻響。牠抬起前鏟時，鬃板間還卡著濕石，嘴邊的白沫卻已經湧出。護岸機向前攔了一步，雙鏟便叩在鎧甲正面，震得駕駛員咬住牙關；第二台機甲剛靠攏，蝕沫就從張開的顎下潑了過來。\n守岸隊把兩台機甲分開，留一台擋住上灘的方向，另一台從側面逼近。礫鬃轉頭噴沫，灘石上響起一串細碎的爆聲；擋在正面的機甲趁牠收顎時退開，雙鏟落下，只叩碎了原先踩著的石脊。牠在亂礫裡折返幾次，背板刮過護岸樁，留下混著白沫的長痕。足部受損後，牠貼著濕灘往海邊拖去，守岸隊停在搬運車前，沒有追下水。\n礫鬃的名字便這樣記進岸防簿裡，旁邊畫著那排夾石的背板。若有人要活捕，得保住胸中晶龕並打壞所有行走部位，軛鞍扣上後，駕駛員仍要承受牠每次向前叩擊的衝動。屍改的雙鏟則要靠人驅動，技師檢查完接縫，把刮下來的碎礫掃進桶裡，桶底還帶著鹹味。"
+}

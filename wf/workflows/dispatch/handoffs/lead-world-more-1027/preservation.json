@@ -1,0 +1,94 @@
+{
+  "headUnchanged": true,
+  "head": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "originalContentCount": 2934,
+  "originalContentChanged": [],
+  "priorStagedNonIndexCount": 100,
+  "priorStagedChanged": [],
+  "concepts": 24,
+  "newContentFiles": 36,
+  "batches": [
+    {
+      "id": "wm-r4-characters-1027",
+      "files": 6,
+      "bytesIncludingReports": 51808,
+      "checks": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      },
+      "worktree": ".git/wf-worktrees/wm-r4-characters-1027",
+      "detached": true
+    },
+    {
+      "id": "wm-r5-places-1027",
+      "files": 6,
+      "bytesIncludingReports": 48747,
+      "checks": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      },
+      "worktree": ".git/wf-worktrees/wm-r5-places-1027",
+      "detached": true
+    },
+    {
+      "id": "wm-r6-factions-1027",
+      "files": 6,
+      "bytesIncludingReports": 50525,
+      "checks": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      },
+      "worktree": ".git/wf-worktrees/wm-r6-factions-1027",
+      "detached": true
+    },
+    {
+      "id": "wm-r7-mechs-1027",
+      "files": 6,
+      "bytesIncludingReports": 54416,
+      "checks": {
+        "readlist": "ok",
+        "ops": "ok",
+        "gate": "ok"
+      },
+      "worktree": ".git/wf-worktrees/wm-r7-mechs-1027",
+      "detached": true
+    },
+    {
+      "id": "wm-r7-monsters-1027",
+      "files": 12,
+      "bytesIncludingReports": 71130,
+      "checks": {
+        "readlist": "ok",
+        "gate": "ok"
+      },
+      "worktree": ".git/wf-worktrees/wm-r7-monsters-1027",
+      "detached": true
+    }
+  ],
+  "newFilesEvidence": "preservation-files.json",
+  "indexCheck": "71 shards consistent",
+  "gitDiffCheck": 0,
+  "gitDiffCachedCheck": 0,
+  "loader": {
+    "errors": 0,
+    "warnings": 36,
+    "baselineWarnings": 34,
+    "removedWarnings": [],
+    "newWarnings": [
+      "WARNING [soft-overflow-band] content/base/frames/wm-r7-bio-kickbead.json $.pools[0].bands instinct: no band covers values above max",
+      "WARNING [soft-overflow-band] content/base/species/wm-r7-kickbead.json $.pools[0].bands instinct: no band covers values above max"
+    ]
+  },
+  "scope": "所有原content JSON雜湊與既有非index暫存項保持；36新檔main/WT/index bytes相同；未驗整合平衡試玩。",
+  "wfLint": {
+    "exitCode": 1,
+    "broken": 2,
+    "local": 0,
+    "note": "既有legacy外部連結兩處失效；未改越界檔案。",
+    "evidence": "wf-lint.txt"
+  },
+  "childrenEvidence": "children.json"
+}

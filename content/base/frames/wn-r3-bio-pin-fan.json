@@ -1,0 +1,35 @@
+{
+  "id": "frame/wn-r3-bio-pin-fan",
+  "name": "生物機甲・針扇",
+  "cls": "bio",
+  "grade": "D",
+  "bodyPlan": "bodyplan/insect-grit-fan",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 5
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 10,
+      "regen": 3,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/kx-brinepin-prick",
+    "ability/kx-grit-fan-scatter"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "bio",
+    "insect",
+    "kaiju"
+  ],
+  "burden": 2
+}

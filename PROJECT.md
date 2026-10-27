@@ -10,7 +10,7 @@
 
 ## 團隊
 
-頂層 Fable 規劃與決策、領導 Opus 帶線、工人 codex 實作，配置見 [team-model](wf/workflows/team-model.md)。
+頂層 gpt-6-astra 規劃與決策、領導 gpt-6.1-sol 帶線、普通工 gpt-6.1-sol 實作、簡單工作 gpt-6.1-terra，配置見 [team-model](wf/workflows/team-model.md)。
 
 ## 狀態
 

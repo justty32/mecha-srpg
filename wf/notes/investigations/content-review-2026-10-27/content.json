@@ -1,0 +1,1190 @@
+{
+ "contract": "wf-table/1",
+ "source": "content.md",
+ "extracted": "2026-10-27",
+ "scan": {
+  "roots": [
+   "content/base",
+   "content/lore"
+  ],
+  "json_objects": 2238,
+  "excluded_files": 457,
+  "excluded_directories": [
+   "persons",
+   "characters",
+   "crew",
+   "recruits"
+  ],
+  "batch": {
+   "lead-bigfill": {
+    "review_rows": 215,
+    "nonperson_present": 181,
+    "excluded_or_outside": 34
+   },
+   "lead-fill-gear": {
+    "review_rows": 200,
+    "nonperson_present": 200,
+    "excluded_or_outside": 0
+   },
+   "lead-fill-scen": {
+    "review_rows": 63,
+    "nonperson_present": 63,
+    "excluded_or_outside": 0
+   }
+  },
+  "target_files": 444,
+  "mechanical_candidates": {
+   "exact_name_groups": 0,
+   "same_payload_groups": 4,
+   "near_name_pairs": 3,
+   "no_slot_size_items": 9,
+   "total_groups_or_items": 16
+  },
+  "review_rows": 20,
+  "status_counts": {
+   "刻意變體": 5,
+   "同系列": 3,
+   "確定問題": 9,
+   "待人審": 3
+  },
+  "modifiable_frames_checked": 157,
+  "slot_maxima": {
+   "cockpit": 1,
+   "soulCore": 1,
+   "armorMount": 1,
+   "systemMount": 1,
+   "sensorMount": 1,
+   "weaponMount": 3,
+   "backMount": 2,
+   "restraint": 4
+  },
+  "category_counts": {
+   "content/base/pack.json": 1,
+   "content/base/abilities": 230,
+   "content/base/aiprofiles": 20,
+   "content/base/bodyplans": 71,
+   "content/base/components": 186,
+   "content/base/curves": 1,
+   "content/base/effects": 171,
+   "content/base/factions": 18,
+   "content/base/frames": 170,
+   "content/base/maps": 36,
+   "content/base/monsters": 56,
+   "content/base/registries": 7,
+   "content/base/rules": 5,
+   "content/base/scenarios": 88,
+   "content/base/soultrees": 6,
+   "content/base/species": 44,
+   "content/base/terrains": 23,
+   "content/base/world": 749,
+   "content/lore/glossary.json": 1,
+   "content/lore/timeline.json": 1,
+   "content/lore/eras": 7,
+   "content/lore/events": 180,
+   "content/lore/factions": 51,
+   "content/lore/places": 116
+  }
+ },
+ "method": [
+  "wf-table/1審閱索引用tabledb載入，按檔集合過濾，未整份印入context。",
+  "Python標準庫全量讀取遊戲JSON；精確name/title去掉（提案）分組；base結構去id/name/tags/description/summary後精確分組。",
+  "同目錄名稱SequenceMatcher>=0.78候選；lore body以SequenceMatcher>0.55比較目標對其他內容，未出現命中；不能據此宣稱無同義重複。",
+  "精確識別字引用候選檢查、非人物目標component入邊檢查；僅作定位，非schema/載入驗收。",
+  "frame.bodyPlan所有非ancient骨架槽最大尺寸與目標component.size比較；核對instantiateMech既有尺寸判定。"
+ ],
+ "limits": [
+  "未做自然語意模型全庫比對，隱喻／改寫仍可能漏檢；未逐篇人工通讀全部lore。",
+  "人物/persons/characters/crew/recruits排除；對白只檢查非人物內容定位，不評人物設定。",
+  "只讀現有報告與必要原始片段，不跑測試、sim、golden、lint、安裝或GUI；舊探針數字均明示來源。",
+  "引用存在不保證執行期可達；純字串引用掃描不能取代引擎驗收。",
+  "本報告是送審清單，沒有內容或引擎修復；架構問題僅列Fable問題。"
+ ],
+ "source_fingerprints": {
+  "content/base/abilities/fa-catch-wind.json": "bcf0ded5a6b87c124bf236b01c80067206c091436da735b3ef164864800ba0b3",
+  "content/base/abilities/fa-cover-companion.json": "f0369dec15648b25424107ed5fac2610e4bc7fe22ed689de43085f93d970a0df",
+  "content/base/abilities/fa-dazzle-mark.json": "a8a304dadd4aef13381f8d57844486e20e7f1d206f5015c78764a8ffded15051",
+  "content/base/abilities/fa-draw-light.json": "03153598d7d552b1eb0df90e2aa2677e90c7300f503acf35418e0c81d59e6364",
+  "content/base/abilities/fa-lend-bearing.json": "633d46dd303bee6ffa6814084227367773a5724ed9d2a50a821f5288403b03c4",
+  "content/base/abilities/fa-open-vents.json": "c16868ada5f9c67a9bae931ae606bb90e40c27e4383057f268739280c15f869f",
+  "content/base/abilities/fa-regain-footing.json": "271a083373ca92a5c3eaf8472570fcb7ec2d61a7177b67d598c28c90651c36bc",
+  "content/base/abilities/fa-shed-bonds.json": "1bdd9c950fc1392ec29aa2f74d8840b84ba03ff61b4b023a159169ee9a8da74f",
+  "content/base/abilities/fm-america-aimed-shot.json": "273ebddeaa6ae609a36efd4a31fba7a3c942fdc43b7ba9208b3bff74bf6bfe99",
+  "content/base/abilities/fm-anvil-drive.json": "136cff555d2692ccf46a0b070983d328b76d4dfa47eb0b1f8b8bb755ebd77fc4",
+  "content/base/abilities/fm-blade-reprise.json": "4c16fe7dfe7d87cab126530ce477208a3627fbd8edccdc0915c54fcd50fe0bcc",
+  "content/base/abilities/fm-central-take-bearing.json": "54e6fe46f243e2e60697c482e366a6bf77dfe50ca6e9ef3047d646f5e8e792f0",
+  "content/base/abilities/fm-court-align.json": "6a7f4a2986ec49e677b00be73904492f3e4ab63ea5bd680ca9e4ba46bcd82f59",
+  "content/base/abilities/fm-creed-ashen-call.json": "4c18601eae40a119cca60d44a48f591e400a67e5d1abe8a49086cdbae896bb09",
+  "content/base/abilities/fm-japan-common-shot.json": "20545b3b8056b84d1b3f741903354a493bdd770e393bc765fdccc6313686725a",
+  "content/base/abilities/fm-west-ember-line.json": "66289ee335ab495a7ee9ab76d85965433ce13153d2b8800dadcdd8137ca2746b",
+  "content/base/abilities/fw-ankle-pin-use.json": "9b3b7ddf4e736790f9bf00227392d13f991cdc960101906c96e943f869fc73c6",
+  "content/base/abilities/fw-breaktide-axe-use.json": "7e949ff4822c31ab0f01fd4f0f38c9d8970cf790b940370f542adc7a1d45085c",
+  "content/base/abilities/fw-cinder-rain-use.json": "5af5d239644773ac980f696f6bc36dbc3c6a66af337d2b65ee3810737732c88f",
+  "content/base/abilities/fw-city-borer-use.json": "d5b7f33fd8ed4e33f60ed2e443fd2cfa6e3a20ab6d13c382bb65a634e93ca432",
+  "content/base/abilities/fw-door-sweep-use.json": "1cc47cd7f842fe819b3f0309bc6c732f93c00a4c35be310d1c7738e064c47ea7",
+  "content/base/abilities/fw-fan-tube-use.json": "2bff2de942223df4c11b2dbf01c3733d9c6768abe5d871c8fca033c7f6a053d7",
+  "content/base/abilities/fw-harbor-gun-use.json": "1fc667adbc1820ed7cccbc049c6499bcd4e889a65f46142ff9f4efdac1a17bdd",
+  "content/base/abilities/fw-moon-balance-use.json": "3a4dc00514e97fc32fd8e312344df73ba8d90e1adfd7aaeccbe5ee5947dbafeb",
+  "content/base/abilities/fw-paired-shot-use.json": "f8030e5092fb5c2793a57caa4ceb4c738f84eaba4c5c9d7f274917fd285bfdb8",
+  "content/base/abilities/fw-pin-shot-use.json": "f91d90f9e32b54689f56a3b4b0c705743e4ad2e29edbf260a4bff176eca5a6a6",
+  "content/base/abilities/fw-press-gun-use.json": "c8ec536f5655f1fb2a035a4b8ffa738c955c6a7ae702db7931c608881a036011",
+  "content/base/abilities/fw-pry-axe-use.json": "bc1d9121659daf2466e088f484d575d65932c4db1e6b07941c3482bf6a0d72e4",
+  "content/base/abilities/fw-reef-jaw-use.json": "a699e392637896480e64f947b047d51eb79fbd4140835514cc00eb2615586af1",
+  "content/base/abilities/fw-rivet-drill-use.json": "e78b3dbd0a64417a844ee34d1714ded97b0b120f7f40abd0a1569b59f68f332c",
+  "content/base/abilities/fw-sea-light-use.json": "daf09f41577559f65b43216b7fc72176e180064cd5ead5cca4cb01a45b8f8511",
+  "content/base/abilities/fw-seam-rifle-use.json": "ced308b43b98cbc0d8ef01426844e06a2c1d612c4fef0df09a6067e355cd4da6",
+  "content/base/abilities/fw-shoal-hook-use.json": "958f031e07bfb553ea6b51016558572a62ebb20418616a0463bfeb5a70a5a61c",
+  "content/base/abilities/fw-shoal-light-use.json": "826685026d01ec02feb6c91bf56efbbeb9238c2e7f6c894b50bd1cf548650b52",
+  "content/base/abilities/fw-shore-stay-use.json": "1fefed8ab5143c4fa2b679515bc02afd9ca355edf6dcee21ceda1246d1f2a8e8",
+  "content/base/abilities/fw-sky-crossbow-use.json": "d4946041ce3c7f6c7d36505053793684fecf03c3c911ef428cc3c4770bde79ca",
+  "content/base/abilities/fw-stayline-use.json": "aa3b4c31ed45aad92ea883a35973148eda5594baf1d6f056338fd40d80253536",
+  "content/base/abilities/fw-wake-lance-use.json": "228c875f89202d61e8ce7ccc880a68e95d7b46ba47121ead42d97ef4da9467c8",
+  "content/base/abilities/fw-wedge-blade-use.json": "fb12427d0585797f66a6274089a539fda25d4de4f7298acb655cc590e0299dbe",
+  "content/base/abilities/fw-weight-harpoon-use.json": "66a7cfdf194a33d2741a731b728c785ea55f2e45fd3fd474f238cb86359c2224",
+  "content/base/components/fa-abutment.json": "216aca5fbeb77eaf11e045697c9e7c36e4730f5b824f08e11f1230543793a4d1",
+  "content/base/components/fa-arm-sling.json": "32d5acdbb086261980ddb3a826b8138055662bd439d80be95f3c78279b99fd78",
+  "content/base/components/fa-ash-ballast.json": "3550f3776208ae99808c234a9188ea39809db3eec37a7104924631df6e9bb1fd",
+  "content/base/components/fa-ash-vessel.json": "c4441dabc29c608aa57dcfd4a0820ea7823c0835dcbf5b1b87d1c733c7150ad7",
+  "content/base/components/fa-bridle-spool.json": "7534bd5dbdf25fb83352c63154f88eca25dcc8a36d2d9c7f94fdfc340d16145e",
+  "content/base/components/fa-brow-guard.json": "24c241a0294205e5df402e9233e2e32038edcf49cc24c6078c14c79af62c33b9",
+  "content/base/components/fa-cinder-cloak.json": "5f079fcbc6f25b7fee7e25c517968ace35bcdabe11faec18ced9a53b8cb4e565",
+  "content/base/components/fa-close-watch.json": "2ff890724f9ab71e9f030405c12943147fd3fe71b72e8ea14d0a2c72608c7198",
+  "content/base/components/fa-cold-return.json": "fafdd86c0e8bef71110486782023eceeeafd8cb5d0b7b59f42a78c9b67c423ff",
+  "content/base/components/fa-cool-watch.json": "21e56970eae988a41fc0c7b803d866a86bd8fbce625e2aff903f18053c1198cb",
+  "content/base/components/fa-dazzle-shutter.json": "23f411e84f02b2f0a01c1c8deda815b5af7b45045831eaf97d0b5bab05f63b8b",
+  "content/base/components/fa-deep-cup.json": "c9958f6d67e6d8a2bfafecf8a2ae90d00bbe8f7c6939f78fe3d2c16875873b8f",
+  "content/base/components/fa-ember-dynamo.json": "bf7c455b95d721ee2a33bbdbd11f91e1d738d250dc2c0057f0b6cbbcc357dbda",
+  "content/base/components/fa-escort-lantern.json": "c02a1604e47382f576adaeed659a257b27a220447c3604e8bbb5cd3a3cf1af36",
+  "content/base/components/fa-first-bell.json": "9cba18de109b3758ae164263a16dd09515c2aeab44d08c83dbeeccc50c38ede8",
+  "content/base/components/fa-forefoot-shoe.json": "de321591b2eb99265b59bee27363d09ede66a717a027518aa1098c8ef98bfab1",
+  "content/base/components/fa-gunner-stool.json": "a76530ef0e147b1d8f9ce7f54823b9271351bbb6a7bd8cff35941c9f796f13aa",
+  "content/base/components/fa-hearth-screen.json": "9f15b8e4e211617ef593c58501b46b12a533c4185173c6d21bbea3ddc74aa356",
+  "content/base/components/fa-heel-lock.json": "a6aed983390018ec777ef937c82ea2a860288c5af6252e1488de40d05579ada6",
+  "content/base/components/fa-high-survey.json": "7fd796f7ba82fa1363a22c44bcc5551ca0fb4f41934411f00b1ba8db5287a444",
+  "content/base/components/fa-iron-brow.json": "a6ba1bfe69264c31e4ad3f3469e2ed59d30e1d77f6c1f5128bdc2de8bae76e1e",
+  "content/base/components/fa-light-reel.json": "985a1c31bc6a19d765ec1f65441619fb77ceefdf4dca25b7c587561b797e00af",
+  "content/base/components/fa-needle-stop.json": "99414959082c3d1e5a009cec7dbb1c3ea4648db4fa8042810ea84a0f62d86c8d",
+  "content/base/components/fa-plumb-sight.json": "3da96ccd8d1fb559aeebddcbe298085cf83541e0d187c3eff89c875f077073be",
+  "content/base/components/fa-quay-outrigger.json": "99ba0cb5fe99deff4f88725f39fbf34a729e618e50d318d23d42267f930fc464",
+  "content/base/components/fa-quick-turn.json": "83c32c63676ef1369a24b9bdcf1c5e62022a08505d61546aaa555eca6e63463d",
+  "content/base/components/fa-quiet-bell.json": "0174bf363357135450d0a4fdda37df69ba309273e1d6669d05c547f6614e0f0c",
+  "content/base/components/fa-reserve-pannier.json": "63590c6dc701bf26f476e3d8cb504256bf79a7c3431ae892c8fecd4141b754ce",
+  "content/base/components/fa-salt-wash.json": "7a15f4736798f723f34779e7c6f4e2990932e35348370e34c9bc8fce6e2b8523",
+  "content/base/components/fa-shared-bearing.json": "8bd941c57d61355e8e7ed96a65d245e589d7719ca545d80cd898da77f7628224",
+  "content/base/components/fa-silver-lining.json": "d51dc16d4e8f367d9059abb8d32b019f9804006edcd593982d3cbe4dbb86b4ba",
+  "content/base/components/fa-single-aperture.json": "8a4d47df7f2cfd88498c3e511865b88d6ba0cc13b41cc35ef986fce3dfa40758",
+  "content/base/components/fa-slip-clasp.json": "42589782b04da82f81a0f453d01a787c4b13c104c4fd9f29845520288b52c9c2",
+  "content/base/components/fa-steady-hand.json": "8029343926bd4fec8b0d781309ee4e8911f8953f24e317bad1e06809c0c7caf4",
+  "content/base/components/fa-swift-sail.json": "c894c678e7c88e9b0bd68e169a0b88dfd9b82c1310a417799d25e57cd42eeb39",
+  "content/base/components/fa-veiled-eye.json": "e9ea4fb28dfade1175e68639583817e5bbd333e97402167f3611989b72289087",
+  "content/base/components/fa-vent-shutter.json": "679b81251c8642a81cdcea998b596c58873efd48c4d81c9e1cb1e9fdc8b152c1",
+  "content/base/components/fa-wick-screen.json": "096e98c70dff066961e9b9e12b968f39d26cb1764a4df3ebd2117ec32d987f8f",
+  "content/base/components/fa-wide-lantern.json": "d0ae44dc332d11e107aa837fb61c9866c57d2ca1f07d0cac493fbdec7c672de7",
+  "content/base/components/fa-wing-stays.json": "9a018d49e60c077357d814b9e26641a8ae818f3d4ac3f90fa542f61472e78280",
+  "content/base/components/fl-antler-cup.json": "c9b6b7ee3700b14d2f3043e8e5c42c4c7e103059542a66adeed53d6841624071",
+  "content/base/components/fl-dusk-curtain.json": "18788393c0d7b663d8ff12e1ba3d484fb1e27117a11a74c517a0ce360aeaa052",
+  "content/base/components/fl-fallen-step.json": "d5c0d6639f8b0a969887c51300530b542297fdfc16551e93ce10c2f1cb36db20",
+  "content/base/components/fl-foam-bladder.json": "55b595cb3730bf8aeae58b22c0e17faa2e772de5f6f9ff7c6d4ef1fc2d60db6c",
+  "content/base/components/fl-gate-flap.json": "37c32bbd5116c53d2d7fb0e69a1c19b4575d661fedfa55e6535fc719d874d582",
+  "content/base/components/fl-grove-shroud.json": "99d9067dd1ce3a0078aaa5e7ef5f522ff2ffe73c6dbf415dc0e59de2579424a8",
+  "content/base/components/fl-heel-cushion.json": "30deddc04e228dd9802c62a24ab5b16c3a5873fb0d2393ecc8321bd77f83391e",
+  "content/base/components/fl-hollow-sail.json": "3577eb7010e18f5a9fe07464d83f58f4f6cef870b24995f3e8d9abd8a91f9def",
+  "content/base/components/fl-lake-votive.json": "2664806aa842497c2341d2876877711cb8099688e3fe2cfecc8db401bf85080c",
+  "content/base/components/fl-lantern-pith.json": "f64ae260da2710916db83858b08f076afe3ff7fc4d14b5682973fc833fc7592b",
+  "content/base/components/fl-mirror-splinter.json": "a312f21e339aaba85d6f71a5d84ab12c1e1b73d06eaea9306f50d165acbad326",
+  "content/base/components/fl-rack-rib.json": "de90ead4b0327b380f2dcb61e1ceb396931fb3dc0601c74f5643d61e46dbe624",
+  "content/base/components/fl-reed-screen.json": "c54011a86ca8c8f013de2cb97c1a11e0cfe75554213ba2fde0d871d1511a2fb1",
+  "content/base/components/fl-sac-fold.json": "b23eacb81da90f5fa5195471d71d47d9d7b9a4080e646a44e386733f3fc55476",
+  "content/base/components/fl-scale-leaf.json": "38e5a1f22ede61e682ed5e63c366dbfcf1f65fc04df86b5ae4e92dd8450e589b",
+  "content/base/components/fl-shelf-ridge.json": "e5525d2a843b21f8367c6d66684c37e5cf36c36e4043a1f363709a76c0de67e7",
+  "content/base/components/fl-tidespine-keel.json": "401d502ace92bee80fe3abb6942a4433f13960e1bf3c444319a86b7198dccee5",
+  "content/base/components/fl-tomb-chime.json": "74acc1307eeb5e348e95cfdf12304567fea223c05706e2b97f67d6c4636c3fa1",
+  "content/base/components/fl-vault-ply.json": "6a3b7b866dfd944b5cb1662beb127cf2b05429ceaa3646a857a71970520379f2",
+  "content/base/components/fl-wick-felt.json": "396e8fa4817c1060f876147a72d1d6b901fdd0be617f9cb93f49881c81a5bea6",
+  "content/base/components/fm-america-perch.json": "71803229a5aabc1948d0d8f49516cba3a3cefd2333b23f3a573c83fd6ef06148",
+  "content/base/components/fm-anvil-ram.json": "a7b2865eed1c1ebf94fa9ab5e222526be19aac67e147690cdf09d6474a45ddf8",
+  "content/base/components/fm-anvil-skirt.json": "f09df49fedc2ab3c31dda8e86d3047950cfdef3abe4374c42f7444f04ef63dcc",
+  "content/base/components/fm-backside-falseface.json": "f9ce81e607f940cc9336e01e4a9aa8de390a6a5d3e75893326964e5fba841581",
+  "content/base/components/fm-bellows-bridge.json": "6171cebd7aa5f160f5021b96243c93980c5e2097dd4e9909fb4612e526f529c6",
+  "content/base/components/fm-bellows-keel.json": "4d82f665bf2aaa10558deab3701396ffda7b9e156558b079c9aa7b288f43f641",
+  "content/base/components/fm-bellows-trough.json": "450d54fec8952f2f2cab69fcaf15fdebc365a7e10210d41e490bb773051087d7",
+  "content/base/components/fm-blade-return.json": "ff2b81870d73c00e7fffe548d126f73c48a0b72e79aabd58b29277e665dff39e",
+  "content/base/components/fm-breakwater-greave.json": "c5b15bf9cc06f06c247eabba63775b250d5a70e290fc6759c936695ffc88f900",
+  "content/base/components/fm-breakwater-scarf.json": "2e48c374def6519ac9362d511e1299e3622c9649d734ce90bab2e2338384199f",
+  "content/base/components/fm-central-compass.json": "5c00734c6f638cd5b9e060aa213222f67228ddba439d9110221be27398a7f9d6",
+  "content/base/components/fm-court-standard.json": "d37be9b4e037232eceed4b8fe8c727a3c8f07bad8d183ccbcc7c06bce564c150",
+  "content/base/components/fm-cradle-iris.json": "077a03b1b276393653356043e22e650beb8d06e2bdd1043d7f15a3d1db573191",
+  "content/base/components/fm-cradle-slit.json": "0a5b2212369063b1d9abebe7b96022ec9fb64df9bb31a3a317390650678f33a0",
+  "content/base/components/fm-creed-ashbell.json": "c9f4f03cdf236a930b421c3c8d1adb3a495a8d1acc01b08d7f6df827bf7f708a",
+  "content/base/components/fm-europe-harborplate.json": "00eab814276511576cfb0abfd6bfec10ab4d410518d219fa3aa5a1c4fc92bc73",
+  "content/base/components/fm-gull-outrigger.json": "c7c3afca71f77b24b6dfab4ac8f9e768df87aadb807d96b0bc943a4f0f39e222",
+  "content/base/components/fm-houses-mantle.json": "a9be71d2e1e7d2cc9bd4446a8abb053a3145acfead36557a972ecf56f6dc7871",
+  "content/base/components/fm-japan-portgun.json": "c9fd759c6478d9cd8efeac0ada2eef85d1ca6f28b663e0cd3c4155a308c57601",
+  "content/base/components/fm-korea-groundline.json": "ac9f2896d8d9753208c5bcd48f47e2b5ad7d124544de050b32b29c3299558b20",
+  "content/base/components/fm-latam-convoycell.json": "6150c282c35d7517fcdca10788d75391f1847c6debdb51729422ec040d9396eb",
+  "content/base/components/fm-league-watchrack.json": "063fd164005d190777094bbda54bdcdff88a9ad7905a2f2da5d07510fa0ad1a7",
+  "content/base/components/fm-nairobi-tiller.json": "815bae7b64a05ec80dc97f69ba108928a7826b283ea0cad68b84dcd1f35b010d",
+  "content/base/components/fm-northafrica-sluice.json": "3bc80d77db318ad6943b77ee1922136f38200ba262c312e08c8e40124a7c2539",
+  "content/base/components/fm-quito-visor.json": "69cc4a6fd0a3357a7f14e57577888fafd051da616f4d466f862efc637f71b683",
+  "content/base/components/fm-relay-spindle.json": "b3d2eb43bf51a3a4ffa9b1bcafb36c9f8ff4a75a6cf58717618b518adf999b91",
+  "content/base/components/fm-relay-yoke.json": "f05d0155b74dd1115e5974dfef476b5aab076a692460e0b47845f0fe87afc6f7",
+  "content/base/components/fm-rivet-handguard.json": "d0653cdb6b94b48afc1f824f4e17d9875765a9c71b3832c64dd3d79a29e21fea",
+  "content/base/components/fm-rivet-harness.json": "f757d7dc1246e81adde66e2d3305e384d35033e3b2ac5ab6e5ff7ae77bedd795",
+  "content/base/components/fm-rivet-hood.json": "4ec2f185a3e45171c264576ffb081cd466243a38b0a916cdae6254e8a3d68d8f",
+  "content/base/components/fm-russia-reservoir.json": "40606461a2b41e50a6af25f38c657d5676c2d380e944ebdd258caf00462cb3cd",
+  "content/base/components/fm-scholar-plumb.json": "e8b57e60a18a7752844d7358618a0ab5ca537335ed1e56d846e5278f462d0de2",
+  "content/base/components/fm-selene-eyepiece.json": "58b0814617a55c0237b855e0d564795a528c153eb4d9738fe94fb10d9497d612",
+  "content/base/components/fm-selene-veil.json": "dd44fb5523b0a73bb5e4c9884b3bb2af584da70d264e5b4d43af8aeeedd2a3a9",
+  "content/base/components/fm-sill-baffle.json": "3d344988b2d52707adb5ab914c9a36e61712cf7fcdaf8e240c1afc1811f3e1a5",
+  "content/base/components/fm-sill-rest.json": "5b7983989a5dc712c22dbaae9c921f6a06137f8ea7c2fbe5b5e50cd3316b8b6a",
+  "content/base/components/fm-subsahara-wellguard.json": "6bec313015b8bde60237ae5e529546f74bf22886916ca2166a8c9a62cda5c4e5",
+  "content/base/components/fm-sydney-lookback.json": "0a44b895fb1829156e17130f765afc92398f77f45f2b3897902e211abe1b7012",
+  "content/base/components/fm-west-firegate.json": "3e8553b3e05bd405269705d629e07c8b441b7642fa08b6f37c3bc71b26f557cb",
+  "content/base/components/fm-yoke-palm.json": "1ee03b6f63855225c7413e8fb035de6a042f71cda11e8f573048651f8667f79e",
+  "content/base/components/fw-ankle-pin.json": "c5bac619e3e541bc9f874b1e3334ed2ac5ce5475d1628fa8d3d879d94d9f6a1f",
+  "content/base/components/fw-breaktide-axe.json": "34359667527c47c6e26d196178db34e7a90d8d4485fc62c1dbd799de39a19288",
+  "content/base/components/fw-cinder-rain.json": "197fdcbcc0f010753ef1676325c722a530a873742bf931170574d6418e62e45c",
+  "content/base/components/fw-city-borer.json": "05592e87e6993d21349f50305cfe47a3264debd0174697a0d2def75b8edcb5f6",
+  "content/base/components/fw-door-sweep.json": "02a13e4c9e38953b9808d8cbce96ba880c697becc07024b733fb984a7ad0fdaf",
+  "content/base/components/fw-fan-tube.json": "d6197d4f09babd99fc38de681ba7ffb9383d4ec86453babd3d04fd6ff11d65a7",
+  "content/base/components/fw-harbor-gun.json": "58821505b9e5e511541f57b33fecc618a27116890aa1c2efb9519dad75544e46",
+  "content/base/components/fw-moon-balance.json": "f56744dcfde235d142ca0e8ab775805784d5780ce66b6f48a8468b28655d562f",
+  "content/base/components/fw-paired-shot.json": "cc07ea6d2d04dcca232f59c016d3eeb856c901e9a60410a762aee76178d46d33",
+  "content/base/components/fw-pin-shot.json": "69037d02a826096e274f4388f462376e94ec26550009ea87bda150d808763970",
+  "content/base/components/fw-press-gun.json": "889e2ed1669b857a767581ba3b00e7e5ec5109faa497c77fd41e1fcd767e2f24",
+  "content/base/components/fw-pry-axe.json": "8702287162f8178b40f8f9a84225603cfa448de074d146f32560d5c450cb4451",
+  "content/base/components/fw-reef-jaw.json": "003c24de576d248060d9140839cafdd67e50de1110b7c86ea172ff0842e24693",
+  "content/base/components/fw-rivet-drill.json": "5255a21a6ef252525f8b02b17f790184a4aa37da264027cfde99e05b63c6be69",
+  "content/base/components/fw-sea-light.json": "2f38d7ffdeef93d4177002426e4fee5cf3b3e6293cd49be835dcac731435ec6d",
+  "content/base/components/fw-seam-rifle.json": "5732ce27e04a627e537ac0dc09d3604e136bbbc88c0fa4684fd233749fff53b7",
+  "content/base/components/fw-shoal-hook.json": "53f21a694db795d3c70ad41b63474a2df1cae5b0880d814095fc3605fd1baf94",
+  "content/base/components/fw-shoal-light.json": "06c1d8b5e5e29dcd4fe66f2dbdf349b7c9088603bab98b22ca87d32d175c1b01",
+  "content/base/components/fw-shore-stay.json": "8f4dee06ad481eb82868eebe4e16b2d8bf0cd11cc815cb2c93f54db050790500",
+  "content/base/components/fw-sky-crossbow.json": "b938e97c7315b122583c2999ec67038a752a6f4f0cf33e305813f29b12b2b978",
+  "content/base/components/fw-stayline.json": "8054308931336367b16e23991987653274a2eae1f4c5b4d70b4756aafca89afb",
+  "content/base/components/fw-wake-lance.json": "a91354d82c26bcc148e2e169a04171d8804a364dde582460fce7c76c80396e1d",
+  "content/base/components/fw-wedge-blade.json": "b6ab4bde85776ac223bb5a9621c4e0cf906c1c769b398172b682e4a4f1fee019",
+  "content/base/components/fw-weight-harpoon.json": "bfd85737f8eb687e7ec5fa08faa54b194233972495a4e61534c15e0a4d3bf4a1",
+  "content/base/effects/fa-aligned.json": "345c0cf548a3314a3c9c930e31d49eb73364ce1b6826ec085d400181c69525e8",
+  "content/base/effects/fa-dazzled.json": "da6a2ab24fc498c61c97771231c662f75858e0423053d7edf8af8f0c01f65b29",
+  "content/base/effects/fa-escorted.json": "c66748ec18c2ac2821b5390e1ac60c81966e8da977954cd2784313cabe5dab43",
+  "content/base/effects/fa-footed.json": "73b79b953b57a2680a912f7ded6f391a1b700ccac03962221b7c769090c295ec",
+  "content/base/effects/fa-light-drawn.json": "332806d3610bf8fc2f8f3ec06dfb16ac0102bb2d227ed43be4eaa318cdadf2bc",
+  "content/base/effects/fa-loosened.json": "bbf43b4c16527ee285ad9519f0df6a5dd16f1dfcc197b08b7343fca01960ba9b",
+  "content/base/effects/fa-venting.json": "a6319e8fd02fea16de01802359a9fc540f8ec37e666760cf6aadedadf36a3faf",
+  "content/base/effects/fa-windward.json": "913058762ab4d4c6c08cd46031b9779ec7e582037fb73ac0888d222d1d9dd5c2",
+  "content/base/effects/fm-ash-blind.json": "1f39bbde874c727288f90905df84e9e6b12b3c6255a3f0a6c534e0f26246d8d7",
+  "content/base/effects/fm-bearing-clear.json": "f9dcb42a76686fdcfe710d25f2b7b07765077ae6589417d496d1b2c4b3e084cc",
+  "content/base/effects/fm-cinder-haze.json": "5bd07126a52b1fe41a3f38a09dfad3300ff8a45cc42edb4d7a0b2bb61952aa43",
+  "content/base/effects/fm-line-steady.json": "2d4e5dd3e0cd70697f3e70df06c3b9c4d689f3e65baae9e23da9f38d92ef567b",
+  "content/base/maps/fs-01-batangas.json": "b0509196e012a4c81c11b3c885bed3f8bf23756ac1df9e806e9616c6dc33307f",
+  "content/base/maps/fs-01-sendai.json": "b6c26e8627a0bce5275a37f77ec3ac972ff69cfa6b1dc1139b9ef16057179865",
+  "content/base/maps/fs-02-chittagong.json": "6ab0c476a0e550c10bf4434ec9e275e08e319466a95e2ca6a9ce46f1b888f8e2",
+  "content/base/maps/fs-02-khulna.json": "c4ca7675d85bbeae0310da668088655708560e323b3a7156619f52f9403e2626",
+  "content/base/maps/fs-03-alpine.json": "5779c97fc87acc4fb06a98eea5e55c57ce33df812b57f048fecf4accf2aadf24",
+  "content/base/maps/fs-03-rotterdam.json": "4a296505ead0e47763d2b77b065c5a241a8944efa5c72c99d9caac11496d32fc",
+  "content/base/maps/fs-04-nairobi.json": "1913ef2c928c580fd4998ca2cd691e1cfb3dac9008cf740652049023d71b4bd6",
+  "content/base/maps/fs-04-panama.json": "736b0ddc3bbaedbd0b9d4010cf65ddebde9735f7d37136a63bead689c2e9c120",
+  "content/base/maps/fs-04-suez.json": "e2222f5ac6b0286eed1201b8ce567ee0abc73d41ee20e12fbcbabce4d814b9ef",
+  "content/base/maps/fs-05-seattle.json": "468792b9c72048b0d36f78d915482d5dad08535bc3162c8ad6aa9d2993ce25de",
+  "content/base/maps/fs-05-valparaiso.json": "24b5bb35454198c2b7424000bd255fdfadbf5fd4f92ef2e3966157e09ef88ffe",
+  "content/base/maps/fs-06-auckland.json": "c76c243a3e12ce3d95bff3853126f10f5178454e59d6789357ca5f5cf7161447",
+  "content/base/maps/fs-06-five-lakes.json": "f9513a33d9ed2b0081a116745fe92937f33701dafc82194e84f219d57057432e",
+  "content/base/maps/fs-07-dark-quay.json": "72bf08ac64e9a20111b29ec35a918c026621b62b6aaad0b1add1d259d0baba08",
+  "content/base/maps/fs-07-moon-apron.json": "3777d4802407fe60e2e9e3d1ca7ce1373dc109236aca186f5947beae5704e07e",
+  "content/base/scenarios/fs-01-bell-break.json": "f06c9e5228d9a0176868a965a794161ff73712e729d41489b5b09b2e0a8fd775",
+  "content/base/scenarios/fs-01-fan-feet.json": "9c9ff939ebddfade93cc92f41dbe656f495faeb33c0f1d2b72fc0943043aace6",
+  "content/base/scenarios/fs-01-last-cliff-lamp.json": "190bd26b97bfb0d0dd137f280235af99a79c7baec69157e3aa1a87146a5c113d",
+  "content/base/scenarios/fs-01-mud-mouth.json": "1cc17733b5663d335e8757c666120af686fb03440f69dd9aca1f9715aedb46ed",
+  "content/base/scenarios/fs-01-needle-ledge.json": "e12386960ad33806ace811ec59b064edd6bf30d71b4fb1f70948930cdb0a3ead",
+  "content/base/scenarios/fs-01-sluice-eight.json": "0e8e1eb7bda33aeb4248febb11d7e25c169e853b37a924822b8de77351557925",
+  "content/base/scenarios/fs-01-wing-lantern.json": "7a0f8fb032884f22dfabaa4ac0db6776f0f55a7cdd134a2ae7ed3317a23ab370",
+  "content/base/scenarios/fs-02-acid-dryline.json": "34853742fcbdc4eb867805fda7fff8c8fa8bd82aeb8fcb6f53d86eae4ee659ab",
+  "content/base/scenarios/fs-02-chain-alley.json": "ccd4f1c18a8fcac488e219a4cfc24d5702bf6c06ba9e89fd904fb159897e0eb7",
+  "content/base/scenarios/fs-02-gantry-home.json": "aa182efc015f14b54d0b9c1ad0e3ee47f2c8a5f2f5e1b621852e0f481553b592",
+  "content/base/scenarios/fs-02-mill-lamps.json": "a8f2084f49e8040535f543015aa18c30c25927760bfb612e235a7f4a46b3392c",
+  "content/base/scenarios/fs-02-root-window.json": "371e44365144e15c63f1d2f2948e8d331fd552309eaab26169d92f1027253d85",
+  "content/base/scenarios/fs-02-smoke-exit.json": "dafd6f5bc587e84a33c2b93d9d097d447b32b2d418da537598be2f98d64c5e48",
+  "content/base/scenarios/fs-02-three-sheds.json": "6a839fd8e6d64880958132031dbb789412b7ca396cc0b90dabc7f790b3490abc",
+  "content/base/scenarios/fs-03-brace-the-quay.json": "44b339a3cd4a6c55d77689116a10eeefac15370a81b68e96fb74ff3e39a3c732",
+  "content/base/scenarios/fs-03-deep-breath.json": "a9446ac1b89e554d8af90000ea7ac2c6d470425a711b39829ef8169285a83cfa",
+  "content/base/scenarios/fs-03-high-pass-order.json": "85f2faca8116d155695d6d7e0e0a3b5cdf73b246bc8d1450f9e48c4d2d5a7320",
+  "content/base/scenarios/fs-03-moorline-return.json": "5101f1dd5b213e070e1cff3bc371be58dd0e0651e9876494a06d6ce923237c81",
+  "content/base/scenarios/fs-03-wall-shadow.json": "9ce08a0e007fe00580751cbd3a1c05ca716061a90d476493e9acd29662995c3c",
+  "content/base/scenarios/fs-03-wet-moorings.json": "e588e07c58b15c1b4d6c93245ab035eb5e4f606709167927d3f4d57bcca2da53",
+  "content/base/scenarios/fs-03-wing-over-ridge.json": "dc9f7a55a5898b5234a123d989f551ce62bbf90a5b5466ac51299c5479adbf49",
+  "content/base/scenarios/fs-04-anvil-crossing.json": "46b1f68e83d7824b0e90adc8f0ebd652a612523df552185f7d26fa46d01f3ea3",
+  "content/base/scenarios/fs-04-canal-pin.json": "0409a669054a2e31af42542253bd802a44fc20773813bcc0b9f3695309ba8923",
+  "content/base/scenarios/fs-04-ferry-watch.json": "cd9ff576b6d8c841a7b920b06e4862106d9c49cdbf1a8afcf0b4a7a196c32408",
+  "content/base/scenarios/fs-04-lock-turn.json": "9d841ab020d661a82346915c6fa2f7425c152408c0773a868bbdac56a8cc87a2",
+  "content/base/scenarios/fs-04-pilgrim-crossfire.json": "110f28ffa9a1f0a6a809dc291791b5ab63bab262fb73d0d93a11f593fdb95e53",
+  "content/base/scenarios/fs-04-three-bank-fire.json": "85224d1c1f4f7abdafeabf110a969d48382c6bfb895d9c3e7c63317fd36a6a7c",
+  "content/base/scenarios/fs-04-upland-inspection.json": "9ff43f53b7e61b6bce6749001a37bd1333acb947b76eef5bbec801f7a1e28205",
+  "content/base/scenarios/fs-05-grain-last-watch.json": "0ba7b6eda7a543740ea95aef1001cdae314a0bbdb2e4f9e5b72ebfb21b03e329",
+  "content/base/scenarios/fs-05-grain-return.json": "b576b6fa6331183c9c6bb19683684fd3aa0950414ad048aa11d3333338ebacbd",
+  "content/base/scenarios/fs-05-grain-spray.json": "835d0e3f9059989ba7fd7d7b1b34c69c8d21a4725cc586338b0aea1b7dae4363",
+  "content/base/scenarios/fs-05-inner-rope.json": "728e2415e30b0a2bd3d4703c80249f30e8468a6d1023cb87b4236c884b693472",
+  "content/base/scenarios/fs-05-mane-cutline.json": "5027354ef4b586206a078797271916de8cf249fcc70576b35a1faab928c0a6ed",
+  "content/base/scenarios/fs-05-outer-step.json": "5ddd7b515af36016c45548e89f4e8b044051f1da37a09b752560a18f09104e43",
+  "content/base/scenarios/fs-05-white-antler.json": "6af2d91d339981a8d84f0c9b083e0dc5708c3eab58263f9ce65bd417305a739e",
+  "content/base/scenarios/fs-06-arch-under-bridge.json": "9b7457f513622106108e3b9b67473df8816b88f3f0bc1beb2a69b36707ccf8d7",
+  "content/base/scenarios/fs-06-dry-bank-return.json": "00215907143ccf9d2b8428ba6e82903953e980269a71b3f84bc8c594ec41b0e6",
+  "content/base/scenarios/fs-06-folding-dusk.json": "2bbdca92474f3256db0158d49aa4542b6c501e1d5ee3b5896682185264777c5d",
+  "content/base/scenarios/fs-06-reed-knot.json": "ed4b825a2f1c8a9aed5cc096a4e6f1f12222be60e25cb2ccd5e926cf9b50320d",
+  "content/base/scenarios/fs-06-sail-shadows.json": "0ff12887ffce11669946367fd810ebbd0b0788afad4e204c8c9cc4046b7d15ef",
+  "content/base/scenarios/fs-06-three-lights.json": "f97761260a384b931233ccea05dfed9bca9d18dc5b3d8b3ca5fba9a992fe8a42",
+  "content/base/scenarios/fs-06-white-ford.json": "ba0ff4b91cd1a5e49059c1263098c3b589a09cf5ad27b7fd265e7a22cd5605ba",
+  "content/base/scenarios/fs-07-ash-eight.json": "844bd722752693e67fd23126ee94fe52ccca044eac937ad284dba148e760bcff",
+  "content/base/scenarios/fs-07-departure-lights.json": "9e9e23d5c95ba1ee43deeec26f098b8f3e7749419be1496e680eb13dac13d52b",
+  "content/base/scenarios/fs-07-lamp-procession.json": "7ca148978988f2ef731fcfd1a6c88809f39a93846f29c5e9d4f5445ae1b9e1e0",
+  "content/base/scenarios/fs-07-quay-no-name.json": "84562438ff9a7c27b48136ce8ef229f06e9f48e845bd97a8b9a83f51879f156a",
+  "content/base/scenarios/fs-07-silver-dust.json": "a5d01a02139b3ed309c5de752397c46563147629c8559aab256e1eba5943aad0",
+  "content/base/scenarios/fs-07-underwing.json": "1adfc3a53897657b3433074ea88f51956bfa74e900d0f5b96f1971f7a4a0a91d",
+  "content/base/world/actions/board-bf-anvil-shield-turn.json": "58c0d276cecbe06f8d5d829d06d6e66a4a088b5e1ed0633063c239a7ca1d8270",
+  "content/base/world/actions/board-bf-breakers-salt-needle.json": "4c0ccc8d68e40c8533528e14413d070d5c8315936026c7f45555cc1f1d91d3b0",
+  "content/base/world/actions/board-bf-court-cargo-ramp.json": "ea6584db95558273388f66cc2932644ce4345deb1b32f527846f98c4135ba879",
+  "content/base/world/actions/board-bf-court-grain.json": "fc2561c32993bae4b412a42ecac89cb1a79e73c0cc25d15821ee4784b590d8f1",
+  "content/base/world/actions/board-bf-dhaka-first-stitch.json": "053587239b5467b93cd86f78b5f07e74cec1908ebc1df98151b75e5b17ea8a59",
+  "content/base/world/actions/board-bf-exchange-bent-needle.json": "09078ac1b4de2618a8ff38c82dffaf0e44c5a4caa510501eecf429bb7c35739f",
+  "content/base/world/actions/board-bf-genoa-shared-forge.json": "9d5fbd3a550454204b7d585958d8442318aa73cf2ad6ecc3d6a4bd21b97ebfa2",
+  "content/base/world/actions/board-bf-japan-shoal-turn.json": "1091e48fea0f87b47b02638c3c52fda904807fa3628a2aaa9064a508ecc44e34",
+  "content/base/world/actions/board-bf-league-lantern-keel.json": "84c3ec796c0e68aed55107ce083d2a240dc2a930f8bf8679bc26da2e21243de7",
+  "content/base/world/actions/board-bf-moon-dark-parts.json": "16e9b739443e624fd14cd56afeb03e15a3f944175081bf33a1a381a394c3602c",
+  "content/base/world/actions/board-bf-moon-dock-parts.json": "66a3f5c99752a457c25ec02980c9400fb43f84326f2398d837adfb227f6d3d1b",
+  "content/base/world/actions/board-bf-moon-white-cargo.json": "d7e3a1d601cea34e54c62b28bddb86eb60acaed833df6b418f0cb2dcb1275ff6",
+  "content/base/world/actions/board-bf-nairobi-yoke-return.json": "2daa344a48f015498c0c7eceff21beeec5bad9db396615f4693cefc504e51504",
+  "content/base/world/actions/board-bf-quito-coast-beacon.json": "40b478debfc21ce074dcba1cc769c8f63ecd3372dab7562355ea2853e178a2b2",
+  "content/base/world/actions/board-bf-saltgull-tide-ramp.json": "cbf4fd3567aa5f6ea50cc960d532327aa89f815fd5b69a0544fe55b737c10f53",
+  "content/base/world/actions/board-bf-seattle-return-gun.json": "955383e9ff0cfe375c8691463cfb9f6bfecc4ba15a9942f72f33c44b4ac07f8f",
+  "content/base/world/actions/board-bf-sendai-gate.json": "a0fdf32a5b91ae2e6478cec2f1a1a36d89aeda4c67be29f0cbbfaa3a2d4c657e",
+  "content/base/world/actions/board-bf-tiksi-raincoat.json": "159da40ccd21936468438a961b68a874f11ab444f57b0ed5254f5d91dbfa48e8",
+  "content/base/world/actions/board-bf-weavers-wick-mat.json": "705a956cd9ac37bba3156182a52e3b7ff048e1944fd976cbf76400754ee39de4",
+  "content/base/world/contracts/bf-anvil-shield-turn.json": "6d8aab059deba3b7f977368c3e6fcc7a16aa7e596339a5541a93b14ff8b579e0",
+  "content/base/world/contracts/bf-breakers-salt-needle.json": "49e13a40fab4d34408c0002ed3c76bb9495f55bde830a7ab831c50127b50c276",
+  "content/base/world/contracts/bf-court-cargo-ramp.json": "deb7e8fd1217f7e18398592452f93befeb487d173531ace940f35fb235a52437",
+  "content/base/world/contracts/bf-court-grain.json": "6f65ae736524c1726159b133463facf0e5dd8d6e770c01d3ad59e467d52e04a1",
+  "content/base/world/contracts/bf-dhaka-first-stitch.json": "3b9c092f9422f0dd3d00b02a613a5d9dd8765b3902104c0b9a4aa2c062cf542d",
+  "content/base/world/contracts/bf-exchange-bent-needle.json": "ee803f0a1f6d64e67fecf97d80292b5c5805095cfc00ba404c430228d574e7f2",
+  "content/base/world/contracts/bf-genoa-shared-forge.json": "56db982c8c47c41b3ba3cc63eb7202b60a1e05cae05cee9ee77317d168f39fac",
+  "content/base/world/contracts/bf-japan-shoal-turn.json": "331b0931379b9124ac5b0f9ab16512c8d57249172d9f66d006ca983d39ace195",
+  "content/base/world/contracts/bf-league-lantern-keel.json": "47232c465f2db106d26de5ce0b13f049e0d3ca77f9c4108801c2006d8fd53512",
+  "content/base/world/contracts/bf-moon-dark-parts.json": "d0a58fd514047942583b377a34f6150127d6255d21d8a11d27d520f10b22165b",
+  "content/base/world/contracts/bf-moon-dock-parts.json": "a0d248c167bc253ccda462cba7a28aeb1597df28ce1743d97acd5fbf94f59ca7",
+  "content/base/world/contracts/bf-moon-white-cargo.json": "6ed759c8bcdb3a94894b0e5455e345f054b59e7b535438e68d9434cff0de61e5",
+  "content/base/world/contracts/bf-nairobi-yoke-return.json": "603aed22998c87a753fa27b704961e8082c88dc24e74eed4080e932dac9f818d",
+  "content/base/world/contracts/bf-quito-coast-beacon.json": "0af71a8219d5366d6cdbf0327f1b67a392bc5a83ea1ab43da004006db371c5fe",
+  "content/base/world/contracts/bf-saltgull-tide-ramp.json": "2c6300863c93fdebb031054bcffb96c9cfe5e69d8aa2e4580302754d22432503",
+  "content/base/world/contracts/bf-seattle-return-gun.json": "4e234b9a27fb4f622a6a2694e9b7dec5df0116ca676106dab8ff076ae67043d3",
+  "content/base/world/contracts/bf-sendai-gate.json": "3a940ffd73636c1de3e520dceed6eb93b4bd7c19be54fcce9689c995b2a05a31",
+  "content/base/world/contracts/bf-tiksi-raincoat.json": "1cb42a8633e223130f89a836da685ba7a699bf9e54825b9b7d2a768f432d571c",
+  "content/base/world/contracts/bf-weavers-wick-mat.json": "e613fe833cad87535de3d9d8365160e5df0c4a461f03b6e9a5830ec6ac5b253b",
+  "content/base/world/dialogues/bf-chen-xiaohai-keys.json": "d696c04219bbc020685cfb06197a713206636b0b61a1f36fd71aafd7927acdb7",
+  "content/base/world/dialogues/bf-chen-xiaohai-lira.json": "8a0f3940e3b43a9444b071e268bc81f84a011206f6841f3367a3fe2f7c1514d8",
+  "content/base/world/dialogues/bf-chen-xiaohai-seventh.json": "e440c258b5b3a3747d5ea77c384330d229883bcd99c2767c30086fbc7dfdfd66",
+  "content/base/world/dialogues/bf-chen-xiaohai-silas.json": "972fd5cf5a009067a398e2e684190ec91de7d1b2ede9da0554a61cb38336b527",
+  "content/base/world/dialogues/bf-ilse-brandt-lena.json": "7a6f83d67046fc972733ede40f4f53064d8ba9b239f90fdf4c6021d5ffef89bb",
+  "content/base/world/dialogues/bf-ilse-brandt-moon-departure-command.json": "92ffadce405bc2c6be6ae2d6b4334b5be96f675cb63c683cde1dbfe00933e0eb",
+  "content/base/world/dialogues/bf-ilse-brandt-names.json": "51e274087ba3c3adcfae445e69cc9bfebc3dee008dc56b1b6f9df4d8edc5666f",
+  "content/base/world/dialogues/bf-ilse-brandt-paid-window.json": "c81dc721c96aeefe9cd40709f75a6b54b36b4637e1bee69cf958dd98b3b09810",
+  "content/base/world/dialogues/bf-ilse-brandt-watch.json": "c161df140868cc2ce10b0f7e5fe234597baf354fedd7ba552af593a40fc9bd6c",
+  "content/base/world/dialogues/bf-mara-okoye-farida.json": "fb0eb1cbe4d5a258d65c0ba1652fb29410d285c888cb930667247a7fd9e3bf34",
+  "content/base/world/dialogues/bf-mara-okoye-moon-white-armour.json": "96252d26ad63d7d34fd785aa20306e8c6b76e533b3526400b3575399b426c111",
+  "content/base/world/dialogues/bf-mara-okoye-nadia.json": "fa6380bf0f9a260817ab6e51f008dfd82fb9284bbbd49fde2b07985bb1f0d8a7",
+  "content/base/world/dialogues/bf-mara-okoye-temo.json": "9817ae0d8d2e063ae9248f50ea7b3bc2184ecab3f2ad3c7738e866cd47322f07",
+  "content/base/world/dialogues/bf-ren-kasai-ironmouth.json": "447e1a79098368670a4b7897eb806b3be9c0f6cc44cb1bb1576e7dee590575fd",
+  "content/base/world/dialogues/bf-ren-kasai-kamchatka.json": "d9c6a272d5880d4ea3ce2b7d1bc9afadf71d2ecdf1301637c69236e80ef41f4d",
+  "content/base/world/dialogues/bf-ren-kasai-moon-dock-command.json": "b900a660bc03ea1afab5e8a2bcc5375b8e4177acf01cb50a5d22b062e5ae9003",
+  "content/base/world/dialogues/bf-ren-kasai-mugyeom.json": "055b28510e0fb175e9c9c7ca0422c4d9db44e1ad092c0f04cf76b0badc0c014a",
+  "content/base/world/dialogues/bf-ren-kasai-needle.json": "c8cb5f27237bd255b885d417f6dbe939859f4319e1a9d8899442cbcb982caf4e",
+  "content/base/world/encounters/rift-z-bf-anvil-shield-turn.json": "aa4c37b1a0610e8fe4717df4454edae93c68f7cdddb71bf1f0a413b6eb4d7422",
+  "content/base/world/encounters/rift-z-bf-breakers-salt-needle.json": "65b35b7644c14aca19e1d2b8b58ba1161eaf9d7860184aa00671aed1b19cb0ab",
+  "content/base/world/encounters/rift-z-bf-court-cargo-ramp.json": "8a8a52bcef7262286c479455bedc4ecb2a6abbc34c7bce49899efcf1f68e81bd",
+  "content/base/world/encounters/rift-z-bf-court-grain.json": "73daefc57ba25f46c0c5fdf00e59427412c699336437eb2e67c0727cbca70ded",
+  "content/base/world/encounters/rift-z-bf-dhaka-first-stitch.json": "b6b16f1d3c45afad8aadb5b46a12bce19da741e5b9f82170cdc25eb3f97799f2",
+  "content/base/world/encounters/rift-z-bf-exchange-bent-needle.json": "72e9ec2452555eb2887e44c2bb54d61245737fa5f295f0515e8777a4ec9fa88d",
+  "content/base/world/encounters/rift-z-bf-genoa-shared-forge.json": "84e092250e047a15d237d960e4354f28e36576cc686587b27edc7a9e92f717ee",
+  "content/base/world/encounters/rift-z-bf-japan-shoal-turn.json": "a7b4d5e610cf81a92e15db9a123223c832f6ab09a2030fba2115ddeba5c06d62",
+  "content/base/world/encounters/rift-z-bf-league-lantern-keel.json": "725939849ab93f74077f3068d00e82283a79f47ae92c6ac36ddeb99b707c39d4",
+  "content/base/world/encounters/rift-z-bf-moon-dark-parts.json": "31bcd0c365fb602be62eb9b3087d66c8c64dc1825a4b400c32f713fcd7421a47",
+  "content/base/world/encounters/rift-z-bf-moon-dock-parts.json": "261eb79e2017a09e7d5f1c293a037860554a5c8efd8fd85366dc807036302fbc",
+  "content/base/world/encounters/rift-z-bf-moon-white-cargo.json": "157cfe458995d28c823415bd61d3ab2b0129c9209ccf8bc640a0382b6970546e",
+  "content/base/world/encounters/rift-z-bf-nairobi-yoke-return.json": "5b2505c0dfb592ba0eeb3596352003ab899334d49de4e845226c0498f6a47dc4",
+  "content/base/world/encounters/rift-z-bf-quito-coast-beacon.json": "ea226592d0e3ba76939dee7d8c44d890a8cd9abb9d4d949f16cf464b09fe733d",
+  "content/base/world/encounters/rift-z-bf-saltgull-tide-ramp.json": "2c6edeb926df8da398a308c330f07a320d2942e8235c3f33431b67e6b618349c",
+  "content/base/world/encounters/rift-z-bf-seattle-return-gun.json": "3666f425993ba4a415870d2111868b0237c1d8a58dcd81fe2a886da28085b41f",
+  "content/base/world/encounters/rift-z-bf-sendai-gate.json": "546295156a2d1304dec32321b3ac3ea89f12e4555424307be0297e430bfec035",
+  "content/base/world/encounters/rift-z-bf-tiksi-raincoat.json": "ad614b980bd0c0d570d675e30123176370d69c5d7a98e35b02317a060f384409",
+  "content/base/world/encounters/rift-z-bf-weavers-wick-mat.json": "e7942433508c83d58b54e81396b7f0128b354cf50f1f2806bd97f087d40d48da",
+  "content/base/world/events/news-bf-almaty-mountain-oath.json": "151d85509521c7d03e343fcb5d5d588c215389c00e8c4f603adf608fbf22e83d",
+  "content/base/world/events/news-bf-alpine-fence.json": "a211882c91d251dbfb18c0029f0cc05fd2ebf1d73b5d36161298f52c346cd9cc",
+  "content/base/world/events/news-bf-brasilia-clock-oath.json": "22f285575bd3242aa2d362d27fb689835715e21ac5e5f88312e6a08f681b7bd2",
+  "content/base/world/events/news-bf-denver-grainline.json": "8d0c991a75c51635ed9916132f2c9a50be3858b831751e421be9237191356571",
+  "content/base/world/events/news-bf-goldreef-heat-first.json": "db5b4075388a84394105336c0a0673ed732393e9c04de7f16217c08cbeba983b",
+  "content/base/world/events/news-bf-greenline-old-chain.json": "8390f2eebbe8f258e51cb5ffa2988b2ead8ca15eb06128cefd6d91201e6fa6be",
+  "content/base/world/events/news-bf-hormuz-fire-night.json": "851e217e80c1d58b45b1fc3ee81959074abd44fadd190d7bc38e41681fa181e2",
+  "content/base/world/events/news-bf-incheon-shoulders.json": "7cd4f88a0880db7e93c7a9cca444d662a1c75556c5d5c0cdec49db45d89ae138",
+  "content/base/world/events/news-bf-moon-dark-lamps.json": "ea0f5519713c903d6e2df74b77d1704c20a145cf73e7632b99d6ff5950b6112c",
+  "content/base/world/events/news-bf-moon-two-strikes.json": "1696668d7eb40acfab7444c1bc7b0aae971ddd93edaff4230887d3e382aec1e1",
+  "content/base/world/events/news-bf-rhine-training.json": "93dcbad5ee6a331b332f825111b61dca5879f220a05f280c9a260d1d96b97b10",
+  "content/base/world/events/news-bf-seattle-gun-name.json": "a21dcf04c4f4e6dc39ce532fe717f816335336c22b98daf6919e3bdf81c85c77",
+  "content/base/world/events/news-bf-tiksi-lantern.json": "cc2af26997b363d1c9c7f23cf0e575026b6178cdfd8788ae4f34abed3b671616",
+  "content/base/world/events/news-bf-valparaiso-coast-oath.json": "53d6eb3fa0a69cd5adcc1b6f029453a4a5fba09381a22d31a15d0d34abd9ed50",
+  "content/base/world/events/news-bf-wardens-still-door.json": "10fcb3665383c31fcbab918027a4fa16f5e2807aa17a09744e5689592e7a83c3",
+  "content/base/world/events/news-bf-winnipeg-last-name.json": "8375a357f0f53f0e48c5a61eaf75fcd7d15aa77834d804c3b02ee5ccba612296",
+  "content/base/world/events/port-bf-aswan-wet-fields.json": "7e158dbdd3872a757abcea95d645d4b774fcb7b00f3e483a1625efa2809e4013",
+  "content/base/world/events/port-bf-belem-cargo-roar.json": "ed4a085458c7a4417146202de97055d1e811b8db7798a1eb13b4408faad790b8",
+  "content/base/world/events/port-bf-busan-hauling-song.json": "da2f4cba74dabe08e0eee475d0e02b7e481e032bea65b9274662de2b2c231b8f",
+  "content/base/world/events/port-bf-caravan-wheel-oath.json": "3a18fe3c9b7ff759e38072a459db7846c014e9dc9b84c9b3e2dbdbc4ac864209",
+  "content/base/world/events/port-bf-cartagena-old-mast.json": "28579066f8c7e7c1f350a6ab20309f873749f424465ca8376d04ac64deb91b99",
+  "content/base/world/events/port-bf-court-wet-banner.json": "060e9845b568efbb716fb044623b8347ba0d57d6bd9c7f93d8a982ce92da42cb",
+  "content/base/world/events/port-bf-djibouti-yoke-shout.json": "2e23c0aae6ec280112682e15e35ca32fe83b77e8fb1fe0306d12582c7e98e336",
+  "content/base/world/events/port-bf-genoa-forge-roar.json": "7adf0d755cdcf78a8a35cf72fb76fc656690ba40cb50f37850425c8eb1e7768d",
+  "content/base/world/events/port-bf-golmud-raised-arm.json": "9a7c59b43de75c2bee514a80f1b05823c9cc5738e8f24d8a263af6c37bd02f91",
+  "content/base/world/events/port-bf-havana-night-chorus.json": "de1e166e44a6a3ce2b2f9de6822565ffc60c917ab15984ebbc30dd25bfa53d36",
+  "content/base/world/events/port-bf-khulna-iron-chorus.json": "68526352f03ae9083191624a2400328218b51ee986fddd927708036dcd07ac88",
+  "content/base/world/events/port-bf-makassar-top-sail.json": "83a95dac6a377867e4d36dcc0263f3498bd4e994b4e4dc5724af89c4bab4d630",
+  "content/base/world/events/port-bf-malo-nine-bells.json": "7821775be12a13c24f16c5fa41efea472cf9855bb6aa537012ec87bbd843e7ed",
+  "content/base/world/events/port-bf-montreal-unread-line.json": "8ad229576152c9c774dd0b10839c21cc286afd682d73b27f6fcefcb6cb813888",
+  "content/base/world/events/port-bf-moon-earthward-screen.json": "e85b169c7c6e06c1f04aa782ba5800a8e1931c82083bb53ffdda8d4e134e2fb1",
+  "content/base/world/events/port-bf-moon-letter-light.json": "fc3523dd22de8be4ede7e199cb5c8e9c109298a709aa8fefe7e86a1b848d93db",
+  "content/base/world/events/port-bf-moon-return-light.json": "766ee8ce8906e4b877a5ee9b34cb802658a9d3ec6a1ee1f7e913f81e600428a6",
+  "content/base/world/events/port-bf-moon-white-steps.json": "6ffa196745ffe48debd54bc6992924966a3a4ecd09decf1db12d7859e8098f93",
+  "content/base/world/events/port-bf-roost-unloading-shore.json": "b08bb60217ed04a1a3f57d32db64a14a8d01c2ed58d8dde48509e7aa11edccf7",
+  "content/base/world/events/port-bf-sail-first-needle.json": "5eb5b879013ef35de90f31bab6817381dabe4373616e16ebc74b3162db39f1e8",
+  "content/base/world/events/port-bf-sermon-no-kneeling.json": "2cefd3909395bf97bac1f4dc1027a06faba216ef668808f04a257d518a3e03fb",
+  "content/base/world/events/port-bf-seventh-child-watch.json": "000fc9d47bc900ddfc12c36f03e2dc5167db3bb2b1e75f64201f3e016739b901",
+  "content/base/world/events/port-bf-suez-next-watch.json": "da49972e5731fa0f36e9105bcb45956df8dc6ffb160054f040a5fd75078d39a8",
+  "content/base/world/events/port-bf-surat-keys.json": "20f32bfc3c0c028d6b0343c8a89c05644e1b42ce5c9e2fb0b9d92453912cef12",
+  "content/base/world/events/port-bf-wings-ground-chorus.json": "aa3f1c1d8453cbccce2a2c0cd961c2b02d05f28046e8e35d73fffce15028c928",
+  "content/base/world/events/port-bf-zamboanga-answer.json": "4b4a94ea68314647e141995ad3fe66beb66fc520bd96ea469332bbe120951023",
+  "content/base/world/research/fl-antler-cup-study.json": "20c0c07fa7325e7fd6ed2424ad41ec35ad323f002984e071eacdfd341e1b3514",
+  "content/base/world/research/fl-dusk-curtain-study.json": "bce73bec99436d1b0fe2f6ea8b0ff5b341d305018eca4ae0f3443704fd506757",
+  "content/base/world/research/fl-fallen-step-study.json": "5a478f0cbb2e8aff9f2d67b58baa5d572e19e7b149c22f01e4698c207f57318e",
+  "content/base/world/research/fl-foam-bladder-study.json": "63a28fd568448416807dbd97f14616bdb45655b49289daa2e20b47ab74623100",
+  "content/base/world/research/fl-gate-flap-study.json": "ba56c9c43f27500ef841595447a446fcefd206f3d61d55e0c0f8aec75aea16b7",
+  "content/base/world/research/fl-grove-shroud-study.json": "9fd83405994d4033723c1e9997b3f4bbedb78346288bff36eb217b95a60f15dd",
+  "content/base/world/research/fl-heel-cushion-study.json": "85f4ffc9cd2df7af167eced95835668c3c1601f6c154903fcac9ad2165f61890",
+  "content/base/world/research/fl-hollow-sail-study.json": "965593e352a1b026724b604c3235ef216126f2dc313d7a9047d06a665c234378",
+  "content/base/world/research/fl-lake-votive-study.json": "290eeb19e2a5ce21cbea48cc9a0601bbefb6024ce4f7740faaeeb2c57e951951",
+  "content/base/world/research/fl-lantern-pith-study.json": "c423c06a6c767beaa472d66a9819c0fe446497811e8f65d76cb48a946e871e41",
+  "content/base/world/research/fl-mirror-splinter-study.json": "bd56f50f415bb1b12b6e226cf39ae561fcaadf7d1ddd83018f7f32d5412b7f58",
+  "content/base/world/research/fl-rack-rib-study.json": "402e8ffcae3d29210ec3d9d6e14e37ec2cc21f638ce36c504dfdd65ed47f0e09",
+  "content/base/world/research/fl-reed-screen-study.json": "7920345dcea4f4163b7d9ba68a9cc33bd3c40b1dabe4c1a29266265fcf679104",
+  "content/base/world/research/fl-sac-fold-study.json": "827380f73015d01a1150fdcaba2434cf0c4957e25de6e0e0e49b2cf61fdcaa59",
+  "content/base/world/research/fl-scale-leaf-study.json": "d7aa3a984eeb0676fe0ecb837ca003133258fcf6295d539ec1046e525fb37494",
+  "content/base/world/research/fl-shelf-ridge-study.json": "6017d89f7a5a34d656fe4583994536923c6bf8b06d144a46301303759857c586",
+  "content/base/world/research/fl-tidespine-keel-study.json": "5a02a3a1a2bb66f985fc92700da17d2eee8d33f30408501fae8d171f72e922af",
+  "content/base/world/research/fl-tomb-chime-study.json": "9541c265aeca6c9e64ae1f1b0effb1d91c5b29255370738cb880aa465c591e01",
+  "content/base/world/research/fl-vault-ply-study.json": "59e8ecabfaf36dea854aef9b4124c611ed372def0641b71aa12130ad550c33d4",
+  "content/base/world/research/fl-wick-felt-study.json": "c54a71c50e6c2b84effbd15c5513382f7c3bb0b6962b26497a469e5219a0d117",
+  "content/base/world/research/fm-bellows-pattern.json": "f148f1106c205ba73dcb150601ed05dac880b165c16d5bbf1330fddf9cb68f02",
+  "content/base/world/research/fm-iris-pattern.json": "db7fa752a4ab04001128addb81e61da9f332802cea98dceae00b5570cf7b8aa4",
+  "content/base/world/research/fm-relay-pattern.json": "a7d1bf9d673eb58029942cd4c76851b40234e25528eedbc3d59be7d91bd514eb",
+  "content/base/world/research/fm-rivet-pattern.json": "21003b98ed56b343cace41d10e2c725738469b04185d620c682e583066ab18b0",
+  "content/lore/events/accra-open-throat.json": "917e517cb04de52bb42ee39dea0c360b2b303fb7b83bc7e0af78ca405c32ed78",
+  "content/lore/events/aswan-hand-above-water.json": "212a4f9a4e5c1af08ab54c6a73c224a24b712b60f43fbd1814f8de994082bd8c",
+  "content/lore/events/aswan-stone-singing.json": "b73281531fdad8d48b515c94f8781e5bfde53483b5bba338b31c78717f61910d",
+  "content/lore/events/auckland-dusk-canopy.json": "09726059efa54bd807dc337276677026000db487e1004db4e0668a15517f165a",
+  "content/lore/events/auckland-hollow-overhead.json": "7bcebb291c68b5b35bef29f60c06f57d078ec23a93fc8e52c5c1fc07162387df",
+  "content/lore/events/batangas-third-closure.json": "208e9cfd3ecae22f91b6d1089600f2e2d0cf2b3c9ac1a0ec2abdfc12596b8baa",
+  "content/lore/events/batangas-wing-rain.json": "58fb267666dddc25a777e0fa33cb213fba46183d753b2eab5396517fbf60fb1f",
+  "content/lore/events/bell-cliff-shattered-lights.json": "ddd4bbd450ec128de3c08c108eadd4203c3987284068c603cf231ef026a2c86d",
+  "content/lore/events/brasilia-salt-chorus.json": "5f473c76cd1de09bd0012520cfcaef9a2b4b4560658aa275a57875443a0e95c3",
+  "content/lore/events/court-yard-first-roar.json": "826ee3f588a473d3ee638dd4aff8d92e9aaf4b0eeb7e05d2e5917e659b75e780",
+  "content/lore/events/dark-quay-inspection.json": "1b358d7ecc9d860cbad926427f556cc31240ea49f0444c90a02e414232eecc85",
+  "content/lore/events/dark-run-under-bow.json": "f3a5d88564dfeef1d0154300f344152b31145824187c72bb8413ea5da96b3609",
+  "content/lore/events/djibouti-crossed-shadows.json": "0ac7365c78333e6055390d9a1092699f7db169f6123526e93342d568bb93efd8",
+  "content/lore/events/dubai-last-shadow.json": "1d997598023278eeaaed70206acac48348bfb86dad51d8a16e5dd6d72fe568e8",
+  "content/lore/events/dubai-tidal-visor.json": "e52cba0ab4ef399f6d0295a27d9e06730c9194d914fc20251d0190599a0addb1",
+  "content/lore/events/estuary-white-maw.json": "c5ff0f760fab1437bcaf8df171bfbb34dd38a853a5031efffae241db3493a650",
+  "content/lore/events/ferry-first-departure.json": "bc5d2048cc6f89544a57aa26ce33d1e81487d9aaba248dadd28befa3a2cd5956",
+  "content/lore/events/genoa-first-footfall.json": "ac312095f66e480989641d5e13f59f101b0306773ca3e82f716d9a901637a8ea",
+  "content/lore/events/hamburg-ember-shoulder.json": "9f5a798e6f43fa9d0a1fa812e6bdfbc97e99ce4cbbef4aa02b3d7ec38b17340f",
+  "content/lore/events/help-outside-the-belt.json": "9dd881d3a0d6b8315892cdec9cf2f50523525ed566bcca2f028c1db4f46988aa",
+  "content/lore/events/incheon-biting-surf.json": "f1f01819217e84f28b53c0af5e96a0546e1521922fd11c60b9f5fac8a0ca054a",
+  "content/lore/events/khulna-reed-mouth.json": "c9dfbadee92c4806d1c40e4b820d82f49e78f391c99478b34b7976b118cd37d6",
+  "content/lore/events/last-empty-berth.json": "03a5987567ba4fef6042a12dc12f5be29a085deae47b207acb413862335d19ec",
+  "content/lore/events/makassar-mud-brood.json": "b0f34330434736a8cb5a6b67429252f63801722f9676788d228fd57d3de9f163",
+  "content/lore/events/makassar-spark-keel.json": "9ba7326043e5bd1b9c49fe9393b2912b486dbb091bd845d8e3e0bfe11515fa23",
+  "content/lore/events/malo-return-to-the-breach.json": "b0ffce935237aaa9656ec62b4bf8e428a3e07a89e54096047b11fa91b455491d",
+  "content/lore/events/moonbow-silent-line.json": "947bc20d1854a8c8af67c7721c0280c0a1299b22330a3e1a0ccbb17df4aa4dff",
+  "content/lore/events/mumbai-ash-halo.json": "73d68d381a14f5612870d034038423a0cd056a75918b0fc721934fe613c8612d",
+  "content/lore/events/rain-under-glass.json": "7c2a4ad9a2d0bfd1e63e4fabf358c2353e9ad3cbc5c51a4889173704670d5e1b",
+  "content/lore/events/return-fare-queue.json": "0b586901d6a908866b803a5ff18ac2680b0785f35b0b16df280a3d94c9a56191",
+  "content/lore/events/roost-pier-grip.json": "0db8083b0fc60c136a28602529023327329906579a39f848dbb048f8a7d461da",
+  "content/lore/events/sail-ribs-hold-the-sky.json": "eb24fbddeda65b1d338f9e2661e2b6c91b80253b711000eb2ae7be1c381f4cb3",
+  "content/lore/events/seventh-post-salt-jaws.json": "dcd69cec477d7d00b0c00df08c6cda64160df778107c737a489d605e11b9c488",
+  "content/lore/events/skagerrak-black-ridge.json": "052f2973b06a0c2d2e0e27f82fea66b2d409e17c37cbe59ffd3473515c81ac64",
+  "content/lore/events/sun-script-on-frost.json": "31fab824bc80ed4e4639591f353c95f140c4385cddeab4250b8492f1945352ac",
+  "content/lore/events/surat-voices-on-the-slope.json": "2d744f1b9a81182de57b6577fdf3ea4bf1b5b1e1c403270083ebda668af41aac",
+  "content/lore/events/white-armour-departure.json": "301cfa6d34b7164a112501d3c75a89ae1616c9bbe022062d85bdf25b24ea2391",
+  "content/lore/events/white-ford-fallen-bridge.json": "8cc46c344f37c357881f9db86508d4c636cdb0a2d21d99cd811c1f05a798be1a",
+  "content/lore/events/whitegloves-come-ashore.json": "46c534bcdb74c38242252870296ead34a8c1cfb772cd7147c5efe02e0a3239fb",
+  "content/lore/events/whitewall-at-gate.json": "65aef0251fbe081baa9a06b938abb3488f44f8fc97a2276893c947abcd910d6a",
+  "content/lore/factions/dome-households.json": "c3c2276a209881bbb03d48d95cd40de97cf7a4e2742459247962bffb55a52f61",
+  "content/lore/factions/farside-shift-workers.json": "4540226965968f96cf87e0cea78cf1a9e007fc393ad851a37502302a4a298aa7",
+  "content/lore/factions/lunar-ferry-crews.json": "51786e778d16c524a4c9468cbd3043268e5aee6e9730bb52aa4a4d94296cdf2d",
+  "content/lore/places/auckland-maw-shelf.json": "33b2a1f2790d01cde80a83afd9e15c2e8ac463760e1b80ea741d3df63f5a0f8d",
+  "content/lore/places/batangas-needle-ledge.json": "949d6c6c92556e3d5be563d6bce0749f795e48cf95acdd8113714d32129dd534",
+  "content/lore/places/dark-quay-night-slip.json": "0baa25c33857f7b78ca5606086de470e06c0145f6ac78c27d526a9e984d75df4",
+  "content/lore/places/earthward-gallery.json": "3aed96cb720ea0b5d9a5b8a951ba6a85e448d1fbf99863262ecfcecfd0fd5183",
+  "content/lore/places/farside-light-ridge.json": "a83ced4f5cd80212e1d58eec2c33cf0b36b3e290c41f3140489e5a166fd1585f",
+  "content/lore/places/ferry-nostos.json": "551ec1c2213108064ca645ab6806934c46165aea736c3f8a909e9739d22b0c48",
+  "content/lore/places/golmud-dawn-recess.json": "5d31ff0bab803dc8ce2ee70e22b888ee54f9834a6a8097a0f81f4ffaba5560b1",
+  "content/lore/places/grey-edge-rest-stop.json": "0951498d130ce6a60809f36b4ad05f2da245ebe076ac2b3f094ccc11ce1065ce",
+  "content/lore/places/lunar-glass-garden.json": "83bf58c77c0030c77aebd7b1ce048ed5e7082d0a8b6c66970d223008da6fa3b2",
+  "content/lore/places/lunar-letter-counter.json": "c98f0ddca9243e6c0ab97ce65be38f6fb9a631e57e108946bd94d72aa03bed3d",
+  "content/lore/places/moonbow-shift-house.json": "e5e08bf85252ad1a8b1da5ecc145cf90f428823d47c98c2e5bd42d7b29e2bc35",
+  "content/lore/places/mumbai-resonant-wall.json": "cb665941157ba9524a8bcfcf3f90c44ae58e225f39a1dd5cca5a8fe314c10f2f",
+  "content/lore/places/prism-stair.json": "f020f5ec2e3a1925c8c0312ed9b17cd2337351e86e95aab327494675940cdd1b",
+  "content/lore/places/rift-valley-bone-echo.json": "a98e9f50592c7e47342e21329c571d1604e73b84165daee4e7a852e46c17f552",
+  "content/lore/places/sendai-low-eaves.json": "d681d7f5382e7ef506795f28aaa55b0e45ff283da0f2ee0dd009135a18ccba7d",
+  "content/lore/places/skagerrak-cold-reflection.json": "aec6ea2b9f8ae21afcbe43cb77320a206100c7ab98c514da730638c0d2c9da89",
+  "content/lore/places/titicaca-empty-dawn.json": "0578dda3db9d09c13b7063cb2f94ccf843f25ccd870e0ea33cf62f4efc4ab5aa",
+  "content/lore/places/tranquility-ferry-port.json": "dab8f89e0364a6e770fa78274a00559f56ff74b0617c2171d7881730dbafbfff",
+  "content/lore/places/tranquility-repair-dock.json": "64886f5a6b0d7cf236da44e38a80f670fdd1121376c5f050390158a644efeb6f",
+  "content/lore/places/white-armour-loading-hall.json": "94c24d3f043939bb4e4a0abeda8ef89c5eba1eb0435b38857e1f343c1ca8a849",
+  "content/lore/places/white-ford-reed-crown.json": "719ff4364cc8c826227c7070263dd8e67c945b333bda10920806a37fa20ccb94"
+ },
+ "columns": [
+  "id",
+  "status",
+  "topic",
+  "evidence",
+  "impact",
+  "recommendation",
+  "fable_question",
+  "affected_files"
+ ],
+ "rows": [
+  {
+   "id": "DUP-01",
+   "status": "刻意變體",
+   "topic": "insect 淺層遭遇共用數值模板",
+   "evidence": [
+    {
+     "file": "content/base/world/encounters/insect-shallow.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/insect-shallow\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-breakers-salt-needle.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-breakers-salt-needle\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-court-cargo-ramp.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-court-cargo-ramp\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-court-grain.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-court-grain\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-genoa-shared-forge.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-genoa-shared-forge\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-league-lantern-keel.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-league-lantern-keel\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-moon-dark-parts.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-moon-dark-parts\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-moon-dock-parts.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-moon-dock-parts\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-tiksi-raincoat.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-tiksi-raincoat\", \"family\": \"insect\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+     "field": "encounters",
+     "quote": "family、depth、尺寸、terrainMix、budgetByGrade D:2/C:1、anchorHere=false照同族shallow範本。"
+    }
+   ],
+   "impact": "同組除展示／識別欄位外等價；契約各自明指遭遇，指定獸由契約 killTarget 接入，不能以此判定故事或玩法完全重複。",
+   "recommendation": "保留。若未來要共用模板，另案評估契約引用、排序與相容性；本輪不合併。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "DUP-02",
+   "status": "刻意變體",
+   "topic": "alien 淺層遭遇共用數值模板",
+   "evidence": [
+    {
+     "file": "content/base/world/encounters/rift-alien-shallow.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-alien-shallow\", \"family\": \"alien\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-exchange-bent-needle.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-exchange-bent-needle\", \"family\": \"alien\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-moon-white-cargo.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-moon-white-cargo\", \"family\": \"alien\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-quito-coast-beacon.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-quito-coast-beacon\", \"family\": \"alien\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-sendai-gate.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-sendai-gate\", \"family\": \"alien\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+     "field": "encounters",
+     "quote": "family、depth、尺寸、terrainMix、budgetByGrade D:2/C:1、anchorHere=false照同族shallow範本。"
+    }
+   ],
+   "impact": "同組除展示／識別欄位外等價；契約各自明指遭遇，指定獸由契約 killTarget 接入，不能以此判定故事或玩法完全重複。",
+   "recommendation": "保留。若未來要共用模板，另案評估契約引用、排序與相容性；本輪不合併。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "DUP-03",
+   "status": "刻意變體",
+   "topic": "beast 淺層遭遇共用數值模板",
+   "evidence": [
+    {
+     "file": "content/base/world/encounters/rift-beast-shallow.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-beast-shallow\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-anvil-shield-turn.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-anvil-shield-turn\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-japan-shoal-turn.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-japan-shoal-turn\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-nairobi-yoke-return.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-nairobi-yoke-return\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-saltgull-tide-ramp.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-saltgull-tide-ramp\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-seattle-return-gun.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-seattle-return-gun\", \"family\": \"beast\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+     "field": "encounters",
+     "quote": "family、depth、尺寸、terrainMix、budgetByGrade D:2/C:1、anchorHere=false照同族shallow範本。"
+    }
+   ],
+   "impact": "同組除展示／識別欄位外等價；契約各自明指遭遇，指定獸由契約 killTarget 接入，不能以此判定故事或玩法完全重複。",
+   "recommendation": "保留。若未來要共用模板，另案評估契約引用、排序與相容性；本輪不合併。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "DUP-04",
+   "status": "刻意變體",
+   "topic": "mycelium 淺層遭遇共用數值模板",
+   "evidence": [
+    {
+     "file": "content/base/world/encounters/rift-mycelium-shallow.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-mycelium-shallow\", \"family\": \"mycelium\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-dhaka-first-stitch.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-dhaka-first-stitch\", \"family\": \"mycelium\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "content/base/world/encounters/rift-z-bf-weavers-wick-mat.json",
+     "field": "$.id / $.family / $.depth / $.budgetByGrade",
+     "quote": "{\"id\": \"encounter/rift-z-bf-weavers-wick-mat\", \"family\": \"mycelium\", \"depth\": \"shallow\", \"budgetByGrade\": {\"D\": 2, \"C\": 1}}"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-bigfill/play-plan/plan.md",
+     "field": "encounters",
+     "quote": "family、depth、尺寸、terrainMix、budgetByGrade D:2/C:1、anchorHere=false照同族shallow範本。"
+    }
+   ],
+   "impact": "同組除展示／識別欄位外等價；契約各自明指遭遇，指定獸由契約 killTarget 接入，不能以此判定故事或玩法完全重複。",
+   "recommendation": "保留。若未來要共用模板，另案評估契約引用、排序與相容性；本輪不合併。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "SER-01",
+   "status": "同系列",
+   "topic": "長風-II型分燼橋／長風-II型燼槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fm-bellows-bridge.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"長風-II型分燼橋\", \"slot\": \"systemMount\", \"poolMods\": [{\"pool\": \"heat\", \"regen\": -5}, {\"pool\": \"charge\", \"max\": -10}], \"attrMods\": []}"
+    },
+    {
+     "file": "content/base/components/fm-bellows-trough.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"長風-II型燼槽\", \"slot\": \"backMount\", \"poolMods\": [{\"pool\": \"heat\", \"regen\": -6}], \"attrMods\": [{\"path\": \"self.attrs.evasion\", \"op\": \"add\", \"value\": -2, \"source\": \"component/fm-bellows-trough\"}]}"
+    }
+   ],
+   "impact": "systemMount 與 backMount 不同；分燼橋 heat.regen -5、charge.max -10；燼槽 heat.regen -6、evasion -2。",
+   "recommendation": "保留兩件，不因近名合併；被動修正可用性另見 LINK-01。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "SER-02",
+   "status": "同系列",
+   "topic": "照野-II型巡目／照野-II型窄目",
+   "evidence": [
+    {
+     "file": "content/base/components/fm-cradle-iris.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"照野-II型巡目\", \"slot\": \"sensorMount\", \"poolMods\": [], \"attrMods\": [{\"path\": \"self.attrs.perception\", \"op\": \"add\", \"value\": 4, \"source\": \"component/fm-cradle-iris\"}, {\"path\": \"self.attrs.initiative\", \"op\": \"add\", \"value\": 1, \"source\": \"component/fm-cradle-iris\"}, {\"path\": \"self.attrs.accuracy\", \"op\": \"add\", \"value\": -2, \"source\": \"component/fm-cradle-iris\"}]}"
+    },
+    {
+     "file": "content/base/components/fm-cradle-slit.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"照野-II型窄目\", \"slot\": \"sensorMount\", \"poolMods\": [], \"attrMods\": [{\"path\": \"self.attrs.accuracy\", \"op\": \"add\", \"value\": 5, \"source\": \"component/fm-cradle-slit\"}, {\"path\": \"self.attrs.perception\", \"op\": \"add\", \"value\": -2, \"source\": \"component/fm-cradle-slit\"}]}"
+    }
+   ],
+   "impact": "同為 sensorMount；巡目 perception +4、initiative +1、accuracy -2；窄目 accuracy +5、perception -2。",
+   "recommendation": "保留兩件，不因近名合併；被動修正可用性另見 LINK-01。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "SER-03",
+   "status": "同系列",
+   "topic": "鉚門-II型交臂甲／鉚門-II型眉甲",
+   "evidence": [
+    {
+     "file": "content/base/components/fm-rivet-harness.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"鉚門-II型交臂甲\", \"slot\": \"armorMount\", \"poolMods\": [], \"attrMods\": [], \"layersAdd\": [{\"part\": \"left-arm\", \"insertAt\": 0, \"layer\": {\"type\": \"armor\", \"hp\": 25, \"ablative\": true, \"resist\": {}, \"passThrough\": {}, \"structural\": false}}, {\"part\": \"right-arm\", \"insertAt\": 0, \"layer\": {\"type\": \"armor\", \"hp\": 25, \"ablative\": true, \"resist\": {}, \"passThrough\": {}, \"structural\": false}}]}"
+    },
+    {
+     "file": "content/base/components/fm-rivet-hood.json",
+     "field": "$.name / $.slot / $.poolMods / $.attrMods / $.layersAdd",
+     "quote": "{\"name\": \"鉚門-II型眉甲\", \"slot\": \"sensorMount\", \"poolMods\": [], \"attrMods\": [{\"path\": \"self.attrs.initiative\", \"op\": \"add\", \"value\": -1, \"source\": \"component/fm-rivet-hood\"}], \"layersAdd\": [{\"part\": \"head\", \"insertAt\": 0, \"layer\": {\"type\": \"armor\", \"hp\": 25, \"ablative\": true, \"resist\": {\"kinetic\": 0.15}, \"passThrough\": {}, \"structural\": false}}]}"
+    }
+   ],
+   "impact": "交臂甲用 armorMount 加雙臂各25甲；眉甲用 sensorMount 加頭甲25並 initiative -1。",
+   "recommendation": "保留兩件，不因近名合併；被動修正可用性另見 LINK-01。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-01",
+   "status": "確定問題",
+   "topic": "白冠角盞 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-antler-cup.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=systemMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；systemMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-02",
+   "status": "確定問題",
+   "topic": "闕甲裙 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-gate-flap.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-03",
+   "status": "確定問題",
+   "topic": "白林菌帷 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-grove-shroud.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-04",
+   "status": "確定問題",
+   "topic": "偏鏡甲 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-mirror-splinter.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-05",
+   "status": "確定問題",
+   "topic": "櫛骨襯 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-rack-rib.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-06",
+   "status": "確定問題",
+   "topic": "棧背梁 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-shelf-ridge.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-07",
+   "status": "確定問題",
+   "topic": "潮脊斷梁 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-tidespine-keel.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-08",
+   "status": "確定問題",
+   "topic": "古陵空鈴 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-tomb-chime.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=systemMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；systemMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "SIZE-09",
+   "status": "確定問題",
+   "topic": "拱根疊甲 無相容尺寸槽",
+   "evidence": [
+    {
+     "file": "content/base/components/fl-vault-ply.json",
+     "field": "$.slot / $.size",
+     "quote": "slot=armorMount; size=2"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:31–35",
+     "quote": "slot.type !== def.slot || slot.size < def.size → 不相容部件槽"
+    },
+    {
+     "file": "content/base/frames/ 與 content/base/bodyplans/",
+     "field": "所有非 ancient frame.bodyPlan → parts[].slots[]",
+     "quote": "唯讀全量掃描 157 台；armorMount 最大 size=1"
+    }
+   ],
+   "impact": "目前可改裝 frame 沒有能容納此件的同類槽。研究或展示引用存在，不代表可裝配；未執行裝配測試。",
+   "recommendation": "送審選擇：縮件並重審數值，或另案增加相容骨架槽。禁止只改報告宣稱可用。",
+   "fable_question": "這9件應維持大型拆件並補可裝骨架，還是改為size 1？兩種方案各影響哪些裝備定位與既有配裝？只需報告，不直接落地。",
+   "affected_files": ""
+  },
+  {
+   "id": "LINK-01",
+   "status": "待人審",
+   "topic": "常駐被動欄位與可用性：既知74號缺口擴大盤點",
+   "evidence": [
+    {
+     "file": "wf/workflows/dispatch/handoffs/engine-backlog.json",
+     "field": "序=74",
+     "quote": "約 16 件裝甲／系統件只有部件層與能力生效，被動數值是死資料"
+    },
+    {
+     "file": "content/base/components/fm-bellows-bridge.json",
+     "field": "$.poolMods",
+     "quote": "heat.regen=-5; charge.max=-10"
+    },
+    {
+     "file": "src/rules/state.ts",
+     "field": "makeUnit:238–248",
+     "quote": "components 僅推入 component.pools；此處 attrMods 分支屬 monster"
+    },
+    {
+     "file": "src/ops/content/instantiate.ts",
+     "field": "instantiateMech:38",
+     "quote": "instantiatePools([...frame.pools, ...installed.flatMap(c => c.def.pools)]...)"
+    }
+   ],
+   "impact": "gear 目標中 49 件含 poolMods 或 attrMods（18件poolMods、43件attrMods，交集12件），這是欄位曝險數，不是49件全部無效的動態證明。",
+   "recommendation": "沿用 engine-backlog 74，不重開引擎稽核。本輪只交出含欄位檔清單，後續經授權再針對代表件驗證。",
+   "fable_question": "若另開修復線，常駐修正應在哪個既有實體建立階段生效、如何避免重複套用？請限74號既知缺口提出報告。",
+   "affected_files": [
+    "content/base/components/fa-abutment.json",
+    "content/base/components/fa-ash-ballast.json",
+    "content/base/components/fa-ash-vessel.json",
+    "content/base/components/fa-bridle-spool.json",
+    "content/base/components/fa-cinder-cloak.json",
+    "content/base/components/fa-close-watch.json",
+    "content/base/components/fa-cold-return.json",
+    "content/base/components/fa-cool-watch.json",
+    "content/base/components/fa-deep-cup.json",
+    "content/base/components/fa-ember-dynamo.json",
+    "content/base/components/fa-first-bell.json",
+    "content/base/components/fa-gunner-stool.json",
+    "content/base/components/fa-high-survey.json",
+    "content/base/components/fa-iron-brow.json",
+    "content/base/components/fa-needle-stop.json",
+    "content/base/components/fa-plumb-sight.json",
+    "content/base/components/fa-quick-turn.json",
+    "content/base/components/fa-quiet-bell.json",
+    "content/base/components/fa-single-aperture.json",
+    "content/base/components/fa-steady-hand.json",
+    "content/base/components/fa-veiled-eye.json",
+    "content/base/components/fa-wide-lantern.json",
+    "content/base/components/fa-wing-stays.json",
+    "content/base/components/fm-anvil-skirt.json",
+    "content/base/components/fm-backside-falseface.json",
+    "content/base/components/fm-bellows-bridge.json",
+    "content/base/components/fm-bellows-keel.json",
+    "content/base/components/fm-bellows-trough.json",
+    "content/base/components/fm-breakwater-greave.json",
+    "content/base/components/fm-cradle-iris.json",
+    "content/base/components/fm-cradle-slit.json",
+    "content/base/components/fm-gull-outrigger.json",
+    "content/base/components/fm-korea-groundline.json",
+    "content/base/components/fm-latam-convoycell.json",
+    "content/base/components/fm-league-watchrack.json",
+    "content/base/components/fm-nairobi-tiller.json",
+    "content/base/components/fm-northafrica-sluice.json",
+    "content/base/components/fm-quito-visor.json",
+    "content/base/components/fm-relay-spindle.json",
+    "content/base/components/fm-relay-yoke.json",
+    "content/base/components/fm-rivet-handguard.json",
+    "content/base/components/fm-rivet-hood.json",
+    "content/base/components/fm-russia-reservoir.json",
+    "content/base/components/fm-scholar-plumb.json",
+    "content/base/components/fm-selene-eyepiece.json",
+    "content/base/components/fm-sill-rest.json",
+    "content/base/components/fm-subsahara-wellguard.json",
+    "content/base/components/fm-sydney-lookback.json",
+    "content/base/components/fm-yoke-palm.json"
+   ]
+  },
+  {
+   "id": "LINK-02",
+   "status": "待人審",
+   "topic": "戰利品／研究／勢力件掛接：既知75–77號缺口",
+   "evidence": [
+    {
+     "file": "wf/workflows/dispatch/handoffs/engine-backlog.json",
+     "field": "序=75",
+     "quote": "勢力特色部件無聲望門檻（repGate 只管機型）"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/engine-backlog.json",
+     "field": "序=76",
+     "quote": "研究解鎖旗標不影響市場／購買清單；戰後 loot 固定 []；無整屍拆解與活捕採樣命令"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/fill-rulings.md",
+     "field": "使用者明示",
+     "quote": "國家機甲與勢力機甲都要能刷聲望取得"
+    }
+   ],
+   "impact": "資料存在／研究可引用不等於戰後能取得；不能把未上市視為可刪重複件。聲望取得裁示明確談機甲，不自行延伸成所有特色件的既定門檻。",
+   "recommendation": "沿用75–77；維持待審，不自行上架或改市場。",
+   "fable_question": "請使用者裁定特色部件是否沿用機甲聲望取得原則；Fable只需比較75–77與現有取得路徑的接線選項。",
+   "affected_files": ""
+  },
+  {
+   "id": "SCEN-01",
+   "status": "待人審",
+   "topic": "極短撤離／護送勝利節奏（既有探針證據）",
+   "evidence": [
+    {
+     "file": "content/base/scenarios/fs-07-lamp-procession.json",
+     "field": "$.objectives[2]",
+     "quote": "kind=reachExit; params.unit=player-0"
+    },
+    {
+     "file": "content/base/scenarios/fs-07-departure-lights.json",
+     "field": "$.objectives[3]",
+     "quote": "kind=escort; units=[ally-0,ally-1]"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-fill-scen/fs-07/REPORT.md",
+     "field": "需要決定／引擎候選",
+     "quote": "香火進舊棧兩 seed 都第 1 輪 reachExit，發船燈列第 2／3 輪 escort"
+    }
+   ],
+   "impact": "可結束不代表護送距離或遭遇節奏合理；這是舊報告觀察，本輪未重跑，不是跨批重複。",
+   "recommendation": "請使用者審是否接受短場；若要調整，另授權部署／出口修改。固定座標是既定計畫，不擅自修。",
+   "fable_question": "",
+   "affected_files": ""
+  },
+  {
+   "id": "SCEN-02",
+   "status": "刻意變體",
+   "topic": "情境與lore同題材，但非重寫史實或自動進營運",
+   "evidence": [
+    {
+     "file": "content/base/scenarios/fs-07-departure-lights.json",
+     "field": "$.etymology",
+     "quote": "這是2108可能遭遇的試機配置，可重播；人物為參考編隊，不宣告史實在場或轉投勢力。"
+    },
+    {
+     "file": "wf/workflows/dispatch/handoffs/lead-fill-scen/plan/plan.md",
+     "field": "黃金查證",
+     "quote": "營運…從contract、encounter、rift、world terrain生成戰局…不會把新增base scenario自動加入池。"
+    }
+   ],
+   "impact": "63件含48情境、15地圖；題材掛到lore不等於正式歷史在場或營運可達。不可因人物跨陣營或同事件名就認定設定矛盾。",
+   "recommendation": "保留展示定位；營運接線另案。人物身份一致性由人物線處理。",
+   "fable_question": "",
+   "affected_files": ""
+  }
+ ]
+}

@@ -1,0 +1,170 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-27",
+ "columns": [
+  "id",
+  "category",
+  "nearestExisting",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "requiredConstraints",
+  "fullTextRead",
+  "narrativeNearestExisting",
+  "mechanicalCorrection",
+  "finalNarrativeComparison",
+  "finalDedupDecision",
+  "dedupEvidence"
+ ],
+ "rows": [
+  {
+   "id": "wn-r3-anvil-fan",
+   "category": "mechs",
+   "nearestExisting": {
+    "id": "frame/anvil-hoist-ii",
+    "file": "content/base/frames/anvil-hoist-ii.json",
+    "comparison": "同級熱鋸工程機；吊鉚為 gantry 骨架、繫泊鉗拘束＋盾陣＋灰霧。本列為四足、扇形能量範圍攻擊，放棄拘束與盾陣。"
+   },
+   "similarity": "同級鐵砧工程／破口機接近，但攻擊目標形態、傷害型及失去的控制手段均不同。",
+   "substantiveDifference": "把 C 級鐵砧的單體樁刃或拘束鋸改成 cone energy＋unit thermal；以射程僅 3、扇招冷卻 2 和無盾陣交換多目標能力。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "配裝功能可分，但主線全文抽查三篇皆碼頭／護勘遇獸→護搬運工撤船，與wl-*正文近似；至少2篇改主要場景/目標/人際衝突，同燈必改。",
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 實查m2-quadruped-c為7部位，計畫8部位描述誤差請按真骨架；扇招range1–3/cooldown2，不寫燒地形或留下火區。 主線追加退修：至少2篇主要場景、目標與人際衝突換骨架，同燈必改，保留合法配裝，不只換地名。必讀wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace全文比較並在review保留原案拒用證據。",
+   "fullTextRead": {
+    "file": "content/base/frames/anvil-hoist-ii.json",
+    "sha256": "8f918ff209bb0addfc2f38f9a2f28ee9ecce0c982b54f03ce58959fd66afc32e",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "finalNarrativeComparison": "修稿以試機、成本與檢修工時計價的勞資爭議為主，較 wl-bulwark-ferry 守船撤人及 wl-anvil-cable 貨棧救援的情節走向不同；功能仍為近距掃面加鋸。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  },
+  {
+   "id": "wn-r3-needlefish-stay",
+   "category": "mechs",
+   "nearestExisting": {
+    "id": "frame/shellsoc-tripod-c",
+    "file": "content/base/frames/shellsoc-tripod-c.json",
+    "comparison": "同級拘束機；四足定盤用射程5、僅3發的縛獸矢，加射程6連吼、標記。此列浮行骨架、射程2無矢池拘束＋射程1鳴刃反擊，必須貼近且不再標記。"
+   },
+   "similarity": "與定盤共享拘束目的，與針魚／回舷共享 C 級浮行線；差異在接戰距離及續航成本。",
+   "substantiveDifference": "既有定盤以三發遠距矢保距離；本列以燼換無限次數的射程2拘束，承受近戰風險。鳴刃離身反應只在 enemyLeavesAdjacent，不能寫成受擊反擊或拖拉敵人。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "配裝功能可分，但主線全文抽查三篇皆碼頭／護勘遇獸→護搬運工撤船，與wl-*正文近似；至少2篇改主要場景/目標/人際衝突，同燈必改。",
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 留步索命中仍有4傷，不保證安全活捕；只immobilized/evasion減益，不拖拉敵人。鳴刃只在敵離鄰格反應。 主線追加退修：至少2篇主要場景、目標與人際衝突換骨架，同燈必改，保留合法配裝，不只換地名。必讀wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace全文比較並在review保留原案拒用證據。",
+   "fullTextRead": {
+    "file": "content/base/frames/shellsoc-tripod-c.json",
+    "sha256": "c67d7a4681bf04ff4edce154088ba4e7ce742c87728ca725ae0bf11d92c2dee3",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "finalNarrativeComparison": "修稿為人類機隊交戰後停火、拒殺與報酬代價，較 wl-swordfish-return 掩護撤船及 wl-bulwark-ferry 守渡口不同；功能仍為短距留置加鳴刃。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  },
+  {
+   "id": "wn-r3-surveyor-bearer",
+   "category": "mechs",
+   "nearestExisting": {
+    "id": "frame/cn-yoke-i",
+    "file": "content/base/frames/cn-yoke-i.json",
+    "comparison": "同 B 六足友方支援；衡梁用遠護、扶架排燼和連吼散紋。本列不回燼、不用老城護壁，改單友命中+8/perception+3一回合與evasion+10/accuracy-5兩回合。"
+   },
+   "similarity": "都在護勘／友方支援群；最接近衡梁，但效果目標、效果代價與資源競爭不同。",
+   "substantiveDifference": "同準與煙護不能當無條件全隊增益：一次一人、各3AP/冷卻3/限2次；煙護降低目標命中。雙武器共用charge60/regen10，不能像實矢＋扶架組合長時間兼顧輸出與排燼。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "配裝功能可分，但主線全文抽查三篇皆碼頭／護勘遇獸→護搬運工撤船，與wl-*正文近似；至少2篇改主要場景/目標/人際衝突，同燈必改。",
+   "requiredConstraints": "只用既有能力效果，不以新id/name/tags宣傳詞當差異。保留同級模板及質量限制；不把護艙隔板當核心。 同準／煙護各2次、3AP、cooldown3；煙護目標accuracy-5，非全隊buff或替人受傷；雙武器競用流光。 主線追加退修：至少2篇主要場景、目標與人際衝突換骨架，同燈必改，保留合法配裝，不只換地名。必讀wl-bulwark-ferry、wl-anvil-cable、wl-surveyor-trace全文比較並在review保留原案拒用證據。",
+   "fullTextRead": {
+    "file": "content/base/frames/cn-yoke-i.json",
+    "sha256": "e2f5773c16674f2ead175e28de4337f5a679b25eced62e56b031c308ddb3648c",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "finalNarrativeComparison": "修稿改聯隊搶功與支援工資分帳，報點與煙護是能力共通，但不存在 wl-surveyor-trace 的海岸拓片護勘撤船情節。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  },
+  {
+   "id": "wn-r3-pin-fan",
+   "category": "monsters",
+   "nearestExisting": {
+    "id": "species/grit-fan",
+    "file": "content/base/species/grit-fan.json",
+    "comparison": "同骨架120HP三部位；原僅射程1–2 cone kinetic5/2AP/CD1。本列加射程1–3 unit pierce8/2AP，新增對散開目標的單體選擇；仍維持6AP，並改用既有tactical profile使兩種target都有候選。"
+   },
+   "similarity": "最接近砂扇的形體與鹽針的飛針；跨族礁背也有兩種目標形態，因此不能只看能力ID不同。",
+   "substantiveDifference": "骨架仍是砂扇，真正新增的是單體pierce／近距cone的選擇；相對鹽針少3AP且腹核更暴露，相對礁背從貼身球面改成有方向的短距扇面。不得把此差異寫成單純更強的砂扇。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "主線全文抽查三種敘事同構：岸邊發現→雙機試招／冷卻教學→拘束／屍改說明；至少2種換主要事件視角，垂帆必改。機制配套保留。",
+   "requiredConstraints": "保持grade/bodyPlan和純AP能力；四檔配套／capture引用完整，所有敘事寫既有etymology。不同id/name/tags不作差異，最近全文已讀；平衡與AI實際用招未驗。 單體range3、pierce8與cone range2、kinetic5/CD1是不同選擇；維持6AP與暴露腹核，不宣稱砂扇成長或升級，不能文案新增防護。 主線追加：正文不是能力教學換名，不結尾塞無二名／屍改規則排除；至少2篇換事件／視角，垂帆必改；舊稿留round3-monster-rejected-prose.json。",
+   "fullTextRead": {
+    "file": "content/base/species/grit-fan.json",
+    "sha256": "491f2565a492510dd8bab6bf1d18575df9c2371e9441329bd5ef34a0d95b99f1",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "finalNarrativeComparison": "改以記錄員對照兩名證詞及帆布痕跡，修正蟲群數量未核；不是岸邊兩機掩護撤退。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  },
+  {
+   "id": "wn-r3-turning-foam",
+   "category": "monsters",
+   "nearestExisting": {
+    "id": "species/split-fin",
+    "file": "content/base/species/split-fin.json",
+    "comparison": "同400HP五部位骨架、同甩尾增益；原unit1–3 pierce18無冷卻主招，本列換cone1–3 acid10/CD2，失去冷卻間的單體追擊。"
+   },
+   "similarity": "與岔鰭共享骨架與短效自保，與沫顎／礫鬃共享噴沫；未重出其「單體＋範圍」組合。",
+   "substantiveDifference": "相對岔鰭，3AP/CD2與骨架不變，以單體pierce18換定向cone acid10，失去單體集中傷害而取得範圍，並非新增冷卻代價。相對沫顎／礫鬃，刪除其單體啃咬／撞擊填空，改短效自保；尾破永久閃避-6，捕捉不要求manipulator。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "主線全文抽查三種敘事同構：岸邊發現→雙機試招／冷卻教學→拘束／屍改說明；至少2種換主要事件視角，垂帆必改。機制配套保留。",
+   "requiredConstraints": "保持grade/bodyPlan和純AP能力；四檔配套／capture引用完整，所有敘事寫既有etymology。不同id/name/tags不作差異，最近全文已讀；平衡與AI實際用招未驗。 唯一傷害招cone/CD2，空窗無單體填招；self只閃避+8/先手+2，非免費移動。尾破壞減閃避，不能寫自動禁招。 主線追加：正文不是能力教學換名，不結尾塞無二名／屍改規則排除；至少2篇換事件／視角，垂帆必改；舊稿留round3-monster-rejected-prose.json。",
+   "fullTextRead": {
+    "file": "content/base/species/split-fin.json",
+    "sha256": "48505a19ce9652069c2f858995f37f016bc7d7202820b31891bfe991bda1f4a5",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "mechanicalCorrection": "岔鰭原分水追咬也是3AP/CD2；領導補讀能力全文確認，不以新增空窗作差異。實質差異為單體pierce18換定向cone acid10，與沫顎/礫鬃則是移除單體填空。",
+   "finalNarrativeComparison": "為取樣工單及割纜棄匣、領款落空，較 wl-gravel-mane 岸防隊分兩方向攻獸及拘束登記不同；仍共用沿岸噴沫場景。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  },
+  {
+   "id": "wn-r3-trailing-sail",
+   "category": "monsters",
+   "nearestExisting": {
+    "id": "species/hollow-sail",
+    "file": "content/base/species/hollow-sail.json",
+    "comparison": "同不對稱400HP骨架與unit2–6 energy16；原第二招self閃避+10/先手+2且guerrilla。本列換unit1–2 kinetic12＋敵evasion-8/initiative-2兩回合/CD2，profile改stalker；不再自保。"
+   },
+   "similarity": "最近空帆，保留遠射但第二個動詞從保自己改為絆近敵；抱樁則是純近戰減益。",
+   "substantiveDifference": "self防禦替換為對敵短距減益並改AI意圖，付出失去捲帆的代價；其近距招CD2不能保證無縫近戰，不能把拖行名稱解讀成推拉、拘束或移動封鎖。",
+   "decision": "approve-revised-and-deduped",
+   "reason": "主線全文抽查三種敘事同構：岸邊發現→雙機試招／冷卻教學→拘束／屍改說明；至少2種換主要事件視角，垂帆必改。機制配套保留。",
+   "requiredConstraints": "保持grade/bodyPlan和純AP能力；四檔配套／capture引用完整，所有敘事寫既有etymology。不同id/name/tags不作差異，最近全文已讀；平衡與AI實際用招未驗。 遠射min2；近絆足CD2只降evasion/initiative，不推拉、拘束或immobilized；移除self自保且保留貼身空窗。 主線追加：正文不是能力教學換名，不結尾塞無二名／屍改規則排除；至少2篇換事件／視角，垂帆必改；舊稿留round3-monster-rejected-prose.json。",
+   "fullTextRead": {
+    "file": "content/base/species/hollow-sail.json",
+    "sha256": "3263707653a2abc929dcbd990daab1df04a98d3c047c19893c79801f1e8fcbf8",
+    "reader": "lead",
+    "version": "主樹最新全文"
+   },
+   "narrativeNearestExisting": {
+    "id": "species/wl-slant-veil",
+    "file": "content/base/species/wl-slant-veil.json",
+    "sha256": "973955fb59eb2296baa0955d635aa17c28b20754846a43cd2b486c6e6e57aa00",
+    "fullTextReadBy": "lead",
+    "similarity": "半幅亮衣/帆、水面、護堤機、薄側弱點、量身鎖囊結尾完整節拍近似",
+    "decision": "reject-original-prose"
+   },
+   "finalNarrativeComparison": "修理棚以獸擊與退行撞架分帳為爭議；wl-slant-veil 是夜班堤岸初見、鏡衣祈手交戰及拘束，事件、視角、結果不同。",
+   "finalDedupDecision": "accept",
+   "dedupEvidence": "round3-dedup.json"
+  }
+ ]
+}

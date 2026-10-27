@@ -1,0 +1,58 @@
+{
+  "id": "frame/wm-r7-anvil-downbeat",
+  "name": "鐵砧-II型・踏拍",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "left-weapon": "component/fw-door-sweep",
+    "right-weapon": "component/fw-rivet-drill",
+    "system-1": "component/mx-frost-fins"
+  },
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 4,
+    "accuracy": 2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+        {
+          "to": 137.5,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 110
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 137.5
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-frame-strike"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "lineage-broken-arm",
+    "faction-anvil",
+    "mech",
+    "human",
+    "series-anvil"
+  ],
+  "nameEn": "Anvil Downbeat II",
+  "etymology": "Downbeat 是鼓槌落下的那一下，踏拍是幾個兼奏鼓樂的鐵砧駕駛替改裝機取的暱稱。斷臂血統的重臂換上門鉤與旋鉚鑿，仍由座艙裡的人驅動機甲核心。他們把鼓放在老排練室，出勤前總有人折回去摸一摸門鎖；街區落到敵隊手裡後，那道門便再也沒開過。\n\n反攻那天，熟悉鼓譜的駕駛只帶了一支舊鼓槌，塞在座艙邊。隊友壓住遠處的敵機，踏拍才靠近排練室外的轉角，以門鉤掃過近敵，接著將旋鉚鑿抵向其中一台的接合處。同伴跟進接手時，他等不及想看門後，還是先守住街口，直到敵隊退出這一段街區。\n\n幾個人下機推開門，屋裡的地板已翻成一片碎木。他們原來各站哪裡，誰的鼓總往哪邊滑，平常爭得清楚的事，這時一樣也找不回。最年輕的鼓手蹲下，拾起半截還沾著白漆的木條，想辨出是不是自己用來定位置的那一根。別人催他走，他忽然問，那今晚還練不練。\n\n他們從牆邊抬出存下的鼓，搬到街區另一頭的空地。少了舊地板替低音回響，領奏的人起先敲得很不習慣，索性換了一段曲子。修工帶著吃飯的碗過來，有人以匙柄跟拍，也有人純粹敲亂。那半截白漆木條靠在鼓旁，鼓手唱到熟悉的一句時，才把肩膀鬆下來。排練室的門暫且關上，他們一直奏到飯碗收走。"
+}

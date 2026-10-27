@@ -60,7 +60,7 @@ kill -0 "$(cat <線名>.pid)" 2>/dev/null && echo RUNNING || echo EXITED
 wf/tools/inbox_poll.sh <領導名> --wait --timeout 540
 ```
 
-Claude Code 裡的 Opus 領導也可用 Bash 的 `run_in_background` 起線（結束會回呼），但**等待本身要前景**——不可以結束回合當等待（見 [lessons](lessons.md)）。
+使用 Claude Code 的領導也可用 Bash 的 `run_in_background` 起外部線（結束會回呼；模型依 [team-model](../team-model.md)），但**等待本身要前景**——不可以結束回合當等待（見 [lessons](lessons.md)）。
 
 ## 怎麼判斷完成
 

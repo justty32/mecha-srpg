@@ -1,0 +1,73 @@
+{
+  "id": "frame/wl-longspear-lamp",
+  "name": "長槍-V4守燈型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "defaultLoadout": {
+    "right-weapon": "component/mx-radiant-rifle",
+    "left-weapon": "component/mx-singing-blade",
+    "back-1": "component/mx-ember-pod",
+    "system-1": "component/mx-essence-cell",
+    "armor-mount": "component/composite-plate",
+    "cockpit": "component/oa-cockpit-baffle",
+    "soul-core": "component/soul-core-std"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "accuracy": 4
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "mech",
+    "human",
+    "lineage-jinghai"
+  ],
+  "nameEn": "Longspear V4 Lamplighter",
+  "etymology": "Lamplighter 是替岸燈值夜的人。守燈型仍走長槍從銀環逆向流出的支系，沿用原來的胸架與流光囊，只把貼身那隻手交給鳴刃。通用圖紙在幾座港口轉過手，修理班各自添上燈塔的漆色，沒有誰因此取得整條長槍血統的專賣權。\n\n有一回，守備隊把值夜機停在燈房下，旁邊擺著尚未付款的精粹矢箱。海霧裡的獸影靠近，駕駛員先用輝光連吼逼它偏離堤面；等它攀上石階，他收回槍口，拔刃護住送油工的退路。背上的凡火矢莢仍是原有配套，對人類來犯者有用；面對怪獸，守備隊靠的是精粹兵器，不指望凡鐵燒穿獸核。\n\n流光囊讓輪守多些餘裕，卻不會讓輝光連吼整夜不停。值班的人照舊在換班前看過囊口，算好何時收槍、何時讓同伴接替。岸燈只是他們守的東西，這台長槍沒有照亮海面的新招。那晚送油工回到燈房，把染黑的布條從門把上解下來；駕駛員靠著護艙隔板聽完下一班點名，將鳴刃的鞘口擦乾，留給天亮後上機的人。"
+}

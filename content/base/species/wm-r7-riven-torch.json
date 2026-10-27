@@ -1,0 +1,64 @@
+{
+  "id": "species/wm-r7-riven-torch",
+  "name": "裂炬",
+  "family": "alien",
+  "bodyPlan": "bodyplan/alien-breakwater-clinger",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/kx-breakwater-clinger-rend",
+    "ability/kx-hollow-sail-cast"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wm-r7-bio-riven-torch"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/kx-alien-stalker",
+  "tags": [
+    "kaiju",
+    "alien"
+  ],
+  "etymology": "兩面旗攤在海崖哨臺下，一面壓著對方上次交火時削落的甲片。領隊把甲片翻過來給同伴看，問今天還有人要說那一擊算他失手嗎。另一隊的領隊已經走向自己的機甲，回了一句，叫他先想好輸了怎麼把旗捲回去。雙方約定從坡口開始，誰先登上最高那層臺，便把旗插在那裡。\n兩台機甲還隔著坡道對峙，哨臺陰影裡先伸出一條裸臂。裂炬拖著一側偏披接近，披緣的芒亮得像被撕開的火炬，一道光越過坡面，擦傷了先出發那台機甲。後方的人舉起武器，槍口在對手與異形之間移了一下，最後朝異形吼去。對面領隊在天網裡罵他瞄準點，自己也回身迎住貼近的裸臂，鎧甲被撕得一響，話便斷了半句。\n後方的機甲沿坡踏上來，與對手各自守住能站穩的地方。裂炬轉向其中一台，另一台就打；誰被逼得退步，誰先在天網裡喊開火的時候。哨臺的石邊被削下一塊，先前拿來壓旗的甲片也滾進碎石。等那副偏斜的身體終於倒下，兩台機甲的武器仍舉著，天網裡只剩各自急促的呼吸。\n有人說先出發那隊已經過了坡口，應當接著登臺；另一隊立刻指著新添的傷，問剛才若不回身，誰會先倒。兩個領隊把話接過去，吵到同伴從碎石裡撿回那塊舊甲片，這才各自走上哨臺。旗分插兩端，旗尾在風裡一再碰到一起，兩邊便各挪遠一點。\n下臺前，他們另約了一天。先出發的人說下回還是同一個坡口，後來那人伸腳擋住一小塊踏腳石，說那就記清楚從哪一塊算起。裂炬的披甲留在坡下，隊員各忙著查看機甲；有人順手把對面的旗索扶直，領隊看見，叫他先回來扶自己的。"
+}

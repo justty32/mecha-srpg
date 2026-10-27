@@ -11,7 +11,13 @@
 
 ## 最新進度
 
-- [dispatch] 2026-10-26 lead-bigfill 暫停（2026-10-26 晚）：215 件已入庫 634e7ad0 → 接續見 `wf/workflows/dispatch/handoffs/lead-bigfill/report.md`
+- [content] 第4至7輪24概念／36新JSON已帶回、暫存與更新索引，逐輪查重完成，無運行中agent；loader 0錯誤、36警告（本輪踢珠新增2），全部draft，整合留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-more-1027/README.md)。
+
+- [content] 第2、3輪共24概念／36新JSON已帶回，查重、敘事退修與索引完成；全部draft，旋沫兩條範本警告及整合／平衡留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-next-1027/README.md)。
+
+- [content] 2026-10-27 使用者授權年表 WSL MODE 誤報本次例外手動帶回：六類 34 概念、52 個新 JSON 與六條年表已全部帶回；原 gate 仍為失敗，並非改為通過。全部 draft，整合驗收與平衡留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-life-1027/README.md)。
+
+- [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 
 
 ## 各工作流 session-log
@@ -19,6 +25,6 @@
 | 工作流 | session-log | open 摘要 |
 |--------|-------------|----------|
 
-- [dispatch] 2026-10-26 lead-fill-gear open：填充機甲部件、武器、戰利品與市場商品 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-gear/`（暫停 2026-10-26 晚→接續見 report.md）
-- [dispatch] 2026-10-26 lead-fill-pilots open：暫停（2026-10-26 晚）→ 接續見 report.md；填充可玩駕駛員與船員（招募池、背景、persons、少數 lore 人物）；codex 兩段式 → 交接區 `wf/workflows/dispatch/handoffs/lead-fill-pilots/`
-- [dispatch] 2026-10-26 lead-small 暫停（2026-10-26 晚）：北岸改區＋第三刃營運未提交，接續見 handoffs/lead-small/report.md
+- [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與回家整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`，本 checkout 缺該線 report；待回家核對驗收並補收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。

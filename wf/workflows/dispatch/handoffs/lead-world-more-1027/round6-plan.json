@@ -1,0 +1,310 @@
+{
+ "contract": "wf-table/1",
+ "source": "plan-r6-REPORT.md",
+ "extracted": "2026-10-27",
+ "baseHead": "f24420b079a59a7f8e93123930665aaa824f9d00",
+ "integrationStatus": "deferred-by-user",
+ "link_columns": [],
+ "scope": "勢力6列／6新檔；來源路徑以repo根為準。",
+ "template": "content/lore/factions/wl-snowkey-guides.json（格式參考，不引用ID）",
+ "sharedConstraints": "僅lore factions；body小勢力300–600字。hq轉中文；scale依組織用途；leaders/gameRefs可空，places僅取oldIds中的place。relations依外交填合法stance，其餘中立，不替舊勢力添承諾。只引用oldIds；wl/wn/wm僅查重。無古代機、專屬研發或新能力；高旌購既有通用機，其餘無自有武裝。不硬補藍本、大戰或事件檔。新名為提案，正文不寫數量規格。",
+ "readAdded": [
+  "新線總brief",
+  "wf/workflows/content/lore-text.md 勢力段",
+  "content/lore/README.md factions欄位段"
+ ],
+ "readInherited": "共通、文風、人物及世界柱規矩沿前輪；每列兩近似main全文，含wl/wn/wm。",
+ "columns": [
+  "id",
+  "name",
+  "aka",
+  "category",
+  "type",
+  "founded",
+  "hq",
+  "targetFiles",
+  "organizationUse",
+  "desire",
+  "collectiveAction",
+  "conflict",
+  "result",
+  "ideology",
+  "diplomacy",
+  "supply",
+  "nearest",
+  "difference",
+  "oldIds",
+  "decision",
+  "rejectedRevision"
+ ],
+ "rows": [
+  {
+   "id": "faction/wm-r6-turning-page-caravan",
+   "name": "翻頁巡書隊",
+   "aka": [
+    "Turning Page Caravan"
+   ],
+   "category": "factions",
+   "type": "小勢力",
+   "founded": 2105,
+   "hq": "almaty",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-turning-page-caravan.json"
+   ],
+   "organizationUse": "書車、裝訂工與教讀者沿許可商路送書、修書。",
+   "desire": "想讓固定商路上的聚落收書後，也能自己把長篇講給旁人聽。",
+   "collectiveAction": "原先只停站卸書，卻被聽眾留住說書；隊伍拆出一組留下帶居民輪讀，其餘書車按約送往下一站。",
+   "conflict": "最會講故事的搬工想留下當中心，居民開始學他的腔調又自行改講，他反而提前隨車離開。",
+   "result": "回程時居民已輪流接講，他藏在車後聽自己的口氣被模仿，仍不肯進場接下一段。",
+   "ideology": "下一頁，也要送到。",
+   "diplomacy": "兩者中立：遵商路許可，做普通書業往來，不受學會統一編選。",
+   "supply": "供護車者食宿、小修工具與日用品；危險段另雇合法護衛，不供精粹兵器。",
+   "nearest": [
+    {
+     "id": "faction/ring-caravan",
+     "file": "content/lore/factions/ring-caravan.json",
+     "sha256": "1db4f60caefdbdcedc720b3bc5acaf38c435efcc28d815937566c4139a7375aa",
+     "comparison": "同運隊；此處只送修普通書，無武裝外環或軍需總供給。"
+    },
+    {
+     "id": "place/wm-r5-almaty-blind-books",
+     "file": "content/lore/places/wm-r5-almaty-blind-books.json",
+     "sha256": "4e69c2d06b06c22f6126b24de7def977238d8cb22f6eedf88dc2cf6b462ebd3c",
+     "comparison": "原案不同譯本偏好/並存等續篇重演書閣趣味衝突，退回；修成送書與留人輪讀、說書者被模仿又不肯回場。"
+    }
+   ],
+   "difference": "集體運送與教讀真分工，留下的人使說書者失去中心位置；不是兩版本口味辯論或匿名追人。",
+   "oldIds": [
+    "place/almaty",
+    "faction/central-asia-umbrella",
+    "faction/shell-society"
+   ],
+   "decision": "adopt",
+   "rejectedRevision": {
+    "original": {
+     "desire": "讓讀不到結尾的聚落收到下一冊。",
+     "collectiveAction": "分車送出兩種譯本，沿站收回續借要求。",
+     "conflict": "各地偏愛不同譯本，編者互要對方撤版。",
+     "result": "保留兩版，書架越做越雜，最後一卷仍無人讓稿。",
+     "difference": "送達成果分裂編選共識；車隊、印裝與教讀構成行動能力。"
+    },
+    "reason": "最相近應納入wm-r5盲封書閣；版本各有擁護者與續篇等待過近。"
+   }
+  },
+  {
+   "id": "faction/wm-r6-joined-eaves",
+   "name": "合簷營造社",
+   "aka": [
+    "Joined Eaves"
+   ],
+   "category": "factions",
+   "type": "小勢力",
+   "founded": 2104,
+   "hq": "montreal",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-joined-eaves.json"
+   ],
+   "organizationUse": "木工、繩工與搬工合組工班，共備工具、車架、可拆棚料。",
+   "desire": "將整條工作街接在同一片簷下。",
+   "collectiveAction": "分段架棚，抬最後一段到院口接合兩端。",
+   "conflict": "庭院要採光，工坊要雨天不必露天搬料。",
+   "result": "中央段收回，兩翼遮雨；留著接縫繼續想辦法。",
+   "ideology": "簷下要站得下人。",
+   "diplomacy": "兩者中立：承地方營造委託、尊重院地主張，無強徵權。",
+   "supply": "給護工者飯宿、木料修補，護衛另約；不修核心或生產新機型。",
+   "nearest": [
+    {
+     "id": "faction/dhaka-weavers",
+     "file": "content/lore/factions/dhaka-weavers.json",
+     "sha256": "3317389e744a74d0b737702f9c79a2bc8a65d0a5d3904b340ec4673209d1b0f8",
+     "comparison": "同工匠集體；此處現地搭棚，無廠區治理、織工衛或守城恩債。"
+    },
+    {
+     "id": "place/wm-r5-montreal-discard-loft",
+     "file": "content/lore/places/wm-r5-montreal-discard-loft.json",
+     "sha256": "46b9ea99b55c1fe18188d3f9d223c9758c9195a8f0112fcd6611795c77059c2c",
+     "comparison": "同大件空間衝突；此處留下實用兩翼，不是暫展再拆作品。"
+    }
+   ],
+   "difference": "能調工料、建成部分設施；整體野心未成，仍有實際使用者。",
+   "oldIds": [
+    "place/montreal",
+    "faction/shell-society",
+    "faction/north-american-umbrella"
+   ],
+   "decision": "adopt"
+  },
+  {
+   "id": "faction/wm-r6-reedspan-company",
+   "name": "蘆梁渡工聯隊",
+   "aka": [
+    "Reedspan Company"
+   ],
+   "category": "factions",
+   "type": "小勢力",
+   "founded": 2106,
+   "hq": "mombasa",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-reedspan-company.json"
+   ],
+   "organizationUse": "岸工共用可拆棧板、普通工作艇與纜具，搭短程臨時人行通道。",
+   "desire": "將總得繞行的兩處岸地接成直路。",
+   "collectiveAction": "兩端接短棧，先徒手走通，再試搬日常工具。",
+   "conflict": "商家催開重車，隊內也有人急接大單。",
+   "result": "只開人行段，重車仍繞路；寬橋圖還缺材料人手。",
+   "ideology": "先讓腳到對岸。",
+   "diplomacy": "兩者中立：雙籤城逐次取得地方施工許可，無跨傘交通裁決權。",
+   "supply": "備繩板飲水、工作艇，可接護工約；不載機、不跨海，不保證海獸來時通行。",
+   "nearest": [
+    {
+     "id": "faction/wl-snowkey-guides",
+     "file": "content/lore/factions/wl-snowkey-guides.json",
+     "sha256": "7962fd5109a10f3e30f0a89da994beafeeda50cae75399aca8878ce4cefc1059",
+     "comparison": "同助人抵達；嚮導賣熟路，此處共同搭出原本沒有的通道。"
+    },
+    {
+     "id": "faction/wn-r2-salt-mark-hunt-compact",
+     "file": "content/lore/factions/wn-r2-salt-mark-hunt-compact.json",
+     "sha256": "b91dc00c0805fc96900acf1dc755f7f41571686c081e70881e19e52ee720a864",
+     "comparison": "同多隊合資產；此處受橋面能力限制，不扣索逼分獸屍。"
+    }
+   ],
+   "difference": "合作衝突在用途擴張，有限通行成功；不靠搶客互扣分贓。",
+   "oldIds": [
+    "place/mombasa",
+    "faction/sub-saharan-umbrella",
+    "faction/league"
+   ],
+   "decision": "adopt"
+  },
+  {
+   "id": "faction/wm-r6-open-step-workers",
+   "name": "開階工友社",
+   "aka": [
+    "Open Step Workers"
+   ],
+   "category": "factions",
+   "type": "小勢力",
+   "founded": 2105,
+   "hq": "busan",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-open-step-workers.json"
+   ],
+   "organizationUse": "木工與手推椅使用者共備踏板、扶手及推行人手，接民居戲棚通行改造。",
+   "desire": "到場者能自己選座，不必被抬進最後一排。",
+   "collectiveAction": "成員帶椅與木料試走入口，開演前搭可拆坡板。",
+   "conflict": "棚主不肯永久改階，散場人潮又要先收板。",
+   "result": "輪值守到最後一位離場才拆；永久改造仍談不攏。",
+   "ideology": "門開了，還要進得去。",
+   "diplomacy": "兩者中立：接民用與個人委託，不代表軍方、醫療機構或全部退役者。",
+   "supply": "借推行工具、搬運及修木件；不治傷、恢復肢體或加戰鬥能力。",
+   "nearest": [
+    {
+     "id": "faction/old-arms-makers",
+     "file": "content/lore/factions/old-arms-makers.json",
+     "sha256": "9619acdce331786a6c1e89bfa0e0297166fb7c12b15e6a41ce0331aec5286ba7",
+     "comparison": "同製作修造；此處改普通場所通行，不做軍備配件保全。"
+    },
+    {
+     "id": "character/wl-choi-eunsol",
+     "file": "content/lore/characters/wl-choi-eunsol.json",
+     "sha256": "41efc1f8b1ad8dabe264eb5fdcc234e10c2d96891d59c2dddbb947880ad0c48c",
+     "comparison": "同傷後生活與戲棚；此處改入口，不用傷腿賣票或代學員決定上臺。"
+    }
+   ],
+   "difference": "成員自己試用、集體維持通道，改變實際空間，非勸傷員勇敢演出。",
+   "oldIds": [
+    "place/busan",
+    "faction/busan",
+    "faction/third-blade"
+   ],
+   "decision": "adopt"
+  },
+  {
+   "id": "faction/wm-r6-late-star-relief",
+   "name": "晚星換班社",
+   "aka": [
+    "Late Star Relief"
+   ],
+   "category": "factions",
+   "type": "小勢力",
+   "founded": 2106,
+   "hq": "singapore",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-late-star-relief.json"
+   ],
+   "organizationUse": "岸上裝卸、清掃、廚務熟手組替班隊，按既有技能接短班，自備日常工具。",
+   "desire": "伴侶不必永遠隔著班次吃飯。",
+   "collectiveAction": "接起數處岸務短班，替原班人空出一晚，分組收尾。",
+   "conflict": "別人同桌了，替班者自己的空檔又錯開。",
+   "result": "收班後將晚宴改成早飯；下次還要爭誰先休。",
+   "ideology": "把一晚還給人。",
+   "diplomacy": "兩者中立：逐次接岸務外包，與雇主約定交接，不改國家勞務制度。",
+   "supply": "做一般搬運炊掃、供水簡餐；不代未受訓駕駛、導航、武裝值更或拘束艙工作。",
+   "nearest": [
+    {
+     "id": "faction/lunar-ferry-crews",
+     "file": "content/lore/factions/lunar-ferry-crews.json",
+     "sha256": "51786e778d16c524a4c9468cbd3043268e5aee6e9730bb52aa4a4d94296cdf2d",
+     "comparison": "同分工維持班次；此處地面受約替班，不開渡月船或讓全船等人。"
+    },
+    {
+     "id": "character/wm-r4-song-jaeyun",
+     "file": "content/lore/characters/wm-r4-song-jaeyun.json",
+     "sha256": "2be3099e0f06538ad5eefebfffc967584488ceddf6178b412ddef57f344789cb",
+     "comparison": "同私人休息；宋已休假與父親較勁，此處先組織出可同休時間。"
+    }
+   ],
+   "difference": "技能時段接合，成功替別人放假卻難自己同休，並非工會名冊。",
+   "oldIds": [
+    "place/singapore",
+    "faction/selene",
+    "faction/league"
+   ],
+   "decision": "adopt"
+  },
+  {
+   "id": "faction/wm-r6-high-pennant-hunters",
+   "name": "高旌獵團",
+   "aka": [
+    "High Pennant Hunters"
+   ],
+   "category": "factions",
+   "type": "獵團",
+   "founded": 2107,
+   "hq": "busan",
+   "targetFiles": [
+    "content/lore/factions/wm-r6-high-pennant-hunters.json"
+   ],
+   "organizationUse": "機械系駕駛與修工合購少量堅盾、鐵劍，接陸上護衛、側門警戒及交戰護工。",
+   "desire": "真出勤時把團旗掛得比雇主醒目。",
+   "collectiveAction": "輪換守交火街區側門，空出人手沿樓梯搬旗，未放空守位。",
+   "conflict": "門守住，大旗卡狹檐；雇主主隊在另一面受喝采。",
+   "result": "抱回未展全的旗，有人笑太大，有人堅持下次換更高旗桿。",
+   "ideology": "守得住，也要看得見。",
+   "diplomacy": "釜山友好、第三刃中立：受地方委託，敬本事也競逐名聲，不代城防調度。",
+   "supply": "合備有限甲片、精粹矢，向商販買既有機型物料；無古代機、專屬血統或免費核心。",
+   "nearest": [
+    {
+     "id": "faction/wl-afterbeat-hunters",
+     "file": "content/lore/factions/wl-afterbeat-hunters.json",
+     "sha256": "21bf0b22d7825702d30a6968ab43eb4147d33f43085bd074de41f3d1d1d7c8ba",
+     "comparison": "同釜山小團求聲望；此處真護工，無門票、羞辱敗者或退款。"
+    },
+    {
+     "id": "character/wm-r4-inez-duarte",
+     "file": "content/lore/characters/wm-r4-inez-duarte.json",
+     "sha256": "c1a2da6a6f769dd18e706821dbce4a159a6b0f98e1f81643c790da40a0e5b7c8",
+     "comparison": "同大旗與領隊野心；伊內絲招募未成，高旌已有機與輪班，真完成守位但旗未展，不可又以收短旗/僅一人留下結尾。"
+    }
+   ],
+   "difference": "任務成功、宣傳失敗並存；完成職責未消掉野心，非售票演武。",
+   "oldIds": [
+    "place/busan",
+    "faction/busan",
+    "faction/third-blade"
+   ],
+   "decision": "adopt"
+  }
+ ]
+}

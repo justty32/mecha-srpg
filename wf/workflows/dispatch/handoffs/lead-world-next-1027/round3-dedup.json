@@ -1,0 +1,612 @@
+{
+ "contract": "wf-table/1",
+ "source": "dedup-r3-REPORT.md",
+ "extracted": "2026-10-27",
+ "link_columns": [],
+ "scope": "僅成稿功能近似初查；未驗整合與平衡",
+ "status": "six-reviewed",
+ "columns": [
+  "id",
+  "category",
+  "candidateFiles",
+  "nearestExisting",
+  "similarity",
+  "substantiveDifference",
+  "decision",
+  "reason",
+  "fullTextRead",
+  "newMutualComparison",
+  "legality",
+  "proseComparison"
+ ],
+ "rows": [
+  {
+   "id": "wn-r3-anvil-fan",
+   "category": "mech",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-anvil-fan.json",
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-anvil-fan.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/anvil-trestle-ii",
+    "file": "content/base/frames/anvil-trestle-ii.json"
+   },
+   "similarity": "同 C 與四足核心結構、熱池及鐵拳，均是斷臂前足雙武器；另比吊鉚與 wl-anvil-cable。",
+   "substantiveDifference": "舊機短距斷臂樁加鳴刃；新機 1–3 格 cone energy 12／4AP／燼16／冷卻2，配貼身 thermal 18 鋸，從單體破甲改近距掃面。",
+   "decision": "accept",
+   "reason": "修稿以試機、成本與檢修工時計價的勞資爭議為主，較 wl-bulwark-ferry 守船撤人及 wl-anvil-cable 貨棧救援的情節走向不同；功能仍為近距掃面加鋸。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-anvil-fan.json",
+     "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-anvil-fan.json",
+     "sha256": "31a110a2f8cf509ed767fb6a9c17473b75205da0eb187057651a414dad207b87"
+    },
+    {
+     "file": "content/base/frames/anvil-trestle-ii.json",
+     "sha256": "bf69b02b303442746d0ccf2a2df4691c6f08de1607c7dbb8bfc3f11fa430997d"
+    },
+    {
+     "file": "content/base/frames/anvil-hoist-ii.json",
+     "sha256": "8f918ff209bb0addfc2f38f9a2f28ee9ecce0c982b54f03ce58959fd66afc32e"
+    },
+    {
+     "file": "content/base/frames/wl-anvil-cable.json",
+     "sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee"
+    },
+    {
+     "file": "content/base/bodyplans/m2-quadruped-c.json",
+     "sha256": "cabfb8f177ead3dc82c1316dc2ede997a83f3307846d7c80963d8072d4d3bc8e"
+    },
+    {
+     "file": "content/base/abilities/mx-frame-strike.json",
+     "sha256": "beafbf8fa04f8762aa60cbb5433f3d7bb3b9364be8221e79fd5126adf3c9e285"
+    },
+    {
+     "file": "content/base/components/fw-fan-tube.json",
+     "sha256": "d6197d4f09babd99fc38de681ba7ffb9383d4ec86453babd3d04fd6ff11d65a7"
+    },
+    {
+     "file": "content/base/abilities/fw-fan-tube-use.json",
+     "sha256": "2bff2de942223df4c11b2dbf01c3733d9c6768abe5d871c8fca033c7f6a053d7"
+    },
+    {
+     "file": "content/base/components/mx-molten-saw.json",
+     "sha256": "f69bec618249df2802300e6ad64ed851b67c09b6451f6113c7bee3bacc124e92"
+    },
+    {
+     "file": "content/base/abilities/mx-molten-cut.json",
+     "sha256": "40a8c7381a52938e58e577de2fafee97ab96014378b1160735a7af16f589bfb9"
+    },
+    {
+     "file": "content/base/effects/mx-burning.json",
+     "sha256": "ae8a8ea703010ac231218ba1eac7f0999c512a874e0c6e6d06c2ad6e892d5adc"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c"
+    },
+    {
+     "file": "content/base/components/mx-brokenarm-stake.json",
+     "sha256": "73ce874b7082f6be7811579e227ddebfe86819845055d687be7cbc1b2a117059"
+    },
+    {
+     "file": "content/base/abilities/mx-stake-drive.json",
+     "sha256": "969e27b7d89e319b85a83ca6dfde7253172230e995f25d08615076f9c9036a17"
+    },
+    {
+     "file": "content/base/effects/mx-staggered.json",
+     "sha256": "8ad801794bdc6814fa333610713ee9f282f0d4e1eb6d29623e20147e1f63f74a"
+    },
+    {
+     "file": "content/base/components/mx-singing-blade.json",
+     "sha256": "bf947c3ef56405776aae3a620dbb61697f6f817d9964c4caf61472a79e2a9e1b"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-slash.json",
+     "sha256": "d60708a8eabd3fffe0004214dc0a0d5f3c9d492b3cb07e80189f7862d7682a8a"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-riposte.json",
+     "sha256": "730e56e232fa1f1962b50cab6f71ffb305957953be76218df7f1f92ac98892a7"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae"
+    }
+   ],
+   "newMutualComparison": "三稿分別為短程掃面、近距留置及友軍支援；級別、骨架及能力配置均不同。",
+   "legality": "已核槽位 id／type／size，core 與 pilot 座及 cockpit 存在；非凡鐵武器、能力所需池存在，model tier 符合，mass 分別為 9／8／12（本列按候選次序）。運行時未驗。",
+   "proseComparison": "修稿以試機、成本與檢修工時計價的勞資爭議為主，較 wl-bulwark-ferry 守船撤人及 wl-anvil-cable 貨棧救援的情節走向不同；功能仍為近距掃面加鋸。"
+  },
+  {
+   "id": "wn-r3-needlefish-stay",
+   "category": "mech",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-needlefish-stay.json",
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-needlefish-stay.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/thirdblade-needlefish-ii",
+    "file": "content/base/frames/thirdblade-needlefish-ii.json"
+   },
+   "similarity": "同 C 浮行骨架、熱池、無固有能力；另比拘束定盤與 wl-swordfish-return。",
+   "substantiveDifference": "原機曲射加鳴鰭與標敵；新機 1–2 格停步索、3AP 燼8 無矢池，配 1 格鳴刃和敵方離身反擊，放棄標記與遠距。",
+   "decision": "accept",
+   "reason": "修稿為人類機隊交戰後停火、拒殺與報酬代價，較 wl-swordfish-return 掩護撤船及 wl-bulwark-ferry 守渡口不同；功能仍為短距留置加鳴刃。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-needlefish-stay.json",
+     "sha256": "a8567d445890c66f5bac9380f5e8f63d401f35c2f774ae2159172b50d325f5fe"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-needlefish-stay.json",
+     "sha256": "d1888118651e6beccabd39aaa55dc4b7c0da46e372286d7ce7000f85228ce9ef"
+    },
+    {
+     "file": "content/base/frames/thirdblade-needlefish-ii.json",
+     "sha256": "9f9bf5a9349517ba865fe6ba97945372c2be4c6b541ce01551be9466b7af6e20"
+    },
+    {
+     "file": "content/base/frames/shellsoc-tripod-c.json",
+     "sha256": "c67d7a4681bf04ff4edce154088ba4e7ce742c87728ca725ae0bf11d92c2dee3"
+    },
+    {
+     "file": "content/base/frames/wl-swordfish-return.json",
+     "sha256": "6cace0fe87e406cb13b249bd774ebce802609c970e195d4fc7f27d330ff50c9e"
+    },
+    {
+     "file": "content/base/bodyplans/mx-hover-c.json",
+     "sha256": "4cd05733871c5fcc27bc5e8f3a652c13c7e93e424fc975a49f36cf4dc21063b7"
+    },
+    {
+     "file": "content/base/components/fw-stayline.json",
+     "sha256": "8054308931336367b16e23991987653274a2eae1f4c5b4d70b4756aafca89afb"
+    },
+    {
+     "file": "content/base/abilities/fw-stayline-use.json",
+     "sha256": "aa3b4c31ed45aad92ea883a35973148eda5594baf1d6f056338fd40d80253536"
+    },
+    {
+     "file": "content/base/effects/mx-netted.json",
+     "sha256": "d8127e0912412f25e99afbfebe7ea49312586f8ea7b956098cd5b01b93503159"
+    },
+    {
+     "file": "content/base/components/mx-singing-blade.json",
+     "sha256": "bf947c3ef56405776aae3a620dbb61697f6f817d9964c4caf61472a79e2a9e1b"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-slash.json",
+     "sha256": "d60708a8eabd3fffe0004214dc0a0d5f3c9d492b3cb07e80189f7862d7682a8a"
+    },
+    {
+     "file": "content/base/abilities/mx-singing-riposte.json",
+     "sha256": "730e56e232fa1f1962b50cab6f71ffb305957953be76218df7f1f92ac98892a7"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c"
+    },
+    {
+     "file": "content/base/components/mx-shard-grenade.json",
+     "sha256": "c4cb1c62f4c58a0ca5f2550af59a3fe368d8926d0643069068c395d278beea68"
+    },
+    {
+     "file": "content/base/abilities/mx-shard-lob.json",
+     "sha256": "02e4bf886679da0d91a8713dde434dfe9724ed257acef81e56fb656d42f52f55"
+    },
+    {
+     "file": "content/base/components/cx3-skimming-fin.json",
+     "sha256": "a26e7fa64b0237909c6ec051e5f37390c89a0b1264000bc6a4126498f580f67c"
+    },
+    {
+     "file": "content/base/abilities/cx3-skimming-fin.json",
+     "sha256": "27bdb22b1df4056b9415d9c23df211b0a401d5f9ccdaeb2d12cab9506f202191"
+    },
+    {
+     "file": "content/base/components/mx-thousand-eye.json",
+     "sha256": "015c464d55dabc78048dacee6c4a09c910b43e41a7f3f295cc08fede6fe99e24"
+    },
+    {
+     "file": "content/base/abilities/mx-thousand-gaze.json",
+     "sha256": "151abf6945e765024967856fdee105385430d9fd6272cb217a9074dc7c31d89b"
+    },
+    {
+     "file": "content/base/effects/mx-marked.json",
+     "sha256": "f4d5bfd6fd438969ffa0fbb1f92dd80e99075d27531a57cb6212599621947722"
+    },
+    {
+     "file": "content/base/components/mx-tide-leap.json",
+     "sha256": "b4d129e1327969c27aa92e7b1255d228cbbaf37616c40b61b8440dfc395bacb4"
+    },
+    {
+     "file": "content/base/abilities/mx-tide-leap-up.json",
+     "sha256": "826270af1695b8d5b68382e8968474e83a4a4dee9234bba373b70bc034a4dd55"
+    },
+    {
+     "file": "content/base/effects/mx-airborne.json",
+     "sha256": "463bacb08deb4a6839d8ea27744d9b494ba3c9238511e8787da1f03b6a8fba28"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae"
+    }
+   ],
+   "newMutualComparison": "三稿分別為短程掃面、近距留置及友軍支援；級別、骨架及能力配置均不同。",
+   "legality": "已核槽位 id／type／size，core 與 pilot 座及 cockpit 存在；非凡鐵武器、能力所需池存在，model tier 符合，mass 分別為 9／8／12（本列按候選次序）。運行時未驗。",
+   "proseComparison": "修稿為人類機隊交戰後停火、拒殺與報酬代價，較 wl-swordfish-return 掩護撤船及 wl-bulwark-ferry 守渡口不同；功能仍為短距留置加鳴刃。"
+  },
+  {
+   "id": "wn-r3-surveyor-bearer",
+   "category": "mech",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-surveyor-bearer.json",
+    ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-surveyor-bearer.json"
+   ],
+   "nearestExisting": {
+    "id": "frame/cn-yoke-i",
+    "file": "content/base/frames/cn-yoke-i.json"
+   },
+   "similarity": "同 B 六足與雙池且偏友機支援；另比同骨架 shellsoc-archive-b 與 wl-surveyor-trace。",
+   "substantiveDifference": "舊機遠護及排燼扶架；新機改成單友 accuracy+8/perception+3 一回合及 evasion+10/accuracy-5 兩回合，各限兩次，並有射程1–7 光矢及1–2蛇鞭。",
+   "decision": "accept",
+   "reason": "修稿改聯隊搶功與支援工資分帳，報點與煙護是能力共通，但不存在 wl-surveyor-trace 的海岸拓片護勘撤船情節。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/frames/wn-r3-surveyor-bearer.json",
+     "sha256": "108df560e6365e97b42da0d286de6e84d13757c8c54b0c27d7d0da7388cbeb74"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-mechs-1027/content/base/world/models/wn-r3-surveyor-bearer.json",
+     "sha256": "2a80fb95d3e9f37b80716385684e024f329fe2bb2bca7603d42efd8374075c53"
+    },
+    {
+     "file": "content/base/frames/cn-yoke-i.json",
+     "sha256": "e2f5773c16674f2ead175e28de4337f5a679b25eced62e56b031c308ddb3648c"
+    },
+    {
+     "file": "content/base/frames/shellsoc-archive-b.json",
+     "sha256": "86bc0557baaad86d693f108813e1a9e3808662ffe1eedbc7a0ea8071a1532434"
+    },
+    {
+     "file": "content/base/frames/wl-surveyor-trace.json",
+     "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e"
+    },
+    {
+     "file": "content/base/bodyplans/m2-hexapod-b.json",
+     "sha256": "559404531fbd764b6ef97ae0355603684bc6d72e67e303a47de9933c81265f38"
+    },
+    {
+     "file": "content/base/components/mx-radiant-rifle.json",
+     "sha256": "ac25d5f351413fc4222b46fd98c9d1e29e62fb69a8863a7b388df971b736a60b"
+    },
+    {
+     "file": "content/base/abilities/mx-radiant-shot.json",
+     "sha256": "01ea0b49efa4ddf8357194b86bd3c78f5bc4b696feaf3a3e83028eb70cc855de"
+    },
+    {
+     "file": "content/base/components/mx-thunder-serpent.json",
+     "sha256": "42b30ea4bf5c3e16525ec33c7006d5765157970436d37118cce8cb9ba95739f2"
+    },
+    {
+     "file": "content/base/abilities/mx-serpent-lash.json",
+     "sha256": "5d7ca27f03dabb2036104730f32704b792e5cd0fa319af519149d0bf00487987"
+    },
+    {
+     "file": "content/base/effects/mx-numbed.json",
+     "sha256": "03496483e88f99274bd3aa35feec977f7e0d7afdba4dbce3710800846a4ce91f"
+    },
+    {
+     "file": "content/base/components/fa-shared-bearing.json",
+     "sha256": "8bd941c57d61355e8e7ed96a65d245e589d7719ca545d80cd898da77f7628224"
+    },
+    {
+     "file": "content/base/abilities/fa-lend-bearing.json",
+     "sha256": "633d46dd303bee6ffa6814084227367773a5724ed9d2a50a821f5288403b03c4"
+    },
+    {
+     "file": "content/base/effects/fa-aligned.json",
+     "sha256": "345c0cf548a3314a3c9c930e31d49eb73364ce1b6826ec085d400181c69525e8"
+    },
+    {
+     "file": "content/base/components/fa-escort-lantern.json",
+     "sha256": "c02a1604e47382f576adaeed659a257b27a220447c3604e8bbb5cd3a3cf1af36"
+    },
+    {
+     "file": "content/base/abilities/fa-cover-companion.json",
+     "sha256": "f0369dec15648b25424107ed5fac2610e4bc7fe22ed689de43085f93d970a0df"
+    },
+    {
+     "file": "content/base/effects/fa-escorted.json",
+     "sha256": "c66748ec18c2ac2821b5390e1ac60c81966e8da977954cd2784313cabe5dab43"
+    },
+    {
+     "file": "content/base/components/oa-cockpit-baffle.json",
+     "sha256": "3b64e0d40393a56b19d29401d00255ec454baac0a18de197c6ded0d6af51e11c"
+    },
+    {
+     "file": "content/base/abilities/mx-old-city-wall.json",
+     "sha256": "5c8648fc448adfe8d412f59db0c02b5b05a26b507075ae67f333a6cf9392e3ff"
+    },
+    {
+     "file": "content/base/effects/mx-old-city.json",
+     "sha256": "cce833d5b6969c07e493bbf78cb19b67a9cc5115ff8fe933452481fc1c14ae44"
+    },
+    {
+     "file": "content/base/components/mx-rune-rifle.json",
+     "sha256": "db2fbaa59bc4539d16235e75ea25201f3601ad9bb06ce7b12904afb65a42b978"
+    },
+    {
+     "file": "content/base/abilities/mx-rune-shot.json",
+     "sha256": "b4100decad5c629277b55406cb32a7c56bd9c7d33045ed702a26c4a563826e39"
+    },
+    {
+     "file": "content/base/components/mx-scatter-rune.json",
+     "sha256": "32de69922db44b8254169f3cfde18b4a4fa5e86bf56ccf154ed281efeb3b4524"
+    },
+    {
+     "file": "content/base/abilities/mx-scatter-blast.json",
+     "sha256": "b34b024ccbaec2f24f0fbef950871883051a82cddb553bee9deb469aed261dcf"
+    },
+    {
+     "file": "content/base/components/m2-relief-cradle.json",
+     "sha256": "378283d5c18600dbefa6577d697361e45836d55c0cdce25fd6775173c99eec9d"
+    },
+    {
+     "file": "content/base/abilities/m2-relieve-ally.json",
+     "sha256": "abd151410e426f1ebff941dd9ac8120c3e24d519f1684d7dbbcd8a1677b32fc1"
+    },
+    {
+     "file": "content/base/effects/m2-relieved.json",
+     "sha256": "a258e6544d8ddbcce6cfc5cf9b605a05e5eea982352bd8a926a52040383da1e5"
+    },
+    {
+     "file": "content/base/components/mx-frost-fins.json",
+     "sha256": "d76f3905df6398357548f183e82530d9816c5b99162fda4946e887f6bf27d8aa"
+    },
+    {
+     "file": "content/base/frames/wl-bulwark-ferry.json",
+     "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae"
+    }
+   ],
+   "newMutualComparison": "三稿分別為短程掃面、近距留置及友軍支援；級別、骨架及能力配置均不同。",
+   "legality": "已核槽位 id／type／size，core 與 pilot 座及 cockpit 存在；非凡鐵武器、能力所需池存在，model tier 符合，mass 分別為 9／8／12（本列按候選次序）。運行時未驗。",
+   "proseComparison": "修稿改聯隊搶功與支援工資分帳，報點與煙護是能力共通，但不存在 wl-surveyor-trace 的海岸拓片護勘撤船情節。"
+  },
+  {
+   "id": "wn-r3-pin-fan",
+   "category": "monster",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-pin-fan.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-pin-fan.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-pin-fan.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-pin-fan-d.json"
+   ],
+   "nearestExisting": {
+    "id": "species/grit-fan",
+    "file": "content/base/species/grit-fan.json"
+   },
+   "similarity": "同 D 蟲族、同三部位扇腹骨架、6 AP 與捕捉條件，原僅 cone 1–2 kinetic 5／2AP／CD1；亦比較鹽針及新稿。",
+   "substantiveDifference": "新增 unit 1–3 pierce 8／2AP／CD0，可攻散開目標，profile 由 swarm 改 tactical；骨架與揚砂本身相同，功能差異有限但多了穩定單體攻擊。",
+   "decision": "accept",
+   "reason": "有限功能與修稿敘事情節查重通過；不代表完整驗收。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-pin-fan.json",
+     "sha256": "bcadf71c14091044c5c68e5a63803be040bd331aed9615e2607e7763f9461507"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-pin-fan.json",
+     "sha256": "75c70ed52d2079f9065b277810417c3deedce1620f9008d8a00392bd8dabe455"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-pin-fan.json",
+     "sha256": "7f0535cfb814e929bd4b97420a73543a3be10a26486ca370b65e00c075e8c0bf"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-pin-fan-d.json",
+     "sha256": "12d94ad852a6dfe62c8d2348f6405ed558233d2852daa862c655dfe0bba61456"
+    },
+    {
+     "file": "content/base/species/grit-fan.json",
+     "sha256": "491f2565a492510dd8bab6bf1d18575df9c2371e9441329bd5ef34a0d95b99f1"
+    },
+    {
+     "file": "content/base/species/brinepin.json",
+     "sha256": "b3f3d8a3adace3c74a62de85c79b2ef27096dcb8acf80f3afc7c7194ef1aa815"
+    },
+    {
+     "file": "content/base/bodyplans/insect-grit-fan.json",
+     "sha256": "1d377b2d97afb8ab2d0c6312eff3ac7e932cd4c839c59d00f1c2d6807689dc2a"
+    },
+    {
+     "file": "content/base/aiprofiles/reaper-vanguard.json",
+     "sha256": "778ad6364823004d24cf72cfb5cf32766ae02e2b8ca0a901cac252aa36f8f8b4"
+    },
+    {
+     "file": "content/base/abilities/kx-brinepin-prick.json",
+     "sha256": "009bb52ceb1d0f4ffedb517393e8760d6e0c97f734c87c11083ec7bd21758d28"
+    },
+    {
+     "file": "content/base/abilities/kx-grit-fan-scatter.json",
+     "sha256": "fc9f7bf8405caf904e804aae2f04dfeb5afc31d42b5302a26152fb5ee24adf12"
+    },
+    {
+     "file": "content/base/aiprofiles/swarm-mite.json",
+     "sha256": "54c72900e753f0f65c41184bac851cf818604f5a4ce6caf8cf835ae0163201c1"
+    }
+   ],
+   "newMutualComparison": "三稿分屬蟲、獸、異形，骨架與單體＋扇面／扇面＋自增益／遠射＋近距減益配置不同。",
+   "legality": "同級 bodyplan core、restraint／cockpit、pilot 座、所有部位末層 structural、捕捉 function 存在；bio instinct 與種能力一致，corpse 無 instinct 且 burden 0，能力不需機體池；monster grade 與 species 一致。未驗運行。",
+   "proseComparison": "改以記錄員對照兩名證詞及帆布痕跡，修正蟲群數量未核；不是岸邊兩機掩護撤退。"
+  },
+  {
+   "id": "wn-r3-turning-foam",
+   "category": "monster",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-turning-foam.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-turning-foam.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-turning-foam.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-turning-foam-c.json"
+   ],
+   "nearestExisting": {
+    "id": "species/split-fin",
+    "file": "content/base/species/split-fin.json"
+   },
+   "similarity": "同 C 獸族、同五部位骨架、池、AI、捕捉與甩尾；亦比較沫顎和 wl-gravel-mane。",
+   "substantiveDifference": "岔鰭主招 unit 1–3 pierce18、3AP/CD2 改 cone 1–3 acid10、3AP/CD2；保留甩尾、皆有攻擊空窗；較沫顎與礫鬃無單體咬／撞填空。",
+   "decision": "accept",
+   "reason": "有限功能與修稿敘事情節查重通過；不代表完整驗收。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-turning-foam.json",
+     "sha256": "07da03712cb9fb03966fedfa3bd1801104e666f0f497f3377675562b4692d241"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-turning-foam.json",
+     "sha256": "f72c4efa45ab28cfdedb396242244d4e1eaef83e68770b5fec6fdc9cf5ccdd1d"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-turning-foam.json",
+     "sha256": "aa5d98d4d682fe6eec7edaf23afaf4e9fffd4f52a33e6a5e95caa9aab5d64a03"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-turning-foam-c.json",
+     "sha256": "5f93e87ca209d5074ad6b8fc27780f58f6fd49eb0d002ad2f34e0930e7bd41b6"
+    },
+    {
+     "file": "content/base/species/split-fin.json",
+     "sha256": "48505a19ce9652069c2f858995f37f016bc7d7202820b31891bfe991bda1f4a5"
+    },
+    {
+     "file": "content/base/species/foam-jaw.json",
+     "sha256": "7da856ad8c698bf0a4737df634b024d2e0b6d88a78d31551cd4a53d43e7947dd"
+    },
+    {
+     "file": "content/base/species/wl-gravel-mane.json",
+     "sha256": "85e91fa06821abf68782341d4ce5ac71595df15c8dc5f6d576146fd418e5eb26"
+    },
+    {
+     "file": "content/base/bodyplans/beast-split-fin.json",
+     "sha256": "6a9dfb9f5abbcd8c18d7e8797111ad7b9cfc63ba9cb2debb07378daddb55dc5f"
+    },
+    {
+     "file": "content/base/aiprofiles/guerrilla.json",
+     "sha256": "bb1a84f393a8d7b81682b35769fbce0b4e43def2ee00ad89ed93d3e4ea9c841c"
+    },
+    {
+     "file": "content/base/abilities/kx-foam-jaw-foam.json",
+     "sha256": "c5d86fbf6bb05651c33af967abe8a726a43d97e141dbbfe3f70277638dc6f83e"
+    },
+    {
+     "file": "content/base/abilities/kx-split-fin-swerve.json",
+     "sha256": "40473d1a30ad095065d81e82a83bab5500334c60f6f79f17c9f695b1530e5278"
+    },
+    {
+     "file": "content/base/effects/kx-split-fin-swerving.json",
+     "sha256": "32957721f998c67f1321dbe9f12e71aef355014209ea80ff92946b0a81c62749"
+    },
+    {
+     "file": "content/base/abilities/kx-split-fin-rush.json",
+     "sha256": "2221d9cb837ddd37734a741ca1acf0de4cfdc717dd648c0457fa156eabfed683"
+    }
+   ],
+   "newMutualComparison": "三稿分屬蟲、獸、異形，骨架與單體＋扇面／扇面＋自增益／遠射＋近距減益配置不同。",
+   "legality": "同級 bodyplan core、restraint／cockpit、pilot 座、所有部位末層 structural、捕捉 function 存在；bio instinct 與種能力一致，corpse 無 instinct 且 burden 0，能力不需機體池；monster grade 與 species 一致。未驗運行。",
+   "proseComparison": "為取樣工單及割纜棄匣、領款落空，較 wl-gravel-mane 岸防隊分兩方向攻獸及拘束登記不同；仍共用沿岸噴沫場景。"
+  },
+  {
+   "id": "wn-r3-trailing-sail",
+   "category": "monster",
+   "candidateFiles": [
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-trailing-sail.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-trailing-sail.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-trailing-sail.json",
+    ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-trailing-sail-c.json"
+   ],
+   "nearestExisting": {
+    "id": "species/hollow-sail",
+    "file": "content/base/species/hollow-sail.json"
+   },
+   "similarity": "同 C 異形、偏帆骨架、遠射與捕捉條件；亦比較抱樁、wl-slant-veil。",
+   "substantiveDifference": "原遠距 unit 2–6 energy16 配自我閃避增益；新保留遠射，換成 unit 1–2 kinetic12、命中降閃避與先手、3AP/CD2，AI 改 stalker；無自保，貼身且拖行冷卻時無可用攻擊。",
+   "decision": "accept",
+   "reason": "有限功能與修稿敘事情節查重通過；不代表完整驗收。",
+   "fullTextRead": [
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/species/wn-r3-trailing-sail.json",
+     "sha256": "0d4c4584da6ba798c62fc5fb2a8c997ca721129a03e8091ba8ab02d86accb707"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-bio-trailing-sail.json",
+     "sha256": "505277b69bdb35b8682af8225a74629283dd4e58b689c7894a93dac6544c2181"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/frames/wn-r3-corpse-trailing-sail.json",
+     "sha256": "3257bf6e4e8e222571635c70b27ef9367791070829c025cb766429e7d0bc7462"
+    },
+    {
+     "file": ".git/wf-worktrees/wn-r3-monsters-1027/content/base/monsters/wn-r3-trailing-sail-c.json",
+     "sha256": "67dc45e5ab2b404a56ef538618edcce735fc7a410dc1c3e498a0653af7a17d73"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "sha256": "3263707653a2abc929dcbd990daab1df04a98d3c047c19893c79801f1e8fcbf8"
+    },
+    {
+     "file": "content/base/species/breakwater-clinger.json",
+     "sha256": "94d1b5403d1ed49c891582c5dd7142243cad6bebd262650077c8d79ff0b191db"
+    },
+    {
+     "file": "content/base/species/wl-slant-veil.json",
+     "sha256": "973955fb59eb2296baa0955d635aa17c28b20754846a43cd2b486c6e6e57aa00"
+    },
+    {
+     "file": "content/base/bodyplans/alien-hollow-sail.json",
+     "sha256": "a4a33d97cb8dc184da6ab9837c34389c91ccd3267909a5d0c720eaa132cc4385"
+    },
+    {
+     "file": "content/base/aiprofiles/kx-alien-stalker.json",
+     "sha256": "b5c7f3af88718c08edafbbf413d358f982eeaeb11148be7b671cd573a0879b77"
+    },
+    {
+     "file": "content/base/abilities/kx-hollow-sail-cast.json",
+     "sha256": "37c5c6f1d5ff1deb3d4f86d53cd1af7ccaec01ea8cf4940ab013da29154a9e74"
+    },
+    {
+     "file": "content/base/abilities/kx-breakwater-clinger-drag.json",
+     "sha256": "315c75af6036381438f372b2073467310cf89dc1d955807cfb106079484b5a64"
+    },
+    {
+     "file": "content/base/effects/kx-breakwater-clinger-snared.json",
+     "sha256": "d4a2357058a6dd0059cdb752126094347b11f8c14b458a58474616fda41f92e2"
+    },
+    {
+     "file": "content/base/aiprofiles/guerrilla.json",
+     "sha256": "bb1a84f393a8d7b81682b35769fbce0b4e43def2ee00ad89ed93d3e4ea9c841c"
+    },
+    {
+     "file": "content/base/abilities/kx-hollow-sail-fold.json",
+     "sha256": "28ae8d1d2ab04aeb3b4216fd3009209f63cfe7670c26b433ae9d2fb7d1a076ea"
+    },
+    {
+     "file": "content/base/effects/kx-hollow-sail-folded.json",
+     "sha256": "2b1a0f10456ad1c134104c5080056c4b3e7191dfce5cbc65326dfcc6dc244d61"
+    }
+   ],
+   "newMutualComparison": "三稿分屬蟲、獸、異形，骨架與單體＋扇面／扇面＋自增益／遠射＋近距減益配置不同。",
+   "legality": "同級 bodyplan core、restraint／cockpit、pilot 座、所有部位末層 structural、捕捉 function 存在；bio instinct 與種能力一致，corpse 無 instinct 且 burden 0，能力不需機體池；monster grade 與 species 一致。未驗運行。",
+   "proseComparison": "修理棚以獸擊與退行撞架分帳為爭議；wl-slant-veil 是夜班堤岸初見、鏡衣祈手交戰及拘束，事件、視角、結果不同。"
+  }
+ ]
+}

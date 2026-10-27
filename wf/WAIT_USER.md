@@ -10,4 +10,9 @@
 
 ## 待使用者項
 
+- [content] 裁決人物清單 P01 朴仁哲失腿採前盾撞碎或閘門夾斷；其餘內容候選一併待審 → [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
+- [planning] 使用者另開 Claude Fable 後，交付 [設計報告題綱](notes/investigations/content-review-2026-10-27/fable-brief.md)；取得報告與裁決後再派實作。
+
+- [testing] 2026-10-27 使用者指定整合驗收留到家裡，公司 WSL 不安裝 → 回家通知接續後，依 [接續清單](workflows/dispatch/handoffs/next-session.md) 核對目前 HEAD 與黃金，再執行必要驗證；本次不視為已驗收。
+
 - [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)；機甲核心試玩重點見 [lead-cockpit REPORT「需要使用者決定或試玩」四點](workflows/dispatch/handoffs/done/2026-10-25/lead-cockpit/REPORT.md)（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）

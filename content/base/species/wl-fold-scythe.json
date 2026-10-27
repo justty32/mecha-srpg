@@ -1,0 +1,65 @@
+{
+  "id": "species/wl-fold-scythe",
+  "name": "折鐮",
+  "family": "insect",
+  "bodyPlan": "bodyplan/insect-reaper",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    }
+  ],
+  "abilities": [
+    "ability/reaper-cleave",
+    "ability/kx-acid-sting"
+  ],
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "manipulator"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/wl-bio-fold-scythe"
+  },
+  "behaviors": {
+    "telegraph": true
+  },
+  "aiProfile": "aiprofile/reaper-vanguard",
+  "tags": [
+    "kaiju",
+    "insect"
+  ],
+  "etymology": "港工先在海堤背面看見了一排缺口，像有人把割草的鐮刀折進石縫。搬運工提燈下去，燈光照出貼著胸節的雙鐮，鐮端正往下滴蝕露。牠們擠在同一片陰影裡，各自隨浪伸足。最靠外的一隻忽然抬起胸節，蝕露越過護欄，落在前來掩護的機甲肩頭。駕駛員退了半步，濕痕仍沿鎧甲往下咬，折起的鐮刃已經張開。\n守堤隊原本打算沿著堤腳清出通道，接戰後改從堤頂護送工人撤走。折鐮逼近時，雙鐮先向胸前收攏，跟著才是劈落；有人看見那個動作便向後退，有人為了護住搬運車，硬挨了一下。精粹刃斬開足節後，受傷的折鐮拖著腹部往海側退，後面的獸影仍從濕石下爬出來，沒有替牠掩護。\n有人想留下一具活體，拘束手便守住胸節，先斷足，再逐一打壞兩側鐮肢。搬運工在堤上等到鎮釘節鎖合攏，才把燈重新放低。拘束架裡的雙鐮已經垂下，胸節仍一下一下頂著鎖帶。工人把車推過那段堤腳，誰也沒有伸手去碰架邊滴落的蝕露。"
+}

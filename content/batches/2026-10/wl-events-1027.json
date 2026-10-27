@@ -1,0 +1,117 @@
+{
+  "contract": "content-batch/1",
+  "id": "wl-events-1027",
+  "mode": "add",
+  "status": "draft",
+  "goal": "新增六個事件概念，沿用既有世界規則並附白話審閱",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "wl-events-1027",
+    "subagents": [],
+    "planner": "gpt-6-astra"
+  },
+  "lead": "lead-world-life-1027",
+  "date": "2026-10-27",
+  "base": "f24420b079a59a7f8e93123930665aaa824f9d00",
+  "reportDir": "wf/workflows/dispatch/handoffs/lead-world-life-1027/events",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/events/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 20,
+  "allow": {
+    "kinds": [
+      "lore/events"
+    ],
+    "namePrefix": {
+      "lore/events": "wl-"
+    },
+    "modify": [
+      {
+        "path": "content/lore/timeline.json",
+        "rule": "superset"
+      }
+    ]
+  },
+  "checks": [
+    "readlist",
+    "lore"
+  ],
+  "deferredChecks": "使用者在公司不安裝；整合測試、戰鬥試玩、平衡與正式收線留回家處理，完成前不得聲稱完整 accepted。",
+  "worktree": ".git/wf-worktrees/wl-events-1027",
+  "files": [
+    "content/lore/events/wl-alpine-carbon-sheets.json",
+    "content/lore/events/wl-busan-fishmarket-ceasefire.json",
+    "content/lore/events/wl-genoa-cold-oven.json",
+    "content/lore/events/wl-gyeongju-rain-roof.json",
+    "content/lore/events/wl-quito-withdrawn-seats.json",
+    "content/lore/events/wl-titicaca-unfinished-wedding-cloth.json",
+    "content/lore/timeline.json"
+  ],
+  "ids": [
+    "event/wl-alpine-carbon-sheets",
+    "event/wl-busan-fishmarket-ceasefire",
+    "event/wl-genoa-cold-oven",
+    "event/wl-gyeongju-rain-roof",
+    "event/wl-quito-withdrawn-seats",
+    "event/wl-titicaca-unfinished-wedding-cloth"
+  ],
+  "acceptance": {
+    "batch": "wl-events-1027",
+    "round": 1,
+    "at": "2026-10-27T09:30:14",
+    "ok": false,
+    "steps": {
+      "gate": "fail"
+    },
+    "approved": [
+      "content/lore/events/wl-alpine-carbon-sheets.json",
+      "content/lore/events/wl-busan-fishmarket-ceasefire.json",
+      "content/lore/events/wl-genoa-cold-oven.json",
+      "content/lore/events/wl-gyeongju-rain-roof.json",
+      "content/lore/events/wl-quito-withdrawn-seats.json",
+      "content/lore/events/wl-titicaca-unfinished-wedding-cloth.json"
+    ],
+    "gateViolations": [
+      {
+        "path": "content/lore/timeline.json",
+        "code": "MODE",
+        "message": "檔案權限變更"
+      }
+    ]
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-27T09:30:14",
+      "ok": false,
+      "steps": {
+        "gate": "fail"
+      }
+    }
+  ],
+  "gateRejections": [
+    {
+      "path": "content/lore/timeline.json",
+      "code": "MODE",
+      "message": "檔案權限變更"
+    }
+  ],
+  "carriedToMain": true,
+  "integrationStatus": "deferred-by-user",
+  "acceptanceScope": "資料格式與引用檢查；MODE閘門未通過，依使用者本次明確授權手動帶回；整合與平衡未驗",
+  "manualCarryAuthorization": {
+    "date": "2026-10-27",
+    "source": "使用者回覆：喔喔我剛剛去廁所沒看到這個問題。好，我允許",
+    "scope": "僅本批年表 WSL MODE 誤報例外，不修改閘門或掛載",
+    "verification": "舊222條、順序與其他欄位完全不變，只插入六條；新事件六檔原閘門准入"
+  }
+}

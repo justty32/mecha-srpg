@@ -1,0 +1,58 @@
+{
+  "id": "frame/wn-r3-needlefish-stay",
+  "name": "針魚-II型・留潮",
+  "nameEn": "Needlefish Stayline II",
+  "etymology": "Stayline 是讓腳步暫停的繫索，留潮取它留住獸影的意思。第三刃沿針魚-II型的潮行架換裝，向既有學會授權的修造棚採購停步索，右臂留鳴刃。索具不耗矢，拋用卻仍積燼；駕駛員得逼近，才留得住目標。\n\n鹽場兩支受雇機隊交火後，對面的領隊開了座艙，站上胸前踏板舉起雙手。他的僚機仍握著吼砲，不肯先放。留潮型滑到近處，將停步索拋向那台舉砲的敵機；索光打裂一片外甲，對方隔著天網破口大罵。同隊一名駕駛卻催留潮趁機下刀：他的兄長倒在前一輪交火裡，雇主又許了斬首的加錢。右手鳴刃就在舉手的領隊面前，留潮的駕駛員把刃口收低，請那人先從踏板下來。\n\n索只能暫時縛住機體，那名僚機仍有槍，也仍會受傷。若他散去縛網便離身再戰，鳴刃追斬只會添上另一筆血債。留潮的駕駛員先問清兩邊是否真肯停火，再開啟自己的座艙，讓喪兄的同伴看見他的臉。對方說少拿的那份錢別想分攤，他答應了。敵方領隊走下最後一級時，鹽場裡仍沒有人放低聲音；這張斬首工單，最後少了一個領款的人。",
+  "cls": "mechanical",
+  "grade": "C",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 5,
+    "evasion": 0
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ],
+          "from": 100
+        },
+        {
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ],
+          "from": 125.0
+        }
+      ]
+    }
+  ],
+  "repairPolicy": "repair-or-replace",
+  "bodyPlan": "bodyplan/mx-hover-c",
+  "defaultLoadout": {
+    "left-weapon": "component/fw-stayline",
+    "right-weapon": "component/mx-singing-blade",
+    "system-1": "component/mx-frost-fins",
+    "cockpit": "component/oa-cockpit-baffle"
+  },
+  "innateAbilities": [],
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-fin",
+    "faction-third-blade",
+    "series-needlefish",
+    "hover"
+  ]
+}

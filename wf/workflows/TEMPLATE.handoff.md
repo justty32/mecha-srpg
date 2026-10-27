@@ -35,7 +35,7 @@
 - **可寫程式碼線**：只寫「範圍」列的路徑；可跑 testing 工作流列的驗證指令與測試；commit 規則見下。
 - **可跑 godot headless 線**：同「可寫程式碼線」，另可跑 `godot-mono --headless …`（只准 headless，不開編輯器、不開任何視窗）。
 
-**共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；commit 到 `main` 只加明確路徑，且**用 `git commit -- <檔…>` 只提交那些路徑**（index 是多條線共用的；禁 `git add -A`／目錄級 add）；不 `rm -rf`（暫存搬 `/tmp/<線名>-trash/`，KB 級文字搬 `dispatch/handoffs/<線名>/trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 [dispatch/lessons](dispatch/lessons.md)）；子代理上限 <N> 個，只准為推進正事開。
+**共通禁區**（每條線都適用）：不碰鍵盤、滑鼠、螢幕（不送按鍵、不截圖、不搶焦點）；不開 GUI 視窗；**不 push、不建分支、不 rebase／reset 別人的 commit**；commit 到 `main` 只加明確路徑，且**用 `git commit -- <檔…>` 只提交那些路徑**（index 是多條線共用的；禁 `git add -A`／目錄級 add）；不 `rm -rf`（暫存搬 `/tmp/<線名>-trash/`，KB 級文字搬 `dispatch/handoffs/<線名>/trash/`）；不改 `~/.codex/config.toml`；不安裝依賴；不碰 `.gitignore`；整檔改寫用單一 Update 操作（見 [dispatch/lessons](dispatch/lessons.md)）；子代理上限 <N> 個，只准為推進正事開；可再派子 agent，模型無限制，普通工作預設 gpt-6.1-sol、簡單工作 gpt-6.1-terra，平行工人最多 3 與重負載限流照舊。
 
 **分清錯誤來源**：工具或環境出錯（指令不存在、權限被擋、沙箱拒寫）→ 停下發 `BLOCKED`；你自己寫的臨時腳本出錯 → 自己修，不算阻塞。
 
@@ -69,8 +69,10 @@ REPORT 四段（做了什麼／產出／沒做到或證據不足的／需要決�
 
 ## 完成／阻塞回報（必做）
 
+以下寄信、STATUS 與 inbox 等待指令適用外部 `codex exec` 線；原生子 agent 改用工具回傳同等狀態與摘要、用工具等待回傳。
+
 - 我是誰：`<線名>`。本線團隊：`teams/<TEAM>`（沒有就寫「無」）。上線先發 `PROGRESS`。
-- 終局：`wf/tools/inbox_mail.sh <線名> --up <STATUS> '<一句自足結論>' <正文檔>`（沒有正文檔就加 `< /dev/null`）——它會依團隊名冊自動送到你的領導，你不需要知道上游叫什麼。Claude 子 agent 不走 inbox，直接在回覆給 5 行摘要＋REPORT 路徑。
+- 終局：`wf/tools/inbox_mail.sh <線名> --up <STATUS> '<一句自足結論>' <正文檔>`（沒有正文檔就加 `< /dev/null`）——它會依團隊名冊自動送到你的領導，你不需要知道上游叫什麼。此終局寄信指令適用外部 `codex exec` 線；原生子 agent 不走 inbox，直接在回覆給 5 行摘要＋REPORT 路徑。
 - 結束時必發終局 STATUS 之一：`DONE` / `BLOCKED` / `NEEDS-USER` / `FAILED`；**卡住超過 10 分鐘先發 `BLOCKED`**（需使用者決定用 `NEEDS-USER`），不可無聲等待。
 - **等別人時用前景** `wf/tools/inbox_poll.sh <線名> --wait --timeout 540`（逾時再跑一輪），**不要用結束回合當等待**。
 - 標題要是自足的一句結論，不可只寫「完成」「報告」。完整契約：[inbox/PROTOCOL.md](inbox/PROTOCOL.md)。
