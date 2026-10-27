@@ -22,7 +22,7 @@
 
 ### 現役細目
 
-**第4至7輪 `lead-world-more-1027`**：24概念／36新JSON已帶回及暫存，索引完成，領導與子agent均已結束。全部draft、未commit，worktrees保留；整合與平衡待回家。詳見 [交付報告](handoffs/lead-world-more-1027/REPORT.md)。
+**第4至7輪 `lead-world-more-1027`**：24概念／36新JSON已帶回及暫存，索引完成，領導與子agent均已結束。全部draft，內容已提交於 `8ba72b4`，worktrees保留；整合與平衡待回家。詳見 [交付報告](handoffs/lead-world-more-1027/REPORT.md)。
 
 **六類填充 `lead-world-life-1027`**（創作與查重已完成，無運行中工人；34 概念、52 個新 JSON 與六條年表已全部帶回，完整驗收待回家）：astra 規劃、sol 六類分批、同時最多三工人。各批僅可寫 repo 內 `.git/wf-worktrees/wl-{mechs,monsters,characters,places,events,factions}-1027/` 的 manifest 允許路徑與 `handoffs/lead-world-life-1027/` 對應類別報告；主線管理 `content/batches/2026-10/wl-*-1027.json` 與收件。2026-10-27 使用者授權年表 WSL MODE 誤報本次例外手動帶回，原 gate 失敗歷史保留，並非改為通過。全部 draft、未 commit；具體六份交接書為 `handoffs/wl-*-1027.md`。events 只准插入年表，其他不改舊內容；不安裝，整合驗收／試玩／平衡留回家。
 
