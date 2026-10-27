@@ -2,7 +2,9 @@
 
 ## 定位
 
-2108 年地月背景的回合制機甲戰術 SRPG，網頁呈現、無美術資源：一般網頁遊戲元件（按鈕、列表、面板、tooltip）配快捷鍵，戰場是 DOM／CSS 真方格。戰鬥走 Battle Brothers 式「機甲即裝備」：部位×層序列、多資源池、資料驅動的效果與能力；駕駛員與機魂共用人物骨架。設計契約見 [SPEC.md](SPEC.md) → [specs/core/README.md](wf/workflows/planning/specs/core/README.md)。
+2108 年地月背景的回合制機甲戰術 SRPG，網頁呈現，目前遊戲介面以文字為主：一般網頁遊戲元件（按鈕、列表、面板、tooltip）配快捷鍵，戰場是 DOM／CSS 真方格。戰鬥走 Battle Brothers 式「機甲即裝備」：部位×層序列、多資源池、資料驅動的效果與能力；駕駛員與機魂共用人物骨架。設計契約見 [SPEC.md](SPEC.md) → [specs/core/README.md](wf/workflows/planning/specs/core/README.md)。
+
+美術另有[原生SVG試作](art/README.md)，尚未接入遊戲。
 
 ## 技術棧
 

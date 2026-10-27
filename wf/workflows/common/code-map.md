@@ -18,6 +18,10 @@
 
 **MCP 工具**：`src/mcp/battle.ts` 保留工具與原有匯出，`battle-hub.ts` 負責共用戰鬥 session 表、建構、觀察與 AI 推進；`campaign.ts` 保留營運工具，`campaign-support.ts` 負責出戰候選、參數驗證與戰果記錄。
 
+## 獨立美術試作
+
+[art/svg-study-1027](../../../art/svg-study-1027/README.md) 為離線試作，尚未接入遊戲。`assembly.js` 管配方與相容檢查；`demo.js` 管展示DOM；`rebuild.py` 由共用SVG部件與manifest重建樣張、展示頁。各美術來源及驗證限制見該目錄入口。
+
 ## 真相層優先序
 
 各專案可以改自己的優先序，但必須明確。預設：

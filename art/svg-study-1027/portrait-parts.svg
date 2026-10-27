@@ -1,0 +1,271 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="720" viewBox="0 0 640 720" role="img" aria-labelledby="portrait-parts-title portrait-parts-desc">
+  <title id="portrait-parts-title">人物共享部件｜日式動漫退修・美術提案</title>
+  <desc id="portrait-parts-desc">唯一幾何來源；portrait-640，相同全域座標，依 clothes、face、eyes、mouth、hair 疊放。每層兩選項，以 portrait-manifest.json 組裝；本檔只定義 symbol，不直接展示完整肖像。設定來源為 content/lore/characters/kamau-ndegwa.json 及 samir-khan.json；卡茂外貌約34歲且無角鱗，薩米爾實齡45歲、看似60歲。其餘膚色、五官、髮鬚、神情、衣著與配色全部是美術提案。透明畫布、手寫曲線與實色賽璐璐陰影。頸耳只在 face，眉眼只在 eyes，鼻口鬚只在 mouth，頭髮只在 hair。以完整640×720的 use 原點插入，不另縮放或平移部件。</desc>
+  <defs>
+    <symbol id="portrait-clothes-kamau" viewBox="0 0 640 720">
+      <title>卡茂｜轉肩立領工作服</title>
+      <desc>單張輕微3/4提案。右肩向前、胸襟偏左，肩部補強沿衣料轉折；只有衣料，頸耳留在face。左上光源，無徽章或皮膚。</desc>
+      <g id="portrait-clothes-kamau-drawing" stroke="#222b30" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-clothes-kamau-jacket">
+          <path fill="#526863" stroke-width="3.5" d="M253 398 C229 416 199 432 159 448 C118 463 94 488 80 527 C63 570 57 610 62 637 Q64 647 85 654 C152 675 233 680 322 679 C424 679 515 669 569 646 Q582 640 579 621 C576 572 562 525 538 493 C517 468 485 455 450 443 L388 403Z"/>
+          <path fill="#33494a" stroke="none" d="M380 435 L450 443 C485 455 517 468 538 493 C562 525 576 572 579 621 Q582 640 569 646 C515 669 424 679 322 679 L305 548 L339 490Z"/>
+          <path fill="#74877a" stroke="none" d="M159 459 L212 436 L228 445 L199 466 L177 491 C140 513 114 545 94 585 L73 608 C79 535 102 486 159 459Z"/>
+          <path fill="#22383d" stroke="none" d="M421 477 L451 486 Q483 504 492 536 L500 585 L491 626 L493 656 L459 664 L472 618 L466 566 L450 542 L437 507Z"/>
+          <path fill="#4c6460" stroke="none" d="M437 493 Q466 504 478 537 L479 570 L461 547Z M518 508 Q549 552 557 605 L546 624 L541 574Z"/>
+          <path fill="#263b3f" stroke="none" d="M152 533 L146 573 L158 606 L150 650 L166 661 L170 611 L160 575Z M278 551 L291 601 L289 677 L308 679 L307 544Z"/>
+          <path fill="none" stroke-width="2.2" d="M120 521 Q97 559 91 602 L93 625 M155 537 L148 571 L158 601 M495 536 Q501 571 493 603 M534 518 Q556 558 560 595"/>
+          <path fill="none" stroke="#91a092" stroke-width="1.3" d="M113 537 Q94 578 96 608 M181 648 Q228 661 274 662"/>
+        </g>
+        <g id="portrait-clothes-kamau-shoulders">
+          <path fill="#bc965d" stroke-width="2.8" d="M159 448 Q186 438 211 424 L227 445 L178 470 Q159 488 146 511 L113 502 Q128 471 159 448Z"/>
+          <path fill="#806748" stroke="none" d="M211 424 L227 445 L178 470 Q159 488 146 511 L132 507 Q145 482 164 465 L215 440Z"/>
+          <path fill="#ddbb7c" stroke="none" d="M158 453 L205 433 L209 440 L167 459 L140 486 L127 488Z"/>
+          <path fill="none" stroke="#5e5643" stroke-width="1.2" d="M123 498 L141 502 Q156 477 174 464"/>
+          <path fill="#b48e58" stroke-width="3" d="M420 427 Q468 438 505 461 Q526 476 540 500 L505 519 Q489 493 467 481 L413 457Z"/>
+          <path fill="#7e6548" stroke="none" d="M477 449 Q514 464 540 500 L505 519 L498 507 L521 494 Q503 467 477 449Z"/>
+          <path fill="#d5b176" stroke="none" d="M425 434 Q464 443 492 461 L505 476 Q462 453 421 445Z"/>
+          <path fill="none" stroke="#554b3b" stroke-width="1.4" d="M420 451 Q468 466 488 485 M508 510 L531 498"/>
+        </g>
+        <g id="portrait-clothes-kamau-pocket" stroke-width="2">
+          <path fill="#455c59" d="M175 552 L260 537 L268 596 Q226 611 185 611 L179 577Z"/>
+          <path fill="#809184" d="M175 552 L260 537 L262 552 L229 573 L178 570Z"/>
+          <path fill="#2c4244" stroke="none" d="M178 570 L229 573 L262 552 L260 561 L231 580 L180 577Z"/>
+          <path fill="none" stroke="#92a090" stroke-width="1" d="M188 602 Q228 601 260 590"/>
+          <path fill="none" stroke-width="1.2" d="M193 585 L202 583 M251 574 L254 584"/>
+        </g>
+        <g id="portrait-clothes-kamau-collar">
+          <path fill="#222e34" stroke-width="3.2" d="M251 396 Q319 377 386 397 L416 420 L429 454 Q384 513 308 551 L263 518 L223 472 L225 423Z"/>
+          <path fill="#687f74" stroke-width="2.8" d="M251 396 L260 427 Q270 452 293 474 L279 507 Q244 482 223 454 L225 423Z"/>
+          <path fill="#b0b8a1" stroke="none" d="M249 407 L251 430 Q265 459 285 476 L280 485 Q247 457 234 430Z"/>
+          <path fill="#415c58" stroke-width="3" d="M386 397 L413 421 L429 454 Q389 498 331 525 L312 490 Q359 453 386 397Z"/>
+          <path fill="#819385" stroke="none" d="M388 410 L400 428 L404 449 Q371 483 328 506 L323 493 Q367 457 388 410Z"/>
+          <path fill="#a5b19c" stroke="none" d="M388 410 L393 418 Q366 468 328 496 L323 493 Q367 457 388 410Z"/>
+          <path fill="#222e34" stroke-width="2.4" d="M293 474 L312 490 L319 671 L299 674 L292 536 L279 507Z"/>
+          <path fill="none" stroke="#899b8c" stroke-width="1.8" d="M302 531 L310 654"/>
+          <path fill="#aab19b" stroke-width="1.5" d="M294 500 L307 500 L309 519 L296 520Z"/>
+          <path fill="#334346" stroke="none" d="M298 504 L303 504 L305 514 L300 515Z"/>
+          <path fill="none" stroke="#283b3e" stroke-width="1.8" d="M245 453 L269 479 M353 492 L393 461"/>
+          <path fill="none" stroke-width="1.3" d="M341 538 Q386 518 418 485 M351 549 L379 536 M212 632 Q245 641 273 642"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-clothes-samir" viewBox="0 0 640 720">
+      <title>薩米爾｜3/4交疊披領與內袍</title>
+      <desc>依卡茂固定3/4頸口設計；右肩向前，灰綠內袍與亞麻披領沿轉胸交疊。領口內襯承接兩種face的同一頸形，衣服不含皮膚。衣著與左上光源均為美術提案。</desc>
+      <g id="portrait-clothes-samir-drawing" stroke="#293234" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-clothes-samir-robe">
+          <path fill="#6c776d" stroke-width="3.3" d="M251 396 Q318 377 386 397 L423 430 L468 450 Q515 471 535 512 C554 549 561 592 560 632 Q560 645 543 651 C477 674 398 681 310 679 Q183 678 103 651 Q86 646 85 632 C82 587 89 543 106 510 Q125 472 170 451 L222 424Z"/>
+          <path fill="#455550" stroke="none" d="M371 439 L423 430 L468 450 Q515 471 535 512 C554 549 561 592 560 632 Q560 645 543 651 C477 674 398 681 310 679 L291 557Z"/>
+          <path fill="#9ba493" stroke="none" d="M171 460 L213 438 L206 461 Q153 486 130 530 L102 590 L92 603 Q100 501 171 460Z"/>
+          <path fill="#344742" stroke="none" d="M455 486 Q492 502 506 544 L513 604 L502 660 L477 667 L489 611 L483 555Z M158 536 L155 579 L169 612 L167 662 L180 667 L182 605Z"/>
+          <path fill="none" stroke-width="2" d="M134 530 Q112 569 111 619 M159 547 L157 581 L168 606 M514 532 Q532 576 532 618"/>
+          <path fill="none" stroke="#a4ac9b" stroke-width="1.2" d="M108 568 L101 609 M184 650 L221 658"/>
+        </g>
+        <g id="portrait-clothes-samir-collar">
+          <path fill="#29383b" stroke-width="3" d="M251 396 Q319 377 386 397 L416 420 L429 454 Q384 513 308 551 L263 518 L223 472 L225 423Z"/>
+          <path fill="#465851" stroke="none" d="M260 418 L279 455 L308 482 L344 461 L375 418 L360 464 L312 507 L289 497 L267 466Z"/>
+        </g>
+        <g id="portrait-clothes-samir-shawl">
+          <path fill="#bcb29a" stroke-width="3" d="M386 397 L412 416 Q439 439 460 471 L470 496 Q450 550 406 595 L344 647 L307 677 L278 676 L264 653 Q317 596 346 536 L365 483 Q377 451 381 425Z"/>
+          <path fill="#dfd5b9" stroke="none" d="M389 410 L402 429 Q425 453 437 481 L442 499 Q421 549 389 582 L331 632 L306 653 L324 627 L367 570 Q393 523 402 488 L396 450Z"/>
+          <path fill="#817f6c" stroke="none" d="M445 451 L460 471 L470 496 Q450 550 406 595 L344 647 L307 677 L278 676 L297 658 L333 642 L389 592 Q431 546 447 501 L451 484Z"/>
+          <path fill="none" stroke="#636858" stroke-width="1.8" d="M412 452 Q431 480 428 502 L412 539 M440 525 L423 555"/>
+          <path fill="#ded3b5" stroke-width="3" d="M251 396 L260 427 Q270 452 293 474 L311 498 Q336 533 370 567 L417 608 Q445 632 461 663 Q409 676 356 678 L321 658 L272 628 Q223 593 190 551 L171 514 Q168 485 184 459 L218 422Z"/>
+          <path fill="#b8ae94" stroke="none" d="M251 407 L252 430 Q264 460 285 480 L298 505 Q322 544 358 580 L404 620 L430 652 L400 650 Q340 618 301 582 Q255 540 232 495 L220 458 L228 427Z"/>
+          <path fill="#8b8872" stroke="none" d="M171 514 L190 551 Q223 593 272 628 L321 658 L356 678 Q409 676 461 663 L448 647 L424 658 L383 657 Q324 634 280 601 Q235 568 212 531 L192 489Z"/>
+          <path fill="#f0e3c4" stroke="none" d="M212 437 L200 467 Q190 491 208 523 L239 564 L227 555 L193 517 Q180 488 195 459Z"/>
+          <path fill="none" stroke="#6b6d5c" stroke-width="1.8" d="M230 430 L221 460 Q218 481 230 505 M245 548 Q284 590 321 610 M339 588 Q374 617 392 644"/>
+          <path fill="none" stroke="#a49d83" stroke-width="1.3" d="M187 513 L206 545 Q251 601 313 638 M339 654 L357 666 L390 670"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-face-kamau" viewBox="0 0 640 720">
+      <title>卡茂｜輕微3/4成年顴顎、頸耳</title>
+      <desc>外貌約34歲、無角鱗依設定；面向畫面左側，近側顴顎在右。深暖棕膚與左上硬光為提案。無眉眼鼻口髮。這張先按自己的接點組裝，尚未驗收跨角色混搭。</desc>
+      <g id="portrait-face-kamau-drawing" stroke="#292d30" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-face-kamau-neck">
+          <path fill="#b7825e" stroke-width="3" d="M276 353 L273 414 C275 437 289 458 308 475 Q344 455 366 415 L368 348Z"/>
+          <path fill="#805342" stroke="none" d="M276 353 L368 348 L366 415 L347 438 L300 407 L274 395Z"/>
+          <path fill="#5f4138" stroke="none" d="M276 353 L368 348 L363 376 L320 407 L290 391 L275 383Z"/>
+          <path fill="#d3a076" stroke="none" d="M277 407 Q281 437 305 458 L307 469 Q281 448 277 428Z"/>
+          <path fill="none" stroke="#805342" stroke-width="1.8" d="M329 436 L318 453"/>
+        </g>
+        <g id="portrait-face-kamau-ears">
+          <path fill="#936148" stroke-width="2.5" d="M232 234 Q212 222 214 244 L222 273 Q225 282 238 281Z"/>
+          <path fill="#b7825e" stroke-width="3" d="M403 236 Q418 222 427 235 C434 246 423 266 420 281 Q414 295 401 290 L395 269Z"/>
+          <path fill="#805342" stroke="none" d="M413 244 Q424 234 423 245 L414 276 L406 281 L408 264Z"/>
+          <path fill="none" stroke="#4b3833" stroke-width="1.8" d="M409 252 Q421 237 420 248 M410 262 L406 271 L410 273"/>
+        </g>
+        <g id="portrait-face-kamau-silhouette">
+          <path fill="#b7825e" stroke-width="3.2" d="M233 182 C239 139 275 115 320 113 C365 111 400 138 409 182 Q419 223 406 266 L402 292 Q397 315 383 336 C373 352 350 370 331 383 Q318 393 305 389 C291 385 272 369 258 355 Q244 341 240 321 L234 291 Q225 277 228 262 L229 231Z"/>
+          <path fill="#805342" stroke="none" d="M353 124 Q397 140 409 182 Q419 223 406 266 L402 292 Q397 315 383 336 C373 352 350 370 331 383 Q318 393 305 389 L316 380 Q342 357 352 331 L363 289 L351 274 L365 255 Q377 224 366 197Z"/>
+          <path fill="#d3a076" stroke="none" d="M247 185 Q269 153 308 152 L337 169 L344 194 Q285 178 247 206 L238 245 L231 252 Q230 213 247 185Z"/>
+          <path fill="#d3a076" stroke="none" d="M238 271 L250 267 L281 281 L288 297 L268 319 L250 313Z"/>
+          <path fill="#5f4138" stroke="none" d="M400 218 L406 224 L406 266 L402 292 L388 318 L395 277 L391 258Z"/>
+          <path fill="none" stroke="#4d3934" stroke-width="1.2" d="M379 339 Q357 365 333 379"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-face-samir" viewBox="0 0 640 720">
+      <title>薩米爾｜3/4鬆頰長顎、頸耳</title>
+      <desc>約60歲外貌提案：顴下內收、下頰鬆垂、較長下顎；少線與大面明暗。顱頂、額側、耳根及頸外形與已接受卡茂一致，眼鼻口區留空，兩套髮與五官直接原點互換。</desc>
+      <g id="portrait-face-samir-drawing" stroke="#292d30" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-face-samir-neck">
+          <path fill="#bd9677" stroke-width="3" d="M276 353 L273 414 C275 437 289 458 308 475 Q344 455 366 415 L368 348Z"/>
+          <path fill="#805342" stroke="none" d="M276 353 L368 348 L366 415 L347 438 L300 407 L274 395Z"/>
+          <path fill="#5f4138" stroke="none" d="M276 353 L368 348 L363 384 L319 414 L290 399 L275 388Z"/>
+          <path fill="#ddba95" stroke="none" d="M277 409 Q280 440 305 460 L307 469 Q282 450 278 429Z"/>
+          <path fill="none" stroke="#805342" stroke-width="1.5" d="M288 425 Q290 439 297 448 M329 436 L318 453"/>
+        </g>
+        <g id="portrait-face-samir-ears">
+          <path fill="#9b735b" stroke-width="2.5" d="M232 234 Q212 222 214 244 L222 273 Q225 282 238 281Z"/>
+          <path fill="#bd9677" stroke-width="3" d="M403 236 Q418 222 427 235 C434 246 423 266 420 281 Q414 295 401 290 L395 269Z"/>
+          <path fill="#805342" stroke="none" d="M413 244 Q424 234 423 245 L414 276 L406 281 L408 264Z"/>
+          <path fill="none" stroke="#594238" stroke-width="1.8" d="M409 252 Q421 237 420 248 M410 262 L406 271 L410 273"/>
+        </g>
+        <g id="portrait-face-samir-silhouette">
+          <path fill="#bd9677" stroke-width="3.2" d="M233 182 C239 139 275 115 320 113 C365 111 400 138 409 182 Q419 223 406 266 L398 296 Q387 313 390 326 Q392 338 382 348 Q373 365 352 379 L331 394 Q316 405 302 399 L278 380 Q259 367 257 355 Q246 347 241 333 Q237 322 240 307 L234 291 Q225 277 228 262 L229 231Z"/>
+          <path fill="#805342" stroke="none" d="M353 124 Q397 140 409 182 Q419 223 406 266 L398 296 Q387 313 390 326 Q392 338 382 348 Q373 365 352 379 L331 394 Q316 405 302 399 L318 389 Q339 369 348 343 L347 321 L362 289 L351 274 L365 255 Q377 224 366 197Z"/>
+          <path fill="#ddba95" stroke="none" d="M247 185 Q269 153 308 152 L337 169 L344 194 Q285 178 247 206 L238 245 L231 252 Q230 213 247 185Z"/>
+          <path fill="#ddba95" stroke="none" d="M237 272 L250 268 L274 280 L278 290 L255 305 L243 302Z"/>
+          <path fill="#a47c60" stroke="none" d="M240 307 L255 305 L273 293 L263 319 L254 340 L261 356 Q247 348 241 333 Q237 322 240 307Z"/>
+          <path fill="#5f4138" stroke="none" d="M400 218 L406 224 L406 266 L398 296 L390 313 L395 277 L391 258Z"/>
+          <path fill="none" stroke="#705443" stroke-width="1.2" d="M378 345 Q368 360 356 367"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-eyes-kamau" viewBox="0 0 640 720">
+      <title>卡茂｜側向警覺、壓瞼杏眼</title>
+      <desc>3/4透視下遠眼較短，視線偏畫面左方；楔形上眼線蓋住虹膜頂部，眉型略不對稱。提案眼心為(255,245)、(348,242)，不再沿用正面鏡像眼線。</desc>
+      <g id="portrait-eyes-kamau-drawing" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-eyes-kamau-brows" fill="#2b3031">
+          <path d="M232 219 Q246 213 260 219 L279 228 L277 232 L258 224 Q246 219 232 222Z"/>
+          <path d="M319 226 Q340 214 361 213 L378 217 L361 217 Q340 218 322 231Z"/>
+          <path fill="none" stroke="#614437" stroke-width="1.2" d="M277 218 L282 224 M314 219 L311 225"/>
+        </g>
+        <g id="portrait-eyes-kamau-lids">
+          <path fill="#e5ddc6" d="M232 240 Q251 233 264 239 L278 248 Q257 258 241 248Z"/>
+          <path fill="#eee5cd" d="M318 247 Q340 233 365 235 L383 232 L372 248 Q348 260 329 251Z"/>
+          <path fill="#aa8d53" d="M246 237 Q255 235 262 239 L262 248 Q255 255 248 249Z M339 238 Q348 233 357 236 L357 248 Q348 258 341 249Z"/>
+          <path fill="#423c30" d="M246 237 Q255 235 262 239 L262 243 L246 243Z M339 238 Q348 233 357 236 L357 243 L340 245Z"/>
+          <path fill="#222a2d" d="M251 238 L256 238 L256 249 L252 250Z M344 237 L350 236 L350 249 L345 251Z"/>
+          <path fill="#d8ba70" d="M247 246 Q253 252 261 247 L259 251 L252 253Z M341 247 Q348 254 356 247 L354 252 L347 255Z"/>
+          <path fill="#fff4da" d="M248 239 L252 239 L252 242 L248 242Z M341 239 L345 238 L345 242 L341 243Z"/>
+          <path fill="#222a2d" d="M228 236 L239 237 Q250 231 263 236 Q271 239 280 249 L272 246 Q257 234 240 242 L234 244Z"/>
+          <path fill="#222a2d" d="M315 249 Q334 234 352 233 Q368 234 385 228 L380 237 L369 239 Q344 233 324 247Z"/>
+          <path fill="none" stroke="#3c3430" stroke-width="1.3" d="M239 247 Q252 256 266 252 M331 253 Q352 260 371 249"/>
+          <path fill="none" stroke="#6e4c3d" stroke-width="1.2" d="M237 231 Q253 226 266 233 M325 233 Q342 226 360 228"/>
+          <path fill="none" stroke="#714d3c" stroke-width="1.3" d="M243 260 L257 263 M342 264 Q357 266 370 258"/>
+          <path fill="#3d3530" d="M379 244 L386 239 L383 243Z"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-eyes-samir" viewBox="0 0 640 720">
+      <title>薩米爾｜3/4灰眉垂瞼、老年凝視</title>
+      <desc>同族眼心(255,245)、(348,242)。遠眼較短，垂瞼與收斂視線、灰眉和少量額紋眼袋表現約60歲。無膚色底片，換臉不帶眼窩皮膚補丁。</desc>
+      <g id="portrait-eyes-samir-drawing" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-eyes-samir-age" fill="none" stroke="#705847" stroke-width="1.3">
+          <path d="M271 194 Q295 187 318 190 M289 202 Q308 198 325 200"/>
+          <path d="M236 234 Q253 230 267 237 M324 235 Q344 227 363 231"/>
+          <path d="M241 259 Q254 270 270 261 M331 262 Q350 274 373 258"/>
+          <path d="M379 250 L386 246"/>
+        </g>
+        <g id="portrait-eyes-samir-brows" stroke="#414642" stroke-width="1.1">
+          <path fill="#d5d4c2" d="M232 220 Q245 214 255 219 L276 228 L278 234 L267 231 L260 232 L253 226 L245 226 L238 224 L231 226Z"/>
+          <path fill="#d5d4c2" d="M317 228 Q337 216 357 216 L377 221 L370 224 L362 221 L352 225 L342 224 L329 229 L320 234Z"/>
+          <path fill="#929f92" stroke="none" d="M236 222 L247 220 L259 225 L276 231 L278 234 L267 231 L260 232 L253 226 L245 226 L238 224 L231 226Z M320 231 L339 222 L354 221 L370 224 L362 221 L352 225 L342 224 L329 229 L320 234Z"/>
+        </g>
+        <g id="portrait-eyes-samir-lids">
+          <path fill="#e7dfc7" d="M233 243 Q251 237 265 243 L277 249 Q258 257 243 250Z"/>
+          <path fill="#e7dfc7" d="M319 248 Q342 237 363 239 L380 236 L371 249 Q350 259 330 252Z"/>
+          <path fill="#7c9485" d="M247 240 L262 242 L261 249 Q255 254 248 249Z M340 241 Q347 238 356 239 L356 249 Q349 256 342 250Z"/>
+          <path fill="#344443" d="M247 240 L262 242 L262 245 L247 245Z M340 241 L356 239 L356 244 L341 246Z"/>
+          <path fill="#263133" d="M252 242 L257 242 L257 249 L253 251Z M345 240 L350 240 L350 250 L346 252Z"/>
+          <path fill="#b2baa1" d="M248 248 Q254 252 261 248 L258 252 L252 253Z M342 249 Q348 254 355 249 L352 253 L347 255Z"/>
+          <path fill="#fff3da" d="M249 242 L252 242 L252 244 L249 245Z M342 241 L345 241 L345 244 L342 244Z"/>
+          <path fill="#303838" d="M230 239 L240 240 Q253 235 266 240 L280 250 L273 249 Q256 239 240 245 L234 246Z"/>
+          <path fill="#303838" d="M316 250 Q335 237 351 236 Q366 239 383 232 L379 239 L367 242 Q345 237 325 249Z"/>
+          <path fill="none" stroke="#4c4339" stroke-width="1.3" d="M242 250 Q255 258 268 252 M332 253 Q351 261 371 250"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-mouth-kamau" viewBox="0 0 640 720">
+      <title>卡茂｜側向簡鼻與收口</title>
+      <desc>鼻僅一小段側線及單片陰影，嘴為一條細口線與微小下唇光面。無完整唇形、鼻翼鼻孔、鼻唇溝或鬍鬚圖標；本張自己的鼻口接點優先。</desc>
+      <g id="portrait-mouth-kamau-drawing" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-mouth-kamau-nose">
+          <path fill="#805342" d="M306 277 L303 296 L310 299 L299 303 L296 300 L300 293Z"/>
+          <path fill="none" stroke="#4d3832" stroke-width="1.7" d="M297 284 L291 296 L298 299"/>
+        </g>
+        <g id="portrait-mouth-kamau-lips">
+          <path fill="none" stroke="#49342f" stroke-width="1.8" d="M285 332 Q296 328 306 330 Q317 331 331 327"/>
+          <path fill="#e0b38a" d="M305 340 Q314 341 322 338 L318 341 L309 342Z"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-mouth-samir" viewBox="0 0 640 720">
+      <title>薩米爾｜3/4簡鼻細口與灰白長鬚</title>
+      <desc>沿同族鼻(298,300)、口(307,331)設計；短鼻側線、細口線與側向大鬚束。鬚根在兩臉共有範圍，鬚尾覆頸衣；不帶膚色底片。灰鬚是可換的老年專用造型，並非face殘留。</desc>
+      <g id="portrait-mouth-samir-drawing" stroke-linecap="round" stroke-linejoin="round">
+        <g id="portrait-mouth-samir-nose">
+          <path fill="#805342" d="M306 276 L303 296 L312 300 L300 305 L296 301 L301 292Z"/>
+          <path fill="none" stroke="#594238" stroke-width="1.7" d="M297 282 L290 297 L298 301"/>
+        </g>
+        <g id="portrait-mouth-samir-beard" stroke="#3c4543" stroke-width="2.7">
+          <path fill="#c9cbbb" d="M244 305 Q255 329 268 339 Q279 352 302 355 Q327 350 345 335 Q362 318 379 300 L377 329 Q380 350 369 371 L366 389 L351 408 L344 429 L324 444 L309 461 L294 448 L282 444 L273 423 L261 412 L255 392 L247 382 Q249 365 244 347Z"/>
+          <path fill="#8a9b90" stroke="none" d="M379 300 L377 329 Q380 350 369 371 L366 389 L351 408 L344 429 L324 444 L309 461 L305 449 Q321 428 323 400 L337 371 L343 349 L359 330Z"/>
+          <path fill="#eee7d1" stroke="none" d="M251 326 Q268 352 291 360 L308 365 L306 391 L310 416 L305 442 L293 427 L285 403 L271 388 L263 363Z"/>
+          <path fill="#b0baaa" stroke="none" d="M244 335 L253 355 L258 384 L273 411 L282 432 L292 440 L294 448 L282 444 L273 423 L261 412 L255 392 L247 382 Q249 365 244 347Z"/>
+          <path fill="none" stroke="#7a8c80" stroke-width="1.5" d="M268 366 Q273 386 285 399 L291 419 M304 375 L302 392 M348 358 Q343 382 334 394"/>
+          <path fill="none" stroke="#e7e2cd" stroke-width="1.4" d="M360 338 L352 356 M324 414 L316 436"/>
+        </g>
+        <g id="portrait-mouth-samir-lips">
+          <path fill="none" stroke="#594238" stroke-width="1.7" d="M284 333 Q296 329 307 331 Q319 331 331 328"/>
+          <path fill="#e0b38a" d="M303 341 Q312 342 320 339 L315 342 L307 343Z"/>
+        </g>
+        <g id="portrait-mouth-samir-moustache" stroke="#58615a" stroke-width="1.3">
+          <path fill="#e1dfcb" d="M301 316 Q290 312 280 319 L273 331 L282 327 L291 321 L300 324 L305 321 L313 324 L323 320 L337 325 L343 330 Q339 317 326 314 Q312 311 305 317Z"/>
+          <path fill="#a5b0a0" stroke="none" d="M305 317 Q318 312 329 318 L343 330 L337 325 L323 320 L313 324 L305 321Z"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-hair-kamau" viewBox="0 0 640 720">
+      <title>卡茂｜斜向成束短捲髮</title>
+      <desc>短密捲髮提案：左上提起、向右收攏的五組主髮束，以彎鉤、束尖及長短間隔形成輪廓。亮面沿髮束轉折，無均勻圓弧雲帽。髮際隨本張3/4額顱設計。</desc>
+      <g id="portrait-hair-kamau-drawing" stroke="#222b30" stroke-linecap="round" stroke-linejoin="round">
+        <path fill="#303b3e" stroke-width="3.2" d="M229 260 Q215 246 215 221 L209 207 Q203 190 214 172 L207 177 Q207 154 227 141 L217 143 Q225 122 248 115 L240 112 Q259 94 280 98 L276 91 Q300 80 321 89 L331 81 Q354 85 367 100 L381 96 Q399 106 403 122 L416 123 Q429 140 425 154 L435 161 Q438 179 429 194 L431 212 L422 242 L407 265 L398 245 L399 217 Q397 195 388 181 L379 189 Q365 184 359 176 L347 188 Q332 184 326 174 Q314 187 299 185 L305 173 Q288 184 274 181 L282 169 Q265 182 250 177 L241 193 L239 221 L233 239Z"/>
+        <g id="portrait-hair-kamau-shadow" fill="#222d32" stroke="none">
+          <path d="M337 104 Q357 99 376 117 L394 137 Q407 151 403 173 L416 166 L425 154 L435 161 Q438 179 429 194 L431 212 L422 242 L407 265 L398 245 L399 217 Q397 195 388 181 L379 189 Q365 184 359 176 L347 188 L335 178 Q351 165 353 153 L368 161 Q367 143 352 128Z"/>
+          <path d="M221 178 Q234 166 250 164 L250 177 L241 193 L239 221 L233 239 L229 260 Q215 246 215 221 L209 207Z"/>
+          <path d="M275 134 Q289 126 303 136 Q304 155 282 169 L274 181 Q294 177 305 164 Q311 147 307 139 Q328 153 326 174 Q341 160 333 141 L315 121Z"/>
+        </g>
+        <g id="portrait-hair-kamau-light" fill="#536963" stroke="none">
+          <path d="M224 154 Q235 129 261 126 L254 135 Q273 119 286 123 Q272 132 266 146 L251 161 Q251 148 259 141 Q239 142 224 154Z"/>
+          <path d="M257 112 Q278 97 296 105 L290 109 Q310 101 326 111 L335 125 Q317 117 305 121 L289 132 Q296 117 303 115 Q277 111 257 123Z"/>
+          <path d="M331 94 Q352 94 365 111 L373 119 Q351 109 339 116 L346 108Z"/>
+          <path d="M377 111 Q395 118 401 137 L413 147 L414 158 Q399 144 386 142 L391 135Z"/>
+          <path d="M222 179 Q230 171 239 172 L233 183 L222 189 L218 205 L215 196Z"/>
+        </g>
+        <g id="portrait-hair-kamau-turns" fill="none" stroke-width="1.5">
+          <path stroke="#819284" d="M239 138 Q249 129 260 130 M274 110 Q284 106 294 110 M309 109 L320 113 M341 101 Q351 104 356 110"/>
+          <path stroke="#19252c" d="M252 153 Q259 137 274 132 M300 151 Q306 140 300 134 M319 122 Q333 129 337 141 M364 124 Q380 134 381 148"/>
+          <path stroke="#52655e" d="M355 154 Q355 165 347 173 M385 165 L392 174 M409 192 L406 218"/>
+        </g>
+      </g>
+    </symbol>
+    <symbol id="portrait-hair-samir" viewBox="0 0 640 720">
+      <title>薩米爾｜3/4後退髮際、後梳灰髮</title>
+      <desc>同族額顱與鬢角接點，高額頭與偏向近側的後梳灰白長束表現年長。兩臉共用實心額顱承接髮際，髮型本身無皮膚；hair最前層，不需要插在face背後的髮片。</desc>
+      <g id="portrait-hair-samir-drawing" stroke="#36413f" stroke-linecap="round" stroke-linejoin="round">
+        <path fill="#c9cbbb" stroke-width="3.2" d="M229 260 L216 246 L218 230 Q207 212 214 191 L208 195 Q207 164 228 144 L220 144 Q237 117 265 108 L259 104 Q284 91 307 98 L317 90 Q348 86 370 105 L381 101 Q405 117 409 135 L420 139 Q433 159 428 179 L433 190 Q435 215 423 235 L425 250 L408 268 L398 245 L399 217 Q397 195 388 181 L381 170 L367 170 Q352 163 344 151 Q326 135 304 139 Q287 139 274 155 L265 171 L250 177 L241 193 L239 221 L233 239Z"/>
+        <path fill="#8a9b90" stroke="none" d="M349 97 Q364 100 370 105 L381 101 Q405 117 409 135 L420 139 Q433 159 428 179 L433 190 Q435 215 423 235 L425 250 L408 268 L398 245 L399 217 Q397 195 388 181 L381 170 L367 170 Q352 163 344 151 L365 158 L382 159 L392 177 L407 204 Q416 182 409 164 L400 143 L382 124Z"/>
+        <path fill="#a3afa0" stroke="none" d="M228 156 Q242 140 264 133 L250 151 L237 172 L229 196 L232 215 L226 239 L229 260 L216 246 L218 230 Q207 212 214 191 L208 195 Q209 175 220 161Z"/>
+        <path fill="#eee7d1" stroke="none" d="M239 140 Q264 112 295 116 Q310 99 333 101 L318 109 L308 128 Q282 122 264 144 L250 158 L252 147Z"/>
+        <path fill="#eee7d1" stroke="none" d="M329 115 Q349 104 371 123 L390 140 Q367 127 352 132 L339 126Z"/>
+        <path fill="#e1dfcb" stroke="none" d="M224 174 Q230 158 242 151 L232 178 L226 203 L222 216 L219 202Z"/>
+        <path fill="none" stroke="#6f857a" stroke-width="1.6" d="M251 153 Q269 128 293 129 M307 130 Q315 113 327 108 M340 138 Q359 133 374 145 M394 148 Q409 167 409 186 M231 181 L225 203"/>
+        <path fill="none" stroke="#e7e3ce" stroke-width="1.5" d="M393 185 L405 215 L404 235 M356 116 Q368 120 379 130"/>
+      </g>
+    </symbol>
+  </defs>
+</svg>

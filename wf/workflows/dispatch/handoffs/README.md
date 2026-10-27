@@ -20,3 +20,7 @@
 [待驗收摘要](tidy-world-1027/pending.md)｜[第一輪](lead-world-life-1027/README.md)｜[第二三輪](lead-world-next-1027/README.md)｜[第四至七輪](lead-world-more-1027/README.md)｜[整理證據](tidy-world-1027/README.md)
 
 三批各自 briefs/ 存放已執行創作契約與歷史證據，不是現役派工清單。報告與 manifest reportDir 原位置保留；報告所載狀態為當時快照。全部 draft、整合留回家，不移 done/archive，不代替四條舊線收線。
+
+## SVG美術試作
+
+[樣張派工](svg-art-1027.md)：人物、機甲、環境、戰場格與特效的離線SVG樣張已完成，無現役工人；[展示與用法](../../../../art/svg-study-1027/README.md)待畫風評閱。

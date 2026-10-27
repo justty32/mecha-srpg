@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-labelledby="road-title road-desc">
+  <title id="road-title">道路地格｜視覺草案</title>
+  <desc id="road-desc">正方俯視道路，用平行路肩與斷續標線辨識。半透明路面保留terrain.color，中央不置標線，底部留HP空帶，四邊透明；材質為美術提案，未接入遊戲。</desc>
+  <g id="road-surface">
+    <path d="M22 6H106V116H22Z" fill="#293b42" opacity=".18"/>
+    <path d="M13 8H22V114H13ZM106 8H115V114H106Z" fill="#89938c" opacity=".28"/>
+  </g>
+  <g id="road-shoulders" fill="none" stroke="#a4aaa0" stroke-width="2" opacity=".52">
+    <path d="M24 7V115M104 7V115"/>
+  </g>
+  <g id="road-markings" fill="#c0b797" opacity=".45">
+    <path d="M61 9H67V28H61ZM61 99H67V113H61Z"/>
+  </g>
+  <g id="road-seams" fill="none" stroke="#4b6066" stroke-width="2" opacity=".45">
+    <path d="M14 34H21M14 79H21M107 34H114M107 79H114M28 87 36 82 32 73M98 46 91 42 94 34"/>
+    <path d="M15 12V26M15 46V66M15 91V106M113 12V26M113 46V66M113 91V106" stroke-width="1"/>
+  </g>
+</svg>

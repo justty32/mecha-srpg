@@ -1,0 +1,71 @@
+{
+  "family": "portrait-640",
+  "viewBox": "0 0 640 720",
+  "layers": [
+    "clothes",
+    "face",
+    "eyes",
+    "mouth",
+    "hair"
+  ],
+  "anchors": {
+    "faceCenter": {"x": 320, "y": 265},
+    "headTop": {"x": 320, "y": 113},
+    "eyeLine": {"x": 301.5, "y": 243.5},
+    "eyeLeft": {"x": 255, "y": 245},
+    "eyeRight": {"x": 348, "y": 242},
+    "nose": {"x": 298, "y": 300},
+    "mouth": {"x": 307, "y": 331},
+    "collarLeft": {"x": 273, "y": 414},
+    "collarRight": {"x": 366, "y": 415},
+    "collarTip": {"x": 308, "y": 475}
+  },
+  "options": {
+    "clothes": [
+      {"id": "portrait-clothes-kamau", "label": "卡茂・轉肩立領／肩部補強"},
+      {"id": "portrait-clothes-samir", "label": "薩米爾・3/4轉肩／交疊披領內袍"}
+    ],
+    "face": [
+      {"id": "portrait-face-kamau", "label": "卡茂・3/4成年顴顎／深暖棕膚"},
+      {"id": "portrait-face-samir", "label": "薩米爾・3/4鬆頰長顎／暖褐膚"}
+    ],
+    "eyes": [
+      {"id": "portrait-eyes-kamau", "label": "卡茂・壓瞼杏眼／側向警覺"},
+      {"id": "portrait-eyes-samir", "label": "薩米爾・側向灰眉垂瞼／老年凝視"}
+    ],
+    "mouth": [
+      {"id": "portrait-mouth-kamau", "label": "卡茂・側向簡鼻／細口線"},
+      {"id": "portrait-mouth-samir", "label": "薩米爾・側向簡鼻細口／灰白長鬚"}
+    ],
+    "hair": [
+      {"id": "portrait-hair-kamau", "label": "卡茂・斜向成束短捲髮"},
+      {"id": "portrait-hair-samir", "label": "薩米爾・3/4後退髮際／後梳灰髮"}
+    ]
+  },
+  "presets": {
+    "kamau": {
+      "label": "卡茂・恩德瓜",
+      "title": "卡茂・恩德瓜｜3/4機戰動畫立繪・美術提案",
+      "desc": "依 content/lore/characters/kamau-ndegwa.json：46歲男性機械系駕駛，外貌約34歲，沒有角鱗。採輕微3/4臉向與肩胸轉折，收斂杏眼、側向警覺視線、短簡鼻影、細口線與斜向成束短捲髮；深青灰立領工作服保留赭黃肩部補強。左上光源以大面積硬邊明暗表現。膚色、五官、神情、髮型、衣著、配色與其餘未載細節全為美術提案，並非正史定案。本張已獲主線目視接受，設計保留不變；同族接點以本張為基準。薩米爾及交叉換件待領導重建目視。透明背景；幾何唯一來源 portrait-parts.svg。",
+      "parts": {
+        "clothes": "portrait-clothes-kamau",
+        "face": "portrait-face-kamau",
+        "eyes": "portrait-eyes-kamau",
+        "mouth": "portrait-mouth-kamau",
+        "hair": "portrait-hair-kamau"
+      }
+    },
+    "samir": {
+      "label": "薩米爾・卡恩",
+      "title": "薩米爾・卡恩｜3/4老年機戰動畫立繪・美術提案",
+      "desc": "依 content/lore/characters/samir-khan.json 的2108段：實齡45歲、看起來像60歲。沿已接受卡茂的固定輕微3/4視角與左上光源，以鬆垂下頰、灰眉垂瞼、後退髮際、灰白長鬚呈現年長感；灰綠內袍與亞麻披領隨肩胸轉折。兩種臉的額顱、耳根、頸外形一致，眉眼、鼻口及衣領依同族anchors定位，頭髮與五官不混入face，衣服不含膚色。老年長鬚隨mouth部件換入並覆頸衣，兩種膚色共用鼻影與唇光色；完整預設及交叉組合仍待領導重建目視。膚色、五官、髮鬚、神情、衣著與配色全為美術提案。手部酸蝕疤未移至臉上，未添加徽記或證實迦梨傳聞。透明背景；幾何唯一來源 portrait-parts.svg。",
+      "parts": {
+        "clothes": "portrait-clothes-samir",
+        "face": "portrait-face-samir",
+        "eyes": "portrait-eyes-samir",
+        "mouth": "portrait-mouth-samir",
+        "hair": "portrait-hair-samir"
+      }
+    }
+  }
+}

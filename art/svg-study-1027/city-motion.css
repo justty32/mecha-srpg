@@ -1,0 +1,64 @@
+/* 手動加上 animate 才播放；移除後可再次加上以重播。 */
+.city-view.animate [data-moving] {
+  animation-duration: 3.6s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: 1;
+  animation-fill-mode: none;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.city-view.animate [data-moving="ship"] {
+  animation-name: busan-city-ship;
+}
+
+.city-view.animate [data-moving="flag"] {
+  animation-name: busan-city-flag;
+  animation-duration: 2.8s;
+  transform-origin: top center;
+}
+
+.city-view.animate [data-moving="smoke"] {
+  animation-name: busan-city-smoke;
+  animation-duration: 3.2s;
+}
+
+@keyframes busan-city-ship {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  40% {
+    transform: translate(8px, -1px);
+  }
+  70% {
+    transform: translate(4px, 1px);
+  }
+}
+
+@keyframes busan-city-flag {
+  0%, 100% {
+    transform: skewX(0deg);
+  }
+  30% {
+    transform: skewX(2deg);
+  }
+  65% {
+    transform: skewX(-1.5deg);
+  }
+}
+
+@keyframes busan-city-smoke {
+  0%, 100% {
+    transform: translate(0, 0);
+  }
+  55% {
+    transform: translate(5px, -8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .city-view.animate [data-moving] {
+    animation: none;
+    transform: none;
+  }
+}
