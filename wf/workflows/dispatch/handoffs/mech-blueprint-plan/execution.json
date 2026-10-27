@@ -1,0 +1,670 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-27",
+ "columns": [
+  "id",
+  "kind",
+  "owner",
+  "stage",
+  "detail"
+ ],
+ "rows": [
+  {
+   "id": "files-core",
+   "kind": "write-set",
+   "owner": "sol-core",
+   "stage": "G0-G2",
+   "detail": {
+    "files": [
+     "schema.ts",
+     "layout.ts",
+     "rig.ts",
+     "geometry.ts",
+     "build.ts",
+     "blueprint.test.ts",
+     "tsconfig.json",
+     "data/design.json",
+     "data/rig.json",
+     "data/slots.json",
+     "data/draw-order.json",
+     "data/poses.json",
+     "data/overlaps.json"
+    ],
+    "generated": [
+     "generated/layout.json",
+     "generated/work-orders.json",
+     "generated/diagnostics.json",
+     "generated/layout.svg",
+     "generated/work-orders.svg"
+    ],
+    "base": "art/mech-blueprint/",
+    "note": "只此18檔；work-orders.svg為64局部配置小圖的拼版，不另生64工作單檔；overlaps在畫圖前建立，後續例外仍由core持有。"
+   }
+  },
+  {
+   "id": "files-art",
+   "kind": "write-set",
+   "owner": "astra-art",
+   "stage": "G2-G3",
+   "detail": {
+    "files": [
+     "data/attachments.json"
+    ],
+    "expandedFiles": "parts.json 的64個file精確集合",
+    "base": "art/mech-blueprint/",
+    "note": "共65檔；每實際attachment獨立一SVG，單片甲內陰影刻線不是另檔。不能改rig/layout/work-order，要求改配置時由core處理並升revision。"
+   }
+  },
+  {
+   "id": "files-viewer",
+   "kind": "write-set",
+   "owner": "sol-viewer",
+   "stage": "G2-G4",
+   "detail": {
+    "files": [
+     "render.ts",
+     "build-viewer.ts",
+     "viewer.js",
+     "style.css",
+     "index.template.html",
+     "index.html",
+     "README.md",
+     "verify.ts",
+     "headless.mjs"
+    ],
+    "generated": [
+     "generated/assembled.svg",
+     "generated/exploded.svg",
+     "generated/validation.json",
+     "generated/viewer-data.json"
+    ],
+    "evidence": "evidence/最多7張PNG及interaction.json，預計5張PNG；確切檔名由領導brief固定",
+    "base": "art/mech-blueprint/",
+    "note": "最多21檔，預計19；以領導brief寫集為準。不使用Vite，build-viewer產file可開的內嵌runtime及資料，不fetch、不下載。"
+   }
+  },
+  {
+   "id": "files-leader",
+   "kind": "write-set",
+   "owner": "sol-leader",
+   "stage": "G0-G4",
+   "detail": {
+    "outsidePrototype": [
+     "wf/workflows/dispatch/handoffs/lead-mech-blueprint/REPORT.md"
+    ],
+    "conditionalExisting": [
+     "art/svg-study-1027/index.template.html",
+     "art/svg-study-1027/index.html",
+     "art/svg-study-1027/README.md",
+     "wf/workflows/common/code-map.md"
+    ],
+    "note": "原入口只加導流連結；其他既有資產唯讀；具體以父brief授權為準。原型預計102檔／最多104檔（18core+65art+最多21viewer），證據最多7PNG，門檻150檔/15MB，不自動塞更多輸出。"
+   }
+  },
+  {
+   "id": "api-layout",
+   "kind": "api",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "export": "computeLayout(design, rig) => { nodes: LayoutNode[], workOrders: WorkOrder[] }",
+    "notes": "使用版本mech-blueprint/1；frame、envelope、sockets均產生確定數值，未算完不可發工作單。hash/revision納入工作單與attachments，舊revision拒組裝。"
+   }
+  },
+  {
+   "id": "api-rig",
+   "kind": "api",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "exports": [
+     "evaluateRig(rig, pose) => Record<string, Matrix>",
+     "slotMatrix(world, slot) => Matrix",
+     "transformPoint(matrix, point) => Vec2"
+    ],
+    "Matrix": "[a,b,c,d,e,f]",
+    "notes": "rig為Joint[]，pose為Pose；cap跟隨在evaluateRig依資料算；純邏輯不碰DOM。"
+   }
+  },
+  {
+   "id": "api-geometry",
+   "kind": "api",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "exports": [
+     "validateLayout(nodes, workOrders) => Diagnostic[]",
+     "validatePose(rig, slots, attachments, pose, overlaps) => Diagnostic[]"
+    ],
+    "Diagnostic": {
+     "severity": "error | warning",
+     "code": "穩定英文代碼",
+     "ids": "涉及的part/bone ID[]",
+     "pose": "pose ID或bind",
+     "region": "世界座標Region",
+     "message": "繁中白話"
+    },
+    "notes": "未知SVG語法報錯；錯誤可反證；diagnostics.json存陣列，不把空陣列冒充完成藝術驗收。細節型別由schema.ts同時匯出。"
+   }
+  },
+  {
+   "id": "api-build",
+   "kind": "api",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "command": "node art/mech-blueprint/build.ts",
+    "outputs": "只寫files-core.generated列的五檔",
+    "notes": "layout/work-orders先於SVG輸入存在，不依美術反推。source SHA256及revision入生成資料，輸出順序可重現。"
+   }
+  },
+  {
+   "id": "api-viewer",
+   "kind": "api",
+   "owner": "sol-viewer",
+   "stage": "G2",
+   "detail": {
+    "exports": [
+     "renderScene(model, pose, options) => string",
+     "renderPartSheet(model) => string"
+    ],
+    "command": "node art/mech-blueprint/build-viewer.ts",
+    "notes": "render.ts純函式；viewer.js碰DOM。build-viewer讀config+64SVG+attachments，將rig的可執行runtime及JSON/SVG內嵌並加命名空間，不加Vite或第三方依賴。頁端只更新flat attachment matrix與visibility。分件輸出exploded.svg；若API已由領導與工人凍結，以同等功能最小適配，不能為規劃名稱返工。"
+   }
+  },
+  {
+   "id": "visual-style",
+   "kind": "design",
+   "owner": "astra-art",
+   "stage": "G2",
+   "detail": {
+    "viewBox": [
+     0,
+     0,
+     1000,
+     1200
+    ],
+    "palette": {
+     "white": "#e3e7e5",
+     "shadow": "#a7b1b8",
+     "edge": "#65717e",
+     "dark": "#202a36",
+     "blue": "#1578bc",
+     "blueLight": "#4ec4f2",
+     "cyan": "#84e6d2",
+     "gold": "#bd953f"
+    },
+    "notes": "固定略側面的正面機，頭小、肩寬、收腰、腿長；白甲分片包暗骨架，藍尖長甲分離層疊。各piece至少主面、陰影面或厚邊及有用途的接縫。色彩不是用來掩蓋方框輪廓。"
+   }
+  },
+  {
+   "id": "layout-proportions",
+   "kind": "seed",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "viewBox": [
+     0,
+     0,
+     1000,
+     1200
+    ],
+    "ranges": {
+     "head": [
+      430,
+      155,
+      570,
+      260
+     ],
+     "torso": [
+      350,
+      260,
+      650,
+      565
+     ],
+     "pelvis": [
+      380,
+      525,
+      620,
+      695
+     ],
+     "arm-left": [
+      620,
+      225,
+      825,
+      760
+     ],
+     "arm-right": [
+      175,
+      225,
+      380,
+      760
+     ],
+     "leg-left": [
+      510,
+      585,
+      735,
+      1115
+     ],
+     "leg-right": [
+      265,
+      585,
+      490,
+      1115
+     ],
+     "backpack": [
+      350,
+      175,
+      650,
+      590
+     ]
+    },
+    "notes": "ranges為比例初始分配的minX/minY/maxX/maxY，僅寬高參考，絕不能作最終envelope。肩藍翼可到y100、頭在後；肩臂/腿/裙甲重疊屬設計空間，需用形狀及動作細化。啟動G2前以程式產出非矩形各層region並檢查。"
+   }
+  },
+  {
+   "id": "rig-seed",
+   "kind": "seed",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "bones": [
+     {
+      "id": "pelvis",
+      "parent": null,
+      "bind": {
+       "x": 500,
+       "y": 550,
+       "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+       0,
+       0
+      ]
+     },
+     {
+      "id": "torso",
+      "parent": "pelvis",
+      "bind": {
+       "x": 0,
+       "y": -190,
+       "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+       -8,
+       8
+      ]
+     },
+     {
+      "id": "neck",
+      "parent": "torso",
+      "bind": {
+       "x": 0,
+       "y": -145,
+       "rotation": 0
+      },
+      "length": 25,
+      "limits": [
+       -12,
+       12
+      ]
+     },
+     {
+      "id": "head",
+      "parent": "neck",
+      "bind": {
+       "x": 0,
+       "y": -25,
+       "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+       -15,
+       15
+      ]
+     },
+     {
+      "id": "shoulder-cap-left",
+      "parent": "torso",
+      "bind": {
+       "x": 150,
+       "y": -35,
+       "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+       -32,
+       32
+      ]
+     },
+     {
+      "id": "upper-arm-left",
+      "parent": "torso",
+      "bind": {
+       "x": 150,
+       "y": -35,
+       "rotation": -12
+      },
+      "length": 160,
+      "limits": [
+       -80,
+       20
+      ]
+     },
+     {
+      "id": "forearm-left",
+      "parent": "upper-arm-left",
+      "bind": {
+       "x": 0,
+       "y": 160,
+       "rotation": 0
+      },
+      "length": 175,
+      "limits": [
+       0,
+       110
+      ]
+     },
+     {
+      "id": "hand-left",
+      "parent": "forearm-left",
+      "bind": {
+       "x": 0,
+       "y": 175,
+       "rotation": 0
+      },
+      "length": 50,
+      "limits": [
+       -30,
+       30
+      ]
+     },
+     {
+      "id": "thigh-left",
+      "parent": "pelvis",
+      "bind": {
+       "x": 65,
+       "y": 45,
+       "rotation": -7
+      },
+      "length": 220,
+      "limits": [
+       -35,
+       35
+      ]
+     },
+     {
+      "id": "shin-left",
+      "parent": "thigh-left",
+      "bind": {
+       "x": 0,
+       "y": 220,
+       "rotation": 0
+      },
+      "length": 210,
+      "limits": [
+       -95,
+       0
+      ]
+     },
+     {
+      "id": "foot-left",
+      "parent": "shin-left",
+      "bind": {
+       "x": 0,
+       "y": 210,
+       "rotation": 0
+      },
+      "length": 70,
+      "limits": [
+       -90,
+       90
+      ]
+     },
+     {
+      "id": "shoulder-cap-right",
+      "parent": "torso",
+      "bind": {
+       "x": -150,
+       "y": -35,
+       "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+       -32,
+       32
+      ]
+     },
+     {
+      "id": "upper-arm-right",
+      "parent": "torso",
+      "bind": {
+       "x": -150,
+       "y": -35,
+       "rotation": 12
+      },
+      "length": 160,
+      "limits": [
+       -20,
+       80
+      ]
+     },
+     {
+      "id": "forearm-right",
+      "parent": "upper-arm-right",
+      "bind": {
+       "x": 0,
+       "y": 160,
+       "rotation": 0
+      },
+      "length": 175,
+      "limits": [
+       -110,
+       0
+      ]
+     },
+     {
+      "id": "hand-right",
+      "parent": "forearm-right",
+      "bind": {
+       "x": 0,
+       "y": 175,
+       "rotation": 0
+      },
+      "length": 50,
+      "limits": [
+       -30,
+       30
+      ]
+     },
+     {
+      "id": "thigh-right",
+      "parent": "pelvis",
+      "bind": {
+       "x": -65,
+       "y": 45,
+       "rotation": 7
+      },
+      "length": 220,
+      "limits": [
+       -35,
+       35
+      ]
+     },
+     {
+      "id": "shin-right",
+      "parent": "thigh-right",
+      "bind": {
+       "x": 0,
+       "y": 220,
+       "rotation": 0
+      },
+      "length": 210,
+      "limits": [
+       0,
+       95
+      ]
+     },
+     {
+      "id": "foot-right",
+      "parent": "shin-right",
+      "bind": {
+       "x": 0,
+       "y": 210,
+       "rotation": 0
+      },
+      "length": 70,
+      "limits": [
+       -90,
+       90
+      ]
+     }
+    ],
+    "follow": [
+     {
+      "driven": "shoulder-cap-left",
+      "driver": "upper-arm-left",
+      "factor": 0.35
+     },
+     {
+      "driven": "shoulder-cap-right",
+      "driver": "upper-arm-right",
+      "factor": 0.35
+     }
+    ],
+    "notes": "18骨。數值是配置起點，G1幾何診斷可調比例；凍結work-order後變更必升revision並通知藝術。bone長度不等於占用寬度。"
+   }
+  },
+  {
+   "id": "poses-seed",
+   "kind": "seed",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "poses": [
+     {
+      "id": "bind",
+      "angles": {}
+     },
+     {
+      "id": "raise-left",
+      "angles": {
+       "upper-arm-left": -65
+      }
+     },
+     {
+      "id": "elbow-left",
+      "angles": {
+       "upper-arm-left": -35,
+       "forearm-left": 95
+      }
+     },
+     {
+      "id": "knee-left",
+      "angles": {
+       "shin-left": -65,
+       "foot-left": 65
+      }
+     },
+     {
+      "id": "raise-right",
+      "angles": {
+       "upper-arm-right": 65
+      }
+     },
+     {
+      "id": "elbow-right",
+      "angles": {
+       "upper-arm-right": 35,
+       "forearm-right": -95
+      }
+     },
+     {
+      "id": "knee-right",
+      "angles": {
+       "shin-right": 65,
+       "foot-right": -65
+      }
+     }
+    ],
+    "durationMs": 1200,
+    "samplesPerSegment": 21,
+    "interpolation": "smoothstep",
+    "sequence": "每個目標均bind→target→bind，左右分開；不加未驗證的同時抬臂屈腿。",
+    "notes": "必須實際採樣，不只看兩端；膝姿態懸空檢驗關節，不假裝走路或保持落地。"
+   }
+  },
+  {
+   "id": "overlap-seed",
+   "kind": "seed",
+   "owner": "sol-core",
+   "stage": "G1",
+   "detail": {
+    "requiredPairs": [
+     "shoulder-yoke / shoulder-cap（各側）",
+     "elbow-hinge / elbow-shield（各側）",
+     "knee-bearing / knee-shield（各側）",
+     "forearm-frame / forearm-shell（各側）",
+     "shin-frame / shin-shell（各側）",
+     "torso-frame / breast-left,right",
+     "pelvis-frame / pelvis-front-left,right"
+    ],
+    "notes": "此列是要建立的有界規則類別，不是已授權通過的數值；G1依真實局部region填zone與pose清單。接縫罩區只限pivot附近，其餘white甲/blue甲重疊需單獨明列。可依data draw-band初始化before，但全序必須覆蓋64slot。"
+   }
+  },
+  {
+   "id": "accept-core",
+   "kind": "acceptance",
+   "owner": "sol-core",
+   "stage": "G1-G4",
+   "detail": {
+    "checks": [
+     "18骨與64件工作單的引用、無環、變換、左右角度及接點",
+     "各層包絡包含及keepOut，不以bbox代替",
+     "刻意錯pivot、越界細長尖角、邊穿越凹區、缺slot、非法path、錯畫序會fail"
+    ],
+    "commands": [
+     "node --test --test-concurrency=1 art/mech-blueprint/blueprint.test.ts",
+     "node node_modules/typescript/bin/tsc --noEmit -p art/mech-blueprint/tsconfig.json"
+    ],
+    "notes": "只跑本線單檔，不整包npm test。首個紅綠例子完成再把幾何gate交美術。"
+   }
+  },
+  {
+   "id": "accept-art",
+   "kind": "acceptance",
+   "owner": "astra-art",
+   "stage": "G3",
+   "detail": {
+    "checks": [
+     "64件源SVG與64筆attachment一一對應，各自workOrderRevision正確",
+     "每件輪廓/接點/occupancy由實際源核對，暗關節與白甲/藍甲分離",
+     "整機縮到400px仍可辨肩翼、胸楔、收腰、膝盾、脛鰭，視覺不能像方塊拼接"
+    ],
+    "notes": "可先12件pilot驗workflow，再繼續。素材不含外部來源，不複製舊整機。"
+   }
+  },
+  {
+   "id": "accept-viewer",
+   "kind": "acceptance",
+   "owner": "sol-viewer",
+   "stage": "G4",
+   "detail": {
+    "checks": [
+     "file頁無fetch、無外網；三模式、選件/顯隱/solo/reset、動作pause/scrub/bind與reduced-motion",
+     "bind及左右抬臂/屈肘/屈膝共7姿態；6條bind→target各21點=126點，回程同軌跡可重用",
+     "實際SVG五層、畫序、生成內容引用、靜態PNG及診斷摘要"
+    ],
+    "commands": [
+     "node art/mech-blueprint/verify.ts",
+     "node art/mech-blueprint/headless.mjs",
+     "node art/mech-blueprint/build-viewer.ts"
+    ],
+    "notes": "樣本數以6條bind→target每條21點=126點；回程相同軌跡可重用。不能把靜態PNG宣稱動畫瀏覽器已驗。"
+   }
+  }
+ ]
+}
