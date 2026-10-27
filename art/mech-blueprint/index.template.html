@@ -1,0 +1,9 @@
+<!doctype html>
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>蒼鋼 / 機甲配置工坊</title><style>/* STYLES */</style></head>
+<body><header><div><span class="eyebrow">2108 · LUNAR MECHANICAL ARCHIVE</span><h1>蒼鋼 <span>機甲配置工坊</span></h1></div><p>獨立附件 · 固定視角 2D 骨架原型</p></header>
+<main><aside><div class="aside-title">結構導航 <span id="part-count"></span></div><div class="tree-actions"><button id="restore">全部還原</button><button id="solo">單看選件</button></div><nav id="tree" aria-label="機體語意樹"></nav></aside>
+<section class="workspace"><div class="toolbar"><div class="segmented" role="group" aria-label="展示模式"><button data-mode="assembled" aria-pressed="true">組裝</button><button data-mode="layout" aria-pressed="false">配置</button><button data-mode="exploded" aria-pressed="false">分件</button></div><label><input id="skeleton" type="checkbox">骨架</label><label><input id="envelopes" type="checkbox">包絡／選件掃掠</label><label><input id="contacts" type="checkbox">接點</label></div>
+<div id="stage-container"><svg id="canvas" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1200" aria-label="互動機甲"><g id="stage"></g></svg><div class="stage-caption"><b id="mode-label">ASSEMBLED / 組裝</b><span>局部原點固定 · 世界矩陣扁平呈現</span></div></div>
+<div class="motion"><label>動作 <select id="pose"></select></label><button id="play">播放</button><button id="bind">回 bind</button><input id="progress" type="range" min="0" max="1000" value="0" aria-label="動作進度"><output id="time">0%</output></div>
+</section><section class="inspector"><span class="eyebrow">INSPECTOR</span><h2 id="selection-title">選取附件</h2><pre id="selection">點選機體或結構樹，檢視局部原點、接點與工作單。</pre><h2>幾何診斷</h2><div id="validation-status" role="status"></div><ol id="diagnostics"></ol><p class="scope">診斷僅涵蓋指定 2D 動作路徑；屈膝為懸空展示。未驗證 3D 碰撞或 Spine 匯入。</p></section></main>
+<script>/* DATA */</script><script>/* RUNTIME */</script></body></html>

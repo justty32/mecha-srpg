@@ -1,0 +1,111 @@
+{
+  "version": "1",
+  "poses": [
+    {
+      "id": "bind",
+      "angles": {}
+    },
+    {
+      "id": "raise-left",
+      "angles": {
+        "upper-arm-left": -45
+      }
+    },
+    {
+      "id": "elbow-left",
+      "angles": {
+        "upper-arm-left": -55,
+        "forearm-left": 95
+      }
+    },
+    {
+      "id": "knee-left",
+      "angles": {
+        "shin-left": -65,
+        "foot-left": 65
+      }
+    },
+    {
+      "id": "raise-right",
+      "angles": {
+        "upper-arm-right": 45
+      }
+    },
+    {
+      "id": "elbow-right",
+      "angles": {
+        "upper-arm-right": 55,
+        "forearm-right": -95
+      }
+    },
+    {
+      "id": "knee-right",
+      "angles": {
+        "shin-right": 65,
+        "foot-right": -65
+      }
+    }
+  ],
+  "sequence": [
+    {
+      "from": "bind",
+      "to": "raise-left",
+      "duration": 1200
+    },
+    {
+      "from": "raise-left",
+      "to": "bind",
+      "duration": 1200
+    },
+    {
+      "from": "bind",
+      "to": "elbow-left",
+      "duration": 1200
+    },
+    {
+      "from": "elbow-left",
+      "to": "bind",
+      "duration": 1200
+    },
+    {
+      "from": "bind",
+      "to": "knee-left",
+      "duration": 1200
+    },
+    {
+      "from": "knee-left",
+      "to": "bind",
+      "duration": 1200
+    },
+    {
+      "from": "bind",
+      "to": "raise-right",
+      "duration": 1200
+    },
+    {
+      "from": "raise-right",
+      "to": "bind",
+      "duration": 1200
+    },
+    {
+      "from": "bind",
+      "to": "elbow-right",
+      "duration": 1200
+    },
+    {
+      "from": "elbow-right",
+      "to": "bind",
+      "duration": 1200
+    },
+    {
+      "from": "bind",
+      "to": "knee-right",
+      "duration": 1200
+    },
+    {
+      "from": "knee-right",
+      "to": "bind",
+      "duration": 1200
+    }
+  ]
+}

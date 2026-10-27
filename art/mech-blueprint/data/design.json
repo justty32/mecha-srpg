@@ -1,0 +1,8028 @@
+{
+  "version": "1",
+  "id": "lunar-vanguard",
+  "revision": "blueprint-4",
+  "canvas": {
+    "width": 1000,
+    "height": 1200
+  },
+  "proportions": {
+    "shoulderSpan": 300,
+    "upperArm": 160,
+    "forearm": 175,
+    "thigh": 220,
+    "shin": 210
+  },
+  "nodes": [],
+  "parts": [
+    {
+      "id": "head-helmet",
+      "layout": "head-helmet",
+      "slot": "slot-head-helmet",
+      "role": "包住暗面罩，頭頂不畫長角",
+      "material": "white",
+      "silhouette": "五邊額冠向兩頰收窄；後腦有厚度面",
+      "keepOut": [],
+      "source": "parts/head-helmet.svg",
+      "element": "head-helmet"
+    },
+    {
+      "id": "head-brow",
+      "layout": "head-brow",
+      "slot": "slot-head-brow",
+      "role": "形成銳利額線，與白額冠有前後層次",
+      "material": "blue",
+      "silhouette": "分叉斜眉甲；窄長外緣上挑",
+      "keepOut": [],
+      "source": "parts/head-brow.svg",
+      "element": "head-brow"
+    },
+    {
+      "id": "head-face",
+      "layout": "head-face",
+      "slot": "slot-head-face",
+      "role": "露出頭部內骨架，非大黑方塊",
+      "material": "dark",
+      "silhouette": "收尖六邊面罩與內凹呼吸口",
+      "keepOut": [],
+      "source": "parts/head-face.svg",
+      "element": "head-face"
+    },
+    {
+      "id": "head-cheek-left",
+      "layout": "head-cheek-left",
+      "slot": "slot-head-cheek-left",
+      "role": "在眼下包覆暗面罩",
+      "material": "white",
+      "silhouette": "左側折面頰甲，避開光學孔",
+      "keepOut": [],
+      "source": "parts/head-cheek-left.svg",
+      "element": "head-cheek-left"
+    },
+    {
+      "id": "head-cheek-right",
+      "layout": "head-cheek-right",
+      "slot": "slot-head-cheek-right",
+      "role": "固定視角左右不機械鏡射",
+      "material": "white",
+      "silhouette": "右側較窄折面頰甲，有側厚度差",
+      "keepOut": [],
+      "source": "parts/head-cheek-right.svg",
+      "element": "head-cheek-right"
+    },
+    {
+      "id": "head-optics",
+      "layout": "head-optics",
+      "slot": "slot-head-optics",
+      "role": "雙眼窄光縫與白甲清楚分離",
+      "material": "cyan",
+      "silhouette": "兩眼同一感測器組，獨立薄暗框",
+      "keepOut": [],
+      "source": "parts/head-optics.svg",
+      "element": "head-optics"
+    },
+    {
+      "id": "torso-frame",
+      "layout": "torso-frame",
+      "slot": "slot-torso-frame",
+      "role": "白胸甲後的承力架",
+      "material": "dark",
+      "silhouette": "上寬下窄胸框，頸口與腹口內凹",
+      "keepOut": [],
+      "source": "parts/torso-frame.svg",
+      "element": "torso-frame"
+    },
+    {
+      "id": "torso-breast-left",
+      "layout": "torso-breast-left",
+      "slot": "slot-torso-breast-left",
+      "role": "沿中央藍胸甲包覆，不連成整胸大殼",
+      "material": "white",
+      "silhouette": "左胸斜面楔甲，外側厚、內側收尖",
+      "keepOut": [],
+      "source": "parts/torso-breast-left.svg",
+      "element": "torso-breast-left"
+    },
+    {
+      "id": "torso-breast-right",
+      "layout": "torso-breast-right",
+      "slot": "slot-torso-breast-right",
+      "role": "保留中央接縫與暗色內部",
+      "material": "white",
+      "silhouette": "右胸楔甲，視角較窄，獨立下緣",
+      "keepOut": [],
+      "source": "parts/torso-breast-right.svg",
+      "element": "torso-breast-right"
+    },
+    {
+      "id": "torso-sternum",
+      "layout": "torso-sternum",
+      "slot": "slot-torso-sternum",
+      "role": "藍色胸部焦點，覆在暗胸框上",
+      "material": "blue",
+      "silhouette": "狹長盾形中央胸甲，上寬下尖",
+      "keepOut": [],
+      "source": "parts/torso-sternum.svg",
+      "element": "torso-sternum"
+    },
+    {
+      "id": "torso-intake-left",
+      "layout": "torso-intake-left",
+      "slot": "slot-torso-intake-left",
+      "role": "白甲間真正散熱開口，百葉不拆灌數",
+      "material": "dark",
+      "silhouette": "外斜梯形進氣百葉組與金屬唇",
+      "keepOut": [],
+      "source": "parts/torso-intake-left.svg",
+      "element": "torso-intake-left"
+    },
+    {
+      "id": "torso-intake-right",
+      "layout": "torso-intake-right",
+      "slot": "slot-torso-intake-right",
+      "role": "對應固定視角的另一散熱口",
+      "material": "dark",
+      "silhouette": "較窄斜梯形進氣百葉組",
+      "keepOut": [],
+      "source": "parts/torso-intake-right.svg",
+      "element": "torso-intake-right"
+    },
+    {
+      "id": "abdomen-spine",
+      "layout": "abdomen-spine",
+      "slot": "slot-abdomen-spine",
+      "role": "保持腹部內骨架露出",
+      "material": "dark",
+      "silhouette": "三節交疊脊柱與側接榫，不跨活動腰骨",
+      "keepOut": [],
+      "source": "parts/abdomen-spine.svg",
+      "element": "abdomen-spine"
+    },
+    {
+      "id": "abdomen-rib-left",
+      "layout": "abdomen-rib-left",
+      "slot": "slot-abdomen-rib-left",
+      "role": "胸與腰之間白色包覆分片",
+      "material": "white",
+      "silhouette": "斜向內收的左肋護片，留腰間隙",
+      "keepOut": [],
+      "source": "parts/abdomen-rib-left.svg",
+      "element": "abdomen-rib-left"
+    },
+    {
+      "id": "abdomen-rib-right",
+      "layout": "abdomen-rib-right",
+      "slot": "slot-abdomen-rib-right",
+      "role": "露出暗色中央脊柱",
+      "material": "white",
+      "silhouette": "斜向內收右肋片，短於左側",
+      "keepOut": [],
+      "source": "parts/abdomen-rib-right.svg",
+      "element": "abdomen-rib-right"
+    },
+    {
+      "id": "abdomen-belly",
+      "layout": "abdomen-belly",
+      "slot": "slot-abdomen-belly",
+      "role": "腹下緣保護，不堵滿所有暗色縫",
+      "material": "white",
+      "silhouette": "小六角腹甲，兩側缺口",
+      "keepOut": [],
+      "source": "parts/abdomen-belly.svg",
+      "element": "abdomen-belly"
+    },
+    {
+      "id": "pelvis-frame",
+      "layout": "pelvis-frame",
+      "slot": "slot-pelvis-frame",
+      "role": "連接兩腿的真正承重總成",
+      "material": "dark",
+      "silhouette": "寬髖承重框，左右球窩外露",
+      "keepOut": [],
+      "source": "parts/pelvis-frame.svg",
+      "element": "pelvis-frame"
+    },
+    {
+      "id": "pelvis-front-left",
+      "layout": "pelvis-front-left",
+      "slot": "slot-pelvis-front-left",
+      "role": "覆髖但避開大腿旋轉活動楔區",
+      "material": "white",
+      "silhouette": "長尖左前裙甲，膝上截止",
+      "keepOut": [],
+      "source": "parts/pelvis-front-left.svg",
+      "element": "pelvis-front-left"
+    },
+    {
+      "id": "pelvis-front-right",
+      "layout": "pelvis-front-right",
+      "slot": "slot-pelvis-front-right",
+      "role": "保留左右股間暗縫",
+      "material": "white",
+      "silhouette": "較短右前裙甲，獨立厚邊",
+      "keepOut": [],
+      "source": "parts/pelvis-front-right.svg",
+      "element": "pelvis-front-right"
+    },
+    {
+      "id": "pelvis-side-left",
+      "layout": "pelvis-side-left",
+      "slot": "slot-pelvis-side-left",
+      "role": "藍側翼不與大腿連成一片",
+      "material": "blue",
+      "silhouette": "側向細長左裙翼，外斜後收",
+      "keepOut": [],
+      "source": "parts/pelvis-side-left.svg",
+      "element": "pelvis-side-left"
+    },
+    {
+      "id": "pelvis-side-right",
+      "layout": "pelvis-side-right",
+      "slot": "slot-pelvis-side-right",
+      "role": "補遠側輪廓與層疊",
+      "material": "blue",
+      "silhouette": "右側裙翼與暗髖窩分離",
+      "keepOut": [],
+      "source": "parts/pelvis-side-right.svg",
+      "element": "pelvis-side-right"
+    },
+    {
+      "id": "pelvis-groin",
+      "layout": "pelvis-groin",
+      "slot": "slot-pelvis-groin",
+      "role": "覆髖框中央，保留腿根活動空間",
+      "material": "white",
+      "silhouette": "倒梯形小胯甲，中央折脊",
+      "keepOut": [],
+      "source": "parts/pelvis-groin.svg",
+      "element": "pelvis-groin"
+    },
+    {
+      "id": "backpack-frame",
+      "layout": "backpack-frame",
+      "slot": "slot-backpack-frame",
+      "role": "在軀幹背後形成可見側厚度",
+      "material": "dark",
+      "silhouette": "脊背長矩形但上下削角，有雙噴口座",
+      "keepOut": [],
+      "source": "parts/backpack-frame.svg",
+      "element": "backpack-frame"
+    },
+    {
+      "id": "backpack-nozzle-left",
+      "layout": "backpack-nozzle-left",
+      "slot": "slot-backpack-nozzle-left",
+      "role": "左肩後露出推進機構",
+      "material": "dark",
+      "silhouette": "多邊噴口、深灰內腔與金屬外環",
+      "keepOut": [],
+      "source": "parts/backpack-nozzle-left.svg",
+      "element": "backpack-nozzle-left"
+    },
+    {
+      "id": "backpack-nozzle-right",
+      "layout": "backpack-nozzle-right",
+      "slot": "slot-backpack-nozzle-right",
+      "role": "遠側背部機構",
+      "material": "dark",
+      "silhouette": "窄側面噴口與外環",
+      "keepOut": [],
+      "source": "parts/backpack-nozzle-right.svg",
+      "element": "backpack-nozzle-right"
+    },
+    {
+      "id": "backpack-fin",
+      "layout": "backpack-fin",
+      "slot": "slot-backpack-fin",
+      "role": "提供後層藍色輪廓，不能遮掉頭",
+      "material": "blue",
+      "silhouette": "背側單片長刀形鰭，上尖下寬",
+      "keepOut": [],
+      "source": "parts/backpack-fin.svg",
+      "element": "backpack-fin"
+    },
+    {
+      "id": "arm-left-shoulder-yoke",
+      "layout": "arm-left-shoulder-yoke",
+      "slot": "slot-arm-left-shoulder-yoke",
+      "role": "暗色肩關節可獨立看見",
+      "material": "dark",
+      "silhouette": "雙軸承護圈與短承力叉，pivot留空",
+      "keepOut": [
+        [
+          [
+            10.0,
+            0.0
+          ],
+          [
+            9.659258,
+            2.58819
+          ],
+          [
+            8.660254,
+            5.0
+          ],
+          [
+            7.071068,
+            7.071068
+          ],
+          [
+            5.0,
+            8.660254
+          ],
+          [
+            2.58819,
+            9.659258
+          ],
+          [
+            0.0,
+            10.0
+          ],
+          [
+            -2.58819,
+            9.659258
+          ],
+          [
+            -5.0,
+            8.660254
+          ],
+          [
+            -7.071068,
+            7.071068
+          ],
+          [
+            -8.660254,
+            5.0
+          ],
+          [
+            -9.659258,
+            2.58819
+          ],
+          [
+            -10.0,
+            0.0
+          ],
+          [
+            -9.659258,
+            -2.58819
+          ],
+          [
+            -8.660254,
+            -5.0
+          ],
+          [
+            -7.071068,
+            -7.071068
+          ],
+          [
+            -5.0,
+            -8.660254
+          ],
+          [
+            -2.58819,
+            -9.659258
+          ],
+          [
+            -0.0,
+            -10.0
+          ],
+          [
+            2.58819,
+            -9.659258
+          ],
+          [
+            5.0,
+            -8.660254
+          ],
+          [
+            7.071068,
+            -7.071068
+          ],
+          [
+            8.660254,
+            -5.0
+          ],
+          [
+            9.659258,
+            -2.58819
+          ]
+        ]
+      ],
+      "source": "parts/arm-left-shoulder-yoke.svg",
+      "element": "arm-left-shoulder-yoke"
+    },
+    {
+      "id": "arm-left-shoulder-cap",
+      "layout": "arm-left-shoulder-cap",
+      "slot": "slot-arm-left-shoulder-cap",
+      "role": "獨立肩甲骨上的主護甲",
+      "material": "white",
+      "silhouette": "厚楔形白肩甲，內緣深缺口讓上臂抬起",
+      "keepOut": [
+        [
+          [
+            24.0,
+            0.0
+          ],
+          [
+            23.18222,
+            6.211657
+          ],
+          [
+            20.78461,
+            12.0
+          ],
+          [
+            16.970563,
+            16.970563
+          ],
+          [
+            12.0,
+            20.78461
+          ],
+          [
+            6.211657,
+            23.18222
+          ],
+          [
+            0.0,
+            24.0
+          ],
+          [
+            -6.211657,
+            23.18222
+          ],
+          [
+            -12.0,
+            20.78461
+          ],
+          [
+            -16.970563,
+            16.970563
+          ],
+          [
+            -20.78461,
+            12.0
+          ],
+          [
+            -23.18222,
+            6.211657
+          ],
+          [
+            -24.0,
+            0.0
+          ],
+          [
+            -23.18222,
+            -6.211657
+          ],
+          [
+            -20.78461,
+            -12.0
+          ],
+          [
+            -16.970563,
+            -16.970563
+          ],
+          [
+            -12.0,
+            -20.78461
+          ],
+          [
+            -6.211657,
+            -23.18222
+          ],
+          [
+            -0.0,
+            -24.0
+          ],
+          [
+            6.211657,
+            -23.18222
+          ],
+          [
+            12.0,
+            -20.78461
+          ],
+          [
+            16.970563,
+            -16.970563
+          ],
+          [
+            20.78461,
+            -12.0
+          ],
+          [
+            23.18222,
+            -6.211657
+          ]
+        ]
+      ],
+      "source": "parts/arm-left-shoulder-cap.svg",
+      "element": "arm-left-shoulder-cap"
+    },
+    {
+      "id": "arm-left-shoulder-fin",
+      "layout": "arm-left-shoulder-fin",
+      "slot": "slot-arm-left-shoulder-fin",
+      "role": "外輪廓主特徵，不能變成一整塊三角肩",
+      "material": "blue",
+      "silhouette": "向上外側伸出的長刀形藍翼，與白甲分層",
+      "keepOut": [],
+      "source": "parts/arm-left-shoulder-fin.svg",
+      "element": "arm-left-shoulder-fin"
+    },
+    {
+      "id": "arm-left-upper-shell",
+      "layout": "arm-left-upper-shell",
+      "slot": "slot-arm-left-upper-shell",
+      "role": "包覆上臂，離肘pivot留間隙",
+      "material": "white",
+      "silhouette": "長條三折面上臂甲，內側露暗底與末端接榫",
+      "keepOut": [
+        [
+          [
+            25.0,
+            0.0
+          ],
+          [
+            24.148146,
+            6.470476
+          ],
+          [
+            21.650635,
+            12.5
+          ],
+          [
+            17.67767,
+            17.67767
+          ],
+          [
+            12.5,
+            21.650635
+          ],
+          [
+            6.470476,
+            24.148146
+          ],
+          [
+            0.0,
+            25.0
+          ],
+          [
+            -6.470476,
+            24.148146
+          ],
+          [
+            -12.5,
+            21.650635
+          ],
+          [
+            -17.67767,
+            17.67767
+          ],
+          [
+            -21.650635,
+            12.5
+          ],
+          [
+            -24.148146,
+            6.470476
+          ],
+          [
+            -25.0,
+            0.0
+          ],
+          [
+            -24.148146,
+            -6.470476
+          ],
+          [
+            -21.650635,
+            -12.5
+          ],
+          [
+            -17.67767,
+            -17.67767
+          ],
+          [
+            -12.5,
+            -21.650635
+          ],
+          [
+            -6.470476,
+            -24.148146
+          ],
+          [
+            -0.0,
+            -25.0
+          ],
+          [
+            6.470476,
+            -24.148146
+          ],
+          [
+            12.5,
+            -21.650635
+          ],
+          [
+            17.67767,
+            -17.67767
+          ],
+          [
+            21.650635,
+            -12.5
+          ],
+          [
+            24.148146,
+            -6.470476
+          ]
+        ],
+        [
+          [
+            18.0,
+            160.0
+          ],
+          [
+            17.386665,
+            164.658743
+          ],
+          [
+            15.588457,
+            169.0
+          ],
+          [
+            12.727922,
+            172.727922
+          ],
+          [
+            9.0,
+            175.588457
+          ],
+          [
+            4.658743,
+            177.386665
+          ],
+          [
+            0.0,
+            178.0
+          ],
+          [
+            -4.658743,
+            177.386665
+          ],
+          [
+            -9.0,
+            175.588457
+          ],
+          [
+            -12.727922,
+            172.727922
+          ],
+          [
+            -15.588457,
+            169.0
+          ],
+          [
+            -17.386665,
+            164.658743
+          ],
+          [
+            -18.0,
+            160.0
+          ],
+          [
+            -17.386665,
+            155.341257
+          ],
+          [
+            -15.588457,
+            151.0
+          ],
+          [
+            -12.727922,
+            147.272078
+          ],
+          [
+            -9.0,
+            144.411543
+          ],
+          [
+            -4.658743,
+            142.613335
+          ],
+          [
+            -0.0,
+            142.0
+          ],
+          [
+            4.658743,
+            142.613335
+          ],
+          [
+            9.0,
+            144.411543
+          ],
+          [
+            12.727922,
+            147.272078
+          ],
+          [
+            15.588457,
+            151.0
+          ],
+          [
+            17.386665,
+            155.341257
+          ]
+        ]
+      ],
+      "source": "parts/arm-left-upper-shell.svg",
+      "element": "arm-left-upper-shell"
+    },
+    {
+      "id": "arm-left-elbow-hinge",
+      "layout": "arm-left-elbow-hinge",
+      "slot": "slot-arm-left-elbow-hinge",
+      "role": "可動肘接頭本體",
+      "material": "dark",
+      "silhouette": "多邊軸套、軸心和開口，局部原點在肘",
+      "keepOut": [],
+      "source": "parts/arm-left-elbow-hinge.svg",
+      "element": "arm-left-elbow-hinge"
+    },
+    {
+      "id": "arm-left-elbow-shield",
+      "layout": "arm-left-elbow-shield",
+      "slot": "slot-arm-left-elbow-shield",
+      "role": "遮接縫但不吃掉屈肘活動楔區",
+      "material": "white",
+      "silhouette": "小弧扇以多邊形描邊近似，偏外側罩接縫",
+      "keepOut": [],
+      "source": "parts/arm-left-elbow-shield.svg",
+      "element": "arm-left-elbow-shield"
+    },
+    {
+      "id": "arm-left-forearm-frame",
+      "layout": "arm-left-forearm-frame",
+      "slot": "slot-arm-left-forearm-frame",
+      "role": "白前臂甲之下的暗機構",
+      "material": "dark",
+      "silhouette": "收腕的開叉承力框，露出內側活塞套筒",
+      "keepOut": [],
+      "source": "parts/arm-left-forearm-frame.svg",
+      "element": "arm-left-forearm-frame"
+    },
+    {
+      "id": "arm-left-forearm-shell",
+      "layout": "arm-left-forearm-shell",
+      "slot": "slot-arm-left-forearm-shell",
+      "role": "與內框分開，白甲包覆體積",
+      "material": "white",
+      "silhouette": "寬前窄後的分面護甲，外側一條暗縫",
+      "keepOut": [
+        [
+          [
+            23.0,
+            0.0
+          ],
+          [
+            22.216294,
+            5.952838
+          ],
+          [
+            19.918584,
+            11.5
+          ],
+          [
+            16.263456,
+            16.263456
+          ],
+          [
+            11.5,
+            19.918584
+          ],
+          [
+            5.952838,
+            22.216294
+          ],
+          [
+            0.0,
+            23.0
+          ],
+          [
+            -5.952838,
+            22.216294
+          ],
+          [
+            -11.5,
+            19.918584
+          ],
+          [
+            -16.263456,
+            16.263456
+          ],
+          [
+            -19.918584,
+            11.5
+          ],
+          [
+            -22.216294,
+            5.952838
+          ],
+          [
+            -23.0,
+            0.0
+          ],
+          [
+            -22.216294,
+            -5.952838
+          ],
+          [
+            -19.918584,
+            -11.5
+          ],
+          [
+            -16.263456,
+            -16.263456
+          ],
+          [
+            -11.5,
+            -19.918584
+          ],
+          [
+            -5.952838,
+            -22.216294
+          ],
+          [
+            -0.0,
+            -23.0
+          ],
+          [
+            5.952838,
+            -22.216294
+          ],
+          [
+            11.5,
+            -19.918584
+          ],
+          [
+            16.263456,
+            -16.263456
+          ],
+          [
+            19.918584,
+            -11.5
+          ],
+          [
+            22.216294,
+            -5.952838
+          ]
+        ],
+        [
+          [
+            17.0,
+            175.0
+          ],
+          [
+            16.420739,
+            179.399924
+          ],
+          [
+            14.722432,
+            183.5
+          ],
+          [
+            12.020815,
+            187.020815
+          ],
+          [
+            8.5,
+            189.722432
+          ],
+          [
+            4.399924,
+            191.420739
+          ],
+          [
+            0.0,
+            192.0
+          ],
+          [
+            -4.399924,
+            191.420739
+          ],
+          [
+            -8.5,
+            189.722432
+          ],
+          [
+            -12.020815,
+            187.020815
+          ],
+          [
+            -14.722432,
+            183.5
+          ],
+          [
+            -16.420739,
+            179.399924
+          ],
+          [
+            -17.0,
+            175.0
+          ],
+          [
+            -16.420739,
+            170.600076
+          ],
+          [
+            -14.722432,
+            166.5
+          ],
+          [
+            -12.020815,
+            162.979185
+          ],
+          [
+            -8.5,
+            160.277568
+          ],
+          [
+            -4.399924,
+            158.579261
+          ],
+          [
+            -0.0,
+            158.0
+          ],
+          [
+            4.399924,
+            158.579261
+          ],
+          [
+            8.5,
+            160.277568
+          ],
+          [
+            12.020815,
+            162.979185
+          ],
+          [
+            14.722432,
+            166.5
+          ],
+          [
+            16.420739,
+            170.600076
+          ]
+        ]
+      ],
+      "source": "parts/arm-left-forearm-shell.svg",
+      "element": "arm-left-forearm-shell"
+    },
+    {
+      "id": "arm-left-forearm-blade",
+      "layout": "arm-left-forearm-blade",
+      "slot": "slot-arm-left-forearm-blade",
+      "role": "藍長片與白主甲錯層",
+      "material": "blue",
+      "silhouette": "沿前臂外側延伸的尖長副甲",
+      "keepOut": [],
+      "source": "parts/arm-left-forearm-blade.svg",
+      "element": "arm-left-forearm-blade"
+    },
+    {
+      "id": "arm-left-hand-gauntlet",
+      "layout": "arm-left-hand-gauntlet",
+      "slot": "slot-arm-left-hand-gauntlet",
+      "role": "第一版手指不獨立可動，但不是空白拳框",
+      "material": "white-dark",
+      "silhouette": "白手背甲、暗色收合指組與腕環",
+      "keepOut": [],
+      "source": "parts/arm-left-hand-gauntlet.svg",
+      "element": "arm-left-hand-gauntlet"
+    },
+    {
+      "id": "leg-left-thigh-frame",
+      "layout": "leg-left-thigh-frame",
+      "slot": "slot-leg-left-thigh-frame",
+      "role": "連髖至膝的承重骨架",
+      "material": "dark",
+      "silhouette": "長承力叉與股根圓窩，內側機構露出",
+      "keepOut": [],
+      "source": "parts/leg-left-thigh-frame.svg",
+      "element": "leg-left-thigh-frame"
+    },
+    {
+      "id": "leg-left-thigh-shell",
+      "layout": "leg-left-thigh-shell",
+      "slot": "slot-leg-left-thigh-shell",
+      "role": "白甲包大腿，膝活動縫不閉死",
+      "material": "white",
+      "silhouette": "上寬下收長甲，膝上內凹缺口，雙折面",
+      "keepOut": [
+        [
+          [
+            28.0,
+            0.0
+          ],
+          [
+            27.045923,
+            7.246933
+          ],
+          [
+            24.248711,
+            14.0
+          ],
+          [
+            19.79899,
+            19.79899
+          ],
+          [
+            14.0,
+            24.248711
+          ],
+          [
+            7.246933,
+            27.045923
+          ],
+          [
+            0.0,
+            28.0
+          ],
+          [
+            -7.246933,
+            27.045923
+          ],
+          [
+            -14.0,
+            24.248711
+          ],
+          [
+            -19.79899,
+            19.79899
+          ],
+          [
+            -24.248711,
+            14.0
+          ],
+          [
+            -27.045923,
+            7.246933
+          ],
+          [
+            -28.0,
+            0.0
+          ],
+          [
+            -27.045923,
+            -7.246933
+          ],
+          [
+            -24.248711,
+            -14.0
+          ],
+          [
+            -19.79899,
+            -19.79899
+          ],
+          [
+            -14.0,
+            -24.248711
+          ],
+          [
+            -7.246933,
+            -27.045923
+          ],
+          [
+            -0.0,
+            -28.0
+          ],
+          [
+            7.246933,
+            -27.045923
+          ],
+          [
+            14.0,
+            -24.248711
+          ],
+          [
+            19.79899,
+            -19.79899
+          ],
+          [
+            24.248711,
+            -14.0
+          ],
+          [
+            27.045923,
+            -7.246933
+          ]
+        ],
+        [
+          [
+            20.0,
+            220.0
+          ],
+          [
+            19.318517,
+            225.176381
+          ],
+          [
+            17.320508,
+            230.0
+          ],
+          [
+            14.142136,
+            234.142136
+          ],
+          [
+            10.0,
+            237.320508
+          ],
+          [
+            5.176381,
+            239.318517
+          ],
+          [
+            0.0,
+            240.0
+          ],
+          [
+            -5.176381,
+            239.318517
+          ],
+          [
+            -10.0,
+            237.320508
+          ],
+          [
+            -14.142136,
+            234.142136
+          ],
+          [
+            -17.320508,
+            230.0
+          ],
+          [
+            -19.318517,
+            225.176381
+          ],
+          [
+            -20.0,
+            220.0
+          ],
+          [
+            -19.318517,
+            214.823619
+          ],
+          [
+            -17.320508,
+            210.0
+          ],
+          [
+            -14.142136,
+            205.857864
+          ],
+          [
+            -10.0,
+            202.679492
+          ],
+          [
+            -5.176381,
+            200.681483
+          ],
+          [
+            -0.0,
+            200.0
+          ],
+          [
+            5.176381,
+            200.681483
+          ],
+          [
+            10.0,
+            202.679492
+          ],
+          [
+            14.142136,
+            205.857864
+          ],
+          [
+            17.320508,
+            210.0
+          ],
+          [
+            19.318517,
+            214.823619
+          ]
+        ]
+      ],
+      "source": "parts/leg-left-thigh-shell.svg",
+      "element": "leg-left-thigh-shell"
+    },
+    {
+      "id": "leg-left-knee-bearing",
+      "layout": "leg-left-knee-bearing",
+      "slot": "slot-leg-left-knee-bearing",
+      "role": "屈膝支點，不用裝飾圓冒充",
+      "material": "dark",
+      "silhouette": "軸承圓環及兩側短軛，原點在膝",
+      "keepOut": [],
+      "source": "parts/leg-left-knee-bearing.svg",
+      "element": "leg-left-knee-bearing"
+    },
+    {
+      "id": "leg-left-knee-shield",
+      "layout": "leg-left-knee-shield",
+      "slot": "slot-leg-left-knee-shield",
+      "role": "罩前側軸心，後側屈膝空間敞開",
+      "material": "white-gold",
+      "silhouette": "小尖盾白膝甲與金色散熱嵌件",
+      "keepOut": [],
+      "source": "parts/leg-left-knee-shield.svg",
+      "element": "leg-left-knee-shield"
+    },
+    {
+      "id": "leg-left-shin-frame",
+      "layout": "leg-left-shin-frame",
+      "slot": "slot-leg-left-shin-frame",
+      "role": "承接膝與踝，供外甲分層",
+      "material": "dark",
+      "silhouette": "窄長脛骨架，下端為踝座，外露活塞",
+      "keepOut": [],
+      "source": "parts/leg-left-shin-frame.svg",
+      "element": "leg-left-shin-frame"
+    },
+    {
+      "id": "leg-left-shin-shell",
+      "layout": "leg-left-shin-shell",
+      "slot": "slot-leg-left-shin-shell",
+      "role": "靠折面與邊厚形成真實裝甲片",
+      "material": "white",
+      "silhouette": "長尖白脛甲、上寬下收、踝上缺口",
+      "keepOut": [
+        [
+          [
+            24.0,
+            0.0
+          ],
+          [
+            23.18222,
+            6.211657
+          ],
+          [
+            20.78461,
+            12.0
+          ],
+          [
+            16.970563,
+            16.970563
+          ],
+          [
+            12.0,
+            20.78461
+          ],
+          [
+            6.211657,
+            23.18222
+          ],
+          [
+            0.0,
+            24.0
+          ],
+          [
+            -6.211657,
+            23.18222
+          ],
+          [
+            -12.0,
+            20.78461
+          ],
+          [
+            -16.970563,
+            16.970563
+          ],
+          [
+            -20.78461,
+            12.0
+          ],
+          [
+            -23.18222,
+            6.211657
+          ],
+          [
+            -24.0,
+            0.0
+          ],
+          [
+            -23.18222,
+            -6.211657
+          ],
+          [
+            -20.78461,
+            -12.0
+          ],
+          [
+            -16.970563,
+            -16.970563
+          ],
+          [
+            -12.0,
+            -20.78461
+          ],
+          [
+            -6.211657,
+            -23.18222
+          ],
+          [
+            -0.0,
+            -24.0
+          ],
+          [
+            6.211657,
+            -23.18222
+          ],
+          [
+            12.0,
+            -20.78461
+          ],
+          [
+            16.970563,
+            -16.970563
+          ],
+          [
+            20.78461,
+            -12.0
+          ],
+          [
+            23.18222,
+            -6.211657
+          ]
+        ],
+        [
+          [
+            17.0,
+            210.0
+          ],
+          [
+            16.420739,
+            214.399924
+          ],
+          [
+            14.722432,
+            218.5
+          ],
+          [
+            12.020815,
+            222.020815
+          ],
+          [
+            8.5,
+            224.722432
+          ],
+          [
+            4.399924,
+            226.420739
+          ],
+          [
+            0.0,
+            227.0
+          ],
+          [
+            -4.399924,
+            226.420739
+          ],
+          [
+            -8.5,
+            224.722432
+          ],
+          [
+            -12.020815,
+            222.020815
+          ],
+          [
+            -14.722432,
+            218.5
+          ],
+          [
+            -16.420739,
+            214.399924
+          ],
+          [
+            -17.0,
+            210.0
+          ],
+          [
+            -16.420739,
+            205.600076
+          ],
+          [
+            -14.722432,
+            201.5
+          ],
+          [
+            -12.020815,
+            197.979185
+          ],
+          [
+            -8.5,
+            195.277568
+          ],
+          [
+            -4.399924,
+            193.579261
+          ],
+          [
+            -0.0,
+            193.0
+          ],
+          [
+            4.399924,
+            193.579261
+          ],
+          [
+            8.5,
+            195.277568
+          ],
+          [
+            12.020815,
+            197.979185
+          ],
+          [
+            14.722432,
+            201.5
+          ],
+          [
+            16.420739,
+            205.600076
+          ]
+        ]
+      ],
+      "source": "parts/leg-left-shin-shell.svg",
+      "element": "leg-left-shin-shell"
+    },
+    {
+      "id": "leg-left-shin-fin",
+      "layout": "leg-left-shin-fin",
+      "slot": "slot-leg-left-shin-fin",
+      "role": "參考圖的長藍小腿側翼",
+      "material": "blue",
+      "silhouette": "脛外側長刃甲，下尖略向外張",
+      "keepOut": [],
+      "source": "parts/leg-left-shin-fin.svg",
+      "element": "leg-left-shin-fin"
+    },
+    {
+      "id": "leg-left-foot-ankle",
+      "layout": "leg-left-foot-ankle",
+      "slot": "slot-leg-left-foot-ankle",
+      "role": "腳與脛之間可辨識暗接頭",
+      "material": "dark",
+      "silhouette": "踝軸套與短鞋跟機構",
+      "keepOut": [],
+      "source": "parts/leg-left-foot-ankle.svg",
+      "element": "leg-left-foot-ankle"
+    },
+    {
+      "id": "leg-left-foot-shell",
+      "layout": "leg-left-foot-shell",
+      "slot": "slot-leg-left-foot-shell",
+      "role": "完整站立腳形，趾向外偏而非長方鞋",
+      "material": "white-blue",
+      "silhouette": "分面白腳背、藍趾尖與暗鞋底，同一鞋總成",
+      "keepOut": [],
+      "source": "parts/leg-left-foot-shell.svg",
+      "element": "leg-left-foot-shell"
+    },
+    {
+      "id": "arm-right-shoulder-yoke",
+      "layout": "arm-right-shoulder-yoke",
+      "slot": "slot-arm-right-shoulder-yoke",
+      "role": "暗色肩關節可獨立看見",
+      "material": "dark",
+      "silhouette": "雙軸承護圈與短承力叉，pivot留空",
+      "keepOut": [
+        [
+          [
+            10.0,
+            0.0
+          ],
+          [
+            9.659258,
+            2.58819
+          ],
+          [
+            8.660254,
+            5.0
+          ],
+          [
+            7.071068,
+            7.071068
+          ],
+          [
+            5.0,
+            8.660254
+          ],
+          [
+            2.58819,
+            9.659258
+          ],
+          [
+            0.0,
+            10.0
+          ],
+          [
+            -2.58819,
+            9.659258
+          ],
+          [
+            -5.0,
+            8.660254
+          ],
+          [
+            -7.071068,
+            7.071068
+          ],
+          [
+            -8.660254,
+            5.0
+          ],
+          [
+            -9.659258,
+            2.58819
+          ],
+          [
+            -10.0,
+            0.0
+          ],
+          [
+            -9.659258,
+            -2.58819
+          ],
+          [
+            -8.660254,
+            -5.0
+          ],
+          [
+            -7.071068,
+            -7.071068
+          ],
+          [
+            -5.0,
+            -8.660254
+          ],
+          [
+            -2.58819,
+            -9.659258
+          ],
+          [
+            -0.0,
+            -10.0
+          ],
+          [
+            2.58819,
+            -9.659258
+          ],
+          [
+            5.0,
+            -8.660254
+          ],
+          [
+            7.071068,
+            -7.071068
+          ],
+          [
+            8.660254,
+            -5.0
+          ],
+          [
+            9.659258,
+            -2.58819
+          ]
+        ]
+      ],
+      "source": "parts/arm-right-shoulder-yoke.svg",
+      "element": "arm-right-shoulder-yoke"
+    },
+    {
+      "id": "arm-right-shoulder-cap",
+      "layout": "arm-right-shoulder-cap",
+      "slot": "slot-arm-right-shoulder-cap",
+      "role": "獨立肩甲骨上的主護甲",
+      "material": "white",
+      "silhouette": "厚楔形白肩甲，內緣深缺口讓上臂抬起",
+      "keepOut": [
+        [
+          [
+            24.0,
+            0.0
+          ],
+          [
+            23.18222,
+            6.211657
+          ],
+          [
+            20.78461,
+            12.0
+          ],
+          [
+            16.970563,
+            16.970563
+          ],
+          [
+            12.0,
+            20.78461
+          ],
+          [
+            6.211657,
+            23.18222
+          ],
+          [
+            0.0,
+            24.0
+          ],
+          [
+            -6.211657,
+            23.18222
+          ],
+          [
+            -12.0,
+            20.78461
+          ],
+          [
+            -16.970563,
+            16.970563
+          ],
+          [
+            -20.78461,
+            12.0
+          ],
+          [
+            -23.18222,
+            6.211657
+          ],
+          [
+            -24.0,
+            0.0
+          ],
+          [
+            -23.18222,
+            -6.211657
+          ],
+          [
+            -20.78461,
+            -12.0
+          ],
+          [
+            -16.970563,
+            -16.970563
+          ],
+          [
+            -12.0,
+            -20.78461
+          ],
+          [
+            -6.211657,
+            -23.18222
+          ],
+          [
+            -0.0,
+            -24.0
+          ],
+          [
+            6.211657,
+            -23.18222
+          ],
+          [
+            12.0,
+            -20.78461
+          ],
+          [
+            16.970563,
+            -16.970563
+          ],
+          [
+            20.78461,
+            -12.0
+          ],
+          [
+            23.18222,
+            -6.211657
+          ]
+        ]
+      ],
+      "source": "parts/arm-right-shoulder-cap.svg",
+      "element": "arm-right-shoulder-cap"
+    },
+    {
+      "id": "arm-right-shoulder-fin",
+      "layout": "arm-right-shoulder-fin",
+      "slot": "slot-arm-right-shoulder-fin",
+      "role": "外輪廓主特徵，不能變成一整塊三角肩",
+      "material": "blue",
+      "silhouette": "向上外側伸出的長刀形藍翼，與白甲分層",
+      "keepOut": [],
+      "source": "parts/arm-right-shoulder-fin.svg",
+      "element": "arm-right-shoulder-fin"
+    },
+    {
+      "id": "arm-right-upper-shell",
+      "layout": "arm-right-upper-shell",
+      "slot": "slot-arm-right-upper-shell",
+      "role": "包覆上臂，離肘pivot留間隙",
+      "material": "white",
+      "silhouette": "長條三折面上臂甲，內側露暗底與末端接榫",
+      "keepOut": [
+        [
+          [
+            25.0,
+            0.0
+          ],
+          [
+            24.148146,
+            6.470476
+          ],
+          [
+            21.650635,
+            12.5
+          ],
+          [
+            17.67767,
+            17.67767
+          ],
+          [
+            12.5,
+            21.650635
+          ],
+          [
+            6.470476,
+            24.148146
+          ],
+          [
+            0.0,
+            25.0
+          ],
+          [
+            -6.470476,
+            24.148146
+          ],
+          [
+            -12.5,
+            21.650635
+          ],
+          [
+            -17.67767,
+            17.67767
+          ],
+          [
+            -21.650635,
+            12.5
+          ],
+          [
+            -24.148146,
+            6.470476
+          ],
+          [
+            -25.0,
+            0.0
+          ],
+          [
+            -24.148146,
+            -6.470476
+          ],
+          [
+            -21.650635,
+            -12.5
+          ],
+          [
+            -17.67767,
+            -17.67767
+          ],
+          [
+            -12.5,
+            -21.650635
+          ],
+          [
+            -6.470476,
+            -24.148146
+          ],
+          [
+            -0.0,
+            -25.0
+          ],
+          [
+            6.470476,
+            -24.148146
+          ],
+          [
+            12.5,
+            -21.650635
+          ],
+          [
+            17.67767,
+            -17.67767
+          ],
+          [
+            21.650635,
+            -12.5
+          ],
+          [
+            24.148146,
+            -6.470476
+          ]
+        ],
+        [
+          [
+            18.0,
+            160.0
+          ],
+          [
+            17.386665,
+            164.658743
+          ],
+          [
+            15.588457,
+            169.0
+          ],
+          [
+            12.727922,
+            172.727922
+          ],
+          [
+            9.0,
+            175.588457
+          ],
+          [
+            4.658743,
+            177.386665
+          ],
+          [
+            0.0,
+            178.0
+          ],
+          [
+            -4.658743,
+            177.386665
+          ],
+          [
+            -9.0,
+            175.588457
+          ],
+          [
+            -12.727922,
+            172.727922
+          ],
+          [
+            -15.588457,
+            169.0
+          ],
+          [
+            -17.386665,
+            164.658743
+          ],
+          [
+            -18.0,
+            160.0
+          ],
+          [
+            -17.386665,
+            155.341257
+          ],
+          [
+            -15.588457,
+            151.0
+          ],
+          [
+            -12.727922,
+            147.272078
+          ],
+          [
+            -9.0,
+            144.411543
+          ],
+          [
+            -4.658743,
+            142.613335
+          ],
+          [
+            -0.0,
+            142.0
+          ],
+          [
+            4.658743,
+            142.613335
+          ],
+          [
+            9.0,
+            144.411543
+          ],
+          [
+            12.727922,
+            147.272078
+          ],
+          [
+            15.588457,
+            151.0
+          ],
+          [
+            17.386665,
+            155.341257
+          ]
+        ]
+      ],
+      "source": "parts/arm-right-upper-shell.svg",
+      "element": "arm-right-upper-shell"
+    },
+    {
+      "id": "arm-right-elbow-hinge",
+      "layout": "arm-right-elbow-hinge",
+      "slot": "slot-arm-right-elbow-hinge",
+      "role": "可動肘接頭本體",
+      "material": "dark",
+      "silhouette": "多邊軸套、軸心和開口，局部原點在肘",
+      "keepOut": [],
+      "source": "parts/arm-right-elbow-hinge.svg",
+      "element": "arm-right-elbow-hinge"
+    },
+    {
+      "id": "arm-right-elbow-shield",
+      "layout": "arm-right-elbow-shield",
+      "slot": "slot-arm-right-elbow-shield",
+      "role": "遮接縫但不吃掉屈肘活動楔區",
+      "material": "white",
+      "silhouette": "小弧扇以多邊形描邊近似，偏外側罩接縫",
+      "keepOut": [],
+      "source": "parts/arm-right-elbow-shield.svg",
+      "element": "arm-right-elbow-shield"
+    },
+    {
+      "id": "arm-right-forearm-frame",
+      "layout": "arm-right-forearm-frame",
+      "slot": "slot-arm-right-forearm-frame",
+      "role": "白前臂甲之下的暗機構",
+      "material": "dark",
+      "silhouette": "收腕的開叉承力框，露出內側活塞套筒",
+      "keepOut": [],
+      "source": "parts/arm-right-forearm-frame.svg",
+      "element": "arm-right-forearm-frame"
+    },
+    {
+      "id": "arm-right-forearm-shell",
+      "layout": "arm-right-forearm-shell",
+      "slot": "slot-arm-right-forearm-shell",
+      "role": "與內框分開，白甲包覆體積",
+      "material": "white",
+      "silhouette": "寬前窄後的分面護甲，外側一條暗縫",
+      "keepOut": [
+        [
+          [
+            23.0,
+            0.0
+          ],
+          [
+            22.216294,
+            5.952838
+          ],
+          [
+            19.918584,
+            11.5
+          ],
+          [
+            16.263456,
+            16.263456
+          ],
+          [
+            11.5,
+            19.918584
+          ],
+          [
+            5.952838,
+            22.216294
+          ],
+          [
+            0.0,
+            23.0
+          ],
+          [
+            -5.952838,
+            22.216294
+          ],
+          [
+            -11.5,
+            19.918584
+          ],
+          [
+            -16.263456,
+            16.263456
+          ],
+          [
+            -19.918584,
+            11.5
+          ],
+          [
+            -22.216294,
+            5.952838
+          ],
+          [
+            -23.0,
+            0.0
+          ],
+          [
+            -22.216294,
+            -5.952838
+          ],
+          [
+            -19.918584,
+            -11.5
+          ],
+          [
+            -16.263456,
+            -16.263456
+          ],
+          [
+            -11.5,
+            -19.918584
+          ],
+          [
+            -5.952838,
+            -22.216294
+          ],
+          [
+            -0.0,
+            -23.0
+          ],
+          [
+            5.952838,
+            -22.216294
+          ],
+          [
+            11.5,
+            -19.918584
+          ],
+          [
+            16.263456,
+            -16.263456
+          ],
+          [
+            19.918584,
+            -11.5
+          ],
+          [
+            22.216294,
+            -5.952838
+          ]
+        ],
+        [
+          [
+            17.0,
+            175.0
+          ],
+          [
+            16.420739,
+            179.399924
+          ],
+          [
+            14.722432,
+            183.5
+          ],
+          [
+            12.020815,
+            187.020815
+          ],
+          [
+            8.5,
+            189.722432
+          ],
+          [
+            4.399924,
+            191.420739
+          ],
+          [
+            0.0,
+            192.0
+          ],
+          [
+            -4.399924,
+            191.420739
+          ],
+          [
+            -8.5,
+            189.722432
+          ],
+          [
+            -12.020815,
+            187.020815
+          ],
+          [
+            -14.722432,
+            183.5
+          ],
+          [
+            -16.420739,
+            179.399924
+          ],
+          [
+            -17.0,
+            175.0
+          ],
+          [
+            -16.420739,
+            170.600076
+          ],
+          [
+            -14.722432,
+            166.5
+          ],
+          [
+            -12.020815,
+            162.979185
+          ],
+          [
+            -8.5,
+            160.277568
+          ],
+          [
+            -4.399924,
+            158.579261
+          ],
+          [
+            -0.0,
+            158.0
+          ],
+          [
+            4.399924,
+            158.579261
+          ],
+          [
+            8.5,
+            160.277568
+          ],
+          [
+            12.020815,
+            162.979185
+          ],
+          [
+            14.722432,
+            166.5
+          ],
+          [
+            16.420739,
+            170.600076
+          ]
+        ]
+      ],
+      "source": "parts/arm-right-forearm-shell.svg",
+      "element": "arm-right-forearm-shell"
+    },
+    {
+      "id": "arm-right-forearm-blade",
+      "layout": "arm-right-forearm-blade",
+      "slot": "slot-arm-right-forearm-blade",
+      "role": "藍長片與白主甲錯層",
+      "material": "blue",
+      "silhouette": "沿前臂外側延伸的尖長副甲",
+      "keepOut": [],
+      "source": "parts/arm-right-forearm-blade.svg",
+      "element": "arm-right-forearm-blade"
+    },
+    {
+      "id": "arm-right-hand-gauntlet",
+      "layout": "arm-right-hand-gauntlet",
+      "slot": "slot-arm-right-hand-gauntlet",
+      "role": "第一版手指不獨立可動，但不是空白拳框",
+      "material": "white-dark",
+      "silhouette": "白手背甲、暗色收合指組與腕環",
+      "keepOut": [],
+      "source": "parts/arm-right-hand-gauntlet.svg",
+      "element": "arm-right-hand-gauntlet"
+    },
+    {
+      "id": "leg-right-thigh-frame",
+      "layout": "leg-right-thigh-frame",
+      "slot": "slot-leg-right-thigh-frame",
+      "role": "連髖至膝的承重骨架",
+      "material": "dark",
+      "silhouette": "長承力叉與股根圓窩，內側機構露出",
+      "keepOut": [],
+      "source": "parts/leg-right-thigh-frame.svg",
+      "element": "leg-right-thigh-frame"
+    },
+    {
+      "id": "leg-right-thigh-shell",
+      "layout": "leg-right-thigh-shell",
+      "slot": "slot-leg-right-thigh-shell",
+      "role": "白甲包大腿，膝活動縫不閉死",
+      "material": "white",
+      "silhouette": "上寬下收長甲，膝上內凹缺口，雙折面",
+      "keepOut": [
+        [
+          [
+            28.0,
+            0.0
+          ],
+          [
+            27.045923,
+            7.246933
+          ],
+          [
+            24.248711,
+            14.0
+          ],
+          [
+            19.79899,
+            19.79899
+          ],
+          [
+            14.0,
+            24.248711
+          ],
+          [
+            7.246933,
+            27.045923
+          ],
+          [
+            0.0,
+            28.0
+          ],
+          [
+            -7.246933,
+            27.045923
+          ],
+          [
+            -14.0,
+            24.248711
+          ],
+          [
+            -19.79899,
+            19.79899
+          ],
+          [
+            -24.248711,
+            14.0
+          ],
+          [
+            -27.045923,
+            7.246933
+          ],
+          [
+            -28.0,
+            0.0
+          ],
+          [
+            -27.045923,
+            -7.246933
+          ],
+          [
+            -24.248711,
+            -14.0
+          ],
+          [
+            -19.79899,
+            -19.79899
+          ],
+          [
+            -14.0,
+            -24.248711
+          ],
+          [
+            -7.246933,
+            -27.045923
+          ],
+          [
+            -0.0,
+            -28.0
+          ],
+          [
+            7.246933,
+            -27.045923
+          ],
+          [
+            14.0,
+            -24.248711
+          ],
+          [
+            19.79899,
+            -19.79899
+          ],
+          [
+            24.248711,
+            -14.0
+          ],
+          [
+            27.045923,
+            -7.246933
+          ]
+        ],
+        [
+          [
+            20.0,
+            220.0
+          ],
+          [
+            19.318517,
+            225.176381
+          ],
+          [
+            17.320508,
+            230.0
+          ],
+          [
+            14.142136,
+            234.142136
+          ],
+          [
+            10.0,
+            237.320508
+          ],
+          [
+            5.176381,
+            239.318517
+          ],
+          [
+            0.0,
+            240.0
+          ],
+          [
+            -5.176381,
+            239.318517
+          ],
+          [
+            -10.0,
+            237.320508
+          ],
+          [
+            -14.142136,
+            234.142136
+          ],
+          [
+            -17.320508,
+            230.0
+          ],
+          [
+            -19.318517,
+            225.176381
+          ],
+          [
+            -20.0,
+            220.0
+          ],
+          [
+            -19.318517,
+            214.823619
+          ],
+          [
+            -17.320508,
+            210.0
+          ],
+          [
+            -14.142136,
+            205.857864
+          ],
+          [
+            -10.0,
+            202.679492
+          ],
+          [
+            -5.176381,
+            200.681483
+          ],
+          [
+            -0.0,
+            200.0
+          ],
+          [
+            5.176381,
+            200.681483
+          ],
+          [
+            10.0,
+            202.679492
+          ],
+          [
+            14.142136,
+            205.857864
+          ],
+          [
+            17.320508,
+            210.0
+          ],
+          [
+            19.318517,
+            214.823619
+          ]
+        ]
+      ],
+      "source": "parts/leg-right-thigh-shell.svg",
+      "element": "leg-right-thigh-shell"
+    },
+    {
+      "id": "leg-right-knee-bearing",
+      "layout": "leg-right-knee-bearing",
+      "slot": "slot-leg-right-knee-bearing",
+      "role": "屈膝支點，不用裝飾圓冒充",
+      "material": "dark",
+      "silhouette": "軸承圓環及兩側短軛，原點在膝",
+      "keepOut": [],
+      "source": "parts/leg-right-knee-bearing.svg",
+      "element": "leg-right-knee-bearing"
+    },
+    {
+      "id": "leg-right-knee-shield",
+      "layout": "leg-right-knee-shield",
+      "slot": "slot-leg-right-knee-shield",
+      "role": "罩前側軸心，後側屈膝空間敞開",
+      "material": "white-gold",
+      "silhouette": "小尖盾白膝甲與金色散熱嵌件",
+      "keepOut": [],
+      "source": "parts/leg-right-knee-shield.svg",
+      "element": "leg-right-knee-shield"
+    },
+    {
+      "id": "leg-right-shin-frame",
+      "layout": "leg-right-shin-frame",
+      "slot": "slot-leg-right-shin-frame",
+      "role": "承接膝與踝，供外甲分層",
+      "material": "dark",
+      "silhouette": "窄長脛骨架，下端為踝座，外露活塞",
+      "keepOut": [],
+      "source": "parts/leg-right-shin-frame.svg",
+      "element": "leg-right-shin-frame"
+    },
+    {
+      "id": "leg-right-shin-shell",
+      "layout": "leg-right-shin-shell",
+      "slot": "slot-leg-right-shin-shell",
+      "role": "靠折面與邊厚形成真實裝甲片",
+      "material": "white",
+      "silhouette": "長尖白脛甲、上寬下收、踝上缺口",
+      "keepOut": [
+        [
+          [
+            24.0,
+            0.0
+          ],
+          [
+            23.18222,
+            6.211657
+          ],
+          [
+            20.78461,
+            12.0
+          ],
+          [
+            16.970563,
+            16.970563
+          ],
+          [
+            12.0,
+            20.78461
+          ],
+          [
+            6.211657,
+            23.18222
+          ],
+          [
+            0.0,
+            24.0
+          ],
+          [
+            -6.211657,
+            23.18222
+          ],
+          [
+            -12.0,
+            20.78461
+          ],
+          [
+            -16.970563,
+            16.970563
+          ],
+          [
+            -20.78461,
+            12.0
+          ],
+          [
+            -23.18222,
+            6.211657
+          ],
+          [
+            -24.0,
+            0.0
+          ],
+          [
+            -23.18222,
+            -6.211657
+          ],
+          [
+            -20.78461,
+            -12.0
+          ],
+          [
+            -16.970563,
+            -16.970563
+          ],
+          [
+            -12.0,
+            -20.78461
+          ],
+          [
+            -6.211657,
+            -23.18222
+          ],
+          [
+            -0.0,
+            -24.0
+          ],
+          [
+            6.211657,
+            -23.18222
+          ],
+          [
+            12.0,
+            -20.78461
+          ],
+          [
+            16.970563,
+            -16.970563
+          ],
+          [
+            20.78461,
+            -12.0
+          ],
+          [
+            23.18222,
+            -6.211657
+          ]
+        ],
+        [
+          [
+            17.0,
+            210.0
+          ],
+          [
+            16.420739,
+            214.399924
+          ],
+          [
+            14.722432,
+            218.5
+          ],
+          [
+            12.020815,
+            222.020815
+          ],
+          [
+            8.5,
+            224.722432
+          ],
+          [
+            4.399924,
+            226.420739
+          ],
+          [
+            0.0,
+            227.0
+          ],
+          [
+            -4.399924,
+            226.420739
+          ],
+          [
+            -8.5,
+            224.722432
+          ],
+          [
+            -12.020815,
+            222.020815
+          ],
+          [
+            -14.722432,
+            218.5
+          ],
+          [
+            -16.420739,
+            214.399924
+          ],
+          [
+            -17.0,
+            210.0
+          ],
+          [
+            -16.420739,
+            205.600076
+          ],
+          [
+            -14.722432,
+            201.5
+          ],
+          [
+            -12.020815,
+            197.979185
+          ],
+          [
+            -8.5,
+            195.277568
+          ],
+          [
+            -4.399924,
+            193.579261
+          ],
+          [
+            -0.0,
+            193.0
+          ],
+          [
+            4.399924,
+            193.579261
+          ],
+          [
+            8.5,
+            195.277568
+          ],
+          [
+            12.020815,
+            197.979185
+          ],
+          [
+            14.722432,
+            201.5
+          ],
+          [
+            16.420739,
+            205.600076
+          ]
+        ]
+      ],
+      "source": "parts/leg-right-shin-shell.svg",
+      "element": "leg-right-shin-shell"
+    },
+    {
+      "id": "leg-right-shin-fin",
+      "layout": "leg-right-shin-fin",
+      "slot": "slot-leg-right-shin-fin",
+      "role": "參考圖的長藍小腿側翼",
+      "material": "blue",
+      "silhouette": "脛外側長刃甲，下尖略向外張",
+      "keepOut": [],
+      "source": "parts/leg-right-shin-fin.svg",
+      "element": "leg-right-shin-fin"
+    },
+    {
+      "id": "leg-right-foot-ankle",
+      "layout": "leg-right-foot-ankle",
+      "slot": "slot-leg-right-foot-ankle",
+      "role": "腳與脛之間可辨識暗接頭",
+      "material": "dark",
+      "silhouette": "踝軸套與短鞋跟機構",
+      "keepOut": [],
+      "source": "parts/leg-right-foot-ankle.svg",
+      "element": "leg-right-foot-ankle"
+    },
+    {
+      "id": "leg-right-foot-shell",
+      "layout": "leg-right-foot-shell",
+      "slot": "slot-leg-right-foot-shell",
+      "role": "完整站立腳形，趾向外偏而非長方鞋",
+      "material": "white-blue",
+      "silhouette": "分面白腳背、藍趾尖與暗鞋底，同一鞋總成",
+      "keepOut": [],
+      "source": "parts/leg-right-foot-shell.svg",
+      "element": "leg-right-foot-shell"
+    }
+  ],
+  "allocation": {
+    "majors": [
+      {
+        "id": "head",
+        "region": [
+          [
+            [
+              435.5,
+              125
+            ],
+            [
+              564.5,
+              125
+            ],
+            [
+              575,
+              135.85
+            ],
+            [
+              575,
+              269.15
+            ],
+            [
+              564.5,
+              280
+            ],
+            [
+              435.5,
+              280
+            ],
+            [
+              425,
+              269.15
+            ],
+            [
+              425,
+              135.85
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "torso",
+        "region": [
+          [
+            [
+              366.7,
+              245
+            ],
+            [
+              633.3,
+              245
+            ],
+            [
+              655,
+              266.35
+            ],
+            [
+              655,
+              528.6500000000001
+            ],
+            [
+              633.3,
+              550
+            ],
+            [
+              366.7,
+              550
+            ],
+            [
+              345,
+              528.6500000000001
+            ],
+            [
+              345,
+              266.35
+            ]
+          ],
+          [
+            [
+              490,
+              216
+            ],
+            [
+              510,
+              216
+            ],
+            [
+              514,
+              229
+            ],
+            [
+              516,
+              244
+            ],
+            [
+              516,
+              302
+            ],
+            [
+              484,
+              302
+            ],
+            [
+              484,
+              244
+            ],
+            [
+              486,
+              229
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "pelvis",
+        "region": [
+          [
+            [
+              383.9,
+              525
+            ],
+            [
+              616.1,
+              525
+            ],
+            [
+              635,
+              537.6
+            ],
+            [
+              635,
+              692.4
+            ],
+            [
+              616.1,
+              705
+            ],
+            [
+              383.9,
+              705
+            ],
+            [
+              365,
+              692.4
+            ],
+            [
+              365,
+              537.6
+            ]
+          ],
+          [
+            [
+              486,
+              517
+            ],
+            [
+              514,
+              517
+            ],
+            [
+              514,
+              562
+            ],
+            [
+              486,
+              562
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "backpack",
+        "region": [
+          [
+            [
+              366.7,
+              165
+            ],
+            [
+              633.3,
+              165
+            ],
+            [
+              655,
+              195.1
+            ],
+            [
+              655,
+              564.9000000000001
+            ],
+            [
+              633.3,
+              595
+            ],
+            [
+              366.7,
+              595
+            ],
+            [
+              345,
+              564.9000000000001
+            ],
+            [
+              345,
+              195.1
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-left",
+        "region": [
+          [
+            [
+              605.65,
+              85
+            ],
+            [
+              859.35,
+              85
+            ],
+            [
+              880,
+              132.95
+            ],
+            [
+              880,
+              722.0500000000001
+            ],
+            [
+              859.35,
+              770
+            ],
+            [
+              605.65,
+              770
+            ],
+            [
+              585,
+              722.0500000000001
+            ],
+            [
+              585,
+              132.95
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-right",
+        "region": [
+          [
+            [
+              140.65,
+              85
+            ],
+            [
+              394.35,
+              85
+            ],
+            [
+              415,
+              132.95
+            ],
+            [
+              415,
+              722.0500000000001
+            ],
+            [
+              394.35,
+              770
+            ],
+            [
+              140.65,
+              770
+            ],
+            [
+              120,
+              722.0500000000001
+            ],
+            [
+              120,
+              132.95
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-left",
+        "region": [
+          [
+            [
+              526.45,
+              565
+            ],
+            [
+              728.55,
+              565
+            ],
+            [
+              745,
+              604.55
+            ],
+            [
+              745,
+              1090.45
+            ],
+            [
+              728.55,
+              1130
+            ],
+            [
+              526.45,
+              1130
+            ],
+            [
+              510,
+              1090.45
+            ],
+            [
+              510,
+              604.55
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-right",
+        "region": [
+          [
+            [
+              271.45,
+              565
+            ],
+            [
+              473.55,
+              565
+            ],
+            [
+              490,
+              604.55
+            ],
+            [
+              490,
+              1090.45
+            ],
+            [
+              473.55,
+              1130
+            ],
+            [
+              271.45,
+              1130
+            ],
+            [
+              255,
+              1090.45
+            ],
+            [
+              255,
+              604.55
+            ]
+          ]
+        ]
+      }
+    ],
+    "assemblies": [
+      {
+        "id": "helmet",
+        "major": "head",
+        "bone": "head",
+        "bounds": [
+          -63,
+          -55,
+          126,
+          110
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "face",
+        "major": "head",
+        "bone": "head",
+        "bounds": [
+          -53,
+          -25,
+          106,
+          95
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "chest",
+        "major": "torso",
+        "bone": "torso",
+        "bounds": [
+          -145,
+          -108,
+          290,
+          214
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -10,
+              -144
+            ],
+            [
+              10,
+              -144
+            ],
+            [
+              14,
+              -131
+            ],
+            [
+              16,
+              -116
+            ],
+            [
+              16,
+              -58
+            ],
+            [
+              -16,
+              -58
+            ],
+            [
+              -16,
+              -116
+            ],
+            [
+              -14,
+              -131
+            ]
+          ],
+          [
+            [
+              108,
+              -45
+            ],
+            [
+              146,
+              -45
+            ],
+            [
+              151,
+              -40
+            ],
+            [
+              151,
+              -30
+            ],
+            [
+              146,
+              -25
+            ],
+            [
+              108,
+              -25
+            ]
+          ],
+          [
+            [
+              -108,
+              -25
+            ],
+            [
+              -146,
+              -25
+            ],
+            [
+              -151,
+              -30
+            ],
+            [
+              -151,
+              -40
+            ],
+            [
+              -146,
+              -45
+            ],
+            [
+              -108,
+              -45
+            ]
+          ],
+          [
+            [
+              -12,
+              45
+            ],
+            [
+              12,
+              45
+            ],
+            [
+              12,
+              112
+            ],
+            [
+              -12,
+              112
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "abdomen",
+        "major": "torso",
+        "bone": "torso",
+        "bounds": [
+          -90,
+          90,
+          180,
+          100
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "waist",
+        "major": "pelvis",
+        "bone": "pelvis",
+        "bounds": [
+          -120,
+          -25,
+          240,
+          100
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -12,
+              -31
+            ],
+            [
+              12,
+              -31
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              -12,
+              6
+            ]
+          ],
+          [
+            [
+              79.0,
+              45.0
+            ],
+            [
+              74.89949493661166,
+              54.89949493661166
+            ],
+            [
+              65.0,
+              59.0
+            ],
+            [
+              55.10050506338834,
+              54.89949493661167
+            ],
+            [
+              51.0,
+              45.0
+            ],
+            [
+              55.10050506338833,
+              35.10050506338834
+            ],
+            [
+              65.0,
+              31.0
+            ],
+            [
+              74.89949493661166,
+              35.10050506338833
+            ]
+          ],
+          [
+            [
+              -51.0,
+              45.0
+            ],
+            [
+              -55.10050506338833,
+              54.89949493661166
+            ],
+            [
+              -65.0,
+              59.0
+            ],
+            [
+              -74.89949493661166,
+              54.89949493661167
+            ],
+            [
+              -79.0,
+              45.0
+            ],
+            [
+              -74.89949493661166,
+              35.10050506338834
+            ],
+            [
+              -65.0,
+              31.0
+            ],
+            [
+              -55.10050506338834,
+              35.10050506338833
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "skirt",
+        "major": "pelvis",
+        "bone": "pelvis",
+        "bounds": [
+          -125,
+          12,
+          250,
+          130
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "drive",
+        "major": "backpack",
+        "bone": "torso",
+        "bounds": [
+          -135,
+          -180,
+          270,
+          375
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-shoulder",
+        "major": "arm-left",
+        "bone": "shoulder-cap-left",
+        "bounds": [
+          -36,
+          -230,
+          200,
+          288
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-upper-arm",
+        "major": "arm-left",
+        "bone": "upper-arm-left",
+        "bounds": [
+          -40,
+          8,
+          85,
+          150
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-elbow",
+        "major": "arm-left",
+        "bone": "forearm-left",
+        "bounds": [
+          -43,
+          -35,
+          88,
+          74
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-forearm",
+        "major": "arm-left",
+        "bone": "forearm-left",
+        "bounds": [
+          -53,
+          8,
+          115,
+          164
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -7,
+              142
+            ],
+            [
+              7,
+              142
+            ],
+            [
+              7,
+              175
+            ],
+            [
+              -7,
+              175
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-hand",
+        "major": "arm-left",
+        "bone": "hand-left",
+        "bounds": [
+          -43,
+          -13,
+          90,
+          84
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-thigh",
+        "major": "leg-left",
+        "bone": "thigh-left",
+        "bounds": [
+          -49,
+          0,
+          100,
+          220
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -9,
+              -8
+            ],
+            [
+              9,
+              -8
+            ],
+            [
+              9,
+              35
+            ],
+            [
+              -9,
+              35
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-knee",
+        "major": "leg-left",
+        "bone": "shin-left",
+        "bounds": [
+          -48,
+          -33,
+          100,
+          78
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-shin",
+        "major": "leg-left",
+        "bone": "shin-left",
+        "bounds": [
+          -51,
+          4,
+          108,
+          205
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -6,
+              178
+            ],
+            [
+              6,
+              178
+            ],
+            [
+              6,
+              210
+            ],
+            [
+              -6,
+              210
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-foot",
+        "major": "leg-left",
+        "bone": "foot-left",
+        "bounds": [
+          -54,
+          -25,
+          124,
+          111
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-shoulder",
+        "major": "arm-right",
+        "bone": "shoulder-cap-right",
+        "bounds": [
+          -164,
+          -230,
+          200,
+          288
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-upper-arm",
+        "major": "arm-right",
+        "bone": "upper-arm-right",
+        "bounds": [
+          -40,
+          8,
+          85,
+          150
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-elbow",
+        "major": "arm-right",
+        "bone": "forearm-right",
+        "bounds": [
+          -43,
+          -35,
+          88,
+          74
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-forearm",
+        "major": "arm-right",
+        "bone": "forearm-right",
+        "bounds": [
+          -53,
+          8,
+          115,
+          164
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -7,
+              142
+            ],
+            [
+              7,
+              142
+            ],
+            [
+              7,
+              175
+            ],
+            [
+              -7,
+              175
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-hand",
+        "major": "arm-right",
+        "bone": "hand-right",
+        "bounds": [
+          -43,
+          -13,
+          90,
+          84
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-thigh",
+        "major": "leg-right",
+        "bone": "thigh-right",
+        "bounds": [
+          -49,
+          0,
+          100,
+          220
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -9,
+              -8
+            ],
+            [
+              9,
+              -8
+            ],
+            [
+              9,
+              35
+            ],
+            [
+              -9,
+              35
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-knee",
+        "major": "leg-right",
+        "bone": "shin-right",
+        "bounds": [
+          -48,
+          -33,
+          100,
+          78
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-shin",
+        "major": "leg-right",
+        "bone": "shin-right",
+        "bounds": [
+          -51,
+          4,
+          108,
+          205
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ],
+        "extensions": [
+          [
+            [
+              -6,
+              178
+            ],
+            [
+              6,
+              178
+            ],
+            [
+              6,
+              210
+            ],
+            [
+              -6,
+              210
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-foot",
+        "major": "leg-right",
+        "bone": "foot-right",
+        "bounds": [
+          -54,
+          -25,
+          124,
+          111
+        ],
+        "profile": [
+          [
+            0.07,
+            0
+          ],
+          [
+            0.93,
+            0
+          ],
+          [
+            1,
+            0.07
+          ],
+          [
+            1,
+            0.93
+          ],
+          [
+            0.93,
+            1
+          ],
+          [
+            0.07,
+            1
+          ],
+          [
+            0,
+            0.93
+          ],
+          [
+            0,
+            0.07
+          ]
+        ]
+      }
+    ],
+    "leaves": [
+      {
+        "id": "head-helmet",
+        "assembly": "helmet",
+        "bone": "head",
+        "bounds": [
+          -51,
+          -45,
+          102,
+          64
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          0.0,
+          -18.12
+        ]
+      },
+      {
+        "id": "head-brow",
+        "assembly": "helmet",
+        "bone": "head",
+        "bounds": [
+          -49,
+          -16,
+          98,
+          23
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          0.0,
+          -6.34
+        ]
+      },
+      {
+        "id": "head-face",
+        "assembly": "face",
+        "bone": "head",
+        "bounds": [
+          -29,
+          -6,
+          58,
+          57
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          0.0,
+          17.939999999999998
+        ]
+      },
+      {
+        "id": "head-cheek-left",
+        "assembly": "face",
+        "bone": "head",
+        "bounds": [
+          26,
+          8,
+          22,
+          47
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          37.0,
+          27.74
+        ]
+      },
+      {
+        "id": "head-cheek-right",
+        "assembly": "face",
+        "bone": "head",
+        "bounds": [
+          -46,
+          8,
+          19,
+          43
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          -36.5,
+          26.06
+        ]
+      },
+      {
+        "id": "head-optics",
+        "assembly": "face",
+        "bone": "head",
+        "bounds": [
+          -25,
+          5,
+          50,
+          8
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          0.0,
+          8.36
+        ]
+      },
+      {
+        "id": "torso-frame",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          -126,
+          -95,
+          252,
+          190
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          -15.200000000000003
+        ],
+        "extensions": [
+          [
+            [
+              -8,
+              -142
+            ],
+            [
+              8,
+              -142
+            ],
+            [
+              12,
+              -131
+            ],
+            [
+              14,
+              -116
+            ],
+            [
+              14,
+              -60
+            ],
+            [
+              -14,
+              -60
+            ],
+            [
+              -14,
+              -116
+            ],
+            [
+              -12,
+              -131
+            ]
+          ],
+          [
+            [
+              108,
+              -45
+            ],
+            [
+              146,
+              -45
+            ],
+            [
+              151,
+              -40
+            ],
+            [
+              151,
+              -30
+            ],
+            [
+              146,
+              -25
+            ],
+            [
+              108,
+              -25
+            ]
+          ],
+          [
+            [
+              -108,
+              -25
+            ],
+            [
+              -146,
+              -25
+            ],
+            [
+              -151,
+              -30
+            ],
+            [
+              -151,
+              -40
+            ],
+            [
+              -146,
+              -45
+            ],
+            [
+              -108,
+              -45
+            ]
+          ],
+          [
+            [
+              -12,
+              45
+            ],
+            [
+              12,
+              45
+            ],
+            [
+              12,
+              112
+            ],
+            [
+              -12,
+              112
+            ]
+          ]
+        ],
+        "sockets": [
+          {
+            "id": "mount",
+            "at": [
+              0.0,
+              -15.200000000000003
+            ],
+            "axis": 90
+          },
+          {
+            "id": "neck-mount",
+            "at": [
+              0,
+              -120
+            ],
+            "axis": 90,
+            "targetBone": "neck",
+            "targetAt": [
+              0,
+              25
+            ]
+          },
+          {
+            "id": "shoulder-left",
+            "at": [
+              150,
+              -35
+            ],
+            "axis": 90,
+            "targetBone": "upper-arm-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "shoulder-right",
+            "at": [
+              -150,
+              -35
+            ],
+            "axis": 90,
+            "targetBone": "upper-arm-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "abdomen-seat",
+            "at": [
+              0,
+              107
+            ],
+            "axis": 90,
+            "targetBone": "torso",
+            "targetAt": [
+              0,
+              107
+            ]
+          },
+          {
+            "id": "neck-insert",
+            "at": [
+              0,
+              -136
+            ],
+            "axis": 90,
+            "targetBone": "neck",
+            "targetAt": [
+              0,
+              9
+            ]
+          }
+        ]
+      },
+      {
+        "id": "torso-breast-left",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          22,
+          -78,
+          105,
+          103
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          74.5,
+          -34.74
+        ],
+        "extensions": [
+          [
+            [
+              22,
+              -84
+            ],
+            [
+              99,
+              -94
+            ],
+            [
+              127,
+              -45
+            ],
+            [
+              116,
+              28
+            ],
+            [
+              85,
+              65
+            ],
+            [
+              34,
+              39
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "torso-breast-right",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          -120,
+          -75,
+          96,
+          98
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          -72.0,
+          -33.84
+        ],
+        "extensions": [
+          [
+            [
+              -31.959999999999997,
+              39
+            ],
+            [
+              -79.89999999999999,
+              65
+            ],
+            [
+              -109.03999999999999,
+              28
+            ],
+            [
+              -119.38,
+              -45
+            ],
+            [
+              -93.05999999999999,
+              -94
+            ],
+            [
+              -20.68,
+              -84
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "torso-sternum",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          -28,
+          -80,
+          56,
+          139
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          0.0,
+          -21.620000000000005
+        ]
+      },
+      {
+        "id": "torso-intake-left",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          78,
+          -37,
+          39,
+          34
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          97.5,
+          -22.72
+        ]
+      },
+      {
+        "id": "torso-intake-right",
+        "assembly": "chest",
+        "bone": "torso",
+        "bounds": [
+          -112,
+          -35,
+          35,
+          30
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -94.5,
+          -22.4
+        ]
+      },
+      {
+        "id": "abdomen-spine",
+        "assembly": "abdomen",
+        "bone": "torso",
+        "bounds": [
+          -23,
+          103,
+          46,
+          69
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          131.98
+        ]
+      },
+      {
+        "id": "abdomen-rib-left",
+        "assembly": "abdomen",
+        "bone": "torso",
+        "bounds": [
+          24,
+          103,
+          48,
+          45
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          48.0,
+          121.9
+        ]
+      },
+      {
+        "id": "abdomen-rib-right",
+        "assembly": "abdomen",
+        "bone": "torso",
+        "bounds": [
+          -69,
+          104,
+          43,
+          41
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          -47.5,
+          121.22
+        ]
+      },
+      {
+        "id": "abdomen-belly",
+        "assembly": "abdomen",
+        "bone": "torso",
+        "bounds": [
+          -36,
+          145,
+          72,
+          32
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          0.0,
+          158.44
+        ]
+      },
+      {
+        "id": "pelvis-frame",
+        "assembly": "waist",
+        "bone": "pelvis",
+        "bounds": [
+          -108,
+          -14,
+          216,
+          65
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          13.3
+        ],
+        "extensions": [
+          [
+            [
+              -12,
+              -31
+            ],
+            [
+              12,
+              -31
+            ],
+            [
+              12,
+              6
+            ],
+            [
+              -12,
+              6
+            ]
+          ],
+          [
+            [
+              79.0,
+              45.0
+            ],
+            [
+              74.89949493661166,
+              54.89949493661166
+            ],
+            [
+              65.0,
+              59.0
+            ],
+            [
+              55.10050506338834,
+              54.89949493661167
+            ],
+            [
+              51.0,
+              45.0
+            ],
+            [
+              55.10050506338833,
+              35.10050506338834
+            ],
+            [
+              65.0,
+              31.0
+            ],
+            [
+              74.89949493661166,
+              35.10050506338833
+            ]
+          ],
+          [
+            [
+              -51.0,
+              45.0
+            ],
+            [
+              -55.10050506338833,
+              54.89949493661166
+            ],
+            [
+              -65.0,
+              59.0
+            ],
+            [
+              -74.89949493661166,
+              54.89949493661167
+            ],
+            [
+              -79.0,
+              45.0
+            ],
+            [
+              -74.89949493661166,
+              35.10050506338834
+            ],
+            [
+              -65.0,
+              31.0
+            ],
+            [
+              -55.10050506338834,
+              35.10050506338833
+            ]
+          ]
+        ],
+        "sockets": [
+          {
+            "id": "mount",
+            "at": [
+              0.0,
+              13.3
+            ],
+            "axis": 90
+          },
+          {
+            "id": "waist",
+            "at": [
+              0,
+              -24
+            ],
+            "axis": 90,
+            "targetBone": "torso",
+            "targetAt": [
+              0,
+              166
+            ]
+          },
+          {
+            "id": "hip-left",
+            "at": [
+              65,
+              45
+            ],
+            "axis": 90,
+            "targetBone": "thigh-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "hip-right",
+            "at": [
+              -65,
+              45
+            ],
+            "axis": 90,
+            "targetBone": "thigh-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "pelvis-front-left",
+        "assembly": "skirt",
+        "bone": "pelvis",
+        "bounds": [
+          13,
+          31,
+          65,
+          95
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          45.5,
+          70.9
+        ]
+      },
+      {
+        "id": "pelvis-front-right",
+        "assembly": "skirt",
+        "bone": "pelvis",
+        "bounds": [
+          -76,
+          31,
+          60,
+          86
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          -46.0,
+          67.12
+        ]
+      },
+      {
+        "id": "pelvis-side-left",
+        "assembly": "skirt",
+        "bone": "pelvis",
+        "bounds": [
+          82,
+          22,
+          32,
+          102
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          98.0,
+          64.84
+        ]
+      },
+      {
+        "id": "pelvis-side-right",
+        "assembly": "skirt",
+        "bone": "pelvis",
+        "bounds": [
+          -112,
+          22,
+          29,
+          95
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          -97.5,
+          61.9
+        ]
+      },
+      {
+        "id": "pelvis-groin",
+        "assembly": "waist",
+        "bone": "pelvis",
+        "bounds": [
+          -28,
+          29,
+          56,
+          36
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          0.0,
+          44.12
+        ]
+      },
+      {
+        "id": "backpack-frame",
+        "assembly": "drive",
+        "bone": "torso",
+        "bounds": [
+          -100,
+          -129,
+          200,
+          291
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          -6.780000000000001
+        ],
+        "extensions": [
+          [
+            [
+              -96,
+              132
+            ],
+            [
+              100,
+              132
+            ],
+            [
+              100,
+              148
+            ],
+            [
+              -96,
+              148
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "backpack-nozzle-left",
+        "assembly": "drive",
+        "bone": "torso",
+        "bounds": [
+          64,
+          127,
+          54,
+          49
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          91.0,
+          147.57999999999998
+        ]
+      },
+      {
+        "id": "backpack-nozzle-right",
+        "assembly": "drive",
+        "bone": "torso",
+        "bounds": [
+          -111,
+          125,
+          45,
+          47
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -88.5,
+          144.74
+        ]
+      },
+      {
+        "id": "backpack-fin",
+        "assembly": "drive",
+        "bone": "torso",
+        "bounds": [
+          -29,
+          -166,
+          58,
+          217
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          0.0,
+          -74.86
+        ]
+      },
+      {
+        "id": "arm-left-shoulder-yoke",
+        "assembly": "arm-left-shoulder",
+        "bone": "upper-arm-left",
+        "bounds": [
+          -25,
+          -22,
+          50,
+          54
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          0.6799999999999997
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "upper-arm-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arm-left-shoulder-cap",
+        "assembly": "arm-left-shoulder",
+        "bone": "shoulder-cap-left",
+        "bounds": [
+          -28,
+          -60,
+          134,
+          78
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          39.0,
+          -27.240000000000002
+        ]
+      },
+      {
+        "id": "arm-left-shoulder-fin",
+        "assembly": "arm-left-shoulder",
+        "bone": "shoulder-cap-left",
+        "bounds": [
+          34,
+          -214,
+          119,
+          205
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          93.5,
+          -127.9
+        ]
+      },
+      {
+        "id": "arm-left-upper-shell",
+        "assembly": "arm-left-upper-arm",
+        "bone": "upper-arm-left",
+        "bounds": [
+          -27,
+          30,
+          60,
+          115
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          3.0,
+          78.3
+        ]
+      },
+      {
+        "id": "arm-left-elbow-hinge",
+        "assembly": "arm-left-elbow",
+        "bone": "forearm-left",
+        "bounds": [
+          -28,
+          -24,
+          56,
+          51
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          -2.580000000000002
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "forearm-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arm-left-elbow-shield",
+        "assembly": "arm-left-elbow",
+        "bone": "forearm-left",
+        "bounds": [
+          -13,
+          -16,
+          52,
+          50
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          13.0,
+          5.0
+        ]
+      },
+      {
+        "id": "arm-left-forearm-frame",
+        "assembly": "arm-left-forearm",
+        "bone": "forearm-left",
+        "bounds": [
+          -31,
+          19,
+          61,
+          142
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -0.5,
+          78.64
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "forearm-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              175
+            ],
+            "axis": 90,
+            "targetBone": "hand-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -7,
+              142
+            ],
+            [
+              7,
+              142
+            ],
+            [
+              7,
+              175
+            ],
+            [
+              -7,
+              175
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-left-forearm-shell",
+        "assembly": "arm-left-forearm",
+        "bone": "forearm-left",
+        "bounds": [
+          -26,
+          30,
+          70,
+          125
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          9.0,
+          82.5
+        ]
+      },
+      {
+        "id": "arm-left-forearm-blade",
+        "assembly": "arm-left-forearm",
+        "bone": "forearm-left",
+        "bounds": [
+          39,
+          17,
+          18,
+          143
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          48.0,
+          77.06
+        ]
+      },
+      {
+        "id": "arm-left-hand-gauntlet",
+        "assembly": "arm-left-hand",
+        "bone": "hand-left",
+        "bounds": [
+          -32,
+          -2,
+          68,
+          63
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          2.0,
+          24.459999999999997
+        ]
+      },
+      {
+        "id": "leg-left-thigh-frame",
+        "assembly": "leg-left-thigh",
+        "bone": "thigh-left",
+        "bounds": [
+          -32,
+          16,
+          65,
+          193
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.5,
+          97.06
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "thigh-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              220
+            ],
+            "axis": 90,
+            "targetBone": "shin-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -9,
+              -8
+            ],
+            [
+              9,
+              -8
+            ],
+            [
+              9,
+              35
+            ],
+            [
+              -9,
+              35
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-thigh-shell",
+        "assembly": "leg-left-thigh",
+        "bone": "thigh-left",
+        "bounds": [
+          -36,
+          30,
+          75,
+          171
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          1.5,
+          101.82
+        ]
+      },
+      {
+        "id": "leg-left-knee-bearing",
+        "assembly": "leg-left-knee",
+        "bone": "shin-left",
+        "bounds": [
+          -30,
+          -23,
+          60,
+          51
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.0,
+          -1.5800000000000018
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "shin-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "leg-left-knee-shield",
+        "assembly": "leg-left-knee",
+        "bone": "shin-left",
+        "bounds": [
+          -30,
+          -13,
+          67,
+          51
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          3.5,
+          8.419999999999998
+        ]
+      },
+      {
+        "id": "leg-left-shin-frame",
+        "assembly": "leg-left-shin",
+        "bone": "shin-left",
+        "bounds": [
+          -30,
+          17,
+          61,
+          181
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.5,
+          93.02
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "shin-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              210
+            ],
+            "axis": 90,
+            "targetBone": "foot-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -6,
+              178
+            ],
+            [
+              6,
+              178
+            ],
+            [
+              6,
+              210
+            ],
+            [
+              -6,
+              210
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-left-shin-shell",
+        "assembly": "leg-left-shin",
+        "bone": "shin-left",
+        "bounds": [
+          -34,
+          28,
+          73,
+          166
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          2.5,
+          97.72
+        ]
+      },
+      {
+        "id": "leg-left-shin-fin",
+        "assembly": "leg-left-shin",
+        "bone": "shin-left",
+        "bounds": [
+          38,
+          21,
+          16,
+          176
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          46.0,
+          94.92
+        ]
+      },
+      {
+        "id": "leg-left-foot-ankle",
+        "assembly": "leg-left-foot",
+        "bone": "foot-left",
+        "bounds": [
+          -27,
+          -13,
+          55,
+          45
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          0.5,
+          5.899999999999999
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "foot-left",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "leg-left-foot-shell",
+        "assembly": "leg-left-foot",
+        "bone": "foot-left",
+        "bounds": [
+          -42,
+          13,
+          101,
+          60
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          8.5,
+          38.2
+        ]
+      },
+      {
+        "id": "arm-right-shoulder-yoke",
+        "assembly": "arm-right-shoulder",
+        "bone": "upper-arm-right",
+        "bounds": [
+          -25,
+          -22,
+          47.0,
+          54
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -1.5,
+          0.6799999999999997
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "upper-arm-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arm-right-shoulder-cap",
+        "assembly": "arm-right-shoulder",
+        "bone": "shoulder-cap-right",
+        "bounds": [
+          -106,
+          -60,
+          125.96,
+          78
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          -43.02,
+          -27.240000000000002
+        ]
+      },
+      {
+        "id": "arm-right-shoulder-fin",
+        "assembly": "arm-right-shoulder",
+        "bone": "shoulder-cap-right",
+        "bounds": [
+          -153,
+          -214,
+          111.86,
+          205
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          -97.07,
+          -127.9
+        ]
+      },
+      {
+        "id": "arm-right-upper-shell",
+        "assembly": "arm-right-upper-arm",
+        "bone": "upper-arm-right",
+        "bounds": [
+          -33,
+          30,
+          56.4,
+          115
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -4.800000000000001,
+          78.3
+        ]
+      },
+      {
+        "id": "arm-right-elbow-hinge",
+        "assembly": "arm-right-elbow",
+        "bone": "forearm-right",
+        "bounds": [
+          -28,
+          -24,
+          52.64,
+          51
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -1.6799999999999997,
+          -2.580000000000002
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "forearm-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "arm-right-elbow-shield",
+        "assembly": "arm-right-elbow",
+        "bone": "forearm-right",
+        "bounds": [
+          -39,
+          -16,
+          48.879999999999995,
+          50
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          -14.560000000000002,
+          5.0
+        ]
+      },
+      {
+        "id": "arm-right-forearm-frame",
+        "assembly": "arm-right-forearm",
+        "bone": "forearm-right",
+        "bounds": [
+          -30,
+          19,
+          57.339999999999996,
+          142
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -1.3300000000000018,
+          78.64
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "forearm-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              175
+            ],
+            "axis": 90,
+            "targetBone": "hand-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -7,
+              142
+            ],
+            [
+              7,
+              142
+            ],
+            [
+              7,
+              175
+            ],
+            [
+              -7,
+              175
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "arm-right-forearm-shell",
+        "assembly": "arm-right-forearm",
+        "bone": "forearm-right",
+        "bounds": [
+          -44,
+          30,
+          65.8,
+          125
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -11.100000000000001,
+          82.5
+        ]
+      },
+      {
+        "id": "arm-right-forearm-blade",
+        "assembly": "arm-right-forearm",
+        "bone": "forearm-right",
+        "bounds": [
+          -50,
+          25,
+          12,
+          130
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          -44.0,
+          79.6
+        ]
+      },
+      {
+        "id": "arm-right-hand-gauntlet",
+        "assembly": "arm-right-hand",
+        "bone": "hand-right",
+        "bounds": [
+          -36,
+          -2,
+          63.919999999999995,
+          63
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -4.040000000000003,
+          24.459999999999997
+        ]
+      },
+      {
+        "id": "leg-right-thigh-frame",
+        "assembly": "leg-right-thigh",
+        "bone": "thigh-right",
+        "bounds": [
+          -33,
+          16,
+          61.099999999999994,
+          193
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -2.450000000000003,
+          97.06
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "thigh-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              220
+            ],
+            "axis": 90,
+            "targetBone": "shin-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -9,
+              -8
+            ],
+            [
+              9,
+              -8
+            ],
+            [
+              9,
+              35
+            ],
+            [
+              -9,
+              35
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-thigh-shell",
+        "assembly": "leg-right-thigh",
+        "bone": "thigh-right",
+        "bounds": [
+          -39,
+          30,
+          70.5,
+          171
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -3.75,
+          101.82
+        ]
+      },
+      {
+        "id": "leg-right-knee-bearing",
+        "assembly": "leg-right-knee",
+        "bone": "shin-right",
+        "bounds": [
+          -30,
+          -23,
+          56.4,
+          51
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -1.8000000000000007,
+          -1.5800000000000018
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "shin-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "leg-right-knee-shield",
+        "assembly": "leg-right-knee",
+        "bone": "shin-right",
+        "bounds": [
+          -37,
+          -13,
+          62.98,
+          51
+        ],
+        "profile": [
+          [
+            0.16,
+            0
+          ],
+          [
+            0.84,
+            0
+          ],
+          [
+            1,
+            0.32
+          ],
+          [
+            0.5,
+            1
+          ],
+          [
+            0,
+            0.32
+          ]
+        ],
+        "contact": [
+          -5.510000000000002,
+          8.419999999999998
+        ]
+      },
+      {
+        "id": "leg-right-shin-frame",
+        "assembly": "leg-right-shin",
+        "bone": "shin-right",
+        "bounds": [
+          -31,
+          17,
+          57.339999999999996,
+          181
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -2.330000000000002,
+          93.02
+        ],
+        "sockets": [
+          {
+            "id": "near-axis",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "shin-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          },
+          {
+            "id": "far-axis",
+            "at": [
+              0,
+              210
+            ],
+            "axis": 90,
+            "targetBone": "foot-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ],
+        "extensions": [
+          [
+            [
+              -6,
+              178
+            ],
+            [
+              6,
+              178
+            ],
+            [
+              6,
+              210
+            ],
+            [
+              -6,
+              210
+            ]
+          ]
+        ]
+      },
+      {
+        "id": "leg-right-shin-shell",
+        "assembly": "leg-right-shin",
+        "bone": "shin-right",
+        "bounds": [
+          -39,
+          28,
+          68.61999999999999,
+          166
+        ],
+        "profile": [
+          [
+            0.15,
+            0
+          ],
+          [
+            0.85,
+            0
+          ],
+          [
+            1,
+            0.22
+          ],
+          [
+            0.88,
+            0.83
+          ],
+          [
+            0.55,
+            1
+          ],
+          [
+            0.1,
+            0.84
+          ],
+          [
+            0,
+            0.24
+          ]
+        ],
+        "contact": [
+          -4.690000000000005,
+          97.72
+        ]
+      },
+      {
+        "id": "leg-right-shin-fin",
+        "assembly": "leg-right-shin",
+        "bone": "shin-right",
+        "bounds": [
+          -48,
+          25,
+          12,
+          170
+        ],
+        "profile": [
+          [
+            0.65,
+            0
+          ],
+          [
+            1,
+            0.72
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0,
+            0.78
+          ],
+          [
+            0.35,
+            0.3
+          ]
+        ],
+        "contact": [
+          -42.0,
+          96.39999999999999
+        ]
+      },
+      {
+        "id": "leg-right-foot-ankle",
+        "assembly": "leg-right-foot",
+        "bone": "foot-right",
+        "bounds": [
+          -28,
+          -13,
+          51.699999999999996,
+          45
+        ],
+        "profile": [
+          [
+            0.18,
+            0
+          ],
+          [
+            0.82,
+            0
+          ],
+          [
+            1,
+            0.16
+          ],
+          [
+            0.9,
+            0.84
+          ],
+          [
+            0.7,
+            1
+          ],
+          [
+            0.2,
+            0.94
+          ],
+          [
+            0,
+            0.7
+          ],
+          [
+            0,
+            0.2
+          ]
+        ],
+        "contact": [
+          -2.150000000000002,
+          5.899999999999999
+        ],
+        "sockets": [
+          {
+            "id": "pivot",
+            "at": [
+              0,
+              0
+            ],
+            "axis": 90,
+            "targetBone": "foot-right",
+            "targetAt": [
+              0,
+              0
+            ]
+          }
+        ]
+      },
+      {
+        "id": "leg-right-foot-shell",
+        "assembly": "leg-right-foot",
+        "bone": "foot-right",
+        "bounds": [
+          -48,
+          15,
+          90,
+          55
+        ],
+        "profile": [
+          [
+            0,
+            0.2
+          ],
+          [
+            0.8,
+            0
+          ],
+          [
+            1,
+            0.64
+          ],
+          [
+            0.65,
+            1
+          ],
+          [
+            0.08,
+            0.8
+          ]
+        ],
+        "contact": [
+          -3.0,
+          38.099999999999994
+        ]
+      }
+    ]
+  }
+}

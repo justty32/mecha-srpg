@@ -1,0 +1,265 @@
+{
+  "version": "1",
+  "bones": [
+    {
+      "id": "pelvis",
+      "parent": null,
+      "bind": {
+        "x": 500,
+        "y": 550,
+        "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+        0,
+        0
+      ]
+    },
+    {
+      "id": "torso",
+      "parent": "pelvis",
+      "bind": {
+        "x": 0,
+        "y": -190,
+        "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+        -8,
+        8
+      ]
+    },
+    {
+      "id": "neck",
+      "parent": "torso",
+      "bind": {
+        "x": 0,
+        "y": -145,
+        "rotation": 0
+      },
+      "length": 25,
+      "limits": [
+        -12,
+        12
+      ]
+    },
+    {
+      "id": "head",
+      "parent": "neck",
+      "bind": {
+        "x": 0,
+        "y": -25,
+        "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+        -15,
+        15
+      ]
+    },
+    {
+      "id": "shoulder-cap-left",
+      "parent": "torso",
+      "bind": {
+        "x": 150,
+        "y": -35,
+        "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+        -32,
+        32
+      ],
+      "follow": {
+        "bone": "upper-arm-left",
+        "factor": 0.35
+      }
+    },
+    {
+      "id": "upper-arm-left",
+      "parent": "torso",
+      "bind": {
+        "x": 150,
+        "y": -35,
+        "rotation": -12
+      },
+      "length": 160,
+      "limits": [
+        -80,
+        20
+      ]
+    },
+    {
+      "id": "forearm-left",
+      "parent": "upper-arm-left",
+      "bind": {
+        "x": 0,
+        "y": 160,
+        "rotation": 0
+      },
+      "length": 175,
+      "limits": [
+        0,
+        110
+      ]
+    },
+    {
+      "id": "hand-left",
+      "parent": "forearm-left",
+      "bind": {
+        "x": 0,
+        "y": 175,
+        "rotation": 0
+      },
+      "length": 50,
+      "limits": [
+        -30,
+        30
+      ]
+    },
+    {
+      "id": "thigh-left",
+      "parent": "pelvis",
+      "bind": {
+        "x": 65,
+        "y": 45,
+        "rotation": -7
+      },
+      "length": 220,
+      "limits": [
+        -35,
+        35
+      ]
+    },
+    {
+      "id": "shin-left",
+      "parent": "thigh-left",
+      "bind": {
+        "x": 0,
+        "y": 220,
+        "rotation": 0
+      },
+      "length": 210,
+      "limits": [
+        -95,
+        0
+      ]
+    },
+    {
+      "id": "foot-left",
+      "parent": "shin-left",
+      "bind": {
+        "x": 0,
+        "y": 210,
+        "rotation": 0
+      },
+      "length": 70,
+      "limits": [
+        -90,
+        90
+      ]
+    },
+    {
+      "id": "shoulder-cap-right",
+      "parent": "torso",
+      "bind": {
+        "x": -150,
+        "y": -35,
+        "rotation": 0
+      },
+      "length": 0,
+      "limits": [
+        -32,
+        32
+      ],
+      "follow": {
+        "bone": "upper-arm-right",
+        "factor": 0.35
+      }
+    },
+    {
+      "id": "upper-arm-right",
+      "parent": "torso",
+      "bind": {
+        "x": -150,
+        "y": -35,
+        "rotation": 12
+      },
+      "length": 160,
+      "limits": [
+        -20,
+        80
+      ]
+    },
+    {
+      "id": "forearm-right",
+      "parent": "upper-arm-right",
+      "bind": {
+        "x": 0,
+        "y": 160,
+        "rotation": 0
+      },
+      "length": 175,
+      "limits": [
+        -110,
+        0
+      ]
+    },
+    {
+      "id": "hand-right",
+      "parent": "forearm-right",
+      "bind": {
+        "x": 0,
+        "y": 175,
+        "rotation": 0
+      },
+      "length": 50,
+      "limits": [
+        -30,
+        30
+      ]
+    },
+    {
+      "id": "thigh-right",
+      "parent": "pelvis",
+      "bind": {
+        "x": -65,
+        "y": 45,
+        "rotation": 7
+      },
+      "length": 220,
+      "limits": [
+        -35,
+        35
+      ]
+    },
+    {
+      "id": "shin-right",
+      "parent": "thigh-right",
+      "bind": {
+        "x": 0,
+        "y": 220,
+        "rotation": 0
+      },
+      "length": 210,
+      "limits": [
+        0,
+        95
+      ]
+    },
+    {
+      "id": "foot-right",
+      "parent": "shin-right",
+      "bind": {
+        "x": 0,
+        "y": 210,
+        "rotation": 0
+      },
+      "length": 70,
+      "limits": [
+        -90,
+        90
+      ]
+    }
+  ]
+}
