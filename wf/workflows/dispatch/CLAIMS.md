@@ -16,7 +16,7 @@
 
 ## 四條舊線暫停，未收線
 
-以下保留原領地契約與未完成行政收線事項，並非有工人正在執行。續線需主線核對領地；完成證據與接續見 [STATE](handoffs/STATE.md)。small 已在 `69924b0` 入庫，本 checkout 現有 `lead-small/report.md` 暫停報告（記錄當時未提交）；仍不能視為已驗收收線。
+以下保留原領地契約與未完成行政收線事項，並非有工人正在執行。續線需主線核對領地；完成證據與接續見 [STATE](handoffs/STATE.md)。small 已在 `69924b0` 入庫，`lead-small/report.md` 是本機未追蹤暫停報告，尚未入庫、下次需核對；仍不能視為已驗收收線。
 
 **`lead-bigfill`**　暫停（2026-10-26 晚）→ 接續見 `handoffs/lead-bigfill/report.md`。可寫：`content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔。
 

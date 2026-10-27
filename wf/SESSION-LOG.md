@@ -16,4 +16,4 @@
 - [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
-- [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`，本 checkout 已有該線暫停報告（仍記當時未提交）；待核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`；本機未追蹤暫停報告尚未入庫，下次需核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
