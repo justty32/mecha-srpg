@@ -2,6 +2,10 @@
 
 今天先收工；只記待辦，不要求使用者當場驗收，也不新開美術工作。成果 `2863782`（首批 SVG／紙娃娃）、`04bf2dd`（機甲百層／局部演出）均已提交並 push，`f78e708` 記錄今日直接 push 授權。文件整理已由主線核驗；後續文件提交看 git log。
 
+## 最新機甲重做
+
+[機甲配置工坊](../../../art/mech-blueprint/index.html)｜[使用與重建說明](../../../art/mech-blueprint/README.md)：新原型的畫風、比例與手感待使用者評閱。agent 已驗固定視角 2D 抬臂、屈肘與屈膝；尚未接 Spine 或遊戲。
+
 ## 下次看圖
 
 自行用 file 開啟 [既有展示 index.html](../../../art/svg-study-1027/index.html)，路徑不變，不需伺服器或下載；Agent 不代開 GUI。[展示與操作用法](../../../art/svg-study-1027/README.md)。

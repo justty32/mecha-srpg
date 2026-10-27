@@ -53,3 +53,7 @@
 ## 完成回報
 
 原生 agent 用工具回報 DONE／BLOCKED 與 5 行摘要、REPORT 絕對路徑，不寄 inbox。完成即停，不自行派工。
+
+## 完成證據
+
+規劃交付 PLAN、CONTRACT、parts、execution、REPORT 五檔；資料與 brief 檢查結果見本目錄 REPORT。規劃來源提交並推送 `5ec8b2a7`，供後續實作 `6cc5a1b2` 使用。原生 agent 回傳完成，無 inbox 終局信。
