@@ -11,10 +11,12 @@
 
 ## 最新進度
 
+- [refactor] 今日收尾：機甲原型程式拆分、SVG試作驗證／樣式整理與 wf 活文件 tidy，保持行為與圖像不變 → [收尾交接](workflows/dispatch/handoffs/lead-tidy-mech-1027.md)。
 
-- [content] 七輪世界觀待回家整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
 
-- [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
-- [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
-- [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與回家整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
-- [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`，本 checkout 缺該線 report；待回家核對驗收並補收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [content] 七輪世界觀待下次整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
+
+- [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+- [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`，本 checkout 已有該線暫停報告（仍記當時未提交）；待核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。

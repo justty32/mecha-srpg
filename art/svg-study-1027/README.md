@@ -38,7 +38,7 @@ ArtDemo.assemble(document,
 
 ## 檔案與重建
 
-- 展示：[index.template.html](index.template.html) 為頁源，[index.html](index.html) 為生成頁；[style.css](style.css)、[workshop.css](workshop.css) 分管頁面與紙娃娃／城市。
+- 展示：[index.template.html](index.template.html) 為頁源，[index.html](index.html) 為生成頁；[style.css](style.css) 由 [styles](styles/README.md) 三段原序合併，與 [workshop.css](workshop.css) 分管頁面與紙娃娃／城市。
 - 程式：[assembly.js](assembly.js) 是純配方規則；[demo.js](demo.js) 負責 DOM 事件與 SVG 呈現；[rebuild.py](rebuild.py) 離線重建完整圖與頁面。
 - 美術來源：[portrait-parts.svg](portrait-parts.svg)＋[portrait-manifest.json](portrait-manifest.json)、[mech-parts.svg](mech-parts.svg)＋[mech-manifest.json](mech-manifest.json) 各為唯一部件定義。
 - 動態樣式：[city-motion.css](city-motion.css)、[effects.css](effects.css)；城市、修塢、地格及特效的獨立 SVG 直接由 astra 製作。
@@ -61,6 +61,6 @@ ArtDemo.assemble(document,
 
 `mech-motion.js` 協調感測啟動→甲面掠光→能量與散熱的單次3.6秒演出；`mech-effects.css` 與SVG中的局部圖形提供效果。初始靜止，按啟動播放；暫停後同鈕續播，播放中再按則從頭開始。換件／配色重建instance時演出歸零，避免CSS新動畫與舊時鐘不同步；可見性偏好仍保留。完整立繪停用樹與演出，減少動態改成靜態亮色。
 
-重建僅機甲及展示可用 `python3 -B art/svg-study-1027/rebuild.py --mech-only`。本輪固定檢查在 `check-tree.cjs`（Node與內建Python XML）及新報告夾 `check-assets.py`；新效果允許本機gradient/filter等資源，沿用舊檢查時須注意其禁止filter與shadow-use的舊假設。實際瀏覽器布局、鍵盤操作、CSS動畫時間序列仍未驗證。
+重建僅機甲及展示可用 `python3 -B art/svg-study-1027/rebuild.py --mech-only`。本輪固定檢查入口為 `check-tree.cjs`，細分責任見 [checks](checks/README.md)（Node與內建Python XML）及新報告夾 `check-assets.py`；新效果允許本機gradient/filter等資源，沿用舊檢查時須注意其禁止filter與shadow-use的舊假設。實際瀏覽器布局、鍵盤操作、CSS動畫時間序列仍未驗證。
 
 [今日收工評閱與回家驗收入口](../../wf/notes/art-review-2026-10-27/README.md)：成果已提交並 push，無活躍工人；畫風與真瀏覽器布局／鍵盤／動畫仍待評閱。

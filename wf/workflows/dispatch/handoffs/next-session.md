@@ -1,12 +1,12 @@
-# next-session — 2026-10-27 今日收工後接續
+# next-session — 2026-10-27 接續
 
 [handoffs](README.md)｜進度 [SESSION-LOG](../../../SESSION-LOG.md)｜現況 [STATE](STATE.md)｜裁定彙整 [fill-rulings](fill-rulings.md)
 
-先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本日美術功能交付基準 `04bf2dd`（已push）；其後文件提交看 git log；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
+先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。舊 SVG 試作的百層／演出交付為 `04bf2dd`；最新獨立[機甲配置原型](../../../../art/mech-blueprint/README.md)實作為 `6cc5a1b2`；其後提交看 git log。四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
 
 ## 下次先看今日美術
 
-使用者今天收工，不要求當場驗收，也不新開美術工作。首批 `2863782` 與機甲百層／演出 `04bf2dd` 均已提交並 push，`f78e708` 記今日直接 push 授權；無活躍工人。本次文件整理已由主線核驗；文件提交識別與推送狀態以 git 記錄為準。
+使用者已在家；主觀美術評閱與實際瀏覽器驗收仍待完成。首批 `2863782` 與機甲百層／演出 `04bf2dd` 均已提交並 push，`f78e708` 記今日直接 push 授權；本次文件整理進行中；文件提交識別與推送狀態以 git 記錄為準。
 
 [集中評閱入口](../../../notes/art-review-2026-10-27/README.md) 列兩人物日漫／紙娃娃、三風格機甲與城市、城市六層、修塢／地格／特效，以及 9 大 28 中、142／140／140 葉、語意深 4／實際 SVG 深 5 與 JS/CSS 啟動／暫停／還原。展示仍是原 `art/svg-study-1027/index.html`，可自行 file 開啟。XML／Node／PNG 是歷史靜態證據，真瀏覽器布局、鍵盤與動畫仍待回家驗；headless 缺 lib，公司未裝未下載無 GUI，未完成遊戲整合。
 
@@ -26,7 +26,7 @@
 
 目前沒有 HEAD 整合驗收新證據。回家由主線比較 `de65154` 之後（尤其 `69924b0`）的軌跡影響，再決定黃金是否需要重錄；舊 fg-golden patch 不直接套。依 testing workflow 與資源節制安排驗收，全機一次一個重負載；歷史 966／966、1028／1028、31 pass 均不得冒充目前 HEAD 綠燈。
 
-四線報告依 STATE 導航；small 的 `report.md` 缺失，先補查完成證據。去重／審閱／驗收與其餘收線條件滿足後，才由有授權主線處理 CLAIMS、SESSION-LOG、done 索引與 worktree；公司本輪不關閉四線、不宣稱收完。
+四線報告依 STATE 導航；small 的 [暫停報告](lead-small/report.md) 已可見，其舊快照不能代替目前完成證據。去重／審閱／驗收與其餘收線條件滿足後，才由有授權主線處理 CLAIMS、SESSION-LOG、done 索引與 worktree；四線仍未收線。
 
 ## 留待裁決與補核
 

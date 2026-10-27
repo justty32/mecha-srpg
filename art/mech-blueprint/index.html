@@ -1,7 +1,306 @@
 <!doctype html>
-<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>蒼鋼 / 機甲配置工坊</title><style>:root{color-scheme:dark;font-family:system-ui,sans-serif;color:#d6e3e7;background:#0b1118}*{box-sizing:border-box}body{margin:0}header{height:100px;border-bottom:1px solid #304350;display:flex;align-items:center;justify-content:space-between;padding:20px 30px;background:#111b25}h1{margin:5px 0;font-weight:700;letter-spacing:.14em;font-size:30px}h1 span{font-size:17px;color:#8da7b5;letter-spacing:.05em}header p,.scope{font-size:12px;color:#8da7b5}.eyebrow{font-size:10px;letter-spacing:.18em;color:#6eced0}main{display:grid;grid-template-columns:250px minmax(500px,1fr) 285px;min-height:calc(100vh - 100px)}aside,.inspector{padding:20px;background:#101a23}aside{border-right:1px solid #2a3a48}.inspector{border-left:1px solid #2a3a48}h2{font-size:15px;margin:20px 0 12px}.aside-title{font-size:15px;font-weight:650}.aside-title span{font-size:11px;color:#8da7b5;float:right}.tree-actions{display:flex;gap:6px;margin:16px 0}button,select{font:inherit;color:#c8dce3;background:#1b2c39;border:1px solid #3b5362;border-radius:3px;padding:7px 10px;cursor:pointer}button:hover{border-color:#81d9da}button[aria-pressed=true],button.active{background:#24525a;color:#bff7ef;border-color:#62b6ba}button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid #b2f7e9;outline-offset:2px}.tree-actions button{font-size:11px;padding:6px}.tree-node{font-size:12px;margin:3px 0}.tree-line{display:flex;gap:6px;align-items:center;min-height:29px}.tree-line button{border:0;background:transparent;text-align:left;padding:3px 0;flex:1}.tree-line button.selected{color:#9bf3e2}.tree-children{padding-left:13px;border-left:1px solid #293e4d;margin-left:7px}.tree-line input{accent-color:#77cfc4}.toolbar{padding:12px 16px;display:flex;align-items:center;gap:15px;border-bottom:1px solid #293b49;background:#15212c}.segmented{display:flex}.segmented button{border-radius:0}.toolbar label{font-size:12px;white-space:nowrap}.workspace{display:flex;flex-direction:column;min-width:0}#stage-container{position:relative;flex:1;min-height:640px;background:radial-gradient(ellipse at 50% 36%,#22313f 0,#111c27 60%,#0c141e 100%);overflow:hidden}#canvas{display:block;width:100%;height:calc(100vh - 220px);min-height:640px;max-height:1100px;background-image:linear-gradient(#b4dbe806 1px,transparent 1px),linear-gradient(90deg,#b4dbe806 1px,transparent 1px);background-size:32px 32px}#stage>[data-attachment]{cursor:pointer}#stage>[data-attachment].selected{filter:drop-shadow(0 0 3px #a8ffee)}.stage-caption{position:absolute;bottom:15px;left:18px;pointer-events:none;display:flex;flex-direction:column;gap:5px;font-size:10px;letter-spacing:.1em;color:#87a7b5}.stage-caption b{color:#b4dadb}.motion{display:flex;align-items:center;gap:9px;padding:14px;background:#15212c;border-top:1px solid #2d4352;font-size:12px}.motion label{white-space:nowrap}.motion select{max-width:170px}.motion input{min-width:40px;flex:1;accent-color:#87e0d0}.motion output{width:40px}pre{font:11px/1.7 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere;color:#a9c5d0}#diagnostics{padding-left:18px;font-size:11px;max-height:340px;overflow:auto;color:#e8a3a0}#diagnostics button{font-size:11px;text-align:left;width:100%;padding:5px;background:#392329;color:#ffc4bb;border-color:#6b4146}#diagnostics li{margin:7px 0}#validation-status{font-size:12px;color:#9bdec9;line-height:1.5}#validation-status.error{color:#ff9e95}.scope{line-height:1.7;margin-top:24px}@media(max-width:1100px){main{grid-template-columns:210px minmax(430px,1fr)}.inspector{grid-column:1/-1;border-top:1px solid #2a3a48}.toolbar{gap:8px}header p{display:none}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+<html lang="zh-Hant"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>蒼鋼 / 機甲配置工坊</title><style>:root {
+  color-scheme: dark;
+  font-family: system-ui, sans-serif;
+  color: #d6e3e7;
+  background: #0b1118;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header {
+  height: 100px;
+  border-bottom: 1px solid #304350;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 30px;
+  background: #111b25;
+}
+h1 {
+  margin: 5px 0;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  font-size: 30px;
+}
+h1 span {
+  font-size: 17px;
+  color: #8da7b5;
+  letter-spacing: 0.05em;
+}
+header p,
+.scope {
+  font-size: 12px;
+  color: #8da7b5;
+}
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: #6eced0;
+}
+main {
+  display: grid;
+  grid-template-columns: 250px minmax(500px, 1fr) 285px;
+  min-height: calc(100vh - 100px);
+}
+aside,
+.inspector {
+  padding: 20px;
+  background: #101a23;
+}
+aside {
+  border-right: 1px solid #2a3a48;
+}
+.inspector {
+  border-left: 1px solid #2a3a48;
+}
+h2 {
+  font-size: 15px;
+  margin: 20px 0 12px;
+}
+.aside-title {
+  font-size: 15px;
+  font-weight: 650;
+}
+.aside-title span {
+  font-size: 11px;
+  color: #8da7b5;
+  float: right;
+}
+.tree-actions {
+  display: flex;
+  gap: 6px;
+  margin: 16px 0;
+}
+button,
+select {
+  font: inherit;
+  color: #c8dce3;
+  background: #1b2c39;
+  border: 1px solid #3b5362;
+  border-radius: 3px;
+  padding: 7px 10px;
+  cursor: pointer;
+}
+button:hover {
+  border-color: #81d9da;
+}
+button[aria-pressed='true'],
+button.active {
+  background: #24525a;
+  color: #bff7ef;
+  border-color: #62b6ba;
+}
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #b2f7e9;
+  outline-offset: 2px;
+}
+.tree-actions button {
+  font-size: 11px;
+  padding: 6px;
+}
+.tree-node {
+  font-size: 12px;
+  margin: 3px 0;
+}
+.tree-line {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  min-height: 29px;
+}
+.tree-line button {
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 3px 0;
+  flex: 1;
+}
+.tree-line button.selected {
+  color: #9bf3e2;
+}
+.tree-children {
+  padding-left: 13px;
+  border-left: 1px solid #293e4d;
+  margin-left: 7px;
+}
+.tree-line input {
+  accent-color: #77cfc4;
+}
+.toolbar {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #293b49;
+  background: #15212c;
+}
+.segmented {
+  display: flex;
+}
+.segmented button {
+  border-radius: 0;
+}
+.toolbar label {
+  font-size: 12px;
+  white-space: nowrap;
+}
+.workspace {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+#stage-container {
+  position: relative;
+  flex: 1;
+  min-height: 640px;
+  background: radial-gradient(ellipse at 50% 36%, #22313f 0, #111c27 60%, #0c141e 100%);
+  overflow: hidden;
+}
+#canvas {
+  display: block;
+  width: 100%;
+  height: calc(100vh - 220px);
+  min-height: 640px;
+  max-height: 1100px;
+  background-image:
+    linear-gradient(#b4dbe806 1px, transparent 1px),
+    linear-gradient(90deg, #b4dbe806 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+#stage > [data-attachment] {
+  cursor: pointer;
+}
+#stage > [data-attachment].selected {
+  filter: drop-shadow(0 0 3px #a8ffee);
+}
+.stage-caption {
+  position: absolute;
+  bottom: 15px;
+  left: 18px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  color: #87a7b5;
+}
+.stage-caption b {
+  color: #b4dadb;
+}
+.motion {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px;
+  background: #15212c;
+  border-top: 1px solid #2d4352;
+  font-size: 12px;
+}
+.motion label {
+  white-space: nowrap;
+}
+.motion select {
+  max-width: 170px;
+}
+.motion input {
+  min-width: 40px;
+  flex: 1;
+  accent-color: #87e0d0;
+}
+.motion output {
+  width: 40px;
+}
+pre {
+  font:
+    11px/1.7 ui-monospace,
+    monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: #a9c5d0;
+}
+#diagnostics {
+  padding-left: 18px;
+  font-size: 11px;
+  max-height: 340px;
+  overflow: auto;
+  color: #e8a3a0;
+}
+#diagnostics button {
+  font-size: 11px;
+  text-align: left;
+  width: 100%;
+  padding: 5px;
+  background: #392329;
+  color: #ffc4bb;
+  border-color: #6b4146;
+}
+#diagnostics li {
+  margin: 7px 0;
+}
+#validation-status {
+  font-size: 12px;
+  color: #9bdec9;
+  line-height: 1.5;
+}
+#validation-status.error {
+  color: #ff9e95;
+}
+.scope {
+  line-height: 1.7;
+  margin-top: 24px;
+}
 
-@media(min-width:1101px){main{height:calc(100vh - 100px);min-height:0}aside,.inspector{overflow:auto}.workspace{min-height:0}#stage-container{min-height:0}#canvas{height:100%;min-height:0}.motion{flex-shrink:0}}
+@media (max-width: 1100px) {
+  main {
+    grid-template-columns: 210px minmax(430px, 1fr);
+  }
+  .inspector {
+    grid-column: 1/-1;
+    border-top: 1px solid #2a3a48;
+  }
+  .toolbar {
+    gap: 8px;
+  }
+  header p {
+    display: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto !important;
+  }
+}
+
+@media (min-width: 1101px) {
+  main {
+    height: calc(100vh - 100px);
+    min-height: 0;
+  }
+  aside,
+  .inspector {
+    overflow: auto;
+  }
+  .workspace {
+    min-height: 0;
+  }
+  #stage-container {
+    min-height: 0;
+  }
+  #canvas {
+    height: 100%;
+    min-height: 0;
+  }
+  .motion {
+    flex-shrink: 0;
+  }
+}
 </style></head>
 <body><header><div><span class="eyebrow">2108 · LUNAR MECHANICAL ARCHIVE</span><h1>蒼鋼 <span>機甲配置工坊</span></h1></div><p>獨立附件 · 固定視角 2D 骨架原型</p></header>
 <main><aside><div class="aside-title">結構導航 <span id="part-count"></span></div><div class="tree-actions"><button id="restore">全部還原</button><button id="solo">單看選件</button></div><nav id="tree" aria-label="機體語意樹"></nav></aside>
@@ -90,61 +389,357 @@ function explodedMatrix(viewBox                              ,index       )     
 }
 (() => {
   'use strict';
-  const data=window.BLUEPRINT, $=id=>document.getElementById(id), ns='http://www.w3.org/2000/svg';
-  const partial=data.attachments.length<data.orders.orders.length;
-  const state={mode:partial?'layout':'assembled',selected:null,hidden:new Set(),solo:null,t:0,playing:false};
-  const nodes=new Map(data.layout.nodes.map(n=>[n.id,n])), attachments=new Map(data.attachments.map(a=>[a.id,a]));
-  const slots=new Map(data.slots.slots.map(s=>[s.id,s]));
-  const bind=data.poses.poses.find(p=>p.id==='bind')||{id:'bind',angles:{}};
-  const poses=data.poses.poses.filter(p=>p.id!=='bind');
-  const labels={'raise-left':'抬左臂','elbow-left':'屈左肘','knee-left':'屈左膝','raise-right':'抬右臂','elbow-right':'屈右肘','knee-right':'屈右膝'};
-  poses.forEach(p=>{const o=document.createElement('option');o.value=p.id;o.textContent=labels[p.id]||p.id;$('pose').append(o);});
-  function svg(tag,attrs={}) {const e=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([k,v])=>e.setAttribute(k,String(v)));return e;}
-  const mt=m=>`matrix(${m.join(' ')})`;
-  function region(parent,r,m,color,fill='none',width=1.5) {for(const p of r){parent.append(svg('polygon',{points:p.map(v=>transformPoint(m,v).join(',')).join(' '),fill,stroke:color,'stroke-width':width,'vector-effect':'non-scaling-stroke'}));}}
-  function dot(parent,p,color,r=4) {parent.append(svg('circle',{cx:p[0],cy:p[1],r,fill:color,stroke:'#061018','stroke-width':1}));}
-  function ancestor(id,target) {let n=nodes.get(id);while(n){if(n.id===target)return true;n=nodes.get(n.parent);}return false;}
-  function visibleLayout(id) {let n=nodes.get(id);if(state.solo&&!ancestor(id,state.solo))return false;while(n){if(state.hidden.has(n.id))return false;n=nodes.get(n.parent);}return true;}
-  function visible(slot) {return visibleLayout(nodes.has(slot.semantic)?slot.semantic:attachments.get(slot.attachment)?.layout);}
-  function select(id) {state.selected=id;$('selection-title').textContent=id||'選取附件';const a=attachments.get(id),s=data.slots.slots.find(s=>s.attachment===id),order=data.orders.orders.find(o=>o.id===id||o.slot===s?.id);$('selection').textContent=a?JSON.stringify({source:a.source,bone:s?.bone,origin:[0,0],viewBox:a.viewBox,contacts:a.contacts,role:order?.role,material:order?.material},null,2):(nodes.get(id)?JSON.stringify(nodes.get(id),null,2):'點選機體或結構樹。');document.querySelectorAll('[data-select]').forEach(b=>b.classList.toggle('selected',b.dataset.select===id));draw();}
-  function tree(parent,parentId) {data.layout.nodes.filter(n=>n.parent===parentId).forEach(n=>{const wrap=document.createElement('div');wrap.className='tree-node';const line=document.createElement('div');line.className='tree-line';const check=document.createElement('input');check.type='checkbox';check.checked=true;check.dataset.visibility=n.id;check.setAttribute('aria-label',`顯示 ${n.id}`);check.onchange=()=>{check.checked?state.hidden.delete(n.id):state.hidden.add(n.id);draw();};const button=document.createElement('button');const a=data.attachments.find(a=>a.layout===n.id);button.dataset.select=a?.id||n.id;button.textContent=`${{machine:'◆',major:'▣',assembly:'◇',part:'·'}[n.level]} ${n.id}`;button.onclick=()=>select(a?.id||n.id);line.append(check,button);wrap.append(line);const child=document.createElement('div');child.className='tree-children';tree(child,n.id);wrap.append(child);parent.append(wrap);});}
-  tree($('tree'),null);$('part-count').textContent=`${data.attachments.length}/${data.orders.orders.length} ATTACHMENTS`;
-  function target(){return data.poses.poses.find(p=>p.id===$('pose').value)||bind;}
-  function draw() {
-    const pose=interpolatePose(bind,target(),state.t), worlds=worldMatrices(data.rig.bones,pose), matrices=slotMatrices(data.slots.slots,worlds),stage=$('stage');stage.replaceChildren();
-    const exploded=state.mode==='exploded';$('canvas').setAttribute('viewBox',exploded?'0 0 1850 1550':`0 0 ${data.design.canvas.width} ${data.design.canvas.height}`);
-    if(state.mode==='layout'){
-      data.layout.nodes.filter(n=>n.level!=='machine'&&visibleLayout(n.id)).forEach(n=>region(stage,n.envelope,frameMatrix(n.frame,worlds),n.level==='part'?'#7ee9cf':'#caa473',n.level==='part'?'#488f8720':'#d99d4520',n.level==='major'?3:1));
-    } else data.order.base.forEach((id,i)=>{
-      const slot=slots.get(id);if(!slot||!visible(slot))return;const a=attachments.get(slot.attachment), fragment=data.fragments[slot.attachment];if(!a||!fragment)return;
-      const holder=svg('svg');holder.innerHTML=fragment;let root=null;
-      for(const el of [...holder.children]) {if(el.id===`${a.id}--${a.element}`) root=el;stage.append(el);}
-      if(!root)return;const m=exploded?explodedMatrix(a.viewBox,i):matrices[id];
-      root.setAttribute('transform',mt(m));root.dataset.attachment=a.id;root.classList.toggle('selected',state.selected===a.id);root.addEventListener('click',()=>select(a.id));
-      if(exploded){const label=svg('text',{x:(i%8)*220+110,y:Math.floor(i/8)*180+170,'text-anchor':'middle',fill:'#9bbcc9','font-size':12});label.textContent=a.id;stage.append(label);}
-      if($('envelopes').checked||state.selected===a.id) {const w=data.orders.orders.find(o=>o.slot===slot.id);if(w)region(stage,w.localEnvelope,m,'#6febd2');}
-      if($('contacts').checked||state.selected===a.id){dot(stage,transformPoint(m,[0,0]),'#ffce79',5);a.contacts.forEach(c=>dot(stage,transformPoint(m,c.at),'#f5a8e8',3));}
-    });
-    if($('skeleton').checked&&!exploded)for(const b of data.rig.bones){const m=worlds[b.id],p=transformPoint(m,[0,0]),end=transformPoint(m,[0,b.length]);stage.append(svg('line',{x1:p[0],y1:p[1],x2:end[0],y2:end[1],stroke:'#f8d888','stroke-width':3,'vector-effect':'non-scaling-stroke'}));dot(stage,p,'#f8d888',6);}
-    if($('envelopes').checked&&!exploded&&attachments.has(state.selected)){const a=attachments.get(state.selected),s=data.slots.slots.find(s=>s.attachment===a.id);if(s)for(const sample of sampleTransition(bind,target(),21)){const m=slotMatrices([s],worldMatrices(data.rig.bones,sample))[s.id];region(stage,a.occupancy,m,'#72d9ea30','#72d9ea06',.5);}}
-    if(!exploded)for(const d of data.diagnostics){if(!d.region)continue;if(d.pose&&d.pose!==target().id&&!(state.t===0&&d.pose==='bind'))continue;if(d.sample!==undefined&&Math.abs(d.sample-Math.round(state.t*20))>0)continue;region(stage,d.region,identity(),'#ff645f','#ff463b65',2);}
-    $('progress').value=String(Math.round(state.t*1000));$('time').textContent=`${Math.round(state.t*100)}%`;
-    $('mode-label').textContent=(partial?'PARTIAL · ':'')+{assembled:'ASSEMBLED / 組裝',layout:'CONFIGURATION / 配置',exploded:'ATTACHMENTS / 獨立分件'}[state.mode];
-    window.__blueprintState={mode:state.mode,selected:state.selected,pose:target().id,progress:state.t,hidden:[...state.hidden],solo:state.solo,playing:state.playing};
+  const data = window.BLUEPRINT,
+    $ = (id) => document.getElementById(id),
+    ns = 'http://www.w3.org/2000/svg';
+  const partial = data.attachments.length < data.orders.orders.length;
+  const state = {
+    mode: partial ? 'layout' : 'assembled',
+    selected: null,
+    hidden: new Set(),
+    solo: null,
+    t: 0,
+    playing: false,
+  };
+  const nodes = new Map(data.layout.nodes.map((n) => [n.id, n])),
+    attachments = new Map(data.attachments.map((a) => [a.id, a]));
+  const slots = new Map(data.slots.slots.map((s) => [s.id, s]));
+  const bind = data.poses.poses.find((p) => p.id === 'bind') || { id: 'bind', angles: {} };
+  const poses = data.poses.poses.filter((p) => p.id !== 'bind');
+  const labels = {
+    'raise-left': '抬左臂',
+    'elbow-left': '屈左肘',
+    'knee-left': '屈左膝',
+    'raise-right': '抬右臂',
+    'elbow-right': '屈右肘',
+    'knee-right': '屈右膝',
+  };
+  poses.forEach((p) => {
+    const o = document.createElement('option');
+    o.value = p.id;
+    o.textContent = labels[p.id] || p.id;
+    $('pose').append(o);
+  });
+  function svg(tag, attrs = {}) {
+    const e = document.createElementNS(ns, tag);
+    Object.entries(attrs).forEach(([k, v]) => e.setAttribute(k, String(v)));
+    return e;
   }
-  function pause(){state.playing=false;$('play').textContent='播放';}
-  document.querySelectorAll('[data-mode]').forEach(button=>button.onclick=()=>{state.mode=button.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));draw();});
-  ['skeleton','envelopes','contacts'].forEach(id=>$(id).onchange=draw);
-  $('restore').onclick=()=>{state.hidden.clear();state.solo=null;document.querySelectorAll('[data-visibility]').forEach(c=>c.checked=true);draw();};
-  $('solo').onclick=()=>{const a=attachments.get(state.selected);state.solo=a?.layout||state.selected;draw();};
-  $('pose').onchange=()=>{pause();state.t=matchMedia('(prefers-reduced-motion: reduce)').matches?1:0;draw();};
-  $('progress').oninput=()=>{pause();state.t=Number($('progress').value)/1000;draw();};
-  $('bind').onclick=()=>{pause();state.t=0;draw();};
-  let previous=0;
-  function tick(now){if(!state.playing)return;const duration=data.poses.sequence.find(s=>s.to===target().id)?.duration||1500;state.t=Math.min(1,state.t+(now-previous)/Math.max(100,duration));previous=now;if(state.t===1)pause();draw();if(state.playing)requestAnimationFrame(tick);}
-  $('play').onclick=()=>{if(state.playing){pause();draw();return;}if(matchMedia('(prefers-reduced-motion: reduce)').matches){state.t=1;draw();return;}if(state.t===1)state.t=0;state.playing=true;$('play').textContent='暫停';previous=performance.now();requestAnimationFrame(tick);};
-  const errors=data.diagnostics.filter(d=>d.severity==='error');$('validation-status').textContent=errors.length?`${partial?'未完成 · '+data.attachments.length+'/'+data.orders.orders.length+' 件 · ':'未通過 · '}${errors.length} 項問題（紅區或缺件清單）`:`通過 · ${data.attachments.length} 件來源 / 指定動作 21 點診斷`;$('validation-status').classList.toggle('error',errors.length>0);
-  for(const d of data.diagnostics){const li=document.createElement('li'),button=document.createElement('button');button.textContent=`[${d.code}] ${d.ids.join(', ')} · ${d.message}${d.pose?` / ${d.pose} #${d.sample??0}`:''}`;button.onclick=()=>{pause();if(d.pose&&poses.some(p=>p.id===d.pose))$('pose').value=d.pose;state.t=(d.sample??0)/20;select(d.ids.find(id=>attachments.has(id))||d.ids[0]);};li.append(button);$('diagnostics').append(li);}
-  document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===state.mode)));draw();
+  const mt = (m) => `matrix(${m.join(' ')})`;
+  function region(parent, r, m, color, fill = 'none', width = 1.5) {
+    for (const p of r) {
+      parent.append(
+        svg('polygon', {
+          points: p.map((v) => transformPoint(m, v).join(',')).join(' '),
+          fill,
+          stroke: color,
+          'stroke-width': width,
+          'vector-effect': 'non-scaling-stroke',
+        }),
+      );
+    }
+  }
+  function dot(parent, p, color, r = 4) {
+    parent.append(
+      svg('circle', { cx: p[0], cy: p[1], r, fill: color, stroke: '#061018', 'stroke-width': 1 }),
+    );
+  }
+  function ancestor(id, target) {
+    let n = nodes.get(id);
+    while (n) {
+      if (n.id === target) return true;
+      n = nodes.get(n.parent);
+    }
+    return false;
+  }
+  function visibleLayout(id) {
+    let n = nodes.get(id);
+    if (state.solo && !ancestor(id, state.solo)) return false;
+    while (n) {
+      if (state.hidden.has(n.id)) return false;
+      n = nodes.get(n.parent);
+    }
+    return true;
+  }
+  function visible(slot) {
+    return visibleLayout(
+      nodes.has(slot.semantic) ? slot.semantic : attachments.get(slot.attachment)?.layout,
+    );
+  }
+  function select(id) {
+    state.selected = id;
+    $('selection-title').textContent = id || '選取附件';
+    const a = attachments.get(id),
+      s = data.slots.slots.find((s) => s.attachment === id),
+      order = data.orders.orders.find((o) => o.id === id || o.slot === s?.id);
+    $('selection').textContent = a
+      ? JSON.stringify(
+          {
+            source: a.source,
+            bone: s?.bone,
+            origin: [0, 0],
+            viewBox: a.viewBox,
+            contacts: a.contacts,
+            role: order?.role,
+            material: order?.material,
+          },
+          null,
+          2,
+        )
+      : nodes.get(id)
+        ? JSON.stringify(nodes.get(id), null, 2)
+        : '點選機體或結構樹。';
+    document
+      .querySelectorAll('[data-select]')
+      .forEach((b) => b.classList.toggle('selected', b.dataset.select === id));
+    draw();
+  }
+  function tree(parent, parentId) {
+    data.layout.nodes
+      .filter((n) => n.parent === parentId)
+      .forEach((n) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'tree-node';
+        const line = document.createElement('div');
+        line.className = 'tree-line';
+        const check = document.createElement('input');
+        check.type = 'checkbox';
+        check.checked = true;
+        check.dataset.visibility = n.id;
+        check.setAttribute('aria-label', `顯示 ${n.id}`);
+        check.onchange = () => {
+          check.checked ? state.hidden.delete(n.id) : state.hidden.add(n.id);
+          draw();
+        };
+        const button = document.createElement('button');
+        const a = data.attachments.find((a) => a.layout === n.id);
+        button.dataset.select = a?.id || n.id;
+        button.textContent = `${{ machine: '◆', major: '▣', assembly: '◇', part: '·' }[n.level]} ${n.id}`;
+        button.onclick = () => select(a?.id || n.id);
+        line.append(check, button);
+        wrap.append(line);
+        const child = document.createElement('div');
+        child.className = 'tree-children';
+        tree(child, n.id);
+        wrap.append(child);
+        parent.append(wrap);
+      });
+  }
+  tree($('tree'), null);
+  $('part-count').textContent =
+    `${data.attachments.length}/${data.orders.orders.length} ATTACHMENTS`;
+  function target() {
+    return data.poses.poses.find((p) => p.id === $('pose').value) || bind;
+  }
+  function draw() {
+  const pose = interpolatePose(bind, target(), state.t),
+    worlds = worldMatrices(data.rig.bones, pose),
+    matrices = slotMatrices(data.slots.slots, worlds),
+    stage = $('stage');
+  stage.replaceChildren();
+  const exploded = state.mode === 'exploded';
+  $('canvas').setAttribute(
+    'viewBox',
+    exploded ? '0 0 1850 1550' : `0 0 ${data.design.canvas.width} ${data.design.canvas.height}`,
+  );
+  if (state.mode === 'layout') {
+    data.layout.nodes
+      .filter((n) => n.level !== 'machine' && visibleLayout(n.id))
+      .forEach((n) =>
+        region(
+          stage,
+          n.envelope,
+          frameMatrix(n.frame, worlds),
+          n.level === 'part' ? '#7ee9cf' : '#caa473',
+          n.level === 'part' ? '#488f8720' : '#d99d4520',
+          n.level === 'major' ? 3 : 1,
+        ),
+      );
+  } else
+    data.order.base.forEach((id, i) => {
+      const slot = slots.get(id);
+      if (!slot || !visible(slot)) return;
+      const a = attachments.get(slot.attachment),
+        fragment = data.fragments[slot.attachment];
+      if (!a || !fragment) return;
+      const holder = svg('svg');
+      holder.innerHTML = fragment;
+      let root = null;
+      for (const el of [...holder.children]) {
+        if (el.id === `${a.id}--${a.element}`) root = el;
+        stage.append(el);
+      }
+      if (!root) return;
+      const m = exploded ? explodedMatrix(a.viewBox, i) : matrices[id];
+      root.setAttribute('transform', mt(m));
+      root.dataset.attachment = a.id;
+      root.classList.toggle('selected', state.selected === a.id);
+      root.addEventListener('click', () => select(a.id));
+      if (exploded) {
+        const label = svg('text', {
+          x: (i % 8) * 220 + 110,
+          y: Math.floor(i / 8) * 180 + 170,
+          'text-anchor': 'middle',
+          fill: '#9bbcc9',
+          'font-size': 12,
+        });
+        label.textContent = a.id;
+        stage.append(label);
+      }
+      if ($('envelopes').checked || state.selected === a.id) {
+        const w = data.orders.orders.find((o) => o.slot === slot.id);
+        if (w) region(stage, w.localEnvelope, m, '#6febd2');
+      }
+      if ($('contacts').checked || state.selected === a.id) {
+        dot(stage, transformPoint(m, [0, 0]), '#ffce79', 5);
+        a.contacts.forEach((c) => dot(stage, transformPoint(m, c.at), '#f5a8e8', 3));
+      }
+    });
+  if ($('skeleton').checked && !exploded)
+    for (const b of data.rig.bones) {
+      const m = worlds[b.id],
+        p = transformPoint(m, [0, 0]),
+        end = transformPoint(m, [0, b.length]);
+      stage.append(
+        svg('line', {
+          x1: p[0],
+          y1: p[1],
+          x2: end[0],
+          y2: end[1],
+          stroke: '#f8d888',
+          'stroke-width': 3,
+          'vector-effect': 'non-scaling-stroke',
+        }),
+      );
+      dot(stage, p, '#f8d888', 6);
+    }
+  if ($('envelopes').checked && !exploded && attachments.has(state.selected)) {
+    const a = attachments.get(state.selected),
+      s = data.slots.slots.find((s) => s.attachment === a.id);
+    if (s)
+      for (const sample of sampleTransition(bind, target(), 21)) {
+        const m = slotMatrices([s], worldMatrices(data.rig.bones, sample))[s.id];
+        region(stage, a.occupancy, m, '#72d9ea30', '#72d9ea06', 0.5);
+      }
+  }
+  if (!exploded)
+    for (const d of data.diagnostics) {
+      if (!d.region) continue;
+      if (d.pose && d.pose !== target().id && !(state.t === 0 && d.pose === 'bind')) continue;
+      if (d.sample !== undefined && Math.abs(d.sample - Math.round(state.t * 20)) > 0) continue;
+      region(stage, d.region, identity(), '#ff645f', '#ff463b65', 2);
+    }
+  $('progress').value = String(Math.round(state.t * 1000));
+  $('time').textContent = `${Math.round(state.t * 100)}%`;
+  $('mode-label').textContent =
+    (partial ? 'PARTIAL · ' : '') +
+    {
+      assembled: 'ASSEMBLED / 組裝',
+      layout: 'CONFIGURATION / 配置',
+      exploded: 'ATTACHMENTS / 獨立分件',
+    }[state.mode];
+  window.__blueprintState = {
+    mode: state.mode,
+    selected: state.selected,
+    pose: target().id,
+    progress: state.t,
+    hidden: [...state.hidden],
+    solo: state.solo,
+    playing: state.playing,
+  };
+}
+
+  function pause() {
+  state.playing = false;
+  $('play').textContent = '播放';
+}
+document.querySelectorAll('[data-mode]').forEach(
+  (button) =>
+    (button.onclick = () => {
+      state.mode = button.dataset.mode;
+      document
+        .querySelectorAll('[data-mode]')
+        .forEach((b) => b.setAttribute('aria-pressed', String(b === button)));
+      draw();
+    }),
+);
+['skeleton', 'envelopes', 'contacts'].forEach((id) => ($(id).onchange = draw));
+$('restore').onclick = () => {
+  state.hidden.clear();
+  state.solo = null;
+  document.querySelectorAll('[data-visibility]').forEach((c) => (c.checked = true));
+  draw();
+};
+$('solo').onclick = () => {
+  const a = attachments.get(state.selected);
+  state.solo = a?.layout || state.selected;
+  draw();
+};
+$('pose').onchange = () => {
+  pause();
+  state.t = matchMedia('(prefers-reduced-motion: reduce)').matches ? 1 : 0;
+  draw();
+};
+$('progress').oninput = () => {
+  pause();
+  state.t = Number($('progress').value) / 1000;
+  draw();
+};
+$('bind').onclick = () => {
+  pause();
+  state.t = 0;
+  draw();
+};
+let previous = 0;
+function tick(now) {
+  if (!state.playing) return;
+  const duration = data.poses.sequence.find((s) => s.to === target().id)?.duration || 1500;
+  state.t = Math.min(1, state.t + (now - previous) / Math.max(100, duration));
+  previous = now;
+  if (state.t === 1) pause();
+  draw();
+  if (state.playing) requestAnimationFrame(tick);
+}
+$('play').onclick = () => {
+  if (state.playing) {
+    pause();
+    draw();
+    return;
+  }
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    state.t = 1;
+    draw();
+    return;
+  }
+  if (state.t === 1) state.t = 0;
+  state.playing = true;
+  $('play').textContent = '暫停';
+  previous = performance.now();
+  requestAnimationFrame(tick);
+};
+
+  const errors = data.diagnostics.filter((d) => d.severity === 'error');
+$('validation-status').textContent = errors.length
+  ? `${partial ? '未完成 · ' + data.attachments.length + '/' + data.orders.orders.length + ' 件 · ' : '未通過 · '}${errors.length} 項問題（紅區或缺件清單）`
+  : `通過 · ${data.attachments.length} 件來源 / 指定動作 21 點診斷`;
+$('validation-status').classList.toggle('error', errors.length > 0);
+for (const d of data.diagnostics) {
+  const li = document.createElement('li'),
+    button = document.createElement('button');
+  button.textContent = `[${d.code}] ${d.ids.join(', ')} · ${d.message}${d.pose ? ` / ${d.pose} #${d.sample ?? 0}` : ''}`;
+  button.onclick = () => {
+    pause();
+    if (d.pose && poses.some((p) => p.id === d.pose)) $('pose').value = d.pose;
+    state.t = (d.sample ?? 0) / 20;
+    select(d.ids.find((id) => attachments.has(id)) || d.ids[0]);
+  };
+  li.append(button);
+  $('diagnostics').append(li);
+}
+
+  document
+    .querySelectorAll('[data-mode]')
+    .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.mode === state.mode)));
+  draw();
 })();
 </script></body></html>

@@ -20,9 +20,9 @@
 
 ## 獨立美術試作
 
-[art/svg-study-1027](../../../art/svg-study-1027/README.md) 為離線試作，尚未接入遊戲。`assembly.js` 管配方與相容檢查；`demo.js` 管展示DOM；`rebuild.py` 由共用SVG部件與manifest重建樣張、展示頁。機甲的 `mech-tree.js`／`mech-tree-ui.js` 分管語意層樹與控制，`mech-motion.js` 管演出時序；`mech-layers.json` 與 SVG 節點對應實際零件。各美術來源及驗證限制見該目錄入口。
+[art/svg-study-1027](../../../art/svg-study-1027/README.md) 為離線試作，尚未接入遊戲。`assembly.js` 管配方與相容檢查；`demo.js` 管展示DOM；`rebuild.py` 由共用SVG部件與manifest重建樣張、展示頁，並把 [styles/](../../../art/svg-study-1027/styles/README.md) 的三段樣式按原序合成 `style.css`。機甲的 `mech-tree.js`／`mech-tree-ui.js` 分管語意層樹與控制，`mech-motion.js` 管演出時序；`mech-layers.json` 與 SVG 節點對應實際零件。`check-tree.cjs` 保留雙階段檢查入口，XML／DOM／演出／離線頁斷言分在 [checks/](../../../art/svg-study-1027/checks/README.md)。各美術來源及驗證限制見該目錄入口。
 
-[art/mech-blueprint](../../../art/mech-blueprint/README.md) 為機甲重做原型：`schema.ts` 分開配置、骨架、插槽、附件與畫序；`layout.ts`／`build.ts` 自上而下產生配置與逐件工作單，`rig.ts` 計算局部到世界矩陣，`geometry.ts` 驗證有限SVG語法及區域差集；`data/` 保存種子及對應，`parts/` 每附件一份獨立局部SVG。`render.ts`／`build-viewer.ts` 組裝離線頁，`viewer.js` 處理樹、選件與姿態；`blueprint.test.ts` 是核心反例測試，`verify.ts` 與 `headless.mjs` 分別做資產／姿態檢查與無視窗互動存證。尚未接遊戲或Spine，固定2D視角與驗證範圍見該目錄入口。
+[art/mech-blueprint](../../../art/mech-blueprint/README.md) 為機甲重做原型：`schema.ts` 分開配置、骨架、插槽、附件與畫序；`layout.ts`／`build.ts` 協調配置與工作單，`layout-allocation.ts`、`layout-validation.ts`、`layout-motion.ts`、`layout-drawing.ts`、`layout-overlap.ts` 分管分配、父子驗證、動作、畫序、遮擋。`rig.ts` 計算矩陣，`geometry.ts` 做區域運算，`svg-geometry.ts` 解析有限SVG語法；`data/` 保存種子及對應，`parts/` 每附件一份獨立局部SVG。`render.ts`／`build-viewer.ts` 組裝離線頁，`style.css` 與 `style-responsive.css` 按原順序嵌入；`viewer.js` 保留啟動與資料／DOM樹，`viewer/` 分管繪圖、控制與診斷，建置時仍內嵌單頁。`verify.ts` 與 `attachment-validation.ts` 分管姿態和單件資產檢查，`blueprint.test.ts` 是核心反例測試；`headless.mjs` 驗無視窗互動，`headless-budget.mjs` 計證據容量。尚未接遊戲或Spine，固定2D視角與驗證範圍見該目錄入口。
 
 ## 真相層優先序
 

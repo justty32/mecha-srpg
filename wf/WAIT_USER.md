@@ -13,10 +13,10 @@
 - [content] 裁決人物清單 P01 朴仁哲失腿採前盾撞碎或閘門夾斷；其餘內容候選一併待審 → [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
 - [planning] 使用者另開 Claude Fable 後，交付 [設計報告題綱](notes/investigations/content-review-2026-10-27/fable-brief.md)；取得報告與裁決後再派實作。
 
-- [testing] 2026-10-27 使用者指定整合驗收留到家裡，公司本輪未安裝下載；必要套件已允許但下載前先告知 → 回家通知接續後，依 [接續清單](workflows/dispatch/handoffs/next-session.md) 核對目前 HEAD 與黃金，再執行必要驗證；本次不視為已驗收。
+- [testing] 2026-10-27 使用者指定整合驗收留到家裡，公司那輪未安裝下載；必要套件已允許但下載前先告知 → 下次依 [接續清單](workflows/dispatch/handoffs/next-session.md) 核對目前 HEAD 與黃金，再執行必要驗證；本次不視為已驗收。
 
 - [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)；機甲核心試玩重點見 [lead-cockpit REPORT「需要使用者決定或試玩」四點](workflows/dispatch/handoffs/done/2026-10-25/lead-cockpit/REPORT.md)（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）
 
-- [feature-dev] SVG美術、紙娃娃與機甲百層／五層深度演出待評閱；實際瀏覽器互動／動畫回家驗 → [集中看圖與回家驗收](notes/art-review-2026-10-27/README.md)（今天收工，先記待辦，不要求當場驗收）。
+- [feature-dev] SVG美術、紙娃娃與機甲百層／五層深度演出待評閱；實際瀏覽器互動／動畫待使用者實機驗 → [集中看圖與驗收](notes/art-review-2026-10-27/README.md)（今天收工，先記待辦，不要求當場驗收）。
 
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。

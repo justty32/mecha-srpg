@@ -19,3 +19,5 @@
 正式影像均已親看：[bind](evidence/bind.png)、[骨架](evidence/skeleton.png)、[分件](evidence/exploded.png)、[抬臂](evidence/raise-arm.png)、[屈肘](evidence/bend-elbow.png)、[屈膝](evidence/bend-knee.png)。`evidence/partial.png` 保留為較早局部快照，正式證據以上述六張及目前interaction為準；合計七張PNG，維持本線5MB上限。造型品質仍交使用者評閱；固定視角剛性2D與前述驗證範圍不因此擴大。
 
 局部UI模式 `node art/mech-blueprint/headless.mjs --partial` 僅供缺件試接，會明示未完成且不算正式驗收。正式模式必須64掛件及零幾何錯誤才通過；禁止拿局部log或舊圖替代新證據。
+
+手寫程式按責任拆分：`layout.ts` 保留配置與工作單公開入口，搭配 `layout-allocation.ts`（空間配置）、`layout-validation.ts`（識別與畫序）、`layout-motion.ts`（配置動作檢查）、`layout-drawing.ts`（配置及工作單SVG）與 `layout-overlap.ts`（有界遮擋規劃）；附件局部檢查在 `attachment-validation.ts`。`geometry.ts` 保留幾何運算與既有 exports，嚴格素材 parser 在 `svg-geometry.ts`。展示腳本細分見 [viewer](viewer/README.md)，`style.css` 與 `style-responsive.css` 依原順序在建置時合併內嵌。`verify.ts` 保留資產與姿態總驗證，`headless.mjs` 保留互動驗收入口，容量核算在 `headless-budget.mjs`；新增展示來源亦納入該核算。上述拆分不增加瀏覽器資源請求。

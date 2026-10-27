@@ -201,6 +201,10 @@ def city(filename, key, label):
     return f'<article class="city-inspector"><h3>{label}</h3><div class="layer-switches">{switches}</div><div class="city-view">{ET.tostring(root, encoding="unicode")}</div><button type="button" data-city-play>播放一次港口動態</button><p class="city-status" role="status">可用 Tab 聚焦機庫、商店與碼頭，再按 Enter／空白顯示說明。僅示意。</p></article>'
 
 if __name__ == '__main__':
+    # 樣式來源按原有畫序合併，保持 file 展示單一 style.css 請求。
+    style_sources = ['showcase.css', 'battle.css', 'controls.css']
+    style = '\n'.join((ROOT / 'styles' / name).read_text() for name in style_sources)
+    (ROOT / 'style.css').write_text(style.replace('url(../tile-ground.svg)', 'url(tile-ground.svg)'))
     families = {prefix: read_family(prefix) for prefix in ['portrait', 'mech']}
     source_names = {m['family']: f'{prefix}-parts.svg + {prefix}-manifest.json' for prefix, (_, m) in families.items()}
     for prefix, mapping in [('portrait', {'kamau': 'kamau.svg', 'samir': 'samir.svg'}), ('mech', {'cold': 'bulwark.svg', 'ritual': 'bulwark-ritual.svg', 'feral': 'bulwark-feral.svg'})]:
