@@ -35,3 +35,9 @@
 人物共用部件由 astra 按日式動漫退修：乾淨線稿、成組髮束、日漫眼型、簡鼻、2～3階賽璐璐；保留34／60歲外貌差異。兩角色的臉、髮、眉眼、鼻口、衣服可交叉組合，混搭結果只作視覺測試，不新增人物。
 
 `portrait-parts.svg`／`mech-parts.svg` 是唯一幾何來源，manifest 記部件選項、預設、錨點與遮擋。完整圖由 `rebuild.py` 重建；混搭不改正史或數值，也不鏡像左右武器。城市檔內六層穩定 id 共用，嵌入同頁時加風格前綴避免 id 衝突，`data-source-id` 保留原 id。
+
+## 機甲百層與局部演出擴充
+
+`mech-layers.json` 是既有堅盾三風格的美術語意樹，對應 `mech-parts.svg` 中的真實零件與附屬效果；面板、承重件、管束及固定栓的名稱屬視覺管理，不新增遊戲部件或世界事實。原設定、姿態、接點、左右武器與三風格基礎造型保留。`mech-effects.css` 與來源內的感測校準、掠光、熱羽流、電暈及粒子由 gpt-6-astra 設計，皆為可選視覺演出。
+
+`mech-tree.js`、`mech-tree-ui.js`、`mech-tree.css`、`mech-motion.js` 與既有 `demo.js`／`rebuild.py` 為 sol 的離線框架接線。來源與效果資源全部本機，無下載素材、外部字型或新依賴。靜態證據與限制見[本輪交付入口](../../wf/workflows/dispatch/handoffs/mech-layers-1027/README.md)，不改前輪歷史報告。

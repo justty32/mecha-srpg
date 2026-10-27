@@ -1,0 +1,100 @@
+/* 僅控制組裝instance內的葉；共享defs永遠不掛此屬性。 */
+[data-assembly] [data-mech-hidden] {
+  display: none !important;
+}
+
+.mech-tree {
+  margin-top: 1.25rem;
+  color: #e1e7dc;
+}
+
+.mech-tree fieldset {
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid #718178;
+  border-radius: 0.4rem;
+}
+
+.mech-tree legend {
+  padding: 0 0.4rem;
+  font-weight: bold;
+}
+
+.mech-tree-help,
+.mech-tree-status {
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+.mech-tree-nodes {
+  max-height: 36rem;
+  overflow: auto;
+  margin-top: 0.8rem;
+  scrollbar-gutter: stable;
+}
+
+.mech-tree-node {
+  margin: 0.3rem 0;
+}
+
+.mech-tree-node > summary,
+.mech-tree-leaf {
+  padding: 0.35rem;
+  border-radius: 0.25rem;
+  background: #1c2a30;
+}
+
+.mech-tree-node > summary {
+  cursor: pointer;
+}
+
+.mech-tree-node .mech-tree-node {
+  margin-left: 0.8rem;
+}
+
+.mech-tree-node label {
+  display: inline-flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.4rem;
+  max-width: 100%;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.mech-tree-node input[type="checkbox"] {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: #d5b358;
+}
+
+.mech-tree-node small {
+  display: inline-block;
+  margin: 0 0.4rem;
+  color: #b7c6b9;
+  font-variant-numeric: tabular-nums;
+}
+
+.mech-tree-node button {
+  padding: 0.2rem 0.45rem;
+  font-size: 0.8rem;
+}
+
+.mech-tree button[aria-pressed="true"] {
+  background: #775d21;
+  border-color: #f6d16e;
+}
+
+.mech-tree :focus-visible {
+  outline: 2px solid #f6d16e;
+  outline-offset: 3px;
+}
+
+.mech-tree [hidden] {
+  display: none;
+}
+
+.mech-tree fieldset:disabled {
+  opacity: 0.55;
+}

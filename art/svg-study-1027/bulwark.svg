@@ -2,295 +2,663 @@
   <title id="output-title">堅盾-I型・冷鋼重工視覺提案</title>
   <desc id="output-desc">沿用主線已目視基準的方切承重造型與苔灰、骨白、赭黃原配色；共享部件重建版尚未目視驗收。 自身左臂散紋吼砲在畫面右，右臂凡鐵連吼在畫面左；不改數值或正史配裝。 視覺草案；來源：mech-parts.svg + mech-manifest.json，由rebuild.py重建，未載細節均美術提案。</desc>
   <defs>
-    <symbol id="bulwark-limbs-common" viewBox="0 0 800 960">
-      <title>共用承重骨架與雙肢關節</title>
-      <g id="bulwark-limbs-common-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-        <g id="bulwark-limbs-common-geometry-right-arm-far" data-side="machine-right">
-          <path d="m252 292 43 7 5 71-42 17-35-34Z" fill="#263b40" />
-          <ellipse cx="242" cy="347" rx="34" ry="39" transform="rotate(17 242 347)" fill="#11262c" />
-          <ellipse cx="242" cy="347" rx="23" ry="28" transform="rotate(17 242 347)" fill="#657875" stroke-width="3" />
-          <path d="m221 349 37 10-17 76-40 2-13-30Z" fill="#536b64" />
-          <path d="m221 349 37 10-6 26-39-10Z" fill="#a8b19e" />
-          <path d="m237 385 15 0-11 50-18 6Z" fill="#283e42" stroke-width="3" />
-          <path d="m207 388-9 30" fill="none" stroke="#bac2ad" stroke-width="7" />
-          <ellipse cx="212" cy="438" rx="27" ry="25" fill="#20353a" />
-          <ellipse cx="212" cy="438" rx="14" ry="14" fill="#899b8f" stroke-width="3" />
-          <path d="m208 426 8 22m-16-7 24-6" stroke="#344b4c" stroke-width="3" />
-        </g>
-        <g id="bulwark-limbs-common-geometry-right-leg-far" data-side="machine-right">
-          <path d="m306 508 68 31-18 116-63 39-41-34 14-90Z" fill="#263e41" />
-          <path d="m271 589-12 51" fill="none" stroke="#bec6b0" stroke-width="8" />
-          <path d="m263 638-9 30 23 25 41-8 9-36" fill="#1d343a" />
-          <ellipse cx="276" cy="683" rx="34" ry="28" fill="#263e41" />
-          <ellipse cx="276" cy="683" rx="19" ry="17" fill="#82958a" stroke-width="3" />
-          <path d="m235 708 59 4 20 28-7 98-56 31-43-39Z" fill="#50695f" />
-          <path d="m240 829 38 3 5 33-43 15-22-15Z" fill="#20373b" />
-          <path d="m149 877 47 24 98 2 3 14-104-3-47-23Z" fill="#1c3439" />
-        </g>
-        <g id="bulwark-limbs-common-geometry-left-leg-near" data-side="machine-left">
-          <path d="m402 524 75 3 37 67-21 87-78 18-31-48Z" fill="#233b3f" />
-          <ellipse cx="454" cy="566" rx="37" ry="32" fill="#445d58" />
-          <path d="m484 610 15-2-3 43-14 12Z" fill="#182e35" stroke-width="3" />
-          <path d="m488 615-1 35" stroke="#acb9aa" stroke-width="6" />
-          <path d="M409 671 401 702 436 729 485 719 496 680" fill="#1e343a" />
-          <ellipse cx="472" cy="700" rx="34" ry="36" fill="#233b3f" />
-          <ellipse cx="472" cy="700" rx="21" ry="23" fill="#7e9485" stroke-width="3" />
-          <ellipse cx="472" cy="700" rx="9" ry="11" fill="#273f42" stroke-width="3" />
-          <path d="m403 736 52 11 35-24 26 121-32 43-72-14-25-39Z" fill="#5b7564" />
-          <path d="m408 853 51 8 22 14-7 27-62-2-20-24Z" fill="#243c3e" />
-          <path d="m372 910 68 29 116-14-1 14-118 15-67-29Z" fill="#1c3338" />
-        </g>
-        <g id="bulwark-limbs-common-geometry-left-arm-near" data-side="machine-left">
-          <path d="m507 300 57-16 56 44-5 84-58 18-57-55Z" fill="#263e40" />
-          <ellipse cx="557" cy="374" rx="36" ry="43" transform="rotate(-22 557 374)" fill="#142e33" />
-          <ellipse cx="557" cy="374" rx="23" ry="29" transform="rotate(-22 557 374)" fill="#8da18c" stroke-width="3" />
-          <path d="m546 360 22 27m-24-4 25-19" stroke="#4e6b5e" stroke-width="4" />
-          <path d="m543 395 50 0 24 55-34 43-41-24-14-40Z" fill="#708970" />
-          <path d="m544 399 25 5 13 37-24 13-19-23Z" fill="#b2c1a1" stroke-width="3" />
-          <path d="m594 402 18 42-17 24" fill="none" stroke="#102c32" stroke-width="13" />
-          <path d="m594 402 18 42-17 24" fill="none" stroke="#a6b8a0" stroke-width="5" />
-          <ellipse cx="577" cy="471" rx="32" ry="29" transform="rotate(-23 577 471)" fill="#193238" />
-          <ellipse cx="577" cy="471" rx="18" ry="17" fill="#839c87" stroke-width="3" />
-        </g>
-        <g id="bulwark-limbs-common-geometry-waist-and-pelvis">
-          <path d="m300 445 133 18 59-35-8 75-65 55-115-39Z" fill="#1a3036" />
-          <path d="m322 462 89 24 62-30-3 21-56 31-93-27Z" fill="#71877a" stroke-width="3" />
-          <path d="m320 492 92 25 59-31" fill="none" stroke="#93a18e" stroke-width="8" />
-          <path d="m300 511 107 29 77-47 19 47-83 68-133-47Z" fill="#4b6459" />
-        </g>
-      </g>
-    </symbol>
-    <symbol id="bulwark-torso-common" viewBox="0 0 800 960">
-      <title>共用背架、座艙殼與頸座</title>
-      <g id="bulwark-torso-common-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-        <g id="bulwark-torso-common-geometry-rear-frame">
-          <path d="M409 203 491 169 559 210 566 353 515 405 459 359Z" fill="#34494b" />
-          <path d="m491 169 68 41-50 30-69-30Z" fill="#849084" />
-          <path d="m509 240 50-30 7 143-51 52Z" fill="#243b40" />
-          <path d="m528 240 18-10 5 111-18 16Z" fill="#111f26" />
-          <path d="m529 254 18-10m-17 27 18-10m-17 27 18-10m-17 27 18-10m-17 27 18-10" fill="none" stroke="#607576" stroke-width="5" />
-          <path d="M294 249 308 208 357 190 407 211 392 261Z" fill="#354a4a" />
-          <path d="m308 208 49-18 50 21-52 20Z" fill="#9da797" />
-          <path d="M482 188v-44l10-7v46" fill="#4d6361" />
-          <path d="m486 144-1-38" fill="none" stroke-width="4" />
-          <path d="M315 249 312 291M337 241 334 288" fill="none" stroke="#14272c" stroke-width="12" />
-        </g>
-        <g id="bulwark-torso-common-geometry-torso-cockpit-shell">
-          <path d="m284 246 102-31 141 56 6 137-64 92-167-41-46-132Z" fill="#3c5650" />
-          <path d="m284 246 102-31 141 56-92 49-179-23Z" fill="#a7b39b" />
-          <path d="m435 320 92-49 6 137-64 92-20-77Z" fill="#2d4643" />
-          <path d="m284 310 130 35 34 124-136-34Z" fill="#778d75" />
-          <path d="m304 415 136 33 8 21-136-34Z" fill="#b4bfa0" stroke-width="3" />
-          <path d="m477 352 43-26 1 65-36 44Z" fill="#172e34" />
-          <path d="m490 357 17-10m-19 23 20-11m-18 24 18-11m-16 24 16-11" stroke="#738a7a" stroke-width="5" />
-          <path d="m315 440 1 26 28 12m73-10 5 29 28-5" fill="none" stroke="#162d33" stroke-width="12" />
-          <path d="m315 440 1 26 28 12m73-10 5 29 28-5" fill="none" stroke="#879c89" stroke-width="4" />
-        </g>
-        <g id="bulwark-torso-common-geometry-head-sensor">
-          <path d="m348 222 5 34 42 14 39-20-4-35Z" fill="#192f35" />
-          <path d="m356 240 39 13 34-18" fill="none" stroke="#8d9f8d" stroke-width="7" />
-        </g>
-      </g>
-    </symbol>
-    <symbol id="bulwark-head-cold" viewBox="0 0 800 960">
-      <title>冷鋼重工・低矮方切感測頭</title>
-      <g id="bulwark-head-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-        <g id="bulwark-head-cold-geometry-head-sensor">
-          <path d="m329 161 47-32 67 19 22 38-9 55-45 26-72-26-20-38Z" fill="#738975" />
-          <path d="m329 161 47-32 67 19-42 31Z" fill="#d0d8bd" />
-          <path d="m401 179 42-31 22 38-9 55-45 26Z" fill="#3f5b50" />
-          <path d="m329 161 72 18 10 88-72-26-20-38Z" fill="#acb99d" />
-          <path d="m327 180 70 18 9 31-70-19Z" fill="#152f35" />
-          <path d="m336 191 53 13 2 10-51-13Z" fill="#92dfce" stroke="none" />
-          <path d="m344 194 12 3m8 2 12 3" stroke="#e2fff0" stroke-width="3" />
-          <path d="m397 198 49-27 8 19-48 39Z" fill="#203e3f" stroke-width="3" />
-          <path d="m418 196 20-12 3 7-21 14Z" fill="#5ea998" stroke="none" />
-          <path d="m339 222 53 15 5 17-53-17Z" fill="#536d5d" stroke-width="3" />
-          <path d="m349 231 32 9" stroke="#9daf93" stroke-width="3" />
-          <path d="m347 159 21-13 43 11-20 13Z" fill="#e8e8d0" stroke="none" />
-          <path d="m363 136 7 31" stroke="#5c7664" stroke-width="4" />
-          <path d="m448 208-2 20-21 12" fill="none" stroke="#8ba384" stroke-width="4" />
-        </g>
-      </g>
-    </symbol>
-    <symbol id="bulwark-armor-cold" viewBox="0 0 800 960">
-      <title>冷鋼重工・原稿方切外甲</title>
-      <g id="bulwark-armor-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-        <g id="bulwark-armor-cold-geometry-right-arm-far" data-side="machine-right">
-          <path d="m190 260 66-24 56 37-14 68-64 11-68-36Z" fill="#647a70" />
-          <path d="m190 260 66-24 56 37-74 21Z" fill="#c5ceba" />
-          <path d="m238 294 74-21-14 68-64 11Z" fill="#3f5954" />
-          <path d="m180 272 51 27-3 39-51-27Z" fill="#889b87" stroke-width="3" />
-          <path d="m184 289 39 21" fill="none" stroke="#c6cfb9" stroke-width="3" />
-          <path d="m252 303 34-9-5 24-31 9Z" fill="#233a3e" stroke-width="3" />
-          <circle cx="196" cy="310" r="4" fill="#263c3d" stroke="none" />
-        </g>
-        <g id="bulwark-armor-cold-geometry-right-leg-far" data-side="machine-right">
-          <path d="m285 546 60 16-18 99-47 10-23-29Z" fill="#748678" />
-          <path d="m285 546 60 16-8 27-61-15Z" fill="#aab49f" />
-          <path d="m311 586 25 1-9 74-29 8Z" fill="#435c55" stroke-width="3" />
-          <path d="m245 664 43-7 30 22-16 37-54-4-20-22Z" fill="#929f8a" />
-          <path d="m245 664 43-7 30 22-48 3Z" fill="#c9d0b9" />
-          <path d="m235 708 59 4-12 107-45 13-22-18Z" fill="#8e9d87" />
-          <path d="m294 712 20 28-7 98-25-19Z" fill="#334d49" />
-          <path d="m237 730 34 3-8 63-33 9Z" fill="#acb79f" stroke-width="3" />
-          <path d="m233 751 32 3m-36 16 34 3" fill="none" stroke="#647b6c" stroke-width="4" />
-          <path d="m215 836 63 9 38 29-22 29-98-2-47-24 11-24Z" fill="#3c5550" />
-          <path d="m215 836 63 9 38 29-95 7-61-28Z" fill="#9ca88f" />
-          <path d="m160 853 61 28 95-7-22 29-98-2-47-24Z" fill="#617767" />
-          <path d="m175 857 51 23m-24-30 54 28" fill="none" stroke="#4d6558" stroke-width="4" />
-          <path d="m215 892 63-1" stroke="#bbc5aa" stroke-width="3" />
-        </g>
-        <g id="bulwark-armor-cold-geometry-left-leg-near" data-side="machine-left">
-          <path d="m407 559 52-8 32 34-9 83-63 17-26-37Z" fill="#93a18b" />
-          <path d="m407 559 52-8 32 34-57 11Z" fill="#d3d9c1" />
-          <path d="m434 596 57-11-9 83-29 9Z" fill="#617963" />
-          <path d="m404 582 20 21 13 52-23 8-15-26Z" fill="#b5bfa5" stroke-width="3" />
-          <path d="m408 669 45 10 20 32-21 33-49-12-17-31Z" fill="#adbaa0" />
-          <path d="m408 669 45 10 20 32-48-9-39-1Z" fill="#d9dec7" />
-          <path d="m400 709 43 10-3 12-36-8Z" fill="#b48a48" stroke-width="3" />
-          <path d="m455 747 35-24 26 121-32 43-9-64Z" fill="#354f48" />
-          <path d="m403 736 52 11 20 76-7 42-56-7-25-24Z" fill="#a0af92" />
-          <path d="m409 754 32 8 15 61-9 17-31-9-14-54Z" fill="#c3cdb0" stroke-width="3" />
-          <path d="m409 777 37 9m-32 13 37 10" fill="none" stroke="#82967b" stroke-width="4" />
-          <path d="m484 760 9 50" fill="none" stroke="#849a87" stroke-width="5" />
-          <path d="m411 870 59 8 48-22 46 36-8 33-116 14-68-29 1-23Z" fill="#5d7565" />
-          <path d="m411 870 59 8 48-22 46 36-114 19-77-24Z" fill="#b7c2a4" />
-          <path d="m450 911 114-19-8 33-116 14Z" fill="#7f9579" />
-          <path d="m373 887 77 24-10 28-68-29Z" fill="#526c5d" />
-          <path d="m404 884 54 23m-25-27 55 21m-19-20 47 16" fill="none" stroke="#6c826a" stroke-width="4" />
-          <path d="m460 923 75-12" stroke="#d5dec0" stroke-width="3" />
-          <path d="m392 899 28 10" stroke="#99ab8d" stroke-width="3" />
-        </g>
-        <g id="bulwark-armor-cold-geometry-waist-and-pelvis">
-          <path d="m300 511 107 29 77-47 19 25-89 51-127-28Z" fill="#a2b197" />
-          <path d="m302 542 51 14-13 56-57-24-11-27Z" fill="#c1c9ae" />
-          <path d="m353 556 54 14 7 50-42 17-32-25Z" fill="#6c826c" />
-          <path d="m414 569 73-42 16 13-9 55-66 40-14-15Z" fill="#72896e" />
-          <path d="m430 575 53-31-4 33-45 29Z" fill="#a3b293" stroke-width="3" />
-          <path d="m302 563 29 10m42 6 20 6" stroke="#344d45" stroke-width="4" />
-          <path d="m370 536 30 8-2 16-31-8Z" fill="#b88e4f" stroke-width="3" />
-        </g>
-        <g id="bulwark-armor-cold-geometry-torso-composite-plate" data-component="component/composite-plate">
-          <path d="m265 281 167 38 67-39 13 97-62 69-173-45Z" fill="#172e33" stroke-width="7" />
-          <path d="m255 276 172 39 69-38 3 30-60 49-173-45Z" fill="#788c78" />
-          <path d="m255 276 65-34 176 35-69 38Z" fill="#d9dfc7" />
-          <path d="m427 315 69-38 13 85-68 63Z" fill="#6d846c" />
-          <path d="m255 276 172 39 14 110-174-43Z" fill="#b8c4a5" />
-          <path d="m267 291 69 16 2 67-60-15Z" fill="#e2e5cc" stroke-width="3" />
-          <path d="m347 309 68 16 10 69-76-18Z" fill="#d2dbbb" stroke-width="3" />
-          <path d="m278 359 60 15 0 17-67-16Z" fill="#8c9f80" stroke-width="3" />
-          <path d="m349 376 76 18 3 17-79-19Z" fill="#82997a" stroke-width="3" />
-          <path d="m440 325 43-25 9 51-47 45Z" fill="#a0b18e" stroke-width="3" />
-          <path d="m453 331 23-14 3 23-24 18Z" fill="#465e51" stroke-width="3" />
-          <path d="m290 273 37-18 32 7-34 18Z" fill="#6b816e" stroke-width="3" />
-          <path d="m371 290 36-18 33 7-35 18Z" fill="#6b816e" stroke-width="3" />
-          <path d="m293 282 13 3 5 20-15-4Zm99 22 13 3 5 20-15-4Z" fill="#455e52" stroke-width="3" />
-          <path d="m294 382 115 28 14 40-109-26Z" fill="#b38c4c" />
-          <path d="m304 388 95 23 4 10-95-23Z" fill="#e0bc72" stroke="none" />
-          <path d="m314 409 22 5m11 3 22 5m11 3 22 5" stroke="#4d5140" stroke-width="5" />
-          <path d="m272 318 10 3m119 25 11 3" stroke="#f1efdb" stroke-width="3" />
-          <g id="bulwark-armor-cold-geometry-armor-fasteners" fill="#3e584d" stroke="none">
-            <circle cx="281" cy="307" r="4" />
-            <circle cx="324" cy="318" r="4" />
-            <circle cx="361" cy="326" r="4" />
-            <circle cx="401" cy="336" r="4" />
-            <circle cx="288" cy="347" r="4" />
-            <circle cx="324" cy="355" r="4" />
-            <circle cx="364" cy="363" r="4" />
-            <circle cx="407" cy="374" r="4" />
-          </g>
-        </g>
-        <g id="bulwark-armor-cold-geometry-service-details" fill="none" stroke-width="3">
-          <path d="m284 337 14 3m65 13 13 3m-64 235 8-1m132 38 8-3" stroke="#e6e7cf" />
-          <path d="m304 594 11 4m124 65 9 2m-202 128 10 1m170 17 9 3" stroke="#536e59" />
-          <path d="m285 281 9 2m92 23 10 3m139 34 12 4" stroke="#edf0d6" />
-        </g>
-        <g id="bulwark-armor-cold-geometry-left-arm-near" data-side="machine-left">
-          <path d="m486 255 71-38 100 40 15 76-62 54-115-41Z" fill="#849b7e" />
-          <path d="m486 255 71-38 100 40-72 43Z" fill="#d6dfbd" />
-          <path d="m585 300 72-43 15 76-62 54Z" fill="#4a6855" />
-          <path d="m486 255 99 45 25 87-115-41Z" fill="#adbf9a" />
-          <path d="m499 275 73 33 13 47-80-29Z" fill="#c6d3ae" stroke-width="3" />
-          <path d="m499 329 85 33 6 18-89-32Z" fill="#768f6d" stroke-width="3" />
-          <path d="m602 310 40-25 10 39-37 32Z" fill="#75916d" stroke-width="3" />
-          <path d="m611 313 23-14 2 10-22 15Z" fill="#263f3b" stroke-width="3" />
-          <path d="m525 255 29-17 61 25-28 18Z" fill="#c29750" stroke-width="3" />
-          <path d="m538 251 43 18" stroke="#e5c67a" stroke-width="3" />
-          <path d="m516 298 10 4m22 10 11 5" stroke="#eef0d3" stroke-width="3" />
-          <circle cx="515" cy="317" r="4" fill="#4b6652" stroke="none" />
-          <circle cx="566" cy="337" r="4" fill="#4b6652" stroke="none" />
-        </g>
-      </g>
-    </symbol>
-    <symbol id="bulwark-weapons-cold" viewBox="0 0 800 960">
-      <title>冷鋼重工・左短粗砲與右窄長槍</title>
-      <g id="bulwark-weapons-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round">
-        <g id="bulwark-weapons-cold-geometry-right-weapon-iron-repeater" data-side="machine-right" data-component="component/mx-iron-repeater">
-          <path d="m185 440 32-14 34 28-8 76-39 20-46-37Z" fill="#344c4e" />
-          <path d="m187 459 31-15 19 16-30 15Z" fill="#96a392" stroke-width="3" />
-          <path d="m232 475 30 14-4 66-29 13-21-19 8-61Z" fill="#6c7d70" />
-          <path d="m238 497 14 7-4 40-14 7Z" fill="#263c40" stroke-width="3" />
-          <path d="m171 435 50 23-6 60-55 36-45-26 3-62Z" fill="#74887b" />
-          <path d="m118 466 53-31 50 23-54 33Z" fill="#c3cbb6" />
-          <path d="m167 491 54-33-6 60-55 36Z" fill="#425a54" />
-          <path d="m118 481 39 22-3 32-38-21Z" fill="#a3ad96" stroke-width="3" />
-          <path d="m172 501 32-18m-34 30 32-18" fill="none" stroke="#20383d" stroke-width="5" />
-          <path d="m136 468 29-17 24 12-30 18Z" fill="#c4934d" stroke-width="3" />
-          <path d="m120 518 39 22-25 94-39 20-24-21 9-73Z" fill="#334b4c" />
-          <path d="m120 518 16 10-26 101-15 25-24-21 9-73Z" fill="#5d7270" />
-          <path d="m127 544 12 5-20 67-12-4Z" fill="#142c31" stroke-width="3" />
-          <path d="m101 547 12 6-18 56-11-5Z" fill="#9ca99a" stroke-width="3" />
-          <path d="m78 607 36 19 22-11-4 31-36 24-27-20Z" fill="#9da99b" />
-          <path d="m69 650 27 20 36-24-27-20Z" fill="#172d32" />
-          <path d="m80 650 16 10 22-14-14-10Z" fill="#071c23" stroke="#647b75" stroke-width="3" />
-          <path d="m121 483 24 13" fill="none" stroke="#e3e7d4" stroke-width="3" />
-        </g>
-        <g id="bulwark-weapons-cold-geometry-left-weapon-scatter-rune" data-side="machine-left" data-component="component/mx-scatter-rune">
-          <path d="m588 431 46-25 57 27 17 67-38 59-56-22-28-58Z" fill="#3e5a50" />
-          <path d="m588 431 46-25 57 27-49 31Z" fill="#b6c4a6" />
-          <path d="m642 464 49-31 17 67-38 59-21-51Z" fill="#2b4641" />
-          <path d="m652 463 28-17 11 46-24 29Z" fill="#657f68" stroke-width="3" />
-          <path d="m610 437 22-13 35 15-23 15Z" fill="#d5debf" stroke-width="3" />
-          <path d="m586 458 61 24 7 53-57 52-63-22-11-53Z" fill="#8a9e7f" />
-          <path d="m586 458 61 24-57 45-67-15Z" fill="#c9d4b2" />
-          <path d="m590 527 57-45 7 53-57 52Z" fill="#526e58" />
-          <path d="m534 524 40 11 4 26-39-11Z" fill="#acba98" stroke-width="3" />
-          <path d="m593 542 44-35" stroke="#273f39" stroke-width="6" />
-          <path d="m550 498 28-20 42 14-26 20Z" fill="#b78e4e" stroke-width="3" />
-          <path d="m553 497 39 13" stroke="#e4c279" stroke-width="3" />
-          <path d="m548 542 46 19 12 51-38 40-68-22-15-53Z" fill="#4f6b59" />
-          <path d="m548 542 46 19-46 33-63-17Z" fill="#a9b99a" />
-          <path d="m548 594 46-33 12 51-38 40Z" fill="#2f4d43" />
-          <path d="m500 565 18 4 11 49-19 12-17-10-8-43Z" fill="#c1cbac" stroke-width="3" />
-          <path d="m561 585 13-10 12 34-15 16Z" fill="#7e997c" stroke-width="3" />
-          <path d="m489 579 59 17 26 44-19 43-54 14-43-29-4-49Z" fill="#aebd9c" />
-          <path d="m489 579 59 17 26 44-17 9-25-39-58-13Z" fill="#dee3c7" stroke-width="3" />
-          <path d="m557 649 17-9-19 43-54 14-1-19 43-12Z" fill="#526d57" stroke-width="3" />
-          <path d="m483 601 47 13 23 35-13 22-37 8-30-20-4-33Z" fill="#1e3738" stroke-width="4" />
-          <path d="m489 613 34 10 16 28-9 12-25 5-21-15-3-25Z" fill="#071e26" stroke="#607f6b" stroke-width="3" />
-          <path d="m487 624 2 25 17 12" fill="none" stroke="#94ae8e" stroke-width="3" />
-          <path d="m497 603 4 10m39 9-7 7m15 32-10-3m-34 20 2-10m-33-23 10-2" fill="none" stroke="#718d74" stroke-width="4" />
-          <path d="m615 460-5 19m18-12-4 20" stroke="#233c38" stroke-width="4" />
-        </g>
-      </g>
-    </symbol>
+    <linearGradient id="mech-cold-sheen" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#92dfce" stop-opacity="0" />
+      <stop offset="35%" stop-color="#92dfce" stop-opacity=".4" />
+      <stop offset="48%" stop-color="#f0fff5" stop-opacity="0.94" />
+      <stop offset="53%" stop-color="#f0fff5" stop-opacity=".95" />
+      <stop offset="68%" stop-color="#92dfce" stop-opacity=".4" />
+      <stop offset="100%" stop-color="#92dfce" stop-opacity="0" />
+    </linearGradient>
+    <radialGradient id="mech-cold-radiance">
+      <stop offset="0%" stop-color="#f0fff5" stop-opacity="1" />
+      <stop offset="35%" stop-color="#92dfce" stop-opacity="0.85" />
+      <stop offset="100%" stop-color="#92dfce" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="mech-cold-thermal" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#92dfce" stop-opacity="0.8" />
+      <stop offset="40%" stop-color="#92dfce" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#92dfce" stop-opacity="0" />
+    </linearGradient>
+    <filter id="mech-cold-bloom" x="-100%" y="-100%" width="300%" height="300%" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="2.2" result="blur" in="SourceGraphic" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="mech-cold-corona" x="-80%" y="-80%" width="260%" height="260%" color-interpolation-filters="sRGB">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="aura" />
+      <feMerge>
+        <feMergeNode in="aura" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <linearGradient id="mech-cold-scan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#92dfce" stop-opacity="0" />
+      <stop offset="20%" stop-color="#92dfce" stop-opacity="0.3" />
+      <stop offset="44%" stop-color="#effff7" stop-opacity="0.85" />
+      <stop offset="59%" stop-color="#effff7" stop-opacity="0.8" />
+      <stop offset="82%" stop-color="#92dfce" stop-opacity="0.3" />
+      <stop offset="100%" stop-color="#92dfce" stop-opacity="0" />
+    </linearGradient>
   </defs>
-  <g id="assembled">
-    <g id="part-limbs" data-part="limbs">
-      <use href="#bulwark-limbs-common" width="800" height="960" />
+  <g id="assembled" data-assembly="bulwark-800" data-mech-phase="idle" data-mech-play="paused" data-mech-reduced="false">
+    <title data-part="limbs">共用承重骨架與雙肢關節</title>
+    <g id="output-bulwark-limbs-common-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" data-part="limbs">
+      <g id="output-bulwark-limbs-common-leaf-1" data-mech-node="arm-right-shoulder-yoke" data-side="machine-right">
+        <path data-side="machine-right" d="m252 292 43 7 5 71-42 17-35-34Z" fill="#263b40" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-2" data-mech-node="arm-right-shoulder-bearing" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="242" cy="347" rx="34" ry="39" transform="rotate(17 242 347)" fill="#11262c" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-3" data-mech-node="arm-right-shoulder-hub" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="242" cy="347" rx="23" ry="28" transform="rotate(17 242 347)" fill="#657875" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-4" data-mech-node="arm-right-forearm-housing" data-side="machine-right">
+        <path data-side="machine-right" d="m221 349 37 10-17 76-40 2-13-30Z" fill="#536b64" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-5" data-mech-node="arm-right-forearm-hatch" data-side="machine-right">
+        <path data-side="machine-right" d="m221 349 37 10-6 26-39-10Z" fill="#a8b19e" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-6" data-mech-node="arm-right-forearm-piston" data-side="machine-right">
+        <path data-side="machine-right" d="m237 385 15 0-11 50-18 6Z" fill="#283e42" stroke-width="3" />
+        <path data-side="machine-right" d="m207 388-9 30" fill="none" stroke="#bac2ad" stroke-width="7" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-7" data-mech-node="arm-right-hand-cuff" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="212" cy="438" rx="27" ry="25" fill="#20353a" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-8" data-mech-node="arm-right-hand-palm" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="212" cy="438" rx="14" ry="14" fill="#899b8f" stroke-width="3" />
+        <path data-side="machine-right" d="m208 426 8 22m-16-7 24-6" stroke="#344b4c" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-9" data-mech-node="leg-right-thigh-frame" data-side="machine-right">
+        <path data-side="machine-right" d="m306 508 68 31-18 116-63 39-41-34 14-90Z" fill="#263e41" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-10" data-mech-node="leg-right-thigh-piston" data-side="machine-right">
+        <path data-side="machine-right" d="m271 589-12 51" fill="none" stroke="#bec6b0" stroke-width="8" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-11" data-mech-node="leg-right-knee-cradle" data-side="machine-right">
+        <path data-side="machine-right" d="m263 638-9 30 23 25 41-8 9-36" fill="#1d343a" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-12" data-mech-node="leg-right-knee-bearing" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="276" cy="683" rx="34" ry="28" fill="#263e41" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-13" data-mech-node="leg-right-knee-hub" data-side="machine-right">
+        <ellipse data-side="machine-right" cx="276" cy="683" rx="19" ry="17" fill="#82958a" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-14" data-mech-node="leg-right-shin-frame" data-side="machine-right">
+        <path data-side="machine-right" d="m235 708 59 4 20 28-7 98-56 31-43-39Z" fill="#50695f" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-15" data-mech-node="leg-right-foot-socket" data-side="machine-right">
+        <path data-side="machine-right" d="m240 829 38 3 5 33-43 15-22-15Z" fill="#20373b" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-16" data-mech-node="leg-right-foot-sole" data-side="machine-right">
+        <path data-side="machine-right" d="m149 877 47 24 98 2 3 14-104-3-47-23Z" fill="#1c3439" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-17" data-mech-node="leg-left-thigh-frame" data-side="machine-left">
+        <path data-side="machine-left" d="m402 524 75 3 37 67-21 87-78 18-31-48Z" fill="#233b3f" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-18" data-mech-node="leg-left-thigh-hip" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="454" cy="566" rx="37" ry="32" fill="#445d58" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-19" data-mech-node="leg-left-thigh-piston" data-side="machine-left">
+        <path data-side="machine-left" d="m484 610 15-2-3 43-14 12Z" fill="#182e35" stroke-width="3" />
+        <path data-side="machine-left" d="m488 615-1 35" stroke="#acb9aa" stroke-width="6" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-20" data-mech-node="leg-left-knee-cradle" data-side="machine-left">
+        <path data-side="machine-left" d="M409 671 401 702 436 729 485 719 496 680" fill="#1e343a" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-21" data-mech-node="leg-left-knee-bearing" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="472" cy="700" rx="34" ry="36" fill="#233b3f" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-22" data-mech-node="leg-left-knee-hub" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="472" cy="700" rx="21" ry="23" fill="#7e9485" stroke-width="3" />
+        <ellipse data-side="machine-left" cx="472" cy="700" rx="9" ry="11" fill="#273f42" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-23" data-mech-node="leg-left-shin-frame" data-side="machine-left">
+        <path data-side="machine-left" d="m403 736 52 11 35-24 26 121-32 43-72-14-25-39Z" fill="#5b7564" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-24" data-mech-node="leg-left-foot-socket" data-side="machine-left">
+        <path data-side="machine-left" d="m408 853 51 8 22 14-7 27-62-2-20-24Z" fill="#243c3e" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-25" data-mech-node="leg-left-foot-sole" data-side="machine-left">
+        <path data-side="machine-left" d="m372 910 68 29 116-14-1 14-118 15-67-29Z" fill="#1c3338" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-26" data-mech-node="arm-left-shoulder-yoke" data-side="machine-left">
+        <path data-side="machine-left" d="m507 300 57-16 56 44-5 84-58 18-57-55Z" fill="#263e40" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-27" data-mech-node="arm-left-shoulder-bearing" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="557" cy="374" rx="36" ry="43" transform="rotate(-22 557 374)" fill="#142e33" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-28" data-mech-node="arm-left-shoulder-hub" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="557" cy="374" rx="23" ry="29" transform="rotate(-22 557 374)" fill="#8da18c" stroke-width="3" />
+        <path data-side="machine-left" d="m546 360 22 27m-24-4 25-19" stroke="#4e6b5e" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-29" data-mech-node="arm-left-forearm-housing" data-side="machine-left">
+        <path data-side="machine-left" d="m543 395 50 0 24 55-34 43-41-24-14-40Z" fill="#708970" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-30" data-mech-node="arm-left-forearm-hatch" data-side="machine-left">
+        <path data-side="machine-left" d="m544 399 25 5 13 37-24 13-19-23Z" fill="#b2c1a1" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-31" data-mech-node="arm-left-forearm-piston" data-side="machine-left">
+        <path data-side="machine-left" d="m594 402 18 42-17 24" fill="none" stroke="#102c32" stroke-width="13" />
+        <path data-side="machine-left" d="m594 402 18 42-17 24" fill="none" stroke="#a6b8a0" stroke-width="5" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-32" data-mech-node="arm-left-hand-cuff" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="577" cy="471" rx="32" ry="29" transform="rotate(-23 577 471)" fill="#193238" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-33" data-mech-node="arm-left-hand-palm" data-side="machine-left">
+        <ellipse data-side="machine-left" cx="577" cy="471" rx="18" ry="17" fill="#839c87" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-34" data-mech-node="pelvis-waist-frame">
+        <path d="m300 445 133 18 59-35-8 75-65 55-115-39Z" fill="#1a3036" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-35" data-mech-node="pelvis-waist-ring">
+        <path d="m322 462 89 24 62-30-3 21-56 31-93-27Z" fill="#71877a" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-36" data-mech-node="pelvis-waist-rail">
+        <path d="m320 492 92 25 59-31" fill="none" stroke="#93a18e" stroke-width="8" />
+      </g>
+      <g id="output-bulwark-limbs-common-leaf-37" data-mech-node="pelvis-waist-crossmember">
+        <path d="m300 511 107 29 77-47 19 47-83 68-133-47Z" fill="#4b6459" />
+      </g>
     </g>
-    <g id="part-torso" data-part="torso">
-      <use href="#bulwark-torso-common" width="800" height="960" />
+    <title data-part="torso">共用背架、座艙殼與頸座</title>
+    <g id="output-bulwark-torso-common-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" data-part="torso">
+      <g id="output-bulwark-torso-common-leaf-1" data-mech-node="torso-back-frame">
+        <path d="M409 203 491 169 559 210 566 353 515 405 459 359Z" fill="#34494b" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-2" data-mech-node="torso-back-cap">
+        <path d="m491 169 68 41-50 30-69-30Z" fill="#849084" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-3" data-mech-node="torso-back-side">
+        <path d="m509 240 50-30 7 143-51 52Z" fill="#243b40" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-4" data-mech-node="torso-back-radiator">
+        <path d="m528 240 18-10 5 111-18 16Z" fill="#111f26" />
+        <path d="m529 254 18-10m-17 27 18-10m-17 27 18-10m-17 27 18-10m-17 27 18-10" fill="none" stroke="#607576" stroke-width="5" />
+        <path d="M534 266Q519 237 532 210Q547 224 542 243L545 260Z" data-mech-effect="vent" fill="url(#mech-cold-thermal)" stroke="none" opacity="0" pointer-events="none" />
+        <circle cx="533" cy="248" r="2" fill="#d9fff0" stroke="none" data-mech-effect="particle" style="--mech-delay: 0.10500000000000001s" opacity="0" pointer-events="none" />
+        <circle cx="544" cy="230" r="1.5" fill="#d9fff0" stroke="none" data-mech-effect="particle" style="--mech-delay: 0.21000000000000002s" opacity="0" pointer-events="none" />
+        <circle cx="529" cy="216" r="1.2" fill="#d9fff0" stroke="none" data-mech-effect="particle" style="--mech-delay: 0.21000000000000002s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-5" data-mech-node="torso-back-neck-support">
+        <path d="M294 249 308 208 357 190 407 211 392 261Z" fill="#354a4a" />
+        <path d="m308 208 49-18 50 21-52 20Z" fill="#9da797" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-6" data-mech-node="torso-back-antenna">
+        <path d="M482 188v-44l10-7v46" fill="#4d6361" />
+        <path d="m486 144-1-38" fill="none" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-7" data-mech-node="torso-back-struts">
+        <path d="M315 249 312 291M337 241 334 288" fill="none" stroke="#14272c" stroke-width="12" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-8" data-mech-node="torso-cockpit-frame">
+        <path d="m284 246 102-31 141 56 6 137-64 92-167-41-46-132Z" fill="#3c5650" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-9" data-mech-node="torso-cockpit-roof">
+        <path d="m284 246 102-31 141 56-92 49-179-23Z" fill="#a7b39b" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-10" data-mech-node="torso-cockpit-side">
+        <path d="m435 320 92-49 6 137-64 92-20-77Z" fill="#2d4643" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-11" data-mech-node="torso-cockpit-hatch">
+        <path d="m284 310 130 35 34 124-136-34Z" fill="#778d75" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-12" data-mech-node="torso-cockpit-sill">
+        <path d="m304 415 136 33 8 21-136-34Z" fill="#b4bfa0" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-13" data-mech-node="torso-cockpit-radiator">
+        <path d="m477 352 43-26 1 65-36 44Z" fill="#172e34" />
+        <path d="m490 357 17-10m-19 23 20-11m-18 24 18-11m-16 24 16-11" stroke="#738a7a" stroke-width="5" />
+        <path d="M491 358l16 -10 M490 373l17 -10 M490 388l15 -9 M489 403l13 -8" data-mech-effect="vent" fill="none" stroke="#92dfce" stroke-width="2" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-14" data-mech-node="torso-cockpit-hoses">
+        <path d="m315 440 1 26 28 12m73-10 5 29 28-5" fill="none" stroke="#162d33" stroke-width="12" />
+        <path d="m315 440 1 26 28 12m73-10 5 29 28-5" fill="none" stroke="#879c89" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-15" data-mech-node="head-mount-socket">
+        <path d="m348 222 5 34 42 14 39-20-4-35Z" fill="#192f35" />
+      </g>
+      <g id="output-bulwark-torso-common-leaf-16" data-mech-node="head-mount-ring">
+        <path d="m356 240 39 13 34-18" fill="none" stroke="#8d9f8d" stroke-width="7" />
+      </g>
     </g>
-    <g id="part-head" data-part="head">
-      <use href="#bulwark-head-cold" width="800" height="960" />
+    <title data-part="head">冷鋼重工・低矮方切感測頭</title>
+    <g id="output-bulwark-head-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" data-part="head">
+      <g id="output-bulwark-head-cold-leaf-1" data-mech-node="head-cowl-shell">
+        <path d="m329 161 47-32 67 19 22 38-9 55-45 26-72-26-20-38Z" fill="#738975" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-2" data-mech-node="head-cowl-crown">
+        <path d="m329 161 47-32 67 19-42 31Z" fill="#d0d8bd" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-3" data-mech-node="head-cowl-cheek">
+        <path d="m401 179 42-31 22 38-9 55-45 26Z" fill="#3f5b50" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-4" data-mech-node="head-cowl-face">
+        <path d="m329 161 72 18 10 88-72-26-20-38Z" fill="#acb99d" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-5" data-mech-node="head-sensor-bezel">
+        <path d="m327 180 70 18 9 31-70-19Z" fill="#152f35" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-6" data-mech-node="head-sensor-lens">
+        <path d="m336 191 53 13 2 10-51-13Z" fill="#92dfce" stroke="none" />
+        <path d="m344 194 12 3m8 2 12 3" stroke="#e2fff0" stroke-width="3" />
+        <path d="m336 191 53 13 2 10-51-13Z" fill="url(#mech-cold-radiance)" stroke="none" data-mech-effect="sensor" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" />
+        <path d="M351 187 A29 17 14 0 1 400 212 M389 226 A29 17 14 0 1 342 202" data-mech-effect="sensor" fill="none" stroke="#92dfce" stroke-width="1.2" pathLength="100" stroke-dasharray="24 26" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" style="--mech-delay: .12s" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-7" data-mech-node="head-sensor-side">
+        <path d="m397 198 49-27 8 19-48 39Z" fill="#203e3f" stroke-width="3" />
+        <path d="m418 196 20-12 3 7-21 14Z" fill="#5ea998" stroke="none" />
+        <path d="M427 193l13 -7 M432 206l10 -7" data-mech-effect="sensor" fill="none" stroke="#f0fff5" stroke-width="2" style="--mech-delay: .3s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-8" data-mech-node="head-cowl-chin">
+        <path d="m339 222 53 15 5 17-53-17Z" fill="#536d5d" stroke-width="3" />
+        <path d="m349 231 32 9" stroke="#9daf93" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-9" data-mech-node="head-cowl-crown">
+        <path d="m347 159 21-13 43 11-20 13Z" fill="#e8e8d0" stroke="none" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-10" data-mech-node="head-cowl-markings">
+        <path d="m363 136 7 31" stroke="#5c7664" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-head-cold-leaf-11" data-mech-node="head-cowl-cheek">
+        <path d="m448 208-2 20-21 12" fill="none" stroke="#8ba384" stroke-width="4" />
+      </g>
+      <g id="output-mech-cold-fx-leaf-head-sensor-lens" data-mech-node="head-sensor-lens">
+        <path id="output-mech-cold-fx-calibration-halo" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M304.04 143.31 A97 62 14 0 1 478.31 203.77 A97 62 14 0 1 303.94 213.87" stroke="#92dfce" stroke-width="12" stroke-opacity="0.18" filter="url(#mech-cold-corona)" style="--mech-animation: mech-calibration-ring; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-calibration-outer" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M304.04 143.31 A97 62 14 0 1 478.31 203.77 A97 62 14 0 1 303.94 213.87" stroke="#92dfce" stroke-width="3.5" pathLength="100" stroke-dasharray="38 4 10 4 31 13" filter="url(#mech-cold-corona)" style="--mech-animation: mech-calibration-ring; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-calibration-inner" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M443.58 229.84 A79 48 14 0 1 306.40 185.78 A79 48 14 0 1 425.92 155.87" stroke="#effff7" stroke-width="2" pathLength="100" stroke-dasharray="12 5 27 7" stroke-opacity="0.85" style="--mech-animation: mech-calibration-ring; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-calibration-ticks" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M282 168l-15 -4 M292 139l-10 -11 M334 118l-5 -15 M394 124l3 -15 M452 147l12 -10 M480 184l17 -2 M463 229l12 9 M306 215l-14 7" stroke="#92dfce" stroke-width="3" filter="url(#mech-cold-corona)" style="--mech-animation: mech-calibration-ring; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-scan-band" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="url(#mech-cold-scan)" stroke-linecap="round" stroke-linejoin="round" d="M249 164L514 223 509 247 244 188Z" stroke="none" style="--mech-animation: mech-sensor-scan; --mech-delay: .12s" />
+        <path id="output-mech-cold-fx-scan-leading-edge" data-mech-effect="sensor" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M251 174L513 233" stroke="#effff7" stroke-width="3" stroke-opacity="0.8" filter="url(#mech-cold-corona)" style="--mech-animation: mech-sensor-scan; --mech-delay: .12s" />
+      </g>
     </g>
-    <g id="part-armor" data-part="armor">
-      <use href="#bulwark-armor-cold" width="800" height="960" />
+    <title data-part="armor">冷鋼重工・原稿方切外甲</title>
+    <g id="output-bulwark-armor-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" data-part="armor">
+      <g id="output-bulwark-armor-cold-leaf-1" data-mech-node="arm-right-shoulder-shell" data-side="machine-right">
+        <path data-side="machine-right" d="m190 260 66-24 56 37-14 68-64 11-68-36Z" fill="#647a70" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-2" data-mech-node="arm-right-shoulder-crown" data-side="machine-right">
+        <path data-side="machine-right" d="m190 260 66-24 56 37-74 21Z" fill="#c5ceba" />
+        <path data-side="machine-right" d="m190 260 66-24 56 37-74 21Z" fill="url(#mech-cold-sheen)" stroke="none" data-mech-effect="sheen" style="--mech-delay: .06s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-3" data-mech-node="arm-right-shoulder-shell" data-side="machine-right">
+        <path data-side="machine-right" d="m238 294 74-21-14 68-64 11Z" fill="#3f5954" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-4" data-mech-node="arm-right-shoulder-face" data-side="machine-right">
+        <path data-side="machine-right" d="m180 272 51 27-3 39-51-27Z" fill="#889b87" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-5" data-mech-node="arm-right-shoulder-trim" data-side="machine-right">
+        <path data-side="machine-right" d="m184 289 39 21" fill="none" stroke="#c6cfb9" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-6" data-mech-node="arm-right-shoulder-vent" data-side="machine-right">
+        <path data-side="machine-right" d="m252 303 34-9-5 24-31 9Z" fill="#233a3e" stroke-width="3" />
+        <path data-side="machine-right" d="m252 303 34-9-5 24-31 9Z" fill="url(#mech-cold-thermal)" stroke-width="1.2" data-mech-effect="vent" stroke="#92dfce" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-7" data-mech-node="arm-right-shoulder-fasteners" data-side="machine-right">
+        <circle data-side="machine-right" cx="196" cy="310" r="4" fill="#263c3d" stroke="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-8" data-mech-node="leg-right-thigh-shell" data-side="machine-right">
+        <path data-side="machine-right" d="m285 546 60 16-18 99-47 10-23-29Z" fill="#748678" />
+        <path data-side="machine-right" d="m285 546 60 16-8 27-61-15Z" fill="#aab49f" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-9" data-mech-node="leg-right-thigh-panel" data-side="machine-right">
+        <path data-side="machine-right" d="m311 586 25 1-9 74-29 8Z" fill="#435c55" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-10" data-mech-node="leg-right-knee-cap" data-side="machine-right">
+        <path data-side="machine-right" d="m245 664 43-7 30 22-16 37-54-4-20-22Z" fill="#929f8a" />
+        <path data-side="machine-right" d="m245 664 43-7 30 22-48 3Z" fill="#c9d0b9" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-11" data-mech-node="leg-right-shin-front" data-side="machine-right">
+        <path data-side="machine-right" d="m235 708 59 4-12 107-45 13-22-18Z" fill="#8e9d87" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-12" data-mech-node="leg-right-shin-side" data-side="machine-right">
+        <path data-side="machine-right" d="m294 712 20 28-7 98-25-19Z" fill="#334d49" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-13" data-mech-node="leg-right-shin-front" data-side="machine-right">
+        <path data-side="machine-right" d="m237 730 34 3-8 63-33 9Z" fill="#acb79f" stroke-width="3" />
+        <path data-side="machine-right" d="m235 708 59 4-12 107-45 13-22-18Z" fill="url(#mech-cold-sheen)" stroke="none" data-mech-effect="sheen" style="--mech-delay: .18s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-14" data-mech-node="leg-right-shin-service" data-side="machine-right">
+        <path data-side="machine-right" d="m233 751 32 3m-36 16 34 3" fill="none" stroke="#647b6c" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-15" data-mech-node="leg-right-foot-shell" data-side="machine-right">
+        <path data-side="machine-right" d="m215 836 63 9 38 29-22 29-98-2-47-24 11-24Z" fill="#3c5550" />
+        <path data-side="machine-right" d="m215 836 63 9 38 29-95 7-61-28Z" fill="#9ca88f" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-16" data-mech-node="leg-right-foot-toe" data-side="machine-right">
+        <path data-side="machine-right" d="m160 853 61 28 95-7-22 29-98-2-47-24Z" fill="#617767" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-17" data-mech-node="leg-right-foot-treads" data-side="machine-right">
+        <path data-side="machine-right" d="m175 857 51 23m-24-30 54 28" fill="none" stroke="#4d6558" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-18" data-mech-node="leg-right-foot-toe" data-side="machine-right">
+        <path data-side="machine-right" d="m215 892 63-1" stroke="#bbc5aa" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-19" data-mech-node="leg-left-thigh-shell" data-side="machine-left">
+        <path data-side="machine-left" d="m407 559 52-8 32 34-9 83-63 17-26-37Z" fill="#93a18b" />
+        <path data-side="machine-left" d="m407 559 52-8 32 34-57 11Z" fill="#d3d9c1" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-20" data-mech-node="leg-left-thigh-panel" data-side="machine-left">
+        <path data-side="machine-left" d="m434 596 57-11-9 83-29 9Z" fill="#617963" />
+        <path data-side="machine-left" d="m404 582 20 21 13 52-23 8-15-26Z" fill="#b5bfa5" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-21" data-mech-node="leg-left-knee-cap" data-side="machine-left">
+        <path data-side="machine-left" d="m408 669 45 10 20 32-21 33-49-12-17-31Z" fill="#adbaa0" />
+        <path data-side="machine-left" d="m408 669 45 10 20 32-48-9-39-1Z" fill="#d9dec7" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-22" data-mech-node="leg-left-knee-trim" data-side="machine-left">
+        <path data-side="machine-left" d="m400 709 43 10-3 12-36-8Z" fill="#b48a48" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-23" data-mech-node="leg-left-shin-side" data-side="machine-left">
+        <path data-side="machine-left" d="m455 747 35-24 26 121-32 43-9-64Z" fill="#354f48" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-24" data-mech-node="leg-left-shin-front" data-side="machine-left">
+        <path data-side="machine-left" d="m403 736 52 11 20 76-7 42-56-7-25-24Z" fill="#a0af92" />
+        <path data-side="machine-left" d="m409 754 32 8 15 61-9 17-31-9-14-54Z" fill="#c3cdb0" stroke-width="3" />
+        <path data-side="machine-left" d="m403 736 52 11 20 76-7 42-56-7-25-24Z" fill="url(#mech-cold-sheen)" stroke="none" data-mech-effect="sheen" style="--mech-delay: .18s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-25" data-mech-node="leg-left-shin-service" data-side="machine-left">
+        <path data-side="machine-left" d="m409 777 37 9m-32 13 37 10" fill="none" stroke="#82967b" stroke-width="4" />
+        <path data-side="machine-left" d="m484 760 9 50" fill="none" stroke="#849a87" stroke-width="5" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-26" data-mech-node="leg-left-foot-shell" data-side="machine-left">
+        <path data-side="machine-left" d="m411 870 59 8 48-22 46 36-8 33-116 14-68-29 1-23Z" fill="#5d7565" />
+        <path data-side="machine-left" d="m411 870 59 8 48-22 46 36-114 19-77-24Z" fill="#b7c2a4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-27" data-mech-node="leg-left-foot-toe" data-side="machine-left">
+        <path data-side="machine-left" d="m450 911 114-19-8 33-116 14Z" fill="#7f9579" />
+        <path data-side="machine-left" d="m373 887 77 24-10 28-68-29Z" fill="#526c5d" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-28" data-mech-node="leg-left-foot-treads" data-side="machine-left">
+        <path data-side="machine-left" d="m404 884 54 23m-25-27 55 21m-19-20 47 16" fill="none" stroke="#6c826a" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-29" data-mech-node="leg-left-foot-toe" data-side="machine-left">
+        <path data-side="machine-left" d="m460 923 75-12" stroke="#d5dec0" stroke-width="3" />
+        <path data-side="machine-left" d="m392 899 28 10" stroke="#99ab8d" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-30" data-mech-node="pelvis-skirts-belt">
+        <path d="m300 511 107 29 77-47 19 25-89 51-127-28Z" fill="#a2b197" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-31" data-mech-node="pelvis-skirts-right">
+        <path d="m302 542 51 14-13 56-57-24-11-27Z" fill="#c1c9ae" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-32" data-mech-node="pelvis-skirts-center">
+        <path d="m353 556 54 14 7 50-42 17-32-25Z" fill="#6c826c" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-33" data-mech-node="pelvis-skirts-left">
+        <path d="m414 569 73-42 16 13-9 55-66 40-14-15Z" fill="#72896e" />
+        <path d="m430 575 53-31-4 33-45 29Z" fill="#a3b293" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-34" data-mech-node="pelvis-skirts-trim">
+        <path d="m302 563 29 10m42 6 20 6" stroke="#344d45" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-35" data-mech-node="pelvis-skirts-buckle">
+        <path d="m370 536 30 8-2 16-31-8Z" fill="#b88e4f" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-36" data-mech-node="torso-chest-backing">
+        <path data-component="component/composite-plate" d="m265 281 167 38 67-39 13 97-62 69-173-45Z" fill="#172e33" stroke-width="7" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-37" data-mech-node="torso-chest-upper">
+        <path data-component="component/composite-plate" d="m255 276 172 39 69-38 3 30-60 49-173-45Z" fill="#788c78" />
+        <path data-component="component/composite-plate" d="m255 276 65-34 176 35-69 38Z" fill="#d9dfc7" />
+        <path data-component="component/composite-plate" d="m255 276 172 39 69-38 3 30-60 49-173-45Z" fill="url(#mech-cold-sheen)" stroke="none" data-mech-effect="sheen" style="--mech-delay: 0s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-38" data-mech-node="torso-chest-side">
+        <path data-component="component/composite-plate" d="m427 315 69-38 13 85-68 63Z" fill="#6d846c" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-39" data-mech-node="torso-chest-front">
+        <path data-component="component/composite-plate" d="m255 276 172 39 14 110-174-43Z" fill="#b8c4a5" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-40" data-mech-node="torso-chest-panel-right">
+        <path data-component="component/composite-plate" d="m267 291 69 16 2 67-60-15Z" fill="#e2e5cc" stroke-width="3" />
+        <path data-component="component/composite-plate" d="m267 291 69 16 2 67-60-15Z" fill="url(#mech-cold-sheen)" stroke-width="3" stroke="none" data-mech-effect="sheen" style="--mech-delay: 0s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-41" data-mech-node="torso-chest-panel-left">
+        <path data-component="component/composite-plate" d="m347 309 68 16 10 69-76-18Z" fill="#d2dbbb" stroke-width="3" />
+        <path data-component="component/composite-plate" d="m347 309 68 16 10 69-76-18Z" fill="url(#mech-cold-sheen)" stroke-width="3" stroke="none" data-mech-effect="sheen" style="--mech-delay: 0s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-42" data-mech-node="torso-chest-rail">
+        <path data-component="component/composite-plate" d="m278 359 60 15 0 17-67-16Z" fill="#8c9f80" stroke-width="3" />
+        <path data-component="component/composite-plate" d="m349 376 76 18 3 17-79-19Z" fill="#82997a" stroke-width="3" />
+        <path d="M273 376L347 394 416 411" data-mech-effect="energy" fill="none" stroke="#92dfce" stroke-width="2.5" pathLength="100" stroke-dasharray="16 9 2 9" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-43" data-mech-node="torso-chest-side">
+        <path data-component="component/composite-plate" d="m440 325 43-25 9 51-47 45Z" fill="#a0b18e" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-44" data-mech-node="torso-chest-vent">
+        <path data-component="component/composite-plate" d="m453 331 23-14 3 23-24 18Z" fill="#465e51" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-45" data-mech-node="torso-chest-latches">
+        <path data-component="component/composite-plate" d="m290 273 37-18 32 7-34 18Z" fill="#6b816e" stroke-width="3" />
+        <path data-component="component/composite-plate" d="m371 290 36-18 33 7-35 18Z" fill="#6b816e" stroke-width="3" />
+        <path data-component="component/composite-plate" d="m293 282 13 3 5 20-15-4Zm99 22 13 3 5 20-15-4Z" fill="#455e52" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-46" data-mech-node="torso-chest-badge">
+        <path data-component="component/composite-plate" d="m294 382 115 28 14 40-109-26Z" fill="#b38c4c" />
+        <path data-component="component/composite-plate" d="m304 388 95 23 4 10-95-23Z" fill="#e0bc72" stroke="none" />
+        <path data-component="component/composite-plate" d="m314 409 22 5m11 3 22 5m11 3 22 5" stroke="#4d5140" stroke-width="5" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-47" data-mech-node="torso-chest-markings">
+        <path data-component="component/composite-plate" d="m272 318 10 3m119 25 11 3" stroke="#f1efdb" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-48" data-mech-node="torso-chest-fasteners">
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="281" cy="307" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="324" cy="318" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="361" cy="326" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="401" cy="336" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="288" cy="347" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="324" cy="355" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="364" cy="363" r="4" />
+        <circle data-component="component/composite-plate" fill="#3e584d" stroke="none" cx="407" cy="374" r="4" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-49" data-mech-node="torso-chest-markings">
+        <path fill="none" stroke-width="3" d="M284 337l14 3 M363 353l13 3" stroke="#e6e7cf" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-50" data-mech-node="leg-right-thigh-trim" data-side="machine-right">
+        <path fill="none" stroke-width="3" d="M312 591l8 -1" stroke="#e6e7cf" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-51" data-mech-node="leg-left-thigh-trim" data-side="machine-left">
+        <path fill="none" stroke-width="3" d="M452 628l8 -3" stroke="#e6e7cf" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-52" data-mech-node="leg-right-thigh-trim" data-side="machine-right">
+        <path fill="none" stroke-width="3" d="M304 594l11 4" stroke="#536e59" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-53" data-mech-node="leg-left-thigh-trim" data-side="machine-left">
+        <path fill="none" stroke-width="3" d="M439 663l9 2" stroke="#536e59" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-54" data-mech-node="leg-right-shin-service" data-side="machine-right">
+        <path fill="none" stroke-width="3" d="M246 793l10 1" stroke="#536e59" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-55" data-mech-node="leg-left-shin-service" data-side="machine-left">
+        <path fill="none" stroke-width="3" d="M426 811l9 3" stroke="#536e59" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-56" data-mech-node="torso-chest-markings">
+        <path fill="none" stroke-width="3" d="M285 281l9 2 M386 306l10 3" stroke="#edf0d6" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-57" data-mech-node="arm-left-shoulder-trim" data-side="machine-left">
+        <path fill="none" stroke-width="3" d="M535 343l12 4" stroke="#edf0d6" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-58" data-mech-node="arm-left-shoulder-shell" data-side="machine-left">
+        <path data-side="machine-left" d="m486 255 71-38 100 40 15 76-62 54-115-41Z" fill="#849b7e" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-59" data-mech-node="arm-left-shoulder-crown" data-side="machine-left">
+        <path data-side="machine-left" d="m486 255 71-38 100 40-72 43Z" fill="#d6dfbd" />
+        <path data-side="machine-left" d="m486 255 71-38 100 40-72 43Z" fill="url(#mech-cold-sheen)" stroke="none" data-mech-effect="sheen" style="--mech-delay: .06s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-60" data-mech-node="arm-left-shoulder-shell" data-side="machine-left">
+        <path data-side="machine-left" d="m585 300 72-43 15 76-62 54Z" fill="#4a6855" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-61" data-mech-node="arm-left-shoulder-face" data-side="machine-left">
+        <path data-side="machine-left" d="m486 255 99 45 25 87-115-41Z" fill="#adbf9a" />
+        <path data-side="machine-left" d="m499 275 73 33 13 47-80-29Z" fill="#c6d3ae" stroke-width="3" />
+        <path data-side="machine-left" d="m499 329 85 33 6 18-89-32Z" fill="#768f6d" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-62" data-mech-node="arm-left-shoulder-vent" data-side="machine-left">
+        <path data-side="machine-left" d="m602 310 40-25 10 39-37 32Z" fill="#75916d" stroke-width="3" />
+        <path data-side="machine-left" d="m611 313 23-14 2 10-22 15Z" fill="#263f3b" stroke-width="3" />
+        <path data-side="machine-left" d="m602 310 40-25 10 39-37 32Z" fill="url(#mech-cold-thermal)" stroke-width="1.2" data-mech-effect="vent" stroke="#92dfce" filter="url(#mech-cold-bloom)" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-63" data-mech-node="arm-left-shoulder-badge" data-side="machine-left">
+        <path data-side="machine-left" d="m525 255 29-17 61 25-28 18Z" fill="#c29750" stroke-width="3" />
+        <path data-side="machine-left" d="m538 251 43 18" stroke="#e5c67a" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-64" data-mech-node="arm-left-shoulder-trim" data-side="machine-left">
+        <path data-side="machine-left" d="m516 298 10 4m22 10 11 5" stroke="#eef0d3" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-armor-cold-leaf-65" data-mech-node="arm-left-shoulder-fasteners" data-side="machine-left">
+        <circle data-side="machine-left" cx="515" cy="317" r="4" fill="#4b6652" stroke="none" />
+        <circle data-side="machine-left" cx="566" cy="337" r="4" fill="#4b6652" stroke="none" />
+      </g>
+      <g id="output-mech-cold-fx-leaf-arm-left-shoulder-vent" data-mech-node="arm-left-shoulder-vent" data-side="machine-left">
+        <path id="output-mech-cold-fx-left-thermal-plume" data-mech-effect="vent" opacity="0" pointer-events="none" fill="url(#mech-cold-thermal)" stroke-linecap="round" stroke-linejoin="round" d="M653 326C681 293 674 268 696 240C724 205 720 178 711 154C754 189 759 225 738 262C716 298 704 328 675 349Z" stroke="none" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-left-thermal-filament-0" data-mech-effect="vent" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M669 329C700 297 689 272 716 239C735 215 734 191 726 174" stroke="#92dfce" stroke-width="3" stroke-opacity="0.7" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="65 35" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-left-thermal-filament-1" data-mech-effect="vent" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M681 339C708 320 722 289 725 273C730 254 751 243 750 215" stroke="#92dfce" stroke-width="2" stroke-opacity="0.45" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="65 35" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+      </g>
+      <g id="output-mech-cold-fx-leaf-arm-right-shoulder-vent" data-mech-node="arm-right-shoulder-vent" data-side="machine-right">
+        <path id="output-mech-cold-fx-right-thermal-plume" data-mech-effect="vent" opacity="0" pointer-events="none" fill="url(#mech-cold-thermal)" stroke-linecap="round" stroke-linejoin="round" d="M253 329C225 306 233 279 212 256C190 232 186 208 195 184C162 218 168 251 186 280C206 307 218 328 242 340Z" stroke="none" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-right-thermal-filament-0" data-mech-effect="vent" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M244 329C217 305 226 281 206 258C189 238 184 218 190 204" stroke="#92dfce" stroke-width="3" stroke-opacity="0.7" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="65 35" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+        <path id="output-mech-cold-fx-right-thermal-filament-1" data-mech-effect="vent" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M231 336C205 317 197 295 196 282C193 265 179 252 177 236" stroke="#92dfce" stroke-width="2" stroke-opacity="0.45" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="65 35" style="--mech-animation: mech-plume-unfurl; --mech-delay: 0s" />
+      </g>
     </g>
-    <g id="part-weapons" data-part="weapons">
-      <use href="#bulwark-weapons-cold" width="800" height="960" />
+    <title data-part="weapons">冷鋼重工・左短粗砲與右窄長槍</title>
+    <g id="output-bulwark-weapons-cold-geometry" transform="translate(20 -12) scale(.95)" stroke="#172b30" stroke-width="5" stroke-linejoin="round" stroke-linecap="round" data-part="weapons">
+      <g id="output-bulwark-weapons-cold-leaf-1" data-mech-node="arm-right-hand-grip" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m185 440 32-14 34 28-8 76-39 20-46-37Z" fill="#344c4e" />
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m187 459 31-15 19 16-30 15Z" fill="#96a392" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-2" data-mech-node="weapon-right-feed-housing" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m232 475 30 14-4 66-29 13-21-19 8-61Z" fill="#6c7d70" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-3" data-mech-node="weapon-right-feed-vents" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m238 497 14 7-4 40-14 7Z" fill="#263c40" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-4" data-mech-node="weapon-right-receiver-body" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m171 435 50 23-6 60-55 36-45-26 3-62Z" fill="#74887b" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-5" data-mech-node="weapon-right-receiver-cap" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m118 466 53-31 50 23-54 33Z" fill="#c3cbb6" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-6" data-mech-node="weapon-right-receiver-side" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m167 491 54-33-6 60-55 36Z" fill="#425a54" />
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m118 481 39 22-3 32-38-21Z" fill="#a3ad96" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-7" data-mech-node="weapon-right-receiver-vent" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m172 501 32-18m-34 30 32-18" fill="none" stroke="#20383d" stroke-width="5" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-8" data-mech-node="weapon-right-receiver-badge" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m136 468 29-17 24 12-30 18Z" fill="#c4934d" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-9" data-mech-node="weapon-right-barrel-jacket" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m120 518 39 22-25 94-39 20-24-21 9-73Z" fill="#334b4c" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-10" data-mech-node="weapon-right-barrel-rail" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m120 518 16 10-26 101-15 25-24-21 9-73Z" fill="#5d7270" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-11" data-mech-node="weapon-right-barrel-jacket" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m127 544 12 5-20 67-12-4Z" fill="#142c31" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-12" data-mech-node="weapon-right-barrel-rail" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m101 547 12 6-18 56-11-5Z" fill="#9ca99a" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-13" data-mech-node="weapon-right-barrel-collar" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m78 607 36 19 22-11-4 31-36 24-27-20Z" fill="#9da99b" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-14" data-mech-node="weapon-right-barrel-muzzle" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m69 650 27 20 36-24-27-20Z" fill="#172d32" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-15" data-mech-node="weapon-right-barrel-bore" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m80 650 16 10 22-14-14-10Z" fill="#071c23" stroke="#647b75" stroke-width="3" />
+        <path d="M86 648L103 658 117 651" data-mech-effect="energy" fill="none" stroke="#92dfce" stroke-width="2" pathLength="100" stroke-dasharray="23 7" filter="url(#mech-cold-bloom)" style="--mech-delay: .12s" opacity="0" pointer-events="none" />
+        <ellipse cx="102" cy="655" rx="13" ry="8" fill="url(#mech-cold-radiance)" stroke="none" data-mech-effect="energy" style="--mech-delay: .12s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-16" data-mech-node="weapon-right-receiver-side" data-side="machine-right">
+        <path data-side="machine-right" data-component="component/mx-iron-repeater" d="m121 483 24 13" fill="none" stroke="#e3e7d4" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-17" data-mech-node="weapon-left-feed-housing" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m588 431 46-25 57 27 17 67-38 59-56-22-28-58Z" fill="#3e5a50" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-18" data-mech-node="weapon-left-feed-cap" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m588 431 46-25 57 27-49 31Z" fill="#b6c4a6" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-19" data-mech-node="weapon-left-feed-panel" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m642 464 49-31 17 67-38 59-21-51Z" fill="#2b4641" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-20" data-mech-node="weapon-left-feed-vents" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m652 463 28-17 11 46-24 29Z" fill="#657f68" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-21" data-mech-node="weapon-left-feed-cap" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m610 437 22-13 35 15-23 15Z" fill="#d5debf" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-22" data-mech-node="weapon-left-receiver-body" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m586 458 61 24 7 53-57 52-63-22-11-53Z" fill="#8a9e7f" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-23" data-mech-node="weapon-left-receiver-cap" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m586 458 61 24-57 45-67-15Z" fill="#c9d4b2" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-24" data-mech-node="weapon-left-receiver-side" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m590 527 57-45 7 53-57 52Z" fill="#526e58" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m534 524 40 11 4 26-39-11Z" fill="#acba98" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-25" data-mech-node="weapon-left-receiver-vent" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m593 542 44-35" stroke="#273f39" stroke-width="6" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-26" data-mech-node="weapon-left-receiver-badge" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m550 498 28-20 42 14-26 20Z" fill="#b78e4e" stroke-width="3" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m553 497 39 13" stroke="#e4c279" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-27" data-mech-node="weapon-left-barrel-jacket" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m548 542 46 19 12 51-38 40-68-22-15-53Z" fill="#4f6b59" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-28" data-mech-node="weapon-left-barrel-rail" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m548 542 46 19-46 33-63-17Z" fill="#a9b99a" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-29" data-mech-node="weapon-left-barrel-jacket" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m548 594 46-33 12 51-38 40Z" fill="#2f4d43" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-30" data-mech-node="weapon-left-barrel-rail" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m500 565 18 4 11 49-19 12-17-10-8-43Z" fill="#c1cbac" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-31" data-mech-node="weapon-left-barrel-collar" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m561 585 13-10 12 34-15 16Z" fill="#7e997c" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-32" data-mech-node="weapon-left-barrel-muzzle" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m489 579 59 17 26 44-19 43-54 14-43-29-4-49Z" fill="#aebd9c" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m489 579 59 17 26 44-17 9-25-39-58-13Z" fill="#dee3c7" stroke-width="3" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m557 649 17-9-19 43-54 14-1-19 43-12Z" fill="#526d57" stroke-width="3" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-33" data-mech-node="weapon-left-barrel-bore" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m483 601 47 13 23 35-13 22-37 8-30-20-4-33Z" fill="#1e3738" stroke-width="4" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m489 613 34 10 16 28-9 12-25 5-21-15-3-25Z" fill="#071e26" stroke="#607f6b" stroke-width="3" />
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m487 624 2 25 17 12" fill="none" stroke="#94ae8e" stroke-width="3" />
+        <path d="M490 627Q506 615 527 632Q550 651 526 670Q503 676 489 650" data-mech-effect="energy" fill="none" stroke="#92dfce" stroke-width="2" pathLength="100" stroke-dasharray="23 7" filter="url(#mech-cold-bloom)" style="--mech-delay: .12s" opacity="0" pointer-events="none" />
+        <ellipse cx="515" cy="647" rx="25" ry="18" fill="url(#mech-cold-radiance)" stroke="none" data-mech-effect="energy" style="--mech-delay: .12s" opacity="0" pointer-events="none" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-34" data-mech-node="weapon-left-barrel-index" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m497 603 4 10m39 9-7 7m15 32-10-3m-34 20 2-10m-33-23 10-2" fill="none" stroke="#718d74" stroke-width="4" />
+      </g>
+      <g id="output-bulwark-weapons-cold-leaf-35" data-mech-node="weapon-left-receiver-vent" data-side="machine-left">
+        <path data-side="machine-left" data-component="component/mx-scatter-rune" d="m615 460-5 19m18-12-4 20" stroke="#233c38" stroke-width="4" />
+      </g>
+      <g id="output-mech-cold-fx-leaf-weapon-left-barrel-bore" data-mech-node="weapon-left-barrel-bore" data-side="machine-left">
+        <path id="output-mech-cold-fx-left-corona-halo" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M472.51 601.43 A65 48 28 0 1 576.51 663.36 A65 48 28 0 1 466.79 668.45" stroke="#92dfce" stroke-width="14" stroke-opacity="0.2" filter="url(#mech-cold-corona)" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-corona-arc" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M472.51 601.43 A65 48 28 0 1 576.51 663.36 A65 48 28 0 1 466.79 668.45" stroke="#92dfce" stroke-width="4" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="62 8 15 15" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-directional-arc" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M565 635L581 660 558 669 553 694 532 690 512 720 493 710 476 736 M481 611L457 621 466 645 445 654 448 677 430 692" stroke="#effff7" stroke-width="2.8" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="72 28" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-particle-trail-0" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M488 683Q471 707 444 724" stroke="#92dfce" stroke-width="3.5" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="34 8 5 53" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-particle-trail-1" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M527 697Q518 722 496 750" stroke="#92dfce" stroke-width="3.5" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="34 8 5 53" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-particle-trail-2" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M455 664Q431 678 417 703" stroke="#92dfce" stroke-width="3.5" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="34 8 5 53" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-left-particle-tips" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M442 723l-8 8 M496 748l-5 10 M418 701l-6 7 M466 738l-3 6" stroke="#effff7" stroke-width="4" filter="url(#mech-cold-corona)" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+      </g>
+      <g id="output-mech-cold-fx-leaf-weapon-right-barrel-bore" data-mech-node="weapon-right-barrel-bore" data-side="machine-right">
+        <path id="output-mech-cold-fx-right-corona-halo" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M77.75 629.18 A37 27 28 0 1 136.97 664.40 A37 27 28 0 1 74.69 666.96" stroke="#92dfce" stroke-width="14" stroke-opacity="0.2" filter="url(#mech-cold-corona)" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-right-corona-arc" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M77.75 629.18 A37 27 28 0 1 136.97 664.40 A37 27 28 0 1 74.69 666.96" stroke="#92dfce" stroke-width="4" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="62 8 15 15" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-right-directional-arc" data-mech-effect="energy" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M126 651L145 669 126 679 123 698 104 694 86 717 M77 636L61 647 67 663 49 679" stroke="#effff7" stroke-width="2.8" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="72 28" style="--mech-animation: mech-corona-flow; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-right-particle-trail-0" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M91 689Q78 709 59 719" stroke="#92dfce" stroke-width="3.5" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="34 8 5 53" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-right-particle-trail-1" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M119 685Q114 709 96 732" stroke="#92dfce" stroke-width="3.5" filter="url(#mech-cold-corona)" pathLength="100" stroke-dasharray="34 8 5 53" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+        <path id="output-mech-cold-fx-right-particle-tips" data-mech-effect="particle" opacity="0" pointer-events="none" fill="none" stroke-linecap="round" stroke-linejoin="round" d="M58 718l-5 7 M96 731l-3 8" stroke="#effff7" stroke-width="4" filter="url(#mech-cold-corona)" style="--mech-animation: mech-particle-track; --mech-delay: .08s" />
+      </g>
     </g>
   </g>
 </svg>

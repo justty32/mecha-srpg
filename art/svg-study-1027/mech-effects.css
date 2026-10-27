@@ -1,0 +1,156 @@
+/* 機甲專屬演出。來源效果預設 opacity=0；JS 只提供契約中的 phase/play/reduced。 */
+[data-mech-phase] [data-mech-effect] {
+  opacity: 0;
+  pointer-events: none;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: none;
+}
+
+[data-mech-phase] [data-mech-node] {
+  transition: filter 180ms ease-out;
+}
+
+[data-mech-phase] [data-mech-selected="true"] {
+  filter: drop-shadow(0 0 2px #fff6cd) drop-shadow(0 0 6px #7ddbd0);
+}
+
+/* 感測晶窗亮心、描線掃描和側窗以小幅延遲依序校準。 */
+[data-mech-phase="sensors"] [data-mech-effect~="sensor"] {
+  animation: var(--mech-animation, mech-sensor-wake) 900ms cubic-bezier(.2,.6,.3,1) var(--mech-delay, 0s) both;
+}
+
+/* 同形甲片上的帶狀裁切移動；底層甲片保持原位，光帶不越出甲面。 */
+[data-mech-phase="sweep"] [data-mech-effect~="sheen"] {
+  animation: mech-armor-sweep 1020ms cubic-bezier(.25,.1,.35,1) var(--mech-delay, 0s) both;
+}
+
+/* 冷卻縫沿線輸送，砲口電暈、散熱口透光與熱粒子各有獨立形狀。 */
+[data-mech-phase="energy"] [data-mech-effect~="energy"] {
+  animation: var(--mech-animation, mech-energy-flow) 1080ms ease-out var(--mech-delay, 0s) both;
+}
+
+[data-mech-phase="energy"] [data-mech-effect~="vent"] {
+  animation: var(--mech-animation, mech-thermal-rise) 1200ms ease-in-out both;
+}
+
+[data-mech-phase="energy"] [data-mech-effect~="particle"] {
+  animation: var(--mech-animation, mech-heat-particle) 990ms ease-out var(--mech-delay, 0s) both;
+}
+
+/* 暫停所有附屬效果與CSS時鐘；維持目前關鍵影格。 */
+[data-mech-phase][data-mech-play="paused"] [data-mech-effect] {
+  animation-play-state: paused;
+}
+
+@keyframes mech-sensor-wake {
+  0% { opacity: 0; stroke-dashoffset: 100; }
+  28% { opacity: .9; }
+  72% { opacity: 1; stroke-dashoffset: 18; }
+  100% { opacity: .65; stroke-dashoffset: 0; }
+}
+
+@keyframes mech-armor-sweep {
+  0% { opacity: 0; clip-path: polygon(-60% 0, -20% 0, -50% 100%, -90% 100%); }
+  18% { opacity: .9; }
+  55% { opacity: 1; clip-path: polygon(35% 0, 85% 0, 55% 100%, 5% 100%); }
+  82% { opacity: .8; }
+  100% { opacity: 0; clip-path: polygon(170% 0, 210% 0, 180% 100%, 140% 100%); }
+}
+
+/* 400px 展示的局部強化：雙環校準、掃描帶與定向放電，不驅動機體本身。 */
+@keyframes mech-calibration-ring {
+  0% { opacity: 0; stroke-dashoffset: 38; }
+  35% { opacity: .8; }
+  65% { opacity: 1; stroke-dashoffset: 0; }
+  100% { opacity: .72; stroke-dashoffset: -12; }
+}
+
+@keyframes mech-sensor-scan {
+  0% { opacity: 0; clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  25% { opacity: .75; }
+  65% { opacity: .9; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  100% { opacity: .25; clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+}
+
+@keyframes mech-corona-flow {
+  0% { opacity: 0; stroke-dashoffset: 65; }
+  30% { opacity: .8; }
+  55% { opacity: 1; stroke-dashoffset: 0; }
+  78% { opacity: .85; }
+  100% { opacity: 0; stroke-dashoffset: -28; }
+}
+
+@keyframes mech-plume-unfurl {
+  0% { opacity: 0; clip-path: inset(100% 0 0 0); stroke-dashoffset: 50; }
+  35% { opacity: .65; }
+  55% { opacity: .9; clip-path: inset(0 0 0 0); stroke-dashoffset: 0; }
+  80% { opacity: .7; }
+  100% { opacity: 0; clip-path: inset(0 0 0 0); stroke-dashoffset: -25; }
+}
+
+@keyframes mech-particle-track {
+  0% { opacity: 0; stroke-dashoffset: 64; }
+  30% { opacity: .8; }
+  58% { opacity: 1; stroke-dashoffset: 0; }
+  100% { opacity: 0; stroke-dashoffset: -38; }
+}
+
+@keyframes mech-energy-flow {
+  0% { opacity: 0; stroke-dashoffset: 100; }
+  25% { opacity: .85; }
+  65% { opacity: 1; }
+  100% { opacity: 0; stroke-dashoffset: -35; }
+}
+
+@keyframes mech-thermal-rise {
+  0% { opacity: 0; }
+  38% { opacity: .8; }
+  70% { opacity: .65; }
+  100% { opacity: 0; }
+}
+
+@keyframes mech-heat-particle {
+  0% { opacity: 0; transform: translate(0, 8px) scale(.6); }
+  25% { opacity: .9; }
+  100% { opacity: 0; transform: translate(5px, -26px) scale(.25); }
+}
+
+/* 減少動態：相位只顯示靜態亮色，沒有移動、描線運動或閃爍。 */
+[data-mech-phase][data-mech-reduced="true"] [data-mech-effect] {
+  animation: none;
+  transform: none;
+  clip-path: none;
+  stroke-dashoffset: 0;
+}
+
+[data-mech-phase="sensors"][data-mech-reduced="true"] [data-mech-effect~="sensor"],
+[data-mech-phase="sweep"][data-mech-reduced="true"] [data-mech-effect~="sheen"],
+[data-mech-phase="energy"][data-mech-reduced="true"] [data-mech-effect~="energy"],
+[data-mech-phase="energy"][data-mech-reduced="true"] [data-mech-effect~="vent"] {
+  opacity: .65;
+}
+
+[data-mech-phase][data-mech-reduced="true"] [data-mech-node] {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-mech-phase] [data-mech-effect] {
+    animation: none;
+    transform: none;
+    clip-path: none;
+    stroke-dashoffset: 0;
+  }
+
+  [data-mech-phase="sensors"] [data-mech-effect~="sensor"],
+  [data-mech-phase="sweep"] [data-mech-effect~="sheen"],
+  [data-mech-phase="energy"] [data-mech-effect~="energy"],
+  [data-mech-phase="energy"] [data-mech-effect~="vent"] {
+    opacity: .65;
+  }
+
+  [data-mech-phase] [data-mech-node] {
+    transition: none;
+  }
+}

@@ -20,7 +20,7 @@
 
 ## 獨立美術試作
 
-[art/svg-study-1027](../../../art/svg-study-1027/README.md) 為離線試作，尚未接入遊戲。`assembly.js` 管配方與相容檢查；`demo.js` 管展示DOM；`rebuild.py` 由共用SVG部件與manifest重建樣張、展示頁。各美術來源及驗證限制見該目錄入口。
+[art/svg-study-1027](../../../art/svg-study-1027/README.md) 為離線試作，尚未接入遊戲。`assembly.js` 管配方與相容檢查；`demo.js` 管展示DOM；`rebuild.py` 由共用SVG部件與manifest重建樣張、展示頁。機甲的 `mech-tree.js`／`mech-tree-ui.js` 分管語意層樹與控制，`mech-motion.js` 管演出時序；`mech-layers.json` 與 SVG 節點對應實際零件。各美術來源及驗證限制見該目錄入口。
 
 ## 真相層優先序
 
