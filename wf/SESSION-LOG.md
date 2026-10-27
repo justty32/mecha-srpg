@@ -11,9 +11,6 @@
 
 ## 最新進度
 
-- [refactor] 今日收尾：機甲原型程式拆分、SVG試作驗證／樣式整理與 wf 活文件 tidy，保持行為與圖像不變 → [收尾交接](workflows/dispatch/handoffs/lead-tidy-mech-1027.md)。
-
-
 - [content] 七輪世界觀待下次整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
 
 - [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。

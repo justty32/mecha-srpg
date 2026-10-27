@@ -94,3 +94,7 @@
 
 - 2026-10-27 mech-blueprint-plan：配置、骨架與獨立 SVG 原型規劃五檔完成；來源提交 `5ec8b2a7`。
 - 2026-10-27 lead-mech-blueprint：64 件固定視角 2D 機甲原型完成，動作與重建驗證通過；實作 `6cc5a1b2`、報告 `8c791d4f`，畫風待評閱。
+- 2026-10-27 lead-tidy-mech-1027：今日機甲原型／舊SVG試作按責任拆檔，wf活入口與接續校正；定向驗證、20項headless及六圖回歸通過，主觀評閱和舊線整合仍待處理；[交接](2026-10-27/lead-tidy-mech-1027.md)／[報告](2026-10-27/lead-tidy-mech-1027/REPORT.md)。
+- 2026-10-27 tidy-mech-new：新原型配置、幾何、viewer、驗證拆分；[交接](2026-10-27/tidy-mech-new.md)／[報告](2026-10-27/tidy-mech-new/REPORT.md)。
+- 2026-10-27 tidy-mech-old：舊試作檢查與CSS來源拆分；[交接](2026-10-27/tidy-mech-old.md)／[報告](2026-10-27/tidy-mech-old/REPORT.md)。
+- 2026-10-27 tidy-mech-wf：STATE、user與接續入口整理；[交接](2026-10-27/tidy-mech-wf.md)／[報告](2026-10-27/tidy-mech-wf/REPORT.md)。
