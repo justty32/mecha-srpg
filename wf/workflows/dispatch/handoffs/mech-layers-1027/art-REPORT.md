@@ -1,5 +1,7 @@
 # 機甲百層美術交付 — DONE
 
+> 歷史交付快照：以下驗證、指令、hash與未提交描述保留當時原文。成果已於 `04bf2dd` 提交並 push；當前接續見 [評閱入口](../../../../notes/art-review-2026-10-27/README.md)。本整理未重跑渲染或程式驗證。
+
 角色／指定模型：gpt-6-astra 機甲美術工。依 art.md、contract.md v1.1 與更新母 brief 執行；沿用已接受來源，未讀前輪 logs，未開子代理。
 
 先落 `mech-layers.json`，再補 SVG 與 CSS。交付只寫 `art/svg-study-1027/mech-layers.json`、`mech-parts.svg`、`mech-effects.css` 和本報告。來源中的全部零件定義共 153 個有真實幾何的穩定語意葉；各配方只計其選定 symbol 的去重集合，缺裝葉不計。

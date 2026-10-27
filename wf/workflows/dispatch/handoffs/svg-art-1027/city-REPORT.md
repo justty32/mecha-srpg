@@ -1,5 +1,7 @@
 # 城市美術終局：DONE
 
+> 歷史交付快照：以下驗證、指令、hash與未提交描述保留當時原文。成果已於 `2863782` 提交並 push；當前接續見 [評閱入口](../../../../notes/art-review-2026-10-27/README.md)。本整理未重跑渲染或程式驗證。
+
 交付僅五檔：`art/svg-study-1027/busan.svg`、`busan-ritual.svg`、`busan-feral.svg`、`city-motion.css`，以及本 `city-REPORT.md`。三張各約 30 KB，五檔總量低於 100 KB，符合 5 檔／600 KB gate。
 
 來源為親讀的 `content/lore/places/busan.json`、`art/svg-study-1027/art-direction.md`、母 brief 與 `city.md`。沿用山坡入海、運轉貨櫃港、吊臂彩幡、燈籠、第三刃黑金機庫及蓮花／骷髏、型錄展間與港口舞台。未重選題或修改設定。

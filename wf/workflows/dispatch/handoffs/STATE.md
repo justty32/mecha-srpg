@@ -1,4 +1,4 @@
-# STATE — 交棒：新 session 的起點（2026-10-27 公司 WSL 校正）
+# STATE — 交棒：新 session 的起點（2026-10-27 今日收工）
 
 [handoffs](README.md)｜非 codex 工作 [engine-backlog](engine-backlog.md)｜下次整理 [next-tidy](next-tidy.md)｜[roadmap](../../planning-roadmap.json)
 
@@ -6,7 +6,7 @@
 
 **遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（方格大地圖、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地。
 
-**測試（歷史，不代表 HEAD 綠燈）**：[2026-10-26 整理基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。目前核對 HEAD `c9ce4e8`（內容提交 `8ba72b4` 後補記錄）；沒有涵蓋目前 HEAD 的新整合驗收證據。本輪不執行測試或黃金重錄，回家再驗收。
+**測試（歷史，不代表 HEAD 綠燈）**：[2026-10-26 整理基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。本日美術功能交付基準 `04bf2dd`（已push）；其後文件提交看 git log；沒有涵蓋目前 HEAD 的新整合驗收證據。本輪不執行測試或黃金重錄，回家再驗收。
 
 **網頁**：`npm run dev` → `http://localhost:5173/`：`#/` 戰鬥（`?scenario=<id>&seed=<n>`）、`#/wiki` 百科（F1／Shift+W）、`#/ops` 營運（`?seed=<n>`，`&spectate=1` 全 AI 出戰）。
 
@@ -15,6 +15,12 @@
 **主要指令**：`npm test`、`npm run check`、`npm run typecheck`、`npm run test:e2e`、`npm run sim -- …`、`npm run sim:campaign -- --months N`、`npm run fuzz -- --runs N --mode mix`、`npm run content:probe -- <id…>`、`npm run content:index`、`npm run build`。見 [testing](../../testing.md)、[dev-env](../../dev-env.md)。
 
 **團隊**：現行配置依 [team-model](../../team-model.md)：頂層／規劃 `gpt-6-astra`，領導／普通工 `gpt-6.1-sol`，簡單工作 `gpt-6.1-terra`。歷史 Fable／Opus 記錄保留；本任務的困難架構問題另由使用者開 Claude Fable 做報告，裁決後才實作。
+
+## 今日美術與框架
+
+`2863782` 首批美術、`f78e708` 今日推送授權、`04bf2dd` 機甲百層與演出均已提交並 push。今天收工，無活躍工人；本整理已由主線核驗；文件提交識別與推送狀態以 git 記錄為準。
+
+[集中評閱與回家 UI 驗收](../../../notes/art-review-2026-10-27/README.md) 供下次看圖；兩人物紙娃娃、三風格機甲／城市與機甲百層演出已交付，細目與層數見該入口。未接入遊戲，靜態 PNG／Node 不代表真瀏覽器布局、鍵盤或動畫驗收；headless 缺 lib，公司未裝未下載、未開 GUI。
 
 ## 待接續（四線暫停，未收線）
 
@@ -28,7 +34,7 @@
 
 **small**：`lead-small/report.md` 不存在，不能以缺失報告作驗收。第三刃營運、北岸改區、勢力數 7→8 與 index 已在 `69924b0`；提交訊息只記當時單檔／check／typecheck 結果，並明寫全套與戰役黃金待處理，不再視為未提交半成品。
 
-**公司 WSL 邊界**：公司已完成七輪 lore 創作與限定查重；本整理只做交接校正與文件歸位；不安裝、不跑整合驗收或重錄 golden、不改遊戲內容、不刪檔或清 worktree。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../notes/investigations/content-review-2026-10-27/README.md)。
+**公司 WSL 邊界**：公司已完成七輪 lore 創作與限定查重、兩批 SVG 美術與框架。本整理只做 Markdown 搬檔與接續；不安裝下載、不跑整合驗收／渲染或重錄 golden、不改遊戲內容、不刪檔或清 worktree。必要套件已允許，但下載前須先告知項目、來源與用途，詳見 [使用者偏好](../../common/user.md)。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../notes/investigations/content-review-2026-10-27/README.md)。
 
 ## 七輪世界觀交付與待驗收
 

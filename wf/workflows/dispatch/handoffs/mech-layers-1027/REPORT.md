@@ -1,5 +1,7 @@
 # 機甲百層階層與局部演出 — 完成
 
+> 歷史交付快照：以下驗證、指令、hash與未提交描述保留當時原文。成果已於 `04bf2dd` 提交並 push；當前接續見 [評閱入口](../../../../notes/art-review-2026-10-27/README.md)。本整理未重跑渲染或程式驗證。
+
 接續已接受的三套堅盾美術，未新增機型、未改人物／城市／場景／戰場、未接遊戲。領導sol鎖資料契約、整合與收件；gpt-6-astra負責語意拆層及SVG/CSS效果，gpt-6.1-sol負責純樹、DOM與時序。原機甲舊session無rollout，開新astra沿現有資產；本輪後續修正續同astra／sol，最多兩子工。
 
 [離線展示](../../../../../art/svg-study-1027/index.html)｜[用法](../../../../../art/svg-study-1027/README.md)｜[契約](contract.md)｜[美術報告](art-REPORT.md)｜[程式報告](code-REPORT.md)。

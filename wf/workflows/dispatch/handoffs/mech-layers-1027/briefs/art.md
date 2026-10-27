@@ -1,5 +1,7 @@
 # 任務：保持已接受機甲造型，實作百層語意幾何
 
+> 已執行契約；下方派工、原路徑及狀態保留歷史快照。[同批交接書](README.md)｜[本批交付與報告](../README.md)｜[目前 API 契約](../contract.md)。
+
 先讀：AGENTS.md、wf/WORKFLOWS.md、wf/workflows/common/user.md、wf/workflows/team-model.md、wf/workflows/feature-dev/README.md、wf/workflows/common/conventions.md；本輪母brief與同目錄contract.md。親讀必要規矩，沿用現有資產，不重讀前輪logs。
 
 ## 必用工具

@@ -1,5 +1,7 @@
 # 環境與戰場有界批次 — DONE
 
+> 歷史交付快照：以下驗證、指令、hash與未提交描述保留當時原文。成果已於 `2863782` 提交並 push；當前接續見 [評閱入口](../../../../notes/art-review-2026-10-27/README.md)。本整理未重跑渲染或程式驗證。
+
 已直接寫入共享工作區，交付八份 SVG 與 effects.css；本檔為唯一批次報告，共十檔，低於 700 KB。未修改人物、機甲、城市、展示或遊戲程式，未開子工。
 
 來源為 `content/lore/places/tranquility-repair-dock.json`、本夾 scene.md／tiles.md／effects.md、母 brief 與 `art/svg-study-1027/art-direction.md`。親讀適用工作流規矩，沿用既有選角。定向讀取 `src/ui-adapter/dom/board.ts`、`style.css`、`fx.ts`、`grid-view.ts`，確認正方格共用 cell-size、terrain.color 底色、中央單位與下緣 HP、獨立特效疊層。

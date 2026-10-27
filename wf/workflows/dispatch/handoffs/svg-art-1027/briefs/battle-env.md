@@ -1,5 +1,7 @@
 # 任務：製作剩餘環境與戰場美術有界批次
 
+> 已執行契約；下方派工、原路徑及狀態保留歷史快照。[同批交接書](README.md)｜[本批交付與報告](../README.md)。
+
 先讀：AGENTS.md、wf/workflows/common/user.md、母brief wf/workflows/dispatch/handoffs/svg-art-1027.md。親自讀本線適用規矩；沿用已整理的來源與選角，不重做世界設定研究。具體圖像規格一次讀本夾 scene.md、tiles.md、effects.md 與 art/svg-study-1027/art-direction.md。這三份是同一批次參考，不另外開子工或逐類重讀全部規矩。
 
 ## 背景與唯一目標

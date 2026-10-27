@@ -60,3 +60,5 @@ ArtDemo.assemble(document,
 `mech-motion.js` 協調感測啟動→甲面掠光→能量與散熱的單次3.6秒演出；`mech-effects.css` 與SVG中的局部圖形提供效果。初始靜止，按啟動播放；暫停後同鈕續播，播放中再按則從頭開始。換件／配色重建instance時演出歸零，避免CSS新動畫與舊時鐘不同步；可見性偏好仍保留。完整立繪停用樹與演出，減少動態改成靜態亮色。
 
 重建僅機甲及展示可用 `python3 -B art/svg-study-1027/rebuild.py --mech-only`。本輪固定檢查在 `check-tree.cjs`（Node與內建Python XML）及新報告夾 `check-assets.py`；新效果允許本機gradient/filter等資源，沿用舊檢查時須注意其禁止filter與shadow-use的舊假設。實際瀏覽器布局、鍵盤操作、CSS動畫時間序列仍未驗證。
+
+[今日收工評閱與回家驗收入口](../../wf/notes/art-review-2026-10-27/README.md)：成果已提交並 push，無活躍工人；畫風與真瀏覽器布局／鍵盤／動畫仍待評閱。

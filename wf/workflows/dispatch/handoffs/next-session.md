@@ -1,12 +1,18 @@
-# next-session — 2026-10-27 公司 WSL 校正後接續
+# next-session — 2026-10-27 今日收工後接續
 
 [handoffs](README.md)｜進度 [SESSION-LOG](../../../SESSION-LOG.md)｜現況 [STATE](STATE.md)｜裁定彙整 [fill-rulings](fill-rulings.md)
 
-先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本次核對 HEAD `c9ce4e8`；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
+先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本日美術功能交付基準 `04bf2dd`（已push）；其後文件提交看 git log；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
+
+## 下次先看今日美術
+
+使用者今天收工，不要求當場驗收，也不新開美術工作。首批 `2863782` 與機甲百層／演出 `04bf2dd` 均已提交並 push，`f78e708` 記今日直接 push 授權；無活躍工人。本次文件整理已由主線核驗；文件提交識別與推送狀態以 git 記錄為準。
+
+[集中評閱入口](../../../notes/art-review-2026-10-27/README.md) 列兩人物日漫／紙娃娃、三風格機甲與城市、城市六層、修塢／地格／特效，以及 9 大 28 中、142／140／140 葉、語意深 4／實際 SVG 深 5 與 JS/CSS 啟動／暫停／還原。展示仍是原 `art/svg-study-1027/index.html`，可自行 file 開啟。XML／Node／PNG 是歷史靜態證據，真瀏覽器布局、鍵盤與動畫仍待回家驗；headless 缺 lib，公司未裝未下載無 GUI，未完成遊戲整合。
 
 ## 公司內容填充與送審
 
-公司 WSL 不安裝任何東西，整合驗收與黃金核對留回家。使用者授權的七輪世界觀創作與限定查重已完成，82 概念／124 新 JSON 與六條年表已於 `8ba72b4` 提交，`c9ce4e8` 補記錄；全部 draft。接續見 [三批待驗收摘要](tidy-world-1027/pending.md)。公司可寫內容並做零依賴資料格式檢查；不刪檔／清 worktree，格式檢查不代表整合驗收。原生 agent 用工具回報，資源節制照使用者偏好。
+公司本輪未安裝下載；必要套件已允許，但任何下載前先告知項目、來源與用途，整合驗收與黃金核對留回家。使用者授權的七輪世界觀創作與限定查重已完成，82 概念／124 新 JSON 與六條年表已於 `8ba72b4` 提交，`c9ce4e8` 補記錄；全部 draft。接續見 [三批待驗收摘要](tidy-world-1027/pending.md)。公司可寫內容並做零依賴資料格式檢查；不刪檔／清 worktree，格式檢查不代表整合驗收。原生 agent 用工具回報，資源節制照使用者偏好。
 
 去重盤點以 bigfill 215 件、pilots 148 組人物、gear 約 200 件、fill-scen 63 件為入口，查各自 review 資料（wf-table 一律用 tabledb 選取，不整份讀入）。先整理跨批重複、設定矛盾與待裁決問題，送頂層與使用者審敘事基調；此段是後續審閱工作，不否定今日已授權完成的 lore 創作。歷史 Fable 審閱記錄保留；現行角色配置依 [team-model](../../team-model.md)（astra／sol／terra）。
 

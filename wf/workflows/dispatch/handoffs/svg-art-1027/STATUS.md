@@ -6,4 +6,6 @@
 
 完整離線頁已重建，固定XML/HTML/Node/CSS規則/空白檢查通過。實際瀏覽器UI及動畫時間序列未驗，不安裝缺失lib。PNG用既有librsvg/cairo＋seccomp禁網。
 
-交付見REPORT.md與art/svg-study-1027/README.md。無需本線額外決策；主線接手獨立核驗、整理本機logs與提交。本線未commit/push，未改遊戲或設定。
+交付見REPORT.md與art/svg-study-1027/README.md。無需本線額外決策；成果已於 `2863782` 提交並 push，無活躍工人；未改遊戲或設定。
+
+當前待辦見 [評閱入口](../../../../notes/art-review-2026-10-27/README.md)，今天收工，不再改畫；本次文件整理的最後核驗與 commit/push 由主線負責。

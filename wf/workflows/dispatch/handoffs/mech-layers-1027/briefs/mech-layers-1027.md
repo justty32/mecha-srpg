@@ -1,5 +1,7 @@
 # 任務：把機甲紙娃娃擴充成百層以上的階層零件樹
 
+> 已執行契約；下方派工、原路徑及狀態保留歷史快照。[同批交接書](README.md)｜[本批交付與報告](../README.md)｜[目前 API 契約](../contract.md)。
+
 先讀：AGENTS.md、wf/WORKFLOWS.md、wf/workflows/common/user.md、wf/workflows/team-model.md、wf/workflows/dispatch/README.md、wf/workflows/feature-dev/README.md、wf/workflows/common/conventions.md、wf/workflows/common/code-map.md；接續 art/svg-study-1027/README.md 與原svg-art-1027/REPORT.md，不重做既有美術。
 
 ## 背景與唯一目標

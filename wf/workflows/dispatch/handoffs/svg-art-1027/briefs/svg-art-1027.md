@@ -1,5 +1,7 @@
 # 任務：製作人物、機甲、環境與戰鬥美術的原生SVG樣張
 
+> 已執行契約；下方派工、原路徑及狀態保留歷史快照。[同批交接書](README.md)｜[本批交付與報告](../README.md)。
+
 先讀：AGENTS.md、wf/WORKFLOWS.md、wf/workflows/common/user.md、wf/workflows/team-model.md、wf/workflows/dispatch/README.md、wf/workflows/feature-dev/README.md、wf/workflows/common/conventions.md、wf/workflows/common/code-map.md；設定依PROJECT.md、SPEC.md導航定向閱讀。
 
 ## 背景與唯一目標
