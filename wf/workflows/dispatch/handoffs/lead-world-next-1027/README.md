@@ -1,6 +1,6 @@
 # 世界觀續填：第2、3輪完成
 
-[總brief](../lead-world-next-1027.md)｜[24件白話與相似度總表](review.json)｜[總報告](REPORT.md)｜[上一輪](../lead-world-life-1027/README.md)
+[總brief](briefs/lead-world-next-1027.md)｜[24件白話與相似度總表](review.json)｜[總報告](REPORT.md)｜[上一輪](../lead-world-life-1027/README.md)
 
 兩輪24概念、36個新內容JSON，五個draft manifest；已全部carry到main，精確暫存內容與manifest，再更新並暫存content/index。未commit。所有子線均原生終局，五個wn-* worktree全部保留。
 
@@ -27,3 +27,9 @@
 全部status draft、integrationStatus deferred-by-user；不是完整accepted。整合、AI實戰、平衡、試玩及取得／市場接線留回家。公司未安裝、未npm/test/typecheck/build/sim/probe/MCP，未改引擎、舊內容或年表，未提交、未清worktree。浴堂carry後僅按主線精簡三處文字，已由最終主樹lore檢查覆蓋。
 
 最終保護核對：既有2893個內容JSON原文未變，既有59筆暫存內容／manifest／年表與初始雜湊一致；36份新內容與worktree及git index逐份相同，索引70片一致，兩種git diff空白檢查皆0。wf lint strict僅既有legacy兩條外部文件斷鏈失敗；本線oversize/biglist/querycmd/local皆0，不改舊legacy。見[最終證據](final-verification.json)。
+
+## 現行接續狀態
+
+內容已於 `8ba72b4` 提交，`c9ce4e8` 補記錄；上文「未 commit／暫存」及報告是交付當時快照。全部 draft，整合驗收留回家，既有報告與隔離 worktrees 保留。
+
+[已執行創作契約](briefs/README.md)｜[七輪待驗收摘要](../tidy-world-1027/pending.md)

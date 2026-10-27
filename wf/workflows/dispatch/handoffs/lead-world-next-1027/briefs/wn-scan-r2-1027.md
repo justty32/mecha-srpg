@@ -4,7 +4,7 @@
 
 ## 背景與唯一目標
 
-盤點第2輪地區及既有近似概念供規劃與後續查重，供領導審核後才派sol創作。正式總brief：`/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-world-next-1027.md`。
+盤點第2輪地區及既有近似概念供規劃與後續查重，供領導審核後才派sol創作。正式總brief：`/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-world-next-1027/briefs/lead-world-next-1027.md`。
 
 ## 範圍
 

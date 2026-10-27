@@ -4,29 +4,19 @@
 
 由 [dispatch/README](README.md) 拆出：三張表是活狀態，隨每輪派線增減；線只能追加自己那一格。
 
-## 現役
+## 活躍工人
 
-2026-10-27 核對：下列四線均為暫停、未完成行政收線，不代表目前有工人在跑；內容入庫與驗收狀態以 [STATE](handoffs/STATE.md) 為準。small 已於 `69924b0` 入庫，本 checkout 缺該線 report；公司僅盤點，整合驗收留回家。
+本次整理交付時無活躍世界觀創作工人；本線整理亦已結束。此處「暫停」與「待驗收」不是派工或占用中的領地。
 
-| 線 | 可寫目錄 | 唯讀 / 禁區 | 上線時間 |
-|----|---------|------------|---------|
-| `lead-bigfill` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-fill-pilots` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-fill-gear` | 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-small`（暫停 2026-10-26 晚）| 見下「現役細目」 | 見下「現役細目」 | 2026-10-26 |
-| `lead-world-life-1027` | 見下「六類填充」 | 其他線領地與引擎唯讀 | 2026-10-27 |
+## 世界觀三批待整合驗收
 
-| `lead-world-next-1027`（內容已帶回，完整驗收待回家） | `wn-*` 五類新內容、獨立 worktrees、批次帳本、索引與本線報告 | 舊內容與其他線唯讀 | 2026-10-27 |
+七輪創作與限定查重完成，82 概念／124 新 JSON／六條年表已提交 `8ba72b4`，`c9ce4e8` 補記錄；全部 draft。工人已結束，隔離 worktrees 保留，整合驗收回家再做；不在此保留已結束工人的現役領地。
 
-| `lead-world-more-1027`（內容已帶回，驗收待回家） | `wm-*` 新內容、隔離區、批次、索引及本線報告 | 舊內容及其他線唯讀 | 2026-10-27 |
+[待驗收摘要](handoffs/tidy-world-1027/pending.md)｜[第一輪](handoffs/lead-world-life-1027/README.md)｜[第二三輪](handoffs/lead-world-next-1027/README.md)｜[第四至七輪](handoffs/lead-world-more-1027/README.md)
 
-### 現役細目
+## 四條舊線暫停，未收線
 
-**第4至7輪 `lead-world-more-1027`**：24概念／36新JSON已帶回及暫存，索引完成，領導與子agent均已結束。全部draft，內容已提交於 `8ba72b4`，worktrees保留；整合與平衡待回家。詳見 [交付報告](handoffs/lead-world-more-1027/REPORT.md)。
-
-**六類填充 `lead-world-life-1027`**（創作與查重已完成，無運行中工人；34 概念、52 個新 JSON 與六條年表已全部帶回，完整驗收待回家）：astra 規劃、sol 六類分批、同時最多三工人。各批僅可寫 repo 內 `.git/wf-worktrees/wl-{mechs,monsters,characters,places,events,factions}-1027/` 的 manifest 允許路徑與 `handoffs/lead-world-life-1027/` 對應類別報告；主線管理 `content/batches/2026-10/wl-*-1027.json` 與收件。2026-10-27 使用者授權年表 WSL MODE 誤報本次例外手動帶回，原 gate 失敗歷史保留，並非改為通過。全部 draft、未 commit；具體六份交接書為 `handoffs/wl-*-1027.md`。events 只准插入年表，其他不改舊內容；不安裝，整合驗收／試玩／平衡留回家。
-
-表格只放線名，完整領地寫在這裡（表格超過 1 KB 會被 wf-lint 判成大表）；收線時連同表格那格一起刪。
+以下保留原領地契約與未完成行政收線事項，並非有工人正在執行。續線需主線核對領地；完成證據與接續見 [STATE](handoffs/STATE.md)。small 已在 `69924b0` 入庫，但本 checkout 缺 report，不能視為已驗收收線。
 
 **`lead-bigfill`**　暫停（2026-10-26 晚）→ 接續見 `handoffs/lead-bigfill/report.md`。可寫：`content/lore/` 新檔＋既有檔只插入（含 `timeline.json`，插入前看 HEAD）、`content/base/world/` 下契約／事件／對話／遭遇／新聞／地點等可玩內容（新檔＋只插入；**不碰** AI 與萬潮葬王相關檔）、`content/batches/2026-10/bf-*.json`、`content/index/`（git add 後重產）、`wf/workflows/dispatch/handoffs/lead-bigfill/`、engine-backlog 只追加新列；黃金重錄（可玩內容整批後一次，與 lead-engine-next 錯開）。唯讀／禁區：`src/`、`specs/`、`design-notes/`、萬潮葬王（`monster/tidespine-chittagong` 等）、AI 檔。
 

@@ -14,3 +14,9 @@
 | （ack 流水）| `inbox_ack.sh --state` 的一行流水 2026-10-24 起預設寫 `wf/inbox/done/ack-log.md`（放信處、不在本資料夾）；`--state-file` 可改 |
 
 規矩：交接書**進版控**（它是「誰負責什麼」的證據）；線只能讀自己那份、寫自己的 REPORT，不得改交接書；改契約由調度者改並在 `wf/inbox/orders/<線名>.md` 通知。送出前跑 `python3 wf/tools/brief_lint.py handoffs/<線名>.md --strict`。收線索引在 [done/README.md](done/README.md)（日期、線名、一句結論），只准追加；收線時把 `handoffs/<線名>/` 整個 `git mv` 進 `done/<日期>/`，裡面 `.ts`／`.py` 工具的相對 import 要跟著補兩層 `../`。
+
+## 七輪世界觀：創作完成，整合待驗收
+
+[待驗收摘要](tidy-world-1027/pending.md)｜[第一輪](lead-world-life-1027/README.md)｜[第二三輪](lead-world-next-1027/README.md)｜[第四至七輪](lead-world-more-1027/README.md)｜[整理證據](tidy-world-1027/README.md)
+
+三批各自 briefs/ 存放已執行創作契約與歷史證據，不是現役派工清單。報告與 manifest reportDir 原位置保留；報告所載狀態為當時快照。全部 draft、整合留回家，不移 done/archive，不代替四條舊線收線。

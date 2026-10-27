@@ -41,13 +41,13 @@
 1. **我是調度者，不是實作者。** 自己深潛實作會吃掉主 context，後面就沒有餘裕做判斷。
 2. **按明列的路徑清單切線，不按功能切。** `AGENTS.md`、`wf/`、頂層 `SPEC.md`／`PROJECT.md`／`README.md` 這些整合點只歸調度者。
 3. **驗收條數寫死。** 留「以及其他你認為必要的驗證」的開口，codex 會為了保險亂跑，燒光額度還交不出東西。寫「回報只要這 N 條」。
-4. **禁區要明寫，沒寫就等於允許。** 本專案共通禁區：不碰鍵鼠螢幕、不開 GUI、Godot 只 `godot-mono --headless`、不 push、不 `rm -rf`、不改 `~/.codex/config.toml`、不裝依賴。禁區寫成「你不可以寫 X」，**不要求 X 處於某狀態**——否則線會把它讀成收線條件。
+4. **禁區要明寫，沒寫就等於允許。** 本專案共通禁區：不碰鍵鼠螢幕、不開 GUI、Godot 只 `godot-mono --headless`、push 依使用者授權與本線 brief（本線禁 push 就不得執行）、不 `rm -rf`、不改 `~/.codex/config.toml`、不裝依賴。禁區寫成「你不可以寫 X」，**不要求 X 處於某狀態**——否則線會把它讀成收線條件。
 5. **外部查證要指定工具與方法，不讓線自己想辦法。** 交接書寫死「這件事走 `<指定的工具>`，不要自己 curl 網頁」；沒有指定工具就不准上網。
 6. **範圍詞會被線遞移展開。** 「相關的」若只寫包含條件，線會沿依賴圖忠實展開成遞移閉包。交接書要**用排除法界定邊界**，並把**件數 gate 與容量 gate 並列**，任一觸發就停下來問。
 
 ## git 規則（2026-10-23 起本專案是 git repo，單分支 `main`）
 
-線**可以 commit 到 `main`**，但只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；**不 push**（沒有 remote，將來要 push 也要使用者當場確認）、**不建分支、不 rebase／reset 別人的 commit**。`.gitignore` 歸調度者管。收線時調度者用 `git log --oneline` 核 commit 當證據。
+線**可以 commit 到 `main`**，但只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；push 依 [使用者授權](../common/user.md)（2026-10-24 已授權，不需重問；本線 brief 明定不 commit/push 時優先遵守）、**不建分支、不 rebase／reset 別人的 commit**。`.gitignore` 歸調度者管。收線時調度者用 `git log --oneline` 核 commit 當證據。
 
 ## 兩層派線（本專案固定配置）
 

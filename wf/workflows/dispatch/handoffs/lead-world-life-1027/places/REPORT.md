@@ -34,7 +34,7 @@
 - [README.md](../../../../../../content/lore/README.md)
 - [content/lore/style.md](../../../../../../content/lore/style.md)
 - [people.md](../../../../../../content/lore/style/people.md)
-- [wl-places-1027.md](../../wl-places-1027.md)
+- [wl-places-1027.md](../briefs/wl-places-1027.md)
 - [wl-places-1027.json](../../../../../../content/batches/2026-10/wl-places-1027.json)
 - [before-collapse-powers.md](../../../../planning/design-notes/world/before-collapse-powers.md)
 - [ruins-and-ancient.md](../../../../planning/specs/world/ruins-and-ancient.md)

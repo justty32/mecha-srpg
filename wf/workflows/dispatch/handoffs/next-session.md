@@ -2,13 +2,13 @@
 
 [handoffs](README.md)｜進度 [SESSION-LOG](../../../SESSION-LOG.md)｜現況 [STATE](STATE.md)｜裁定彙整 [fill-rulings](fill-rulings.md)
 
-先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本次核對 HEAD `f24420b079a59a7f8e93123930665aaa824f9d00`；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
+先照 `AGENTS.md` 開場，親自讀適用 workflow 與 [使用者偏好](../../common/user.md)。本次核對 HEAD `c9ce4e8`；四線仍暫停、未收線，舊報告的提交識別或未提交描述以 STATE 的 git 核對為準。
 
 ## 公司內容填充與送審
 
-公司 WSL 不安裝任何東西，整合驗收與黃金核對留回家。使用者後續已授權六類世界觀填充，進度見 [本輪入口](lead-world-life-1027/README.md)。公司可寫內容並做零依賴資料格式檢查；不刪檔／清 worktree，格式檢查不代表整合驗收。原生 agent 用工具回報，資源節制照使用者偏好。
+公司 WSL 不安裝任何東西，整合驗收與黃金核對留回家。使用者授權的七輪世界觀創作與限定查重已完成，82 概念／124 新 JSON 與六條年表已於 `8ba72b4` 提交，`c9ce4e8` 補記錄；全部 draft。接續見 [三批待驗收摘要](tidy-world-1027/pending.md)。公司可寫內容並做零依賴資料格式檢查；不刪檔／清 worktree，格式檢查不代表整合驗收。原生 agent 用工具回報，資源節制照使用者偏好。
 
-去重盤點以 bigfill 215 件、pilots 148 組人物、gear 約 200 件、fill-scen 63 件為入口，查各自 review 資料（wf-table 一律用 tabledb 選取，不整份讀入）。先整理跨批重複、設定矛盾與待裁決問題，送頂層與使用者審敘事基調，不直接改內容。歷史 Fable 審閱記錄保留；現行角色配置依 [team-model](../../team-model.md)（astra／sol／terra）。
+去重盤點以 bigfill 215 件、pilots 148 組人物、gear 約 200 件、fill-scen 63 件為入口，查各自 review 資料（wf-table 一律用 tabledb 選取，不整份讀入）。先整理跨批重複、設定矛盾與待裁決問題，送頂層與使用者審敘事基調；此段是後續審閱工作，不否定今日已授權完成的 lore 創作。歷史 Fable 審閱記錄保留；現行角色配置依 [team-model](../../team-model.md)（astra／sol／terra）。
 
 2026-10-27 盤點已交付 [審閱入口](../../../notes/investigations/content-review-2026-10-27/README.md)：1 項人物敘述矛盾、9 件槽尺寸缺口；未確認應刪除的重複內容。這是靜態證據與候選送審，不是全庫逐句審閱或整合驗收。
 

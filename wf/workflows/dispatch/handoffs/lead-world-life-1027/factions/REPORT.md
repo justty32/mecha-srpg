@@ -6,7 +6,7 @@
 - [wf/WORKFLOWS.md](../../../../../WORKFLOWS.md)
 - [wf/workflows/common/user.md](../../../../common/user.md)
 - [wf/workflows/common/data-files.md](../../../../common/data-files.md)
-- [wf/workflows/dispatch/handoffs/wl-factions-1027.md](../../wl-factions-1027.md)
+- [wf/workflows/dispatch/handoffs/lead-world-life-1027/briefs/wl-factions-1027.md](../briefs/wl-factions-1027.md)
 - [wf/workflows/content/README.md](../../../../content/README.md)
 - [wf/workflows/content/batch.md](../../../../content/batch.md)
 - [wf/workflows/content/world-pillars.md](../../../../content/world-pillars.md)

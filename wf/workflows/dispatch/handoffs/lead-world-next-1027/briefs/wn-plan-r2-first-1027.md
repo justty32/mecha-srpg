@@ -4,7 +4,7 @@
 
 ## 背景與唯一目標
 
-規劃第2輪首類六個具實質差異的世界觀概念，供領導審核後才派sol創作。正式總brief：`/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-world-next-1027.md`。
+規劃第2輪首類六個具實質差異的世界觀概念，供領導審核後才派sol創作。正式總brief：`/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-world-next-1027/briefs/lead-world-next-1027.md`。
 
 ## 範圍
 

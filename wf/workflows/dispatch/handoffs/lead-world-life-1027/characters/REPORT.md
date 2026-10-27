@@ -5,7 +5,7 @@
 - [wf/workflows/content/README.md](../../../../content/README.md)
 - [wf/workflows/content/batch.md](../../../../content/batch.md)
 - [content/lore/style.md](../../../../../../content/lore/style.md)
-- [本線 brief](../../wl-characters-1027.md)
+- [本線 brief](../briefs/wl-characters-1027.md)
 - [SESSION-LOG](../../../../../SESSION-LOG.md)
 - [WAIT_USER](../../../../../WAIT_USER.md)
 - [WORKFLOWS](../../../../../WORKFLOWS.md)

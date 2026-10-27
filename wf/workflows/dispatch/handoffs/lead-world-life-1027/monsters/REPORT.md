@@ -12,7 +12,7 @@
 - [wf/SESSION-LOG.md](../../../../../SESSION-LOG.md)
 - [wf/WAIT_USER.md](../../../../../WAIT_USER.md)
 - [wf/workflows/common/data-files.md](../../../../common/data-files.md)
-- [wf/workflows/dispatch/handoffs/wl-monsters-1027.md](../../wl-monsters-1027.md)
+- [wf/workflows/dispatch/handoffs/lead-world-life-1027/briefs/wl-monsters-1027.md](../briefs/wl-monsters-1027.md)
 - [content/lore/README.md](../../../../../../content/lore/README.md)
 - [wf/workflows/content/abilities-effects.md](../../../../content/abilities-effects.md)
 - [wf/workflows/content/acceptance-playtest.md](../../../../content/acceptance-playtest.md)

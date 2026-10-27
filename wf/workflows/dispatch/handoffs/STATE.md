@@ -6,7 +6,7 @@
 
 **遊戲**：2108 地月機甲 SRPG 網頁版（TypeScript＋Vite，邏輯與 DOM 分離）。戰鬥（BB 式部位／層／多資源池、意圖撤退、指揮者）、營運（方格大地圖、契約、債務、勢力作戰／外交／傭兵參戰／研發）、百科、MCP 都已落地。
 
-**測試（歷史，不代表 HEAD 綠燈）**：[2026-10-26 整理基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。目前核對 HEAD `f24420b079a59a7f8e93123930665aaa824f9d00`；沒有涵蓋目前 HEAD 的新整合驗收證據。本輪不執行測試或黃金重錄，回家再驗收。
+**測試（歷史，不代表 HEAD 綠燈）**：[2026-10-26 整理基準](lead-tidy2/baseline.md)：`npm test` 966／966、`npm run check` 0 錯 10 警告、`npm run typecheck` 0、`npm run test:e2e` 13／13；lore check 舊值 0 錯 2 警告（2026-10-25）。目前核對 HEAD `c9ce4e8`（內容提交 `8ba72b4` 後補記錄）；沒有涵蓋目前 HEAD 的新整合驗收證據。本輪不執行測試或黃金重錄，回家再驗收。
 
 **網頁**：`npm run dev` → `http://localhost:5173/`：`#/` 戰鬥（`?scenario=<id>&seed=<n>`）、`#/wiki` 百科（F1／Shift+W）、`#/ops` 營運（`?seed=<n>`，`&spectate=1` 全 AI 出戰）。
 
@@ -16,7 +16,7 @@
 
 **團隊**：現行配置依 [team-model](../../team-model.md)：頂層／規劃 `gpt-6-astra`，領導／普通工 `gpt-6.1-sol`，簡單工作 `gpt-6.1-terra`。歷史 Fable／Opus 記錄保留；本任務的困難架構問題另由使用者開 Claude Fable 做報告，裁決後才實作。
 
-## 現役（四線暫停，未收線）
+## 待接續（四線暫停，未收線）
 
 [CLAIMS](../CLAIMS.md) 與 [SESSION-LOG](../../../SESSION-LOG.md) 保留四線未收事項；登記不代表目前有行程正在跑。續線與驗收由主線接手，原生 agent 用工具回報。
 
@@ -28,7 +28,11 @@
 
 **small**：`lead-small/report.md` 不存在，不能以缺失報告作驗收。第三刃營運、北岸改區、勢力數 7→8 與 index 已在 `69924b0`；提交訊息只記當時單檔／check／typecheck 結果，並明寫全套與戰役黃金待處理，不再視為未提交半成品。
 
-**公司 WSL 邊界**：本輪只做交接校正、內容去重盤點與送審；不安裝、不跑整合驗收或重錄 golden、不改遊戲內容、不刪檔或清 worktree。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../notes/investigations/content-review-2026-10-27/README.md)。
+**公司 WSL 邊界**：公司已完成七輪 lore 創作與限定查重；本整理只做交接校正與文件歸位；不安裝、不跑整合驗收或重錄 golden、不改遊戲內容、不刪檔或清 worktree。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../notes/investigations/content-review-2026-10-27/README.md)。
+
+## 七輪世界觀交付與待驗收
+
+82 概念／124 新 JSON 與六條年表已於 `8ba72b4` 提交，`c9ce4e8` 補記錄；創作與限定查重已完成，無活躍創作工人，全部 draft。36 警告、年表 MODE 一次例外、legacy broken2 與回家整合邊界見 [待驗收摘要](tidy-world-1027/pending.md)。舊報告的未 commit 等敘述是當時快照，既有 worktrees 與歷史證據保留。P01 與 Fable 待裁決，四舊線未收線。
 
 ## 本段落（2026-10-26）做了什麼
 

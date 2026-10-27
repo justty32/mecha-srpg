@@ -11,22 +11,9 @@
 
 ## 最新進度
 
-2026-10-27 七輪內容與工作流文件已提交於 `8ba72b4`；以下保留整合驗收待辦，查重報告中的「未 commit」是交付當時快照。
-
-- [content] 第4至7輪24概念／36新JSON已帶回、暫存與更新索引，逐輪查重完成，無運行中agent；loader 0錯誤、36警告（本輪踢珠新增2），全部draft，整合留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-more-1027/README.md)。
-
-- [content] 第2、3輪共24概念／36新JSON已帶回，查重、敘事退修與索引完成；全部draft，旋沫兩條範本警告及整合／平衡留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-next-1027/README.md)。
-
-- [content] 2026-10-27 使用者授權年表 WSL MODE 誤報本次例外手動帶回：六類 34 概念、52 個新 JSON 與六條年表已全部帶回；原 gate 仍為失敗，並非改為通過。全部 draft，整合驗收與平衡留回家 → [本輪入口](workflows/dispatch/handoffs/lead-world-life-1027/README.md)。
+- [content] 七輪世界觀待回家整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
 
 - [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
-
-
-## 各工作流 session-log
-
-| 工作流 | session-log | open 摘要 |
-|--------|-------------|----------|
-
 - [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與回家驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與回家整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`，本 checkout 缺該線 report；待回家核對驗收並補收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。

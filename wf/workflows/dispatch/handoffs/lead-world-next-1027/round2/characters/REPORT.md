@@ -7,7 +7,7 @@
 - [team-model.md](../../../../../team-model.md)
 - [dispatch/README.md](../../../../README.md)
 - [content-batch.md](../../../../content-batch.md)
-- [wn-r2-characters-1027.md](../../../wn-r2-characters-1027.md)
+- [wn-r2-characters-1027.md](../../briefs/wn-r2-characters-1027.md)
 - [wf/workflows/content/README.md](../../../../../content/README.md)
 - [wf/workflows/content/batch.md](../../../../../content/batch.md)
 - [world-pillars.md](../../../../../content/world-pillars.md)
