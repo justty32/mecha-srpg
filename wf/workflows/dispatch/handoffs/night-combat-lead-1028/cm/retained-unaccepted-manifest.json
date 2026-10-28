@@ -1,0 +1,93 @@
+{
+  "contract": "content-batch/1",
+  "id": "night-cm-mechs",
+  "mode": "add",
+  "status": "draft",
+  "goal": "核可CM01並燭／CM02燼鐘，六檔展示資料；未接營運",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "night-cm",
+    "subagents": 0
+  },
+  "lead": "night-combat-lead-1028",
+  "date": "2026-10-28",
+  "base": "4097630563f4b224650362d1074b43d0e1bd609e",
+  "reportDir": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/cm",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/cm/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/dispatch/handoffs/night-combat-lead-1028.md",
+      "wf/workflows/dispatch/handoffs/night-combat-plan-1028/CM-mechs.md",
+      "wf/workflows/content/mechs.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/acceptance-playtest.md",
+      "wf/workflows/content/playtest.md",
+      "wf/workflows/common/conventions.md",
+      "wf/workflows/common/code-map.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 6,
+  "allow": {
+    "kinds": [
+      "base/frames",
+      "base/bodyplans",
+      "base/components",
+      "base/abilities",
+      "base/scenarios"
+    ],
+    "namePrefix": {
+      "base/*": "night-cm-"
+    },
+    "modify": []
+  },
+  "files": [
+    "content/base/frames/night-cm-twinwick.json",
+    "content/base/bodyplans/night-cm-twinwick.json",
+    "content/base/frames/night-cm-cinderbell.json",
+    "content/base/components/night-cm-cinderbell.json",
+    "content/base/abilities/night-cm-cinderbell.json",
+    "content/base/scenarios/night-cm-yard-bells.json"
+  ],
+  "ids": [
+    "frame/night-cm-twinwick",
+    "bodyplan/night-cm-twinwick",
+    "frame/night-cm-cinderbell",
+    "component/night-cm-cinderbell",
+    "ability/night-cm-cinderbell",
+    "scenario/night-cm-yard-bells"
+  ],
+  "checks": [
+    "check",
+    "typecheck",
+    "probe",
+    "playtest",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [
+      "frame/longspear-kneeler-v2",
+      "frame/anvil-iv-ram"
+    ],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 1,
+    "file": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/cm/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/cm/mcp-log"
+  },
+  "acceptance": {
+    "local": "not-accepted",
+    "integration": "pending",
+    "reason": "主線決定整批不carry；CM01側敏感，CM02 accuracy6兩側0/10仍弱",
+    "round1": "CM01原側5/5; CM02原側0/5 accuracy2",
+    "lastRound": "CM01換側2/5; CM02原側0/5+換側0/5 accuracy6",
+    "noFurtherRounds": true
+  },
+  "rounds": [],
+  "gateRejections": []
+}

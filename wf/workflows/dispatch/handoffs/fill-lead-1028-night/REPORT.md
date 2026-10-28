@@ -27,3 +27,5 @@
 兩批brief_lint0、各gate/lore/readlist第一輪exit0，合併lore exit0（r2-combined-lore.log）。不跑全套；R2合併wiki窄測依主線令等固定快照suite釋放後，**目前未執行**，不能宣稱全部整合驗收通過。兩manifest維持draft/integration pending。
 
 第一輪12lore013701c0、CK十三新base64ff8125、pilot五檔3a20a436均已獨立提交。CM六檔未接受不入庫，有可攜tar及完整證據。最後base3a20a436/tree9a5ab936已交主線固定快照，之後僅R2純lore收件/提交。三工人均DONE並close，原生終局證據見worker-terminal-evidence.json。未動主線文件、不push；R2精確commit另附後續紀錄。
+
+R2提交證據：`ff949a2f698351ec762d0b92fc02b34784ea372a`（50檔；八新lore、兩manifest、本線報告與四索引分片，無base改動）。wf strict exit0、索引73分片一致、cached diff check0；未push。R2 wiki依主線指示未跑，待suite後另GO；所有工人close、領導待主線關閉。
