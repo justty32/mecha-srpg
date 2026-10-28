@@ -17,3 +17,6 @@
 - [dispatch] lead-fill-gear 暫停：兩輪已入庫（`fbe0a33`／`a66cd46`），市場殘檔 patch 為空；去重、缺口裁決與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`；本機未追蹤暫停報告尚未入庫，下次需核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
+
+
+- [planning] Canvas交付後接3D分層機甲試作（使用者10/28授權）：真正3D，top-down幾何／關節／接點→bottom-up逐件建模，不用2D板貼圖；主線下一輪接續 → [Canvas本輪與接續](workflows/dispatch/handoffs/done/2026-10-28/lead-canvas-1028/README.md)。

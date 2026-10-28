@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' data:; style-src 'unsafe-inline'; img-src data: blob:; connect-src data:; font-src 'none'">
+<title>礁鷹 · 機甲整備台</title>
+<style>/*__STYLE__*/</style>
+</head>
+<body>
+<header><div><small>2108 · EARTH—MOON</small><h1>礁鷹 <span>機甲整備台</span></h1></div><div class="badge" id="build-status">框架預備</div></header>
+<main>
+<aside class="tree-panel"><h2>零件層樹 <output id="part-count">等待核心</output></h2><div class="toolbar"><input id="tree-search" type="search" placeholder="搜尋零件" aria-label="搜尋零件" disabled><button id="show-all" disabled>全部顯示</button></div><nav id="part-tree" aria-label="機甲層樹"><p class="muted">核心凍結後載入真正父子層級。</p></nav></aside>
+<section class="viewport" aria-label="機甲展示"><div class="view-label">FRONT ¾ <span>固定前側視角</span></div><div id="stage"></div><div id="pending" role="status"><strong>整備台已就緒</strong><p>等待核心與逐葉畫件凍結交付</p></div><div class="view-footer"><span id="selection-name">尚未選取零件</span><span id="render-info">KONVA 10.9.0 · OFFLINE</span></div></section>
+<aside class="controls"><h2>組裝與姿態</h2><fieldset id="pose-controls" disabled><legend>動作</legend><label>展示姿態<select id="pose"><option value="idle">待機</option><option value="shield-aim">舉盾瞄準</option><option value="low-brace">低姿支撐</option></select></label><label>抬臂 <output id="arm-value">0°</output><input id="arm" type="range" min="-40" max="80" value="0"></label><label>屈肘 <output id="elbow-value">0°</output><input id="elbow" type="range" min="0" max="105" value="0"></label><label>屈膝 <output id="knee-value">0°</output><input id="knee" type="range" min="0" max="65" value="0"></label><div class="button-row"><button id="play">播放</button><button id="reset">還原</button></div></fieldset><fieldset id="assembly-controls" disabled><legend>分層檢視</legend><label>分解組裝 <output id="explode-value">0%</output><input id="explode" type="range" min="0" max="100" value="0"></label><label>分解層深 <output id="depth-value">全部</output><input id="depth" type="range" min="0" max="10" value="10"></label><label class="check"><input id="skeleton" type="checkbox">骨架與接點</label><button id="clear-solo">解除 Solo</button></fieldset><fieldset><legend>畫布</legend><label>縮放 <output id="zoom-value">100%</output><input id="zoom" type="range" min="45" max="180" value="100"></label><label>像素密度<select id="dpi"><option value="auto">自動</option><option value="1">1×</option><option value="2">2×</option></select></label><button id="fit">貼合視窗</button></fieldset><p class="note">固定 2D 投影。動作展示未使用腳接地 IK。</p></aside>
+</main>
+<script>/*__KONVA__*/</script>
+<script>/*__APP__*/</script>
+<script type="importmap">/*__IMPORT_MAP__*/</script>
+<script type="module">/*__DELIVERY__*/</script>
+</body>
+</html>

@@ -102,3 +102,14 @@
 - **答不出什麼**：遊戲整合驗收與架構定案
 - **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-world-1028/`
 - **訂閱主題**：無
+
+### `lead-canvas-1028`
+- **狀態**：已收線（2026-10-28）
+- **我是誰**：全新礁鷹Canvas試作領導；core及viewer工人sol、美術Lovelace astra。
+- **團隊**：無，原生task通訊
+- **上游**：主線，原生工具回傳，不寄頂層inbox
+- **領地**：本輪CLAIMS明列，core/drawing/viewer分開獨占
+- **答得出什麼**：配置凍結、葉工作單、四類驗證與進度
+- **答不出什麼**：舊藝術及遊戲整合驗收
+- **怎麼找我**：本原生task，進度見本輪handoff README
+- **訂閱主題**：無

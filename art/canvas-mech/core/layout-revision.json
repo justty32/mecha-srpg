@@ -1,0 +1,578 @@
+{
+ "contract": "wf-table/1",
+ "source": "API.md",
+ "extracted": "2026-10-28",
+ "revisionSource": "astra/layout-revision-2026-10-28",
+ "columns": [
+  "nodeId",
+  "patch",
+  "reason"
+ ],
+ "rows": [
+  {
+   "nodeId": "root.head",
+   "patch": {
+    "y": -282
+   },
+   "reason": "頭艙下移100，埋入胸上緣"
+  },
+  {
+   "nodeId": "root.head.neck-seat",
+   "patch": {
+    "y": 22
+   },
+   "reason": "頸與頭殼/胸實際重疊"
+  },
+  {
+   "nodeId": "root.head.neck-seat.mechanism.axis",
+   "patch": {
+    "x": -5,
+    "width": 30,
+    "height": 48
+   },
+   "reason": "頸軸上探頭殼，下藏胸甲"
+  },
+  {
+   "nodeId": "root.head.neck-seat.mechanism.collar",
+   "patch": {
+    "x": 7,
+    "width": 36,
+    "height": 38
+   },
+   "reason": "頸套同軸包覆頸軸"
+  },
+  {
+   "nodeId": "root.torso.chest.shell.arc",
+   "patch": {
+    "width": 230,
+    "height": 180
+   },
+   "reason": "弧胸有完整艙體而非孤片"
+  },
+  {
+   "nodeId": "root.torso.chest.shell.side",
+   "patch": {
+    "x": 108
+   },
+   "reason": "側甲回收銜接弧胸"
+  },
+  {
+   "nodeId": "root.torso.chest.frame.beam",
+   "patch": {
+    "width": 300,
+    "height": 40
+   },
+   "reason": "胸樑跨至兩肩內緣"
+  },
+  {
+   "nodeId": "root.torso.chest.frame.shoulder-seat",
+   "patch": {
+    "x": 130,
+    "width": 100,
+    "height": 90
+   },
+   "reason": "跨接近肩而非胸內裝飾"
+  },
+  {
+   "nodeId": "root.torso.chest.frame.rib",
+   "patch": {
+    "x": -118,
+    "width": 85,
+    "height": 150
+   },
+   "reason": "遠側肋兼肩側承力連接"
+  },
+  {
+   "nodeId": "root.torso.waist",
+   "patch": {
+    "y": 70
+   },
+   "reason": "腰上收45縮短胸腹空洞"
+  },
+  {
+   "nodeId": "root.torso.waist.rotation.ring",
+   "patch": {
+    "width": 200,
+    "height": 44
+   },
+   "reason": "與胸下緣和腹節重疊"
+  },
+  {
+   "nodeId": "root.torso.waist.rotation.segment",
+   "patch": {
+    "width": 210,
+    "height": 144
+   },
+   "reason": "實體腰髖承架跨接兩股髖"
+  },
+  {
+   "nodeId": "root.torso.waist.armor.abdomen",
+   "patch": {
+    "width": 170,
+    "height": 130
+   },
+   "reason": "覆蓋寬腰節，形成腹髖主體"
+  },
+  {
+   "nodeId": "root.torso.waist.armor.hip-side",
+   "patch": {
+    "height": 116
+   },
+   "reason": "連到近髖外緣"
+  },
+  {
+   "nodeId": "root.torso.back",
+   "patch": {
+    "y": -100
+   },
+   "reason": "鰭座抬至肩背後"
+  },
+  {
+   "nodeId": "root.torso.back.thermal.fin",
+   "patch": {
+    "y": -65,
+    "height": 230
+   },
+   "reason": "鰭尖從肩後突出，非垂到腰旁"
+  },
+  {
+   "nodeId": "root.torso.back.thermal.duct",
+   "patch": {
+    "height": 200,
+    "y": 0
+   },
+   "reason": "導管隨背架上收"
+  },
+  {
+   "nodeId": "root.arm-near",
+   "patch": {
+    "x": 155,
+    "y": -50
+   },
+   "reason": "肩靠胸，遠側縮小形成深度"
+  },
+  {
+   "nodeId": "root.arm-near.shoulder",
+   "patch": {
+    "pivot": {
+     "x": -9,
+     "y": 0
+    }
+   },
+   "reason": "肩活動支點對準肩轂中心"
+  },
+  {
+   "nodeId": "root.arm-near.upper.load.spar",
+   "patch": {
+    "width": 50,
+    "height": 150
+   },
+   "reason": "同時覆蓋肩pivot與肘pivot，連續主樑"
+  },
+  {
+   "nodeId": "root.arm-near.upper",
+   "patch": {
+    "y": -95
+   },
+   "reason": "上臂上收40，肩內構與上臂承力連續"
+  },
+  {
+   "nodeId": "root.arm-near.forearm",
+   "patch": {
+    "y": 15
+   },
+   "reason": "肘對上臂下端；必重新解算雙桿"
+  },
+  {
+   "nodeId": "root.arm-near.forearm.armor",
+   "patch": {
+    "y": 0
+   },
+   "reason": "前臂甲上收至肘下"
+  },
+  {
+   "nodeId": "root.arm-near.forearm.armor.plate",
+   "patch": {
+    "height": 112
+   },
+   "reason": "填補肘至掌的前臂實體"
+  },
+  {
+   "nodeId": "root.arm-near.hand",
+   "patch": {
+    "y": 100
+   },
+   "reason": "腕與前臂下端重疊"
+  },
+  {
+   "nodeId": "root.arm-near.hand.palm-wrist.palm",
+   "patch": {
+    "height": 36
+   },
+   "reason": "掌芯接觸三指根"
+  },
+  {
+   "nodeId": "root.leg-near",
+   "patch": {
+    "x": 90,
+    "y": 195
+   },
+   "reason": "髖靠腹架，遠腿略縮顯示深度"
+  },
+  {
+   "nodeId": "root.leg-near.thigh",
+   "patch": {
+    "y": -120
+   },
+   "reason": "髖接與腹髖主體重疊"
+  },
+  {
+   "nodeId": "root.leg-near.thigh.frame.spar",
+   "patch": {
+    "height": 140
+   },
+   "reason": "股框下探膝軸，旋轉仍見承力"
+  },
+  {
+   "nodeId": "root.leg-near.thigh.armor.plate",
+   "patch": {
+    "height": 150
+   },
+   "reason": "股甲與膝上緣重疊"
+  },
+  {
+   "nodeId": "root.leg-near.shin",
+   "patch": {
+    "y": 20
+   },
+   "reason": "膝位置對股框下端"
+  },
+  {
+   "nodeId": "root.leg-near.shin.telescope.strut",
+   "patch": {
+    "height": 160
+   },
+   "reason": "伸縮桿下探踝，不留空隙"
+  },
+  {
+   "nodeId": "root.leg-near.shin.armor.plate",
+   "patch": {
+    "height": 170
+   },
+   "reason": "脛甲完整覆至踝上"
+  },
+  {
+   "nodeId": "root.leg-near.foot",
+   "patch": {
+    "y": 130
+   },
+   "reason": "足上收與脛相接"
+  },
+  {
+   "nodeId": "root.leg-near.foot.ankle.joint",
+   "patch": {
+    "width": 120,
+    "height": 48
+   },
+   "reason": "踝底橫跨足跟與三趾根"
+  },
+  {
+   "nodeId": "root.leg-near.foot.heel",
+   "patch": {
+    "x": -35
+   },
+   "reason": "足跟收進踝投影"
+  },
+  {
+   "nodeId": "root.leg-near.foot.heel.pad",
+   "patch": {
+    "width": 65,
+    "height": 40
+   },
+   "reason": "足跟連接踝底"
+  },
+  {
+   "nodeId": "root.leg-near.foot.toes",
+   "patch": {
+    "x": 15,
+    "y": 16
+   },
+   "reason": "趾根回收，靠攏踝"
+  },
+  {
+   "nodeId": "root.leg-near.foot.toes.inner",
+   "patch": {
+    "x": -30,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.leg-near.foot.toes.middle",
+   "patch": {
+    "x": 0,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.leg-near.foot.toes.outer",
+   "patch": {
+    "x": 30,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.arm-far",
+   "patch": {
+    "x": -155,
+    "y": -50,
+    "scaleX": 0.9,
+    "scaleY": 0.9
+   },
+   "reason": "肩靠胸，遠側縮小形成深度"
+  },
+  {
+   "nodeId": "root.arm-far.shoulder",
+   "patch": {
+    "pivot": {
+     "x": -9,
+     "y": 0
+    }
+   },
+   "reason": "肩活動支點對準肩轂中心"
+  },
+  {
+   "nodeId": "root.arm-far.upper.load.spar",
+   "patch": {
+    "width": 50,
+    "height": 150
+   },
+   "reason": "同時覆蓋肩pivot與肘pivot，連續主樑"
+  },
+  {
+   "nodeId": "root.arm-far.upper",
+   "patch": {
+    "y": -95
+   },
+   "reason": "上臂上收40，肩內構與上臂承力連續"
+  },
+  {
+   "nodeId": "root.arm-far.forearm",
+   "patch": {
+    "y": 15
+   },
+   "reason": "肘對上臂下端；必重新解算雙桿"
+  },
+  {
+   "nodeId": "root.arm-far.forearm.armor",
+   "patch": {
+    "y": 0
+   },
+   "reason": "前臂甲上收至肘下"
+  },
+  {
+   "nodeId": "root.arm-far.forearm.armor.plate",
+   "patch": {
+    "height": 112
+   },
+   "reason": "填補肘至掌的前臂實體"
+  },
+  {
+   "nodeId": "root.arm-far.hand",
+   "patch": {
+    "y": 100
+   },
+   "reason": "腕與前臂下端重疊"
+  },
+  {
+   "nodeId": "root.arm-far.hand.palm-wrist.palm",
+   "patch": {
+    "height": 36
+   },
+   "reason": "掌芯接觸三指根"
+  },
+  {
+   "nodeId": "root.leg-far",
+   "patch": {
+    "x": -95,
+    "y": 195,
+    "scaleX": 0.94,
+    "scaleY": 0.94
+   },
+   "reason": "髖靠腹架，遠腿略縮顯示深度"
+  },
+  {
+   "nodeId": "root.leg-far.thigh",
+   "patch": {
+    "y": -120
+   },
+   "reason": "髖接與腹髖主體重疊"
+  },
+  {
+   "nodeId": "root.leg-far.thigh.frame.spar",
+   "patch": {
+    "height": 140
+   },
+   "reason": "股框下探膝軸，旋轉仍見承力"
+  },
+  {
+   "nodeId": "root.leg-far.thigh.armor.plate",
+   "patch": {
+    "height": 150
+   },
+   "reason": "股甲與膝上緣重疊"
+  },
+  {
+   "nodeId": "root.leg-far.shin",
+   "patch": {
+    "y": 20
+   },
+   "reason": "膝位置對股框下端"
+  },
+  {
+   "nodeId": "root.leg-far.shin.telescope.strut",
+   "patch": {
+    "height": 160
+   },
+   "reason": "伸縮桿下探踝，不留空隙"
+  },
+  {
+   "nodeId": "root.leg-far.shin.armor.plate",
+   "patch": {
+    "height": 170
+   },
+   "reason": "脛甲完整覆至踝上"
+  },
+  {
+   "nodeId": "root.leg-far.foot",
+   "patch": {
+    "y": 130
+   },
+   "reason": "足上收與脛相接"
+  },
+  {
+   "nodeId": "root.leg-far.foot.ankle.joint",
+   "patch": {
+    "width": 120,
+    "height": 48
+   },
+   "reason": "踝底橫跨足跟與三趾根"
+  },
+  {
+   "nodeId": "root.leg-far.foot.heel",
+   "patch": {
+    "x": -35
+   },
+   "reason": "足跟收進踝投影"
+  },
+  {
+   "nodeId": "root.leg-far.foot.heel.pad",
+   "patch": {
+    "width": 65,
+    "height": 40
+   },
+   "reason": "足跟連接踝底"
+  },
+  {
+   "nodeId": "root.leg-far.foot.toes",
+   "patch": {
+    "x": 15,
+    "y": 16
+   },
+   "reason": "趾根回收，靠攏踝"
+  },
+  {
+   "nodeId": "root.leg-far.foot.toes.inner",
+   "patch": {
+    "x": -30,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.leg-far.foot.toes.middle",
+   "patch": {
+    "x": 0,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.leg-far.foot.toes.outer",
+   "patch": {
+    "x": 30,
+    "width": 36,
+    "height": 50
+   },
+   "reason": "趾根接踝，趾端保留分岔"
+  },
+  {
+   "nodeId": "root.equipment.shield",
+   "patch": {
+    "x": 230,
+    "y": 0
+   },
+   "reason": "盾臂接壓到近側前臂，盾不離體"
+  },
+  {
+   "nodeId": "root.equipment.shield.shell.inner",
+   "patch": {
+    "x": -56,
+    "width": 58
+   },
+   "reason": "與中瓣包絡重疊，drawing修相接邊"
+  },
+  {
+   "nodeId": "root.equipment.shield.shell.outer",
+   "patch": {
+    "x": 56,
+    "width": 58
+   },
+   "reason": "與中瓣包絡重疊，drawing修相接邊"
+  },
+  {
+   "nodeId": "root.equipment.cannon",
+   "patch": {
+    "x": -180,
+    "y": 30
+   },
+   "reason": "握把移到遠手握持區"
+  },
+  {
+   "nodeId": "root.equipment.cannon.receiver.case",
+   "patch": {
+    "width": 145
+   },
+   "reason": "機匣延伸至砲口"
+  },
+  {
+   "nodeId": "root.equipment.cannon.muzzle",
+   "patch": {
+    "x": -60,
+    "y": -7
+   },
+   "reason": "砲口回收接合機匣，中心線對齊"
+  },
+  {
+   "nodeId": "root.equipment.cannon.rail",
+   "patch": {
+    "y": -35
+   },
+   "reason": "導軌貼機匣上側不懸空"
+  },
+  {
+   "nodeId": "root.torso.chest.shell.lower",
+   "patch": {
+    "height": 44
+   },
+   "reason": "中心449不動；上接弧胸8px、下接腰環6px，可容納radius3承力圓盤"
+  }
+ ]
+}

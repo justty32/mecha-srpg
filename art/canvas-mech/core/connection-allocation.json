@@ -1,0 +1,1472 @@
+{
+ "contract": "wf-table/1",
+ "source": "API.md",
+ "extracted": "2026-10-28",
+ "designStage": "explicit-top-down-allocation-1.1",
+ "columns": [
+  "id",
+  "a",
+  "b",
+  "radius",
+  "tolerance",
+  "poses"
+ ],
+ "rows": [
+  {
+   "id": "head-neck",
+   "a": {
+    "nodeId": "root.head.sensor-pod.optics.housing",
+    "attachmentId": "contact-head-neck",
+    "point": {
+     "x": -5,
+     "y": 25.5
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.head.neck-seat.mechanism.axis",
+    "attachmentId": "contact-head-neck",
+    "point": {
+     "x": 0,
+     "y": -14.5
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "neck-chest",
+   "a": {
+    "nodeId": "root.head.neck-seat.mechanism.axis",
+    "attachmentId": "contact-neck-chest",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.torso.chest.shell.arc",
+    "attachmentId": "contact-neck-chest",
+    "point": {
+     "x": -10,
+     "y": -45
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "neck-collar",
+   "a": {
+    "nodeId": "root.head.neck-seat.mechanism.axis",
+    "attachmentId": "contact-neck-collar",
+    "point": {
+     "x": 4.5,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.head.neck-seat.mechanism.collar",
+    "attachmentId": "contact-neck-collar",
+    "point": {
+     "x": -7.5,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "chest-lower",
+   "a": {
+    "nodeId": "root.torso.chest.shell.arc",
+    "attachmentId": "contact-chest-lower",
+    "point": {
+     "x": 5,
+     "y": 86
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.torso.chest.shell.lower",
+    "attachmentId": "contact-chest-lower",
+    "point": {
+     "x": 0,
+     "y": -18
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "lower-waist",
+   "a": {
+    "nodeId": "root.torso.chest.shell.lower",
+    "attachmentId": "contact-lower-waist",
+    "point": {
+     "x": 5,
+     "y": 19
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.torso.waist.rotation.ring",
+    "attachmentId": "contact-lower-waist",
+    "point": {
+     "x": 0,
+     "y": -19
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "waist-segment",
+   "a": {
+    "nodeId": "root.torso.waist.rotation.ring",
+    "attachmentId": "contact-waist-segment",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.torso.waist.rotation.segment",
+    "attachmentId": "contact-waist-segment",
+    "point": {
+     "x": 0,
+     "y": -50
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-chest-shoulder",
+   "a": {
+    "nodeId": "root.torso.chest.frame.shoulder-seat",
+    "attachmentId": "contact-near-chest-shoulder",
+    "point": {
+     "x": 26,
+     "y": 20
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.arm-near.shoulder.axis.hub",
+    "attachmentId": "contact-near-chest-shoulder",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-shoulder-upper",
+   "a": {
+    "nodeId": "root.arm-near.shoulder.axis.hub",
+    "attachmentId": "contact-near-shoulder-upper",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.arm-near.upper.load.spar",
+    "attachmentId": "contact-near-shoulder-upper",
+    "point": {
+     "x": 7,
+     "y": -70
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-upper-elbow",
+   "a": {
+    "nodeId": "root.arm-near.upper.load.spar",
+    "attachmentId": "contact-near-upper-elbow",
+    "point": {
+     "x": 21,
+     "y": 58
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.arm-near.forearm.hinge.axle",
+    "attachmentId": "contact-near-upper-elbow",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-elbow-forearm",
+   "a": {
+    "nodeId": "root.arm-near.forearm.hinge.axle",
+    "attachmentId": "contact-near-elbow-forearm",
+    "point": {
+     "x": 0,
+     "y": 4.75
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.arm-near.forearm.armor.plate",
+    "attachmentId": "contact-near-elbow-forearm",
+    "point": {
+     "x": 0,
+     "y": -47.25
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-forearm-wrist",
+   "a": {
+    "nodeId": "root.arm-near.forearm.armor.plate",
+    "attachmentId": "contact-near-forearm-wrist",
+    "point": {
+     "x": 3,
+     "y": 49
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.arm-near.hand.palm-wrist.wrist",
+    "attachmentId": "contact-near-forearm-wrist",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-wrist-palm",
+   "a": {
+    "nodeId": "root.arm-near.hand.palm-wrist.wrist",
+    "attachmentId": "contact-near-wrist-palm",
+    "point": {
+     "x": 0,
+     "y": 2.25
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.arm-near.hand.palm-wrist.palm",
+    "attachmentId": "contact-near-wrist-palm",
+    "point": {
+     "x": 0,
+     "y": -14.75
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-palm-thumb",
+   "a": {
+    "nodeId": "root.arm-near.hand.palm-wrist.palm",
+    "attachmentId": "contact-near-palm-thumb",
+    "point": {
+     "x": -40,
+     "y": 12.5
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.arm-near.hand.thumb.mechanism.axle",
+    "attachmentId": "contact-near-palm-thumb",
+    "point": {
+     "x": 1,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-palm-index",
+   "a": {
+    "nodeId": "root.arm-near.hand.palm-wrist.palm",
+    "attachmentId": "contact-near-palm-index",
+    "point": {
+     "x": -5,
+     "y": 13
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.arm-near.hand.index.mechanism.axle",
+    "attachmentId": "contact-near-palm-index",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-palm-grip",
+   "a": {
+    "nodeId": "root.arm-near.hand.palm-wrist.palm",
+    "attachmentId": "contact-near-palm-grip",
+    "point": {
+     "x": 33,
+     "y": 13
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.arm-near.hand.grip.mechanism.axle",
+    "attachmentId": "contact-near-palm-grip",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-waist-hip",
+   "a": {
+    "nodeId": "root.torso.waist.rotation.segment",
+    "attachmentId": "contact-near-waist-hip",
+    "point": {
+     "x": 100,
+     "y": 52
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.thigh.joint.socket",
+    "attachmentId": "contact-near-waist-hip",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-hip-spar",
+   "a": {
+    "nodeId": "root.leg-near.thigh.joint.socket",
+    "attachmentId": "contact-near-hip-spar",
+    "point": {
+     "x": 0,
+     "y": 6
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.thigh.frame.spar",
+    "attachmentId": "contact-near-hip-spar",
+    "point": {
+     "x": 0,
+     "y": -56
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-spar-knee",
+   "a": {
+    "nodeId": "root.leg-near.thigh.frame.spar",
+    "attachmentId": "contact-near-spar-knee",
+    "point": {
+     "x": 0,
+     "y": 64
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.shin.hinge.axle",
+    "attachmentId": "contact-near-spar-knee",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-knee-strut",
+   "a": {
+    "nodeId": "root.leg-near.shin.hinge.axle",
+    "attachmentId": "contact-near-knee-strut",
+    "point": {
+     "x": 0,
+     "y": 5
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.shin.telescope.strut",
+    "attachmentId": "contact-near-knee-strut",
+    "point": {
+     "x": 0,
+     "y": -69
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-strut-ankle",
+   "a": {
+    "nodeId": "root.leg-near.shin.telescope.strut",
+    "attachmentId": "contact-near-strut-ankle",
+    "point": {
+     "x": 4,
+     "y": 73
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.foot.ankle.joint",
+    "attachmentId": "contact-near-strut-ankle",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-ankle-heel",
+   "a": {
+    "nodeId": "root.leg-near.foot.ankle.joint",
+    "attachmentId": "contact-near-ankle-heel",
+    "point": {
+     "x": -31.25,
+     "y": 18
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.foot.heel.pad",
+    "attachmentId": "contact-near-ankle-heel",
+    "point": {
+     "x": 3.75,
+     "y": -14
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-ankle-inner",
+   "a": {
+    "nodeId": "root.leg-near.foot.ankle.joint",
+    "attachmentId": "contact-near-ankle-inner",
+    "point": {
+     "x": -15,
+     "y": 19
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.foot.toes.inner",
+    "attachmentId": "contact-near-ankle-inner",
+    "point": {
+     "x": 0,
+     "y": -20
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-ankle-middle",
+   "a": {
+    "nodeId": "root.leg-near.foot.ankle.joint",
+    "attachmentId": "contact-near-ankle-middle",
+    "point": {
+     "x": 15,
+     "y": 19
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.foot.toes.middle",
+    "attachmentId": "contact-near-ankle-middle",
+    "point": {
+     "x": 0,
+     "y": -20
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "near-ankle-outer",
+   "a": {
+    "nodeId": "root.leg-near.foot.ankle.joint",
+    "attachmentId": "contact-near-ankle-outer",
+    "point": {
+     "x": 43.5,
+     "y": 19
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-near.foot.toes.outer",
+    "attachmentId": "contact-near-ankle-outer",
+    "point": {
+     "x": -1.5,
+     "y": -20
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-chest-shoulder",
+   "a": {
+    "nodeId": "root.torso.chest.frame.rib",
+    "attachmentId": "contact-far-chest-shoulder",
+    "point": {
+     "x": -35.10000000000002,
+     "y": -3.5
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.arm-far.shoulder.axis.hub",
+    "attachmentId": "contact-far-chest-shoulder",
+    "point": {
+     "x": 5.684341886080802e-14,
+     "y": 0
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-shoulder-upper",
+   "a": {
+    "nodeId": "root.arm-far.shoulder.axis.hub",
+    "attachmentId": "contact-far-shoulder-upper",
+    "point": {
+     "x": 5.684341886080802e-14,
+     "y": 0
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "b": {
+    "nodeId": "root.arm-far.upper.load.spar",
+    "attachmentId": "contact-far-shoulder-upper",
+    "point": {
+     "x": 7,
+     "y": -69.99999999999994
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-upper-elbow",
+   "a": {
+    "nodeId": "root.arm-far.upper.load.spar",
+    "attachmentId": "contact-far-upper-elbow",
+    "point": {
+     "x": 21,
+     "y": 58
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "b": {
+    "nodeId": "root.arm-far.forearm.hinge.axle",
+    "attachmentId": "contact-far-upper-elbow",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-elbow-forearm",
+   "a": {
+    "nodeId": "root.arm-far.forearm.hinge.axle",
+    "attachmentId": "contact-far-elbow-forearm",
+    "point": {
+     "x": 0,
+     "y": 4.750000000000114
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "b": {
+    "nodeId": "root.arm-far.forearm.armor.plate",
+    "attachmentId": "contact-far-elbow-forearm",
+    "point": {
+     "x": 0,
+     "y": -47.249999999999886
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-forearm-wrist",
+   "a": {
+    "nodeId": "root.arm-far.forearm.armor.plate",
+    "attachmentId": "contact-far-forearm-wrist",
+    "point": {
+     "x": 3,
+     "y": 49.000000000000114
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "b": {
+    "nodeId": "root.arm-far.hand.palm-wrist.wrist",
+    "attachmentId": "contact-far-forearm-wrist",
+    "point": {
+     "x": 0,
+     "y": 1.1368683772161603e-13
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-wrist-palm",
+   "a": {
+    "nodeId": "root.arm-far.hand.palm-wrist.wrist",
+    "attachmentId": "contact-far-wrist-palm",
+    "point": {
+     "x": 0,
+     "y": 2.2500000000001137
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "b": {
+    "nodeId": "root.arm-far.hand.palm-wrist.palm",
+    "attachmentId": "contact-far-wrist-palm",
+    "point": {
+     "x": 0,
+     "y": -14.75
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-palm-thumb",
+   "a": {
+    "nodeId": "root.arm-far.hand.palm-wrist.palm",
+    "attachmentId": "contact-far-palm-thumb",
+    "point": {
+     "x": -40,
+     "y": 12.499999999999886
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "b": {
+    "nodeId": "root.arm-far.hand.thumb.mechanism.axle",
+    "attachmentId": "contact-far-palm-thumb",
+    "point": {
+     "x": 1,
+     "y": 0
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-palm-index",
+   "a": {
+    "nodeId": "root.arm-far.hand.palm-wrist.palm",
+    "attachmentId": "contact-far-palm-index",
+    "point": {
+     "x": -5,
+     "y": 13
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "b": {
+    "nodeId": "root.arm-far.hand.index.mechanism.axle",
+    "attachmentId": "contact-far-palm-index",
+    "point": {
+     "x": 0,
+     "y": 1.1368683772161603e-13
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-palm-grip",
+   "a": {
+    "nodeId": "root.arm-far.hand.palm-wrist.palm",
+    "attachmentId": "contact-far-palm-grip",
+    "point": {
+     "x": 33,
+     "y": 13
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "b": {
+    "nodeId": "root.arm-far.hand.grip.mechanism.axle",
+    "attachmentId": "contact-far-palm-grip",
+    "point": {
+     "x": 5.684341886080802e-14,
+     "y": 1.1368683772161603e-13
+    },
+    "coverageRadius": 2.2222222222222223
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-waist-hip",
+   "a": {
+    "nodeId": "root.torso.waist.rotation.segment",
+    "attachmentId": "contact-far-waist-hip",
+    "point": {
+     "x": -85,
+     "y": 61.960000000000036
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.leg-far.thigh.joint.socket",
+    "attachmentId": "contact-far-waist-hip",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-hip-spar",
+   "a": {
+    "nodeId": "root.leg-far.thigh.joint.socket",
+    "attachmentId": "contact-far-hip-spar",
+    "point": {
+     "x": 0,
+     "y": 6
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.thigh.frame.spar",
+    "attachmentId": "contact-far-hip-spar",
+    "point": {
+     "x": 0,
+     "y": -56.000000000000114
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-spar-knee",
+   "a": {
+    "nodeId": "root.leg-far.thigh.frame.spar",
+    "attachmentId": "contact-far-spar-knee",
+    "point": {
+     "x": 0,
+     "y": 63.999999999999886
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.shin.hinge.axle",
+    "attachmentId": "contact-far-spar-knee",
+    "point": {
+     "x": 0,
+     "y": -1.1368683772161603e-13
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-knee-strut",
+   "a": {
+    "nodeId": "root.leg-far.shin.hinge.axle",
+    "attachmentId": "contact-far-knee-strut",
+    "point": {
+     "x": 0,
+     "y": 4.999999999999773
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.shin.telescope.strut",
+    "attachmentId": "contact-far-knee-strut",
+    "point": {
+     "x": 0,
+     "y": -69
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-strut-ankle",
+   "a": {
+    "nodeId": "root.leg-far.shin.telescope.strut",
+    "attachmentId": "contact-far-strut-ankle",
+    "point": {
+     "x": 4,
+     "y": 73.00000000000011
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.foot.ankle.joint",
+    "attachmentId": "contact-far-strut-ankle",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-ankle-heel",
+   "a": {
+    "nodeId": "root.leg-far.foot.ankle.joint",
+    "attachmentId": "contact-far-ankle-heel",
+    "point": {
+     "x": -31.25,
+     "y": 18
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.foot.heel.pad",
+    "attachmentId": "contact-far-ankle-heel",
+    "point": {
+     "x": 3.75,
+     "y": -14.000000000000114
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-ankle-inner",
+   "a": {
+    "nodeId": "root.leg-far.foot.ankle.joint",
+    "attachmentId": "contact-far-ankle-inner",
+    "point": {
+     "x": -15,
+     "y": 19.000000000000114
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.foot.toes.inner",
+    "attachmentId": "contact-far-ankle-inner",
+    "point": {
+     "x": -5.684341886080802e-14,
+     "y": -20
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-ankle-middle",
+   "a": {
+    "nodeId": "root.leg-far.foot.ankle.joint",
+    "attachmentId": "contact-far-ankle-middle",
+    "point": {
+     "x": 15,
+     "y": 19.000000000000114
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.foot.toes.middle",
+    "attachmentId": "contact-far-ankle-middle",
+    "point": {
+     "x": 0,
+     "y": -20
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "far-ankle-outer",
+   "a": {
+    "nodeId": "root.leg-far.foot.ankle.joint",
+    "attachmentId": "contact-far-ankle-outer",
+    "point": {
+     "x": 43.5,
+     "y": 19.000000000000114
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "b": {
+    "nodeId": "root.leg-far.foot.toes.outer",
+    "attachmentId": "contact-far-ankle-outer",
+    "point": {
+     "x": -1.5,
+     "y": -20
+    },
+    "coverageRadius": 3.191489361702128
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "forearm-shield",
+   "a": {
+    "nodeId": "root.arm-near.forearm.armor.plate",
+    "attachmentId": "contact-forearm-shield",
+    "point": {
+     "x": 23.25,
+     "y": 5
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.mount.coupler",
+    "attachmentId": "contact-forearm-shield",
+    "point": {
+     "x": -9.75,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "shield-mount-brace",
+   "a": {
+    "nodeId": "root.equipment.shield.mount.coupler",
+    "attachmentId": "contact-shield-mount-brace",
+    "point": {
+     "x": 0.75,
+     "y": -24
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.frame.brace",
+    "attachmentId": "contact-shield-mount-brace",
+    "point": {
+     "x": -36.25,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "shield-brace-inner",
+   "a": {
+    "nodeId": "root.equipment.shield.frame.brace",
+    "attachmentId": "contact-shield-brace-inner",
+    "point": {
+     "x": -51.75,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.shell.inner",
+    "attachmentId": "contact-shield-brace-inner",
+    "point": {
+     "x": 4.25,
+     "y": -32
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "shield-brace-center",
+   "a": {
+    "nodeId": "root.equipment.shield.frame.brace",
+    "attachmentId": "contact-shield-brace-center",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.shell.center",
+    "attachmentId": "contact-shield-brace-center",
+    "point": {
+     "x": 0,
+     "y": -24
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "shield-brace-outer",
+   "a": {
+    "nodeId": "root.equipment.shield.frame.brace",
+    "attachmentId": "contact-shield-brace-outer",
+    "point": {
+     "x": 51.75,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.shell.outer",
+    "attachmentId": "contact-shield-brace-outer",
+    "point": {
+     "x": -4.25,
+     "y": -19
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "shield-brace-spine",
+   "a": {
+    "nodeId": "root.equipment.shield.frame.brace",
+    "attachmentId": "contact-shield-brace-spine",
+    "point": {
+     "x": 0,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.shield.frame.spine",
+    "attachmentId": "contact-shield-brace-spine",
+    "point": {
+     "x": 0,
+     "y": -24
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "palm-cannon",
+   "a": {
+    "nodeId": "root.arm-far.hand.palm-wrist.palm",
+    "attachmentId": "contact-palm-cannon",
+    "point": {
+     "x": 6.444444444444457,
+     "y": 6.277777777777828
+    },
+    "coverageRadius": 3.333333333333333
+   },
+   "b": {
+    "nodeId": "root.equipment.cannon.grip.handle",
+    "attachmentId": "contact-palm-cannon",
+    "point": {
+     "x": 0,
+     "y": -17.449999999999932
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "cannon-grip-case",
+   "a": {
+    "nodeId": "root.equipment.cannon.grip.handle",
+    "attachmentId": "contact-cannon-grip-case",
+    "point": {
+     "x": 0,
+     "y": -16.75
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.cannon.receiver.case",
+    "attachmentId": "contact-cannon-grip-case",
+    "point": {
+     "x": 13,
+     "y": 36.25
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "cannon-case-muzzle",
+   "a": {
+    "nodeId": "root.equipment.cannon.receiver.case",
+    "attachmentId": "contact-cannon-case-muzzle",
+    "point": {
+     "x": -69.5,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "b": {
+    "nodeId": "root.equipment.cannon.muzzle.rim",
+    "attachmentId": "contact-cannon-case-muzzle",
+    "point": {
+     "x": 15.5,
+     "y": 0
+    },
+    "coverageRadius": 2
+   },
+   "radius": 2,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  },
+  {
+   "id": "cannon-case-rail",
+   "a": {
+    "nodeId": "root.equipment.cannon.receiver.case",
+    "attachmentId": "contact-cannon-case-rail",
+    "point": {
+     "x": -16,
+     "y": -28
+    },
+    "coverageRadius": 3
+   },
+   "b": {
+    "nodeId": "root.equipment.cannon.rail.guide",
+    "attachmentId": "contact-cannon-case-rail",
+    "point": {
+     "x": 23,
+     "y": 0
+    },
+    "coverageRadius": 3
+   },
+   "radius": 3,
+   "tolerance": 0.5,
+   "poses": [
+    "idle",
+    "shield-aim",
+    "low-brace"
+   ]
+  }
+ ]
+}

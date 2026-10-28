@@ -24,6 +24,8 @@
 
 [art/mech-blueprint](../../../art/mech-blueprint/README.md) 為機甲重做原型：`schema.ts` 分開配置、骨架、插槽、附件與畫序；`layout.ts`／`build.ts` 協調配置與工作單，`layout-allocation.ts`、`layout-validation.ts`、`layout-motion.ts`、`layout-drawing.ts`、`layout-overlap.ts` 分管分配、父子驗證、動作、畫序、遮擋。`rig.ts` 計算矩陣，`geometry.ts` 做區域運算，`svg-geometry.ts` 解析有限SVG語法；`data/` 保存種子及對應，`parts/` 每附件一份獨立局部SVG。`render.ts`／`build-viewer.ts` 組裝離線頁，`style.css` 與 `style-responsive.css` 按原順序嵌入；`viewer.js` 保留啟動與資料／DOM樹，`viewer/` 分管繪圖、控制與診斷，建置時仍內嵌單頁。`verify.ts` 與 `attachment-validation.ts` 分管姿態和單件資產檢查，`blueprint.test.ts` 是核心反例測試；`headless.mjs` 驗無視窗互動，`headless-budget.mjs` 計證據容量。尚未接遊戲或Spine，固定2D視角與驗證範圍見該目錄入口。
 
+[art/canvas-mech](../../../art/canvas-mech/README.md) 為完全新畫的礁鷹 Canvas＋Konva 離線試作，不接遊戲。`core/design.js` 定 top-down 功能樹與尺寸分配，`revision.js` 讀靜態群組／接合分配，`author-layout.js` 僅供離線配置設計；`assembly.js`／`validation.js` 建立與驗證配置及必要覆蓋接點，`rig.js` 求父子姿態及連桿，`jobs.js` 產逐葉契約，`generate.js` 保存凍結工作單與雜湊；測試在 `core/*.test.js`。`drawing/` 由葉件往上繪製，`drawing/index.js` 匯出局部 Canvas painter；`viewer/scene.js` 將世界變換交 Konva Shape，`controls.js` 管真實層樹與姿態，`app.js` 啟動；`build.mjs` 內嵌成 `index.html`，`headless.mjs` 以既有 Chromium 與 Node WebSocket 做 CDP 驗證。獨立來源、操作及限制見該目錄入口。
+
 ## 真相層優先序
 
 各專案可以改自己的優先序，但必須明確。預設：

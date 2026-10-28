@@ -20,3 +20,5 @@
 - [feature-dev] SVG美術、紙娃娃與機甲百層／五層深度演出待評閱；實際瀏覽器互動／動畫待使用者實機驗 → [集中看圖與驗收](notes/art-review-2026-10-27/README.md)（今天收工，先記待辦，不要求當場驗收）。
 
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。
+
+- [feature-dev] 礁鷹Canvas基本連續整機已於10/28通過，畫風細節與操作手感待後續主觀評閱 → [離線展示](../art/canvas-mech/index.html)｜[操作與限制](../art/canvas-mech/README.md)；依回饋接續，真正3D另輪。
