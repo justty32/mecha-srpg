@@ -11,6 +11,8 @@
 
 ## 最新進度
 
+- [content] expansion-1028：本輪收斂六機甲／八怪獸形態／八人物，原八機批拒收、兩弱A排除；技術驗收與Git交付中，舊draft/待裁決保留 → [本輪狀態](workflows/dispatch/handoffs/expansion-1028/STATE.md)。
+
 - [content] 七輪世界觀待下次整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
 
 - [dispatch] lead-bigfill 暫停：215 件已入庫（現行歷史 `c8e0e0a`）；去重送審、缺口核對與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。

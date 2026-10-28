@@ -1,0 +1,1037 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "batch",
+  "name",
+  "english",
+  "plain",
+  "main",
+  "files",
+  "showcases",
+  "referenceTemplates",
+  "attachment",
+  "designIntent",
+  "tradeoff",
+  "narrativeIntent",
+  "namingRationale",
+  "requirements",
+  "status"
+ ],
+ "rows": [
+  {
+   "id": "M01",
+   "batch": "mechs",
+   "name": "IX-12",
+   "english": "Hinge 12",
+   "plain": "短矢定住敵機，再貼近楔刃；低價輪座放棄厚甲，不能站著換命。",
+   "main": "content/base/frames/exm-ix12.json",
+   "files": [
+    "content/base/frames/exm-ix12.json",
+    "content/base/world/models/exm-ix12.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-crossline.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/wm-r7-bw08.json",
+    "content/base/world/models/ix-wain-01.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/universal-ironsword",
+    "maker": "generic",
+    "requires": [
+     "model/ix-wain-01"
+    ],
+    "availableFrom": {
+     "month": 3
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 5
+   },
+   "designIntent": "D級有限矢定身＋近身低AP點殺；不帶自守，與BW-08單刃自守、IX-08冷卻後援不同。",
+   "tradeoff": "D級有限矢定身＋近身低AP點殺；不帶自守，與BW-08單刃自守、IX-08冷卻後援不同。",
+   "narrativeIntent": "小獵團替巡夜新手買的廉價攔截改型；有人堅持把第一張擊毀牌釘在機上，搭班者卻把牌轉向內側，兩人仍得共用同一座艙。",
+   "namingRationale": "Hinge指短矢止步再貼身的轉折；IX-12沿鐵劍編號，不立新血統。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M02",
+   "batch": "mechs",
+   "name": "銀環-G3・汲光",
+   "english": "Silverring Helix G3",
+   "plain": "汲光卷補回射擊餘裕，卻拖慢排燼；一旦改用鳴刃，就得重算下一次開槍。",
+   "main": "content/base/frames/exm-silverring-helix.json",
+   "files": [
+    "content/base/frames/exm-silverring-helix.json",
+    "content/base/world/models/exm-silverring-helix.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-cooling-window.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/selene-silverring-g2.json",
+    "content/base/world/models/selene-silverring-g2.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/jinghai",
+    "maker": "faction/selene-whitegloves",
+    "requires": [
+     "model/selene-silverring-g2"
+    ],
+    "availableFrom": {
+     "month": 5
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 15
+   },
+   "designIntent": "純charge點射＋主動回光與排燼劣化，沒有實矢後備；非銀環G2被動大池或守燈遠近武器的直接換皮。",
+   "tradeoff": "純charge點射＋主動回光與排燼劣化，沒有實矢後備；非銀環G2被動大池或守燈遠近武器的直接換皮。",
+   "narrativeIntent": "月面試賣會的駕駛故意把流光射空，向買家示範低頭汲光的難堪空檔；雇主想剪掉那段，他反而留給出價最低的競標者看。",
+   "namingRationale": "Helix是汲光卷的收卷形象；銀環保留白手套既有世系。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M03",
+   "batch": "mechs",
+   "name": "測墟-B・折鏡",
+   "english": "Surveyor Shutter B",
+   "plain": "它先晃亂對手的準星，再沿武器接縫點射；眼前只有一敵，無暇照顧整隊。",
+   "main": "content/base/frames/exm-surveyor-shutter.json",
+   "files": [
+    "content/base/frames/exm-surveyor-shutter.json",
+    "content/base/world/models/exm-surveyor-shutter.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-crossline.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/shellsoc-surveyor-b.json",
+    "content/base/world/models/shellsoc-surveyor-b.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/many-eyes",
+    "maker": "faction/shell-society",
+    "requires": [
+     "model/shellsoc-surveyor-b"
+    ],
+    "availableFrom": {
+     "month": 6
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 40
+   },
+   "designIntent": "單敵accuracy/perception減益＋可瞄weaponMount且命中標記；與同燈的友軍增益、拾痕遠射偵察不同。",
+   "tradeoff": "單敵accuracy/perception減益＋可瞄weaponMount且命中標記；與同燈的友軍增益、拾痕遠射偵察不同。",
+   "narrativeIntent": "護勘試手時，教習不肯讓後輩只打靶牌；兩台隔著廢牆換位，學生第一次贏靠的是打壞老師的掛件。老師還想加賽，學生先摘下靈目罩。",
+   "namingRationale": "Shutter指短暫遮斷敵方視線，不宣稱隱形或新感官系統。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M04",
+   "batch": "mechs",
+   "name": "劍魚-V5・穿列",
+   "english": "Swordfish Needlewake V5",
+   "plain": "舟架把敵影排成一線才發矛；近敵交給長鉤，浮架受損便難再尋下一條線。",
+   "main": "content/base/frames/exm-swordfish-file.json",
+   "files": [
+    "content/base/frames/exm-swordfish-file.json",
+    "content/base/world/models/exm-swordfish-file.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-crossline.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/thirdblade-skate-iv.json",
+    "content/base/world/models/thirdblade-swordfish-v5.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/tide-fin",
+    "maker": "faction/third-blade",
+    "requires": [
+     "model/thirdblade-swordfish-v5"
+    ],
+    "availableFrom": {
+     "month": 6
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 40
+   },
+   "designIntent": "2–6格line穿刺＋1–2格單體補位；與鰩魚雙刃/拘束、回舷遠射/近刃、留潮單敵定身均不同；沒有推拉位移。",
+   "tradeoff": "2–6格line穿刺＋1–2格單體補位；與鰩魚雙刃/拘束、回舷遠射/近刃、留潮單敵定身均不同；沒有推拉位移。",
+   "narrativeIntent": "爭旗交鋒時，駕駛為讓貫矛穿列屢次退開，隊友罵他只肯挑漂亮角度；他最後放棄一發好線，讓搭檔自己贏下眼前那場近鬥。",
+   "namingRationale": "Needlewake指狹長穿列軌跡；V5沿劍魚，不與新骨架自立世系混淆。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M05",
+   "batch": "mechs",
+   "name": "鐵砧-V型・合鉗",
+   "english": "Anvil Clasp V",
+   "plain": "合鉗與重斧分占雙臂；能鎖近敵，也能劈厚甲，卻付不起無休止的兩頭兼顧。",
+   "main": "content/base/frames/exm-anvil-clasp.json",
+   "files": [
+    "content/base/frames/exm-anvil-clasp.json",
+    "content/base/world/models/exm-anvil-clasp.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-cooling-window.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/anvil-gatewarden.json",
+    "content/base/world/models/anvil-iv-ram.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/broken-arm",
+    "maker": "faction/anvil-hunters",
+    "requires": [
+     "model/anvil-iv-ram"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 100
+   },
+   "designIntent": "A近距控制／重斬全回合資源抉擇：4AP鉗＋5AP斧，雙招CD2；與封門架砲、破城槌樁錘高熱連打不同。",
+   "tradeoff": "A近距控制／重斬全回合資源抉擇：4AP鉗＋5AP斧，雙招CD2；與封門架砲、破城槌樁錘高熱連打不同。",
+   "narrativeIntent": "鐵砧一支小隊以生擒價接下活捉委託，帶隊人卻偏愛重斧留下的斷面；副駕拿空拘束架擋住他的領賞路，兩人把斧卸到岸上才出第二趟。",
+   "namingRationale": "Clasp指近距合鉗的束縛／處決兩難；Anvil仍為鐵砧。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M06",
+   "batch": "mechs",
+   "name": "長槍-V8・月衡",
+   "english": "Longspear Meridian V8",
+   "plain": "分翼長槍只求一發重矢；落近了就拔刃，斷翼還會一起失去那邊的武器。",
+   "main": "content/base/frames/exm-longspear-meridian.json",
+   "files": [
+    "content/base/frames/exm-longspear-meridian.json",
+    "content/base/world/models/exm-longspear-meridian.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-cooling-window.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/longspear-piercing-cloud.json",
+    "content/base/world/models/longspear-v7.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/universal-longspear",
+    "maker": "generic",
+    "requires": [
+     "model/longspear-v7"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 100
+   },
+   "designIntent": "飛行分翼部位風險＋min3長弓CD2＋主動回光；非穿雲雙遠射/近矛，也非虹使壓制/偵察；沒有免費遠跳。",
+   "tradeoff": "飛行分翼部位風險＋min3長弓CD2＋主動回光；非穿雲雙遠射/近矛，也非虹使壓制/偵察；沒有免費遠跳。",
+   "narrativeIntent": "公刻工坊把這台弓機借給從不射滿弦的老手。展示那天他讓買家自己選靶，射穿後沒有掌聲，只有另一位弓手要求借機；兩人為誰先上艙爭到天黑。",
+   "namingRationale": "Meridian取遠端瞄線與月衡弓的秤線，不是古代機專名。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M07",
+   "batch": "mechs",
+   "name": "堅盾-II型・解扣",
+   "english": "Bulwark Unclasp II",
+   "plain": "解扣型不求更厚，受網時能自行脫扣；兩次用盡，仍得靠同伴替它拆圍。",
+   "main": "content/base/frames/exm-bulwark-unclasp.json",
+   "files": [
+    "content/base/frames/exm-bulwark-unclasp.json",
+    "content/base/world/models/exm-bulwark-unclasp.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-crossline.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/bulwark-ii.json",
+    "content/base/world/models/bulwark-ii.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/universal-bulwark",
+    "maker": "generic",
+    "requires": [
+     "model/bulwark-ii"
+    ],
+    "availableFrom": {
+     "month": 5
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 15
+   },
+   "designIntent": "C盾列加入限2次清immobilized自救，放棄厚甲/煙/排燼；與渡口持守、留潮給敵定身反向，不能清普通debuff或放開他人。",
+   "tradeoff": "C盾列加入限2次清immobilized自救，放棄厚甲/煙/排燼；與渡口持守、留潮給敵定身反向，不能清普通debuff或放開他人。",
+   "narrativeIntent": "輪守隊把會脫網的機配給總想獨闖的老兵，他連用完兩次後被迫叫平日不願搭檔的新手靠過來；第二日還是拒絕一起吃飯，卻把出勤牌掛在相鄰位置。",
+   "namingRationale": "Unclasp指解開自己的一次束扣，不承諾全隊解控。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "M08",
+   "batch": "mechs",
+   "name": "燼雨-贖垢者",
+   "english": "Redeemer Ashrain",
+   "plain": "燼雨落在中距敵群，近身只餘一刃；爐口冷下來以前，祈禱也催不出第二場雨。",
+   "main": "content/base/frames/exm-redeemer-ashrain.json",
+   "files": [
+    "content/base/frames/exm-redeemer-ashrain.json",
+    "content/base/world/models/exm-redeemer-ashrain.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exm-cooling-window.json"
+   ],
+   "referenceTemplates": [
+    "content/base/frames/tidefaith-censer-iv.json",
+    "content/base/world/models/tidefaith-redeemer-3.json"
+   ],
+   "attachment": {
+    "lineage": "lineage/tide-robe",
+    "maker": "faction/tide-faith",
+    "requires": [
+     "model/tidefaith-redeemer-3"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 100
+   },
+   "designIntent": "2–5格ball thermal＋suppressed，CD3與charge20/heat28雙資源；非行香近身淨化/吐息、渡厄鋸與解拘；不留地面火。",
+   "tradeoff": "2–5格ball thermal＋suppressed，CD3與charge20/heat28雙資源；非行香近身淨化/吐息、渡厄鋸與解拘；不留地面火。",
+   "narrativeIntent": "教團護衛以新爐清掉占據空庭的獸，壁畫也一同焦黑；他拒絕畫師替神像補上新臉，只把自己機上的覆甲交給畫師，說先畫那天真正站在這裡的人。",
+   "namingRationale": "Ashrain直寫散落熱燼；Redeemer保留教團贖垢者命名脈絡。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P01",
+   "batch": "people",
+   "name": "葉榛",
+   "english": "Ye Zhen",
+   "plain": "輸掉比武後，葉榛拒掛母親的戰功旗；母親把旗帶走，她隔天仍去報名。",
+   "main": "content/base/persons/exp-ye-zhen.json",
+   "files": [
+    "content/base/persons/exp-ye-zhen.json",
+    "content/lore/characters/exp-ye-zhen.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-four-choices.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/seo-haegyeom.json"
+   ],
+   "attachment": {
+    "faction": "faction/inner-sea-houses",
+    "showcaseFrame": "frame/ix-ii"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 54,
+     "evasion": 10,
+     "resolve": 47,
+     "initiative": 7,
+     "perception": 5,
+     "control": 44
+    },
+    "traits": [
+     "effect/ax-trait-grudge-ledger"
+    ],
+    "frame": "frame/ix-ii"
+   },
+   "tradeoff": "徐海謙苦於公眾塑像與守城責任；葉榛是未有戰功的子女主動拒借名，不是拆英雄像、戰場救人或讓亡親被記住。",
+   "narrativeIntent": "她要的是自己的敗績也歸自己，不是擺脫親情。母親尚健在、沒有和解演說；母親帶走旗後，她開始為下一次真實勝利練習。",
+   "namingRationale": "Ye Zhen為葉榛的漢語羅馬字，榛為尋常木名，不把名字寫成性格預言。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P02",
+   "batch": "people",
+   "name": "宮坂 岳",
+   "english": "Miyasaka Gaku",
+   "plain": "宮坂收錢輸比武，對手卻求他認真打一回；他退了錢，沒有答應做對方的老師。",
+   "main": "content/base/persons/exp-miyasaka-gaku.json",
+   "files": [
+    "content/base/persons/exp-miyasaka-gaku.json",
+    "content/lore/characters/exp-miyasaka-gaku.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-four-choices.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/wl-nico-bellini.json"
+   ],
+   "attachment": {
+    "faction": "faction/third-blade",
+    "showcaseFrame": "frame/thirdblade-swordfish-iii"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 57,
+     "evasion": 12,
+     "resolve": 43,
+     "initiative": 8,
+     "perception": 6,
+     "control": 42
+    },
+    "traits": [
+     "effect/ax-trait-fate-cheater"
+    ],
+    "frame": "frame/thirdblade-swordfish-iii"
+   },
+   "tradeoff": "尼科是誠實輸投環後造新環再賭；宮坂故意出售敗績，戲劇轉折是拒絕扮演他人想要的師父，非苦練扳回一勝。",
+   "narrativeIntent": "不是受脅迫的可憐人：他早把敗招練熟，享受操縱觀眾。這次因對手的真誠而不耐煩，退錢後全力贏下比試，對手反而高興，他未因此洗白或結成師徒。",
+   "namingRationale": "Miyasaka Gaku採日語姓／名順序，中文維持宮坂 岳，非稱號。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P03",
+   "batch": "people",
+   "name": "莉妲",
+   "english": "Rida Amin",
+   "plain": "莉妲想唱自己寫的情歌，台下卻只等她露出鱗片；她唱完最後一段，沒有學獸吼。",
+   "main": "content/base/persons/exp-rida-amin.json",
+   "files": [
+    "content/base/persons/exp-rida-amin.json",
+    "content/lore/characters/exp-rida-amin.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-four-choices.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/wl-choi-eunsol.json"
+   ],
+   "attachment": {
+    "faction": "faction/far-herd",
+    "showcaseFrame": "frame/bio-hound"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 49,
+     "evasion": 9,
+     "resolve": 59,
+     "initiative": 7,
+     "perception": 7,
+     "control": 52
+    },
+    "traits": [
+     "effect/ax-trait-storm-temper"
+    ],
+    "frame": "frame/bio-hound"
+   },
+   "tradeoff": "崔恩率以別人的傷腿賣票且留錢；莉妲面對的是自己先建立的觀眾期待，爭取作品被聽見而不是被剝削者離場。另比較裴賢珠布獸替身：不是隱去真臉換認可。",
+   "narrativeIntent": "小變異只限手背鱗片、不增加；她以前主動以鱗片招徠客人，這次改唱拙劣情歌遭冷場。沒有經紀人逼迫、沒有殘肢奇觀，也不把敢唱寫成全場喝采。",
+   "namingRationale": "Rida Amin為本人使用的人名；Rida譯莉妲，避免把鱗片變成藝名。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P04",
+   "batch": "people",
+   "name": "奧瑪",
+   "english": "Omar Faris",
+   "plain": "奧瑪賣掉陪自己多年的機甲，買家卻要拆件；他沒買回，只親手卸走刻名的鐵片。",
+   "main": "content/base/persons/exp-omar-faris.json",
+   "files": [
+    "content/base/persons/exp-omar-faris.json",
+    "content/lore/characters/exp-omar-faris.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-four-choices.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/wl-amalia-quispe.json"
+   ],
+   "attachment": {
+    "faction": null,
+    "showcaseFrame": "frame/bulwark-ii"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 58,
+     "evasion": 6,
+     "resolve": 56,
+     "initiative": 5,
+     "perception": 7,
+     "control": 49
+    },
+    "traits": [
+     "effect/ax-trait-second-birth"
+    ],
+    "frame": "frame/bulwark-ii"
+   },
+   "tradeoff": "阿瑪莉亞離艙後抗拒舊肖像且想重新修造；奧瑪接受不可逆出售，沒有年輕肖像/母子教學。另對瑪伊雅船鐘：不是遺物歸屬拉鋸，而是本人真的放手。",
+   "narrativeIntent": "他仍接最後幾次短雇，沒有保證永久退役。出售是主動減少戰場生活，不因不老恐懼，也不留英雄機讓城邦膜拜；售出後依所有權讓買家拆，保留的是一片無戰力的紀念。",
+   "namingRationale": "Omar Faris為本人名字，奧瑪是日常短稱，不替族群造固定命名法。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P05",
+   "batch": "people",
+   "name": "珊雅",
+   "english": "Sanya Iliev",
+   "plain": "珊雅把要入教的妹妹送到孟買門，拒絕留下晚禱；回程座位空著，她沒有叫妹妹上來。",
+   "main": "content/base/persons/exp-sanya-iliev.json",
+   "files": [
+    "content/base/persons/exp-sanya-iliev.json",
+    "content/lore/characters/exp-sanya-iliev.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-unfinished-ties.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/samira-qureshi.json"
+   ],
+   "attachment": {
+    "faction": null,
+    "showcaseFrame": "frame/hound-mk2"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 52,
+     "evasion": 8,
+     "resolve": 57,
+     "initiative": 6,
+     "perception": 6,
+     "control": 48
+    },
+    "traits": [
+     "effect/ax-trait-names-before-orders"
+    ],
+    "frame": "frame/hound-mk2"
+   },
+   "tradeoff": "薩米拉是虔誠但離營的本人；本件是外部家屬接受別人的入教自由，不否定或證明先知，更不改寫教派的真相。另對米拉施粥的信仰/糧食取捨，本件不涉及物資拒收。",
+   "narrativeIntent": "她厭惡妹妹自願選的教團，又不能把接人當作有權帶走。妹妹不是被蒙騙等她拯救；保留兩人的爭執與妹妹真實選擇，珊雅離開時並未轉信。",
+   "namingRationale": "Sanya Iliev保留完整外文姓名，珊雅為親友呼名；沒有教團封號。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P06",
+   "batch": "people",
+   "name": "阿黛拉",
+   "english": "Adela Miro",
+   "plain": "阿黛拉寄給敵隊駕駛的情書落到雇主手裡；她承認那是情書，卻不肯替對方勸降。",
+   "main": "content/base/persons/exp-adela-miro.json",
+   "files": [
+    "content/base/persons/exp-adela-miro.json",
+    "content/lore/characters/exp-adela-miro.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-unfinished-ties.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/wm-r4-mina-voss.json"
+   ],
+   "attachment": {
+    "faction": "faction/backside",
+    "showcaseFrame": "frame/longspear-v4"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 60,
+     "evasion": 7,
+     "resolve": 45,
+     "initiative": 6,
+     "perception": 8,
+     "control": 43
+    },
+    "traits": [
+     "effect/trait-steady-hands",
+     "effect/ax-trait-water-shy"
+    ],
+    "frame": "frame/longspear-v4"
+   },
+   "tradeoff": "米娜等待花開的伴侶只是班次錯開；阿黛拉拒把親密關係用作作戰工具，損失雇主信任。與白結換俘阿喬亞的假名/死者證詞亦不同，不是情報筆跡調查。",
+   "narrativeIntent": "私人親近不等於情報交換或外交和解；信裡是拙劣玩笑與想見面，不含陣位。雇主想借信叫敵隊讓路，她拒當誘餌；兩人各自履約，錯過見面，沒有立刻私奔。",
+   "namingRationale": "Adela Miro譯阿黛拉；信件用本人姓名，不創造敵國或史實宗教。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P07",
+   "batch": "people",
+   "name": "盧恩",
+   "english": "Luan Mendes",
+   "plain": "盧恩發現自己喜歡看學徒害怕，便換回衍型機；放下獸以後，他仍得學會不用恐嚇教人。",
+   "main": "content/base/persons/exp-luan-mendes.json",
+   "files": [
+    "content/base/persons/exp-luan-mendes.json",
+    "content/lore/characters/exp-luan-mendes.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-unfinished-ties.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/njeri-mwangi.json"
+   ],
+   "attachment": {
+    "faction": "faction/far-herd",
+    "showcaseFrame": "frame/ix-iii"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 51,
+     "evasion": 8,
+     "resolve": 61,
+     "initiative": 6,
+     "perception": 6,
+     "control": 50
+    },
+    "traits": [
+     "effect/trait-beast-sense",
+     "effect/ax-trait-second-birth"
+    ],
+    "frame": "frame/ix-iii"
+   },
+   "tradeoff": "恩潔莉在拘束危機中退出承擔救同伴；盧恩在非危機日常承認自己享受支配，主動改系但壞脾氣未消失，非另一場獸暴走救人。",
+   "narrativeIntent": "不寫人格被獸全責控制。生物系只使其原有兇性更直接、小角不加深；換機不是治癒。他第一次重新教操控仍摔了杯子，事後自己收碎片，學徒不必當場原諒。",
+   "namingRationale": "Luan Mendes以盧恩作日常音譯，不靠野獸／狂怒稱號固化性格。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "P08",
+   "batch": "people",
+   "name": "梁苒",
+   "english": "Liang Ran",
+   "plain": "梁苒等過夸父的回望，什麼也沒發生；她先租鐵劍練熟操控，仍把下一次上山留在心裡。",
+   "main": "content/base/persons/exp-liang-ran.json",
+   "files": [
+    "content/base/persons/exp-liang-ran.json",
+    "content/lore/characters/exp-liang-ran.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exp-unfinished-ties.json"
+   ],
+   "referenceTemplates": [
+    "content/base/persons/ren-kasai.json",
+    "content/lore/characters/ren-kasai.json",
+    "content/lore/characters/bruno-azzari.json"
+   ],
+   "attachment": {
+    "faction": "faction/shell-society",
+    "showcaseFrame": "frame/ix-ii"
+   },
+   "designIntent": {
+    "attrs": {
+     "accuracy": 48,
+     "evasion": 11,
+     "resolve": 52,
+     "initiative": 7,
+     "perception": 7,
+     "control": 41
+    },
+    "traits": [
+     "effect/ax-trait-watchful"
+    ],
+    "frame": "frame/ix-ii"
+   },
+   "tradeoff": "布魯諾拒替沉默物件編答案，梁苒則不甘心沒有回應且想被選中；她不造假夢、不發明古緣資質保證。與丹增已認主身分相反，也不是新全球主角。",
+   "narrativeIntent": "只寫一次獲准遠望與主觀等待，不判定夸父已拒絕她、不添夢像答案，也不使現認主者失位。她羨慕認主者且仍想被選中，學普通操控不是頓悟放棄野心。",
+   "namingRationale": "Liang Ran為梁苒的漢語羅馬字，苒取普通草木字形，不暗示神諭。",
+   "requirements": "八人皆human；AP9/fatigue100/hp48–65；不造新effect/perk/ability；person以nameEn/etymology精簡身分，lore承載全文300–700字；兩檔姓名同寫，lore gameRefs只指本列person；無正式招募池、無強制新機甲引用、無歷史大事件新增或P01裁決。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K01",
+   "batch": "monsters",
+   "name": "倒鉤",
+   "english": "Hookback Brinepin",
+   "plain": "倒向尖刺反擊離身敵機，翻腹核也更容易挨打。",
+   "main": "content/base/monsters/exk-hookback.json",
+   "files": [
+    "content/base/monsters/exk-hookback.json",
+    "content/base/abilities/exk-hookback.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-four-corners.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/brinepin-d.json",
+    "content/base/bodyplans/insect-brinepin.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "content/base/abilities/kx-brinepin-prick.json"
+   ],
+   "attachment": {
+    "species": "species/brinepin",
+    "bodyPlan": "bodyplan/insect-brinepin"
+   },
+   "designIntent": {
+    "name": "倒刺",
+    "mode": "reaction",
+    "trigger": {
+     "kind": "enemyLeavesAdjacent",
+     "oncePerTurn": true
+    },
+    "target": "enemy unit range1",
+    "costAP": 0,
+    "packets": "pierce6",
+    "cooldown": 0,
+    "tactics": {
+     "attack": 0.5
+    },
+    "use": "敵機離開鄰格時反擊一次；不是進入鄰格、不是任何移動都觸發。"
+   },
+   "tradeoff": "heart改名翻腹節，exposure1→2，chitin10→5；needle改名倒鉤刺，chitin10→5，保留flesh20。總HP110→100；核更易中、甲更薄，換離身反擊。",
+   "narrativeIntent": "退潮後沿繫纜處附著，倒向的刺在纜索鬆動時才掀起。第一次趕牠的機甲轉身吃了一刺；下一班駕駛沒有比誰膽大，停著把鹽針清掉，再讓搬貨的人穿過。只寫可見形態與反應，不給蟲報復心理。",
+   "namingRationale": "Hookback描述反向刺，Brinepin保留原物種；只是形態俗稱。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K02",
+   "batch": "monsters",
+   "name": "鎖翅",
+   "english": "Winglock Lantern Keel",
+   "plain": "左翼變鉗鎖住近敵，只餘右翼支撐機動。",
+   "main": "content/base/monsters/exk-winglock.json",
+   "files": [
+    "content/base/monsters/exk-winglock.json",
+    "content/base/abilities/exk-winglock.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-four-corners.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/lantern-keel-c.json",
+    "content/base/bodyplans/insect-lantern-keel.json",
+    "content/base/abilities/kx-reed-lace-bind.json",
+    "content/base/effects/mx-netted.json"
+   ],
+   "attachment": {
+    "species": "species/lantern-keel",
+    "bodyPlan": "bodyplan/insect-lantern-keel"
+   },
+   "designIntent": {
+    "name": "合翼鎖",
+    "mode": "activated",
+    "target": "enemy unit range1–2 LOS",
+    "costAP": 3,
+    "packets": "pierce8",
+    "effects": [
+     "effect/mx-netted"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "disable": 1,
+     "attack": 0.5
+    },
+    "use": "兩回合縛網／immobilized效果；射程短且CD3，不拉人、不自動捕獲。"
+   },
+   "tradeoff": "wing-left改名鉗翼，functions由locomotion改為manipulator+weaponMount；wing-right成唯一locomotion，feet原本不帶locomotion。heart改名裸燈節exposure2→3、chitin20→10；wing-left chitin20→10、wing-right chitin30→20，總HP400→370。失去一份機動冗餘並暴露核。",
+   "narrativeIntent": "在窄巷冷卻管旁合攏一側硬翼，卡住從旁穿過的腳架；翅面磨出的亮痕比燈色更先被人發現。清巷人第一次選擇停機等縛束退去，第二次繞向裸燈節開火。不要寫牠們在商議包抄。",
+   "namingRationale": "Winglock描述翼改鉗的構造；Lantern Keel仍是原種，不是新蟲后。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K03",
+   "batch": "monsters",
+   "name": "燼吻",
+   "english": "Cinder Muzzle Hound",
+   "plain": "前肢改作操作肢，換得燼息；唯一後腿成為破綻。",
+   "main": "content/base/monsters/exk-cinder-muzzle.json",
+   "files": [
+    "content/base/monsters/exk-cinder-muzzle.json",
+    "content/base/abilities/exk-cinder-muzzle.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-four-corners.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/hound-c.json",
+    "content/base/bodyplans/quadruped-hound.json",
+    "content/base/abilities/kx-foam-jaw-foam.json",
+    "content/base/abilities/kx-burrow-flank.json"
+   ],
+   "attachment": {
+    "species": "species/hound",
+    "bodyPlan": "bodyplan/quadruped-hound"
+   },
+   "designIntent": {
+    "name": "燼息",
+    "mode": "activated",
+    "target": "enemy cone range1–3 radius1 LOS",
+    "costAP": 4,
+    "packets": "thermal12",
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "對緊聚目標及熱弱菌體；AP4/CD3不能每輪掃場。不增加移動、不按酸息改色來充當整體差異。"
+   },
+   "tradeoff": "left-shovel/right-shovel保留manipulator但移除locomotion；hindlegs成為唯一locomotion。head改名燼吻囊，functions保留sensor並加weaponMount，chitin15→5、flesh30→25；spine chitin55→35；heart exposure1→2。總HP420→385。射域換來單一後腿斷即失去機動、可捕獲的明確破綻。",
+   "narrativeIntent": "嘴邊積著乾燼，沿菌毯邊緣留下短小焦痕；護送者想把牠趕向菌群省一場仗，牠卻回身燒向堵住退路的機甲。人得自己處理後腿，不能把野獸當聽令火把。物種原有蛻變條目不另造新階級。",
+   "namingRationale": "Cinder Muzzle指燼吻囊與熱息；Hound不改原物種身份。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K04",
+   "batch": "monsters",
+   "name": "背針",
+   "english": "Spine Rack Shelf Back",
+   "plain": "厚背長出列射骨針，露出的心與薄甲不再耐打。",
+   "main": "content/base/monsters/exk-spine-rack.json",
+   "files": [
+    "content/base/monsters/exk-spine-rack.json",
+    "content/base/abilities/exk-spine-rack.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-four-corners.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/shelf-back-b.json",
+    "content/base/bodyplans/beast-shelf-back.json",
+    "content/base/abilities/kx-wick-mat-seep.json",
+    "content/base/abilities/kx-shelf-back-shelter.json"
+   ],
+   "attachment": {
+    "species": "species/shelf-back",
+    "bodyPlan": "bodyplan/beast-shelf-back"
+   },
+   "designIntent": {
+    "name": "背針穿列",
+    "mode": "activated",
+    "target": "enemy line range3–6 LOS",
+    "costAP": 4,
+    "packets": "pierce20",
+    "cooldown": 2,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "遠距穿列，min3留下貼身空檔；仍有原推擊與護身技能，不能說它失去所有近戰。"
+   },
+   "tradeoff": "back改名開縫針背並加weaponMount，chitin220→110、flesh100→70；heart改名露脊心exposure0.5→1.5。總HP1000→860，仍在B帶。護隊能力不刪，但厚背與藏心大幅交換成遠線火力。",
+   "narrativeIntent": "針骨從薄背縫長出，牠偏向貼著堤壁停住，背對空地時不斷轉身。獵手為避成列射線散開後，才發現護在牠旁的小蟲仍被遮住；勝法不是遠處等牠變成不會近戰的靶子。",
+   "namingRationale": "Spine Rack描述背上出針構造；Shelf Back保留護友獸來源。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K05",
+   "batch": "monsters",
+   "name": "漏燈",
+   "english": "Lamp Leech Clinger",
+   "plain": "鉤足貼近啜光，拖足一斷便再難追機甲。",
+   "main": "content/base/monsters/exk-lamp-leech.json",
+   "files": [
+    "content/base/monsters/exk-lamp-leech.json",
+    "content/base/abilities/exk-lamp-leech.json",
+    "content/base/effects/exk-light-leak.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-split-roots.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/breakwater-clinger-c.json",
+    "content/base/bodyplans/alien-breakwater-clinger.json",
+    "content/base/abilities/kx-breakwater-clinger-rend.json",
+    "content/base/effects/m2-relieved.json"
+   ],
+   "attachment": {
+    "species": "species/breakwater-clinger",
+    "bodyPlan": "bodyplan/alien-breakwater-clinger"
+   },
+   "designIntent": {
+    "name": "啜光",
+    "mode": "activated",
+    "target": "enemy unit range1 LOS",
+    "costAP": 3,
+    "packets": "energy12",
+    "effects": [
+     "effect/exk-light-leak"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "attack": 0.8,
+     "disable": 1
+    },
+    "use": "接觸耗掉目標15 charge；沒有charge池就只有傷害，不轉成施術者資源。"
+   },
+   "tradeoff": "hook-foot改名啜光鉤，functions由locomotion改為manipulator+weaponMount；trailing-foot成唯一locomotion。offset-core exposure0.5→1.5；left-mantle既有chitin層energy resist0.3→0，其餘resist完整保留。總HP420不變，少一機動支點且薄於能量攻。",
+   "narrativeIntent": "廢船拆燈時，機甲剛點亮武器，鉤足便從船側探入接縫。拆船人關燈不代表安全，仍得用空手工具把鉤足撬開；同伴切向拖足，使牠在重新點燈前留在原地。不得把外殼當智慧吸能電池。",
+   "namingRationale": "Lamp Leech指接觸耗光習性，Clinger保留攀附體來源；不宣稱有語言。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K06",
+   "batch": "monsters",
+   "name": "雙針",
+   "english": "Forkneedle",
+   "plain": "護片長成裸副針，可穿列，卻失去遮身的甲。",
+   "main": "content/base/monsters/exk-forkneedle.json",
+   "files": [
+    "content/base/monsters/exk-forkneedle.json",
+    "content/base/abilities/exk-forkneedle.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-split-roots.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/bent-needle-d.json",
+    "content/base/bodyplans/alien-bent-needle.json",
+    "content/base/abilities/kx-bent-needle-pick.json",
+    "content/base/abilities/kx-wick-mat-seep.json"
+   ],
+   "attachment": {
+    "species": "species/bent-needle",
+    "bodyPlan": "bodyplan/alien-bent-needle"
+   },
+   "designIntent": {
+    "name": "岔針穿隙",
+    "mode": "activated",
+    "target": "enemy line range2–4 LOS",
+    "costAP": 3,
+    "packets": "pierce5",
+    "cooldown": 2,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "低傷線攻對兩個成列敵機；原瞄攻具單點射仍在，不宣稱同一動作自動射兩次。"
+   },
+   "tradeoff": "plate改名裸副針，functions由空改為weaponMount，layers改為單一flesh20且structural true，原chitin與energy0.2抗性消失；heart organ30→20，其餘原樣，總HP120→110。護片長成副針，甲面交換為暴露肉質攻具。",
+   "narrativeIntent": "副針彎在薄皮外，兩條出針孔留在相鄰艙門上。修門的人把兩扇新門錯開堆放，還被雇主嫌不整齊；下一輪針痕只落在一扇上。不是證言翻案、表冊錯誤或讓受傷者再演一次。",
+   "namingRationale": "Forkneedle指護片分出的副針，不是兩名個體或二連射承諾。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K07",
+   "batch": "monsters",
+   "name": "悶燈",
+   "english": "Smotherwick Stalk",
+   "plain": "柱冠成為雙核、外皮失去自癒；悶燼團迫人散熱。",
+   "main": "content/base/monsters/exk-smotherwick.json",
+   "files": [
+    "content/base/monsters/exk-smotherwick.json",
+    "content/base/abilities/exk-smotherwick.json",
+    "content/base/effects/exk-smothered.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-split-roots.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/stalk-c.json",
+    "content/base/bodyplans/mycel-stalk.json",
+    "content/base/abilities/kx-spore-fog.json",
+    "content/base/effects/mx-heart-breach.json"
+   ],
+   "attachment": {
+    "species": "species/stalk",
+    "bodyPlan": "bodyplan/mycel-stalk"
+   },
+   "designIntent": {
+    "name": "悶燼團",
+    "mode": "activated",
+    "target": "enemy ball range1–2 radius1 LOS",
+    "costAP": 3,
+    "packets": "thermal4",
+    "effects": [
+     "effect/exk-smothered"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 0.8,
+     "disable": 1
+    },
+    "use": "小熱團命中加12 heat，非每回合燃燒；無heat池只受4熱傷。繼承root-snare/spore-fog，不再繼承酸線；必測效果不會越界造池。"
+   },
+   "tradeoff": "pillar仍為core+cockpit，改名空心主柱：chitin90→60/flesh160→120；roots保留原locomotion、不加core，chitin40→20/flesh80→60；crown改名冠副結，functions=[sensor,core]，chitin30→20/flesh50→40。三處chitin移除regen，兩層其餘欄位完整保留。總HP450→320，柱與冠雙核需清兩處，但失自癒外皮且更脆；非核roots可打斷並保留兩核完成捕獲。全部part IDs/層數與bio-stalk相容。",
+   "narrativeIntent": "低矮菌柱的冠副結鼓起，主柱下冒出悶熱小團。工人以為挑掉大柱就能搬開菌塊，冠上副結仍會吐出下一團；他們退一步重看，逐處清完才鋪新地板。只稱局部戰鬥節點，不宣稱整個地下菌群滅絕。",
+   "namingRationale": "Smotherwick描述短距悶熱菌團；Stalk明示菌柱形態，不是D級菌毯新種。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。 capture驗證要求所有override ID與各part層數與bio-stalk完全相容；保留每part兩層。採集/捕獲按既有stalk，不稱不可捕獲菌床。",
+   "status": "planned-not-accepted"
+  },
+  {
+   "id": "K08",
+   "batch": "monsters",
+   "name": "斷穗",
+   "english": "Crownfall Stalk",
+   "plain": "柱心移到穗冠、失去感官；散酸更遠，獨核更脆。",
+   "main": "content/base/monsters/exk-crownfall.json",
+   "files": [
+    "content/base/monsters/exk-crownfall.json",
+    "content/base/abilities/exk-crownfall.json"
+   ],
+   "showcases": [
+    "content/base/scenarios/exk-split-roots.json"
+   ],
+   "referenceTemplates": [
+    "content/base/monsters/stalk-c.json",
+    "content/base/bodyplans/mycel-stalk.json",
+    "content/base/abilities/kx-spore-fog.json",
+    "content/base/effects/mx-heart-breach.json"
+   ],
+   "attachment": {
+    "species": "species/stalk",
+    "bodyPlan": "bodyplan/mycel-stalk"
+   },
+   "designIntent": {
+    "name": "酸穗散落",
+    "mode": "activated",
+    "target": "enemy ball range2–5 radius1 LOS",
+    "costAP": 4,
+    "packets": "acid12",
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "較長距離散酸，min2留下近身空檔；原root-snare/spore-fog仍可用。"
+   },
+   "tradeoff": "pillar改名空心柱，functions=[cockpit]不再core，其餘不變；crown改名獨穗心，functions由sensor→[core,weaponMount]，失去感官功能，exposure1→3、chitin30→10/flesh50→30，保留chitin regen3及其他完整欄位；roots照舊。總HP450→410，單一高曝光40HP穗核取代250HP藏在柱身的核。每part兩層不變。",
+   "narrativeIntent": "柱身和粗根看來完好，穗頂卻一路灑出酸滴。獵手照舊先拆柱，白花兩輪；一名修剪工只問為何穗頂獨自向外彎，駕駛才抬起炮口。工人不是天生識破古秘，只是重看受力之處。",
+   "namingRationale": "Crownfall指穗冠散酸與易折核心的雙重代價；Stalk保留菌柱來源，不是二名怪獨稱。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。 capture驗證要求所有override ID與各part層數與bio-stalk完全相容；保留每part兩層。採集/捕獲按既有stalk，不稱不可捕獲菌床。",
+   "status": "planned-not-accepted"
+  }
+ ]
+}

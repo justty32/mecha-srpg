@@ -1,0 +1,114 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "batch",
+  "path",
+  "name",
+  "concepts",
+  "intent",
+  "template",
+  "requirements",
+  "status"
+ ],
+ "rows": [
+  {
+   "id": "S-M1",
+   "batch": "mechs",
+   "path": "content/base/scenarios/exm-crossline.json",
+   "name": "交線",
+   "concepts": [
+    "M01",
+    "M03",
+    "M04",
+    "M07"
+   ],
+   "intent": "四台攔截、定點盲擾、穿列與解縛機在同一場展示；用既有敵人，不把掛網當拖拽。",
+   "template": "content/base/scenarios/fs-04-ferry-watch.json",
+   "requirements": "保持三種射程的部署空間；M01有可射彈，M07可遭immobilized；不需要新人物。",
+   "status": "proposed-focused-validation-required"
+  },
+  {
+   "id": "S-M2",
+   "batch": "mechs",
+   "path": "content/base/scenarios/exm-cooling-window.json",
+   "name": "散燼之隙",
+   "concepts": [
+    "M02",
+    "M05",
+    "M06",
+    "M08"
+   ],
+   "intent": "近距封獵、長距月衡、扇區火雨與汲光續戰互有空檔；不是展示一招全能。",
+   "template": "content/base/scenarios/quarry-duel.json",
+   "requirements": "既有map與不同位置敵軍；charge與heat循環完整跑一回；只有既有駕駛且場內不得重複同一具名者。",
+   "status": "proposed-focused-validation-required"
+  },
+  {
+   "id": "S-P1",
+   "batch": "people",
+   "path": "content/base/scenarios/exp-four-choices.json",
+   "name": "四種選擇",
+   "concepts": [
+    "P01",
+    "P02",
+    "P03",
+    "P04"
+   ],
+   "intent": "四位新駕駛借既有機體試駕；他們的私人選擇不被勝負結算代為解決。",
+   "template": "content/base/scenarios/quarry-duel.json",
+   "requirements": "角色與機體配對用people-ready的showcaseFrame；可重播參考編隊，不宣告不同勢力真人已加入同一正式組織。",
+   "status": "proposed-focused-validation-required"
+  },
+  {
+   "id": "S-P2",
+   "batch": "people",
+   "path": "content/base/scenarios/exp-unfinished-ties.json",
+   "name": "未完的牽繫",
+   "concepts": [
+    "P05",
+    "P06",
+    "P07",
+    "P08"
+   ],
+   "intent": "家人、敵方戀人、受驚學徒與未回望的古機，都不會因一場勝利自動和好。",
+   "template": "content/base/scenarios/quarry-duel.json",
+   "requirements": "不把P08放進夸父、不借新機甲、不用未授權新人物；人物屬性與traits效果由實際加成後核。",
+   "status": "proposed-focused-validation-required"
+  },
+  {
+   "id": "S-K1",
+   "batch": "monsters",
+   "path": "content/base/scenarios/exk-four-corners.json",
+   "name": "四角試獵",
+   "concepts": [
+    "K01",
+    "K02",
+    "K03",
+    "K04"
+   ],
+   "intent": "四角清場：倒鉤反擊離身、鎖翅束敵、燼吻掃熱、背針切列；各有核或機動破綻。",
+   "template": "content/base/scenarios/fs-01-wing-lantern.json",
+   "requirements": "以BASE map/fs-01-batangas與既有玩家隊為起點；只四怪、不同射距可接敵；不是護橋8輪舊目標原封重演。建議eliminate＋敵survive30，worker可調部署和輪數。",
+   "status": "proposed-focused-validation-required"
+  },
+  {
+   "id": "S-K2",
+   "batch": "monsters",
+   "path": "content/base/scenarios/exk-split-roots.json",
+   "name": "分根試獵",
+   "concepts": [
+    "K05",
+    "K06",
+    "K07",
+    "K08"
+   ],
+   "intent": "漏燈貼身削光、副針切列；兩種菌柱一個冠上分出副核，一個把核集中穗頂，拆解次序不同。",
+   "template": "content/base/scenarios/fs-06-reed-knot.json",
+   "requirements": "以BASE map/fs-06-five-lakes為起點，展示K07柱冠雙核與K08穗頂獨核反差。可用既有energy/thermal武器；一個可確認target核心的killTarget或eliminate，不新增腳本機制。",
+   "status": "proposed-focused-validation-required"
+  }
+ ]
+}

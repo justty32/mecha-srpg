@@ -1,0 +1,410 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "category",
+  "slug",
+  "name",
+  "english",
+  "grade",
+  "plain",
+  "files",
+  "templates",
+  "bodyPlan",
+  "loadout",
+  "innate",
+  "model",
+  "intent",
+  "story",
+  "nearest",
+  "distinction",
+  "sceneDifference",
+  "requirements",
+  "status"
+ ],
+ "rows": [
+  {
+   "id": "M01",
+   "category": "mech",
+   "slug": "exm-ix12",
+   "name": "IX-12",
+   "english": "Hinge 12",
+   "grade": "D",
+   "plain": "短矢定住敵機，再貼近楔刃；低價輪座放棄厚甲，不能站著換命。",
+   "files": [
+    "content/base/frames/exm-ix12.json",
+    "content/base/world/models/exm-ix12.json"
+   ],
+   "templates": [
+    "content/base/frames/wm-r7-bw08.json",
+    "content/base/world/models/ix-wain-01.json"
+   ],
+   "bodyPlan": "bodyplan/m2-wheel-d",
+   "loadout": {
+    "main-gun": "component/fw-wedge-blade",
+    "side-tool": "component/fw-ankle-pin"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/universal-ironsword",
+    "maker": "generic",
+    "requires": [
+     "model/ix-wain-01"
+    ],
+    "availableFrom": {
+     "month": 3
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 5
+   },
+   "intent": "D級有限矢定身＋近身低AP點殺；不帶自守，與BW-08單刃自守、IX-08冷卻後援不同。",
+   "story": "小獵團替巡夜新手買的廉價攔截改型；有人堅持把第一張擊毀牌釘在機上，搭班者卻把牌轉向內側，兩人仍得共用同一座艙。",
+   "nearest": [
+    "content/base/frames/wm-r7-bw08.json"
+   ],
+   "distinction": "D級有限矢定身＋近身低AP點殺；不帶自守，與BW-08單刃自守、IX-08冷卻後援不同。",
+   "sceneDifference": "BW-08為母親看見兒子；本件是共享功績的佔有慾，不寫探母、救援或同框照片。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M02",
+   "category": "mech",
+   "slug": "exm-silverring-helix",
+   "name": "銀環-G3・汲光",
+   "english": "Silverring Helix G3",
+   "grade": "C",
+   "plain": "汲光卷補回射擊餘裕，卻拖慢排燼；一旦改用鳴刃，就得重算下一次開槍。",
+   "files": [
+    "content/base/frames/exm-silverring-helix.json",
+    "content/base/world/models/exm-silverring-helix.json"
+   ],
+   "templates": [
+    "content/base/frames/selene-silverring-g2.json",
+    "content/base/world/models/selene-silverring-g2.json"
+   ],
+   "bodyPlan": "bodyplan/mx-biped-c",
+   "loadout": {
+    "right-weapon": "component/fw-shoal-light",
+    "left-weapon": "component/mx-singing-blade",
+    "system-1": "component/fa-light-reel"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/jinghai",
+    "maker": "faction/selene-whitegloves",
+    "requires": [
+     "model/selene-silverring-g2"
+    ],
+    "availableFrom": {
+     "month": 5
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 15
+   },
+   "intent": "純charge點射＋主動回光與排燼劣化，沒有實矢後備；非銀環G2被動大池或守燈遠近武器的直接換皮。",
+   "story": "月面試賣會的駕駛故意把流光射空，向買家示範低頭汲光的難堪空檔；雇主想剪掉那段，他反而留給出價最低的競標者看。",
+   "nearest": [
+    "content/base/frames/selene-silverring-g2.json"
+   ],
+   "distinction": "純charge點射＋主動回光與排燼劣化，沒有實矢後備；非銀環G2被動大池或守燈遠近武器的直接換皮。",
+   "sceneDifference": "與守燈夜班救油工、遮星自保不同；核心事件是揭露昂貴貨品弱點、放棄順利成交。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M03",
+   "category": "mech",
+   "slug": "exm-surveyor-shutter",
+   "name": "測墟-B・折鏡",
+   "english": "Surveyor Shutter B",
+   "grade": "B",
+   "plain": "它先晃亂對手的準星，再沿武器接縫點射；眼前只有一敵，無暇照顧整隊。",
+   "files": [
+    "content/base/frames/exm-surveyor-shutter.json",
+    "content/base/world/models/exm-surveyor-shutter.json"
+   ],
+   "templates": [
+    "content/base/frames/shellsoc-surveyor-b.json",
+    "content/base/world/models/shellsoc-surveyor-b.json"
+   ],
+   "bodyPlan": "bodyplan/mx-biped-b",
+   "loadout": {
+    "right-weapon": "component/fw-seam-rifle",
+    "left-weapon": "component/mx-singing-blade",
+    "sensor-mount": "component/fa-dazzle-shutter",
+    "system-1": "component/mx-frost-fins"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/many-eyes",
+    "maker": "faction/shell-society",
+    "requires": [
+     "model/shellsoc-surveyor-b"
+    ],
+    "availableFrom": {
+     "month": 6
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 40
+   },
+   "intent": "單敵accuracy/perception減益＋可瞄weaponMount且命中標記；與同燈的友軍增益、拾痕遠射偵察不同。",
+   "story": "護勘試手時，教習不肯讓後輩只打靶牌；兩台隔著廢牆換位，學生第一次贏靠的是打壞老師的掛件。老師還想加賽，學生先摘下靈目罩。",
+   "nearest": [
+    "content/base/frames/shellsoc-surveyor-b.json"
+   ],
+   "distinction": "單敵accuracy/perception減益＋可瞄weaponMount且命中標記；與同燈的友軍增益、拾痕遠射偵察不同。",
+   "sceneDifference": "不寫勘察撤退、工錢公證或問號勝神諭；勝負與師徒不肯服輸是事件主體。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M04",
+   "category": "mech",
+   "slug": "exm-swordfish-file",
+   "name": "劍魚-V5・穿列",
+   "english": "Swordfish Needlewake V5",
+   "grade": "B",
+   "plain": "舟架把敵影排成一線才發矛；近敵交給長鉤，浮架受損便難再尋下一條線。",
+   "files": [
+    "content/base/frames/exm-swordfish-file.json",
+    "content/base/world/models/exm-swordfish-file.json"
+   ],
+   "templates": [
+    "content/base/frames/thirdblade-skate-iv.json",
+    "content/base/world/models/thirdblade-swordfish-v5.json"
+   ],
+   "bodyPlan": "bodyplan/m2-keel-b",
+   "loadout": {
+    "left-weapon": "component/fw-wake-lance",
+    "right-weapon": "component/fw-shoal-hook",
+    "system-1": "component/mx-frost-fins"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/tide-fin",
+    "maker": "faction/third-blade",
+    "requires": [
+     "model/thirdblade-swordfish-v5"
+    ],
+    "availableFrom": {
+     "month": 6
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 40
+   },
+   "intent": "2–6格line穿刺＋1–2格單體補位；與鰩魚雙刃/拘束、回舷遠射/近刃、留潮單敵定身均不同；沒有推拉位移。",
+   "story": "爭旗交鋒時，駕駛為讓貫矛穿列屢次退開，隊友罵他只肯挑漂亮角度；他最後放棄一發好線，讓搭檔自己贏下眼前那場近鬥。",
+   "nearest": [
+    "content/base/frames/thirdblade-skate-iv.json"
+   ],
+   "distinction": "2–6格line穿刺＋1–2格單體補位；與鰩魚雙刃/拘束、回舷遠射/近刃、留潮單敵定身均不同；沒有推拉位移。",
+   "sceneDifference": "非斷纜/撤船救人；欲望是追求漂亮技法，代價是不能壟斷搭檔的勝負。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M05",
+   "category": "mech",
+   "slug": "exm-anvil-clasp",
+   "name": "鐵砧-V型・合鉗",
+   "english": "Anvil Clasp V",
+   "grade": "A",
+   "plain": "合鉗與重斧分占雙臂；能鎖近敵，也能劈厚甲，卻付不起無休止的兩頭兼顧。",
+   "files": [
+    "content/base/frames/exm-anvil-clasp.json",
+    "content/base/world/models/exm-anvil-clasp.json"
+   ],
+   "templates": [
+    "content/base/frames/anvil-gatewarden.json",
+    "content/base/world/models/anvil-iv-ram.json"
+   ],
+   "bodyPlan": "bodyplan/mx-fortress-a",
+   "loadout": {
+    "left-weapon": "component/fw-reef-jaw",
+    "right-weapon": "component/fw-breaktide-axe",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-cold-spring"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/broken-arm",
+    "maker": "faction/anvil-hunters",
+    "requires": [
+     "model/anvil-iv-ram"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 100
+   },
+   "intent": "A近距控制／重斬全回合資源抉擇：4AP鉗＋5AP斧，雙招CD2；與封門架砲、破城槌樁錘高熱連打不同。",
+   "story": "鐵砧一支小隊以生擒價接下活捉委託，帶隊人卻偏愛重斧留下的斷面；副駕拿空拘束架擋住他的領賞路，兩人把斧卸到岸上才出第二趟。",
+   "nearest": [
+    "content/base/frames/anvil-gatewarden.json"
+   ],
+   "distinction": "A近距控制／重斬全回合資源抉擇：4AP鉗＋5AP斧，雙招CD2；與封門架砲、破城槌樁錘高熱連打不同。",
+   "sceneDifference": "不冒稱定身即活捕，不用被救者證詞結帳；主體是嗜勝與工作目的的自我衝突。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M06",
+   "category": "mech",
+   "slug": "exm-longspear-meridian",
+   "name": "長槍-V8・月衡",
+   "english": "Longspear Meridian V8",
+   "grade": "A",
+   "plain": "分翼長槍只求一發重矢；落近了就拔刃，斷翼還會一起失去那邊的武器。",
+   "files": [
+    "content/base/frames/exm-longspear-meridian.json",
+    "content/base/world/models/exm-longspear-meridian.json"
+   ],
+   "templates": [
+    "content/base/frames/longspear-piercing-cloud.json",
+    "content/base/world/models/longspear-v7.json"
+   ],
+   "bodyPlan": "bodyplan/m2-splitwing-a",
+   "loadout": {
+    "left-weapon": "component/fw-moon-balance",
+    "right-weapon": "component/mx-singing-blade",
+    "system-1": "component/fa-light-reel",
+    "system-2": "component/mx-frost-fins"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/universal-longspear",
+    "maker": "generic",
+    "requires": [
+     "model/longspear-v7"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 100
+   },
+   "intent": "飛行分翼部位風險＋min3長弓CD2＋主動回光；非穿雲雙遠射/近矛，也非虹使壓制/偵察；沒有免費遠跳。",
+   "story": "公刻工坊把這台弓機借給從不射滿弦的老手。展示那天他讓買家自己選靶，射穿後沒有掌聲，只有另一位弓手要求借機；兩人為誰先上艙爭到天黑。",
+   "nearest": [
+    "content/base/frames/longspear-piercing-cloud.json"
+   ],
+   "distinction": "飛行分翼部位風險＋min3長弓CD2＋主動回光；非穿雲雙遠射/近矛，也非虹使壓制/偵察；沒有免費遠跳。",
+   "sceneDifference": "避開比拼獵獲或守燈；以手藝互相激發又爭用一台昂貴機體，非重演同燈費用之爭。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M07",
+   "category": "mech",
+   "slug": "exm-bulwark-unclasp",
+   "name": "堅盾-II型・解扣",
+   "english": "Bulwark Unclasp II",
+   "grade": "C",
+   "plain": "解扣型不求更厚，受網時能自行脫扣；兩次用盡，仍得靠同伴替它拆圍。",
+   "files": [
+    "content/base/frames/exm-bulwark-unclasp.json",
+    "content/base/world/models/exm-bulwark-unclasp.json"
+   ],
+   "templates": [
+    "content/base/frames/bulwark-ii.json",
+    "content/base/world/models/bulwark-ii.json"
+   ],
+   "bodyPlan": "bodyplan/mx-biped-c",
+   "loadout": {
+    "left-weapon": "component/mx-singing-blade",
+    "right-weapon": "component/mx-rune-rifle",
+    "armor-mount": "component/fa-slip-clasp"
+   },
+   "innate": [
+    "ability/mx-guard-stance"
+   ],
+   "model": {
+    "lineage": "lineage/universal-bulwark",
+    "maker": "generic",
+    "requires": [
+     "model/bulwark-ii"
+    ],
+    "availableFrom": {
+     "month": 5
+    },
+    "generic": true,
+    "exportPolicy": "open",
+    "role": "variant",
+    "cost": 15
+   },
+   "intent": "C盾列加入限2次清immobilized自救，放棄厚甲/煙/排燼；與渡口持守、留潮給敵定身反向，不能清普通debuff或放開他人。",
+   "story": "輪守隊把會脫網的機配給總想獨闖的老兵，他連用完兩次後被迫叫平日不願搭檔的新手靠過來；第二日還是拒絕一起吃飯，卻把出勤牌掛在相鄰位置。",
+   "nearest": [
+    "content/base/frames/bulwark-ii.json"
+   ],
+   "distinction": "C盾列加入限2次清immobilized自救，放棄厚甲/煙/排燼；與渡口持守、留潮給敵定身反向，不能清普通debuff或放開他人。",
+   "sceneDifference": "不是救人美德或母子相認；承認戰術依賴不等於私交和解，留人物棱角。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  },
+  {
+   "id": "M08",
+   "category": "mech",
+   "slug": "exm-redeemer-ashrain",
+   "name": "燼雨-贖垢者",
+   "english": "Redeemer Ashrain",
+   "grade": "A",
+   "plain": "燼雨落在中距敵群，近身只餘一刃；爐口冷下來以前，祈禱也催不出第二場雨。",
+   "files": [
+    "content/base/frames/exm-redeemer-ashrain.json",
+    "content/base/world/models/exm-redeemer-ashrain.json"
+   ],
+   "templates": [
+    "content/base/frames/tidefaith-censer-iv.json",
+    "content/base/world/models/tidefaith-redeemer-3.json"
+   ],
+   "bodyPlan": "bodyplan/mx-ace-a",
+   "loadout": {
+    "left-weapon": "component/fw-cinder-rain",
+    "right-weapon": "component/mx-singing-blade",
+    "system-1": "component/fa-light-reel",
+    "system-2": "component/mx-frost-fins"
+   },
+   "innate": [],
+   "model": {
+    "lineage": "lineage/tide-robe",
+    "maker": "faction/tide-faith",
+    "requires": [
+     "model/tidefaith-redeemer-3"
+    ],
+    "availableFrom": {
+     "month": 8
+    },
+    "generic": false,
+    "exportPolicy": "restricted",
+    "role": "variant",
+    "cost": 100
+   },
+   "intent": "2–5格ball thermal＋suppressed，CD3與charge20/heat28雙資源；非行香近身淨化/吐息、渡厄鋸與解拘；不留地面火。",
+   "story": "教團護衛以新爐清掉占據空庭的獸，壁畫也一同焦黑；他拒絕畫師替神像補上新臉，只把自己機上的覆甲交給畫師，說先畫那天真正站在這裡的人。",
+   "nearest": [
+    "content/base/frames/tidefaith-censer-iv.json"
+   ],
+   "distinction": "2–5格ball thermal＋suppressed，CD3與charge20/heat28雙資源；非行香近身淨化/吐息、渡厄鋸與解拘；不留地面火。",
+   "sceneDifference": "不宣判教義真偽，不處理迦梨；衝突是宗教圖像與親歷者誰值得被畫，不是救濟/紀錄責任。",
+   "requirements": "保持本體血統；雙資源武器配charge池；被動附件不作機制賣點；所有槽尺寸、mass、射程、AI效果需實測；不得改舊件。",
+   "status": "ready-for-lead"
+  }
+ ]
+}

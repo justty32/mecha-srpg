@@ -1,0 +1,425 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "category",
+  "slug",
+  "name",
+  "english",
+  "grade",
+  "species",
+  "bodyPlan",
+  "files",
+  "templates",
+  "ability",
+  "partsTrade",
+  "effect",
+  "ecologyStory",
+  "nearest",
+  "distinction",
+  "requirements",
+  "status",
+  "plain"
+ ],
+ "rows": [
+  {
+   "id": "K01",
+   "category": "monster",
+   "slug": "exk-hookback",
+   "name": "倒鉤",
+   "english": "Hookback Brinepin",
+   "grade": "D",
+   "species": "species/brinepin",
+   "bodyPlan": "bodyplan/insect-brinepin",
+   "files": [
+    "content/base/monsters/exk-hookback.json",
+    "content/base/abilities/exk-hookback.json"
+   ],
+   "templates": [
+    "content/base/monsters/brinepin-d.json",
+    "content/base/bodyplans/insect-brinepin.json",
+    "content/base/abilities/mx-singing-riposte.json",
+    "content/base/abilities/kx-brinepin-prick.json"
+   ],
+   "ability": {
+    "name": "倒刺",
+    "mode": "reaction",
+    "trigger": {
+     "kind": "enemyLeavesAdjacent",
+     "oncePerTurn": true
+    },
+    "target": "enemy unit range1",
+    "costAP": 0,
+    "packets": "pierce6",
+    "cooldown": 0,
+    "tactics": {
+     "attack": 0.5
+    },
+    "use": "敵機離開鄰格時反擊一次；不是進入鄰格、不是任何移動都觸發。"
+   },
+   "partsTrade": "heart改名翻腹節，exposure1→2，chitin10→5；needle改名倒鉤刺，chitin10→5，保留flesh20。總HP110→100；核更易中、甲更薄，換離身反擊。",
+   "effect": null,
+   "ecologyStory": "退潮後沿繫纜處附著，倒向的刺在纜索鬆動時才掀起。第一次趕牠的機甲轉身吃了一刺；下一班駕駛沒有比誰膽大，停著把鹽針清掉，再讓搬貨的人穿過。只寫可見形態與反應，不給蟲報復心理。",
+   "nearest": [
+    "content/base/monsters/brinepin-d.json",
+    "content/base/monsters/bent-needle-d.json"
+   ],
+   "distinction": "既有鹽針是低階遠刺；本形態把撤離鄰格變成選擇，代價是翻腹核暴露。折針單點瞄攻具，沒有這個移動時機。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "倒向尖刺反擊離身敵機，翻腹核也更容易挨打。"
+  },
+  {
+   "id": "K02",
+   "category": "monster",
+   "slug": "exk-winglock",
+   "name": "鎖翅",
+   "english": "Winglock Lantern Keel",
+   "grade": "C",
+   "species": "species/lantern-keel",
+   "bodyPlan": "bodyplan/insect-lantern-keel",
+   "files": [
+    "content/base/monsters/exk-winglock.json",
+    "content/base/abilities/exk-winglock.json"
+   ],
+   "templates": [
+    "content/base/monsters/lantern-keel-c.json",
+    "content/base/bodyplans/insect-lantern-keel.json",
+    "content/base/abilities/kx-reed-lace-bind.json",
+    "content/base/effects/mx-netted.json"
+   ],
+   "ability": {
+    "name": "合翼鎖",
+    "mode": "activated",
+    "target": "enemy unit range1–2 LOS",
+    "costAP": 3,
+    "packets": "pierce8",
+    "effects": [
+     "effect/mx-netted"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "disable": 1,
+     "attack": 0.5
+    },
+    "use": "兩回合縛網／immobilized效果；射程短且CD3，不拉人、不自動捕獲。"
+   },
+   "partsTrade": "wing-left改名鉗翼，functions由locomotion改為manipulator+weaponMount；wing-right成唯一locomotion，feet原本不帶locomotion。heart改名裸燈節exposure2→3、chitin20→10；wing-left chitin20→10、wing-right chitin30→20，總HP400→370。失去一份機動冗餘並暴露核。",
+   "effect": null,
+   "ecologyStory": "在窄巷冷卻管旁合攏一側硬翼，卡住從旁穿過的腳架；翅面磨出的亮痕比燈色更先被人發現。清巷人第一次選擇停機等縛束退去，第二次繞向裸燈節開火。不要寫牠們在商議包抄。",
+   "nearest": [
+    "content/base/species/wm-r7-folded-lamp.json",
+    "content/base/species/lantern-keel.json"
+   ],
+   "distinction": "疊燈以俯衝＋護友替換原酸攻；本件保留酸攻／護友，再增加近距束縛，以左翼改攻具、核外露付款。不是把疊燈換名。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "左翼變鉗鎖住近敵，只餘右翼支撐機動。"
+  },
+  {
+   "id": "K03",
+   "category": "monster",
+   "slug": "exk-cinder-muzzle",
+   "name": "燼吻",
+   "english": "Cinder Muzzle Hound",
+   "grade": "C",
+   "species": "species/hound",
+   "bodyPlan": "bodyplan/quadruped-hound",
+   "files": [
+    "content/base/monsters/exk-cinder-muzzle.json",
+    "content/base/abilities/exk-cinder-muzzle.json"
+   ],
+   "templates": [
+    "content/base/monsters/hound-c.json",
+    "content/base/bodyplans/quadruped-hound.json",
+    "content/base/abilities/kx-foam-jaw-foam.json",
+    "content/base/abilities/kx-burrow-flank.json"
+   ],
+   "ability": {
+    "name": "燼息",
+    "mode": "activated",
+    "target": "enemy cone range1–3 radius1 LOS",
+    "costAP": 4,
+    "packets": "thermal12",
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "對緊聚目標及熱弱菌體；AP4/CD3不能每輪掃場。不增加移動、不按酸息改色來充當整體差異。"
+   },
+   "partsTrade": "left-shovel/right-shovel保留manipulator但移除locomotion；hindlegs成為唯一locomotion。head改名燼吻囊，functions保留sensor並加weaponMount，chitin15→5、flesh30→25；spine chitin55→35；heart exposure1→2。總HP420→385。射域換來單一後腿斷即失去機動、可捕獲的明確破綻。",
+   "effect": null,
+   "ecologyStory": "嘴邊積著乾燼，沿菌毯邊緣留下短小焦痕；護送者想把牠趕向菌群省一場仗，牠卻回身燒向堵住退路的機甲。人得自己處理後腿，不能把野獸當聽令火把。物種原有蛻變條目不另造新階級。",
+   "nearest": [
+    "content/base/species/foam-jaw.json",
+    "content/base/species/hound.json",
+    "content/base/species/wl-gravel-mane.json"
+   ],
+   "distinction": "泡顎原是酸扇面；本件保留掘犬點攻／屍食，新增熱扇面但前肢全改操作肢、只餘一組機動部位。差異包含可捕獲弱點與部位路線，不只傷害型別。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "前肢改作操作肢，換得燼息；唯一後腿成為破綻。"
+  },
+  {
+   "id": "K04",
+   "category": "monster",
+   "slug": "exk-spine-rack",
+   "name": "背針",
+   "english": "Spine Rack Shelf Back",
+   "grade": "B",
+   "species": "species/shelf-back",
+   "bodyPlan": "bodyplan/beast-shelf-back",
+   "files": [
+    "content/base/monsters/exk-spine-rack.json",
+    "content/base/abilities/exk-spine-rack.json"
+   ],
+   "templates": [
+    "content/base/monsters/shelf-back-b.json",
+    "content/base/bodyplans/beast-shelf-back.json",
+    "content/base/abilities/kx-wick-mat-seep.json",
+    "content/base/abilities/kx-shelf-back-shelter.json"
+   ],
+   "ability": {
+    "name": "背針穿列",
+    "mode": "activated",
+    "target": "enemy line range3–6 LOS",
+    "costAP": 4,
+    "packets": "pierce20",
+    "cooldown": 2,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "遠距穿列，min3留下貼身空檔；仍有原推擊與護身技能，不能說它失去所有近戰。"
+   },
+   "partsTrade": "back改名開縫針背並加weaponMount，chitin220→110、flesh100→70；heart改名露脊心exposure0.5→1.5。總HP1000→860，仍在B帶。護隊能力不刪，但厚背與藏心大幅交換成遠線火力。",
+   "effect": null,
+   "ecologyStory": "針骨從薄背縫長出，牠偏向貼著堤壁停住，背對空地時不斷轉身。獵手為避成列射線散開後，才發現護在牠旁的小蟲仍被遮住；勝法不是遠處等牠變成不會近戰的靶子。",
+   "nearest": [
+    "content/base/species/needle-rack.json",
+    "content/base/species/shelf-back.json"
+   ],
+   "distinction": "針架是雙遠攻射手；本件從護友厚背獸換成最低射程線攻，保留護友而薄甲露心，戰術取捨不同。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "厚背長出列射骨針，露出的心與薄甲不再耐打。"
+  },
+  {
+   "id": "K05",
+   "category": "monster",
+   "slug": "exk-lamp-leech",
+   "name": "漏燈",
+   "english": "Lamp Leech Clinger",
+   "grade": "C",
+   "species": "species/breakwater-clinger",
+   "bodyPlan": "bodyplan/alien-breakwater-clinger",
+   "files": [
+    "content/base/monsters/exk-lamp-leech.json",
+    "content/base/abilities/exk-lamp-leech.json",
+    "content/base/effects/exk-light-leak.json"
+   ],
+   "templates": [
+    "content/base/monsters/breakwater-clinger-c.json",
+    "content/base/bodyplans/alien-breakwater-clinger.json",
+    "content/base/abilities/kx-breakwater-clinger-rend.json",
+    "content/base/effects/m2-relieved.json"
+   ],
+   "ability": {
+    "name": "啜光",
+    "mode": "activated",
+    "target": "enemy unit range1 LOS",
+    "costAP": 3,
+    "packets": "energy12",
+    "effects": [
+     "effect/exk-light-leak"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "attack": 0.8,
+     "disable": 1
+    },
+    "use": "接觸耗掉目標15 charge；沒有charge池就只有傷害，不轉成施術者資源。"
+   },
+   "partsTrade": "hook-foot改名啜光鉤，functions由locomotion改為manipulator+weaponMount；trailing-foot成唯一locomotion。offset-core exposure0.5→1.5；left-mantle既有chitin層energy resist0.3→0，其餘resist完整保留。總HP420不變，少一機動支點且薄於能量攻。",
+   "effect": {
+    "slug": "exk-light-leak",
+    "name": "漏光",
+    "scope": "mech",
+    "clock": "ownerTurns1",
+    "stack": "refresh",
+    "contribs": [],
+    "onApply": {
+     "do": "pool",
+     "owner": "mech",
+     "pool": "charge",
+     "delta": -15
+    },
+    "tags": [
+     "debuff"
+    ]
+   },
+   "ecologyStory": "廢船拆燈時，機甲剛點亮武器，鉤足便從船側探入接縫。拆船人關燈不代表安全，仍得用空手工具把鉤足撬開；同伴切向拖足，使牠在重新點燈前留在原地。不得把外殼當智慧吸能電池。",
+   "nearest": [
+    "content/base/species/breakwater-clinger.json",
+    "content/base/species/wm-r7-riven-torch.json"
+   ],
+   "distinction": "裂炬是改遠攻的異形；本件射程1、削charge不補自己，並將一足改成啜光器，失去多足冗餘。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "鉤足貼近啜光，拖足一斷便再難追機甲。"
+  },
+  {
+   "id": "K06",
+   "category": "monster",
+   "slug": "exk-forkneedle",
+   "name": "雙針",
+   "english": "Forkneedle",
+   "grade": "D",
+   "species": "species/bent-needle",
+   "bodyPlan": "bodyplan/alien-bent-needle",
+   "files": [
+    "content/base/monsters/exk-forkneedle.json",
+    "content/base/abilities/exk-forkneedle.json"
+   ],
+   "templates": [
+    "content/base/monsters/bent-needle-d.json",
+    "content/base/bodyplans/alien-bent-needle.json",
+    "content/base/abilities/kx-bent-needle-pick.json",
+    "content/base/abilities/kx-wick-mat-seep.json"
+   ],
+   "ability": {
+    "name": "岔針穿隙",
+    "mode": "activated",
+    "target": "enemy line range2–4 LOS",
+    "costAP": 3,
+    "packets": "pierce5",
+    "cooldown": 2,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "低傷線攻對兩個成列敵機；原瞄攻具單點射仍在，不宣稱同一動作自動射兩次。"
+   },
+   "partsTrade": "plate改名裸副針，functions由空改為weaponMount，layers改為單一flesh20且structural true，原chitin與energy0.2抗性消失；heart organ30→20，其餘原樣，總HP120→110。護片長成副針，甲面交換為暴露肉質攻具。",
+   "effect": null,
+   "ecologyStory": "副針彎在薄皮外，兩條出針孔留在相鄰艙門上。修門的人把兩扇新門錯開堆放，還被雇主嫌不整齊；下一輪針痕只落在一扇上。不是證言翻案、表冊錯誤或讓受傷者再演一次。",
+   "nearest": [
+    "content/base/species/bent-needle.json",
+    "content/base/species/brinepin.json"
+   ],
+   "distinction": "原折針單體瞄攻具，本形態多一個低傷線型選擇、失去護片和核厚度；不是提升原單點傷害。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。",
+   "status": "ready-for-lead",
+   "plain": "護片長成裸副針，可穿列，卻失去遮身的甲。"
+  },
+  {
+   "id": "K07",
+   "category": "monster",
+   "slug": "exk-smotherwick",
+   "name": "悶燈",
+   "english": "Smotherwick Stalk",
+   "grade": "C",
+   "species": "species/stalk",
+   "bodyPlan": "bodyplan/mycel-stalk",
+   "files": [
+    "content/base/monsters/exk-smotherwick.json",
+    "content/base/abilities/exk-smotherwick.json",
+    "content/base/effects/exk-smothered.json"
+   ],
+   "templates": [
+    "content/base/monsters/stalk-c.json",
+    "content/base/bodyplans/mycel-stalk.json",
+    "content/base/abilities/kx-spore-fog.json",
+    "content/base/effects/mx-heart-breach.json"
+   ],
+   "ability": {
+    "name": "悶燼團",
+    "mode": "activated",
+    "target": "enemy ball range1–2 radius1 LOS",
+    "costAP": 3,
+    "packets": "thermal4",
+    "effects": [
+     "effect/exk-smothered"
+    ],
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 0.8,
+     "disable": 1
+    },
+    "use": "小熱團命中加12 heat，非每回合燃燒；無heat池只受4熱傷。繼承root-snare/spore-fog，不再繼承酸線；必測效果不會越界造池。"
+   },
+   "partsTrade": "pillar仍為core+cockpit，改名空心主柱：chitin90→60/flesh160→120；roots保留原locomotion、不加core，chitin40→20/flesh80→60；crown改名冠副結，functions=[sensor,core]，chitin30→20/flesh50→40。三處chitin移除regen，兩層其餘欄位完整保留。總HP450→320，柱與冠雙核需清兩處，但失自癒外皮且更脆；非核roots可打斷並保留兩核完成捕獲。全部part IDs/層數與bio-stalk相容。",
+   "effect": {
+    "slug": "exk-smothered",
+    "name": "悶燼",
+    "scope": "mech",
+    "clock": "ownerTurns1",
+    "stack": "refresh",
+    "contribs": [],
+    "onApply": {
+     "do": "pool",
+     "owner": "mech",
+     "pool": "heat",
+     "delta": 12
+    },
+    "tags": [
+     "debuff"
+    ]
+   },
+   "ecologyStory": "低矮菌柱的冠副結鼓起，主柱下冒出悶熱小團。工人以為挑掉大柱就能搬開菌塊，冠上副結仍會吐出下一團；他們退一步重看，逐處清完才鋪新地板。只稱局部戰鬥節點，不宣稱整個地下菌群滅絕。",
+   "nearest": [
+    "content/base/species/stalk.json",
+    "content/base/species/wick-mat.json",
+    "content/base/species/reed-lace.json"
+   ],
+   "distinction": "原菌柱單核、根可機動、冠可感知；本件冠也成核、失去全體外皮再生並減至320HP，新增短熱團催過熱。roots保持非核機動，避免捕獲同需intact/broken。不依mycel-bed不相容捕獲模板。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。 capture驗證要求所有override ID與各part層數與bio-stalk完全相容；保留每part兩層。採集/捕獲按既有stalk，不稱不可捕獲菌床。",
+   "status": "ready-for-lead",
+   "plain": "柱冠成為雙核、外皮失去自癒；悶燼團迫人散熱。"
+  },
+  {
+   "id": "K08",
+   "category": "monster",
+   "slug": "exk-crownfall",
+   "name": "斷穗",
+   "english": "Crownfall Stalk",
+   "grade": "C",
+   "species": "species/stalk",
+   "bodyPlan": "bodyplan/mycel-stalk",
+   "files": [
+    "content/base/monsters/exk-crownfall.json",
+    "content/base/abilities/exk-crownfall.json"
+   ],
+   "templates": [
+    "content/base/monsters/stalk-c.json",
+    "content/base/bodyplans/mycel-stalk.json",
+    "content/base/abilities/kx-spore-fog.json",
+    "content/base/effects/mx-heart-breach.json"
+   ],
+   "ability": {
+    "name": "酸穗散落",
+    "mode": "activated",
+    "target": "enemy ball range2–5 radius1 LOS",
+    "costAP": 4,
+    "packets": "acid12",
+    "cooldown": 3,
+    "tactics": {
+     "attackArea": 1
+    },
+    "use": "較長距離散酸，min2留下近身空檔；原root-snare/spore-fog仍可用。"
+   },
+   "partsTrade": "pillar改名空心柱，functions=[cockpit]不再core，其餘不變；crown改名獨穗心，functions由sensor→[core,weaponMount]，失去感官功能，exposure1→3、chitin30→10/flesh50→30，保留chitin regen3及其他完整欄位；roots照舊。總HP450→410，單一高曝光40HP穗核取代250HP藏在柱身的核。每part兩層不變。",
+   "effect": null,
+   "ecologyStory": "柱身和粗根看來完好，穗頂卻一路灑出酸滴。獵手照舊先拆柱，白花兩輪；一名修剪工只問為何穗頂獨自向外彎，駕駛才抬起炮口。工人不是天生識破古秘，只是重看受力之處。",
+   "nearest": [
+    "content/base/species/stalk.json",
+    "content/base/species/reed-lace.json",
+    "content/base/species/wl-salt-shroud.json"
+   ],
+   "distinction": "原菌柱250HP柱心移到失去sensor的40HP穗冠，換遠距酸AoE；根機動保留。與葦織三核、鹽幕柱式控制、同批悶燈雙核全不同，不再使用mycel-bed不相容part。",
+   "requirements": "只新增MonsterDef、招式及列明效果，不改既有species/bodyplan/bio/corpse。D–B不得寫name或epithet；俗稱置etymology及partsOverride.name，nameEn說明形態非獨名。extraAbilities為追加、不能刪繼承招；partsOverride只能覆寫現有part ID，layers/functions整欄覆寫。不得宣稱打斷攻具自動封招、鑽地招真的位移或翼能飛行。捕獲後回到既有species.capture.frame，不保留變體新招／形態。全部cost只用既有person AP；produces不造heat/charge池。各件必實測新招可用、部位取捨與捕獲／採集不退化。 capture驗證要求所有override ID與各part層數與bio-stalk完全相容；保留每part兩層。採集/捕獲按既有stalk，不稱不可捕獲菌床。",
+   "status": "ready-for-lead",
+   "plain": "柱心移到穗冠、失去感官；散酸更遠，獨核更脆。"
+  }
+ ]
+}
