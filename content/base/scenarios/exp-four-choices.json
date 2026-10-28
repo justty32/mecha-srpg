@@ -1,0 +1,105 @@
+{
+  "id": "scenario/exp-four-choices",
+  "name": "各選其路・暫借四席",
+  "nameEn": "Four Chosen Paths",
+  "etymology": "四位人物的獨立展示編成；不把相鄰的座位寫成共同本傳。",
+  "brief": "四名受雇駕駛暫借同旗迎戰巢群。這是獨立展示，不記入人物共同經歷；清除敵獸才可獲勝，全員倒下即告失敗。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/ix-ii",
+          "persons": [
+            {
+              "id": "person/exp-ye-zhen",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/thirdblade-swordfish-iii",
+          "persons": [
+            {
+              "id": "person/exp-miyasaka-gaku",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bio-hound",
+          "persons": [
+            {
+              "id": "person/exp-rida-amin",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone",
+          "components": {
+            "restraint": "component/shell-pin-restraint",
+            "cockpit": "component/fm-yoke-palm"
+          }
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "persons": [
+            {
+              "id": "person/exp-omar-faris",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102801
+}

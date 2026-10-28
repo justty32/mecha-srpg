@@ -1,0 +1,88 @@
+{
+  "id": "person/exp-adela-miro",
+  "name": "阿黛拉",
+  "nameEn": "Adela Miro",
+  "etymology": "Adela Miro 為本名的羅馬字寫法；月之暗面短雇的精準射手。",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 60,
+    "evasion": 7,
+    "resolve": 45,
+    "initiative": 6,
+    "perception": 8,
+    "control": 43
+  },
+  "traits": [
+    "effect/trait-steady-hands",
+    "effect/ax-trait-water-shy"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 54,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 54,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "keep-oaths",
+      "survive"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "expansion-1028"
+  ]
+}

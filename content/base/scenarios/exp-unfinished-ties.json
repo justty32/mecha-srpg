@@ -1,0 +1,101 @@
+{
+  "id": "scenario/exp-unfinished-ties",
+  "name": "未了的牽繫・暫借四席",
+  "nameEn": "Unfinished Ties",
+  "etymology": "四位人物的獨立展示編成；不把相鄰的座位寫成共同本傳。",
+  "brief": "四名受雇駕駛暫借同旗迎戰巢群。這是獨立展示，不記入人物共同經歷；清除敵獸才可獲勝，全員倒下即告失敗。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/exp-sanya-iliev",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/exp-adela-miro",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/ix-iii",
+          "persons": [
+            {
+              "id": "person/exp-luan-mendes",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/ix-ii",
+          "persons": [
+            {
+              "id": "person/exp-liang-ran",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102802
+}

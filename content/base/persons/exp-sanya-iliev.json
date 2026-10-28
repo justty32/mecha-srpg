@@ -1,0 +1,87 @@
+{
+  "id": "person/exp-sanya-iliev",
+  "name": "珊雅",
+  "nameEn": "Sanya Iliev",
+  "etymology": "Sanya Iliev 為本名的羅馬字寫法；往返孟買門的自由護運駕駛。",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 52,
+    "evasion": 8,
+    "resolve": 57,
+    "initiative": 6,
+    "perception": 6,
+    "control": 48
+  },
+  "traits": [
+    "effect/ax-trait-names-before-orders"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 61,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 61,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "protect-kin",
+      "break-chains"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "expansion-1028"
+  ]
+}

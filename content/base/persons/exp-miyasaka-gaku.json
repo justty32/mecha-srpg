@@ -1,0 +1,87 @@
+{
+  "id": "person/exp-miyasaka-gaku",
+  "name": "宮坂 岳",
+  "nameEn": "Miyasaka Gaku",
+  "etymology": "Miyasaka Gaku 為本名的羅馬字寫法；第三刃外圍短雇駕駛、地方比武的收錢敗手。",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 57,
+    "evasion": 12,
+    "resolve": 43,
+    "initiative": 8,
+    "perception": 6,
+    "control": 42
+  },
+  "traits": [
+    "effect/ax-trait-fate-cheater"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 58,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 58,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "outwit-fate",
+      "survive"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "expansion-1028"
+  ]
+}

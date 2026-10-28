@@ -1,0 +1,239 @@
+{
+ "contract": "content-batch/1",
+ "id": "expansion-1028-characters",
+ "mode": "add",
+ "status": "accepted",
+ "goal": "八個帶未解個人衝突的人類人物，對應可用pilot與兩展示情境",
+ "author": {
+  "agent": "characters_team_sol",
+  "model": "gpt-6.1-sol",
+  "reasoning": "xhigh",
+  "line": "expansion-1028-characters",
+  "subagents": 0
+ },
+ "planning": {
+  "model": "gpt-6-astra",
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-plan/people-ready.json"
+ },
+ "lead": "lead_mecha_content_expansion",
+ "date": "2026-10-28",
+ "base": "c09b026919eeee03cde68c0f1eb0d289ad4cbe7c",
+ "reportDir": "wf/workflows/dispatch/handoffs/expansion-1028-characters",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-characters/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/common/user/working.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/ancient-people.md",
+   "wf/workflows/content/lore-text.md",
+   "wf/workflows/content/playtest.md",
+   "content/lore/style.md",
+   "content/lore/style/people.md",
+   "content/lore/README.md"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "kinds": [
+   "base/persons",
+   "lore/characters",
+   "base/scenarios"
+  ],
+  "namePrefix": {
+   "*": "exp-"
+  }
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "scenario/rift-edge-nest"
+  ],
+  "waivers": [
+   {
+    "id": "scenario/exp-four-choices",
+    "flag": "winrate",
+    "reason": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+   },
+   {
+    "id": "scenario/exp-unfinished-ties",
+    "flag": "winrate",
+    "reason": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+   }
+  ]
+ },
+ "playtest": {
+  "required": 2,
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-characters/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/expansion-1028-characters/mcp-log"
+ },
+ "plannedFiles": [
+  "content/base/persons/exp-ye-zhen.json",
+  "content/lore/characters/exp-ye-zhen.json",
+  "content/base/persons/exp-miyasaka-gaku.json",
+  "content/lore/characters/exp-miyasaka-gaku.json",
+  "content/base/persons/exp-rida-amin.json",
+  "content/lore/characters/exp-rida-amin.json",
+  "content/base/persons/exp-omar-faris.json",
+  "content/lore/characters/exp-omar-faris.json",
+  "content/base/persons/exp-sanya-iliev.json",
+  "content/lore/characters/exp-sanya-iliev.json",
+  "content/base/persons/exp-adela-miro.json",
+  "content/lore/characters/exp-adela-miro.json",
+  "content/base/persons/exp-luan-mendes.json",
+  "content/lore/characters/exp-luan-mendes.json",
+  "content/base/persons/exp-liang-ran.json",
+  "content/lore/characters/exp-liang-ran.json",
+  "content/base/scenarios/exp-four-choices.json",
+  "content/base/scenarios/exp-unfinished-ties.json"
+ ],
+ "files": [
+  "content/base/persons/exp-ye-zhen.json",
+  "content/lore/characters/exp-ye-zhen.json",
+  "content/base/persons/exp-miyasaka-gaku.json",
+  "content/lore/characters/exp-miyasaka-gaku.json",
+  "content/base/persons/exp-rida-amin.json",
+  "content/lore/characters/exp-rida-amin.json",
+  "content/base/persons/exp-omar-faris.json",
+  "content/lore/characters/exp-omar-faris.json",
+  "content/base/persons/exp-sanya-iliev.json",
+  "content/lore/characters/exp-sanya-iliev.json",
+  "content/base/persons/exp-adela-miro.json",
+  "content/lore/characters/exp-adela-miro.json",
+  "content/base/persons/exp-luan-mendes.json",
+  "content/lore/characters/exp-luan-mendes.json",
+  "content/base/persons/exp-liang-ran.json",
+  "content/lore/characters/exp-liang-ran.json",
+  "content/base/scenarios/exp-four-choices.json",
+  "content/base/scenarios/exp-unfinished-ties.json"
+ ],
+ "ids": [
+  "person/exp-ye-zhen",
+  "character/exp-ye-zhen",
+  "person/exp-miyasaka-gaku",
+  "character/exp-miyasaka-gaku",
+  "person/exp-rida-amin",
+  "character/exp-rida-amin",
+  "person/exp-omar-faris",
+  "character/exp-omar-faris",
+  "person/exp-sanya-iliev",
+  "character/exp-sanya-iliev",
+  "person/exp-adela-miro",
+  "character/exp-adela-miro",
+  "person/exp-luan-mendes",
+  "character/exp-luan-mendes",
+  "person/exp-liang-ran",
+  "character/exp-liang-ran",
+  "scenario/exp-four-choices",
+  "scenario/exp-unfinished-ties"
+ ],
+ "acceptance": {
+  "batch": "expansion-1028-characters",
+  "round": 1,
+  "at": "2026-10-28T18:20:24",
+  "ok": true,
+  "steps": {
+   "probe": "ok",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "gate": "ok"
+  },
+  "approved": [
+   "content/base/persons/exp-adela-miro.json",
+   "content/base/persons/exp-liang-ran.json",
+   "content/base/persons/exp-luan-mendes.json",
+   "content/base/persons/exp-miyasaka-gaku.json",
+   "content/base/persons/exp-omar-faris.json",
+   "content/base/persons/exp-rida-amin.json",
+   "content/base/persons/exp-sanya-iliev.json",
+   "content/base/persons/exp-ye-zhen.json",
+   "content/base/scenarios/exp-four-choices.json",
+   "content/base/scenarios/exp-unfinished-ties.json",
+   "content/lore/characters/exp-adela-miro.json",
+   "content/lore/characters/exp-liang-ran.json",
+   "content/lore/characters/exp-luan-mendes.json",
+   "content/lore/characters/exp-miyasaka-gaku.json",
+   "content/lore/characters/exp-omar-faris.json",
+   "content/lore/characters/exp-rida-amin.json",
+   "content/lore/characters/exp-sanya-iliev.json",
+   "content/lore/characters/exp-ye-zhen.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": true,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "base:scenario/exp-four-choices 勝率 100%",
+     "key": "winrate:base:scenario/exp-four-choices",
+     "side": "high",
+     "id": "scenario/exp-four-choices",
+     "waived": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+    },
+    {
+     "id": "scenario/exp-four-choices",
+     "flag": "stat",
+     "detail": "base:scenario/exp-four-choices n=5 勝 100% 敗 0% 平 0% 輪 9.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "base:scenario/exp-unfinished-ties 勝率 100%",
+     "key": "winrate:base:scenario/exp-unfinished-ties",
+     "side": "high",
+     "id": "scenario/exp-unfinished-ties",
+     "waived": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+    },
+    {
+     "id": "scenario/exp-unfinished-ties",
+     "flag": "stat",
+     "detail": "base:scenario/exp-unfinished-ties n=5 勝 100% 敗 0% 平 0% 輪 8.8 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 3,
+   "rows": 3,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 12,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-28T18:20:24",
+   "ok": true,
+   "steps": {
+    "probe": "ok",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "gate": "ok"
+   }
+  }
+ ],
+ "gateRejections": [],
+ "integrationPolicy": "Workers focused checks only; lead serial probe/MCP and one integrated non-screen suite. Narrative awaits user review; old drafts and ambiguous old lore remain untouched.",
+ "narrativeReview": "pending-user; technical acceptance does not approve narrative taste"
+}

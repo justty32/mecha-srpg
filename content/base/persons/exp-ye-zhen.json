@@ -1,0 +1,87 @@
+{
+  "id": "person/exp-ye-zhen",
+  "name": "葉榛",
+  "nameEn": "Ye Zhen",
+  "etymology": "Ye Zhen 為本名的羅馬字寫法；熱那亞受雇駕駛、守城名將之女。",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 54,
+    "evasion": 10,
+    "resolve": 47,
+    "initiative": 7,
+    "perception": 5,
+    "control": 44
+  },
+  "traits": [
+    "effect/ax-trait-grudge-ledger"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 56,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 56,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "hunger-for-glory",
+      "keep-oaths"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "expansion-1028"
+  ]
+}

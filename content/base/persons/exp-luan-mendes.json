@@ -1,0 +1,90 @@
+{
+  "id": "person/exp-luan-mendes",
+  "name": "盧恩",
+  "nameEn": "Luan Mendes",
+  "etymology": "Luan Mendes 為本名的羅馬字寫法；從生物系改駕衍型機的遠牧老手。",
+  "kind": "human",
+  "attrs": {
+    "accuracy": 51,
+    "evasion": 8,
+    "resolve": 61,
+    "initiative": 6,
+    "perception": 6,
+    "control": 50
+  },
+  "traits": [
+    "effect/trait-beast-sense",
+    "effect/ax-trait-second-birth"
+  ],
+  "perks": [],
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 64,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 64,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "will": {
+    "beliefs": [
+      "atonement",
+      "bear-the-weight"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "tags": [
+    "human",
+    "pilot",
+    "expansion-1028",
+    "veteran",
+    "beast-kin"
+  ]
+}
