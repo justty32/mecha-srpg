@@ -43,3 +43,8 @@
 ## 歷史
 
 已收線的線一律在 [handoffs/done/README.md](handoffs/done/README.md)（日期、線名、一句結論、交接書與 REPORT 位置；只准追加）。2026-10-23 收 4 線、2026-10-24 收 39 線（含本表最後移除的 `lead-content-battle`、`lead-content-mech`、`lead-gaps-ops`），各線的附件夾已移 `handoffs/done/<收線日>/<線名>/`。
+
+## 本輪 10/28 接續
+
+- fill-lead-1028-night：sol領導，僅持有同名handoff子目錄、night批次manifest／核定新lore與索引；git寫權由主線依階段授予。
+- fill-plan-1028-next：僅持有同名 handoff 子目錄，astra 創作規劃；其餘唯讀。

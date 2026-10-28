@@ -21,6 +21,7 @@
 | **領導（隊長）** | **gpt-6.1-sol** | 原生 agent 工具；需要外部線時用 `codex exec` | 讀交接書、拆工、寫子線交接書、派工、監看、驗收、收線；向頂層匯報時**重寫標題、帶判斷** | 不越過交接書授權；不親自做工人的量 |
 | **工人（隊員）** | 普通工作 **gpt-6.1-sol**；簡單工作 **gpt-6.1-terra** | 原生 agent 工具或 `codex exec`（[codex-exec](dispatch/codex-exec.md)）；互動式備選見 [cx_launch](dispatch/driving-cli-agents.md) | 照交接書做一件事、寫 REPORT 檔、回報終局狀態 | 不改交接書範圍、不自行加碼驗證 |
 | **規劃（spec／plan、架構設計）** | **gpt-6-astra** | 頂層自己寫，或開規劃子 agent | 產出 spec／plan 交給領導執行 | 不派工、不監看 |
+| **美術／創意設計** | **gpt-6-astra** | 頂層或子 agent | 負責美術或創意設計 | 依交接書範圍執行 |
 
 **派誰的預設**：頂層與規劃用 `gpt-6-astra`，領導與普通工作用 `gpt-6.1-sol`，簡單工作用 `gpt-6.1-terra`。agent 可再派子 agent，**模型無限制**；這是角色預設，不是可用模型白名單。對 ChatGPT 帳號不要用 `gpt-sol` 別名（既有拒絕實測見 [codex-exec](dispatch/codex-exec.md)），派線明給模型全名。原生子 agent 用工具回傳，外部 `codex exec` 線用 inbox，通訊方式不由模型名稱決定。
 

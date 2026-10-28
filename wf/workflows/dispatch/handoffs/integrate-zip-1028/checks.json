@@ -1,0 +1,74 @@
+[
+  {
+    "name": "check",
+    "command": [
+      "npm",
+      "run",
+      "check"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "lore",
+    "command": [
+      "node",
+      "content/lore/check.ts"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "typecheck",
+    "command": [
+      "npm",
+      "run",
+      "typecheck"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "index",
+    "command": [
+      "python3",
+      "-I",
+      "wf/tools/content_index.py",
+      "--check"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "mechanic",
+    "command": [
+      "node",
+      "/tmp/mecha-integrate-1028/mecha-srpg-pending-integration/tests/monster-mechanic-check.mjs",
+      "/tmp/mecha-integrate-1028/replay"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "forkneedle",
+    "command": [
+      "node",
+      "/tmp/mecha-integrate-1028/mecha-srpg-pending-integration/tests/forkneedle-line-check.mjs",
+      "/tmp/mecha-integrate-1028/replay",
+      "/home/lorkhan/repo/game_dev/mecha-srpg/wf/workflows/dispatch/handoffs/integrate-zip-1028/forkneedle.json"
+    ],
+    "exit": 0,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  },
+  {
+    "name": "wf-replay",
+    "command": [
+      "bash",
+      "wf/tools/wf-lint.sh",
+      "--strict",
+      "."
+    ],
+    "exit": 1,
+    "worktree": "/tmp/mecha-integrate-1028/replay"
+  }
+]
