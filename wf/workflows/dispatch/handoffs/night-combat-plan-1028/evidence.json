@@ -1,0 +1,630 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "concept",
+  "file",
+  "sha256",
+  "fields",
+  "difference"
+ ],
+ "rows": [
+  {
+   "concept": "CM01",
+   "file": "content/base/frames/longspear-kneeler-v2.json",
+   "sha256": "c60ecb0167e62547f54ca0f649136f5337dbddc0709ce06850e684aaeac5948a",
+   "fields": {
+    "id": "frame/longspear-kneeler-v2",
+    "grade": "C",
+    "bodyPlan": "bodyplan/m2-quadruped-c",
+    "defaultLoadout": {
+     "left-weapon": "component/mx-radiant-rifle",
+     "right-weapon": "component/mx-rune-rifle",
+     "sensor-mount": "component/mx-hawk-eye"
+    },
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+       {
+        "to": 125.0,
+        "effects": [
+         "effect/overheat-1"
+        ],
+        "from": 100
+       },
+       {
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ],
+        "from": 125.0
+       }
+      ]
+     },
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+     }
+    ]
+   },
+   "difference": "伏架兩武器分前足，武器與四足移動耦合，有架砲；並燭武器集中單槍架、履帶獨立、無架砲。檢驗不是比攻擊傷害，而是槍架破壞同時封雙槍、履帶全破才定住。"
+  },
+  {
+   "concept": "CM01",
+   "file": "content/base/frames/exm-silverring-helix.json",
+   "sha256": "af76d5cdffe739d0e8b9b2c46f6b20efbbe51874c4f1aabd4d1d0430390997bb",
+   "fields": {
+    "id": "frame/exm-silverring-helix",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+       {
+        "from": 100,
+        "to": 125.0,
+        "effects": [
+         "effect/overheat-1"
+        ]
+       },
+       {
+        "from": 125.0,
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+     }
+    ],
+    "defaultLoadout": {
+     "right-weapon": "component/fw-shoal-light",
+     "left-weapon": "component/mx-singing-blade",
+     "system-1": "component/fa-light-reel"
+    }
+   },
+   "difference": "汲光可主動補流光並用近戰分流燼；並燭不回光、用六次實體矢補流光不足，槍架破兩種遠射同失。"
+  },
+  {
+   "concept": "CM01",
+   "file": "content/base/frames/wm-r7-longspear-keepsake.json",
+   "sha256": "a8145377f5104d938065ee7aac98c66c4e0ca45458c621af982e94c25eeacffa",
+   "fields": {
+    "id": "frame/wm-r7-longspear-keepsake",
+    "grade": "C",
+    "bodyPlan": "bodyplan/m2-quadruped-c",
+    "defaultLoadout": {
+     "left-weapon": "component/mx-radiant-rifle",
+     "right-weapon": "component/fw-ankle-pin",
+     "sensor-mount": "component/mx-hawk-eye"
+    },
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+       {
+        "to": 125.0,
+        "effects": [
+         "effect/overheat-1"
+        ],
+        "from": 100
+       },
+       {
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ],
+        "from": 125.0
+       }
+      ]
+     },
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+     }
+    ]
+   },
+   "difference": "留像遠射＋拘束、保留伏架；本案沒有捕捉或穩架，用同部位失能風險換兩類穩定遠射，非換名同配裝。"
+  },
+  {
+   "concept": "CM02",
+   "file": "content/base/frames/wn-r3-anvil-fan.json",
+   "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+   "fields": {
+    "id": "frame/wn-r3-anvil-fan",
+    "grade": "C",
+    "bodyPlan": "bodyplan/m2-quadruped-c",
+    "defaultLoadout": {
+     "left-weapon": "component/fw-fan-tube",
+     "right-weapon": "component/mx-molten-saw",
+     "system-1": "component/mx-frost-fins",
+     "cockpit": "component/oa-cockpit-baffle"
+    },
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 110,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -12,
+      "bands": [
+       {
+        "to": 137.5,
+        "effects": [
+         "effect/overheat-1"
+        ],
+        "from": 110
+       },
+       {
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ],
+        "from": 137.5
+       }
+      ]
+     }
+    ]
+   },
+   "difference": "開扇C的扇矢會加16燼，能從冷機開火；燼鐘B需heat>=30才合法，鳴鐘扣30燼，冷機無扇面，寒泉與傷害卸燼爭同一資源。不是只把C加HP升B。"
+  },
+  {
+   "concept": "CM02",
+   "file": "content/base/frames/exm-silverring-helix.json",
+   "sha256": "af76d5cdffe739d0e8b9b2c46f6b20efbbe51874c4f1aabd4d1d0430390997bb",
+   "fields": {
+    "id": "frame/exm-silverring-helix",
+    "grade": "C",
+    "bodyPlan": "bodyplan/mx-biped-c",
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+       {
+        "from": 100,
+        "to": 125.0,
+        "effects": [
+         "effect/overheat-1"
+        ]
+       },
+       {
+        "from": 125.0,
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ]
+       }
+      ]
+     },
+     {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+     }
+    ],
+    "defaultLoadout": {
+     "right-weapon": "component/fw-shoal-light",
+     "left-weapon": "component/mx-singing-blade",
+     "system-1": "component/fa-light-reel"
+    }
+   },
+   "difference": "汲光補charge拖慢散熱，燼鐘沒有charge，傷害本身卸heat且有限次，非再造回光件。"
+  },
+  {
+   "concept": "CM02",
+   "file": "content/base/frames/anvil-iv-ram.json",
+   "sha256": "bf8f8fff7e9bcbe8abe92a3d50f869d696e7275fc56ecbe5a1fa4e015e1bfa48",
+   "fields": {
+    "id": "frame/anvil-iv-ram",
+    "grade": "B",
+    "bodyPlan": "bodyplan/mx-biped-heavy",
+    "defaultLoadout": {
+     "right-weapon": "component/mx-brokenarm-stake",
+     "left-weapon": "component/mx-chain-maul",
+     "armor-mount": "component/mx-burst-scale",
+     "back-1": "component/mx-flare-wings",
+     "back-2": "component/mx-hunter-darts",
+     "system-1": "component/mx-frost-fins"
+    },
+    "pools": [
+     {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+       {
+        "to": 150.0,
+        "effects": [
+         "effect/overheat-1"
+        ],
+        "from": 120
+       },
+       {
+        "to": null,
+        "effects": [
+         "effect/overheat-2"
+        ],
+        "from": 150.0
+       }
+      ]
+     }
+    ]
+   },
+   "difference": "破城槌以重樁＋鏈槌壓近敵及背件補遠程；本件捨棄背件／層甲，走先鋸再扇面卸燼的時序。"
+  },
+  {
+   "concept": "CK01",
+   "file": "content/base/species/spitter.json",
+   "sha256": "3a8399e3d2df42fa4f151c82026652739ba6d2e0a178ce45e9353b74bb2e392b",
+   "fields": {
+    "id": "species/spitter",
+    "bodyPlan": "bodyplan/alien-spitter",
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+     },
+     {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     }
+    ],
+    "abilities": [
+     "ability/kx-thorn-volley",
+     "ability/kx-thorn-snipe"
+    ],
+    "aiProfile": "aiprofile/kx-alien-stalker"
+   },
+   "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+  },
+  {
+   "concept": "CK01",
+   "file": "content/base/monsters/exk-spine-rack.json",
+   "sha256": "69c680e6b9fbb3e3445717e75095cdfb34b1a881ed08533829f737f8e3cc24e5",
+   "fields": {
+    "id": "monster/exk-spine-rack",
+    "species": "species/shelf-back",
+    "grade": "B",
+    "extraAbilities": [
+     "ability/exk-spine-rack"
+    ],
+    "partsOverride": [
+     {
+      "id": "back",
+      "name": "開縫針背",
+      "functions": [
+       "weaponMount"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 110,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.5,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 70,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ]
+     },
+     {
+      "id": "heart",
+      "name": "露脊心",
+      "exposure": 1.5
+     }
+    ]
+   },
+   "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+  },
+  {
+   "concept": "CK01",
+   "file": "content/base/species/hollow-sail.json",
+   "sha256": "3263707653a2abc929dcbd990daab1df04a98d3c047c19893c79801f1e8fcbf8",
+   "fields": {
+    "id": "species/hollow-sail",
+    "bodyPlan": "bodyplan/alien-hollow-sail",
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 5,
+      "regen": 2,
+      "bands": []
+     },
+     {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 10,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 10,
+      "regen": 7,
+      "bands": []
+     }
+    ],
+    "abilities": [
+     "ability/kx-hollow-sail-cast",
+     "ability/kx-hollow-sail-fold"
+    ],
+    "aiProfile": "aiprofile/guerrilla"
+   },
+   "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+  },
+  {
+   "concept": "CK02",
+   "file": "content/base/species/shelf-back.json",
+   "sha256": "5795192bf7e13d474e874368d84ad18e8f400f59ee1fa2e9ed4460bd2c8b3829",
+   "fields": {
+    "id": "species/shelf-back",
+    "bodyPlan": "bodyplan/beast-shelf-back",
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 15,
+      "regen": 3,
+      "bands": []
+     },
+     {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     }
+    ],
+    "abilities": [
+     "ability/kx-shelf-back-shove",
+     "ability/kx-shelf-back-shelter"
+    ],
+    "aiProfile": "aiprofile/bodyguard"
+   },
+   "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+  },
+  {
+   "concept": "CK02",
+   "file": "content/base/monsters/exk-spine-rack.json",
+   "sha256": "69c680e6b9fbb3e3445717e75095cdfb34b1a881ed08533829f737f8e3cc24e5",
+   "fields": {
+    "id": "monster/exk-spine-rack",
+    "species": "species/shelf-back",
+    "grade": "B",
+    "extraAbilities": [
+     "ability/exk-spine-rack"
+    ],
+    "partsOverride": [
+     {
+      "id": "back",
+      "name": "開縫針背",
+      "functions": [
+       "weaponMount"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 110,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.5,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 70,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ]
+     },
+     {
+      "id": "heart",
+      "name": "露脊心",
+      "exposure": 1.5
+     }
+    ]
+   },
+   "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+  },
+  {
+   "concept": "CK02",
+   "file": "content/base/monsters/exk-cinder-muzzle.json",
+   "sha256": "3d5bf09d40dd2a745559f26bb3de81c4f902df52577b666669da628c9d4402f3",
+   "fields": {
+    "id": "monster/exk-cinder-muzzle",
+    "species": "species/hound",
+    "grade": "C",
+    "extraAbilities": [
+     "ability/exk-cinder-muzzle"
+    ],
+    "partsOverride": [
+     {
+      "id": "left-shovel",
+      "functions": [
+       "manipulator"
+      ]
+     },
+     {
+      "id": "right-shovel",
+      "functions": [
+       "manipulator"
+      ]
+     },
+     {
+      "id": "head",
+      "name": "燼吻囊",
+      "functions": [
+       "sensor",
+       "weaponMount"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 5,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ]
+     },
+     {
+      "id": "spine",
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 35,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ]
+     },
+     {
+      "id": "heart",
+      "exposure": 2
+     }
+    ]
+   },
+   "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+  }
+ ]
+}

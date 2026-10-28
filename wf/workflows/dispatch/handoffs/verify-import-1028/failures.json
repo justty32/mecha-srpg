@@ -1,0 +1,159 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "test",
+  "classification",
+  "local_diagnostic",
+  "historical_diagnostic",
+  "baseline_comparison",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "test": "campaign_act sortie：真實 AI 戰果與記錄可存檔重播",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 6098.150568\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:121:1'\n  failureType: 'testCodeFailure'\n  error: '{\"content\":[{\"type\":\"text\",\"text\":\"insufficient-fuel：燃料不足。\"},{\"type\":\"text\",\"text\":\"{\\\\\"error\\\\\":\\\\\"insufficient-fuel\\\\\"}\"}],\"structuredContent\":{\"error\":\"insufficient-fuel\"},\"isError\":true}'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    data (file:///tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:21:10)\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:169:12)\n    async Test.run (node:internal/test_runner/test:1125:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:121:1'\n  failureType: 'testCodeFailure'\n  error: '{\"content\":[{\"type\":\"text\",\"text\":\"insufficient-fuel：燃料不足。\"},{\"type\":\"text\",\"text\":\"{\\\\\"error\\\\\":\\\\\"insufficient-fuel\\\\\"}\"}],\"structuredContent\":{\"error\":\"insufficient-fuel\"},\"isError\":true}'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    data (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:21:10)\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:169:12)\n    async Test.run (node:internal/test_runner/test:1409:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "baseline_comparison": {
+    "test": "campaign_act sortie：真實 AI 戰果與記錄可存檔重播",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "true\n  actual: false",
+    "expanded actual/assertion": "true\n  actual: false",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 87"
+  },
+  {
+   "test": "長時間 wait 在駕駛員歸零終局當天停止",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 4354.86634\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/src/ops/sim/campaign.test.ts:48:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    90 !== 132\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 132\n  actual: 90\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/campaign.test.ts:52:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:787:18)\n    Test.postRun (node:internal/test_runner/test:1247:19)\n    Test.run (node:internal/test_runner/test:1175:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/campaign.test.ts:48:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    90 !== 132\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 132\n  actual: 90\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/campaign.test.ts:52:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "baseline_comparison": {
+    "test": "長時間 wait 在駕駛員歸零終局當天停止",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "changed trajectory; both already fail",
+    "BASE actual/assertion": "132\n  actual: 118",
+    "expanded actual/assertion": "132\n  actual: 90",
+    "decision": "Do not classify as unaffected old failure. User decision required on delivery/integration scope."
+   },
+   "evidence": "suite.tap test 188"
+  },
+  {
+   "test": "黃金戰役固定指令的事件日誌 hash 相符",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 1613.673564\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/src/ops/sim/golden.test.ts:8:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 31,\n    +   events: 840,\n    +   logHash: 'aacf251adb7030aa'\n    -   events: 795,\n    -   logHash: '3c8814d7d531c515'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/golden.test.ts:16:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.start (node:internal/test_runner/test:1015:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/golden.test.ts:8:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 31,\n    +   events: 840,\n    +   logHash: 'aacf251adb7030aa'\n    -   events: 795,\n    -   logHash: '3c8814d7d531c515'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/golden.test.ts:16:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役固定指令的事件日誌 hash 相符",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31",
+    "expanded actual/assertion": "logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 193"
+  },
+  {
+   "test": "黃金戰役 ops-war-assault",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 1402.004269\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 16,\n    +   events: 540,\n    +   logHash: '41aa023e9a3e0d46'\n    -   events: 503,\n    -   logHash: '8f5c3d2665ae48b1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.start (node:internal/test_runner/test:1015:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 16,\n    +   events: 540,\n    +   logHash: '41aa023e9a3e0d46'\n    -   events: 503,\n    -   logHash: '8f5c3d2665ae48b1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役 ops-war-assault",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16",
+    "expanded actual/assertion": "logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 929"
+  },
+  {
+   "test": "黃金戰役 ops-relic",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 56545.319478\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 896,\n    +   events: 19939,\n    +   logHash: 'b3d1e67583ca10c5'\n    -   events: 19897,\n    -   logHash: '7d50e9aa5867bcb1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'b3d1e67583ca10c5'\n    events: 19939\n    day: 896\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:787:18)\n    Test.postRun (node:internal/test_runner/test:1247:19)\n    Test.run (node:internal/test_runner/test:1175:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 896,\n    +   events: 19939,\n    +   logHash: 'b3d1e67583ca10c5'\n    -   events: 19897,\n    -   logHash: '7d50e9aa5867bcb1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'b3d1e67583ca10c5'\n    events: 19939\n    day: 896\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役 ops-relic",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "changed trajectory; both already fail",
+    "BASE actual/assertion": "logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'ad03741d873661ba'\n    events: 20889\n    day: 896",
+    "expanded actual/assertion": "logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'b3d1e67583ca10c5'\n    events: 19939\n    day: 896",
+    "decision": "Do not classify as unaffected old failure. User decision required on delivery/integration scope."
+   },
+   "evidence": "suite.tap test 930"
+  },
+  {
+   "test": "黃金戰役 ops-merc-join",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 2191.123724\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'unused-battle-record'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    replayCampaign (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/replay.ts:26:36)\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:17:54)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:787:18)\n    Test.postRun (node:internal/test_runner/test:1247:19)\n    Test.run (node:internal/test_runner/test:1175:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'unused-battle-record'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    replayCampaign (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/replay.ts:26:36)\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:17:54)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役 ops-merc-join",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "'unused-battle-record'",
+    "expanded actual/assertion": "'unused-battle-record'",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 931"
+  },
+  {
+   "test": "黃金戰役 ops-betrayal",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 502.984768\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'ops-betrayal 事件子序列缺失'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:30:3)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:787:18)\n    Test.postRun (node:internal/test_runner/test:1247:19)\n    Test.run (node:internal/test_runner/test:1175:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'ops-betrayal 事件子序列缺失'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:30:3)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役 ops-betrayal",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "true\n  actual: false",
+    "expanded actual/assertion": "true\n  actual: false",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 932"
+  },
+  {
+   "test": "黃金戰役 ops-leak",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 440.158012\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 6,\n    +   events: 258,\n    +   logHash: '3ced084c80b5a8c7'\n    -   events: 246,\n    -   logHash: 'eb2d23f3641f6c6e'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:787:18)\n    Test.postRun (node:internal/test_runner/test:1247:19)\n    Test.run (node:internal/test_runner/test:1175:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 6,\n    +   events: 258,\n    +   logHash: '3ced084c80b5a8c7'\n    -   events: 246,\n    -   logHash: 'eb2d23f3641f6c6e'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役 ops-leak",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6",
+    "expanded actual/assertion": "logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 933"
+  },
+  {
+   "test": "黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived",
+   "classification": "相同已知敗",
+   "local_diagnostic": "---\n  duration_ms: 574.902823\n  type: 'test'\n  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/grid-actors.test.ts:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    ... Skipped lines\n    \n      {\n        day: 3,\n        events: [\n          {\n            day: 1,\n    ...\n        ],\n    +   hash: '20390962f8625caa'\n    -   hash: 'd415f49fe5b6826f'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/grid-actors.test.ts:39:10)\n    Test.runInAsyncScope (node:async_hooks:228:14)\n    Test.run (node:internal/test_runner/test:1118:25)\n    Test.start (node:internal/test_runner/test:1015:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)\n  ...",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/grid-actors.test.ts:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    ... Skipped lines\n    \n      {\n        day: 3,\n        events: [\n          {\n            day: 1,\n    ...\n        ],\n    +   hash: '20390962f8625caa'\n    -   hash: 'd415f49fe5b6826f'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/grid-actors.test.ts:39:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "baseline_comparison": {
+    "test": "黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived",
+    "baseline": "failed",
+    "expanded": "failed",
+    "comparison": "same failure and asserted value",
+    "BASE actual/assertion": "hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3",
+    "expanded actual/assertion": "hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3",
+    "decision": "Existing failure reproduced; not fixed in this content-only scope."
+   },
+   "evidence": "suite.tap test 934"
+  }
+ ]
+}

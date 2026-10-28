@@ -1,0 +1,79 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "check",
+  "ok",
+  "detail"
+ ],
+ "rows": [
+  {
+   "check": "four_complete",
+   "ok": true,
+   "detail": "2CM+2CK，主線均核可"
+  },
+  {
+   "check": "near_neighbors",
+   "ok": true,
+   "detail": "每件3個近鄰，含exm/exk，保存字段與SHA256"
+  },
+  {
+   "check": "brief_60",
+   "ok": true,
+   "detail": {
+    "CM01": 34,
+    "CM02": 36,
+    "CK01": 36,
+    "CK02": 35
+   }
+  },
+  {
+   "check": "refs",
+   "ok": true,
+   "detail": {
+    "total": 49,
+    "missing": []
+   }
+  },
+  {
+   "check": "write_set",
+   "ok": true,
+   "detail": {
+    "CM": 6,
+    "CK": 13
+   }
+  },
+  {
+   "check": "new_paths_absent",
+   "ok": true,
+   "detail": {
+    "occupied": [],
+    "note": "交付時點；主線已授權並行實作，之後佔用不等於設計撞id。另rg新id/兩怪俗名於限定七類目錄無命中。"
+   }
+  },
+  {
+   "check": "naming_clarified",
+   "ok": true,
+   "detail": "已同步review、CK頁與產表helper"
+  },
+  {
+   "check": "documents",
+   "ok": true,
+   "detail": "文件存在與本地連結核對，不執行測試"
+  },
+  {
+   "check": "capacity",
+   "ok": true,
+   "detail": {
+    "files_before_validation": 12,
+    "bytes_before_validation": 99691
+   }
+  },
+  {
+   "check": "whitespace",
+   "ok": true,
+   "detail": "含untracked交付，不以空git diff冒充全文驗證"
+  }
+ ]
+}

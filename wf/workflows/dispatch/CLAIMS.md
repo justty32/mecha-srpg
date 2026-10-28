@@ -47,4 +47,5 @@
 ## 本輪 10/28 接續
 
 - fill-lead-1028-night：sol領導，僅持有同名handoff子目錄、night批次manifest／核定新lore與索引；git寫權由主線依階段授予。
-- fill-plan-1028-next：僅持有同名 handoff 子目錄，astra 創作規劃；其餘唯讀。
+- night-frontier-plan-1028：astra持有同名handoff子目錄，第二輪8件冒險／勢力lore設計；前兩輪設計已交付。
+- night-combat-lead-1028：同一sol領導持有核定CM6／CK13內容新檔、manifest／報告／索引；重負載由主線分配時段。

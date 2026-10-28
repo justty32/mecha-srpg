@@ -1,0 +1,6504 @@
+TAP version 13
+# Subtest: 人物成長 schema 與參照：正常資料通過，錯誤型別、能力引用及非機魂範本被拒
+ok 1 - 人物成長 schema 與參照：正常資料通過，錯誤型別、能力引用及非機魂範本被拒
+  ---
+  duration_ms: 688.430329
+  type: 'test'
+  ...
+# Subtest: base 內容包載入零錯誤
+ok 2 - base 內容包載入零錯誤
+  ---
+  duration_ms: 0.093584
+  type: 'test'
+  ...
+# Subtest: 指定內容種類件數不低於地基範例
+ok 3 - 指定內容種類件數不低於地基範例
+  ---
+  duration_ms: 0.246528
+  type: 'test'
+  ...
+# Subtest: DB 定義內的參照補上 pack 前綴
+ok 4 - DB 定義內的參照補上 pack 前綴
+  ---
+  duration_ms: 0.09694
+  type: 'test'
+  ...
+# Subtest: 懸空內容參照回報欄位路徑
+ok 5 - 懸空內容參照回報欄位路徑
+  ---
+  duration_ms: 0.84616
+  type: 'test'
+  ...
+# Subtest: 未登記的層種類回報錯誤
+ok 6 - 未登記的層種類回報錯誤
+  ---
+  duration_ms: 0.284818
+  type: 'test'
+  ...
+# Subtest: 檔名與 id 不一致時拒絕載入
+ok 7 - 檔名與 id 不一致時拒絕載入
+  ---
+  duration_ms: 1.584311
+  type: 'test'
+  ...
+# Subtest: 內容 NumExpr 不得引用 rng 根
+ok 8 - 內容 NumExpr 不得引用 rng 根
+  ---
+  duration_ms: 0.276443
+  type: 'test'
+  ...
+# Subtest: 能力成本不得引用未宣告的池
+ok 9 - 能力成本不得引用未宣告的池
+  ---
+  duration_ms: 0.218736
+  type: 'test'
+  ...
+# Subtest: 依賴後載入的 pack 覆寫同 id，並產生警告
+ok 10 - 依賴後載入的 pack 覆寫同 id，並產生警告
+  ---
+  duration_ms: 0.24787
+  type: 'test'
+  ...
+# Subtest: schema 同時抓到缺必填欄與多餘欄
+ok 11 - schema 同時抓到缺必填欄與多餘欄
+  ---
+  duration_ms: 0.098683
+  type: 'test'
+  ...
+# Subtest: MonsterDef 載入檢查：部位 id 不存在
+ok 12 - MonsterDef 載入檢查：部位 id 不存在
+  ---
+  duration_ms: 230.761297
+  type: 'test'
+  ...
+# Subtest: MonsterDef 載入檢查：最內層不是結構層
+ok 13 - MonsterDef 載入檢查：最內層不是結構層
+  ---
+  duration_ms: 152.890132
+  type: 'test'
+  ...
+# Subtest: MonsterDef 載入檢查：沒有核心
+ok 14 - MonsterDef 載入檢查：沒有核心
+  ---
+  duration_ms: 152.57618
+  type: 'test'
+  ...
+# Subtest: MonsterDef 載入檢查：捕捉後層數不符
+ok 15 - MonsterDef 載入檢查：捕捉後層數不符
+  ---
+  duration_ms: 149.662081
+  type: 'test'
+  ...
+# Subtest: soulGrade 只允許機魂，合法機魂通過、人類拒絕
+ok 16 - soulGrade 只允許機魂，合法機魂通過、人類拒絕
+  ---
+  duration_ms: 151.184668
+  type: 'test'
+  ...
+# Subtest: MonsterDef 捕捉 HP 上限不同只警告
+ok 17 - MonsterDef 捕捉 HP 上限不同只警告
+  ---
+  duration_ms: 116.662023
+  type: 'test'
+  ...
+# Subtest: MonsterDef 捕捉 HP 不同的警告每隻怪獸只一條、列出全部部位
+ok 18 - MonsterDef 捕捉 HP 不同的警告每隻怪獸只一條、列出全部部位
+  ---
+  duration_ms: 87.126516
+  type: 'test'
+  ...
+# Subtest: cockpit 表與 crew/core schema 雙向檢查，基本能力引用必須存在
+ok 19 - cockpit 表與 crew/core schema 雙向檢查，基本能力引用必須存在
+  ---
+  duration_ms: 0.482265
+  type: 'test'
+  ...
+# Subtest: schema 接受各 def 的 nameEn／etymology 並拒絕非字串
+ok 20 - schema 接受各 def 的 nameEn／etymology 並拒絕非字串
+  ---
+  duration_ms: 0.099836
+  type: 'test'
+  ...
+# Subtest: num-packet-ratio：三個比例欄上下界與效果 hook packets
+ok 21 - num-packet-ratio：三個比例欄上下界與效果 hook packets
+  ---
+  duration_ms: 27.043361
+  type: 'test'
+  ...
+# Subtest: band-armorpen：0.6 警告、0.5 合法、動態式跳過
+ok 22 - band-armorpen：0.6 警告、0.5 合法、動態式跳過
+  ---
+  duration_ms: 1.959387
+  type: 'test'
+  ...
+# Subtest: band-accuracy：±25 警告，±20 合法，動態式跳過
+ok 23 - band-accuracy：±25 警告，±20 合法，動態式跳過
+  ---
+  duration_ms: 5.626011
+  type: 'test'
+  ...
+# Subtest: band-evasion：效果加值 23 警告，22 合法；非 add／動態值跳過
+ok 24 - band-evasion：效果加值 23 警告，22 合法；非 add／動態值跳過
+  ---
+  duration_ms: 2.586701
+  type: 'test'
+  ...
+# Subtest: band-resist：層抗性 0.85 警告，0.8 合法
+ok 25 - band-resist：層抗性 0.85 警告，0.8 合法
+  ---
+  duration_ms: 1.302337
+  type: 'test'
+  ...
+# Subtest: band-frame-hp：S 摹機基礎總層 HP 1201 警告，1200 合法
+ok 26 - band-frame-hp：S 摹機基礎總層 HP 1201 警告，1200 合法
+  ---
+  duration_ms: 2.736619
+  type: 'test'
+  ...
+# Subtest: band-damage：單體 48／範圍 26，動態封包不求總和
+ok 27 - band-damage：單體 48／範圍 26，動態封包不求總和
+  ---
+  duration_ms: 8.597647
+  type: 'test'
+  ...
+# Subtest: band-person-hp：人物 hp.max 71 警告，70 合法
+ok 28 - band-person-hp：人物 hp.max 71 警告，70 合法
+  ---
+  duration_ms: 1.629614
+  type: 'test'
+  ...
+# Subtest: band-cover：地形 cover 51 警告，50 合法
+ok 29 - band-cover：地形 cover 51 警告，50 合法
+  ---
+  duration_ms: 6.297037
+  type: 'test'
+  ...
+# Subtest: num-accuracy：上下界
+ok 30 - num-accuracy：上下界
+  ---
+  duration_ms: 3.047496
+  type: 'test'
+  ...
+# Subtest: num-range：負 min、負 max 與逆序，各自有合法界線
+ok 31 - num-range：負 min、負 max 與逆序，各自有合法界線
+  ---
+  duration_ms: 10.773786
+  type: 'test'
+  ...
+# Subtest: num-nonnegative：cost、cooldown、usesPerBattle 不可負，零合法
+ok 32 - num-nonnegative：cost、cooldown、usesPerBattle 不可負，零合法
+  ---
+  duration_ms: 7.009991
+  type: 'test'
+  ...
+# Subtest: attack-cost：空成本攻擊錯誤，反應技／無傷害豁免；非字面 NumExpr 不求值
+ok 33 - attack-cost：空成本攻擊錯誤，反應技／無傷害豁免；非字面 NumExpr 不求值
+  ---
+  duration_ms: 9.984511
+  type: 'test'
+  ...
+# Subtest: inverted-direction：負成本與散熱正產出；正常發熱與非反向池不誤報
+ok 34 - inverted-direction：負成本與散熱正產出；正常發熱與非反向池不誤報
+  ---
+  duration_ms: 7.20928
+  type: 'test'
+  ...
+# Subtest: monster-person-effect：species／monster 專用能力，frame／component 共用豁免
+ok 35 - monster-person-effect：species／monster 專用能力，frame／component 共用豁免
+  ---
+  duration_ms: 10.715909
+  type: 'test'
+  ...
+# Subtest: ai-shape：模式、反應事件／tag、部位與 tactics；範圍／持續能力合法
+ok 36 - ai-shape：模式、反應事件／tag、部位與 tactics；範圍／持續能力合法
+  ---
+  duration_ms: 10.714646
+  type: 'test'
+  ...
+# Subtest: soft-overflow-band：空／只達 max 警告；max 以上及動態界線豁免
+ok 37 - soft-overflow-band：空／只達 max 警告；max 以上及動態界線豁免
+  ---
+  duration_ms: 9.920011
+  type: 'test'
+  ...
+# Subtest: mechanical-unarmed：無預設配裝又無內建攻擊才警告
+ok 38 - mechanical-unarmed：無預設配裝又無內建攻擊才警告
+  ---
+  duration_ms: 2.00969
+  type: 'test'
+  ...
+# Subtest: apparentAge：年資、驅動時數、整年與四捨五入；無年齡與機魂回 null
+ok 39 - apparentAge：年資、驅動時數、整年與四捨五入；無年齡與機魂回 null
+  ---
+  duration_ms: 241.741495
+  type: 'test'
+  ...
+# Subtest: createLog 建立獨立空日誌，appendEvent 的 seq 連續
+ok 40 - createLog 建立獨立空日誌，appendEvent 的 seq 連續
+  ---
+  duration_ms: 0.735194
+  type: 'test'
+  ...
+# Subtest: appendEvent 複製 payload 與陣列，允許所有契約值
+ok 41 - appendEvent 複製 payload 與陣列，允許所有契約值
+  ---
+  duration_ms: 0.217494
+  type: 'test'
+  ...
+# Subtest: appendEvent 拒絕巢狀物件與非法 payload，失敗不追加事件
+ok 42 - appendEvent 拒絕巢狀物件與非法 payload，失敗不追加事件
+  ---
+  duration_ms: 0.307942
+  type: 'test'
+  ...
+# Subtest: canonicalJson 遞迴鍵序無關，UTF-16 排序也適用數字形狀的鍵
+ok 43 - canonicalJson 遞迴鍵序無關，UTF-16 排序也適用數字形狀的鍵
+  ---
+  duration_ms: 0.256345
+  type: 'test'
+  ...
+# Subtest: canonicalJson 拒絕非有限數字與循環，保留合法共用子物件
+ok 44 - canonicalJson 拒絕非有限數字與循環，保留合法共用子物件
+  ---
+  duration_ms: 0.186867
+  type: 'test'
+  ...
+# Subtest: fnv1a64 的空字串與 a 符合指定向量，非 ASCII 使用 UTF-8
+ok 45 - fnv1a64 的空字串與 a 符合指定向量，非 ASCII 使用 UTF-8
+  ---
+  duration_ms: 0.104353
+  type: 'test'
+  ...
+# Subtest: eventsOfType 與 typeSequence 保留事件順序，hashLog 雜湊 events
+ok 46 - eventsOfType 與 typeSequence 保留事件順序，hashLog 雜湊 events
+  ---
+  duration_ms: 0.928914
+  type: 'test'
+  ...
+# Subtest: 決定性：seed 7 重跑二十次 Hit 的 hash 相同，seed 8 不同
+ok 47 - 決定性：seed 7 重跑二十次 Hit 的 hash 相同，seed 8 不同
+  ---
+  duration_ms: 2.191017
+  type: 'test'
+  ...
+# Subtest: 數字原樣回傳，非有限結果拋 NumExprError
+ok 48 - 數字原樣回傳，非有限結果拋 NumExprError
+  ---
+  duration_ms: 0.984417
+  type: 'test'
+  ...
+# Subtest: ref 先乘加再依 min／max 夾限
+ok 49 - ref 先乘加再依 min／max 夾限
+  ---
+  duration_ms: 0.173993
+  type: 'test'
+  ...
+# Subtest: sum 支援巢狀式，空陣列為零
+ok 50 - sum 支援巢狀式，空陣列為零
+  ---
+  duration_ms: 0.083555
+  type: 'test'
+  ...
+# Subtest: product 支援巢狀式，空陣列為一
+ok 51 - product 支援巢狀式，空陣列為一
+  ---
+  duration_ms: 0.05366
+  type: 'test'
+  ...
+# Subtest: pick 只求值條件所選分支
+ok 52 - pick 只求值條件所選分支
+  ---
+  duration_ms: 0.101678
+  type: 'test'
+  ...
+# Subtest: cmp 五種運算子皆按數字比較
+ok 53 - cmp 五種運算子皆按數字比較
+  ---
+  duration_ms: 0.22662
+  type: 'test'
+  ...
+# Subtest: tag 透過 hasTag 判斷，缺少 callback 會拋錯
+ok 54 - tag 透過 hasTag 判斷，缺少 callback 會拋錯
+  ---
+  duration_ms: 0.096399
+  type: 'test'
+  ...
+# Subtest: not／all／any 與同層鍵採 AND，涵蓋空條件
+ok 55 - not／all／any 與同層鍵採 AND，涵蓋空條件
+  ---
+  duration_ms: 0.089396
+  type: 'test'
+  ...
+# Subtest: objectRefs 解析巢狀自有鍵，缺路徑與非有限數值帶路徑拋錯
+ok 56 - objectRefs 解析巢狀自有鍵，缺路徑與非有限數值帶路徑拋錯
+  ---
+  duration_ms: 0.354658
+  type: 'test'
+  ...
+# Subtest: collectRefs 遍歷條件與所有分支，排序並去重
+ok 57 - collectRefs 遍歷條件與所有分支，排序並去重
+  ---
+  duration_ms: 0.579144
+  type: 'test'
+  ...
+# Subtest: checkNumExpr 抓壞根、未知鍵、形狀與遞迴路徑
+ok 58 - checkNumExpr 抓壞根、未知鍵、形狀與遞迴路徑
+  ---
+  duration_ms: 0.528762
+  type: 'test'
+  ...
+# Subtest: checkCond 驗證複合條件、比較子式、未知鍵與子路徑
+ok 59 - checkCond 驗證複合條件、比較子式、未知鍵與子路徑
+  ---
+  duration_ms: 0.214928
+  type: 'test'
+  ...
+# Subtest: PCG32 seed 42、stream 54 的參考序列
+ok 60 - PCG32 seed 42、stream 54 的參考序列
+  ---
+  duration_ms: 0.824701
+  type: 'test'
+  ...
+# Subtest: 預設 stream 的 seed 12345 參考序列與 seed 範圍
+ok 61 - 預設 stream 的 seed 12345 參考序列與 seed 範圍
+  ---
+  duration_ms: 0.437973
+  type: 'test'
+  ...
+# Subtest: RngState JSON 往返與 clone 都能接續，且互不共用狀態
+ok 62 - RngState JSON 往返與 clone 都能接續，且互不共用狀態
+  ---
+  duration_ms: 0.216141
+  type: 'test'
+  ...
+# Subtest: nextFloat 與 chance 消耗同一個 uint32 並使用嚴格小於
+ok 63 - nextFloat 與 chance 消耗同一個 uint32 並使用嚴格小於
+  ---
+  duration_ms: 0.125213
+  type: 'test'
+  ...
+# Subtest: nextInt 拒絕法排除低端餘數，且涵蓋合法邊界
+ok 64 - nextInt 拒絕法排除低端餘數，且涵蓋合法邊界
+  ---
+  duration_ms: 0.218335
+  type: 'test'
+  ...
+# Subtest: rollInt 包含負端點與兩個邊界
+ok 65 - rollInt 包含負端點與兩個邊界
+  ---
+  duration_ms: 0.202927
+  type: 'test'
+  ...
+# Subtest: d100 一千次皆落於 0..99 且等於 nextInt(100)
+ok 66 - d100 一千次皆落於 0..99 且等於 nextInt(100)
+  ---
+  duration_ms: 4.869227
+  type: 'test'
+  ...
+# Subtest: pickWeighted 依累積權重選取並拒絕非法權重
+ok 67 - pickWeighted 依累積權重選取並拒絕非法權重
+  ---
+  duration_ms: 0.209379
+  type: 'test'
+  ...
+# Subtest: 批次拒絕即停保留前步；stopOnReject=false 繼續下一步
+ok 68 - 批次拒絕即停保留前步；stopOnReject=false 繼續下一步
+  ---
+  duration_ms: 272.130498
+  type: 'test'
+  ...
+# Subtest: 批次 observe 與 battle_observe 相同，情境 name／brief 有則顯示、無則省略
+ok 69 - 批次 observe 與 battle_observe 相同，情境 name／brief 有則顯示、無則省略
+  ---
+  duration_ms: 298.102233
+  type: 'test'
+  ...
+# Subtest: all 列本輪玩家單位、限制輸出且不推進狀態；已結束及觀戰單位排除
+ok 70 - all 列本輪玩家單位、限制輸出且不推進狀態；已結束及觀戰單位排除
+  ---
+  duration_ms: 124.651201
+  type: 'test'
+  ...
+# Subtest: 批次到 AI／戰鬥結束即停；until=player 推進到人類且遵守 max
+ok 71 - 批次到 AI／戰鬥結束即停；until=player 推進到人類且遵守 max
+  ---
+  duration_ms: 196.535287
+  type: 'test'
+  ...
+# Subtest: 三情境的執行期目標：hold 區域與進度、killTarget 剩餘、escort 對象與出口
+ok 72 - 三情境的執行期目標：hold 區域與進度、killTarget 剩餘、escort 對象與出口
+  ---
+  duration_ms: 644.361063
+  type: 'test'
+  ...
+# Subtest: 盟軍永遠可見；失聯敵方即使 knowledge 移除仍保留快照，目標不洩漏位置
+ok 73 - 盟軍永遠可見；失聯敵方即使 knowledge 移除仍保留快照，目標不洩漏位置
+  ---
+  duration_ms: 183.635859
+  type: 'test'
+  ...
+# Subtest: ASCII 單位與地形符號不相交，出口穿透迷霧，地形與全域效果有現況
+ok 74 - ASCII 單位與地形符號不相交，出口穿透迷霧，地形與全域效果有現況
+  ---
+  duration_ms: 165.553377
+  type: 'test'
+  ...
+# Subtest: nearestEnemy 只選敵對，非當前敵方不洩漏能力；conventional-arms 對蟲的估算 ×0.1
+ok 75 - nearestEnemy 只選敵對，非當前敵方不洩漏能力；conventional-arms 對蟲的估算 ×0.1
+  ---
+  duration_ms: 8.710196
+  type: 'test'
+  ...
+# Subtest: 顯示小數不改 state；事件／單位中文與工具錯誤、游標
+ok 76 - 顯示小數不改 state；事件／單位中文與工具錯誤、游標
+  ---
+  duration_ms: 9.765645
+  type: 'test'
+  ...
+# Subtest: cli call／list 的靜態相依只含 node，serve 才載入遊戲
+ok 77 - cli call／list 的靜態相依只含 node，serve 才載入遊戲
+  ---
+  duration_ms: 0.273157
+  type: 'test'
+  ...
+# Subtest: 所有戰鬥工具：動作、AI、觀察、事件、檔案與字串重播、關閉
+ok 78 - 所有戰鬥工具：動作、AI、觀察、事件、檔案與字串重播、關閉
+  ---
+  duration_ms: 1173.981805
+  type: 'test'
+  ...
+# Subtest: 不可見敵人只提供最後所見快照；大地圖窗口最多 40 格
+ok 79 - 不可見敵人只提供最後所見快照；大地圖窗口最多 40 格
+  ---
+  duration_ms: 196.387008
+  type: 'test'
+  ...
+# Subtest: 營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項
+ok 80 - 營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項
+  ---
+  duration_ms: 723.869675
+  type: 'test'
+  ...
+# Subtest: 出戰資訊：actions／唯讀 preview 與自動戰果報告
+ok 81 - 出戰資訊：actions／唯讀 preview 與自動戰果報告
+  ---
+  duration_ms: 6239.54284
+  type: 'test'
+  ...
+# Subtest: campaign_new / view：獨立 session、精簡畫面與 log 游標
+ok 82 - campaign_new / view：獨立 session、精簡畫面與 log 游標
+  ---
+  duration_ms: 834.685757
+  type: 'test'
+  ...
+# Subtest: campaign_actions / act：原樣 cmd、中文解析、錯誤與 candidates
+ok 83 - campaign_actions / act：原樣 cmd、中文解析、錯誤與 candidates
+  ---
+  duration_ms: 398.687046
+  type: 'test'
+  ...
+# Subtest: campaign_advance：待選事件提前停、事件截斷與 choose 接續
+ok 84 - campaign_advance：待選事件提前停、事件截斷與 choose 接續
+  ---
+  duration_ms: 483.433312
+  type: 'test'
+  ...
+# Subtest: campaign_auto：seed 7 greedy 一蝕月 hash 等於直接 runCampaign
+ok 85 - campaign_auto：seed 7 greedy 一蝕月 hash 等於直接 runCampaign
+  ---
+  duration_ms: 14238.455181
+  type: 'test'
+  ...
+# Subtest: new → actions.cmd → act → save → load：日期與 cash 相同；close 隔離 session
+ok 86 - new → actions.cmd → act → save → load：日期與 cash 相同；close 隔離 session
+  ---
+  duration_ms: 1321.697957
+  type: 'test'
+  ...
+# Subtest: campaign_act sortie：真實 AI 戰果與記錄可存檔重播
+not ok 87 - campaign_act sortie：真實 AI 戰果與記錄可存檔重播
+  ---
+  duration_ms: 6098.150568
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:121:1'
+  failureType: 'testCodeFailure'
+  error: '{"content":[{"type":"text","text":"insufficient-fuel：燃料不足。"},{"type":"text","text":"{\\"error\\":\\"insufficient-fuel\\"}"}],"structuredContent":{"error":"insufficient-fuel"},"isError":true}'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    data (file:///tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:21:10)
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/mcp/campaign.test.ts:169:12)
+    async Test.run (node:internal/test_runner/test:1125:7)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: socket CLI：serve、call 共用 session；list 與錯誤 exit 1
+ok 88 - socket CLI：serve、call 共用 session；list 與錯誤 exit 1
+  ---
+  duration_ms: 658.077139
+  type: 'test'
+  ...
+# Subtest: stdio 端對端：agent 玩三輪，玩家成功指令重播 hash 等於 runBattle
+ok 89 - stdio 端對端：agent 玩三輪，玩家成功指令重播 hash 等於 runBattle
+  ---
+  duration_ms: 1111.773506
+  type: 'test'
+  ...
+# Subtest: stdio 端對端：battle_auto hash 等於直接 runBattle
+ok 90 - stdio 端對端：battle_auto hash 等於直接 runBattle
+  ---
+  duration_ms: 5990.115188
+  type: 'test'
+  ...
+# Subtest: 協定：版本、工具、錯誤、通知與 ping
+ok 91 - 協定：版本、工具、錯誤、通知與 ping
+  ---
+  duration_ms: 1.315432
+  type: 'test'
+  ...
+# Subtest: schema 子集：正反例與中文欄位路徑
+ok 92 - schema 子集：正反例與中文欄位路徑
+  ---
+  duration_ms: 0.300749
+  type: 'test'
+  ...
+# 親手出戰節錄
+# 戰役 c1 互動出戰：b1
+# b1 第 1/20 輪；輪到 mech-8 陳小海／衍型機・燕鷗攻堅型（玩家，ap 9/9）
+# battle_act {"kind":"end","actor":"mech-8"}
+# [11] 第1輪 輪到葛西 蓮／獵犬-II型行動〔mech-10〕
+# [12] 第1輪 葛西 蓮／獵犬-II型受到「酸蝕」影響〔mech-10〕
+# 輪到 mech-10 葛西 蓮／獵犬-II型（玩家，ap 9/9）
+# 成功 battle_act：30 次
+# finish：{"winner":"player","outcome":"勝利","rounds":3,"losses":{"mechs":[],"persons":[]}}
+# campaign_save hash=e9f324678bc24b73
+# campaign_load hash=e9f324678bc24b73
+# Subtest: 互動觀戰與 campaign_act 自動出戰的 campaignHash、勝負及輪數相同
+ok 93 - 互動觀戰與 campaign_act 自動出戰的 campaignHash、勝負及輪數相同
+  ---
+  duration_ms: 4377.972692
+  type: 'test'
+  ...
+# Subtest: 玩家 battle_act 親手出戰後 campaign_save → campaign_load 重播 hash 相同
+ok 94 - 玩家 battle_act 親手出戰後 campaign_save → campaign_load 重播 hash 相同
+  ---
+  duration_ms: 3203.633723
+  type: 'test'
+  ...
+# Subtest: pending 鎖住 act／advance、拒絕未完戰鬥 finish，cancel 後 campaignHash 不變
+ok 95 - pending 鎖住 act／advance、拒絕未完戰鬥 finish，cancel 後 campaignHash 不變
+  ---
+  duration_ms: 2567.707008
+  type: 'test'
+  ...
+# Subtest: 行動者表雙向驗證：kind 壞值被拒、修正通過
+ok 96 - 行動者表雙向驗證：kind 壞值被拒、修正通過
+  ---
+  duration_ms: 487.117053
+  type: 'test'
+  ...
+# Subtest: 行動者表雙向驗證：mp 壞值被拒、修正通過
+ok 97 - 行動者表雙向驗證：mp 壞值被拒、修正通過
+  ---
+  duration_ms: 225.481864
+  type: 'test'
+  ...
+# Subtest: cond：core 表達式與營運 ref 根共同求值
+ok 98 - cond：core 表達式與營運 ref 根共同求值
+  ---
+  duration_ms: 372.537668
+  type: 'test'
+  ...
+# Subtest: opseffect：帳本、聲望、旗標、心情與工時
+ok 99 - opseffect：帳本、聲望、旗標、心情與工時
+  ---
+  duration_ms: 272.086704
+  type: 'test'
+  ...
+# Subtest: opseffect：節點、裂縫、命名、核心效果與延後生成佇列
+ok 100 - opseffect：節點、裂縫、命名、核心效果與延後生成佇列
+  ---
+  duration_ms: 216.378289
+  type: 'test'
+  ...
+# Subtest: opseffect：person def 只改最早實例，實例 id 只改指定人物
+ok 101 - opseffect：person def 只改最早實例，實例 id 只改指定人物
+  ---
+  duration_ms: 191.641277
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 core
+ok 102 - 遭遇檢查雙向：壞 core
+  ---
+  duration_ms: 2.173214
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 crew
+ok 103 - 遭遇檢查雙向：壞 crew
+  ---
+  duration_ms: 0.628296
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 frame
+ok 104 - 遭遇檢查雙向：壞 frame
+  ---
+  duration_ms: 0.196805
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：frame 欄放其他 kind
+ok 105 - 遭遇檢查雙向：frame 欄放其他 kind
+  ---
+  duration_ms: 0.236038
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 pilot
+ok 106 - 遭遇檢查雙向：壞 pilot
+  ---
+  duration_ms: 0.481885
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：pilot 欄放其他 kind
+ok 107 - 遭遇檢查雙向：pilot 欄放其他 kind
+  ---
+  duration_ms: 0.250906
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 component
+ok 108 - 遭遇檢查雙向：壞 component
+  ---
+  duration_ms: 0.222112
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 slot
+ok 109 - 遭遇檢查雙向：壞 slot
+  ---
+  duration_ms: 0.144498
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：slot 型別不符
+ok 110 - 遭遇檢查雙向：slot 型別不符
+  ---
+  duration_ms: 0.342916
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：壞 faction
+ok 111 - 遭遇檢查雙向：壞 faction
+  ---
+  duration_ms: 0.954271
+  type: 'test'
+  ...
+# Subtest: 遭遇檢查雙向：faction 欄放其他 kind
+ok 112 - 遭遇檢查雙向：faction 欄放其他 kind
+  ---
+  duration_ms: 0.160999
+  type: 'test'
+  ...
+# Subtest: 契約 encounter 引用雙向：encounter/missing
+ok 113 - 契約 encounter 引用雙向：encounter/missing
+  ---
+  duration_ms: 1.37338
+  type: 'test'
+  ...
+# Subtest: 契約 encounter 引用雙向：frame/union-fr7
+ok 114 - 契約 encounter 引用雙向：frame/union-fr7
+  ---
+  duration_ms: 2.780081
+  type: 'test'
+  ...
+# Subtest: load/check：base world 零錯且 pack 覆寫順序一致
+ok 115 - load/check：base world 零錯且 pack 覆寫順序一致
+  ---
+  duration_ms: 467.782634
+  type: 'test'
+  ...
+# Subtest: check：壞航道端點被抓
+ok 116 - check：壞航道端點被抓
+  ---
+  duration_ms: 145.458838
+  type: 'test'
+  ...
+# Subtest: check：舊地點鍵與引用拒絕，修回 place 後通過
+ok 117 - check：舊地點鍵與引用拒絕，修回 place 後通過
+  ---
+  duration_ms: 247.361579
+  type: 'test'
+  ...
+# Subtest: check：事件 next 斷點被抓
+ok 118 - check：事件 next 斷點被抓
+  ---
+  duration_ms: 154.097655
+  type: 'test'
+  ...
+# Subtest: check：OpsEffect 非法 account 被抓
+ok 119 - check：OpsEffect 非法 account 被抓
+  ---
+  duration_ms: 177.241951
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：base 列長錯
+ok 120 - grid check 雙向：base 列長錯
+  ---
+  duration_ms: 3.727019
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：base 列數錯
+ok 121 - grid check 雙向：base 列數錯
+  ---
+  duration_ms: 1.512628
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：base 未知字元
+ok 122 - grid check 雙向：base 未知字元
+  ---
+  duration_ms: 1.402554
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：region 列長錯
+ok 123 - grid check 雙向：region 列長錯
+  ---
+  duration_ms: 1.368761
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：region 列數錯
+ok 124 - grid check 雙向：region 列數錯
+  ---
+  duration_ms: 2.98971
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：region 未知字元
+ok 125 - grid check 雙向：region 未知字元
+  ---
+  duration_ms: 4.51404
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：圖例地形不存在
+ok 126 - grid check 雙向：圖例地形不存在
+  ---
+  duration_ms: 1.160284
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：地點 at 越界
+ok 127 - grid check 雙向：地點 at 越界
+  ---
+  duration_ms: 6.569606
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：地點 footprint 越界
+ok 128 - grid check 雙向：地點 footprint 越界
+  ---
+  duration_ms: 1.198505
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：地點在雲嶂
+ok 129 - grid check 雙向：地點在雲嶂
+  ---
+  duration_ms: 4.275076
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：非港地點在潮海
+ok 130 - grid check 雙向：非港地點在潮海
+  ---
+  duration_ms: 1.290025
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：地點 footprint 在雲嶂
+ok 131 - grid check 雙向：地點 footprint 在雲嶂
+  ---
+  duration_ms: 1.203945
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：兩層皆不可進地形
+ok 132 - grid check 雙向：兩層皆不可進地形
+  ---
+  duration_ms: 3.198298
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：航道 a 不存在
+ok 133 - grid check 雙向：航道 a 不存在
+  ---
+  duration_ms: 1.21742
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：航道 b 不存在
+ok 134 - grid check 雙向：航道 b 不存在
+  ---
+  duration_ms: 3.35052
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：dark 圖無 charted 登陸點
+ok 135 - grid check 雙向：dark 圖無 charted 登陸點
+  ---
+  duration_ms: 1.588149
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：矩形暗區涵蓋所有登陸點
+ok 136 - grid check 雙向：矩形暗區涵蓋所有登陸點
+  ---
+  duration_ms: 1.421379
+  type: 'test'
+  ...
+# Subtest: grid check 雙向：同圖 footprint 重疊
+ok 137 - grid check 雙向：同圖 footprint 重疊
+  ---
+  duration_ms: 3.090517
+  type: 'test'
+  ...
+# Subtest: grid check：港可在潮海、不同圖 footprint 可同座標
+ok 138 - grid check：港可在潮海、不同圖 footprint 可同座標
+  ---
+  duration_ms: 1.45944
+  type: 'test'
+  ...
+# Subtest: grid check CLI：壞圖 exit 1、修正後 exit 0
+ok 139 - grid check CLI：壞圖 exit 1、修正後 exit 0
+  ---
+  duration_ms: 254.662976
+  type: 'test'
+  ...
+# Subtest: 開局裝備含部件層與彈藥，舊字串合法，錯槽／缺部件能被檢查擋下
+ok 140 - 開局裝備含部件層與彈藥，舊字串合法，錯槽／缺部件能被檢查擋下
+  ---
+  duration_ms: 937.986065
+  type: 'test'
+  ...
+# Subtest: ops 情境有內容輪數上限，部署欄與出口不重疊
+ok 141 - ops 情境有內容輪數上限，部署欄與出口不重疊
+  ---
+  duration_ms: 214.267957
+  type: 'test'
+  ...
+# Subtest: start：JSON 往返相等、帳本不變量與 seeded 開局
+ok 142 - start：JSON 往返相等、帳本不變量與 seeded 開局
+  ---
+  duration_ms: 290.447797
+  type: 'test'
+  ...
+# Subtest: instantiate：開局機甲有部位、池與空座位，無上限池仍可 JSON 化
+ok 143 - instantiate：開局機甲有部位、池與空座位，無上限池仍可 JSON 化
+  ---
+  duration_ms: 158.922043
+  type: 'test'
+  ...
+# Subtest: RLE 往返：單字元省略數字、空白區域、長列與不合法輸入
+ok 144 - RLE 往返：單字元省略數字、空白區域、長列與不合法輸入
+  ---
+  duration_ms: 8.989027
+  type: 'test'
+  ...
+# Subtest: 同設定同種子逐位元相同；交界雜訊不擴散，地點 footprint 不被覆蓋
+ok 145 - 同設定同種子逐位元相同；交界雜訊不擴散，地點 footprint 不被覆蓋
+  ---
+  duration_ms: 76.462705
+  type: 'test'
+  ...
+# Subtest: --check 實際 CLI：樣本內容通過、壞輸入非零，修回後重新通過
+ok 146 - --check 實際 CLI：樣本內容通過、壞輸入非零，修回後重新通過
+  ---
+  duration_ms: 726.299005
+  type: 'test'
+  ...
+# Subtest: 契約板：失守領地不吃掉發包機會，改由仍有可用領地的勢力發包
+ok 147 - 契約板：失守領地不吃掉發包機會，改由仍有可用領地的勢力發包
+  ---
+  duration_ms: 163.75649
+  type: 'test'
+  ...
+# Subtest: 契約板：seed 1–5 在第 14 天前至少兩份可達委託
+ok 148 - 契約板：seed 1–5 在第 14 天前至少兩份可達委託
+  ---
+  duration_ms: 9363.920615
+  type: 'test'
+  ...
+# Subtest: 契約板：節點委託無裂縫可發；不可達拒收且畫面 disabled
+ok 149 - 契約板：節點委託無裂縫可發；不可達拒收且畫面 disabled
+  ---
+  duration_ms: 80.135785
+  type: 'test'
+  ...
+# Subtest: contracts：offered 快照獨立、並行接受、到期與取消追回預付
+ok 150 - contracts：offered 快照獨立、並行接受、到期與取消追回預付
+  ---
+  duration_ms: 674.630344
+  type: 'test'
+  ...
+# Subtest: contracts：談判成功／失敗、厭煩撤回與純函式 RNG
+ok 151 - contracts：談判成功／失敗、厭煩撤回與純函式 RNG
+  ---
+  duration_ms: 192.06299
+  type: 'test'
+  ...
+# Subtest: contracts：同一單位一頭、部分成功半額、付款與 rep 只結一次
+ok 152 - contracts：同一單位一頭、部分成功半額、付款與 rep 只結一次
+  ---
+  duration_ms: 205.827794
+  type: 'test'
+  ...
+# Subtest: 驅動時數只給有核心且在座的活人與機魂；無核心、遠端、AI 與未上機者不增加
+ok 153 - 驅動時數只給有核心且在座的活人與機魂；無核心、遠端、AI 與未上機者不增加
+  ---
+  duration_ms: 1290.932616
+  type: 'test'
+  ...
+# Subtest: 第一門檻獲得能力且受最高驅動等級與 S 上限限制；人物能力去重並受個數上限限制
+ok 154 - 第一門檻獲得能力且受最高驅動等級與 S 上限限制；人物能力去重並受個數上限限制
+  ---
+  duration_ms: 393.93386
+  type: 'test'
+  ...
+# Subtest: 機魂能力門檻以人的十分之一速度累積，滿門檻才長出
+ok 155 - 機魂能力門檻以人的十分之一速度累積，滿門檻才長出
+  ---
+  duration_ms: 330.171698
+  type: 'test'
+  ...
+# Subtest: 編隊 AI 空座自駕傳入 crew 並成 scripted；有人時仍由 human 驅動，後天能力進入戰鬥
+ok 156 - 編隊 AI 空座自駕傳入 crew 並成 scripted；有人時仍由 human 驅動，後天能力進入戰鬥
+  ---
+  duration_ms: 179.419293
+  type: 'test'
+  ...
+# Subtest: AI 醒魂機率一：大潮與古代機各自能醒，事件、名冊、登記名、座位及計數歸零
+ok 157 - AI 醒魂機率一：大潮與古代機各自能醒，事件、名冊、登記名、座位及計數歸零
+  ---
+  duration_ms: 352.043657
+  type: 'test'
+  ...
+# Subtest: AI 醒魂機率零或條件不成立不醒；漲潮日但非大潮、無古代機不耗醒魂骰
+ok 158 - AI 醒魂機率零或條件不成立不醒；漲潮日但非大潮、無古代機不耗醒魂骰
+  ---
+  duration_ms: 1057.976824
+  type: 'test'
+  ...
+# Subtest: workqueue：structure 層歸零的機甲手臂可排 rebuild 並付料修復
+ok 159 - workqueue：structure 層歸零的機甲手臂可排 rebuild 並付料修復
+  ---
+  duration_ms: 124.781945
+  type: 'test'
+  ...
+# Subtest: wages：全團等比例欠薪、mood −1 且不受名冊順序影響
+ok 160 - wages：全團等比例欠薪、mood −1 且不受名冊順序影響
+  ---
+  duration_ms: 91.586118
+  type: 'test'
+  ...
+# Subtest: wages：只有大潮第 1 天把月息入 debt
+ok 161 - wages：只有大潮第 1 天把月息入 debt
+  ---
+  duration_ms: 47.576796
+  type: 'test'
+  ...
+# Subtest: wages：cmdPay 對沖兩筆、拒絕不變且 checkLedger 空
+ok 162 - wages：cmdPay 對沖兩筆、拒絕不變且 checkLedger 空
+  ---
+  duration_ms: 56.492427
+  type: 'test'
+  ...
+# Subtest: workqueue：每日工時先灌 priority 小者並支援重排
+ok 163 - workqueue：每日工時先灌 priority 小者並支援重排
+  ---
+  duration_ms: 41.636067
+  type: 'test'
+  ...
+# Subtest: workqueue：材料不足不開工、不扣任一材料或幣
+ok 164 - workqueue：材料不足不開工、不扣任一材料或幣
+  ---
+  duration_ms: 41.684427
+  type: 'test'
+  ...
+# Subtest: workqueue：結構歸零 rebuild 工時 ×3、材料 ×2
+ok 165 - workqueue：結構歸零 rebuild 工時 ×3、材料 ×2
+  ---
+  duration_ms: 44.411319
+  type: 'test'
+  ...
+# Subtest: soul：科研工時與付幣完成後開節點，mastery 為零
+ok 166 - soul：科研工時與付幣完成後開節點，mastery 為零
+  ---
+  duration_ms: 49.88995
+  type: 'test'
+  ...
+# Subtest: soul：每天限一時段、陪伴累積 mastery 永不超過 1
+ok 167 - soul：每天限一時段、陪伴累積 mastery 永不超過 1
+  ---
+  duration_ms: 111.75894
+  type: 'test'
+  ...
+# Subtest: names：非大潮 cmdWake 被拒且整個 state 不變
+ok 168 - names：非大潮 cmdWake 被拒且整個 state 不變
+  ---
+  duration_ms: 44.614627
+  type: 'test'
+  ...
+# Subtest: names：喚成功推三候選＋自填 Prompt，applyName 記名與 Named 事件
+ok 169 - names：喚成功推三候選＋自填 Prompt，applyName 記名與 Named 事件
+  ---
+  duration_ms: 40.640088
+  type: 'test'
+  ...
+# Subtest: recruit：弦月候選決定性，聘金入帳、名冊多一人且 id 可重播
+ok 170 - recruit：弦月候選決定性，聘金入帳、名冊多一人且 id 可重播
+  ---
+  duration_ms: 97.607758
+  type: 'test'
+  ...
+# Subtest: recruit：名冊與各池候選的人物定義不重複；抽空的池保持空白
+ok 171 - recruit：名冊與各池候選的人物定義不重複；抽空的池保持空白
+  ---
+  duration_ms: 46.075599
+  type: 'test'
+  ...
+# Subtest: debt：最低額取利息與本金攤還較高者；有現金自動扣繳並守恆
+ok 172 - debt：最低額取利息與本金攤還較高者；有現金自動扣繳並守恆
+  ---
+  duration_ms: 150.154232
+  type: 'test'
+  ...
+# Subtest: debt：現金不足欠繳降聲望；補足當期額度使欠繳退一級；提前還本降低下期最低額
+ok 173 - debt：現金不足欠繳降聲望；補足當期額度使欠繳退一級；提前還本降低下期最低額
+  ---
+  duration_ms: 74.732201
+  type: 'test'
+  ...
+# Subtest: debt：二級扣押最高價可用機甲，市值六成抵債並清空席位
+ok 174 - debt：二級扣押最高價可用機甲，市值六成抵債並清空席位
+  ---
+  duration_ms: 63.560781
+  type: 'test'
+  ...
+# Subtest: debt：扣押避開待出戰與契約借用機甲
+ok 175 - debt：扣押避開待出戰與契約借用機甲
+  ---
+  duration_ms: 52.697483
+  type: 'test'
+  ...
+# Subtest: debt：三級拒售、港費加倍，補繳後解除；四級通牒與次期扣船
+ok 176 - debt：三級拒售、港費加倍，補繳後解除；四級通牒與次期扣船
+  ---
+  duration_ms: 51.830243
+  type: 'test'
+  ...
+# Subtest: debt：還清開信貸，借款受額度約束
+ok 177 - debt：還清開信貸，借款受額度約束
+  ---
+  duration_ms: 62.365061
+  type: 'test'
+  ...
+# Subtest: 捕獲入拘束艙並登記，A 級沿用野生二名
+ok 178 - 捕獲入拘束艙並登記，A 級沿用野生二名
+  ---
+  duration_ms: 684.535481
+  type: 'test'
+  ...
+# Subtest: 每日磨損依等級與傷勢，滿值推三選且 choose 硬壓回 60
+ok 179 - 每日磨損依等級與傷勢，滿值推三選且 choose 硬壓回 60
+  ---
+  duration_ms: 218.880086
+  type: 'test'
+  ...
+# Subtest: restrain job 材料開工一次扣，完成磨損歸零
+ok 180 - restrain job 材料開工一次扣，完成磨損歸零
+  ---
+  duration_ms: 211.494774
+  type: 'test'
+  ...
+# Subtest: 投屍扣 flesh 且帳本守恆，錯過第一大潮減 25、同月第二大潮不扣
+ok 181 - 投屍扣 flesh 且帳本守恆，錯過第一大潮減 25、同月第二大潮不扣
+  ---
+  duration_ms: 218.791332
+  type: 'test'
+  ...
+# Subtest: 活性歸零 Stiffened 並同位轉整屍
+ok 182 - 活性歸零 Stiffened 並同位轉整屍
+  ---
+  duration_ms: 187.184344
+  type: 'test'
+  ...
+# Subtest: mount 無核不開工，扣核與 scrap 後完成 corpse 機體；整屍選項拆優先
+ok 183 - mount 無核不開工，扣核與 scrap 後完成 corpse 機體；整屍選項拆優先
+  ---
+  duration_ms: 183.873307
+  type: 'test'
+  ...
+# Subtest: 異形 tide-soak 蝕化或同節點 anchored 回滿，錯過減 20
+ok 184 - 異形 tide-soak 蝕化或同節點 anchored 回滿，錯過減 20
+  ---
+  duration_ms: 169.371243
+  type: 'test'
+  ...
+# Subtest: 菌房每潮月排 prune，未完成 layers 增長；keymap 重鍵載入拒絕
+ok 185 - 菌房每潮月排 prune，未完成 layers 增長；keymap 重鍵載入拒絕
+  ---
+  duration_ms: 436.858234
+  type: 'test'
+  ...
+# Subtest: 船位置不變量：存在的圖與可進格；未知圖和不可進格會被擋
+ok 186 - 船位置不變量：存在的圖與可進格；未知圖和不可進格會被擋
+  ---
+  duration_ms: 396.554292
+  type: 'test'
+  ...
+# Subtest: idle 12 蝕月：每天不變量全空
+ok 187 - idle 12 蝕月：每天不變量全空
+  ---
+  duration_ms: 4375.178017
+  type: 'test'
+  ...
+# Subtest: 長時間 wait 在駕駛員歸零終局當天停止
+not ok 188 - 長時間 wait 在駕駛員歸零終局當天停止
+  ---
+  duration_ms: 4354.86634
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/src/ops/sim/campaign.test.ts:48:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    
+    90 !== 132
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 132
+  actual: 90
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/campaign.test.ts:52:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: continueAfterEnd：終局後世界照走，原政策不再行動
+ok 189 - continueAfterEnd：終局後世界照走，原政策不再行動
+  ---
+  duration_ms: 17102.421001
+  type: 'test'
+  ...
+# Subtest: greedy 加不打戰鬥的假 runner 跑 6 蝕月
+ok 190 - greedy 加不打戰鬥的假 runner 跑 6 蝕月
+  ---
+  duration_ms: 14596.038774
+  type: 'test'
+  ...
+# Subtest: random 三個 seed 各 6 蝕月，每天不變量全空
+ok 191 - random 三個 seed 各 6 蝕月，每天不變量全空
+  ---
+  duration_ms: 63327.511874
+  type: 'test'
+  ...
+# 蝕月 1 day=28 cash=708 debt=25200 人數=7 拘束艙生物機甲數=0 蝕格數=374 裂縫數=1 行動者=113 累計遭遇=3 作戰=0 war=1 allied=0 釋出=37 join=0
+# 蝕月 2 day=56 cash=218 debt=26460 人數=7 拘束艙生物機甲數=0 蝕格數=413 裂縫數=1 行動者=65 累計遭遇=3 作戰=1 war=0 allied=0 釋出=41 join=0
+# war統計 {"enteredWar":1,"ceasefires":1,"PlaceTransferred":1,"OperationResolved":4,"maxOperations":2,"maxDays":11,"maxWarRatio":0.006535947712418301,"maxAlliedRatio":0,"maxWarStreakDays":39,"minMajorStates":3,"minPowerRatio":0.662962962962963,"errors":[]}
+# actor統計 {"minActors":65,"maxActors":114,"encounters":3,"activeDays":59,"endDay":null,"encountersPerDay":0.05084745762711865,"maxEncounters":1,"maxTickMs":177,"meanTickMs":39.220588235294116}
+# OK
+# Subtest: CLI idle 兩蝕月回傳 0
+ok 192 - CLI idle 兩蝕月回傳 0
+  ---
+  duration_ms: 3307.806878
+  type: 'test'
+  ...
+# Subtest: 黃金戰役固定指令的事件日誌 hash 相符
+not ok 193 - 黃金戰役固定指令的事件日誌 hash 相符
+  ---
+  duration_ms: 1613.673564
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/src/ops/sim/golden.test.ts:8:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        day: 31,
+    +   events: 840,
+    +   logHash: 'aacf251adb7030aa'
+    -   events: 795,
+    -   logHash: '3c8814d7d531c515'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    logHash: '3c8814d7d531c515'
+    events: 795
+    day: 31
+  actual:
+    logHash: 'aacf251adb7030aa'
+    events: 840
+    day: 31
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/golden.test.ts:16:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.start (node:internal/test_runner/test:1015:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+  ...
+# Subtest: grid-health：greedy seed 7 十二蝕月退化判準；不合格輸入必須變紅
+ok 194 - grid-health：greedy seed 7 十二蝕月退化判準；不合格輸入必須變紅
+  ---
+  duration_ms: 54024.722251
+  type: 'test'
+  ...
+# Subtest: greedy 在野外且沒有契約或待戰時不憑空出戰；低油在市場用交易補給
+ok 195 - greedy 在野外且沒有契約或待戰時不憑空出戰；低油在市場用交易補給
+  ---
+  duration_ms: 422.977409
+  type: 'test'
+  ...
+# Subtest: random 有補給時隨機航行、航程中等待，政策不改寫狀態
+ok 196 - random 有補給時隨機航行、航程中等待，政策不改寫狀態
+  ---
+  duration_ms: 394.6628
+  type: 'test'
+  ...
+# Subtest: merc 履約航行遇伏擊且無可戰單位時撤離，不等待同一天
+ok 197 - merc 履約航行遇伏擊且無可戰單位時撤離，不等待同一天
+  ---
+  duration_ms: 365.803381
+  type: 'test'
+  ...
+# Subtest: greedy 同契約連續兩次平手後 drop，一次平手仍可出戰
+ok 198 - greedy 同契約連續兩次平手後 drop，一次平手仍可出戰
+  ---
+  duration_ms: 274.667836
+  type: 'test'
+  ...
+# Subtest: greedy 不派出戰會注入 morale-shaken 的乘員，mood 零仍可派
+ok 199 - greedy 不派出戰會注入 morale-shaken 的乘員，mood 零仍可派
+  ---
+  duration_ms: 606.79869
+  type: 'test'
+  ...
+# Subtest: greedy 單機結構層剩半血不出戰，超過半血仍可派
+ok 200 - greedy 單機結構層剩半血不出戰，超過半血仍可派
+  ---
+  duration_ms: 388.819005
+  type: 'test'
+  ...
+# Subtest: greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的機甲就返補給城
+ok 201 - greedy 不派核心、腿、武器毀損或無彈機，沒有能戰鬥的機甲就返補給城
+  ---
+  duration_ms: 1681.994576
+  type: 'test'
+  ...
+# Subtest: random 沒有 battle runner 時僅選交涉或迴避，待戰以付費 drift 處理
+ok 202 - random 沒有 battle runner 時僅選交涉或迴避，待戰以付費 drift 處理
+  ---
+  duration_ms: 158.928877
+  type: 'test'
+  ...
+# Subtest: greedy 對受損層排 repair／rebuild，交給既有 queue 計價且不重複排程
+ok 203 - greedy 對受損層排 repair／rebuild，交給既有 queue 計價且不重複排程
+  ---
+  duration_ms: 435.938452
+  type: 'test'
+  ...
+# Subtest: greedy 維修缺料會用現金在市場買料，政策不直接改帳本
+ok 204 - greedy 維修缺料會用現金在市場買料，政策不直接改帳本
+  ---
+  duration_ms: 399.966882
+  type: 'test'
+  ...
+# Subtest: 同輸入與同 runner 重播 state hash 相等
+ok 205 - 同輸入與同 runner 重播 state hash 相等
+  ---
+  duration_ms: 13280.484967
+  type: 'test'
+  ...
+# Subtest: 存檔序列化來回重播校驗；被改過的 hash 拒載
+ok 206 - 存檔序列化來回重播校驗；被改過的 hash 拒載
+  ---
+  duration_ms: 7859.117619
+  type: 'test'
+  ...
+# Subtest: 六 seed × idle/random/merc × 六蝕月：逐日戰爭不變量
+ok 207 - 六 seed × idle/random/merc × 六蝕月：逐日戰爭不變量
+  ---
+  duration_ms: 278667.293893
+  type: 'test'
+  ...
+# Subtest: 檢查器會攔下戰爭欄位與比例超界
+ok 208 - 檢查器會攔下戰爭欄位與比例超界
+  ---
+  duration_ms: 185.432212
+  type: 'test'
+  ...
+# Subtest: 七日等待與七次單日等待：作戰外交事件及 state 同值
+ok 209 - 七日等待與七次單日等待：作戰外交事件及 state 同值
+  ---
+  duration_ms: 538.021546
+  type: 'test'
+  ...
+# Subtest: 外交變態只在第 2 段；研發事件只在蝕月首日
+ok 210 - 外交變態只在第 2 段；研發事件只在蝕月首日
+  ---
+  duration_ms: 8053.585159
+  type: 'test'
+  ...
+# Subtest: 含作戰與 join 戰鬥的重播不呼叫 runner，state 逐位元相同
+ok 211 - 含作戰與 join 戰鬥的重播不呼叫 runner，state 逐位元相同
+  ---
+  duration_ms: 15584.233018
+  type: 'test'
+  ...
+# Subtest: alive 機甲與人物直接寫回已含舊傷的戰果
+ok 212 - alive 機甲與人物直接寫回已含舊傷的戰果
+  ---
+  duration_ms: 418.893484
+  type: 'test'
+  ...
+# Subtest: 敵方 anchor dead 使裂縫 unanchored，契約同一單位只算一次
+ok 213 - 敵方 anchor dead 使裂縫 unanchored，契約同一單位只算一次
+  ---
+  duration_ms: 276.472075
+  type: 'test'
+  ...
+# Subtest: loot 材料經 post，checkLedger 無錯且來源含戰鬥 hash
+ok 214 - loot 材料經 post，checkLedger 無錯且來源含戰鬥 hash
+  ---
+  duration_ms: 174.297434
+  type: 'test'
+  ...
+# Subtest: opening 清剿先鋒勝利關閉裂縫，同裂縫不再提供新契約
+ok 215 - opening 清剿先鋒勝利關閉裂縫，同裂縫不再提供新契約
+  ---
+  duration_ms: 584.692493
+  type: 'test'
+  ...
+# Subtest: 回合上限平手保留契約與耗損，期限內可重打或放棄、逾期照常失敗
+ok 216 - 回合上限平手保留契約與耗損，期限內可重打或放棄、逾期照常失敗
+  ---
+  duration_ms: 489.692045
+  type: 'test'
+  ...
+# Subtest: 非作戰護送友軍死亡不算敵方頭數、不回收屍體或戰利品
+ok 217 - 非作戰護送友軍死亡不算敵方頭數、不回收屍體或戰利品
+  ---
+  duration_ms: 170.974121
+  type: 'test'
+  ...
+# ENCOUNTER league-blight-checkpoint: winner=enemy rounds=4 seed=1701
+# ENCOUNTER rival-anvil-carcass: winner=enemy rounds=5 seed=1701
+# ENCOUNTER rival-saltgull-ambush: winner=enemy rounds=7 seed=1701
+# ENCOUNTER selene-whiteglove-audit: winner=enemy rounds=12 seed=1701
+# ENCOUNTER smuggler-farside-ship: winner=enemy rounds=10 seed=1701
+# ENCOUNTER tide-unshacklers: winner=enemy rounds=7 seed=1701
+# Subtest: 方格地形生成的怪獸遭遇與 RNG 保持固定指紋
+ok 218 - 方格地形生成的怪獸遭遇與 RNG 保持固定指紋
+  ---
+  duration_ms: 435.614862
+  type: 'test'
+  ...
+# Subtest: 契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊
+ok 219 - 契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊
+  ---
+  duration_ms: 272.573077
+  type: 'test'
+  ...
+# Subtest: 加權編成按每級預算抽，components 明列空表也整組保留
+ok 220 - 加權編成按每級預算抽，components 明列空表也整組保留
+  ---
+  duration_ms: 239.287228
+  type: 'test'
+  ...
+# Subtest: 同契約從候選遭遇穩定挑一份，不受 RNG 位置影響
+ok 221 - 同契約從候選遭遇穩定挑一份，不受 RNG 位置影響
+  ---
+  duration_ms: 227.347877
+  type: 'test'
+  ...
+# Subtest: 只有 target.place 的契約由節點蝕域與第一裂縫族回退
+ok 222 - 只有 target.place 的契約由節點蝕域與第一裂縫族回退
+  ---
+  duration_ms: 341.619199
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 league-blight-checkpoint 編成、配裝、勢力與固定 seed 戰鬥
+ok 223 - 人類遭遇 league-blight-checkpoint 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 592.524894
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 rival-anvil-carcass 編成、配裝、勢力與固定 seed 戰鬥
+ok 224 - 人類遭遇 rival-anvil-carcass 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 370.922553
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 rival-saltgull-ambush 編成、配裝、勢力與固定 seed 戰鬥
+ok 225 - 人類遭遇 rival-saltgull-ambush 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 547.022072
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 selene-whiteglove-audit 編成、配裝、勢力與固定 seed 戰鬥
+ok 226 - 人類遭遇 selene-whiteglove-audit 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 651.629855
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 smuggler-farside-ship 編成、配裝、勢力與固定 seed 戰鬥
+ok 227 - 人類遭遇 smuggler-farside-ship 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 854.14049
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 tide-unshacklers 編成、配裝、勢力與固定 seed 戰鬥
+ok 228 - 人類遭遇 tide-unshacklers 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 449.760834
+  type: 'test'
+  ...
+# Subtest: 護送目標帶玩家戰鬥單位 id，人物使用獨立實例
+ok 229 - 護送目標帶玩家戰鬥單位 id，人物使用獨立實例
+  ---
+  duration_ms: 172.412963
+  type: 'test'
+  ...
+# Subtest: 獵殺二名怪補 A 級有 epithet 目標且不重複補既有目標
+ok 230 - 獵殺二名怪補 A 級有 epithet 目標且不重複補既有目標
+  ---
+  duration_ms: 361.964903
+  type: 'test'
+  ...
+# Subtest: 營運效果與天賦 mastery 在源頭求值，出戰人物貢獻全部是 number
+ok 231 - 營運效果與天賦 mastery 在源頭求值，出戰人物貢獻全部是 number
+  ---
+  duration_ms: 159.556168
+  type: 'test'
+  ...
+# Subtest: 無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物
+ok 232 - 無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物
+  ---
+  duration_ms: 197.458067
+  type: 'test'
+  ...
+# Subtest: UnitInit 部位現況未受攻擊時原樣進入 BattleResult
+ok 233 - UnitInit 部位現況未受攻擊時原樣進入 BattleResult
+  ---
+  duration_ms: 415.82822
+  type: 'test'
+  ...
+# Subtest: 不在 ContentDB 的人物實例帶入池、效果與完整現況
+ok 234 - 不在 ContentDB 的人物實例帶入池、效果與完整現況
+  ---
+  duration_ms: 248.330455
+  type: 'test'
+  ...
+# Subtest: UnitInit 明示 controlMode 與單位效果優先於座位推導
+ok 235 - UnitInit 明示 controlMode 與單位效果優先於座位推導
+  ---
+  duration_ms: 200.248453
+  type: 'test'
+  ...
+# Subtest: runBattle 的 BattleResult.events 與 state.log.events 相同且獨立
+ok 236 - runBattle 的 BattleResult.events 與 state.log.events 相同且獨立
+  ---
+  duration_ms: 184.232247
+  type: 'test'
+  ...
+# Subtest: ops 出戰全程保留 ctx.db 同一物件且不加入 ops 地圖
+ok 237 - ops 出戰全程保留 ctx.db 同一物件且不加入 ops 地圖
+  ---
+  duration_ms: 1001.915447
+  type: 'test'
+  ...
+# Subtest: 營運重播套用戰果：會拋錯的 runner 呼叫零次且 state hash 相同
+ok 238 - 營運重播套用戰果：會拋錯的 runner 呼叫零次且 state hash 相同
+  ---
+  duration_ms: 11847.288222
+  type: 'test'
+  ...
+# Subtest: 含戰果的營運存檔 JSON 來回後仍無須戰鬥且 hash 相同
+ok 239 - 含戰果的營運存檔 JSON 來回後仍無須戰鬥且 hash 相同
+  ---
+  duration_ms: 4293.707716
+  type: 'test'
+  ...
+# Subtest: 營運出戰敵獸與玩家活捕獸保留 monster.def，覆寫部位與屬性生效
+ok 240 - 營運出戰敵獸與玩家活捕獸保留 monster.def，覆寫部位與屬性生效
+  ---
+  duration_ms: 533.394258
+  type: 'test'
+  ...
+# Subtest: 正式 detail 擊退依勝方分類，優先於舊 units 推斷，缺 detail 仍相容
+ok 241 - 正式 detail 擊退依勝方分類，優先於舊 units 推斷，缺 detail 仍相容
+  ---
+  duration_ms: 195.790099
+  type: 'test'
+  ...
+# Subtest: 同族同級兩隻 A 級怪活捕依 monster id 帶入各自二名，舊結果保留後備
+ok 242 - 同族同級兩隻 A 級怪活捕依 monster id 帶入各自二名，舊結果保留後備
+  ---
+  duration_ms: 887.383674
+  type: 'test'
+  ...
+# Subtest: operation 合編 independent 與 ID 對位
+ok 243 - operation 合編 independent 與 ID 對位
+  ---
+  duration_ms: 132.470356
+  type: 'test'
+  ...
+# Subtest: operation 合編 attached 與 ID 對位
+ok 244 - operation 合編 attached 與 ID 對位
+  ---
+  duration_ms: 91.613789
+  type: 'test'
+  ...
+# Subtest: operation 合編 mixed 與 ID 對位
+ok 245 - operation 合編 mixed 與 ID 對位
+  ---
+  duration_ms: 71.553745
+  type: 'test'
+  ...
+# Subtest: BattleResult.units 包含 ally；真 sim 邊界
+ok 246 - BattleResult.units 包含 ally；真 sim 邊界
+  ---
+  duration_ms: 572.739061
+  type: 'test'
+  ...
+# Subtest: 軍令 optional 與人類敵軍來自 ModelDef.frame
+ok 247 - 軍令 optional 與人類敵軍來自 ModelDef.frame
+  ---
+  duration_ms: 59.742449
+  type: 'test'
+  ...
+# Subtest: 裂獸敵方保留契約快照、情境生成決定性
+ok 248 - 裂獸敵方保留契約快照、情境生成決定性
+  ---
+  duration_ms: 65.451718
+  type: 'test'
+  ...
+# Subtest: 分類讀撤離欄位／reason，舊戰果用單位推斷並計 killRatio
+ok 249 - 分類讀撤離欄位／reason，舊戰果用單位推斷並計 killRatio
+  ---
+  duration_ms: 362.303758
+  type: 'test'
+  ...
+# Subtest: 契約 win：結案報酬或保留重打
+ok 250 - 契約 win：結案報酬或保留重打
+  ---
+  duration_ms: 296.593672
+  type: 'test'
+  ...
+# Subtest: 契約 repelled：結案報酬或保留重打
+ok 251 - 契約 repelled：結案報酬或保留重打
+  ---
+  duration_ms: 249.793362
+  type: 'test'
+  ...
+# Subtest: 契約 withdrew：結案報酬或保留重打
+ok 252 - 契約 withdrew：結案報酬或保留重打
+  ---
+  duration_ms: 225.063821
+  type: 'test'
+  ...
+# Subtest: 契約 timeout：結案報酬或保留重打
+ok 253 - 契約 timeout：結案報酬或保留重打
+  ---
+  duration_ms: 195.503875
+  type: 'test'
+  ...
+# Subtest: 清剿擊退依死亡比率付 0.6 + 0.4 × killRatio，其他契約全額
+ok 254 - 清剿擊退依死亡比率付 0.6 + 0.4 × killRatio，其他契約全額
+  ---
+  duration_ms: 325.233612
+  type: 'test'
+  ...
+# Subtest: 裂縫 opening 擊退：關閉或跳過一次擴張
+ok 255 - 裂縫 opening 擊退：關閉或跳過一次擴張
+  ---
+  duration_ms: 197.940213
+  type: 'test'
+  ...
+# Subtest: 裂縫 anchored 擊退：關閉或跳過一次擴張
+ok 256 - 裂縫 anchored 擊退：關閉或跳過一次擴張
+  ---
+  duration_ms: 201.138968
+  type: 'test'
+  ...
+# Subtest: seal 擊退仍守住裂縫
+ok 257 - seal 擊退仍守住裂縫
+  ---
+  duration_ms: 161.735651
+  type: 'test'
+  ...
+# Subtest: 作戰發起方撤退：玩家站 actor，進度回退、士氣與關係下降、終局按邊結算
+ok 258 - 作戰發起方撤退：玩家站 actor，進度回退、士氣與關係下降、終局按邊結算
+  ---
+  duration_ms: 63.57911
+  type: 'test'
+  ...
+# Subtest: 作戰發起方撤退：玩家站 target，進度回退、士氣與關係下降、終局按邊結算
+ok 259 - 作戰發起方撤退：玩家站 target，進度回退、士氣與關係下降、終局按邊結算
+  ---
+  duration_ms: 59.372794
+  type: 'test'
+  ...
+# Subtest: runSortie 雙方 AI 跑至戰果並留下 BattleResolved
+ok 260 - runSortie 雙方 AI 跑至戰果並留下 BattleResolved
+  ---
+  duration_ms: 1292.184286
+  type: 'test'
+  ...
+# Subtest: sortieBattleSetup 唯讀：不改 state，setup 跑 AI 對 AI 的日誌 hash 等於 runSortie
+ok 261 - sortieBattleSetup 唯讀：不改 state，setup 跑 AI 對 AI 的日誌 hash 等於 runSortie
+  ---
+  duration_ms: 1745.654396
+  type: 'test'
+  ...
+# Subtest: sortieBattleSetup 拒絕不合法編成
+ok 262 - sortieBattleSetup 拒絕不合法編成
+  ---
+  duration_ms: 174.693534
+  type: 'test'
+  ...
+# Subtest: seal 守區避開敵軍初始格且從玩家初始格沿可通行地形可達
+ok 263 - seal 守區避開敵軍初始格且從玩家初始格沿可通行地形可達
+  ---
+  duration_ms: 427.058821
+  type: 'test'
+  ...
+# Subtest: anchored clear 在錨在場時 killTarget 指向錨，opening 保持 eliminate
+ok 264 - anchored clear 在錨在場時 killTarget 指向錨，opening 保持 eliminate
+  ---
+  duration_ms: 427.563859
+  type: 'test'
+  ...
+# Subtest: 核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨
+ok 265 - 核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨
+  ---
+  duration_ms: 435.387401
+  type: 'test'
+  ...
+# Subtest: 接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入
+ok 266 - 接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入
+  ---
+  duration_ms: 170.176173
+  type: 'test'
+  ...
+# Subtest: 同 state 與 rng 生成深相等情境
+ok 267 - 同 state 與 rng 生成深相等情境
+  ---
+  duration_ms: 168.833227
+  type: 'test'
+  ...
+# Subtest: hold 缺 zone（含 anchor 與階段目標）展開可達守區，明列 zone 保留
+ok 268 - hold 缺 zone（含 anchor 與階段目標）展開可達守區，明列 zone 保留
+  ---
+  duration_ms: 1026.205324
+  type: 'test'
+  ...
+# Subtest: 活捕 wear 70 的本能起點比 wear 0 高 10
+ok 269 - 活捕 wear 70 的本能起點比 wear 0 高 10
+  ---
+  duration_ms: 234.158299
+  type: 'test'
+  ...
+# Subtest: 屍體改裝機帶駕駛員可出戰，活捕帶座位拒絕
+ok 270 - 屍體改裝機帶駕駛員可出戰，活捕帶座位拒絕
+  ---
+  duration_ms: 190.35844
+  type: 'test'
+  ...
+# Subtest: validate 拒絕已死人員，且不修改狀態
+ok 271 - validate 拒絕已死人員，且不修改狀態
+  ---
+  duration_ms: 446.573857
+  type: 'test'
+  ...
+# Subtest: validate 拒絕不在機庫的機甲
+ok 272 - validate 拒絕不在機庫的機甲
+  ---
+  duration_ms: 277.70383
+  type: 'test'
+  ...
+# Subtest: clock：dom 與潮相對照
+ok 273 - clock：dom 與潮相對照
+  ---
+  duration_ms: 0.907276
+  type: 'test'
+  ...
+# Subtest: clock：改 calendar 週期生效
+ok 274 - clock：改 calendar 週期生效
+  ---
+  duration_ms: 0.200182
+  type: 'test'
+  ...
+# Subtest: clock：蝕曆年由 epochMonth／monthsPerYear 算，元年為 1
+ok 275 - clock：蝕曆年由 epochMonth／monthsPerYear 算，元年為 1
+  ---
+  duration_ms: 0.167351
+  type: 'test'
+  ...
+# Subtest: ids：跨前綴唯一，存檔後決定性續號
+ok 276 - ids：跨前綴唯一，存檔後決定性續號
+  ---
+  duration_ms: 0.437563
+  type: 'test'
+  ...
+# Subtest: ledger：折疊相等，外源 ref 必須存在
+ok 277 - ledger：折疊相等，外源 ref 必須存在
+  ---
+  duration_ms: 1.164063
+  type: 'test'
+  ...
+# Subtest: ledger：負存量拒絕且不記帳不發事件
+ok 278 - ledger：負存量拒絕且不記帳不發事件
+  ---
+  duration_ms: 0.364407
+  type: 'test'
+  ...
+# Subtest: ledger：買賣兩筆互填 counter
+ok 279 - ledger：買賣兩筆互填 counter
+  ---
+  duration_ms: 0.241609
+  type: 'test'
+  ...
+# Subtest: ledger：竄改 balances 被抓
+ok 280 - ledger：竄改 balances 被抓
+  ---
+  duration_ms: 0.097481
+  type: 'test'
+  ...
+# Subtest: stage：潮前三日、漲潮、退潮三日、小潮、平潮
+ok 281 - stage：潮前三日、漲潮、退潮三日、小潮、平潮
+  ---
+  duration_ms: 0.886668
+  type: 'test'
+  ...
+# Subtest: tide：潮級基本值與漲潮日的天象修正（delta 上限 3、set 優先、多 set 取最大）
+ok 282 - tide：潮級基本值與漲潮日的天象修正（delta 上限 3、set 優先、多 set 取最大）
+  ---
+  duration_ms: 0.496172
+  type: 'test'
+  ...
+# Subtest: omens：cycle 相位自蝕曆元年起、排定型與湧現型
+ok 283 - omens：cycle 相位自蝕曆元年起、排定型與湧現型
+  ---
+  duration_ms: 0.354659
+  type: 'test'
+  ...
+# Subtest: omen 旗：寫入 `omen:<名>`、窗外刪除、不碰其他旗
+ok 284 - omen 旗：寫入 `omen:<名>`、窗外刪除、不碰其他旗
+  ---
+  duration_ms: 0.24239
+  type: 'test'
+  ...
+# Subtest: base 蝕曆：連珠潮只在開局第 40 蝕月初一排定、之後十年內不湧現；大潮每年兩三次
+ok 285 - base 蝕曆：連珠潮只在開局第 40 蝕月初一排定、之後十年內不湧現；大潮每年兩三次
+  ---
+  duration_ms: 277.863637
+  type: 'test'
+  ...
+# Subtest: 日結：tick 寫 omen 旗與潮級，事件 when 可用 omen／tide tag 與 calendar.tide
+ok 286 - 日結：tick 寫 omen 旗與潮級，事件 when 可用 omen／tide tag 與 calendar.tide
+  ---
+  duration_ms: 456.581831
+  type: 'test'
+  ...
+# Subtest: check：天象週期驗證能擋壞資料、base 全過
+ok 287 - check：天象週期驗證能擋壞資料、base 全過
+  ---
+  duration_ms: 159.227244
+  type: 'test'
+  ...
+# Subtest: base 迫月週期 7.5 蝕月（210 日）：大潮輪流落在朔潮與望潮
+ok 288 - base 迫月週期 7.5 蝕月（210 日）：大潮輪流落在朔潮與望潮
+  ---
+  duration_ms: 142.787385
+  type: 'test'
+  ...
+# Subtest: format：28 動詞與選填參數可 parse 回同一指令
+ok 289 - format：28 動詞與選填參數可 parse 回同一指令
+  ---
+  duration_ms: 371.046459
+  type: 'test'
+  ...
+# Subtest: sail 三型與 via：parse(formatCommand()) 往返一致
+ok 290 - sail 三型與 via：parse(formatCommand()) 往返一致
+  ---
+  duration_ms: 226.316114
+  type: 'test'
+  ...
+# Subtest: parse：28 動詞中文逐一產生預期指令且不改 state
+ok 291 - parse：28 動詞中文逐一產生預期指令且不改 state
+  ---
+  duration_ms: 391.577954
+  type: 'test'
+  ...
+# Subtest: parse：28 個 ASCII 別名逐一成功
+ok 292 - parse：28 個 ASCII 別名逐一成功
+  ---
+  duration_ms: 230.940889
+  type: 'test'
+  ...
+# Subtest: parse：唯一前綴名稱可接受
+ok 293 - parse：唯一前綴名稱可接受
+  ---
+  duration_ms: 228.607585
+  type: 'test'
+  ...
+# Subtest: parse：多義前綴回傳候選
+ok 294 - parse：多義前綴回傳候選
+  ---
+  duration_ms: 213.867784
+  type: 'test'
+  ...
+# Subtest: parse：未知動詞列出全部合法動詞
+ok 295 - parse：未知動詞列出全部合法動詞
+  ---
+  duration_ms: 171.629003
+  type: 'test'
+  ...
+# Subtest: 名冊與名稱解析：無重名、九類名稱都有中文，七態及帳名可讀
+ok 296 - 名冊與名稱解析：無重名、九類名稱都有中文，七態及帳名可讀
+  ---
+  duration_ms: 163.569138
+  type: 'test'
+  ...
+# Subtest: log：seed 1 的 30 天沒有空佔位、id 斜線與浮點尾數
+ok 297 - log：seed 1 的 30 天沒有空佔位、id 斜線與浮點尾數
+  ---
+  duration_ms: 2737.928013
+  type: 'test'
+  ...
+# Subtest: 動態商品：snapshot 與 parse 候選一致且解析不更動狀態
+ok 298 - 動態商品：snapshot 與 parse 候選一致且解析不更動狀態
+  ---
+  duration_ms: 99.975726
+  type: 'test'
+  ...
+# Subtest: render：newCampaign 開局 Screen 完整、可 JSON 化且無副作用
+ok 299 - render：newCampaign 開局 Screen 完整、可 JSON 化且無副作用
+  ---
+  duration_ms: 463.691783
+  type: 'test'
+  ...
+# Subtest: render：每個 action 都可 format→parse 恆等，prompt 使用第一筆並禁用不符條件選項
+ok 300 - render：每個 action 都可 format→parse 恆等，prompt 使用第一筆並禁用不符條件選項
+  ---
+  duration_ms: 267.903149
+  type: 'test'
+  ...
+# Subtest: rooms：拘束艙狀態片語隨 state 變化且不修改輸入
+ok 301 - rooms：拘束艙狀態片語隨 state 變化且不修改輸入
+  ---
+  duration_ms: 402.672365
+  type: 'test'
+  ...
+# Subtest: rooms：mycelium 只在採菌條件成立後出現在 exits
+ok 302 - rooms：mycelium 只在採菌條件成立後出現在 exits
+  ---
+  duration_ms: 250.74818
+  type: 'test'
+  ...
+# Subtest: templates：巢狀插值、零值與事件名稱
+ok 303 - templates：巢狀插值、零值與事件名稱
+  ---
+  duration_ms: 390.740785
+  type: 'test'
+  ...
+# Subtest: templates：每個 EVENT_TYPES 都有可渲染模板且五種 kind 齊全
+ok 304 - templates：每個 EVENT_TYPES 都有可渲染模板且五種 kind 齊全
+  ---
+  duration_ms: 223.91033
+  type: 'test'
+  ...
+# Subtest: 被拒指令連同 runner 的部分改動全部回滾
+ok 305 - 被拒指令連同 runner 的部分改動全部回滾
+  ---
+  duration_ms: 385.765853
+  type: 'test'
+  ...
+# Subtest: sortie 未注入 battle 回 no-battle-runner
+ok 306 - sortie 未注入 battle 回 no-battle-runner
+  ---
+  duration_ms: 207.850767
+  type: 'test'
+  ...
+# Subtest: tick：同一天八段事件按序，八段都有觀測點
+ok 307 - tick：同一天八段事件按序，八段都有觀測點
+  ---
+  duration_ms: 458.597152
+  type: 'test'
+  ...
+# Subtest: wait 7 與七次 wait 1 的事件型別及完整 state hash 相同
+ok 308 - wait 7 與七次 wait 1 的事件型別及完整 state hash 相同
+  ---
+  duration_ms: 699.348875
+  type: 'test'
+  ...
+# Subtest: pendingChoices 凍結 day、保留 pendingTicks，choose 續跑當日與餘日
+ok 309 - pendingChoices 凍結 day、保留 pendingTicks，choose 續跑當日與餘日
+  ---
+  duration_ms: 391.155557
+  type: 'test'
+  ...
+# Subtest: 裂縫 phase 在大潮、開口滿四天或 BattleResolved 同日轉移
+ok 310 - 裂縫 phase 在大潮、開口滿四天或 BattleResolved 同日轉移
+  ---
+  duration_ms: 1570.153148
+  type: 'test'
+  ...
+# Subtest: 日終只剩機魂不結束戰役
+ok 311 - 日終只剩機魂不結束戰役
+  ---
+  duration_ms: 152.769562
+  type: 'test'
+  ...
+# Subtest: 日終無活人駕駛且無機魂才結束，CampaignEnd 只發一次
+ok 312 - 日終無活人駕駛且無機魂才結束，CampaignEnd 只發一次
+  ---
+  duration_ms: 302.694241
+  type: 'test'
+  ...
+# Subtest: muster 雙方各發一份，重入不加約
+ok 313 - muster 雙方各發一份，重入不加約
+  ---
+  duration_ms: 108.947225
+  type: 'test'
+  ...
+# Subtest: accept 拒絕 reputation
+ok 314 - accept 拒絕 reputation
+  ---
+  duration_ms: 84.32615
+  type: 'test'
+  ...
+# Subtest: accept 拒絕 strength
+ok 315 - accept 拒絕 strength
+  ---
+  duration_ms: 71.715294
+  type: 'test'
+  ...
+# Subtest: accept 拒絕 blacklist
+ok 316 - accept 拒絕 blacklist
+  ---
+  duration_ms: 71.623023
+  type: 'test'
+  ...
+# Subtest: accept 拒絕 exclusive
+ok 317 - accept 拒絕 exclusive
+  ---
+  duration_ms: 55.125084
+  type: 'test'
+  ...
+# Subtest: 選邊 expired 對方但不扣 rep，Accepted 帶 join
+ok 318 - 選邊 expired 對方但不扣 rep，Accepted 帶 join
+  ---
+  duration_ms: 58.355367
+  type: 'test'
+  ...
+# Subtest: 轉投七天內背叛、黑名單與關係連帶
+ok 319 - 轉投七天內背叛、黑名單與關係連帶
+  ---
+  duration_ms: 63.13529
+  type: 'test'
+  ...
+# Subtest: 第八天轉投不背叛
+ok 320 - 第八天轉投不背叛
+  ---
+  duration_ms: 66.97758
+  type: 'test'
+  ...
+# Subtest: 黑名單三潮月到期
+ok 321 - 黑名單三潮月到期
+  ---
+  duration_ms: 45.246045
+  type: 'test'
+  ...
+# Subtest: 補給 none 帳本與工時
+ok 322 - 補給 none 帳本與工時
+  ---
+  duration_ms: 52.201901
+  type: 'test'
+  ...
+# Subtest: 補給 field 帳本與工時
+ok 323 - 補給 field 帳本與工時
+  ---
+  duration_ms: 61.080381
+  type: 'test'
+  ...
+# Subtest: 補給 full 帳本與工時
+ok 324 - 補給 full 帳本與工時
+  ---
+  duration_ms: 51.893128
+  type: 'test'
+  ...
+# Subtest: 補給 arsenal 帳本與工時
+ok 325 - 補給 arsenal 帳本與工時
+  ---
+  duration_ms: 65.463556
+  type: 'test'
+  ...
+# Subtest: 每日補給只入一次帳
+ok 326 - 每日補給只入一次帳
+  ---
+  duration_ms: 63.311798
+  type: 'test'
+  ...
+# Subtest: field 僅戰後翌日額外醫療
+ok 327 - field 僅戰後翌日額外醫療
+  ---
+  duration_ms: 51.642162
+  type: 'test'
+  ...
+# Subtest: full 額外扣暫時傷時鐘
+ok 328 - full 額外扣暫時傷時鐘
+  ---
+  duration_ms: 52.382737
+  type: 'test'
+  ...
+# Subtest: 借機限制 full 一台，結束歸還且 invariant 能抓殘留
+ok 329 - 借機限制 full 一台，結束歸還且 invariant 能抓殘留
+  ---
+  duration_ms: 53.238668
+  type: 'test'
+  ...
+# Subtest: 借機流失全價負帳與 rep -20
+ok 330 - 借機流失全價負帳與 rep -20
+  ---
+  duration_ms: 51.300596
+  type: 'test'
+  ...
+# Subtest: pay 使用貢獻比並扣違令與 attached 損失，不加 perHead
+ok 331 - pay 使用貢獻比並扣違令與 attached 損失，不加 perHead
+  ---
+  duration_ms: 44.807079
+  type: 'test'
+  ...
+# Subtest: 抽象殲滅也列入分母
+ok 332 - 抽象殲滅也列入分母
+  ---
+  duration_ms: 49.148678
+  type: 'test'
+  ...
+# Subtest: drop 保留 base、share 歸零，結算不重複
+ok 333 - drop 保留 base、share 歸零，結算不重複
+  ---
+  duration_ms: 52.105443
+  type: 'test'
+  ...
+# Subtest: 參戰須同 Loc 區域且不能航行中
+ok 334 - 參戰須同 Loc 區域且不能航行中
+  ---
+  duration_ms: 70.232239
+  type: 'test'
+  ...
+# Subtest: 出戰驗證拒絕偽造 operation
+ok 335 - 出戰驗證拒絕偽造 operation
+  ---
+  duration_ms: 56.233584
+  type: 'test'
+  ...
+# Subtest: ally 死亡回寫分遣隊，attached 另記扣款
+ok 336 - ally 死亡回寫分遣隊，attached 另記扣款
+  ---
+  duration_ms: 52.915458
+  type: 'test'
+  ...
+# Subtest: 敵死亡扣 enemyStr，只有 player killer 算貢獻
+ok 337 - 敵死亡扣 enemyStr，只有 player killer 算貢獻
+  ---
+  duration_ms: 51.195882
+  type: 'test'
+  ...
+# Subtest: 失敗降士氣且不推進
+ok 338 - 失敗降士氣且不推進
+  ---
+  duration_ms: 50.297232
+  type: 'test'
+  ...
+# Subtest: 三次違令解約並留下 insubordinate
+ok 339 - 三次違令解約並留下 insubordinate
+  ---
+  duration_ms: 52.596174
+  type: 'test'
+  ...
+# Subtest: 尋殼私吞與 player-shell 驅動
+ok 340 - 尋殼私吞與 player-shell 驅動
+  ---
+  duration_ms: 51.99057
+  type: 'test'
+  ...
+# Subtest: 代理曝光同時記雇主關係與玩家聲望
+ok 341 - 代理曝光同時記雇主關係與玩家聲望
+  ---
+  duration_ms: 55.061046
+  type: 'test'
+  ...
+# Subtest: operation 戰果不立即結算 join，重放不重複
+ok 342 - operation 戰果不立即結算 join，重放不重複
+  ---
+  duration_ms: 67.954236
+  type: 'test'
+  ...
+# Subtest: merc 政策不改 state 與 RNG
+ok 343 - merc 政策不改 state 與 RNG
+  ---
+  duration_ms: 61.604355
+  type: 'test'
+  ...
+# Subtest: 研發開局：持有血統與通用、month 0 已釋出，隊長與未到月不進池
+ok 344 - 研發開局：持有血統與通用、month 0 已釋出，隊長與未到月不進池
+  ---
+  duration_ms: 103.16372
+  type: 'test'
+  ...
+# Subtest: income：各規模基數、活血統、trade、war、缺補給與失地
+ok 345 - income：各規模基數、活血統、trade、war、缺補給與失地
+  ---
+  duration_ms: 74.148298
+  type: 'test'
+  ...
+# Subtest: 可選池：缺任一前置不選，全部釋出才選
+ok 346 - 可選池：缺任一前置不選，全部釋出才選
+  ---
+  duration_ms: 65.33574
+  type: 'test'
+  ...
+# Subtest: 可選池：血統缺席與 stalled 均擋新型
+ok 347 - 可選池：血統缺席與 stalled 均擋新型
+  ---
+  duration_ms: 63.703357
+  type: 'test'
+  ...
+# Subtest: 首次登場：month 到期只是候選；event 需事件旗標
+ok 348 - 首次登場：month 到期只是候選；event 需事件旗標
+  ---
+  duration_ms: 54.570435
+  type: 'test'
+  ...
+# Subtest: 研發只在潮月第1天加點，不消耗主 rng
+ok 349 - 研發只在潮月第1天加點，不消耗主 rng
+  ---
+  duration_ms: 55.522834
+  type: 'test'
+  ...
+# Subtest: 點數逐月轉入done不重複計入，滿cost釋出且同日不重跑
+ok 350 - 點數逐月轉入done不重複計入，滿cost釋出且同日不重跑
+  ---
+  duration_ms: 164.812128
+  type: 'test'
+  ...
+# Subtest: 取殼後恰滿兩潮月才開血統（非月初取得）
+ok 351 - 取殼後恰滿兩潮月才開血統（非月初取得）
+  ---
+  duration_ms: 51.704338
+  type: 'test'
+  ...
+# Subtest: 失殼停研保留已釋出與進度，其他血統仍推進
+ok 352 - 失殼停研保留已釋出與進度，其他血統仍推進
+  ---
+  duration_ms: 49.895356
+  type: 'test'
+  ...
+# Subtest: 重新取得殼仍需兩潮月，不能立即解除停研
+ok 353 - 重新取得殼仍需兩潮月，不能立即解除停研
+  ---
+  duration_ms: 60.644883
+  type: 'test'
+  ...
+# Subtest: 流出改campaign覆寫與市場可見性，不改不可變內容；所有勢力取得通用型
+ok 354 - 流出改campaign覆寫與市場可見性，不改不可變內容；所有勢力取得通用型
+  ---
+  duration_ms: 63.023624
+  type: 'test'
+  ...
+# Subtest: licensed 友好可見、restricted 只maker、未釋出不可見
+ok 355 - licensed 友好可見、restricted 只maker、未釋出不可見
+  ---
+  duration_ms: 65.021988
+  type: 'test'
+  ...
+# Subtest: 玩家轉賣 restricted 機：成交才 TechLeaked 與 maker rep -15
+ok 356 - 玩家轉賣 restricted 機：成交才 TechLeaked 與 maker rep -15
+  ---
+  duration_ms: 60.936866
+  type: 'test'
+  ...
+# Subtest: 補員權重舊多新少、同tier抽樣反映權重、隊長權重零
+ok 357 - 補員權重舊多新少、同tier抽樣反映權重、隊長權重零
+  ---
+  duration_ms: 50.514127
+  type: 'test'
+  ...
+# Subtest: 無對應隊長機不擲；有同系列最近mark+1則一台且列入返還
+ok 358 - 無對應隊長機不擲；有同系列最近mark+1則一台且列入返還
+  ---
+  duration_ms: 60.71259
+  type: 'test'
+  ...
+# Subtest: trade 連續六潮月到期才 licensed 流出，非月初也生效
+ok 359 - trade 連續六潮月到期才 licensed 流出，非月初也生效
+  ---
+  duration_ms: 57.521389
+  type: 'test'
+  ...
+# Subtest: shell-pact 雙方開血統，到期 licensed 流出且非自持血統停研
+ok 360 - shell-pact 雙方開血統，到期 licensed 流出且非自持血統停研
+  ---
+  duration_ms: 56.319385
+  type: 'test'
+  ...
+# Subtest: 毀約不產生條約流出
+ok 361 - 毀約不產生條約流出
+  ---
+  duration_ms: 57.607789
+  type: 'test'
+  ...
+# Subtest: 成功襲擾maker工坊才擲技術流出，使用warRng並驅動宿怨
+ok 362 - 成功襲擾maker工坊才擲技術流出，使用warRng並驅動宿怨
+  ---
+  duration_ms: 932.778645
+  type: 'test'
+  ...
+# Subtest: 內容檢查市場 filter 引用：壞引用紅、真內容綠
+ok 363 - 內容檢查市場 filter 引用：壞引用紅、真內容綠
+  ---
+  duration_ms: 33.594313
+  type: 'test'
+  ...
+# Subtest: 初始化研發不消耗任一rng
+ok 364 - 初始化研發不消耗任一rng
+  ---
+  duration_ms: 49.422418
+  type: 'test'
+  ...
+# Subtest: 通用鐵劍與飛魚入研發與市場：開局釋出 D 型、研發候選含後續型、釋出後市場可見
+ok 365 - 通用鐵劍與飛魚入研發與市場：開局釋出 D 型、研發候選含後續型、釋出後市場可見
+  ---
+  duration_ms: 62.879236
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=0.3 m=0.7
+ok 366 - 抽象公式 r=0.3 m=0.7
+  ---
+  duration_ms: 1.158884
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=0.3 m=1
+ok 367 - 抽象公式 r=0.3 m=1
+  ---
+  duration_ms: 0.074809
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=0.3 m=1.3
+ok 368 - 抽象公式 r=0.3 m=1.3
+  ---
+  duration_ms: 0.044923
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=1 m=0.7
+ok 369 - 抽象公式 r=1 m=0.7
+  ---
+  duration_ms: 0.038983
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=1 m=1
+ok 370 - 抽象公式 r=1 m=1
+  ---
+  duration_ms: 0.124792
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=1 m=1.3
+ok 371 - 抽象公式 r=1 m=1.3
+  ---
+  duration_ms: 0.105426
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=3 m=0.7
+ok 372 - 抽象公式 r=3 m=0.7
+  ---
+  duration_ms: 0.036929
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=3 m=1
+ok 373 - 抽象公式 r=3 m=1
+  ---
+  duration_ms: 0.035115
+  type: 'test'
+  ...
+# Subtest: 抽象公式 r=3 m=1.3
+ok 374 - 抽象公式 r=3 m=1.3
+  ---
+  duration_ms: 0.12913
+  type: 'test'
+  ...
+# Subtest: 抽象結算不改作戰或 RNG 輸入
+ok 375 - 抽象結算不改作戰或 RNG 輸入
+  ---
+  duration_ms: 0.868784
+  type: 'test'
+  ...
+# Subtest: 終止：成功
+ok 376 - 終止：成功
+  ---
+  duration_ms: 0.132186
+  type: 'test'
+  ...
+# Subtest: 終止：零補給
+ok 377 - 終止：零補給
+  ---
+  duration_ms: 0.073577
+  type: 'test'
+  ...
+# Subtest: 終止：低戰力
+ok 378 - 終止：低戰力
+  ---
+  duration_ms: 0.050083
+  type: 'test'
+  ...
+# Subtest: 終止：潰散
+ok 379 - 終止：潰散
+  ---
+  duration_ms: 0.038461
+  type: 'test'
+  ...
+# Subtest: 終止：耗盡交手天數
+ok 380 - 終止：耗盡交手天數
+  ---
+  duration_ms: 0.040535
+  type: 'test'
+  ...
+# Subtest: 滯後 hostile/-25/false/false
+ok 381 - 滯後 hostile/-25/false/false
+  ---
+  duration_ms: 0.072154
+  type: 'test'
+  ...
+# Subtest: 滯後 tense/-25/false/false
+ok 382 - 滯後 tense/-25/false/false
+  ---
+  duration_ms: 0.01633
+  type: 'test'
+  ...
+# Subtest: 滯後 neutral/-15/false/false
+ok 383 - 滯後 neutral/-15/false/false
+  ---
+  duration_ms: 0.014718
+  type: 'test'
+  ...
+# Subtest: 滯後 friendly/-15/false/false
+ok 384 - 滯後 friendly/-15/false/false
+  ---
+  duration_ms: 0.014116
+  type: 'test'
+  ...
+# Subtest: 滯後 friendly/5/false/false
+ok 385 - 滯後 friendly/5/false/false
+  ---
+  duration_ms: 0.013635
+  type: 'test'
+  ...
+# Subtest: 滯後 neutral/5/false/false
+ok 386 - 滯後 neutral/5/false/false
+  ---
+  duration_ms: 0.013155
+  type: 'test'
+  ...
+# Subtest: 滯後 friendly/45/false/false
+ok 387 - 滯後 friendly/45/false/false
+  ---
+  duration_ms: 0.014748
+  type: 'test'
+  ...
+# Subtest: 滯後 friendly/45/true/false
+ok 388 - 滯後 friendly/45/true/false
+  ---
+  duration_ms: 0.103643
+  type: 'test'
+  ...
+# Subtest: 滯後 hostile/-70/false/false
+ok 389 - 滯後 hostile/-70/false/false
+  ---
+  duration_ms: 0.067806
+  type: 'test'
+  ...
+# Subtest: 滯後 hostile/-70/false/true
+ok 390 - 滯後 hostile/-70/false/true
+  ---
+  duration_ms: 0.022171
+  type: 'test'
+  ...
+# Subtest: 滯後 war/90/true/false
+ok 391 - 滯後 war/90/true/false
+  ---
+  duration_ms: 0.013916
+  type: 'test'
+  ...
+# Subtest: 停火才可離開 war
+ok 392 - 停火才可離開 war
+  ---
+  duration_ms: 0.039233
+  type: 'test'
+  ...
+# Subtest: 每對人類勢力無自對、玩家與裂獸排除
+ok 393 - 每對人類勢力無自對、玩家與裂獸排除
+  ---
+  duration_ms: 114.665096
+  type: 'test'
+  ...
+# Subtest: 獨立 seed 決定性、initWar 不消耗原 RNG
+ok 394 - 獨立 seed 決定性、initWar 不消耗原 RNG
+  ---
+  duration_ms: 53.4589
+  type: 'test'
+  ...
+# Subtest: 沒有 war 內容時 initWar 不加欄位
+ok 395 - 沒有 war 內容時 initWar 不加欄位
+  ---
+  duration_ms: 54.655313
+  type: 'test'
+  ...
+# Subtest: march 逐日按路程抵達且 map 不變
+ok 396 - march 逐日按路程抵達且 map 不變
+  ---
+  duration_ms: 51.260545
+  type: 'test'
+  ...
+# Subtest: 跨圖路徑拒絕
+ok 397 - 跨圖路徑拒絕
+  ---
+  duration_ms: 56.408321
+  type: 'test'
+  ...
+# Subtest: 發起門檻 supply
+ok 398 - 發起門檻 supply
+  ---
+  duration_ms: 44.957511
+  type: 'test'
+  ...
+# Subtest: 發起門檻 strength
+ok 399 - 發起門檻 strength
+  ---
+  duration_ms: 42.711617
+  type: 'test'
+  ...
+# Subtest: 發起門檻 count
+ok 400 - 發起門檻 count
+  ---
+  duration_ms: 50.417137
+  type: 'test'
+  ...
+# Subtest: 發起門檻 relation
+ok 401 - 發起門檻 relation
+  ---
+  duration_ms: 44.19318
+  type: 'test'
+  ...
+# Subtest: 階段 muster→march→engage→resolve→aftermath→done 與奪點
+ok 402 - 階段 muster→march→engage→resolve→aftermath→done 與奪點
+  ---
+  duration_ms: 789.908758
+  type: 'test'
+  ...
+# Subtest: 失敗回收部隊且只結算一次
+ok 403 - 失敗回收部隊且只結算一次
+  ---
+  duration_ms: 55.724001
+  type: 'test'
+  ...
+# Subtest: 超過45天退兵
+ok 404 - 超過45天退兵
+  ---
+  duration_ms: 48.769686
+  type: 'test'
+  ...
+# Subtest: 圍堵限大潮前5天且大潮交手
+ok 405 - 圍堵限大潮前5天且大潮交手
+  ---
+  duration_ms: 173.728245
+  type: 'test'
+  ...
+# Subtest: 攻堅成功寫 unanchored 與 RiftPhase
+ok 406 - 攻堅成功寫 unanchored 與 RiftPhase
+  ---
+  duration_ms: 53.455074
+  type: 'test'
+  ...
+# Subtest: 尋殼改 holder 與勢力殼索引
+ok 407 - 尋殼改 holder 與勢力殼索引
+  ---
+  duration_ms: 50.815417
+  type: 'test'
+  ...
+# Subtest: 條約簽約、到期與守信
+ok 408 - 條約簽約、到期與守信
+  ---
+  duration_ms: 52.811748
+  type: 'test'
+  ...
+# Subtest: breakIf 成立會毀約
+ok 409 - breakIf 成立會毀約
+  ---
+  duration_ms: 50.102182
+  type: 'test'
+  ...
+# Subtest: 宣戰需要低關係且停火擋宣戰
+ok 410 - 宣戰需要低關係且停火擋宣戰
+  ---
+  duration_ms: 48.939251
+  type: 'test'
+  ...
+# Subtest: 外交驅動 drift
+ok 411 - 外交驅動 drift
+  ---
+  duration_ms: 47.560538
+  type: 'test'
+  ...
+# Subtest: 外交驅動 grievance-decay
+ok 412 - 外交驅動 grievance-decay
+  ---
+  duration_ms: 47.121283
+  type: 'test'
+  ...
+# Subtest: 外交驅動 border-blight
+ok 413 - 外交驅動 border-blight
+  ---
+  duration_ms: 49.185749
+  type: 'test'
+  ...
+# Subtest: 外交驅動 shared-threat
+ok 414 - 外交驅動 shared-threat
+  ---
+  duration_ms: 53.808781
+  type: 'test'
+  ...
+# Subtest: 外交驅動 op-success-against
+ok 415 - 外交驅動 op-success-against
+  ---
+  duration_ms: 47.59306
+  type: 'test'
+  ...
+# Subtest: 外交驅動 op-relief
+ok 416 - 外交驅動 op-relief
+  ---
+  duration_ms: 47.143614
+  type: 'test'
+  ...
+# Subtest: 外交驅動 same-target
+ok 417 - 外交驅動 same-target
+  ---
+  duration_ms: 45.451699
+  type: 'test'
+  ...
+# Subtest: 外交驅動 shell-envy
+ok 418 - 外交驅動 shell-envy
+  ---
+  duration_ms: 51.091541
+  type: 'test'
+  ...
+# Subtest: 外交驅動 tech-leak
+ok 419 - 外交驅動 tech-leak
+  ---
+  duration_ms: 45.289558
+  type: 'test'
+  ...
+# Subtest: 外交驅動 treaty-honored
+ok 420 - 外交驅動 treaty-honored
+  ---
+  duration_ms: 44.06868
+  type: 'test'
+  ...
+# Subtest: 外交驅動 treaty-broken
+ok 421 - 外交驅動 treaty-broken
+  ---
+  duration_ms: 47.185342
+  type: 'test'
+  ...
+# Subtest: 外交驅動 war-weariness
+ok 422 - 外交驅動 war-weariness
+  ---
+  duration_ms: 45.655679
+  type: 'test'
+  ...
+# Subtest: 外交驅動 alliance-burden
+ok 423 - 外交驅動 alliance-burden
+  ---
+  duration_ms: 47.208625
+  type: 'test'
+  ...
+# Subtest: 外交驅動 pressure-truce
+ok 424 - 外交驅動 pressure-truce
+  ---
+  duration_ms: 50.724499
+  type: 'test'
+  ...
+# Subtest: 三盟後簽盟權重下降
+ok 425 - 三盟後簽盟權重下降
+  ---
+  duration_ms: 49.236884
+  type: 'test'
+  ...
+# Subtest: relation API 不立即發 RelationChanged
+ok 426 - relation API 不立即發 RelationChanged
+  ---
+  duration_ms: 48.725243
+  type: 'test'
+  ...
+# Subtest: war 抽牌不消耗原 RNG、同日不重抽
+ok 427 - war 抽牌不消耗原 RNG、同日不重抽
+  ---
+  duration_ms: 50.211566
+  type: 'test'
+  ...
+# Subtest: 機型池優先 released；補員只用機型池
+ok 428 - 機型池優先 released；補員只用機型池
+  ---
+  duration_ms: 50.814186
+  type: 'test'
+  ...
+# Subtest: 內容檢查拒絕非機械 frame、循環依賴與死 holder
+ok 429 - 內容檢查拒絕非機械 frame、循環依賴與死 holder
+  ---
+  duration_ms: 37.792105
+  type: 'test'
+  ...
+# Subtest: 行動者地形不變量雙向：永不進不可進格，地面永不在深蝕
+ok 430 - 行動者地形不變量雙向：永不進不可進格，地面永不在深蝕
+  ---
+  duration_ms: 1143.386074
+  type: 'test'
+  ...
+# Subtest: 行動者卡死偵測：沒有連續十天同goal且未移動；開局與每日數量40至200
+ok 431 - 行動者卡死偵測：沒有連續十天同goal且未移動；開局與每日數量40至200
+  ---
+  duration_ms: 847.700942
+  type: 'test'
+  ...
+# Subtest: 行動者同seed重播相同，選目標不修改輸入且每天最多重算一次
+ok 432 - 行動者同seed重播相同，選目標不修改輸入且每天最多重算一次
+  ---
+  duration_ms: 846.41075
+  type: 'test'
+  ...
+# Subtest: 行動者生成上限200不再生
+ok 433 - 行動者生成上限200不再生
+  ---
+  duration_ms: 159.063097
+  type: 'test'
+  ...
+# Subtest: 蝕塊：每塊 7–12 格且連通，地形受限時允許不足 7 格
+ok 434 - 蝕塊：每塊 7–12 格且連通，地形受限時允許不足 7 格
+  ---
+  duration_ms: 399.686425
+  type: 'test'
+  ...
+# Subtest: 蝕塊：深度與 sinceDay 的潮月門檻一致
+ok 435 - 蝕塊：深度與 sinceDay 的潮月門檻一致
+  ---
+  duration_ms: 217.184326
+  type: 'test'
+  ...
+# Subtest: 蝕塊：LIFO 收縮後 patches 仍為開裂順序前綴，最後才退核
+ok 436 - 蝕塊：LIFO 收縮後 patches 仍為開裂順序前綴，最後才退核
+  ---
+  duration_ms: 199.138839
+  type: 'test'
+  ...
+# Subtest: 蝕塊：城邦 footprint 任一格被蝕 iff 裂獸 ownerOverride，乾淨後恢復一潮月
+ok 437 - 蝕塊：城邦 footprint 任一格被蝕 iff 裂獸 ownerOverride，乾淨後恢復一潮月
+  ---
+  duration_ms: 159.445359
+  type: 'test'
+  ...
+# Subtest: 蝕塊：菌絲最年輕塊未 burned 不退，燃燒後退且不跳過核
+ok 438 - 蝕塊：菌絲最年輕塊未 burned 不退，燃燒後退且不跳過核
+  ---
+  duration_ms: 136.840808
+  type: 'test'
+  ...
+# Subtest: 蝕塊：開裂 1 格、錨到 3×3，核塊永遠含 at
+ok 439 - 蝕塊：開裂 1 格、錨到 3×3，核塊永遠含 at
+  ---
+  duration_ms: 154.587632
+  type: 'test'
+  ...
+# Subtest: 蝕塊：同 seed 開局及擴散結果完全相同
+ok 440 - 蝕塊：同 seed 開局及擴散結果完全相同
+  ---
+  duration_ms: 326.465237
+  type: 'test'
+  ...
+# Subtest: 蝕塊：rebuildBlightIndex 後索引與 patches 完全一致，壞索引驗證會紅
+ok 441 - 蝕塊：rebuildBlightIndex 後索引與 patches 完全一致，壞索引驗證會紅
+  ---
+  duration_ms: 145.178936
+  type: 'test'
+  ...
+# Subtest: 天象掛鉤：spreadDelta 被呼叫且改變當潮擴散塊數
+ok 442 - 天象掛鉤：spreadDelta 被呼叫且改變當潮擴散塊數
+  ---
+  duration_ms: 290.708063
+  type: 'test'
+  ...
+# Subtest: 天象掛鉤：anchorInstant 被呼叫且當日跳過 opening 剩餘天數
+ok 443 - 天象掛鉤：anchorInstant 被呼叫且當日跳過 opening 剩餘天數
+  ---
+  duration_ms: 142.046826
+  type: 'test'
+  ...
+# Subtest: 蝕核城：孟買 5×5 全核、半徑 15–25 格且三 seed 可重播
+ok 444 - 蝕核城：孟買 5×5 全核、半徑 15–25 格且三 seed 可重播
+  ---
+  duration_ms: 527.131762
+  type: 'test'
+  ...
+# Subtest: 裂縫口：落格建動態地點、契約指 site，閉合只保留遺跡或移除
+ok 445 - 裂縫口：落格建動態地點、契約指 site，閉合只保留遺跡或移除
+  ---
+  duration_ms: 181.099716
+  type: 'test'
+  ...
+# Subtest: 停泊安全：敵對接觸不開遭遇且 AI 不追船，失守城例外
+ok 446 - 停泊安全：敵對接觸不開遭遇且 AI 不追船，失守城例外
+  ---
+  duration_ms: 396.409227
+  type: 'test'
+  ...
+# Subtest: 巡邏敵意：初始聲望與 hostile 外交不停船，rep −30 或 war 才攔截
+ok 447 - 巡邏敵意：初始聲望與 hostile 外交不停船，rep −30 或 war 才攔截
+  ---
+  duration_ms: 760.055914
+  type: 'test'
+  ...
+# Subtest: wary 只發 Sighted：商隊與獵團依 stance、不停船且 AI 繞船
+ok 448 - wary 只發 Sighted：商隊與獵團依 stance、不停船且 AI 繞船
+  ---
+  duration_ms: 362.464693
+  type: 'test'
+  ...
+# Subtest: actors：逐格接觸停船，pendingEncounter 凍結 pos 並保留 pendingTicks，同一對一天只一次
+ok 449 - actors：逐格接觸停船，pendingEncounter 凍結 pos 並保留 pendingTicks，同一對一天只一次
+  ---
+  duration_ms: 182.77305
+  type: 'test'
+  ...
+# Subtest: actors：迴避速度恰為 1.2 倍自動成功、不耗 RNG；未達門檻擲骰，燃料乘二
+ok 450 - actors：迴避速度恰為 1.2 倍自動成功、不耗 RNG；未達門檻擲骰，燃料乘二
+  ---
+  duration_ms: 158.912144
+  type: 'test'
+  ...
+# Subtest: actors：sail actor 每天追新位置，速度相等即下令拒絕 cannot-catch
+ok 451 - actors：sail actor 每天追新位置，速度相等即下令拒絕 cannot-catch
+  ---
+  duration_ms: 169.586333
+  type: 'test'
+  ...
+# Subtest: actors：四選 prompt 列出禁用理由，交涉讀表，航 @名解析到行動者，政策只選合法項
+ok 452 - actors：四選 prompt 列出禁用理由，交涉讀表，航 @名解析到行動者，政策只選合法項
+  ---
+  duration_ms: 167.274647
+  type: 'test'
+  ...
+# Subtest: actors：AI aiChoice 使用表權重，swarm 禁交涉，逃跑失敗產生 ambush
+ok 453 - actors：AI aiChoice 使用表權重，swarm 禁交涉，逃跑失敗產生 ambush
+  ---
+  duration_ms: 167.122455
+  type: 'test'
+  ...
+# Subtest: actors：同 seed 接觸與四選事件重播相同
+ok 454 - actors：同 seed 接觸與四選事件重播相同
+  ---
+  duration_ms: 360.334217
+  type: 'test'
+  ...
+# Subtest: actors：intercept 由 force 展開、swarm 預算生成，第三方敵對 third、友軍 ally 可載入
+ok 455 - actors：intercept 由 force 展開、swarm 預算生成，第三方敵對 third、友軍 ally 可載入
+  ---
+  duration_ms: 240.275593
+  type: 'test'
+  ...
+# Subtest: 迷霧：known 是觀測當日真值子集，移動後舊情報不洩漏新位置
+ok 456 - 迷霧：known 是觀測當日真值子集，移動後舊情報不洩漏新位置
+  ---
+  duration_ms: 379.080221
+  type: 'test'
+  ...
+# Subtest: 行動者效果：spawnActor、setGoal、reveal 通過已載入資料與拒絕錯誤目標
+ok 457 - 行動者效果：spawnActor、setGoal、reveal 通過已載入資料與拒絕錯誤目標
+  ---
+  duration_ms: 230.209827
+  type: 'test'
+  ...
+# grid A* 250x150 / 100 pairs mean: 0.979 ms
+# Subtest: 已知最短成本：直線
+ok 458 - 已知最短成本：直線
+  ---
+  duration_ms: 3.84756
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：縱線
+ok 459 - 已知最短成本：縱線
+  ---
+  duration_ms: 0.179954
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：斜線
+ok 460 - 已知最短成本：斜線
+  ---
+  duration_ms: 0.355851
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：直斜混合
+ok 461 - 已知最短成本：直斜混合
+  ---
+  duration_ms: 0.260614
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：地面繞山
+ok 462 - 已知最短成本：地面繞山
+  ---
+  duration_ms: 0.162642
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：船繞雲嶂
+ok 463 - 已知最短成本：船繞雲嶂
+  ---
+  duration_ms: 0.078526
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：穿淺灘
+ok 464 - 已知最短成本：穿淺灘
+  ---
+  duration_ms: 0.218306
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：船穿潮海
+ok 465 - 已知最短成本：船穿潮海
+  ---
+  duration_ms: 0.131504
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：地面繞潮海
+ok 466 - 已知最短成本：地面繞潮海
+  ---
+  duration_ms: 0.260454
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：道路折半
+ok 467 - 已知最短成本：道路折半
+  ---
+  duration_ms: 0.231881
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：船不受道路影響
+ok 468 - 已知最短成本：船不受道路影響
+  ---
+  duration_ms: 0.13465
+  type: 'test'
+  ...
+# Subtest: 已知最短成本：成本回呼封格
+ok 469 - 已知最短成本：成本回呼封格
+  ---
+  duration_ms: 0.152854
+  type: 'test'
+  ...
+# Subtest: 無路徑回 undefined；原地為零成本
+ok 470 - 無路徑回 undefined；原地為零成本
+  ---
+  duration_ms: 0.113922
+  type: 'test'
+  ...
+# Subtest: A* 成本等於 Dijkstra：固定 seed 隨機 200 張小圖
+ok 471 - A* 成本等於 Dijkstra：固定 seed 隨機 200 張小圖
+  ---
+  duration_ms: 48.106498
+  type: 'test'
+  ...
+# Subtest: 250×150 隨機圖 100 對平均 < 10 ms
+ok 472 - 250×150 隨機圖 100 對平均 < 10 ms
+  ---
+  duration_ms: 124.475535
+  type: 'test'
+  ...
+# Subtest: RLE、八鄰、視野、frontier 與座標幾何
+ok 473 - RLE、八鄰、視野、frontier 與座標幾何
+  ---
+  duration_ms: 1.019235
+  type: 'test'
+  ...
+# Subtest: floodFill 連通、恰 size、可達上限與相同 seed 可重播
+ok 474 - floodFill 連通、恰 size、可達上限與相同 seed 可重播
+  ---
+  duration_ms: 1.898639
+  type: 'test'
+  ...
+# Subtest: footprint 預設、奇數 size 與顯式 footprint 優先
+ok 475 - footprint 預設、奇數 size 與顯式 footprint 優先
+  ---
+  duration_ms: 0.123549
+  type: 'test'
+  ...
+# Subtest: fixture 兩張圖、六地點、兩航道、各層與每個 WorldDB 的快取
+ok 476 - fixture 兩張圖、六地點、兩航道、各層與每個 WorldDB 的快取
+  ---
+  duration_ms: 4.392444
+  type: 'test'
+  ...
+# COAST_FIXTURE {"before":[{"cell":"129,97","depth":"deep"},{"cell":"130,97","depth":"deep"},{"cell":"131,97","depth":"deep"},{"cell":"129,98","depth":"deep"},{"cell":"130,98","depth":"deep"},{"cell":"131,98","depth":"deep"},{"cell":"129,99","depth":"deep"},{"cell":"130,99","depth":"clear"},{"cell":"131,99","depth":"clear"}],"after":[{"cell":"129,97","depth":"shallow"},{"cell":"130,97","depth":"shallow"},{"cell":"131,97","depth":"shallow"},{"cell":"129,98","depth":"shallow"},{"cell":"130,98","depth":"shallow"},{"cell":"131,98","depth":"shallow"},{"cell":"129,99","depth":"shallow"},{"cell":"130,99","depth":"shallow"},{"cell":"131,99","depth":"shallow"}]}
+# COAST_TRAJECTORY {"seed":1,"day":490,"before":[{"cell":"129,97","depth":"deep"},{"cell":"130,97","depth":"clear"},{"cell":"131,97","depth":"deep"},{"cell":"129,98","depth":"deep"},{"cell":"130,98","depth":"deep"},{"cell":"131,98","depth":"deep"},{"cell":"129,99","depth":"deep"},{"cell":"130,99","depth":"deep"},{"cell":"131,99","depth":"deep"}],"after":[{"cell":"129,97","depth":"shallow"},{"cell":"130,97","depth":"shallow"},{"cell":"131,97","depth":"shallow"},{"cell":"129,98","depth":"shallow"},{"cell":"130,98","depth":"shallow"},{"cell":"131,98","depth":"shallow"},{"cell":"129,99","depth":"shallow"},{"cell":"130,99","depth":"shallow"},{"cell":"131,99","depth":"shallow"}],"beforeCounts":{"clear":1,"shallow":0,"deep":8,"core":0},"afterCounts":{"clear":0,"shallow":9,"deep":0,"core":0},"converted":8,"changed":9}
+# Subtest: 萬潮世界：E4 事件改區
+    # Subtest: 開局不建事件塊，北岸新建永久淺蝕；去重、索引、pressure 排除
+    ok 1 - 開局不建事件塊，北岸新建永久淺蝕；去重、索引、pressure 排除
+      ---
+      duration_ms: 124.169186
+      type: 'test'
+      ...
+    # Subtest: 占格不覆寫；不連通取最大塊；無可用格記事件且重送不重發
+    ok 2 - 占格不覆寫；不連通取最大塊；無可用格記事件且重送不重發
+      ---
+      duration_ms: 124.219589
+      type: 'test'
+      ...
+    # Subtest: 北岸七格深蝕轉淺：保留殘格、刪空塊、拆斷塊，去重且 pressure 排除事件塊
+    ok 3 - 北岸七格深蝕轉淺：保留殘格、刪空塊、拆斷塊，去重且 pressure 排除事件塊
+      ---
+      duration_ms: 208.919822
+      type: 'test'
+      ...
+    # Subtest: 真實開局逐日裂縫成長：北行當夜北岸九格改區前後證據
+    ok 4 - 真實開局逐日裂縫成長：北行當夜北岸九格改區前後證據
+      ---
+      duration_ms: 560.826667
+      type: 'test'
+      ...
+    1..4
+ok 477 - 萬潮世界：E4 事件改區
+  ---
+  duration_ms: 1018.737244
+  type: 'suite'
+  ...
+# Subtest: 萬潮世界：E1 王跡
+    # Subtest: 原文、啟用範圍、候選日與三條 RNG 獨立
+    ok 1 - 原文、啟用範圍、候選日與三條 RNG 獨立
+      ---
+      duration_ms: 118.486656
+      type: 'test'
+      ...
+    1..1
+ok 478 - 萬潮世界：E1 王跡
+  ---
+  duration_ms: 118.600137
+  type: 'suite'
+  ...
+# Subtest: 萬潮世界：E2 腳本北行
+    # Subtest: 無合約也依日四站北行；重送不重發、三約五消息與王跡失效
+    ok 1 - 無合約也依日四站北行；重送不重發、三約五消息與王跡失效
+      ---
+      duration_ms: 44.592348
+      type: 'test'
+      ...
+    # Subtest: 批次逐日同結果；北郊最近有效裂縫同距取字典序，封閉不抬，cap A且不疊第二級
+    ok 2 - 批次逐日同結果；北郊最近有效裂縫同距取字典序，封閉不抬，cap A且不疊第二級
+      ---
+      duration_ms: 205.007673
+      type: 'test'
+      ...
+    # Subtest: checkWorld 以真實資料驗正反例：空候選、越界、不連通與錯引用
+    ok 3 - checkWorld 以真實資料驗正反例：空候選、越界、不連通與錯引用
+      ---
+      duration_ms: 219.803102
+      type: 'test'
+      ...
+    1..3
+ok 479 - 萬潮世界：E2 腳本北行
+  ---
+  duration_ms: 469.606982
+  type: 'suite'
+  ...
+# Subtest: presence：不入隊列／不行動、阻格，單體／部位／AoE 與偽造指令均不能傷牠
+ok 480 - presence：不入隊列／不行動、阻格，單體／部位／AoE 與偽造指令均不能傷牠
+  ---
+  duration_ms: 6.465186
+  type: 'test'
+  ...
+# Subtest: presence：敵我沿用潮懼 -10，wait resumed 不重施；勝負與戰果忽略在場者
+ok 481 - presence：敵我沿用潮懼 -10，wait resumed 不重施；勝負與戰果忽略在場者
+  ---
+  duration_ms: 3.600221
+  type: 'test'
+  ...
+# Subtest: 迎戰：拍二拒絕，gate 顯式命令只插隊一次、不扣 AP、不搶目前回合
+ok 482 - 迎戰：拍二拒絕，gate 顯式命令只插隊一次、不扣 AP、不搶目前回合
+  ---
+  duration_ms: 2.330691
+  type: 'test'
+  ...
+# Subtest: 捕捉：保留潮脊原部位條件，首次成功即 runtime 鎖定並停止光環
+ok 483 - 捕捉：保留潮脊原部位條件，首次成功即 runtime 鎖定並停止光環
+  ---
+  duration_ms: 1.357914
+  type: 'test'
+  ...
+# Subtest: presence／迎戰指令：save snapshot 與 replay hash 相等
+ok 484 - presence／迎戰指令：save snapshot 與 replay hash 相等
+  ---
+  duration_ms: 205.514886
+  type: 'test'
+  ...
+# Subtest: UI：presence 公開標記不可點選／循環選取，確認迎戰後才送命令，auto 不迎戰
+ok 485 - UI：presence 公開標記不可點選／循環選取，確認迎戰後才送命令，auto 不迎戰
+  ---
+  duration_ms: 70.685144
+  type: 'test'
+  ...
+# Subtest: 萬潮世界：E5 守牆與一次捕捉
+    # Subtest: 邀請可拒可接，拒絕不出戰；灣內遠端援防船不傳送，未明確迎戰仍不可打
+    ok 1 - 邀請可拒可接，拒絕不出戰；灣內遠端援防船不傳送，未明確迎戰仍不可打
+      ---
+      duration_ms: 211.396237
+      type: 'test'
+      ...
+    # Subtest: 偵察部署不可迎戰presence、守牆但牠不來沒有S，契約原文呈現
+    ok 2 - 偵察部署不可迎戰presence、守牆但牠不來沒有S，契約原文呈現
+      ---
+      duration_ms: 221.632583
+      type: 'test'
+      ...
+    # Subtest: 捕捉戰果只入庫一次；不同sortie／非gate偽造拒絕；wallOutcome不改城市歸屬
+    ok 3 - 捕捉戰果只入庫一次；不同sortie／非gate偽造拒絕；wallOutcome不改城市歸屬
+      ---
+      duration_ms: 235.11395
+      type: 'test'
+      ...
+    1..3
+ok 486 - 萬潮世界：E5 守牆與一次捕捉
+  ---
+  duration_ms: 668.293671
+  type: 'suite'
+  ...
+# Subtest: 營運存讀：北行、gate待選、接受與capture鎖沿指令重播，不重跑戰鬥
+ok 487 - 營運存讀：北行、gate待選、接受與capture鎖沿指令重播，不重跑戰鬥
+  ---
+  duration_ms: 19021.509401
+  type: 'test'
+  ...
+# Subtest: market：基價乘狀態、聲望及節點局勢；弦月固定 seed 刷新
+ok 488 - market：基價乘狀態、聲望及節點局勢；弦月固定 seed 刷新
+  ---
+  duration_ms: 847.3556
+  type: 'test'
+  ...
+# Subtest: market：每次買賣兩筆帳、批次拒絕原子性與帳本守恆
+ok 489 - market：每次買賣兩筆帳、批次拒絕原子性與帳本守恆
+  ---
+  duration_ms: 151.435144
+  type: 'test'
+  ...
+# Subtest: market：篩選器排除未開放機型，流出後刷新可售且不改內容
+ok 490 - market：篩選器排除未開放機型，流出後刷新可售且不改內容
+  ---
+  duration_ms: 160.799801
+  type: 'test'
+  ...
+# Subtest: market：新型上市一潮月內乘 1.5，之後回到基價
+ok 491 - market：新型上市一潮月內乘 1.5，之後回到基價
+  ---
+  duration_ms: 166.418335
+  type: 'test'
+  ...
+# Subtest: market：restricted 機甲轉賣成功才流出，maker rep 扣 15，拒絕交易保持原子性
+ok 492 - market：restricted 機甲轉賣成功才流出，maker rep 扣 15，拒絕交易保持原子性
+  ---
+  duration_ms: 312.485932
+  type: 'test'
+  ...
+# Subtest: market：護航補貨並解除加價、scarcity 一潮月、封港停止交易刷新
+ok 493 - market：護航補貨並解除加價、scarcity 一潮月、封港停止交易刷新
+  ---
+  duration_ms: 131.871842
+  type: 'test'
+  ...
+# Subtest: market：trade 互列夥伴已釋出可售機型並折價，restricted 不因條約外流
+ok 494 - market：trade 互列夥伴已釋出可售機型並折價，restricted 不因條約外流
+  ---
+  duration_ms: 145.619074
+  type: 'test'
+  ...
+# Subtest: marketReputation 唯讀查詢沿用動態與固定機架的最低門檻及通用豁免
+ok 495 - marketReputation 唯讀查詢沿用動態與固定機架的最低門檻及通用豁免
+  ---
+  duration_ms: 133.746617
+  type: 'test'
+  ...
+# Subtest: move：連續航行總天數等於 ceil(Σcost/mp)，sail 不耗 tick 或燃料
+ok 496 - move：連續航行總天數等於 ceil(Σcost/mp)，sail 不耗 tick 或燃料
+  ---
+  duration_ms: 414.344188
+  type: 'test'
+  ...
+# Subtest: move：直達不慢於中途懸停一天再走，停船清空 carry
+ok 497 - move：直達不慢於中途懸停一天再走，停船清空 carry
+  ---
+  duration_ms: 459.699978
+  type: 'test'
+  ...
+# Subtest: move：每個移動日恰扣一次燃料，經過深蝕格當日乘二
+ok 498 - move：每個移動日恰扣一次燃料，經過深蝕格當日乘二
+  ---
+  duration_ms: 370.934581
+  type: 'test'
+  ...
+# Subtest: move：航行中等7與七次等1事件序列相同
+ok 499 - move：航行中等7與七次等1事件序列相同
+  ---
+  duration_ms: 438.378239
+  type: 'test'
+  ...
+# Subtest: move：pendingBattle與pendingChoices凍結位置與燃料
+ok 500 - move：pendingBattle與pendingChoices凍結位置與燃料
+  ---
+  duration_ms: 292.810878
+  type: 'test'
+  ...
+# Subtest: move：船永不進不可進格，不能到達時不改狀態
+ok 501 - move：船永不進不可進格，不能到達時不改狀態
+  ---
+  duration_ms: 155.997629
+  type: 'test'
+  ...
+# Subtest: move：跨圖航道估計包含等船天數，到站收票價
+ok 502 - move：跨圖航道估計包含等船天數，到站收票價
+  ---
+  duration_ms: 156.355965
+  type: 'test'
+  ...
+# Subtest: move：燃料不足與未知行動者拒絕，野外不能停泊
+ok 503 - move：燃料不足與未知行動者拒絕，野外不能停泊
+  ---
+  duration_ms: 173.025652
+  type: 'test'
+  ...
+# Subtest: places：地點蝕深、距離鄰接、城邦失守與收復
+ok 504 - places：地點蝕深、距離鄰接、城邦失守與收復
+  ---
+  duration_ms: 371.244824
+  type: 'test'
+  ...
+# Subtest: pressure：每日與蝕域月累積；平日不開裂縫
+ok 505 - pressure：每日與蝕域月累積；平日不開裂縫
+  ---
+  duration_ms: 395.380822
+  type: 'test'
+  ...
+# Subtest: pressure：大潮泊松與落點可重播、落點不重疊
+ok 506 - pressure：大潮泊松與落點可重播、落點不重疊
+  ---
+  duration_ms: 522.594761
+  type: 'test'
+  ...
+# Subtest: 聲望門檻：原規則可見的勢力機拒買原子性，達門檻可買（a、b）
+ok 507 - 聲望門檻：原規則可見的勢力機拒買原子性，達門檻可買（a、b）
+  ---
+  duration_ms: 380.451185
+  type: 'test'
+  ...
+# Subtest: 通用三系在聲望 0 可買；流出與 maker generic 不設門檻（c）
+ok 508 - 通用三系在聲望 0 可買；流出與 maker generic 不設門檻（c）
+  ---
+  duration_ms: 217.049829
+  type: 'test'
+  ...
+# Subtest: 新國家私有機只在 maker 開局釋出與研發；流出後公開（d）
+ok 509 - 新國家私有機只在 maker 開局釋出與研發；流出後公開（d）
+  ---
+  duration_ms: 192.724502
+  type: 'test'
+  ...
+# Subtest: restricted 國家機聲望達標才列出；快取列表用同一規則（e）
+ok 510 - restricted 國家機聲望達標才列出；快取列表用同一規則（e）
+  ---
+  duration_ms: 158.857909
+  type: 'test'
+  ...
+# Subtest: 固定 frame 清單按最低門檻；任一通用登記即可公開；maker 地盤也擋
+ok 511 - 固定 frame 清單按最低門檻；任一通用登記即可公開；maker 地盤也擋
+  ---
+  duration_ms: 149.243629
+  type: 'test'
+  ...
+# Subtest: presence 發包不佔地，未指定 issuer 時有領地勢力優先
+ok 512 - presence 發包不佔地，未指定 issuer 時有領地勢力優先
+  ---
+  duration_ms: 412.623922
+  type: 'test'
+  ...
+# Subtest: 內容檢查拒絕不存在的 override model、越界值與不存在的 presence
+ok 513 - 內容檢查拒絕不存在的 override model、越界值與不存在的 presence
+  ---
+  duration_ms: 185.332583
+  type: 'test'
+  ...
+# Subtest: 停泊時逐台補滿，總價入帳且帳本守恆
+ok 514 - 停泊時逐台補滿，總價入帳且帳本守恆
+  ---
+  duration_ms: 359.151798
+  type: 'test'
+  ...
+# Subtest: 現金不足時只補可支付的發數且現金非負
+ok 515 - 現金不足時只補可支付的發數且現金非負
+  ---
+  duration_ms: 213.251672
+  type: 'test'
+  ...
+# Subtest: 航行途中不補彈且 state 不變
+ok 516 - 航行途中不補彈且 state 不變
+  ---
+  duration_ms: 202.099923
+  type: 'test'
+  ...
+# Subtest: rifts：大潮轉移表與非大潮不轉移
+ok 517 - rifts：大潮轉移表與非大潮不轉移
+  ---
+  duration_ms: 1351.719373
+  type: 'test'
+  ...
+# Subtest: rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次
+ok 518 - rifts：殺捕錨、養裂保留錨齡且 fedCount 只加一次
+  ---
+  duration_ms: 314.467723
+  type: 'test'
+  ...
+# Subtest: rifts：兩次大潮防守封印、潮月退區到 closed
+ok 519 - rifts：兩次大潮防守封印、潮月退區到 closed
+  ---
+  duration_ms: 215.040391
+  type: 'test'
+  ...
+# Subtest: rifts：selfClose 一個大潮後關閉，不產生錨
+ok 520 - rifts：selfClose 一個大潮後關閉，不產生錨
+  ---
+  duration_ms: 165.116199
+  type: 'test'
+  ...
+# Subtest: 第三刃五機型歸屬第三刃，聲望門檻依級別而非鹽鷗
+ok 521 - 第三刃五機型歸屬第三刃，聲望門檻依級別而非鹽鷗
+  ---
+  duration_ms: 366.887328
+  type: 'test'
+  ...
+# Subtest: 第三刃在新加坡 presence 發包，契約種能進池且不佔地不駐軍
+ok 522 - 第三刃在新加坡 presence 發包，契約種能進池且不佔地不駐軍
+  ---
+  duration_ms: 337.929289
+  type: 'test'
+  ...
+# Subtest: B 級鰩魚交易需要第三刃聲望 35，鹽鷗聲望不能代替
+ok 523 - B 級鰩魚交易需要第三刃聲望 35，鹽鷗聲望不能代替
+  ---
+  duration_ms: 235.221738
+  type: 'test'
+  ...
+# Subtest: self 能力必中且不消耗命中 RNG，無單位目標也不擲命中骰
+ok 524 - self 能力必中且不消耗命中 RNG，無單位目標也不擲命中骰
+  ---
+  duration_ms: 2.910551
+  type: 'test'
+  ...
+# Subtest: 命中夾在 5..95，指定部位懲罰
+ok 525 - 命中夾在 5..95，指定部位懲罰
+  ---
+  duration_ms: 0.723345
+  type: 'test'
+  ...
+# Subtest: 未指定依 exposure 抽、忽略已毀部位、指定不耗 RNG
+ok 526 - 未指定依 exposure 抽、忽略已毀部位、指定不耗 RNG
+  ---
+  duration_ms: 0.545073
+  type: 'test'
+  ...
+# Subtest: DN-W-14 conventional-arms 對 kaiju 抵抗性外甲倍率 0.1，修正後才暴擊
+ok 527 - DN-W-14 conventional-arms 對 kaiju 抵抗性外甲倍率 0.1，修正後才暴擊
+  ---
+  duration_ms: 0.604454
+  type: 'test'
+  ...
+# Subtest: 命中多 packet 立即跳過擊穿層，死亡事件一次且可重播
+ok 528 - 命中多 packet 立即跳過擊穿層，死亡事件一次且可重播
+  ---
+  duration_ms: 2.430669
+  type: 'test'
+  ...
+# Subtest: 無核心凡鐵對 kaiju 傷害 ×0.1，有核心遙控保留武器傷害
+ok 529 - 無核心凡鐵對 kaiju 傷害 ×0.1，有核心遙控保留武器傷害
+  ---
+  duration_ms: 145.718153
+  type: 'test'
+  ...
+# Subtest: ① require 與 actor 拒絕完全不扣費、不耗 RNG
+ok 530 - ① require 與 actor 拒絕完全不扣費、不耗 RNG
+  ---
+  duration_ms: 3.423875
+  type: 'test'
+  ...
+# Subtest: ② 範圍、部位、LOS 拒絕不扣任何東西
+ok 531 - ② 範圍、部位、LOS 拒絕不扣任何東西
+  ---
+  duration_ms: 1.539362
+  type: 'test'
+  ...
+# Subtest: ③ 所有成本一起判斷，缺池／不足拒絕且查詢無副作用
+ok 532 - ③ 所有成本一起判斷，缺池／不足拒絕且查詢無副作用
+  ---
+  duration_ms: 0.862544
+  type: 'test'
+  ...
+# Subtest: ④ 未命中不退費、冷卻與次數入帳，preview 不改原狀態
+ok 533 - ④ 未命中不退費、冷卻與次數入帳，preview 不改原狀態
+  ---
+  duration_ms: 1.585227
+  type: 'test'
+  ...
+# Subtest: 未登記的 eject 回 unsupported，非法路徑不動狀態
+ok 534 - 未登記的 eject 回 unsupported，非法路徑不動狀態
+  ---
+  duration_ms: 0.540936
+  type: 'test'
+  ...
+# Subtest: DC-C04 傳導依 when／layer 匹配且只給 pilot
+ok 535 - DC-C04 傳導依 when／layer 匹配且只給 pilot
+  ---
+  duration_ms: 2.644346
+  type: 'test'
+  ...
+# Subtest: PW-11 conducted 信號包含 amount，機體效果追加傳導規則
+ok 536 - PW-11 conducted 信號包含 amount，機體效果追加傳導規則
+  ---
+  duration_ms: 0.628288
+  type: 'test'
+  ...
+# Subtest: chance 與 conductBonus；不存在的座位不觸發
+ok 537 - chance 與 conductBonus；不存在的座位不觸發
+  ---
+  duration_ms: 0.52719
+  type: 'test'
+  ...
+# Subtest: DC-T09 statValue 依 set→add→mul→min/max，表格涵蓋每種運算
+ok 538 - DC-T09 statValue 依 set→add→mul→min/max，表格涵蓋每種運算
+  ---
+  duration_ms: 0.599374
+  type: 'test'
+  ...
+# Subtest: 貢獻 NumExpr 在加入時求值並配置獨立遞增 id
+ok 539 - 貢獻 NumExpr 在加入時求值並配置獨立遞增 id
+  ---
+  duration_ms: 1.146921
+  type: 'test'
+  ...
+# Subtest: DC-T09 按 id 精確撤回、不影響同來源另一筆
+ok 540 - DC-T09 按 id 精確撤回、不影響同來源另一筆
+  ---
+  duration_ms: 0.336636
+  type: 'test'
+  ...
+# Subtest: 來源撤除重算池 max/regen，hard 夾限而 soft 保留超載
+ok 541 - 來源撤除重算池 max/regen，hard 夾限而 soft 保留超載
+  ---
+  duration_ms: 0.83381
+  type: 'test'
+  ...
+# Subtest: roleAttr 合併人物與機體，缺屬性與無人單位採零與機體值
+ok 542 - roleAttr 合併人物與機體，缺屬性與無人單位採零與機體值
+  ---
+  duration_ms: 0.26364
+  type: 'test'
+  ...
+# Subtest: 人物能力：驅動時合併天生與後天能力，普通開與死亡人物不併入
+ok 543 - 人物能力：驅動時合併天生與後天能力，普通開與死亡人物不併入
+  ---
+  duration_ms: 27.108883
+  type: 'test'
+  ...
+# Subtest: DC-C02 contested 依雙方骰與控制值選指令權者
+ok 544 - DC-C02 contested 依雙方骰與控制值選指令權者
+  ---
+  duration_ms: 26.361924
+  type: 'test'
+  ...
+# Subtest: DC-C05 DC-C06 shared、soul、disabled 與 setControl 動詞
+ok 545 - DC-C05 DC-C06 shared、soul、disabled 與 setControl 動詞
+  ---
+  duration_ms: 25.643799
+  type: 'test'
+  ...
+# Subtest: DC-C08 autonomy 只計已解鎖且 research 有該鍵的節點
+ok 546 - DC-C08 autonomy 只計已解鎖且 research 有該鍵的節點
+  ---
+  duration_ms: 21.783513
+  type: 'test'
+  ...
+# Subtest: 駕駛員死亡後無自主節點則停機，所有座位清空則 none
+ok 547 - 駕駛員死亡後無自主節點則停機，所有座位清空則 none
+  ---
+  duration_ms: 23.850716
+  type: 'test'
+  ...
+# Subtest: 無座位人物的怪獸以 instinct 控制，交接後仍無人物指令權者
+ok 548 - 無座位人物的怪獸以 instinct 控制，交接後仍無人物指令權者
+  ---
+  duration_ms: 22.222229
+  type: 'test'
+  ...
+# Subtest: instinct 怪獸可移動與使用能力，扣機體 AP 並於下一回合恢復
+ok 549 - instinct 怪獸可移動與使用能力，扣機體 AP 並於下一回合恢復
+  ---
+  duration_ms: 27.455186
+  type: 'test'
+  ...
+# Subtest: 棄機後 derelict 保持 none，beginTurn 自動結束其回合
+ok 550 - 棄機後 derelict 保持 none，beginTurn 自動結束其回合
+  ---
+  duration_ms: 29.358945
+  type: 'test'
+  ...
+# Subtest: 座艙五態：human、soul 優先於 ai／remote，死亡人物不驅動核心
+ok 551 - 座艙五態：human、soul 優先於 ai／remote，死亡人物不驅動核心
+  ---
+  duration_ms: 22.01337
+  type: 'test'
+  ...
+# Subtest: 普通開只留基本動作與武器，擋機體招式、actorRole 與 drivenOnlyTags
+ok 552 - 普通開只留基本動作與武器，擋機體招式、actorRole 與 drivenOnlyTags
+  ---
+  duration_ms: 21.250483
+  type: 'test'
+  ...
+# Subtest: 駕駛死亡或棄機後 crew 接手 scripted；自主機魂仍優先
+ok 553 - 駕駛死亡或棄機後 crew 接手 scripted；自主機魂仍優先
+  ---
+  duration_ms: 46.020968
+  type: 'test'
+  ...
+# Subtest: scripted 用機體 AP 移動與基本動作，下一回合回復 crewPools
+ok 554 - scripted 用機體 AP 移動與基本動作，下一回合回復 crewPools
+  ---
+  duration_ms: 28.430229
+  type: 'test'
+  ...
+# Subtest: DC-T05 五種疊加政策表格，merge 三運算與 perPartSeparate
+ok 555 - DC-T05 五種疊加政策表格，merge 三運算與 perPartSeparate
+  ---
+  duration_ms: 1043.80329
+  type: 'test'
+  ...
+# Subtest: part scope 未給 part 時 owner 省略該鍵，事件仍記 null
+ok 556 - part scope 未給 part 時 owner 省略該鍵，事件仍記 null
+  ---
+  duration_ms: 90.332971
+  type: 'test'
+  ...
+# Subtest: layer scope 未給 layer 時 owner 省略該鍵並保留 part
+ok 557 - layer scope 未給 layer 時 owner 省略該鍵並保留 part
+  ---
+  duration_ms: 89.877073
+  type: 'test'
+  ...
+# Subtest: DC-T04 ownerTurns 只遞減目標時鐘、到零撤除並回復貢獻
+ok 558 - DC-T04 ownerTurns 只遞減目標時鐘、到零撤除並回復貢獻
+  ---
+  duration_ms: 104.173709
+  type: 'test'
+  ...
+# Subtest: DC-T05 whileSource 不隨時間消失，來源撤除只退自己的 contribIds
+ok 559 - DC-T05 whileSource 不隨時間消失，來源撤除只退自己的 contribIds
+  ---
+  duration_ms: 87.761211
+  type: 'test'
+  ...
+# Subtest: immuneTags、chance 與 save 抵抗不安裝效果
+ok 560 - immuneTags、chance 與 save 抵抗不安裝效果
+  ---
+  duration_ms: 286.906344
+  type: 'test'
+  ...
+# Subtest: field scope 統一 rounds，cell/faction 查詢及 layer 容器
+ok 561 - field scope 統一 rounds，cell/faction 查詢及 layer 容器
+  ---
+  duration_ms: 372.804613
+  type: 'test'
+  ...
+# Subtest: params 求值、uses 消費及 tags 清除永久效果
+ok 562 - params 求值、uses 消費及 tags 清除永久效果
+  ---
+  duration_ms: 197.031064
+  type: 'test'
+  ...
+# Subtest: PW-07 createBattle 複製部署、零回合零事件、初始化陣營
+ok 563 - PW-07 createBattle 複製部署、零回合零事件、初始化陣營
+  ---
+  duration_ms: 26.537231
+  type: 'test'
+  ...
+# Subtest: DC-T07 棄機拒絕不改狀態，成功搬人物保留池並排隊尾
+ok 564 - DC-T07 棄機拒絕不改狀態，成功搬人物保留池並排隊尾
+  ---
+  duration_ms: 26.683462
+  type: 'test'
+  ...
+# Subtest: PW-15 撤離限制與戰後狀態保留，不補血也不修改 live 狀態
+ok 565 - PW-15 撤離限制與戰後狀態保留，不補血也不修改 live 狀態
+  ---
+  duration_ms: 28.868955
+  type: 'test'
+  ...
+# Subtest: 捕捉需核完整與全行動部位毀損，命中 capture 後保留 HP，spawn 入隊
+ok 566 - 捕捉需核完整與全行動部位毀損，命中 capture 後保留 HP，spawn 入隊
+  ---
+  duration_ms: 23.338545
+  type: 'test'
+  ...
+# Subtest: 鉤子依 order→id→uid 排序，onHit/onBeingHit 消費 uses
+ok 567 - 鉤子依 order→id→uid 排序，onHit/onBeingHit 消費 uses
+  ---
+  duration_ms: 235.008113
+  type: 'test'
+  ...
+# Subtest: 鉤子新增效果進 pending、同鍵忽略且本次不補跑
+ok 568 - 鉤子新增效果進 pending、同鍵忽略且本次不補跑
+  ---
+  duration_ms: 167.357846
+  type: 'test'
+  ...
+# Subtest: 未登記動詞寫 HookSkipped；內建 pool/apply/remove/emit 與指令覆寫
+ok 569 - 未登記動詞寫 HookSkipped；內建 pool/apply/remove/emit 與指令覆寫
+  ---
+  duration_ms: 102.159938
+  type: 'test'
+  ...
+# Subtest: signal 依 order/key 呼叫，同 key 重登記覆蓋
+ok 570 - signal 依 order/key 呼叫，同 key 重登記覆蓋
+  ---
+  duration_ms: 92.61802
+  type: 'test'
+  ...
+# Subtest: 傷勢候選依傷害、層、永久旗標過濾
+ok 571 - 傷勢候選依傷害、層、永久旗標過濾
+  ---
+  duration_ms: 26.867044
+  type: 'test'
+  ...
+# Subtest: conducted 扣人物 HP 並安裝暫時傷，沒有 HP 仍可受效果
+ok 572 - conducted 扣人物 HP 並安裝暫時傷，沒有 HP 仍可受效果
+  ---
+  duration_ms: 27.081653
+  type: 'test'
+  ...
+# Subtest: 重傷成功改抽永久列，缺永久列則保留暫時傷
+ok 573 - 重傷成功改抽永久列，缺永久列則保留暫時傷
+  ---
+  duration_ms: 49.44189
+  type: 'test'
+  ...
+# Subtest: DC-C10 HP 見底清座位、PersonDied 與接手且死亡冪等
+ok 574 - DC-C10 HP 見底清座位、PersonDied 與接手且死亡冪等
+  ---
+  duration_ms: 23.848934
+  type: 'test'
+  ...
+# Subtest: DN-M-07 ablative 磨損與純函式
+ok 575 - DN-M-07 ablative 磨損與純函式
+  ---
+  duration_ms: 0.996011
+  type: 'test'
+  ...
+# Subtest: DN-M-09 非消耗 flat／pct 減傷
+ok 576 - DN-M-09 非消耗 flat／pct 減傷
+  ---
+  duration_ms: 0.208327
+  type: 'test'
+  ...
+# Subtest: DC-C03 passThrough 與 armorPen 先分流
+ok 577 - DC-C03 passThrough 與 armorPen 先分流
+  ---
+  duration_ms: 0.22615
+  type: 'test'
+  ...
+# Subtest: resist 與 resistPen
+ok 578 - resist 與 resistPen
+  ---
+  duration_ms: 0.153104
+  type: 'test'
+  ...
+# Subtest: layerFilter 與擊穿後同擊後續 packet 跳過
+ok 579 - layerFilter 與擊穿後同擊後續 packet 跳過
+  ---
+  duration_ms: 0.136423
+  type: 'test'
+  ...
+# Subtest: DN-M-10 溢出丟棄、層與部位事件、核心死亡
+ok 580 - DN-M-10 溢出丟棄、層與部位事件、核心死亡
+  ---
+  duration_ms: 1.953662
+  type: 'test'
+  ...
+# Subtest: DN-M-02 士氣階段只替換自己來源的效果
+ok 581 - DN-M-02 士氣階段只替換自己來源的效果
+  ---
+  duration_ms: 26.915284
+  type: 'test'
+  ...
+# Subtest: DN-M-04 失敗逐階下降，逃跑不再越界
+ok 582 - DN-M-04 失敗逐階下降，逃跑不再越界
+  ---
+  duration_ms: 25.480917
+  type: 'test'
+  ...
+# Subtest: 連續成功回穩且失敗清除 streak
+ok 583 - 連續成功回穩且失敗清除 streak
+  ---
+  duration_ms: 24.915547
+  type: 'test'
+  ...
+# Subtest: 士氣表按 tags、immuneTags、when 過濾並支援 moraleCheck 動詞
+ok 584 - 士氣表按 tags、immuneTags、when 過濾並支援 moraleCheck 動詞
+  ---
+  duration_ms: 22.094161
+  type: 'test'
+  ...
+# Subtest: 部位毀損與友軍死亡只影響適用的座位人物
+ok 585 - 部位毀損與友軍死亡只影響適用的座位人物
+  ---
+  duration_ms: 23.82549
+  type: 'test'
+  ...
+# Subtest: 逐格付 AP；付不起停在上一格、不扣半步
+ok 586 - 逐格付 AP；付不起停在上一格、不扣半步
+  ---
+  duration_ms: 2.828979
+  type: 'test'
+  ...
+# Subtest: onEnter 進格掛效果後定身停止
+ok 587 - onEnter 進格掛效果後定身停止
+  ---
+  duration_ms: 0.893101
+  type: 'test'
+  ...
+# Subtest: locomotion 毀損、阻格與 Dijkstra 預覽不改狀態
+ok 588 - locomotion 毀損、阻格與 Dijkstra 預覽不改狀態
+  ---
+  duration_ms: 1.135721
+  type: 'test'
+  ...
+# Subtest: 離開敵人鄰格觸發免費 AP 反應，每動作一次
+ok 589 - 離開敵人鄰格觸發免費 AP 反應，每動作一次
+  ---
+  duration_ms: 2.187506
+  type: 'test'
+  ...
+# Subtest: 目標依宣告序決定且 BattleEnd 只寫一次，預設排除 berserk 與非 active
+ok 590 - 目標依宣告序決定且 BattleEnd 只寫一次，預設排除 berserk 與非 active
+  ---
+  duration_ms: 53.596423
+  type: 'test'
+  ...
+# Subtest: survive 只在輪末判定，缺參數的 hold／escort 不完成，達上限 timeout
+ok 591 - survive 只在輪末判定，缺參數的 hold／escort 不完成，達上限 timeout
+  ---
+  duration_ms: 45.355242
+  type: 'test'
+  ...
+# Subtest: hold 區域連續輪末計數，敵人打斷、同輪重評不累加且進度可存檔
+ok 592 - hold 區域連續輪末計數，敵人打斷、同輪重評不累加且進度可存檔
+  ---
+  duration_ms: 23.547794
+  type: 'test'
+  ...
+# Subtest: hold 無 zone 包含未定義 anchor role：存活撐滿輪數，全滅不能完成
+ok 593 - hold 無 zone 包含未定義 anchor role：存活撐滿輪數，全滅不能完成
+  ---
+  duration_ms: 22.042817
+  type: 'test'
+  ...
+# Subtest: escort 要全員到出口或已撤離，死亡與缺少目標不算完成
+ok 594 - escort 要全員到出口或已撤離，死亡與缺少目標不算完成
+  ---
+  duration_ms: 23.962456
+  type: 'test'
+  ...
+# Subtest: reachExit、capture、killTarget 與 lose 結算
+ok 595 - reachExit、capture、killTarget 與 lose 結算
+  ---
+  duration_ms: 26.777277
+  type: 'test'
+  ...
+# Subtest: 狀態複製保留完整資料且預覽修改不會滲回原狀態
+ok 596 - 狀態複製保留完整資料且預覽修改不會滲回原狀態
+  ---
+  duration_ms: 2.537527
+  type: 'test'
+  ...
+# Subtest: 預測歷史保留死亡去重與失控恢復，新增事件內容和序號不變
+ok 597 - 預測歷史保留死亡去重與失控恢復，新增事件內容和序號不變
+  ---
+  duration_ms: 1.455546
+  type: 'test'
+  ...
+# Subtest: 堆積搜尋與原排序搜尋的成本及格子順序相同
+ok 598 - 堆積搜尋與原排序搜尋的成本及格子順序相同
+  ---
+  duration_ms: 7.585962
+  type: 'test'
+  ...
+# Subtest: 快照的 reachable 與 pathTo 一致，普通查詢與新快照讀到最新 AP
+ok 599 - 快照的 reachable 與 pathTo 一致，普通查詢與新快照讀到最新 AP
+  ---
+  duration_ms: 8.223718
+  type: 'test'
+  ...
+# Subtest: AI 成功移動與遭拒之後都重建決策快照
+ok 600 - AI 成功移動與遭拒之後都重建決策快照
+  ---
+  duration_ms: 1.751516
+  type: 'test'
+  ...
+# Subtest: DN-M-08 未毀部件池合併；部件層毀損重算可用上限
+ok 601 - DN-M-08 未毀部件池合併；部件層毀損重算可用上限
+  ---
+  duration_ms: 269.772104
+  type: 'test'
+  ...
+# Subtest: DC-T02 DC-T03 regenTick ①再生②decay③夾限④帶⑤見底，soft 保留超載
+ok 602 - DC-T02 DC-T03 regenTick ①再生②decay③夾限④帶⑤見底，soft 保留超載
+  ---
+  duration_ms: 154.577994
+  type: 'test'
+  ...
+# Subtest: DC-T03 canPay 合併所有成本，inverted 只有 soft+allowOverload 可超載
+ok 603 - DC-T03 canPay 合併所有成本，inverted 只有 soft+allowOverload 可超載
+  ---
+  duration_ms: 100.939082
+  type: 'test'
+  ...
+# Subtest: pay 一般池扣而 inverted 加，changePool 回實際值與固定事件欄位
+ok 604 - pay 一般池扣而 inverted 加，changePool 回實際值與固定事件欄位
+  ---
+  duration_ms: 91.580775
+  type: 'test'
+  ...
+# Subtest: DC-T05 帶切換精確撤掛 overheat-1→overheat-2，離帶即撤來源
+ok 605 - DC-T05 帶切換精確撤掛 overheat-1→overheat-2，離帶即撤來源
+  ---
+  duration_ms: 105.611077
+  type: 'test'
+  ...
+# Subtest: onDepleted 變化僅跨過 min 觸發、regen 見底觸發，signal 帶 owner/kind/pool
+ok 606 - onDepleted 變化僅跨過 min 觸發、regen 見底觸發，signal 帶 owner/kind/pool
+  ---
+  duration_ms: 89.133095
+  type: 'test'
+  ...
+# Subtest: 抵抗性：精粹等級每低一級減半，同級與高級全額（武器等級缺省取機體等級）
+ok 607 - 抵抗性：精粹等級每低一級減半，同級與高級全額（武器等級缺省取機體等級）
+  ---
+  duration_ms: 2.36638
+  type: 'test'
+  ...
+# Subtest: 抵抗性：能力宣告 essence 覆蓋機體等級；只對 kaiju，打機甲全額
+ok 608 - 抵抗性：能力宣告 essence 覆蓋機體等級；只對 kaiju，打機甲全額
+  ---
+  duration_ms: 0.529043
+  type: 'test'
+  ...
+# Subtest: 凡鐵：外甲 ×conventionalFactor、內層與核 0，打再多次也殺不了獸
+ok 609 - 凡鐵：外甲 ×conventionalFactor、內層與核 0，打再多次也殺不了獸
+  ---
+  duration_ms: 3.372079
+  type: 'test'
+  ...
+# Subtest: runLayers reach：碰到不在清單的層即停，layerFilter 不能繞過
+ok 610 - runLayers reach：碰到不在清單的層即停，layerFilter 不能繞過
+  ---
+  duration_ms: 0.197036
+  type: 'test'
+  ...
+# Subtest: 情境 rules.conventionalFactor 覆蓋凡鐵外甲倍率
+ok 611 - 情境 rules.conventionalFactor 覆蓋凡鐵外甲倍率
+  ---
+  duration_ms: 0.264492
+  type: 'test'
+  ...
+# Subtest: 強化打擊／強化遠程：近戰與遠程分開增傷，暫值在效果檔
+ok 612 - 強化打擊／強化遠程：近戰與遠程分開增傷，暫值在效果檔
+  ---
+  duration_ms: 0.561153
+  type: 'test'
+  ...
+# Subtest: DN-M-08 makeUnit 合併機體與兩門部件池，部件層置於最內且不改 Def
+ok 613 - DN-M-08 makeUnit 合併機體與兩門部件池，部件層置於最內且不改 Def
+  ---
+  duration_ms: 1.663712
+  type: 'test'
+  ...
+# Subtest: 怪獸 tidewolf C 的 frameView 使用物種屬性與能力
+ok 614 - 怪獸 tidewolf C 的 frameView 使用物種屬性與能力
+  ---
+  duration_ms: 0.386969
+  type: 'test'
+  ...
+# Subtest: 人物入座、指令權與同名池覆寫，DC-C01 引用以人物優先
+ok 615 - 人物入座、指令權與同名池覆寫，DC-C01 引用以人物優先
+  ---
+  duration_ms: 0.754523
+  type: 'test'
+  ...
+# Subtest: 地圖、敵我、存活狀態與佔格查詢保持純讀
+ok 616 - 地圖、敵我、存活狀態與佔格查詢保持純讀
+  ---
+  duration_ms: 0.458522
+  type: 'test'
+  ...
+# Subtest: runtime 與事件 metadata、缺鍵錯誤及獨立人物初始化
+ok 617 - runtime 與事件 metadata、缺鍵錯誤及獨立人物初始化
+  ---
+  duration_ms: 0.315797
+  type: 'test'
+  ...
+# Subtest: 排序同分 id 字典序與 fatigue 修正，不重複加 frame
+ok 618 - 排序同分 id 字典序與 fatigue 修正，不重複加 frame
+  ---
+  duration_ms: 2.255523
+  type: 'test'
+  ...
+# Subtest: DC-T06 Wait 一輪一次、移隊尾且恢復不再更新資源
+ok 619 - DC-T06 Wait 一輪一次、移隊尾且恢復不再更新資源
+  ---
+  duration_ms: 1.42566
+  type: 'test'
+  ...
+# Subtest: ownerTurns 效果在資源更新前撤除
+ok 620 - ownerTurns 效果在資源更新前撤除
+  ---
+  duration_ms: 1.149958
+  type: 'test'
+  ...
+# Subtest: 輪始事件、輪末信號定局後停止 advance
+ok 621 - 輪始事件、輪末信號定局後停止 advance
+  ---
+  duration_ms: 0.915201
+  type: 'test'
+  ...
+# Subtest: DN-W-02 DN-W-03 共鳴依信念與 affinity 算分並刷新
+ok 622 - DN-W-02 DN-W-03 共鳴依信念與 affinity 算分並刷新
+  ---
+  duration_ms: 27.68212
+  type: 'test'
+  ...
+# Subtest: DN-W-04 DN-W-09 機械框架也累加異系部件，毀損部件略過
+ok 623 - DN-W-04 DN-W-09 機械框架也累加異系部件，毀損部件略過
+  ---
+  duration_ms: 26.495304
+  type: 'test'
+  ...
+# Subtest: DN-W-05 DN-W-06 硬上限失控並精確還原 owner 與 shared 模式
+ok 624 - DN-W-05 DN-W-06 硬上限失控並精確還原 owner 與 shared 模式
+  ---
+  duration_ms: 42.822967
+  type: 'test'
+  ...
+# Subtest: 承擔軟上限檢定、成功回穩與無承擔池略過
+ok 625 - 承擔軟上限檢定、成功回穩與無承擔池略過
+  ---
+  duration_ms: 49.383953
+  type: 'test'
+  ...
+# Subtest: GridView：可視格數、dirty 更新與同尺寸捲動
+ok 626 - GridView：可視格數、dirty 更新與同尺寸捲動
+  ---
+  duration_ms: 8.174817
+  type: 'test'
+  ...
+# Subtest: 點格傳出絕對座標的 clickCell
+ok 627 - 點格傳出絕對座標的 clickCell
+  ---
+  duration_ms: 62.72763
+  type: 'test'
+  ...
+# Subtest: 點指令按鈕傳出對應 action
+ok 628 - 點指令按鈕傳出對應 action
+  ---
+  duration_ms: 47.714951
+  type: 'test'
+  ...
+# Subtest: 按 e 呼叫 onKey，回 true 時阻止預設行為
+ok 629 - 按 e 呼叫 onKey，回 true 時阻止預設行為
+  ---
+  duration_ms: 47.206556
+  type: 'test'
+  ...
+# Subtest: input 有焦點時不攔截快捷鍵
+ok 630 - input 有焦點時不攔截快捷鍵
+  ---
+  duration_ms: 57.45605
+  type: 'test'
+  ...
+# Subtest: 滾輪傳出 scroll，Shift 改為水平捲動
+ok 631 - 滾輪傳出 scroll，Shift 改為水平捲動
+  ---
+  duration_ms: 93.138763
+  type: 'test'
+  ...
+# Subtest: 鍵盤快捷鍵經 keymap → controller → DOM：M 顯示可達格、Esc 取消、E（確認）結束回合、K 跳過演出
+ok 632 - 鍵盤快捷鍵經 keymap → controller → DOM：M 顯示可達格、Esc 取消、E（確認）結束回合、K 跳過演出
+  ---
+  duration_ms: 358.715027
+  type: 'test'
+  ...
+# Subtest: 格數等於 viewport 面積且座標為絕對座標
+ok 633 - 格數等於 viewport 面積且座標為絕對座標
+  ---
+  duration_ms: 61.585538
+  type: 'test'
+  ...
+# Subtest: 格子顯示地形色與單位徽章 label、side class
+ok 634 - 格子顯示地形色與單位徽章 label、side class
+  ---
+  duration_ms: 46.223268
+  type: 'test'
+  ...
+# Subtest: dirty 只更新指定格並重用其他格與子節點
+ok 635 - dirty 只更新指定格並重用其他格與子節點
+  ---
+  duration_ms: 39.995481
+  type: 'test'
+  ...
+# Subtest: viewport 移動後重用格節點並更新絕對座標
+ok 636 - viewport 移動後重用格節點並更新絕對座標
+  ---
+  duration_ms: 115.178716
+  type: 'test'
+  ...
+# Subtest: 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+ok 637 - 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+  ---
+  duration_ms: 59.069761
+  type: 'test'
+  ...
+# Subtest: 單位面板未知 hp 顯示問號
+ok 638 - 單位面板未知 hp 顯示問號
+  ---
+  duration_ms: 24.581808
+  type: 'test'
+  ...
+# Subtest: 戰鬥記錄行數與 kind 對應快照且新行在下
+ok 639 - 戰鬥記錄行數與 kind 對應快照且新行在下
+  ---
+  duration_ms: 87.830166
+  type: 'test'
+  ...
+# Subtest: 結算面板依 outcome 顯示結語
+ok 640 - 結算面板依 outcome 顯示結語
+  ---
+  duration_ms: 47.092475
+  type: 'test'
+  ...
+# Subtest: showHelp 顯示 keyHints 表與 kbd
+ok 641 - showHelp 顯示 keyHints 表與 kbd
+  ---
+  duration_ms: 48.529707
+  type: 'test'
+  ...
+# Subtest: B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+ok 642 - B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+  ---
+  duration_ms: 67.834614
+  type: 'test'
+  ...
+# Subtest: K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+ok 643 - K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+  ---
+  duration_ms: 51.934205
+  type: 'test'
+  ...
+# Subtest: shell：三個導航與頁面，route 切換 hidden 與 aria-current
+ok 644 - shell：三個導航與頁面，route 切換 hidden 與 aria-current
+  ---
+  duration_ms: 10.952481
+  type: 'test'
+  ...
+# Subtest: shell：隱藏戰鬥頁時 mountBattle 不接收快捷鍵
+ok 645 - shell：隱藏戰鬥頁時 mountBattle 不接收快捷鍵
+  ---
+  duration_ms: 55.335429
+  type: 'test'
+  ...
+# Subtest: shell：百科 input 焦點時 t 不導航，F1 回戰鬥
+ok 646 - shell：百科 input 焦點時 t 不導航，F1 回戰鬥
+  ---
+  duration_ms: 2.413998
+  type: 'test'
+  ...
+# Subtest: 指令 enabled 切換重用同 id 節點，停用提示包含原因
+ok 647 - 指令 enabled 切換重用同 id 節點，停用提示包含原因
+  ---
+  duration_ms: 100.369217
+  type: 'test'
+  ...
+# Subtest: 行動、選取、範圍與殘影使用獨立 class
+ok 648 - 行動、選取、範圍與殘影使用獨立 class
+  ---
+  duration_ms: 67.671291
+  type: 'test'
+  ...
+# Subtest: 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+ok 649 - 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+  ---
+  duration_ms: 0.127587
+  type: 'test'
+  ...
+# Subtest: 縮放後錨格留在可視區內並維持相對位置
+ok 650 - 縮放後錨格留在可視區內並維持相對位置
+  ---
+  duration_ms: 0.246097
+  type: 'test'
+  ...
+# Subtest: Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+ok 651 - Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+  ---
+  duration_ms: 38.923358
+  type: 'test'
+  ...
+# Subtest: 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+ok 652 - 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+  ---
+  duration_ms: 79.10662
+  type: 'test'
+  ...
+# Subtest: quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+ok 653 - quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+  ---
+  duration_ms: 110.963001
+  type: 'test'
+  ...
+# Subtest: confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+ok 654 - confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+  ---
+  duration_ms: 77.149902
+  type: 'test'
+  ...
+# Subtest: part 模式顯示部位選單，數字 2 按鈕送 pickPart
+ok 655 - part 模式顯示部位選單，數字 2 按鈕送 pickPart
+  ---
+  duration_ms: 65.362599
+  type: 'test'
+  ...
+# Subtest: fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+ok 656 - fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+  ---
+  duration_ms: 167.532143
+  type: 'test'
+  ...
+# Subtest: 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+ok 657 - 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+  ---
+  duration_ms: 67.054124
+  type: 'test'
+  ...
+# Subtest: 有 at 的 log 行可點並送 focusLog seq
+ok 658 - 有 at 的 log 行可點並送 focusLog seq
+  ---
+  duration_ms: 56.093579
+  type: 'test'
+  ...
+# Subtest: 首頁有分類卡片、總數及 lore 缺資料提示
+ok 659 - 首頁有分類卡片、總數及 lore 缺資料提示
+  ---
+  duration_ms: 9.921514
+  type: 'test'
+  ...
+# Subtest: 側欄分類導航及抽屜切換，修飾鍵保留預設行為
+ok 660 - 側欄分類導航及抽屜切換，修飾鍵保留預設行為
+  ---
+  duration_ms: 4.112225
+  type: 'test'
+  ...
+# Subtest: 分類清單只畫現有面向並傳遞排序與篩選 query
+ok 661 - 分類清單只畫現有面向並傳遞排序與篩選 query
+  ---
+  duration_ms: 4.14149
+  type: 'test'
+  ...
+# Subtest: 搜尋 debounce 120ms replace 導航，重畫保留輸入節點及焦點
+ok 662 - 搜尋 debounce 120ms replace 導航，重畫保留輸入節點及焦點
+  ---
+  duration_ms: 3.453129
+  type: 'test'
+  ...
+# Subtest: 隱藏時鍵盤不處理，說明表切換且輸入欄 Escape 失焦
+ok 663 - 隱藏時鍵盤不處理，說明表切換且輸入欄 Escape 失焦
+  ---
+  duration_ms: 3.091988
+  type: 'test'
+  ...
+# Subtest: 靜態限制與 import 邊界，destroy 清空並解除 keydown
+ok 664 - 靜態限制與 import 邊界，destroy 清空並解除 keydown
+  ---
+  duration_ms: 5.258606
+  type: 'test'
+  ...
+# Subtest: 側欄分類件數放在獨立 wiki-count 徽章，不用括號件數
+ok 665 - 側欄分類件數放在獨立 wiki-count 徽章，不用括號件數
+  ---
+  duration_ms: 2.99631
+  type: 'test'
+  ...
+# Subtest: 詳情繪出所有資料卡、引用、壞引用與分組反向引用
+ok 666 - 詳情繪出所有資料卡、引用、壞引用與分組反向引用
+  ---
+  duration_ms: 13.604642
+  type: 'test'
+  ...
+# Subtest: markdown 各種結構、巢狀清單及對齊正確，標籤只呈現文字
+ok 667 - markdown 各種結構、巢狀清單及對齊正確，標籤只呈現文字
+  ---
+  duration_ms: 3.733701
+  type: 'test'
+  ...
+# Subtest: 年表按時代分段，勢力及時代篩選保留 query
+ok 668 - 年表按時代分段，勢力及時代篩選保留 query
+  ---
+  duration_ms: 4.023891
+  type: 'test'
+  ...
+# Subtest: U02 列表、搜尋與年表用相同徽章呈現傳聞／可能發生，公開列不加徽章
+ok 669 - U02 列表、搜尋與年表用相同徽章呈現傳聞／可能發生，公開列不加徽章
+  ---
+  duration_ms: 8.712116
+  type: 'test'
+  ...
+# Subtest: W04／W05 列表呈現中文欄值，機型原 ID 作為次要文字
+ok 670 - W04／W05 列表呈現中文欄值，機型原 ID 作為次要文字
+  ---
+  duration_ms: 2.671065
+  type: 'test'
+  ...
+# Subtest: 勢力矩陣格子對應 cells，關係 class 與來源正確
+ok 671 - 勢力矩陣格子對應 cells，關係 class 與來源正確
+  ---
+  duration_ms: 2.96362
+  type: 'test'
+  ...
+# Subtest: kv 值與巢狀物件繪成 dl.wiki-kv，表格物件不含 ul
+ok 672 - kv 值與巢狀物件繪成 dl.wiki-kv，表格物件不含 ul
+  ---
+  duration_ms: 3.354466
+  type: 'test'
+  ...
+# Subtest: 短 list 以頓號行內分隔，九項 list 使用 ul
+ok 673 - 短 list 以頓號行內分隔，九項 list 使用 ul
+  ---
+  duration_ms: 3.765561
+  type: 'test'
+  ...
+# Subtest: 關係格依 tone 上色、顯示 label 與 note，清單涵蓋有關係勢力
+ok 674 - 關係格依 tone 上色、顯示 label 與 note，清單涵蓋有關係勢力
+  ---
+  duration_ms: 3.971783
+  type: 'test'
+  ...
+# Subtest: 根元素與常駐面板：頂列、分頁、主區、記錄五色
+ok 675 - 根元素與常駐面板：頂列、分頁、主區、記錄五色
+  ---
+  duration_ms: 45.866076
+  type: 'test'
+  ...
+# Subtest: 八個分頁各畫出主區，且只顯示當前分頁
+ok 676 - 八個分頁各畫出主區，且只顯示當前分頁
+  ---
+  duration_ms: 36.603526
+  type: 'test'
+  ...
+# Subtest: 按鈕標 kbd 與 tooltip；disabled 按鈕 tooltip 末行寫 reason
+ok 677 - 按鈕標 kbd 與 tooltip；disabled 按鈕 tooltip 末行寫 reason
+  ---
+  duration_ms: 7.426917
+  type: 'test'
+  ...
+# Subtest: 點按鈕送出該按鈕的 action；disabled 不送
+ok 678 - 點按鈕送出該按鈕的 action；disabled 不送
+  ---
+  duration_ms: 8.479243
+  type: 'test'
+  ...
+# Subtest: 世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail
+ok 679 - 世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail
+  ---
+  duration_ms: 883.822085
+  type: 'test'
+  ...
+# Subtest: 列表選取：契約、機甲、名冊
+ok 680 - 列表選取：契約、機甲、名冊
+  ---
+  duration_ms: 7.601551
+  type: 'test'
+  ...
+# Subtest: prompt 疊層：選項標鍵、disabled 有 reason、點選送 choose
+ok 681 - prompt 疊層：選項標鍵、disabled 有 reason、點選送 choose
+  ---
+  duration_ms: 6.410226
+  type: 'test'
+  ...
+# Subtest: naming：輸入框＋送出鈕送 nameSubmit；Enter 也送
+ok 682 - naming：輸入框＋送出鈕送 nameSubmit；Enter 也送
+  ---
+  duration_ms: 6.075965
+  type: 'test'
+  ...
+# Subtest: 編成疊層：勾選、座位下拉、錯誤訊息、按鈕
+ok 683 - 編成疊層：勾選、座位下拉、錯誤訊息、按鈕
+  ---
+  duration_ms: 9.985022
+  type: 'test'
+  ...
+# Subtest: 戰果報告與說明疊層；提示列
+ok 684 - 戰果報告與說明疊層；提示列
+  ---
+  duration_ms: 15.637571
+  type: 'test'
+  ...
+# Subtest: 鍵盤：交給 onKey；setActive(false) 時不收且隱藏；select 焦點只放 Esc
+ok 685 - 鍵盤：交給 onKey；setActive(false) 時不收且隱藏；select 焦點只放 Esc
+  ---
+  duration_ms: 5.821222
+  type: 'test'
+  ...
+# Subtest: U01 蝕曆標題與頂列同為顯示月序，來源 month 維持零起算
+ok 686 - U01 蝕曆標題與頂列同為顯示月序，來源 month 維持零起算
+  ---
+  duration_ms: 9.165619
+  type: 'test'
+  ...
+# Subtest: R01 市場常駐聲望門檻、達標數字與購買灰鈕原因
+ok 687 - R01 市場常駐聲望門檻、達標數字與購買灰鈕原因
+  ---
+  duration_ms: 9.679144
+  type: 'test'
+  ...
+# Subtest: R03／R04 頂列潮候潮級與天象短標；蝕曆有說明及可導航百科連結
+ok 688 - R03／R04 頂列潮候潮級與天象短標；蝕曆有說明及可導航百科連結
+  ---
+  duration_ms: 11.835322
+  type: 'test'
+  ...
+# Subtest: R02／R05 蝕曆區分漲潮與下一次大潮，含今天與期限內無
+ok 689 - R02／R05 蝕曆區分漲潮與下一次大潮，含今天與期限內無
+  ---
+  duration_ms: 9.043552
+  type: 'test'
+  ...
+# Subtest: K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰鈕原因可見
+ok 690 - K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰鈕原因可見
+  ---
+  duration_ms: 9.908771
+  type: 'test'
+  ...
+# Subtest: 編隊 AI 駕駛切換可開關，清空座位後仍可自駕
+ok 691 - 編隊 AI 駕駛切換可開關，清空座位後仍可自駕
+  ---
+  duration_ms: 412.030508
+  type: 'test'
+  ...
+# Subtest: seed 3 完整 command 出戰、spectate skip、兩段回寫、戰果與重播
+ok 692 - seed 3 完整 command 出戰、spectate skip、兩段回寫、戰果與重播
+  ---
+  duration_ms: 37877.678014
+  type: 'test'
+  ...
+# Subtest: seed 3 完整 auto 出戰、戰果與 serialize/fromSave 雜湊一致
+ok 693 - seed 3 完整 auto 出戰、戰果與 serialize/fromSave 雜湊一致
+  ---
+  duration_ms: 34936.226705
+  type: 'test'
+  ...
+# Subtest: 快照唯讀、鍵盤 disabled、編成取消與錯誤原因
+ok 694 - 快照唯讀、鍵盤 disabled、編成取消與錯誤原因
+  ---
+  duration_ms: 11965.857226
+  type: 'test'
+  ...
+# Subtest: ISS-042：spectate 互動出戰回寫含完整事件，計功／耗材與 auto 出戰一致
+ok 695 - ISS-042：spectate 互動出戰回寫含完整事件，計功／耗材與 auto 出戰一致
+  ---
+  duration_ms: 68535.164801
+  type: 'test'
+  ...
+# Subtest: R01 市場聲望原因與常駐門檻取自交易查詢；可見商品不擴張
+ok 696 - R01 市場聲望原因與常駐門檻取自交易查詢；可見商品不擴張
+  ---
+  duration_ms: 463.324372
+  type: 'test'
+  ...
+# Subtest: R02 朔望 spring 與喚醒限制統一稱漲潮
+ok 697 - R02 朔望 spring 與喚醒限制統一稱漲潮
+  ---
+  duration_ms: 0.090428
+  type: 'test'
+  ...
+# Subtest: R03 頂列與逐日潮候／潮級含天象修正，區分漲潮、大潮與連珠潮
+ok 698 - R03 頂列與逐日潮候／潮級含天象修正，區分漲潮、大潮與連珠潮
+  ---
+  duration_ms: 335.570099
+  type: 'test'
+  ...
+# Subtest: R04 天象短標、說明、潮級修正與百科連結源自現有定義
+ok 699 - R04 天象短標、說明、潮級修正與百科連結源自現有定義
+  ---
+  duration_ms: 234.546037
+  type: 'test'
+  ...
+# Subtest: R05 真正大潮預報找 day70、包含今日、區別朔望並有 800 日上限
+ok 700 - R05 真正大潮預報找 day70、包含今日、區別朔望並有 800 日上限
+  ---
+  duration_ms: 175.710983
+  type: 'test'
+  ...
+# Subtest: K1 艦橋王跡三態原文與最後目擊日、守牆邀請與灰按鈕原因
+ok 701 - K1 艦橋王跡三態原文與最後目擊日、守牆邀請與灰按鈕原因
+  ---
+  duration_ms: 240.116579
+  type: 'test'
+  ...
+# Subtest: K1 營運共用戰鬥 controller 迎戰須確認；灰鈕有原因，取消不迎戰
+ok 702 - K1 營運共用戰鬥 controller 迎戰須確認；灰鈕有原因，取消不迎戰
+  ---
+  duration_ms: 155.217653
+  type: 'test'
+  ...
+# Subtest: 鍵表同 context 無重複且能擋衝突；世界圖決定性、留邊及最短距離
+ok 703 - 鍵表同 context 無重複且能擋衝突；世界圖決定性、留邊及最短距離
+  ---
+  duration_ms: 5.852477
+  type: 'test'
+  ...
+# Subtest: 世界游標到地點 Enter 航向 id；空格 Enter 航向座標
+ok 704 - 世界游標到地點 Enter 航向 id；空格 Enter 航向座標
+  ---
+  duration_ms: 468.103941
+  type: 'test'
+  ...
+# Subtest: 世界 pathPreview 天數與 findPath 一致；空 blight／actors 可畫
+ok 705 - 世界 pathPreview 天數與 findPath 一致；空 blight／actors 可畫
+  ---
+  duration_ms: 82.510876
+  type: 'test'
+  ...
+# Subtest: boundary 自測：rules／ai 的 import、import type、export from 會被擋，sim 放行
+ok 706 - boundary 自測：rules／ai 的 import、import type、export from 會被擋，sim 放行
+  ---
+  duration_ms: 0.981556
+  type: 'test'
+  ...
+# Subtest: boundary：src/ui-adapter/**/*.ts 不 import src/rules、src/ai
+ok 707 - boundary：src/ui-adapter/**/*.ts 不 import src/rules、src/ai
+  ---
+  duration_ms: 7.485595
+  type: 'test'
+  ...
+# Subtest: controller：移動模式高亮可達格，點格移動
+ok 708 - controller：移動模式高亮可達格，點格移動
+  ---
+  duration_ms: 25.488704
+  type: 'test'
+  ...
+# Subtest: controller：能力目標模式點合法目標產生命中或未命中文字
+ok 709 - controller：能力目標模式點合法目標產生命中或未命中文字
+  ---
+  duration_ms: 5.433939
+  type: 'test'
+  ...
+# Subtest: controller：拒絕指令顯示原因並保留模式
+ok 710 - controller：拒絕指令顯示原因並保留模式
+  ---
+  duration_ms: 7.979123
+  type: 'test'
+  ...
+# Subtest: controller：E 與 endTurn 結果相同
+ok 711 - controller：E 與 endTurn 結果相同
+  ---
+  duration_ms: 9.190075
+  type: 'test'
+  ...
+# Subtest: controller：游標移出視窗自動捲動並標全重畫
+ok 712 - controller：游標移出視窗自動捲動並標全重畫
+  ---
+  duration_ms: 25.221897
+  type: 'test'
+  ...
+# Subtest: controller：只靠 dispatch 玩到結局或三十輪
+ok 713 - controller：只靠 dispatch 玩到結局或三十輪
+  ---
+  duration_ms: 514.274269
+  type: 'test'
+  ...
+# Subtest: 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+ok 714 - 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+  ---
+  duration_ms: 124.947978
+  type: 'test'
+  ...
+# Subtest: 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+ok 715 - 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+  ---
+  duration_ms: 15.548894
+  type: 'test'
+  ...
+# Subtest: 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+ok 716 - 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+  ---
+  duration_ms: 6.565964
+  type: 'test'
+  ...
+# Subtest: 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+ok 717 - 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+  ---
+  duration_ms: 27.526815
+  type: 'test'
+  ...
+# Subtest: 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+ok 718 - 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+  ---
+  duration_ms: 11.130454
+  type: 'test'
+  ...
+# Subtest: 回饋 6：攻擊線與命中部位傷害／未命中浮字
+ok 719 - 回饋 6：攻擊線與命中部位傷害／未命中浮字
+  ---
+  duration_ms: 12.592525
+  type: 'test'
+  ...
+# Subtest: 回饋 7：指令成功保留選取與下一步待機選單
+ok 720 - 回饋 7：指令成功保留選取與下一步待機選單
+  ---
+  duration_ms: 4.213387
+  type: 'test'
+  ...
+# Subtest: 回饋 8：idle 可達格高亮且直接移動
+ok 721 - 回饋 8：idle 可達格高亮且直接移動
+  ---
+  duration_ms: 4.700344
+  type: 'test'
+  ...
+# Subtest: 回饋 9：移動與能力用盡時自動待機並提示
+ok 722 - 回饋 9：移動與能力用盡時自動待機並提示
+  ---
+  duration_ms: 2.732633
+  type: 'test'
+  ...
+# Subtest: 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+ok 723 - 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+  ---
+  duration_ms: 50.831487
+  type: 'test'
+  ...
+# Subtest: 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+ok 724 - 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+  ---
+  duration_ms: 24.25028
+  type: 'test'
+  ...
+# Subtest: 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+ok 725 - 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+  ---
+  duration_ms: 1.15074
+  type: 'test'
+  ...
+# Subtest: 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+ok 726 - 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+  ---
+  duration_ms: 72.473595
+  type: 'test'
+  ...
+# Subtest: 回饋 14：新快捷鍵、加號與層種類中文名
+ok 727 - 回饋 14：新快捷鍵、加號與層種類中文名
+  ---
+  duration_ms: 0.475595
+  type: 'test'
+  ...
+# Subtest: keymap：預設鍵位合法
+ok 728 - keymap：預設鍵位合法
+  ---
+  duration_ms: 1.108091
+  type: 'test'
+  ...
+# Subtest: keymap：修飾鍵順序固定、字母小寫
+ok 729 - keymap：修飾鍵順序固定、字母小寫
+  ---
+  duration_ms: 0.101048
+  type: 'test'
+  ...
+# Subtest: keymap：e／1／Shift+ArrowUp／Escape 解析操作
+ok 730 - keymap：e／1／Shift+ArrowUp／Escape 解析操作
+  ---
+  duration_ms: 0.186266
+  type: 'test'
+  ...
+# Subtest: keymap：未綁定鍵回 null
+ok 731 - keymap：未綁定鍵回 null
+  ---
+  duration_ms: 0.066895
+  type: 'test'
+  ...
+# Subtest: keymap：重複鍵與未知操作被攔下
+ok 732 - keymap：重複鍵與未知操作被攔下
+  ---
+  duration_ms: 0.162763
+  type: 'test'
+  ...
+# Subtest: keymap：結束回合鍵標為 E
+ok 733 - keymap：結束回合鍵標為 E
+  ---
+  duration_ms: 0.109954
+  type: 'test'
+  ...
+# Subtest: parseHash：契約所有路由、空 hash 與未知頁面
+ok 734 - parseHash：契約所有路由、空 hash 與未知頁面
+  ---
+  duration_ms: 1.073557
+  type: 'test'
+  ...
+# Subtest: formatRoute：正規形式往返、key 編碼、分類 sort／desc／facet
+ok 735 - formatRoute：正規形式往返、key 編碼、分類 sort／desc／facet
+  ---
+  duration_ms: 0.284349
+  type: 'test'
+  ...
+# Subtest: wikiHref 與 formatRoute 一致，中文與空白搜尋可往返
+ok 736 - wikiHref 與 formatRoute 一致，中文與空白搜尋可往返
+  ---
+  duration_ms: 0.360982
+  type: 'test'
+  ...
+# Subtest: 戰鬥 keymap：F1／Shift+W 導航，W 待機，navigate 不改 snapshot
+ok 737 - 戰鬥 keymap：F1／Shift+W 導航，W 待機，navigate 不改 snapshot
+  ---
+  duration_ms: 252.888182
+  type: 'test'
+  ...
+# Subtest: 百科 keymap：無重複、action 全認得、指定按鍵與提示列數
+ok 738 - 百科 keymap：無重複、action 全認得、指定按鍵與提示列數
+  ---
+  duration_ms: 0.350693
+  type: 'test'
+  ...
+# Subtest: session：建立後輪到玩家或已分勝負
+ok 739 - session：建立後輪到玩家或已分勝負
+  ---
+  duration_ms: 4.664768
+  type: 'test'
+  ...
+# Subtest: session：玩家結束回合後 AI 跑到玩家
+ok 740 - session：玩家結束回合後 AI 跑到玩家
+  ---
+  duration_ms: 56.091632
+  type: 'test'
+  ...
+# Subtest: session：非玩家回合拒絕 submit
+ok 741 - session：非玩家回合拒絕 submit
+  ---
+  duration_ms: 2.160058
+  type: 'test'
+  ...
+# Subtest: session：相同 seed 與指令的 hash 一致
+ok 742 - session：相同 seed 與指令的 hash 一致
+  ---
+  duration_ms: 111.077868
+  type: 'test'
+  ...
+# Subtest: session：全部成功指令可重播得到相同 hash
+ok 743 - session：全部成功指令可重播得到相同 hash
+  ---
+  duration_ms: 50.195083
+  type: 'test'
+  ...
+# Subtest: session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與指令等於 runBattle
+ok 744 - session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與指令等於 runBattle
+  ---
+  duration_ms: 1861.478523
+  type: 'test'
+  ...
+# Subtest: controllerForScenario：spectate 選項建出全 AI controller，step 後有輸出
+ok 745 - controllerForScenario：spectate 選項建出全 AI controller，step 後有輸出
+  ---
+  duration_ms: 25.21778
+  type: 'test'
+  ...
+# Subtest: text：指定十三種事件各產生中文
+ok 746 - text：指定十三種事件各產生中文
+  ---
+  duration_ms: 0.97867
+  type: 'test'
+  ...
+# Subtest: text：人物、機體、能力、部位、效果均引用內容名稱
+ok 747 - text：人物、機體、能力、部位、效果均引用內容名稱
+  ---
+  duration_ms: 0.147143
+  type: 'test'
+  ...
+# Subtest: viewmodel：viewport 夾在一般與 160×160 地圖內
+ok 748 - viewmodel：viewport 夾在一般與 160×160 地圖內
+  ---
+  duration_ms: 64.301974
+  type: 'test'
+  ...
+# Subtest: viewmodel：cell 地形取自內容包
+ok 749 - viewmodel：cell 地形取自內容包
+  ---
+  duration_ms: 2.771225
+  type: 'test'
+  ...
+# Subtest: viewmodel：未見敵軍不出現在格子
+ok 750 - viewmodel：未見敵軍不出現在格子
+  ---
+  duration_ms: 1.86558
+  type: 'test'
+  ...
+# Subtest: viewmodel：移動 dirty 包含起訖格且讀取後清空
+ok 751 - viewmodel：移動 dirty 包含起訖格且讀取後清空
+  ---
+  duration_ms: 15.27765
+  type: 'test'
+  ...
+# Subtest: viewmodel：敵方未偵察層 hp 為 null，已偵察值使用知識
+ok 752 - viewmodel：敵方未偵察層 hp 為 null，已偵察值使用知識
+  ---
+  duration_ms: 0.983219
+  type: 'test'
+  ...
+# Subtest: B01：成本依 owner 使用宣告池名，特殊池仍顯示中文
+ok 753 - B01：成本依 owner 使用宣告池名，特殊池仍顯示中文
+  ---
+  duration_ms: 5.906608
+  type: 'test'
+  ...
+# Subtest: B02：五種移動與機體類別用中文，地形成本是靜態宣告
+ok 754 - B02：五種移動與機體類別用中文，地形成本是靜態宣告
+  ---
+  duration_ms: 1.43527
+  type: 'test'
+  ...
+# Subtest: B03：能力說明包含傷害、效果、產出、冷卻與五種形狀半徑
+ok 755 - B03：能力說明包含傷害、效果、產出、冷卻與五種形狀半徑
+  ---
+  duration_ms: 1.502104
+  type: 'test'
+  ...
+# Subtest: B04：我方已裝部件與中文功能可見，敵方不洩漏配裝
+ok 756 - B04：我方已裝部件與中文功能可見，敵方不洩漏配裝
+  ---
+  duration_ms: 1.431112
+  type: 'test'
+  ...
+# Subtest: B05：可見怪獸用個體名與稱號，未見敵軍仍隱藏
+ok 757 - B05：可見怪獸用個體名與稱號，未見敵軍仍隱藏
+  ---
+  duration_ms: 2.716253
+  type: 'test'
+  ...
+# Subtest: B06：四怪獸家族與三生態說明只在可見時公開
+ok 758 - B06：四怪獸家族與三生態說明只在可見時公開
+  ---
+  duration_ms: 7.085681
+  type: 'test'
+  ...
+# Subtest: K2：presence 公開標記、不可交戰說明、迎戰灰鈕原因與潮懼光環
+ok 759 - K2：presence 公開標記、不可交戰說明、迎戰灰鈕原因與潮懼光環
+  ---
+  duration_ms: 8.299809
+  type: 'test'
+  ...
+# Subtest: W01 物種與怪獸共享生態、捕獲、AI 策略，保留原始資料與索引
+ok 760 - W01 物種與怪獸共享生態、捕獲、AI 策略，保留原始資料與索引
+  ---
+  duration_ms: 3.102441
+  type: 'test'
+  ...
+# Subtest: W01 怪獸繼承蛻變目標、觸發條件與期間效果；缺物種不拋錯
+ok 761 - W01 怪獸繼承蛻變目標、觸發條件與期間效果；缺物種不拋錯
+  ---
+  duration_ms: 0.550664
+  type: 'test'
+  ...
+# Subtest: W03 部件專區呈現修正、附加層、共鳴與負擔，未知資料仍在 raw
+ok 762 - W03 部件專區呈現修正、附加層、共鳴與負擔，未知資料仍在 raw
+  ---
+  duration_ms: 0.270944
+  type: 'test'
+  ...
+# Subtest: W03 真實機型的機體與製造勢力是連結，前置機型及解鎖條件可見
+ok 763 - W03 真實機型的機體與製造勢力是連結，前置機型及解鎖條件可見
+  ---
+  duration_ms: 0.337037
+  type: 'test'
+  ...
+# Subtest: W03 天象週期、湧現條件、潮級改變、效果與曆法朔望可見
+ok 764 - W03 天象週期、湧現條件、潮級改變、效果與曆法朔望可見
+  ---
+  duration_ms: 6.159237
+  type: 'test'
+  ...
+# Subtest: W04 指定枚舉依欄位轉中文，機體及人物徽章同步轉譯
+ok 765 - W04 指定枚舉依欄位轉中文，機體及人物徽章同步轉譯
+  ---
+  duration_ms: 0.949887
+  type: 'test'
+  ...
+# Subtest: W04 八種槽位含構型內槽位轉譯；lore 人物與未知值、普通文字各守情境
+ok 766 - W04 八種槽位含構型內槽位轉譯；lore 人物與未知值、普通文字各守情境
+  ---
+  duration_ms: 2.911926
+  type: 'test'
+  ...
+# Subtest: 人物百科卡以開局年資顯示外貌與實齡
+ok 767 - 人物百科卡以開局年資顯示外貌與實齡
+  ---
+  duration_ms: 1.373545
+  type: 'test'
+  ...
+# Subtest: 未知 key 回 null；每頁 raw 排除頂層 id/name 並保存未知欄位與引用
+ok 768 - 未知 key 回 null；每頁 raw 排除頂層 id/name 並保存未知欄位與引用
+  ---
+  duration_ms: 0.888203
+  type: 'test'
+  ...
+# Subtest: frame 概要、構型部位層、資源池與固有能力
+ok 769 - frame 概要、構型部位層、資源池與固有能力
+  ---
+  duration_ms: 0.745647
+  type: 'test'
+  ...
+# Subtest: 缺少構型保留 target null 引用
+ok 770 - 缺少構型保留 target null 引用
+  ---
+  duration_ms: 0.202797
+  type: 'test'
+  ...
+# Subtest: ability 成本、產出、射程、傷害包與新增包欄位
+ok 771 - ability 成本、產出、射程、傷害包與新增包欄位
+  ---
+  duration_ms: 0.277066
+  type: 'test'
+  ...
+# Subtest: species 與 monster 展開族、等級範圍與二名稱號
+ok 772 - species 與 monster 展開族、等級範圍與二名稱號
+  ---
+  duration_ms: 0.415673
+  type: 'test'
+  ...
+# Subtest: person 屬性、資源池與 growth.tree 引用
+ok 773 - person 屬性、資源池與 growth.tree 引用
+  ---
+  duration_ms: 0.233665
+  type: 'test'
+  ...
+# Subtest: faction 關係表每列的引用帶 rel
+ok 774 - faction 關係表每列的引用帶 rel
+  ---
+  duration_ms: 0.24709
+  type: 'test'
+  ...
+# Subtest: lore 本文、object/array 關係與 gameRefs
+ok 775 - lore 本文、object/array 關係與 gameRefs
+  ---
+  duration_ms: 1.354831
+  type: 'test'
+  ...
+# Subtest: backlinks 依來源分類分組且使用中文分類名
+ok 776 - backlinks 依來源分類分組且使用中文分類名
+  ---
+  duration_ms: 0.300218
+  type: 'test'
+  ...
+# Subtest: content/base 每個真實 JSON 都能產生非空資料卡
+ok 777 - content/base 每個真實 JSON 都能產生非空資料卡
+  ---
+  duration_ms: 174.012401
+  type: 'test'
+  ...
+# Subtest: nameEn／etymology 有值時百科概要顯示，沒值時不顯示
+ok 778 - nameEn／etymology 有值時百科概要顯示，沒值時不顯示
+  ---
+  duration_ms: 0.216112
+  type: 'test'
+  ...
+# Subtest: U02 列表與搜尋傳遞傳聞／可能發生狀態，年表繼承事件或列本身的傳聞標記
+ok 779 - U02 列表與搜尋傳遞傳聞／可能發生狀態，年表繼承事件或列本身的傳聞標記
+  ---
+  duration_ms: 6.799548
+  type: 'test'
+  ...
+# Subtest: W06 英文原名與詞源可搜尋，保留大小寫容錯、片段及既有名稱優先序
+ok 780 - W06 英文原名與詞源可搜尋，保留大小寫容錯、片段及既有名稱優先序
+  ---
+  duration_ms: 0.848448
+  type: 'test'
+  ...
+# Subtest: W04 六類枚舉的篩選選項與列表欄值顯示中文，篩選與原資料保留英文值
+ok 781 - W04 六類枚舉的篩選選項與列表欄值顯示中文，篩選與原資料保留英文值
+  ---
+  duration_ms: 1.95673
+  type: 'test'
+  ...
+# Subtest: W02 十一種分類有中文標題與固定排序，未知種類仍保留原名
+ok 782 - W02 十一種分類有中文標題與固定排序，未知種類仍保留原名
+  ---
+  duration_ms: 0.538913
+  type: 'test'
+  ...
+# Subtest: W05 機型由機體中文名命名，引用標籤同步，明確命名與缺引用保留
+ok 783 - W05 機型由機體中文名命名，引用標籤同步，明確命名與缺引用保留
+  ---
+  duration_ms: 0.760124
+  type: 'test'
+  ...
+# Subtest: W05 真實機型全數取對應機體標題，原 ID 保留供辨識
+ok 784 - W05 真實機型全數取對應機體標題，原 ID 保留供辨識
+  ---
+  duration_ms: 14.296054
+  type: 'test'
+  ...
+# Subtest: 1 空輸入產生空索引
+ok 785 - 1 空輸入產生空索引
+  ---
+  duration_ms: 1.017122
+  type: 'test'
+  ...
+# Subtest: 2 id、檔案鍵與分類正確，壞結構記錄 issue
+ok 786 - 2 id、檔案鍵與分類正確，壞結構記錄 issue
+  ---
+  duration_ms: 1.022131
+  type: 'test'
+  ...
+# Subtest: 3 無 name 的怪獸由物種與 grade 推導名稱與族
+ok 787 - 3 無 name 的怪獸由物種與 grade 推導名稱與族
+  ---
+  duration_ms: 0.386318
+  type: 'test'
+  ...
+# Subtest: 4 遞迴收陣列、巢狀值與關係物件 key
+ok 788 - 4 遞迴收陣列、巢狀值與關係物件 key
+  ---
+  duration_ms: 0.234847
+  type: 'test'
+  ...
+# Subtest: 5 不存在的 id 是壞引用，一般文字不是引用
+ok 789 - 5 不存在的 id 是壞引用，一般文字不是引用
+  ---
+  duration_ms: 0.149608
+  type: 'test'
+  ...
+# Subtest: 6 lore 優先同 pack，base 前綴直達並建立反向引用
+ok 790 - 6 lore 優先同 pack，base 前綴直達並建立反向引用
+  ---
+  duration_ms: 0.261176
+  type: 'test'
+  ...
+# Subtest: 7 markdown 兩種內部連結收為 body 引用且去重
+ok 791 - 7 markdown 兩種內部連結收為 body 引用且去重
+  ---
+  duration_ms: 0.587933
+  type: 'test'
+  ...
+# Subtest: 8 年表日期、時代、事件與勢力解析，缺欄位仍可篩選
+ok 792 - 8 年表日期、時代、事件與勢力解析，缺欄位仍可篩選
+  ---
+  duration_ms: 4.598303
+  type: 'test'
+  ...
+# Subtest: 12 真實 base 全部 JSON 可建索引、解析引用與搜尋自己
+ok 793 - 12 真實 base 全部 JSON 可建索引、解析引用與搜尋自己
+  ---
+  duration_ms: 1358.690488
+  type: 'test'
+  ...
+# Subtest: lore 關係陣列保留 rel、note，勢力矩陣提供中文 label 與 tone
+ok 794 - lore 關係陣列保留 rel、note，勢力矩陣提供中文 label 與 tone
+  ---
+  duration_ms: 7.192299
+  type: 'test'
+  ...
+# Subtest: event period 進面向與年表；負年、完整日期、自由年份與未知日期依序排序
+ok 795 - event period 進面向與年表；負年、完整日期、自由年份與未知日期依序排序
+  ---
+  duration_ms: 1.523584
+  type: 'test'
+  ...
+# Subtest: era 段落依條目 from 排序，沒有 era 條目的段落最後
+ok 796 - era 段落依條目 from 排序，沒有 era 條目的段落最後
+  ---
+  duration_ms: 1.542479
+  type: 'test'
+  ...
+# Subtest: lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清單且已用欄位不重複
+ok 797 - lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清單且已用欄位不重複
+  ---
+  duration_ms: 2.582033
+  type: 'test'
+  ...
+# Subtest: 真實 frame 構型一層一列、九欄與 kv 抗性，整頁沒有交錯鍵值清單
+ok 798 - 真實 frame 構型一層一列、九欄與 kv 抗性，整頁沒有交錯鍵值清單
+  ---
+  duration_ms: 181.39284
+  type: 'test'
+  ...
+# Subtest: 真實 base 與可選 lore 整合：每條目可產卡並搜尋自己，game 前三分類固定
+ok 799 - 真實 base 與可選 lore 整合：每條目可產卡並搜尋自己，game 前三分類固定
+  ---
+  duration_ms: 24653.782978
+  type: 'test'
+  ...
+# Subtest: 標題一至六級、段落合併與明確換行
+ok 800 - 標題一至六級、段落合併與明確換行
+  ---
+  duration_ms: 1.711624
+  type: 'test'
+  ...
+# Subtest: 粗斜體、行內碼與巢狀，保留字內底線
+ok 801 - 粗斜體、行內碼與巢狀，保留字內底線
+  ---
+  duration_ms: 0.692648
+  type: 'test'
+  ...
+# Subtest: 跳脫與未閉合標記當文字
+ok 802 - 跳脫與未閉合標記當文字
+  ---
+  duration_ms: 0.129161
+  type: 'test'
+  ...
+# Subtest: 無序、有序清單與二至四格縮排巢狀
+ok 803 - 無序、有序清單與二至四格縮排巢狀
+  ---
+  duration_ms: 0.186577
+  type: 'test'
+  ...
+# Subtest: 內部連結解析、未知目標降級與 wiki 預設名稱
+ok 804 - 內部連結解析、未知目標降級與 wiki 預設名稱
+  ---
+  duration_ms: 1.094345
+  type: 'test'
+  ...
+# Subtest: 僅 http(s) 產生外部連結，其他 scheme 留文字
+ok 805 - 僅 http(s) 產生外部連結，其他 scheme 留文字
+  ---
+  duration_ms: 0.117428
+  type: 'test'
+  ...
+# Subtest: 表格的表頭、對齊與不齊欄位正規化
+ok 806 - 表格的表頭、對齊與不齊欄位正規化
+  ---
+  duration_ms: 0.389815
+  type: 'test'
+  ...
+# Subtest: 引用內清單及巢狀引用、原樣程式碼塊、分隔線
+ok 807 - 引用內清單及巢狀引用、原樣程式碼塊、分隔線
+  ---
+  duration_ms: 0.170537
+  type: 'test'
+  ...
+# Subtest: 原始 HTML 標籤完整保留在文字節點
+ok 808 - 原始 HTML 標籤完整保留在文字節點
+  ---
+  duration_ms: 0.078155
+  type: 'test'
+  ...
+# Subtest: 混合文件的 plainText 與 extractLinkTargets 保留既有行為
+ok 809 - 混合文件的 plainText 與 extractLinkTargets 保留既有行為
+  ---
+  duration_ms: 0.420752
+  type: 'test'
+  ...
+# Subtest: 9 分類排序、反序與面向篩選只呈現存在的選項
+ok 810 - 9 分類排序、反序與面向篩選只呈現存在的選項
+  ---
+  duration_ms: 6.231913
+  type: 'test'
+  ...
+# Subtest: 10 搜尋名稱排名優先，別名、本文摘要與空查詢正確
+ok 811 - 10 搜尋名稱排名優先，別名、本文摘要與空查詢正確
+  ---
+  duration_ms: 1.355963
+  type: 'test'
+  ...
+# Subtest: 11 兩種勢力關係進矩陣且去重，首頁計數與壞引用一致
+ok 812 - 11 兩種勢力關係進矩陣且去重，首頁計數與壞引用一致
+  ---
+  duration_ms: 1.013556
+  type: 'test'
+  ...
+# Subtest: 可見度讀法：沒標是 public；物件看自己的 visibility，純值欄看 fieldVisibility
+ok 813 - 可見度讀法：沒標是 public；物件看自己的 visibility，純值欄看 fieldVisibility
+  ---
+  duration_ms: 0.437103
+  type: 'test'
+  ...
+# Subtest: publicFiles：hidden 整筆、整物件、整欄、引用與本文連結都拿掉；rumor 保留；不改輸入；base 不動
+ok 814 - publicFiles：hidden 整筆、整物件、整欄、引用與本文連結都拿掉；rumor 保留；不改輸入；base 不動
+  ---
+  duration_ms: 0.986986
+  type: 'test'
+  ...
+# Subtest: 百科索引、搜尋、詳情卡、年表、反向引用都看不到 hidden
+ok 815 - 百科索引、搜尋、詳情卡、年表、反向引用都看不到 hidden
+  ---
+  duration_ms: 7.682902
+  type: 'test'
+  ...
+# Subtest: 真實 lore：每一則 hidden 真相都不出現在百科任何畫面資料裡（含塞勒涅三層知情）
+ok 816 - 真實 lore：每一則 hidden 真相都不出現在百科任何畫面資料裡（含塞勒涅三層知情）
+  ---
+  duration_ms: 901.437748
+  type: 'test'
+  ...
+# Subtest: 詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞加（傳聞）、secrets 剩下的列成傳聞清單、visibility 不當資料列
+ok 817 - 詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞加（傳聞）、secrets 剩下的列成傳聞清單、visibility 不當資料列
+  ---
+  duration_ms: 1.116376
+  type: 'test'
+  ...
+# Subtest: occurs: possible 的事件不進年表（含 timeline.json 引用與未列入的事件檔），詳情卡標「可能發生」
+ok 818 - occurs: possible 的事件不進年表（含 timeline.json 引用與未列入的事件檔），詳情卡標「可能發生」
+  ---
+  duration_ms: 0.427956
+  type: 'test'
+  ...
+# Subtest: policyFor：berserk 與 fleeing 接管，失控優先
+ok 819 - policyFor：berserk 與 fleeing 接管，失控優先
+  ---
+  duration_ms: 1.105246
+  type: 'test'
+  ...
+# Subtest: agent：被拒候選剔除後重選
+ok 820 - agent：被拒候選剔除後重選
+  ---
+  duration_ms: 1.552137
+  type: 'test'
+  ...
+# Subtest: agent：回傳只含成功指令且以 end 結尾；PW-07 不呼叫 precommit
+ok 821 - agent：回傳只含成功指令且以 end 結尾；PW-07 不呼叫 precommit
+  ---
+  duration_ms: 1.101869
+  type: 'test'
+  ...
+# Subtest: agent：maxActions 限制成功候選數並補 end
+ok 822 - agent：maxActions 限制成功候選數並補 end
+  ---
+  duration_ms: 1.033693
+  type: 'test'
+  ...
+# Subtest: 同盟 slot 不貢獻危險、不被分派攻擊，兵力計入友方
+ok 823 - 同盟 slot 不貢獻危險、不被分派攻擊，兵力計入友方
+  ---
+  duration_ms: 2.844362
+  type: 'test'
+  ...
+# Subtest: skirmish seed 1 原始情境 20 輪的 Wait 比例低於一半或分出勝負
+ok 824 - skirmish seed 1 原始情境 20 輪的 Wait 比例低於一半或分出勝負
+  ---
+  duration_ms: 2909.485968
+  type: 'test'
+  ...
+# Subtest: 未接敵會朝中央偵察，既有危險不壓低原地攻擊，profile 可覆蓋係數
+ok 825 - 未接敵會朝中央偵察，既有危險不壓低原地攻擊，profile 可覆蓋係數
+  ---
+  duration_ms: 6.077856
+  type: 'test'
+  ...
+# Subtest: danger 包含射程加移動可達距離，超出與界外沒有危險
+ok 826 - danger 包含射程加移動可達距離，超出與界外沒有危險
+  ---
+  duration_ms: 2.232643
+  type: 'test'
+  ...
+# Subtest: danger ZoC 僅距離 1 再加一半威脅
+ok 827 - danger ZoC 僅距離 1 再加一半威脅
+  ---
+  duration_ms: 0.364257
+  type: 'test'
+  ...
+# Subtest: danger lastSeen 不在 view 才有半徑 2 的固定常數
+ok 828 - danger lastSeen 不在 view 才有半徑 2 的固定常數
+  ---
+  duration_ms: 0.421634
+  type: 'test'
+  ...
+# Subtest: danger 無攻擊能力、友方與非 active 不貢獻
+ok 829 - danger 無攻擊能力、友方與非 active 不貢獻
+  ---
+  duration_ms: 0.324934
+  type: 'test'
+  ...
+# Subtest: eject 只對有握指令權人物的單位提出
+ok 830 - eject 只對有握指令權人物的單位提出
+  ---
+  duration_ms: 7.434209
+  type: 'test'
+  ...
+# Subtest: swarm 在截斷前篩母體距離，半徑內仍有前進候選
+ok 831 - swarm 在截斷前篩母體距離，半徑內仍有前進候選
+  ---
+  duration_ms: 5.253784
+  type: 'test'
+  ...
+# Subtest: 可見敵人優先，失聯追 lastSeen，無情報才回中央且不讀隱藏位置
+ok 832 - 可見敵人優先，失聯追 lastSeen，無情報才回中央且不讀隱藏位置
+  ---
+  duration_ms: 1.373024
+  type: 'test'
+  ...
+# Subtest: ball／line／cone 皆補低成本站位並保留施放 AP
+ok 833 - ball／line／cone 皆補低成本站位並保留施放 AP
+  ---
+  duration_ms: 4.061015
+  type: 'test'
+  ...
+# Subtest: integration：rules-adapter 下 AI 對 AI 跑完不拋錯且有出手
+ok 834 - integration：rules-adapter 下 AI 對 AI 跑完不拋錯且有出手
+  ---
+  duration_ms: 336.603978
+  type: 'test'
+  ...
+# Subtest: integration：真規則下同 seed 兩次指令序列相同
+ok 835 - integration：真規則下同 seed 兩次指令序列相同
+  ---
+  duration_ms: 244.967612
+  type: 'test'
+  ...
+# Subtest: 意圖依 objective、數值 profile、族行為、勢力預設推導
+ok 836 - 意圖依 objective、數值 profile、族行為、勢力預設推導
+  ---
+  duration_ms: 1.78465
+  type: 'test'
+  ...
+# Subtest: 達得到繼續；無進展且時間不足才整隊撤離，模式跨輪保留
+ok 837 - 達得到繼續；無進展且時間不足才整隊撤離，模式跨輪保留
+  ---
+  duration_ms: 1.034795
+  type: 'test'
+  ...
+# Subtest: 固定單位不撤，母體的可動護衛照撤
+ok 838 - 固定單位不撤，母體的可動護衛照撤
+  ---
+  duration_ms: 0.503527
+  type: 'test'
+  ...
+# Subtest: giveUpRatio、giveUpLoss、minRound 門檻由 params 生效
+ok 839 - giveUpRatio、giveUpLoss、minRound 門檻由 params 生效
+  ---
+  duration_ms: 0.493718
+  type: 'test'
+  ...
+# Subtest: 怪獸重傷逃跑並撤離；族門檻與駕駛士氣有效，berserk 維持本能
+ok 840 - 怪獸重傷逃跑並撤離；族門檻與駕駛士氣有效，berserk 維持本能
+  ---
+  duration_ms: 5.670628
+  type: 'test'
+  ...
+# Subtest: berserk 設定檔仍遵守撤退意圖，真正失控才忽略撤退
+ok 841 - berserk 設定檔仍遵守撤退意圖，真正失控才忽略撤退
+  ---
+  duration_ms: 4.795711
+  type: 'test'
+  ...
+# Subtest: 人類指揮者把受損單位後撤輪替，輪到再前壓；缺補給與負面狀態也輪替
+ok 842 - 人類指揮者把受損單位後撤輪替，輪到再前壓；缺補給與負面狀態也輪替
+  ---
+  duration_ms: 4.789189
+  type: 'test'
+  ...
+# Subtest: 怪獸與人類指揮者陣亡後依參數潰散，其餘退化為個體本能
+ok 843 - 怪獸與人類指揮者陣亡後依參數潰散，其餘退化為個體本能
+  ---
+  duration_ms: 0.477097
+  type: 'test'
+  ...
+# Subtest: 多目標仍可守住或生存時，不因斬首打不完而撤
+ok 844 - 多目標仍可守住或生存時，不因斬首打不完而撤
+  ---
+  duration_ms: 0.548721
+  type: 'test'
+  ...
+# Subtest: killTarget 只用目標剩餘 HP 估輪數，不把護衛 HP 算進去
+ok 845 - killTarget 只用目標剩餘 HP 估輪數，不把護衛 HP 算進去
+  ---
+  duration_ms: 0.493538
+  type: 'test'
+  ...
+# Subtest: profile params 覆寫不可達戰力門檻與傷害平滑權重生效
+ok 846 - profile params 覆寫不可達戰力門檻與傷害平滑權重生效
+  ---
+  duration_ms: 0.926514
+  type: 'test'
+  ...
+# Subtest: 進場重傷與低士氣首輪未受壓時不自行撤離，護送出口仍有效
+ok 847 - 進場重傷與低士氣首輪未受壓時不自行撤離，護送出口仍有效
+  ---
+  duration_ms: 6.772969
+  type: 'test'
+  ...
+# Subtest: 首輪實際受火、受創或士氣惡化仍能撤；友軍出手不算自身受壓
+ok 848 - 首輪實際受火、受創或士氣惡化仍能撤；友軍出手不算自身受壓
+  ---
+  duration_ms: 1.911797
+  type: 'test'
+  ...
+# Subtest: profile params 可覆寫個體撤退觀察輪數並傳到 fleeing 策略與撤退評分
+ok 849 - profile params 可覆寫個體撤退觀察輪數並傳到 fleeing 策略與撤退評分
+  ---
+  duration_ms: 2.718607
+  type: 'test'
+  ...
+# Subtest: 致死 HP：斬首與捕獲只估所有核心到最後結構層，殲滅仍估全身
+ok 850 - 致死 HP：斬首與捕獲只估所有核心到最後結構層，殲滅仍估全身
+  ---
+  duration_ms: 0.823472
+  type: 'test'
+  ...
+# Subtest: 致死 HP：多核心合計、已毀核心略過，缺部位情報退回原估算
+ok 851 - 致死 HP：多核心合計、已毀核心略過，缺部位情報退回原估算
+  ---
+  duration_ms: 0.38139
+  type: 'test'
+  ...
+# Subtest: DC-C09 knowledge：共享感測內可見、視野外遮蔽，僅 active 本方感測
+ok 852 - DC-C09 knowledge：共享感測內可見、視野外遮蔽，僅 active 本方感測
+  ---
+  duration_ms: 1.629271
+  type: 'test'
+  ...
+# Subtest: knowledge lastSeen 在 ttl 邊界保留、過期移除，移除死亡或不存在的揭露
+ok 853 - knowledge lastSeen 在 ttl 邊界保留、過期移除，移除死亡或不存在的揭露
+  ---
+  duration_ms: 0.49441
+  type: 'test'
+  ...
+# Subtest: DC-T08 publicLayers 只公開外層 HP，未偵察內層為 null
+ok 854 - DC-T08 publicLayers 只公開外層 HP，未偵察內層為 null
+  ---
+  duration_ms: 0.369657
+  type: 'test'
+  ...
+# Subtest: DC-T08 observe 本方 scan 能力揭露內層實值，敵方事件不揭露
+ok 855 - DC-T08 observe 本方 scan 能力揭露內層實值，敵方事件不揭露
+  ---
+  duration_ms: 0.760725
+  type: 'test'
+  ...
+# Subtest: DC-C09 maskedState 刪不可見敵人、order、status，未偵察內層估滿 HP
+ok 856 - DC-C09 maskedState 刪不可見敵人、order、status，未偵察內層估滿 HP
+  ---
+  duration_ms: 0.573717
+  type: 'test'
+  ...
+# Subtest: knowledge 純函式不改輸入，回傳資料可獨立修改
+ok 857 - knowledge 純函式不改輸入，回傳資料可獨立修改
+  ---
+  duration_ms: 0.556385
+  type: 'test'
+  ...
+# Subtest: killTarget 選目標而非等值另一個，集火 priority 同步且 params 可覆寫
+ok 858 - killTarget 選目標而非等值另一個，集火 priority 同步且 params 可覆寫
+  ---
+  duration_ms: 5.88067
+  type: 'test'
+  ...
+# Subtest: 孵化源優先：part，只讀 view
+ok 859 - 孵化源優先：part，只讀 view
+  ---
+  duration_ms: 2.319355
+  type: 'test'
+  ...
+# Subtest: 孵化源優先：unitTag，只讀 view
+ok 860 - 孵化源優先：unitTag，只讀 view
+  ---
+  duration_ms: 1.142456
+  type: 'test'
+  ...
+# Subtest: 孵化源優先：spawn，只讀 view
+ok 861 - 孵化源優先：spawn，只讀 view
+  ---
+  duration_ms: 1.577605
+  type: 'test'
+  ...
+# Subtest: 孵化源優先：summon，只讀 view
+ok 862 - 孵化源優先：summon，只讀 view
+  ---
+  duration_ms: 1.333881
+  type: 'test'
+  ...
+# Subtest: hold 進區：目標候選突破 maxMoves 截斷
+ok 863 - hold 進區：目標候選突破 maxMoves 截斷
+  ---
+  duration_ms: 2.069079
+  type: 'test'
+  ...
+# Subtest: hold 在區內不離區追擊，移動後出手也扣離區分
+ok 864 - hold 在區內不離區追擊，移動後出手也扣離區分
+  ---
+  duration_ms: 9.497188
+  type: 'test'
+  ...
+# Subtest: hold 優先攻擊區內敵人
+ok 865 - hold 優先攻擊區內敵人
+  ---
+  duration_ms: 1.054252
+  type: 'test'
+  ...
+# Subtest: escort 往出口走並在出口撤離
+ok 866 - escort 往出口走並在出口撤離
+  ---
+  duration_ms: 1.648607
+  type: 'test'
+  ...
+# Subtest: reachExit 往出口走並在出口撤離
+ok 867 - reachExit 往出口走並在出口撤離
+  ---
+  duration_ms: 1.478941
+  type: 'test'
+  ...
+# Subtest: escort 護衛不離被護送者超過 escortRange
+ok 868 - escort 護衛不離被護送者超過 escortRange
+  ---
+  duration_ms: 3.082965
+  type: 'test'
+  ...
+# Subtest: 敵方 escort 優先攻擊並攔截出口，敵方 hold 向區內爭奪
+ok 869 - 敵方 escort 優先攻擊並攔截出口，敵方 hold 向區內爭奪
+  ---
+  duration_ms: 2.299027
+  type: 'test'
+  ...
+# Subtest: 盟軍 slot 共享玩家 killTarget
+ok 870 - 盟軍 slot 共享玩家 killTarget
+  ---
+  duration_ms: 1.022412
+  type: 'test'
+  ...
+# Subtest: 盟軍不打死 capture 目標，但可打殘
+ok 871 - 盟軍不打死 capture 目標，但可打殘
+  ---
+  duration_ms: 2.679434
+  type: 'test'
+  ...
+# Subtest: 盟軍不停在玩家護送出口格
+ok 872 - 盟軍不停在玩家護送出口格
+  ---
+  duration_ms: 0.37077
+  type: 'test'
+  ...
+# Subtest: 目標全空或只有 eliminate 時分數逐位元等於舊公式
+ok 873 - 目標全空或只有 eliminate 時分數逐位元等於舊公式
+  ---
+  duration_ms: 1.445489
+  type: 'test'
+  ...
+# Subtest: partAim 不需 targetPref 即產生合法核心候選，保留不瞄候選並略過毀損核心
+ok 874 - partAim 不需 targetPref 即產生合法核心候選，保留不瞄候選並略過毀損核心
+  ---
+  duration_ms: 21.469649
+  type: 'test'
+  ...
+# Subtest: 核心快破選瞄核心；核心進度權重可覆寫且過高命中懲罰會選不瞄
+ok 875 - 核心快破選瞄核心；核心進度權重可覆寫且過高命中懲罰會選不瞄
+  ---
+  duration_ms: 40.496975
+  type: 'test'
+  ...
+# Subtest: 無 partAim 能力不提出任何部位候選（即使合法性 stub 放行）
+ok 876 - 無 partAim 能力不提出任何部位候選（即使合法性 stub 放行）
+  ---
+  duration_ms: 17.887986
+  type: 'test'
+  ...
+# Subtest: flee 離出口 33 格仍前進，評分計入相對危險變化
+ok 877 - flee 離出口 33 格仍前進，評分計入相對危險變化
+  ---
+  duration_ms: 4.462682
+  type: 'test'
+  ...
+# Subtest: flee 站上出口即撤離，保留 fleeRetreat 參數
+ok 878 - flee 站上出口即撤離，保留 fleeRetreat 參數
+  ---
+  duration_ms: 3.120595
+  type: 'test'
+  ...
+# Subtest: 純移動預設最多一次、可設 0／2，移動後出手不受此額度限制
+ok 879 - 純移動預設最多一次、可設 0／2，移動後出手不受此額度限制
+  ---
+  duration_ms: 2.301261
+  type: 'test'
+  ...
+# Subtest: 護衛射程內的微小正收益攻擊不被 End 的 0.01 分壓過
+ok 880 - 護衛射程內的微小正收益攻擊不被 End 的 0.01 分壓過
+  ---
+  duration_ms: 2.959205
+  type: 'test'
+  ...
+# Subtest: 第三方選擇隨距離與集火，互換 ally／enemy 標籤不改評分或目標
+ok 881 - 第三方選擇隨距離與集火，互換 ally／enemy 標籤不改評分或目標
+  ---
+  duration_ms: 3.210192
+  type: 'test'
+  ...
+# Subtest: 能進射程時保留出手 AP，尚不可接敵時繼續前進
+ok 882 - 能進射程時保留出手 AP，尚不可接敵時繼續前進
+  ---
+  duration_ms: 4.299568
+  type: 'test'
+  ...
+# Subtest: base 所有 aiprofile 的 policy 都已登記
+ok 883 - base 所有 aiprofile 的 policy 都已登記
+  ---
+  duration_ms: 228.51049
+  type: 'test'
+  ...
+# Subtest: tactical：DN-M-12 射程內優先攻擊，僅經 RulesQuery 預覽
+ok 884 - tactical：DN-M-12 射程內優先攻擊，僅經 RulesQuery 預覽
+  ---
+  duration_ms: 8.95021
+  type: 'test'
+  ...
+# Subtest: tactical：射程外會移動接近
+ok 885 - tactical：射程外會移動接近
+  ---
+  duration_ms: 1.754103
+  type: 'test'
+  ...
+# Subtest: berserk：只剩友方時仍以合法範圍能力攻擊友方
+ok 886 - berserk：只剩友方時仍以合法範圍能力攻擊友方
+  ---
+  duration_ms: 1.228174
+  type: 'test'
+  ...
+# Subtest: berserk：不能友傷的近戰不被鄰接友軍困住，無敵方情報時仍探索
+ok 887 - berserk：不能友傷的近戰不被鄰接友軍困住，無敵方情報時仍探索
+  ---
+  duration_ms: 3.048641
+  type: 'test'
+  ...
+# Subtest: swarm：離母體太遠時朝母體移動
+ok 888 - swarm：離母體太遠時朝母體移動
+  ---
+  duration_ms: 0.743393
+  type: 'test'
+  ...
+# Subtest: sentinel：不離開守點追逐射程外敵人
+ok 889 - sentinel：不離開守點追逐射程外敵人
+  ---
+  duration_ms: 1.503707
+  type: 'test'
+  ...
+# Subtest: flee：在 exit 上選 retreat
+ok 890 - flee：在 exit 上選 retreat
+  ---
+  duration_ms: 0.773439
+  type: 'test'
+  ...
+# Subtest: flee：不在 exit 上時遠離敵人
+ok 891 - flee：不在 exit 上時遠離敵人
+  ---
+  duration_ms: 0.601139
+  type: 'test'
+  ...
+# Subtest: scripted：依序執行步驟、覆寫 actor、用完 end
+ok 892 - scripted：依序執行步驟、覆寫 actor、用完 end
+  ---
+  duration_ms: 0.939658
+  type: 'test'
+  ...
+# Subtest: targetValue 表格：grade × threat × hp × focus
+ok 893 - targetValue 表格：grade × threat × hp × focus
+  ---
+  duration_ms: 4.19797
+  type: 'test'
+  ...
+# Subtest: want 表格：低血量 survive 上升、兵力劣勢與指令權者低士氣觸發 retreat
+ok 894 - want 表格：低血量 survive 上升、兵力劣勢與指令權者低士氣觸發 retreat
+  ---
+  duration_ms: 3.048481
+  type: 'test'
+  ...
+# Subtest: previewOutcome 只在有 Hit 的次數平均，包含擊殺聯集與不可達移動零結果
+ok 895 - previewOutcome 只在有 Hit 的次數平均，包含擊殺聯集與不可達移動零結果
+  ---
+  duration_ms: 4.135803
+  type: 'test'
+  ...
+# Subtest: scoreCandidate attackArea 依 friendlyFirePenalty 扣友傷分數
+ok 896 - scoreCandidate attackArea 依 friendlyFirePenalty 扣友傷分數
+  ---
+  duration_ms: 1.911146
+  type: 'test'
+  ...
+# Subtest: scoreCandidate 高價值目標分數更高，focusBonus 從 params 讀取
+ok 897 - scoreCandidate 高價值目標分數更高，focusBonus 從 params 讀取
+  ---
+  duration_ms: 1.038832
+  type: 'test'
+  ...
+# Subtest: previewOutcome 不同戰局 seed 決定性相同，移動後預覽不消耗原 RNG
+ok 898 - previewOutcome 不同戰局 seed 決定性相同，移動後預覽不消耗原 RNG
+  ---
+  duration_ms: 1.685876
+  type: 'test'
+  ...
+# Subtest: tacticWeights 求值 NumExpr；hpFraction 加總全部層並限制 0..1
+ok 899 - tacticWeights 求值 NumExpr；hpFraction 加總全部層並限制 0..1
+  ---
+  duration_ms: 0.574549
+  type: 'test'
+  ...
+# Subtest: scoreCandidate 移動、支援、偵察及結束候選依固定公式估值
+ok 900 - scoreCandidate 移動、支援、偵察及結束候選依固定公式估值
+  ---
+  duration_ms: 1.555633
+  type: 'test'
+  ...
+# Subtest: 撤離要已交戰且達指定輪數；雙方 miss 算交戰，單向攻擊不算
+ok 901 - 撤離要已交戰且達指定輪數；雙方 miss 算交戰，單向攻擊不算
+  ---
+  duration_ms: 1.206134
+  type: 'test'
+  ...
+# Subtest: smoke：DN-M-02、DN-M-12 資料尺寸下兩陣營各 3 單位 AI 對 AI 跑 10 輪
+ok 902 - smoke：DN-M-02、DN-M-12 資料尺寸下兩陣營各 3 單位 AI 對 AI 跑 10 輪
+  ---
+  duration_ms: 196.355864
+  type: 'test'
+  ...
+# Subtest: smoke：同 seed 跑兩次的指令序列 JSON.stringify 相同
+ok 903 - smoke：同 seed 跑兩次的指令序列 JSON.stringify 相同
+  ---
+  duration_ms: 532.086003
+  type: 'test'
+  ...
+# Subtest: smoke：六種已登記 policy 混用跑 10 輪不拋錯
+ok 904 - smoke：六種已登記 policy 混用跑 10 輪不拋錯
+  ---
+  duration_ms: 65.611104
+  type: 'test'
+  ...
+# Subtest: strategy：stance 隨兵力比切換，弱勢准許撤退
+ok 905 - strategy：stance 隨兵力比切換，弱勢准許撤退
+  ---
+  duration_ms: 4.903662
+  type: 'test'
+  ...
+# Subtest: strategy：接敵登記遵守每個敵人的上限
+ok 906 - strategy：接敵登記遵守每個敵人的上限
+  ---
+  duration_ms: 1.492687
+  type: 'test'
+  ...
+# Subtest: strategy：focus 選高價值目標，同分依 id，距離差超過 2 優先近敵
+ok 907 - strategy：focus 選高價值目標，同分依 id，距離差超過 2 優先近敵
+  ---
+  duration_ms: 1.119723
+  type: 'test'
+  ...
+# Subtest: stub reachable：牆與單位擋路，AP 限制八方向 BFS
+ok 908 - stub reachable：牆與單位擋路，AP 限制八方向 BFS
+  ---
+  duration_ms: 2.199501
+  type: 'test'
+  ...
+# Subtest: stub 命中：由外往內扣層，核心全毀死亡並寫事件
+ok 909 - stub 命中：由外往內扣層，核心全毀死亡並寫事件
+  ---
+  duration_ms: 0.826357
+  type: 'test'
+  ...
+# Subtest: stub previewCommand 不改原狀態，合法性依成本、射程、LOS、陣營檢查
+ok 910 - stub previewCommand 不改原狀態，合法性依成本、射程、LOS、陣營檢查
+  ---
+  duration_ms: 0.68824
+  type: 'test'
+  ...
+# Subtest: stub retreat 只在 exit 合法，startRound 只回復 active 的 AP
+ok 911 - stub retreat 只在 exit 合法，startRound 只回復 active 的 AP
+  ---
+  duration_ms: 0.696686
+  type: 'test'
+  ...
+# Subtest: 無威脅滿血不自護，有合法攻擊或僅 End，任務移動不能救回無收益施法
+ok 912 - 無威脅滿血不自護，有合法攻擊或僅 End，任務移動不能救回無收益施法
+  ---
+  duration_ms: 51.816103
+  type: 'test'
+  ...
+# Subtest: 無護衛指派時滿血／低血受威脅會選原地 protect 與 escape
+ok 913 - 無護衛指派時滿血／低血受威脅會選原地 protect 與 escape
+  ---
+  duration_ms: 62.355819
+  type: 'test'
+  ...
+# Subtest: 隊友高燼用、低燼不用：同一快照只改目標 heat；沒有治療不能以負傷灌分
+ok 914 - 隊友高燼用、低燼不用：同一快照只改目標 heat；沒有治療不能以負傷灌分
+  ---
+  duration_ms: 29.138736
+  type: 'test'
+  ...
+# Subtest: 卸燼沒有對應池、超射程、AP 不足與毀損來源維持無效
+ok 915 - 卸燼沒有對應池、超射程、AP 不足與毀損來源維持無效
+  ---
+  duration_ms: 15.403214
+  type: 'test'
+  ...
+# Subtest: berserk 青鬣 AP8 先 self buff 後仍能主攻；已生效／無敵／不足後續 AP 不放
+ok 916 - berserk 青鬣 AP8 先 self buff 後仍能主攻；已生效／無敵／不足後續 AP 不放
+  ---
+  duration_ms: 86.233849
+  type: 'test'
+  ...
+# Subtest: 同輪 Wait 再入不重放；不同能力共用 refresh 效果不灌分，過期下輪可用
+ok 917 - 同輪 Wait 再入不重放；不同能力共用 refresh 效果不灌分，過期下輪可用
+  ---
+  duration_ms: 19.357871
+  type: 'test'
+  ...
+# Subtest: 既有緩燼 refresh 不重跑卸燼，不同招共用效果也不重放
+ok 918 - 既有緩燼 refresh 不重跑卸燼，不同招共用效果也不重放
+  ---
+  duration_ms: 14.644773
+  type: 'test'
+  ...
+# Subtest: tactical 額外保留最低成本支援格並留足施放 AP，低燼不追友方
+ok 919 - tactical 額外保留最低成本支援格並留足施放 AP，低燼不追友方
+  ---
+  duration_ms: 31.913548
+  type: 'test'
+  ...
+# Subtest: sentinel 回防、regroup、swarm 回巢都有不移位支援，不越守點或 leash
+ok 920 - sentinel 回防、regroup、swarm 回巢都有不移位支援，不越守點或 leash
+  ---
+  duration_ms: 79.001614
+  type: 'test'
+  ...
+# Subtest: line 攻擊會提出並選中
+ok 921 - line 攻擊會提出並選中
+  ---
+  duration_ms: 25.490109
+  type: 'test'
+  ...
+# Subtest: cone 攻擊會提出並選中
+ok 922 - cone 攻擊會提出並選中
+  ---
+  duration_ms: 15.57794
+  type: 'test'
+  ...
+# Subtest: 友軍範圍增益候選、多人加分與敵方受益扣分
+ok 923 - 友軍範圍增益候選、多人加分與敵方受益扣分
+  ---
+  duration_ms: 106.651833
+  type: 'test'
+  ...
+# Subtest: sustained 未維持會開、已維持不再提出；passive 不提出
+ok 924 - sustained 未維持會開、已維持不再提出；passive 不提出
+  ---
+  duration_ms: 17.317866
+  type: 'test'
+  ...
+# Subtest: capture 目標提高同傷害捕獲技，locomotion 已損越多價值越高
+ok 925 - capture 目標提高同傷害捕獲技，locomotion 已損越多價值越高
+  ---
+  duration_ms: 40.811601
+  type: 'test'
+  ...
+# Subtest: 純減益正分、高威脅更高，已有不可疊加效果不重複計價
+ok 926 - 純減益正分、高威脅更高，已有不可疊加效果不重複計價
+  ---
+  duration_ms: 39.839182
+  type: 'test'
+  ...
+# Subtest: 大血量任務目標在同等條件下勝過小目標
+ok 927 - 大血量任務目標在同等條件下勝過小目標
+  ---
+  duration_ms: 14.086195
+  type: 'test'
+  ...
+# Subtest: 啟用追擊時只追近 view 中最近的 killTarget／孵化源，不讀真實隱藏位置
+ok 928 - 啟用追擊時只追近 view 中最近的 killTarget／孵化源，不讀真實隱藏位置
+  ---
+  duration_ms: 51.84184
+  type: 'test'
+  ...
+# Subtest: 黃金戰役 ops-war-assault
+not ok 929 - 黃金戰役 ops-war-assault
+  ---
+  duration_ms: 1402.004269
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        day: 16,
+    +   events: 540,
+    +   logHash: '41aa023e9a3e0d46'
+    -   events: 503,
+    -   logHash: '8f5c3d2665ae48b1'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    logHash: '8f5c3d2665ae48b1'
+    events: 503
+    day: 16
+  actual:
+    logHash: '41aa023e9a3e0d46'
+    events: 540
+    day: 16
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.start (node:internal/test_runner/test:1015:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+  ...
+# Subtest: 黃金戰役 ops-relic
+not ok 930 - 黃金戰役 ops-relic
+  ---
+  duration_ms: 56545.319478
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        day: 896,
+    +   events: 19939,
+    +   logHash: 'b3d1e67583ca10c5'
+    -   events: 19897,
+    -   logHash: '7d50e9aa5867bcb1'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    logHash: '7d50e9aa5867bcb1'
+    events: 19897
+    day: 896
+  actual:
+    logHash: 'b3d1e67583ca10c5'
+    events: 19939
+    day: 896
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:358:3)
+  ...
+# Subtest: 黃金戰役 ops-merc-join
+not ok 931 - 黃金戰役 ops-merc-join
+  ---
+  duration_ms: 2191.123724
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'
+  failureType: 'testCodeFailure'
+  error: 'unused-battle-record'
+  code: 'ERR_TEST_FAILURE'
+  stack: |-
+    replayCampaign (file:///tmp/mecha-integrate-1028/replay/src/ops/sim/replay.ts:26:36)
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:17:54)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 黃金戰役 ops-betrayal
+not ok 932 - 黃金戰役 ops-betrayal
+  ---
+  duration_ms: 502.984768
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'
+  failureType: 'testCodeFailure'
+  error: 'ops-betrayal 事件子序列缺失'
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: true
+  actual: false
+  operator: '=='
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:30:3)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 黃金戰役 ops-leak
+not ok 933 - 黃金戰役 ops-leak
+  ---
+  duration_ms: 440.158012
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:13:59'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        day: 6,
+    +   events: 258,
+    +   logHash: '3ced084c80b5a8c7'
+    -   events: 246,
+    -   logHash: 'eb2d23f3641f6c6e'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    logHash: 'eb2d23f3641f6c6e'
+    events: 246
+    day: 6
+  actual:
+    logHash: '3ced084c80b5a8c7'
+    events: 258
+    day: 6
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/campaigns.test.ts:51:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:787:18)
+    Test.postRun (node:internal/test_runner/test:1247:19)
+    Test.run (node:internal/test_runner/test:1175:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:787:7)
+  ...
+# Subtest: 黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived
+not ok 934 - 黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived
+  ---
+  duration_ms: 574.902823
+  type: 'test'
+  location: '/tmp/mecha-integrate-1028/replay/test/campaigns/grid-actors.test.ts:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    ... Skipped lines
+    
+      {
+        day: 3,
+        events: [
+          {
+            day: 1,
+    ...
+        ],
+    +   hash: '20390962f8625caa'
+    -   hash: 'd415f49fe5b6826f'
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    hash: 'd415f49fe5b6826f'
+    events:
+      0:
+        day: 1
+        type: 'EncounterOffered'
+      1:
+        day: 1
+        type: 'Evaded'
+      2:
+        day: 3
+        type: 'Arrived'
+    day: 3
+  actual:
+    hash: '20390962f8625caa'
+    events:
+      0:
+        day: 1
+        type: 'EncounterOffered'
+      1:
+        day: 1
+        type: 'Evaded'
+      2:
+        day: 3
+        type: 'Arrived'
+    day: 3
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/mecha-integrate-1028/replay/test/campaigns/grid-actors.test.ts:39:10)
+    Test.runInAsyncScope (node:async_hooks:228:14)
+    Test.run (node:internal/test_runner/test:1118:25)
+    Test.start (node:internal/test_runner/test:1015:17)
+    startSubtestAfterBootstrap (node:internal/test_runner/harness:358:17)
+  ...
+# Subtest: content/index 分片與 content/ 實際檔案一致
+ok 935 - content/index 分片與 content/ 實際檔案一致
+  ---
+  duration_ms: 123.301257
+  type: 'test'
+  ...
+# Subtest: fuzz 工具自我測試：正常前綴通過，竄改池／層／貢獻／事件／重播會變紅
+ok 936 - fuzz 工具自我測試：正常前綴通過，竄改池／層／貢獻／事件／重播會變紅
+  ---
+  duration_ms: 12.216948
+  type: 'test'
+  ...
+# Subtest: fuzz 工具自我測試：其餘具名檢查能拒絕對應壞輸入
+ok 937 - fuzz 工具自我測試：其餘具名檢查能拒絕對應壞輸入
+  ---
+  duration_ms: 337.687286
+  type: 'test'
+  ...
+# 場數 15/15; 模式 {"ai":0,"random":15,"scenario":0}; 耗時 4750 ms; 硬違規場數 0
+# 耗時明細 jobs=2; 各模式累計 ms {"ai":0,"random":7855.0175580000005,"scenario":0}
+# 不變量違規場數 {"no-throw":0,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":0,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":0}
+# 事件覆蓋（出現該事件的場數） {"AbilityUsed":15,"BattleEnd":15,"BattleStart":15,"ControlChanged":8,"EffectApplied":15,"EffectExpired":12,"Ejected":8,"FieldResupplyRequested":6,"Hit":14,"LayerBroken":5,"LayerDamaged":11,"Miss":15,"MoraleChanged":1,"Moved":15,"PartBroken":2,"PoolChanged":15,"Retreated":4,"RoundEnd":15,"RoundStart":15,"TurnEnd":15,"TurnStart":15,"Waited":15}
+# 違規分組 0 組（同不變量＋訊息首行去數字；count 為場數）
+# 前 20 筆違規：
+# 場數 15/15; 模式 {"ai":15,"random":0,"scenario":0}; 耗時 5190 ms; 硬違規場數 0
+# 耗時明細 jobs=2; 各模式累計 ms {"ai":9308.887804,"random":0,"scenario":0}
+# 不變量違規場數 {"no-throw":0,"preview-pure":0,"pool-bounds":0,"layer-hp":0,"death-consistency":0,"dead-dont-act":0,"positions":0,"seats":0,"contrib-valid":0,"effects-valid":0,"cooldowns":0,"events":0,"termination":0,"replay-hash":0,"ai-determinism":0,"save-roundtrip":0,"ai-legal":0,"legal-enum":0,"gen-error":0,"setup-rejected":0,"legal-rejected":0,"no-termination":0,"ai-rejected":0}
+# 事件覆蓋（出現該事件的場數） {"AbilityUsed":15,"BattleEnd":15,"BattleStart":15,"EffectApplied":14,"EffectExpired":9,"FieldResupplyRequested":2,"Hit":15,"LayerBroken":6,"LayerDamaged":11,"Miss":10,"MoraleChanged":1,"Moved":15,"PartBroken":2,"PoolChanged":15,"Retreated":9,"RoundEnd":12,"RoundStart":15,"TurnEnd":14,"TurnStart":15}
+# 違規分組 0 組（同不變量＋訊息首行去數字；count 為場數）
+# 前 20 筆違規：
+# Subtest: fuzz 快速版：random／ai 各 15 場零硬違規（jobs=2）
+ok 938 - fuzz 快速版：random／ai 各 15 場零硬違規（jobs=2）
+  ---
+  duration_ms: 9940.915115
+  type: 'test'
+  ...
+# Subtest: 內容包載入 0 錯誤（黃金情境前置）
+ok 939 - 內容包載入 0 錯誤（黃金情境前置）
+  ---
+  duration_ms: 0.738955
+  type: 'test'
+  ...
+# Subtest: 黃金情境 combat-conduct：連跑兩次 hash 一致且等於黃金檔
+ok 940 - 黃金情境 combat-conduct：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 7.555667
+  type: 'test'
+  ...
+# Subtest: 黃金情境 combat-layers：連跑兩次 hash 一致且等於黃金檔
+ok 941 - 黃金情境 combat-layers：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 3.20377
+  type: 'test'
+  ...
+# Subtest: 黃金情境 combat-tenth：連跑兩次 hash 一致且等於黃金檔
+ok 942 - 黃金情境 combat-tenth：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 1.612189
+  type: 'test'
+  ...
+# Subtest: 黃金情境 people-berserk：連跑兩次 hash 一致且等於黃金檔
+ok 943 - 黃金情境 people-berserk：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 0.782446
+  type: 'test'
+  ...
+# Subtest: 黃金情境 people-capture：連跑兩次 hash 一致且等於黃金檔
+ok 944 - 黃金情境 people-capture：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 2.371362
+  type: 'test'
+  ...
+# Subtest: 黃金情境 people-eject：連跑兩次 hash 一致且等於黃金檔
+ok 945 - 黃金情境 people-eject：連跑兩次 hash 一致且等於黃金檔
+  ---
+  duration_ms: 1.292785
+  type: 'test'
+  ...
+# Subtest: 黃金情境合計含層結算與傳導事件
+ok 946 - 黃金情境合計含層結算與傳導事件
+  ---
+  duration_ms: 0.117849
+  type: 'test'
+  ...
+# Subtest: MonsterDef partsOverride 替換整欄並改變層 HP，其他部位不變且快取
+ok 947 - MonsterDef partsOverride 替換整欄並改變層 HP，其他部位不變且快取
+  ---
+  duration_ms: 4.193682
+  type: 'test'
+  ...
+# Subtest: MonsterDef extraAbilities 可用且去重穩定，tags 併入
+ok 948 - MonsterDef extraAbilities 可用且去重穩定，tags 併入
+  ---
+  duration_ms: 0.469523
+  type: 'test'
+  ...
+# Subtest: MonsterDef attrMods 求值並以 MonsterDef id 作貢獻來源
+ok 949 - MonsterDef attrMods 求值並以 MonsterDef id 作貢獻來源
+  ---
+  duration_ms: 0.446882
+  type: 'test'
+  ...
+# Subtest: BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP
+ok 950 - BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP
+  ---
+  duration_ms: 0.868366
+  type: 'test'
+  ...
+# Subtest: 沒有 def 的舊 UnitInit 除新增核心標記外保持開工前狀態 hash
+ok 951 - 沒有 def 的舊 UnitInit 除新增核心標記外保持開工前狀態 hash
+  ---
+  duration_ms: 1.74139
+  type: 'test'
+  ...
+# Subtest: 人物 NumExpr 可讀獸緣，未提供屬性時沿用 0
+ok 952 - 人物 NumExpr 可讀獸緣，未提供屬性時沿用 0
+  ---
+  duration_ms: 0.41927
+  type: 'test'
+  ...
+# Subtest: 回歸：匯入人物現況的 contrib 值是 NumExpr 物件時於匯入時求值，不拋「貢獻值尚未求值」
+ok 953 - 回歸：匯入人物現況的 contrib 值是 NumExpr 物件時於匯入時求值，不拋「貢獻值尚未求值」
+  ---
+  duration_ms: 2.921064
+  type: 'test'
+  ...
+# Subtest: 回歸：撤離決定勝負後不再寫任何事件（BattleEnd 必為最後一筆）
+ok 954 - 回歸：撤離決定勝負後不再寫任何事件（BattleEnd 必為最後一筆）
+  ---
+  duration_ms: 1.070402
+  type: 'test'
+  ...
+# Subtest: 回歸：能力 produces 指向機體沒有的池時不可用（checkAbility 拒絕），不在執行中拋「缺少池」
+ok 955 - 回歸：能力 produces 指向機體沒有的池時不可用（checkAbility 拒絕），不在執行中拋「缺少池」
+  ---
+  duration_ms: 6.146055
+  type: 'test'
+  ...
+# Subtest: 回歸：person scope 的效果掛到沒有人物的目標（無駕駛怪獸）時略過，不拋「缺少人物」
+ok 956 - 回歸：person scope 的效果掛到沒有人物的目標（無駕駛怪獸）時略過，不拋「缺少人物」
+  ---
+  duration_ms: 0.815066
+  type: 'test'
+  ...
+# Subtest: 回歸：雙方都只剩無人可下指令的單位時，戰局照輪推進到 maxRounds 以 timeout 結束，而非停在輪末沒有結果
+ok 957 - 回歸：雙方都只剩無人可下指令的單位時，戰局照輪推進到 maxRounds 以 timeout 結束，而非停在輪末沒有結果
+  ---
+  duration_ms: 1.328631
+  type: 'test'
+  ...
+# Subtest: 回歸：多方局 lose 目標定局時，勝方取與敗方敵對的存活 slot，不挑到敗方盟軍
+ok 958 - 回歸：多方局 lose 目標定局時，勝方取與敗方敵對的存活 slot，不挑到敗方盟軍
+  ---
+  duration_ms: 1.000902
+  type: 'test'
+  ...
+# Subtest: 回歸：效果動作 do:pool 對沒有該池的單位略過，不拋「缺少池」
+ok 959 - 回歸：效果動作 do:pool 對沒有該池的單位略過，不拋「缺少池」
+  ---
+  duration_ms: 0.545735
+  type: 'test'
+  ...
+# Subtest: 回歸：已毀部位的結構層不在 TurnStart regen 回血（part.broken 與結構層 broken 保持一致）
+ok 960 - 回歸：已毀部位的結構層不在 TurnStart regen 回血（part.broken 與結構層 broken 保持一致）
+  ---
+  duration_ms: 1.45164
+  type: 'test'
+  ...
+# Subtest: 回歸：一擊殺死最後敵人時，該指令的後續結算（produces 入池等）都記在 BattleEnd 之前
+ok 961 - 回歸：一擊殺死最後敵人時，該指令的後續結算（produces 入池等）都記在 BattleEnd 之前
+  ---
+  duration_ms: 3.40738
+  type: 'test'
+  ...
+# Subtest: 回歸：UnitInit.pools 匯入值超出 hard 池範圍時夾到 [min,max]（soft 池只夾 min）
+ok 962 - 回歸：UnitInit.pools 匯入值超出 hard 池範圍時夾到 [min,max]（soft 池只夾 min）
+  ---
+  duration_ms: 0.447703
+  type: 'test'
+  ...
+# Subtest: 回歸（ISS-011）：徒步步兵單位不能再棄機（沒有機體可棄）
+ok 963 - 回歸（ISS-011）：徒步步兵單位不能再棄機（沒有機體可棄）
+  ---
+  duration_ms: 0.632006
+  type: 'test'
+  ...
+# Subtest: 回歸（ISS-012）：friendly:"only" 的友方能力不擲命中骰，不會同時寫 Miss 與效果
+ok 964 - 回歸（ISS-012）：friendly:"only" 的友方能力不擲命中骰，不會同時寫 Miss 與效果
+  ---
+  duration_ms: 7.136698
+  type: 'test'
+  ...
+# Subtest: eliminate 撤光判 repelled；空出口地圖可從四邊撤離
+ok 965 - eliminate 撤光判 repelled；空出口地圖可從四邊撤離
+  ---
+  duration_ms: 2.260646
+  type: 'test'
+  ...
+# Subtest: 通用擊退在 timeout 前判勝；敵對方仍有 active 就不能勝
+ok 966 - 通用擊退在 timeout 前判勝；敵對方仍有 active 就不能勝
+  ---
+  duration_ms: 0.442353
+  type: 'test'
+  ...
+# Subtest: eliminate 全死保持舊 payload，沒有 detail
+ok 967 - eliminate 全死保持舊 payload，沒有 detail
+  ---
+  duration_ms: 0.434629
+  type: 'test'
+  ...
+# Subtest: spawn 記母體，dieWithParent 依固定順序發死亡事件且不波及無關單位
+ok 968 - spawn 記母體，dieWithParent 依固定順序發死亡事件且不波及無關單位
+  ---
+  duration_ms: 241.507112
+  type: 'test'
+  ...
+# Subtest: freeOnParentDeath 母體死亡不殺子單位
+ok 969 - freeOnParentDeath 母體死亡不殺子單位
+  ---
+  duration_ms: 160.922659
+  type: 'test'
+  ...
+# Subtest: CLI：回 0 並印勝負、輪數、存活、事件與 hash
+ok 970 - CLI：回 0 並印勝負、輪數、存活、事件與 hash
+  ---
+  duration_ms: 1349.844124
+  type: 'test'
+  ...
+# Subtest: CLI：--out 寫出可 parse 的事件日誌
+ok 971 - CLI：--out 寫出可 parse 的事件日誌
+  ---
+  duration_ms: 1094.956956
+  type: 'test'
+  ...
+# Subtest: CLI：--save 後 --load 重播得到同一 hash
+ok 972 - CLI：--save 後 --load 重播得到同一 hash
+  ---
+  duration_ms: 1158.17046
+  type: 'test'
+  ...
+# Subtest: 不變量：20 seeds 每條指令後 hard 池皆在 [min,max]
+ok 973 - 不變量：20 seeds 每條指令後 hard 池皆在 [min,max]
+  ---
+  duration_ms: 2333.880579
+  type: 'test'
+  ...
+# Subtest: 不變量：20 seeds 每條指令後 broken 層 hp 為零
+ok 974 - 不變量：20 seeds 每條指令後 broken 層 hp 為零
+  ---
+  duration_ms: 18.718636
+  type: 'test'
+  ...
+# Subtest: 不變量：20 seeds 每條指令後 contrib source 都存在
+ok 975 - 不變量：20 seeds 每條指令後 contrib source 都存在
+  ---
+  duration_ms: 51.130668
+  type: 'test'
+  ...
+# Subtest: 不變量：20 seeds 每條指令後事件 seq 連續
+ok 976 - 不變量：20 seeds 每條指令後事件 seq 連續
+  ---
+  duration_ms: 5.81566
+  type: 'test'
+  ...
+# Subtest: 不變量：20 seeds 整局重播一致
+ok 977 - 不變量：20 seeds 整局重播一致
+  ---
+  duration_ms: 120.692688
+  type: 'test'
+  ...
+# Subtest: ISS-001：未給 components 套 defaultLoadout；給了整組取代（含空物件＝不裝）
+ok 978 - ISS-001：未給 components 套 defaultLoadout；給了整組取代（含空物件＝不裝）
+  ---
+  duration_ms: 164.886259
+  type: 'test'
+  ...
+# Subtest: ISS-001：載入器擋下不存在的槽、槽型不符、怪獸 spawn 帶 components
+ok 979 - ISS-001：載入器擋下不存在的槽、槽型不符、怪獸 spawn 帶 components
+  ---
+  duration_ms: 444.815156
+  type: 'test'
+  ...
+# Subtest: frame 配同級摹機與怪獸，主角 defaultLoadout 與基準明寫配裝分開
+ok 980 - frame 配同級摹機與怪獸，主角 defaultLoadout 與基準明寫配裝分開
+  ---
+  duration_ms: 2.533924
+  type: 'test'
+  ...
+# Subtest: monster 對同級兩台基準衍型機
+ok 981 - monster 對同級兩台基準衍型機
+  ---
+  duration_ms: 0.660979
+  type: 'test'
+  ...
+# Subtest: ability 找第一個載體；component defaultLoadout 與 monster extraAbilities 也可找到
+ok 982 - ability 找第一個載體；component defaultLoadout 與 monster extraAbilities 也可找到
+  ---
+  duration_ms: 43.999632
+  type: 'test'
+  ...
+# Subtest: scenario 用情境 rounds，明寫 rounds 才覆寫
+ok 983 - scenario 用情境 rounds，明寫 rounds 才覆寫
+  ---
+  duration_ms: 0.48365
+  type: 'test'
+  ...
+# Subtest: jobs 1 與 2 結果逐字相同，記憶體內容可跨 worker
+ok 984 - jobs 1 與 2 結果逐字相同，記憶體內容可跨 worker
+  ---
+  duration_ms: 940.294056
+  type: 'test'
+  ...
+# Subtest: bands 能檢出超標記憶體內容；正常 HP 不誤報
+ok 985 - bands 能檢出超標記憶體內容；正常 HP 不誤報
+  ---
+  duration_ms: 33.961936
+  type: 'test'
+  ...
+# Subtest: JSON 形狀與 AbilityUsed 計數、從未使用能力一致
+ok 986 - JSON 形狀與 AbilityUsed 計數、從未使用能力一致
+  ---
+  duration_ms: 207.560547
+  type: 'test'
+  ...
+# Subtest: replay：skirmish-whitegloves 指令重播 hash 相同
+ok 987 - replay：skirmish-whitegloves 指令重播 hash 相同
+  ---
+  duration_ms: 1143.393003
+  type: 'test'
+  ...
+# Subtest: replay：rift-edge-nest 指令重播 hash 相同
+ok 988 - replay：rift-edge-nest 指令重播 hash 相同
+  ---
+  duration_ms: 573.246293
+  type: 'test'
+  ...
+# Subtest: replay：竄改指令時 ReplayError 帶正確 index
+ok 989 - replay：竄改指令時 ReplayError 帶正確 index
+  ---
+  duration_ms: 848.2527
+  type: 'test'
+  ...
+# Subtest: rerunAiAndCompare：同 seed 為 ok，差異定位到第一條
+ok 990 - rerunAiAndCompare：同 seed 為 ok，差異定位到第一條
+  ---
+  duration_ms: 2449.606269
+  type: 'test'
+  ...
+# Subtest: scenarioToSetup：八單位部署格不同且都在各自部署區
+ok 991 - scenarioToSetup：八單位部署格不同且都在各自部署區
+  ---
+  duration_ms: 1.265514
+  type: 'test'
+  ...
+# Subtest: runBattle：同 seed 的指令與 hash 一致
+ok 992 - runBattle：同 seed 的指令與 hash 一致
+  ---
+  duration_ms: 1940.397891
+  type: 'test'
+  ...
+# Subtest: runBattle：不同 seed 的 hash 不同
+ok 993 - runBattle：不同 seed 的 hash 不同
+  ---
+  duration_ms: 1598.907621
+  type: 'test'
+  ...
+# Subtest: runBattle：script 依序送指令，用完後送 end
+ok 994 - runBattle：script 依序送指令，用完後送 end
+  ---
+  duration_ms: 5.561378
+  type: 'test'
+  ...
+# Subtest: runBattle：AI 指令 rejected 為零
+ok 995 - runBattle：AI 指令 rejected 為零
+  ---
+  duration_ms: 581.8521
+  type: 'test'
+  ...
+# Subtest: scripted AI／遙控低命中率仍能選用武器，機體 AP 扣款且可重播
+ok 996 - scripted AI／遙控低命中率仍能選用武器，機體 AP 扣款且可重播
+  ---
+  duration_ms: 60.772051
+  type: 'test'
+  ...
+# Subtest: save：serialize → parse 來回相等，拒絕壞形狀與版本
+ok 997 - save：serialize → parse 來回相等，拒絕壞形狀與版本
+  ---
+  duration_ms: 1093.067343
+  type: 'test'
+  ...
+# Subtest: save：含 Infinity 池的 snapshot 可往返並通過重播驗證
+ok 998 - save：含 Infinity 池的 snapshot 可往返並通過重播驗證
+  ---
+  duration_ms: 280.267466
+  type: 'test'
+  ...
+# Subtest: packHash：定義與規則內容改變都會改 hash
+ok 999 - packHash：定義與規則內容改變都會改 hash
+  ---
+  duration_ms: 323.394398
+  type: 'test'
+  ...
+# Subtest: save：pack hash 不符且無 snapshot 時拒載
+ok 1000 - save：pack hash 不符且無 snapshot 時拒載
+  ---
+  duration_ms: 984.618306
+  type: 'test'
+  ...
+# Subtest: save：pack hash 不符但有 snapshot 時載入並警告
+ok 1001 - save：pack hash 不符但有 snapshot 時載入並警告
+  ---
+  duration_ms: 848.873777
+  type: 'test'
+  ...
+# Subtest: 同盟：rift ally 的 friendly:no 能力拒絕玩家目標
+ok 1002 - 同盟：rift ally 的 friendly:no 能力拒絕玩家目標
+  ---
+  duration_ms: 6.676603
+  type: 'test'
+  ...
+# Subtest: 同盟：對稱映射、世界 ally 聯集、skirmish 敵對與舊存檔相容
+ok 1003 - 同盟：對稱映射、世界 ally 聯集、skirmish 敵對與舊存檔相容
+  ---
+  duration_ms: 31.535455
+  type: 'test'
+  ...
+# Subtest: 同盟：eliminate 預設忽略盟友並保留明列 slots 的語意
+ok 1004 - 同盟：eliminate 預設忽略盟友並保留明列 slots 的語意
+  ---
+  duration_ms: 3.715834
+  type: 'test'
+  ...
+# Subtest: killTarget：rift 目標解析為 units，死亡信號產生 player 勝利 BattleEnd
+ok 1005 - killTarget：rift 目標解析為 units，死亡信號產生 player 勝利 BattleEnd
+  ---
+  duration_ms: 6.238577
+  type: 'test'
+  ...
+# Subtest: killTarget：重複 def 解析為排序集合，units 與 unit 全死才達成
+ok 1006 - killTarget：重複 def 解析為排序集合，units 與 unit 全死才達成
+  ---
+  duration_ms: 3.42349
+  type: 'test'
+  ...
+# Subtest: killTarget：未知 target 明確拒絕且不修改內容
+ok 1007 - killTarget：未知 target 明確拒絕且不修改內容
+  ---
+  duration_ms: 0.717746
+  type: 'test'
+  ...
+# Subtest: 地圖：scenarioToSetup 傳遞 globals 與 feature hp，包括零值及地形預設
+ok 1008 - 地圖：scenarioToSetup 傳遞 globals 與 feature hp，包括零值及地形預設
+  ---
+  duration_ms: 134.851602
+  type: 'test'
+  ...
+# Subtest: 地圖：setup globals 隨 round 求值，未宣告或舊存檔回零，tide 只認 round
+ok 1009 - 地圖：setup globals 隨 round 求值，未宣告或舊存檔回零，tide 只認 round
+  ---
+  duration_ms: 2.905967
+  type: 'test'
+  ...
+# Subtest: 地圖：destructible fill 沒有 feature 時每格使用預設 hp
+ok 1010 - 地圖：destructible fill 沒有 feature 時每格使用預設 hp
+  ---
+  duration_ms: 0.351324
+  type: 'test'
+  ...
+# Subtest: 全 AI：逐指令跑完與 runBattle 的 skirmish seed 1／3 輪 hash 相同
+ok 1011 - 全 AI：逐指令跑完與 runBattle 的 skirmish seed 1／3 輪 hash 相同
+  ---
+  duration_ms: 1920.58721
+  type: 'test'
+  ...
+# Subtest: stepAi 每次只推進一個成功指令，observer 在套用後收到同一批事件
+ok 1012 - stepAi 每次只推進一個成功指令，observer 在套用後收到同一批事件
+  ---
+  duration_ms: 33.760966
+  type: 'test'
+  ...
+# Subtest: 人類 slot：非人類回合拒絕 submit，人類回合接受合法指令
+ok 1013 - 人類 slot：非人類回合拒絕 submit，人類回合接受合法指令
+  ---
+  duration_ms: 43.74433
+  type: 'test'
+  ...
+# Subtest: legalActions：抽樣列出的各能力目標在同一初始狀態均能 submit
+ok 1014 - legalActions：抽樣列出的各能力目標在同一初始狀態均能 submit
+  ---
+  duration_ms: 8.875263
+  type: 'test'
+  ...
+# Subtest: preview 回傳規則結果與事件，前後 state canonical JSON 完全相同
+ok 1015 - preview 回傳規則結果與事件，前後 state canonical JSON 完全相同
+  ---
+  duration_ms: 1.825055
+  type: 'test'
+  ...
+# Subtest: 結束後 submit／stepAi 拒絕推進且 result 非 null
+ok 1016 - 結束後 submit／stepAi 拒絕推進且 result 非 null
+  ---
+  duration_ms: 7.31999
+  type: 'test'
+  ...
+# Subtest: trackKnowledge：成功指令後更新該 slot 的 visible／lastSeen，不影響 hash；取消後不再更新
+ok 1017 - trackKnowledge：成功指令後更新該 slot 的 visible／lastSeen，不影響 hash；取消後不再更新
+  ---
+  duration_ms: 2312.753961
+  type: 'test'
+  ...
+# Subtest: trackKnowledge 先於之後註冊的 observer 更新
+ok 1018 - trackKnowledge 先於之後註冊的 observer 更新
+  ---
+  duration_ms: 782.814013
+  type: 'test'
+  ...
+# Subtest: contentDb／rulesQuery：公開唯讀內容與查詢介面
+ok 1019 - contentDb／rulesQuery：公開唯讀內容與查詢介面
+  ---
+  duration_ms: 1.481987
+  type: 'test'
+  ...
+# Subtest: stepAi：全 AI 只在戰鬥結束時回 null（scenario/skirmish-whitegloves seed 1）
+ok 1020 - stepAi：全 AI 只在戰鬥結束時回 null（scenario/skirmish-whitegloves seed 1）
+  ---
+  duration_ms: 1886.446265
+  type: 'test'
+  ...
+# Subtest: stepAi：全 AI 只在戰鬥結束時回 null（scenario/skirmish-whitegloves seed 2）
+ok 1021 - stepAi：全 AI 只在戰鬥結束時回 null（scenario/skirmish-whitegloves seed 2）
+  ---
+  duration_ms: 1589.5248
+  type: 'test'
+  ...
+# Subtest: stepAi：全 AI 只在戰鬥結束時回 null（scenario/rift-edge-nest seed 1）
+ok 1022 - stepAi：全 AI 只在戰鬥結束時回 null（scenario/rift-edge-nest seed 1）
+  ---
+  duration_ms: 817.620186
+  type: 'test'
+  ...
+# Subtest: stepAi：runAiUntilHuman 一次跑完全 AI 戰鬥
+ok 1023 - stepAi：runAiUntilHuman 一次跑完全 AI 戰鬥
+  ---
+  duration_ms: 1339.40144
+  type: 'test'
+  ...
+# Subtest: stepAi：佇列尾端殘留被拒指令時，最後一個成功指令就收尾、不再空回 null
+ok 1024 - stepAi：佇列尾端殘留被拒指令時，最後一個成功指令就收尾、不再空回 null
+  ---
+  duration_ms: 686.484687
+  type: 'test'
+  ...
+1..1024
+# tests 1031
+# suites 4
+# pass 1022
+# fail 9
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 508571.032963

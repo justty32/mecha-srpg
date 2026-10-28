@@ -1,0 +1,17 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "test",
+  "classification",
+  "historical_diagnostic"
+ ],
+ "rows": [
+  {
+   "test": "socket CLI：serve、call 共用 session；list 與錯誤 exit 1",
+   "classification": "環境差異：本機通過，包內 EPERM",
+   "historical_diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/cli.test.ts:6:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    socket /tmp/cx-mcp-core/cli-518.sock 失敗：listen EPERM: operation not permitted /tmp/cx-mcp-core/cli-518.sock；socket 路徑過長？請改用短的相對路徑（29 字元，建議 < 100）。\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/cli.test.ts:19:12)\n    process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    async Test.run (node:internal/test_runner/test:1409:7)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ..."
+  }
+ ]
+}
