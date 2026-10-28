@@ -26,6 +26,8 @@
 
 [art/canvas-mech](../../../art/canvas-mech/README.md) 為完全新畫的礁鷹 Canvas＋Konva 離線試作，不接遊戲。`core/design.js` 定 top-down 功能樹與尺寸分配，`revision.js` 讀靜態群組／接合分配，`author-layout.js` 僅供離線配置設計；`assembly.js`／`validation.js` 建立與驗證配置及必要覆蓋接點，`rig.js` 求父子姿態及連桿，`jobs.js` 產逐葉契約，`generate.js` 保存凍結工作單與雜湊；測試在 `core/*.test.js`。`drawing/` 由葉件往上繪製，`drawing/index.js` 匯出局部 Canvas painter；`viewer/scene.js` 將世界變換交 Konva Shape，`controls.js` 管真實層樹與姿態，`app.js` 啟動；`build.mjs` 內嵌成 `index.html`，`headless.mjs` 以既有 Chromium 與 Node WebSocket 做 CDP 驗證。獨立來源、操作及限制見該目錄入口。
 
+[art/mech-3d](../../../art/mech-3d/README.md) 為衡岳 Three.js 離線真3D試作。`model/design*.js` 明列top-down配置，`layout.js`／`rig.js`／`validation.js` 驗姿態與實體接合；`generate.js` 凍結jobs/hash，`geometry.js`／`materials.js`／`mesh.js` 建葉實體，`record-assembly.js` 記bottom-up順序，測試在 `model/*.test.js`。`viewer/` 分管攝影棚/Orbit、世界矩陣、樹/控制及CDP；`build.mjs` 內嵌HTML，`headless.mjs` 驗WebGL2/SwiftShader互動與六圖。來源、操作與限制見目錄入口。
+
 ## 真相層優先序
 
 各專案可以改自己的優先序，但必須明確。預設：

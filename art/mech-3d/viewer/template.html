@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data:; connect-src 'none'; font-src 'none'">
+<title>衡岳 · 3D 整備展示間</title>
+<style>/*__STYLE__*/</style>
+</head>
+<body>
+<header><div class="brand"><span class="brand-icon">H</span><div><small>HENGYUE / HEAVY FRAME</small><h1>衡岳 <span>三維整備展示間</span></h1></div></div><span id="status" role="status">整備中</span></header>
+<main>
+<aside class="parts"><div class="panel-title"><h2>組裝層級</h2><output id="counts">—</output></div><input id="search" type="search" placeholder="搜尋零件、用途" aria-label="搜尋零件" disabled><div class="tree-actions"><button id="show-all" disabled>全部顯示</button><button id="clear-solo" disabled>解除 Solo</button></div><nav id="tree" aria-label="組裝零件樹"><p class="quiet">模型準備完成後可檢視各層零件。</p></nav></aside>
+<section class="viewport"><div class="view-heading"><span id="view-name">正面</span><span>拖曳旋轉 · 滾輪縮放 · 右鍵平移</span></div><div id="scene"></div><div id="pending"><strong>三維展示間已就緒</strong><p>模型整備中</p></div><div class="camera-bar" aria-label="切換視角"><button data-camera="front" aria-pressed="true">正面</button><button data-camera="side">側面</button><button data-camera="back">背面</button><button data-camera="iso">斜角</button><button id="fit">貼合</button></div><div class="viewport-foot"><span id="selected">點選模型或零件名稱查看</span><span id="render-note">360° ORBIT</span></div></section>
+<aside class="settings"><h2>姿態與分解</h2><fieldset id="motion" disabled><legend>動作</legend><label>預設姿態<select id="pose"><option value="idle">待機</option></select></label><label>肩關節 <output id="shoulder-out">0°</output><input id="shoulder" type="range" min="-60" max="75" value="0"></label><label>肘關節 <output id="elbow-out">0°</output><input id="elbow" type="range" min="0" max="120" value="0"></label><label>膝關節 <output id="knee-out">0°</output><input id="knee" type="range" min="0" max="80" value="0"></label><div class="button-pair"><button id="play">播放</button><button id="reset">還原</button></div></fieldset><fieldset id="assembly" disabled><legend>裝配檢查</legend><label>爆炸分解 <output id="explode-out">0%</output><input id="explode" type="range" min="0" max="100" value="0"></label><label>分解層深 <output id="depth-out">全部</output><input id="depth" type="range" min="0" max="6" value="6"></label></fieldset><fieldset><legend>顯示</legend><label>像素密度<select id="dpr"><option value="auto">自動</option><option value="1">1×</option><option value="2">2×</option></select></label><p class="quiet">拖曳模型環繞觀察；點選零件可與左側層樹同步。</p></fieldset><div id="inspector"><span class="eyebrow">SELECTED PART</span><p id="part-name">尚未選取</p><p id="part-purpose" class="quiet">可選取任一組裝層級或實體零件。</p></div><p class="fine">單機 3D 展示 · 無步行或接地 IK</p></aside>
+</main>
+<script>/*__APP__*/</script>
+</body>
+</html>
