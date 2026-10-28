@@ -1,0 +1,878 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-28",
+ "counts": {
+  "confirmed_new_issues": 0,
+  "pending_new_rulings": 0,
+  "excluded": 8,
+  "candidate_groups": 8
+ },
+ "selection": "主責263入口機械索引，逐欄定位新22概念使用舊gear配裝，以及與舊情境同獸系／同場景候選；全文裁定只限本表8組。",
+ "line_semantics": "1-based，lines為含端點範圍；etymology含\\n但實檔常僅一行，字段可定位段落。",
+ "baseline": "10/27 people C01–C16、content DUP-01–04/SER-01–03/SIZE-01–09已讀索引；P01與九槽、74–77及短場節奏不重開、不重新動態驗證。",
+ "new_issues": [],
+ "new_rulings": [],
+ "reviewer_sample": "S01（疊燈／燈腹過閘）為新跨批全文排除，建議領導抽核；兩端與直接物種／能力均已親讀。",
+ "columns": [
+  "id",
+  "status",
+  "classification",
+  "topic",
+  "side_a",
+  "side_b",
+  "support",
+  "similarity",
+  "difference",
+  "recommendation",
+  "confidence",
+  "confidence_limit"
+ ],
+ "rows": [
+  {
+   "id": "G01",
+   "status": "已排除",
+   "classification": "同系列刻意換裝",
+   "topic": "BW-08不是BW-06換名；楔刃是正常配套",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wm-r7-bw08.json"
+    },
+    "fields": "$.bodyPlan / $.defaultLoadout / $.etymology",
+    "lines": [
+     6,
+     57
+    ],
+    "sha256": "8bca8828395ea128eed1e41685c6e935d92bcbee217277d6bb349345e0353166",
+    "read_level": "full-text",
+    "quote": "main-gun=fw-wedge-blade；母子交班後窗下相見"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/bulwark-caisson-01.json"
+    },
+    "fields": "$.bodyPlan / $.defaultLoadout / $.etymology",
+    "lines": [
+     6,
+     57
+    ],
+    "sha256": "0ed7f7c6efc070298ebcd2a328e4a8b1223d478578298fefd1063ce3b7792016",
+    "read_level": "full-text",
+    "quote": "main-gun=mx-scatter-rune；堅盾公刻輪座守備"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fw-wedge-blade.json"
+     },
+     "fields": "$.slot / $.size / $.abilities",
+     "lines": [
+      5,
+      15
+     ],
+     "sha256": "b6ab4bde85776ac223bb5a9621c4e0cf906c1c769b398172b682e4a4f1fee019",
+     "read_level": "full-text",
+     "quote": "weaponMount size1，沒有鳴刃反擊"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-wedge-blade-use.json"
+     },
+     "fields": "$.target / $.packets / $.essence / $.partAim",
+     "lines": [
+      21,
+      58
+     ],
+     "sha256": "fb12427d0585797f66a6274089a539fda25d4de4f7298acb655cc590e0299dbe",
+     "read_level": "full-text",
+     "quote": "unit1格、pierce8、D、部位瞄準"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/mx-scatter-rune.json"
+     },
+     "fields": "$.pools / $.abilities",
+     "lines": [
+      8,
+      23
+     ],
+     "sha256": "32de69922db44b8254169f3cfde18b4a4fa5e86bf56ccf154ed281efeb3b4524",
+     "read_level": "full-text",
+     "quote": "散紋矢8發，mx-scatter-blast"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/mx-scatter-blast.json"
+     },
+     "fields": "$.packets / $.target",
+     "lines": [
+      25,
+      47
+     ],
+     "sha256": "b34b024ccbaec2f24f0fbef950871883051a82cddb553bee9deb469aed261dcf",
+     "read_level": "full-text",
+     "quote": "ball1–3格 radius1，kinetic16"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/world/models/wm-r7-bw08.json"
+     },
+     "fields": "$.frame / $.lineage / $.requires / $.exportPolicy",
+     "lines": [
+      3,
+      18
+     ],
+     "sha256": "f306a1507a8e0cad58546326e39b85c3d2ad7198db88a224920efdd51f68f192",
+     "read_level": "full-text",
+     "quote": "另立variant型錄，接堅盾公刻線"
+    }
+   ],
+   "similarity": "同D輪座、相同基礎屬性、燼池與自守；皆堅盾地方守備。",
+   "difference": "新機失去範圍與3格射擊，改貼身部位瞄準；母親等兒子交班後親見的事件不在BW-06原文。不是新武器被重複創作。",
+   "recommendation": "保留型號與既有楔刃引用；審閱時註明近戰守備換裝，不能把新名字當全面強化。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "G02",
+   "status": "已排除",
+   "classification": "同系列刻意變體",
+   "topic": "踏拍與開扇皆範圍鐵砧，但範圍形狀、骨架與敘事不同",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wm-r7-anvil-downbeat.json"
+    },
+    "fields": "$.bodyPlan / $.defaultLoadout / $.etymology",
+    "lines": [
+     6,
+     57
+    ],
+    "sha256": "6b65fb71b190dae6ac370a671bb84650a9cc52cd91218a31e8275bf52cf7128e",
+    "read_level": "full-text",
+    "quote": "雙足；門鉤＋旋鉚鑿；奪回排練室後改在空地奏鼓"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wn-r3-anvil-fan.json"
+    },
+    "fields": "$.bodyPlan / $.defaultLoadout / $.etymology",
+    "lines": [
+     6,
+     58
+    ],
+    "sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+    "read_level": "full-text",
+    "quote": "四足；扇潮矢筒＋熔齒鋸；試機院派工與修腿工錢"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fw-door-sweep.json"
+     },
+     "fields": "$.size / $.abilities / $.etymology",
+     "lines": [
+      5,
+      15
+     ],
+     "sha256": "02a13e4c9e38953b9808d8cbce96ba880c697becc07024b733fb984a7ad0fdaf",
+     "read_level": "full-text",
+     "quote": "小圓域降低閃避先手，不造地形障礙或擊退"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-door-sweep-use.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.effects / $.cooldown",
+     "lines": [
+      7,
+      59
+     ],
+     "sha256": "1cc47cd7f842fe819b3f0309bc6c732f93c00a4c35be310d1c7738e064c47ea7",
+     "read_level": "full-text",
+     "quote": "3AP燼8，ball1格radius1，pierce5，m2-dragged，CD2"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fw-fan-tube.json"
+     },
+     "fields": "$.size / $.abilities",
+     "lines": [
+      6,
+      15
+     ],
+     "sha256": "d6197d4f09babd99fc38de681ba7ffb9383d4ec86453babd3d04fd6ff11d65a7",
+     "read_level": "full-text",
+     "quote": "size2，fw-fan-tube-use"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-fan-tube-use.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.cooldown",
+     "lines": [
+      7,
+      51
+     ],
+     "sha256": "2bff2de942223df4c11b2dbf01c3733d9c6768abe5d871c8fca033c7f6a053d7",
+     "read_level": "full-text",
+     "quote": "4AP燼16，cone1–3格，energy12，CD2"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fw-rivet-drill.json"
+     },
+     "fields": "$.size / $.abilities",
+     "lines": [
+      6,
+      15
+     ],
+     "sha256": "5255a21a6ef252525f8b02b17f790184a4aa37da264027cfde99e05b63c6be69",
+     "read_level": "full-text",
+     "quote": "size2，fw-rivet-drill-use"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-rivet-drill-use.json"
+     },
+     "fields": "$.target / $.packets / $.effects / $.cooldown",
+     "lines": [
+      21,
+      57
+     ],
+     "sha256": "e78b3dbd0a64417a844ee34d1714ded97b0b120f7f40abd0a1569b59f68f332c",
+     "read_level": "full-text",
+     "quote": "unit1格pierce16，staggered，CD2"
+    }
+   ],
+   "similarity": "同C斷臂血統、相同燼池與鐵拳，共用排燼片且都有範圍掛件。",
+   "difference": "踏拍是近鄰低傷削弱接單體鑿；開扇是3格扇射接貼身鋸。雙足與前足掛武器的四足風險不同。敘事分別是重回排練與勞務計價，沒有重複功勞。",
+   "recommendation": "保留；門鉤與扇筒不互換成同一能力。兩掛件CD2的取捨留回家平衡，不把敘事鼓點當新技能。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "G03",
+   "status": "已排除",
+   "classification": "同系列刻意換裝",
+   "topic": "留像把伏架第二把傷害槍換成收捕件",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wm-r7-longspear-keepsake.json"
+    },
+    "fields": "$.etymology / $.defaultLoadout / $.innateAbilities",
+    "lines": [
+     5,
+     60
+    ],
+    "sha256": "a8145377f5104d938065ee7aac98c66c4e0ca45458c621af982e94c25eeacffa",
+    "read_level": "full-text",
+    "quote": "一把輝光連吼、一把扣足矢；同伴先打壞部位才補收捕；結尾合照"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/longspear-kneeler-v2.json"
+    },
+    "fields": "$.etymology / $.defaultLoadout / $.innateAbilities",
+    "lines": [
+     5,
+     60
+    ],
+    "sha256": "c60ecb0167e62547f54ca0f649136f5337dbddc0709ce06850e684aaeac5948a",
+    "read_level": "full-text",
+    "quote": "四足雙槍伏架；輝光與紋刻兩類射擊"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fw-ankle-pin.json"
+     },
+     "fields": "$.pools / $.abilities / $.etymology",
+     "lines": [
+      5,
+      27
+     ],
+     "sha256": "c5bac619e3e541bc9f874b1e3334ed2ac5ce5475d1628fa8d3d879d94d9f6a1f",
+     "read_level": "full-text",
+     "quote": "拘束矢4發；物種捕捉部位條件仍須滿足"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-ankle-pin-use.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.effects",
+     "lines": [
+      7,
+      38
+     ],
+     "sha256": "9b3b7ddf4e736790f9bf00227392d13f991cdc960101906c96e943f869fc73c6",
+     "read_level": "full-text",
+     "quote": "3AP一矢，1–3格，packets=[]，mx-netted"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/mx-radiant-rifle.json"
+     },
+     "fields": "$.abilities",
+     "lines": [
+      9,
+      11
+     ],
+     "sha256": "ac25d5f351413fc4222b46fd98c9d1e29e62fb69a8863a7b388df971b736a60b",
+     "read_level": "full-text",
+     "quote": "mx-radiant-shot"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/mx-rune-rifle.json"
+     },
+     "fields": "$.pools / $.abilities",
+     "lines": [
+      8,
+      23
+     ],
+     "sha256": "db2fbaa59bc4539d16235e75ea25201f3601ad9bb06ce7b12904afb65a42b978",
+     "read_level": "full-text",
+     "quote": "矢池12，mx-rune-shot"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/mx-radiant-shot.json"
+     },
+     "fields": "$.costs / $.packets / $.target",
+     "lines": [
+      5,
+      44
+     ],
+     "sha256": "01ea0b49efa4ddf8357194b86bd3c78f5bc4b696feaf3a3e83028eb70cc855de",
+     "read_level": "full-text",
+     "quote": "流光15，energy22，1–7格"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/mx-rune-shot.json"
+     },
+     "fields": "$.costs / $.packets / $.target",
+     "lines": [
+      5,
+      45
+     ],
+     "sha256": "b4100decad5c629277b55406cb32a7c56bd9c7d33045ed702a26c4a563826e39",
+     "read_level": "full-text",
+     "quote": "二矢，kinetic20，1–6格"
+    }
+   ],
+   "similarity": "C四足伏架、基礎屬性、雙池與架砲相同，左槍與靈目相同。",
+   "difference": "原版兩把傷害槍提供資源分流；留像只有左槍輸出，右側零傷拘束是收尾用途。合照被獸架與修工擠入畫面的故事，不是原版配裝沿革。",
+   "recommendation": "保留並標成捕捉協作換裝；不可把扣足矢敘述成自帶拆腿或繞過捕捉門檻。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "G04",
+   "status": "已排除",
+   "classification": "正常配套與同系列變體",
+   "topic": "同燈的同準靈目／送行煙燈不是拾痕換名",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wn-r3-surveyor-bearer.json"
+    },
+    "fields": "$.etymology / $.bodyPlan / $.defaultLoadout",
+    "lines": [
+     5,
+     60
+    ],
+    "sha256": "108df560e6365e97b42da0d286de6e84d13757c8c54b0c27d7d0da7388cbeb74",
+    "read_level": "full-text",
+    "quote": "六足；同準靈目與送行煙燈；聯隊搶功與支援工錢"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/frames/wl-surveyor-trace.json"
+    },
+    "fields": "$.bodyPlan / $.defaultLoadout / $.etymology",
+    "lines": [
+     6,
+     71
+    ],
+    "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+    "read_level": "full-text",
+    "quote": "雙足；千目、雙槍、冕環骸片與灰霧香；帶拓片與勘察員退回"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fa-shared-bearing.json"
+     },
+     "fields": "$.slot / $.abilities",
+     "lines": [
+      5,
+      15
+     ],
+     "sha256": "8bd941c57d61355e8e7ed96a65d245e589d7719ca545d80cd898da77f7628224",
+     "read_level": "full-text",
+     "quote": "sensorMount，fa-lend-bearing"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/components/fa-escort-lantern.json"
+     },
+     "fields": "$.slot / $.abilities",
+     "lines": [
+      5,
+      15
+     ],
+     "sha256": "c02a1604e47382f576adaeed659a257b27a220447c3604e8bbb5cd3a3cf1af36",
+     "read_level": "full-text",
+     "quote": "backMount size2，fa-cover-companion"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fa-lend-bearing.json"
+     },
+     "fields": "$.costs / $.cooldown / $.usesPerBattle / $.target",
+     "lines": [
+      3,
+      29
+     ],
+     "sha256": "633d46dd303bee6ffa6814084227367773a5724ed9d2a50a821f5288403b03c4",
+     "read_level": "full-text",
+     "quote": "3AP，CD3，每戰2，0–4格單友"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fa-cover-companion.json"
+     },
+     "fields": "$.costs / $.cooldown / $.usesPerBattle / $.target",
+     "lines": [
+      3,
+      29
+     ],
+     "sha256": "f0369dec15648b25424107ed5fac2610e4bc7fe22ed689de43085f93d970a0df",
+     "read_level": "full-text",
+     "quote": "3AP，CD3，每戰2，0–3格單友"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/effects/fa-aligned.json"
+     },
+     "fields": "$.clock / $.contribs",
+     "lines": [
+      3,
+      23
+     ],
+     "sha256": "345c0cf548a3314a3c9c930e31d49eb73364ce1b6826ec085d400181c69525e8",
+     "read_level": "full-text",
+     "quote": "1 ownerTurn；accuracy+8、perception+3"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/effects/fa-escorted.json"
+     },
+     "fields": "$.clock / $.contribs",
+     "lines": [
+      3,
+      23
+     ],
+     "sha256": "c66748ec18c2ac2821b5390e1ac60c81966e8da977954cd2784313cabe5dab43",
+     "read_level": "full-text",
+     "quote": "2 ownerTurns；evasion+10、accuracy-5"
+    }
+   ],
+   "similarity": "同B測墟血統，兩者有遠射、觀測與煙護意象。",
+   "difference": "同燈用3AP與有限次數替單友引準、借煙，煙護有準頭代價；拾痕保留雙槍與古代件共鳴門檻，故事是護勘撤回。場景與能力來源各有分工。",
+   "recommendation": "保留同燈及兩件gear引用；介紹中明說照顧單友且非代受傷。勿將拆開的部件／能力／效果檔算四次創作重複。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "G05",
+   "status": "已排除",
+   "classification": "同用途不同取捨",
+   "topic": "停步索與扣足矢都拘束，但新配裝的用途不相同",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/components/fw-stayline.json"
+    },
+    "fields": "$.etymology / $.size / $.pools / $.abilities",
+    "lines": [
+     5,
+     15
+    ],
+    "sha256": "8054308931336367b16e23991987653274a2eae1f4c5b4d70b4756aafca89afb",
+    "read_level": "full-text",
+    "quote": "size2，不耗矢，短距命中仍傷4"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/components/fw-ankle-pin.json"
+    },
+    "fields": "$.etymology / $.size / $.pools / $.abilities",
+    "lines": [
+     5,
+     27
+    ],
+    "sha256": "c5bac619e3e541bc9f874b1e3334ed2ac5ce5475d1628fa8d3d879d94d9f6a1f",
+    "read_level": "full-text",
+    "quote": "size1，4矢，零傷收捕"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-stayline-use.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.effects",
+     "lines": [
+      7,
+      45
+     ],
+     "sha256": "aa3b4c31ed45aad92ea883a35973148eda5594baf1d6f056338fd40d80253536",
+     "read_level": "full-text",
+     "quote": "3AP燼8，1–2格，energy4，mx-netted"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/fw-ankle-pin-use.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.effects",
+     "lines": [
+      7,
+      38
+     ],
+     "sha256": "9b3b7ddf4e736790f9bf00227392d13f991cdc960101906c96e943f869fc73c6",
+     "read_level": "full-text",
+     "quote": "3AP一矢，1–3格，無傷，mx-netted"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/frames/wn-r3-needlefish-stay.json"
+     },
+     "fields": "$.etymology / $.defaultLoadout",
+     "lines": [
+      5,
+      47
+     ],
+     "sha256": "a8567d445890c66f5bac9380f5e8f63d401f35c2f774ae2159172b50d325f5fe",
+     "read_level": "full-text",
+     "quote": "新留潮沿用停步索與鳴刃；人類交戰後拒殺、放棄斬首加錢"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/frames/thirdblade-needlefish-ii.json"
+     },
+     "fields": "$.etymology / $.defaultLoadout",
+     "lines": [
+      5,
+      47
+     ],
+     "sha256": "9f9bf5a9349517ba865fe6ba97945372c2be4c6b541ce01551be9466b7af6e20",
+     "read_level": "full-text",
+     "quote": "前代曲射／鳴鰭／標敵，側翼護船"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/frames/wm-r7-longspear-keepsake.json"
+     },
+     "fields": "$.etymology / $.defaultLoadout",
+     "lines": [
+      5,
+      13
+     ],
+     "sha256": "a8145377f5104d938065ee7aac98c66c4e0ca45458c621af982e94c25eeacffa",
+     "read_level": "full-text",
+     "quote": "新留像補扣足矢前，先由同伴拆部位"
+    }
+   ],
+   "similarity": "同時帶capture/restraint、同施mx-netted；都被新七輪採作可換裝武器。",
+   "difference": "停步索用燼換免實體矢，但有傷害且射程短；扣足矢有限彈、無傷、射程較長。留潮是近距拘束與停火取捨，留像是損獸條件完成後收捕。",
+   "recommendation": "保留兩件與新機引用，不因同效果id合併。收捕適用性依物種條件，不能把免矢當無代價。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "S01",
+   "status": "已排除",
+   "classification": "跨批同骨架刻意變體",
+   "topic": "疊燈與燈腹過閘不是同一場景的重寫",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/species/wm-r7-folded-lamp.json"
+    },
+    "fields": "$.bodyPlan / $.abilities / $.etymology",
+    "lines": [
+     5,
+     63
+    ],
+    "sha256": "3d746ddcd7e5a1aa36e86efe26699cce971499f7bc20ffc5147497d20706e673",
+    "read_level": "full-text",
+    "quote": "同薄翼骨架；kx-wing-dive＋並翼；兩名夜巡者回船後談同住"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/scenarios/fs-01-wing-lantern.json"
+    },
+    "fields": "$.brief / $.slots.enemy / $.objectives / $.etymology",
+    "lines": [
+     5,
+     218
+    ],
+    "sha256": "7a0f8fb032884f22dfabaa4ac0db6776f0f55a7cdd134a2ae7ed3317a23ab370",
+    "read_level": "full-text",
+    "quote": "母體＋兩燈腹；玩家與盟軍守區8輪，敵存活20輪；假想試機配置"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/species/lantern-keel.json"
+     },
+     "fields": "$.bodyPlan / $.abilities / $.aiProfile",
+     "lines": [
+      5,
+      58
+     ],
+     "sha256": "11afea544acc48538f1b9c1d253f199a94d746fa9542f23b281ab16d65ee6806",
+     "read_level": "full-text",
+     "quote": "同C骨架、屬性、池、捕捉與AI；舊主招低掠落珠"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-wing-dive.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.cooldown",
+     "lines": [
+      5,
+      33
+     ],
+     "sha256": "f176b0857fbaafabe40883fc5d01a31facb34ea829f0422adc157af34132cbb9",
+     "read_level": "full-text",
+     "quote": "3AP，1–4格pierce18，CD2"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-lantern-keel-drip.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.cooldown",
+     "lines": [
+      5,
+      40
+     ],
+     "sha256": "4a754d0ecb3175c435ff7b36d0ba4622be074eae8251a29b7193c0930d71470e",
+     "read_level": "full-text",
+     "quote": "3AP，1–4格acid16，CD0"
+    }
+   ],
+   "similarity": "薄翼、燈光與堤口警戒相似；疊燈沿用燈腹的骨架、併翼及AI。",
+   "difference": "新種用穿刺主招取代連用酸擊，出現攻擊空窗；舊場景仍點名燈腹而非疊燈，目的為守橋8輪。新故事在交班後處理同住邀請，獸退是勤務背景，無守閘史實被重複宣稱。",
+   "recommendation": "保留種與試機場；不自動換場景敵種，否則酸傷與空窗會改變原關卡。領導可優先抽核本組。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "S02",
+   "status": "已排除",
+   "classification": "跨批同骨架刻意變體",
+   "topic": "針扇與砂扇掃腳共享揚砂，仍有新增單體威脅與不同視角",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/species/wn-r3-pin-fan.json"
+    },
+    "fields": "$.bodyPlan / $.abilities / $.aiProfile / $.etymology",
+    "lines": [
+     5,
+     63
+    ],
+    "sha256": "bcadf71c14091044c5c68e5a63803be040bd331aed9615e2607e7763f9461507",
+    "read_level": "full-text",
+    "quote": "D扇腹骨架；飛針＋揚砂，reaper-vanguard；目擊簿對照兩份證詞"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/scenarios/fs-01-fan-feet.json"
+    },
+    "fields": "$.brief / $.slots / $.objectives",
+    "lines": [
+     5,
+     108
+    ],
+    "sha256": "9c9ff939ebddfade93cc92f41dbe656f495faeb33c0f1d2b72fc0943043aace6",
+    "read_level": "full-text",
+    "quote": "砂扇2＋鉸蟹1；四足試機編隊；玩家eliminate，敵survive30"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/species/grit-fan.json"
+     },
+     "fields": "$.abilities / $.aiProfile",
+     "lines": [
+      41,
+      57
+     ],
+     "sha256": "491f2565a492510dd8bab6bf1d18575df9c2371e9441329bd5ef34a0d95b99f1",
+     "read_level": "full-text",
+     "quote": "只揚砂，swarm-mite"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-brinepin-prick.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.cooldown",
+     "lines": [
+      5,
+      40
+     ],
+     "sha256": "009bb52ceb1d0f4ffedb517393e8760d6e0c97f734c87c11083ec7bd21758d28",
+     "read_level": "full-text",
+     "quote": "2AP，unit1–3格pierce8，CD0"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-grit-fan-scatter.json"
+     },
+     "fields": "$.costs / $.target / $.packets / $.cooldown",
+     "lines": [
+      5,
+      41
+     ],
+     "sha256": "fc9f7bf8405caf904e804aae2f04dfeb5afc31d42b5302a26152fb5ee24adf12",
+     "read_level": "full-text",
+     "quote": "2AP，cone1–2格kinetic5，CD1"
+    }
+   ],
+   "similarity": "同D扇腹骨架、基礎屬性與AP；皆有地面扇砂。",
+   "difference": "針扇多出能打分散目標的單體穿刺，AI也換為reaper-vanguard；舊試機場只列砂扇，不承擔新針雨證詞。新敘事核心是同一隻獸不同時間的目擊誤會與數量未核，不是再寫一場掃腳試機。",
+   "recommendation": "保留；若未來加針扇試機，需另審部署與難度，不能把原砂扇場當新種已驗收。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  },
+  {
+   "id": "S03",
+   "status": "已排除",
+   "classification": "跨批同題材且正常四檔配套",
+   "topic": "鹽紗與酸光之外皆採菌撤人，不能據此合併",
+   "side_a": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/species/wl-salt-shroud.json"
+    },
+    "fields": "$.bodyPlan / $.pools / $.abilities / $.capture / $.etymology",
+    "lines": [
+     5,
+     64
+    ],
+    "sha256": "94237e0812317ba15a71d41aefea06faabfc24b7d0555d627ee5161a53313bb6",
+    "read_level": "full-text",
+    "quote": "mycel-stalk；9AP regen9；地衣縛足＋落珠；廢鹽棚撤工具後採收"
+   },
+   "side_b": {
+    "file_path": {
+     "$fmt": "${gitRoot}/content/base/scenarios/fs-02-acid-dryline.json"
+    },
+    "fields": "$.brief / $.slots.enemy / $.objectives / $.etymology",
+    "lines": [
+     5,
+     108
+    ],
+    "sha256": "34853742fcbdc4eb867805fda7fff8c8fa8bd82aeb8fcb6f53d86eae4ee659ab",
+    "read_level": "full-text",
+    "quote": "枯爾納乾道採菌人背景；燈芯毯2＋蘆網1，玩家全殲、敵survive30"
+   },
+   "support": [
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/species/reed-lace.json"
+     },
+     "fields": "$.bodyPlan / $.pools / $.abilities / $.capture",
+     "lines": [
+      5,
+      63
+     ],
+     "sha256": "4e3bfd3b0ae396733ecb77fbbfe0ff3a6206951c413a94cd2137411eb5497038",
+     "read_level": "full-text",
+     "quote": "蘆網骨架，6AP regen5，本能不增；絆步＋落珠，同harvest-only"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-root-snare.json"
+     },
+     "fields": "$.target / $.packets / $.effects",
+     "lines": [
+      8,
+      29
+     ],
+     "sha256": "3cc2e70160ddff6663032ea6ff8d9041f0e5744312facaf6ab65973143d9caa9",
+     "read_level": "full-text",
+     "quote": "1–2格kinetic8並rooted"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-reed-lace-spit.json"
+     },
+     "fields": "$.target / $.packets",
+     "lines": [
+      14,
+      29
+     ],
+     "sha256": "0f870bc523d66c22b2a98e03b82057115924398cfab67465184456cde97f321f",
+     "read_level": "full-text",
+     "quote": "1–3格acid14"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/abilities/kx-reed-lace-bind.json"
+     },
+     "fields": "$.target / $.packets / $.effects / $.cooldown",
+     "lines": [
+      14,
+      41
+     ],
+     "sha256": "37954fe42d4b4ef3001a7f96845ab843052935b467ee7a92c002e46586aef941",
+     "read_level": "full-text",
+     "quote": "1–4格零傷，kx-reed-lace-caught，CD2"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/monsters/wl-salt-shroud-c.json"
+     },
+     "fields": "$.species / $.grade",
+     "lines": [
+      2,
+      8
+     ],
+     "sha256": "3b942f42753d89c7927a336f5ab4272f8e51d433fdbe5ba03621f86a12993a12",
+     "read_level": "full-text",
+     "quote": "C個體指回鹽紗species"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/frames/wl-bio-salt-shroud.json"
+     },
+     "fields": "$.pools / $.tags / $.burden",
+     "lines": [
+      11,
+      35
+     ],
+     "sha256": "f418938d52160f9a7cc14e596c87095ac59d6b40accb5e37367d7f48f82ad19b",
+     "read_level": "full-text",
+     "quote": "本能池、burden5，但harvest-only；只是活體配套佔位"
+    },
+    {
+     "file_path": {
+      "$fmt": "${gitRoot}/content/base/frames/wl-corpse-salt-shroud.json"
+     },
+     "fields": "$.pools / $.tags / $.burden",
+     "lines": [
+      11,
+      24
+     ],
+     "sha256": "2ff099ee75d0d939e74835fa70d586a6daa9dbadb8ccffa0b51c0ecffa37ebcc",
+     "read_level": "full-text",
+     "quote": "空池、corpse、burden0，同物種屍改配套"
+    }
+   ],
+   "similarity": "濕渠、酸珠、採菌人撤離及只採收題材相似，兩種均有落珠與不可捕條件。",
+   "difference": "鹽紗換直柱骨架、較高行動池與近距有傷縛足，舊場景是蘆網及燈芯毯的乾道全殲試機，沒有宣告採到鹽紗。四檔是species、個體、活體佔位及屍改分工；活體不可捕與敘事收矢一致。",
+   "recommendation": "保留，不把無法同時保核／破核當新bug或把四檔當四個概念。採收取得與屍改實作仍留既定接線／驗收，不以此靜態審閱宣布可取得。",
+   "confidence": "高",
+   "confidence_limit": "僅對全文與靜態資料的差異有高信心；未做平衡、AI實戰、取得／市場或整合驗收。"
+  }
+ ]
+}

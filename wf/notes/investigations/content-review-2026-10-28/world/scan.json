@@ -1,0 +1,125 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-28",
+ "sources": [
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-bigfill/review-all.json",
+   "sha256": "817b13ef809a7f5910fe775229c640a4208fea9f3936a39cebf0a6146fc581ed",
+   "rows": 215
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/events/review.json",
+   "sha256": "b65caeca16aa6a25b190ff30c4769eaff02a67dcfbb128f9fab271c50b48bccb",
+   "rows": 6
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/factions/review.json",
+   "sha256": "29ed0aa7b5485cd0b1e3f7c3b5fe59a309344a5a37c1155c59d5d67686bcc8d8",
+   "rows": 6
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/mechs/review.json",
+   "sha256": "cbd94eb25ece8f82f4fa70346351720cbd45585e61f2eda9ad07a2c777c5f02f",
+   "rows": 6
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/monsters/review.json",
+   "sha256": "29f26fae456bf6564e5da6ea826df4cddb7f8b8138d197b752817a2075f402fe",
+   "rows": 4
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/places/review.json",
+   "sha256": "48fb99c72199ed090aa0ec89816c05e83252e1152bb8f1db87f974452a5ad577",
+   "rows": 6
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-more-1027/review.json",
+   "sha256": "85222bc8d3c249a2f918c1d599775bc54b09542a19ea3b0f576617c3fabed2d5",
+   "rows": 24
+  },
+  {
+   "file": "wf/workflows/dispatch/handoffs/lead-world-next-1027/review.json",
+   "sha256": "27d6140e9f16431ff7c246d3647ad9b82a873be8bd9b0995dffae7894ab138eb",
+   "rows": 24
+  }
+ ],
+ "revision": "013d51c3",
+ "baseline_revisions": [
+  "b0a5ebef",
+  "8a577dcf"
+ ],
+ "columns": [
+  "metric",
+  "value",
+  "scope"
+ ],
+ "rows": [
+  {
+   "metric": "入口",
+   "value": {
+    "bigfill": 181,
+    "seven": 64
+   },
+   "scope": "245個語義入口；不把配套重算概念"
+  },
+  {
+   "metric": "映射",
+   "value": {
+    "unique_files": 287,
+    "missing": 0
+   },
+   "scope": "來源content/後綴對應現行主樹"
+  },
+  {
+   "metric": "索引檔案",
+   "value": 2819,
+   "scope": "content/base與content/lore JSON；機械解析非全文審閱"
+  },
+  {
+   "metric": "新檔同類精確同名",
+   "value": [],
+   "scope": "同id kind；species與monster配套分開"
+  },
+  {
+   "metric": "新檔id撞名",
+   "value": [],
+   "scope": "解析到id的字典"
+  },
+  {
+   "metric": "文字近似方法",
+   "value": {
+    "fields": [
+     "body",
+     "summary"
+    ],
+    "normalization": "移除markdown連結及非漢字後取相鄰二字集合",
+    "score": "Jaccard交集/聯集",
+    "highest_new_lore_score": 0.060781476121562955
+   },
+   "scope": "非人物lore；只作候選排序，無自動判罪門檻"
+  },
+  {
+   "metric": "交付一致性核對（REPORT前）",
+   "value": {
+    "entries": 245,
+    "candidate_groups": 16,
+    "mapped_files": 287,
+    "missing": 0,
+    "coverage_files": 292,
+    "read_levels": {
+     "full_text": 48,
+     "mechanical_index": 244
+    },
+    "evidence_endpoints_full": true,
+    "all_coverage_sha256_match": true,
+    "field_line_locations_match": true,
+    "existing_README_links_exist": true,
+    "planned_final_file": "REPORT.md",
+    "bytes_before_REPORT": 227885,
+    "capacity_gate": 500000
+   },
+   "scope": "只核分區產物、檔案存在/指紋、字段行號與件數容量；REPORT於終局投遞前建立，非遊戲檢查"
+  }
+ ]
+}

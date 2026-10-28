@@ -1,0 +1,887 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-28",
+ "candidate_limit": 50,
+ "confirmed_new_issues": 0,
+ "pending_new_decisions": 0,
+ "prior_baseline": "10/27 P01/P02 and old C01-C16 excluded from this increment; old content candidates not reopened",
+ "columns": [
+  "id",
+  "status",
+  "classification",
+  "confidence",
+  "a",
+  "b",
+  "similarity",
+  "difference",
+  "recommendation",
+  "origin"
+ ],
+ "rows": [
+  {
+   "id": "PE01",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-amalia-quispe.json"
+    },
+    "id": "character/wl-amalia-quispe",
+    "name": "阿瑪莉亞・基斯佩",
+    "sha256": "599aa9a064179c63efa538658812fdce694951f8b76a0bfd9888f2c7beaeff4f",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "叫學徒再做一遍",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/nayra-sullca.json"
+    },
+    "id": "character/nayra-sullca",
+    "name": "奈拉・蘇爾卡",
+    "sha256": "ac618e3fcf0dba817ab5f8426e065e721eeeb47f71825b17c389daf98df2ebdc",
+    "read_level": "full",
+    "field": "body",
+    "line": 22,
+    "anchor": "不是這一枚",
+    "all_fields_read": true
+   },
+   "similarity": "基多工務；成年人是否肯承認不會。",
+   "difference": "阿瑪莉亞是2066生退役母親，摘兒子店招舊像、向學徒重學扣座；奈拉是2094生未上機學徒，指出救援接件錯誤後仍直接舉手。",
+   "recommendation": "保留兩人；學習、年齡、家庭權力與救援功能均不同。",
+   "origin": "wl × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE02",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-choi-eunsol.json"
+    },
+    "id": "character/wl-choi-eunsol",
+    "name": "崔恩率",
+    "sha256": "41efc1f8b1ad8dabe264eb5fdcc234e10c2d96891d59c2dddbb947880ad0c48c",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "替那條空褲管描了金邊",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-bae-hyeonju.json"
+    },
+    "id": "character/wm-r4-bae-hyeonju",
+    "name": "裴賢珠",
+    "sha256": "692b1980db1b474ba0f49af6da3768fe60715c0552b06e0604d79b0bd672db81",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "下一張海報能不能",
+    "all_fields_read": true
+   },
+   "similarity": "同在釜山民間舞臺爭取觀眾，涉及海報與身分。",
+   "difference": "崔擅用別人的殘肢售票，學員退出後她自行頂場；裴用自己的布獸技藝爭演出與署名，角色紅了而臉仍被遮。",
+   "recommendation": "保留；不能把同地表演都判為利用傷者，也不推定兩人同戲班。",
+   "origin": "wl × wm-r4；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE03",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-marta-riedler.json"
+    },
+    "id": "character/wl-marta-riedler",
+    "name": "瑪爾塔・里德爾",
+    "sha256": "da03652976162dfae6b8bc92ab50eab72755cd95d94452de4b72532335dd7220",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "捷徑是自己吹的",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/bruno-azzari.json"
+    },
+    "id": "character/bruno-azzari",
+    "name": "布魯諾・阿扎里",
+    "sha256": "a5e2fa42038b2e13595e13b620f903b8646bcf215706b01b2ac0cc183079d961",
+    "read_level": "full",
+    "field": "body",
+    "line": 22,
+    "anchor": "練習機靠上崖壁",
+    "all_fields_read": true
+   },
+   "similarity": "阿爾卑斯山區、內海獵場、碎石坡與勘測者退路。",
+   "difference": "瑪爾塔是領工錢的嚮導，誇大捷徑後撤回賞錢並步行繞路；布魯諾是新手駕駛，塌石時靠機甲抵崖讓勘測者撤走。",
+   "recommendation": "保留；地理與職業生態共用，具體危機與主要行動不同。",
+   "origin": "wl × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE04",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-mateo-yupanqui.json"
+    },
+    "id": "character/wl-mateo-yupanqui",
+    "name": "馬特奧・尤潘基",
+    "sha256": "611dd13468b7c19de4c63ae0003275a914902a440cf77deae3f04c63c246a5ea",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "請孩子再綁一次",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-lin-cangxu.json"
+    },
+    "id": "character/wn-r2-lin-cangxu",
+    "name": "林藏序",
+    "sha256": "eb40837f2902c06b1f3203bdbb28617f76a0e1ec26cb5463c819568a3d9ec0c9",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "沒有用一件替另一件作證",
+    "all_fields_read": true
+   },
+   "similarity": "實物圖像與權威版本遭他人挑戰；作者保留自負。",
+   "difference": "馬特奧的石屋課圖不適用蘆葦村，漏雨後向學生學綁繩；林是有償模型匠，兩種交火姿勢互不作證，仍同時收費。",
+   "recommendation": "保留；教學適用性與戰史委託的證據爭議不同。",
+   "origin": "wl × wn-r2；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE05",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-nico-bellini.json"
+    },
+    "id": "character/wl-nico-bellini",
+    "name": "尼科・貝利尼",
+    "sha256": "c1acf0c03a7876da3f82b8a0c84566d5b84240c34e42e545791811e60141230b",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "更合自己的手勢",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/tessa-rinaldi.json"
+    },
+    "id": "character/tessa-rinaldi",
+    "name": "泰莎・里納爾迪",
+    "sha256": "8ba1d23315416bb0ea66c8e26bcc9b4df0d64dfae8f243c349e6b217bdce4516",
+    "read_level": "full",
+    "field": "body",
+    "line": 22,
+    "anchor": "自己的補片按上去",
+    "all_fields_read": true
+   },
+   "similarity": "熱那亞工坊手藝，工人對自身本事的自負。",
+   "difference": "尼科磨刃但主要行動是輸投環後自製有利手勢的環再押酒錢；泰莎是外派技師，以補片修回肩甲，已到新加坡接活。",
+   "recommendation": "保留；競技小心機與修理救機沒有事蹟衝突。",
+   "origin": "wl × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE06",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-park-doyun.json"
+    },
+    "id": "character/wl-park-doyun",
+    "name": "朴度允",
+    "sha256": "e671fab76a899a750633b6e1c532e8f48eed5fdefa68db6054b63906587ff0be",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "布球鎖進工具櫃",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/han-bora.json"
+    },
+    "id": "character/han-bora",
+    "name": "韓寶羅",
+    "sha256": "a7d40b036b405f530b979026a6c7307767f3be9b25628ee5fa0ef160a87129a5",
+    "read_level": "full",
+    "field": "body",
+    "line": 24,
+    "anchor": "把鼓交還",
+    "all_fields_read": true
+   },
+   "similarity": "同在慶州古陵外接觸普通來客。",
+   "difference": "朴是草坡雜役，扣球抵香架損失並鎖球；韓是修鼓人，骸片光下把鼓交還喪親訪客，結構關係連金河娜。",
+   "recommendation": "保留；同地生活圈不等於同一角色，朴文無聽見裏側或改動處容的說法。",
+   "origin": "wl × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE07",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-tang-wanling.json"
+    },
+    "id": "character/wn-r2-tang-wanling",
+    "name": "唐婉綾",
+    "sha256": "e7ef5eb5d326117aa97fc24f2d5559658bedd9e096318e598aac9d0e0c1836ae",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "兩份價單分開",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/eira-vey.json"
+    },
+    "id": "character/eira-vey",
+    "name": "艾拉・維伊",
+    "sha256": "72d9557aa63bcac5e9267313c7ceab4702d78b78b9aa0da82458a4a159789136",
+    "read_level": "full",
+    "field": "body",
+    "line": 25,
+    "anchor": "沒有家族的繼承權",
+    "all_fields_read": true
+   },
+   "similarity": "月面富戶廳堂、侍役與有限職權。",
+   "difference": "唐是婚宴席次承攬者，拆椅、重訂價單並挪配偶送花線；艾拉是領薪管事，實際托住滑幕救同伴且無放款補償權。",
+   "recommendation": "保留；一為婚姻席次與生意衝突，一為受僱者救工。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE08",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-lin-cangxu.json"
+    },
+    "id": "character/wn-r2-lin-cangxu",
+    "name": "林藏序",
+    "sha256": "eb40837f2902c06b1f3203bdbb28617f76a0e1ec26cb5463c819568a3d9ec0c9",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "底下都留自己的署名",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/seo-haegyeom.json"
+    },
+    "id": "character/seo-haegyeom",
+    "name": "徐海謙",
+    "sha256": "2c2b0c6c036b928bfcc08d92074f857eb083759a7583eb0d7630476b5bf17ed7",
+    "read_level": "full",
+    "field": "body",
+    "line": 10,
+    "anchor": "姓名牌一塊塊掛到石肩",
+    "all_fields_read": true
+   },
+   "similarity": "戰爭如何被塑成可看的英雄姿態。",
+   "difference": "林承接兩種小景並置售賣，不決斷交火真相；徐是守城當事人，在自己的像上掛同伴姓名，仍被換班期待綁住。",
+   "recommendation": "保留；作者交易與當事人記憶／輪守不同，非同一雕像事件。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE09",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-zawadi-mbeki.json"
+    },
+    "id": "character/wn-r2-zawadi-mbeki",
+    "name": "札瓦迪・姆貝基",
+    "sha256": "90fbaa25f2e482eaf6c5c2ca113a7aa5317df69640cb8b355f2268a9dffb0165",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "量衣時先問對方想露多少",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-choi-eunsol.json"
+    },
+    "id": "character/wl-choi-eunsol",
+    "name": "崔恩率",
+    "sha256": "41efc1f8b1ad8dabe264eb5fdcc234e10c2d96891d59c2dddbb947880ad0c48c",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "為何不先問他",
+    "all_fields_read": true
+   },
+   "similarity": "替他人身體做可見形象、個人審美與收入。",
+   "difference": "札瓦迪成稿先問角鱗露多少，以客人端碗共同試裁，最後爭衣樣獨用權；崔擅用傷腿宣傳，學員抗議退出。札瓦迪舊提案的宣傳抗議動作已被改掉。",
+   "recommendation": "保留現稿；不拿已退回創作方案當現行重複。",
+   "origin": "wn-r2 × wl；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE10",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-adjoa-senyo.json"
+    },
+    "id": "character/wn-r2-adjoa-senyo",
+    "name": "阿喬亞・塞尼奧",
+    "sha256": "232b7d3d86567e7783e1cb104fa335eb95f1f46c3f25baf791060e32d3d324aa",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "寫下自己當年的姓名與筆跡",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/meera-naik.json"
+    },
+    "id": "character/meera-naik",
+    "name": "米拉・奈克",
+    "sha256": "d76b9c3f98dea18b9f82550f77c0bba1413eea0544645ea88698c5ccf6464235",
+    "read_level": "full",
+    "field": "body",
+    "line": 25,
+    "anchor": "若說話的是機魂",
+    "all_fields_read": true
+   },
+   "similarity": "姓名名冊、自己的責任或信念使他人受損，結尾未和解。",
+   "difference": "阿喬亞在換俘桌被叫破假名，交筆跡但不能證實失蹤者去向；米拉記領湯者名字，因教義拒鐵偶糧與機魂名字，仍在施粥。",
+   "recommendation": "保留；名冊只是共同物件，換俘責任與施粥排斥的行動鏈不同。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE11",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-elsie-morrow.json"
+    },
+    "id": "character/wn-r2-elsie-morrow",
+    "name": "艾爾西・莫羅",
+    "sha256": "4853fc2497d8de33348e0357033611396a5a88ac8f20f119308b913d48414eb8",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "兩邊都有她的落款",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/zhou-suyan.json"
+    },
+    "id": "character/zhou-suyan",
+    "name": "周素硯",
+    "sha256": "ae13c5f653f2c0b82ad582ea707cf33cbdb0ee78420b8b4d7ad98d1a0cf5a8b6",
+    "read_level": "full",
+    "field": "body",
+    "line": 10,
+    "anchor": "擦去已被蝕吞掉的一段",
+    "all_fields_read": true
+   },
+   "similarity": "地圖需要面對現地、舊線不能當最終答案。",
+   "difference": "艾爾西雙圖皆為本人畫，為親族偏私封路，在田界重走但無裁地權；周是撤退導航，擦去被蝕吞路、示意人群撤離。",
+   "recommendation": "保留；日常田權與獸災撤離沒有相同人物或功勞。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE12",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-maia-raukura.json"
+    },
+    "id": "character/wn-r2-maia-raukura",
+    "name": "瑪伊雅・勞庫拉",
+    "sha256": "e09cc9eadd1ebfc02baba74dd758126130a1e000e48f66288dbddaa85e69bae1",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "打撈約壓在畫旁",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/shen-yanqiao.json"
+    },
+    "id": "character/shen-yanqiao",
+    "name": "沈雁橋",
+    "sha256": "8728b7901311c53c8204e821066f1a85c62dd7003931843f853235e50348a258",
+    "read_level": "full",
+    "field": "body",
+    "line": 11,
+    "anchor": "只簽認親眼見到的原傷",
+    "all_fields_read": true
+   },
+   "similarity": "物件傷痕、來歷、費用與自己能證明的界線。",
+   "difference": "瑪伊雅按打撈約保有普通船鐘，與後人爭歸屬；沈為古代殘片刮漆辨貨，只認原傷而不保證認主或座標。",
+   "recommendation": "保留；鐘的私有／共同保管與殘片鑑定不等價。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE13",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-sandro-veiga.json"
+    },
+    "id": "character/wm-r4-sandro-veiga",
+    "name": "桑德羅・維加",
+    "sha256": "902cf3c94ec75a7c50d0e6e7da919f1498c8b73024a35a0f0396cf42a54c04c3",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "也要照原來那件評",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/kweku-danquah.json"
+    },
+    "id": "character/kweku-danquah",
+    "name": "奎庫・丹夸",
+    "sha256": "0035c77e52ce5f4519a95502e68fc8d0ebdbf55d931967536c609514523f11d0",
+    "read_level": "full",
+    "field": "body",
+    "line": 14,
+    "anchor": "傷員衝進廚棚",
+    "all_fields_read": true
+   },
+   "similarity": "阿克拉船廚、整體食物拆分與食客。",
+   "difference": "桑德羅主動參加甜點造型評比，作品塌掉仍按原件受評、散點另賣；奎庫戰時供收容所及傷員熱食，現到吉大港候雇。",
+   "recommendation": "保留；成名欲與供餐救傷目的不同，不以分食物直接判重。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE14",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-sandro-veiga.json"
+    },
+    "id": "character/wm-r4-sandro-veiga",
+    "name": "桑德羅・維加",
+    "sha256": "902cf3c94ec75a7c50d0e6e7da919f1498c8b73024a35a0f0396cf42a54c04c3",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "稱了幾包脆餅與糖片",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/anja-vestli.json"
+    },
+    "id": "character/anja-vestli",
+    "name": "安雅・韋斯特利",
+    "sha256": "856d2ad80d64f0cc21b0ca0431e3832bbac80dc02e6ec8bfcf69acca8028b5e2",
+    "read_level": "full",
+    "field": "body",
+    "line": 26,
+    "anchor": "讓排在最末的人先咬一口",
+    "all_fields_read": true
+   },
+   "similarity": "船廚將一整份食物分給多人。",
+   "difference": "桑德羅把碎甜船做商品並繼續競技造型；安雅在2090撤站末船撕最後麵餅讓末位先吃，兼醫護且無靠核心不老。",
+   "recommendation": "保留；有償競賽失敗後的銷售不是撤站配給救援。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE15",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-mina-voss.json"
+    },
+    "id": "character/wm-r4-mina-voss",
+    "name": "米娜・沃斯",
+    "sha256": "7f42f1e71cc314e34ec1a54d72ab8b1d95eb60fdef9ea09e57aa4706d82eafed",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "已知道還剩幾晚",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-tang-wanling.json"
+    },
+    "id": "character/wn-r2-tang-wanling",
+    "name": "唐婉綾",
+    "sha256": "e7ef5eb5d326117aa97fc24f2d5559658bedd9e096318e598aac9d0e0c1836ae",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "圖上的送花線挪開",
+    "all_fields_read": true
+   },
+   "similarity": "月面伴侶、椅子安排、望地長廊；均保留未滿足。",
+   "difference": "米娜想與難得渡月的伴侶同看花期，返程已知且花晚開；唐處理他人聯姻席圖，自己的配偶選側門使她改工作線。",
+   "recommendation": "保留；親密相聚錯期與職業控制／個人選席不同，無隱瞞傷勢或同一婚宴。",
+   "origin": "wm-r4 × wn-r2；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE16",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-noura-sayegh.json"
+    },
+    "id": "character/wm-r4-noura-sayegh",
+    "name": "努拉・薩耶格",
+    "sha256": "eeff3ddd0d8b04eebb5d210b42892fd84ac5155458fe500a5c10b059e557dfa3",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "下一道題寫在背面",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/bruno-azzari.json"
+    },
+    "id": "character/bruno-azzari",
+    "name": "布魯諾・阿扎里",
+    "sha256": "a5e2fa42038b2e13595e13b620f903b8646bcf215706b01b2ac0cc183079d961",
+    "read_level": "full",
+    "field": "body",
+    "line": 22,
+    "anchor": "那道光留在記憶裡",
+    "all_fields_read": true
+   },
+   "similarity": "好奇、找線索，結局未得到完整答案。",
+   "difference": "努拉是普通舊書攤主，改公開謎卡終點，錯過對手留續題；布魯諾面對遺跡亮骸片，先救人，辭職試駕守備。",
+   "recommendation": "保留；匿名遊戲與古墟未知不是同一神祕事件，也沒有解答裏側。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE17",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-inez-duarte.json"
+    },
+    "id": "character/wm-r4-inez-duarte",
+    "name": "伊內絲・杜阿爾特",
+    "sha256": "c1a2da6a6f769dd18e706821dbce4a159a6b0f98e1f81643c790da40a0e5b7c8",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "仍沒有自己的船",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/juma-kiprop.json"
+    },
+    "id": "character/juma-kiprop",
+    "name": "朱瑪・基普羅普",
+    "sha256": "5f3f434dc5d6c031c75b315d9c72a3d4ba0f3b9aae00286dcc37f871cf910329",
+    "read_level": "full",
+    "field": "body",
+    "line": 11,
+    "anchor": "騎手後來聚成遠牧",
+    "all_fields_read": true
+   },
+   "similarity": "想選同伴與航向、獵團及船的組織。",
+   "difference": "伊內絲尚無船、以普通空架試合作且只有一修工約下回；朱瑪2103出洋後已是軛騎團長，負責拘束艙與匯款。",
+   "recommendation": "保留；籌組野心與既成獵團營運是不同階段，無新團已成立的宣稱。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE18",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-inez-duarte.json"
+    },
+    "id": "character/wm-r4-inez-duarte",
+    "name": "伊內絲・杜阿爾特",
+    "sha256": "c1a2da6a6f769dd18e706821dbce4a159a6b0f98e1f81643c790da40a0e5b7c8",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "一個修工的位置",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/molly-van-den-berg.json"
+    },
+    "id": "character/molly-van-den-berg",
+    "name": "茉莉・范・德・貝格",
+    "sha256": "1972fef821866d3481b31173784f798c2a81d4453b02c34ac21a3e25b84eff87",
+    "read_level": "full",
+    "field": "body",
+    "line": 15,
+    "anchor": "到點必撤",
+    "all_fields_read": true
+   },
+   "similarity": "港口團隊、分工、船與團長的期待。",
+   "difference": "伊內絲借場演練被候選人分派搬架，未成團；茉莉已有約25機與鹽婆，改嚴合約且到一小時必撤。",
+   "recommendation": "保留；失衡的小召集與成熟獵團規矩不重複，不重開已修一小時規矩。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE19",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-song-jaeyun.json"
+    },
+    "id": "character/wm-r4-song-jaeyun",
+    "name": "宋在潤",
+    "sha256": "2be3099e0f06538ad5eefebfffc967584488ceddf6178b412ddef57f344789cb",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "父親已把另一根釣竿靠在門邊",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-amalia-quispe.json"
+    },
+    "id": "character/wl-amalia-quispe",
+    "name": "阿瑪莉亞・基斯佩",
+    "sha256": "599aa9a064179c63efa538658812fdce694951f8b76a0bfd9888f2c7beaeff4f",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "工具盒推回桌角",
+    "all_fields_read": true
+   },
+   "similarity": "成年子女與父母的控制、日常手上技藝。",
+   "difference": "宋是民船領航想獨釣，父親跟去雙方暗比並空桶回家；阿瑪莉亞是退役母親摘舊像、到兒子店重學扣座，仍擺正工具盒。",
+   "recommendation": "保留；視角、職業、主要欲望與結果不同，父子未被寫成母子換名。",
+   "origin": "wm-r4 × wl；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE20",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wm-r4-song-jaeyun.json"
+    },
+    "id": "character/wm-r4-song-jaeyun",
+    "name": "宋在潤",
+    "sha256": "2be3099e0f06538ad5eefebfffc967584488ceddf6178b412ddef57f344789cb",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "中午兩隻桶都空",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/seo-haegyeom.json"
+    },
+    "id": "character/seo-haegyeom",
+    "name": "徐海謙",
+    "sha256": "2c2b0c6c036b928bfcc08d92074f857eb083759a7583eb0d7630476b5bf17ed7",
+    "read_level": "full",
+    "field": "body",
+    "line": 10,
+    "anchor": "休假紙還沒送出去",
+    "all_fields_read": true
+   },
+   "similarity": "仁川工作者想休假，日常責任妨礙私人時間。",
+   "difference": "宋已休假且和父親釣魚，沒有戰鬥或核心履歷；徐是現役守備領隊，假紙未送、仍查紀念像姓名牌。",
+   "recommendation": "保留；一為家庭陪伴與暗競賽，一為公共英雄期待，無搶同場功勞。",
+   "origin": "wm-r4 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE21",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-adjoa-senyo.json"
+    },
+    "id": "character/wn-r2-adjoa-senyo",
+    "name": "阿喬亞・塞尼奧",
+    "sha256": "232b7d3d86567e7783e1cb104fa335eb95f1f46c3f25baf791060e32d3d324aa",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "改由家屬逐個上前辨認",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/sahen-darim.json"
+    },
+    "id": "character/sahen-darim",
+    "name": "薩赫恩・達里姆",
+    "sha256": "eb7fae10ce1946f60dfc0a3f95f06fc5169990f3f56539e259be6c06ad9794d6",
+    "read_level": "full",
+    "field": "body",
+    "line": 11,
+    "anchor": "仍不原諒炸橋",
+    "all_fields_read": true
+   },
+   "similarity": "戰爭之後的交接、受害者要求與未原諒的立場。",
+   "difference": "阿喬亞需對錯列死者與不追查負責，俘虜由家屬當面辨認；薩赫恩是斷橋倖存者，載兩岸傷員但留回程空船位且不原諒炸橋。",
+   "recommendation": "保留；翻譯責任與渡船糧傷取捨不同，沒有把新短約改成城邦外交史。",
+   "origin": "wn-r2 × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE22",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wl-nico-bellini.json"
+    },
+    "id": "character/wl-nico-bellini",
+    "name": "尼科・貝利尼",
+    "sha256": "c1acf0c03a7876da3f82b8a0c84566d5b84240c34e42e545791811e60141230b",
+    "read_level": "full",
+    "field": "body",
+    "line": 18,
+    "anchor": "自己的酒錢壓住布角",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/marta-bellini.json"
+    },
+    "id": "character/marta-bellini",
+    "name": "瑪塔・貝里尼",
+    "sha256": "47ced19be907d681d5af93ba612c4e22b16682a0d19b233dbba118bcf7fb120b",
+    "read_level": "full",
+    "field": "summary",
+    "line": 11,
+    "anchor": "沒有替港城免帳的權力",
+    "all_fields_read": true
+   },
+   "similarity": "熱那亞工坊、相同Bellini姓氏，金屬手藝。",
+   "difference": "尼科2080生磨刃工，投環吃敗仗後磨新環；瑪塔2061生受雇總匠，核款核印出貨，文中僅明示自己與雇主無血親。",
+   "recommendation": "保留；姓名、年齡、職務與主要行動均不同，不從同姓推定親屬或重複。",
+   "origin": "wl × 舊批或既有人物；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE23",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-elsie-morrow.json"
+    },
+    "id": "character/wn-r2-elsie-morrow",
+    "name": "艾爾西・莫羅",
+    "sha256": "4853fc2497d8de33348e0357033611396a5a88ac8f20f119308b913d48414eb8",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "繩尺還橫在門底",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-maia-raukura.json"
+    },
+    "id": "character/wn-r2-maia-raukura",
+    "name": "瑪伊雅・勞庫拉",
+    "sha256": "e09cc9eadd1ebfc02baba74dd758126130a1e000e48f66288dbddaa85e69bae1",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "鐘留在岸上",
+    "all_fields_read": true
+   },
+   "similarity": "爭議物的兩種來歷／文件、本人有偏向，無自動返還或和解。",
+   "difference": "艾爾西持本人兩版田界圖，涉及共用步道與親族新門；瑪伊雅持有效打撈約與後人舊畫，爭一口可敲的鐘，願共同保管而不移交。",
+   "recommendation": "保留；共用權與私人遺物、現地重測與共同敲鐘的行動鏈可辨。",
+   "origin": "wn-r2 × wn-r2；本輪現行原檔全文判斷"
+  },
+  {
+   "id": "PE24",
+   "status": "已排除",
+   "classification": "不同人物／主行動不同",
+   "confidence": "高",
+   "a": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-tang-wanling.json"
+    },
+    "id": "character/wn-r2-tang-wanling",
+    "name": "唐婉綾",
+    "sha256": "e7ef5eb5d326117aa97fc24f2d5559658bedd9e096318e598aac9d0e0c1836ae",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "桌旗倒已熨得筆直",
+    "all_fields_read": true
+   },
+   "b": {
+    "content_path": {
+     "$fmt": "${gitRoot}/content/lore/characters/wn-r2-lin-cangxu.json"
+    },
+    "id": "character/wn-r2-lin-cangxu",
+    "name": "林藏序",
+    "sha256": "eb40837f2902c06b1f3203bdbb28617f76a0e1ec26cb5463c819568a3d9ec0c9",
+    "read_level": "full",
+    "field": "body",
+    "line": 12,
+    "anchor": "兩張桌上投下不同的影子",
+    "all_fields_read": true
+   },
+   "similarity": "最高二字集合相似候選：月面有償手藝、兩份安排／展桌、顧客爭議。",
+   "difference": "唐拆婚宴連座保留本人選席，主要衝突是聯姻外觀與同意；林不刪任一款戰史小景，衝突是互異見聞與商業作者自負。",
+   "recommendation": "保留；共享群像基調及付費未解的結構，具體情境與主行動不同。",
+   "origin": "wn-r2 × wn-r2；本輪現行原檔全文判斷"
+  }
+ ]
+}

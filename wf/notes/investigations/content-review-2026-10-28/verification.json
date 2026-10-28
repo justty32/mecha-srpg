@@ -1,0 +1,79 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "criterion",
+  "status",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "criterion": "1",
+   "status": "pass",
+   "evidence": {
+    "entries": 708,
+    "owned_files": 1046,
+    "coverage_unique": 1236,
+    "full_unique": 126,
+    "owned_full": 95,
+    "new_full_files": 61,
+    "new_concepts_some_full": 52,
+    "candidate_records": 48,
+    "unique_pairs": 46,
+    "overlap": [
+     [
+      "gear-scen:G02",
+      "world:W08"
+     ],
+     [
+      "gear-scen:G04",
+      "world:W09"
+     ]
+    ],
+    "partitions": {
+     "people": {
+      "rows": 663,
+      "read_levels": {
+       "full": 35,
+       "mechanical": 628
+      },
+      "evidence": 24
+     },
+     "gear-scen": {
+      "rows": 346,
+      "read_levels": {
+       "mechanical-index": 292,
+       "full-text": 54
+      },
+      "evidence": 8
+     },
+     "world": {
+      "rows": 292,
+      "read_levels": {
+       "full_text": 48,
+       "mechanical_index": 244
+      },
+      "evidence": 16
+     }
+    },
+    "errors": []
+   }
+  },
+  {
+   "criterion": "2",
+   "status": "pass",
+   "evidence": "高信心新增問題0；領導全文讀PE01/G01/W01兩端及直接配套，支持排除，見leader-checks.json。"
+  },
+  {
+   "criterion": "3",
+   "status": "pass",
+   "evidence": "三線DONE及codex exit0，無工人殘留；git diff --check為0，git範圍核對只見授權本輪檔，原始log不stage。"
+  },
+  {
+   "criterion": "4",
+   "status": "full-run-failed; new-links-fixed",
+   "evidence": "全庫wf-lint --strict固定一次exit1：broken12＝既有legacy2＋本輪摘錄wiki連結10，其餘計數0。本輪10已改來源檔連結，限定13份本輪wf-table檢查broken0；未重跑全庫，不宣稱strict通過。原始輸出在lead附件wf-lint.txt。"
+  }
+ ]
+}

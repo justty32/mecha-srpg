@@ -1,0 +1,977 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-10-28",
+ "counts": {
+  "confirmed": 0,
+  "pending_decision": 0,
+  "excluded": 16
+ },
+ "limits": "排除僅對這組候選；沒有全庫審完、動態驗收或歷史修復重驗的含義。",
+ "excerpt_display": "摘錄內遊戲wiki的place/id連結已轉為相對來源JSON檔案連結，文字/字段/行號與原檔SHA不改；原始摘錄仍可依原檔核對。",
+ "columns": [
+  "id",
+  "status",
+  "kind",
+  "confidence",
+  "left_path",
+  "left_sha256",
+  "left_fields",
+  "right_path",
+  "right_sha256",
+  "right_fields",
+  "similarity",
+  "difference",
+  "recommendation",
+  "support",
+  "intent_source"
+ ],
+ "rows": [
+  {
+   "id": "W01",
+   "status": "已排除",
+   "kind": "正常配套",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/wn-r2-empty-crown-circle.json"
+   },
+   "left_sha256": "9e38350061b52d8ebe7a64d6e0fc3b9a57cdbbfb1295651c45f5728ea8b555f3",
+   "left_fields": [
+    {
+     "field": "$.scale",
+     "line": 8,
+     "excerpt": "靜海住宅穹頂幾個老家族後輩組成的宴集小社，沒有兵權或家產支配權"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "把家徽鎖進櫃子的月面家族後輩，用無姓氏的宴會反叛長輩，仍坐著家財買來的椅子。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "空冠社借宴廳那晚，來客把家徽放進玻璃櫃，領走只寫名字的席卡。地球懸在窗外，像一枚沒有人肯摘下的徽章。社眾碰杯說：「進這道門，先把家徽放下。」他們有的是內海諸家的後輩，有的只是與老家族同住一條長廊；社名裡的冠是笑話，並非每家祖上都有爵位。\n\n後輩想在宴上不論姓氏"
+    },
+    {
+     "field": "$.relations",
+     "line": 15,
+     "excerpt": "[{\"faction\": \"faction/inner-sea-houses\", \"stance\": \"緊張\", \"note\": \"部分後輩反對家族席次，仍靠各家允許借廳與支出，並非全體退銜。\"}, {\"faction\": \"faction/dome-households\", \"stance\": \""
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/dome-households.json"
+   },
+   "right_sha256": "c3c2276a209881bbb03d48d95cd40de97cf7a4e2742459247962bffb55a52f61",
+   "right_fields": [
+    {
+     "field": "$.scale",
+     "line": 5,
+     "excerpt": "三股匿名資本的月面住戶群像，沒有共同首領"
+    },
+    {
+     "field": "$.summary",
+     "line": 32,
+     "excerpt": "同一顆地球照著各家的舞廳，主人隔窗舉手，管家替他們把門打開。"
+    },
+    {
+     "field": "$.body",
+     "line": 33,
+     "excerpt": "## 每一道窗裡的地球\n相鄰穹頂的舞廳一齊亮起，藍色地球映在每一道窗裡。有人入廳後始終背著窗，有人整夜要窗前留空；主人隔著長廊舉手，受僱管事便去把門打開。搬景的人從側門退下，鏡面還留著他們走過的倒影。\n\n## 各家的錢\n人們把這些住戶合稱穹頂住戶，裡面有歐洲老"
+    }
+   ],
+   "similarity": "月面家族、宴廳、受僱管事與金錢各歸各家；新對bigfill文字排序最高0.0420。",
+   "difference": "穹頂住戶是三股資本的匿名群像；空冠社是少數後輩借廳聚會，收桌爭執呈現反叛仍依賴家財。明示不代表所有住戶、沒有家產支配權，沒有新增統一領導。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W02",
+   "status": "已排除",
+   "kind": "正常配套",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/places/wm-r5-nostos-gift-table.json"
+   },
+   "left_sha256": "50870068b4e2ae162b4637293b01d25ce93de746154c170c64052f5c4065da60",
+   "left_fields": [
+    {
+     "field": "$.region",
+     "line": 7,
+     "excerpt": "望鄉號既有乘客艙角落"
+    },
+    {
+     "field": "$.world",
+     "line": 9,
+     "excerpt": "orbit"
+    },
+    {
+     "field": "$.status2108",
+     "line": 11,
+     "excerpt": "既有乘客艙的小桌仍供臨時換禮交談，通道需用或談散時收起。"
+    },
+    {
+     "field": "$.body",
+     "line": 15,
+     "excerpt": "## 手裡換來的禮物\n換禮角只佔[望鄉號](../../../../../content/lore/places/ferry-nostos.json)既有乘客艙的一張小桌。桌旁有人攤開包布，露出木船、飾鍊與一路護著的普通伴手禮，談得投緣便交換。行李挪在各自腳邊，通道要用時，小桌先收；沒談完的兩人就把東西拿回手裡，另找空隙接著聊"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/places/ferry-nostos.json"
+   },
+   "right_sha256": "551ec1c2213108064ca645ab6806934c46165aea736c3f8a909e9739d22b0c48",
+   "right_fields": [
+    {
+     "field": "$.kind",
+     "line": 7,
+     "excerpt": "船"
+    },
+    {
+     "field": "$.status2108",
+     "line": 8,
+     "excerpt": "現役定班船，母港靜海"
+    },
+    {
+     "field": "$.body",
+     "line": 19,
+     "excerpt": "## 地貌與氣味\n赤道港的踏板收起時，望鄉號拖出一條長光尾。港邊的吊臂縮成細線，星哨與墳帶從窗外掠過；乘客貼著窗，看地球一點點退遠，月亮一點點填滿視野。窄艙裡有舊座墊與密封衣的氣味，沒有人肯先把窗讓出來。\n\n## 誰在這裡\n它是塞勒涅現役渡月船中的一艘，母港在"
+    }
+   ],
+   "similarity": "同一望鄉號、弦月班船、三天航程。",
+   "difference": "母檔描述船班、分艙與拒載；換禮角是既有乘客艙可收的小桌，情節為返鄉禮物換到自己捨不得送。未增新船、新航路或取消拘束艙禁令。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W03",
+   "status": "已排除",
+   "kind": "詞彙候選排除",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/places/wm-r5-sendai-rain-drum.json"
+   },
+   "left_sha256": "d543386fd3d33837c68e994a627f98fcd6fdef8550af1307d63ee1e730730e5f",
+   "left_fields": [
+    {
+     "field": "$.status2108",
+     "line": 11,
+     "excerpt": "民居長棚工餘仍供坐聽與敲奏，柱邊留著來訪樂手的凳子，長曲尚未奏完。"
+    },
+    {
+     "field": "$.summary",
+     "line": 14,
+     "excerpt": "仙台民居間人人都能接拍的長棚，來客想吹完獨奏，曲子卻一次次被旁人接走。"
+    },
+    {
+     "field": "$.body",
+     "line": 15,
+     "excerpt": "## 雨在棚頂起拍\n雨鼓長棚沿著[仙台](../../../../../content/lore/places/sendai-wall.json)城內的民居街伸開。雨落在舊棚頂，鼓皮、木片與空罐便從不同方向接上來；坐著的人嫌罐聲尖，就翻一面敲，旁邊立刻有人照著學。棚柱間擺的是能挪動的凳子，路過者坐到哪裡，聲音便從哪裡多出一截。"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/places/mumbai-resonant-wall.json"
+   },
+   "right_sha256": "cb665941157ba9524a8bcfcf3f90c44ae58e225f39a1dd5cca5a8fe314c10f2f",
+   "right_fields": [
+    {
+     "field": "$.status2108",
+     "line": 8,
+     "excerpt": "門外仍有等候者；骸片原地保留，無開採"
+    },
+    {
+     "field": "$.summary",
+     "line": 19,
+     "excerpt": "門外殘牆的骸片泛出紫光，等候者把掌心懸在牆前，沒有拿走它。"
+    },
+    {
+     "field": "$.secrets",
+     "line": 20,
+     "excerpt": "[{\"visibility\": \"rumor\", \"text\": \"等候者把殘牆骸片的紫光說成迦梨在聽，學會沒有證實其歸屬。\"}]"
+    },
+    {
+     "field": "$.body",
+     "line": 26,
+     "excerpt": "## 地貌與氣味\n[孟買門](../../../../../content/lore/places/mumbai-gate.json)外側的等候區有一截殘牆，灰落在斷面上，酸風從缺口吹來。牆腳原有的骸片露出一角，斷面泛紫時，連石縫裡的灰都染了色。等候者把掌心懸在牆前，指節的影子疊在紫光上，手卻停著沒有落下。\n\n## 誰在這裡\n"
+    }
+   ],
+   "similarity": "地方停留空間、來客互動；新對bigfill文字相似度0.0376。",
+   "difference": "雨鼓長棚是仙台居民的普通樂器合奏與獨奏意願摩擦；聽壁是孟買門外看紫光的朝聖停留地，迦梨歸屬只列傳聞。活動、物件、地理與超常性皆不同，沒有同一事蹟。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W04",
+   "status": "已排除",
+   "kind": "正常配套",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/wn-r2-sunken-arrow-hunters.json"
+   },
+   "left_sha256": "4f8564b974b1b7a355d668ac10140ed7cdeff4444126cdbeee60fa2311926640",
+   "left_fields": [
+    {
+     "field": "$.scale",
+     "line": 8,
+     "excerpt": "雪梨港外靠受託拆械與轉售准許回收件維生的小獵團，使用買來的通用衍型機"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "替地方委託者銷毀舊凡鐵軍備的小獵團，靠拆件維生，當舊砲重現時仍捨不得放掉回收生意。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "沉矢獵團把卸下的凡鐵矢排在岸場，用買來的通用衍型機壓折吼砲的身管。沉矢是把武器送進不再開火的地方，碎料隨後留在岸上交收。團裡接地方隊議妥的拆械委託，交貨者肯卸到哪裡，他們才拆到哪裡；雪梨港的其餘船不歸他們管。\n\n「交給我們的矢，別再指向人。」委託人買的就是這句"
+    },
+    {
+     "field": "$.relations",
+     "line": 15,
+     "excerpt": "[{\"faction\": \"faction/sydney\", \"stance\": \"緊張\", \"note\": \"在港外承接受託拆械，銷毀承諾受質疑，城邦沒有替其追討私人買賣。\"}, {\"faction\": \"faction/old-arms-makers\", \"stance\": \"中立\", \"not"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/old-arms-makers.json"
+   },
+   "right_sha256": "9619acdce331786a6c1e89bfa0e0297166fb7c12b15e6a41ce0331aec5286ba7",
+   "right_fields": [
+    {
+     "field": "$.scale",
+     "line": 6,
+     "excerpt": "各地殘存軍工企業及其加工、維修與保全支系，無共同軍隊"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "崩前承接各國整套軍備的老公司，崩年後縮成各城不同的加工、保全與修造生意，靠對人凡鐵武器與衍型機非核心件延續。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "## 軍事組織與作戰風格\n\n崩年前，舊廠的庫房堆著冷戰留下的軍備，保全守門，各國訂單從帳房送進車間。格爾木坑邊也曾站著舊世界軍工企業的保全。各家有各家的招牌，後來被合稱「舊廠諸家」，並沒有因此湊出共同的軍隊。\n\n崩年截斷貨路，凡鐵庫存對獸只刮外甲、碰不到核，對"
+    }
+   ],
+   "similarity": "凡鐵對人、拆件銷售與修造生意，明示彼此交易。",
+   "difference": "舊廠是多地企業合稱，供貨無共同軍隊；沉矢是雪梨的受託拆械獵團，具體衝突在整砲被私留轉賣、銷毀承諾和拆件盈餘。它只有受託範圍，不取得全港繳械權。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W05",
+   "status": "已排除",
+   "kind": "功能互補",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/places/wm-r5-almaty-blind-books.json"
+   },
+   "left_sha256": "4e69c2d06b06c22f6126b24de7def977238d8cb22f6eedf88dc2cf6b462ebd3c",
+   "left_fields": [
+    {
+     "field": "$.status2108",
+     "line": 11,
+     "excerpt": "城內書閣照常借還包書與交換短評，續篇有人預留，未包封的讀物仍堆在架後。"
+    },
+    {
+     "field": "$.summary",
+     "line": 14,
+     "excerpt": "阿拉木圖按封皮一句話借書的小閣，客人偏愛主人最嫌棄的小說，還要借續篇。"
+    },
+    {
+     "field": "$.body",
+     "line": 15,
+     "excerpt": "## 封皮上的一句話\n盲封書閣的借書架朝著[阿拉木圖](../../../../../content/lore/places/almaty.json)城內一條短巷。紙封有新有舊，外面只留一句引人翻頁的話，書名藏在摺口裡。有人看句子挑書，有人先掂厚薄，主人看見後一種客人，總要把自己中意的厚冊子往前推。門邊的座墊陷了下去，等人還書"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/wm-r6-turning-page-caravan.json"
+   },
+   "right_sha256": "9b08bd07180993c71dd4433587c9f200887f42acaddc2fafee3f5270efb3623c",
+   "right_fields": [
+    {
+     "field": "$.scale",
+     "line": 8,
+     "excerpt": "裝訂工、教讀者與搬工共用書車的地方送書隊，能分組留站及續送。"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "分車送書、留人帶輪讀的巡書隊讓聚落接著講故事，最會說書的搬工卻不甘自己漸漸用不上。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "## 書車分成兩路\n翻頁巡書隊把書箱卸到[阿拉木圖](../../../../../content/lore/places/almaty.json)外的許可商路站點，裝訂工補線，教讀者替居民分段讀長篇，搬工則用怪腔替人物說話。原本卸完便走，聽眾卻將凳子圍到車輪旁，連要開門的人都坐下了。\n\n「下一頁，也要送到。」隊裡有人指著尚未"
+    }
+   ],
+   "similarity": "跨第五/六輪，同在阿拉木圖、普通讀物與讀者自行評說。",
+   "difference": "書閣是固定借還場所，主人與客人對小說品味不合；巡書隊是多組車輛送修和輪讀，人員衝突在搬工失去說書中心地位。讀書活動相連，經營形式與衝突不能互換。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W06",
+   "status": "已排除",
+   "kind": "同題材候選排除",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/wm-r6-joined-eaves.json"
+   },
+   "left_sha256": "aac92a23aa9ec08d8da1e76630c318e1f1d2ea790d6a02afa682222880222688",
+   "left_fields": [
+    {
+     "field": "$.scale",
+     "line": 8,
+     "excerpt": "木工、繩工與搬工合組的小型營造社，共備工具、車架及可拆棚料。"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "共備工料替工作街架簷的營造社留下實用兩翼，中央採光與整街遮雨仍接不到一起。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "## 最後一段簷\n合簷營造社在[蒙特婁](../../../../../content/lore/places/montreal.json)共備木料、繩具與車架，木工分段做棚，繩工試掛，搬工把整片棚翼送到街口。他們想將工作街接在同一片簷下，雨天能一路搬料，不必抱著木件等雨停。\n\n「簷下要站得下人。」最後一段抬到院口時，兩端剛合"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/factions/wm-r6-open-step-workers.json"
+   },
+   "right_sha256": "7e848a7fdd7476855d1aafd191696f1681f29bfbf6505a97c5fb6174ec689087",
+   "right_fields": [
+    {
+     "field": "$.scale",
+     "line": 8,
+     "excerpt": "木工與手推椅使用者合組的民間工友社，共備通行木件及輪值推行人手。"
+    },
+    {
+     "field": "$.summary",
+     "line": 13,
+     "excerpt": "木工與手推椅使用者共備坡板、輪值守到散場；有人已能自己選座，永久改階仍未談妥。"
+    },
+    {
+     "field": "$.body",
+     "line": 14,
+     "excerpt": "## 自己選一個位置\n開階工友社的木工把踏板抬到[釜山](../../../../../content/lore/places/busan.json)一處戲棚前，使用手推椅的成員先繞入口試轉，再將板角往旁移。同行者扶住扶手，讓推椅的人自己進棚挑座，空下的位置便照對方指的方向重新擺。\n\n社裡共備坡板、扶手、修木工具與推行人手，接"
+    }
+   ],
+   "similarity": "新非人物lore二字集合排序最高Jaccard=0.0607814761；共備木料/工具、輪值出工、地方許可與未竟改造。",
+   "difference": "合簷處理整街遮雨與院內採光，留兩翼、拆中央；開階處理手推椅選座和散場通行，守坡板到最後一人離開、永久改階未定。城市、服務對象、材料動作及利益衝突不同。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W07",
+   "status": "已排除",
+   "kind": "同系列",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wl-anvil-cable.json"
+   },
+   "left_sha256": "6b3ace145a4e0669c5196dc38c677aa5f9c694a2ad111ef1aa59b779b1d125ee",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 6,
+     "excerpt": "bodyplan/mx-biped-c"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 7,
+     "excerpt": "{\"right-weapon\": \"component/mx-brokenarm-stake\", \"left-weapon\": \"component/mx-singing-blade\", \"armor-mount\": \"component/mx-burst-scale\", \"back-1\": \"co"
+    },
+    {
+     "field": "$.etymology",
+     "line": 60,
+     "excerpt": "Cablebreaker 是港口技師替開路機取的勤務名。鐵砧-II斷纜型仍仿斷臂的關節，厚重的樁臂與裂鱗爆甲都照原圖留下，左手則換成鳴刃。鐵砧獵團保留這支系的造機與外售規矩，碼頭工替它起了名字，也沒有拿到把整套圖紙轉賣出去的資格。\n\n漲潮後的貨棧外，一頭厚甲獸"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wn-r3-anvil-fan.json"
+   },
+   "right_sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 6,
+     "excerpt": "bodyplan/m2-quadruped-c"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 7,
+     "excerpt": "{\"left-weapon\": \"component/fw-fan-tube\", \"right-weapon\": \"component/mx-molten-saw\", \"system-1\": \"component/mx-frost-fins\", \"cockpit\": \"component/oa-co"
+    },
+    {
+     "field": "$.etymology",
+     "line": 58,
+     "excerpt": "Fan 取折扇展開的扇面，開扇沿鐵砧-II型架鐵的四足分支改裝，前足分掛扇潮矢筒與熔齒鋸。斷臂血統的重關節仍在，前足既承機身，也承武器。工坊替近距清獸的承包隊試這套掛件時，訂單還沒有落到哪一班手裡。\n\n試機院把廢鎧甲掛成一排，兩班駕駛站在白線外等領班點頭。開扇"
+    }
+   ],
+   "similarity": "跨第一/三輪，鐵砧II、斷臂血統、相同燼池和勢力。",
+   "difference": "斷纜是雙足樁/鳴刃近接救出同伴，工人仍要解纜；開扇是四足扇潮矢筒/熔齒鋸，試機情節爭扇面產能與前足檢修工時。型錄前置分別anvil-ii與anvil-trestle-ii，月份2/5，並非同機改名。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": [
+    {
+     "file": "content/base/world/models/wl-anvil-cable.json",
+     "sha256": "7abd007d101f442c8f0feb5a77b55f6e16a4891507728029696d4336535fb2a6",
+     "read_level": "full_text"
+    },
+    {
+     "file": "content/base/world/models/wn-r3-anvil-fan.json",
+     "sha256": "31a110a2f8cf509ed767fb6a9c17473b75205da0eb187057651a414dad207b87",
+     "read_level": "full_text"
+    }
+   ]
+  },
+  {
+   "id": "W08",
+   "status": "已排除",
+   "kind": "同系列",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wn-r3-anvil-fan.json"
+   },
+   "left_sha256": "471acbc43c7bea549c879c0a45b70333c302ca48b578690f3c15a81ef74ccb18",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 6,
+     "excerpt": "bodyplan/m2-quadruped-c"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 7,
+     "excerpt": "{\"left-weapon\": \"component/fw-fan-tube\", \"right-weapon\": \"component/mx-molten-saw\", \"system-1\": \"component/mx-frost-fins\", \"cockpit\": \"component/oa-co"
+    },
+    {
+     "field": "$.etymology",
+     "line": 58,
+     "excerpt": "Fan 取折扇展開的扇面，開扇沿鐵砧-II型架鐵的四足分支改裝，前足分掛扇潮矢筒與熔齒鋸。斷臂血統的重關節仍在，前足既承機身，也承武器。工坊替近距清獸的承包隊試這套掛件時，訂單還沒有落到哪一班手裡。\n\n試機院把廢鎧甲掛成一排，兩班駕駛站在白線外等領班點頭。開扇"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wm-r7-anvil-downbeat.json"
+   },
+   "right_sha256": "6b65fb71b190dae6ac370a671bb84650a9cc52cd91218a31e8275bf52cf7128e",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 6,
+     "excerpt": "bodyplan/mx-biped-c"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 7,
+     "excerpt": "{\"left-weapon\": \"component/fw-door-sweep\", \"right-weapon\": \"component/fw-rivet-drill\", \"system-1\": \"component/mx-frost-fins\"}"
+    },
+    {
+     "field": "$.etymology",
+     "line": 57,
+     "excerpt": "Downbeat 是鼓槌落下的那一下，踏拍是幾個兼奏鼓樂的鐵砧駕駛替改裝機取的暱稱。斷臂血統的重臂換上門鉤與旋鉚鑿，仍由座艙裡的人驅動機甲核心。他們把鼓放在老排練室，出勤前總有人折回去摸一摸門鎖；街區落到敵隊手裡後，那道門便再也沒開過。\n\n反攻那天，熟悉鼓譜的"
+    }
+   ],
+   "similarity": "跨第三/七輪，同級、同斷臂血統及燼池。",
+   "difference": "開扇四足、扇射與鋸擊、試工談價；踏拍雙足、門鉤與旋鉚鑿，街區反攻後排練室損毀，改在空地奏鼓。骨架、武具、戰場意圖和情感後果均不同。型錄均明示variant/restricted。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": [
+    {
+     "file": "content/base/world/models/wn-r3-anvil-fan.json",
+     "sha256": "31a110a2f8cf509ed767fb6a9c17473b75205da0eb187057651a414dad207b87",
+     "read_level": "full_text"
+    },
+    {
+     "file": "content/base/world/models/wm-r7-anvil-downbeat.json",
+     "sha256": "b901d049d193a8d55d240e198952442226c6fac4a2289cf9d2e724c4a56e1900",
+     "read_level": "full_text"
+    }
+   ]
+  },
+  {
+   "id": "W09",
+   "status": "已排除",
+   "kind": "同系列",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wl-surveyor-trace.json"
+   },
+   "left_sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 6,
+     "excerpt": "bodyplan/mx-biped-b"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 7,
+     "excerpt": "{\"sensor-mount\": \"component/mx-thousand-eye\", \"right-weapon\": \"component/mx-rune-rifle\", \"left-weapon\": \"component/mx-radiant-rifle\", \"system-1\": \"com"
+    },
+    {
+     "field": "$.etymology",
+     "line": 71,
+     "excerpt": "Tracekeeper 指把勘察留下的痕跡與人一同帶回來。測墟-B拾痕型沿多目的靈目路線改裝，用千目替下原有嗅針，兩臂分持紋刻連吼與輝光連吼。稽古學會保留原來的冕環骸片與灰霧香，沒有因為換了勤務名，就把那塊古代部件的共鳴條件從帳上抹掉。\n\n有次護勘隊還未離開海"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/frames/wn-r3-surveyor-bearer.json"
+   },
+   "right_sha256": "108df560e6365e97b42da0d286de6e84d13757c8c54b0c27d7d0da7388cbeb74",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 52,
+     "excerpt": "bodyplan/m2-hexapod-b"
+    },
+    {
+     "field": "$.defaultLoadout",
+     "line": 53,
+     "excerpt": "{\"left-weapon\": \"component/mx-radiant-rifle\", \"right-weapon\": \"component/mx-thunder-serpent\", \"sensor-mount\": \"component/fa-shared-bearing\", \"back-1\":"
+    },
+    {
+     "field": "$.etymology",
+     "line": 5,
+     "excerpt": "Shared Lantern 取趕夜路時共看一盞燈的意思，同燈沿測墟系列命名。稽古學會委製的六足護勘配裝接續拓影-B，頭掛同準靈目，背掛送行煙燈。受雇駕駛要停下自己的動作，才能替近旁一名友機引準或借煙；兩份照應各有兩次，出發時他便在手套上各畫了兩道記號。\n\n河"
+    }
+   ],
+   "similarity": "跨第一/三輪，同測墟B、多目血統、護勘與流光池。",
+   "difference": "拾痕為雙足、千目與雙連吼、古代冕環的共鳴門檻仍在；同燈六足、同準靈目與送行煙燈，以放棄自身出手機會協助友軍，情節是兩隊爭工錢。不能因同血統/護勘用途合併。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": [
+    {
+     "file": "content/base/world/models/wl-surveyor-trace.json",
+     "sha256": "d8dcd3916859eb00425ba6e4237c73956c65a345690d26f317ad254f8f7d0199",
+     "read_level": "full_text"
+    },
+    {
+     "file": "content/base/world/models/wn-r3-surveyor-bearer.json",
+     "sha256": "2a80fb95d3e9f37b80716385684e024f329fe2bb2bca7603d42efd8374075c53",
+     "read_level": "full_text"
+    }
+   ]
+  },
+  {
+   "id": "W10",
+   "status": "已排除",
+   "kind": "同族意象排除",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/species/wl-slant-veil.json"
+   },
+   "left_sha256": "973955fb59eb2296baa0955d635aa17c28b20754846a43cd2b486c6e6e57aa00",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/alien-mirror"
+    },
+    {
+     "field": "$.gradeRange",
+     "line": 6,
+     "excerpt": "[\"B\"]"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-glare-pulse\", \"ability/kx-bare-rend\"]"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "夜班守堤人先看見浪裡掛著半幅亮衣。那幅衣斜斜垂著，照見了堤燈，底下卻拖著一隻赤裸的長手。接近的機甲才舉起武器，衣側便露出凝視的異瞳。駕駛員看漏了從水邊抬起的祈手，回神時，鎧甲上已被撕出深痕。天網裡有人喊牠的方向，幾聲回報卻撞在一起，守堤人只好提燈往後跑。\n斜帷"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/species/wm-r7-riven-torch.json"
+   },
+   "right_sha256": "fe8abafd50b6906d4ef82f2c40c32d3e6c09a10ed805aac704770dd9358c7aa2",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/alien-breakwater-clinger"
+    },
+    {
+     "field": "$.gradeRange",
+     "line": 6,
+     "excerpt": "[\"C\"]"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-breakwater-clinger-rend\", \"ability/kx-hollow-sail-cast\"]"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "兩面旗攤在海崖哨臺下，一面壓著對方上次交火時削落的甲片。領隊把甲片翻過來給同伴看，問今天還有人要說那一擊算他失手嗎。另一隊的領隊已經走向自己的機甲，回了一句，叫他先想好輸了怎麼把旗捲回去。雙方約定從坡口開始，誰先登上最高那層臺，便把旗插在那裡。\n兩台機甲還隔著"
+    }
+   ],
+   "similarity": "跨第一/七輪，異形、偏披/亮衣與裸臂意象、同stalker AI。",
+   "difference": "斜帷B級alien-mirror，凝視脈衝與裸手撕裂，敘事重鏡衣裸側及量身拘束；裂炬C級breakwater-clinger，撕裂配遠芒，敘事重敵對獵團臨時合擊與旗位。不是成長前後階段，也無同一具個體衝突。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W11",
+   "status": "已排除",
+   "kind": "刻意變體",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/species/wl-gravel-mane.json"
+   },
+   "left_sha256": "85e91fa06821abf68782341d4ce5ac71595df15c8dc5f6d576146fd418e5eb26",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/quadruped-hound"
+    },
+    {
+     "field": "$.pools",
+     "line": 17,
+     "excerpt": "[{\"id\": \"instinct\", \"name\": \"本能\", \"min\": 0, \"max\": 100, \"capKind\": \"hard\", \"inverted\": true, \"initial\": 20, \"regen\": 5, \"bands\": []}, {\"id\": \"ap\", \"na"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-shovel-ram\", \"ability/kx-foam-jaw-foam\"]"
+    },
+    {
+     "field": "$.aiProfile",
+     "line": 58,
+     "excerpt": "aiprofile/pack-hunter"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "退潮後，礫灘上留下了兩道深溝。守岸人順著溝望去，看見一隻四足獸側身擦過灘石，背板颳得碎礫翻響。牠抬起前鏟時，鬃板間還卡著濕石，嘴邊的白沫卻已經湧出。護岸機向前攔了一步，雙鏟便叩在鎧甲正面，震得駕駛員咬住牙關；第二台機甲剛靠攏，蝕沫就從張開的顎下潑了過來。\n守岸"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/species/wn-r3-turning-foam.json"
+   },
+   "right_sha256": "07da03712cb9fb03966fedfa3bd1801104e666f0f497f3377675562b4692d241",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/beast-split-fin"
+    },
+    {
+     "field": "$.pools",
+     "line": 17,
+     "excerpt": "[{\"id\": \"instinct\", \"name\": \"本能\", \"min\": 0, \"max\": 100, \"capKind\": \"soft\", \"inverted\": true, \"initial\": 20, \"regen\": 7, \"bands\": []}, {\"id\": \"ap\", \"na"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-foam-jaw-foam\", \"ability/kx-split-fin-swerve\"]"
+    },
+    {
+     "field": "$.aiProfile",
+     "line": 58,
+     "excerpt": "aiprofile/guerrilla"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "採樣匣還掛在坡下，船長已經把領款章收進了口袋。契約寫得清楚，岩樣得裝匣帶回，空手離岸就沒有這筆錢。甲板上有人喊再放一截纜，作業機的駕駛員卻一直看著坡口：旋沫伏在那裡，蹼足踩住濕石，岔尾搭在匣旁。機甲再向前，牠便翻顎噴沫，剛收攏的白色一下潑滿坡面，甲板上的人全往"
+    }
+   ],
+   "similarity": "跨第一/三輪，C級獸族，同基礎四項數值並共用foam-jaw-foam。",
+   "difference": "礫鬃是hound骨架、鏟撞+蝕沫、pack-hunter、守岸拒追；旋沫split-fin骨架、蝕沫+尾擺、guerrilla、本能soft/AP恢復不同，情節是棄採樣匣而撤離。共享一招不等於同戰術或同故事。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W12",
+   "status": "已排除",
+   "kind": "刻意變體",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/species/wm-r7-folded-lamp.json"
+   },
+   "left_sha256": "3d746ddcd7e5a1aa36e86efe26699cce971499f7bc20ffc5147497d20706e673",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/insect-lantern-keel"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-wing-dive\", \"ability/kx-lantern-keel-gather\"]"
+    },
+    {
+     "field": "$.aiProfile",
+     "line": 58,
+     "excerpt": "aiprofile/bodyguard"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "船上空出一張床，獵手已經替它換過兩回毯子，邀人的話還沒說出口。搭檔每次夜巡前都來找他，他便在走往海堤的路上把句子排好：艙裡還放得下一只箱，明早可以搬，晚飯也算她一份。到了堤口，她問今晚從哪頭查起，他嘴一張，說出口的又是先走外側。\n廢樁旁有疊燈挪動，短足踩過濕石"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/species/lantern-keel.json"
+   },
+   "right_sha256": "11afea544acc48538f1b9c1d253f199a94d746fa9542f23b281ab16d65ee6806",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/insect-lantern-keel"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-lantern-keel-drip\", \"ability/kx-lantern-keel-gather\"]"
+    },
+    {
+     "field": "$.aiProfile",
+     "line": 58,
+     "excerpt": "aiprofile/bodyguard"
+    }
+   ],
+   "similarity": "同C級蟲族燈腹骨架、基礎屬性/池/bodyguard AI及gather招。",
+   "difference": "疊燈第一招為wing-dive；舊燈腹為lantern-keel-drip。疊燈另有夜巡搭檔邀住的具體新敘事。屬共用骨架的招式變體，未達必須合併的語義重複。",
+   "recommendation": "保留。只證明資料與敘事有差異；一招差異是否足夠豐富實戰，留整合試玩，不能在本輪代判已平衡。",
+   "support": []
+  },
+  {
+   "id": "W13",
+   "status": "已排除",
+   "kind": "刻意變體",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/species/wm-r7-riven-torch.json"
+   },
+   "left_sha256": "fe8abafd50b6906d4ef82f2c40c32d3e6c09a10ed805aac704770dd9358c7aa2",
+   "left_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/alien-breakwater-clinger"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-breakwater-clinger-rend\", \"ability/kx-hollow-sail-cast\"]"
+    },
+    {
+     "field": "$.etymology",
+     "line": 63,
+     "excerpt": "兩面旗攤在海崖哨臺下，一面壓著對方上次交火時削落的甲片。領隊把甲片翻過來給同伴看，問今天還有人要說那一擊算他失手嗎。另一隊的領隊已經走向自己的機甲，回了一句，叫他先想好輸了怎麼把旗捲回去。雙方約定從坡口開始，誰先登上最高那層臺，便把旗插在那裡。\n兩台機甲還隔著"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/species/breakwater-clinger.json"
+   },
+   "right_sha256": "94d1b5403d1ed49c891582c5dd7142243cad6bebd262650077c8d79ff0b191db",
+   "right_fields": [
+    {
+     "field": "$.bodyPlan",
+     "line": 5,
+     "excerpt": "bodyplan/alien-breakwater-clinger"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-breakwater-clinger-rend\", \"ability/kx-breakwater-clinger-drag\"]"
+    },
+    {
+     "field": "$.capture",
+     "line": 45,
+     "excerpt": "{\"requireIntact\": [\"core\"], \"requireBroken\": [\"locomotion\"], \"ability\": \"ability/restrain\", \"frame\": \"frame/bio-breakwater-clinger\"}"
+    }
+   ],
+   "similarity": "同C級抱樁骨架、屬性/池/AI及rend招。",
+   "difference": "裂炬第二招hollow-sail-cast；抱樁為breakwater-clinger-drag。新敘事不是舊名稱重貼，而是敵隊爭旗中遭異形打斷。沒有改寫舊種或宣稱級別蛻變。",
+   "recommendation": "保留招式變體；實戰辨識度與平衡尚未驗，不把它另開為已證實重複。",
+   "support": []
+  },
+  {
+   "id": "W14",
+   "status": "已排除",
+   "kind": "刻意變體",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/base/species/wl-salt-shroud.json"
+   },
+   "left_sha256": "94237e0812317ba15a71d41aefea06faabfc24b7d0555d627ee5161a53313bb6",
+   "left_fields": [
+    {
+     "field": "$.gradeRange",
+     "line": 6,
+     "excerpt": "[\"C\"]"
+    },
+    {
+     "field": "$.abilities",
+     "line": 41,
+     "excerpt": "[\"ability/kx-root-snare\", \"ability/kx-reed-lace-spit\"]"
+    },
+    {
+     "field": "$.capture",
+     "line": 45,
+     "excerpt": "{\"requireIntact\": [\"core\"], \"requireBroken\": [\"core\"], \"ability\": \"ability/restrain\", \"frame\": \"frame/wl-bio-salt-shroud\"}"
+    },
+    {
+     "field": "$.tags",
+     "line": 59,
+     "excerpt": "[\"kaiju\", \"mycelium\", \"harvest-only\"]"
+    },
+    {
+     "field": "$.etymology",
+     "line": 64,
+     "excerpt": "河口廢鹽棚的屋梁上，垂下了一層白紗。巡岸人原以為是舊布，伸長燈桿照過去，才看見紗邊綴著一排濁亮的珠子。棚下的水溝早已被根填滿，根又穿過破牆，沿著通往淡水的溝渠鋪開。掩護工人撤出的機甲剛踩進棚影，地衣便擦上足邊，駕駛員慢了一拍才轉過身；冠頂跟著抖動，落珠打在肩上"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/base/species/stalk.json"
+   },
+   "right_sha256": "814700e63be960ddad1e29fa4b679533e67d8790e00c2ef6b13c8ecce0474ec0",
+   "right_fields": [
+    {
+     "field": "$.gradeRange",
+     "line": 6,
+     "excerpt": "[\"C\", \"B\"]"
+    },
+    {
+     "field": "$.abilities",
+     "line": 48,
+     "excerpt": "[\"ability/kx-root-snare\", \"ability/kx-spore-fog\"]"
+    },
+    {
+     "field": "$.capture",
+     "line": 52,
+     "excerpt": "{\"requireIntact\": [\"core\"], \"requireBroken\": [\"locomotion\"], \"ability\": \"ability/restrain\", \"frame\": \"frame/bio-stalk\"}"
+    }
+   ],
+   "similarity": "同菌柱骨架、root-snare、C級基礎數值與mycel-creep AI。",
+   "difference": "鹽紗只C、根縛+落珠，明示harvest-only和只能採收；菌柱含C/B、根縛+spore-fog且捕獲條件為斷行走。鹽紗core同時要求完好與打壞是封住活捕的表達，敘事與tags一致，不能只因存在bio配套frame就判已可活捕。",
+   "recommendation": "保留；本輪只確認內容自洽，不宣稱引擎對harvest-only的動態行為已測。",
+   "support": [
+    {
+     "file": "content/base/frames/wl-bio-salt-shroud.json",
+     "sha256": "f418938d52160f9a7cc14e596c87095ac59d6b40accb5e37367d7f48f82ad19b",
+     "read_level": "full_text"
+    },
+    {
+     "file": "content/base/frames/wl-corpse-salt-shroud.json",
+     "sha256": "2ff099ee75d0d939e74835fa70d586a6daa9dbadb8ccffa0b51c0ecffa37ebcc",
+     "read_level": "full_text"
+    }
+   ],
+   "intent_source": {
+    "file": "wf/workflows/dispatch/handoffs/lead-world-life-1027/monsters/REPORT.md",
+    "line": 73,
+    "excerpt": "鹽紗 capture 要 core 同時 intact、broken，條件互斥，故不可捕。frame/wl-bio-salt-shroud 是必要配套佔位"
+   }
+  },
+  {
+   "id": "W15",
+   "status": "已排除",
+   "kind": "正常配套",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/places/wl-alpine-common-hearth.json"
+   },
+   "left_sha256": "d8c37f8b5969a674b130b687548b70b3a0f6302e9eeb58fc76304bf610bb0f1a",
+   "left_fields": [
+    {
+     "field": "$.region",
+     "line": 4,
+     "excerpt": "歐洲・阿爾卑斯之墟外山路"
+    },
+    {
+     "field": "$.status2108",
+     "line": 8,
+     "excerpt": "圍籬外供短宿，山路往來者共用爐火"
+    },
+    {
+     "field": "$.body",
+     "line": 16,
+     "excerpt": "## 圍籬外的煙\n\n共爐房貼著通往[阿爾卑斯之墟](../../../../../content/lore/places/alpine-shell.json)的山路，門開在家族獵場圍籬外，歸途的人隔著松林便看見煙。屋裡的長凳靠牆排，爐旁有一條晾濕襪的細繩，鞋底帶進的松針積在門後。看屋的老婦替短宿客縫靴，把硬皮泡軟，再一針針穿過"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/places/alpine-shell.json"
+   },
+   "right_sha256": "16cdda88d0c54c5c4f5bb6935f1839ce1c6fd51cce6e1d6f3b37738601c2942d",
+   "right_fields": [
+    {
+     "field": "$.kind",
+     "line": 7,
+     "excerpt": "遺跡"
+    },
+    {
+     "field": "$.status2108",
+     "line": 8,
+     "excerpt": "家族封著，稽古學會在談"
+    },
+    {
+     "field": "$.body",
+     "line": 15,
+     "excerpt": "## 地貌與氣味\n\n阿爾卑斯的松林隔開了山路與家族獵場，墟口露在圍籬裡的一段石坡下。雪水順刻痕滴進黑土，骸片從樹根間露出濕亮的邊。走近時聞得到松脂與濕皮革，門房的火盆把入場告示烘得捲角。\n\n## 誰在這裡\n\n家族分支握著地契，護衛看守獵場與墟口。稽古學會的人住"
+    }
+   ],
+   "similarity": "同阿爾卑斯、家族獵場/學會/圍籬與護衛；新lore對參照文字排序高。",
+   "difference": "之墟母檔描述家族地契、入場費與封閉墟口；共爐房在圍籬外提供短宿/補靴，濕學徒坐長凳的衝突不解除地契、未開新墟口。把場所活動深化，不是遺跡重建一份。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  },
+  {
+   "id": "W16",
+   "status": "已排除",
+   "kind": "詞彙候選排除",
+   "confidence": "高（限這組排除判斷）",
+   "left_path": {
+    "$fmt": "${gitRoot}/content/lore/places/wn-r2-accra-cross-banner-ground.json"
+   },
+   "left_sha256": "256c54b1a7a5da1ac0d710607f0548e986757846a778334c60cb5fb60306791d",
+   "left_fields": [
+    {
+     "field": "$.status2108",
+     "line": 11,
+     "excerpt": "守區墓地仍供家屬弔唁，敵我墓區各留自己的旗色與名字。"
+    },
+    {
+     "field": "$.summary",
+     "line": 17,
+     "excerpt": "阿克拉守區邊緣的敵我墓區相鄰，家屬能走同一條土徑，卻不願讓一面勝旗替所有死者說話。"
+    },
+    {
+     "field": "$.body",
+     "line": 18,
+     "excerpt": "## 土徑兩側\n異旗墓圃在[阿克拉](../../../../../content/lore/places/accra.json)守區邊緣，從修壕人的小路轉出去，能見到一排排矮石。地方衝突留下的死者分區安葬，有些碑只刻了暫認的姓，有些連姓也沒有；敵我墓區之間隔著土徑，雨後各家的鞋印攪在一起。家屬帶來水罐、布與石粉，認得親人的便"
+    }
+   ],
+   "right_path": {
+    "$fmt": "${gitRoot}/content/lore/events/accra-open-throat.json"
+   },
+   "right_sha256": "917e517cb04de52bb42ee39dea0c360b2b303fb7b83bc7e0af78ca405c32ed78",
+   "right_fields": [
+    {
+     "field": "$.date",
+     "line": 4,
+     "excerpt": "2107-12"
+    },
+    {
+     "field": "$.consequences",
+     "line": 16,
+     "excerpt": "[\"阿克拉返城隊學會在機甲旁留下看得到天空的通道。\"]"
+    },
+    {
+     "field": "$.body",
+     "line": 24,
+     "excerpt": "## 停在門影前\n\n留門之戰後的一次返城，人群走到[阿克拉](../../../../../content/lore/places/accra.json)門前，最前面的孩子卻停了。城裡有人招手，他仍望著腳下的暗處，不肯再往前。後面的人也慢慢站住，門內外的話聲隔著機甲混在一起，誰都聽不清他在說什麼。\n\n埃西在堅盾-I型的座艙裡看"
+    }
+   ],
+   "similarity": "新對bigfill文字相似度0.0385；阿克拉戰後家屬、讓路與各人自主。",
+   "difference": "城門放聲是2107-12返城隊越門影，機甲挪出可見天空的通道；墓圃是守區弔唁認屍，各家拆分勝旗、保留敵我旗色，明示不承認另一方政權。場所用途與具體事件不同，不是改名重述。",
+   "recommendation": "保留兩端；本輪無需內容修改。",
+   "support": []
+  }
+ ]
+}

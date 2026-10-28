@@ -58,3 +58,47 @@
 - **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
 
 已收線成員原格見 [封存索引](archive/README.md)（ROSTER-2026-10-26.md）。
+
+### `lead-review-1028`
+- **狀態**：已收線（2026-10-28）
+- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
+- **團隊**：`teams/review-1028`
+- **上游**：dispatcher
+- **領地**：使用者明列行政檔與本輪整合
+- **答得出什麼**：本輪覆蓋與候選證據
+- **答不出什麼**：遊戲整合驗收與架構定案
+- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/lead-review-1028/`
+- **訂閱主題**：無
+
+### `cx-review-people-1028`
+- **狀態**：已收線（2026-10-28）
+- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
+- **團隊**：`teams/review-1028`
+- **上游**：lead-review-1028
+- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people
+- **答得出什麼**：本輪覆蓋與候選證據
+- **答不出什麼**：遊戲整合驗收與架構定案
+- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-people-1028/`
+- **訂閱主題**：無
+
+### `cx-review-gear-1028`
+- **狀態**：已收線（2026-10-28）
+- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
+- **團隊**：`teams/review-1028`
+- **上游**：lead-review-1028
+- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen
+- **答得出什麼**：本輪覆蓋與候選證據
+- **答不出什麼**：遊戲整合驗收與架構定案
+- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-gear-1028/`
+- **訂閱主題**：無
+
+### `cx-review-world-1028`
+- **狀態**：已收線（2026-10-28）
+- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
+- **團隊**：`teams/review-1028`
+- **上游**：lead-review-1028
+- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world
+- **答得出什麼**：本輪覆蓋與候選證據
+- **答不出什麼**：遊戲整合驗收與架構定案
+- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-world-1028/`
+- **訂閱主題**：無

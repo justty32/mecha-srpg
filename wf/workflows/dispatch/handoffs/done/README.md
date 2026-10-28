@@ -98,3 +98,5 @@
 - 2026-10-27 tidy-mech-new：新原型配置、幾何、viewer、驗證拆分；[交接](2026-10-27/tidy-mech-new.md)／[報告](2026-10-27/tidy-mech-new/REPORT.md)。
 - 2026-10-27 tidy-mech-old：舊試作檢查與CSS來源拆分；[交接](2026-10-27/tidy-mech-old.md)／[報告](2026-10-27/tidy-mech-old/REPORT.md)。
 - 2026-10-27 tidy-mech-wf：STATE、user與接續入口整理；[交接](2026-10-27/tidy-mech-wf.md)／[報告](2026-10-27/tidy-mech-wf/REPORT.md)。
+
+- 2026-10-28 [lead-review-1028](2026-10-28/lead-review-1028.md)：708入口／1046主責檔；48筆46對支持保留，新增問題0，僅本輪收線。 [REPORT](2026-10-28/lead-review-1028/REPORT.md)。
