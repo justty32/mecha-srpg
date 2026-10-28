@@ -1,0 +1,231 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "before_query": "rg -l -g '*.json' '睡眠|補眠|夜校|理髮|成人.*課|錯箱|招領|洗衣|教.*算帳' content/lore/places content/lore/characters",
+ "before_matches": [
+  "content/lore/places/wl-titicaca-new-weave-house.json",
+  "content/lore/places/brasilia.json",
+  "content/lore/places/wn-r2-tranquility-steam-bath.json",
+  "content/lore/characters/ogun-adeyemi.json"
+ ],
+ "scope_note": "語義比對以所列全文為證；關鍵字查詢只找近鄰，不宣稱覆蓋全庫所有可能近義情節。",
+ "columns": [
+  "id",
+  "檔",
+  "名稱",
+  "寫前",
+  "主動作與成本",
+  "交稿",
+  "ZIP差異",
+  "交稿檔案"
+ ],
+ "rows": [
+  {
+   "id": "A01",
+   "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-tranquility-day-sleep.json",
+   "名稱": "暗晝眠樓",
+   "寫前": {
+    "時間": "2026-10-28T21:23:39+08:00",
+    "範圍": "主repo places與characters以rg有界檢索、親讀下列近鄰及掛到原檔；核可列未變後再寫",
+    "核可來源sha256": "584e68c4fb12a15c39d1f1a8f3dee9eb8a189d22ef5387ef86b2d42fe03f93ea",
+    "近鄰": [
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/moonbow-shift-house.json",
+      "原文段落": "誰在這裡／2108的狀態",
+      "既有主動作": "工人在作業區交接手牌、跟隨清場口令；爭執繫於巨弓輪班。",
+      "具體差異": "新篇在付費生活區補眠，工友提前敲簾打斷非工時；不寫清場、手牌或作業權。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wl-alpine-common-hearth.json",
+      "原文段落": "上首長凳／爐邊的小凳",
+      "既有主動作": "老婦移走護衛靴襪，護衛讓出特權座位給濕學徒。",
+      "具體差異": "新篇店主僅按約叫醒與收錢，兩名工友都遲到，沒有主持公道或免罰。"
+     }
+    ]
+   },
+   "主動作與成本": "催缺人的工友入簾等候也睡著；兩人醒後各付床錢、向領班解釋，各受工錢損失。",
+   "交稿": {
+    "時間": "2026-10-28T21:31:03+08:00",
+    "對照證據": "「抱著工衣的人已垂下頭」→「扣掉的工錢也各算各的」；結尾工友手抬起又縮回，未由店主赦免。",
+    "查重範圍": "隔離樹places與characters重查同一組詞，命中既有4檔及本線4檔；逐篇回對近鄰主動作、用途與後果",
+    "判讀": "所列近鄰未見主動作重複；本線自審，未冒充獨立去重或整合accepted",
+    "機甲傭兵背景": "機庫吊具維修與衍甲灰的普通地勤；未寫不老能力"
+   },
+   "ZIP差異": {
+    "來源": [
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-rida-amin.json",
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-omar-faris.json"
+    ],
+    "對照": "親讀莉妲舞台情歌與奧瑪售機拆名片原文；四篇不以觀眾凝視、舞台表演或出售舊機告別收束。A03拒宣傳僅是熟客一句，主要轉折仍為扶鏡交換照顧。"
+   },
+   "交稿檔案": {
+    "id": "A01",
+    "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-tranquility-day-sleep.json",
+    "可見非空白字元": 665,
+    "純漢字": 597,
+    "bytes": 2674,
+    "sha256": "a96317c1183e021919a195281e5d5d5e03db68468f22d14c62bb36fd1f1c67e1"
+   }
+  },
+  {
+   "id": "A02",
+   "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-dhaka-shift-classroom.json",
+   "名稱": "停梭課屋",
+   "寫前": {
+    "時間": "2026-10-28T21:23:39+08:00",
+    "範圍": "主repo places與characters以rg有界檢索、親讀下列近鄰及掛到原檔；核可列未變後再寫",
+    "核可來源sha256": "584e68c4fb12a15c39d1f1a8f3dee9eb8a189d22ef5387ef86b2d42fe03f93ea",
+    "近鄰": [
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/dhaka-sail-court.json",
+      "原文段落": "空下來的學徒桌",
+      "既有主動作": "補帆手藝重教、學徒斷層，轉去機甲工坊者工錢更高。",
+      "具體差異": "新篇已有工作的成人學基本讀算，母親拒絕女兒代填；不寫補帆、招生或缺徒。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/wl-mateo-yupanqui.json",
+      "原文段落": "body",
+      "既有主動作": "教師公開笑孩子畫圖，風雨後向孩子學綁繩並改教材。",
+      "具體差異": "新篇無公開羞辱或災後反學，主動擦答案的是成人學員；教師只對照她保留的錯算。"
+     }
+    ]
+   },
+   "主動作與成本": "母親擦掉代做答案、隔班保留錯算待教；女兒下一次只借書；誤課和燈油工錢仍自付。",
+   "交稿": {
+    "時間": "2026-10-28T21:31:03+08:00",
+    "對照證據": "「擦去那些整齊的答案」→「將錯算留在紙上」→「只把書遞過去」；不是母親做出商品換學位。",
+    "查重範圍": "隔離樹places與characters重查同一組詞，命中既有4檔及本線4檔；逐篇回對近鄰主動作、用途與後果",
+    "判讀": "所列近鄰未見主動作重複；本線自審，未冒充獨立去重或整合accepted",
+    "機甲傭兵背景": "織工衛堅盾經過、學員縫守軍襯衣；不是駕駛訓練"
+   },
+   "ZIP差異": {
+    "來源": [
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-rida-amin.json",
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-omar-faris.json"
+    ],
+    "對照": "親讀莉妲舞台情歌與奧瑪售機拆名片原文；四篇不以觀眾凝視、舞台表演或出售舊機告別收束。A03拒宣傳僅是熟客一句，主要轉折仍為扶鏡交換照顧。"
+   },
+   "交稿檔案": {
+    "id": "A02",
+    "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-dhaka-shift-classroom.json",
+    "可見非空白字元": 679,
+    "純漢字": 610,
+    "bytes": 2745,
+    "sha256": "8d145d0280c6584cde1cefc69caba7f4e1d2f20deb612968caf8853f85187412"
+   }
+  },
+  {
+   "id": "A03",
+   "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-hamburg-low-mirror.json",
+   "名稱": "低鏡理髮屋",
+   "寫前": {
+    "時間": "2026-10-28T21:23:39+08:00",
+    "範圍": "主repo places與characters以rg有界檢索、親讀下列近鄰及掛到原檔；核可列未變後再寫",
+    "核可來源sha256": "584e68c4fb12a15c39d1f1a8f3dee9eb8a189d22ef5387ef86b2d42fe03f93ea",
+    "近鄰": [
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/mase-tomonori.json",
+      "原文段落": "造船的手／等人的班表",
+      "既有主動作": "老駕駛教新魂接班、彌補出生斷層，也替扶杖舊同事取凳。",
+      "具體差異": "新篇雙方童年相識且都知道彼此年紀，靠扶鏡、剪漏髮改換照顧方向；不教魂、不補班。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wn-r2-tranquility-steam-bath.json",
+      "原文段落": "抬不起的手／簾內的日期",
+      "既有主動作": "伴侶擦背發現舊傷，衣袋返役回條揭露隱瞞，關係留下裂口。",
+      "具體差異": "新篇沒有隱瞞傷情、回條或返役衝突，老闆手抖已看得見；交換照護後仍拌嘴、縮時營業。"
+     }
+    ]
+   },
+   "主動作與成本": "客人拒作不老招牌，回身蹲低扶鏡並剪漏髮；老店主照收原工錢，仍提早收店。",
+   "交稿": {
+    "時間": "2026-10-28T21:31:03+08:00",
+    "對照證據": "「將倒影慢慢挪到大鏡中央」→「剪口有些斜」→「收店時刻往前挪」；沒有治好手抖或老化。",
+    "查重範圍": "隔離樹places與characters重查同一組詞，命中既有4檔及本線4檔；逐篇回對近鄰主動作、用途與後果",
+    "判讀": "所列近鄰未見主動作重複；本線自審，未冒充獨立去重或整合accepted",
+    "機甲傭兵背景": "鐵砧打盾工與現役核心駕駛；只有現役駕駛老得慢"
+   },
+   "ZIP差異": {
+    "來源": [
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-rida-amin.json",
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-omar-faris.json"
+    ],
+    "對照": "親讀莉妲舞台情歌與奧瑪售機拆名片原文；四篇不以觀眾凝視、舞台表演或出售舊機告別收束。A03拒宣傳僅是熟客一句，主要轉折仍為扶鏡交換照顧。"
+   },
+   "交稿檔案": {
+    "id": "A03",
+    "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-hamburg-low-mirror.json",
+    "可見非空白字元": 681,
+    "純漢字": 604,
+    "bytes": 2700,
+    "sha256": "f31d2f2dacabd7b5f3f6c9dbe5de20e6e7189d8f27c0dd62d3198d287bb93afe"
+   }
+  },
+  {
+   "id": "A04",
+   "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-makassar-wash-lines.json",
+   "名稱": "翻帆洗場",
+   "寫前": {
+    "時間": "2026-10-28T21:23:39+08:00",
+    "範圍": "主repo places與characters以rg有界檢索、親讀下列近鄰及掛到原檔；核可列未變後再寫",
+    "核可來源sha256": "584e68c4fb12a15c39d1f1a8f3dee9eb8a189d22ef5387ef86b2d42fe03f93ea",
+    "近鄰": [
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wl-alpine-common-hearth.json",
+      "原文段落": "上首長凳／爐邊的小凳",
+      "既有主動作": "老婦以靴襪和座位打斷護衛特權，照顧濕學徒。",
+      "具體差異": "A04採修訂錯箱／泊架招領；洗工與兩隊均因搶快付成本，無裁定誰優先或身份者讓位。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/makassar.json",
+      "原文段落": "桅杆空出來",
+      "既有主動作": "庇護團降半幅旗，孩子升補帆，象徵守港交班與城約。",
+      "具體差異": "高處襪褲是實際辨識錯件，船仍停在泊架；不降旗、不讓床單、不宣城約。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wn-r2-tranquility-steam-bath.json",
+      "原文段落": "洗衣籃旁",
+      "既有主動作": "送洗工作衣內的回條暴露伴侶未說明的返役決定。",
+      "具體差異": "新篇沒有藏物真相，衝突由洗後辨識失效、錯交、趕班與未還衣物推進。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wm-r5-nostos-gift-table.json",
+      "原文段落": "這個也許更合適／收桌的時候",
+      "既有主動作": "旅客自願交換伴手禮，拿到後自己喜歡，尚未想好如何送家人。",
+      "具體差異": "錯箱非自願，繩籃是歸還，留下補丁圖和賠工價；無贈禮猶豫。"
+     },
+     {
+      "檔": "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/places/wl-titicaca-new-weave-house.json",
+      "原文段落": "下緣多了一個人／拆開的邊線",
+      "既有主動作": "長者拆自己的織邊，讓年輕織手的洗衣母親圖像留在披肩上。",
+      "具體差異": "只有洗衣字面相近；新篇實際洗衣交件，不以織物圖像認可或權威改觀收束。"
+     }
+    ]
+   },
+   "主動作與成本": "洗後團色難辨而錯交兩船；洗工高掛襪褲招領，泊架用繩籃換箱；未還衣物留圖、賠工價，船員先穿別隊乾衣。",
+   "交稿": {
+    "時間": "2026-10-28T21:31:03+08:00",
+    "對照證據": "「褪過幾回的顏色竟差不多」→「滿院像升起一支窮酸艦隊」→「留待同港時再換」；身份差異與未還衣物保留。",
+    "查重範圍": "隔離樹places與characters重查同一組詞，命中既有4檔及本線4檔；逐篇回對近鄰主動作、用途與後果",
+    "判讀": "所列近鄰未見主動作重複；本線自審，未冒充獨立去重或整合accepted",
+    "機甲傭兵背景": "兩支持殘聯獵牌的守港獵團、機甲前盾工衣、泊架浮船"
+   },
+   "ZIP差異": {
+    "來源": [
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-rida-amin.json",
+     "/home/lorkhan/repo/game_dev/mecha-srpg/content/lore/characters/exp-omar-faris.json"
+    ],
+    "對照": "親讀莉妲舞台情歌與奧瑪售機拆名片原文；四篇不以觀眾凝視、舞台表演或出售舊機告別收束。A03拒宣傳僅是熟客一句，主要轉折仍為扶鏡交換照顧。"
+   },
+   "交稿檔案": {
+    "id": "A04",
+    "檔": "/tmp/fill-lead-1028-night/wt-places-a/content/lore/places/night-makassar-wash-lines.json",
+    "可見非空白字元": 701,
+    "純漢字": 635,
+    "bytes": 2774,
+    "sha256": "8172b59504df243552ec8b17d036980c93b6d9ded14fcf375ab74b191198c42f"
+   }
+  }
+ ]
+}

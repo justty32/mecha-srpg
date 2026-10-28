@@ -1,0 +1,212 @@
+{
+  "contract": "wf-table/1",
+  "source": "PLAN.md",
+  "extracted": "2026-10-28",
+  "columns": [
+    "id",
+    "批次",
+    "類別",
+    "名稱",
+    "白話",
+    "檔",
+    "lore_id",
+    "掛到",
+    "設計",
+    "欄位",
+    "去重證據",
+    "ZIP比對",
+    "風險",
+    "驗收"
+  ],
+  "rows": [
+    {
+      "id": "B01",
+      "批次": "B",
+      "類別": "人物",
+      "名稱": "鄭素庭",
+      "白話": "她回班後偷偷改回舊排法；韓苓把工錢攤開，她才看見自己的照顧讓誰一直少領。",
+      "檔": "content/lore/characters/night-zheng-suting.json",
+      "lore_id": "character/night-zheng-suting",
+      "掛到": [
+        "faction/ground-union",
+        "place/tranquility-city",
+        "place/moonbow-shift-house",
+        "character/night-han-ling"
+      ],
+      "設計": "地勤會工具班舊帶班人，先前因照顧家人暫離，2107末回班。替老同伴把晚班換掉，以為替他解難；接替自己的韓苓指出有人靠晚班津貼付房租。素庭收回替他決定的安排，卻仍把自己當備用帶班。結尾親手問老工友要哪班，沒有自動取回領班位子。她眷戀的是被需要，不是幫派權鬥。",
+      "欄位": {
+        "born": "2059",
+        "kind": "human",
+        "faction": "faction/ground-union",
+        "role": "地勤會工具班返班老工",
+        "events": [],
+        "relations": [
+          {
+            "character": "character/night-han-ling",
+            "relation": "昔日搭班、現任帶班人",
+            "note": "自己離班時由韓苓接手；返班後須承認對方有安排當班的權力。"
+          }
+        ],
+        "gameRefs": []
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/characters/mase-tomonori.json",
+          "字段": "body／等人的班表",
+          "近似": "資深者與接班缺口",
+          "差異": "真瀨苦於沒有接班人；素庭有能幹接任者卻不肯退回平職，衝突來自照顧式越權，不教機魂。"
+        },
+        {
+          "檔": "content/lore/factions/ground-union.json",
+          "字段": "body／軍事與作戰",
+          "近似": "工會工具班組",
+          "差異": "沿用沒有機甲、掌握通道的人；不創造新會長或軍事支隊。"
+        }
+      ],
+      "ZIP比對": "EX-P01母女戰功、P02假比武拒收徒、P03變異歌者、P04賣機、P05送妹入教、P06敵隊情書、P07恐嚇學徒、P08未被認主均排除；本件為組織內同事的權限與物件使用衝突，不寫以上八種收束。",
+      "風險": "兩次罷工僅背景，events空以免虛構親歷；不談朴仁哲失腿方式。素庭非駕駛，按普通人年齡。",
+      "驗收": "只新增人物lore，gameRefs=[]；每件獨立主動作，配對relations雙向對齊；不得以一篇換視角重述另一篇。"
+    },
+    {
+      "id": "B02",
+      "批次": "B",
+      "類別": "人物",
+      "名稱": "韓苓",
+      "白話": "韓苓拒絕讓老前輩替自己宣布換班，輪到難開口的壞消息，她卻把人留在了門邊。",
+      "檔": "content/lore/characters/night-han-ling.json",
+      "lore_id": "character/night-han-ling",
+      "掛到": [
+        "faction/ground-union",
+        "place/moonbow-shift-house",
+        "character/night-zheng-suting"
+      ],
+      "設計": "同一工具班現任帶班工。獨立主場面是宣布一項已知短期加班取消：她原本要素庭代自己向熟工說明，發現只在要得罪人時才借前輩人情。她自己站到門口公布，請素庭留著補充漏掉的現場細節；爭執保留，兩人約定當班只由帶班者說最後一句。不是徒弟考核，不因資深者讓步就升職。",
+      "欄位": {
+        "born": "2080",
+        "kind": "human",
+        "faction": "faction/ground-union",
+        "role": "地勤會工具班當班帶班工",
+        "events": [],
+        "relations": [
+          {
+            "character": "character/night-zheng-suting",
+            "relation": "前任帶班人、現同班工",
+            "note": "要她尊重當班權限，也須停止把難開口的工作推給她。"
+          }
+        ],
+        "gameRefs": []
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/places/moonbow-shift-house.json",
+          "字段": "body／2108的狀態",
+          "近似": "輪班爭執",
+          "差異": "既有是清場與手牌；此人物主動承擔說壞消息的責任，不重演交牌鏡頭。"
+        },
+        {
+          "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+          "字段": "body",
+          "近似": "有權者接受別人專長",
+          "差異": "不是教師被災害糾正教材，韓苓能力未被否定，問題是把人際代價外包。"
+        }
+      ],
+      "ZIP比對": "EX-P01母女戰功、P02假比武拒收徒、P03變異歌者、P04賣機、P05送妹入教、P06敵隊情書、P07恐嚇學徒、P08未被認主均排除；本件為組織內同事的權限與物件使用衝突，不寫以上八種收束。",
+      "風險": "取消僅一班臨時加班，非全月薪資法或罷工成敗；B01/B02不設師徒以免撞EX-P07。",
+      "驗收": "只新增人物lore，gameRefs=[]；每件獨立主動作，配對relations雙向對齊；不得以一篇換視角重述另一篇。"
+    },
+    {
+      "id": "B03",
+      "批次": "B",
+      "類別": "人物",
+      "名稱": "瑪蕾・貝松",
+      "白話": "同事把借出的教學拓紙帶回一道折傷；瑪蕾肯修紙，卻不肯替他把借用簿寫成沒出門。",
+      "檔": "content/lore/characters/night-mare-besson.json",
+      "lore_id": "character/night-mare-besson",
+      "掛到": [
+        "faction/shell-society",
+        "place/montreal",
+        "character/night-idris-nasser"
+      ],
+      "設計": "學會公開教學抄本的保管修紙人。伊德里斯未依兩人約好的方式運送，讓村校孩子摸到大幅紙本，也留下折痕。瑪蕾修復紙張，要求借用損傷照記；後來主動替下一份另製便於折收的小幅教學摹本，仍不借原件。欲望是自己的手藝能傳下去，缺點是常將完好置於使用之前。",
+      "欄位": {
+        "born": "2068",
+        "kind": "human",
+        "faction": "faction/shell-society",
+        "role": "稽古學會公開教學抄本保管與修紙人",
+        "events": [],
+        "relations": [
+          {
+            "character": "character/night-idris-nasser",
+            "relation": "長年借展合作者",
+            "note": "信任他能把課帶到外地，對他以成果代替歸還承諾不滿。"
+          }
+        ],
+        "gameRefs": []
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/events/wl-alpine-carbon-sheets.json",
+          "字段": "body／被擦去的名字",
+          "近似": "紙本保管與信任",
+          "差異": "炭紙換主揭發奪名；本件沒有人冒名或藏證據，衝突是同一份教學物的保存與流通。"
+        },
+        {
+          "檔": "content/lore/characters/wn-r2-lin-cangxu.json",
+          "字段": "body／客人帶來的手勢",
+          "近似": "作品與外界要求",
+          "差異": "林藏序販售互斥戰史小景；瑪蕾處理已公開普通抄本的物理損傷，不裁決史實或賣雙版本。"
+        }
+      ],
+      "ZIP比對": "EX-P01母女戰功、P02假比武拒收徒、P03變異歌者、P04賣機、P05送妹入教、P06敵隊情書、P07恐嚇學徒、P08未被認主均排除；本件為組織內同事的權限與物件使用衝突，不寫以上八種收束。",
+      "風險": "全部是人工作品與已公開教學材料，不觸刑天、冰下報告、先民答案或新刻痕發現；小幅摹本不是可複製機魂。",
+      "驗收": "只新增人物lore，gameRefs=[]；每件獨立主動作，配對relations雙向對齊；不得以一篇換視角重述另一篇。"
+    },
+    {
+      "id": "B04",
+      "批次": "B",
+      "類別": "人物",
+      "名稱": "伊德里斯・納賽爾",
+      "白話": "他不再拿孩子的感謝抵掉破紙的責任；下一次出門，他先替修紙人搬完自己的那一箱。",
+      "檔": "content/lore/characters/night-idris-nasser.json",
+      "lore_id": "character/night-idris-nasser",
+      "掛到": [
+        "faction/shell-society",
+        "place/montreal",
+        "character/night-mare-besson"
+      ],
+      "設計": "學會巡迴教學借展跑腿。獨立場面是下次出行前：原想靠上回孩子送來的手印讓瑪蕾原諒，卻被要求先交代少回來的紙角；他承認擅改運送方式，接手裝箱與歸還，不把修復當免費後勤。仍堅持教學材料應能被摸、可走出總部，願背較笨重的保護匣。結尾搬的先是自己造成的修補箱，不是榮譽禮物。",
+      "欄位": {
+        "born": "2076",
+        "kind": "human",
+        "faction": "faction/shell-society",
+        "role": "稽古學會公開教材巡迴借展跑腿",
+        "events": [],
+        "relations": [
+          {
+            "character": "character/night-mare-besson",
+            "relation": "長年借展合作者",
+            "note": "需要她維持教具可用；願承擔運送與損傷，不再用受眾感謝要求她免費善後。"
+          }
+        ],
+        "gameRefs": []
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/characters/anil-chowdhury.json",
+          "字段": "body／座標販子相關段",
+          "近似": "學會對外流通材料",
+          "差異": "阿尼爾交易墟座標與情報；伊德里斯搬公開教材，不賣秘密或提供玩家探墟入口。"
+        },
+        {
+          "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+          "字段": "body",
+          "近似": "教學姿態修正",
+          "差異": "不重演城市老師遭鄉村技藝打臉；其授課內容沒被推翻，他補的是同事長期替他付的物料勞動。"
+        }
+      ],
+      "ZIP比對": "EX-P01母女戰功、P02假比武拒收徒、P03變異歌者、P04賣機、P05送妹入教、P06敵隊情書、P07恐嚇學徒、P08未被認主均排除；本件為組織內同事的權限與物件使用衝突，不寫以上八種收束。",
+      "風險": "與B03是平級合作，不設家族、戀愛或師徒；兩篇各有不同決定，折傷只作前因不可整段重播。",
+      "驗收": "只新增人物lore，gameRefs=[]；每件獨立主動作，配對relations雙向對齊；不得以一篇換視角重述另一篇。"
+    }
+  ]
+}

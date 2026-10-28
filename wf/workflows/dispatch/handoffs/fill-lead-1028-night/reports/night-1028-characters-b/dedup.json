@@ -1,0 +1,206 @@
+{
+ "contract": "wf-table/1",
+ "source": "../../briefs/night-1028-characters-b.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "columns": [
+  "id",
+  "檔",
+  "主動作",
+  "近鄰",
+  "寫前",
+  "配對差異",
+  "ZIP排除",
+  "交稿",
+  "檢索證據",
+  "交稿數據"
+ ],
+ "rows": [
+  {
+   "id": "B01",
+   "檔": "content/lore/characters/night-zheng-suting.json",
+   "主動作": "撤回擅改班別，親問老工友要哪班，再送現任帶班確認",
+   "近鄰": [
+    {
+     "檔": "content/lore/characters/mase-tomonori.json",
+     "字段": "body／等人的班表",
+     "近似": "資深者與接班",
+     "差異": "真瀨沒有足夠接班者；素庭已有勝任接班者，須改掉代同事決定需求的習慣。無駕駛教習或機魂。"
+    },
+    {
+     "檔": "content/lore/characters/lena-visser.json",
+     "字段": "body／2108-01：返港的人",
+     "近似": "港務逐人重排班",
+     "差異": "莉娜因船期變動協調泊位；素庭須先詢問被善意照顧的人，放回自己越過的當班權限。"
+    },
+    {
+     "檔": "content/lore/factions/ground-union.json",
+     "字段": "body／軍事與作戰",
+     "近似": "地勤工具班",
+     "差異": "沿用工具與通道，不賦予機甲、領導職或新支隊。"
+    },
+    {
+     "檔": "content/lore/characters/alina-trofimova.json",
+     "字段": "body／崩後",
+     "近似": "答應替工友換班",
+     "差異": "阿麗娜重守約並入艙救人；素庭須撤回未徵求同意的安排，沒有駕駛與救援場面。"
+    }
+   ],
+   "寫前": "已親讀近鄰全文；名稱查詢在既有lore及base/persons無四名同名。語義查詢排班、教材、借展、津貼、裝箱，逐件分清職能與轉折。",
+   "配對差異": "B01詢問需求；B02公開承擔壞消息。",
+   "ZIP排除": "不使用核可表列EX-P01至EX-P08母女戰功、假比武拒徒、變異歌者、賣機、送妹入教、敵隊情書、恐嚇學徒或未認主收束；僅據核可表摘要排除，未取得ZIP原稿。",
+   "交稿": "已親讀四份成稿全文；按各列近鄰的場面、人物職能、決定與後果複核，未見相同核心事件換視角重寫。 B01問意願；B02宣布已定的取消，兩篇未互播。",
+   "檢索證據": {
+    "寫前名稱命令": "rg -n -l '鄭素庭|韓苓|瑪蕾・貝松|伊德里斯・納賽爾|修紙|折收|取消加班|晚班津貼|教學抄本|保護匣' content/lore/characters content/lore/places content/lore/events content/base/persons",
+    "寫前命中": "只有wn-r2-mombasa-cleft-blade-shore的送修紙，已全文讀並比較；無四名同名。",
+    "寫前語義": "排班|班表|加班|修補.*紙|修.*抄本|教材|教具|借展|裝箱|搬運.*責|津貼；有界列檔後親讀核可近鄰及莉娜、瑪塔等角色。",
+    "交稿命令": "rg -n -o '.{0,35}(取消.{0,12}加班|替.{0,12}換班|修紙|教學.{0,8}抄本|保護匣|晚班津貼|可.{0,8}折.{0,8}教).{0,60}' content/lore/characters content/lore/events content/lore/places",
+    "交稿命中解釋": "另見阿麗娜的守約換班、斷刃試灘的送修紙、哈薩克售墟後守路工；均無改班親問意願、帶班公布加班取消或教材修紙裝運情節。"
+   },
+   "交稿數據": {
+    "id": "B01",
+    "檔": "/tmp/fill-lead-1028-night/wt-characters-b/content/lore/characters/night-zheng-suting.json",
+    "body字元": 709,
+    "漢字": 533,
+    "bytes": 2588,
+    "欄位核對": true,
+    "雙向對象": "character/night-han-ling"
+   }
+  },
+  {
+   "id": "B02",
+   "檔": "content/lore/characters/night-han-ling.json",
+   "主動作": "親自公布一班臨時加班取消，接住工友對少領工錢的質問",
+   "近鄰": [
+    {
+     "檔": "content/lore/places/moonbow-shift-house.json",
+     "字段": "body／2108的狀態",
+     "近似": "輪班爭執",
+     "差異": "不重演清場喊聲、光環亮起或交手牌；焦點為現任帶班不再借前輩人情代說壞消息。"
+    },
+    {
+     "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+     "字段": "body",
+     "近似": "有權者接受別人協助",
+     "差異": "不被災害推翻專長，也沒有學生糾正教材；韓苓能力成立，問題是將得罪人的責任推給前輩。"
+    },
+    {
+     "檔": "content/lore/characters/marta-bellini.json",
+     "字段": "body／缺章不裝船",
+     "近似": "受雇帶班與薪資",
+     "差異": "不是待貨主批准或核款放行；取消已定，她須自己向當班同事說明。"
+    }
+   ],
+   "寫前": "已親讀近鄰全文；名稱查詢在既有lore及base/persons無四名同名。語義查詢排班、教材、借展、津貼、裝箱，逐件分清職能與轉折。",
+   "配對差異": "B01詢問需求；B02公開承擔壞消息。",
+   "ZIP排除": "不使用核可表列EX-P01至EX-P08母女戰功、假比武拒徒、變異歌者、賣機、送妹入教、敵隊情書、恐嚇學徒或未認主收束；僅據核可表摘要排除，未取得ZIP原稿。",
+   "交稿": "已親讀四份成稿全文；按各列近鄰的場面、人物職能、決定與後果複核，未見相同核心事件換視角重寫。 B01問意願；B02宣布已定的取消，兩篇未互播。",
+   "檢索證據": {
+    "寫前名稱命令": "rg -n -l '鄭素庭|韓苓|瑪蕾・貝松|伊德里斯・納賽爾|修紙|折收|取消加班|晚班津貼|教學抄本|保護匣' content/lore/characters content/lore/places content/lore/events content/base/persons",
+    "寫前命中": "只有wn-r2-mombasa-cleft-blade-shore的送修紙，已全文讀並比較；無四名同名。",
+    "寫前語義": "排班|班表|加班|修補.*紙|修.*抄本|教材|教具|借展|裝箱|搬運.*責|津貼；有界列檔後親讀核可近鄰及莉娜、瑪塔等角色。",
+    "交稿命令": "rg -n -o '.{0,35}(取消.{0,12}加班|替.{0,12}換班|修紙|教學.{0,8}抄本|保護匣|晚班津貼|可.{0,8}折.{0,8}教).{0,60}' content/lore/characters content/lore/events content/lore/places",
+    "交稿命中解釋": "另見阿麗娜的守約換班、斷刃試灘的送修紙、哈薩克售墟後守路工；均無改班親問意願、帶班公布加班取消或教材修紙裝運情節。"
+   },
+   "交稿數據": {
+    "id": "B02",
+    "檔": "/tmp/fill-lead-1028-night/wt-characters-b/content/lore/characters/night-han-ling.json",
+    "body字元": 721,
+    "漢字": 567,
+    "bytes": 2665,
+    "欄位核對": true,
+    "雙向對象": "character/night-zheng-suting"
+   }
+  },
+  {
+   "id": "B03",
+   "檔": "content/lore/characters/night-mare-besson.json",
+   "主動作": "修補公開教學抄本並另製可折收的小幅摹本，保留損傷紀錄",
+   "近鄰": [
+    {
+     "檔": "content/lore/events/wl-alpine-carbon-sheets.json",
+     "字段": "body／被擦去的名字",
+     "近似": "紙本保管與信任",
+     "差異": "不偷換署名、不揭露秘密；保存與使用的代價由合作雙方處理。"
+    },
+    {
+     "檔": "content/lore/characters/wn-r2-lin-cangxu.json",
+     "字段": "body／客人帶來的手勢",
+     "近似": "工匠回應作品用途",
+     "差異": "不售互斥戰史，不以雙版本裁判真偽；只處理普通公開教具耐用與可攜。"
+    },
+    {
+     "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+     "字段": "body",
+     "近似": "重做教材",
+     "差異": "不是村童教教師正確繩法；修紙人用自己的手藝重新安排紙幅與折處，內容不被推翻。"
+    }
+   ],
+   "寫前": "已親讀近鄰全文；名稱查詢在既有lore及base/persons無四名同名。語義查詢排班、教材、借展、津貼、裝箱，逐件分清職能與轉折。",
+   "配對差異": "B03留在修紙桌改做教具；B04下一趟出行前改裝運，不重播破紙。",
+   "ZIP排除": "不使用核可表列EX-P01至EX-P08母女戰功、假比武拒徒、變異歌者、賣機、送妹入教、敵隊情書、恐嚇學徒或未認主收束；僅據核可表摘要排除，未取得ZIP原稿。",
+   "交稿": "已親讀四份成稿全文；按各列近鄰的場面、人物職能、決定與後果複核，未見相同核心事件換視角重寫。 B03修補並改製教具；B04只用破紙作既往前因，場面為下次出門前整理、裝箱與搬運。",
+   "檢索證據": {
+    "寫前名稱命令": "rg -n -l '鄭素庭|韓苓|瑪蕾・貝松|伊德里斯・納賽爾|修紙|折收|取消加班|晚班津貼|教學抄本|保護匣' content/lore/characters content/lore/places content/lore/events content/base/persons",
+    "寫前命中": "只有wn-r2-mombasa-cleft-blade-shore的送修紙，已全文讀並比較；無四名同名。",
+    "寫前語義": "排班|班表|加班|修補.*紙|修.*抄本|教材|教具|借展|裝箱|搬運.*責|津貼；有界列檔後親讀核可近鄰及莉娜、瑪塔等角色。",
+    "交稿命令": "rg -n -o '.{0,35}(取消.{0,12}加班|替.{0,12}換班|修紙|教學.{0,8}抄本|保護匣|晚班津貼|可.{0,8}折.{0,8}教).{0,60}' content/lore/characters content/lore/events content/lore/places",
+    "交稿命中解釋": "另見阿麗娜的守約換班、斷刃試灘的送修紙、哈薩克售墟後守路工；均無改班親問意願、帶班公布加班取消或教材修紙裝運情節。"
+   },
+   "交稿數據": {
+    "id": "B03",
+    "檔": "/tmp/fill-lead-1028-night/wt-characters-b/content/lore/characters/night-mare-besson.json",
+    "body字元": 740,
+    "漢字": 593,
+    "bytes": 2755,
+    "欄位核對": true,
+    "雙向對象": "character/night-idris-nasser"
+   }
+  },
+  {
+   "id": "B04",
+   "檔": "content/lore/characters/night-idris-nasser.json",
+   "主動作": "下一次出發前親自裝箱、改用保護匣並接下歸還工作，先搬修補箱",
+   "近鄰": [
+    {
+     "檔": "content/lore/characters/anil-chowdhury.json",
+     "字段": "body／酒艙裡的座標",
+     "近似": "學會對外流通資料",
+     "差異": "只搬公開教材，不交易墟座標或刻痕秘密，不給玩家探墟入口。"
+    },
+    {
+     "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+     "字段": "body",
+     "近似": "巡迴教學與態度修正",
+     "差異": "無城鄉專長翻轉；補回同事替他承擔的物料與工時。"
+    },
+    {
+     "檔": "content/lore/places/wn-r2-mombasa-cleft-blade-shore.json",
+     "字段": "body／出勤以前",
+     "近似": "修復完畢仍須談帳",
+     "差異": "沒有武具錯配的交叉試用與索賠爭論；跑腿親自改運送並搬箱，機甲僅為母城與護衛背景。"
+    }
+   ],
+   "寫前": "已親讀近鄰全文；名稱查詢在既有lore及base/persons無四名同名。語義查詢排班、教材、借展、津貼、裝箱，逐件分清職能與轉折。",
+   "配對差異": "B03留在修紙桌改做教具；B04下一趟出行前改裝運，不重播破紙。",
+   "ZIP排除": "不使用核可表列EX-P01至EX-P08母女戰功、假比武拒徒、變異歌者、賣機、送妹入教、敵隊情書、恐嚇學徒或未認主收束；僅據核可表摘要排除，未取得ZIP原稿。",
+   "交稿": "已親讀四份成稿全文；按各列近鄰的場面、人物職能、決定與後果複核，未見相同核心事件換視角重寫。 B03修補並改製教具；B04只用破紙作既往前因，場面為下次出門前整理、裝箱與搬運。",
+   "檢索證據": {
+    "寫前名稱命令": "rg -n -l '鄭素庭|韓苓|瑪蕾・貝松|伊德里斯・納賽爾|修紙|折收|取消加班|晚班津貼|教學抄本|保護匣' content/lore/characters content/lore/places content/lore/events content/base/persons",
+    "寫前命中": "只有wn-r2-mombasa-cleft-blade-shore的送修紙，已全文讀並比較；無四名同名。",
+    "寫前語義": "排班|班表|加班|修補.*紙|修.*抄本|教材|教具|借展|裝箱|搬運.*責|津貼；有界列檔後親讀核可近鄰及莉娜、瑪塔等角色。",
+    "交稿命令": "rg -n -o '.{0,35}(取消.{0,12}加班|替.{0,12}換班|修紙|教學.{0,8}抄本|保護匣|晚班津貼|可.{0,8}折.{0,8}教).{0,60}' content/lore/characters content/lore/events content/lore/places",
+    "交稿命中解釋": "另見阿麗娜的守約換班、斷刃試灘的送修紙、哈薩克售墟後守路工；均無改班親問意願、帶班公布加班取消或教材修紙裝運情節。"
+   },
+   "交稿數據": {
+    "id": "B04",
+    "檔": "/tmp/fill-lead-1028-night/wt-characters-b/content/lore/characters/night-idris-nasser.json",
+    "body字元": 741,
+    "漢字": 593,
+    "bytes": 2793,
+    "欄位核對": true,
+    "雙向對象": "character/night-mare-besson"
+   }
+  }
+ ]
+}

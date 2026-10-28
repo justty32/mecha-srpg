@@ -1,0 +1,72 @@
+{
+  "contract": "content-batch/1",
+  "id": "TO_BE_FROZEN_AFTER_APPROVAL",
+  "mode": "add",
+  "status": "draft",
+  "goal": "主線核可後填入",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "待核可批次",
+    "subagents": 0
+  },
+  "lead": "fill-lead-1028-night",
+  "date": "2026-10-28",
+  "base": "4097630563f4b224650362d1074b43d0e1bd609e",
+  "reportDir": "wf/workflows/dispatch/handoffs/fill-lead-1028-night/reports/TO_BE_FROZEN_AFTER_APPROVAL",
+  "report": {
+    "file": "REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/WORKFLOWS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/common/user/working.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/lore-text.md",
+      "wf/workflows/content/world-pillars.md",
+      "content/lore/README.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 4,
+  "allow": {
+    "kinds": [],
+    "namePrefix": {
+      "lore/*": "night-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "lore",
+    "readlist"
+  ],
+  "playtest": {
+    "required": 0,
+    "reason": "純 lore，不涉及戰鬥規則與單位"
+  },
+  "files": [],
+  "ids": [],
+  "acceptance": {
+    "integration": "pending",
+    "local": "not-run"
+  },
+  "rounds": [],
+  "gateRejections": [],
+  "limits": {
+    "fileBytes": 16384,
+    "lineContentFiles": 96,
+    "lineBatches": 12,
+    "deliveryBytes": 20971520
+  },
+  "preparationOnly": true,
+  "freezeRequirements": [
+    "主線核可計畫與版本",
+    "四條精確內容路徑及id",
+    "單一allow.kinds",
+    "night前綴與同步引用",
+    "引用存在與語義去重候選",
+    "worker brief/readlist具體路徑"
+  ]
+}

@@ -1,0 +1,247 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "approved_sha256": "8c97607b3408d5f7e2ad029f01cbec62c0bad4246a5dc37133cda119b73f9902",
+ "worktree": "/tmp/fill-lead-1028-night/wt-events-c",
+ "validation": {
+  "command": "node content/lore/check.ts",
+  "cwd": "/tmp/fill-lead-1028-night/wt-events-c",
+  "exit": 0,
+  "runs": 1,
+  "output": "places per continent: {\"非洲\":14,\"亞洲\":45,\"歐洲\":11,\"大洋洲\":7,\"南美\":13,\"南極\":3,\"月面\":18,\"北美\":18,\"軌道\":5}\ncounts: {\"faction\":69,\"character\":297,\"event\":190,\"place\":134,\"era\":7} timeline=228\nerrors=0 warnings=0",
+  "status": "lore check通過；非整合accepted"
+ },
+ "columns": [
+  "id",
+  "檔",
+  "主動作",
+  "寫前",
+  "近鄰",
+  "交稿",
+  "ZIP比對",
+  "度量"
+ ],
+ "rows": [
+  {
+   "id": "C01",
+   "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-salt-flat-borrowed-hawsers.json",
+   "主動作": "兩團互為受力條件合力扶船，再分借纜與接頭耗材",
+   "寫前": {
+    "方法": "主repo rg -l按纜索／教習／姓名牌／食堂與行李等動作語彙擴查；指定近鄰與引用改在隔離樹逐檔全文親讀",
+    "基準": "新增前隔離樹git status --short為空；核可四列去重意圖逐一核對"
+   },
+   "近鄰": [
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/gull-anvil-truce.json",
+     "已讀欄位": "body／斡旋、停火之後；consequences",
+     "原件近似點": "兩團共同協商",
+     "寫前判定": "既有奠定分區、屍體規則與中立灘；新事件檢驗非戰鬥救船耗材的空白，不重演簽約、報平安或讓團長和解。",
+     "交稿落點": "兩團互為受力條件合力扶船，再分借纜與接頭耗材"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/places/salt-flat.json",
+     "已讀欄位": "body／發生過什麼、整補",
+     "原件近似點": "交換與船舶整補",
+     "寫前判定": "母檔開場無登記大事件；故新案只能possible，不倒填為2107已發生。鏡頭是兩側共同牽纜，不是多台傷機擋門救人。",
+     "交稿落點": "兩團互為受力條件合力扶船，再分借纜與接頭耗材"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/valparaiso-cut-cable.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件在獸襲下接纜拖出傷機，主動作是戰鬥掩護與救人；本件無獸襲，由兩個停火對手互相拉纜扶船，交換後另有耗材分攤。"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/wreck-crown.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "summary是巨獸翻船、纜工斷索逃命並命名怪獸；本件扶起交換船，無獸名、逃命或命名戰果。"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/aswan-sluice-night.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件閘工依序淹田困獸、失村換守城；本件普通木座纜索合力扶船，不淹田、不困獸、不新增城市守備制度。"
+    }
+   ],
+   "交稿": {
+    "方法": "隔離樹rg -l按停火合作／公刻教習／紀念像姓名牌／食堂行李與家具再次查找，並全文補讀四個候選",
+    "判定": "主動作、成本承擔與局部結果均與近鄰分開；沿用既有背景，不重演原事件鏡頭",
+    "四件互比": "扶船分耗材／教習分工時／移像找名字／拆桌散社群，動作與留下的成本各異"
+   },
+   "ZIP比對": "親讀二十二件README與review的id、類別、名稱、白話；六機及八獸不新增戰術／部位，八人物比武、露鱗表演、賣機拆牌、送親、情書、恐嚇教學、求認主均非本件主情節。僅比對該範圍，未宣稱完整實作獨立審核。",
+   "度量": {
+    "id": "C01",
+    "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-salt-flat-borrowed-hawsers.json",
+    "body字元": 782,
+    "純漢字": 656,
+    "小標數": 4,
+    "條件式後果數": 2,
+    "bytes": 3003,
+    "sha256": "23a26887f24de56003ce06854f0e053a7d4ba7770ea1c026445fc42ae0cb4ebe"
+   }
+  },
+  {
+   "id": "C02",
+   "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-hamburg-open-pattern-lessons.json",
+   "主動作": "把示範護蓋與待交修件分桌，付教學工時並承擔遲單",
+   "寫前": {
+    "方法": "主repo rg -l按纜索／教習／姓名牌／食堂與行李等動作語彙擴查；指定近鄰與引用改在隔離樹逐檔全文親讀",
+    "基準": "新增前隔離樹git status --short為空；核可四列去重意圖逐一核對"
+   },
+   "近鄰": [
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/shield-open-carving.json",
+     "已讀欄位": "body／誰都能仿；consequences",
+     "原件近似點": "公開技術分享",
+     "寫前判定": "不再發表圖紙或改秦望舒功績；圖已能看懂，瓶頸是手上操作示範與工時，不否定夢召。",
+     "交稿落點": "把示範護蓋與待交修件分桌，付教學工時並承擔遲單"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/bulwark-first-workshops.json",
+     "已讀欄位": "body／舊廠的新活",
+     "原件近似點": "公刻後的工藝勞動",
+     "寫前判定": "原件成批製造與跨城擴散；新件一次開棚活動把知識可得與授課勞動拆開，沒有新量產成果。",
+     "交稿落點": "把示範護蓋與待交修件分桌，付教學工時並承擔遲單"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/characters/wl-mateo-yupanqui.json",
+     "已讀欄位": "body",
+     "原件近似點": "教與學",
+     "寫前判定": "不讓學生用鄉土知識糾正老師，不以拒絕代寫維護尊嚴（A02）；核心是多人把一件零件來回用壞了工期。",
+     "交稿落點": "把示範護蓋與待交修件分桌，付教學工時並承擔遲單"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/workshop-outline-appendix.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件流通新骨架與支援工具接口方案；本件用既有堅盾普通廢護蓋，解決一次活動授課工時，無新方案下線。"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/longspear-leak.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件免費撒圖以帶動備件生意；本件圖早已公刻，對價是有限示範時間，無逆向工程或新通用系列。"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/seven-seals-diverge.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件各家可能傳修造旁型附頁；本件沒有新附頁、新旁型或跨城試作。"
+    }
+   ],
+   "交稿": {
+    "方法": "隔離樹rg -l按停火合作／公刻教習／紀念像姓名牌／食堂行李與家具再次查找，並全文補讀四個候選",
+    "判定": "主動作、成本承擔與局部結果均與近鄰分開；沿用既有背景，不重演原事件鏡頭",
+    "四件互比": "扶船分耗材／教習分工時／移像找名字／拆桌散社群，動作與留下的成本各異"
+   },
+   "ZIP比對": "親讀二十二件README與review的id、類別、名稱、白話；六機及八獸不新增戰術／部位，八人物比武、露鱗表演、賣機拆牌、送親、情書、恐嚇教學、求認主均非本件主情節。僅比對該範圍，未宣稱完整實作獨立審核。",
+   "度量": {
+    "id": "C02",
+    "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-hamburg-open-pattern-lessons.json",
+    "body字元": 829,
+    "純漢字": 668,
+    "小標數": 4,
+    "條件式後果數": 2,
+    "bytes": 3046,
+    "sha256": "9f7450ace0fa8908887f45a500eff2aa2251b50faafd2cb102d3394c463bf2be"
+   }
+  },
+  {
+   "id": "C03",
+   "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-incheon-statue-crossing.json",
+   "主動作": "居民鋪板移像、分頭尋牌、家屬辨字後移掛低欄",
+   "寫前": {
+    "方法": "主repo rg -l按纜索／教習／姓名牌／食堂與行李等動作語彙擴查；指定近鄰與引用改在隔離樹逐檔全文親讀",
+    "基準": "新增前隔離樹git status --short為空；核可四列去重意圖逐一核對"
+   },
+   "近鄰": [
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/incheon-roll-call.json",
+     "已讀欄位": "body／石頭只刻一張臉、活人還要換班",
+     "原件近似點": "守城紀念像與群體姓名",
+     "寫前判定": "原事件立像、本人補同伴姓名；新事件由鄰居移像和尋牌，主角是共同維護者，既有全部名字保留，不再補名奪功。",
+     "交稿落點": "居民鋪板移像、分頭尋牌、家屬辨字後移掛低欄"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/characters/seo-haegyeom.json",
+     "已讀欄位": "body／休假紙摺在衣裡",
+     "原件近似點": "英雄崇拜的生活壓力",
+     "寫前判定": "不延伸請假未成或讓海謙教訓居民，改看紀念物的空間與維護成本。",
+     "交稿落點": "居民鋪板移像、分頭尋牌、家屬辨字後移掛低欄"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/characters/wn-r2-lin-cangxu.json",
+     "已讀欄位": "body／不能合在一起的底座",
+     "原件近似點": "戰史表述與物件",
+     "寫前判定": "沒有對立史觀版本或買家審查，爭的是可通車的街與不能掉失的名字。",
+     "交稿落點": "居民鋪板移像、分頭尋牌、家屬辨字後移掛低欄"
+    }
+   ],
+   "交稿": {
+    "方法": "隔離樹rg -l按停火合作／公刻教習／紀念像姓名牌／食堂行李與家具再次查找，並全文補讀四個候選",
+    "判定": "主動作、成本承擔與局部結果均與近鄰分開；沿用既有背景，不重演原事件鏡頭",
+    "四件互比": "扶船分耗材／教習分工時／移像找名字／拆桌散社群，動作與留下的成本各異"
+   },
+   "ZIP比對": "親讀二十二件README與review的id、類別、名稱、白話；六機及八獸不新增戰術／部位，八人物比武、露鱗表演、賣機拆牌、送親、情書、恐嚇教學、求認主均非本件主情節。僅比對該範圍，未宣稱完整實作獨立審核。",
+   "度量": {
+    "id": "C03",
+    "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-incheon-statue-crossing.json",
+    "body字元": 827,
+    "純漢字": 675,
+    "小標數": 4,
+    "條件式後果數": 2,
+    "bytes": 3094,
+    "sha256": "256909184018b3f5b5704356bb4634200ad261464195ebc6e6ec5641579a0b04"
+   }
+  },
+  {
+   "id": "C04",
+   "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-tranquility-table-crates.json",
+   "主動作": "熟客與店主拆長桌成有價行李箱，窄攤與長凳留月",
+   "寫前": {
+    "方法": "主repo rg -l按纜索／教習／姓名牌／食堂與行李等動作語彙擴查；指定近鄰與引用改在隔離樹逐檔全文親讀",
+    "基準": "新增前隔離樹git status --short為空；核可四列去重意圖逐一核對"
+   },
+   "近鄰": [
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/return-fare-queue.json",
+     "已讀欄位": "body／便宜的一頭；consequences",
+     "原件近似點": "票價促使工人返地",
+     "寫前判定": "原事件鏡頭在人潮登船與引導員；新案進入需求下降的食堂，沿用政策後果，不調票價、不引導人潮。",
+     "交稿落點": "熟客與店主拆長桌成有價行李箱，窄攤與長凳留月"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/wl-genoa-cold-oven.json",
+     "已讀欄位": "summary",
+     "原件近似點": "公共用餐空間變動",
+     "寫前判定": "原是共灶火災、熱水無法代替住房與欠租逐客；本案沒有火災或逐客，店家因熟客外移縮業，眾人共同拆桌成箱。",
+     "交稿落點": "熟客與店主拆長桌成有價行李箱，窄攤與長凳留月"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/places/wm-r5-phoenix-empty-doors.json",
+     "已讀欄位": "body／試坐的人、最後再開一次",
+     "原件近似點": "家具拆取與失去居所意象",
+     "寫前判定": "空門樣屋從未住人、搬工想像家庭；長桌是真實熟人共餐的物件，拆箱伴隨已發生的經濟收縮，不重演推空門。",
+     "交稿落點": "熟客與店主拆長桌成有價行李箱，窄攤與長凳留月"
+    },
+    {
+     "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/valparaiso-borrowed-stretcher.json",
+     "已讀欄位": "summary（wreck-crown）或body（其他）；詳readlist",
+     "交稿判定": "原件求借古代機未成，付費買備件，以空擔架運回並留作旗架；本件熟客需求縮減導致店主拆桌售木，物件分散並須付行李費，無求援出行或接守夜班。"
+    }
+   ],
+   "交稿": {
+    "方法": "隔離樹rg -l按停火合作／公刻教習／紀念像姓名牌／食堂行李與家具再次查找，並全文補讀四個候選",
+    "判定": "主動作、成本承擔與局部結果均與近鄰分開；沿用既有背景，不重演原事件鏡頭",
+    "四件互比": "扶船分耗材／教習分工時／移像找名字／拆桌散社群，動作與留下的成本各異"
+   },
+   "ZIP比對": "親讀二十二件README與review的id、類別、名稱、白話；六機及八獸不新增戰術／部位，八人物比武、露鱗表演、賣機拆牌、送親、情書、恐嚇教學、求認主均非本件主情節。僅比對該範圍，未宣稱完整實作獨立審核。",
+   "度量": {
+    "id": "C04",
+    "檔": "/tmp/fill-lead-1028-night/wt-events-c/content/lore/events/night-tranquility-table-crates.json",
+    "body字元": 804,
+    "純漢字": 674,
+    "小標數": 4,
+    "條件式後果數": 2,
+    "bytes": 3060,
+    "sha256": "f5ec6c9b7381429fc943f0c5de869413d53cb54a627573934065686f2989305c"
+   }
+  }
+ ]
+}

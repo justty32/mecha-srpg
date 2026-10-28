@@ -1,0 +1,266 @@
+{
+  "contract": "wf-table/1",
+  "source": "PLAN.md",
+  "extracted": "2026-10-28",
+  "columns": [
+    "id",
+    "批次",
+    "類別",
+    "名稱",
+    "白話",
+    "檔",
+    "lore_id",
+    "掛到",
+    "設計",
+    "欄位",
+    "去重證據",
+    "ZIP比對",
+    "風險",
+    "驗收"
+  ],
+  "rows": [
+    {
+      "id": "C01",
+      "批次": "C",
+      "類別": "事件",
+      "名稱": "鹽灘借纜",
+      "白話": "停火後一艘交換船歪在鹽灘，兩團合力扶正；船起來了，救船的纜卻比屍體更難分。",
+      "檔": "content/lore/events/night-salt-flat-borrowed-hawsers.json",
+      "lore_id": "event/night-salt-flat-borrowed-hawsers",
+      "掛到": [
+        "event/gull-anvil-truce",
+        "place/salt-flat",
+        "faction/salt-gull",
+        "faction/anvil",
+        "era/league"
+      ],
+      "設計": "可能後續：交換貨物時一艘浮船落架失衡，鐵砧岸勤與鹽鷗船員必須把兩邊的纜接在同一支撐點才能卸下船腹的貨。先協調纜與卸貨，船慢慢扶正，鬆纜後卻發現借出的接頭與各自貨物混在一起。停火條文能裁屍體，沒寫這趟救船的耗材；當地聯絡人只為這一次列出共同墊款，兩團各負其份，爭執未成新戰爭。最後兩條舊團色纜暫接著收上船，下一趟仍得拆還。主動作是互為受力條件的合作，合作留下新債，不是善者先救弱者。",
+      "欄位": {
+        "date": "2108-02",
+        "period": "era/league",
+        "kind": "其他",
+        "occurs": "possible",
+        "visibility": "rumor",
+        "tags": [
+          "rumor"
+        ],
+        "factions": [
+          "faction/salt-gull",
+          "faction/anvil",
+          "faction/league"
+        ],
+        "places": [
+          "place/salt-flat"
+        ],
+        "characters": [],
+        "consequences": [
+          "若這次扶船發生，兩團會留下尚須歸還的接頭與纜索，不改獸屍原有歸屬。",
+          "若採用當地墊款辦法，其效力只及本次耗材，鹽灘中立與原停火條款照舊。"
+        ]
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/events/gull-anvil-truce.json",
+          "字段": "body／斡旋、停火之後；consequences",
+          "近似": "兩團共同協商",
+          "差異": "既有奠定分區、屍體規則與中立灘；新事件檢驗非戰鬥救船耗材的空白，不重演簽約、報平安或讓團長和解。"
+        },
+        {
+          "檔": "content/lore/places/salt-flat.json",
+          "字段": "body／發生過什麼、整補",
+          "近似": "交換與船舶整補",
+          "差異": "母檔開場無登記大事件；故新案只能possible，不倒填為2107已發生。鏡頭是兩側共同牽纜，不是多台傷機擋門救人。"
+        }
+      ],
+      "ZIP比對": "對22件README/REVIEW逐類排除：六機與八獸的戰術／部位不在本事件新增；八人物比武、表演、賣機、送親、情書、恐嚇、認主等主情節皆不採用。只寫既有世界事件的局部後續，不替ZIP單位編造戰果。",
+      "風險": "只用普通纜與既有浮船，不新增牽引招式／事故隨機表；不引用或加寫鹽婆對白，避免重複停火簽約。鹽灘安全不重新以潮差解釋。",
+      "驗收": "body 600–1000字、3–5個小標、條件式可能事件；consequences至少2條具體局部後果。所有引用既有，無新人物／地點配套，timeline不改。"
+    },
+    {
+      "id": "C02",
+      "批次": "C",
+      "類別": "事件",
+      "名稱": "公刻棚下的學費",
+      "白話": "公刻圖攤滿漢堡工棚，老師卻接不到工錢；開課的人把教學與趕工分桌，兩邊都慢了。",
+      "檔": "content/lore/events/night-hamburg-open-pattern-lessons.json",
+      "lore_id": "event/night-hamburg-open-pattern-lessons",
+      "掛到": [
+        "event/shield-open-carving",
+        "event/bulwark-first-workshops",
+        "place/hamburg",
+        "faction/anvil",
+        "era/league"
+      ],
+      "設計": "可能後續：漢堡幾間小工棚借公刻紀念日開放看修造，訪客以為圖免費、教習也該免費；老師一邊解說一邊趕真正的修單，示範才裝上的普通護蓋又被拆下重教，工件在兩桌間跑成笑話。活動主事者把捐來的廢護蓋固定留在示範桌，重新與教習談工時，攤主願出多少就開多久；學員帶走自己的手畫記錄，正式修單仍遲交，主事者補付工錢。沒有推出新機或解決整城人才短缺。核心是免費知識仍需有人支付教學時間，代價由籌辦者與修棚共同承擔，不設惡霸被正義老師羞辱。",
+      "欄位": {
+        "date": "2108-02",
+        "period": "era/league",
+        "kind": "其他",
+        "occurs": "possible",
+        "visibility": "rumor",
+        "tags": [
+          "rumor"
+        ],
+        "factions": [
+          "faction/anvil"
+        ],
+        "places": [
+          "place/hamburg"
+        ],
+        "characters": [],
+        "consequences": [
+          "若開課落地，參與小棚會把教具與待交修件分開，留下可重用的普通示範物。",
+          "若籌辦者補付授課工錢，仍須處理這一次修單延誤；不形成全城學費或工價標準。"
+        ]
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/events/shield-open-carving.json",
+          "字段": "body／誰都能仿；consequences",
+          "近似": "公開技術分享",
+          "差異": "不再發表圖紙或改秦望舒功績；圖已能看懂，瓶頸是手上操作示範與工時，不否定夢召。"
+        },
+        {
+          "檔": "content/lore/events/bulwark-first-workshops.json",
+          "字段": "body／舊廠的新活",
+          "近似": "公刻後的工藝勞動",
+          "差異": "原件成批製造與跨城擴散；新件一次開棚活動把知識可得與授課勞動拆開，沒有新量產成果。"
+        },
+        {
+          "檔": "content/lore/characters/wl-mateo-yupanqui.json",
+          "字段": "body",
+          "近似": "教與學",
+          "差異": "不讓學生用鄉土知識糾正老師，不以拒絕代寫維護尊嚴（A02）；核心是多人把一件零件來回用壞了工期。"
+        }
+      ],
+      "ZIP比對": "對22件README/REVIEW逐類排除：六機與八獸的戰術／部位不在本事件新增；八人物比武、表演、賣機、送親、情書、恐嚇、認主等主情節皆不採用。只寫既有世界事件的局部後續，不替ZIP單位編造戰果。",
+      "風險": "公刻只指通用堅盾，鐵砧專利機圖不可混入；普通示範護蓋不含核心／新技術。不得說全球公刻社群通過新收費法。",
+      "驗收": "body 600–1000字、3–5個小標、條件式可能事件；consequences至少2條具體局部後果。所有引用既有，無新人物／地點配套，timeline不改。"
+    },
+    {
+      "id": "C03",
+      "批次": "C",
+      "類別": "事件",
+      "名稱": "石肩讓出街口",
+      "白話": "仁川居民想搬守城像讓貨車過，掛滿石肩的姓名牌先被風吹散；搬像的人只能逐塊找回。",
+      "檔": "content/lore/events/night-incheon-statue-crossing.json",
+      "lore_id": "event/night-incheon-statue-crossing",
+      "掛到": [
+        "event/incheon-roll-call",
+        "character/seo-haegyeom",
+        "place/incheon",
+        "faction/korea-umbrella",
+        "era/league"
+      ],
+      "設計": "可能後續：守區一段搬運通道改道，搬得過貨的車繞不過像座；居民找車、鋪木、把高像從街口挪到同一廣場邊。怕破壞姓名牌的人先逐塊解下，風一吹，姓名牌混進各家暫放的工具裡。原想只抬石頭的鄰居分頭辨字，家屬指出幾塊已磨得看不清，大家補好才把它們掛回低欄。像仍立著，但名字變成地面可摸的位置；通道只供守區搬運，並未收復外港。徐海謙只作既有像主背景，不到場裁決，也不重講拒當英雄或請假的獨白。",
+      "欄位": {
+        "date": "2108-02",
+        "period": "era/league",
+        "kind": "其他",
+        "occurs": "possible",
+        "visibility": "rumor",
+        "tags": [
+          "rumor"
+        ],
+        "factions": [
+          "faction/korea-umbrella"
+        ],
+        "places": [
+          "place/incheon"
+        ],
+        "characters": [
+          "character/seo-haegyeom"
+        ],
+        "consequences": [
+          "若移像成功，守區這一處搬運通道可通行，外港戰況與國家徵召制度不變。",
+          "若姓名牌移至低欄，後續維護由參與家屬與街坊接手，補字的分歧仍需逐家確認。"
+        ]
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/events/incheon-roll-call.json",
+          "字段": "body／石頭只刻一張臉、活人還要換班",
+          "近似": "守城紀念像與群體姓名",
+          "差異": "原事件立像、本人補同伴姓名；新事件由鄰居移像和尋牌，主角是共同維護者，既有全部名字保留，不再補名奪功。"
+        },
+        {
+          "檔": "content/lore/characters/seo-haegyeom.json",
+          "字段": "body／休假紙摺在衣裡",
+          "近似": "英雄崇拜的生活壓力",
+          "差異": "不延伸請假未成或讓海謙教訓居民，改看紀念物的空間與維護成本。"
+        },
+        {
+          "檔": "content/lore/characters/wn-r2-lin-cangxu.json",
+          "字段": "body／不能合在一起的底座",
+          "近似": "戰史表述與物件",
+          "差異": "沒有對立史觀版本或買家審查，爭的是可通車的街與不能掉失的名字。"
+        }
+      ],
+      "ZIP比對": "對22件README/REVIEW逐類排除：六機與八獸的戰術／部位不在本事件新增；八人物比武、表演、賣機、送親、情書、恐嚇、認主等主情節皆不採用。只寫既有世界事件的局部後續，不替ZIP單位編造戰果。",
+      "風險": "不寫新戰役或舊像位置確切尺寸；新增通道是守區局部調整。整件possible，不能改仁川status2108。姓名牌是既有物，不以碰觸喚醒魂。",
+      "驗收": "body 600–1000字、3–5個小標、條件式可能事件；consequences至少2條具體局部後果。所有引用既有，無新人物／地點配套，timeline不改。"
+    },
+    {
+      "id": "C04",
+      "批次": "C",
+      "類別": "事件",
+      "名稱": "長桌拆成行李",
+      "白話": "便宜回程帶走月城食堂的熟客，長桌終於坐不滿；店家把桌板做成行李箱，自己留下收最後一餐。",
+      "檔": "content/lore/events/night-tranquility-table-crates.json",
+      "lore_id": "event/night-tranquility-table-crates",
+      "掛到": [
+        "event/return-fare-queue",
+        "place/tranquility-city",
+        "faction/ground-union",
+        "faction/selene",
+        "era/league"
+      ],
+      "設計": "可能後續：工人陸續乘便宜回程船離月，一家港邊私營食堂仍按舊份量煮飯，空碗與剩湯讓店主第一次算出再開一月會虧多少。熟客原想合買最後一桌，錢仍不足留店；眾人協助把長桌拆成幾只行李箱，店主照樣收木料錢並留下小桌做窄攤。板上圓碗印在行李上變成一輪輪舊月，旅人要付自己的行李運費；一人留下一把搭不進箱子的長凳，下一班仍在月上做工的人坐下吃飯。是價格政策造成的人口流動、需求收縮與工人社群拆散，不寫全城逃空、店主受壓拒搬或免費贈桌完成道德救贖。",
+      "欄位": {
+        "date": "2108-02",
+        "period": "era/league",
+        "kind": "其他",
+        "occurs": "possible",
+        "visibility": "rumor",
+        "tags": [
+          "rumor"
+        ],
+        "factions": [
+          "faction/ground-union",
+          "faction/selene"
+        ],
+        "places": [
+          "place/tranquility-city"
+        ],
+        "characters": [],
+        "consequences": [
+          "若這家食堂縮成窄攤，留下的工人失去大桌聚餐處，仍可付費買飯。",
+          "若桌板被帶回地球，各人須自付木料與行李費，便宜船票沒有消除返鄉成本。"
+        ]
+      },
+      "去重證據": [
+        {
+          "檔": "content/lore/events/return-fare-queue.json",
+          "字段": "body／便宜的一頭；consequences",
+          "近似": "票價促使工人返地",
+          "差異": "原事件鏡頭在人潮登船與引導員；新案進入需求下降的食堂，沿用政策後果，不調票價、不引導人潮。"
+        },
+        {
+          "檔": "content/lore/events/wl-genoa-cold-oven.json",
+          "字段": "summary",
+          "近似": "公共用餐空間變動",
+          "差異": "原是共灶火災、熱水無法代替住房與欠租逐客；本案沒有火災或逐客，店家因熟客外移縮業，眾人共同拆桌成箱。"
+        },
+        {
+          "檔": "content/lore/places/wm-r5-phoenix-empty-doors.json",
+          "字段": "body／試坐的人、最後再開一次",
+          "近似": "家具拆取與失去居所意象",
+          "差異": "空門樣屋從未住人、搬工想像家庭；長桌是真實熟人共餐的物件，拆箱伴隨已發生的經濟收縮，不重演推空門。"
+        }
+      ],
+      "ZIP比對": "對22件README/REVIEW逐類排除：六機與八獸的戰術／部位不在本事件新增；八人物比武、表演、賣機、送親、情書、恐嚇、認主等主情節皆不採用。只寫既有世界事件的局部後續，不替ZIP單位編造戰果。",
+      "風險": "不寫新月城、全體工人離開或富戶移民；食堂為匿名單店，不新增地點檔。行李箱普通木器，不設定運費數值或交易功能。",
+      "驗收": "body 600–1000字、3–5個小標、條件式可能事件；consequences至少2條具體局部後果。所有引用既有，無新人物／地點配套，timeline不改。"
+    }
+  ]
+}
