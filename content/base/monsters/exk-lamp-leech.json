@@ -1,0 +1,53 @@
+{
+  "id": "monster/exk-lamp-leech",
+  "nameEn": "Lamp Leech Clinger form",
+  "etymology": "漏燈是抱樁的俗稱形態，不是二名。拆船人剛點亮武器，一隻鉤足便從船側探入接縫。牠能耗掉目標的流光，並不把流光補給自己；左披甲也失去原有的能量抗性。拖足成了唯一機動支點，偏心囊不再藏得住。捕獲後回到既有抱樁機體。",
+  "species": "species/breakwater-clinger",
+  "grade": "C",
+  "extraAbilities": [
+    "ability/exk-lamp-leech"
+  ],
+  "partsOverride": [
+    {
+      "id": "hook-foot",
+      "name": "啜光鉤",
+      "functions": [
+        "manipulator",
+        "weaponMount"
+      ]
+    },
+    {
+      "id": "offset-core",
+      "exposure": 1.5
+    },
+    {
+      "id": "left-mantle",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 80,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.3,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "alien",
+    "morph-variant"
+  ]
+}

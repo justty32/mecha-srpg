@@ -1,0 +1,41 @@
+{
+  "id": "ability/exk-hookback",
+  "name": "倒刺",
+  "nameEn": "Barbed Reprisal",
+  "etymology": "敵機離開鄰格時才回刺；進入鄰格、留在身旁或從遠處移動都不觸發。每輪至多一次，不另產燼。",
+  "mode": "reaction",
+  "costs": [],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 6
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "insect",
+    "telegraph",
+    "melee",
+    "reaction"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.5
+    }
+  },
+  "trigger": {
+    "event": "enemyLeavesAdjacent",
+    "oncePer": "turn"
+  }
+}

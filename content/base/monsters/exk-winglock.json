@@ -1,0 +1,138 @@
+{
+  "id": "monster/exk-winglock",
+  "nameEn": "Winglock Lantern Keel form",
+  "etymology": "鎖翅是燈腹的俗稱形態，不是二名。牠在窄巷排燼管旁合起左翼，卡住穿行的腳架。鉗翼不再負責移動，右薄翼成了唯一機動支點；裸燈節比從前更容易命中。原有酸攻與護友仍在，打破鉗翼不會自動封掉新招。捕獲後回到既有燈腹機體。",
+  "species": "species/lantern-keel",
+  "grade": "C",
+  "extraAbilities": [
+    "ability/exk-winglock"
+  ],
+  "partsOverride": [
+    {
+      "id": "wing-left",
+      "name": "鉗翼",
+      "functions": [
+        "manipulator",
+        "weaponMount"
+      ],
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 10,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "wing-right",
+      "name": "獨行薄翼",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "name": "裸燈節",
+      "exposure": 3,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 10,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "insect",
+    "morph-variant"
+  ]
+}

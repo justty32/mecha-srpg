@@ -1,0 +1,43 @@
+{
+  "id": "ability/exk-forkneedle",
+  "name": "岔針穿隙",
+  "nameEn": "Forked Seam",
+  "etymology": "副針穿過成列敵機，單個目標受傷較輕；同一動作不是兩次射擊，原本瞄攻具的單點招仍在。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 2,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 6
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "alien",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1.5
+    }
+  },
+  "cooldown": 2
+}

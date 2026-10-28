@@ -1,0 +1,59 @@
+{
+  "id": "monster/exk-spine-rack",
+  "nameEn": "Spine Rack Shelf Back form",
+  "etymology": "背針是棧背的俗稱形態，不是二名。針骨從背縫長出，牠貼著堤壁轉身，把側後的晶心藏進陰影。厚背薄了許多，遠處卻多出一道穿列針雨。貼身可避新招的最低射程，不能避掉牠原有的推擊與護友。捕獲後回到既有棧背機體。",
+  "species": "species/shelf-back",
+  "grade": "B",
+  "extraAbilities": [
+    "ability/exk-spine-rack"
+  ],
+  "partsOverride": [
+    {
+      "id": "back",
+      "name": "開縫針背",
+      "functions": [
+        "weaponMount"
+      ],
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 110,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 70,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "thermal": 0,
+            "acid": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "name": "露脊心",
+      "exposure": 1.5
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "beast",
+    "morph-variant"
+  ]
+}

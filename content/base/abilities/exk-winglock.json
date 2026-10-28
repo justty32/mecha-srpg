@@ -1,0 +1,51 @@
+{
+  "id": "ability/exk-winglock",
+  "name": "合翼鎖",
+  "nameEn": "Wing Clamp",
+  "etymology": "近距穿刺與縛網同時結算，短暫阻住步伐；不拉人、不直接捕獲，冷卻期間仍可用原有招式。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 8
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/mx-netted"
+      ]
+    }
+  ],
+  "tags": [
+    "insect",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "disable": 1,
+      "attack": 0.5
+    }
+  },
+  "cooldown": 3
+}

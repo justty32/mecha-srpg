@@ -1,0 +1,60 @@
+{
+  "id": "monster/exk-crownfall",
+  "nameEn": "Crownfall Stalk form",
+  "etymology": "斷穗是菌柱的俗稱形態，不是二名。柱身還站著，酸滴卻全從彎向同一處的穗頂落下。柱身不再決定這片菌體的動作，穗頂成了外露而脆薄的局部戰鬥節點，也失去靈目用途。遠處酸團不能打貼身目標，原有縛足與孢霧仍在。採集者只取皮層，不把牠拘束成可駕駛的獸。",
+  "species": "species/stalk",
+  "grade": "C",
+  "extraAbilities": [
+    "ability/exk-crownfall"
+  ],
+  "partsOverride": [
+    {
+      "id": "pillar",
+      "name": "空心柱身",
+      "functions": [
+        "cockpit"
+      ]
+    },
+    {
+      "id": "crown",
+      "name": "獨穗心",
+      "functions": [
+        "core",
+        "weaponMount"
+      ],
+      "exposure": 3,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 10,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false,
+          "regen": 3
+        },
+        {
+          "type": "flesh",
+          "hp": 30,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "mycelium",
+    "morph-variant"
+  ]
+}

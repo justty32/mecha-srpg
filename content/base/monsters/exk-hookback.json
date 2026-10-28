@@ -1,0 +1,100 @@
+{
+  "id": "monster/exk-hookback",
+  "nameEn": "Hookback Brinepin form",
+  "etymology": "倒鉤是鹽針的俗稱形態，不是二名。退潮後牠附在繫纜處，纜索一鬆，倒刺才翻起。轉身離開鄰格會引出倒刺，停在身旁不觸發這條反應；翻腹節更容易中招，兩處薄甲也換不回從前的遮護。捕獲後仍回到既有鹽針機體，不保留這條反應招或部位定義。",
+  "species": "species/brinepin",
+  "grade": "D",
+  "extraAbilities": [
+    "ability/exk-hookback"
+  ],
+  "partsOverride": [
+    {
+      "id": "heart",
+      "name": "翻腹節",
+      "exposure": 2,
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 5,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 10,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "organ",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "needle",
+      "name": "倒鉤刺",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 5,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.2,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0,
+            "pierce": 0,
+            "acid": 0,
+            "thermal": 0,
+            "energy": 0
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "insect",
+    "morph-variant"
+  ]
+}

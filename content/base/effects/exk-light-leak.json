@@ -1,0 +1,31 @@
+{
+  "id": "effect/exk-light-leak",
+  "name": "漏光",
+  "nameEn": "Light Leak",
+  "etymology": "命中時只改目標已有的流光池；缺池時略過，不生出新池，也不補給施術者。",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "charge",
+        "delta": -15
+      }
+    ]
+  },
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "漏光"
+  }
+}

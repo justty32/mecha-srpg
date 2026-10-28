@@ -1,0 +1,44 @@
+{
+  "id": "ability/exk-crownfall",
+  "name": "酸穗散落",
+  "nameEn": "Falling Acid Tassels",
+  "etymology": "酸穗落在較遠的小片區域，貼身處不在新招射程內；原有縛足與孢霧仍在。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 2,
+      "max": 5
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "acid",
+      "amount": 12
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "mycelium",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 3
+}

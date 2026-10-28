@@ -1,0 +1,52 @@
+{
+  "id": "ability/exk-smotherwick",
+  "name": "悶燼團",
+  "nameEn": "Smothering Cinder",
+  "etymology": "小團命中時只添一次燼，不持續灼燒；沒有燼池時只受熱傷，不造池。原有縛足與孢霧仍可使用。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "range": {
+      "min": 1,
+      "max": 2
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 4
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/exk-smothered"
+      ]
+    }
+  ],
+  "tags": [
+    "mycelium",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 0.8,
+      "disable": 1
+    }
+  },
+  "cooldown": 3
+}

@@ -1,0 +1,44 @@
+{
+  "id": "ability/exk-cinder-muzzle",
+  "name": "燼息",
+  "nameEn": "Cinder Breath",
+  "etymology": "短距熱息掃過扇面，適合聚在一處的敵機；消耗行動點並需冷卻，不帶位移，也不另造燼池。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "cone",
+    "range": {
+      "min": 1,
+      "max": 3
+    },
+    "los": true,
+    "friendly": "no",
+    "radius": 1
+  },
+  "packets": [
+    {
+      "type": "thermal",
+      "amount": 12
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 3
+}

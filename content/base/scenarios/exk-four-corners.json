@@ -1,0 +1,160 @@
+{
+  "id": "scenario/exk-four-corners",
+  "name": "外堤四隅",
+  "nameEn": "Four Corners of the Breakwater",
+  "etymology": "展示倒鉤、鎖翅、燼吻與背針的部位取捨；既有機體與駕駛員參照裂隙群巢，非正式平衡結論。",
+  "brief": "工班還在外堤收纜，倒鉤伏在石腳，鎖翅貼著排燼管合攏。燼吻與背針堵住回程空地。守住中央岸路，讓工班穿過；薄甲、單側機動與露出的晶心各有不同破綻。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            },
+            {
+              "id": "person/unit-07",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 27
+          },
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "armor-mount": "component/mx-porcelain-plate"
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 29
+          },
+          "components": {
+            "right-weapon": "component/mx-singing-blade",
+            "left-weapon": "component/mx-binding-harpoon"
+          }
+        },
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 31
+          }
+        },
+        {
+          "mech": "frame/ancient-rearguard",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 33
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/exk-hookback",
+          "at": {
+            "x": 30,
+            "y": 27
+          }
+        },
+        {
+          "monster": "monster/exk-winglock",
+          "at": {
+            "x": 31,
+            "y": 29
+          }
+        },
+        {
+          "monster": "monster/exk-cinder-muzzle",
+          "at": {
+            "x": 32,
+            "y": 31
+          }
+        },
+        {
+          "monster": "monster/exk-spine-rack",
+          "at": {
+            "x": 30,
+            "y": 33
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 29,
+            "y": 29
+          },
+          {
+            "x": 30,
+            "y": 29
+          },
+          {
+            "x": 29,
+            "y": 30
+          },
+          {
+            "x": 30,
+            "y": 30
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 102801
+}

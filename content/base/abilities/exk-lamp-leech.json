@@ -1,0 +1,51 @@
+{
+  "id": "ability/exk-lamp-leech",
+  "name": "啜光",
+  "nameEn": "Sip the Gleam",
+  "etymology": "接觸時耗掉目標已有的流光；缺流光池只受傷害，不造新池，不回補施術者。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 1,
+      "max": 1
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "energy",
+      "amount": 12
+    }
+  ],
+  "effects": [
+    {
+      "on": "hit",
+      "apply": [
+        "effect/exk-light-leak"
+      ]
+    }
+  ],
+  "tags": [
+    "alien",
+    "telegraph",
+    "melee"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 0.8,
+      "disable": 1
+    }
+  },
+  "cooldown": 3
+}

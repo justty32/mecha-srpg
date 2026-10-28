@@ -1,0 +1,43 @@
+{
+  "id": "ability/exk-spine-rack",
+  "name": "背針穿列",
+  "nameEn": "Spine Volley",
+  "etymology": "背縫針雨沿直線穿出，貼身處不在新招射程內；原有推擊與護友仍可使用。",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "line",
+    "range": {
+      "min": 3,
+      "max": 6
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 20
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "beast",
+    "telegraph",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attackArea": 1
+    }
+  },
+  "cooldown": 2
+}

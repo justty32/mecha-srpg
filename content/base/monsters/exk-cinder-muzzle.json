@@ -1,0 +1,72 @@
+{
+  "id": "monster/exk-cinder-muzzle",
+  "nameEn": "Cinder Muzzle Hound form",
+  "etymology": "燼吻是掘犬的俗稱形態，不是二名。菌毯邊緣留著短焦痕，牠的嘴旁積了一圈乾燼。前鏟只剩操作用途，後腿斷了便走不動；薄首與薄背換來近距熱扇面。野獸不聽人指揮，原本的掘犬招式也沒有消失。捕獲後回到既有掘犬機體。",
+  "species": "species/hound",
+  "grade": "C",
+  "extraAbilities": [
+    "ability/exk-cinder-muzzle"
+  ],
+  "partsOverride": [
+    {
+      "id": "left-shovel",
+      "functions": [
+        "manipulator"
+      ]
+    },
+    {
+      "id": "right-shovel",
+      "functions": [
+        "manipulator"
+      ]
+    },
+    {
+      "id": "head",
+      "name": "燼吻囊",
+      "functions": [
+        "sensor",
+        "weaponMount"
+      ],
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 5,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 25,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "spine",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 35,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "exposure": 2
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "beast",
+    "morph-variant"
+  ]
+}

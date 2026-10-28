@@ -1,0 +1,114 @@
+{
+  "id": "monster/exk-smotherwick",
+  "nameEn": "Smotherwick Stalk form",
+  "etymology": "悶燈是菌柱的俗稱形態，不是二名。乾絮捲上排燼口，一團悶燼在機甲膝旁裂開。柱身與副菌冠結都是局部戰鬥節點，兩處都變薄，外皮也不再自行補起。根仍會拖行，採集者須避開根路，逐處清完再割取皮層。悶燼團只添目標已有的燼；割走的只是皮層，不是能拘束駕駛的獸。",
+  "species": "species/stalk",
+  "grade": "C",
+  "extraAbilities": [
+    "ability/exk-smotherwick"
+  ],
+  "partsOverride": [
+    {
+      "id": "pillar",
+      "name": "空心主柱",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 120,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ]
+    },
+    {
+      "id": "roots",
+      "name": "巡地薄根",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 60,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "functions": [
+        "locomotion"
+      ]
+    },
+    {
+      "id": "crown",
+      "name": "副菌冠結",
+      "layers": [
+        {
+          "type": "chitin",
+          "hp": 20,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "flesh",
+          "hp": 40,
+          "ablative": true,
+          "resist": {
+            "kinetic": 0.5,
+            "pierce": 0.5,
+            "acid": 0.8
+          },
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "functions": [
+        "sensor",
+        "core"
+      ]
+    }
+  ],
+  "tags": [
+    "kaiju",
+    "mycelium",
+    "morph-variant"
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "effect/exk-smothered",
+  "name": "悶燼",
+  "nameEn": "Smothered Cinder",
+  "etymology": "命中時只改目標已有的燼池；缺池時略過，不生出新池，也不補給施術者。",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "heat",
+        "delta": 12
+      }
+    ]
+  },
+  "tags": [
+    "debuff"
+  ],
+  "ui": {
+    "badge": "悶燼"
+  }
+}

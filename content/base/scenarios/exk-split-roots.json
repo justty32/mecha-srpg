@@ -1,0 +1,160 @@
+{
+  "id": "scenario/exk-split-roots",
+  "name": "拆船塢・辨根",
+  "nameEn": "Roots of the Salvage Dock",
+  "etymology": "展示漏燈、雙針及兩種菌柱形態；有流光與燼池的機械機，也有不帶這兩池的生物／古代機，便於後續核效果邊界。",
+  "brief": "舊船側板還在滴水，漏燈從接縫伸出鉤足，雙針守著堆門的空地。悶燈的冠結仍在吐燼，斷穗卻把生死全壓在細小穗頂。守住岸路，讓工班把門板拖走；別把仍能走動的根與真正的戰鬥節點認反。 這次借機把拘束矢換成燼焰吐息；菌絲只能採集，靠火打穿皮層，再看清冠上的局部節點。",
+  "map": "map/rift-edge-60",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            },
+            {
+              "id": "person/unit-07",
+              "seat": "soul"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 27
+          },
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "armor-mount": "component/mx-porcelain-plate"
+          }
+        },
+        {
+          "mech": "frame/hound-mk2",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 29
+          },
+          "components": {
+            "right-weapon": "component/mx-singing-blade",
+            "left-weapon": "component/mx-cinder-breath"
+          }
+        },
+        {
+          "mech": "frame/bio-reaper",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 31
+          }
+        },
+        {
+          "mech": "frame/ancient-rearguard",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 17,
+            "y": 33
+          }
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/exk-lamp-leech",
+          "at": {
+            "x": 30,
+            "y": 27
+          }
+        },
+        {
+          "monster": "monster/exk-forkneedle",
+          "at": {
+            "x": 31,
+            "y": 29
+          }
+        },
+        {
+          "monster": "monster/exk-smotherwick",
+          "at": {
+            "x": 32,
+            "y": 31
+          }
+        },
+        {
+          "monster": "monster/exk-crownfall",
+          "at": {
+            "x": 30,
+            "y": 33
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "hold",
+      "params": {
+        "zone": [
+          {
+            "x": 29,
+            "y": 29
+          },
+          {
+            "x": 30,
+            "y": 29
+          },
+          {
+            "x": 29,
+            "y": 30
+          },
+          {
+            "x": 30,
+            "y": 30
+          }
+        ],
+        "rounds": 8
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 20
+      },
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 102802
+}
