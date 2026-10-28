@@ -1,0 +1,139 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "check",
+  "status",
+  "detail",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "check": "batch characters",
+   "status": "passed",
+   "detail": "status=accepted; final round=1; 18 content files; checks={'probe': 'ok', 'readlist': 'ok', 'lore': 'ok', 'typecheck': 'ok', 'playtest': 'ok', 'check': 'ok', 'gate': 'ok'}",
+   "evidence": "content/batches/2026-10/expansion-1028-characters.json"
+  },
+  {
+   "check": "batch mechs-selected",
+   "status": "passed",
+   "detail": "status=accepted; final round=1; 14 content files; checks={'probe': 'ok', 'readlist': 'ok', 'lore': 'ok', 'typecheck': 'ok', 'playtest': 'ok', 'check': 'ok', 'ops': 'ok', 'gate': 'ok'}",
+   "evidence": "content/batches/2026-10/expansion-1028-mechs-selected.json"
+  },
+  {
+   "check": "batch monsters",
+   "status": "passed",
+   "detail": "status=accepted; final round=2; 20 content files; checks={'probe': 'ok', 'readlist': 'ok', 'lore': 'ok', 'typecheck': 'ok', 'playtest': 'ok', 'check': 'ok', 'gate': 'ok'}",
+   "evidence": "content/batches/2026-10/expansion-1028-monsters.json"
+  },
+  {
+   "check": "original eight-mech batch",
+   "status": "rejected",
+   "detail": "Both rounds rejected; two weak A candidates excluded from deliverable content; no third round.",
+   "evidence": "../expansion-1028-mechs/accept/verdict-2.json"
+  },
+  {
+   "check": "semantic dedupe characters",
+   "status": "passed",
+   "detail": "8 original candidates reviewed; final mechs only six selected; local Ye Zhen scene revision closed.",
+   "evidence": "../expansion-1028-dedupe/characters.json"
+  },
+  {
+   "check": "semantic dedupe mechs",
+   "status": "passed",
+   "detail": "8 original candidates reviewed; final mechs only six selected; local Ye Zhen scene revision closed.",
+   "evidence": "../expansion-1028-dedupe/mechs.json"
+  },
+  {
+   "check": "semantic dedupe monsters",
+   "status": "passed",
+   "detail": "8 original candidates reviewed; final mechs only six selected; local Ye Zhen scene revision closed.",
+   "evidence": "../expansion-1028-dedupe/monsters.json"
+  },
+  {
+   "check": "monster direct mechanics",
+   "status": "passed",
+   "detail": "10 checks: capture-state compatibility, once/turn reaction, pool changes and no missing-pool creation.",
+   "evidence": "../expansion-1028-monsters/mechanic-check.json"
+  },
+  {
+   "check": "conditional line ability",
+   "status": "passed",
+   "detail": "Five controlled collinear seeds; 4 AI uses, no errors. Not general win-rate evidence.",
+   "evidence": "../expansion-1028-monsters/forkneedle-line-check.json"
+  },
+  {
+   "check": "MCP characters",
+   "status": "passed",
+   "detail": "3 documented rows; full scenes plus bounded manual probe; raw logs retained. Difficulty exceptions are not full balance approval.",
+   "evidence": "../expansion-1028-characters/playtest.json"
+  },
+  {
+   "check": "MCP mechs-selected",
+   "status": "passed",
+   "detail": "3 documented rows; full scenes plus bounded manual probe; raw logs retained. Difficulty exceptions are not full balance approval.",
+   "evidence": "../expansion-1028-mechs-selected/playtest.json"
+  },
+  {
+   "check": "MCP monsters",
+   "status": "passed",
+   "detail": "3 documented rows; full scenes plus bounded manual probe; raw logs retained. Difficulty exceptions are not full balance approval.",
+   "evidence": "../expansion-1028-monsters/playtest.json"
+  },
+  {
+   "check": "protected golden files",
+   "status": "passed",
+   "detail": "7 SHA-256 values unchanged; no fixture re-recording.",
+   "evidence": "golden-baseline.json"
+  },
+  {
+   "check": "integrated non-screen suite",
+   "status": "failed",
+   "detail": "158 source test files, concurrency=2, two-CPU affinity, nice 10; one integrated run. # tests 1031\n# pass 1021\n# fail 10\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 1408580.54794\nnot ok 87 - campaign_act sortie：真實 AI 戰果與記錄可存檔重播\nnot ok 88 - socket CLI：serve、call 共用 session；list 與錯誤 exit 1\nnot ok 188 - 長時間 wait 在駕駛員歸零終局當天停止\nnot ok 193 - 黃金戰役固定指令的事件日誌 hash 相符\nnot ok 929 - 黃金戰役 ops-war-assault\nnot ok 930 - 黃金戰役 ops-relic\nnot ok 931 - 黃金戰役 ops-merc-join\nnot ok 932 - 黃金戰役 ops-betrayal\nnot ok 933 - 黃金戰役 ops-leak\nnot ok 934 - 黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived",
+   "evidence": "integrated-suite-summary.txt"
+  },
+  {
+   "check": "original npm test / UI screenshots",
+   "status": "not run",
+   "detail": "src/mcp/ui.test.ts contains two ui_screenshot cases; explicitly excluded under screen prohibition. Do not claim original npm test fully ran.",
+   "evidence": "suite-scope.json"
+  },
+  {
+   "check": "browser/e2e/visual play",
+   "status": "not run",
+   "detail": "No UI changes; GUI/screens/keyboards prohibited. Narrative taste, practical feel and difficult monster showcases await user review.",
+   "evidence": "REPORT.md"
+  },
+  {
+   "check": "dependency installation",
+   "status": "passed",
+   "detail": "Authorized npm ci from official lockfile registry; --ignore-scripts --no-audit --no-fund; no package version/settings changes.",
+   "evidence": "baseline/npm-ci.txt"
+  },
+  {
+   "check": "original BASE focused comparison",
+   "status": "failed",
+   "detail": "All nine related tests fail on original c09 too; seven same failures/asserted values, two changed trajectories (wait118→90; relic20889→19939 events/day896). This is not a clean integration pass.",
+   "evidence": "test-comparison.json"
+  },
+  {
+   "check": "final content/check/lore/typecheck/index",
+   "status": "passed",
+   "detail": "Final content check 0 errors; lore 0 errors/0 warnings; both tsc configs passed; content index check current. Generated capture HP warnings explicitly retained.",
+   "evidence": "REPORT.md"
+  },
+  {
+   "check": "wf strict",
+   "status": "baseline failures retained",
+   "detail": "Exactly two existing legacy external broken links; no new oversize/biglist/querycmd/broken/local-path issues. Final commit checks recorded in delivery tests.",
+   "evidence": "REPORT.md"
+  },
+  {
+   "check": "delivery state",
+   "status": "pending-integration",
+   "detail": "User decision required; no engine/schema/spec/old content/golden updates. Clean patch replay proves application/tree identity only, not green tests.",
+   "evidence": "STATE.md"
+  }
+ ]
+}

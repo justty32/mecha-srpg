@@ -1,0 +1,412 @@
+{
+ "contract": "content-batch/1",
+ "id": "expansion-1028-mechs",
+ "mode": "add",
+ "status": "rejected",
+ "goal": "八台有不同主動配裝取捨的衍型改型，連製造前代與兩場展示",
+ "author": {
+  "agent": "mechs_team_sol",
+  "model": "gpt-6.1-sol",
+  "reasoning": "xhigh",
+  "line": "expansion-1028-mechs",
+  "subagents": 0
+ },
+ "planning": {
+  "model": "gpt-6-astra",
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-plan/mechs-ready.json"
+ },
+ "lead": "lead_mecha_content_expansion",
+ "date": "2026-10-28",
+ "base": "c09b026919eeee03cde68c0f1eb0d289ad4cbe7c",
+ "reportDir": "wf/workflows/dispatch/handoffs/expansion-1028-mechs",
+ "report": {
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-mechs/REPORT.md",
+  "mustRead": [
+   "AGENTS.md",
+   "wf/workflows/common/user.md",
+   "wf/workflows/common/user/working.md",
+   "wf/workflows/content/README.md",
+   "wf/workflows/content/batch.md",
+   "wf/workflows/content/world-pillars.md",
+   "wf/workflows/content/mechs.md",
+   "wf/workflows/content/playtest.md",
+   "wf/workflows/content/acceptance-playtest.md",
+   "content/lore/style.md",
+   "wf/workflows/planning/specs/core/content-format.md"
+  ]
+ },
+ "maxFiles": 18,
+ "allow": {
+  "kinds": [
+   "base/frames",
+   "base/world/models",
+   "base/scenarios"
+  ],
+  "namePrefix": {
+   "base/*": "exm-"
+  }
+ },
+ "checks": [
+  "check",
+  "lore",
+  "typecheck",
+  "probe",
+  "playtest",
+  "readlist"
+ ],
+ "probe": {
+  "n": 5,
+  "reference": [
+   "frame/bulwark-i",
+   "frame/selene-silverring-g2",
+   "frame/shellsoc-surveyor-b",
+   "frame/anvil-gatewarden",
+   "frame/longspear-piercing-cloud",
+   "frame/tidefaith-censer-iv"
+  ],
+  "waivers": [
+   {
+    "id": "frame/exm-longspear-meridian",
+    "flag": "band",
+    "reason": "既有分翼骨架總HP520，低於A建議560；保留翼部/武器連帶脆弱取捨，不改舊骨架。此為已揭露帶外例外，非全帶內。"
+   },
+   {
+    "id": "scenario/exm-cooling-window",
+    "flag": "band",
+    "reason": "沿用上述分翼機520HP例外，場景本身未新增其他超帶單位。"
+   },
+   {
+    "id": "scenario/exm-cooling-window",
+    "flag": "winrate",
+    "reason": "八機展示之一、固定生存12輪目標5/5達成；展示可操作與資源輪替，不是勢均力敵的隨機戰役基準。"
+   },
+   {
+    "id": "scenario/exm-crossline",
+    "flag": "winrate",
+    "reason": "八機展示之一5/5擊退；用於部件/單位覆蓋，不宣稱此展示具競技50%難度。單機同級probe另附。"
+   }
+  ]
+ },
+ "playtest": {
+  "required": 2,
+  "file": "wf/workflows/dispatch/handoffs/expansion-1028-mechs/playtest.json",
+  "logDir": "wf/workflows/dispatch/handoffs/expansion-1028-mechs/mcp-log"
+ },
+ "plannedFiles": [
+  "content/base/frames/exm-ix12.json",
+  "content/base/world/models/exm-ix12.json",
+  "content/base/frames/exm-silverring-helix.json",
+  "content/base/world/models/exm-silverring-helix.json",
+  "content/base/frames/exm-surveyor-shutter.json",
+  "content/base/world/models/exm-surveyor-shutter.json",
+  "content/base/frames/exm-swordfish-file.json",
+  "content/base/world/models/exm-swordfish-file.json",
+  "content/base/frames/exm-anvil-clasp.json",
+  "content/base/world/models/exm-anvil-clasp.json",
+  "content/base/frames/exm-longspear-meridian.json",
+  "content/base/world/models/exm-longspear-meridian.json",
+  "content/base/frames/exm-bulwark-unclasp.json",
+  "content/base/world/models/exm-bulwark-unclasp.json",
+  "content/base/frames/exm-redeemer-ashrain.json",
+  "content/base/world/models/exm-redeemer-ashrain.json",
+  "content/base/scenarios/exm-crossline.json",
+  "content/base/scenarios/exm-cooling-window.json"
+ ],
+ "files": [],
+ "ids": [],
+ "acceptance": {
+  "batch": "expansion-1028-mechs",
+  "round": 2,
+  "at": "2026-10-28T18:11:50",
+  "ok": false,
+  "steps": {
+   "probe": "fail",
+   "readlist": "ok",
+   "lore": "ok",
+   "typecheck": "ok",
+   "playtest": "ok",
+   "check": "ok",
+   "ops": "ok",
+   "gate": "ok"
+  },
+  "approved": [
+   "content/base/frames/exm-anvil-clasp.json",
+   "content/base/frames/exm-bulwark-unclasp.json",
+   "content/base/frames/exm-ix12.json",
+   "content/base/frames/exm-longspear-meridian.json",
+   "content/base/frames/exm-redeemer-ashrain.json",
+   "content/base/frames/exm-silverring-helix.json",
+   "content/base/frames/exm-surveyor-shutter.json",
+   "content/base/frames/exm-swordfish-file.json",
+   "content/base/scenarios/exm-cooling-window.json",
+   "content/base/scenarios/exm-crossline.json",
+   "content/base/world/models/exm-anvil-clasp.json",
+   "content/base/world/models/exm-bulwark-unclasp.json",
+   "content/base/world/models/exm-ix12.json",
+   "content/base/world/models/exm-longspear-meridian.json",
+   "content/base/world/models/exm-redeemer-ashrain.json",
+   "content/base/world/models/exm-silverring-helix.json",
+   "content/base/world/models/exm-surveyor-shutter.json",
+   "content/base/world/models/exm-swordfish-file.json"
+  ],
+  "gateViolations": [],
+  "probe-verdict": {
+   "ok": false,
+   "rows": [
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/exm-anvil-clasp",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-anvil-clasp",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-anvil-clasp",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.6 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/exm-bulwark-unclasp",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/reaper-c ×1 勝率 100%",
+     "key": "winrate:monster/reaper-c ×1",
+     "side": "high",
+     "id": "frame/exm-bulwark-unclasp",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-bulwark-unclasp",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-bulwark-unclasp",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/mite-d ×1 勝率 100%",
+     "key": "winrate:monster/mite-d ×1",
+     "side": "high",
+     "id": "frame/exm-ix12",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-ix12",
+     "flag": "stat",
+     "detail": "frame/bulwark-i ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-ix12",
+     "flag": "stat",
+     "detail": "monster/mite-d ×1 n=5 勝 100% 敗 0% 平 0% 輪 9.8 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 520 < A 級下限 560",
+     "key": "band:base:frame/exm-longspear-meridian:衍型機總層 HP",
+     "id": "frame/exm-longspear-meridian",
+     "waived": "既有分翼骨架總HP520，低於A建議560；保留翼部/武器連帶脆弱取捨，不改舊骨架。此為已揭露帶外例外，非全帶內。"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 0%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "low",
+     "id": "frame/exm-longspear-meridian"
+    },
+    {
+     "id": "frame/exm-longspear-meridian",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-longspear-meridian",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/selene-aurora ×1 勝率 0%",
+     "key": "winrate:frame/selene-aurora ×1",
+     "side": "low",
+     "id": "frame/exm-redeemer-ashrain"
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/cliffjaw-red-eye ×1 勝率 100%",
+     "key": "winrate:monster/cliffjaw-red-eye ×1",
+     "side": "high",
+     "id": "frame/exm-redeemer-ashrain",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-redeemer-ashrain",
+     "flag": "stat",
+     "detail": "frame/selene-aurora ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-redeemer-ashrain",
+     "flag": "stat",
+     "detail": "monster/cliffjaw-red-eye ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-ii ×1 勝率 100%",
+     "key": "winrate:frame/bulwark-ii ×1",
+     "side": "high",
+     "id": "frame/exm-silverring-helix",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-silverring-helix",
+     "flag": "stat",
+     "detail": "frame/bulwark-ii ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-silverring-helix",
+     "flag": "stat",
+     "detail": "monster/reaper-c ×1 n=5 勝 80% 敗 20% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/exm-surveyor-shutter",
+     "matchesReference": true
+    },
+    {
+     "flag": "winrate",
+     "detail": "monster/siegebeetle-b ×1 勝率 100%",
+     "key": "winrate:monster/siegebeetle-b ×1",
+     "side": "high",
+     "id": "frame/exm-surveyor-shutter",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-surveyor-shutter",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-surveyor-shutter",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 100% 敗 0% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "frame/bulwark-iv-rampart ×1 勝率 0%",
+     "key": "winrate:frame/bulwark-iv-rampart ×1",
+     "side": "low",
+     "id": "frame/exm-swordfish-file",
+     "matchesReference": true
+    },
+    {
+     "id": "frame/exm-swordfish-file",
+     "flag": "stat",
+     "detail": "frame/bulwark-iv-rampart ×1 n=5 勝 0% 敗 100% 平 0% 輪 6.8 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "id": "frame/exm-swordfish-file",
+     "flag": "stat",
+     "detail": "monster/siegebeetle-b ×1 n=5 勝 40% 敗 60% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+    },
+    {
+     "flag": "band",
+     "detail": "衍型機總層 HP 520 < A 級下限 560",
+     "key": "band:base:frame/exm-longspear-meridian:衍型機總層 HP",
+     "id": "scenario/exm-cooling-window",
+     "waived": "沿用上述分翼機520HP例外，場景本身未新增其他超帶單位。"
+    },
+    {
+     "flag": "winrate",
+     "detail": "base:scenario/exm-cooling-window 勝率 100%",
+     "key": "winrate:base:scenario/exm-cooling-window",
+     "side": "high",
+     "id": "scenario/exm-cooling-window",
+     "waived": "八機展示之一、固定生存12輪目標5/5達成；展示可操作與資源輪替，不是勢均力敵的隨機戰役基準。"
+    },
+    {
+     "id": "scenario/exm-cooling-window",
+     "flag": "stat",
+     "detail": "base:scenario/exm-cooling-window n=5 勝 100% 敗 0% 平 0% 輪 12.0 原因 {\"survive\": 5}"
+    },
+    {
+     "flag": "winrate",
+     "detail": "base:scenario/exm-crossline 勝率 100%",
+     "key": "winrate:base:scenario/exm-crossline",
+     "side": "high",
+     "id": "scenario/exm-crossline",
+     "waived": "八機展示之一5/5擊退；用於部件/單位覆蓋，不宣稱此展示具競技50%難度。單機同級probe另附。"
+    },
+    {
+     "id": "scenario/exm-crossline",
+     "flag": "stat",
+     "detail": "base:scenario/exm-crossline n=5 勝 100% 敗 0% 平 0% 輪 10.6 原因 {\"eliminate:repelled\": 5}"
+    }
+   ]
+  },
+  "playtest": {
+   "ok": true,
+   "mcpRows": 3,
+   "rows": 3,
+   "problems": []
+  },
+  "readlist": {
+   "ok": true,
+   "listed": 11,
+   "problems": []
+  },
+  "newWarnings": []
+ },
+ "rounds": [
+  {
+   "round": 1,
+   "at": "2026-10-28T17:57:32",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok"
+   }
+  },
+  {
+   "round": 2,
+   "at": "2026-10-28T18:11:50",
+   "ok": false,
+   "steps": {
+    "probe": "fail",
+    "readlist": "ok",
+    "lore": "ok",
+    "typecheck": "ok",
+    "playtest": "ok",
+    "check": "ok",
+    "ops": "ok",
+    "gate": "ok"
+   }
+  }
+ ],
+ "gateRejections": [],
+ "integrationPolicy": "Workers run focused check/lore/typecheck only; lead runs probe/MCP serial under heavy-lock with one CPU, and one combined non-screen suite after all batches. src/mcp/ui.test.ts two screenshot tests are not run under explicit screen prohibition.",
+ "rejectionReason": "兩輪後月衡、燼雨對A極光0/5，A參照穿雲及封門5/5；不開第三輪、不入庫兩候選。其餘六機另以明確過濾批交付。"
+}

@@ -1,0 +1,127 @@
+{
+ "contract": "wf-table/1",
+ "source": "Unmodified TAP output; no golden update",
+ "extracted": "2026-10-28",
+ "columns": [
+  "scope",
+  "test",
+  "diagnostic",
+  "log"
+ ],
+ "rows": [
+  {
+   "scope": "integrated",
+   "test": "campaign_act sortie：真實 AI 戰果與記錄可存檔重播",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:121:1'\n  failureType: 'testCodeFailure'\n  error: '{\"content\":[{\"type\":\"text\",\"text\":\"insufficient-fuel：燃料不足。\"},{\"type\":\"text\",\"text\":\"{\\\\\"error\\\\\":\\\\\"insufficient-fuel\\\\\"}\"}],\"structuredContent\":{\"error\":\"insufficient-fuel\"},\"isError\":true}'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    data (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:21:10)\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/campaign.test.ts:169:12)\n    async Test.run (node:internal/test_runner/test:1409:7)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "socket CLI：serve、call 共用 session；list 與錯誤 exit 1",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/cli.test.ts:6:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    socket /tmp/cx-mcp-core/cli-518.sock 失敗：listen EPERM: operation not permitted /tmp/cx-mcp-core/cli-518.sock；socket 路徑過長？請改用短的相對路徑（29 字元，建議 < 100）。\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/mcp/cli.test.ts:19:12)\n    process.processTicksAndRejections (node:internal/process/task_queues:104:5)\n    async Test.run (node:internal/test_runner/test:1409:7)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "長時間 wait 在駕駛員歸零終局當天停止",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/campaign.test.ts:48:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    90 !== 132\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 132\n  actual: 90\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/campaign.test.ts:52:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役固定指令的事件日誌 hash 相符",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/golden.test.ts:8:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 31,\n    +   events: 840,\n    +   logHash: 'aacf251adb7030aa'\n    -   events: 795,\n    -   logHash: '3c8814d7d531c515'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/golden.test.ts:16:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役 ops-war-assault",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 16,\n    +   events: 540,\n    +   logHash: '41aa023e9a3e0d46'\n    -   events: 503,\n    -   logHash: '8f5c3d2665ae48b1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役 ops-relic",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 896,\n    +   events: 19939,\n    +   logHash: 'b3d1e67583ca10c5'\n    -   events: 19897,\n    -   logHash: '7d50e9aa5867bcb1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'b3d1e67583ca10c5'\n    events: 19939\n    day: 896\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役 ops-merc-join",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'unused-battle-record'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    replayCampaign (file:///workspace/scratch/4c78897e16f4/mecha-srpg/src/ops/sim/replay.ts:26:36)\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:17:54)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役 ops-betrayal",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'ops-betrayal 事件子序列缺失'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:30:3)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役 ops-leak",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 6,\n    +   events: 258,\n    +   logHash: '3ced084c80b5a8c7'\n    -   events: 246,\n    -   logHash: 'eb2d23f3641f6c6e'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "integrated",
+   "test": "黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived",
+   "diagnostic": "---\n  type: 'test'\n  location: '/workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/grid-actors.test.ts:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    ... Skipped lines\n    \n      {\n        day: 3,\n        events: [\n          {\n            day: 1,\n    ...\n        ],\n    +   hash: '20390962f8625caa'\n    -   hash: 'd415f49fe5b6826f'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///workspace/scratch/4c78897e16f4/mecha-srpg/test/campaigns/grid-actors.test.ts:39:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "integrated-suite.tap"
+  },
+  {
+   "scope": "original BASE three",
+   "test": "campaign_act sortie：真實 AI 戰果與記錄可存檔重播",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/src/mcp/campaign.test.ts:121:1'\n  failureType: 'testCodeFailure'\n  error: '{\"content\":[{\"type\":\"text\",\"text\":\"insufficient-fuel：燃料不足。\"},{\"type\":\"text\",\"text\":\"{\\\\\"error\\\\\":\\\\\"insufficient-fuel\\\\\"}\"}],\"structuredContent\":{\"error\":\"insufficient-fuel\"},\"isError\":true}'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    data (file:///tmp/expansion-1028/wt/monsters-base/src/mcp/campaign.test.ts:21:10)\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/src/mcp/campaign.test.ts:169:12)\n    async Test.run (node:internal/test_runner/test:1409:7)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ...",
+   "log": "base-focused.tap"
+  },
+  {
+   "scope": "original BASE three",
+   "test": "長時間 wait 在駕駛員歸零終局當天停止",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/src/ops/sim/campaign.test.ts:48:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly equal:\n    \n    118 !== 132\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: 132\n  actual: 118\n  operator: 'strictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/src/ops/sim/campaign.test.ts:52:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "base-focused.tap"
+  },
+  {
+   "scope": "original BASE three",
+   "test": "黃金戰役固定指令的事件日誌 hash 相符",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/src/ops/sim/golden.test.ts:8:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 31,\n    +   events: 840,\n    +   logHash: 'aacf251adb7030aa'\n    -   events: 795,\n    -   logHash: '3c8814d7d531c515'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '3c8814d7d531c515'\n    events: 795\n    day: 31\n  actual:\n    logHash: 'aacf251adb7030aa'\n    events: 840\n    day: 31\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/src/ops/sim/golden.test.ts:16:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "base-focused.tap"
+  },
+  {
+   "scope": "original BASE five",
+   "test": "黃金戰役 ops-war-assault",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 16,\n    +   events: 540,\n    +   logHash: '41aa023e9a3e0d46'\n    -   events: 503,\n    -   logHash: '8f5c3d2665ae48b1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '8f5c3d2665ae48b1'\n    events: 503\n    day: 16\n  actual:\n    logHash: '41aa023e9a3e0d46'\n    events: 540\n    day: 16\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "base-campaigns.tap"
+  },
+  {
+   "scope": "original BASE five",
+   "test": "黃金戰役 ops-relic",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 896,\n    +   events: 20889,\n    +   logHash: 'ad03741d873661ba'\n    -   events: 19897,\n    -   logHash: '7d50e9aa5867bcb1'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: '7d50e9aa5867bcb1'\n    events: 19897\n    day: 896\n  actual:\n    logHash: 'ad03741d873661ba'\n    events: 20889\n    day: 896\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)\n  ...",
+   "log": "base-campaigns.tap"
+  },
+  {
+   "scope": "original BASE five",
+   "test": "黃金戰役 ops-merc-join",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'unused-battle-record'\n  code: 'ERR_TEST_FAILURE'\n  stack: |-\n    replayCampaign (file:///tmp/expansion-1028/wt/monsters-base/src/ops/sim/replay.ts:26:36)\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:17:54)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "base-campaigns.tap"
+  },
+  {
+   "scope": "original BASE five",
+   "test": "黃金戰役 ops-betrayal",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: 'ops-betrayal 事件子序列缺失'\n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected: true\n  actual: false\n  operator: '=='\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:30:3)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "base-campaigns.tap"
+  },
+  {
+   "scope": "original BASE five",
+   "test": "黃金戰役 ops-leak",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:13:59'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    \n      {\n        day: 6,\n    +   events: 258,\n    +   logHash: '3ced084c80b5a8c7'\n    -   events: 246,\n    -   logHash: 'eb2d23f3641f6c6e'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    logHash: 'eb2d23f3641f6c6e'\n    events: 246\n    day: 6\n  actual:\n    logHash: '3ced084c80b5a8c7'\n    events: 258\n    day: 6\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/campaigns.test.ts:51:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.processPendingSubtests (node:internal/test_runner/test:974:18)\n    Test.postRun (node:internal/test_runner/test:1542:19)\n    Test.run (node:internal/test_runner/test:1467:12)\n    async Test.processPendingSubtests (node:internal/test_runner/test:974:7)\n  ...",
+   "log": "base-campaigns.tap"
+  },
+  {
+   "scope": "original BASE sail",
+   "test": "黃金戰役：sail格→遭遇→choose迴避→Evaded→sail地點→Arrived",
+   "diagnostic": "---\n  type: 'test'\n  location: '/tmp/expansion-1028/wt/monsters-base/test/campaigns/grid-actors.test.ts:11:1'\n  failureType: 'testCodeFailure'\n  error: |-\n    Expected values to be strictly deep-equal:\n    + actual - expected\n    ... Skipped lines\n    \n      {\n        day: 3,\n        events: [\n          {\n            day: 1,\n    ...\n        ],\n    +   hash: '20390962f8625caa'\n    -   hash: 'd415f49fe5b6826f'\n      }\n    \n  code: 'ERR_ASSERTION'\n  name: 'AssertionError'\n  expected:\n    hash: 'd415f49fe5b6826f'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  actual:\n    hash: '20390962f8625caa'\n    events:\n      0:\n        day: 1\n        type: 'EncounterOffered'\n      1:\n        day: 1\n        type: 'Evaded'\n      2:\n        day: 3\n        type: 'Arrived'\n    day: 3\n  operator: 'deepStrictEqual'\n  stack: |-\n    TestContext.<anonymous> (file:///tmp/expansion-1028/wt/monsters-base/test/campaigns/grid-actors.test.ts:39:10)\n    Test.runInAsyncScope (node:async_hooks:227:14)\n    Test.run (node:internal/test_runner/test:1402:25)\n    Test.start (node:internal/test_runner/test:1262:17)\n    startSubtestAfterBootstrap (node:internal/test_runner/harness:387:17)\n  ...",
+   "log": "base-sail.tap"
+  }
+ ]
+}

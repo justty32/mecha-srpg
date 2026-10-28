@@ -1,0 +1,2111 @@
+{
+  "version": 1,
+  "n": 5,
+  "seed": 1,
+  "noRetreat": false,
+  "bandsSource": "wf/workflows/content/numeric-bands.json",
+  "uncheckedBands": [
+    "第 1 列 衍型機 部位與層：未對應本次六項量測",
+    "第 2 列 衍型機 baseAttrs initiative／perception／evasion：未對應本次六項量測",
+    "第 3 列 衍型機 heat 池 max／regen／帶：未對應本次六項量測",
+    "第 4 列 衍型機 charge 池 max／regen：未對應本次六項量測",
+    "第 5 列 部件 武器 hp／size／mass／矢池：未對應本次六項量測",
+    "第 8 列 能力 傷害／AP：未對應本次六項量測",
+    "第 9 列 能力 射程 min–max：只檢查 rangeMax 聯集，min／次數／地圖大小條件未檢查",
+    "第 10 列 能力 accuracy 加值／armorPen／crit：只檢查 armorPen，accuracy／crit 未檢查",
+    "第 11 列 能力 cooldown／usesPerBattle：未對應本次六項量測",
+    "第 13 列 怪獸 部位數／核數／exposure：未對應本次六項量測",
+    "第 14 列 怪獸 baseAttrsByGrade accuracy／evasion／initiative／perception：未對應本次六項量測",
+    "第 15 列 怪獸 層 resist：未對應本次六項量測",
+    "第 16 列 生物機甲 burden（每回合承擔）／instinct 池：未對應本次六項量測",
+    "第 17 列 古代機 總層 HP／baseAttrs／能力數：未對應本次六項量測",
+    "第 18 列 效果 contribs 幅度（短效 1–3 回合）：未對應本次六項量測",
+    "第 19 列 人物 六屬性／hp／AP／fatigue：未對應本次六項量測",
+    "第 20 列 情境 每 slot 單位數／slot 數／輪數／地圖面積：未對應本次六項量測",
+    "第 21 列 地形 moveCost leg／cover／height：未對應本次六項量測",
+    "第 22 列 營運 機型 cost／拘束磨損／吞屍量／工時：未對應本次六項量測",
+    "第 23 列 營運 事件／契約金額：未對應本次六項量測"
+  ],
+  "results": [
+    {
+      "id": "frame/bulwark-i",
+      "carrier": "base:frame/bulwark-i",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-frame-strike",
+          "grade": "D",
+          "field": "單發傷害",
+          "value": 14,
+          "min": 5,
+          "max": 9,
+          "message": "單發傷害 14 > D 級上限 9"
+        },
+        {
+          "id": "base:ability/mx-guard-stance",
+          "grade": "D",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 4,
+          "message": "射程 0 < D 級下限 1"
+        },
+        {
+          "id": "base:ability/mx-iron-burst",
+          "grade": "D",
+          "field": "射程",
+          "value": 6,
+          "min": 1,
+          "max": 4,
+          "message": "射程 6 > D 級上限 4"
+        },
+        {
+          "id": "base:ability/mx-iron-burst",
+          "grade": "D",
+          "field": "單發傷害",
+          "value": 16,
+          "min": 5,
+          "max": 9,
+          "message": "單發傷害 16 > D 級上限 9"
+        },
+        {
+          "id": "base:ability/mx-scatter-blast",
+          "grade": "D",
+          "field": "單發傷害",
+          "value": 16,
+          "min": 5,
+          "max": 9,
+          "message": "單發傷害 16 > D 級上限 9"
+        },
+        {
+          "id": "base:ability/mx-scatter-blast",
+          "grade": "D",
+          "field": "armorPen",
+          "value": 0.1,
+          "min": 0,
+          "max": 0,
+          "message": "armorPen 0.1 > D 級上限 0"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-i ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 7.6,
+          "abilityUses": {
+            "base:ability/mx-guard-stance": 32,
+            "base:ability/mx-iron-burst": 36,
+            "base:ability/mx-scatter-blast": 31
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-guard-stance": 18,
+            "base:ability/mx-iron-burst": 1,
+            "base:ability/mx-scatter-blast": 31
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-frame-strike"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-iron-burst": 7,
+                "base:ability/mx-scatter-blast": 8
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-iron-burst": 11
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-iron-burst": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-scatter-blast": 6,
+                "base:ability/mx-iron-burst": 7
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 6
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/mx-iron-burst": 9
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 5,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-iron-burst": 2,
+                "base:ability/mx-scatter-blast": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 2,
+                "base:ability/mx-scatter-blast": 4
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/mite-d ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate": 1,
+            "eliminate:repelled": 4
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 11.4,
+          "abilityUses": {
+            "base:ability/mite-swarm-bite": 57,
+            "base:ability/mx-frame-strike": 14,
+            "base:ability/mx-guard-stance": 26,
+            "base:ability/mx-iron-burst": 2,
+            "base:ability/mx-scatter-blast": 38
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-frame-strike": 14,
+            "base:ability/mx-guard-stance": 26,
+            "base:ability/mx-iron-burst": 2,
+            "base:ability/mx-scatter-blast": 38
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mite-swarm-bite": 9,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-iron-burst": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 14,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 6,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mite-swarm-bite": 14,
+                "base:ability/mx-frame-strike": 6,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 6,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-frame-strike": 6,
+                "base:ability/mx-iron-burst": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 14,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mite-swarm-bite": 11,
+                "base:ability/mx-frame-strike": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-frame-strike": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 6,
+                "base:ability/mite-swarm-bite": 12
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 6
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 11,
+              "reason": "eliminate",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 5,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mite-swarm-bite": 11,
+                "base:ability/mx-frame-strike": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-guard-stance": 5,
+                "base:ability/mx-scatter-blast": 8,
+                "base:ability/mx-frame-strike": 3
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frame/selene-silverring-g2",
+      "carrier": "base:frame/selene-silverring-g2",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 2 < C 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "射程",
+          "value": 7,
+          "min": 1,
+          "max": 5,
+          "message": "射程 7 > C 級上限 5"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 22,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 22 > C 級上限 20"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/mx-guard-stance": 20,
+            "base:ability/mx-head-vulcan": 12,
+            "base:ability/mx-iron-burst": 8,
+            "base:ability/mx-radiant-shot": 11,
+            "base:ability/mx-rune-shot": 28,
+            "base:ability/mx-serpent-lash": 45
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-head-vulcan": 12,
+            "base:ability/mx-radiant-shot": 11,
+            "base:ability/mx-serpent-lash": 45
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-head-vulcan": 2,
+                "base:ability/mx-rune-shot": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-iron-burst": 2,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 3,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-serpent-lash": 9,
+                "base:ability/mx-rune-shot": 4,
+                "base:ability/mx-head-vulcan": 4,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 3,
+                "base:ability/mx-serpent-lash": 9,
+                "base:ability/mx-head-vulcan": 4
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 3,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-iron-burst": 2,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 3,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 1,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-head-vulcan": 3,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 1,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-head-vulcan": 3
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/reaper-c ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8.2,
+          "abilityUses": {
+            "base:ability/mx-head-vulcan": 11,
+            "base:ability/mx-radiant-shot": 9,
+            "base:ability/mx-serpent-lash": 47,
+            "base:ability/reaper-charge": 8,
+            "base:ability/reaper-cleave": 33
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-head-vulcan": 11,
+            "base:ability/mx-radiant-shot": 9,
+            "base:ability/mx-serpent-lash": 47
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 11,
+                "base:ability/reaper-cleave": 6,
+                "base:ability/reaper-charge": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 11
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/reaper-cleave": 7,
+                "base:ability/reaper-charge": 3,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 1,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/reaper-cleave": 8,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 1,
+                "base:ability/mx-serpent-lash": 10,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/reaper-cleave": 5,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-head-vulcan": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-head-vulcan": 4
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/reaper-cleave": 7,
+                "base:ability/mx-head-vulcan": 4,
+                "base:ability/reaper-charge": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-serpent-lash": 8,
+                "base:ability/mx-head-vulcan": 4
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frame/shellsoc-surveyor-b",
+      "carrier": "base:frame/shellsoc-surveyor-b",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-ash-screen",
+          "grade": "B",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 5,
+          "message": "AP 成本 2 < B 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "B",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 5,
+          "message": "AP 成本 2 < B 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "B",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 18,
+          "max": 26,
+          "message": "單發傷害 8 < B 級下限 18"
+        },
+        {
+          "id": "base:ability/mx-hush-burst",
+          "grade": "B",
+          "field": "單發傷害",
+          "value": 14,
+          "min": 18,
+          "max": 26,
+          "message": "單發傷害 14 < B 級下限 18"
+        },
+        {
+          "id": "base:ability/mx-rift-trace",
+          "grade": "B",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 5,
+          "message": "AP 成本 2 < B 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-rift-trace",
+          "grade": "B",
+          "field": "射程",
+          "value": 9,
+          "min": 1,
+          "max": 6,
+          "message": "射程 9 > B 級上限 6"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-iv-rampart ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/mx-ash-screen": 20,
+            "base:ability/mx-guard-stance": 20,
+            "base:ability/mx-head-vulcan": 13,
+            "base:ability/mx-hush-burst": 11,
+            "base:ability/mx-rune-shot": 28,
+            "base:ability/mx-scatter-blast": 27
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-head-vulcan": 13,
+            "base:ability/mx-hush-burst": 11,
+            "base:ability/mx-rune-shot": 28
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-rift-trace"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 7,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-head-vulcan": 8
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-head-vulcan": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 4,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-rune-shot": 5,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-rune-shot": 5,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-scatter-blast": 6,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/mx-rune-shot": 5,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 5,
+                "base:ability/mx-head-vulcan": 2
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/siegebeetle-b ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/kx-carapace-brace": 10,
+            "base:ability/kx-horn-ram": 10,
+            "base:ability/kx-tremor-stamp": 10,
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-hush-burst": 15,
+            "base:ability/mx-rift-trace": 40,
+            "base:ability/mx-rune-shot": 30
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-hush-burst": 15,
+            "base:ability/mx-rift-trace": 40,
+            "base:ability/mx-rune-shot": 30
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-head-vulcan"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-rift-trace": 9,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-rift-trace": 9
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/kx-horn-ram": 2,
+                "base:ability/mx-rift-trace": 8
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rift-trace": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-rift-trace": 7,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-rift-trace": 7
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rift-trace": 10,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rift-trace": 10
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/kx-horn-ram": 2,
+                "base:ability/mx-rift-trace": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-rune-shot": 6,
+                "base:ability/mx-rift-trace": 6
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frame/anvil-gatewarden",
+      "carrier": "base:frame/anvil-gatewarden",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/m2-brace-deploy",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 2 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/m2-brace-deploy",
+          "grade": "A",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 7,
+          "message": "射程 0 < A 級下限 1"
+        },
+        {
+          "id": "base:ability/mx-cold-vent",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 1,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 1 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-cold-vent",
+          "grade": "A",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 7,
+          "message": "射程 0 < A 級下限 1"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 3,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 3 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 18,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 18 < A 級下限 24"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.15,
+          "max": 0.3,
+          "message": "armorPen 0 < A 級下限 0.15"
+        },
+        {
+          "id": "base:ability/mx-rune-cannon-fire",
+          "grade": "A",
+          "field": "射程",
+          "value": 9,
+          "min": 1,
+          "max": 7,
+          "message": "射程 9 > A 級上限 7"
+        },
+        {
+          "id": "base:ability/mx-rune-cannon-fire",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 36,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 36 > A 級上限 34"
+        },
+        {
+          "id": "base:ability/mx-starscar-shot",
+          "grade": "A",
+          "field": "射程",
+          "value": 12,
+          "min": 1,
+          "max": 7,
+          "message": "射程 12 > A 級上限 7"
+        },
+        {
+          "id": "base:ability/mx-starscar-shot",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 38,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 38 > A 級上限 34"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/selene-aurora ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/m2-brace-deploy": 16,
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-aurora-veil": 15,
+            "base:ability/mx-ember-salvo": 11,
+            "base:ability/mx-hush-burst": 7,
+            "base:ability/mx-radiant-shot": 4,
+            "base:ability/mx-rune-cannon-fire": 2,
+            "base:ability/mx-starscar-shot": 9,
+            "base:ability/mx-thousand-gaze": 11,
+            "base:ability/mx-tide-leap-up": 16
+          },
+          "protagonistAbilityUses": {
+            "base:ability/m2-brace-deploy": 16,
+            "base:ability/mx-ember-salvo": 11,
+            "base:ability/mx-rune-cannon-fire": 2,
+            "base:ability/mx-starscar-shot": 9
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-cold-vent"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-thousand-gaze": 4,
+                "base:ability/mx-starscar-shot": 2,
+                "base:ability/mx-hush-burst": 1,
+                "base:ability/mx-ember-salvo": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 2,
+                "base:ability/mx-ember-salvo": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-thousand-gaze": 2,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-radiant-shot": 1,
+                "base:ability/mx-rune-cannon-fire": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-rune-cannon-fire": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/m2-brace-deploy": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-thousand-gaze": 2,
+                "base:ability/mx-hush-burst": 1,
+                "base:ability/mx-radiant-shot": 2,
+                "base:ability/mx-rune-cannon-fire": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 4,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-rune-cannon-fire": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-ember-salvo": 1,
+                "base:ability/mx-thousand-gaze": 1,
+                "base:ability/mx-radiant-shot": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-ember-salvo": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-thousand-gaze": 2,
+                "base:ability/mx-starscar-shot": 2,
+                "base:ability/mx-hush-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 2
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/cliffjaw-red-eye ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/kx-cliff-bite": 18,
+            "base:ability/kx-ground-stomp": 9,
+            "base:ability/kx-star-howl": 3,
+            "base:ability/m2-brace-deploy": 15,
+            "base:ability/mx-ember-salvo": 3,
+            "base:ability/mx-starscar-shot": 25
+          },
+          "protagonistAbilityUses": {
+            "base:ability/m2-brace-deploy": 15,
+            "base:ability/mx-ember-salvo": 3,
+            "base:ability/mx-starscar-shot": 25
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-cold-vent",
+            "base:ability/mx-rune-cannon-fire"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/kx-cliff-bite": 5,
+                "base:ability/kx-ground-stomp": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/kx-ground-stomp": 3,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/kx-cliff-bite": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/mx-ember-salvo": 2,
+                "base:ability/kx-cliff-bite": 5,
+                "base:ability/kx-ground-stomp": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/mx-ember-salvo": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/kx-ground-stomp": 3,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/kx-cliff-bite": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/mx-ember-salvo": 1,
+                "base:ability/kx-cliff-bite": 4,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/kx-ground-stomp": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/m2-brace-deploy": 3,
+                "base:ability/mx-starscar-shot": 5,
+                "base:ability/mx-ember-salvo": 1
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frame/longspear-piercing-cloud",
+      "carrier": "base:frame/longspear-piercing-cloud",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-cloud-piercer",
+          "grade": "A",
+          "field": "射程",
+          "value": 14,
+          "min": 1,
+          "max": 7,
+          "message": "射程 14 > A 級上限 7"
+        },
+        {
+          "id": "base:ability/mx-cloud-piercer",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 42,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 42 > A 級上限 34"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 3,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 3 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 18,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 18 < A 級下限 24"
+        },
+        {
+          "id": "base:ability/mx-ember-salvo",
+          "grade": "A",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.15,
+          "max": 0.3,
+          "message": "armorPen 0 < A 級下限 0.15"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 2 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 8 < A 級下限 24"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "A",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.15,
+          "max": 0.3,
+          "message": "armorPen 0 < A 級下限 0.15"
+        },
+        {
+          "id": "base:ability/mx-rune-shot",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 3,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 3 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-rune-shot",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 20,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 20 < A 級下限 24"
+        },
+        {
+          "id": "base:ability/mx-rune-shot",
+          "grade": "A",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.15,
+          "max": 0.3,
+          "message": "armorPen 0 < A 級下限 0.15"
+        },
+        {
+          "id": "base:ability/mx-starscar-shot",
+          "grade": "A",
+          "field": "射程",
+          "value": 12,
+          "min": 1,
+          "max": 7,
+          "message": "射程 12 > A 級上限 7"
+        },
+        {
+          "id": "base:ability/mx-starscar-shot",
+          "grade": "A",
+          "field": "單發傷害",
+          "value": 38,
+          "min": 24,
+          "max": 34,
+          "message": "單發傷害 38 > A 級上限 34"
+        },
+        {
+          "id": "base:ability/mx-tide-leap-up",
+          "grade": "A",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 4,
+          "max": 5,
+          "message": "AP 成本 2 < A 級下限 4"
+        },
+        {
+          "id": "base:ability/mx-tide-leap-up",
+          "grade": "A",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 7,
+          "message": "射程 0 < A 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/selene-aurora ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 7.8,
+          "abilityUses": {
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-aurora-veil": 15,
+            "base:ability/mx-ember-salvo": 8,
+            "base:ability/mx-head-vulcan": 5,
+            "base:ability/mx-hush-burst": 10,
+            "base:ability/mx-rune-shot": 5,
+            "base:ability/mx-starscar-shot": 15,
+            "base:ability/mx-thousand-gaze": 11,
+            "base:ability/mx-tide-leap-up": 36
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-ember-salvo": 8,
+            "base:ability/mx-head-vulcan": 5,
+            "base:ability/mx-rune-shot": 5,
+            "base:ability/mx-starscar-shot": 15,
+            "base:ability/mx-tide-leap-up": 20
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-cloud-piercer"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 7,
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-starscar-shot": 4,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-thousand-gaze": 4,
+                "base:ability/mx-hush-burst": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-starscar-shot": 4,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 7,
+                "base:ability/mx-starscar-shot": 4,
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-hush-burst": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-rune-shot": 2,
+                "base:ability/mx-thousand-gaze": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-starscar-shot": 4,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-rune-shot": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 7,
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-thousand-gaze": 1,
+                "base:ability/mx-hush-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-starscar-shot": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 7,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 8,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-thousand-gaze": 2,
+                "base:ability/mx-rune-shot": 2,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-starscar-shot": 1,
+                "base:ability/mx-ember-salvo": 3,
+                "base:ability/mx-rune-shot": 2,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 7,
+                "base:ability/mx-aurora-veil": 3,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-thousand-gaze": 2,
+                "base:ability/mx-ember-salvo": 2,
+                "base:ability/mx-hush-burst": 2,
+                "base:ability/mx-rune-shot": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-ember-salvo": 2,
+                "base:ability/mx-rune-shot": 1
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/cliffjaw-red-eye ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 5.6,
+          "abilityUses": {
+            "base:ability/kx-cliff-bite": 12,
+            "base:ability/kx-ground-stomp": 10,
+            "base:ability/kx-star-howl": 4,
+            "base:ability/mx-head-vulcan": 3,
+            "base:ability/mx-rune-shot": 14,
+            "base:ability/mx-starscar-shot": 10,
+            "base:ability/mx-tide-leap-up": 15
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-head-vulcan": 3,
+            "base:ability/mx-rune-shot": 14,
+            "base:ability/mx-starscar-shot": 10,
+            "base:ability/mx-tide-leap-up": 15
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-cloud-piercer",
+            "base:ability/mx-ember-salvo"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 5,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-rune-shot": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/kx-ground-stomp": 2,
+                "base:ability/kx-cliff-bite": 2,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/mx-starscar-shot": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-rune-shot": 3,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/mx-starscar-shot": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 6,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/kx-ground-stomp": 2,
+                "base:ability/mx-rune-shot": 2,
+                "base:ability/kx-cliff-bite": 2,
+                "base:ability/kx-star-howl": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-starscar-shot": 3,
+                "base:ability/mx-rune-shot": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-rune-shot": 4,
+                "base:ability/mx-head-vulcan": 2,
+                "base:ability/kx-ground-stomp": 3,
+                "base:ability/kx-cliff-bite": 4,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/mx-starscar-shot": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 4,
+                "base:ability/mx-rune-shot": 4,
+                "base:ability/mx-head-vulcan": 2,
+                "base:ability/mx-starscar-shot": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 4,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 2,
+                "base:ability/mx-starscar-shot": 2,
+                "base:ability/kx-ground-stomp": 1,
+                "base:ability/mx-rune-shot": 2,
+                "base:ability/kx-star-howl": 1,
+                "base:ability/kx-cliff-bite": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 2,
+                "base:ability/mx-starscar-shot": 2,
+                "base:ability/mx-rune-shot": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 5,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-rune-shot": 3,
+                "base:ability/kx-ground-stomp": 2,
+                "base:ability/kx-cliff-bite": 3,
+                "base:ability/mx-starscar-shot": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-tide-leap-up": 3,
+                "base:ability/mx-rune-shot": 3,
+                "base:ability/mx-starscar-shot": 1
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "frame/tidefaith-censer-iv",
+      "carrier": "base:frame/tidefaith-censer-iv",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-cold-vent",
+          "grade": "B",
+          "field": "AP 成本",
+          "value": 1,
+          "min": 3,
+          "max": 5,
+          "message": "AP 成本 1 < B 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-cold-vent",
+          "grade": "B",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 6,
+          "message": "射程 0 < B 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-iv-rampart ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/mx-ash-screen": 10,
+            "base:ability/mx-cinder-spit": 14,
+            "base:ability/mx-cold-vent": 2,
+            "base:ability/mx-guard-stance": 20,
+            "base:ability/mx-purge-flame": 20,
+            "base:ability/mx-scatter-blast": 22
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-cinder-spit": 14,
+            "base:ability/mx-cold-vent": 2,
+            "base:ability/mx-purge-flame": 20
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-scatter-blast": 4,
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-scatter-blast": 7,
+                "base:ability/mx-cinder-spit": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-scatter-blast": 4,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/mx-cold-vent": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/mx-cold-vent": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-scatter-blast": 2,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/mx-cold-vent": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/mx-cold-vent": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-ash-screen": 2,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/mx-cinder-spit": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 2
+              },
+              "error": null
+            }
+          ]
+        },
+        {
+          "name": "monster/siegebeetle-b ×1",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 5,
+          "losses": 0,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 1,
+          "lossRate": 0,
+          "drawRate": 0,
+          "averageRounds": 8.4,
+          "abilityUses": {
+            "base:ability/kx-carapace-brace": 10,
+            "base:ability/kx-horn-ram": 10,
+            "base:ability/kx-tremor-stamp": 10,
+            "base:ability/mx-cinder-spit": 24,
+            "base:ability/mx-purge-flame": 10
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-cinder-spit": 24,
+            "base:ability/mx-purge-flame": 10
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-cold-vent"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-cinder-spit": 5,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/mx-purge-flame": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-cinder-spit": 5,
+                "base:ability/mx-purge-flame": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-cinder-spit": 6,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/mx-purge-flame": 2,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-cinder-spit": 6,
+                "base:ability/mx-purge-flame": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2,
+                "base:ability/mx-cinder-spit": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-purge-flame": 4,
+                "base:ability/mx-cinder-spit": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "player",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-cinder-spit": 5,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2,
+                "base:ability/mx-purge-flame": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-cinder-spit": 5,
+                "base:ability/mx-purge-flame": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "player",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-cinder-spit": 5,
+                "base:ability/kx-carapace-brace": 2,
+                "base:ability/kx-tremor-stamp": 2,
+                "base:ability/kx-horn-ram": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/mx-cinder-spit": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

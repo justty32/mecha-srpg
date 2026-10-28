@@ -1,0 +1,154 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "log"
+ ],
+ "notRun": [
+  "npm test",
+  "probe",
+  "MCP",
+  "sim",
+  "full integrated acceptance"
+ ],
+ "boundary": "lead performs heavy validation serially",
+ "scope": {
+  "head": "c09b026919eeee03cde68c0f1eb0d289ad4cbe7c",
+  "exactPlannedFiles": true,
+  "trackedEdits": 0,
+  "files": 18,
+  "bytes": 32250,
+  "maxFileBytes": 2505,
+  "newWarningPaths": [],
+  "warningTotal": 36,
+  "verificationBoundary": "無新 exp- 檔告警；舊告警是否與領導基線一致待領導核對。",
+  "sha256": {
+   "content/base/persons/exp-adela-miro.json": "ece884748b5106a94c518e58df1d65cbf47a739269671491e7cd3aab16a19a44",
+   "content/base/persons/exp-liang-ran.json": "2619e7eb86e80f285b0545e869d642d70ab7c1bacd267c6a753bd576b4a97dfd",
+   "content/base/persons/exp-luan-mendes.json": "770ed3db4b7c3f8273d419f74ba9732a8d0eca7a64bc07dbf97682c8cc36bb51",
+   "content/base/persons/exp-miyasaka-gaku.json": "99b4f5d04a6cb225027d0025b7da26a47ed05f63685f34ebafd7a5efe59637da",
+   "content/base/persons/exp-omar-faris.json": "0be8cbad0c2f9ec028c4103012f7d9973af3c2a6de94d8f186b63be62af12c92",
+   "content/base/persons/exp-rida-amin.json": "b83a86b3bdd28486211e0999ec887c6cc7c5edc9a7ea72bc22a8fec314e40dad",
+   "content/base/persons/exp-sanya-iliev.json": "89bd828260de2a536166621859e01b76840b3e9a75957ab7a825d4c7330b4a4a",
+   "content/base/persons/exp-ye-zhen.json": "925ec6804919a865c83e032dd6bda0f60154cdf1022fc5b5ff7031420711c94f",
+   "content/base/scenarios/exp-four-choices.json": "38a8cb2afd6746dbd0667198f0f2fa848022e70f1ef635351ed47b2c57c67b6f",
+   "content/base/scenarios/exp-unfinished-ties.json": "4c06c842119c77527feaa995ecc2398734c40337c41ba0ab47883f65209b521b",
+   "content/lore/characters/exp-adela-miro.json": "09da73b706d823328999143f48c66726147cd5bba8562dabe43e8bea0759d6fa",
+   "content/lore/characters/exp-liang-ran.json": "c83185b4a8c58388a5fb888394cb570e0fcb97777e1692c3291e1c67663ac218",
+   "content/lore/characters/exp-luan-mendes.json": "faae4e92c9ab8e8ef220efbdb7a54fdd5580b612cc35fa3e35544ddaf1695d68",
+   "content/lore/characters/exp-miyasaka-gaku.json": "912743f587727e972bd0d3808c10b6b114f5c5c7c384557007698aa8088a8542",
+   "content/lore/characters/exp-omar-faris.json": "8f3f1f7216d49aa5e459c3b80f05806eab6e1c1098de822f0732cba2fc10efd5",
+   "content/lore/characters/exp-rida-amin.json": "311f7575f250ddb49b9a5331cb4289c3924d3db59d81e02d4e10e3ff4c1eb14d",
+   "content/lore/characters/exp-sanya-iliev.json": "85a78067e704b6afaafc4284cf360b57a66371bd8052b75482359c8e2dbcc66a",
+   "content/lore/characters/exp-ye-zhen.json": "03b037fc37ac7e4c4436c514804e07d92ffe7b6ce5e08870a6b0f662c9399e02"
+  }
+ },
+ "latestRevision": {
+  "id": "SHOWCASE-R2",
+  "changedHashes": {
+   "content/lore/characters/exp-ye-zhen.json": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891",
+   "content/base/scenarios/exp-four-choices.json": "f62e77335e621395cedfe2b53d3b658e871488e566682842889c5215fae141f0",
+   "content/base/scenarios/exp-unfinished-ties.json": "49efa8a951e960b43a627a7c95a56ccd817484185a10de2562e740abb1ed70b4"
+  },
+  "other16Unchanged": true,
+  "contentBytes": 32094,
+  "maxFileBytes": 2388,
+  "status": "frozen-awaiting-lead-mcp-retest",
+  "note": "scope 為初交快照；current=scope.sha256 加 changedHashes 三檔覆寫。最新兩展示只通過 loader/gate，lead 會重跑整場 MCP。"
+ },
+ "revisionHistory": [
+  {
+   "id": "EX-P01-R1",
+   "file": "content/lore/characters/exp-ye-zhen.json",
+   "sha256": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891",
+   "other17Unchanged": true,
+   "contentBytes": 32328,
+   "maxFileBytes": 2505,
+   "status": "frozen-awaiting-independent-dedup-recheck",
+   "note": "scope 為初交十八檔快照；最新葉榛 body hash 以此列及 revision.json 為準。"
+  }
+ ],
+ "columns": [
+  "check",
+  "command",
+  "cwd",
+  "startedUTC",
+  "exitCode",
+  "status",
+  "log",
+  "tail"
+ ],
+ "rows": [
+  {
+   "check": "check",
+   "command": "node src/content/loader.ts content/base",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T09:54:00.434954+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/check.log",
+   "tail": "WARNING [soft-overflow-band] content/base/species/wn-r3-turning-foam.json $.pools[0].bands instinct: no band covers values above max\nWARNING [band-damage] content/base/abilities/kx-tide-crush.json $.packets value 28 exceeds upper limit 26; source numeric-bands.json rows[7]\nWARNING [mechanical-unarmed] content/base/frames/infantry.json $.defaultLoadout mechanical frame has no defaultLoadout or innate attack\nOK 0 errors, 36 warnings"
+  },
+  {
+   "check": "lore",
+   "command": "node content/lore/check.ts",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T09:54:01.147160+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/lore.log",
+   "tail": "places per continent: {\"非洲\":14,\"亞洲\":45,\"歐洲\":11,\"大洋洲\":7,\"南美\":13,\"南極\":3,\"月面\":18,\"北美\":18,\"軌道\":5}\ncounts: {\"faction\":69,\"character\":297,\"event\":186,\"place\":134,\"era\":7} timeline=228\nerrors=0 warnings=0"
+  },
+  {
+   "check": "typecheck",
+   "command": "npm run typecheck",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T09:54:01.369594+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/typecheck.log",
+   "tail": "\n> mecha-srpg@0.1.0 typecheck\n> tsc --noEmit && tsc --noEmit -p tsconfig.ui.json\n"
+  },
+  {
+   "check": "gate",
+   "command": "python3 /workspace/scratch/4c78897e16f4/mecha-srpg/wf/tools/content_gate.py /tmp/expansion-1028/wt/characters /workspace/scratch/4c78897e16f4/mecha-srpg/content/batches/2026-10/expansion-1028-characters.json --json",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T09:54:03.605158+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/gate.log",
+   "tail": "  \"node_modules\"\n ],\n \"violations\": []\n}"
+  },
+  {
+   "check": "lore-revision-1",
+   "command": "node content/lore/check.ts",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T10:02:43.290246+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/lore-revision-1.log",
+   "tail": "places per continent: {\"非洲\":14,\"亞洲\":45,\"歐洲\":11,\"大洋洲\":7,\"南美\":13,\"南極\":3,\"月面\":18,\"北美\":18,\"軌道\":5}\ncounts: {\"faction\":69,\"character\":297,\"event\":186,\"place\":134,\"era\":7} timeline=228\nerrors=0 warnings=0"
+  },
+  {
+   "check": "check-showcase-r2",
+   "command": "node src/content/loader.ts content/base",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T10:11:44.565270+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/check-showcase-r2.log",
+   "tail": "WARNING [soft-overflow-band] content/base/species/wn-r3-turning-foam.json $.pools[0].bands instinct: no band covers values above max\nWARNING [band-damage] content/base/abilities/kx-tide-crush.json $.packets value 28 exceeds upper limit 26; source numeric-bands.json rows[7]\nWARNING [mechanical-unarmed] content/base/frames/infantry.json $.defaultLoadout mechanical frame has no defaultLoadout or innate attack\nOK 0 errors, 36 warnings"
+  },
+  {
+   "check": "gate-showcase-r2",
+   "command": "python3 /workspace/scratch/4c78897e16f4/mecha-srpg/wf/tools/content_gate.py /tmp/expansion-1028/wt/characters /workspace/scratch/4c78897e16f4/mecha-srpg/content/batches/2026-10/expansion-1028-characters.json --json",
+   "cwd": "/tmp/expansion-1028/wt/characters",
+   "startedUTC": "2026-10-28T10:11:47.645247+00:00",
+   "exitCode": 0,
+   "status": "pass",
+   "log": "focused-logs/gate-showcase-r2.log",
+   "tail": "  \"node_modules\"\n ],\n \"violations\": []\n}"
+  }
+ ]
+}

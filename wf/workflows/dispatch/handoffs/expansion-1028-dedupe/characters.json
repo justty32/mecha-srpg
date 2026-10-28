@@ -1,0 +1,442 @@
+{
+ "contract": "wf-table/1",
+ "source": "../expansion-1028-audit-characters.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "新檔"
+ ],
+ "auditor": "mechs_team_sol / gpt-6.1-sol / xhigh",
+ "reviewedAt": "2026-10-28T10:04:22.931618+00:00",
+ "base": "c09b026919eeee03cde68c0f1eb0d289ad4cbe7c",
+ "phase": "independent post-write semantic audit; P01 body-only R1 rechecked",
+ "authorization": "only characters.json and designated tmp; no content changes",
+ "summary": {
+  "subjects": 8,
+  "hardWorldViolations": 0,
+  "wholeStoryDuplicates": 0,
+  "localRevisionRequests": 0,
+  "scope": "有限nearest/必要相鄰全文與八篇互比，不是技術、敘事基調或使用者驗收；不把active/draft當verified",
+  "nameCheck": "主樹content全庫八個中文name精確字串與八個英文原名均0命中；lore/base-person索引find name亦0；新稿本身各雙檔同名為刻意配對",
+  "historicalLocalRevisionRequests": 1,
+  "pendingRevisionRequests": 0,
+  "recheckedSubjects": [
+   "P01 葉榛"
+  ]
+ },
+ "rulesEvidence": "../expansion-1028-mechs/readlist.json：本人前階段全文閱讀，當次tabledb限定查列核對",
+ "toolsUsed": [
+  "tabledb.py：plan分段、索引精確find及status",
+  "content_index.py refs character/wl-amalia-quispe：0",
+  "brief_lint.py --strict：0違規",
+  "rg：限定功能發現與全庫名字/英文原名精確查詢；不以grep代替全文閱讀"
+ ],
+ "readEvidence": {
+  "newFull": [
+   "content/base/persons/exp-ye-zhen.json",
+   "content/lore/characters/exp-ye-zhen.json",
+   "content/base/persons/exp-miyasaka-gaku.json",
+   "content/lore/characters/exp-miyasaka-gaku.json",
+   "content/base/persons/exp-rida-amin.json",
+   "content/lore/characters/exp-rida-amin.json",
+   "content/base/persons/exp-omar-faris.json",
+   "content/lore/characters/exp-omar-faris.json",
+   "content/base/persons/exp-sanya-iliev.json",
+   "content/lore/characters/exp-sanya-iliev.json",
+   "content/base/persons/exp-adela-miro.json",
+   "content/lore/characters/exp-adela-miro.json",
+   "content/base/persons/exp-luan-mendes.json",
+   "content/lore/characters/exp-luan-mendes.json",
+   "content/base/persons/exp-liang-ran.json",
+   "content/lore/characters/exp-liang-ran.json",
+   "content/base/scenarios/exp-four-choices.json",
+   "content/base/scenarios/exp-unfinished-ties.json"
+  ],
+  "oldFull": [
+   "content/lore/characters/bruno-azzari.json",
+   "content/lore/characters/meera-naik.json",
+   "content/lore/characters/molly-van-den-berg.json",
+   "content/lore/characters/nabil-hamdan.json",
+   "content/lore/characters/njeri-mwangi.json",
+   "content/lore/characters/samira-qureshi.json",
+   "content/lore/characters/seo-haegyeom.json",
+   "content/lore/characters/wl-amalia-quispe.json",
+   "content/lore/characters/wl-choi-eunsol.json",
+   "content/lore/characters/wl-nico-bellini.json",
+   "content/lore/characters/wm-r4-bae-hyeonju.json",
+   "content/lore/characters/wm-r4-mina-voss.json",
+   "content/lore/characters/wn-r2-adjoa-senyo.json",
+   "content/lore/characters/wn-r2-maia-raukura.json"
+  ],
+  "meaning": "main repo relative input paths; newFull materialized under worktree, oldFull under main repo; no tests executed",
+  "revisionTable": "wf/workflows/dispatch/handoffs/expansion-1028-characters/revision.json metadata + complete row0"
+ },
+ "newFileHashes": {
+  "content/base/persons/exp-ye-zhen.json": "925ec6804919a865c83e032dd6bda0f60154cdf1022fc5b5ff7031420711c94f",
+  "content/lore/characters/exp-ye-zhen.json": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891",
+  "content/base/persons/exp-miyasaka-gaku.json": "99b4f5d04a6cb225027d0025b7da26a47ed05f63685f34ebafd7a5efe59637da",
+  "content/lore/characters/exp-miyasaka-gaku.json": "912743f587727e972bd0d3808c10b6b114f5c5c7c384557007698aa8088a8542",
+  "content/base/persons/exp-rida-amin.json": "b83a86b3bdd28486211e0999ec887c6cc7c5edc9a7ea72bc22a8fec314e40dad",
+  "content/lore/characters/exp-rida-amin.json": "311f7575f250ddb49b9a5331cb4289c3924d3db59d81e02d4e10e3ff4c1eb14d",
+  "content/base/persons/exp-omar-faris.json": "0be8cbad0c2f9ec028c4103012f7d9973af3c2a6de94d8f186b63be62af12c92",
+  "content/lore/characters/exp-omar-faris.json": "8f3f1f7216d49aa5e459c3b80f05806eab6e1c1098de822f0732cba2fc10efd5",
+  "content/base/persons/exp-sanya-iliev.json": "89bd828260de2a536166621859e01b76840b3e9a75957ab7a825d4c7330b4a4a",
+  "content/lore/characters/exp-sanya-iliev.json": "85a78067e704b6afaafc4284cf360b57a66371bd8052b75482359c8e2dbcc66a",
+  "content/base/persons/exp-adela-miro.json": "ece884748b5106a94c518e58df1d65cbf47a739269671491e7cd3aab16a19a44",
+  "content/lore/characters/exp-adela-miro.json": "09da73b706d823328999143f48c66726147cd5bba8562dabe43e8bea0759d6fa",
+  "content/base/persons/exp-luan-mendes.json": "770ed3db4b7c3f8273d419f74ba9732a8d0eca7a64bc07dbf97682c8cc36bb51",
+  "content/lore/characters/exp-luan-mendes.json": "faae4e92c9ab8e8ef220efbdb7a54fdd5580b612cc35fa3e35544ddaf1695d68",
+  "content/base/persons/exp-liang-ran.json": "2619e7eb86e80f285b0545e869d642d70ab7c1bacd267c6a753bd576b4a97dfd",
+  "content/lore/characters/exp-liang-ran.json": "c83185b4a8c58388a5fb888394cb570e0fcb97777e1692c3291e1c67663ac218",
+  "content/base/scenarios/exp-four-choices.json": "38a8cb2afd6746dbd0667198f0f2fa848022e70f1ef635351ed47b2c57c67b6f",
+  "content/base/scenarios/exp-unfinished-ties.json": "4c06c842119c77527feaa995ecc2398734c40337c41ba0ab47883f65209b521b"
+ },
+ "historicalBoundary": "七輪draft與215舊件仍未驗收；本輪P01葉榛與歷史P01朴仁哲不同，後者失腿矛盾不裁決。",
+ "snapshotProvenance": "第一版報告落檔時作者窄退修已凍結，P01整檔hash先捕到新稿，該列比較文字仍指先前親讀舊body；本次已全文重讀新body，並以revision row0與重建舊整檔hash校正版本對應。其他17檔相對第一版hash均未變。",
+ "lastRecheckedAt": "2026-10-28T10:06:51.652921+00:00",
+ "revisionRecheck": {
+  "subject": "P01 葉榛",
+  "oldSha256": "03b037fc37ac7e4c4436c514804e07d92ffe7b6ce5e08870a6b0f662c9399e02",
+  "newSha256": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891",
+  "changedSinceFirstReport": [],
+  "other17HashesUnchanged": true,
+  "authority": "lead native followup; content author only body revision; auditor changed no content",
+  "technicalCaveat": "revision內loreCheck僅作者自報，本審核不冒稱重跑；此線0測試"
+ },
+ "columns": [
+  "主體",
+  "新檔",
+  "最近既有",
+  "具體比較",
+  "判定",
+  "需要退修",
+  "原讀路徑"
+ ],
+ "rows": [
+  {
+   "主體": "P01 葉榛",
+   "新檔": "../../../../../content/lore/characters/exp-ye-zhen.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/seo-haegyeom.json",
+     "indexStatus": "active",
+     "batch": "ea-02",
+     "use": "plan.nearest；英雄名聲與實際功績",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "indexStatus": "draft",
+     "batch": "wl-characters-1027",
+     "use": "跨主體後查發現開場鏡頭近似；draft",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "修稿後：比武真敗，擂場掌事欲替她圓作家傳讓招，她攔住圓場、要求念完自己的名字並止住旗手；母親自己接旗捲走。隔日照報名、仍偷看誰認出姓氏，晚飯與陪練的爭執未解。",
+    "欲望與未解缺點": "想讓自己的敗績與未來勝利都歸自己，但仍偷看旁人是否認出姓氏；不是徹底拒絕家庭或不在乎掌聲。",
+    "既有與draft全文比較": "徐海謙已立守城功、在自己的像上加同伴姓名，受公眾期待牽制而休不了假；葉榛尚未立功，當場拒絕把真敗算成母門讓招，索回的是自己的敗績，不是替亡者補名。初稿曾以登凳從棚門摘旗近似draft阿瑪莉亞登工作凳摘年輕肖像；現稿已移至擂場，動作為攔圓場、止旗手，且由母親自己接旗捲走，無凳、棚門、摘掛或支架回指。舊稿是家人借年輕肖像招客、本人卸物後重學修理，新稿是公開敗局被血緣名望掩飾、本人拒圓場仍求掌聲，事件鏈和權力關係已可觀察區分。",
+    "本輪自身互比": "重核對P02：兩篇都有比武和讓招，葉榛實際輸、拒被解讀為故讓，宮坂原收錢假敗卻退費真贏、拒當師父；沒有把P02的操控觀眾/教學邀請搬來。對P08：都有認可欲與練習，但葉榛有確定真敗及母親名望可借，梁苒面對未回應的古代機、結果與是否被看見均留白。",
+    "世界觀年代邊界": "2071生、現役人類；母親未具名，未新定全球戰役；未牽涉歷史P01朴仁哲。八篇無全球主角或強制主線。",
+    "定位": {
+     "new": "修稿## 擂場上的名字第1段；## 母親沒有留下第1段，母親自己捲旗；末段已無支架回指",
+     "old": "wl-amalia-quispe body第1段；seo-haegyeom ## 石肩上的同伴"
+    },
+    "auditedSha256": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891",
+    "退修重核證據": {
+     "record": "wf/workflows/dispatch/handoffs/expansion-1028-characters/revision.json row0 EX-P01-R1",
+     "newBodyMatchesRevision": true,
+     "newFileHashMatchesRevision": true,
+     "reconstructedOldFileHashMatchesRevision": true,
+     "noStoolDoorUnhangingBackreference": true,
+     "preservedConflict": "拒借母親戰功、仍看誰注意自己、母女未和解；沒有新角色名或世界規則",
+     "historicalFinding": {
+      "finding": "局部退修：開場近似中風險；整篇非重複，未見世界觀硬違規",
+      "requested": {
+       "required": true,
+       "severity": "medium-local",
+       "code": "NEAR-OPENING",
+       "minimum": "只重寫葉榛開場的動作與道具調度：不要再用登凳從門面卸身份物的鏡頭；同步處理後段板凳回指。保留拒借母名、實際敗績、仍貪被看見、母女未和解，不改舊draft。",
+       "observable": "新稿首場不再可逐步映射「登凳→門面卸象徵物→家人介入」，且仍有明確本人選擇和後果。"
+      },
+      "oldFileSha256": "03b037fc37ac7e4c4436c514804e07d92ffe7b6ce5e08870a6b0f662c9399e02",
+      "newFileSha256": "196117f2471daae2d7010a6644dbf92beddf5936034719bb1a5ca335a4b1e891"
+     }
+    }
+   },
+   "判定": "局部退修已閉合；限定後查可保留，未見硬違規或整篇重複",
+   "需要退修": {
+    "required": false,
+    "code": "NEAR-OPENING-RESOLVED",
+    "minimum": "本輪無未結退修。仍須領導技術/MCP/整合及使用者敘事審閱，不等於accepted或全庫無重複。",
+    "observable": "擂場攔圓場與母親自行捲旗離席，不再映射登凳、門面卸身份物；凳/棚門/支架回指清除，核心衝突保留。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-ye-zhen.json"
+  },
+  {
+   "主體": "P02 宮坂 岳",
+   "新檔": "../../../../../content/lore/characters/exp-miyasaka-gaku.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/wl-nico-bellini.json",
+     "indexStatus": "draft",
+     "batch": "wl-characters-1027",
+     "use": "plan.nearest；競技、好勝與做假",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "慣常收錢演敗的短雇駕駛退還費用，認真贏下一場；對手高興求學，他拒當師父，仍想補回牽線人的生意。",
+    "欲望與未解缺點": "享受操縱觀眾、掌握別人的勝敗與自己角色，不是被壓迫的可憐敗手；這次退錢也未使他洗白。",
+    "既有與draft全文比較": "尼科是真輸投環、偷偷做合自己手勢的新環，讓學徒先挑仍壓酒錢再賭，核心是輸不起的技工。宮坂原本能贏卻出售敗績，這次贏了仍不收學生；沒有夜磨器物、偏手勢新環或再賭翻本的事件鏈。",
+    "本輪自身互比": "對P01同為比武但真敗/假敗相反；對P03同有觀眾預期，宮坂操盤一場勝負並拒師徒職分，莉妲是自製作品冷場後仍修改歌詞，沒有把表演翻成教學。",
+    "世界觀年代邊界": "2080生、地方場子與第三刃外圍短雇，不把比武寫成機甲核心新機制；沒有古代認主、機魂人格或新增歷史大戰。",
+    "定位": {
+     "new": "## 熟練的敗招及## 不收的徒弟全文",
+     "old": "wl-nico-bellini body第1、3、4段"
+    },
+    "auditedSha256": "912743f587727e972bd0d3808c10b6b114f5c5c7c384557007698aa8088a8542"
+   },
+   "判定": "限定後查可保留：低重複風險，未見硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；保留結尾想補回生意及未承諾教學的缺點，不改成義薄雲天的好老師。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-miyasaka-gaku.json"
+  },
+  {
+   "主體": "P03 莉妲",
+   "新檔": "../../../../../content/lore/characters/exp-rida-amin.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/wl-choi-eunsol.json",
+     "indexStatus": "draft",
+     "batch": "wl-characters-1027",
+     "use": "plan.nearest；表演者與票房倫理",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/wm-r4-bae-hyeonju.json",
+     "indexStatus": "draft",
+     "batch": "wm-r4-characters-1027",
+     "use": "必要相鄰；布獸表演與本人被看見",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "自己先靠手背鱗片和獸吼招客，改唱拙劣情歌後冷場；想掛回吼聲牌卻停下，最後只劃掉重複歌詞。",
+    "欲望與未解缺點": "想讓自己寫的作品被聽見，又捨不得舊收入；不是經紀人逼她出賣身體，也沒有勝利喝采作保。",
+    "既有與draft全文比較": "崔恩率未經同意以他人的傷腿售票，學員離場她仍留租金並上台；莉妲正面承擔自己招來的期待，沒有替他人出售傷口。裴賢珠擅演遮臉布獸而成名、要露臉演人並要求孩子叫名字；莉妲早已露臉且自用真鱗招客，現在因新作品能力不足挫敗，不是脫頭套報名。共同功能是表演中的自我被遮蔽，具體因果、敗因、結尾均不同。",
+    "本輪自身互比": "對P02都是不照觀眾喜好演：宮坂贏得本人不想要的拜師要求；莉妲真的唱差、失去收入，自己修作品。對P06不把私人事物給雇主使用，莉妲的壓力來自自己招客歷史，不是作戰誘餌。",
+    "世界觀年代邊界": "2082生；生物系只寫手背薄鱗且這些年沒有再添，不醜化、不加深；拘束艙撞擊未被當作親暱或馴化，沒有給獸對白。",
+    "定位": {
+     "new": "## 沒有獸吼的末段第2段；## 她先招來的客人末段",
+     "old": "wl-choi-eunsol body首末段；wm-r4-bae-hyeonju ## 她要的一整段與## 頭套放在膝上"
+    },
+    "auditedSha256": "311f7575f250ddb49b9a5331cb4289c3924d3db59d81e02d4e10e3ff4c1eb14d"
+   },
+   "判定": "可保留：表演認同主題中度近緣，但交稿事件低重複；未見硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；維持冷場、壞歌詞與想回舊吼聲的搖擺，不補成功喝采或改成布獸露臉。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-rida-amin.json"
+  },
+  {
+   "主體": "P04 奧瑪",
+   "新檔": "../../../../../content/lore/characters/exp-omar-faris.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "indexStatus": "draft",
+     "batch": "wl-characters-1027",
+     "use": "plan.nearest；退役與舊身份",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/wn-r2-maia-raukura.json",
+     "indexStatus": "draft",
+     "batch": "wn-r2-characters-1027",
+     "use": "必要相鄰；舊物、所有權與放手",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "已將陪伴多年的機甲售出並付租屋訂金，得知會拆件後仍不買回，只經允許親卸無戰力刻名鐵片；又接幾次雇主機短約。",
+    "欲望與未解缺點": "真想減少戰場生活，卻仍想用修痕故事抬價並對旁人嘲笑動氣；不是永久退役已完成的宣言。",
+    "既有與draft全文比較": "阿瑪莉亞拒兒子用年輕肖像招客、帶如今肖像和工具回店，真已退役後重新學修理，仍愛控制兒子與學徒。奧瑪是不可逆出售後繼續短雇、保留一小片記憶，沒有母子/肖像/扣座學習。瑪伊雅仍握合法打撈鐘與舊船主後人的所有權爭議、提出共管；奧瑪承認新買家有權拆，不要求共管、翻案或替他人留下全部舊機。",
+    "本輪自身互比": "對P05同有放手：奧瑪主動賣自己的物再忍受買家處置；珊雅原想控制妹妹，最後尊重另一個人的選擇。對P07同換機，奧瑪因租屋與逐步離場，盧恩因享受恐嚇而換系且仍傷人。",
+    "世界觀年代邊界": "2055生；稱老手不等於退役返老還童，未保證停止上機或重置能力；鐵片明寫無招式、無防禦，沒有古代機可拆神異部件。",
+    "定位": {
+     "new": "## 拆走以前及## 尚未離開座艙全文",
+     "old": "wl-amalia-quispe body首末段；wn-r2-maia-raukura ## 各自握著的來歷與## 槌柄還在誰手裡"
+    },
+    "auditedSha256": "8f3f1f7216d49aa5e459c3b80f05806eab6e1c1098de822f0732cba2fc10efd5"
+   },
+   "判定": "限定後查可保留：低重複風險，未見硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；不要把鐵片變成救人武器或把出售撤銷，否則會失去已付代價。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-omar-faris.json"
+  },
+  {
+   "主體": "P05 珊雅",
+   "新檔": "../../../../../content/lore/characters/exp-sanya-iliev.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/samira-qureshi.json",
+     "indexStatus": "active",
+     "batch": "fp-crew-02",
+     "use": "plan.nearest；虔誠離營與家屬入教",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/meera-naik.json",
+     "indexStatus": "active",
+     "batch": "fill-03",
+     "use": "必要相鄰；教義與他人代價",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/nabil-hamdan.json",
+     "indexStatus": "active",
+     "batch": "fp-crew-02",
+     "use": "必要相鄰；離營、食物與不替神諭作答",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "先藏妹妹行李、沿路拖延，最終把她送進自願選的教團；拒晚禱與晚飯、沒有帶回妹妹，仍帶著怨氣走過最後岔口。",
+    "欲望與未解缺點": "厭惡教團又想掌控妹妹，還拿「家裡給飯」壓她；不是天然寬容的拯救者，結尾沒有改信或握手和解。",
+    "既有與draft全文比較": "薩米拉本人仍虔誠卻拒毀魂令而離營、在危急時用臂甲護魂核，是內部信仰選擇；珊雅是不信的外部家屬接受妹妹留營，沒有護魂核或替先知辯護。米拉因拒鐵偶送糧讓同桌挨餓；納比勒以烤盤節拍帶人撤、把飯推到爭吵中間。新篇不處理糧食是否可收，也不以供食代替親人同意。",
+    "本輪自身互比": "對P07都有控制別人：珊雅至少沒有強拉妹妹離門，但仍拒飯與罵人；盧恩重演恐嚇，學徒離開而不原諒。對P06私人關係遇外部立場，珊雅是自己作為家屬的支配欲，阿黛拉則拒雇主利用戀人。",
+    "世界觀年代邊界": "2076生；孟買門、妹妹自願入教與拘束艙見聞皆是人物經驗；未證迦梨身份、未替教派真相或先知作裁決，妹妹不是待解救的被洗腦道具。",
+    "定位": {
+     "new": "## 門裡的妹妹全文；## 留下的空位第1段藏行李與末段岔口",
+     "old": "samira-qureshi body第2、3段；meera-naik ## 糧袋停在灶外；nabil-hamdan body第2、3段"
+    },
+    "auditedSha256": "85a78067e704b6afaafc4284cf360b57a66371bd8052b75482359c8e2dbcc66a"
+   },
+   "判定": "限定後查可保留：低重複風險，未見硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；維持妹妹主體性及珊雅曾主動阻撓的責任，不改成救人成功或入教真相揭曉。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-sanya-iliev.json"
+  },
+  {
+   "主體": "P06 阿黛拉",
+   "新檔": "../../../../../content/lore/characters/exp-adela-miro.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/wm-r4-mina-voss.json",
+     "indexStatus": "draft",
+     "batch": "wm-r4-characters-1027",
+     "use": "plan.nearest；伴侶錯過相聚",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/wn-r2-adjoa-senyo.json",
+     "indexStatus": "draft",
+     "batch": "wn-r2-characters-1027",
+     "use": "必要相鄰；桌上書信/名冊與身份暴露",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "情書落到雇主手裡，她連笨笑話都承認，拒借邀約誘敵勸降；被排除下一路安排後仍履原約，最後錯過飯棚又買信紙。",
+    "欲望與未解缺點": "既想赴約，又不把對方當作作戰工具；不願對戀人開矢仍不肯退出履約，付的是雇主信任和實際會面。",
+    "既有與draft全文比較": "米娜和伴侶攢假等花、花在返程後才開，阻力是時間、交通與花期，沒有被雇主挾作誘餌。阿喬亞的舊假名與錯列死者筆跡引出俘虜去向責任、拒為整冊作保；阿黛拉沒有假名、死人名冊或情報辨認，信明示不含陣位。桌面紙張只是共同道具，不是相同因果。",
+    "本輪自身互比": "對P03都不把自己想做的事交給外界索用，但阿黛拉保護的是他人赴約時的信任而非藝術認可。對P05都是不強迫親近的人，然而沒有手足入教、藏行李或接受對方定居的轉折。",
+    "世界觀年代邊界": "2078生、地方護運短約；兩人私人親近不造成勢力外交變更，也未因情書得到軍事情報或強制玩家選邊。",
+    "定位": {
+     "new": "## 信不是降書第1、2段；## 沒有送出的邀請第1段",
+     "old": "wm-r4-mina-voss ## 花還在合著與## 多出的一張椅子；wn-r2-adjoa-senyo ## 死者那一欄"
+    },
+    "auditedSha256": "09da73b706d823328999143f48c66726147cd5bba8562dabe43e8bea0759d6fa"
+   },
+   "判定": "限定後查可保留：低重複風險，未見硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；別補戀人勸降成功、私奔或邦交和解，否則會把私人界線改成新主線工具。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-adela-miro.json"
+  },
+  {
+   "主體": "P07 盧恩",
+   "新檔": "../../../../../content/lore/characters/exp-luan-mendes.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/njeri-mwangi.json",
+     "indexStatus": "active",
+     "batch": "fp-afrwasia-01",
+     "use": "plan.nearest；生物系承擔與退出",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/wl-amalia-quispe.json",
+     "indexStatus": "draft",
+     "batch": "wl-characters-1027",
+     "use": "必要相鄰；老手控制學徒及重新學習",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "察覺自己在等學徒害怕，交回生物系勤務改駕鐵劍；帶練時仍打碎杯、喊誰准你走，學徒離場後獨掃碎片。",
+    "欲望與未解缺點": "想停下自己享受支配的習慣，但又本能維持權威；換機不是免責或治癒，沒有逼學徒當場原諒。",
+    "既有與draft全文比較": "恩潔莉在拘束艙急危時主動退出承擔救同伴、強調接班安全，是危機中的能力界線；盧恩在普通日常承認自己早有兇性，沒有獸暴走救人場。阿瑪莉亞拒學徒幫新式扣座，終肯看示範仍擺工具盒，是退休自尊；盧恩明白享受別人害怕、換系後仍口頭阻攔離開，後果更重且關係未修復。",
+    "本輪自身互比": "對P05同是承認不能控制他人，但盧恩未做到停止恐嚇，學徒不在場收碎片。對P04同離開舊機，這裡不是經濟退場與遺物，而是暴力習慣在無生物系放大後仍存在。",
+    "世界觀年代邊界": "2070生；小角沒有再長、不醜化，換機也不魔法消失；兇戾是本性被放大、不把獸當第二人格或可馴夥伴，交接拘束勤務不等於放獸。",
+    "定位": {
+     "new": "## 杯子碎在腳邊第1、2段；## 換了機，手還在末段",
+     "old": "njeri-mwangi body第2、3段；wl-amalia-quispe body第2至4段"
+    },
+    "auditedSha256": "faae4e92c9ab8e8ef220efbdb7a54fdd5580b612cc35fa3e35544ddaf1695d68"
+   },
+   "判定": "限定後查可保留：低重複風險，未見三系代價硬違規",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；保留換系後重犯與學徒離場，不補「都是獸害的」或一次道歉即治癒。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-luan-mendes.json"
+  },
+  {
+   "主體": "P08 梁苒",
+   "新檔": "../../../../../content/lore/characters/exp-liang-ran.json",
+   "最近既有": [
+    {
+     "file": "content/lore/characters/bruno-azzari.json",
+     "indexStatus": "active",
+     "batch": "fp-euram-01",
+     "use": "plan.nearest；好奇新手、沉默遺物與普通操控",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    },
+    {
+     "file": "content/lore/characters/molly-van-den-berg.json",
+     "indexStatus": "active",
+     "batch": "tf-03",
+     "use": "必要相鄰發現；未認古代機與人的選擇",
+     "statusCaveat": "索引狀態不是本次技術或敘事驗收；draft仍待驗收"
+    }
+   ],
+   "具體比較": {
+    "交稿實際事件": "只獲准界外遠望夸父，沒見動靜仍拖延下山；回來租鐵劍、練站穩，仍偷聽下次上山並把許可上位置往前描。",
+    "欲望與未解缺點": "羨慕被選者、想被講述，並不甘心；練機只是眼前實作，不是頓悟放棄認主野心。",
+    "既有與draft全文比較": "布魯諾不替沉默物編答案、已試駕堅盾，塌石時以機護勘測者撤，後自費去港口學守備；梁苒爭的是「不能據沉默說我被拒」，也沒有護人撤離場。茉莉面對埃吉爾無人能認，沒有等，改把殘片嫁接到現役機；梁苒仍等待且沒有拆古代機、借異能或改寫現認主者。共用等待古代機的題材，但欲望與實際行動相反。",
+    "本輪自身互比": "對P01同有名聲欲和練習，不同的是母親的現成戰功/實敗與古代機沉默/未定答案；對P07都換到機械操控，梁苒從未認主、沒有生物系反省或師徒恐嚇。",
+    "世界觀年代邊界": "2086生；只說主觀遠望、未知是否被看見，不判夸父拒絕、不令丹增失位、不新增古緣保證、不展示夢像或裏側答案。不是新全球主角或強制認主線。",
+    "定位": {
+     "new": "## 沒有回望第1、2段；## 先學會停穩末段",
+     "old": "bruno-azzari ## 崩後與## 現在與招牌瞬間；molly-van-den-berg ## 埃吉爾"
+    },
+    "auditedSha256": "c83185b4a8c58388a5fb888394cb570e0fcb97777e1692c3291e1c67663ac218"
+   },
+   "判定": "限定後查可保留：低重複風險，古代機認主留白守住",
+   "需要退修": {
+    "required": false,
+    "minimum": "無必要退修；維持主觀等待，不把沉默下判為拒絕或暗示即將必定取代認主者。"
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/characters/content/lore/characters/exp-liang-ran.json"
+  }
+ ]
+}

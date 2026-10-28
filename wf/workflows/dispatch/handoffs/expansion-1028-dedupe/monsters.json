@@ -1,0 +1,804 @@
+{
+ "contract": "wf-table/1",
+ "source": "../expansion-1028-audit-monsters.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "新檔"
+ ],
+ "auditor": "mechs_team_sol / gpt-6.1-sol / xhigh",
+ "reviewedAt": "2026-10-28T10:22:50.840266+00:00",
+ "base": "c09b026919eeee03cde68c0f1eb0d289ad4cbe7c",
+ "summary": {
+  "subjects": 8,
+  "filesRead": 20,
+  "hardOutstandingProblems": 0,
+  "wholeConceptDuplicatesFound": 0,
+  "pendingRevisionRequests": 0,
+  "boundary": "有限原種/必要相鄰與draft全文比較，不是全庫無重複保證、完整平衡、AI實戰、捕獲/採集執行或使用者驗收。",
+  "leadHandledRevision": "K07/K08玩家字句活捕混淆已由領導提出、原作者窄改；本線重讀最終全文，確認採集/局部節點，不修改任何內容。",
+  "residualRisk": "K08去sensor未見感知數值失效，不能當額外平衡代價；既有stalk capture機制與菌絲採集敘事不同層，未裁決舊base。"
+ },
+ "rulesEvidence": "../expansion-1028-mechs/readlist.json：本人前階段親讀相關AGENTS/content/batch/bio-monsters/abilities/world-pillars/style，非別線摘要",
+ "toolsUsed": [
+  "tabledb.py：plan分段、species/monster/ability精確find與status",
+  "content_index.py refs species/stalk：3個既有引用；未重產索引",
+  "brief_lint.py --strict：0違規",
+  "rg：主樹content八俗稱/八招名name精確字串及八英文形態名0命中"
+ ],
+ "codeReadOnlyEvidence": {
+  "src/rules/state.ts": "65-105：原種abilities與extraAbilities聯集，partsOverride同id淺合併，layers/functions整欄取代",
+  "src/rules/flow.ts": "132-164：canCapture對requireIntact/requireBroken的所有匹配部位；capture改回原frame並移除MonsterDef覆寫",
+  "src/rules/movement.ts": "此前本人全文相關段1-105：locomotion與離鄰reaction、melee/oncePer-turn",
+  "src/rules/command.ts": "1-57：野生怪frame abilities合併與能力入口",
+  "src/rules/pools.ts": "72-104：instinct/scripted將person AP成本由機體同名池支付",
+  "src/rules/hooks.ts": "60-78：缺目標池的pool hook略過、不造池",
+  "src/rules/control.ts": "isDriven首段：野生monster為true；只讀定位",
+  "src/ai/knowledge.ts": "24-44：以距離與perception揭露，不讀sensor function",
+  "src/ai/adapters/rules-adapter.ts": "50-61：perception取roleAttr"
+ },
+ "newFileHashes": {
+  "content/base/monsters/exk-hookback.json": "4d6c3b43e5397019031e23cd1c1c449205e3c7079b119934a29adfc687526c67",
+  "content/base/abilities/exk-hookback.json": "608c11077e74ab71e8500d5aff6e29f43912f011ccd27f419a8ecb47e54b9255",
+  "content/base/monsters/exk-winglock.json": "5b0051af95ac168240ddf29a83aacaa141abf6d5e292f092ff743f1d252942bb",
+  "content/base/abilities/exk-winglock.json": "cab67d539dad905f2494b9216351566cc8a718d905661166beb51492fdf38823",
+  "content/base/monsters/exk-cinder-muzzle.json": "3d5bf09d40dd2a745559f26bb3de81c4f902df52577b666669da628c9d4402f3",
+  "content/base/abilities/exk-cinder-muzzle.json": "18d285a5a686a2067d881e5f1de1dc8d6b4dc374a33e27e02b1c19c3ab53b4bf",
+  "content/base/monsters/exk-spine-rack.json": "69c680e6b9fbb3e3445717e75095cdfb34b1a881ed08533829f737f8e3cc24e5",
+  "content/base/abilities/exk-spine-rack.json": "46395a35298350abeb4621eaf46febf4696ae5552c074fd1398891e891629bbb",
+  "content/base/monsters/exk-lamp-leech.json": "3d7d5db87fd6c47b9481c2d4d9d050746bff384e59c59c8876406978b1555616",
+  "content/base/abilities/exk-lamp-leech.json": "47bacc2be75764f116a388bd07c37145c4af68ff3d687fb631dfee6720c4e72b",
+  "content/base/effects/exk-light-leak.json": "6b9b794ec94dc9a878e7027139970a1e5de09b3a6b5bae5847eac09816a074fa",
+  "content/base/monsters/exk-forkneedle.json": "b2bbaa86d2e9983b4ba988e930f6d3efbccdf351ed93fef882c3e0245eb10fff",
+  "content/base/abilities/exk-forkneedle.json": "105eab1474e031a8636b0a55f977cec9ea53a1960be5184550c28bd622725afe",
+  "content/base/monsters/exk-smotherwick.json": "12b92edf37ef72dd3be4ba1ccaee812ecf9b92fa9a73b354b1e3255519db1b98",
+  "content/base/abilities/exk-smotherwick.json": "9493184fcb71ea722e4aa29cc2b593e83d38c7b536988c3569dec6f280964229",
+  "content/base/effects/exk-smothered.json": "c8ed9805b632a0d211d2570de7df44aef0424e7b27706766254fcfaaab394131",
+  "content/base/monsters/exk-crownfall.json": "d7d7c9023305cce2275f92f23e059e069f5b22235a721c73f0690ba41f62063e",
+  "content/base/abilities/exk-crownfall.json": "910558dd868ee38e9aa6ee2f4d9c30050fa254659978b739f43355d65a43f1f2",
+  "content/base/scenarios/exk-four-corners.json": "2b3a1cb6d90915ccfb4a007080d81f93e9efe9e41ea451dbd97e92c226bc689c",
+  "content/base/scenarios/exk-split-roots.json": "f36a9fedae1a17285ca7a2ad5aa7c4a3065c897bdbf3cdca05b660ddec8586aa"
+ },
+ "noExecution": "本線0測試/0probe/0MCP/0sim/0內容修改；靜態JSON讀取與集合/總和計算不是實戰結果",
+ "historyBoundary": "七輪與215舊件仍待驗收；舊active/draft不當verified；不續歷史任務、不裁P01。",
+ "readEvidence": {
+  "newFull": [
+   "content/base/monsters/exk-hookback.json",
+   "content/base/abilities/exk-hookback.json",
+   "content/base/monsters/exk-winglock.json",
+   "content/base/abilities/exk-winglock.json",
+   "content/base/monsters/exk-cinder-muzzle.json",
+   "content/base/abilities/exk-cinder-muzzle.json",
+   "content/base/monsters/exk-spine-rack.json",
+   "content/base/abilities/exk-spine-rack.json",
+   "content/base/monsters/exk-lamp-leech.json",
+   "content/base/abilities/exk-lamp-leech.json",
+   "content/base/effects/exk-light-leak.json",
+   "content/base/monsters/exk-forkneedle.json",
+   "content/base/abilities/exk-forkneedle.json",
+   "content/base/monsters/exk-smotherwick.json",
+   "content/base/abilities/exk-smotherwick.json",
+   "content/base/effects/exk-smothered.json",
+   "content/base/monsters/exk-crownfall.json",
+   "content/base/abilities/exk-crownfall.json",
+   "content/base/scenarios/exk-four-corners.json",
+   "content/base/scenarios/exk-split-roots.json"
+  ],
+  "oldAndNearestFull": [
+   "content/base/abilities/kx-bent-needle-pick.json",
+   "content/base/abilities/kx-breakwater-clinger-rend.json",
+   "content/base/abilities/kx-brinepin-prick.json",
+   "content/base/abilities/kx-burrow-flank.json",
+   "content/base/abilities/kx-foam-jaw-foam.json",
+   "content/base/abilities/kx-reed-lace-bind.json",
+   "content/base/abilities/kx-shelf-back-shelter.json",
+   "content/base/abilities/kx-spore-fog.json",
+   "content/base/abilities/kx-wick-mat-seep.json",
+   "content/base/abilities/mx-singing-riposte.json",
+   "content/base/bodyplans/alien-bent-needle.json",
+   "content/base/bodyplans/alien-breakwater-clinger.json",
+   "content/base/bodyplans/beast-shelf-back.json",
+   "content/base/bodyplans/insect-brinepin.json",
+   "content/base/bodyplans/insect-lantern-keel.json",
+   "content/base/bodyplans/mycel-stalk.json",
+   "content/base/bodyplans/quadruped-hound.json",
+   "content/base/effects/mx-netted.json",
+   "content/base/monsters/bent-needle-d.json",
+   "content/base/monsters/breakwater-clinger-c.json",
+   "content/base/monsters/brinepin-d.json",
+   "content/base/monsters/hound-c.json",
+   "content/base/monsters/lantern-keel-c.json",
+   "content/base/monsters/shelf-back-b.json",
+   "content/base/monsters/stalk-c.json",
+   "content/base/species/bent-needle.json",
+   "content/base/species/breakwater-clinger.json",
+   "content/base/species/brinepin.json",
+   "content/base/species/foam-jaw.json",
+   "content/base/species/hound.json",
+   "content/base/species/lantern-keel.json",
+   "content/base/species/needle-rack.json",
+   "content/base/species/reed-lace.json",
+   "content/base/species/shelf-back.json",
+   "content/base/species/stalk.json",
+   "content/base/species/wick-mat.json",
+   "content/base/species/wl-gravel-mane.json",
+   "content/base/species/wl-salt-shroud.json",
+   "content/base/species/wm-r7-folded-lamp.json",
+   "content/base/species/wm-r7-riven-torch.json"
+  ],
+  "additionalFull": [
+   "content/base/species/needle-rack.json",
+   "content/base/bodyplans/insect-needle-rack.json",
+   "content/base/bodyplans/beast-foam-jaw.json",
+   "content/base/bodyplans/mycel-wick-mat.json",
+   "content/base/bodyplans/mycel-reed-lace.json",
+   "content/base/frames/bio-stalk.json"
+  ],
+  "inheritedAndAdjacentAbilitiesFull": [
+   "kx-brinepin-prick",
+   "kx-lantern-keel-drip",
+   "kx-lantern-keel-gather",
+   "kx-shovel-ram",
+   "kx-burrow-flank",
+   "kx-carrion-gulp",
+   "kx-shelf-back-shove",
+   "kx-shelf-back-shelter",
+   "kx-breakwater-clinger-rend",
+   "kx-breakwater-clinger-drag",
+   "kx-bent-needle-pick",
+   "kx-root-snare",
+   "kx-spore-fog",
+   "kx-wing-dive",
+   "kx-foam-jaw-foam",
+   "kx-needle-rack-shot",
+   "kx-needle-rack-rake",
+   "kx-hollow-sail-cast",
+   "kx-wick-mat-seep",
+   "kx-reed-lace-bind",
+   "kx-reed-lace-spit"
+  ],
+  "captureFrameFieldQueries": "其他capture.frame與其bodyPlan/layer-count只查必要欄，未當成整檔全文；原種及primary bodyplan均全文讀。",
+  "note": "newFull在指定worktree，old與templates在主樹；K07/K08最終兩個MonsterDef已另全文重讀。",
+  "planTemplateEffectsNotUsed": "m2-relieved/mx-heart-breach只為plan引用，未靠其內容判新效果；本線讀新兩effect全文與hooks池處理。"
+ },
+ "columns": [
+  "主體",
+  "新檔",
+  "最近既有",
+  "具體比較",
+  "判定",
+  "需要退修",
+  "原讀路徑"
+ ],
+ "rows": [
+  {
+   "主體": "K01 倒鉤",
+   "新檔": "../../../../../content/base/monsters/exk-hookback.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/brinepin.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-01",
+     "why": "原種/原個體 brinepin-d，原110HP",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/bent-needle.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-05",
+     "why": "必要鄰近；D級單點瞄攻具",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "原鹽針只有2AP、射程1–3、pierce8單點。倒鉤仍繼承這招，再添離鄰反應pierce6；不是把原針增傷或改名。曲針是射程1–4、可瞄weaponMount的主動單點，沒有離鄰時機，故與倒鉤的站定/撤離選擇不同。",
+    "結構代價": "heart exposure1→2，chitin10→5；needle chitin10→5。基礎110→100HP，核隨機命中權重提高且尾刺更脆。舊feet仍是唯一locomotion，沒有把core與斷足放同一部位。",
+    "新招與引擎事實": "reaction；trigger.event=enemyLeavesAdjacent、oncePer=turn、tags含melee；costs=[]、produces=[]、target單位1格。已對src/rules/movement.ts的離鄰篩選、離開前位置預覽及每輪stamp讀碼核對，不是進入鄰格、每一步移動或每次攻擊都回刺。",
+    "本輪互比": "與K06同為D級針狀形態，K01改動的是敵方撤離時機，K06改成列站位和雙攻具捕獲門檻；與K02的短距縛網也不是同一個主動控制。",
+    "世界觀邊界": "俗稱只在etymology/part名，MonsterDef無name或epithet；保留insect/kaiju。纜索附著與回刺是可見習性，沒有報復心理、協同指令或新族別。",
+    "保留風險": "反應技不應以一般AI主動施放次數為唯一覆蓋門檻；本線未觸發實戰，須領導讀對應反應事件。打壞尾刺不會自動刪除frame innate新招，文案未宣稱封招。",
+    "staticEvidence": {
+     "species": "species/brinepin",
+     "grade": "D",
+     "oldHP": 110,
+     "newHP": 100,
+     "cores": [
+      {
+       "id": "heart",
+       "hp": 35,
+       "exposure": 2
+      }
+     ],
+     "locomotion": [
+      "feet"
+     ],
+     "captureIntactParts": [
+      "heart"
+     ],
+     "captureBrokenParts": [
+      "feet"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-brinepin",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-brinepin-prick"
+     ],
+     "extraAbilities": [
+      "ability/exk-hookback"
+     ],
+     "newAbilityAP": 0,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "4d6c3b43e5397019031e23cd1c1c449205e3c7079b119934a29adfc687526c67"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-hookback.json"
+  },
+  {
+   "主體": "K02 鎖翅",
+   "新檔": "../../../../../content/base/monsters/exk-winglock.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/lantern-keel.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-01",
+     "why": "原種/原個體 lantern-keel-c，400HP",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/wm-r7-folded-lamp.json",
+     "indexStatus": "draft",
+     "batch": "wm-r7-monsters-1027",
+     "why": "draft疊燈：同骨架但替換成俯衝與護友",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "疊燈把原酸攻換成kx-wing-dive pierce18/AP3/CD2，仍護友，骨架不改。鎖翅不刪原酸16、射程1–4與護友，新增8傷+mx-netted的AP3/CD3近距鎖，並真移除左翼locomotion。不同的是短距定身決策、機動冗餘及裸核，不是疊燈換名加一招。",
+    "結構代價": "wing-left functions完整改為manipulator/weaponMount，wing-right成唯一locomotion，feet原來就不是locomotion。左右翼chitin各少10，heart chitin20→10、exposure2→3；400→370HP。打右薄翼即可截斷全部機動，捕獲斷件路徑與原種需左右翼全斷不同。",
+    "新招與引擎事實": "單位1–2格、pierce8、AP3/CD3；onHit掛既有mech-scope mx-netted（immobilized、evasion−15、ownerTurns2），tactics disable1/attack0.5。無capture tag、無拉人/位移，不把縛網等同直接捕獲。",
+    "本輪互比": "與K03、K05都把多機動縮成單支點，但K02是右翼、帶護友/酸攻且新增根停；K03留後腿並添thermal cone，K05留拖足並削charge。共同資料詞彙不等於同一戰術功能。",
+    "世界觀邊界": "C級無name/epithet。保留蟲族；沒有把薄翼稱為已可飛行。原spec與draft生態不作驗收真相，新件也沒有高智包抄。",
+    "保留風險": "新增weaponMount是部位語意/可瞄功能，不等於把新招綁成可拆武器；正文已明說破鉗翼不自動封招。",
+    "staticEvidence": {
+     "species": "species/lantern-keel",
+     "grade": "C",
+     "oldHP": 400,
+     "newHP": 370,
+     "cores": [
+      {
+       "id": "heart",
+       "hp": 110,
+       "exposure": 3
+      }
+     ],
+     "locomotion": [
+      "wing-right"
+     ],
+     "captureIntactParts": [
+      "heart"
+     ],
+     "captureBrokenParts": [
+      "wing-right"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-lantern-keel",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-lantern-keel-drip",
+      "ability/kx-lantern-keel-gather"
+     ],
+     "extraAbilities": [
+      "ability/exk-winglock"
+     ],
+     "newAbilityAP": 3,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "5b0051af95ac168240ddf29a83aacaa141abf6d5e292f092ff743f1d252942bb"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-winglock.json"
+  },
+  {
+   "主體": "K03 燼吻",
+   "新檔": "../../../../../content/base/monsters/exk-cinder-muzzle.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/hound.json",
+     "indexStatus": "active",
+     "batch": "",
+     "why": "原種/原個體 hound-c，420HP",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/foam-jaw.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-03",
+     "why": "同級沫顎：酸cone",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/wl-gravel-mane.json",
+     "indexStatus": "draft",
+     "batch": "wl-monsters-1027",
+     "why": "draft礫鬃：沿掘犬骨架換入沫顎酸息",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "沫顎的acid10 cone1–3、AP3/CD2與礫鬃借同招，若只換thermal會偏重複。燼吻保留掘犬三招（叩擊/遠點/自身buff），新thermal12 cone用AP4/CD3，同時把左右前鏟從locomotion改純manipulator，後腿成唯一機動，核暴露增加；形態與可捕斷件路徑的付費是真改動，不只酸息換色。",
+    "結構代價": "head chitin15→5、flesh30→25，spine chitin55→35，heart exposure1→2；420→385HP。left/right-shovel只剩manipulator，hindlegs仍locomotion；保住heart並打壞hindlegs即可滿足舊capture條件，並非仍要三組腿全斷。",
+    "新招與引擎事實": "cone1–3/radius1、thermal12、AP4/CD3、attackArea1，沒有heat/charge成本或產出，也沒有位移hook。原地底送葬本身只是1–4格點攻，不應據名字宣稱鑽地移動，新文案未如此宣稱。",
+    "本輪互比": "與K02單右翼/短縛網不同；與K07同用thermal但K03是直接近cone傷害，K07是短ball4傷+目標heat12且雙節點失regen，不重複效能。",
+    "世界觀邊界": "C級無二名、不新增物種/新蛻變；沿既有hound可選molt，不將所有獸級別當成長。文案明說野獸不聽人指揮，沒有馴養或火把式盟友。",
+    "保留風險": "原種多一個self buff、新招AP4且冷卻，AI仍可能偏好原點攻；需領導做能力使用而非只看總勝率。",
+    "staticEvidence": {
+     "species": "species/hound",
+     "grade": "C",
+     "oldHP": 420,
+     "newHP": 385,
+     "cores": [
+      {
+       "id": "heart",
+       "hp": 120,
+       "exposure": 2
+      }
+     ],
+     "locomotion": [
+      "hindlegs"
+     ],
+     "captureIntactParts": [
+      "heart"
+     ],
+     "captureBrokenParts": [
+      "hindlegs"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-hound",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-shovel-ram",
+      "ability/kx-burrow-flank",
+      "ability/kx-carrion-gulp"
+     ],
+     "extraAbilities": [
+      "ability/exk-cinder-muzzle"
+     ],
+     "newAbilityAP": 4,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "3d5bf09d40dd2a745559f26bb3de81c4f902df52577b666669da628c9d4402f3"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-cinder-muzzle.json"
+  },
+  {
+   "主體": "K04 背針",
+   "新檔": "../../../../../content/base/monsters/exk-spine-rack.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-03",
+     "why": "原種/原個體 shelf-back-b，1000HP的護友厚背獸",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/needle-rack.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-02",
+     "why": "矢櫛：B級雙遠攻與line射手",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "矢櫛已有單體3–7格pierce24與line3–6格pierce15/AP4/CD2；新背針line20不是獨一無二的新動詞。有效差異在原棧背仍保留1–2格推擊24與護友，厚背/藏核轉成薄背/露核的支援混合形態，而非另一隻純雙遠射手。",
+    "結構代價": "back chitin220→110、flesh100→70，新增weaponMount；heart exposure0.5→1.5；1000→860HP。core heart與jaw manipulator、fore/hindfeet locomotion仍分離；舊capture需jaw與兩足全斷，不把新背針列為必斷條件。",
+    "新招與引擎事實": "line3–6格、pierce20、AP4/CD2、attackArea1；min3只限制新招，原推擊仍打1–2格，所以不能稱貼身完全安全或本體不會近戰。",
+    "本輪互比": "與K06都line pierce，但K04為B級厚體護友轉混合火力、捕獲仍斷顎與雙足；K06為D薄體增加第二攻具，需雙針都破才捕。不是跨級只加HP/傷害的一組。",
+    "世界觀邊界": "B級無name/epithet，beast/kaiju保留，沒有新母體/子體關係。堤壁/散開僅寫目擊與應對，不讓獸群排軍令。",
+    "保留風險": "新line每目標20/4＝5高於一般低傷AoE，相對矢櫛line15仍需領導平衡比較；結構脆化使它不是純強化，但不等於已平衡。",
+    "staticEvidence": {
+     "species": "species/shelf-back",
+     "grade": "B",
+     "oldHP": 1000,
+     "newHP": 860,
+     "cores": [
+      {
+       "id": "heart",
+       "hp": 300,
+       "exposure": 1.5
+      }
+     ],
+     "locomotion": [
+      "forefeet",
+      "hindfeet"
+     ],
+     "captureIntactParts": [
+      "heart"
+     ],
+     "captureBrokenParts": [
+      "jaw",
+      "forefeet",
+      "hindfeet"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-shelf-back",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-shelf-back-shove",
+      "ability/kx-shelf-back-shelter"
+     ],
+     "extraAbilities": [
+      "ability/exk-spine-rack"
+     ],
+     "newAbilityAP": 4,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "69c680e6b9fbb3e3445717e75095cdfb34b1a881ed08533829f737f8e3cc24e5"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-spine-rack.json"
+  },
+  {
+   "主體": "K05 漏燈",
+   "新檔": "../../../../../content/base/monsters/exk-lamp-leech.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/breakwater-clinger.json",
+     "indexStatus": "active",
+     "batch": "kj-02",
+     "why": "原種/原個體 breakwater-clinger-c，420HP偏披體",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/wm-r7-riven-torch.json",
+     "indexStatus": "draft",
+     "batch": "wm-r7-monsters-1027",
+     "why": "draft裂炬：同偏披骨架，換入2–6格energy點攻",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "裂炬將原掛足拖行換遠點能量16，骨架與多足冗餘未改。漏燈保留撕扯18與原短距減益，再添貼身energy12+削目標charge15；是接觸資源壓制，不是裂炬改色/遠程延長。削去的流光不回補自己。",
+    "結構代價": "hook-foot locomotion→manipulator/weaponMount，trailing-foot成唯一機動；offset-core exposure0.5→1.5；left-mantle energy resist0.3→0而kinetic0.3仍保留。總420HP不變，但去機動冗餘、露核、失一種抗性是真犧牲。",
+    "新招與引擎事實": "單體1格energy12、AP3/CD3、attack0.8/disable1；新effect exk-light-leak為mech scope，onApply只pool charge delta−15，無contrib、自補、onTick。src/rules/hooks.ts先判既有pool，缺charge不造池，只留下傷害。",
+    "本輪互比": "與K07同屬目標池干擾，但K05近身單敵削正向charge，K07短範圍加反向heat；受害對象、範圍、反制與本體結構都不同。與K02單支點但沒有縛網。",
+    "世界觀邊界": "C級無二名；異形偏披與裸側差異保留，也未給高抗全覆蓋或把牠寫成能複製的吸能裝置/電池。",
+    "保留風險": "缺charge對手只有12傷，本批展示特意同時有機械與無該池的生物/古代機，需領導分對象觀察，不能以一場平均值稱干擾有效。",
+    "staticEvidence": {
+     "species": "species/breakwater-clinger",
+     "grade": "C",
+     "oldHP": 420,
+     "newHP": 420,
+     "cores": [
+      {
+       "id": "offset-core",
+       "hp": 100,
+       "exposure": 1.5
+      }
+     ],
+     "locomotion": [
+      "trailing-foot"
+     ],
+     "captureIntactParts": [
+      "offset-core"
+     ],
+     "captureBrokenParts": [
+      "trailing-foot"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-breakwater-clinger",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-breakwater-clinger-rend",
+      "ability/kx-breakwater-clinger-drag"
+     ],
+     "extraAbilities": [
+      "ability/exk-lamp-leech"
+     ],
+     "newAbilityAP": 3,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "3d7d5db87fd6c47b9481c2d4d9d050746bff384e59c59c8876406978b1555616"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-lamp-leech.json"
+  },
+  {
+   "主體": "K06 雙針",
+   "新檔": "../../../../../content/base/monsters/exk-forkneedle.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/bent-needle.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-05",
+     "why": "原種/原個體 bent-needle-d，120HP單針體",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/brinepin.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-01",
+     "why": "必要相鄰：D級飛針與同批K01來源",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "曲針原有單體8傷/AP2、1–4格、可瞄weaponMount，鹽針則8傷/AP2遠針。雙針保留原曲針單點，新增line5/AP3/CD2低單目標輸出；不是把一動作當兩次單射，也不是加強原點攻。護片變裸副針與雙攻具捕獲要求形成不同斷件決策。",
+    "結構代價": "plate由chitin20/energy resist0.2改為單flesh20/全0抗，functions由空變weaponMount；heart organ30→20，總120→110HP。core heart與雙weaponMount needle/plate不重疊；要捕獲需兩攻具都破，非只斷原針。",
+    "新招與引擎事實": "line2–4格pierce5、AP3/CD2、attackArea1，species AP池6足以支付；無額外射次、無機體池消耗或產出。單目標明顯弱於原8/AP2，是否抓得到成列機會待AI量測。",
+    "本輪互比": "同批K01是離鄰被動時機、K06是主動排線；K04也是line但為護友B獸、不同原招/結構/捕獲斷件。低階的兩針不是高階背針的縮血複製。",
+    "世界觀邊界": "D級無個體name/epithet；alien/kaiju保留，沒有自稱能把兩根針各自成為智能行動或新物種。",
+    "保留風險": "line3AP對單敵是次選，AI0使用可能是站位/候選問題，不應只加傷害以迫使出招；本審核未跑AI。",
+    "staticEvidence": {
+     "species": "species/bent-needle",
+     "grade": "D",
+     "oldHP": 120,
+     "newHP": 110,
+     "cores": [
+      {
+       "id": "heart",
+       "hp": 30,
+       "exposure": 2.0
+      }
+     ],
+     "locomotion": [
+      "foot"
+     ],
+     "captureIntactParts": [
+      "heart"
+     ],
+     "captureBrokenParts": [
+      "needle",
+      "plate"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-bent-needle",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-bent-needle-pick"
+     ],
+     "extraAbilities": [
+      "ability/exk-forkneedle"
+     ],
+     "newAbilityAP": 3,
+     "speciesAP": 6,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "b2bbaa86d2e9983b4ba988e930f6d3efbccdf351ed93fef882c3e0245eb10fff"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": false
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-forkneedle.json"
+  },
+  {
+   "主體": "K07 悶燈",
+   "新檔": "../../../../../content/base/monsters/exk-smotherwick.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/stalk.json",
+     "indexStatus": "active",
+     "batch": "",
+     "why": "最終原種C；450HP、柱單core、root locomotion",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/wick-mat.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-06",
+     "why": "燈苔：D級不動單結、acid line、harvest-only",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/reed-lace.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-06",
+     "why": "蘆網：C級三core、不動、綁步/酸點，harvest-only",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "原菌柱是250HP柱core、根移動、冠sensor，保留縛足與孢霧；悶燈新增小thermal ball與heat12，柱與冠雙core，失三處外皮regen並降總HP。燈苔是根結單核/酸line、不動；蘆網是三結全core、不動/束縛與酸點。雙局部節點、可斷根的形態與池催燼組合有實質差異，不冒稱全地下菌群殲滅。",
+    "結構代價": "最終stalk/C；pillar180、roots80、crown60，總320對原450。pillar繼承core/cockpit，crown sensor+core，roots只locomotion不兼core；三處chitin原regen5/3/3全移除。雙節點增加需清兩處的生存結構，但軀幹、根、冠更薄且無自補。",
+    "新招與引擎事實": "ball1–2格/radius1、thermal4、AP3/CD3；命中掛mech-scope exk-smothered，onApply只heat+12，ownerTurns1並非每回合DoT。缺heat池只受4傷、不生池；原root-snare/spore-fog仍繼承，沒有把不適用的酸線稱原招。",
+    "本輪互比": "對K08：K07是柱180+冠60雙core、root80、失全regen與短熱團；K08是只冠40單core、高曝光、其他部位仍厚/有regen，新增遠酸ball。兩個C同源變體的核心打擊順序和資源壓力不同。對K05，heat增壓AoE不等於charge接觸削減。",
+    "世界觀邊界": "領導指出的初稿拘束/捕後機體話術已窄退修。最終etymology明說局部戰鬥節點、割取皮層、不是能拘束駕駛的獸；不把既有stalk程式capture.frame當成菌絲活捕新lore許可。無organ層、無二名、無馴養。原wick-mat/reed-lace的harvest-only與互斥capture資料未動。",
+    "保留風險": "靜態capture函數集合intact pillar+crown、broken roots不互斥，ID/層數與bio-stalk相容；但這只是舊機制相容性，不證明世界觀可活捕或捕獲後完整延續狀態無問題。需領導把採集敘事與舊base缺口分開，不修改舊base補判。",
+    "staticEvidence": {
+     "species": "species/stalk",
+     "grade": "C",
+     "oldHP": 450,
+     "newHP": 320,
+     "cores": [
+      {
+       "id": "pillar",
+       "hp": 180,
+       "exposure": 2
+      },
+      {
+       "id": "crown",
+       "hp": 60,
+       "exposure": 1
+      }
+     ],
+     "locomotion": [
+      "roots"
+     ],
+     "captureIntactParts": [
+      "pillar",
+      "crown"
+     ],
+     "captureBrokenParts": [
+      "roots"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-stalk",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-root-snare",
+      "ability/kx-spore-fog"
+     ],
+     "extraAbilities": [
+      "ability/exk-smotherwick"
+     ],
+     "newAbilityAP": 3,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "12b92edf37ef72dd3be4ba1ccaee812ecf9b92fa9a73b354b1e3255519db1b98"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題；領導所提菌絲文案退修已重核",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": true
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-smotherwick.json"
+  },
+  {
+   "主體": "K08 斷穗",
+   "新檔": "../../../../../content/base/monsters/exk-crownfall.json",
+   "最近既有": [
+    {
+     "file": "content/base/species/stalk.json",
+     "indexStatus": "active",
+     "batch": "",
+     "why": "最終原種C；柱心450總HP",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/reed-lace.json",
+     "indexStatus": "active",
+     "batch": "kaiju2-06",
+     "why": "相鄰C級三結多core、不動與harvest-only",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    },
+    {
+     "file": "content/base/species/wl-salt-shroud.json",
+     "indexStatus": "draft",
+     "batch": "wl-monsters-1027",
+     "why": "draft鹽紗：同菌柱骨架但縛足+酸點、harvest-only",
+     "caveat": "active/draft是索引來源狀態，不是本次驗收；舊draft不改判verified"
+    }
+   ],
+   "具體比較": {
+    "原種與近鄰後查": "鹽紗保留單柱core骨架，換孢霧為酸點14，明示只採收；蘆網是三結core。斷穗的酸ball12與原孢霧acid10同形，不能只靠加2傷/加1射程宣稱全新玩法；真正差異是將原250HP柱core移到40HP冠、exposure3、柱不致死，選點路線改變且不是多核。",
+    "結構代價": "最終stalk/C；pillar functions只有cockpit，crown由sensor改core/weaponMount，chitin30→10、flesh50→30、exposure1→3；roots仍locomotion。總450→410HP，唯一節點只有40HP；保留冠chitin regen3及原柱/根regen。移除sensor是資料標記差異，當前感知實作仍讀perception，不能多算失明代價。",
+    "新招與引擎事實": "ball2–5格/radius1、acid12、AP4/CD3、attackArea1；min2只是新酸團盲區，原縛足與孢霧仍有近區出手。無新效果、無位移，不刪原招。",
+    "本輪互比": "對K07雙core/320HP/去regen/熱+12：K08單一極薄外露冠core/410HP/保留regen/較遠酸ball，不是同一多核套路換顏色。對K04與K06的line站位不同，這裡仍是ball與弱節點選點。",
+    "世界觀邊界": "領導所提活捕話術已退修；最終etymology只講局部戰鬥節點與採皮層，明說不拘束成可駕獸。C級無name/epithet，無organ核或整體菌群死亡宣告；draft鹽紗的harvest-only不因新件改判或抹去。",
+    "保留風險": "sensor移除不直接降低perception：src/ai/knowledge.ts按距離與q.perception揭露，adapter取roleAttr(perception)，rules/ai無sensor分支；把核心HP40/exposure3當實質代價即可，不能宣稱已實測失明。靜態capture intact crown/broken roots不互斥，但捕回原frame/core位置與受損狀態的延續非本線實測，也不是lore活捕許可。",
+    "staticEvidence": {
+     "species": "species/stalk",
+     "grade": "C",
+     "oldHP": 450,
+     "newHP": 410,
+     "cores": [
+      {
+       "id": "crown",
+       "hp": 40,
+       "exposure": 3
+      }
+     ],
+     "locomotion": [
+      "roots"
+     ],
+     "captureIntactParts": [
+      "crown"
+     ],
+     "captureBrokenParts": [
+      "roots"
+     ],
+     "captureConditionOverlap": [],
+     "captureFrame": "frame/bio-stalk",
+     "captureLayerCountsCompatible": true,
+     "lastLayerStructural": true,
+     "originalAbilitiesRetained": [
+      "ability/kx-root-snare",
+      "ability/kx-spore-fog"
+     ],
+     "extraAbilities": [
+      "ability/exk-crownfall"
+     ],
+     "newAbilityAP": 4,
+     "speciesAP": 9,
+     "nameAbsent": true,
+     "epithetAbsent": true,
+     "partIdsExisting": true,
+     "meaning": "只核靜態資料與直接source，不冒稱走過capture或AI action"
+    },
+    "auditedSha256": "d7d7c9023305cce2275f92f23e059e069f5b22235a721c73f0690ba41f62063e"
+   },
+   "判定": "限定後查可保留；有實質部位取捨，未見純加血加招或未結硬問題；領導所提菌絲文案退修已重核",
+   "需要退修": {
+    "required": false,
+    "minimum": "無本線新增必要退修；保留所列動態/平衡/舊base邊界給領導，不以此表改判accepted。",
+    "leadRevisionClosed": true
+   },
+   "原讀路徑": "/tmp/expansion-1028/wt/monsters/content/base/monsters/exk-crownfall.json"
+  }
+ ]
+}

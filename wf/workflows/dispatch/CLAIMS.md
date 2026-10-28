@@ -6,9 +6,11 @@
 
 ## 活躍工人
 
-本輪 `expansion-1028-plan`（astra 規劃，子代理上限 0）：僅新報告目錄 `wf/workflows/dispatch/handoffs/expansion-1028-plan/`；三隊產出領地待計畫核定。
+`expansion-1028-investigate-ops`已終局（sol、子代理0）：三條唯讀資料流與optional可行性兩份報告已交，不測試／不改內容；契約歸當日done。
 
-`expansion-1028-mechs`（sol、子代理0）：核定十八檔，僅 `/tmp/expansion-1028/wt/mechs` 的 manifest.plannedFiles；另本隊同名報告與指定tmp。`expansion-1028-characters`（sol、子代理0）：核定十八檔，僅 `/tmp/expansion-1028/wt/characters` 的 manifest.plannedFiles，另本隊報告與指定tmp。`expansion-1028-monsters`（sol、子代理0）：核定二十檔，僅 `/tmp/expansion-1028/wt/monsters` 的manifest.plannedFiles與本隊報告/指定tmp。領導監看。調度者持有本輪 manifests／briefs／索引與本輪報告，舊暫停線不啟動。
+本輪expansion-1028所有產出／後查agents已終局，無本輪現役工人；領導單獨串行驗收與打包中。契約已歸 [當日done](handoffs/done/2026-10-28/expansion-1028-README.md)，報告／manifest沿原reportDir，不改舊暫停線。
+
+
 
 10/28 增量審閱、Canvas `69403bc2`、真 3D `573575ec` 已完成，REPORT 均在當日 done。主線已關閉今天原生 agents（證據見 [收工記錄](../../notes/close-2026-10-28.md)）；本輪子代理 0，有界文件收尾完成。此處「暫停」與「待驗收」不是派工或占用中的領地。
 

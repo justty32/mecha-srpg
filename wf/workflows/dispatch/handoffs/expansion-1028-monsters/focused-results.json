@@ -1,0 +1,111 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "log"
+ ],
+ "note": "Original four focused checks each once. Lead-authorized K06-only tuning subsequently received one additional loader check; worker ran no probe, MCP, sim or full tests.",
+ "postCheckRevision": {
+  "scope": "K07/K08 monster.etymology + corresponding review/REPORT only",
+  "kind": "lore wording only; all numeric/parts unchanged",
+  "checksRerun": false,
+  "ownerOfFinalCheck": "lead_mecha_content_expansion",
+  "files": [
+   {
+    "file": "content/base/monsters/exk-smotherwick.json",
+    "field": "etymology",
+    "beforeSha256": "b9b773d89e37571a00d0214e50cbd6cf7afdff7733eb18fa0f8487be7d60b3b1",
+    "afterSha256": "12b92edf37ef72dd3be4ba1ccaee812ecf9b92fa9a73b354b1e3255519db1b98",
+    "reason": "菌絲僅採集；程式capture入口不等於新lore許可。"
+   },
+   {
+    "file": "content/base/monsters/exk-crownfall.json",
+    "field": "etymology",
+    "beforeSha256": "92fded37a46fcf33654edced8fe56996ad936db10090b3a0f8ebc00441c487a8",
+    "afterSha256": "d7d7c9023305cce2275f92f23e059e069f5b22235a721c73f0690ba41f62063e",
+    "reason": "菌絲僅採集；程式capture入口不等於新lore許可。"
+   }
+  ]
+ },
+ "balanceRevision": {
+  "file": "content/base/abilities/exk-forkneedle.json",
+  "beforeSha256": "105eab1474e031a8636b0a55f977cec9ea53a1960be5184550c28bd622725afe",
+  "afterSha256": "08ec572379f358a5826d1933f79d0195dcb7f65075726ac7aca13d33928afa82",
+  "change": {
+   "packets[0].amount": [
+    5,
+    6
+   ],
+   "ai.tactics.attackArea": [
+    1,
+    1.5
+   ]
+  },
+  "other19Unchanged": true,
+  "evidenceSource": "lead-reported first-round probe: five singleton seeds and both five-seed showcases used new K06 active ability zero times; not rerun by worker",
+  "reason": "A bounded line-attack payoff/AI preference group: two aligned targets become attractive while single-hit pierce6 stays in D5-9; AP3/CD2/range2-4 and all parts remain unchanged."
+ },
+ "columns": [
+  "check",
+  "command",
+  "exitCode",
+  "status",
+  "seconds",
+  "log",
+  "bytes",
+  "attempts"
+ ],
+ "rows": [
+  {
+   "check": "check",
+   "command": "node src/content/loader.ts content/base",
+   "exitCode": 0,
+   "status": "pass",
+   "seconds": 0.81,
+   "log": "check.log",
+   "bytes": 5990,
+   "attempts": 1
+  },
+  {
+   "check": "lore",
+   "command": "node content/lore/check.ts",
+   "exitCode": 0,
+   "status": "pass",
+   "seconds": 0.258,
+   "log": "lore.log",
+   "bytes": 236,
+   "attempts": 1
+  },
+  {
+   "check": "typecheck",
+   "command": "npm run typecheck",
+   "exitCode": 0,
+   "status": "pass",
+   "seconds": 3.307,
+   "log": "typecheck.log",
+   "bytes": 181,
+   "attempts": 1
+  },
+  {
+   "check": "gate",
+   "command": "python3 /workspace/scratch/4c78897e16f4/mecha-srpg/wf/tools/content_gate.py /tmp/expansion-1028/wt/monsters /workspace/scratch/4c78897e16f4/mecha-srpg/content/batches/2026-10/expansion-1028-monsters.json --json",
+   "exitCode": 0,
+   "status": "pass",
+   "seconds": 0.137,
+   "log": "gate.log",
+   "bytes": 1129,
+   "attempts": 1
+  },
+  {
+   "check": "check-k06",
+   "command": "node src/content/loader.ts content/base",
+   "exitCode": 0,
+   "status": "pass",
+   "seconds": "",
+   "log": "check-k06.log",
+   "bytes": 5990,
+   "attempts": 1
+  }
+ ]
+}

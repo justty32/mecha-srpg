@@ -1,0 +1,66 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "log"
+ ],
+ "columns": [
+  "scenario",
+  "seed",
+  "rounds",
+  "winner",
+  "reason",
+  "mode",
+  "ourLosses",
+  "enemyLosses",
+  "newAbilityUses",
+  "aiUsed",
+  "log",
+  "note"
+ ],
+ "rows": [
+  {
+   "scenario": "scenario/exk-four-corners",
+   "seed": 1,
+   "rounds": 15,
+   "winner": "enemy",
+   "reason": "eliminate",
+   "mode": "mcp-auto",
+   "ourLosses": "見active與全場事件",
+   "enemyLosses": "見全場事件",
+   "newAbilityUses": "未按id拆分；另見五seed probe",
+   "aiUsed": true,
+   "log": "mcp-log/monsters.jsonl",
+   "note": "全場AbilityUsed=135／Retreated=4，active={'enemy': 3, 'player': 0}；hash=84e3d4fc07bc4675"
+  },
+  {
+   "scenario": "scenario/exk-split-roots",
+   "seed": 1,
+   "rounds": 12,
+   "winner": "enemy",
+   "reason": "eliminate",
+   "mode": "mcp-auto",
+   "ourLosses": "見active與全場事件",
+   "enemyLosses": "見全場事件",
+   "newAbilityUses": "未按id拆分；另見五seed probe",
+   "aiUsed": true,
+   "log": "mcp-log/counterloadout.jsonl",
+   "note": "全場AbilityUsed=74／Retreated=3，active={'enemy': 4, 'player': 0}；hash=9d1fe78e4080595b"
+  },
+  {
+   "scenario": "scenario/exk-four-corners",
+   "seed": 1,
+   "rounds": 3,
+   "winner": "none",
+   "reason": "timeout",
+   "mode": "mcp-manual",
+   "ourLosses": "未逐員拆分",
+   "enemyLosses": "未逐員拆分",
+   "newAbilityUses": 0,
+   "aiUsed": true,
+   "log": "mcp-log/monsters.jsonl",
+   "note": "人控三輪短探：legal→選擇合法行動→end；刻意rounds=3，不計完整平衡勝率。"
+  }
+ ]
+}

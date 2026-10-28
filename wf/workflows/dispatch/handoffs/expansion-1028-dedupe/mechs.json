@@ -1,0 +1,725 @@
+{
+ "contract": "wf-table/1",
+ "source": "../expansion-1028-audit-mechs.md",
+ "extracted": "2026-10-28",
+ "author": "characters_team_sol (gpt-6.1-sol / xhigh), independent of mech production",
+ "roots": {
+  "main": "/workspace/scratch/4c78897e16f4/mecha-srpg",
+  "wt": "/tmp/expansion-1028/wt/mechs"
+ },
+ "scope": "八主體、一輪；新十八檔＋指定nearest與必要部件/能力/效果/骨架/前代/血統記錄。沒有擴成全庫審查。",
+ "summary": {
+  "subjects": 8,
+  "mandatoryRevisions": 0,
+  "newHardViolationsFound": 0,
+  "judgment": "限定玩法去重可保留；不是accepted/整體平衡結論。"
+ },
+ "evidence": [
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-ix12.json",
+   "read": "全文",
+   "sha256": "a13315bbb3aaaa7e09d5f837651944c72d138bc1330c863dd9317aed278639a6"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-ix12.json",
+   "read": "全文",
+   "sha256": "135094a69cd50f9d3190b7d639d0c7877c395bf37363169624e7d51d40e3b60b"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-silverring-helix.json",
+   "read": "全文",
+   "sha256": "af76d5cdffe739d0e8b9b2c46f6b20efbbe51874c4f1aabd4d1d0430390997bb"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-silverring-helix.json",
+   "read": "全文",
+   "sha256": "7ce58826d7e2b2c2e5c53868954999687f575afadbe18a67ea050210beecc9f0"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-surveyor-shutter.json",
+   "read": "全文",
+   "sha256": "df8dc0535d734103a1c3510ca013299e89db37dcedef8c1d78474e702103fd8b"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-surveyor-shutter.json",
+   "read": "全文",
+   "sha256": "19345718e026dd30abcc5320584c9c6eba5a6a4f9f31259a24296fde29f568a0"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-swordfish-file.json",
+   "read": "全文",
+   "sha256": "23f3a7bb0a3fb3210549381d0303689b4252061cab28d2cccc9ba30c9238416c"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-swordfish-file.json",
+   "read": "全文",
+   "sha256": "b99d233f57146f1b4401703ae3190ec9233fc4802c0ab49419f0ddd5be951c00"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-anvil-clasp.json",
+   "read": "全文",
+   "sha256": "3810e6d9dec89f25624d7f89cdd2434dc48a7736a74574dd56ae2666b4aab05b"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-anvil-clasp.json",
+   "read": "全文",
+   "sha256": "a0cf6b536db3660025aa1a3bb2838d7449b7d60b12b3aa0d02c4f7440e9fcc9f"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-longspear-meridian.json",
+   "read": "全文",
+   "sha256": "079a917d988cde45de5c6cd2c66fff58d3a9f35ffc473db13569e4966bcd463b"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-longspear-meridian.json",
+   "read": "全文",
+   "sha256": "0d30475607ca3c5541b71b7a10bcdba18c9a807dbfac76ae012098a9f7b97c3d"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-bulwark-unclasp.json",
+   "read": "全文",
+   "sha256": "781eacd67d26e8548cfb86babd567b251c2ad0525125a36bd3d3fdccf6fd9764"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-bulwark-unclasp.json",
+   "read": "全文",
+   "sha256": "f286ba74dab8dfd07a8af994a7421ac2ef48b1367ac122befc26fe8493439212"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/frames/exm-redeemer-ashrain.json",
+   "read": "全文",
+   "sha256": "7b21684c8b757ae5475074a545a21237c53d08e415032ed55ec6edcf4265be7f"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/world/models/exm-redeemer-ashrain.json",
+   "read": "全文",
+   "sha256": "66027b90051d590320747678ecda45f6365b129d139f233acddb91bc9f14ab0f"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/scenarios/exm-crossline.json",
+   "read": "全文",
+   "sha256": "754b0b1ee4e8ebae4f2822e70508639b5ea22ebc7738667e6b8726f82b3e519b"
+  },
+  {
+   "root": "wt",
+   "file": "content/base/scenarios/exm-cooling-window.json",
+   "read": "全文",
+   "sha256": "e91059164611f20fe1e5591193f5632de95485bff2ee6a48eb7b4e31531728d7"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/anvil-gatewarden.json",
+   "read": "全文",
+   "sha256": "96f732d5b419a98fef91f5964e9bee3815e13003279c3c1cdd3c4d62455dd666"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/anvil-iv-ram.json",
+   "read": "全文",
+   "sha256": "bf8f8fff7e9bcbe8abe92a3d50f869d696e7275fc56ecbe5a1fa4e015e1bfa48"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/bulwark-ii.json",
+   "read": "全文",
+   "sha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/ix-wain-01.json",
+   "read": "全文",
+   "sha256": "9baa44c3f57b838bc581efc93646b3bb514ecda625b9c3a2e7c892b48fbfa0f5"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/longspear-piercing-cloud.json",
+   "read": "全文",
+   "sha256": "2bece7a0a057028e0f6ab3b17f6649dab5fcb053d91f11ac67d99e88ff620829"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/selene-iris-g6.json",
+   "read": "全文",
+   "sha256": "fce6603d850e9e9a25eed1952147442844ed192e11a54d87b23c45fd302119c6"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/selene-silverring-g2.json",
+   "read": "全文",
+   "sha256": "a9204f03781f1e1374cdfa337b9b540f08bc07e40809e4040bbb86ff994765ac"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/shellsoc-surveyor-b.json",
+   "read": "全文",
+   "sha256": "f278a87770cc856e3051f1504ad78fb5b9bd8edbb6c2e2873fbcfdac1fc1ba28"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/thirdblade-skate-iv.json",
+   "read": "全文",
+   "sha256": "880b2cfed396d12ebef33751ce2d45917e2bf22e0fea1131be0354d36e41705e"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/tidefaith-censer-iv.json",
+   "read": "全文",
+   "sha256": "09f43e75f52c157056d2aa942d892ec1ead55b8e876117ef1749706e83ea943b"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/tidefaith-pilgrim.json",
+   "read": "全文",
+   "sha256": "4b46eeb042bd82a37ae052d2b83a56bcb952deb559b8b99ef4bc55db81b6e998"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wl-bulwark-ferry.json",
+   "read": "全文",
+   "sha256": "4e54d585a8467072f87540b9e664718811c3eda2a56fdaf13be1d3e34424eeae"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wl-longspear-lamp.json",
+   "read": "全文",
+   "sha256": "6057786fe155d8be1c55fbe1aa60a6f63e8fc48a4ee8f83c055373d5d1e56134"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wl-surveyor-trace.json",
+   "read": "全文",
+   "sha256": "9cf8c7d212278e4b15c436ac6313b1e17454e15573abda2edf5bb42db1dc6d6e"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wl-swordfish-return.json",
+   "read": "全文",
+   "sha256": "6cace0fe87e406cb13b249bd774ebce802609c970e195d4fc7f27d330ff50c9e"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wm-r7-bw08.json",
+   "read": "全文",
+   "sha256": "8bca8828395ea128eed1e41685c6e935d92bcbee217277d6bb349345e0353166"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wm-r7-longspear-keepsake.json",
+   "read": "全文",
+   "sha256": "a8145377f5104d938065ee7aac98c66c4e0ca45458c621af982e94c25eeacffa"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wn-r3-needlefish-stay.json",
+   "read": "全文",
+   "sha256": "a8567d445890c66f5bac9380f5e8f63d401f35c2f774ae2159172b50d325f5fe"
+  },
+  {
+   "root": "main",
+   "file": "content/base/frames/wn-r3-surveyor-bearer.json",
+   "read": "全文",
+   "sha256": "108df560e6365e97b42da0d286de6e84d13757c8c54b0c27d7d0da7388cbeb74"
+  }
+ ],
+ "methods": [
+  "tabledb條件查規劃/索引；本線既有完整規矩閱讀記錄已核",
+  "新十八檔與最近/相鄰frame全文；實裝components/abilities/effect鏈全文；七bodyplan查parts/functions/slots/seats/HP欄；八requires model與八lineage全文",
+  "content_index refs 對fa-slip-clasp、fw-wake-lance、fa-light-reel、fa-dazzle-shutter、fw-ankle-pin、fw-moon-balance、fw-cinder-rain做必要背景；未追市場內容",
+  "八完整中文顯示名在現有content/base及content/lore以固定字串全庫精確搜索，均0；非整庫功能去重",
+  "brief_lint audit brief：0違規／1檔；沒有機甲測試/probe/MCP、內容修改、commit或帶回"
+ ],
+ "knownOpenBalance": "按領導提供與manifest公開例外，分翼520HP低於A帶560、部分A單挑與展示勝率旗標仍由領導處理；本線未重跑或自行改判probe。",
+ "historicalBoundary": "索引active並非已驗收；BW-08、留像、守燈、拾痕、同燈、回舷、留潮、渡口等draft只作現稿比較。舊lineage source/holder的歷史差異不在此線裁決；新model與其前代引用保持一致。",
+ "showcases": "兩新scenario覆蓋八frame、人物每台一席、player敗條件存在；cooling-window生存12輪展示與高勝率不視為競技難度或新玩法的實戰充分證據。",
+ "columns": [
+  "主體",
+  "新檔",
+  "最近既有",
+  "具體比較",
+  "判定",
+  "需要退修"
+ ],
+ "rows": [
+  {
+   "主體": "M01 IX-12",
+   "新檔": [
+    "content/base/frames/exm-ix12.json",
+    "content/base/world/models/exm-ix12.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/wm-r7-bw08.json",
+     "id": "frame/wm-r7-bw08",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    },
+    {
+     "檔": "content/base/frames/ix-wain-01.json",
+     "id": "frame/ix-wain-01",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/wm-r7-longspear-keepsake.json",
+     "id": "frame/wm-r7-longspear-keepsake",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "與 draft BW-08 同用 m2-wheel-d，300本體HP、同baseAttrs。楔刃仍在 turret.main-gun；新扣足矢放 front-axle.side-tool（1號武器槽），與行走部位共損。兩件size均1，槽相容，mass合計4。取消BW-08的白瓷外掛30HP及盾陣；不是把同一台只換代號。",
+    "能力形態與資源": "fw-ankle-pin-use：3AP、ammo-fw-bind1，四矢、1–3格、無傷包、命中掛mech-scope mx-netted（evasion−15、immobilized，2 ownerTurns）。fw-wedge-blade-use：2AP／heat4、1格、pierce8，可瞄weaponMount。先扣再貼近有實際效果鏈，並非新造定身詞；零傷收捕的成功仍要另滿足既有物種條件，不能把定身當已活捕。只有heat池但能力也只需heat＋自帶矢池，無缺池。",
+    "對照差異": "BW-08為楔刃＋外甲＋自守，IX-08為紋刻連吼＋後軸排燼扶架且有charge；留像draft是C四足伏架、輝光遠射＋同扣足矢、射後完成收捕的勤務。新IX-12把四次遠端零傷控制接到1格低AP楔刃，捨遠射、後援及自守。共享楔刃或扣足件不等於整套任務相同。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/universal-ironsword",
+      "maker": "generic",
+      "requires": [
+       "model/ix-wain-01"
+      ],
+      "month": 3,
+      "tier": "D",
+      "role": "variant",
+      "policy": "open"
+     },
+     "前代": {
+      "id": "model/ix-wain-01",
+      "lineage": "lineage/universal-ironsword",
+      "month": 2
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "BW-08是母子窗前見面；留像是搭班合照。新稿交班共用擊毀牌、翻牌與另刻小名是功績佔有，不重演探母、合照或零傷捕獲的收尾。",
+    "八件互比": "與M05雖均可掛mx-netted，M01是1–3格零傷四矢，再低AP近刃；M05是貼身傷害拘束＋CD2重斧，雙資源且滿9AP。與M07則分別是給敵定身、自己清定身。",
+    "保留風險": "同輪座同楔刃的視覺相似為中，但主動控制／生存犧牲可觀察；實際AI是否先扣再追不由靜態表證明。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M02 銀環-G3・汲光",
+   "新檔": [
+    "content/base/frames/exm-silverring-helix.json",
+    "content/base/world/models/exm-silverring-helix.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/selene-silverring-g2.json",
+     "id": "frame/selene-silverring-g2",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/wl-longspear-lamp.json",
+     "id": "frame/wl-longspear-lamp",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "沿G2的mx-biped-c與baseAttrs；right武器2、left武器1、system1全部相容，mass9。G2原流光囊令80基礎池再增40，新機不帶囊與月幕，改裝汲光卷，不能把80寫成比G2更大的被動池。",
+    "能力形態與資源": "照汀一矢是3AP／charge20、1–5格unit、energy16，無heat成本或produces；鳴刃另有heat10斬與heat6反應。fa-draw-light花3AP、CD3、每戰2次，require為charge缺額至少20；fa-light-drawn（mech、2 ownerTurns）charge.regen+10、heat.regen+5。這是有空位才能開、短時回光換較差排燼，不是免費無限充能。",
+    "對照差異": "G2是1–7格輝光22傷/charge15/heat15與1–2格蛇鞭，另有流光囊、月幕和頭吼。守燈draft是輝光＋鳴刃＋凡火矢莢、大池外甲、護艙配套。新機取消有熱的遠槍、實矢後備與被動大池，選無燼短射與受限主動回光，射程/出手頻率/續航決策不同。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/jinghai",
+      "maker": "faction/selene-whitegloves",
+      "requires": [
+       "model/selene-silverring-g2"
+      ],
+      "month": 5,
+      "tier": "C",
+      "role": "variant",
+      "policy": "restricted"
+     },
+     "前代": {
+      "id": "model/selene-silverring-g2",
+      "lineage": "lineage/jinghai",
+      "month": 0
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "守燈為岸燈下護送油工；新稿在試賣會主動公開缺光空檔，與雇主的成交目的衝突，沒有再寫夜班救人。",
+    "八件互比": "與M06/M08共用汲光卷與鳴刃，但主炮分別是C級低AP無燼1–5單射、A級3–7單射CD2、A級2–5圓域CD3。M02可近距繼續射，另兩件有最小距離且自身會積燼。",
+    "保留風險": "共享泛用部件屬低風險；本線只證實AP/池/效果鏈存在，不判定汲光在AI手上必優於直接開槍。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M03 測墟-B・折鏡",
+   "新檔": [
+    "content/base/frames/exm-surveyor-shutter.json",
+    "content/base/world/models/exm-surveyor-shutter.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/shellsoc-surveyor-b.json",
+     "id": "frame/shellsoc-surveyor-b",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/wl-surveyor-trace.json",
+     "id": "frame/wl-surveyor-trace",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    },
+    {
+     "檔": "content/base/frames/wn-r3-surveyor-bearer.json",
+     "id": "frame/wn-r3-surveyor-bearer",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "同原測墟及拾痕的mx-biped-b、445本體HP；不同於同燈draft六足m2-hexapod-b。照隙2、鳴刃1、晃眼sensor1、排燼system1槽可用，mass10。棄舊嗅針／寂滅圓域／煙具，並非換個靈目名保留全隊工具。",
+    "能力形態與資源": "晃燈3AP、1–5格單敵、CD3/2次、fa-dazzled使敵accuracy−8/perception−3（mech、2 ownerTurns）。循隙點名4AP/heat16/charge20，2–6格、CD2、partAim與weaponMount偏好，命中mx-marked使目標evasion−12。池heat100/charge60均存在；霜鰭poolMods將基礎−18排燼再減8。",
+    "對照差異": "同燈的fa-lend-bearing/fa-cover-companion均friendly only、選友軍給照應；新件target friendly no，先晃敵再打其武器部位。拾痕是雙遠槍、千目與煙/冕環等護勘配套；原測墟含9格無LOS追蹤與寂滅小圓域。新件縮成LOS單敵拆掛件與降準，沒有延長全隊觀測的空話賣點。mx-marked仍會幫隊友命中同一敵，不等於完全不能支援。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/many-eyes",
+      "maker": "faction/shell-society",
+      "requires": [
+       "model/shellsoc-surveyor-b"
+      ],
+      "month": 6,
+      "tier": "B",
+      "role": "variant",
+      "policy": "restricted"
+     },
+     "前代": {
+      "id": "model/shellsoc-surveyor-b",
+      "lineage": "lineage/many-eyes",
+      "month": 5
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "舊拾痕護勘撤離、同燈爭工錢；新稿是教習與學生試手後還想加賽，不是再寫拓片撤退或見證結帳。",
+    "八件互比": "不同M02純射擊；M03有有限次敵方降準和武器部位瞄準／標記。不同M04 line與M08 ball，多敵範圍不是其主招。",
+    "保留風險": "單敵取向成立；描述不能把能瞄weaponMount誇張成必定一槍打斷任意掛件。本稿只是一次具體命中場景，未作必然承諾。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M04 劍魚-V5・穿列",
+   "新檔": [
+    "content/base/frames/exm-swordfish-file.json",
+    "content/base/world/models/exm-swordfish-file.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/thirdblade-skate-iv.json",
+     "id": "frame/thirdblade-skate-iv",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/wl-swordfish-return.json",
+     "id": "frame/wl-swordfish-return",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    },
+    {
+     "檔": "content/base/frames/wn-r3-needlefish-stay.json",
+     "id": "frame/wn-r3-needlefish-stay",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "沿鰩魚的m2-keel-b、445本體HP，舟首left與舟尾right武器槽各size2，port-float掛排燼；mass9。保留受損分職可見性，並未假造拖船或推拉。",
+    "能力形態與資源": "一線截浪4AP/heat18/charge15，2–6格line、pierce16/目標、CD2，attackArea。挑浪回鉤4AP/heat8/charge10，1–2格unit、pierce20、可瞄locomotion；無位移hook。新增charge60/regen12能付兩件成本，不沿用鰩魚純heat而變死招；霜鰭使heat基礎−18再減8。",
+    "對照差異": "鰩魚是1格雙包連斬＋1–5拘束矢與短暫背翼增益；回舷draft是遠端紋刻矢＋近身雙刃、撤船輪替；留潮draft是1–2格不耗矢掛netted＋鳴刃。新件以line排列換多目標、失線時用可拆腿的1–2格長鉤，不再走定身或船邊接守。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/tide-fin",
+      "maker": "faction/third-blade",
+      "requires": [
+       "model/thirdblade-swordfish-v5"
+      ],
+      "month": 6,
+      "tier": "B",
+      "role": "variant",
+      "policy": "restricted"
+     },
+     "前代": {
+      "id": "model/thirdblade-swordfish-v5",
+      "lineage": "lineage/tide-fin",
+      "month": 3
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "新稿為追求漂亮射線而爭旗，最後讓出搭檔的近鬥；舊回舷是撤船接替，留潮是投降與斬首加錢，不同情節功能。",
+    "八件互比": "與M08同有attackArea，但M04是定向line＋近端可瞄腿，M08為ball radius1＋降準；與M05都是雙武器也不共享拘束／重斬循環。",
+    "保留風險": "場面須真的排線才有多目標收益；本線不以有line欄位冒稱AI每場能打穿多敵，亦不把槍矛數值高低當去重理由。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M05 鐵砧-V型・合鉗",
+   "新檔": [
+    "content/base/frames/exm-anvil-clasp.json",
+    "content/base/world/models/exm-anvil-clasp.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/anvil-gatewarden.json",
+     "id": "frame/anvil-gatewarden",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/anvil-iv-ram.json",
+     "id": "frame/anvil-iv-ram",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "同封門mx-fortress-a、760本體HP及baseAttrs，左右arm各可裝size3，新鉗/斧均2，mass12。原架砲/背莢/伏架招整組撤下，留下同兩個冷卻system槽；沒有拿厚架相同就當同定位。",
+    "能力形態與資源": "合鉗4AP/heat18/charge20、1格24傷＋netted；重斧5AP/heat25、1格34傷/armorPen0.3；兩招均CD2。標準9AP下同回合雙招正好用盡，不能再移步或用1AP寒泉；寒泉池只有2次−40heat，霜鰭使常規排燼−28。所有池有來源，控制有傷害，不能承諾扣住就活捕。",
+    "對照差異": "封門是2–9砲與3–12單體貫射、背莢、伏架增準；破城槌是B級雙足槌樁高熱與後背配套。新件把厚架壓到純貼身，選有誤殺可能的拘束/破厚甲，捨架砲射界；差在行動與工作目的，不僅升一級/換數值。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/broken-arm",
+      "maker": "faction/anvil-hunters",
+      "requires": [
+       "model/anvil-iv-ram"
+      ],
+      "month": 8,
+      "tier": "A",
+      "role": "variant",
+      "policy": "restricted"
+     },
+     "前代": {
+      "id": "model/anvil-iv-ram",
+      "lineage": "lineage/broken-arm",
+      "month": 4
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "生擒賞金與偏愛斧斷面的慾望衝突、卸斧後再出港；沒寫定身自動收捕，也不是封門斷後或被救者結帳。",
+    "八件互比": "與M01同netted但有傷/1格/CD2/雙資源/滿AP，與其有限遠矢+低AP楔刃不同。與M07自救脫網無攻擊控制相反。",
+    "保留風險": "已知A級單挑/對獸勝率旗標由領導處理；此處只判結構和取捨不同，不拿高勝率當完整平衡證明。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M06 長槍-V8・月衡",
+   "新檔": [
+    "content/base/frames/exm-longspear-meridian.json",
+    "content/base/world/models/exm-longspear-meridian.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/longspear-piercing-cloud.json",
+     "id": "frame/longspear-piercing-cloud",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/selene-iris-g6.json",
+     "id": "frame/selene-iris-g6",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "由穿雲mx-ace-a換到虹使同款m2-splitwing-a；520本體HP，左右主翼各129且同具locomotion/weaponMount；長弓/鳴刃分翼、汲光/霜鰭分尾，size全部可裝、mass12。脆翼連武器風險在資料上存在，非只多flight標籤。520低於A帶560已公開，不改舊骨架。",
+    "能力形態與資源": "衡月開弦4AP/heat20/charge30、3–7格unit、energy32/CD2；1–2格不能射（不是第3格也盲）。鳴刃補貼身；汲光3AP/CD3/2次/需缺光20，charge regen+10與heat regen+5；霜鰭−8。charge100/regen18與heat100均存在，沒有位移能力或免費遠跳。",
+    "對照差異": "穿雲是重貫射＋紋刻槍＋背莢等多火線、內建長槍招與大池/外甲；虹使同分翼但主打寂滅圓域/千目/自身光幕與輝光射擊。新件縮成帶盲區與CD的單重矢+近刃，不能用原多武器或標記護航繞過冷卻。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/universal-longspear",
+      "maker": "generic",
+      "requires": [
+       "model/longspear-v7"
+      ],
+      "month": 8,
+      "tier": "A",
+      "role": "variant",
+      "policy": "open"
+     },
+     "前代": {
+      "id": "model/longspear-v7",
+      "lineage": "lineage/universal-longspear",
+      "month": 4
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "手藝試射後兩弓手爭用一台機、互看燼色；不是虹使護航、穿雲獵獲或同燈費用公證。",
+    "八件互比": "與M02共回光/鳴刃，但M02無燼3AP、1–5連射且能點sensor；此件是分翼、min3、CD2單發，必須處理近端射界。M08則ball/CD3而非單體重矢。",
+    "保留風險": "帶外520HP與對極光0/5是領導已公開的平衡/弱對局事項，不是重複或此線可默默豁免的硬上限通過；玩法鏈靜態成立，強度仍待完整驗收。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M07 堅盾-II型・解扣",
+   "新檔": [
+    "content/base/frames/exm-bulwark-unclasp.json",
+    "content/base/world/models/exm-bulwark-unclasp.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/bulwark-ii.json",
+     "id": "frame/bulwark-ii",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/wl-bulwark-ferry.json",
+     "id": "frame/wl-bulwark-ferry",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    },
+    {
+     "檔": "content/base/frames/wn-r3-needlefish-stay.json",
+     "id": "frame/wn-r3-needlefish-stay",
+     "索引狀態": "draft",
+     "註": "draft 僅比較，不視為已驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "同堅盾II/渡口mx-biped-c、同baseAttrs，保留盾陣。armor-mount換成25HP無resist的脫扣甲，棄原30HP白瓷及其thermal/energy抗性；亦不帶霜鰭−8與灰霧兩次友軍遮護。左右鳴刃1、紋刻槍2及甲1槽相容，mass8。",
+    "能力形態與資源": "fa-shed-bonds=3AP/CD3/2次/self/friendly only；fa-loosened為mech scope，onApply remove tags immobilized，另evasion+5一ownerTurn。mx-netted確有immobilized，故清網不是空口號；不清所有debuff、不替他人解網。紋刻槍消耗自帶12矢池、鳴刃積燼，基礎heat−15無外掛加速。",
+    "對照差異": "渡口draft保白瓷/排燼/灰霧、守點護友，原堅盾遠槍+散紋與盾陣；新件改成自己兩次脫網、減少持守耐受與團隊煙。留潮draft為給敵加網，完全不是自己移除immobilized。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/universal-bulwark",
+      "maker": "generic",
+      "requires": [
+       "model/bulwark-ii"
+      ],
+      "month": 5,
+      "tier": "C",
+      "role": "variant",
+      "policy": "open"
+     },
+     "前代": {
+      "id": "model/bulwark-ii",
+      "lineage": "lineage/universal-bulwark",
+      "month": 0
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "借新甲獨闖的老兵被迫叫新手，回棚仍拒同桌，只把出勤牌掛近；不是渡口救人後和解，也不抄母子認人。",
+    "八件互比": "同M01/M05都涉及netted，但M07只解除自己、有限2次，沒有敵方定身武器。M03是主動敵方降準，不是解控護甲。",
+    "保留風險": "fa-shed-bonds無「自身正被定身」require，AI可能只為+5evasion提前耗次數。能力鏈不是死資料，但「受網時自救」是否在實戰發生要由領導MCP證據另證，不預稱兩次一定保留到需要時。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  },
+  {
+   "主體": "M08 燼雨-贖垢者",
+   "新檔": [
+    "content/base/frames/exm-redeemer-ashrain.json",
+    "content/base/world/models/exm-redeemer-ashrain.json"
+   ],
+   "最近既有": [
+    {
+     "檔": "content/base/frames/tidefaith-censer-iv.json",
+     "id": "frame/tidefaith-censer-iv",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    },
+    {
+     "檔": "content/base/frames/tidefaith-pilgrim.json",
+     "id": "frame/tidefaith-pilgrim",
+     "索引狀態": "active",
+     "註": "active為索引狀態，不等於本線實測驗收"
+    }
+   ],
+   "具體比較": {
+    "骨架與槽": "原行香為B六足、雙近距火器/雙冷卻；新燼雨採A mx-ace-a、600本體HP、左右爐2/刃1，system汲光/霜鰭均1，mass12。與A渡厄同骨架，但撤熔齒鋸、香爐/解拘內建招及寒泉，改中距爐。",
+    "能力形態與資源": "開爐落燼5AP/heat28/charge20，2–5格ball radius1、thermal20/目標、CD3，命中mx-suppressed accuracy−10一ownerTurn；不留地火、不移除拘束。鳴刃貼近補位；charge90/regen15與汲光短時regen+10、排燼+5代價，霜鰭−8，池皆在。",
+    "對照差異": "行香本就有1–3格ball火器，故不把「圓域火」本身當新玩法。差異是從油量/燃燒近火雙器與寒泉，轉成有2格最小距離、CD3的壓準火雨、charge/heat雙池與近刃；對比渡厄則由貼身鋸與解拘拆掛件轉為中距群敵控準。",
+    "世代與血統": {
+     "新model": {
+      "lineage": "lineage/tide-robe",
+      "maker": "faction/tide-faith",
+      "requires": [
+       "model/tidefaith-redeemer-3"
+      ],
+      "month": 8,
+      "tier": "A",
+      "role": "variant",
+      "policy": "restricted"
+     },
+     "前代": {
+      "id": "model/tidefaith-redeemer-3",
+      "lineage": "lineage/tide-robe",
+      "month": 2
+     },
+     "判讀": "血統沿前代，月份在前代之後；variant不是新古代源頭或無授權混血。通用三型維持generic/open，其餘restricted。D為代號；C/B系列+型號/旁名，A可冠名。"
+    },
+    "敘事與任務": "新稿焦黑神像後改畫現場參戰者，沒有確證教義真偽或迦梨答案；沿私造贖垢者矛盾，不改成教團普及量產。與行香六足起源或渡厄突入拘束場不同。",
+    "八件互比": "與M04同屬範圍但ball可選圓心而line要求排線，且M08有suppressed/CD3、M04無效果/CD2與1–2鉤。與M06共汲光/近刃但單重矢與群體壓準的出手/站位不同。",
+    "保留風險": "與行香保留爐火意象屬中相似，但效果/資源/冷卻/近端備案形成新任務組合。A級0/5單挑及展示100%等旗標不在此線消除，也不以單挑輸贏替代玩法審查。"
+   },
+   "判定": {
+    "玩法去重": "限定範圍內未見需退回的同功能換皮；主動鏈與可見取捨靜態成立",
+    "硬違規": "未見新增缺池/錯槽/零作用核心賣點；非完整engine/runtime/schema再驗",
+    "名稱": "八個完整中文顯示名在現有content/base＋content/lore精確搜索0撞名；本批彼此也不同",
+    "平衡": "不據此判完整平衡/使用者敘事驗收；既有draft不升格verified"
+   },
+   "需要退修": "本輪玩法去重未要求退修；領導已公開的帶外/勝率旗標照原驗收鏈處理。"
+  }
+ ]
+}

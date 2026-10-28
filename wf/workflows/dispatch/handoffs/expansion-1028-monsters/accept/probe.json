@@ -1,0 +1,3089 @@
+{
+  "version": 1,
+  "n": 5,
+  "seed": 1,
+  "noRetreat": false,
+  "bandsSource": "wf/workflows/content/numeric-bands.json",
+  "uncheckedBands": [
+    "第 1 列 衍型機 部位與層：未對應本次六項量測",
+    "第 2 列 衍型機 baseAttrs initiative／perception／evasion：未對應本次六項量測",
+    "第 3 列 衍型機 heat 池 max／regen／帶：未對應本次六項量測",
+    "第 4 列 衍型機 charge 池 max／regen：未對應本次六項量測",
+    "第 5 列 部件 武器 hp／size／mass／矢池：未對應本次六項量測",
+    "第 8 列 能力 傷害／AP：未對應本次六項量測",
+    "第 9 列 能力 射程 min–max：只檢查 rangeMax 聯集，min／次數／地圖大小條件未檢查",
+    "第 10 列 能力 accuracy 加值／armorPen／crit：只檢查 armorPen，accuracy／crit 未檢查",
+    "第 11 列 能力 cooldown／usesPerBattle：未對應本次六項量測",
+    "第 13 列 怪獸 部位數／核數／exposure：未對應本次六項量測",
+    "第 14 列 怪獸 baseAttrsByGrade accuracy／evasion／initiative／perception：未對應本次六項量測",
+    "第 15 列 怪獸 層 resist：未對應本次六項量測",
+    "第 16 列 生物機甲 burden（每回合承擔）／instinct 池：未對應本次六項量測",
+    "第 17 列 古代機 總層 HP／baseAttrs／能力數：未對應本次六項量測",
+    "第 18 列 效果 contribs 幅度（短效 1–3 回合）：未對應本次六項量測",
+    "第 19 列 人物 六屬性／hp／AP／fatigue：未對應本次六項量測",
+    "第 20 列 情境 每 slot 單位數／slot 數／輪數／地圖面積：未對應本次六項量測",
+    "第 21 列 地形 moveCost leg／cover／height：未對應本次六項量測",
+    "第 22 列 營運 機型 cost／拘束磨損／吞屍量／工時：未對應本次六項量測",
+    "第 23 列 營運 事件／契約金額：未對應本次六項量測"
+  ],
+  "results": [
+    {
+      "id": "ability/exk-cinder-muzzle",
+      "carrier": "base:monster/exk-cinder-muzzle",
+      "focusAbility": "base:ability/exk-cinder-muzzle",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-carrion-gulp",
+          "grade": "C",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 5,
+          "message": "射程 0 < C 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8.2,
+          "abilityUses": {
+            "base:ability/exk-cinder-muzzle": 10,
+            "base:ability/kx-burrow-flank": 7,
+            "base:ability/kx-carrion-gulp": 10,
+            "base:ability/kx-shovel-ram": 31,
+            "base:ability/mx-guard-stance": 36,
+            "base:ability/mx-iron-burst": 4,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-cinder-muzzle": 10,
+            "base:ability/kx-burrow-flank": 7,
+            "base:ability/kx-carrion-gulp": 10,
+            "base:ability/kx-shovel-ram": 31
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 10,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 7,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 7,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 9,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 9,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 9,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-crownfall",
+      "carrier": "base:monster/exk-crownfall",
+      "focusAbility": "base:ability/exk-crownfall",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-root-snare",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-spore-fog",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 10,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 10 < C 級下限 12"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-crownfall": 2,
+            "base:ability/kx-root-snare": 57,
+            "base:ability/kx-spore-fog": 14,
+            "base:ability/mx-guard-stance": 40,
+            "base:ability/mx-iron-burst": 4,
+            "base:ability/mx-rune-shot": 57
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-crownfall": 2,
+            "base:ability/kx-root-snare": 57,
+            "base:ability/kx-spore-fog": 14
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 2,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/exk-crownfall": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-crownfall": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/mx-rune-shot": 12
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/exk-crownfall": 1,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-root-snare": 11
+              },
+              "protagonistAbilityUses": {
+                "base:ability/exk-crownfall": 1,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2,
+                "base:ability/mx-iron-burst": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-forkneedle",
+      "carrier": "base:monster/exk-forkneedle",
+      "focusAbility": "base:ability/exk-forkneedle",
+      "warnings": [],
+      "bands": [],
+      "pairings": [
+        {
+          "name": "frame/bulwark-i ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate": 1,
+            "eliminate:repelled": 4
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 7.8,
+          "abilityUses": {
+            "base:ability/kx-bent-needle-pick": 81,
+            "base:ability/mx-frame-strike": 48,
+            "base:ability/mx-guard-stance": 33
+          },
+          "protagonistAbilityUses": {
+            "base:ability/kx-bent-needle-pick": 81
+          },
+          "neverUsedAbilities": [
+            "base:ability/exk-forkneedle"
+          ],
+          "focusAbilityUses": 0,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-bent-needle-pick": 18,
+                "base:ability/mx-frame-strike": 10
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 18
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-bent-needle-pick": 18,
+                "base:ability/mx-frame-strike": 10
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 18
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 7,
+              "reason": "eliminate",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 5,
+                "base:ability/kx-bent-needle-pick": 15,
+                "base:ability/mx-frame-strike": 9
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 9,
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 10,
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-hookback",
+      "carrier": "base:monster/exk-hookback",
+      "focusAbility": "base:ability/exk-hookback",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-hookback",
+          "grade": "D",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 2,
+          "max": 3,
+          "message": "AP 成本 0 < D 級下限 2"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-i ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate": 1,
+            "eliminate:repelled": 4
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/kx-brinepin-prick": 82,
+            "base:ability/mx-frame-strike": 62,
+            "base:ability/mx-guard-stance": 32,
+            "base:ability/mx-iron-burst": 6
+          },
+          "protagonistAbilityUses": {
+            "base:ability/kx-brinepin-prick": 82
+          },
+          "neverUsedAbilities": [
+            "base:ability/exk-hookback"
+          ],
+          "focusAbilityUses": 0,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-iron-burst": 1,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 18,
+                "base:ability/kx-brinepin-prick": 20
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 20
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 2,
+                "base:ability/kx-brinepin-prick": 7,
+                "base:ability/mx-frame-strike": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 7
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/kx-brinepin-prick": 21,
+                "base:ability/mx-iron-burst": 1,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-frame-strike": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 21
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 12,
+                "base:ability/kx-brinepin-prick": 13
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 13
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/kx-brinepin-prick": 21,
+                "base:ability/mx-iron-burst": 4,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-frame-strike": 12
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 21
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-lamp-leech",
+      "carrier": "base:monster/exk-lamp-leech",
+      "focusAbility": "base:ability/exk-lamp-leech",
+      "warnings": [],
+      "bands": [],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8.6,
+          "abilityUses": {
+            "base:ability/exk-lamp-leech": 5,
+            "base:ability/kx-breakwater-clinger-drag": 17,
+            "base:ability/kx-breakwater-clinger-rend": 28,
+            "base:ability/mx-guard-stance": 36,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-lamp-leech": 5,
+            "base:ability/kx-breakwater-clinger-drag": 17,
+            "base:ability/kx-breakwater-clinger-rend": 28
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 5,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/kx-breakwater-clinger-rend": 4,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/kx-breakwater-clinger-rend": 4,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 8,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 8,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-breakwater-clinger-rend": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/kx-breakwater-clinger-rend": 6
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 10,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/exk-lamp-leech": 1,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/exk-lamp-leech": 1,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-smotherwick",
+      "carrier": "base:monster/exk-smotherwick",
+      "focusAbility": "base:ability/exk-smotherwick",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-smotherwick",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 4,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 4 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-root-snare",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-spore-fog",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 10,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 10 < C 級下限 12"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-smotherwick": 3,
+            "base:ability/kx-root-snare": 56,
+            "base:ability/kx-spore-fog": 14,
+            "base:ability/mx-guard-stance": 35,
+            "base:ability/mx-iron-burst": 2,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-smotherwick": 3,
+            "base:ability/kx-root-snare": 56,
+            "base:ability/kx-spore-fog": 14
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 3,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/exk-smotherwick": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/exk-smotherwick": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 12
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-spine-rack",
+      "carrier": "base:monster/exk-spine-rack",
+      "focusAbility": "base:ability/exk-spine-rack",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-shelf-back-shelter",
+          "grade": "B",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 6,
+          "message": "射程 0 < B 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-iv-rampart ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 6,
+          "abilityUses": {
+            "base:ability/exk-spine-rack": 9,
+            "base:ability/kx-shelf-back-shelter": 13,
+            "base:ability/kx-shelf-back-shove": 6,
+            "base:ability/mx-ash-screen": 18,
+            "base:ability/mx-falling-star": 2,
+            "base:ability/mx-guard-stance": 28,
+            "base:ability/mx-replica-lance": 6,
+            "base:ability/mx-scatter-blast": 14
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-spine-rack": 9,
+            "base:ability/kx-shelf-back-shelter": 13,
+            "base:ability/kx-shelf-back-shove": 6
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 9,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-ash-screen": 3,
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/mx-replica-lance": 1,
+                "base:ability/exk-spine-rack": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-falling-star": 1,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 3,
+                "base:ability/mx-replica-lance": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 6,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 6,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/mx-scatter-blast": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-falling-star": 1,
+                "base:ability/mx-guard-stance": 3,
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/mx-ash-screen": 3,
+                "base:ability/mx-scatter-blast": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 3,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/kx-shelf-back-shove": 1,
+                "base:ability/mx-scatter-blast": 4,
+                "base:ability/mx-replica-lance": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 3,
+                "base:ability/kx-shelf-back-shove": 1
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ability/exk-winglock",
+      "carrier": "base:monster/exk-winglock",
+      "focusAbility": "base:ability/exk-winglock",
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-winglock",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-lantern-keel-gather",
+          "grade": "C",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 5,
+          "message": "射程 0 < C 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-winglock": 10,
+            "base:ability/kx-lantern-keel-drip": 25,
+            "base:ability/kx-lantern-keel-gather": 15,
+            "base:ability/mx-guard-stance": 35,
+            "base:ability/mx-iron-burst": 17,
+            "base:ability/mx-rune-shot": 60
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-winglock": 10,
+            "base:ability/kx-lantern-keel-drip": 25,
+            "base:ability/kx-lantern-keel-gather": 15
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": 10,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 8,
+                "base:ability/mx-iron-burst": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 4
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 5,
+                "base:ability/mx-iron-burst": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 2,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 6,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 6
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-cinder-muzzle",
+      "carrier": "base:monster/exk-cinder-muzzle",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-carrion-gulp",
+          "grade": "C",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 5,
+          "message": "射程 0 < C 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8.2,
+          "abilityUses": {
+            "base:ability/exk-cinder-muzzle": 10,
+            "base:ability/kx-burrow-flank": 7,
+            "base:ability/kx-carrion-gulp": 10,
+            "base:ability/kx-shovel-ram": 31,
+            "base:ability/mx-guard-stance": 36,
+            "base:ability/mx-iron-burst": 4,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-cinder-muzzle": 10,
+            "base:ability/kx-burrow-flank": 7,
+            "base:ability/kx-carrion-gulp": 10,
+            "base:ability/kx-shovel-ram": 31
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 7,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 7,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 9,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/kx-burrow-flank": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 9,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/kx-shovel-ram": 9,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/kx-shovel-ram": 5,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-carrion-gulp": 2,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/kx-shovel-ram": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-crownfall",
+      "carrier": "base:monster/exk-crownfall",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-root-snare",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-spore-fog",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 10,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 10 < C 級下限 12"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-crownfall": 2,
+            "base:ability/kx-root-snare": 57,
+            "base:ability/kx-spore-fog": 14,
+            "base:ability/mx-guard-stance": 40,
+            "base:ability/mx-iron-burst": 4,
+            "base:ability/mx-rune-shot": 57
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-crownfall": 2,
+            "base:ability/kx-root-snare": 57,
+            "base:ability/kx-spore-fog": 14
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/exk-crownfall": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-crownfall": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/mx-rune-shot": 12
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/exk-crownfall": 1,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-root-snare": 11
+              },
+              "protagonistAbilityUses": {
+                "base:ability/exk-crownfall": 1,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2,
+                "base:ability/mx-iron-burst": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-forkneedle",
+      "carrier": "base:monster/exk-forkneedle",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [],
+      "pairings": [
+        {
+          "name": "frame/bulwark-i ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate": 1,
+            "eliminate:repelled": 4
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 7.8,
+          "abilityUses": {
+            "base:ability/kx-bent-needle-pick": 81,
+            "base:ability/mx-frame-strike": 48,
+            "base:ability/mx-guard-stance": 33
+          },
+          "protagonistAbilityUses": {
+            "base:ability/kx-bent-needle-pick": 81
+          },
+          "neverUsedAbilities": [
+            "base:ability/exk-forkneedle"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-bent-needle-pick": 18,
+                "base:ability/mx-frame-strike": 10
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 18
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-bent-needle-pick": 18,
+                "base:ability/mx-frame-strike": 10
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 18
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 7,
+              "reason": "eliminate",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 5,
+                "base:ability/kx-bent-needle-pick": 15,
+                "base:ability/mx-frame-strike": 9
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 9,
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 10,
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-bent-needle-pick": 15
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-hookback",
+      "carrier": "base:monster/exk-hookback",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-hookback",
+          "grade": "D",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 2,
+          "max": 3,
+          "message": "AP 成本 0 < D 級下限 2"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-i ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate": 1,
+            "eliminate:repelled": 4
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/kx-brinepin-prick": 82,
+            "base:ability/mx-frame-strike": 62,
+            "base:ability/mx-guard-stance": 32,
+            "base:ability/mx-iron-burst": 6
+          },
+          "protagonistAbilityUses": {
+            "base:ability/kx-brinepin-prick": 82
+          },
+          "neverUsedAbilities": [
+            "base:ability/exk-hookback"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-iron-burst": 1,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 18,
+                "base:ability/kx-brinepin-prick": 20
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 20
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 2,
+                "base:ability/kx-brinepin-prick": 7,
+                "base:ability/mx-frame-strike": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 7
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/kx-brinepin-prick": 21,
+                "base:ability/mx-iron-burst": 1,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-frame-strike": 15
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 21
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-frame-strike": 12,
+                "base:ability/kx-brinepin-prick": 13
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 13
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/kx-brinepin-prick": 21,
+                "base:ability/mx-iron-burst": 4,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/mx-frame-strike": 12
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-brinepin-prick": 21
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-lamp-leech",
+      "carrier": "base:monster/exk-lamp-leech",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8.6,
+          "abilityUses": {
+            "base:ability/exk-lamp-leech": 5,
+            "base:ability/kx-breakwater-clinger-drag": 17,
+            "base:ability/kx-breakwater-clinger-rend": 28,
+            "base:ability/mx-guard-stance": 36,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-lamp-leech": 5,
+            "base:ability/kx-breakwater-clinger-drag": 17,
+            "base:ability/kx-breakwater-clinger-rend": 28
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 9,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/kx-breakwater-clinger-rend": 4,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/kx-breakwater-clinger-rend": 4,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 8,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 8,
+                "base:ability/exk-lamp-leech": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-breakwater-clinger-rend": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/kx-breakwater-clinger-rend": 6
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 10,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 11,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/exk-lamp-leech": 1,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-breakwater-clinger-drag": 4,
+                "base:ability/exk-lamp-leech": 1,
+                "base:ability/kx-breakwater-clinger-rend": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-smotherwick",
+      "carrier": "base:monster/exk-smotherwick",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-smotherwick",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 4,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 4 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-root-snare",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-spore-fog",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 10,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 10 < C 級下限 12"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-smotherwick": 3,
+            "base:ability/kx-root-snare": 56,
+            "base:ability/kx-spore-fog": 14,
+            "base:ability/mx-guard-stance": 35,
+            "base:ability/mx-iron-burst": 2,
+            "base:ability/mx-rune-shot": 54
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-smotherwick": 3,
+            "base:ability/kx-root-snare": 56,
+            "base:ability/kx-spore-fog": 14
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/exk-smotherwick": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/exk-smotherwick": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/kx-spore-fog": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/kx-spore-fog": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/mx-iron-burst": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-spore-fog": 3,
+                "base:ability/kx-root-snare": 12
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/mx-rune-shot": 10,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 2
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-spine-rack",
+      "carrier": "base:monster/exk-spine-rack",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/kx-shelf-back-shelter",
+          "grade": "B",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 6,
+          "message": "射程 0 < B 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-iv-rampart ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 6,
+          "abilityUses": {
+            "base:ability/exk-spine-rack": 9,
+            "base:ability/kx-shelf-back-shelter": 13,
+            "base:ability/kx-shelf-back-shove": 6,
+            "base:ability/mx-ash-screen": 18,
+            "base:ability/mx-falling-star": 2,
+            "base:ability/mx-guard-stance": 28,
+            "base:ability/mx-replica-lance": 6,
+            "base:ability/mx-scatter-blast": 14
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-spine-rack": 9,
+            "base:ability/kx-shelf-back-shelter": 13,
+            "base:ability/kx-shelf-back-shove": 6
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 4,
+                "base:ability/mx-ash-screen": 3,
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/mx-replica-lance": 1,
+                "base:ability/exk-spine-rack": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-falling-star": 1,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/mx-scatter-blast": 5,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 3,
+                "base:ability/mx-replica-lance": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 6,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 6,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/mx-scatter-blast": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/kx-shelf-back-shove": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 4,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-falling-star": 1,
+                "base:ability/mx-guard-stance": 3,
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/mx-ash-screen": 3,
+                "base:ability/mx-scatter-blast": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 2,
+                "base:ability/exk-spine-rack": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 8,
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 3,
+                "base:ability/mx-ash-screen": 4,
+                "base:ability/kx-shelf-back-shove": 1,
+                "base:ability/mx-scatter-blast": 4,
+                "base:ability/mx-replica-lance": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-shelf-back-shelter": 3,
+                "base:ability/exk-spine-rack": 3,
+                "base:ability/kx-shelf-back-shove": 1
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "monster/exk-winglock",
+      "carrier": "base:monster/exk-winglock",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/exk-winglock",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/kx-lantern-keel-gather",
+          "grade": "C",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 5,
+          "message": "射程 0 < C 級下限 1"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "frame/bulwark-ii ×2",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 8,
+          "abilityUses": {
+            "base:ability/exk-winglock": 10,
+            "base:ability/kx-lantern-keel-drip": 25,
+            "base:ability/kx-lantern-keel-gather": 15,
+            "base:ability/mx-guard-stance": 35,
+            "base:ability/mx-iron-burst": 17,
+            "base:ability/mx-rune-shot": 60
+          },
+          "protagonistAbilityUses": {
+            "base:ability/exk-winglock": 10,
+            "base:ability/kx-lantern-keel-drip": 25,
+            "base:ability/kx-lantern-keel-gather": 15
+          },
+          "neverUsedAbilities": [],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 8,
+                "base:ability/mx-iron-burst": 5
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 4
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 4
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 5,
+                "base:ability/mx-iron-burst": 6
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 2,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 8,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/mx-rune-shot": 12,
+                "base:ability/mx-guard-stance": 7,
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 6,
+                "base:ability/mx-iron-burst": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/kx-lantern-keel-gather": 3,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-lantern-keel-drip": 6
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scenario/exk-four-corners",
+      "carrier": "base:scenario/exk-four-corners",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 2 < C 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "射程",
+          "value": 7,
+          "min": 1,
+          "max": 5,
+          "message": "射程 7 > C 級上限 5"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 22,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 22 > C 級上限 20"
+        },
+        {
+          "id": "base:frame/hound-mk2",
+          "grade": "C",
+          "field": "衍型機總層 HP",
+          "value": 160,
+          "min": 300,
+          "max": 420,
+          "message": "衍型機總層 HP 160 < C 級下限 300"
+        },
+        {
+          "id": "base:ability/mx-bind-shot",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 4,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 4 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 2 < C 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-singing-riposte",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 0 < C 級下限 3"
+        },
+        {
+          "id": "base:frame/bio-reaper",
+          "grade": "C",
+          "field": "衍型機總層 HP",
+          "value": 425,
+          "min": 300,
+          "max": 420,
+          "message": "衍型機總層 HP 425 > C 級上限 420"
+        },
+        {
+          "id": "base:frame/ancient-rearguard",
+          "grade": "S",
+          "field": "衍型機總層 HP",
+          "value": 610,
+          "min": 800,
+          "max": 1000,
+          "message": "衍型機總層 HP 610 < S 級下限 800"
+        },
+        {
+          "id": "base:ability/rearguard-oath",
+          "grade": "S",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 4,
+          "max": 6,
+          "message": "AP 成本 0 < S 級下限 4"
+        },
+        {
+          "id": "base:ability/rearguard-oath",
+          "grade": "S",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 14,
+          "message": "射程 0 < S 級下限 1"
+        },
+        {
+          "id": "base:ability/shell-lance",
+          "grade": "S",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.25,
+          "max": 0.35,
+          "message": "armorPen 0 < S 級下限 0.25"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "base:scenario/exk-four-corners",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 14.4,
+          "abilityUses": {
+            "base:ability/exk-cinder-muzzle": 16,
+            "base:ability/exk-spine-rack": 12,
+            "base:ability/exk-winglock": 16,
+            "base:ability/kx-brinepin-prick": 80,
+            "base:ability/kx-burrow-flank": 14,
+            "base:ability/kx-carrion-gulp": 19,
+            "base:ability/kx-lantern-keel-drip": 103,
+            "base:ability/kx-lantern-keel-gather": 31,
+            "base:ability/kx-shelf-back-shelter": 31,
+            "base:ability/kx-shelf-back-shove": 60,
+            "base:ability/kx-shovel-ram": 75,
+            "base:ability/mx-bind-shot": 7,
+            "base:ability/mx-head-vulcan": 33,
+            "base:ability/mx-radiant-shot": 41,
+            "base:ability/mx-singing-slash": 1,
+            "base:ability/reaper-charge": 10,
+            "base:ability/reaper-cleave": 64,
+            "base:ability/rearguard-oath": 25,
+            "base:ability/shell-lance": 22
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-bind-shot": 7,
+            "base:ability/mx-head-vulcan": 33,
+            "base:ability/mx-radiant-shot": 41,
+            "base:ability/mx-singing-slash": 1,
+            "base:ability/reaper-charge": 10,
+            "base:ability/reaper-cleave": 64,
+            "base:ability/rearguard-oath": 25,
+            "base:ability/shell-lance": 22
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-singing-riposte"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 15,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/kx-lantern-keel-gather": 7,
+                "base:ability/kx-lantern-keel-drip": 21,
+                "base:ability/kx-shelf-back-shelter": 7,
+                "base:ability/kx-carrion-gulp": 4,
+                "base:ability/reaper-charge": 3,
+                "base:ability/mx-radiant-shot": 8,
+                "base:ability/mx-bind-shot": 1,
+                "base:ability/exk-winglock": 3,
+                "base:ability/kx-shelf-back-shove": 12,
+                "base:ability/exk-cinder-muzzle": 3,
+                "base:ability/kx-burrow-flank": 3,
+                "base:ability/kx-brinepin-prick": 20,
+                "base:ability/reaper-cleave": 11,
+                "base:ability/exk-spine-rack": 3,
+                "base:ability/kx-shovel-ram": 16,
+                "base:ability/shell-lance": 4,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/reaper-charge": 3,
+                "base:ability/mx-radiant-shot": 8,
+                "base:ability/mx-bind-shot": 1,
+                "base:ability/reaper-cleave": 11,
+                "base:ability/shell-lance": 4,
+                "base:ability/mx-head-vulcan": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 16,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 6,
+                "base:ability/kx-lantern-keel-gather": 8,
+                "base:ability/kx-lantern-keel-drip": 24,
+                "base:ability/kx-shelf-back-shelter": 8,
+                "base:ability/kx-carrion-gulp": 4,
+                "base:ability/mx-head-vulcan": 11,
+                "base:ability/exk-winglock": 4,
+                "base:ability/kx-shelf-back-shove": 15,
+                "base:ability/exk-cinder-muzzle": 4,
+                "base:ability/kx-burrow-flank": 3,
+                "base:ability/kx-brinepin-prick": 8,
+                "base:ability/reaper-cleave": 19,
+                "base:ability/mx-radiant-shot": 10,
+                "base:ability/mx-bind-shot": 3,
+                "base:ability/kx-shovel-ram": 16,
+                "base:ability/shell-lance": 4,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/reaper-charge": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 6,
+                "base:ability/mx-head-vulcan": 11,
+                "base:ability/reaper-cleave": 19,
+                "base:ability/mx-radiant-shot": 10,
+                "base:ability/mx-bind-shot": 3,
+                "base:ability/shell-lance": 4,
+                "base:ability/reaper-charge": 1
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 14,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/kx-lantern-keel-gather": 7,
+                "base:ability/kx-lantern-keel-drip": 25,
+                "base:ability/kx-shelf-back-shelter": 7,
+                "base:ability/kx-carrion-gulp": 4,
+                "base:ability/reaper-charge": 3,
+                "base:ability/mx-radiant-shot": 9,
+                "base:ability/mx-bind-shot": 2,
+                "base:ability/exk-winglock": 4,
+                "base:ability/kx-shelf-back-shove": 12,
+                "base:ability/exk-cinder-muzzle": 4,
+                "base:ability/kx-burrow-flank": 3,
+                "base:ability/kx-brinepin-prick": 8,
+                "base:ability/reaper-cleave": 15,
+                "base:ability/exk-spine-rack": 4,
+                "base:ability/kx-shovel-ram": 19,
+                "base:ability/shell-lance": 6,
+                "base:ability/mx-head-vulcan": 8
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/reaper-charge": 3,
+                "base:ability/mx-radiant-shot": 9,
+                "base:ability/mx-bind-shot": 2,
+                "base:ability/reaper-cleave": 15,
+                "base:ability/shell-lance": 6,
+                "base:ability/mx-head-vulcan": 8
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 12,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/kx-lantern-keel-gather": 4,
+                "base:ability/kx-lantern-keel-drip": 14,
+                "base:ability/kx-shelf-back-shelter": 4,
+                "base:ability/kx-carrion-gulp": 3,
+                "base:ability/reaper-cleave": 6,
+                "base:ability/mx-singing-slash": 1,
+                "base:ability/exk-winglock": 2,
+                "base:ability/kx-shelf-back-shove": 8,
+                "base:ability/exk-cinder-muzzle": 2,
+                "base:ability/kx-burrow-flank": 2,
+                "base:ability/kx-brinepin-prick": 24,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/exk-spine-rack": 2,
+                "base:ability/mx-head-vulcan": 6,
+                "base:ability/kx-shovel-ram": 8,
+                "base:ability/shell-lance": 3
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/reaper-cleave": 6,
+                "base:ability/mx-singing-slash": 1,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/mx-head-vulcan": 6,
+                "base:ability/shell-lance": 3
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 15,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/kx-lantern-keel-gather": 5,
+                "base:ability/kx-shelf-back-shelter": 5,
+                "base:ability/kx-carrion-gulp": 4,
+                "base:ability/reaper-charge": 2,
+                "base:ability/mx-radiant-shot": 8,
+                "base:ability/mx-bind-shot": 1,
+                "base:ability/exk-winglock": 3,
+                "base:ability/kx-lantern-keel-drip": 19,
+                "base:ability/kx-shelf-back-shove": 13,
+                "base:ability/exk-cinder-muzzle": 3,
+                "base:ability/kx-burrow-flank": 3,
+                "base:ability/kx-brinepin-prick": 20,
+                "base:ability/reaper-cleave": 13,
+                "base:ability/mx-head-vulcan": 7,
+                "base:ability/kx-shovel-ram": 16,
+                "base:ability/shell-lance": 5,
+                "base:ability/exk-spine-rack": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 5,
+                "base:ability/reaper-charge": 2,
+                "base:ability/mx-radiant-shot": 8,
+                "base:ability/mx-bind-shot": 1,
+                "base:ability/reaper-cleave": 13,
+                "base:ability/mx-head-vulcan": 7,
+                "base:ability/shell-lance": 5
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "scenario/exk-split-roots",
+      "carrier": "base:scenario/exk-split-roots",
+      "focusAbility": null,
+      "warnings": [],
+      "bands": [
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 2 < C 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "射程",
+          "value": 7,
+          "min": 1,
+          "max": 5,
+          "message": "射程 7 > C 級上限 5"
+        },
+        {
+          "id": "base:ability/mx-radiant-shot",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 22,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 22 > C 級上限 20"
+        },
+        {
+          "id": "base:frame/hound-mk2",
+          "grade": "C",
+          "field": "衍型機總層 HP",
+          "value": 160,
+          "min": 300,
+          "max": 420,
+          "message": "衍型機總層 HP 160 < C 級下限 300"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 2,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 2 < C 級下限 3"
+        },
+        {
+          "id": "base:ability/mx-head-vulcan",
+          "grade": "C",
+          "field": "單發傷害",
+          "value": 8,
+          "min": 12,
+          "max": 20,
+          "message": "單發傷害 8 < C 級下限 12"
+        },
+        {
+          "id": "base:ability/mx-singing-riposte",
+          "grade": "C",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 3,
+          "max": 4,
+          "message": "AP 成本 0 < C 級下限 3"
+        },
+        {
+          "id": "base:frame/bio-reaper",
+          "grade": "C",
+          "field": "衍型機總層 HP",
+          "value": 425,
+          "min": 300,
+          "max": 420,
+          "message": "衍型機總層 HP 425 > C 級上限 420"
+        },
+        {
+          "id": "base:frame/ancient-rearguard",
+          "grade": "S",
+          "field": "衍型機總層 HP",
+          "value": 610,
+          "min": 800,
+          "max": 1000,
+          "message": "衍型機總層 HP 610 < S 級下限 800"
+        },
+        {
+          "id": "base:ability/rearguard-oath",
+          "grade": "S",
+          "field": "AP 成本",
+          "value": 0,
+          "min": 4,
+          "max": 6,
+          "message": "AP 成本 0 < S 級下限 4"
+        },
+        {
+          "id": "base:ability/rearguard-oath",
+          "grade": "S",
+          "field": "射程",
+          "value": 0,
+          "min": 1,
+          "max": 14,
+          "message": "射程 0 < S 級下限 1"
+        },
+        {
+          "id": "base:ability/shell-lance",
+          "grade": "S",
+          "field": "armorPen",
+          "value": 0,
+          "min": 0.25,
+          "max": 0.35,
+          "message": "armorPen 0 < S 級下限 0.25"
+        }
+      ],
+      "pairings": [
+        {
+          "name": "base:scenario/exk-split-roots",
+          "protagonist": "player",
+          "roundsLimit": 20,
+          "n": 5,
+          "wins": 0,
+          "losses": 5,
+          "draws": 0,
+          "reasons": {
+            "eliminate:repelled": 5
+          },
+          "winRate": 0,
+          "lossRate": 1,
+          "drawRate": 0,
+          "averageRounds": 11.8,
+          "abilityUses": {
+            "base:ability/exk-crownfall": 12,
+            "base:ability/exk-forkneedle": 9,
+            "base:ability/exk-lamp-leech": 10,
+            "base:ability/exk-smotherwick": 3,
+            "base:ability/kx-bent-needle-pick": 72,
+            "base:ability/kx-breakwater-clinger-drag": 15,
+            "base:ability/kx-breakwater-clinger-rend": 61,
+            "base:ability/kx-root-snare": 59,
+            "base:ability/kx-spore-fog": 29,
+            "base:ability/mx-cinder-spit": 9,
+            "base:ability/mx-head-vulcan": 27,
+            "base:ability/mx-radiant-shot": 24,
+            "base:ability/reaper-charge": 3,
+            "base:ability/reaper-cleave": 50,
+            "base:ability/rearguard-oath": 20,
+            "base:ability/shell-lance": 19
+          },
+          "protagonistAbilityUses": {
+            "base:ability/mx-cinder-spit": 9,
+            "base:ability/mx-head-vulcan": 27,
+            "base:ability/mx-radiant-shot": 24,
+            "base:ability/reaper-charge": 3,
+            "base:ability/reaper-cleave": 50,
+            "base:ability/rearguard-oath": 20,
+            "base:ability/shell-lance": 19
+          },
+          "neverUsedAbilities": [
+            "base:ability/mx-singing-riposte",
+            "base:ability/mx-singing-slash"
+          ],
+          "focusAbilityUses": null,
+          "exceptions": 0,
+          "trials": [
+            {
+              "seed": 1,
+              "winner": "enemy",
+              "rounds": 12,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/exk-crownfall": 3,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 12,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/kx-root-snare": 12,
+                "base:ability/kx-spore-fog": 5,
+                "base:ability/kx-bent-needle-pick": 14,
+                "base:ability/exk-forkneedle": 2,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/exk-smotherwick": 1,
+                "base:ability/shell-lance": 2,
+                "base:ability/mx-cinder-spit": 2
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-head-vulcan": 1,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/shell-lance": 2,
+                "base:ability/mx-cinder-spit": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 2,
+              "winner": "enemy",
+              "rounds": 12,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/exk-crownfall": 3,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-head-vulcan": 13,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 13,
+                "base:ability/kx-spore-fog": 6,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-bent-needle-pick": 14,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/exk-forkneedle": 2,
+                "base:ability/shell-lance": 5,
+                "base:ability/exk-smotherwick": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/reaper-charge": 1,
+                "base:ability/mx-head-vulcan": 13,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/mx-cinder-spit": 4,
+                "base:ability/shell-lance": 5
+              },
+              "error": null
+            },
+            {
+              "seed": 3,
+              "winner": "enemy",
+              "rounds": 12,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/mx-head-vulcan": 3,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 10,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/kx-spore-fog": 6,
+                "base:ability/kx-root-snare": 10,
+                "base:ability/exk-crownfall": 2,
+                "base:ability/kx-bent-needle-pick": 16,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/mx-cinder-spit": 2,
+                "base:ability/shell-lance": 4,
+                "base:ability/exk-forkneedle": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/mx-head-vulcan": 3,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 6,
+                "base:ability/mx-cinder-spit": 2,
+                "base:ability/shell-lance": 4
+              },
+              "error": null
+            },
+            {
+              "seed": 4,
+              "winner": "enemy",
+              "rounds": 12,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/reaper-charge": 1,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/kx-breakwater-clinger-rend": 13,
+                "base:ability/kx-spore-fog": 6,
+                "base:ability/kx-root-snare": 15,
+                "base:ability/exk-crownfall": 2,
+                "base:ability/kx-bent-needle-pick": 14,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 5,
+                "base:ability/exk-forkneedle": 2,
+                "base:ability/mx-head-vulcan": 4,
+                "base:ability/shell-lance": 2,
+                "base:ability/exk-smotherwick": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/reaper-charge": 1,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/mx-radiant-shot": 5,
+                "base:ability/mx-head-vulcan": 4,
+                "base:ability/shell-lance": 2
+              },
+              "error": null
+            },
+            {
+              "seed": 5,
+              "winner": "enemy",
+              "rounds": 11,
+              "reason": "eliminate:repelled",
+              "abilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/mx-radiant-shot": 7,
+                "base:ability/mx-head-vulcan": 6,
+                "base:ability/kx-breakwater-clinger-drag": 3,
+                "base:ability/kx-breakwater-clinger-rend": 13,
+                "base:ability/kx-root-snare": 11,
+                "base:ability/kx-spore-fog": 6,
+                "base:ability/exk-crownfall": 2,
+                "base:ability/kx-bent-needle-pick": 14,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/exk-lamp-leech": 2,
+                "base:ability/exk-forkneedle": 2,
+                "base:ability/shell-lance": 6,
+                "base:ability/mx-cinder-spit": 1
+              },
+              "protagonistAbilityUses": {
+                "base:ability/rearguard-oath": 4,
+                "base:ability/mx-radiant-shot": 7,
+                "base:ability/mx-head-vulcan": 6,
+                "base:ability/reaper-cleave": 10,
+                "base:ability/shell-lance": 6,
+                "base:ability/mx-cinder-spit": 1
+              },
+              "error": null
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

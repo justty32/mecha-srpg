@@ -1,0 +1,155 @@
+{
+ "contract": "wf-table/1",
+ "source": "../expansion-1028-investigate-ops.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "question": "只定位frame/model、monster、person三條新增資料可能影響營運選擇的既有入口；不判定回歸歸因。",
+ "method": "親讀本窄brief、AGENTS/common user/conventions/investigation，tabledb條件查ops code-map；唯讀上列src/ops及直接loader/相關test斷言與現存本輪28個相關資料檔。只寫本檔，沒有測試或內容修改。",
+ "lead_observations_unverified_by_worker": "已更新為latestBaseObservations。BASE三結果由lead回報，不是本線執行；燃料/該項黃金不能歸因本輪，wait確有BASE118與新90差異但未定位原因。",
+ "conclusion": "未找到保留全部預設可玩、又不改engine/黃金的全域資料隔離窄修。原三條只是源碼可達風險，不是對已由BASE重現燃料/黃金失敗的因果宣稱；wait差異與另外六項黃金待lead結果。",
+ "validation": "brief_lint strict=0違規/1檔；僅靜態閱讀，無node/npm/測試/probe/sim/MCP命令。",
+ "limits": "主樹mechs manifest plannedFiles仍含不存在舊slug且status rejected；本報告new-data摘要以主樹現存exm/exk/exp檔為準，未將planned manifest視為本輪全部52檔權威驗收。",
+ "latestBaseObservations": {
+  "source": "lead latest native message, not run by this worker",
+  "fuel": "BASE同錯",
+  "golden": "BASE與新輪同hash aacf251adb7030aa、events840/day31",
+  "wait": "BASE118→新輪90，兩者皆不符舊132",
+  "additionalGoldenComparisons": "lead正跑另外六項；本線未啟動任何測試"
+ },
+ "columns": [
+  "id",
+  "flow",
+  "observed_new_data",
+  "functions_and_filters",
+  "effect_inference",
+  "existing_content_isolation",
+  "causality"
+ ],
+ "rows": [
+  {
+   "id": "OPS-1",
+   "flow": "frame/model",
+   "observed_new_data": {
+    "frames": 6,
+    "models": 6,
+    "model_months": {
+     "exm-ix12": 3,
+     "exm-bulwark-unclasp": 5,
+     "exm-silverring-helix": 5,
+     "exm-surveyor-shutter": 6,
+     "exm-swordfish-file": 6,
+     "exm-anvil-clasp": 8
+    },
+    "actual_main_files": "現存exm-*六組；不以舊plannedFiles當實際清單。六frame均有defaultLoadout。"
+   },
+   "functions_and_filters": [
+    {
+     "location": "src/ops/content/start.ts:31-45,95-99 → src/ops/war/state.ts:13-34",
+     "fact": "newCampaign建立s.rng後呼叫initWar。initWar建立獨立warRng、models空表，按既有faction.roster組軍，再initRnd；此段沒有隨機抽樣呼叫。"
+    },
+    {
+     "location": "src/ops/war/rnd.ts:11-18,170-176",
+     "fact": "開局released/factionModelPool只納role非captain、maker/通用/血統符合且availableFrom.month<=0；六新model month3+不會由這個開局門直接發布。initRnd本身不抽RNG。"
+    },
+    {
+     "location": "src/ops/war/rnd.ts:60-71,90-113; src/ops/war/forces.ts:32-45",
+     "fact": "後續rndCandidates驗前置requires、持有且未stalled的lineage、maker與availableFrom；月份到才進研究pool，pickWeighted用warRng；釋出後forcesDaily補員亦用warRng。availableFrom不是載入器排除。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:118-138",
+     "fact": "actor有force時用force.units；無force時先按a.roster限制models，own取factionModelPool交集，但own空就回退全models，再依GP預算nextInt(s.rng)。這個fallback未驗日期/發布/role，未到月model仍有可達入口。"
+    },
+    {
+     "location": "src/ops/world/market.ts:28-36,55-77,127-138",
+     "fact": "market filter按lineage/maker/tierMax並驗modelVisible/released/rep等；新model發布且符合才加listing。neap補貨按pool.length迴圈pickWeighted及nextInt(s.rng)，pool變大可增加抽樣次數。不是純讀catalog就一定抽樣。"
+    },
+    {
+     "location": "src/ops/war/forces.ts:8-12 → src/ops/war/operations.ts:83-96; src/ops/sim/save.ts:11-14",
+     "fact": "modelPower無availability過濾，為所有model建立GP表，無RNG；startOperation把完整power表存入op.power。campaignHash直接hash完整state，沒有排除power。只要有作戰，此六鍵即可能改hash，即使未發布；不能據此推出事件數增加。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:329-345",
+     "fact": "護送fallback只找無innateAbilities且無defaultLoadout、bodyplan有pilot座位的frame；六新frame皆有defaultLoadout，不符合這一入口。"
+    }
+   ],
+   "effect_inference": "資料流已由源碼確認；月份門可擋一般研發/市場，卻不能阻止actor fallback或全modelPower進state。這能解釋可能的hash敏感性，不能解釋或確證本輪fuel、wait日或day31多45事件。",
+   "existing_content_isolation": "最小待裁示選項：暫不接入六個world/models/exm-*，保留六frame及展示；目前未執行，需頂層裁示及依賴核對。只把month延後、exportPolicy改restricted或標draft，不能隔離全modelPower/actor fallback。既有actor.roster可把特定actor限制為單一model，但不是新model全域關閉欄位，也不宜假冒隊長role。",
+   "causality": "未定位本輪因果。lead已回報BASE燃料同錯、該黃金同hash/events/day；wait BASE118對新90有差異，另六項對照仍由lead進行。本線不測。"
+  },
+  {
+   "id": "OPS-2",
+   "flow": "monster",
+   "observed_new_data": {
+    "count": 8,
+    "grades": "D:2 C:5 B:1",
+    "families": "insect/beast/alien/mycelium；皆既有species",
+    "tags": "kaiju、族、morph-variant；下面全庫讀者未以morph-variant排除"
+   },
+   "functions_and_filters": [
+    {
+     "location": "src/ops/sortie/scenario.ts:95-104",
+     "fact": "interceptScenario.swarm從db.all(monster)取family符合、swarm.grades符合者，按grade GP與id排序；依GP預算nextInt(s.rng)抽取，無batch/status/變體tag過濾。八新個體在對應族/級/預算下會成為候選。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:194-213,236-273",
+     "fact": "標準遭遇優先snapshot.monsters，沒有才ctx.db.ids(monster)；再依species.family、allowed grade與budgetByGrade抽樣。普通riftDef.monsters會填snapshot白名單；explicit encounter生成的snapshot沒有monsters欄，其他無白名單snapshot亦可能回全庫。遇encounter.units則走顯式frame而非這個怪獸pool。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:282-291; src/content/contentdb.ts:48,56",
+     "fact": "既有活捕bio以instinct出戰時，先按capture.frame反查species，再db.all(monster).find同species/同frame.grade，沒有保存/優先用原捕獲def。all按id排序；新exk-*若排原同族同級def前，即可替換既有bio的出戰monster，與rift白名單無關，且這步本身不抽RNG。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:347-364",
+     "fact": "killTarget補目標也會從全monster按明確target或tags篩；未設target/tags時範圍更寬，再選同snapshot.family首項。非隨機全局入口仍可能受id排序影響。"
+    }
+   ],
+   "effect_inference": "攔截抽樣pool大小/def選擇可變；既有bio的first-match還可能無意換成形態變體，引入extraAbility/partsOverride而改戰果/後續時間。這只是源碼可達性，不是本輪回歸定因；未執行任何scenario。",
+   "existing_content_isolation": "既有rift.monsters/EnemySnapshot.monsters可白名單隔離標準怪獸遭遇，顯式encounter.units可限另一類遭遇；但都不覆蓋swarm攔截與活捕first-match。沒有只在八新MonsterDef填既有合法欄位就可全域排除的機制；draft或morph-variant標記不會自動生效。若要暫緩接入八def，須連同引用它們的新scenario另經授權處置，不在本線自行改資料。",
+   "causality": "未定位本輪因果。lead已回報BASE燃料同錯、該黃金同hash/events/day；wait BASE118對新90有差異，另六項對照仍由lead進行。本線不測。"
+  },
+  {
+   "id": "OPS-3",
+   "flow": "person",
+   "observed_new_data": {
+    "count": 8,
+    "kind": "human",
+    "ids": [
+     "exp-adela-miro",
+     "exp-liang-ran",
+     "exp-luan-mendes",
+     "exp-miyasaka-gaku",
+     "exp-omar-faris",
+     "exp-rida-amin",
+     "exp-sanya-iliev",
+     "exp-ye-zhen"
+    ],
+    "recruit_or_background_additions_observed": "本輪相關實際檔查詢未見新增recruit/background；八人本體均human/pilot"
+   },
+   "functions_and_filters": [
+    {
+     "location": "src/ops/sortie/scenario.ts:107-115",
+     "fact": "actor frame每個座位從db.all(person)篩座位接受human→pilot或soul、排除awakenSoulTemplate，再nextInt(s.rng)；無faction/招聘來源/已用人物/tag/status限制。八新human會進接受pilot的座位候選。"
+    },
+    {
+     "location": "src/ops/sortie/operation-scenario.ts:19-29",
+     "fact": "作戰援軍先從全background中篩座位種類，隨機挑background並取其person；無background才用db.all(person).find首個合座位且非醒魂模板。沒有background掛接的新person不因此加入已有background隨機池，但可能影響fallback首項（視排序）。"
+    },
+    {
+     "location": "src/ops/crew/recruit.ts:13-32",
+     "fact": "recruitsDaily7只在neap遍歷recruit.sources→background.person；weight>0、human、未在名冊/其他候選，抽後移除同person來源。不是全person池。僅新增PersonDef、不掛background/recruit.sources，不會直接新增招募候選。"
+    },
+    {
+     "location": "src/ops/sortie/scenario.ts:244-264,329-345",
+     "fact": "顯式encounter.units[].pilots只抽列明候選、優先未用者，故不自動拉入八新person；護送則用全person第一個非soul，這是另一路first-match而非random。"
+    },
+    {
+     "location": "src/ops/content/start.ts:50-68",
+     "fact": "開局只照start.persons逐項instantiate，沒有把全person加入初始名冊。"
+    }
+   ],
+   "effect_inference": "已確認八新human可改actor攔截駕駛的候選數與人物定義，進而可能影響戰果；不能僅由人數增加推出fuel/wait故障。一般招聘與初始名冊沒有全person自動納入。",
+   "existing_content_isolation": "顯式encounter.units[].pilots、recruit.sources/background.person、start.persons都是既有白名單，可保持各自流程不變；無法隔離actor攔截全person池。不掛recruit/background不等於全域隔離，也沒有既有person tag/status/date欄可讓該actor pool略過八人。暫緩預設載入/接入的範圍須頂層另定；不改kind、不冒用醒魂模板、不發明exclusion tag或新包架構。",
+   "causality": "未定位本輪因果。lead已回報BASE燃料同錯、該黃金同hash/events/day；wait BASE118對新90有差異，另六項對照仍由lead進行。本線不測。"
+  }
+ ]
+}

@@ -1,0 +1,160 @@
+{
+ "purpose": "固定兩敵成列，只測AI選新線招，不算常態勝率",
+ "setup": {
+  "id": "scenario/content-probe",
+  "map": "map/lunar-quarry-16",
+  "rounds": 10,
+  "slots": {
+   "player": {
+    "faction": "faction/migrant-crew",
+    "units": [
+     {
+      "at": {
+       "x": 6,
+       "y": 8
+      },
+      "monster": "base:monster/exk-forkneedle"
+     }
+    ]
+   },
+   "enemy": {
+    "faction": "faction/selene-whitegloves",
+    "units": [
+     {
+      "mech": "frame/bulwark-i",
+      "components": {
+       "left-weapon": "component/mx-iron-repeater"
+      },
+      "persons": [
+       {
+        "id": "person/chen-xiaohai",
+        "seat": "pilot"
+       }
+      ],
+      "at": {
+       "x": 8,
+       "y": 8
+      }
+     },
+     {
+      "mech": "frame/bulwark-i",
+      "components": {
+       "left-weapon": "component/mx-iron-repeater"
+      },
+      "persons": [
+       {
+        "id": "person/chen-xiaohai",
+        "seat": "pilot"
+       }
+      ],
+      "at": {
+       "x": 9,
+       "y": 8
+      }
+     }
+    ]
+   }
+  },
+  "objectives": [
+   {
+    "kind": "eliminate",
+    "params": {},
+    "for": "player",
+    "onComplete": "win"
+   },
+   {
+    "kind": "eliminate",
+    "params": {},
+    "for": "enemy",
+    "onComplete": "win"
+   }
+  ]
+ },
+ "trials": [
+  {
+   "seed": 1,
+   "winner": null,
+   "rounds": 10,
+   "reason": "timeout",
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 10,
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13,
+    "base:ability/mx-frame-strike": 16
+   },
+   "protagonistAbilityUses": {
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13
+   },
+   "error": null
+  },
+  {
+   "seed": 2,
+   "winner": null,
+   "rounds": 10,
+   "reason": "timeout",
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 10,
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13,
+    "base:ability/mx-frame-strike": 14
+   },
+   "protagonistAbilityUses": {
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13
+   },
+   "error": null
+  },
+  {
+   "seed": 3,
+   "winner": null,
+   "rounds": 10,
+   "reason": "timeout",
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 10,
+    "base:ability/mx-frame-strike": 19,
+    "base:ability/kx-bent-needle-pick": 15
+   },
+   "protagonistAbilityUses": {
+    "base:ability/kx-bent-needle-pick": 15
+   },
+   "error": null
+  },
+  {
+   "seed": 4,
+   "winner": null,
+   "rounds": 10,
+   "reason": "timeout",
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 10,
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13,
+    "base:ability/mx-frame-strike": 13
+   },
+   "protagonistAbilityUses": {
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13
+   },
+   "error": null
+  },
+  {
+   "seed": 5,
+   "winner": null,
+   "rounds": 10,
+   "reason": "timeout",
+   "abilityUses": {
+    "base:ability/mx-guard-stance": 10,
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13,
+    "base:ability/mx-frame-strike": 16
+   },
+   "protagonistAbilityUses": {
+    "base:ability/exk-forkneedle": 1,
+    "base:ability/kx-bent-needle-pick": 13
+   },
+   "error": null
+  }
+ ],
+ "uses": 4,
+ "ok": true
+}

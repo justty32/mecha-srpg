@@ -1,0 +1,79 @@
+{
+ "batch": "expansion-1028-characters",
+ "round": 1,
+ "at": "2026-10-28T18:20:24",
+ "ok": true,
+ "steps": {
+  "probe": "ok",
+  "readlist": "ok",
+  "lore": "ok",
+  "typecheck": "ok",
+  "playtest": "ok",
+  "check": "ok",
+  "gate": "ok"
+ },
+ "approved": [
+  "content/base/persons/exp-adela-miro.json",
+  "content/base/persons/exp-liang-ran.json",
+  "content/base/persons/exp-luan-mendes.json",
+  "content/base/persons/exp-miyasaka-gaku.json",
+  "content/base/persons/exp-omar-faris.json",
+  "content/base/persons/exp-rida-amin.json",
+  "content/base/persons/exp-sanya-iliev.json",
+  "content/base/persons/exp-ye-zhen.json",
+  "content/base/scenarios/exp-four-choices.json",
+  "content/base/scenarios/exp-unfinished-ties.json",
+  "content/lore/characters/exp-adela-miro.json",
+  "content/lore/characters/exp-liang-ran.json",
+  "content/lore/characters/exp-luan-mendes.json",
+  "content/lore/characters/exp-miyasaka-gaku.json",
+  "content/lore/characters/exp-omar-faris.json",
+  "content/lore/characters/exp-rida-amin.json",
+  "content/lore/characters/exp-sanya-iliev.json",
+  "content/lore/characters/exp-ye-zhen.json"
+ ],
+ "gateViolations": [],
+ "probe-verdict": {
+  "ok": true,
+  "rows": [
+   {
+    "flag": "winrate",
+    "detail": "base:scenario/exp-four-choices 勝率 100%",
+    "key": "winrate:base:scenario/exp-four-choices",
+    "side": "high",
+    "id": "scenario/exp-four-choices",
+    "waived": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+   },
+   {
+    "id": "scenario/exp-four-choices",
+    "flag": "stat",
+    "detail": "base:scenario/exp-four-choices n=5 勝 100% 敗 0% 平 0% 輪 9.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "base:scenario/exp-unfinished-ties 勝率 100%",
+    "key": "winrate:base:scenario/exp-unfinished-ties",
+    "side": "high",
+    "id": "scenario/exp-unfinished-ties",
+    "waived": "八位人物的獨立操作展示，不宣稱競技難度；原不接戰生存勝已移除，MCP重測8/9輪擊退且各71/79次出手，五seed覆蓋另附。"
+   },
+   {
+    "id": "scenario/exp-unfinished-ties",
+    "flag": "stat",
+    "detail": "base:scenario/exp-unfinished-ties n=5 勝 100% 敗 0% 平 0% 輪 8.8 原因 {\"eliminate:repelled\": 5}"
+   }
+  ]
+ },
+ "playtest": {
+  "ok": true,
+  "mcpRows": 3,
+  "rows": 3,
+  "problems": []
+ },
+ "readlist": {
+  "ok": true,
+  "listed": 12,
+  "problems": []
+ },
+ "newWarnings": []
+}

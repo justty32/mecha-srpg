@@ -1,0 +1,100 @@
+{
+ "contract": "wf-table/1",
+ "source": "../expansion-1028-investigate-ops.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "scope": "原唯讀調查的native followup：五分鐘內核現有optional-pack啟用，不進行新架構設計。",
+ "answer": "引擎multi-pack本身已可透過Node/probe/MCP程式API使用22件，但必須補合法descriptor並改寫引用/處理base引用閉包；目前不能原樣搬22就宣稱完成。預設瀏覽器戰鬥/營運看不到且無opt-in開關；百科會掃其他content pack。正常命名pack descriptor與跨pack lore gameRefs尚未被目前gate/checker完整支持。",
+ "timing": "開始2026-10-28 11:04:52 UTC；本報告在五分鐘觀察窗內完成。",
+ "actions": "只讀conventions/code-map/dev-env與點名入口；使用tabledb條件查code-map，未啟動node/npm/server/GUI、未跑測試、未搬檔。只新增本報告。BASE結果仍未知，不推導回歸因果。",
+ "finalNarrowVerdict": "不能。現有資料契約沒有能同時隔離全modelPower/actor model fallback、全monster/swarm/captured first-match及全human座位池、又保留全部新內容在預設遊戲可玩的通用開關；日期/白名單只覆蓋部分路徑。optional已暫不批准，不再規劃或實作。",
+ "latestBaseObservations": {
+  "source": "lead latest native message, not run by this worker",
+  "fuel": "BASE同錯",
+  "golden": "BASE與新輪同hash aacf251adb7030aa、events840/day31",
+  "wait": "BASE118→新輪90，兩者皆不符舊132",
+  "additionalGoldenComparisons": "lead正跑另外六項；本線未啟動任何測試"
+ },
+ "stoppingCondition": "可行性已收斂；無實作/搬檔/額外測試，停止調查。",
+ "columns": [
+  "id",
+  "topic",
+  "findings",
+  "activation",
+  "verification"
+ ],
+ "rows": [
+  {
+   "id": "PACK-1",
+   "topic": "預設瀏覽器與百科",
+   "findings": [
+    {
+     "source": "src/ui-adapter/dom/main.ts:16,30-44",
+     "fact": "戰鬥入口hardcode import.meta.glob(\"/content/base/**/*.json\")；URL只讀scenario/seed等，不讀pack/content參數。loadBrowserContent helper雖能按content/<pack>分組，實際caller只給base。"
+    },
+    {
+     "source": "src/ui-adapter/ops/dom/main.ts:13-27",
+     "fact": "營運入口也只glob /content/base/**，再loadWorldPacks；沒有現成optional-pack URL開關。"
+    },
+    {
+     "source": "src/ui-adapter/content-browser.ts:7-22",
+     "fact": "packsFromGlob可把多root modules依目錄分成PackFiles並loadPacks；這是已存在能力，不代表預設caller會傳其他root。"
+    },
+    {
+     "source": "src/ui-adapter/dom/wiki/boot.ts:15-22; src/ui-adapter/vm/wiki/index.ts:7,20-25,27-48",
+     "fact": "百科glob整個/content/**/*.json（只排index/batches），故若optional放content/<name>內，預設百科仍會掃並列出其資料。resolver能處理任意合法pack:id；這不會把它載入戰鬥/營運DB。"
+    }
+   ],
+   "activation": "不改目前browser接線時：22件移出base後不能在預設戰鬥/營運使用，?scenario=<optional>:scenario/...也不會自行載pack；百科可能看得到。要真正browser opt-in需另授權修改caller/module選擇，不是目前已有設定。",
+   "verification": "純靜態查讀，未開瀏覽器/GUI/伺服器、未測試。"
+  },
+  {
+   "id": "PACK-2",
+   "topic": "Node core／MCP／probe具體opt-in roots",
+   "findings": [
+    {
+     "source": "src/content/loader.ts:56-90,224-231,259-270,280-283",
+     "fact": "loadContentDirs(dirs:string[])→每root readPackDir→loadPacks；每root要有pack.json，id唯一、depends必須都在此次dirs所載pack中。依depends排序，不會由depends字串自動尋找磁碟root。"
+    },
+    {
+     "source": "src/core/types-def.ts:282; src/content/loader.ts:46-52,99-104",
+     "fact": "PackDef是id/version/depends（registries可選）。裸的已知kind/name會一律qualified成本pack；引用留base的species/bodyplan/abilities/components/effects/curve等必須改明確base:kind/name，否則會查optional:kind/name並報缺引用。"
+    },
+    {
+     "source": "src/mcp/tool.ts:36-43,58-79; src/mcp/server.ts:8-23; src/mcp/cli.ts:3-5,69-84",
+     "fact": "createEnv({root?,packs?:string[]})接受多root，預設[content/base]，按resolve(root,pack)載入；battleDb/world分別loadContentDirs/loadWorldDirs。createMcpServer(env)可注入這個env。現行直接node server.ts或socket cli serve都呼叫createMcpServer()，沒有--content/--packs參數解析；多root須用既有程式API由授權的外部driver注入。"
+    },
+    {
+     "source": "src/sim/probe.ts:298-315",
+     "fact": "probe CLI可重複--content，每次dirs.push(value)；例示（未執行）：node src/sim/probe.ts --content content/base --content content/<optional> <optional>:monster/exk-hookback --n 5。不是逗號串接；有任何--content時不自動補base，depends base必須明列第一root。"
+    }
+   ],
+   "activation": "引擎不需新功能，既有Node loader/probe與MCP程式API可opt-in載入22件及其引用閉包；這是有條件可行，不能宣稱現有22 JSON原樣搬動就過檢或現成MCP CLI支援content旗標。未編寫driver、未建立descriptor、未搬檔。",
+   "verification": "只讀API/parser實作，沒有執行node/npm/probe/MCP或任何測試。"
+  },
+  {
+   "id": "PACK-3",
+   "topic": "lore／content_gate契約與22件搬動閉包",
+   "findings": [
+    {
+     "source": "content/lore/check.ts:26,53-55",
+     "fact": "GAMEREF_RE固定^base:<kind>/<name>$；正式lore gameRefs不接受任意optional-pack前綴，且這段只驗格式不驗base目標存在。wiki resolver支持跨pack不等於lore checker支持。"
+    },
+    {
+     "source": "wf/tools/content_gate.py:169-180,244-278; 三份本輪manifest allow",
+     "fact": "add gate沒有pack.json descriptor特例。新path的content相對目錄須在allow.kinds；檔名prefix也必須匹配；通用ID規則要求data.id末段=stem。正常content/<optional>/pack.json且id=<optional>會因id不等pack報ID；現行三份allow也都只涵蓋指定base/lore目錄。"
+    },
+    {
+     "source": "wf/tools/content_gate.py:157-166,268-277",
+     "fact": "精確說不是語法上永遠禁descriptor：若另核manifest allow根目錄、無衝突prefix且descriptor id恰為字面pack，generic規則可能接受，因新目錄沒有既有id前綴。這沒有descriptor專門驗證，亦不能擅改包身份來躲gate；目前不能把正常命名descriptor視為已受現有gate支持。"
+    },
+    {
+     "source": "本輪現存22定義及其新檔直接引用的靜態欄位查詢",
+     "fact": "22=6frame+8monster+8person。現存6個world/models/exm-*引用6frame；6展示（exm-cooling-window/exm-crossline/exk-four-corners/exk-split-roots/exp-four-choices/exp-unfinished-ties）引用這22件；8個新lore character的gameRefs都是base:person/exp-*。因此只搬22，留在base的model/scenario會缺引用，lore則有格式/語義連動問題。"
+    }
+   ],
+   "activation": "可行範圍是既有multi-pack能力，不是新的包架構提案。需要頂層先裁示接入集合、6model是否暫不接、6展示與8 lore引用如何處理，才能在既有資料契約內做依賴改寫。正常descriptor的gate接收與跨pack lore gameRefs目前是工具/契約缺口，不能靠新增draft/exclude tag解決。",
+   "verification": "僅列實際阻礙與既有API；未改gate、lore checker、engine、內容、manifest或黃金。"
+  }
+ ]
+}

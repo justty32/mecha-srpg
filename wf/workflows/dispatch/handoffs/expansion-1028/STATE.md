@@ -14,4 +14,4 @@ Node v24.22.1。必要測試依賴已獲本輪使用者明確授權，按 lockfi
 
 工人僅各做末次 focused check／lore／typecheck／gate。領導接手單一串行 probe（五 seed、一 CPU）、MCP stdio 與全批整合 suite；全套只跑一次，壓低 concurrency、nice priority；後續probe以兩CPU為上限縮短串行時間，仍一次一個重負載。原始 npm test 含兩條 ui_screenshot 測試，本輪禁螢幕而明確排除該檔，不冒稱原始 npm test 全跑。黃金與戰役 hash 七份基線在 golden-baseline.json，須逐位元不變。
 
-最後需完成：交稿後語義去重、批次閘門／驗收、帶回與索引、整合 suite、可重播 Git format-patch 與套用說明／測試報告；不 push、不對外發布。敘事仍交使用者審閱，技術驗收不能代替偏好裁決。
+三批技術ACCEPT、交稿後語義去重與帶回索引已完成；唯一一次整合suite終局1031案：1021通過、10失敗，23分28.6秒。九條內容失敗於乾淨原c09也失敗，七條同錯／實值，wait與ops-relic兩條軌跡受本輪影響；socket EPERM不重試。九項focused原基底對照已完成，無待監看程序。不可稱整合全綠；使用者裁決是否接受限制或另授權整合，暫不改engine／黃金或移成預設不可見optional。詳細證據見 [test-comparison.json](test-comparison.json)。可重播Git交付準備中，但不把尚待裁決說成完成無回歸驗收。

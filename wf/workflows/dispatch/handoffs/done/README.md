@@ -104,3 +104,5 @@
 - 2026-10-28 [lead-canvas-1028](2026-10-28/lead-canvas-1028/README.md)：全新礁鷹Canvas＋Konva離線試作，184節點94葉，v1.1接合修正、核心46/畫件9/CDP11通過，基本整機已主線親看；[REPORT](2026-10-28/lead-canvas-1028/REPORT.md)。
 
 - 2026-10-28 [lead-mech3d-1028](2026-10-28/lead-mech3d-1028/README.md)：全新衡岳Three真3D，180節點96葉，模型15/互動13通過，主線接受hero/側背；[REPORT](2026-10-28/lead-mech3d-1028/REPORT.md)。
+
+- 2026-10-28 [expansion-1028](2026-10-28/expansion-1028-README.md)：三隊與獨立後查收線；六機／八怪獸形態／八人物，原兩弱A拒收，三批技術ACCEPT但整合未全綠，等待pending-integration交付裁決；結論見領導報告。

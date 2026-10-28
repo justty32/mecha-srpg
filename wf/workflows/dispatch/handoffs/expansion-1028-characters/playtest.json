@@ -1,0 +1,66 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [
+  "log"
+ ],
+ "columns": [
+  "scenario",
+  "seed",
+  "rounds",
+  "winner",
+  "reason",
+  "mode",
+  "ourLosses",
+  "enemyLosses",
+  "newAbilityUses",
+  "aiUsed",
+  "log",
+  "note"
+ ],
+ "rows": [
+  {
+   "scenario": "scenario/exp-four-choices",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "mode": "mcp-auto",
+   "ourLosses": 0,
+   "enemyLosses": 2,
+   "newAbilityUses": 0,
+   "aiUsed": true,
+   "log": "mcp-log/characters-fixed.jsonl",
+   "note": "全場AbilityUsed=71／Retreated=2，active={'enemy': 0, 'player': 4}；hash=f5cf65c1f387c3fd"
+  },
+  {
+   "scenario": "scenario/exp-unfinished-ties",
+   "seed": 1,
+   "rounds": 9,
+   "winner": "player",
+   "reason": "eliminate",
+   "mode": "mcp-auto",
+   "ourLosses": 0,
+   "enemyLosses": 2,
+   "newAbilityUses": 0,
+   "aiUsed": true,
+   "log": "mcp-log/characters-fixed.jsonl",
+   "note": "全場AbilityUsed=79／Retreated=2，active={'enemy': 0, 'player': 4}；hash=51f7feb4257bc221"
+  },
+  {
+   "scenario": "scenario/exp-four-choices",
+   "seed": 1,
+   "rounds": 3,
+   "winner": "none",
+   "reason": "timeout",
+   "mode": "mcp-manual",
+   "ourLosses": "未逐員拆分",
+   "enemyLosses": "未逐員拆分",
+   "newAbilityUses": 0,
+   "aiUsed": true,
+   "log": "mcp-log/characters-fixed.jsonl",
+   "note": "人控三輪短探：legal→選擇合法行動→end；刻意rounds=3，不計完整平衡勝率。"
+  }
+ ]
+}

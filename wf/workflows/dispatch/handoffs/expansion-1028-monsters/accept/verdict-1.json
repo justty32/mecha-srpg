@@ -1,0 +1,368 @@
+{
+ "batch": "expansion-1028-monsters",
+ "round": 1,
+ "at": "2026-10-28T18:29:24",
+ "ok": false,
+ "steps": {
+  "probe": "fail",
+  "readlist": "ok",
+  "lore": "ok",
+  "typecheck": "ok",
+  "playtest": "ok",
+  "check": "ok",
+  "gate": "ok"
+ },
+ "approved": [
+  "content/base/abilities/exk-cinder-muzzle.json",
+  "content/base/abilities/exk-crownfall.json",
+  "content/base/abilities/exk-forkneedle.json",
+  "content/base/abilities/exk-hookback.json",
+  "content/base/abilities/exk-lamp-leech.json",
+  "content/base/abilities/exk-smotherwick.json",
+  "content/base/abilities/exk-spine-rack.json",
+  "content/base/abilities/exk-winglock.json",
+  "content/base/effects/exk-light-leak.json",
+  "content/base/effects/exk-smothered.json",
+  "content/base/monsters/exk-cinder-muzzle.json",
+  "content/base/monsters/exk-crownfall.json",
+  "content/base/monsters/exk-forkneedle.json",
+  "content/base/monsters/exk-hookback.json",
+  "content/base/monsters/exk-lamp-leech.json",
+  "content/base/monsters/exk-smotherwick.json",
+  "content/base/monsters/exk-spine-rack.json",
+  "content/base/monsters/exk-winglock.json",
+  "content/base/scenarios/exk-four-corners.json",
+  "content/base/scenarios/exk-split-roots.json"
+ ],
+ "gateViolations": [],
+ "probe-verdict": {
+  "ok": false,
+  "rows": [
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "ability/exk-cinder-muzzle",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-cinder-muzzle",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "ability/exk-crownfall",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-crownfall",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-i ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-i ×2",
+    "side": "low",
+    "id": "ability/exk-forkneedle",
+    "matchesReference": true
+   },
+   {
+    "flag": "unused-ability",
+    "detail": "frame/bulwark-i ×2 主角從未用 base:ability/exk-forkneedle",
+    "key": "unused:base:ability/exk-forkneedle",
+    "id": "ability/exk-forkneedle"
+   },
+   {
+    "id": "ability/exk-forkneedle",
+    "flag": "stat",
+    "detail": "frame/bulwark-i ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.4 原因 {\"eliminate\": 1, \"eliminate:repelled\": 4}"
+   },
+   {
+    "flag": "band",
+    "detail": "AP 成本 0 < D 級下限 2",
+    "key": "band:base:ability/exk-hookback:AP 成本",
+    "id": "ability/exk-hookback",
+    "waived": "離身反應非AI主動招、免費AP且每回合一次；mechanic-check已實測離鄰格觸發一次、同回合再離格不再觸發。probe刻意不計reaction AbilityUsed，不將0次算主動招死資料。"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-i ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-i ×2",
+    "side": "low",
+    "id": "ability/exk-hookback",
+    "matchesReference": true
+   },
+   {
+    "flag": "unused-ability",
+    "detail": "frame/bulwark-i ×2 主角從未用 base:ability/exk-hookback",
+    "key": "unused:base:ability/exk-hookback",
+    "id": "ability/exk-hookback",
+    "waived": "離身反應非AI主動招、免費AP且每回合一次；mechanic-check已實測離鄰格觸發一次、同回合再離格不再觸發。probe刻意不計reaction AbilityUsed，不將0次算主動招死資料。"
+   },
+   {
+    "id": "ability/exk-hookback",
+    "flag": "stat",
+    "detail": "frame/bulwark-i ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate\": 1, \"eliminate:repelled\": 4}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "ability/exk-lamp-leech",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-lamp-leech",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.6 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "band",
+    "detail": "單發傷害 4 < C 級下限 12",
+    "key": "band:base:ability/exk-smotherwick:單發傷害",
+    "id": "ability/exk-smotherwick"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "ability/exk-smotherwick",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-smotherwick",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-iv-rampart ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-iv-rampart ×2",
+    "side": "low",
+    "id": "ability/exk-spine-rack",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-spine-rack",
+    "flag": "stat",
+    "detail": "frame/bulwark-iv-rampart ×2 n=5 勝 0% 敗 100% 平 0% 輪 6.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "band",
+    "detail": "單發傷害 8 < C 級下限 12",
+    "key": "band:base:ability/exk-winglock:單發傷害",
+    "id": "ability/exk-winglock",
+    "waived": "C級近距控制招僅pierce8，低於直接傷害帶；AP3/CD3以兩回合immobilized交換傷害，範本kx-reed-lace-bind/mx-netted同類效果，部位失機動冗餘且露核付款。"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "ability/exk-winglock",
+    "matchesReference": true
+   },
+   {
+    "id": "ability/exk-winglock",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "monster/exk-cinder-muzzle",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-cinder-muzzle",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.2 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "monster/exk-crownfall",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-crownfall",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-i ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-i ×2",
+    "side": "low",
+    "id": "monster/exk-forkneedle",
+    "matchesReference": true
+   },
+   {
+    "flag": "unused-ability",
+    "detail": "frame/bulwark-i ×2 主角從未用 base:ability/exk-forkneedle",
+    "key": "unused:base:ability/exk-forkneedle",
+    "id": "monster/exk-forkneedle"
+   },
+   {
+    "id": "monster/exk-forkneedle",
+    "flag": "stat",
+    "detail": "frame/bulwark-i ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.4 原因 {\"eliminate\": 1, \"eliminate:repelled\": 4}"
+   },
+   {
+    "flag": "band",
+    "detail": "AP 成本 0 < D 級下限 2",
+    "key": "band:base:ability/exk-hookback:AP 成本",
+    "id": "monster/exk-hookback",
+    "waived": "離身反應非AI主動招、免費AP且每回合一次；mechanic-check已實測離鄰格觸發一次、同回合再離格不再觸發。probe刻意不計reaction AbilityUsed，不將0次算主動招死資料。"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-i ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-i ×2",
+    "side": "low",
+    "id": "monster/exk-hookback",
+    "matchesReference": true
+   },
+   {
+    "flag": "unused-ability",
+    "detail": "frame/bulwark-i ×2 主角從未用 base:ability/exk-hookback",
+    "key": "unused:base:ability/exk-hookback",
+    "id": "monster/exk-hookback",
+    "waived": "離身反應非AI主動招、免費AP且每回合一次；mechanic-check已實測離鄰格觸發一次、同回合再離格不再觸發。probe刻意不計reaction AbilityUsed，不將0次算主動招死資料。"
+   },
+   {
+    "id": "monster/exk-hookback",
+    "flag": "stat",
+    "detail": "frame/bulwark-i ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate\": 1, \"eliminate:repelled\": 4}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "monster/exk-lamp-leech",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-lamp-leech",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.6 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "band",
+    "detail": "單發傷害 4 < C 級下限 12",
+    "key": "band:base:ability/exk-smotherwick:單發傷害",
+    "id": "monster/exk-smotherwick"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "monster/exk-smotherwick",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-smotherwick",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-iv-rampart ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-iv-rampart ×2",
+    "side": "low",
+    "id": "monster/exk-spine-rack",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-spine-rack",
+    "flag": "stat",
+    "detail": "frame/bulwark-iv-rampart ×2 n=5 勝 0% 敗 100% 平 0% 輪 6.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "band",
+    "detail": "單發傷害 8 < C 級下限 12",
+    "key": "band:base:ability/exk-winglock:單發傷害",
+    "id": "monster/exk-winglock",
+    "waived": "C級近距控制招僅pierce8，低於直接傷害帶；AP3/CD3以兩回合immobilized交換傷害，範本kx-reed-lace-bind/mx-netted同類效果，部位失機動冗餘且露核付款。"
+   },
+   {
+    "flag": "winrate",
+    "detail": "frame/bulwark-ii ×2 勝率 0%",
+    "key": "winrate:frame/bulwark-ii ×2",
+    "side": "low",
+    "id": "monster/exk-winglock",
+    "matchesReference": true
+   },
+   {
+    "id": "monster/exk-winglock",
+    "flag": "stat",
+    "detail": "frame/bulwark-ii ×2 n=5 勝 0% 敗 100% 平 0% 輪 8.0 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "base:scenario/exk-four-corners 勝率 0%",
+    "key": "winrate:base:scenario/exk-four-corners",
+    "side": "low",
+    "id": "scenario/exk-four-corners"
+   },
+   {
+    "id": "scenario/exk-four-corners",
+    "flag": "stat",
+    "detail": "base:scenario/exk-four-corners n=5 勝 0% 敗 100% 平 0% 輪 14.4 原因 {\"eliminate:repelled\": 5}"
+   },
+   {
+    "flag": "winrate",
+    "detail": "base:scenario/exk-split-roots 勝率 0%",
+    "key": "winrate:base:scenario/exk-split-roots",
+    "side": "low",
+    "id": "scenario/exk-split-roots"
+   },
+   {
+    "id": "scenario/exk-split-roots",
+    "flag": "stat",
+    "detail": "base:scenario/exk-split-roots n=5 勝 0% 敗 100% 平 0% 輪 12.2 原因 {\"eliminate:repelled\": 5}"
+   }
+  ]
+ },
+ "playtest": {
+  "ok": true,
+  "mcpRows": 3,
+  "rows": 3,
+  "problems": []
+ },
+ "readlist": {
+  "ok": true,
+  "listed": 12,
+  "problems": []
+ },
+ "newWarnings": [
+  "WARNING [content-load] content/base/monsters/exk-cinder-muzzle.json $.partsOverride capture layer HP differs: head, spine",
+  "WARNING [content-load] content/base/monsters/exk-crownfall.json $.partsOverride capture layer HP differs: crown",
+  "WARNING [content-load] content/base/monsters/exk-forkneedle.json $.partsOverride capture layer HP differs: heart",
+  "WARNING [content-load] content/base/monsters/exk-hookback.json $.partsOverride capture layer HP differs: heart, needle",
+  "WARNING [content-load] content/base/monsters/exk-smotherwick.json $.partsOverride capture layer HP differs: pillar, roots, crown",
+  "WARNING [content-load] content/base/monsters/exk-spine-rack.json $.partsOverride capture layer HP differs: back",
+  "WARNING [content-load] content/base/monsters/exk-winglock.json $.partsOverride capture layer HP differs: heart, wing-left, wing-right",
+  "WARNING content/base/monsters/exk-cinder-muzzle.json $.partsOverride capture layer HP differs: head, spine",
+  "WARNING content/base/monsters/exk-crownfall.json $.partsOverride capture layer HP differs: crown",
+  "WARNING content/base/monsters/exk-forkneedle.json $.partsOverride capture layer HP differs: heart",
+  "WARNING content/base/monsters/exk-hookback.json $.partsOverride capture layer HP differs: heart, needle",
+  "WARNING content/base/monsters/exk-smotherwick.json $.partsOverride capture layer HP differs: pillar, roots, crown",
+  "WARNING content/base/monsters/exk-spine-rack.json $.partsOverride capture layer HP differs: back",
+  "WARNING content/base/monsters/exk-winglock.json $.partsOverride capture layer HP differs: heart, wing-left, wing-right"
+ ]
+}
