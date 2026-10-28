@@ -1,0 +1,109 @@
+{
+  "id": "scenario/exm-cooling-window",
+  "name": "爐口空檔",
+  "nameEn": "Cooling Window",
+  "etymology": "六台通過者的第二展示，兩未通過A候選已排除，以既有機補齊四席。",
+  "brief": "合鉗與解扣兩台新改型和既有長槍、封門機同場輪替。先活過換班，驅散敵群也可提前收場；脫扣衍甲只救得了自己。這是獨立配裝展示，不把借機編成記入年表。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/exm-anvil-clasp",
+          "persons": [
+            {
+              "id": "person/batbayar-erdene",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/longspear-piercing-cloud",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/exm-bulwark-unclasp",
+          "persons": [
+            {
+              "id": "person/farida-rahman",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/anvil-gatewarden",
+          "persons": [
+            {
+              "id": "person/arun-velan",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/bed-white-night",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/bulwark-b",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/bulwark-b",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "survive",
+      "params": {
+        "rounds": 12
+      },
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 20,
+  "seed": 102802
+}

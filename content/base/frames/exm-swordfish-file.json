@@ -1,0 +1,70 @@
+{
+  "id": "frame/exm-swordfish-file",
+  "name": "劍魚-V5・穿列",
+  "nameEn": "Swordfish Needlewake V5",
+  "etymology": "Needlewake 取貫矛穿過舟尾水痕的細線，穿列型沿潮鰭血統保留舟首、舟尾與兩側浮架。直線上的敵影值得一矛，散開的近敵則交給長鉤；它不推人，也不替搭檔拖船。\n\n爭旗交鋒時，駕駛一再退開。搭檔剛把對手逼向缺牆，他就喊再偏一點；等那條線終於順眼，對手早從另一側跑了。搭檔罵他只肯打好看的，下一輪索性不聽。\n\n兩台機隔著廢牆各打各的。穿列型用長鉤挑向敵腿，舟尾又被撞出一個缺口。駕駛忍著沒喊搭檔回來，慢慢找到了另一條射線：只要再等一下，就能連搭檔眼前那台一起穿過。\n\n他把貫矛收低，讓出了那一角。搭檔贏下近鬥後才回頭，看見舟首仍對著空處，問他怎麼沒射。他說角度不好。回棚時，搭檔把那面旗橫放在舟尾，剛好蓋住新添的缺口。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/m2-keel-b",
+  "baseAttrs": {
+    "initiative": 8,
+    "perception": 6,
+    "evasion": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "left-weapon": "component/fw-wake-lance",
+    "right-weapon": "component/fw-shoal-hook",
+    "system-1": "component/mx-frost-fins"
+  },
+  "series": "swordfish",
+  "mark": 5,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-tide-fin",
+    "series-swordfish",
+    "faction-third-blade",
+    "hover"
+  ]
+}

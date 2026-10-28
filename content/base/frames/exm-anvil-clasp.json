@@ -1,0 +1,71 @@
+{
+  "id": "frame/exm-anvil-clasp",
+  "name": "鐵砧-V型・合鉗",
+  "nameEn": "Anvil Clasp V",
+  "etymology": "Clasp 取雙臂合攏的鉗勢，合鉗型沿斷臂重架分掛拘束鉗與重斧。鉗口能傷也能縛，不能把扣住誤當活捕；兩招連用，整個回合便沒有挪步的餘地。\n\n鐵砧小隊按生擒價接下委託，出棚前卻有人替重斧換了新刃。帶隊人摸過刃口，說厚甲不先劈開，誰也別想下鉗。副駕看著空拘束架，沒有接話。\n\n第一趟回來，架子仍空著。斧面多了一道乾淨的斷痕，帶隊人請工匠別急著磨掉。他抱著領賞牌走向岸邊，副駕把空架推到路中央，輪子抵在石縫裡。\n\n兩人沒談價錢，先為那道斷痕吵了起來。工匠等到飯涼，把卸斧的吊索放到他們腳邊。第二趟前，帶隊人親手解開右臂掛件，讓重斧留在岸上。出港時他還在往回看，副駕則站在空架旁，直到船身遮住了那把斧。",
+  "cls": "mechanical",
+  "grade": "A",
+  "bodyPlan": "bodyplan/mx-fortress-a",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 6,
+    "accuracy": 5,
+    "evasion": -5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 130,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -20,
+      "bands": [
+        {
+          "from": 130,
+          "to": 162.5,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 162.5,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "left-weapon": "component/fw-reef-jaw",
+    "right-weapon": "component/fw-breaktide-axe",
+    "system-1": "component/mx-frost-fins",
+    "system-2": "component/mx-cold-spring"
+  },
+  "series": "anvil",
+  "mark": 5,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-broken-arm",
+    "series-anvil",
+    "faction-anvil"
+  ]
+}

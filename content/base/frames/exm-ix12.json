@@ -1,0 +1,58 @@
+{
+  "id": "frame/exm-ix12",
+  "name": "IX-12",
+  "nameEn": "Hinge 12",
+  "etymology": "Hinge 指扣住腳步、再以楔刃逼近接合處的打法；勤務牌沿鐵劍修造冊寫作 IX-12。輪座沒有另掛胸甲，短矢只夠幾次攔截，打完便得開到敵機身旁。\n\n新手拿到第一張擊毀牌，趁夜班前釘在砲塔外側。同班的搭檔走過來，把牌翻向裡面。他說亮面會晃眼，新手把手伸回去，兩人誰也沒讓。棚外催著交班，最後還是新手先上艙。\n\n窄口那台敵機踩進射界時，他先扣足，再把輪座送近。楔刃碰到掛件，座艙裡響得像有人敲門。換班後，搭檔沿著同一段路巡行，回來時砲塔又多了一道缺口。新手問是不是他打的，搭檔沒答，只借走了釘牌的小槌。\n\n隔日，牌仍朝著裡面，邊緣卻添了一行較小的名字。新手坐上輪座，伸手摸到新刻的凹痕。他沒有翻牌，也沒把小槌還回工具匣。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/m2-wheel-d",
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 4,
+    "evasion": -2
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "main-gun": "component/fw-wedge-blade",
+    "side-tool": "component/fw-ankle-pin"
+  },
+  "series": "ironsword",
+  "mark": 12,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "series-ironsword",
+    "universal",
+    "track"
+  ]
+}

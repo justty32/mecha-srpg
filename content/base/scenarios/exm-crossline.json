@@ -1,0 +1,101 @@
+{
+  "id": "scenario/exm-crossline",
+  "name": "橫線試配",
+  "nameEn": "Crossline Trial",
+  "etymology": "核定八機的獨立配裝展示；不新增歷史事件。",
+  "brief": "四台試配機進入舊牆與淺水之間。先扣住近敵，再替貫矛找一條線；兩台盾甲會逼近，短矢不能全花在同一隻身上。這是獨立配裝展示，借用駕駛員不代表年表中的換機。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/exm-ix12",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/exm-silverring-helix",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/exm-surveyor-shutter",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/exm-swordfish-file",
+          "persons": [
+            {
+              "id": "person/adewale-balogun",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/bulwark-b",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/bulwark-b",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102801
+}

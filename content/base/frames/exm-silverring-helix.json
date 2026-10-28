@@ -1,0 +1,69 @@
+{
+  "id": "frame/exm-silverring-helix",
+  "name": "銀環-G3・汲光",
+  "nameEn": "Silverring Helix G3",
+  "etymology": "Helix 取收卷的旋紋，銀環-G3 的「汲光」旁名來自那具主動回光件。汀光矢槍只取流光，鳴刃另積燼；汲光時排燼又慢下來，駕駛得自己決定下一次出手。\n\n月面試賣會還沒開門，駕駛就把展示用的流光射空。買家進棚時，看見昂貴的銀環低頭收卷，燈沿著臂架一圈圈亮回來，前排有人已轉身去看別台。\n\n雇主叫他重做，這回只准在亮著的時候開槍。他把手留在座艙邊，問買家往後也會一直站在滿光的棚裡嗎。場面靜了一會，維護人員先笑出聲，又趕快低下頭。\n\n散場後，出價最低的人回來，說想再看一次那段空檔。雇主收起價單，讓他明天再來；駕駛卻重新上艙，請對方站到安全線外。這回沒有旁人鼓掌，買家看完，問的是鳴刃什麼時候才值得拔。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "baseAttrs": {
+    "initiative": 7,
+    "perception": 6,
+    "accuracy": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 80,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 80,
+      "regen": 15,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "right-weapon": "component/fw-shoal-light",
+    "left-weapon": "component/mx-singing-blade",
+    "system-1": "component/fa-light-reel"
+  },
+  "series": "silverring",
+  "mark": 3,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-jinghai",
+    "series-silverring",
+    "faction-selene"
+  ]
+}

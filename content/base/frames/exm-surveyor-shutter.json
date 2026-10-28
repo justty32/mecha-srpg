@@ -1,0 +1,69 @@
+{
+  "id": "frame/exm-surveyor-shutter",
+  "name": "測墟-B・折鏡",
+  "nameEn": "Surveyor Shutter B",
+  "etymology": "Shutter 取靈目前一閃即收的遮片，折鏡型把整隊觀測讓給眼前一敵。晃眼擾亂準頭，照隙長槍沿掛件點射；兩件都要看得見目標，廢牆背後沒有捷徑。\n\n護勘教習收走靶牌，自己坐進對面的舊機。學生隔著牆喊，打壞了算誰的。教習說先打中再問，隨即把靈目藏到缺牆後面。\n\n頭幾次交鋒，學生總追著露出的胸甲。教習不斷換位，偶爾從側面敲他一下，像敲課桌。後來那片晃光掠過牆角，學生沒有跟著轉身，只把長槍留在掛件將要露出的位置。那一聲脆響後，對面的武器垂了下去。\n\n教習說還有一場。學生先摘下靈目罩，跨出座艙，指著冒煙的掛架說得先修。他走過去幫忙，教習卻把扳手往另一邊挪。等學生繞到順手的位置，老師才問，剛才那一槍究竟看了多久。",
+  "cls": "mechanical",
+  "grade": "B",
+  "bodyPlan": "bodyplan/mx-biped-b",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 7
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -18,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "right-weapon": "component/fw-seam-rifle",
+    "left-weapon": "component/mx-singing-blade",
+    "sensor-mount": "component/fa-dazzle-shutter",
+    "system-1": "component/mx-frost-fins"
+  },
+  "series": "surveyor",
+  "mark": 5,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-many-eyes",
+    "series-surveyor",
+    "faction-shell-society"
+  ]
+}

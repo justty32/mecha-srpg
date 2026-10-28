@@ -1,0 +1,71 @@
+{
+  "id": "frame/exm-bulwark-unclasp",
+  "name": "堅盾-II型・解扣",
+  "nameEn": "Bulwark Unclasp II",
+  "etymology": "Unclasp 取扳扣脫網的動作，解扣型仍是堅盾的線列骨架。它換上較薄的脫扣衍甲，不帶排燼片與煙具；能替自己解開縛網，不能把別人的束縛一併解掉。\n\n輪守隊把新甲配給一個不肯搭班的老兵。他試過甲扣，說這回總算不用等別人。新手站在旁邊，正想問該跟哪側，老兵已經合上艙門。\n\n巡行過半，他把兩次脫扣都用掉了。第三道網掛住臂架時，老兵先試著轉身，聽見甲扣只剩空響。他看見新手停在不遠處，叫了兩聲對方的名字，第二聲比第一聲大。\n\n回棚後，新手端著飯來找他。他說自己吃，連凳子也沒挪。第二天點名，大家發現老兵把出勤牌換到了新手旁邊。新手問是不是掛錯了，他說那裡的釘子牢，接著叫人別再把飯湯放在工具桌上。",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/mx-biped-c",
+  "baseAttrs": {
+    "initiative": 5,
+    "perception": 5,
+    "evasion": -3
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 50,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 50,
+      "regen": 10,
+      "bands": []
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-guard-stance"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "defaultLoadout": {
+    "left-weapon": "component/mx-singing-blade",
+    "right-weapon": "component/mx-rune-rifle",
+    "armor-mount": "component/fa-slip-clasp"
+  },
+  "series": "bulwark",
+  "mark": 2,
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu",
+    "series-bulwark",
+    "universal"
+  ]
+}
