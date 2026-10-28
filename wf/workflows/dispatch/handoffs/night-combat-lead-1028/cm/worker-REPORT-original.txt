@@ -1,0 +1,167 @@
+## 已讀清單
+
+共通規範沿用同一 worker 的前次親讀，來源為 `wf/workflows/dispatch/handoffs/fill-lead-1028-night/reports/night-1028-characters-b/REPORT.md` 與其 `readlist.json`；本次不重讀舊信，也不把B人物寫入本線。以下逐行列完整 repo 相對 code 路徑；範圍與來源詳見 `readlist.json`。主repo根為 `/home/lorkhan/repo/game_dev/mecha-srpg`，CM隔離樹根為 `/tmp/night-combat-lead-1028/wt-cm`。
+
+沿用共通規範：
+```text
+AGENTS.md
+wf/WORKFLOWS.md
+wf/workflows/common/user.md
+wf/workflows/common/user/working.md
+wf/workflows/common/data-files.md
+wf/workflows/content/README.md
+wf/workflows/content/batch.md
+wf/workflows/content/world-pillars.md
+wf/workflows/content/world-pillars/world/tone-and-rules.md
+wf/workflows/content/world-pillars/world/factions-and-sandbox.md
+content/lore/README.md
+content/lore/style.md
+content/lore/style/people.md
+```
+
+本輪主repo補讀：
+```text
+wf/workflows/dispatch/handoffs/night-combat-lead-1028/briefs/cm-mechs.md
+wf/workflows/dispatch/handoffs/night-combat-lead-1028.md
+wf/workflows/dispatch/handoffs/night-combat-plan-1028.md
+wf/workflows/dispatch/handoffs/night-combat-plan-1028/PLAN.md
+wf/workflows/dispatch/handoffs/night-combat-plan-1028/CM-mechs.md
+wf/workflows/content/mechs.md
+wf/workflows/content/abilities-effects.md
+wf/workflows/content/battle-field.md
+wf/workflows/content/acceptance-playtest.md
+wf/workflows/content/playtest.md
+wf/workflows/common/conventions.md
+wf/workflows/common/code-map.md
+wf/workflows/dev-env.md
+wf/workflows/planning/specs/core/data-model-mech.md
+wf/workflows/planning/specs/core/rules-attack-resolution.md
+wf/workflows/planning/specs/core/rules-resources-effects.md
+wf/workflows/dispatch/handoffs/night-combat-plan-1028/review.json
+wf/workflows/content/engine-facts.json
+wf/workflows/content/numeric-bands.json
+wf/workflows/content/templates.json
+wf/workflows/common/code-map.json
+```
+
+本輪CM隔離樹原碼、引用、近鄰與成稿：
+```text
+AGENTS.md
+package.json
+tsconfig.json
+tsconfig.ui.json
+content/base/frames/longspear-kneeler-v2.json
+content/base/frames/exm-silverring-helix.json
+content/base/frames/wm-r7-longspear-keepsake.json
+content/base/frames/wn-r3-anvil-fan.json
+content/base/frames/anvil-iv-ram.json
+content/base/frames/exm-ix12.json
+content/base/frames/union-at12.json
+content/base/frames/bulwark-ii.json
+content/base/bodyplans/mx-biped-c.json
+content/base/bodyplans/mx-biped-b.json
+content/base/bodyplans/m2-quadruped-c.json
+content/base/bodyplans/mx-tracked-d.json
+content/base/world/lineages/jinghai.json
+content/base/world/lineages/broken-arm.json
+content/base/components/mx-radiant-rifle.json
+content/base/components/mx-rune-rifle.json
+content/base/components/mx-molten-saw.json
+content/base/components/mx-cold-spring.json
+content/base/abilities/mx-radiant-shot.json
+content/base/abilities/mx-rune-shot.json
+content/base/abilities/mx-molten-cut.json
+content/base/abilities/mx-cold-vent.json
+content/base/abilities/fa-open-vents.json
+content/base/abilities/fw-fan-tube-use.json
+content/base/abilities/exk-cinder-muzzle.json
+content/base/scenarios/exm-crossline.json
+content/base/maps/skirmish-20.json
+content/base/aiprofiles/focus-fire.json
+content/base/registries/locomotion.json
+content/base/registries/part-functions.json
+content/base/registries/slot-types.json
+content/base/persons/ren-kasai.json
+content/base/persons/ilse-brandt.json
+content/base/persons/chen-xiaohai.json
+content/base/monsters/reaper-c.json
+content/base/monsters/hound-c.json
+src/rules/command.ts
+src/rules/pools.ts
+src/ai/policies/tactical.ts
+src/ai/adapters/rules-adapter.ts
+content/base/frames/night-cm-twinwick.json
+content/base/bodyplans/night-cm-twinwick.json
+content/base/frames/night-cm-cinderbell.json
+content/base/components/night-cm-cinderbell.json
+content/base/abilities/night-cm-cinderbell.json
+content/base/scenarios/night-cm-yard-bells.json
+src/rules/movement.ts
+src/core/types-def.ts
+src/rules/state.ts
+src/content/loader.ts
+src/content/lint.ts
+```
+
+本輪追加已讀code路徑（測試原碼只讀，未node --test）：
+
+```text
+src/sim/run.ts
+src/sim/session.ts
+src/mcp/battle.ts
+src/mcp/battle-hub.ts
+src/mcp/server.ts
+src/mcp/protocol.ts
+src/mcp/tool.ts
+src/mcp/e2e.test.ts
+src/mcp/battle-view.ts
+src/core/events.ts
+src/core/types-state.ts
+src/content/contentdb.ts
+src/rules/index.ts
+src/rules/turn.ts
+src/rules/flow.ts
+src/ai/retreat.ts
+src/ai/intent.ts
+src/ai/score.ts
+src/ai/support.ts
+scripts/heavy-lock.sh
+content/base/abilities/mx-flare-dodge.json
+content/base/abilities/mx-stake-drive.json
+content/base/effects/mx-flaring.json
+wf/workflows/dispatch/handoffs/done/2026-10-24/lead-playtest/sweep.ts
+```
+
+## 做了什麼／產出
+
+CM工作已終局，重負載於22:05:23完成並釋放；主線22:07正式收回交CK。現況：整批六檔不carry、不拆收、不第三輪、不入庫；manifest draft／integration pending／local not-accepted由領導記錄。本工人未寫manifest或git。
+
+最後正式核值只改 `content/base/frames/night-cm-cinderbell.json` 的 `baseAttrs.accuracy` 2→6；並燭gun-mast exposure維持1.5。`accept/round-2-field-diff.json`逐欄證明僅一個差異，另五檔SHA256不變；首輪六檔快照在 `accept/round-1-snapshot/`，其SHA256與最初dedup完全一致。全部首輪原始log未覆寫。兩輪runner原碼也分開保留。
+
+check一次exit0（43＋17警告都指既有檔）；原typecheck exit127保留在typecheck.log，領導接既有node_modules後補驗exit0，見typecheck-leader.log及主線通知。無引擎、AI、基準或情境修補，沒有waiver。所有戰鬥子步nice19、CPU0/1、串行；未派子代理。
+
+第一輪展示5seed均自然heat0，AI鐘次數1/1/0/0/1，共3；並燭光矢43、紋刻13，燼鐘熔鋸20、鐘3、寒泉0。覆蓋為並燭2/2、燼鐘2/3；寒泉未自然使用不冒稱有。自然燼峰38/46/28/38/42，未達現有AI散燼需求起點120×0.6=72，可解釋其未被偏好，這是靜態規則佐證，並非改AI。
+
+既定fixture全部通過：槍架broken雙槍不可用而仍可走，單側履破仍track、雙側皆破不可走，履損不移除雙槍；heat29 require-failed、30合法、鳴鐘後30→0。此為注入部位/池值的隔離fixture，明確不是自然AI證據。
+
+MCP auto seed1第8輪player勝、eliminate/detail repelled，battle hash e61544bc33c01f03與首輪自然seed1原始事件一致。手動完成RoundEnd1/2/3，第4輪合法鳴鐘38→8，再鋸8→26，寒泉26→0；只用返回target.action/options.action及moveAction範本＋返回可達格。完整stdio JSON-RPC在log/mcp-log/stdio.jsonl.gz，完整原始事件以battle_save實際全部commands無AI重播取得，accuracy2內部hash一致。playtest.json逐列標清auto與manual，不把手動施招算AI。
+
+最後有界15seed全exit0、自然heat0、無timeout：CM01只補換側5seed，勝2/5（種子3/4勝），原側首輪5/5沿用；CM02 accuracy6原側0/5、換側0/5。最後輪鐘原側8次、換側7次，共15次自然AI施放；自然循環成立，勝率仍不合格。結果分存在log/round-2，不覆寫首輪。
+
+## 沒做到或證據不足
+
+CM01原側5/5、換側2/5，合計7/10，有側別旗標，不能把原側全勝當作穩定優勢；主線已裁決不拆收。原側用原map/skirmish-20部署player(2,6)/enemy(17,6)；換側交換新舊機的slot與座標，雙方葛西蓮／focus-fire、20輪不變，沒有鏡射地圖格。map本身地形非完美對稱，這是換側診斷，不是另造公平場地。
+
+CM02 accuracy2首輪0/5，四退一死（seed4 torso毀損）；accuracy6最後雙側0/10仍弱。雙方初始實裝HP新機487、指定破城槌638，破城槌仍有原配疾焰閃身＋15迴避、44傷/AP5樁與追獵件；未削基準。舊seed1新機0中7失，剩367.91HP時撤離而對手638未傷。首輪退卻不能全部寫成擊毀；完整部位傷、Hit/Miss chance、先手、部署與能力量在comparison.json和各run.json.gz。Retreated事件不含精確決策原因，AI原碼有士氣／戰力比／預估任務不可達等分支，未保存代理記憶就不硬指某一分支。
+
+first legal與first actual分開：首輪只記錄實際事件，未直接量測首次合法時刻。最後輪額外以實際commands無AI重播，在每個實際指令前取樣目前行動者對敵位置的規則合法攻擊，記firstLegalOpportunity；這是實際軌跡上的首次取樣，不涵蓋反事實移動、空格指向或AI可見性候選的全域最早時刻。firstLegalExecutedAttack另記首個實際合法攻擊，不能混稱首個AbilityUsed（可能先用buff）。
+
+fixture/MCP執行時CM02 accuracy=2。accuracy只影響命中，不改槽、移動、heat require/produces或API操作格式，因此舊fixture/MCP僅沿用機制與操作合法性；沒有以舊MCP replay/hash宣稱accuracy6快照相同，也沒有追加整套MCP。修後勝負、命中和自然鐘只依最後輪新資料。未執行正式content_accept或全套測試，不能宣稱accepted。
+
+## 需要決定
+
+主線已決定整批六檔不carry、不拆收、不入庫，保留draft與全部flags；本線不再求第三輪、第二旋鈕或waiver。已停止CM runner，CK可獨占；後續R2為獨立資料線，不使用本線重負載授權。
+
+快照指紋方法為依相對檔名排序，逐行「path 空白 fileSHA256」以換行接起（無尾換行）後取SHA256。accuracy2六檔指紋：412ead3559f4b4beb7d651186db3767e0173180d947a632995474305e129022c；accuracy6：0eb1927e89217fa2f61c4361c029e453aa268a0d3ef170ba70d5bed8c3f88a04。個別六檔SHA256見accept/round-1-sha256.json及round-2-field-diff.json。舊MCP battle hash僅為accuracy2的e61544bc33c01f03。
+
+容量：含兩輪完整原始壓縮證據與快照共3721119 bytes，超初始工人2MB附件額度但在父線20MB證據上限內；新增runner/log/accept寫集來自後續明確授權。保留原始證據、不刪檔或截斷，容量差異交領導記錄，未自行給waiver。

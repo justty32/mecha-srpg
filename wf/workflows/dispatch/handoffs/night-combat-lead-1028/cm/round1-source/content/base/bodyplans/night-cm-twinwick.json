@@ -1,0 +1,246 @@
+{
+  "id": "bodyplan/night-cm-twinwick",
+  "name": "並燭雙履架（C）",
+  "nameEn": "Twinwick Tracked Rig C",
+  "etymology": "低胸艙、獨立探頭與高並槍架落在雙履之上；後艙只留系統槽。兩把槍同架失能，左右履架各有移動功能。",
+  "parts": [
+    {
+      "id": "torso",
+      "name": "低胸艙",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 40,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 50,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "cockpit",
+          "type": "cockpit",
+          "size": 1
+        },
+        {
+          "id": "soul-core",
+          "type": "soulCore",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [
+        {
+          "when": "layerHit",
+          "layer": "cockpit-shell",
+          "to": "pilot",
+          "effects": [
+            "effect/injury-concussion"
+          ],
+          "chance": 0.2
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        },
+        {
+          "id": "soul",
+          "accepts": [
+            "soul"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "head",
+      "name": "探頭",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 18,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 22,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "sensor-mount",
+          "type": "sensorMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "sensor"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "gun-mast",
+      "name": "並燭槍架",
+      "exposure": 1.5,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 25,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 35,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "mast-light",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "mast-rune",
+          "type": "weaponMount",
+          "size": 2
+        }
+      ],
+      "functions": [
+        "weaponMount"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "left-track",
+      "name": "左履架",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 30,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 35,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "right-track",
+      "name": "右履架",
+      "exposure": 1,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 30,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 35,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    },
+    {
+      "id": "back",
+      "name": "後艙",
+      "exposure": 0.5,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 12,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 23,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [],
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral"
+}

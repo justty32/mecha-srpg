@@ -1,0 +1,83 @@
+{
+  "id": "scenario/night-cm-yard-bells",
+  "name": "堤上兩聲鐘",
+  "nameEn": "Bells Above the Embankment",
+  "etymology": "並槍架與鐘形排燼砲的獨立借機展示，不新增歷史事件或營運取得。",
+  "brief": "獵團借來並燭與燼鐘，在舊牆與淺水間試配。並燭雙槍同架，槍架失聲時可憑完整履架退開；燼鐘從冷機起步，先以熔鋸積燼，再找近敵鳴鐘。寒泉能救急，也可能延後下一聲鐘。這是獨立借機展示，不記年表，不作同級平衡基準。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/night-cm-twinwick",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/night-cm-cinderbell",
+          "persons": [
+            {
+              "id": "person/ilse-brandt",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-ii",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/hound-c",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102811
+}

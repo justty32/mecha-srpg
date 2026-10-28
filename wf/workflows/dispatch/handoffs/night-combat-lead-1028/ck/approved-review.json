@@ -1,0 +1,852 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "baseAtDesign": "4097630563f4b224650362d1074b43d0e1bd609e",
+ "columns": [
+  "id",
+  "批次",
+  "類別",
+  "名稱",
+  "白話",
+  "grade",
+  "檔",
+  "引用",
+  "輪廓用途",
+  "可執行設計",
+  "代價弱點",
+  "近似對照",
+  "AI證據",
+  "數值帶",
+  "取得",
+  "驗證"
+ ],
+ "rows": [
+  {
+   "id": "CM01",
+   "批次": "CM",
+   "類別": "機械系機甲",
+   "名稱": "長槍-V4・並燭",
+   "白話": "兩支連吼並在同一根高架上；履帶還能退，高架折了卻連一聲回擊也留不下。",
+   "grade": "C",
+   "檔": [
+    "content/base/frames/night-cm-twinwick.json",
+    "content/base/bodyplans/night-cm-twinwick.json"
+   ],
+   "引用": [
+    "component/mx-radiant-rifle",
+    "component/mx-rune-rifle",
+    "ability/mx-radiant-shot",
+    "ability/mx-rune-shot",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "effect/injury-concussion"
+   ],
+   "輪廓用途": "公版長槍的低履帶、高並槍架旁型。武器集中在突出槍架，兩條履帶獨立於武器；不是腳上長槍的伏架。移動射擊後靠完整履帶撤出，敵方可選先斷槍架或雙履帶。敘事畫面：退潮的堤上兩點光仍在齊吼，吊架一折，整台機拖著光纜無聲倒退；不賦予武器靈魂。",
+   "可執行設計": {
+    "frame": {
+     "cls": "mechanical",
+     "bodyPlan": "bodyplan/night-cm-twinwick",
+     "baseAttrs": {
+      "initiative": 6,
+      "perception": 6,
+      "accuracy": 4
+     },
+     "defaultLoadout": {
+      "mast-light": "component/mx-radiant-rifle",
+      "mast-rune": "component/mx-rune-rifle"
+     },
+     "innateAbilities": [],
+     "repairPolicy": "repair-or-replace",
+     "tags": [
+      "universal",
+      "series-longspear",
+      "lineage-jinghai",
+      "mech",
+      "human",
+      "track"
+     ]
+    },
+    "pools": {
+     "heat": {
+      "min": 0,
+      "max": 100,
+      "initial": 0,
+      "regen": -15,
+      "inverted": true,
+      "capKind": "soft",
+      "bands": "100..125 overheat-1；125..null overheat-2"
+     },
+     "charge": {
+      "min": 0,
+      "max": 60,
+      "initial": 60,
+      "regen": 12,
+      "inverted": false,
+      "capKind": "hard",
+      "bands": []
+     }
+    },
+    "bodyplan_recipe": "以mx-biped-c的層／座艙格式建立新六部位；各部位兩層，前armor非結構、後structure結構（torso後層cockpit-shell）。不複製原來肢體插槽。",
+    "parts": [
+     {
+      "id": "torso",
+      "name": "低胸艙",
+      "hp": [
+       40,
+       50
+      ],
+      "exposure": 1,
+      "functions": [
+       "core",
+       "cockpit"
+      ],
+      "slots": [
+       "cockpit:cockpit:1",
+       "soul-core:soulCore:1"
+      ],
+      "seats": "pilot accepts pilot；soul accepts soul；conduct沿mx-biped-c座艙受傷"
+     },
+     {
+      "id": "head",
+      "name": "探頭",
+      "hp": [
+       18,
+       22
+      ],
+      "exposure": 1,
+      "functions": [
+       "sensor"
+      ],
+      "slots": [
+       "sensor-mount:sensorMount:1"
+      ]
+     },
+     {
+      "id": "gun-mast",
+      "name": "並燭槍架",
+      "hp": [
+       25,
+       35
+      ],
+      "exposure": 1.5,
+      "functions": [
+       "weaponMount"
+      ],
+      "slots": [
+       "mast-light:weaponMount:2",
+       "mast-rune:weaponMount:2"
+      ]
+     },
+     {
+      "id": "left-track",
+      "name": "左履架",
+      "hp": [
+       30,
+       35
+      ],
+      "exposure": 1,
+      "functions": [
+       "locomotion"
+      ],
+      "slots": []
+     },
+     {
+      "id": "right-track",
+      "name": "右履架",
+      "hp": [
+       30,
+       35
+      ],
+      "exposure": 1,
+      "functions": [
+       "locomotion"
+      ],
+      "slots": []
+     },
+     {
+      "id": "back",
+      "name": "後艙",
+      "hp": [
+       12,
+       23
+      ],
+      "exposure": 0.5,
+      "functions": [],
+      "slots": [
+       "system-1:systemMount:1"
+      ]
+     }
+    ],
+    "shared_part_defaults": "resist/passThrough/onLayerBroken={}，onBroken/conduct=[]（torso conduct例外）；symmetry bilateral；所有新layers只有最後一層structural=true。"
+   },
+   "代價弱點": "兩槍同一部位；gun-mast broken同時失兩槍，沒有內建拳補救。斷一條履帶仍能走；兩條都破才失去移動，不能寫成斷一條就停。沒有伏架增準、沒有鳴刃或護甲外掛。對射要用走位保同一弱點；槍架與部件各自受損分開記。",
+   "近似對照": [
+    {
+     "file": "content/base/frames/longspear-kneeler-v2.json",
+     "same": "同為C級、光矢＋實體矢雙池射手",
+     "difference": "伏架兩武器分前足，武器與四足移動耦合，有架砲；並燭武器集中單槍架、履帶獨立、無架砲。檢驗不是比攻擊傷害，而是槍架破壞同時封雙槍、履帶全破才定住。"
+    },
+    {
+     "file": "content/base/frames/exm-silverring-helix.json",
+     "same": "新匯入C級流光射手",
+     "difference": "汲光可主動補流光並用近戰分流燼；並燭不回光、用六次實體矢補流光不足，槍架破兩種遠射同失。"
+    },
+    {
+     "file": "content/base/frames/wm-r7-longspear-keepsake.json",
+     "same": "長槍伏架旁型",
+     "difference": "留像遠射＋拘束、保留伏架；本案沒有捕捉或穩架，用同部位失能風險換兩類穩定遠射，非換名同配裝。"
+    }
+   ],
+   "AI證據": [
+    "src/rules/command.ts:24-44 abilitiesOf逐部位跳過broken，再檢部件層；支持槍架全斷失雙槍。",
+    "src/rules/movement.ts:15-18 任一完整locomotion部位仍可移動，track標籤走既有地形成本。",
+    "src/ai/policies/tactical.ts:101-140 unit候選＋checkAbility；兩槍既有attack:1。"
+   ],
+   "數值帶": {
+    "bodyHP": 355,
+    "with_component_hp": 387,
+    "parts": 6,
+    "layers": 12,
+    "mass": 5,
+    "C_HP_band": "300–420，含部件387仍帶內",
+    "actions": "光矢22/AP3/charge15/heat+15；紋刻20/AP3/rune-round2/heat+12；實體矢池12=6次，regen0",
+    "note": "實際新六部位合計355；對比C伏架同武器，切勿宣稱高輸出新機制。"
+   },
+   "取得": "只在新展示情境可用，不建model、不改市場／勢力mechSeries；公版血統不等於已接營運。後續若建model應generic:true/exportPolicy:open，須另授權。",
+   "驗證": "CM共同驗收＋獨立近鄰1v1五seed；測gun-mast broken封雙槍、單履破仍可走／雙履破不可走；不得據文字聲稱已實測。"
+  },
+  {
+   "id": "CM02",
+   "批次": "CM",
+   "類別": "機械系機甲",
+   "名稱": "鐵砧-IV型・燼鐘",
+   "白話": "熔鋸先把燼逼滿爐喉，鐘口才噴開近敵；提早洩燼保住了自己，也敲不響下一鐘。",
+   "grade": "B",
+   "檔": [
+    "content/base/frames/night-cm-cinderbell.json",
+    "content/base/components/night-cm-cinderbell.json",
+    "content/base/abilities/night-cm-cinderbell.json"
+   ],
+   "引用": [
+    "bodyplan/mx-biped-b",
+    "component/mx-molten-saw",
+    "component/mx-cold-spring",
+    "ability/mx-molten-cut",
+    "ability/mx-cold-vent",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "effect/mx-burning"
+   ],
+   "輪廓用途": "斷臂血統的重關節工機，左手鋸、右手空鐘形排燼砲。先在接戰中積燼，才以一聲近距扇面卸燼；打不到人就難快速蓄出下一鐘。岸隊看鐘口張開才散出一條路，沒有拖機、推人或地形燃燒機制。",
+   "可執行設計": {
+    "frame": {
+     "cls": "mechanical",
+     "bodyPlan": "bodyplan/mx-biped-b",
+     "baseAttrs": {
+      "initiative": 5,
+      "perception": 5,
+      "accuracy": 2,
+      "evasion": -2
+     },
+     "defaultLoadout": {
+      "left-weapon": "component/mx-molten-saw",
+      "right-weapon": "component/night-cm-cinderbell",
+      "system-1": "component/mx-cold-spring"
+     },
+     "innateAbilities": [],
+     "repairPolicy": "repair-or-replace",
+     "tags": [
+      "lineage-broken-arm",
+      "faction-anvil",
+      "series-anvil",
+      "mech",
+      "human"
+     ]
+    },
+    "heat": "max120 initial0 regen-8 min0 soft inverted；bands120..150 overheat-1、150..null overheat-2；不宣告charge。",
+    "component": {
+     "id": "component/night-cm-cinderbell",
+     "slot": "weaponMount",
+     "size": 2,
+     "mass": 4,
+     "origin": "mechanical",
+     "hp": 18,
+     "pools": [],
+     "abilities": [
+      "ability/night-cm-cinderbell"
+     ],
+     "tags": [
+      "ranged",
+      "thermal"
+     ]
+    },
+    "ability": {
+     "id": "ability/night-cm-cinderbell",
+     "name": "鳴鐘散燼",
+     "mode": "activated",
+     "costs": [
+      {
+       "pool": "ap",
+       "owner": "person",
+       "amount": 4
+      }
+     ],
+     "produces": [
+      {
+       "pool": "heat",
+       "owner": "mech",
+       "amount": -30
+      }
+     ],
+     "require": [
+      {
+       "cmp": {
+        "a": {
+         "ref": "self.pools.heat.cur"
+        },
+        "op": ">=",
+        "b": 30
+       }
+      }
+     ],
+     "target": {
+      "kind": "cone",
+      "range": {
+       "min": 1,
+       "max": 3
+      },
+      "los": true,
+      "friendly": "no",
+      "radius": 1
+     },
+     "accuracy": 0,
+     "packets": [
+      {
+       "type": "thermal",
+       "amount": 18,
+       "armorPen": 0.1,
+       "crit": 0
+      }
+     ],
+     "effects": [],
+     "cooldown": 2,
+     "usesPerBattle": 3,
+     "tags": [
+      "ranged",
+      "thermal"
+     ],
+     "ai": {
+      "tactics": {
+       "attackArea": 1
+      }
+     },
+     "essence": "B"
+    },
+    "cycle": "假定不移動、無敵方灌燼：首回合兩鋸AP8→heat36；下回合回燼-8→28，鋸一次到46再鳴鐘→16。寒泉AP1直接-40僅兩次，可能把鐘打回未達30。此為依數據手算，不是執行紀錄。"
+   },
+   "代價弱點": "左臂鋸被拆，主要積燼來源消失；右臂被拆，不能攻擊卸燼，只剩慢排與兩次寒泉。鐘需要蓄燼且僅三次；不靠改既有AI保證它留燼。無流光、無護盾及遠射，不能說比B重機更全面。",
+   "近似對照": [
+    {
+     "file": "content/base/frames/wn-r3-anvil-fan.json",
+     "same": "近距扇面＋熔鋸",
+     "difference": "開扇C的扇矢會加16燼，能從冷機開火；燼鐘B需heat>=30才合法，鳴鐘扣30燼，冷機無扇面，寒泉與傷害卸燼爭同一資源。不是只把C加HP升B。"
+    },
+    {
+     "file": "content/base/frames/exm-silverring-helix.json",
+     "same": "資源循環有主動管理",
+     "difference": "汲光補charge拖慢散熱，燼鐘沒有charge，傷害本身卸heat且有限次，非再造回光件。"
+    },
+    {
+     "file": "content/base/frames/anvil-iv-ram.json",
+     "same": "B鐵砧近戰重架",
+     "difference": "破城槌以重樁＋鏈槌壓近敵及背件補遠程；本件捨棄背件／層甲，走先鋸再扇面卸燼的時序。"
+    }
+   ],
+   "AI證據": [
+    "content/base/abilities/fa-open-vents.json已有self.pools.heat.cur>=20的require；src/core/types-def.ts:46-50支持cmp。",
+    "src/rules/command.ts:75-78施放前require；129-149先pay、resolveAbility再produces，因此固定負值在攻擊後卸燼，命中與否仍卸。",
+    "src/ai/policies/tactical.ts:109-140提出cone與checkAbility；src/ai/adapters/rules-adapter.ts:104接同一規則，未到30時不合法。",
+    "新招屬既有require+packets+produces組合，無新動詞；AI是否願積到30仍需五seed和AbilityUsed驗證。"
+   ],
+   "數值帶": {
+    "bodyHP": 445,
+    "componentHP": 42,
+    "totalHP": 487,
+    "mass": 8,
+    "B_HP_band": "420–560",
+    "burst": "18/AP4=4.5，扇面約B單體上緣26的69%；cooldown2/uses3",
+    "main": "熔鋸18/AP4，沿用C至B配件；B定位靠蓄燼後扇面而非提高既有鋸數值",
+    "heat": "120/-8；全AP兩鋸產36<120*0.6；低散熱有意設代價，待實測"
+   },
+   "取得": "展示可用、未接營運。鐵砧專屬不設generic/open，不新增model或解鎖條件；後續另案以anvil-hunters製造者與既有聲望門檻接線。",
+   "驗證": "CM共同驗收；新招需至少一次AI AbilityUsed。靜態可用不等於AI達成；若cold-spring使新招零使用，先報AI/配裝衝突，再請主線縮配，不改AI、不可預熱spawn假裝循環成立。"
+  },
+  {
+   "id": "CK01",
+   "批次": "CK",
+   "類別": "異形怪獸",
+   "名稱": "偏弓",
+   "白話": "一足撐起偏斜巨弓，棘光越過堤頭；獵機鑽入弓下，牠只能披鏡退步，無法近咬。",
+   "grade": "C",
+   "檔": [
+    "content/base/species/night-ck-crookbow.json",
+    "content/base/bodyplans/night-ck-crookbow.json",
+    "content/base/monsters/night-ck-crookbow.json",
+    "content/base/abilities/night-ck-crookbow.json",
+    "content/base/frames/night-ck-bio-crookbow.json",
+    "content/base/frames/night-ck-corpse-crookbow.json"
+   ],
+   "引用": [
+    "ability/kx-mirror-turn",
+    "effect/kx-mirrored",
+    "ability/restrain",
+    "aiprofile/guerrilla"
+   ],
+   "輪廓用途": "地月落潮後伏在斷裂艦橋下的不對稱異形，一側弓冠高過獵團旗架，另一側垂鏡衣；遠距單點壓制、近距退避。斷唯一支足後仍能射，敵方若貼到1–2格才形成真正死角。弓冠不是裝配武器，不能捏造斷冠停射。",
+   "可執行設計": {
+    "species": {
+     "family": "alien",
+     "gradeRange": [
+      "C"
+     ],
+     "baseAttrsByGrade": {
+      "C": {
+       "initiative": 9,
+       "perception": 6,
+       "accuracy": 55,
+       "evasion": 8
+      }
+     },
+     "abilities": [
+      "ability/night-ck-crookbow",
+      "ability/kx-mirror-turn"
+     ],
+     "aiProfile": "aiprofile/guerrilla",
+     "capture": {
+      "requireIntact": [
+       "core"
+      ],
+      "requireBroken": [
+       "locomotion"
+      ],
+      "ability": "ability/restrain",
+      "frame": "frame/night-ck-bio-crookbow"
+     },
+     "tags": [
+      "kaiju",
+      "alien"
+     ]
+    },
+    "pools": "instinct min0 max100 initial20 regen5 hard inverted；ap min0 max8 initial8 regen8 hard非inverted；bands皆空",
+    "ability": {
+     "id": "ability/night-ck-crookbow",
+     "name": "斜弓送棘",
+     "mode": "activated",
+     "costs": [
+      {
+       "pool": "ap",
+       "owner": "person",
+       "amount": 4
+      }
+     ],
+     "produces": [],
+     "require": [],
+     "target": {
+      "kind": "unit",
+      "range": {
+       "min": 3,
+       "max": 7
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "accuracy": 0,
+     "packets": [
+      {
+       "type": "pierce",
+       "amount": 20,
+       "armorPen": 0,
+       "crit": 0
+      }
+     ],
+     "effects": [],
+     "cooldown": 0,
+     "tags": [
+      "telegraph",
+      "alien",
+      "ranged"
+     ],
+     "ai": {
+      "tactics": {
+       "attack": 1
+      }
+     },
+     "essence": "C"
+    },
+    "bodyplan": {
+     "symmetry": "asymmetric",
+     "parts": [
+      {
+       "id": "bow",
+       "name": "偏弓冠",
+       "hp": [
+        35,
+        55
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 2,
+       "functions": [
+        "weaponMount"
+       ]
+      },
+      {
+       "id": "low-core",
+       "name": "低懸核囊",
+       "hp": [
+        60,
+        40
+       ],
+       "types": [
+        "flesh",
+        "organ"
+       ],
+       "exposure": 0.5,
+       "functions": [
+        "core",
+        "cockpit"
+       ]
+      },
+      {
+       "id": "strut",
+       "name": "獨撐足",
+       "hp": [
+        25,
+        45
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 1,
+       "functions": [
+        "locomotion"
+       ]
+      },
+      {
+       "id": "veil",
+       "name": "側鏡衣",
+       "hp": [
+        30,
+        40
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 2,
+       "functions": []
+      },
+      {
+       "id": "tail",
+       "name": "垂聽尾",
+       "hp": [
+        20,
+        30
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 1,
+       "functions": [
+        "sensor"
+       ]
+      }
+     ],
+     "defaults": "最後一層才structural；ablative:true；resist僅bow/veil外層pierce:0.3，其他皆0；thermal全0；passThrough={}；onLayerBroken={}；onBroken/conduct=[]；非核slots=[]；核沿alien-spitter配置restraint2/cockpit1與pilot座。"
+    },
+    "frames": "新bio/corpse各C級，baseAttrs initiative9 perception6、無預裝件；bio burden6、instinct同species，corpse burden0 pools[]；標籤依bio-spitter/corpse-spitter換新俗名。",
+    "scope": "species維持必填俗名name；B/C級monster不加個體name/epithet。gradeRange單一等級，telegraph:true，無molt/spawner/territorial；活捕frame只instinct、corpse無instinct且burden0，兩者innateAbilities與species一致、同新bodyplan、repair-or-replace。只展示，不接encounters/rifts/beasts/model/市場；不得把怪獸意識寫成person或寵物。"
+   },
+   "代價弱點": "射擊min3無任何近戰或範圍擦邊招；兩格內只可用鏡衣、移動。唯一strut破掉後無法重新拉開；沒有衝鋒/瞬移。兩射花完8AP；鏡衣AP2與移動壓縮射擊。鏡衣提高evasion16而非反射傷害。",
+   "近似對照": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "AI證據": [
+    "src/rules/command.ts:80-92 對unit檢distance>=min，兩格確實不合法，不用line擦近敵。",
+    "src/ai/policies/tactical.ts:101-140 產生unit/self候選並checkAbility；guerrilla是既有tactical profile，退避是否有效須自然AI驗證。",
+    "src/rules/movement.ts:15-18 任一完整locomotion才能移動；本體只有strut。src/rules/command.ts:24起 innate不隨bow broken消失。"
+   ],
+   "數值帶": {
+    "HP": 380,
+    "parts": 5,
+    "core": 1,
+    "C_HP_band": "300–480",
+    "damage": "20/AP4=5；C12–20及AP3–4內；不加命中增益",
+    "comparison": "吐棘者380HP、單射18/AP3且有範圍；本案380HP、單射較慢、死角大，用鏡衣與唯一足的取捨補辨識度。"
+   },
+   "取得": "可拘束但未接營運取得；獨立新species所以捕後新bio保持此能力/骨架，不用partsOverride回原型。",
+   "驗證": "CK共同方案：自然出生AP8、無預置鏡衣；AbilityUsed須見新射擊與既有鏡衣；記從遠射到貼近後退/無傷害候選、strut斷後仍有遠射但不能移動。"
+  },
+  {
+   "id": "CK02",
+   "批次": "CK",
+   "類別": "獸族怪獸",
+   "名稱": "沉顎",
+   "白話": "重顎咬住的是機甲關節，群吼卻會吃掉下一口的餘力；獵團聽見吼聲才敢換列。",
+   "grade": "B",
+   "檔": [
+    "content/base/species/night-ck-keeljaw.json",
+    "content/base/bodyplans/night-ck-keeljaw.json",
+    "content/base/monsters/night-ck-keeljaw.json",
+    "content/base/abilities/night-ck-keeljaw.json",
+    "content/base/frames/night-ck-bio-keeljaw.json",
+    "content/base/frames/night-ck-corpse-keeljaw.json"
+   ],
+   "引用": [
+    "ability/kx-star-howl",
+    "effect/kx-pack-frenzy",
+    "ability/restrain",
+    "aiprofile/kx-beast-alpha"
+   ],
+   "輪廓用途": "四足脊獸，重顎垂近甲板、背稜像翻覆艦龍骨。以指定部位的單次重咬逼獵機換列；行進間群吼提高群體準頭。不是推人、搬運、撕下裝備或自動斷肢；不承諾一咬拆件。",
+   "可執行設計": {
+    "species": {
+     "family": "beast",
+     "gradeRange": [
+      "B"
+     ],
+     "baseAttrsByGrade": {
+      "B": {
+       "initiative": 8,
+       "perception": 7,
+       "accuracy": 60,
+       "evasion": 8
+      }
+     },
+     "abilities": [
+      "ability/night-ck-keeljaw",
+      "ability/kx-star-howl"
+     ],
+     "aiProfile": "aiprofile/kx-beast-alpha",
+     "capture": {
+      "requireIntact": [
+       "core"
+      ],
+      "requireBroken": [
+       "locomotion",
+       "manipulator"
+      ],
+      "ability": "ability/restrain",
+      "frame": "frame/night-ck-bio-keeljaw"
+     },
+     "tags": [
+      "kaiju",
+      "beast"
+     ]
+    },
+    "pools": "instinct min0 max100 initial25 regen7 soft inverted；ap min0 max7 initial7 regen5 hard非inverted；bands皆空",
+    "ability": {
+     "id": "ability/night-ck-keeljaw",
+     "name": "沉顎銜節",
+     "mode": "activated",
+     "costs": [
+      {
+       "pool": "ap",
+       "owner": "person",
+       "amount": 5
+      }
+     ],
+     "produces": [],
+     "require": [],
+     "target": {
+      "kind": "part",
+      "range": {
+       "min": 1,
+       "max": 1
+      },
+      "los": true,
+      "friendly": "no"
+     },
+     "accuracy": 0,
+     "packets": [
+      {
+       "type": "pierce",
+       "amount": 26,
+       "armorPen": 0.35,
+       "crit": 0
+      }
+     ],
+     "effects": [],
+     "cooldown": 0,
+     "tags": [
+      "telegraph",
+      "beast",
+      "melee"
+     ],
+     "ai": {
+      "tactics": {
+       "attack": 1,
+       "disable": 0.8
+      },
+      "targetPref": {
+       "parts": [
+        "locomotion",
+        "weaponMount",
+        "core"
+       ]
+      }
+     },
+     "essence": "B",
+     "partAim": {
+      "allowed": true,
+      "penalty": 10
+     }
+    },
+    "bodyplan": {
+     "symmetry": "bilateral",
+     "template": "新bodyplan沿beast-shelf-back五部位形狀、層型、槽/座/函數及resist；不使用既有bodyplan id，不連動修改棧背。",
+     "parts": [
+      {
+       "id": "heart",
+       "name": "背下核",
+       "hp": [
+        60,
+        80,
+        160
+       ],
+       "types": [
+        "chitin",
+        "flesh",
+        "organ"
+       ],
+       "exposure": 0.5,
+       "functions": [
+        "core",
+        "cockpit"
+       ]
+      },
+      {
+       "id": "back",
+       "name": "翻艦背稜",
+       "hp": [
+        100,
+        100
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 2,
+       "functions": []
+      },
+      {
+       "id": "jaw",
+       "name": "沉顎",
+       "hp": [
+        100,
+        140
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 2,
+       "functions": [
+        "manipulator"
+       ]
+      },
+      {
+       "id": "forefeet",
+       "name": "前足",
+       "hp": [
+        50,
+        80
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 1,
+       "functions": [
+        "locomotion"
+       ]
+      },
+      {
+       "id": "hindfeet",
+       "name": "後足",
+       "hp": [
+        50,
+        80
+       ],
+       "types": [
+        "chitin",
+        "flesh"
+       ],
+       "exposure": 1,
+       "functions": [
+        "locomotion"
+       ]
+      }
+     ],
+     "defaults": "沿beast-shelf-back每層resist/passThrough/結構標記；back外層kinetic0.5、其他chitin kinetic0.3，pierce/thermal/acid/energy皆0；最後層才structural，核restraint2/cockpit1與pilot座。"
+    },
+    "frames": "新bio/corpse各B，baseAttrs initiative8 perception7；bio burden8、instinct同species；corpse burden0 pools[]；能力同species，無預裝件。",
+    "cycle": "原生max7，所以5AP重咬＋3AP群吼同回合不可能；若重咬剩2，下次regen5回7。先吼剩4則當回合不能重咬；最多留2AP走近再咬。捕後AP改走駕駛人物池，不聲稱生物機甲仍有原生7AP限制。",
+    "scope": "species維持必填俗名name；B/C級monster不加個體name/epithet。gradeRange單一等級，telegraph:true，無molt/spawner/territorial；活捕frame只instinct、corpse無instinct且burden0，兩者innateAbilities與species一致、同新bodyplan、repair-or-replace。只展示，不接encounters/rifts/beasts/model/市場；不得把怪獸意識寫成person或寵物。"
+   },
+   "代價弱點": "重咬限定part、penalty10；沒有一般unit攻擊逃過瞄準懲罰。range1、每回合最多一咬；群吼沒有傷害。厚顎提高活捕破manipulator成本，但顎破不封innate咬：這是引擎限制，文字不得誤導。雙足都破才能失移動；全身只有heart是死亡核。",
+   "近似對照": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "AI證據": [
+    "src/ai/policies/tactical.ts:121-135：partAim.allowed必需；targetPref.parts明列locomotion/weaponMount/core，否則非致命部位可能不生成候選。",
+    "src/rules/command.ts:90-92 強制part且完整部位；src/rules/attack.ts:22-31固定套瞄準penalty；layers.ts:26 armorPen逐層分流，不等於無視全部甲直接命中核。",
+    "src/rules/pools.ts:82-86 instinct將owner:person成本轉單位池，109-120加regen並夾max；因此7AP上限與5回復真正在原生怪獸生效。",
+    "aiprofile/kx-beast-alpha tactical attack1 buff0.8；自然群吼/咬選擇待驗，不預設AI懂得留AP。"
+   ],
+   "數值帶": {
+    "HP": 1000,
+    "parts": 5,
+    "core": 1,
+    "B_HP_band": "800–1400",
+    "damage": "26/AP5=5.2，B上緣26/AP3–5帶內；armorPen0.35、固定瞄準-10；無額外效果",
+    "comparison": "棧背1000HP、24/AP4、AP9/9；本體總HP相同但背甲減120、顎增120，輸出次數少、狙部位較穩定但不是保證命中。"
+   },
+   "取得": "可拘束、獨立新species與bio/corpse；僅展示。駕駛AP不同造成捕後節奏差異明列，不能宣稱原生戰鬥數據等於駕駛後。",
+   "驗證": "CK共同方案：自然7AP、無預放狂奔；新咬須AI AbilityUsed含part欄，另記群吼一次。每次列AP前後與命中，避免把射不中看成招未選；純1v1不是群吼完整效益證明。"
+  }
+ ]
+}

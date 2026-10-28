@@ -1,0 +1,1589 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "approved_sha256": "6865228b86251b25254d410e134479c90e4038f8a42da602e762e3788370a5b0",
+ "future_validation_plan": {
+  "資源": "等待CM釋放且領導明確GO；22:25硬截止；nice19、taskset最多2個可用CPU、串行；無全套／fuzz。只準備必要驅動，不搭通用框架。",
+  "自然覆蓋": {
+   "情境": "scenario/night-ck-broken-keel",
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "出生": "species原生池，無預置buff/AP、無代AI施放",
+   "必需能力": [
+    "ability/night-ck-crookbow",
+    "ability/kx-mirror-turn",
+    "ability/night-ck-keeljaw",
+    "ability/kx-star-howl"
+   ],
+   "記錄": "每seed勝方/round/outcome/部位存亡/AbilityUsed（沉顎必有part）/Hit及Miss分開/AP前後/超時；零次記合法候選、距離、AP與AI評分，不能手動補覆蓋"
+  },
+  "同級參照": {
+   "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+   ],
+   "map": "map/skirmish-20",
+   "rounds": 30,
+   "CK01": "longspear-v4+bulwark-ii對偏弓，敵改spitter-c作同條件對照",
+   "CK02": "longspear-v7+bulwark-iv-rampart對沉顎，敵改shelf-back-b作同條件對照",
+   "控制": "沿用展示的駕駛/zone/AI，只替換敵monster；scratch不進content/base交付",
+   "偏差": "5/5單邊全勝或timeout>40%標旗；零例外；最多兩輪新稿微調，不改AI/參照、不加waiver"
+  },
+  "窄fixture": [
+   "偏弓LOS通暢距2拒絕、距3合法；1–2格無傷害招",
+   "偏弓strut斷後不能move、遠射仍在；bow斷不封innate",
+   "沉顎不給part拒絕、指定完整part合法，命中有-10",
+   "原生AP7先群吼餘4不能咬；先咬餘2、regen5回7；移動也花原生AP",
+   "沉顎單足broken仍可走、雙足broken停；jaw broken不封innate",
+   "兩species與捕後bio/corpse共新骨架、部位及層數HP匹配；bio只有instinct、corpse無池burden0；捕後AP改取駕駛不能冒充原生7AP"
+  ],
+  "MCP": {
+   "auto": "stdio seed1到outcome，保留原始JSON-RPC/events",
+   "manual": "同展示seed1至少三個完整round，每步observe/legal_actions後才act；敵方由AI出手",
+   "順序": "R1合法接敵/射擊；R2路線允許時逼偏弓到2格內；R3觀察退避並對沉顎換列；不允許就記合法替代並延伸到接戰，不硬編座標",
+   "不可替代": "auto覆蓋與窄fixture分開；MCP操控bio的AP不能替代原生怪獸證據"
+  }
+ },
+ "checks": [
+  {
+   "command": "npm run check",
+   "log": "check.log",
+   "exit": 0,
+   "content_warnings": 45,
+   "ops_warnings": 17,
+   "new_warning_paths": [
+    "content/base/frames/night-ck-bio-keeljaw.json",
+    "content/base/species/night-ck-keeljaw.json"
+   ]
+  },
+  {
+   "command": "npm run typecheck",
+   "log": "typecheck.log",
+   "exit": 1,
+   "reason": "隔離未接依賴，TS2307 playwright；UI檢查未執行"
+  },
+  {
+   "command": "npm run typecheck",
+   "log": "typecheck-retry.log",
+   "exit": 0,
+   "reason": "領導提供既有node_modules symlink後，使用者明確授權輕量補驗"
+  }
+ ],
+ "heavy_validation": {
+  "status": "DONE_WITH_FLAGS",
+  "permission": "使用者CK GO，CM停止後唯一runner",
+  "started_at": "2026-10-28T22:08:16+08:00",
+  "released_at": "2026-10-28T22:09:45+08:00",
+  "release_evidence": "22:09:45 ps核實沒有CK node runner或MCP子行程；timeout launcher皆已退出",
+  "resources": {
+   "nice": 19,
+   "cpus": [
+    0,
+    1
+   ],
+   "serial": true,
+   "deadline": "2026-10-28T22:25:00+08:00"
+  },
+  "commands": [
+   {
+    "cmd": "bash /tmp/night-combat-lead-1028/ck-runner.sh GO all",
+    "exit": 0,
+    "result": "REVIEW_REQUIRED，初輪fixture兩項ID比較誤報、同級5/5旗標"
+   },
+   {
+    "cmd": "bash /tmp/night-combat-lead-1028/ck-runner.sh GO fixture",
+    "exit": 0,
+    "result": "修正ContentDB能力ID比較後六項全過，既有平衡旗標保留"
+   }
+  ],
+  "evidence_dir": "/tmp/night-combat-lead-1028/ck-evidence",
+  "summary": "/tmp/night-combat-lead-1028/ck-evidence/summary.json",
+  "natural_coverage": {
+   "base:ability/night-ck-crookbow": 25,
+   "base:ability/kx-mirror-turn": 19,
+   "base:ability/night-ck-keeljaw": 17,
+   "base:ability/kx-star-howl": 6
+  },
+  "hit_miss": {
+   "base:ability/kx-mirror-turn": {
+    "AbilityUsed": 19,
+    "Hit": 19
+   },
+   "base:ability/night-ck-crookbow": {
+    "AbilityUsed": 25,
+    "Miss": 14,
+    "Hit": 11
+   },
+   "base:ability/night-ck-keeljaw": {
+    "AbilityUsed": 17,
+    "Miss": 10,
+    "Hit": 7
+   },
+   "base:ability/kx-star-howl": {
+    "AbilityUsed": 6,
+    "Hit": 6
+   }
+  },
+  "ap_examples": {
+   "base:ability/kx-mirror-turn": {
+    "seed": 1,
+    "seq": 92,
+    "target": "enemy-0",
+    "part": null,
+    "ap": {
+     "owner": "enemy-0",
+     "pool": "ap",
+     "from": 3,
+     "to": 1,
+     "reason": "ability"
+    }
+   },
+   "base:ability/night-ck-crookbow": {
+    "seed": 1,
+    "seq": 188,
+    "target": "player-1",
+    "part": null,
+    "ap": {
+     "owner": "enemy-0",
+     "pool": "ap",
+     "from": 4,
+     "to": 0,
+     "reason": "ability"
+    }
+   },
+   "base:ability/night-ck-keeljaw": {
+    "seed": 1,
+    "seq": 195,
+    "target": "player-0",
+    "part": "torso",
+    "ap": {
+     "owner": "enemy-1",
+     "pool": "ap",
+     "from": 5,
+     "to": 0,
+     "reason": "ability"
+    }
+   },
+   "base:ability/kx-star-howl": {
+    "seed": 1,
+    "seq": 690,
+    "target": "enemy-0",
+    "part": null,
+    "ap": {
+     "owner": "enemy-1",
+     "pool": "ap",
+     "from": 3,
+     "to": 0,
+     "reason": "ability"
+    }
+   }
+  },
+  "keeljaw_AbilityUsed_missing_part": [],
+  "groups": [
+   {
+    "id": "natural",
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "n": 5,
+    "winners": {
+     "player": 5
+    },
+    "rounds": [
+     9,
+     11,
+     10,
+     9,
+     10
+    ],
+    "reasons": [
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate"
+    ],
+    "enemy_status": {
+     "retreated": 10
+    },
+    "flags": [
+     "5/5-one-sided"
+    ]
+   },
+   {
+    "id": "CK01-new",
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "n": 5,
+    "winners": {
+     "player": 5
+    },
+    "rounds": [
+     10,
+     8,
+     9,
+     9,
+     9
+    ],
+    "reasons": [
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate"
+    ],
+    "enemy_status": {
+     "retreated": 5
+    },
+    "flags": [
+     "5/5-one-sided"
+    ]
+   },
+   {
+    "id": "CK01-reference",
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "n": 5,
+    "winners": {
+     "player": 5
+    },
+    "rounds": [
+     8,
+     8,
+     8,
+     9,
+     8
+    ],
+    "reasons": [
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate"
+    ],
+    "enemy_status": {
+     "retreated": 5
+    },
+    "flags": [
+     "5/5-one-sided"
+    ]
+   },
+   {
+    "id": "CK02-new",
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "n": 5,
+    "winners": {
+     "player": 5
+    },
+    "rounds": [
+     10,
+     9,
+     9,
+     9,
+     8
+    ],
+    "reasons": [
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate"
+    ],
+    "enemy_status": {
+     "retreated": 5
+    },
+    "flags": [
+     "5/5-one-sided"
+    ]
+   },
+   {
+    "id": "CK02-reference",
+    "seeds": [
+     1,
+     2,
+     3,
+     4,
+     5
+    ],
+    "n": 5,
+    "winners": {
+     "player": 5
+    },
+    "rounds": [
+     9,
+     9,
+     8,
+     5,
+     8
+    ],
+    "reasons": [
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate",
+     "eliminate"
+    ],
+    "enemy_status": {
+     "retreated": 5
+    },
+    "flags": [
+     "5/5-one-sided"
+    ]
+   }
+  ],
+  "fixtures": [
+   {
+    "name": "crookbow min2/min3, strut and bow",
+    "ok": true
+   },
+   {
+    "name": "keeljaw part required and aim penalty",
+    "ok": true
+   },
+   {
+    "name": "keeljaw native7 howl3 vs bite5, regen5",
+    "ok": true
+   },
+   {
+    "name": "keeljaw feet and capture continuity",
+    "ok": true
+   },
+   {
+    "name": "crookbow capture preserves new skeleton and layers",
+    "ok": true
+   },
+   {
+    "name": "fresh bio uses pilot AP rather than native monster AP",
+    "ok": true
+   }
+  ],
+  "initial_fixture_issues": [
+   "crookbow min2/min3, strut and bow",
+   "keeljaw part required and aim penalty"
+  ],
+  "initial_fixture_log": "/tmp/night-combat-lead-1028/ck-evidence/fixtures-initial.json",
+  "mcp": [
+   {
+    "stage": "mcp-auto",
+    "id": "base:scenario/night-ck-broken-keel",
+    "seed": 1,
+    "winner": "player",
+    "rounds": 9,
+    "reason": "eliminate",
+    "abilityUses": {},
+    "flags": [],
+    "detail": {
+     "rpc": "mcp-rpc.json",
+     "rawEvents": "natural-1.json",
+     "hash": "4423529f5982ba44"
+    }
+   },
+   {
+    "stage": "mcp-manual",
+    "id": "base:scenario/night-ck-broken-keel",
+    "seed": 1,
+    "winner": null,
+    "rounds": 4,
+    "reason": "three-round-observation",
+    "abilityUses": {},
+    "flags": [],
+    "detail": {
+     "attackCount": 10,
+     "closeSeen": true,
+     "rpc": "mcp-rpc.json",
+     "events": "mcp-manual-events.json"
+    }
+   }
+  ],
+  "mcp_rpc_counts": {
+   "None": 1,
+   "battle_auto": 1,
+   "battle_new": 1,
+   "battle_observe": 30,
+   "battle_legal_actions": 26,
+   "battle_act": 26,
+   "battle_step_ai": 3,
+   "battle_events": 1,
+   "battle_close": 1
+  },
+  "mcp_errors": 0,
+  "evidence_bytes": 7727787,
+  "content_changes_during_heavy": false,
+  "waivers": [],
+  "acceptance": "未宣稱平衡或整合ACCEPT；同級5/5單邊全勝旗標交領導裁決"
+ },
+ "columns": [
+  "檔",
+  "id",
+  "寫前",
+  "近鄰",
+  "交稿差異",
+  "交稿查重",
+  "數據",
+  "證據邊界"
+ ],
+ "rows": [
+  {
+   "檔": "content/base/species/night-ck-crookbow.json",
+   "id": "species/night-ck-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 1399,
+    "sha256": "a7fc9f5c9bc77c1a4bbd2e9d5af0282dfe5e7d64338b5c929c099b376ed55280",
+    "name": "偏弓",
+    "family": "alien",
+    "bodyPlan": "bodyplan/night-ck-crookbow",
+    "gradeRange": [
+     "C"
+    ],
+    "baseAttrsByGrade": {
+     "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+     }
+    },
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+     },
+     {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 8,
+      "bands": []
+     }
+    ],
+    "abilities": [
+     "ability/night-ck-crookbow",
+     "ability/kx-mirror-turn"
+    ],
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/night-ck-bio-crookbow"
+    },
+    "behaviors": {
+     "telegraph": true
+    },
+    "aiProfile": "aiprofile/guerrilla",
+    "tags": [
+     "kaiju",
+     "alien"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/bodyplans/night-ck-crookbow.json",
+   "id": "bodyplan/night-ck-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 3541,
+    "sha256": "f114093c82e24faa0054d0f8c76f7f2b7e0f7b5276d668f05e5b7373106bee08",
+    "HP": 380,
+    "部位": [
+     {
+      "id": "bow",
+      "name": "偏弓冠",
+      "exposure": 2,
+      "functions": [
+       "weaponMount"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 35,
+        "ablative": true,
+        "resist": {
+         "pierce": 0.3
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 55,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "low-core",
+      "name": "低懸核囊",
+      "exposure": 0.5,
+      "functions": [
+       "core",
+       "cockpit"
+      ],
+      "layers": [
+       {
+        "type": "flesh",
+        "hp": 60,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "organ",
+        "hp": 40,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": [
+       {
+        "id": "restraint",
+        "type": "restraint",
+        "size": 2
+       },
+       {
+        "id": "cockpit",
+        "type": "cockpit",
+        "size": 1
+       }
+      ]
+     },
+     {
+      "id": "strut",
+      "name": "獨撐足",
+      "exposure": 1,
+      "functions": [
+       "locomotion"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 25,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 45,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "veil",
+      "name": "側鏡衣",
+      "exposure": 2,
+      "functions": [],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 30,
+        "ablative": true,
+        "resist": {
+         "pierce": 0.3
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 40,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "tail",
+      "name": "垂聽尾",
+      "exposure": 1,
+      "functions": [
+       "sensor"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 20,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 30,
+        "ablative": true,
+        "resist": {},
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     }
+    ],
+    "symmetry": "asymmetric"
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/monsters/night-ck-crookbow.json",
+   "id": "monster/night-ck-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 140,
+    "sha256": "37981111ea4187ee748c85b62bca904e5148bc2984fb78ba76180da28c6b557d",
+    "id": "monster/night-ck-crookbow",
+    "species": "species/night-ck-crookbow",
+    "grade": "C",
+    "tags": [
+     "kaiju",
+     "alien"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/abilities/night-ck-crookbow.json",
+   "id": "ability/night-ck-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 770,
+    "sha256": "da78b85f031d7efb00cd0638ab3886642a60c18abf714099a52f23657c5a2ba7",
+    "name": "斜弓送棘",
+    "target": {
+     "kind": "unit",
+     "range": {
+      "min": 3,
+      "max": 7
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+     }
+    ],
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 20,
+      "armorPen": 0,
+      "crit": 0
+     }
+    ],
+    "cooldown": 0,
+    "ai": {
+     "tactics": {
+      "attack": 1
+     }
+    },
+    "essence": "C",
+    "partAim": {}
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/frames/night-ck-bio-crookbow.json",
+   "id": "frame/night-ck-bio-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 631,
+    "sha256": "e3816696549aeb4fe5c877397b9a2ae9606229569fad1e638c744bcb903f0dc0",
+    "name": "生物機甲・偏弓",
+    "cls": "bio",
+    "grade": "C",
+    "bodyPlan": "bodyplan/night-ck-crookbow",
+    "baseAttrs": {
+     "initiative": 9,
+     "perception": 6
+    },
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+     }
+    ],
+    "innateAbilities": [
+     "ability/night-ck-crookbow",
+     "ability/kx-mirror-turn"
+    ],
+    "burden": 6,
+    "tags": [
+     "bio",
+     "alien",
+     "kaiju"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/frames/night-ck-corpse-crookbow.json",
+   "id": "frame/night-ck-corpse-crookbow",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/spitter.json",
+     "same": "C異形遠射、貼近有死角",
+     "difference": "吐棘者單射min2＋球雨min2、三locomotion；本體min3只單射＋自護、唯一locomotion。2格距離由吐棘者仍能打改成完全無傷害招；斷一足即不能退。犧牲球雨換自護，不僅改傷害。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "新匯入遠射具有min3",
+     "difference": "背針B保留range1–2推擊及護友、遠招是線；偏弓C無貼身補招、無護友、只單點，逼近是完整攻擊死角而非只避新招。"
+    },
+    {
+     "file": "content/base/species/hollow-sail.json",
+     "same": "異形游擊及自護",
+     "difference": "空帆既有投擲＋側掠與其部位；偏弓不沿用投擲/側掠，採unit min3攻擊、單足失移動與鏡衣protect。"
+    }
+   ],
+   "交稿差異": "偏弓C獨足、unit min3/AP4/20；只保留新射與鏡衣，無球雨或近戰；捕後同新骨架。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 432,
+    "sha256": "9250c5649e4c336ef47e93e9d24e950c93d07247b9f23a8a24f4cb892feb0062",
+    "name": "屍體改裝・偏弓",
+    "cls": "bio",
+    "grade": "C",
+    "bodyPlan": "bodyplan/night-ck-crookbow",
+    "baseAttrs": {
+     "initiative": 9,
+     "perception": 6
+    },
+    "pools": [],
+    "innateAbilities": [
+     "ability/night-ck-crookbow",
+     "ability/kx-mirror-turn"
+    ],
+    "burden": 0,
+    "tags": [
+     "bio",
+     "alien",
+     "corpse"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/species/night-ck-keeljaw.json",
+   "id": "species/night-ck-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 1409,
+    "sha256": "dfcf173e6aaf8df1d63d1131ee83ef0edac27bdd4969a29463fd073f8ddd846d",
+    "name": "沉顎",
+    "family": "beast",
+    "bodyPlan": "bodyplan/night-ck-keeljaw",
+    "gradeRange": [
+     "B"
+    ],
+    "baseAttrsByGrade": {
+     "B": {
+      "initiative": 8,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 8
+     }
+    },
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 25,
+      "regen": 7,
+      "bands": []
+     },
+     {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 7,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 7,
+      "regen": 5,
+      "bands": []
+     }
+    ],
+    "abilities": [
+     "ability/night-ck-keeljaw",
+     "ability/kx-star-howl"
+    ],
+    "capture": {
+     "requireIntact": [
+      "core"
+     ],
+     "requireBroken": [
+      "locomotion",
+      "manipulator"
+     ],
+     "ability": "ability/restrain",
+     "frame": "frame/night-ck-bio-keeljaw"
+    },
+    "behaviors": {
+     "telegraph": true
+    },
+    "aiProfile": "aiprofile/kx-beast-alpha",
+    "tags": [
+     "kaiju",
+     "beast"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/bodyplans/night-ck-keeljaw.json",
+   "id": "bodyplan/night-ck-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 5144,
+    "sha256": "65af41c7ef25d80a547b53ac68e14ae5d4863b3836685ebbe7b7d9a6a856bc50",
+    "HP": 1000,
+    "部位": [
+     {
+      "id": "heart",
+      "name": "背下核",
+      "exposure": 0.5,
+      "functions": [
+       "core",
+       "cockpit"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 60,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.3,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 80,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "organ",
+        "hp": 160,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": [
+       {
+        "id": "restraint",
+        "type": "restraint",
+        "size": 2
+       },
+       {
+        "id": "cockpit",
+        "type": "cockpit",
+        "size": 1
+       }
+      ]
+     },
+     {
+      "id": "back",
+      "name": "翻艦背稜",
+      "exposure": 2,
+      "functions": [],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 100,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.5,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 100,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "jaw",
+      "name": "沉顎",
+      "exposure": 2,
+      "functions": [
+       "manipulator"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 100,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.3,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 140,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "forefeet",
+      "name": "前足",
+      "exposure": 1,
+      "functions": [
+       "locomotion"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 50,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.3,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 80,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     },
+     {
+      "id": "hindfeet",
+      "name": "後足",
+      "exposure": 1,
+      "functions": [
+       "locomotion"
+      ],
+      "layers": [
+       {
+        "type": "chitin",
+        "hp": 50,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0.3,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": false
+       },
+       {
+        "type": "flesh",
+        "hp": 80,
+        "ablative": true,
+        "resist": {
+         "kinetic": 0,
+         "pierce": 0,
+         "thermal": 0,
+         "acid": 0,
+         "energy": 0
+        },
+        "passThrough": {},
+        "structural": true
+       }
+      ],
+      "slots": []
+     }
+    ],
+    "symmetry": "bilateral"
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/monsters/night-ck-keeljaw.json",
+   "id": "monster/night-ck-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 138,
+    "sha256": "a8dc520a4aa5682ecb19b771bde12970576f3bcb41d7dd4c1280ffdfbb432feb",
+    "id": "monster/night-ck-keeljaw",
+    "species": "species/night-ck-keeljaw",
+    "grade": "B",
+    "tags": [
+     "kaiju",
+     "beast"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/abilities/night-ck-keeljaw.json",
+   "id": "ability/night-ck-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 976,
+    "sha256": "08c2f1bd393f93a3444bfd63c585a2e850e42f802bfb7e8465f45d109972185f",
+    "name": "沉顎銜節",
+    "target": {
+     "kind": "part",
+     "range": {
+      "min": 1,
+      "max": 1
+     },
+     "los": true,
+     "friendly": "no"
+    },
+    "costs": [
+     {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 5
+     }
+    ],
+    "packets": [
+     {
+      "type": "pierce",
+      "amount": 26,
+      "armorPen": 0.35,
+      "crit": 0
+     }
+    ],
+    "cooldown": 0,
+    "ai": {
+     "tactics": {
+      "attack": 1,
+      "disable": 0.8
+     },
+     "targetPref": {
+      "parts": [
+       "locomotion",
+       "weaponMount",
+       "core"
+      ]
+     }
+    },
+    "essence": "B",
+    "partAim": {
+     "allowed": true,
+     "penalty": 10
+    }
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/frames/night-ck-bio-keeljaw.json",
+   "id": "frame/night-ck-bio-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 626,
+    "sha256": "3959a54c7da38c61ae43ed45602240f50596fb156442e7b927c19c86b70697bc",
+    "name": "生物機甲・沉顎",
+    "cls": "bio",
+    "grade": "B",
+    "bodyPlan": "bodyplan/night-ck-keeljaw",
+    "baseAttrs": {
+     "initiative": 8,
+     "perception": 7
+    },
+    "pools": [
+     {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 25,
+      "regen": 7,
+      "bands": []
+     }
+    ],
+    "innateAbilities": [
+     "ability/night-ck-keeljaw",
+     "ability/kx-star-howl"
+    ],
+    "burden": 8,
+    "tags": [
+     "bio",
+     "beast",
+     "kaiju"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/frames/night-ck-corpse-keeljaw.json",
+   "id": "frame/night-ck-corpse-keeljaw",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/species/shelf-back.json",
+     "same": "B四足重獸＋同伴支援",
+     "difference": "棧背24/AP4、range1–2 unit、9AP可兩次攻擊且護友；沉顎26/AP5、range1限定part且penalty10、7AP/regen5，群吼與咬不能同回合，護身改為群體準頭。背層減120、顎加120，總HP維持1000。"
+    },
+    {
+     "file": "content/base/monsters/exk-spine-rack.json",
+     "same": "同為棧背相近五部位骨架",
+     "difference": "背針在原species上疊線射並保留推擊護友；沉顎是新species僅指定部位咬＋群吼，零遠攻零護友、不保留棧背招，捕後也不回棧背。"
+    },
+    {
+     "file": "content/base/monsters/exk-cinder-muzzle.json",
+     "same": "獸族顎與移動部位代價",
+     "difference": "燼吻C疊扇面、後腿唯一locomotion；沉顎B雙足都能走、無範圍/熱傷，主差異是瞄準和AP競爭。"
+    }
+   ],
+   "交稿差異": "沉顎B以part-only range1/AP5/26/penalty10，原生7/regen5與群吼3互斥；雙足皆破停、顎破不封innate。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 427,
+    "sha256": "2d51b94998a975c8cc5c22d98dcad81c71d934491900684eca01e43dffb7245a",
+    "name": "屍體改裝・沉顎",
+    "cls": "bio",
+    "grade": "B",
+    "bodyPlan": "bodyplan/night-ck-keeljaw",
+    "baseAttrs": {
+     "initiative": 8,
+     "perception": 7
+    },
+    "pools": [],
+    "innateAbilities": [
+     "ability/night-ck-keeljaw",
+     "ability/kx-star-howl"
+    ],
+    "burden": 0,
+    "tags": [
+     "bio",
+     "beast",
+     "corpse"
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  },
+  {
+   "檔": "content/base/scenarios/night-ck-broken-keel.json",
+   "id": "scenario/night-ck-broken-keel",
+   "寫前": "核可近鄰species/monster與主要能力、bodyplan/frame模板均親讀；rg查俗名及min3/part/penalty10能力候選，既有無偏弓／沉顎俗名。",
+   "近鄰": [
+    {
+     "file": "content/base/scenarios/exm-crossline.json",
+     "same": "既有zone部署、混族敵側與eliminate雙向目標",
+     "difference": "改為CK兩新species怪獸對既有V7、城垣與V4；不引用CM新檔、不預置buff/pools。"
+    }
+   ],
+   "交稿差異": "展示用frame/bulwark-iv-rampart；敵方不設slot AI覆寫，使用species各自profile。",
+   "交稿查重": "rg偏弓/沉顎僅本批對應檔；kind=part僅新沉顎，既有雙影為unit可選part，矢櫛min3但B級、雙攻招且可選瞄準。",
+   "數據": {
+    "bytes": 1946,
+    "sha256": "2493345c4306a01146d2c35bfab27a921db9dc3e36f194e54fcd12a0d3a1bcd1",
+    "name": "斷艦龍骨下",
+    "brief": "斷艦下伏著偏弓與沉顎。鑽入弓下避棘光，聽見群吼再換列；這是借機展示，沒有接入營運。",
+    "map": "map/skirmish-20",
+    "slots": {
+     "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+       {
+        "mech": "frame/longspear-v7",
+        "persons": [
+         {
+          "id": "person/ren-kasai",
+          "seat": "pilot"
+         }
+        ],
+        "at": "zone"
+       },
+       {
+        "mech": "frame/bulwark-iv-rampart",
+        "persons": [
+         {
+          "id": "person/chen-xiaohai",
+          "seat": "pilot"
+         }
+        ],
+        "at": "zone"
+       },
+       {
+        "mech": "frame/longspear-v4",
+        "persons": [
+         {
+          "id": "person/mara-okoye",
+          "seat": "pilot"
+         }
+        ],
+        "at": "zone"
+       }
+      ],
+      "ai": "aiprofile/focus-fire"
+     },
+     "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+       {
+        "monster": "monster/night-ck-crookbow",
+        "at": "zone"
+       },
+       {
+        "monster": "monster/night-ck-keeljaw",
+        "at": "zone"
+       }
+      ]
+     }
+    },
+    "rounds": 30,
+    "seed": 102812,
+    "objectives": [
+     {
+      "kind": "eliminate",
+      "params": {
+       "slots": [
+        "player"
+       ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+     },
+     {
+      "kind": "eliminate",
+      "params": {
+       "slots": [
+        "enemy"
+       ]
+      },
+      "for": "player",
+      "onComplete": "win"
+     }
+    ]
+   },
+   "證據邊界": "check/typecheck通過；自然四招、五seed參照、MCP與六項窄fixture已實跑。資料未改；5/5同向撤退勝旗標保留，未宣稱正式平衡／整合accepted。"
+  }
+ ]
+}

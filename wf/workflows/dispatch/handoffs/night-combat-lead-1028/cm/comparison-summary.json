@@ -1,0 +1,860 @@
+{
+  "contract": "wf-table/1",
+  "source": "REPORT.md",
+  "extracted": "2026-10-28",
+  "columns": [
+    "matchup",
+    "outcomes",
+    "sides",
+    "deployment",
+    "trials",
+    "damageMeaning"
+  ],
+  "rows": [
+    {
+      "matchup": "CM01",
+      "outcomes": {
+        "player": 5
+      },
+      "sides": {
+        "player-0": {
+          "frame": "frame/night-cm-twinwick",
+          "initialLayerHP": 387,
+          "frameBaseAttrs": {
+            "initiative": 6,
+            "perception": 6,
+            "accuracy": 4
+          },
+          "pilot": "person/ren-kasai",
+          "pilotBaseAttrs": {
+            "accuracy": 55,
+            "evasion": 10,
+            "resolve": 48,
+            "initiative": 7,
+            "perception": 5,
+            "control": 40
+          },
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "terrainAtSpawn": "base:terrain/plain",
+          "components": [
+            "base:component/mx-radiant-rifle",
+            "base:component/mx-rune-rifle"
+          ],
+          "abilityDefinitionsActuallyUsedSeed1": {
+            "ability/mx-radiant-shot": {
+              "packets": [
+                {
+                  "type": "energy",
+                  "amount": 22
+                }
+              ],
+              "accuracy": 5,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 3
+                },
+                {
+                  "pool": "charge",
+                  "owner": "mech",
+                  "amount": 15
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 15
+                }
+              ]
+            },
+            "ability/mx-rune-shot": {
+              "packets": [
+                {
+                  "type": "kinetic",
+                  "amount": 20
+                }
+              ],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 3
+                },
+                {
+                  "pool": "rune-round",
+                  "owner": "mech",
+                  "amount": 2
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 12
+                }
+              ]
+            }
+          }
+        },
+        "enemy-0": {
+          "frame": "frame/longspear-kneeler-v2",
+          "initialLayerHP": 410,
+          "frameBaseAttrs": {
+            "initiative": 6,
+            "perception": 6,
+            "accuracy": 4
+          },
+          "pilot": "person/ren-kasai",
+          "pilotBaseAttrs": {
+            "accuracy": 55,
+            "evasion": 10,
+            "resolve": 48,
+            "initiative": 7,
+            "perception": 5,
+            "control": 40
+          },
+          "position": {
+            "x": 17,
+            "y": 6
+          },
+          "terrainAtSpawn": "base:terrain/plain",
+          "components": [
+            "base:component/mx-hawk-eye",
+            "base:component/mx-radiant-rifle",
+            "base:component/mx-rune-rifle"
+          ],
+          "abilityDefinitionsActuallyUsedSeed1": {
+            "ability/m2-brace-deploy": {
+              "packets": [],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 2
+                }
+              ],
+              "require": [],
+              "produces": []
+            },
+            "ability/mx-radiant-shot": {
+              "packets": [
+                {
+                  "type": "energy",
+                  "amount": 22
+                }
+              ],
+              "accuracy": 5,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 3
+                },
+                {
+                  "pool": "charge",
+                  "owner": "mech",
+                  "amount": 15
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 15
+                }
+              ]
+            }
+          }
+        }
+      },
+      "deployment": {
+        "positions": "(2,6) vs (17,6)",
+        "coordinateMirror": true,
+        "samePilot": true,
+        "sameAiProfile": "aiprofile/focus-fire",
+        "sameRounds": 20,
+        "map": "map/skirmish-20",
+        "terrainWholeMapMirror": false,
+        "noSideSwapRun": true,
+        "limit": "同圖同固定對置但未換邊；先手由各機baseAttrs與規則決定，非強制相同；實際Hit/Miss chance含戰中效果，非靜態命中率。"
+      },
+      "trials": [
+        {
+          "seed": 1,
+          "winner": "player",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "enemy-0",
+            "player-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 13,
+              "hits": 6,
+              "misses": 7,
+              "chanceRange": [
+                29,
+                59
+              ],
+              "chanceMean": 47.69,
+              "layerDamageByActorTurn": 126,
+              "abilityUses": {
+                "ability/mx-radiant-shot": 8,
+                "ability/mx-rune-shot": 5
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 7,
+              "hits": 2,
+              "misses": 5,
+              "chanceRange": [
+                39,
+                54
+              ],
+              "chanceMean": 50.86,
+              "layerDamageByActorTurn": 44,
+              "abilityUses": {
+                "ability/m2-brace-deploy": 3,
+                "ability/mx-radiant-shot": 7
+              }
+            }
+          }
+        },
+        {
+          "seed": 2,
+          "winner": "player",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "enemy-0",
+            "player-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 13,
+              "hits": 7,
+              "misses": 6,
+              "chanceRange": [
+                29,
+                59
+              ],
+              "chanceMean": 47.08,
+              "layerDamageByActorTurn": 148,
+              "abilityUses": {
+                "ability/mx-radiant-shot": 8,
+                "ability/mx-rune-shot": 5
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 10,
+              "hits": 6,
+              "misses": 4,
+              "chanceRange": [
+                49,
+                54
+              ],
+              "chanceMean": 52.5,
+              "layerDamageByActorTurn": 128,
+              "abilityUses": {
+                "ability/m2-brace-deploy": 2,
+                "ability/mx-radiant-shot": 7,
+                "ability/mx-rune-shot": 3
+              }
+            }
+          }
+        },
+        {
+          "seed": 3,
+          "winner": "player",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "enemy-0",
+            "player-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 12,
+              "hits": 4,
+              "misses": 8,
+              "chanceRange": [
+                29,
+                59
+              ],
+              "chanceMean": 47.17,
+              "layerDamageByActorTurn": 86,
+              "abilityUses": {
+                "ability/mx-radiant-shot": 8,
+                "ability/mx-rune-shot": 4
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 8,
+              "hits": 4,
+              "misses": 4,
+              "chanceRange": [
+                39,
+                54
+              ],
+              "chanceMean": 46.5,
+              "layerDamageByActorTurn": 88,
+              "abilityUses": {
+                "ability/m2-brace-deploy": 2,
+                "ability/mx-radiant-shot": 8
+              }
+            }
+          }
+        },
+        {
+          "seed": 4,
+          "winner": "player",
+          "rounds": 9,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "enemy-0",
+            "player-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 13,
+              "hits": 8,
+              "misses": 5,
+              "chanceRange": [
+                29,
+                59
+              ],
+              "chanceMean": 51.31,
+              "layerDamageByActorTurn": 164,
+              "abilityUses": {
+                "ability/mx-radiant-shot": 9,
+                "ability/mx-rune-shot": 4
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 8,
+              "hits": 4,
+              "misses": 4,
+              "chanceRange": [
+                39,
+                54
+              ],
+              "chanceMean": 51.5,
+              "layerDamageByActorTurn": 88,
+              "abilityUses": {
+                "ability/m2-brace-deploy": 2,
+                "ability/mx-radiant-shot": 7,
+                "ability/mx-rune-shot": 1
+              }
+            }
+          }
+        },
+        {
+          "seed": 5,
+          "winner": "player",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "enemy-0",
+            "player-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 13,
+              "hits": 6,
+              "misses": 7,
+              "chanceRange": [
+                29,
+                59
+              ],
+              "chanceMean": 51.54,
+              "layerDamageByActorTurn": 124,
+              "abilityUses": {
+                "ability/mx-radiant-shot": 8,
+                "ability/mx-rune-shot": 5
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 9,
+              "hits": 3,
+              "misses": 6,
+              "chanceRange": [
+                44,
+                54
+              ],
+              "chanceMean": 51.78,
+              "layerDamageByActorTurn": 64,
+              "abilityUses": {
+                "ability/m2-brace-deploy": 2,
+                "ability/mx-radiant-shot": 7,
+                "ability/mx-rune-shot": 2
+              }
+            }
+          }
+        }
+      ],
+      "damageMeaning": "LayerDamaged amount依actor turn歸屬；不是紙面DPS或所有傷害來源的完整因果分攤。"
+    },
+    {
+      "matchup": "CM02",
+      "outcomes": {
+        "enemy": 5
+      },
+      "sides": {
+        "player-0": {
+          "frame": "frame/night-cm-cinderbell",
+          "initialLayerHP": 487,
+          "frameBaseAttrs": {
+            "initiative": 5,
+            "perception": 5,
+            "accuracy": 2,
+            "evasion": -2
+          },
+          "pilot": "person/ren-kasai",
+          "pilotBaseAttrs": {
+            "accuracy": 55,
+            "evasion": 10,
+            "resolve": 48,
+            "initiative": 7,
+            "perception": 5,
+            "control": 40
+          },
+          "position": {
+            "x": 2,
+            "y": 6
+          },
+          "terrainAtSpawn": "base:terrain/plain",
+          "components": [
+            "base:component/mx-cold-spring",
+            "base:component/mx-molten-saw",
+            "base:component/night-cm-cinderbell"
+          ],
+          "abilityDefinitionsActuallyUsedSeed1": {
+            "ability/mx-molten-cut": {
+              "packets": [
+                {
+                  "type": "thermal",
+                  "amount": 18,
+                  "armorPen": 0.12
+                }
+              ],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 4
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 18
+                }
+              ]
+            },
+            "ability/night-cm-cinderbell": {
+              "packets": [
+                {
+                  "type": "thermal",
+                  "amount": 18,
+                  "armorPen": 0.1,
+                  "crit": 0
+                }
+              ],
+              "accuracy": 0,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 4
+                }
+              ],
+              "require": [
+                {
+                  "cmp": {
+                    "a": {
+                      "ref": "self.pools.heat.cur"
+                    },
+                    "op": ">=",
+                    "b": 30
+                  }
+                }
+              ],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": -30
+                }
+              ]
+            }
+          }
+        },
+        "enemy-0": {
+          "frame": "frame/anvil-iv-ram",
+          "initialLayerHP": 638,
+          "frameBaseAttrs": {
+            "initiative": 4,
+            "perception": 4,
+            "accuracy": 3,
+            "evasion": -3
+          },
+          "pilot": "person/ren-kasai",
+          "pilotBaseAttrs": {
+            "accuracy": 55,
+            "evasion": 10,
+            "resolve": 48,
+            "initiative": 7,
+            "perception": 5,
+            "control": 40
+          },
+          "position": {
+            "x": 17,
+            "y": 6
+          },
+          "terrainAtSpawn": "base:terrain/plain",
+          "components": [
+            "base:component/mx-burst-scale",
+            "base:component/mx-frost-fins",
+            "base:component/mx-chain-maul",
+            "base:component/mx-brokenarm-stake",
+            "base:component/mx-flare-wings",
+            "base:component/mx-hunter-darts"
+          ],
+          "abilityDefinitionsActuallyUsedSeed1": {
+            "ability/mx-flare-dodge": {
+              "packets": [],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 1
+                },
+                {
+                  "pool": "flare-fuel",
+                  "owner": "mech",
+                  "amount": 1
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 10
+                }
+              ]
+            },
+            "ability/mx-hunter-launch": {
+              "packets": [
+                {
+                  "type": "pierce",
+                  "amount": 34,
+                  "armorPen": 0.25
+                }
+              ],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 4
+                },
+                {
+                  "pool": "hunter-dart",
+                  "owner": "mech",
+                  "amount": 1
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 10
+                }
+              ]
+            },
+            "ability/mx-stake-drive": {
+              "packets": [
+                {
+                  "type": "kinetic",
+                  "amount": 44,
+                  "armorPen": 0.3
+                }
+              ],
+              "accuracy": null,
+              "costs": [
+                {
+                  "pool": "ap",
+                  "owner": "person",
+                  "amount": 5
+                },
+                {
+                  "pool": "stake-wedge",
+                  "owner": "mech",
+                  "amount": 1
+                }
+              ],
+              "require": [],
+              "produces": [
+                {
+                  "pool": "heat",
+                  "owner": "mech",
+                  "amount": 20
+                }
+              ]
+            }
+          }
+        }
+      },
+      "deployment": {
+        "positions": "(2,6) vs (17,6)",
+        "coordinateMirror": true,
+        "samePilot": true,
+        "sameAiProfile": "aiprofile/focus-fire",
+        "sameRounds": 20,
+        "map": "map/skirmish-20",
+        "terrainWholeMapMirror": false,
+        "noSideSwapRun": true,
+        "limit": "同圖同固定對置但未換邊；先手由各機baseAttrs與規則決定，非強制相同；實際Hit/Miss chance含戰中效果，非靜態命中率。"
+      },
+      "trials": [
+        {
+          "seed": 1,
+          "winner": "enemy",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "player-0",
+            "enemy-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 7,
+              "hits": 0,
+              "misses": 7,
+              "chanceRange": [
+                35,
+                50
+              ],
+              "chanceMean": 43.57,
+              "layerDamageByActorTurn": 0,
+              "abilityUses": {
+                "ability/mx-molten-cut": 6,
+                "ability/night-cm-cinderbell": 1
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 6,
+              "hits": 3,
+              "misses": 3,
+              "chanceRange": [
+                29,
+                50
+              ],
+              "chanceMean": 38.33,
+              "layerDamageByActorTurn": 119.093,
+              "abilityUses": {
+                "ability/mx-flare-dodge": 4,
+                "ability/mx-hunter-launch": 4,
+                "ability/mx-stake-drive": 2
+              }
+            }
+          }
+        },
+        {
+          "seed": 2,
+          "winner": "enemy",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "player-0",
+            "enemy-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 10,
+              "hits": 1,
+              "misses": 9,
+              "chanceRange": [
+                20,
+                42
+              ],
+              "chanceMean": 36.3,
+              "layerDamageByActorTurn": 17.998,
+              "abilityUses": {
+                "ability/mx-molten-cut": 8,
+                "ability/night-cm-cinderbell": 2
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 8,
+              "hits": 3,
+              "misses": 5,
+              "chanceRange": [
+                21,
+                53
+              ],
+              "chanceMean": 38.75,
+              "layerDamageByActorTurn": 87.509,
+              "abilityUses": {
+                "ability/mx-flare-dodge": 4,
+                "ability/mx-frame-strike": 1,
+                "ability/mx-hunter-launch": 4,
+                "ability/mx-stake-drive": 3
+              }
+            }
+          }
+        },
+        {
+          "seed": 3,
+          "winner": "enemy",
+          "rounds": 9,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "player-0",
+            "enemy-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 7,
+              "hits": 3,
+              "misses": 4,
+              "chanceRange": [
+                35,
+                35
+              ],
+              "chanceMean": 35,
+              "layerDamageByActorTurn": 53.813,
+              "abilityUses": {
+                "ability/mx-molten-cut": 6,
+                "ability/night-cm-cinderbell": 1
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 9,
+              "hits": 1,
+              "misses": 8,
+              "chanceRange": [
+                16,
+                45
+              ],
+              "chanceMean": 30,
+              "layerDamageByActorTurn": 33.469,
+              "abilityUses": {
+                "ability/mx-flare-dodge": 4,
+                "ability/mx-frame-strike": 1,
+                "ability/mx-hunter-launch": 4,
+                "ability/mx-maul-sweep": 1,
+                "ability/mx-stake-drive": 3
+              }
+            }
+          }
+        },
+        {
+          "seed": 4,
+          "winner": "enemy",
+          "rounds": 7,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "player-0",
+            "enemy-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 8,
+              "hits": 2,
+              "misses": 6,
+              "chanceRange": [
+                20,
+                50
+              ],
+              "chanceMean": 38.75,
+              "layerDamageByActorTurn": 35.965,
+              "abilityUses": {
+                "ability/mx-molten-cut": 6,
+                "ability/night-cm-cinderbell": 2
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 6,
+              "hits": 4,
+              "misses": 2,
+              "chanceRange": [
+                36,
+                50
+              ],
+              "chanceMean": 40.67,
+              "layerDamageByActorTurn": 118.0,
+              "abilityUses": {
+                "ability/mx-flare-dodge": 4,
+                "ability/mx-frame-strike": 1,
+                "ability/mx-hunter-launch": 4,
+                "ability/mx-stake-drive": 1
+              }
+            }
+          }
+        },
+        {
+          "seed": 5,
+          "winner": "enemy",
+          "rounds": 8,
+          "reason": "eliminate",
+          "firstRoundTurnStarts": [
+            "player-0",
+            "enemy-0"
+          ],
+          "sideStats": {
+            "player-0": {
+              "hostileAttackRolls": 7,
+              "hits": 3,
+              "misses": 4,
+              "chanceRange": [
+                35,
+                50
+              ],
+              "chanceMean": 41.43,
+              "layerDamageByActorTurn": 53.45,
+              "abilityUses": {
+                "ability/mx-molten-cut": 6,
+                "ability/night-cm-cinderbell": 1
+              }
+            },
+            "enemy-0": {
+              "hostileAttackRolls": 6,
+              "hits": 2,
+              "misses": 4,
+              "chanceRange": [
+                21,
+                50
+              ],
+              "chanceMean": 39.5,
+              "layerDamageByActorTurn": 76.281,
+              "abilityUses": {
+                "ability/mx-flare-dodge": 4,
+                "ability/mx-hunter-launch": 4,
+                "ability/mx-stake-drive": 2
+              }
+            }
+          }
+        }
+      ],
+      "damageMeaning": "LayerDamaged amount依actor turn歸屬；不是紙面DPS或所有傷害來源的完整因果分攤。"
+    }
+  ]
+}

@@ -1,0 +1,246 @@
+{
+ "contract": "wf-table/1",
+ "source": "../briefs/cm-mechs.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "columns": [
+  "概念",
+  "檔",
+  "近鄰",
+  "寫前差異",
+  "檢索證據",
+  "交稿",
+  "數據",
+  "bytes",
+  "sha256",
+  "邊界",
+  "目前結論",
+  "驗證更新"
+ ],
+ "rows": [
+  {
+   "概念": "CM01",
+   "檔": "content/base/frames/night-cm-twinwick.json",
+   "近鄰": [
+    "content/base/frames/longspear-kneeler-v2.json",
+    "content/base/frames/exm-silverring-helix.json",
+    "content/base/frames/wm-r7-longspear-keepsake.json"
+   ],
+   "寫前差異": "C雙池射手；同一gun-mast兩槍、履帶與武器分離、無內建拳／架砲／拘束；不同於伏架前足兼移動掛槍、汲光主動補光與留像捕捉。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "grade": "C",
+    "bodyHP": 355,
+    "componentHP": 32,
+    "totalHP": 387,
+    "mass": 5,
+    "heat": "0/100, regen -15",
+    "charge": "60/60, regen 12",
+    "parts": 6,
+    "bodyLayers": 12,
+    "reference": "frame/longspear-kneeler-v2",
+    "帶": "HP387在C300–420；initiative6/perception6；既有光矢22/AP3超C單發建議20、range7超C常見5，均為凍結沿用既有能力，不改基準。"
+   },
+   "bytes": 1594,
+   "sha256": "84b172db6de927c1efa7e7a8ce9389803eeac80004a48c80f2a576defe02e703",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "概念": "CM01",
+   "檔": "content/base/bodyplans/night-cm-twinwick.json",
+   "近鄰": [
+    "content/base/bodyplans/mx-biped-c.json",
+    "content/base/bodyplans/m2-quadruped-c.json",
+    "content/base/bodyplans/mx-tracked-d.json"
+   ],
+   "寫前差異": "新六部位355HP；雙槍槽集中gun-mast，左右履架各有locomotion。不是標準雙臂、四足或單一tracks部位；component層不算結構。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "partHP": {
+     "torso": 90,
+     "head": 40,
+     "gun-mast": 60,
+     "left-track": 65,
+     "right-track": 65,
+     "back": 35
+    },
+    "bodyHP": 355,
+    "structureHP": 200,
+    "parts": 6,
+    "layers": 12,
+    "slots": "槍架mast-light＋mast-rune；左右履架各locomotion；torso沿用mx-biped-c conduct與雙座；所有內層structural=true，其餘false",
+    "帶": "C總355在300–420；6部位12層；結構200/355；torso結構50略高C常見47、back外12低於常見14，照凍結recipe，非硬上限。"
+   },
+   "bytes": 5044,
+   "sha256": "162d0b694b21631486df519380319036964071b4ea199826cfb194681b50393b",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "概念": "CM02",
+   "檔": "content/base/frames/night-cm-cinderbell.json",
+   "近鄰": [
+    "content/base/frames/wn-r3-anvil-fan.json",
+    "content/base/frames/anvil-iv-ram.json",
+    "content/base/frames/exm-silverring-helix.json"
+   ],
+   "寫前差異": "B雙足熔鋸＋需先蓄燼的扇面砲＋既有寒泉；無背件／額外甲／charge。開扇可冷機射擊並加燼，破城槌多武器重甲；汲光循環charge。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "grade": "B",
+    "bodyHP": 445,
+    "componentHP": 42,
+    "totalHP": 487,
+    "mass": 8,
+    "heat": "0/120, regen -8",
+    "charge": "未宣告",
+    "reference": "frame/anvil-iv-ram",
+    "帶": "HP487在B420–560；initiative5/perception5/evasion-2在帶；regen-8慢於B建議-15至-20是凍結蓄燼代價，非實測waiver。熔鋸18/AP4=4.5低於B單體效率5–6.5，須與完整基準比較，尚未判強弱。"
+   },
+   "bytes": 1468,
+   "sha256": "39e395266991bc32d01a2be02f5c7fb69dd4d1ce07e109c270221d365504c41c",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "概念": "CM02",
+   "檔": "content/base/components/night-cm-cinderbell.json",
+   "近鄰": [
+    "content/base/components/mx-molten-saw.json",
+    "content/base/components/mx-cold-spring.json",
+    "content/base/abilities/fw-fan-tube-use.json"
+   ],
+   "寫前差異": "右臂武器掛件hp18、size2、mass4，僅給新攻擊散燼招；不複製冷卻系統、不加新池與動詞。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "hp": 18,
+    "size": 2,
+    "mass": 4,
+    "pools": [],
+    "abilities": [
+     "ability/night-cm-cinderbell"
+    ],
+    "帶": "B部件hp16–20、size2、mass3–4內；新部件無額外池。"
+   },
+   "bytes": 485,
+   "sha256": "59758f1365d7cf7716f34241c94ef765b8f20811cea815daadf99c3fba0464ce",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "概念": "CM02",
+   "檔": "content/base/abilities/night-cm-cinderbell.json",
+   "近鄰": [
+    "content/base/abilities/fw-fan-tube-use.json",
+    "content/base/abilities/exk-cinder-muzzle.json",
+    "content/base/abilities/fa-open-vents.json",
+    "content/base/abilities/mx-cold-vent.json"
+   ],
+   "寫前差異": "沿用cone與heat條件語法，但需heat>=30、攻擊後produces=-30。與冷機加燼扇矢、無heat怪獸熱息、只掛散燼buff、直接寒泉-40皆不同；非新引擎機制。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "AP": 4,
+    "requireHeat": 30,
+    "producesHeat": -30,
+    "range": [
+     1,
+     3
+    ],
+    "coneRadius": 1,
+    "thermal": 18,
+    "armorPen": 0.1,
+    "crit": 0,
+    "cooldown": 2,
+    "usesPerBattle": 3,
+    "essence": "B",
+    "aiTactics": {
+     "attackArea": 1
+    },
+    "帶": "AP4與cooldown2/uses3帶內；扇面18約B單發上緣26的69%，每目標不超26；18/AP4=4.5低於B單體5–6.5但本招範圍且散燼，尚未驗收益。-30大於普通散燼件建議10–20，是凍結門檻30配方，非測後豁免。"
+   },
+   "bytes": 1147,
+   "sha256": "a2f7eed91c592fc5286500804291cacde29e55062d4d0052dcd2b631c159d515",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "概念": "CM-display",
+   "檔": "content/base/scenarios/night-cm-yard-bells.json",
+   "近鄰": [
+    "content/base/scenarios/exm-crossline.json",
+    "content/base/maps/skirmish-20.json",
+    "content/base/aiprofiles/focus-fire.json"
+   ],
+   "寫前差異": "兩新機＋一既有堅盾對reaper-c與hound-c；用既有zone與雙向eliminate，seed102811。不是八機試配，也不是同級平衡對照；不接市場與歷史。",
+   "檢索證據": "已親讀全部所列近鄰；rg查既有並燭／燼鐘／鳴鐘散燼／gun-mast／mast-light／mast-rune無命中；熱扇面與heat.cur條件另比fw-fan-tube-use、exk-cinder-muzzle、fa-open-vents。track近鄰另比exm-ix12與union-at12，不能只憑履帶外觀判不同。",
+   "交稿": "已全文複讀六檔，逐件與近鄰的部位配置、資源方向、能力時序及代價比對；保留寫前差異，未改既有對照、AI或引擎。",
+   "數據": {
+    "player": [
+     "frame/night-cm-twinwick + person/ren-kasai",
+     "frame/night-cm-cinderbell + person/ilse-brandt",
+     "frame/bulwark-ii + person/chen-xiaohai"
+    ],
+    "enemy": [
+     "monster/reaper-c",
+     "monster/hound-c"
+    ],
+    "map": "map/skirmish-20",
+    "ai": "aiprofile/focus-fire（player，沿exm-crossline）",
+    "deploy": "現有zone；無components覆寫或spawn pools預填",
+    "rounds": 30,
+    "seed": 102811,
+    "objectives": [
+     "player eliminate→lose",
+     "enemy eliminate→player win"
+    ],
+    "平衡": "混級借機展示，不能當1v1基準；無營運取得。"
+   },
+   "bytes": 2022,
+   "sha256": "768ae98441ec68856ee29377b3b732472edf7651e33c082ca9d54bf039e960e5",
+   "邊界": {
+    "codeCheck": "check exit0，未見本六檔警告",
+    "typecheck": "exit127，tsc not found；worktree無node_modules，主repo有tsc但未授權新增連結／配置",
+    "戰鬥證據": "未跑；原碼可支援只屬靜態依據，不代表AbilityUsed或失能實測",
+    "修訂輪": 0
+   },
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  }
+ ]
+}

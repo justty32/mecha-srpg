@@ -1,0 +1,47 @@
+{
+  "id": "ability/night-ck-crookbow",
+  "name": "斜弓送棘",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "range": {
+      "min": 3,
+      "max": 7
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 0,
+  "packets": [
+    {
+      "type": "pierce",
+      "amount": 20,
+      "armorPen": 0,
+      "crit": 0
+    }
+  ],
+  "effects": [],
+  "cooldown": 0,
+  "tags": [
+    "telegraph",
+    "alien",
+    "ranged"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "essence": "C",
+  "nameEn": "Slantbow Thorncast",
+  "etymology": "偏冠斜張，棘光只向弓下以外送出；側鏡衣另作掩護。"
+}

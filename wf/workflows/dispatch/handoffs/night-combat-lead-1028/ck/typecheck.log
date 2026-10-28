@@ -1,0 +1,11 @@
+command: npm run typecheck
+cwd: /tmp/night-combat-lead-1028/wt-ck
+environment: PATH prepends existing main-repo node_modules/.bin; no install, no symlink
+
+
+> mecha-srpg@0.1.0 typecheck
+> tsc --noEmit && tsc --noEmit -p tsconfig.ui.json
+
+src/mcp/ui.ts(70,30): error TS2307: Cannot find module 'playwright' or its corresponding type declarations.
+
+exit: 1

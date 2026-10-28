@@ -1,0 +1,83 @@
+{
+  "id": "scenario/night-ck-broken-keel",
+  "name": "斷艦龍骨下",
+  "nameEn": "Beneath the Broken Keel",
+  "etymology": "斷裂艦橋遮住獸影，偏弓的側冠越過堤頭，沉顎的背稜貼地而行。獵團按兩種輪廓辨認射線與咬口；此為獨立展示，借用駕駛員不記入年表。",
+  "brief": "斷艦下伏著偏弓與沉顎。鑽入弓下避棘光，聽見群吼再換列；這是借機展示，沒有接入營運。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/longspear-v7",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/bulwark-iv-rampart",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/night-ck-crookbow",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/night-ck-keeljaw",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102812
+}

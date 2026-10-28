@@ -1,0 +1,3071 @@
+{
+  "group": "CM01",
+  "seed": 1,
+  "scenario": {
+    "id": "scenario/cm-evidence-CM01",
+    "map": "base:map/skirmish-20",
+    "slots": {
+      "player": {
+        "faction": "faction/migrant-crew",
+        "units": [
+          {
+            "mech": "frame/night-cm-twinwick",
+            "persons": [
+              {
+                "id": "person/ren-kasai",
+                "seat": "pilot"
+              }
+            ],
+            "at": {
+              "x": 2,
+              "y": 6
+            }
+          }
+        ],
+        "ai": "aiprofile/focus-fire"
+      },
+      "enemy": {
+        "faction": "faction/rift-insects",
+        "units": [
+          {
+            "mech": "frame/longspear-kneeler-v2",
+            "persons": [
+              {
+                "id": "person/ren-kasai",
+                "seat": "pilot"
+              }
+            ],
+            "at": {
+              "x": 17,
+              "y": 6
+            }
+          }
+        ],
+        "ai": "aiprofile/focus-fire"
+      }
+    },
+    "objectives": [
+      {
+        "kind": "eliminate",
+        "params": {
+          "slots": [
+            "player"
+          ]
+        },
+        "for": "player",
+        "onComplete": "lose"
+      },
+      {
+        "kind": "eliminate",
+        "params": {
+          "slots": [
+            "enemy"
+          ]
+        },
+        "for": "player",
+        "onComplete": "win"
+      }
+    ],
+    "rounds": 20
+  },
+  "sim": {
+    "scenario": "scenario/cm-evidence-CM01",
+    "setup": {
+      "id": "scenario/cm-evidence-CM01",
+      "factions": {
+        "enemy": "base:faction/rift-insects",
+        "player": "base:faction/migrant-crew"
+      },
+      "allies": {
+        "enemy": [],
+        "player": []
+      },
+      "map": {
+        "width": 20,
+        "height": 20,
+        "fill": "base:terrain/plain",
+        "cells": [
+          {
+            "at": {
+              "x": 0,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 0
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 0
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 0
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 1
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 1
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 1
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 2
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 2
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 2
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 3
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 3
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 3
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 3
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 4
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 4
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 4
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 4
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 4
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 4
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 4
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 4
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 4
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 5
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 5
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 5
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 5
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 5
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 5
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 5
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 6
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 6
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 6
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 6
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 6
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 6
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 6
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 7
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 7
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 7
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 7
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 7
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 7
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 7
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 7
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 7
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 8
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 8
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 8
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 8
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 9
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 9
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 9
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 9
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 9
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 9
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 10
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 10
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 10
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 10
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 10
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 10
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 11
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 11
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 11
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 11
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 12
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 12
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 12
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 12
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 12
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 12
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 12
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 12
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 12
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 13
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 13
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 13
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 13
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 13
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 13
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 13
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 14
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 14
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 14
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 14
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 14
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 14
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 14
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 15
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 15
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 15
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 15
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 15
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 15
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 15
+            },
+            "terrain": "base:terrain/ruin-wall"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 15
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 15
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 16
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 16
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 16
+            },
+            "terrain": "base:terrain/rubble"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 16
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 17
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 17
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 17
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 18
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 18
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 18
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 0,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 1,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 2,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 3,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 4,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 5,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 6,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 7,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 8,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 9,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 10,
+              "y": 19
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 11,
+              "y": 19
+            },
+            "terrain": "base:terrain/shallows"
+          },
+          {
+            "at": {
+              "x": 12,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 13,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 14,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 15,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 16,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 17,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 18,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          },
+          {
+            "at": {
+              "x": 19,
+              "y": 19
+            },
+            "terrain": "base:terrain/plain"
+          }
+        ],
+        "exits": [
+          {
+            "x": 0,
+            "y": 0
+          },
+          {
+            "x": 0,
+            "y": 1
+          },
+          {
+            "x": 0,
+            "y": 2
+          },
+          {
+            "x": 0,
+            "y": 3
+          },
+          {
+            "x": 0,
+            "y": 4
+          },
+          {
+            "x": 0,
+            "y": 5
+          },
+          {
+            "x": 0,
+            "y": 6
+          },
+          {
+            "x": 0,
+            "y": 7
+          },
+          {
+            "x": 0,
+            "y": 8
+          },
+          {
+            "x": 0,
+            "y": 9
+          },
+          {
+            "x": 0,
+            "y": 10
+          },
+          {
+            "x": 0,
+            "y": 11
+          },
+          {
+            "x": 0,
+            "y": 12
+          },
+          {
+            "x": 0,
+            "y": 13
+          },
+          {
+            "x": 0,
+            "y": 14
+          },
+          {
+            "x": 0,
+            "y": 15
+          },
+          {
+            "x": 0,
+            "y": 16
+          },
+          {
+            "x": 0,
+            "y": 17
+          },
+          {
+            "x": 0,
+            "y": 18
+          },
+          {
+            "x": 0,
+            "y": 19
+          }
+        ]
+      },
+      "units": [
+        {
+          "id": "enemy-0",
+          "owner": "enemy",
+          "pos": {
+            "x": 17,
+            "y": 6
+          },
+          "persons": [
+            {
+              "id": "enemy-0-pilot",
+              "def": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "left-weapon": "base:component/mx-radiant-rifle",
+            "right-weapon": "base:component/mx-rune-rifle",
+            "sensor-mount": "base:component/mx-hawk-eye"
+          },
+          "frame": "frame/longspear-kneeler-v2"
+        },
+        {
+          "id": "player-0",
+          "owner": "player",
+          "pos": {
+            "x": 2,
+            "y": 6
+          },
+          "persons": [
+            {
+              "id": "player-0-pilot",
+              "def": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "components": {
+            "mast-light": "base:component/mx-radiant-rifle",
+            "mast-rune": "base:component/mx-rune-rifle"
+          },
+          "frame": "frame/night-cm-twinwick"
+        }
+      ],
+      "objectives": [
+        {
+          "kind": "eliminate",
+          "params": {
+            "slots": [
+              "player"
+            ]
+          },
+          "for": "player",
+          "onComplete": "lose"
+        },
+        {
+          "kind": "eliminate",
+          "params": {
+            "slots": [
+              "enemy"
+            ]
+          },
+          "for": "player",
+          "onComplete": "win"
+        }
+      ],
+      "maxRounds": 20
+    },
+    "slotProfiles": {
+      "enemy": {
+        "policy": "tactical",
+        "params": {
+          "attack": 1.2,
+          "focusBonus": 3,
+          "maxEngage": 6,
+          "focusDistance": 6,
+          "attackRatio": 0.6,
+          "band": 0.9
+        }
+      },
+      "player": {
+        "policy": "tactical",
+        "params": {
+          "attack": 1.2,
+          "focusBonus": 3,
+          "maxEngage": 6,
+          "focusDistance": 6,
+          "attackRatio": 0.6,
+          "band": 0.9
+        }
+      }
+    },
+    "unitPolicies": {
+      "enemy": {},
+      "player": {}
+    }
+  },
+  "natural": true,
+  "interventions": [],
+  "warningCount": 17
+}

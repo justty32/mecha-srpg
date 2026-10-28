@@ -1,0 +1,340 @@
+{
+  "group": "CM02",
+  "seed": 3,
+  "side": "original",
+  "phase": "round-2",
+  "newSlot": "player",
+  "CM02accuracy": 6,
+  "natural": true,
+  "initialHeat": {
+    "enemy-0": 0,
+    "player-0": 0
+  },
+  "winner": "enemy",
+  "reason": "eliminate",
+  "rounds": 9,
+  "stopped": "outcome",
+  "hash": "f95ec58c6b4740d5",
+  "rejected": 0,
+  "deaths": 0,
+  "events": 394,
+  "coverage": {
+    "ability/mx-flare-dodge": 4,
+    "ability/mx-frame-strike": 1,
+    "ability/mx-hunter-launch": 4,
+    "ability/mx-maul-sweep": 1,
+    "ability/mx-molten-cut": 6,
+    "ability/mx-stake-drive": 3,
+    "ability/night-cm-cinderbell": 1
+  },
+  "units": {
+    "enemy-0": {
+      "frame": "base:frame/anvil-iv-ram",
+      "status": "active",
+      "abilities": {
+        "ability/mx-flare-dodge": 4,
+        "ability/mx-frame-strike": 1,
+        "ability/mx-hunter-launch": 4,
+        "ability/mx-maul-sweep": 1,
+        "ability/mx-stake-drive": 3
+      },
+      "heat": {
+        "cur": 55,
+        "max": 120,
+        "regen": -15,
+        "band": -1
+      }
+    },
+    "player-0": {
+      "frame": "base:frame/night-cm-cinderbell",
+      "status": "retreated",
+      "abilities": {
+        "ability/mx-molten-cut": 6,
+        "ability/night-cm-cinderbell": 1
+      },
+      "heat": {
+        "cur": 30,
+        "max": 120,
+        "regen": -8,
+        "band": -1
+      }
+    }
+  },
+  "newAbilityAIUses": 1,
+  "fullRaw": "run.json.gz",
+  "rawEvents": "events.json.gz",
+  "diagnostics": {
+    "initialInitiative": {
+      "enemy-0": 11,
+      "player-0": 12
+    },
+    "firstActor": "player-0",
+    "firstLegalOpportunity": {
+      "enemy-0": {
+        "step": 2,
+        "round": 1,
+        "ability": "base:ability/mx-hunter-launch",
+        "target": {
+          "unit": "player-0"
+        },
+        "pos": {
+          "x": 17,
+          "y": 6
+        },
+        "heat": 0,
+        "scope": "rules legality in full state, sampled before actual commands; no counterfactual movement or AI-visibility claim"
+      },
+      "player-0": {
+        "step": 13,
+        "round": 3,
+        "ability": "base:ability/mx-molten-cut",
+        "target": {
+          "unit": "enemy-0"
+        },
+        "pos": {
+          "x": 15,
+          "y": 8
+        },
+        "heat": 0,
+        "scope": "rules legality in full state, sampled before actual commands; no counterfactual movement or AI-visibility claim"
+      }
+    },
+    "firstLegalExecutedAttack": {
+      "enemy-0": {
+        "step": 2,
+        "round": 1,
+        "command": {
+          "kind": "useAbility",
+          "actor": "enemy-0",
+          "ability": "base:ability/mx-hunter-launch",
+          "target": {
+            "unit": "player-0"
+          }
+        },
+        "rejection": null
+      },
+      "player-0": {
+        "step": 13,
+        "round": 3,
+        "command": {
+          "kind": "useAbility",
+          "actor": "player-0",
+          "ability": "base:ability/mx-molten-cut",
+          "target": {
+            "unit": "enemy-0"
+          }
+        },
+        "rejection": null
+      }
+    },
+    "initialPositions": {
+      "enemy-0": {
+        "x": 17,
+        "y": 6
+      },
+      "player-0": {
+        "x": 2,
+        "y": 6
+      }
+    },
+    "combat": {
+      "enemy-0": {
+        "initialHP": 638,
+        "finalHP": 584.1874649599999,
+        "status": "active",
+        "brokenParts": [],
+        "damagedParts": {
+          "torso": 137.00746496,
+          "head": 37.18
+        },
+        "strikes": [
+          {
+            "round": 1,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-hunter-launch",
+            "chance": 19,
+            "roll": 93,
+            "part": null
+          },
+          {
+            "round": 1,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-hunter-launch",
+            "chance": 19,
+            "roll": 48,
+            "part": null
+          },
+          {
+            "round": 2,
+            "type": "Hit",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-hunter-launch",
+            "chance": 36,
+            "roll": 35,
+            "part": "torso"
+          },
+          {
+            "round": 3,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-stake-drive",
+            "chance": 45,
+            "roll": 57,
+            "part": null
+          },
+          {
+            "round": 4,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-hunter-launch",
+            "chance": 16,
+            "roll": 22,
+            "part": null
+          },
+          {
+            "round": 5,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-maul-sweep",
+            "chance": 30,
+            "roll": 89,
+            "part": null
+          },
+          {
+            "round": 6,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-stake-drive",
+            "chance": 45,
+            "roll": 98,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-stake-drive",
+            "chance": 30,
+            "roll": 38,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-frame-strike",
+            "chance": 30,
+            "roll": 42,
+            "part": null
+          }
+        ],
+        "retreatEvidence": [],
+        "retreatCausality": "Retreated event has no decision-reason field; do not infer exact AI branch from final HP alone."
+      },
+      "player-0": {
+        "initialHP": 487,
+        "finalHP": 453.53125,
+        "status": "retreated",
+        "brokenParts": [],
+        "damagedParts": {
+          "torso": 84.53125
+        },
+        "strikes": [
+          {
+            "round": 3,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 86,
+            "part": null
+          },
+          {
+            "round": 3,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 0,
+            "part": "torso"
+          },
+          {
+            "round": 4,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 99,
+            "part": null
+          },
+          {
+            "round": 5,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/night-cm-cinderbell",
+            "chance": 39,
+            "roll": 33,
+            "part": "head"
+          },
+          {
+            "round": 5,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 20,
+            "part": "torso"
+          },
+          {
+            "round": 6,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 40,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-molten-cut",
+            "chance": 39,
+            "roll": 88,
+            "part": null
+          }
+        ],
+        "retreatEvidence": [
+          {
+            "seq": 392,
+            "round": 9,
+            "type": "Retreated",
+            "payload": {
+              "unit": "player-0"
+            },
+            "turn": "player-0"
+          }
+        ],
+        "retreatCausality": "Retreated event has no decision-reason field; do not infer exact AI branch from final HP alone."
+      }
+    }
+  }
+}

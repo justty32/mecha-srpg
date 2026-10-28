@@ -1,0 +1,62 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "columns": [
+  "scenario",
+  "seed",
+  "rounds",
+  "winner",
+  "reason",
+  "mode",
+  "ourLosses",
+  "enemyLosses",
+  "newAbilityUses",
+  "aiUsed",
+  "accuracy",
+  "snapshotSHA256",
+  "hash",
+  "hashVerifiedAgainst",
+  "log",
+  "events"
+ ],
+ "rows": [
+  {
+   "scenario": "scenario/night-cm-yard-bells",
+   "seed": 1,
+   "rounds": 8,
+   "winner": "player",
+   "reason": "eliminate",
+   "mode": "mcp-auto",
+   "ourLosses": 0,
+   "enemyLosses": 2,
+   "newAbilityUses": 1,
+   "aiUsed": true,
+   "accuracy": 2,
+   "snapshotSHA256": "412ead3559f4b4beb7d651186db3767e0173180d947a632995474305e129022c",
+   "hash": "e61544bc33c01f03",
+   "hashVerifiedAgainst": "accuracy2 smoke seed1 only",
+   "log": "log/mcp-log/auto.json",
+   "events": "log/smoke/seed-1/events.json.gz"
+  },
+  {
+   "scenario": "scenario/night-cm-yard-bells",
+   "seed": 1,
+   "rounds": 4,
+   "winner": null,
+   "reason": "manual sample completed rounds1,2,3; stopped in round4 after bell/cold demonstration",
+   "mode": "mcp-manual",
+   "ourLosses": 0,
+   "enemyLosses": 0,
+   "newAbilityUses": 1,
+   "aiUsed": false,
+   "accuracy": 2,
+   "snapshotSHA256": "412ead3559f4b4beb7d651186db3767e0173180d947a632995474305e129022c",
+   "hash": "actual saved commands replay matched in accuracy2 snapshot",
+   "hashVerifiedAgainst": "accuracy2 only; not accuracy6",
+   "log": "log/mcp-log/summary.json",
+   "events": "log/mcp-log/manual-raw.json.gz"
+  }
+ ]
+}

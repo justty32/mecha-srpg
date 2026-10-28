@@ -1,0 +1,63 @@
+{
+ "contract": "wf-table/1",
+ "source": "../REPORT.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "columns": [
+  "item",
+  "status",
+  "evidence",
+  "detail"
+ ],
+ "rows": [
+  {
+   "item": "first-round natural smoke5",
+   "status": "PASS",
+   "evidence": "log/smoke/seed-1..5",
+   "detail": "heat0; new ability AI3; CM01 2/2 and CM02 2/3 ability kinds; cold-spring AI0"
+  },
+  {
+   "item": "fixtures",
+   "status": "PASS accuracy2 mechanism-only",
+   "evidence": "log/fixtures/fixtures.json.gz",
+   "detail": {
+    "natural": false,
+    "partChecks": {
+     "baselineHasBoth": true,
+     "mastDisablesBoth": true,
+     "mastStillMoves": true,
+     "leftStillMoves": true,
+     "rightStillMoves": true,
+     "bothCannotMove": true,
+     "tracksDoNotRemoveGuns": true
+    },
+    "heatChecks": {
+     "reject29": true,
+     "allow30": true,
+     "castOK": true,
+     "removes30": true
+    },
+    "pass": true,
+    "raw": "fixtures.json.gz"
+   }
+  },
+  {
+   "item": "MCP",
+   "status": "PASS accuracy2 operator/protocol-only",
+   "evidence": "playtest.json",
+   "detail": "auto outcome+hash matches accuracy2 raw; manual complete rounds1–3; bell38->8/cold26->0; never claim accuracy6 same hash"
+  },
+  {
+   "item": "final15",
+   "status": "COMPLETED WITH BALANCE FLAGS",
+   "evidence": "log/round-2",
+   "detail": "CM01 reversed2/5 vs original5/5; CM02 accuracy6 original0/5 reversed0/5; natural bells15; no third round"
+  },
+  {
+   "item": "acceptance",
+   "status": "NOT ACCEPTED / NO CARRY",
+   "evidence": "user mainline ruling",
+   "detail": "all6 remain isolated draft; no split acceptance; integration pending; no waiver"
+  }
+ ]
+}

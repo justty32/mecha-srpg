@@ -1,0 +1,1337 @@
+{
+  "contract": "wf-table/1",
+  "source": "REPORT.md",
+  "extracted": "2026-10-28",
+  "columns": [
+    "matchup",
+    "seed",
+    "sameScenarioExceptEnemyMonster",
+    "grade",
+    "sameMap",
+    "sameRounds",
+    "samePlayerDefinitions",
+    "spawnRules",
+    "firstMoveFromNew",
+    "firstMoveFromReference",
+    "observedBothMovedPositionsMatch",
+    "uniqueInputChange",
+    "newRounds",
+    "referenceRounds",
+    "newOutcome",
+    "referenceOutcome",
+    "matchesReference",
+    "limitations"
+  ],
+  "rows": [
+    {
+      "matchup": "CK01",
+      "seed": 1,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "C",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v4",
+          "grade": "C",
+          "frameSha256": "fa9e7682be1881c88e244ea0d3089790515cc2fe5d5118e76bcb7d8686ee437b",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-ii",
+          "grade": "C",
+          "frameSha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v4",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-ii",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-crookbow",
+        "reference": "monster/spitter-c"
+      },
+      "newRounds": 10,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK01",
+      "seed": 2,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "C",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v4",
+          "grade": "C",
+          "frameSha256": "fa9e7682be1881c88e244ea0d3089790515cc2fe5d5118e76bcb7d8686ee437b",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-ii",
+          "grade": "C",
+          "frameSha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v4",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-ii",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          8
+        ],
+        "player-1": [
+          2,
+          12
+        ],
+        "enemy-0": [
+          17,
+          6
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          8
+        ],
+        "player-1": [
+          2,
+          12
+        ],
+        "enemy-0": [
+          17,
+          6
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-crookbow",
+        "reference": "monster/spitter-c"
+      },
+      "newRounds": 8,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK01",
+      "seed": 3,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "C",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v4",
+          "grade": "C",
+          "frameSha256": "fa9e7682be1881c88e244ea0d3089790515cc2fe5d5118e76bcb7d8686ee437b",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-ii",
+          "grade": "C",
+          "frameSha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v4",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-ii",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-crookbow",
+        "reference": "monster/spitter-c"
+      },
+      "newRounds": 9,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK01",
+      "seed": 4,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "C",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v4",
+          "grade": "C",
+          "frameSha256": "fa9e7682be1881c88e244ea0d3089790515cc2fe5d5118e76bcb7d8686ee437b",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-ii",
+          "grade": "C",
+          "frameSha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v4",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-ii",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          12
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          12
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-crookbow",
+        "reference": "monster/spitter-c"
+      },
+      "newRounds": 9,
+      "referenceRounds": 9,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK01",
+      "seed": 5,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "C",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v4",
+          "grade": "C",
+          "frameSha256": "fa9e7682be1881c88e244ea0d3089790515cc2fe5d5118e76bcb7d8686ee437b",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-ii",
+          "grade": "C",
+          "frameSha256": "3173c1a3c9b76ce38c3f38562d9da05b3e9b1e83bf1fdf2c6881798611633d05",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-rune-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "back-1": "component/mx-ash-mist",
+            "system-1": "component/mx-frost-fins"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v4",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-ii",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-crookbow",
+        "reference": "monster/spitter-c"
+      },
+      "newRounds": 9,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK02",
+      "seed": 1,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "B",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v7",
+          "grade": "B",
+          "frameSha256": "08aa6b2ae7754bfc4d0754aabf96f24c35553c2bd16f46632ea62043ed4d54f7",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-hawk-eye",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-frost-fins",
+            "armor-mount": "component/mx-porcelain-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-iv-rampart",
+          "grade": "B",
+          "frameSha256": "61a32cc366a96e2dbe1999775b6d7d9ad4bd3af37185d9d448721b14a9028f80",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v7",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-iv-rampart",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-keeljaw",
+        "reference": "monster/shelf-back-b"
+      },
+      "newRounds": 10,
+      "referenceRounds": 9,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK02",
+      "seed": 2,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "B",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v7",
+          "grade": "B",
+          "frameSha256": "08aa6b2ae7754bfc4d0754aabf96f24c35553c2bd16f46632ea62043ed4d54f7",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-hawk-eye",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-frost-fins",
+            "armor-mount": "component/mx-porcelain-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-iv-rampart",
+          "grade": "B",
+          "frameSha256": "61a32cc366a96e2dbe1999775b6d7d9ad4bd3af37185d9d448721b14a9028f80",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v7",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-iv-rampart",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          8
+        ],
+        "player-1": [
+          2,
+          12
+        ],
+        "enemy-0": [
+          17,
+          6
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          8
+        ],
+        "player-1": [
+          2,
+          12
+        ],
+        "enemy-0": [
+          17,
+          6
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-keeljaw",
+        "reference": "monster/shelf-back-b"
+      },
+      "newRounds": 9,
+      "referenceRounds": 9,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK02",
+      "seed": 3,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "B",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v7",
+          "grade": "B",
+          "frameSha256": "08aa6b2ae7754bfc4d0754aabf96f24c35553c2bd16f46632ea62043ed4d54f7",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-hawk-eye",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-frost-fins",
+            "armor-mount": "component/mx-porcelain-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-iv-rampart",
+          "grade": "B",
+          "frameSha256": "61a32cc366a96e2dbe1999775b6d7d9ad4bd3af37185d9d448721b14a9028f80",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v7",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-iv-rampart",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          6
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-keeljaw",
+        "reference": "monster/shelf-back-b"
+      },
+      "newRounds": 9,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK02",
+      "seed": 4,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "B",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v7",
+          "grade": "B",
+          "frameSha256": "08aa6b2ae7754bfc4d0754aabf96f24c35553c2bd16f46632ea62043ed4d54f7",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-hawk-eye",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-frost-fins",
+            "armor-mount": "component/mx-porcelain-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-iv-rampart",
+          "grade": "B",
+          "frameSha256": "61a32cc366a96e2dbe1999775b6d7d9ad4bd3af37185d9d448721b14a9028f80",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v7",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-iv-rampart",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          12
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          8
+        ],
+        "enemy-0": [
+          17,
+          12
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-keeljaw",
+        "reference": "monster/shelf-back-b"
+      },
+      "newRounds": 9,
+      "referenceRounds": 5,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    },
+    {
+      "matchup": "CK02",
+      "seed": 5,
+      "sameScenarioExceptEnemyMonster": true,
+      "grade": "B",
+      "sameMap": "base:map/skirmish-20",
+      "sameRounds": 30,
+      "samePlayerDefinitions": [
+        {
+          "frame": "frame/longspear-v7",
+          "grade": "B",
+          "frameSha256": "08aa6b2ae7754bfc4d0754aabf96f24c35553c2bd16f46632ea62043ed4d54f7",
+          "defaultLoadout": {
+            "right-weapon": "component/mx-starscar-lance",
+            "left-weapon": "component/mx-radiant-rifle",
+            "sensor-mount": "component/mx-hawk-eye",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "system-2": "component/mx-frost-fins",
+            "armor-mount": "component/mx-porcelain-plate"
+          },
+          "persons": [
+            {
+              "id": "base:person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        },
+        {
+          "frame": "frame/bulwark-iv-rampart",
+          "grade": "B",
+          "frameSha256": "61a32cc366a96e2dbe1999775b6d7d9ad4bd3af37185d9d448721b14a9028f80",
+          "defaultLoadout": {
+            "left-weapon": "component/mx-scatter-rune",
+            "right-weapon": "component/mx-xingtian-replica",
+            "armor-mount": "component/mx-runeweave-plate",
+            "back-1": "component/mx-ash-mist",
+            "back-2": "component/mx-falling-star-mortar",
+            "system-1": "component/mx-frost-fins",
+            "system-2": "component/mx-essence-cell"
+          },
+          "persons": [
+            {
+              "id": "base:person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "explicitAt": "zone",
+          "ai": "base:aiprofile/focus-fire"
+        }
+      ],
+      "spawnRules": {
+        "player": {
+          "faction": "base:faction/migrant-crew",
+          "units": [
+            {
+              "mech": "frame/longspear-v7",
+              "persons": [
+                {
+                  "id": "base:person/ren-kasai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            },
+            {
+              "mech": "frame/bulwark-iv-rampart",
+              "persons": [
+                {
+                  "id": "base:person/chen-xiaohai",
+                  "seat": "pilot"
+                }
+              ],
+              "at": "zone"
+            }
+          ],
+          "ai": "base:aiprofile/focus-fire"
+        },
+        "enemy": {
+          "faction": "base:faction/rift-insects",
+          "units": [
+            {
+              "at": "zone"
+            }
+          ]
+        }
+      },
+      "firstMoveFromNew": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "firstMoveFromReference": {
+        "player-0": [
+          2,
+          12
+        ],
+        "player-1": [
+          2,
+          10
+        ],
+        "enemy-0": [
+          17,
+          8
+        ]
+      },
+      "observedBothMovedPositionsMatch": {
+        "player-0": true,
+        "player-1": true,
+        "enemy-0": true
+      },
+      "uniqueInputChange": {
+        "new": "monster/night-ck-keeljaw",
+        "reference": "monster/shelf-back-b"
+      },
+      "newRounds": 8,
+      "referenceRounds": 8,
+      "newOutcome": "player/repelled",
+      "referenceOutcome": "player/repelled",
+      "matchesReference": true,
+      "limitations": "zone部署按同seed及相同單位數；記實際首移起點。僅自然種別所帶AI可隨唯一monster變因不同，未覆寫AI。未據撤退同向推斷根因或均勢。"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "id": "species/night-ck-crookbow",
+  "name": "偏弓",
+  "nameEn": "Crookbow",
+  "etymology": "不對稱弓冠被獵團叫作偏弓，側鏡衣垂在獨撐足旁。棘光越過斷艦的堤頭，鑽進弓下的獵機只看見牠披鏡退步；支足一斷，牠仍能向遠處送棘，卻再也退不開。弓冠受損不會自行封住內建招式。",
+  "family": "alien",
+  "gradeRange": [
+    "C"
+  ],
+  "baseAttrsByGrade": {
+    "C": {
+      "initiative": 9,
+      "perception": 6,
+      "accuracy": 55,
+      "evasion": 8
+    }
+  },
+  "abilities": [
+    "ability/night-ck-crookbow",
+    "ability/kx-mirror-turn"
+  ],
+  "aiProfile": "aiprofile/guerrilla",
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/night-ck-bio-crookbow"
+  },
+  "tags": [
+    "kaiju",
+    "alien"
+  ],
+  "bodyPlan": "bodyplan/night-ck-crookbow",
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 8,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 8,
+      "regen": 8,
+      "bands": []
+    }
+  ],
+  "behaviors": {
+    "telegraph": true
+  }
+}

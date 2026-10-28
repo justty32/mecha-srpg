@@ -1,0 +1,67 @@
+{
+  "id": "frame/night-cm-twinwick",
+  "name": "長槍-V4・並燭",
+  "nameEn": "Longspear Twinwick V4",
+  "etymology": "Twinwick 取同架兩點燭火，並燭是長槍-V4 的低履帶旁型。兩支連吼集中在高槍架，光矢耗流光、紋刻矢另用矢池。槍架折斷便一同失聲，完整的履架仍可倒退；單側履架毀損不會讓整機停住，雙側皆毀才失去移動。此型沒有內建拳頭或架砲。",
+  "cls": "mechanical",
+  "bodyPlan": "bodyplan/night-cm-twinwick",
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 6,
+    "accuracy": 4
+  },
+  "defaultLoadout": {
+    "mast-light": "component/mx-radiant-rifle",
+    "mast-rune": "component/mx-rune-rifle"
+  },
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "universal",
+    "series-longspear",
+    "lineage-jinghai",
+    "mech",
+    "human",
+    "track"
+  ],
+  "grade": "C",
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125.0,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125.0,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "charge",
+      "name": "流光",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 12,
+      "bands": []
+    }
+  ]
+}

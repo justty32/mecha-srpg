@@ -1,0 +1,66 @@
+{
+  "id": "species/night-ck-keeljaw",
+  "name": "沉顎",
+  "nameEn": "Keeljaw",
+  "etymology": "沉顎是獵團按垂近甲板的重顎取的俗名，翻艦般的背稜壓在四足之上。牠銜向機甲關節，停口時才仰天群吼，替身旁同伴提起準頭；厚顎是拘束前得打破的部位，受損並不自動封住重咬。",
+  "family": "beast",
+  "gradeRange": [
+    "B"
+  ],
+  "baseAttrsByGrade": {
+    "B": {
+      "initiative": 8,
+      "perception": 7,
+      "accuracy": 60,
+      "evasion": 8
+    }
+  },
+  "abilities": [
+    "ability/night-ck-keeljaw",
+    "ability/kx-star-howl"
+  ],
+  "aiProfile": "aiprofile/kx-beast-alpha",
+  "capture": {
+    "requireIntact": [
+      "core"
+    ],
+    "requireBroken": [
+      "locomotion",
+      "manipulator"
+    ],
+    "ability": "ability/restrain",
+    "frame": "frame/night-ck-bio-keeljaw"
+  },
+  "tags": [
+    "kaiju",
+    "beast"
+  ],
+  "bodyPlan": "bodyplan/night-ck-keeljaw",
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 25,
+      "regen": 7,
+      "bands": []
+    },
+    {
+      "id": "ap",
+      "name": "行動點",
+      "min": 0,
+      "max": 7,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 7,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "behaviors": {
+    "telegraph": true
+  }
+}

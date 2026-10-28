@@ -1,0 +1,35 @@
+{
+  "id": "frame/night-ck-bio-crookbow",
+  "name": "生物機甲・偏弓",
+  "cls": "bio",
+  "grade": "C",
+  "bodyPlan": "bodyplan/night-ck-crookbow",
+  "baseAttrs": {
+    "initiative": 9,
+    "perception": 6
+  },
+  "innateAbilities": [
+    "ability/night-ck-crookbow",
+    "ability/kx-mirror-turn"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "pools": [
+    {
+      "id": "instinct",
+      "name": "本能",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 20,
+      "regen": 5,
+      "bands": []
+    }
+  ],
+  "tags": [
+    "bio",
+    "alien",
+    "kaiju"
+  ],
+  "burden": 6
+}

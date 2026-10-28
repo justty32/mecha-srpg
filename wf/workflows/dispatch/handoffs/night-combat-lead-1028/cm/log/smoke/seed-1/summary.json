@@ -1,0 +1,100 @@
+{
+  "group": "smoke",
+  "seed": 1,
+  "natural": true,
+  "initialHeat": {
+    "player-0": 0,
+    "player-1": 0,
+    "player-2": 0
+  },
+  "winner": "player",
+  "reason": "eliminate",
+  "rounds": 8,
+  "stopped": "outcome",
+  "hash": "e61544bc33c01f03",
+  "rejected": 0,
+  "deaths": 0,
+  "events": 750,
+  "coverage": {
+    "ability/kx-burrow-flank": 1,
+    "ability/kx-carrion-gulp": 2,
+    "ability/kx-shovel-ram": 9,
+    "ability/mx-ash-screen": 2,
+    "ability/mx-guard-stance": 3,
+    "ability/mx-molten-cut": 4,
+    "ability/mx-radiant-shot": 8,
+    "ability/mx-rune-shot": 3,
+    "ability/mx-scatter-blast": 1,
+    "ability/night-cm-cinderbell": 1,
+    "ability/reaper-charge": 1,
+    "ability/reaper-cleave": 9
+  },
+  "units": {
+    "enemy-0": {
+      "frame": "base:species/reaper",
+      "status": "retreated",
+      "abilities": {
+        "ability/reaper-charge": 1,
+        "ability/reaper-cleave": 9
+      },
+      "heat": null
+    },
+    "enemy-1": {
+      "frame": "base:species/hound",
+      "status": "retreated",
+      "abilities": {
+        "ability/kx-burrow-flank": 1,
+        "ability/kx-carrion-gulp": 2,
+        "ability/kx-shovel-ram": 9
+      },
+      "heat": null
+    },
+    "player-0": {
+      "frame": "base:frame/night-cm-twinwick",
+      "status": "active",
+      "abilities": {
+        "ability/mx-radiant-shot": 8,
+        "ability/mx-rune-shot": 2
+      },
+      "heat": {
+        "cur": 54,
+        "max": 100,
+        "regen": -15,
+        "band": -1
+      }
+    },
+    "player-1": {
+      "frame": "base:frame/night-cm-cinderbell",
+      "status": "active",
+      "abilities": {
+        "ability/mx-molten-cut": 4,
+        "ability/night-cm-cinderbell": 1
+      },
+      "heat": {
+        "cur": 2,
+        "max": 120,
+        "regen": -8,
+        "band": -1
+      }
+    },
+    "player-2": {
+      "frame": "base:frame/bulwark-ii",
+      "status": "active",
+      "abilities": {
+        "ability/mx-ash-screen": 2,
+        "ability/mx-guard-stance": 3,
+        "ability/mx-rune-shot": 1,
+        "ability/mx-scatter-blast": 1
+      },
+      "heat": {
+        "cur": 12,
+        "max": 100,
+        "regen": -15,
+        "band": -1
+      }
+    }
+  },
+  "newAbilityAIUses": 1,
+  "fullRaw": "run.json.gz",
+  "rawEvents": "events.json.gz"
+}

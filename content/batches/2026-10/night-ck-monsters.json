@@ -1,0 +1,127 @@
+{
+  "contract": "content-batch/1",
+  "id": "night-ck-monsters",
+  "mode": "add",
+  "status": "draft",
+  "goal": "核可CK01偏弓/CK02沉顎新species13檔，只展示未營運",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "night-ck",
+    "subagents": 0
+  },
+  "lead": "night-combat-lead-1028",
+  "date": "2026-10-28",
+  "base": "4097630563f4b224650362d1074b43d0e1bd609e",
+  "reportDir": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/ck",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/ck/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/dispatch/handoffs/night-combat-lead-1028.md",
+      "wf/workflows/dispatch/handoffs/night-combat-plan-1028/CK-monsters.md",
+      "wf/workflows/content/bio-monsters.md",
+      "wf/workflows/content/abilities-effects.md",
+      "wf/workflows/content/acceptance-playtest.md",
+      "wf/workflows/content/playtest.md",
+      "wf/workflows/common/conventions.md",
+      "wf/workflows/common/code-map.md",
+      "content/lore/style.md"
+    ]
+  },
+  "maxFiles": 13,
+  "allow": {
+    "kinds": [
+      "base/species",
+      "base/bodyplans",
+      "base/monsters",
+      "base/abilities",
+      "base/frames",
+      "base/scenarios"
+    ],
+    "namePrefix": {
+      "base/*": "night-ck-"
+    },
+    "modify": []
+  },
+  "files": [
+    "content/base/species/night-ck-crookbow.json",
+    "content/base/bodyplans/night-ck-crookbow.json",
+    "content/base/monsters/night-ck-crookbow.json",
+    "content/base/abilities/night-ck-crookbow.json",
+    "content/base/frames/night-ck-bio-crookbow.json",
+    "content/base/frames/night-ck-corpse-crookbow.json",
+    "content/base/species/night-ck-keeljaw.json",
+    "content/base/bodyplans/night-ck-keeljaw.json",
+    "content/base/monsters/night-ck-keeljaw.json",
+    "content/base/abilities/night-ck-keeljaw.json",
+    "content/base/frames/night-ck-bio-keeljaw.json",
+    "content/base/frames/night-ck-corpse-keeljaw.json",
+    "content/base/scenarios/night-ck-broken-keel.json"
+  ],
+  "ids": [
+    "species/night-ck-crookbow",
+    "bodyplan/night-ck-crookbow",
+    "monster/night-ck-crookbow",
+    "ability/night-ck-crookbow",
+    "frame/night-ck-bio-crookbow",
+    "frame/night-ck-corpse-crookbow",
+    "species/night-ck-keeljaw",
+    "bodyplan/night-ck-keeljaw",
+    "monster/night-ck-keeljaw",
+    "ability/night-ck-keeljaw",
+    "frame/night-ck-bio-keeljaw",
+    "frame/night-ck-corpse-keeljaw",
+    "scenario/night-ck-broken-keel"
+  ],
+  "checks": [
+    "check",
+    "typecheck",
+    "probe",
+    "playtest",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [
+      "monster/spitter-c",
+      "monster/shelf-back-b"
+    ],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 1,
+    "file": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/ck/playtest.json",
+    "logDir": "wf/workflows/dispatch/handoffs/night-combat-lead-1028/ck/mcp-log"
+  },
+  "acceptance": {
+    "local": "accepted-under-existing-matchesReference-rule",
+    "integration": "pending",
+    "newWaivers": [],
+    "allTenPairsConditionsVerified": true,
+    "all25RunsStoppedOutcome": true,
+    "naturalCoverage": {
+      "base:ability/night-ck-crookbow": 25,
+      "base:ability/kx-mirror-turn": 19,
+      "base:ability/night-ck-keeljaw": 17,
+      "base:ability/kx-star-howl": 6
+    },
+    "boundedRunnerReplaces": [
+      "five-seed scenario smoke",
+      "five-seed two same-grade monster/control pairs",
+      "six narrow fixtures",
+      "MCP auto and manual three complete rounds"
+    ],
+    "notExecuted": [
+      "npm content:probe",
+      "full content_accept.sh",
+      "full suite",
+      "complete bio/corpse combat"
+    ],
+    "bioCorpseScope": "only data/shared skeleton/layer/capture fixture; not full combat",
+    "warningsAdded": 2
+  },
+  "rounds": [],
+  "gateRejections": []
+}

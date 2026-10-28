@@ -1,0 +1,411 @@
+{
+  "group": "CM01",
+  "seed": 5,
+  "side": "reverse",
+  "phase": "round-2",
+  "newSlot": "enemy",
+  "CM02accuracy": 6,
+  "natural": true,
+  "initialHeat": {
+    "enemy-0": 0,
+    "player-0": 0
+  },
+  "winner": "player",
+  "reason": "eliminate",
+  "rounds": 8,
+  "stopped": "outcome",
+  "hash": "113229c047b84d1d",
+  "rejected": 0,
+  "deaths": 0,
+  "events": 382,
+  "coverage": {
+    "ability/m2-brace-deploy": 2,
+    "ability/mx-radiant-shot": 16,
+    "ability/mx-rune-shot": 6
+  },
+  "units": {
+    "enemy-0": {
+      "frame": "base:frame/night-cm-twinwick",
+      "status": "retreated",
+      "abilities": {
+        "ability/mx-radiant-shot": 8,
+        "ability/mx-rune-shot": 2
+      },
+      "heat": {
+        "cur": 54,
+        "max": 100,
+        "regen": -15,
+        "band": -1
+      }
+    },
+    "player-0": {
+      "frame": "base:frame/longspear-kneeler-v2",
+      "status": "active",
+      "abilities": {
+        "ability/m2-brace-deploy": 2,
+        "ability/mx-radiant-shot": 8,
+        "ability/mx-rune-shot": 4
+      },
+      "heat": {
+        "cur": 78,
+        "max": 100,
+        "regen": -15,
+        "band": -1
+      }
+    }
+  },
+  "newAbilityAIUses": 0,
+  "fullRaw": "run.json.gz",
+  "rawEvents": "events.json.gz",
+  "diagnostics": {
+    "initialInitiative": {
+      "enemy-0": 13,
+      "player-0": 13
+    },
+    "firstActor": "enemy-0",
+    "firstLegalOpportunity": {
+      "player-0": {
+        "step": 3,
+        "round": 1,
+        "ability": "base:ability/mx-radiant-shot",
+        "target": {
+          "unit": "enemy-0"
+        },
+        "pos": {
+          "x": 4,
+          "y": 8
+        },
+        "heat": 0,
+        "scope": "rules legality in full state, sampled before actual commands; no counterfactual movement or AI-visibility claim"
+      },
+      "enemy-0": {
+        "step": 6,
+        "round": 2,
+        "ability": "base:ability/mx-radiant-shot",
+        "target": {
+          "unit": "player-0"
+        },
+        "pos": {
+          "x": 10,
+          "y": 10
+        },
+        "heat": 0,
+        "scope": "rules legality in full state, sampled before actual commands; no counterfactual movement or AI-visibility claim"
+      }
+    },
+    "firstLegalExecutedAttack": {
+      "player-0": {
+        "step": 4,
+        "round": 1,
+        "command": {
+          "kind": "useAbility",
+          "actor": "player-0",
+          "ability": "base:ability/mx-radiant-shot",
+          "target": {
+            "unit": "enemy-0"
+          }
+        },
+        "rejection": null
+      },
+      "enemy-0": {
+        "step": 7,
+        "round": 2,
+        "command": {
+          "kind": "useAbility",
+          "actor": "enemy-0",
+          "ability": "base:ability/mx-radiant-shot",
+          "target": {
+            "unit": "player-0"
+          }
+        },
+        "rejection": null
+      }
+    },
+    "initialPositions": {
+      "enemy-0": {
+        "x": 17,
+        "y": 6
+      },
+      "player-0": {
+        "x": 2,
+        "y": 6
+      }
+    },
+    "combat": {
+      "enemy-0": {
+        "initialHP": 387,
+        "finalHP": 239,
+        "status": "retreated",
+        "brokenParts": [
+          "gun-mast"
+        ],
+        "damagedParts": {
+          "gun-mast": 30,
+          "left-track": 21,
+          "right-track": 43,
+          "back": 15
+        },
+        "strikes": [
+          {
+            "round": 2,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 44,
+            "roll": 72,
+            "part": null
+          },
+          {
+            "round": 3,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 58,
+            "part": null
+          },
+          {
+            "round": 3,
+            "type": "Hit",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 32,
+            "part": "front-right"
+          },
+          {
+            "round": 4,
+            "type": "Hit",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 53,
+            "part": "back"
+          },
+          {
+            "round": 4,
+            "type": "Hit",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 21,
+            "part": "rear-left"
+          },
+          {
+            "round": 5,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 74,
+            "part": null
+          },
+          {
+            "round": 6,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 57,
+            "roll": 69,
+            "part": null
+          },
+          {
+            "round": 6,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 52,
+            "roll": 67,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Miss",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 60,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Hit",
+            "unit": "enemy-0",
+            "target": "player-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 49,
+            "roll": 18,
+            "part": "rear-right"
+          }
+        ],
+        "retreatEvidence": [
+          {
+            "seq": 351,
+            "round": 7,
+            "type": "PartBroken",
+            "payload": {
+              "unit": "enemy-0",
+              "part": "gun-mast"
+            },
+            "turn": "player-0"
+          },
+          {
+            "seq": 380,
+            "round": 8,
+            "type": "Retreated",
+            "payload": {
+              "unit": "enemy-0"
+            },
+            "turn": "enemy-0"
+          }
+        ],
+        "retreatCausality": "Retreated event has no decision-reason field; do not infer exact AI branch from final HP alone."
+      },
+      "player-0": {
+        "initialHP": 410,
+        "finalHP": 324,
+        "status": "active",
+        "brokenParts": [],
+        "damagedParts": {
+          "front-right": 57,
+          "rear-left": 18,
+          "rear-right": 21,
+          "back": 12
+        },
+        "strikes": [
+          {
+            "round": 1,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 39,
+            "roll": 19,
+            "part": "right-track"
+          },
+          {
+            "round": 2,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 80,
+            "part": null
+          },
+          {
+            "round": 2,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 96,
+            "part": null
+          },
+          {
+            "round": 3,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 11,
+            "part": "left-track"
+          },
+          {
+            "round": 3,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 31,
+            "part": "gun-mast"
+          },
+          {
+            "round": 4,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 94,
+            "part": null
+          },
+          {
+            "round": 4,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 49,
+            "roll": 26,
+            "part": "gun-mast"
+          },
+          {
+            "round": 5,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 54,
+            "roll": 73,
+            "part": null
+          },
+          {
+            "round": 6,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-radiant-shot",
+            "chance": 52,
+            "roll": 6,
+            "part": "left-track"
+          },
+          {
+            "round": 6,
+            "type": "Miss",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 49,
+            "roll": 69,
+            "part": null
+          },
+          {
+            "round": 7,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 49,
+            "roll": 32,
+            "part": "back"
+          },
+          {
+            "round": 7,
+            "type": "Hit",
+            "unit": "player-0",
+            "target": "enemy-0",
+            "ability": "base:ability/mx-rune-shot",
+            "chance": 49,
+            "roll": 10,
+            "part": "gun-mast"
+          }
+        ],
+        "retreatEvidence": [],
+        "retreatCausality": "Retreated event has no decision-reason field; do not infer exact AI branch from final HP alone."
+      }
+    }
+  }
+}

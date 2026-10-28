@@ -1,0 +1,96 @@
+{
+ "contract": "wf-table/1",
+ "source": "../briefs/cm-mechs.md",
+ "extracted": "2026-10-28",
+ "link_columns": [],
+ "columns": [
+  "id",
+  "類別",
+  "名稱",
+  "白話",
+  "檔",
+  "引用",
+  "基準",
+  "取得",
+  "數值",
+  "驗證狀態",
+  "目前結論",
+  "驗證更新"
+ ],
+ "rows": [
+  {
+   "id": "CM01",
+   "類別": "機械系機甲",
+   "名稱": "長槍-V4・並燭",
+   "白話": "雙槍共用突出槍架；架斷全失聲，左右履架各自支撐倒退。",
+   "檔": [
+    "content/base/frames/night-cm-twinwick.json",
+    "content/base/bodyplans/night-cm-twinwick.json"
+   ],
+   "引用": [
+    "component/mx-radiant-rifle",
+    "component/mx-rune-rifle",
+    "ability/mx-radiant-shot",
+    "ability/mx-rune-shot",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "effect/injury-concussion"
+   ],
+   "基準": "frame/longspear-kneeler-v2",
+   "取得": "只展示，未接model、市場或營運",
+   "數值": {
+    "grade": "C",
+    "bodyHP": 355,
+    "componentHP": 32,
+    "totalHP": 387,
+    "mass": 5,
+    "heat": "0/100, regen -15",
+    "charge": "60/60, regen 12",
+    "parts": 6,
+    "bodyLayers": 12,
+    "reference": "frame/longspear-kneeler-v2",
+    "帶": "HP387在C300–420；initiative6/perception6；既有光矢22/AP3超C單發建議20、range7超C常見5，均為凍結沿用既有能力，不改基準。"
+   },
+   "驗證狀態": "check通過；typecheck環境阻塞exit127；五seed、自然AI、新招、機制窄測與MCP全部未跑；修訂0輪，弱B最多2輪，不加waiver。",
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  },
+  {
+   "id": "CM02",
+   "類別": "機械系機甲",
+   "名稱": "鐵砧-IV型・燼鐘",
+   "白話": "熔鋸先積燼，鐘口再攻擊卸燼；提早用寒泉會延後下一鐘。",
+   "檔": [
+    "content/base/frames/night-cm-cinderbell.json",
+    "content/base/components/night-cm-cinderbell.json",
+    "content/base/abilities/night-cm-cinderbell.json"
+   ],
+   "引用": [
+    "bodyplan/mx-biped-b",
+    "component/mx-molten-saw",
+    "component/mx-cold-spring",
+    "ability/mx-molten-cut",
+    "ability/mx-cold-vent",
+    "effect/overheat-1",
+    "effect/overheat-2",
+    "effect/mx-burning"
+   ],
+   "基準": "frame/anvil-iv-ram",
+   "取得": "只展示，未接model、市場或營運",
+   "數值": {
+    "grade": "B",
+    "bodyHP": 445,
+    "componentHP": 42,
+    "totalHP": 487,
+    "mass": 8,
+    "heat": "0/120, regen -8",
+    "charge": "未宣告",
+    "reference": "frame/anvil-iv-ram",
+    "帶": "HP487在B420–560；initiative5/perception5/evasion-2在帶；regen-8慢於B建議-15至-20是凍結蓄燼代價，非實測waiver。熔鋸18/AP4=4.5低於B單體效率5–6.5，須與完整基準比較，尚未判強弱。"
+   },
+   "驗證狀態": "check通過；typecheck環境阻塞exit127；五seed、自然AI、新招、機制窄測與MCP全部未跑；修訂0輪，弱B最多2輪，不加waiver。",
+   "目前結論": "主線裁決CM整批六檔不carry、不拆收、不入庫；draft/integration pending/local not-accepted。最後一輪僅CM02 accuracy2→6，保留全部初末輪原始證據，不第三輪、不waiver。",
+   "驗證更新": "check exit0；leader typecheck exit0，原127屬歷史。第一輪fixture/MCP為accuracy2快照；最後輪accuracy6雙側0/5，CM01換側2/5。"
+  }
+ ]
+}
