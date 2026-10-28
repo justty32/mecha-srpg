@@ -1,0 +1,95 @@
+{
+  "contract": "content-batch/1",
+  "id": "night-p-two-ledgers",
+  "mode": "add",
+  "status": "draft",
+  "goal": "核可兩可玩人物與對應lore五檔，只展示不招募，自然base值不預掛traits",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "night-pilots",
+    "subagents": 0
+  },
+  "lead": "night-pilots-lead-1028",
+  "date": "2026-10-28",
+  "base": "5680c463b8b864d08f97340c739384a02792f492",
+  "reportDir": "wf/workflows/dispatch/handoffs/night-pilots-lead-1028",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/night-pilots-lead-1028/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/ancient-people.md",
+      "wf/workflows/content/acceptance-playtest.md",
+      "wf/workflows/content/playtest.md",
+      "wf/workflows/dispatch/content-batch.md",
+      "wf/workflows/testing.md",
+      "content/lore/README.md",
+      "content/lore/style.md",
+      "wf/workflows/dispatch/handoffs/night-pilots-lead-1028.md",
+      "wf/workflows/dispatch/handoffs/night-pilots-plan-1028/PLAN.md",
+      "wf/workflows/dispatch/handoffs/night-pilots-plan-1028/SHOWCASE.md",
+      "wf/workflows/dispatch/handoffs/night-pilots-plan-1028/REPORT.md"
+    ]
+  },
+  "maxFiles": 5,
+  "allow": {
+    "kinds": [
+      "base/persons",
+      "lore/characters",
+      "base/scenarios"
+    ],
+    "namePrefix": {
+      "base/*": "night-p-",
+      "lore/*": "night-p-"
+    },
+    "modify": []
+  },
+  "files": [
+    "content/base/persons/night-p-serin-sowe.json",
+    "content/lore/characters/night-p-serin-sowe.json",
+    "content/base/persons/night-p-mateus-vieira.json",
+    "content/lore/characters/night-p-mateus-vieira.json",
+    "content/base/scenarios/night-p-two-ledgers.json"
+  ],
+  "ids": [
+    "person/night-p-serin-sowe",
+    "character/night-p-serin-sowe",
+    "person/night-p-mateus-vieira",
+    "character/night-p-mateus-vieira",
+    "scenario/night-p-two-ledgers"
+  ],
+  "checks": [
+    "check",
+    "lore",
+    "typecheck",
+    "probe",
+    "playtest",
+    "readlist"
+  ],
+  "probe": {
+    "n": 5,
+    "reference": [],
+    "waivers": []
+  },
+  "playtest": {
+    "required": 1,
+    "file": "wf/workflows/dispatch/handoffs/night-pilots-lead-1028/playtest.json"
+  },
+  "acceptance": {
+    "local": "passed-bounded-showcase",
+    "integration": "pending",
+    "checks": "check/lore/typecheck/gate/readlist/playtest evaluator exit0",
+    "probeEvaluation": "existing20-config evidence eval exit0; CLI and full content_accept not executed",
+    "scope": "five natural + five P01-only replacement + five P02-only replacement + five position swap; MCP auto/manual seed1 separate",
+    "naturalTraits": "effects/contribs empty; actual base attributes used",
+    "runnerReleasedBy": "2026-10-28T22:21:52+08:00",
+    "limits": "all groups5/5 player wins are observations, not balance/ranking/single-attribute causation; twelve existing frame/ability band findings preserved",
+    "noNewWaivers": true
+  },
+  "rounds": [],
+  "gateRejections": []
+}

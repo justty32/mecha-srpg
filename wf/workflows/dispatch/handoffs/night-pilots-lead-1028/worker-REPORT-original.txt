@@ -1,0 +1,55 @@
+## 已讀清單
+
+共通 wf 沿用本 session A 工人親讀；person、核可四正文、設計附件及近鄰已補讀。以下完整列 manifest mustRead：
+
+- `AGENTS.md`
+- `wf/workflows/common/user.md`
+- `wf/workflows/content/README.md`
+- `wf/workflows/content/batch.md`
+- `wf/workflows/content/ancient-people.md`
+- `wf/workflows/content/acceptance-playtest.md`
+- `wf/workflows/content/playtest.md`
+- `wf/workflows/dispatch/content-batch.md`
+- `wf/workflows/testing.md`
+- `content/lore/README.md`
+- `content/lore/style.md`
+- `wf/workflows/dispatch/handoffs/night-pilots-lead-1028.md`
+- `wf/workflows/dispatch/handoffs/night-pilots-plan-1028/PLAN.md`
+- `wf/workflows/dispatch/handoffs/night-pilots-plan-1028/SHOWCASE.md`
+- `wf/workflows/dispatch/handoffs/night-pilots-plan-1028/REPORT.md`
+
+讀取範圍與雜湊見 [readlist.json](readlist.json)，包含有界查詢與原碼段落；未改前輪 A 的 hash 證據。
+
+## 產出
+
+DONE：Carson 原 ID、子代理 0。隔離工作樹 `/tmp/night-pilots-lead-1028/wt-pilots` 僅新增核可 2 person＋2 lore＋1 scenario。五檔共 11,191 bytes，最高 3,005 bytes，低於每檔16KB／合計80KB。逐檔清單與交稿 hash 在 [files.json](files.json)。
+
+瑟琳・索韋的故事是為連中紀錄改瞄大護板，命中卻未攔敵，貨架被毀；馬特烏斯・維埃拉是為買車股離隊追獸，假報求援被車號揭穿，自付拖機。正文各四小標，可見非空白字元785／786、純漢字705／711，均在650–900字。兩人2079／2076生、勢力阿克拉／環線、各自gameRefs與person一致，relations/events空，不增重大戰果或反向關係。
+
+兩本帳是跨勢力借機展示：相同長槍-V4與完整既有預設配裝，map/skirmish-20、rounds30、seed102815，對reaper-c＋mite-d；只有pilot，無soul、state或效果覆寫，只展示未招募。[review.json](review.json)、[naming.json](naming.json)、[dedup.json](dedup.json)已附核可摘要、命名及寫前／交稿語義差異。
+
+## 驗證與展示證據
+
+三項各執行一次，均exit **0**：[checks.json](checks.json)記真實命令、cwd與完整原輸出。`npm run check` 的loader為0錯43警告，ops為0錯17警告；`node content/lore/check.ts` 為0錯0警告；`npm run typecheck` 通過。警告指既有內容，未額外跑基底做新增警告差集，不冒稱零警告。
+
+CK釋放GO後以 `nice -n 19 taskset -c 0,1` 串行執行，復用CM窄驅動的載入／runBattle／stdio／保存重播流程，未建通用框架。SHOWCASE共20個seed配置，四組各seed1–5：自然5、只換P01為exp-adela-miro 5、只換P02為exp-miyasaka-gaku 5、只交換兩玩家初始部署5。frame、AI、敵方、配裝不變；每個配置都有完整輸入、自然初值、run與event壓縮原始輸出。全部到outcome、20場零throw、零run拒絕、零重播拒絕。逐人初值／位置／動作／命中Miss／存活與合法首攻見 [comparison.json](comparison.json)。
+
+自然初值實測：瑟琳person＝56/6/44/5/7/46，馬特烏斯＝48/9/56/7/6/50（準／迴／志／反／感／操）。合併同長槍後為60/6/44/11/13/46及52/9/56/13/12/50，與核可靜態值一致。五seed各人都有checkAbility返回null的實際首攻證據；自然AbilityUsed總數60／66，各次都可追到unit、seat及真實PersonDef。所有20配置初始effects/contribs都空，未預掛traits。
+
+四組全部5/5玩家勝，平均輪數依序8.4／8.2／10.2／8.2。自然組兩人Hit/Miss為23/37、30/36；此為所有招式混合事件，非單一槍命中率。差異涉及多屬性、部署、AI與隨機軌跡，不作單屬性因果或正式排名。未為全勝調敵方、共享件或AI。
+
+MCP seed1 auto在第8輪到outcome：player勝、eliminate/repelled，hash `cc658404d3a1054d`，與自然seed1一致。另開seed1手動完成RoundEnd 1、2、3，進入第4輪；41條保存命令、零拒絕，逐步observe→legal_actions→act，兩person各6次實際AbilityUsed，重播hash一致。手動選招不充當自然AI證據；未聲稱手動場已到outcome。[playtest.json](playtest.json)與 [MCP摘要](mcp-evidence.txt)指向原stdio、save及無新AI決策的完整重播證據。
+
+20個配置以外只執行SHOWCASE指定的MCP auto／manual同seed1，未擴新配置。最後MCP結果於22:21:27落地，22:21:52前已由原生工具確認exit0、重負載釋放。主線隨後收回重驗權；不再開測，不等待22:35。五個內容JSON自三項輕量檢查後未改。
+
+## 限制與未跑命令
+
+makePerson自然路徑不掛PersonDef.traits，特質僅資料宣告；沒有把標稱加減算成已生效，沒有預填effects/contribs或修引擎。只在機械同frame展示，control/will差異不宣稱已形成可見特殊玩法；未接招募、營運市場或新能力。
+
+未額外執行 `npm run content:probe` CLI、content_gate、content_accept、node --test或任何全套suite。`probe.json`、`probe-reference.json`、`probe-position.json`只重整本輪20配置既有原始run，以原生planProbe讀數值帶及沿Trial口徑統計，不是另跑CLI或新seed。原生帶掃描列12項既有frame／能力帶外，未改數值或隱去。自然組及兩個單人替換對照皆全勝；一般勝率門檻仍可能亮旗，本線沒有waiver、未宣稱accepted或平衡通過，manifest保留draft／integration pending交領導裁決。
+
+窄驅動第一批輸出曾把檔尾換行寫成字面反斜線n，已僅修檔尾序列化並補正驅動；實際run/events資料未改，未為此重跑seed。所有原始事件仍可解壓解析。
+
+## 待決與收件
+
+沒有新增設計裁決。局部資料與SHOWCASE證據齊，是否carry與正式gate／content_accept由領導處理；不自行改manifest或補waiver。交稿git狀態為五個核可新內容檔，加上開場即存在且未動的node_modules連接；沒有既有內容修改、git寫入、下載、GUI或子代理。報告與runner/log全限本線目錄，證據約2.7MB，低於10MB。

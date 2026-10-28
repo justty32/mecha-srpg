@@ -1,0 +1,86 @@
+{
+  "kind": "human",
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "id": "person/night-p-mateus-vieira",
+  "name": "馬特烏斯・維埃拉",
+  "nameEn": "Mateus Vieira",
+  "etymology": "虛構人名；Mateus Vieira為羅馬字寫法，不是機甲稱號。",
+  "attrs": {
+    "accuracy": 48,
+    "evasion": 9,
+    "resolve": 56,
+    "initiative": 7,
+    "perception": 6,
+    "control": 50
+  },
+  "traits": [
+    "effect/ax-trait-fate-cheater"
+  ],
+  "perks": [],
+  "will": {
+    "beliefs": [
+      "outwit-fate",
+      "survive"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "tags": [
+    "human",
+    "pilot"
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "kind": "human",
+  "pools": [
+    {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+    },
+    {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+    },
+    {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 52,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 52,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+        "effect/dead"
+      ]
+    }
+  ],
+  "growth": {
+    "xpCurve": "curve/bb-default",
+    "levelDice": {},
+    "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+    ]
+  },
+  "id": "person/night-p-serin-sowe",
+  "name": "瑟琳・索韋",
+  "nameEn": "Serin Sowe",
+  "etymology": "虛構人名；Serin Sowe為羅馬字寫法，不是機甲稱號。",
+  "attrs": {
+    "accuracy": 56,
+    "evasion": 6,
+    "resolve": 44,
+    "initiative": 5,
+    "perception": 7,
+    "control": 46
+  },
+  "traits": [
+    "effect/ax-trait-grudge-ledger"
+  ],
+  "perks": [],
+  "will": {
+    "beliefs": [
+      "hunger-for-glory",
+      "keep-watch"
+    ],
+    "burdenLimit": {
+      "ref": "self.attrs.resolve"
+    }
+  },
+  "tags": [
+    "human",
+    "pilot"
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "group": "replace-P02",
+  "seed": 4,
+  "natural": true,
+  "people": {
+    "player-0-pilot": {
+      "def": "base:person/night-p-serin-sowe",
+      "seat": {
+        "mech": "player-0",
+        "role": "pilot"
+      },
+      "attrsBase": {
+        "accuracy": 56,
+        "evasion": 6,
+        "resolve": 44,
+        "initiative": 5,
+        "perception": 7,
+        "control": 46
+      },
+      "effects": [],
+      "contribs": [],
+      "roleAttrs": {
+        "accuracy": 60,
+        "evasion": 6,
+        "resolve": 44,
+        "initiative": 11,
+        "perception": 13,
+        "control": 46
+      }
+    },
+    "player-1-pilot": {
+      "def": "base:person/exp-miyasaka-gaku",
+      "seat": {
+        "mech": "player-1",
+        "role": "pilot"
+      },
+      "attrsBase": {
+        "accuracy": 57,
+        "evasion": 12,
+        "resolve": 43,
+        "initiative": 8,
+        "perception": 6,
+        "control": 42
+      },
+      "effects": [],
+      "contribs": [],
+      "roleAttrs": {
+        "accuracy": 61,
+        "evasion": 12,
+        "resolve": 43,
+        "initiative": 14,
+        "perception": 12,
+        "control": 42
+      }
+    }
+  },
+  "units": {
+    "enemy-0": {
+      "frame": "base:species/reaper",
+      "owner": "enemy",
+      "position": {
+        "x": 17,
+        "y": 12
+      },
+      "persons": [],
+      "status": "dead",
+      "abilities": {
+        "ability/reaper-charge": 2,
+        "ability/reaper-cleave": 27
+      },
+      "actions": 50,
+      "hits": 8,
+      "misses": 21,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    "enemy-1": {
+      "frame": "base:species/mite",
+      "owner": "enemy",
+      "position": {
+        "x": 17,
+        "y": 8
+      },
+      "persons": [],
+      "status": "dead",
+      "abilities": {
+        "ability/mite-swarm-bite": 8
+      },
+      "actions": 13,
+      "hits": 3,
+      "misses": 5,
+      "turnRounds": [
+        1,
+        2,
+        3
+      ]
+    },
+    "player-0": {
+      "frame": "base:frame/longspear-v4",
+      "owner": "player",
+      "position": {
+        "x": 2,
+        "y": 6
+      },
+      "persons": [
+        "base:person/night-p-serin-sowe"
+      ],
+      "status": "active",
+      "abilities": {
+        "ability/mx-head-vulcan": 3,
+        "ability/mx-radiant-shot": 16,
+        "ability/mx-rune-shot": 4
+      },
+      "actions": 56,
+      "hits": 12,
+      "misses": 11,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ]
+    },
+    "player-1": {
+      "frame": "base:frame/longspear-v4",
+      "owner": "player",
+      "position": {
+        "x": 2,
+        "y": 10
+      },
+      "persons": [
+        "base:person/exp-miyasaka-gaku"
+      ],
+      "status": "active",
+      "abilities": {
+        "ability/mx-head-vulcan": 4,
+        "ability/mx-radiant-shot": 16,
+        "ability/mx-rune-shot": 6
+      },
+      "actions": 63,
+      "hits": 17,
+      "misses": 9,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ]
+    }
+  },
+  "firstLegalExecuted": {
+    "player-1": {
+      "step": 9,
+      "round": 2,
+      "person": "base:person/exp-miyasaka-gaku",
+      "command": {
+        "kind": "useAbility",
+        "actor": "player-1",
+        "ability": "base:ability/mx-radiant-shot",
+        "target": {
+          "unit": "enemy-1"
+        }
+      },
+      "check": null
+    },
+    "player-0": {
+      "step": 14,
+      "round": 2,
+      "person": "base:person/night-p-serin-sowe",
+      "command": {
+        "kind": "useAbility",
+        "actor": "player-0",
+        "ability": "base:ability/mx-radiant-shot",
+        "target": {
+          "unit": "enemy-1"
+        }
+      },
+      "check": null
+    },
+    "enemy-0": {
+      "step": 17,
+      "round": 2,
+      "command": {
+        "kind": "useAbility",
+        "actor": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": {
+          "unit": "player-0"
+        }
+      },
+      "check": null
+    },
+    "enemy-1": {
+      "step": 20,
+      "round": 2,
+      "command": {
+        "kind": "useAbility",
+        "actor": "enemy-1",
+        "ability": "base:ability/mite-swarm-bite",
+        "target": {
+          "unit": "player-0"
+        }
+      },
+      "check": null
+    }
+  },
+  "replayRejected": [],
+  "winner": "player",
+  "reason": "eliminate",
+  "rounds": 18,
+  "stopped": "outcome",
+  "hash": "3f9fa1d3e7d5dfd0",
+  "rejected": 0,
+  "events": 1143,
+  "ms": 708,
+  "raw": "run.json.gz",
+  "rawEvents": "events.json.gz"
+}

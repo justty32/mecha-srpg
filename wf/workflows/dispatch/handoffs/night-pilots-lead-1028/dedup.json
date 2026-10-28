@@ -1,0 +1,190 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "檔",
+  "寫前證據",
+  "主動作與後果",
+  "交稿語義差異",
+  "交稿檢索",
+  "玩法差異",
+  "限制"
+ ],
+ "rows": [
+  {
+   "id": "P01",
+   "檔": [
+    "content/base/persons/night-p-serin-sowe.json",
+    "content/lore/characters/night-p-serin-sowe.json"
+   ],
+   "寫前證據": {
+    "已讀近鄰": [
+     {
+      "person檔": "content/base/persons/exp-adela-miro.json",
+      "personSHA": "ece884748b5106a94c518e58df1d65cbf47a739269671491e7cd3aab16a19a44",
+      "attrs": {
+       "accuracy": 60,
+       "evasion": 7,
+       "resolve": 45,
+       "initiative": 6,
+       "perception": 8,
+       "control": 43
+      },
+      "traits": [
+       "effect/trait-steady-hands",
+       "effect/ax-trait-water-shy"
+      ],
+      "hp": 54,
+      "lore檔": "content/lore/characters/exp-adela-miro.json",
+      "原文短介": "阿黛拉寄給敵隊駕駛的情書落到雇主手裡；她承認那是情書，卻不肯替對方勸降。",
+      "敘事差異": "阿黛拉精準短雇射手的衝突是情書不作勸降工具；瑟琳主動為自己的紀錄選錯目標，無戀愛、敵隊私交或雇主逼用人情。",
+      "數值差異": "阿黛拉base60/7/45/6/8/43且穩手+5；瑟琳56/6/44/5/7/46，記仇+4準/-3操，較慢較脆，沒有把65特質掛載後標稱準度再抬高。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+     },
+     {
+      "person檔": "content/base/persons/ren-kasai.json",
+      "personSHA": "8919e80b20689cc32fd2edac164b01056d66459869dc9ab6ec40f50f202f373c",
+      "attrs": {
+       "accuracy": 55,
+       "evasion": 10,
+       "resolve": 48,
+       "initiative": 7,
+       "perception": 5,
+       "control": 40
+      },
+      "traits": [
+       "effect/trait-vengeful"
+      ],
+      "hp": 60,
+      "lore檔": "content/lore/characters/ren-kasai.json",
+      "原文短介": "大阪來的拆船場工頭，2105 年吉大港解拘之夜全家死於被放出來的盾甲；為了復仇上船，為了船上的人沒變成另一個解拘者。",
+      "敘事差異": "葛西蓮遇解拘者因家仇衝出陣線；瑟琳不是喪親復仇，反而因怕失準而選容易打的地方，動作與目的皆不同。",
+      "數值差異": "蓮base55/10/48/7/5/40、HP60；瑟琳感知7但反應5/HP52，少機動與承受，純展示不加古緣／獸緣。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+     }
+    ],
+    "檢索": "rg -l '瑟琳|Serin Sowe|馬特烏斯|Mateus Vieira|命中紀錄|反向護航|假報.*求援' content/base/persons content/lore/characters；寫前無命中。",
+    "方法": "親讀每人兩份既有person及對應lore全文；四正文及review核可配方全讀，三設計附件有界查。"
+   },
+   "主動作與後果": "瑟琳為保住連中紀錄，打穿了最容易命中的護板，卻讓該攔下的敵機砸掉貨架。",
+   "交稿語義差異": "主動把準星移往寬護板保命中，貨架卻毀，仍把命中與缺貨價寫在同頁；不是阿黛拉情書拒勸降，也不是葛西喪親復仇衝陣。",
+   "交稿檢索": "同組人名及主動作查詢只命中新兩人物；逐篇回對近鄰，故事各自為未具名普通2107勤務，不增重大事件。",
+   "玩法差異": {
+    "本案base": {
+     "accuracy": 56,
+     "evasion": 6,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 7,
+     "control": 46
+    },
+    "鄰近base": [
+     {
+      "accuracy": 60,
+      "evasion": 7,
+      "resolve": 45,
+      "initiative": 6,
+      "perception": 8,
+      "control": 43
+     },
+     {
+      "accuracy": 55,
+      "evasion": 10,
+      "resolve": 48,
+      "initiative": 7,
+      "perception": 5,
+      "control": 40
+     }
+    ],
+    "說明": "比較均用自然base；保留多屬性取捨，未將命中或勝敗差異全歸單一屬性。"
+   },
+   "限制": "語義為本工人對列明近鄰自審，不宣稱全庫語義窮盡。"
+  },
+  {
+   "id": "P02",
+   "檔": [
+    "content/base/persons/night-p-mateus-vieira.json",
+    "content/lore/characters/night-p-mateus-vieira.json"
+   ],
+   "寫前證據": {
+    "已讀近鄰": [
+     {
+      "person檔": "content/base/persons/exp-miyasaka-gaku.json",
+      "personSHA": "99b4f5d04a6cb225027d0025b7da26a47ed05f63685f34ebafd7a5efe59637da",
+      "attrs": {
+       "accuracy": 57,
+       "evasion": 12,
+       "resolve": 43,
+       "initiative": 8,
+       "perception": 6,
+       "control": 42
+      },
+      "traits": [
+       "effect/ax-trait-fate-cheater"
+      ],
+      "hp": 58,
+      "lore檔": "content/lore/characters/exp-miyasaka-gaku.json",
+      "原文短介": "宮坂收錢輸比武，對手卻求他認真打一回；他退了錢，沒有答應做對方的老師。",
+      "敘事差異": "宮坂主動假輸比武，因對手求真而退錢並拒收徒；馬特烏斯是追額外獵物後假報求援，無擂場、買勝、師徒或尊嚴逆轉。",
+      "數值差異": "同用fate-cheater；宮坂57/12/43/8/6/42特質掛載後標稱迴避15/先手9/決心38；本案48/9/56/7/6/50特質掛載後標稱12/8/51，犧牲更多準度、避免複製極端閃避。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+     },
+     {
+      "person檔": "content/base/persons/exp-sanya-iliev.json",
+      "personSHA": "89bd828260de2a536166621859e01b76840b3e9a75957ab7a825d4c7330b4a4a",
+      "attrs": {
+       "accuracy": 52,
+       "evasion": 8,
+       "resolve": 57,
+       "initiative": 6,
+       "perception": 6,
+       "control": 48
+      },
+      "traits": [
+       "effect/ax-trait-names-before-orders"
+      ],
+      "hp": 61,
+      "lore檔": "content/lore/characters/exp-sanya-iliev.json",
+      "原文短介": "珊雅把要入教的妹妹送到孟買門，拒絕留下晚禱；回程座位空著，她沒有叫妹妹上來。",
+      "敘事差異": "珊雅護運與親妹入教衝突，送到門前放手；本案沒有家屬、宗教或送別，主動離職責追財與假報產生自付損失。",
+      "數值差異": "珊雅52/8/57/6/6/48；本案base準度48/反應7，特質後快且滑、resolve51；沒有高意志高準度並存。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+     }
+    ],
+    "檢索": "rg -l '瑟琳|Serin Sowe|馬特烏斯|Mateus Vieira|命中紀錄|反向護航|假報.*求援' content/base/persons content/lore/characters；寫前無命中。",
+    "方法": "親讀每人兩份既有person及對應lore全文；四正文及review核可配方全讀，三設計附件有界查。"
+   },
+   "主動作與後果": "馬特烏斯離隊追獵物，困住後假報貨車受襲；對面只問車號，他只好花自己的積蓄請人拖回。",
+   "交稿語義差異": "為買貨車股擅自離隊追獸，陷路後假報車號被揭，私費拖機與修甲；不是宮坂收錢假賽退酬，也不是珊雅送妹妹入教。",
+   "交稿檢索": "同組人名及主動作查詢只命中新兩人物；逐篇回對近鄰，故事各自為未具名普通2107勤務，不增重大事件。",
+   "玩法差異": {
+    "本案base": {
+     "accuracy": 48,
+     "evasion": 9,
+     "resolve": 56,
+     "initiative": 7,
+     "perception": 6,
+     "control": 50
+    },
+    "鄰近base": [
+     {
+      "accuracy": 57,
+      "evasion": 12,
+      "resolve": 43,
+      "initiative": 8,
+      "perception": 6,
+      "control": 42
+     },
+     {
+      "accuracy": 52,
+      "evasion": 8,
+      "resolve": 57,
+      "initiative": 6,
+      "perception": 6,
+      "control": 48
+     }
+    ],
+    "說明": "比較均用自然base；保留多屬性取捨，未將命中或勝敗差異全歸單一屬性。"
+   },
+   "限制": "語義為本工人對列明近鄰自審，不宣稱全庫語義窮盡。"
+  }
+ ]
+}

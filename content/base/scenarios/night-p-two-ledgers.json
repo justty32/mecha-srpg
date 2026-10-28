@@ -1,0 +1,87 @@
+{
+  "id": "scenario/night-p-two-ledgers",
+  "name": "兩本帳",
+  "nameEn": "Two Ledgers",
+  "etymology": "兩名短雇駕駛各自記下的帳；跨勢力借機展示，不是歷史合作事件。",
+  "brief": "瑟琳・索韋與馬特烏斯・維埃拉借用相同長槍-V4進行獨立展示。兩人各有準度與先手的取捨，需依距離、視線與資源選擇行動。本展示不代表兩人加入候鳥號或已在戰役招募。",
+  "map": "map/skirmish-20",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/longspear-v4",
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "person/night-p-serin-sowe",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        },
+        {
+          "mech": "frame/longspear-v4",
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "left-weapon": "component/mx-rune-rifle",
+            "back-1": "component/mx-ember-pod",
+            "system-1": "component/mx-essence-cell",
+            "armor-mount": "component/composite-plate"
+          },
+          "persons": [
+            {
+              "id": "person/night-p-mateus-vieira",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone"
+        }
+      ],
+      "ai": "aiprofile/focus-fire"
+    },
+    "enemy": {
+      "faction": "faction/rift-insects",
+      "units": [
+        {
+          "monster": "monster/reaper-c",
+          "at": "zone"
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "player"
+        ]
+      },
+      "for": "player",
+      "onComplete": "lose"
+    },
+    {
+      "kind": "eliminate",
+      "params": {
+        "slots": [
+          "enemy"
+        ]
+      },
+      "for": "player",
+      "onComplete": "win"
+    }
+  ],
+  "rounds": 30,
+  "seed": 102815
+}

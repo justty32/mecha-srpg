@@ -1,0 +1,233 @@
+{
+  "group": "replace-P01",
+  "seed": 1,
+  "natural": true,
+  "people": {
+    "player-0-pilot": {
+      "def": "base:person/exp-adela-miro",
+      "seat": {
+        "mech": "player-0",
+        "role": "pilot"
+      },
+      "attrsBase": {
+        "accuracy": 60,
+        "evasion": 7,
+        "resolve": 45,
+        "initiative": 6,
+        "perception": 8,
+        "control": 43
+      },
+      "effects": [],
+      "contribs": [],
+      "roleAttrs": {
+        "accuracy": 64,
+        "evasion": 7,
+        "resolve": 45,
+        "initiative": 12,
+        "perception": 14,
+        "control": 43
+      }
+    },
+    "player-1-pilot": {
+      "def": "base:person/night-p-mateus-vieira",
+      "seat": {
+        "mech": "player-1",
+        "role": "pilot"
+      },
+      "attrsBase": {
+        "accuracy": 48,
+        "evasion": 9,
+        "resolve": 56,
+        "initiative": 7,
+        "perception": 6,
+        "control": 50
+      },
+      "effects": [],
+      "contribs": [],
+      "roleAttrs": {
+        "accuracy": 52,
+        "evasion": 9,
+        "resolve": 56,
+        "initiative": 13,
+        "perception": 12,
+        "control": 50
+      }
+    }
+  },
+  "units": {
+    "enemy-0": {
+      "frame": "base:species/reaper",
+      "owner": "enemy",
+      "position": {
+        "x": 17,
+        "y": 8
+      },
+      "persons": [],
+      "status": "retreated",
+      "abilities": {
+        "ability/reaper-charge": 2,
+        "ability/reaper-cleave": 5
+      },
+      "actions": 23,
+      "hits": 0,
+      "misses": 7,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "enemy-1": {
+      "frame": "base:species/mite",
+      "owner": "enemy",
+      "position": {
+        "x": 17,
+        "y": 10
+      },
+      "persons": [],
+      "status": "dead",
+      "abilities": {
+        "ability/mite-swarm-bite": 8
+      },
+      "actions": 12,
+      "hits": 2,
+      "misses": 6,
+      "turnRounds": [
+        1,
+        2,
+        3
+      ]
+    },
+    "player-0": {
+      "frame": "base:frame/longspear-v4",
+      "owner": "player",
+      "position": {
+        "x": 2,
+        "y": 12
+      },
+      "persons": [
+        "base:person/exp-adela-miro"
+      ],
+      "status": "active",
+      "abilities": {
+        "ability/mx-head-vulcan": 1,
+        "ability/mx-radiant-shot": 6,
+        "ability/mx-rune-shot": 1
+      },
+      "actions": 25,
+      "hits": 3,
+      "misses": 5,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    },
+    "player-1": {
+      "frame": "base:frame/longspear-v4",
+      "owner": "player",
+      "position": {
+        "x": 2,
+        "y": 10
+      },
+      "persons": [
+        "base:person/night-p-mateus-vieira"
+      ],
+      "status": "active",
+      "abilities": {
+        "ability/mx-radiant-shot": 8,
+        "ability/mx-rune-shot": 3
+      },
+      "actions": 29,
+      "hits": 6,
+      "misses": 5,
+      "turnRounds": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ]
+    }
+  },
+  "firstLegalExecuted": {
+    "player-1": {
+      "step": 8,
+      "round": 2,
+      "person": "base:person/night-p-mateus-vieira",
+      "command": {
+        "kind": "useAbility",
+        "actor": "player-1",
+        "ability": "base:ability/mx-radiant-shot",
+        "target": {
+          "unit": "enemy-1"
+        }
+      },
+      "check": null
+    },
+    "player-0": {
+      "step": 13,
+      "round": 2,
+      "person": "base:person/exp-adela-miro",
+      "command": {
+        "kind": "useAbility",
+        "actor": "player-0",
+        "ability": "base:ability/mx-head-vulcan",
+        "target": {
+          "unit": "enemy-1"
+        }
+      },
+      "check": null
+    },
+    "enemy-0": {
+      "step": 16,
+      "round": 2,
+      "command": {
+        "kind": "useAbility",
+        "actor": "enemy-0",
+        "ability": "base:ability/reaper-cleave",
+        "target": {
+          "unit": "player-1"
+        }
+      },
+      "check": null
+    },
+    "enemy-1": {
+      "step": 19,
+      "round": 2,
+      "command": {
+        "kind": "useAbility",
+        "actor": "enemy-1",
+        "ability": "base:ability/mite-swarm-bite",
+        "target": {
+          "unit": "player-1"
+        }
+      },
+      "check": null
+    }
+  },
+  "replayRejected": [],
+  "winner": "player",
+  "reason": "eliminate",
+  "rounds": 8,
+  "stopped": "outcome",
+  "hash": "808e7c0c82653eff",
+  "rejected": 0,
+  "events": 562,
+  "ms": 487,
+  "raw": "run.json.gz",
+  "rawEvents": "events.json.gz"
+}

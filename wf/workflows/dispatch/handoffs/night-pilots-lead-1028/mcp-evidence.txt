@@ -1,0 +1,67 @@
+scenario/night-p-two-ledgers
+{
+  "outcome": {
+    "winner": "player",
+    "reason": "eliminate",
+    "detail": "repelled"
+  },
+  "auto": {
+    "outcome": {
+      "winner": "player",
+      "reason": "eliminate",
+      "detail": "repelled"
+    },
+    "winner": "player",
+    "reason": "eliminate",
+    "rounds": 8,
+    "stopped": "outcome",
+    "alive": {
+      "enemy": 0,
+      "player": 2
+    },
+    "eventCounts": {
+      "BattleStart": 1,
+      "RoundStart": 8,
+      "TurnStart": 27,
+      "PoolChanged": 303,
+      "Moved": 87,
+      "TurnEnd": 26,
+      "RoundEnd": 7,
+      "AbilityUsed": 40,
+      "Miss": 22,
+      "Hit": 18,
+      "LayerDamaged": 24,
+      "LayerBroken": 9,
+      "PartBroken": 3,
+      "UnitDied": 1,
+      "Retreated": 1,
+      "BattleEnd": 1
+    },
+    "commands": 92,
+    "hash": "cc658404d3a1054d",
+    "fullRawEvents": "../smoke/seed-1/events.json.gz",
+    "rawPairHash": "cc658404d3a1054d",
+    "rawPairHashMatches": true
+  },
+  "manual": {
+    "rounds": 4,
+    "completedRounds": [
+      1,
+      2,
+      3
+    ],
+    "threeCompleteRounds": true,
+    "outcome": null,
+    "guardExceeded": false,
+    "serinUses": 6,
+    "mateusUses": 6,
+    "commands": 41,
+    "rejected": [],
+    "replayHashMatches": true,
+    "ourLosses": 0,
+    "enemyLosses": 0
+  },
+  "rawStdio": "mcp-log/stdio.jsonl.gz",
+  "savedReplay": "mcp-log/manual-raw.json.gz",
+  "summary": "mcp-log/summary.json"
+}

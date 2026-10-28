@@ -1,0 +1,49 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "phase",
+  "command",
+  "cwd",
+  "exit",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "phase": "natural",
+   "command": "PILOT_LEADER_GO=1028-until-2235 nice -n 19 taskset -c 0,1 node runner/pilot-trials.mjs --go --group natural --dir <report>/smoke",
+   "cwd": "/tmp/night-pilots-lead-1028/wt-pilots",
+   "exit": "0",
+   "evidence": "smoke/summary.json"
+  },
+  {
+   "phase": "replace-P01",
+   "command": "PILOT_LEADER_GO=1028-until-2235 nice -n 19 taskset -c 0,1 node runner/pilot-trials.mjs --go --group replace-P01 --dir <report>/replace-P01",
+   "cwd": "/tmp/night-pilots-lead-1028/wt-pilots",
+   "exit": "0",
+   "evidence": "replace-P01/summary.json"
+  },
+  {
+   "phase": "replace-P02",
+   "command": "PILOT_LEADER_GO=1028-until-2235 nice -n 19 taskset -c 0,1 node runner/pilot-trials.mjs --go --group replace-P02 --dir <report>/replace-P02",
+   "cwd": "/tmp/night-pilots-lead-1028/wt-pilots",
+   "exit": "0",
+   "evidence": "replace-P02/summary.json"
+  },
+  {
+   "phase": "swap-positions",
+   "command": "PILOT_LEADER_GO=1028-until-2235 nice -n 19 taskset -c 0,1 node runner/pilot-trials.mjs --go --group swap-positions --dir <report>/swap-positions",
+   "cwd": "/tmp/night-pilots-lead-1028/wt-pilots",
+   "exit": "0",
+   "evidence": "swap-positions/summary.json"
+  },
+  {
+   "phase": "MCP",
+   "command": "PILOT_LEADER_GO=1028-until-2235 nice -n 19 taskset -c 0,1 node runner/pilot-mcp.mjs --go --dir <report>",
+   "cwd": "/tmp/night-pilots-lead-1028/wt-pilots",
+   "exit": "0",
+   "evidence": "mcp-log/summary.json"
+  }
+ ]
+}
