@@ -34,4 +34,4 @@
 
 來源以各區evidence的檔案、字段、行號與SHA-256為準；coverage區分機械／全文。領導已逐線全文抽核PE01、G01、W01及直接配套，無新增高信心問題需另核。固定四項驗收與提交證據見[本輪lead REPORT](../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028/REPORT.md)；本頁只交靜態審閱結果，不代表遊戲測試通過。
 
-固定驗收結果：[verification.json](verification.json)。差異空白檢查為0；全庫strict一次為broken12（舊legacy2＋本輪摘錄wiki連結10），本輪10修正後13份資料表限定檢查broken0；未重跑全庫，故不宣稱strict通過。
+固定驗收結果：[verification.json](verification.json)。差異空白檢查為0；全庫strict一次為broken12（舊legacy2＋本輪摘錄wiki連結10），本輪10修正後13份資料表限定檢查broken0；其後使用者授權失敗修正後重跑全庫，第二次只剩既有legacy2，本輪新增清零；strict仍非綠燈。

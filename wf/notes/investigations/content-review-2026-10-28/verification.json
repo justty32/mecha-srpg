@@ -67,13 +67,13 @@
   },
   {
    "criterion": "3",
-   "status": "pass",
-   "evidence": "三線DONE及codex exit0，無工人殘留；git diff --check為0，git範圍核對只見授權本輪檔，原始log不stage。"
+   "status": "pass-after-whitespace-fix",
+   "evidence": "三線DONE及codex exit0、無工人殘留；首筆5fdd59ff已push。暫存檢查發現3份終局摘要的12行尾空白但原命令未中止提交，補證已去除；最終對完整本輪baseline diff --check確認0，只stage本輪明確檔，raw log不stage。"
   },
   {
    "criterion": "4",
-   "status": "full-run-failed; new-links-fixed",
-   "evidence": "全庫wf-lint --strict固定一次exit1：broken12＝既有legacy2＋本輪摘錄wiki連結10，其餘計數0。本輪10已改來源檔連結，限定13份本輪wf-table檢查broken0；未重跑全庫，不宣稱strict通過。原始輸出在lead附件wf-lint.txt。"
+   "status": "baseline-failure-confirmed",
+   "evidence": "第一次全庫strict exit1 broken12＝既有legacy2＋新增10。新10已修，限定13表broken0；使用者後續授權並要求失敗後全庫重跑一次，第二次exit1 broken2且僅既有legacy，其餘residue/oversize/biglist/querycmd/local均0。本輪新增清零，仍非strict綠燈。兩份原始輸出均在lead附件。"
   }
  ]
 }

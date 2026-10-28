@@ -16,8 +16,8 @@
 
 1. 覆蓋與證據存在：1046主責檔全在coverage；合併去重1236份來源指紋及候選端點均相符，定位行號有效；48筆候選端點均有全文記錄。708≤900、48≤150；正式產物小於2MB，原始log另小於10MB。
 2. 高信心新問題0；領導親自帶行號全文讀PE01、G01、W01及直接配套，確認角色主行動、換裝功能與局部社群尺度差異，支持排除。不是只信工人自報，證據在leader-checks.json。
-3. git diff --check回傳0；三線DONE及codex正常exit0，無本輪工人殘留。狀態清單只見授權本輪檔，原始log不stage，不混他線。
-4. 全庫wf-lint --strict固定一次exit1：broken12＝既有legacy斷鏈2＋本輪證據摘錄wiki連結10，其餘residue/oversize/biglist/querycmd/local均0。本輪10已修成來源檔連結，限定13份本輪wf-table檢查broken0。未重跑全庫，不宣稱strict通過；原始失敗輸出完整保留於wf-lint.txt。
+3. 三線DONE及codex正常exit0，無本輪工人殘留；範圍只見授權本輪檔。首筆暫存檢查發現3份終局摘要共12行尾空白，但命令未中止提交；補證已修，最終對完整本輪baseline執行diff --check為0。原始log不stage，不混他線。
+4. 全庫wf-lint --strict固定一次exit1：broken12＝既有legacy斷鏈2＋本輪證據摘錄wiki連結10，其餘residue/oversize/biglist/querycmd/local均0。本輪10已修成來源檔連結，限定13份本輪wf-table檢查broken0。使用者其後授權且要求失敗修正後全庫重跑一次；第二次exit1僅broken2（同兩條legacy），其餘違規計數均0，本輪新增清零。仍不宣稱strict通過；兩份原始輸出完整保留於wf-lint.txt與wf-lint-recheck.txt。
 
 ## 沒做到、或證據不足的部分
 
@@ -38,3 +38,7 @@
 本輪資料產生腳本是審閱方法附件，不是遊戲修改；來源JSON指紋證據均入庫。驗收彙總在notes本輪verification.json；實際commit/push以收尾git核對與最終回報為準。
 
 正式notes產物約1.30MB，原始三份log約1.61MB，分別符合2MB／10MB上限；入庫審閱方法附件保留，小型last訊息可核終局。未壓縮或刪除原始log。
+
+## 提交與推送補證
+
+主成果54檔已以 `5fdd59ff` 提交，普通push回報 `013d51c3..5fdd59ff main -> main`。本補證提交只更新第二次lint結果、三份終局摘要尾空白與收尾文字；不改審閱候選或來源內容。最終HEAD與origin/main由推送後git核對。三份原始log維持未追蹤，另有最後DONE信待頂層收件，不能宣稱工作樹完全clean。
