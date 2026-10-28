@@ -1,0 +1,111 @@
+{
+  "contract": "content-batch/1",
+  "id": "night-r2-places",
+  "mode": "add",
+  "status": "draft",
+  "goal": "主線核可R2四邊境地點，風灰取樣撤回／多層目擊重驗／追跡／取到不等於帶回",
+  "author": {
+    "agent": "codex",
+    "model": "gpt-6.1-sol",
+    "reasoning": "high",
+    "line": "night-r2-places",
+    "subagents": 0
+  },
+  "lead": "fill-lead-1028-night",
+  "date": "2026-10-28",
+  "base": "7314fc6bb48abaeed04ba93f15ce833c41f1deb7",
+  "reportDir": "wf/workflows/dispatch/handoffs/fill-lead-1028-night/reports/night-r2-places",
+  "report": {
+    "file": "wf/workflows/dispatch/handoffs/fill-lead-1028-night/reports/night-r2-places/REPORT.md",
+    "mustRead": [
+      "AGENTS.md",
+      "wf/WORKFLOWS.md",
+      "wf/workflows/common/user.md",
+      "wf/workflows/common/user/working.md",
+      "wf/workflows/content/README.md",
+      "wf/workflows/content/batch.md",
+      "wf/workflows/content/lore-text.md",
+      "wf/workflows/content/world-pillars.md",
+      "content/lore/README.md",
+      "content/lore/style.md",
+      "content/lore/style/people.md",
+      "wf/workflows/content/world-pillars/world/tone-and-rules.md",
+      "wf/workflows/content/world-pillars/world/factions-and-sandbox.md",
+      "wf/workflows/dispatch/handoffs/fill-lead-1028-night/approved-r2-places.json"
+    ]
+  },
+  "maxFiles": 4,
+  "allow": {
+    "kinds": [
+      "lore/places"
+    ],
+    "namePrefix": {
+      "lore/places": "night-r2-"
+    },
+    "modify": []
+  },
+  "checks": [
+    "lore",
+    "readlist"
+  ],
+  "playtest": {
+    "required": 0,
+    "reason": "純 lore，不涉及戰鬥規則與單位"
+  },
+  "files": [
+    "content/lore/places/night-r2-rift-hanging-shaft.json",
+    "content/lore/places/night-r2-quito-empty-hull.json",
+    "content/lore/places/night-r2-red-earth-fallen-ridge.json",
+    "content/lore/places/night-r2-post-broken-wing.json"
+  ],
+  "ids": [
+    "place/night-r2-rift-hanging-shaft",
+    "place/night-r2-quito-empty-hull",
+    "place/night-r2-red-earth-fallen-ridge",
+    "place/night-r2-post-broken-wing"
+  ],
+  "acceptance": {
+    "batch": "night-r2-places",
+    "round": 1,
+    "at": "2026-10-28T22:23:49",
+    "ok": true,
+    "steps": {
+      "readlist": "ok",
+      "lore": "ok",
+      "gate": "ok"
+    },
+    "approved": [
+      "content/lore/places/night-r2-post-broken-wing.json",
+      "content/lore/places/night-r2-quito-empty-hull.json",
+      "content/lore/places/night-r2-red-earth-fallen-ridge.json",
+      "content/lore/places/night-r2-rift-hanging-shaft.json"
+    ],
+    "gateViolations": [],
+    "readlist": {
+      "ok": true,
+      "listed": 14,
+      "problems": []
+    },
+    "integration": "pending",
+    "wiki": "not-run; deferred until main fixed-snapshot suite releases runner"
+  },
+  "rounds": [
+    {
+      "round": 1,
+      "at": "2026-10-28T22:23:49",
+      "ok": true,
+      "steps": {
+        "readlist": "ok",
+        "lore": "ok",
+        "gate": "ok"
+      }
+    }
+  ],
+  "gateRejections": [],
+  "limits": {
+    "fileBytes": 16384,
+    "lineContentFiles": 96,
+    "lineBatches": 12,
+    "deliveryBytes": 20971520
+  }
+}

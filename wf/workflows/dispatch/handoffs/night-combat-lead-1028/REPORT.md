@@ -23,3 +23,5 @@ CK稿check及補驗typecheck exit0。相較基底新增恰兩行soft-overflow-ba
 領導親讀AGENTS/WORKFLOWS、user/working、content README/batch、mechs、abilities-effects、bio-monsters、acceptance-playtest、playtest、dispatch/content-batch、testing、conventions/code-map、兩份核可設計及review、相關command/movement/probe/MCP原碼。工人共通已讀沿用、補新類別近鄰，完整已讀與去重證據在cm/ck附件。沒有下載、GUI、鍵鼠、刪檔或worktree、push、引擎修復。
 
 CM Zeno已轉核可R2四地點純lore資料；CK Epicurus結束後轉核可R2四事件。R2不在此戰鬥寫集，不啟第二runner。pilot未核可不派。最新ID、時段與階段見 [state](state.md)，歷史待GO紀錄不代表現況。
+
+提交：CK十三新base與manifest／索引／本線可攜CM與CK證據已於 `64ff8125cae8b49e082a97adf18f442ed56bc150` 提交，未push。CM六內容未入庫；最後diff check0、索引73片一致、wf strict0。typecheck-leader.log僅尾端空白格式整理，原始位元壓縮保存於typecheck-leader-original.log.gz。
