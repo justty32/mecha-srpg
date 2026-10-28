@@ -22,3 +22,10 @@
 1. REPORT.md 存在且四段、已讀清單完整。
 2. 工作段指定產物存在，檢查逐項附真實退出碼或未執行原因，不冒稱全綠。
 3. git diff/狀態核對沒有範圍外變更，報告附明確路徑。
+
+
+## 行政收線證據（2026-10-28）
+
+主線以原生工具確認本 brief 已終局，明確授權此次搬移；此為派線行政收尾，非本輪內容整合全過。原文保留如上，附件與 reportDir 留在原處：[原位置 REPORT](../../integrate-zip-1028/REPORT.md)。相關 commit：`00d74dfd／40976305`；指定 commit 已以唯讀 git log 核存在，原始驗證結論以 REPORT 為準。
+
+原始 brief SHA256：`c901f62a36e4e14fbf1087d26bdc8d0f73b724b65eedaaa24c275649b1a79225`。原生終局來源為主線本次指示；Sagan 設計 agent 已 close，Socrates 前輪 verify 已 DONE、復用待 GO。其他四份 brief 尚未獲搬移授權，Pasteur 仍處理 pilot／R2；最後 suite 與收尾 commit 待主線補。

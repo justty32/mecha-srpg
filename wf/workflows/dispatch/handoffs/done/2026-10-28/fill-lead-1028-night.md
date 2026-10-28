@@ -51,3 +51,10 @@
 2. 每批內容gate與lore/readlist結果有原始證據；全文去重結果與退修記錄存在；未跑全套不能寫全綠。
 3. 每個commit只含本線明列路徑與重建索引，既有內容與黃金不變；REPORT記件數/commit/來源/未驗項。
 4. 終局所有本線子agent已回傳或停止，state與REPORT可接續；未完成稿保留、未偽裝accepted。
+
+
+## 行政收線證據（2026-10-28，領導終局）
+
+主線確認領導 Pasteur 已 DONE 並 close，三內容工人已 DONE／close，並明確授權本 brief 搬移。原位[REPORT](../../fill-lead-1028-night/REPORT.md)與[工人終局證據](../../fill-lead-1028-night/worker-terminal-evidence.json)保留；附件／reportDir、readlist及hash均不搬不改。相關提交：`013701c0；R2 ff949a2f698351ec762d0b92fc02b34784ea372a；收尾4a139221`。R2及收尾commit已唯讀核存在，主線正push，未據此宣稱push完成。
+
+創作與收件完成，驗證及最後行政仍進行：固定suite在3a20a436執行中，R2 wiki尚未跑、待suite後另GO；manifest仍draft／integration pending。verify-night brief不搬。原始brief SHA256：`a0a7c0630c11eebc9560ae072450de73001672d75be7949dbe013202138ed4de`；上方原文逐位元保留。

@@ -39,3 +39,10 @@
 2. 真實check/typecheck/5seed/能力覆蓋/MCP證據完整，失衡/告警與未跑項明列，不假稱全綠。
 3. 全文去重與退修記錄存在；main提交只含核可路徑，既有內容/黃金/引擎不變。
 4. REPORT/state記每線、worktree、commit與限制，無本線殘留程序或未回傳工人；不刪隔離稿。
+
+
+## 行政收線證據（2026-10-28，領導終局）
+
+主線確認領導 Pasteur 已 DONE 並 close，三內容工人已 DONE／close，並明確授權本 brief 搬移。原位[REPORT](../../night-combat-lead-1028/REPORT.md)與[工人終局證據](../../fill-lead-1028-night/worker-terminal-evidence.json)保留；附件／reportDir、readlist及hash均不搬不改。相關提交：`CK 64ff8125；收尾4a139221；CM六檔未收`。R2及收尾commit已唯讀核存在，主線正push，未據此宣稱push完成。
+
+創作與收件完成，驗證及最後行政仍進行：固定suite在3a20a436執行中，R2 wiki尚未跑、待suite後另GO；manifest仍draft／integration pending。verify-night brief不搬。原始brief SHA256：`574aeb3bff555c1e1bbac8f4d3eeceb89e08934801da50d095ede2c10e7951d1`；上方原文逐位元保留。

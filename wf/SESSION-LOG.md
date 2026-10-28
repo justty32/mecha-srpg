@@ -11,7 +11,7 @@
 
 ## 最新進度
 
-- [content] expansion-1028：六機甲／八怪獸形態／八人物三批ACCEPT；整合1031案／1021通過／10失敗，九項原基底也失敗但兩條軌跡改變，待使用者裁決pending-integration交付；不改engine／黃金 → [本輪狀態](workflows/dispatch/handoffs/expansion-1028/STATE.md)。
+- [content] expansion-1028：六機甲／八怪獸形態／八人物三批技術ACCEPT，跨平台交付已依使用者授權納入；本機整合1031案／1022過／9敗，保留兩條歷史軌跡改變限制，不改engine／黃金；完整驗收仍pending → [原輪狀態](workflows/dispatch/handoffs/expansion-1028/STATE.md)／[本機證據](workflows/dispatch/handoffs/verify-import-1028/REPORT.md)。
 
 - [content] 七輪世界觀待下次整合驗收、平衡與試玩；全部 draft → [待驗收摘要](workflows/dispatch/handoffs/tidy-world-1027/pending.md)。
 
@@ -20,4 +20,4 @@
 - [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`；本機未追蹤暫停報告尚未入庫，下次需核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 
-- [content] 10/28 跨平台22件與第一輪12lore已納入並push；本機1031案1022過9已知敗。續填至23:00：CM末輪燼鐘0/10，六檔整批留隔離不收；CK接單一runner至22:25，R2八lore排隊產稿，最後兩展示駕駛設計中；整合未全綠限制保留 → [整合線](workflows/dispatch/handoffs/integrate-zip-1028.md)／[夜間戰鬥線](workflows/dispatch/handoffs/night-combat-lead-1028.md)。
+- [content] 10/28 夜間24概念／38新JSON已入庫：20lore、2怪獸種、2展示駕駛；CM六檔未接受、可攜稿保留。固定base `3a20a436` 整合1031案1022過9同基準敗，含R2的 `4a139221` wiki6/6；新manifest維持draft/integration pending，後續處理既有整合失敗與CM設計 → [收尾與內容導覽](notes/close-night-2026-10-28.md)。

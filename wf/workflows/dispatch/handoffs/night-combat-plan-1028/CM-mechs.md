@@ -1,6 +1,6 @@
 # CM：兩台機械系機甲（先交主線審）
 
-先讀本輪[交接](../night-combat-plan-1028.md)、[PLAN](PLAN.md)、[review](review.json) CM01/CM02；親讀content README/batch/mechs/abilities-effects/acceptance-playtest、world-pillars、style、conventions/code-map及表列原碼與近鄰。模型sol、子代理0；需主線核可後才動工。
+先讀本輪[交接](../done/2026-10-28/night-combat-plan-1028.md)、[PLAN](PLAN.md)、[review](review.json) CM01/CM02；親讀content README/batch/mechs/abilities-effects/acceptance-playtest、world-pillars、style、conventions/code-map及表列原碼與近鄰。模型sol、子代理0；需主線核可後才動工。
 
 ## 明確寫集（6個新JSON）
 

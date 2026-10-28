@@ -33,3 +33,10 @@
 2. check/lore/typecheck與5seed/MCP/兩人物行動證據完整，失敗與未跑項誠實記錄。
 3. 全文去重與遊玩差異對照可查，既有內容/黃金/源碼不變，commit明列範圍。
 4. 終局REPORT/state可接續，所有本線工人與程序停止，未完成稿保留、不冒稱整合全綠。
+
+
+## 行政收線證據（2026-10-28，領導終局）
+
+主線確認領導 Pasteur 已 DONE 並 close，三內容工人已 DONE／close，並明確授權本 brief 搬移。原位[REPORT](../../night-pilots-lead-1028/REPORT.md)與[工人終局證據](../../fill-lead-1028-night/worker-terminal-evidence.json)保留；附件／reportDir、readlist及hash均不搬不改。相關提交：`pilot 3a20a4367944cc3ed4ea62ee49552991b2f3d87e；收尾4a139221`。R2及收尾commit已唯讀核存在，主線正push，未據此宣稱push完成。
+
+創作與收件完成，驗證及最後行政仍進行：固定suite在3a20a436執行中，R2 wiki尚未跑、待suite後另GO；manifest仍draft／integration pending。verify-night brief不搬。原始brief SHA256：`49b70034215c9e95b80143ddcf21bcb5618c959e6e024ef0fcdc02e79de24de1`；上方原文逐位元保留。

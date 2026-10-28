@@ -46,8 +46,4 @@
 
 ## 本輪 10/28 接續
 
-- fill-lead-1028-night：sol領導，僅持有同名handoff子目錄、night批次manifest／核定新lore與索引；git寫權由主線依階段授予。
-- night-frontier-plan-1028：第二輪8件冒險／勢力lore設計已交，待本輪行政收線；無工人繼續寫該目錄。
-- night-pilots-plan-1028：astra最後2名展示駕駛設計已交付並終局關閉，待行政收線。
-- night-pilots-lead-1028：同一sol領導持有同名handoff子目錄、核定2person/2lore/1scenario與manifest/索引，已GO；沿全機3工人上限，CK後串行重驗最晚22:35。
-- night-combat-lead-1028：同一sol領導持有核定CM6／CK13內容新檔、manifest／報告／索引；重負載由主線分配時段。
+本輪所有agent已DONE/close，現役0、runner0；R2八lore已提交ff949a2f，base凍結3a20a436，CM未接受。suite1031案／1022過／9同基準敗，wiki6/6；CM後續配方只存未實作建議。詳[收尾入口](../../notes/close-night-2026-10-28.md)。

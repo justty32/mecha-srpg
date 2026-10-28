@@ -25,3 +25,10 @@
 1. 2人物每人2近鄰對照、獨立敘事動作與遊玩取捨、5檔精確寫集，引用可驗。
 2. person屬性/perk都在既有契約，無新機制/招募接線/時間線，展示驗證方案可執行。
 3. PLAN/review/REPORT存在，沒有內容與源碼改動，未測不宣稱已平衡。
+
+
+## 行政收線證據（2026-10-28）
+
+主線以原生工具確認本 brief 已終局，明確授權此次搬移；此為派線行政收尾，非本輪內容整合全過。原文保留如上，附件與 reportDir 留在原處：[原位置 REPORT](../../night-pilots-plan-1028/REPORT.md)。相關 commit：`5680c463（設計）`；指定 commit 已以唯讀 git log 核存在，原始驗證結論以 REPORT 為準。
+
+原始 brief SHA256：`460fba31346fa22fcad94275a12e14c01a342f3ee68ea0b579a518510251e09f`。原生終局來源為主線本次指示；Sagan 設計 agent 已 close，Socrates 前輪 verify 已 DONE、復用待 GO。其他四份 brief 尚未獲搬移授權，Pasteur 仍處理 pilot／R2；最後 suite 與收尾 commit 待主線補。

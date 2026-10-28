@@ -25,3 +25,10 @@
 1. 8概念分兩單類別批，精確檔/id/既有引用/短介/2近鄰差異與風險完整（少於8說明原因）。
 2. 不依賴前輪未落地內容、不改timeline/既有世界事實，寫集每批4檔且單檔16KB內。
 3. REPORT/PLAN/review存在，實際已讀證據可查；沒有實作或源碼改動。
+
+
+## 行政收線證據（2026-10-28）
+
+主線以原生工具確認本 brief 已終局，明確授權此次搬移；此為派線行政收尾，非本輪內容整合全過。原文保留如上，附件與 reportDir 留在原處：[原位置 REPORT](../../night-frontier-plan-1028/REPORT.md)。相關 commit：`5680c463（設計）`；指定 commit 已以唯讀 git log 核存在，原始驗證結論以 REPORT 為準。
+
+原始 brief SHA256：`b844fa54dcfcc14f645457bb2bd3431278bfa0def63cbe089f768046dc8605ef`。原生終局來源為主線本次指示；Sagan 設計 agent 已 close，Socrates 前輪 verify 已 DONE、復用待 GO。其他四份 brief 尚未獲搬移授權，Pasteur 仍處理 pilot／R2；最後 suite 與收尾 commit 待主線補。

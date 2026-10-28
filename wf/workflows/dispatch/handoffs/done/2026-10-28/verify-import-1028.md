@@ -24,3 +24,10 @@
 1. 固定tree確認與來源檔名清單存在。
 2. 一次suite原始TAP、退出碼、耗時與統計存在，失敗有分類來源；兩截圖測試明列未執行。
 3. REPORT存在、受保護路徑不變、沒有本線殘留測試程序。
+
+
+## 行政收線證據（2026-10-28）
+
+主線以原生工具確認本 brief 已終局，明確授權此次搬移；此為派線行政收尾，非本輪內容整合全過。原文保留如上，附件與 reportDir 留在原處：[原位置 REPORT](../../verify-import-1028/REPORT.md)。相關 commit：`7314fc6b（基準證據）`；指定 commit 已以唯讀 git log 核存在，原始驗證結論以 REPORT 為準。
+
+原始 brief SHA256：`f5667d27d2c22de35bf4675c4dddd879ca4aba6dfbaa84648ddbc7d312a19aa9`。原生終局來源為主線本次指示；Sagan 設計 agent 已 close，Socrates 前輪 verify 已 DONE、復用待 GO。其他四份 brief 尚未獲搬移授權，Pasteur 仍處理 pilot／R2；最後 suite 與收尾 commit 待主線補。

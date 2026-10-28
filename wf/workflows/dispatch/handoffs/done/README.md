@@ -106,3 +106,32 @@
 - 2026-10-28 [lead-mech3d-1028](2026-10-28/lead-mech3d-1028/README.md)：全新衡岳Three真3D，180節點96葉，模型15/互動13通過，主線接受hero/側背；[REPORT](2026-10-28/lead-mech3d-1028/REPORT.md)。
 
 - 2026-10-28 [expansion-1028](2026-10-28/expansion-1028-README.md)：三隊與獨立後查收線；六機／八怪獸形態／八人物，原兩弱A拒收，三批技術ACCEPT但整合未全綠，等待pending-integration交付裁決；結論見領導報告。
+
+## 2026-10-28 本輪部分收線
+
+主線僅授權六份終局 brief 搬移；附件／reportDir 原位保留。其他四份待另行通知，內容仍 draft／integration pending，最後 suite／commit 待補。見[收尾入口](../../../../notes/close-night-2026-10-28.md)與[行政報告](../close-night-1028/REPORT.md)。
+
+<!-- wf-nav -->
+- [integrate-zip-1028](2026-10-28/integrate-zip-1028.md)
+- [verify-import-1028](2026-10-28/verify-import-1028.md)
+- [fill-plan-1028-next](2026-10-28/fill-plan-1028-next.md)
+- [night-combat-plan-1028](2026-10-28/night-combat-plan-1028.md)
+- [night-frontier-plan-1028](2026-10-28/night-frontier-plan-1028.md)
+- [night-pilots-plan-1028](2026-10-28/night-pilots-plan-1028.md)
+
+### 領導終局補收
+
+Pasteur與三內容工人已DONE／close；依主線新授權補搬三領導brief，累計九份。前段六份／四份是先前階段紀錄；現僅verify-night仍running未搬。創作／收件完，suite、R2 wiki與最後行政待補；附件仍原位。
+
+<!-- wf-nav -->
+- [fill-lead-1028-night](2026-10-28/fill-lead-1028-night.md)
+- [night-combat-lead-1028](2026-10-28/night-combat-lead-1028.md)
+- [night-pilots-lead-1028](2026-10-28/night-pilots-lead-1028.md)
+
+### 最終驗證線收線
+
+Socrates已DONE並由主線close；[verify-night-1028](2026-10-28/verify-night-1028.md)保留wiki追加授權全文歸檔，累計十份。前述階段待驗狀態已結束：suite1031／1022過／9敗exit1；另一快照4a139221的R2 wiki六案全過exit0。創作、驗證執行與行政產稿完成，整合仍pending；最後strict/diff/commit/push由主線執行，所有附件仍原位。
+
+- 2026-10-28 [close-night-1028](2026-10-28/close-night-1028.md)：terra行政產稿已終局，十份契約與24概念導覽齊；主線另歸檔本契約，附件保留，整合九敗仍pending。
+
+- 2026-10-28 [cm-recipe-next-1028](2026-10-28/cm-recipe-next-1028.md)：Astra依兩輪失敗補下輪修訂候選；設計已交、未實作未測，CM仍未接受。

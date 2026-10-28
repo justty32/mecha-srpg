@@ -25,3 +25,14 @@
 1. 精確commit/tree與來源清單可查，單次suite執行證據完整。
 2. tests/pass/fail/未執行與基準差異可核，原始exit與TAP保留。
 3. 內容與受保護路徑未變，本線無殘留測試程序，REPORT誠實列出限制。
+
+## 主線追加：suite後的合併lore窄測
+
+2026-10-28，固定suite已終局1031案／1022過／9同基準敗後，另授一次 `src/ui-adapter/vm/wiki/index-new.test.ts` 單檔六案。只在主樹內容commit `4a139221`（含R2八lore，base仍3a20a436）執行，nice19兩CPU、單一runner；不得重跑suite或改原隔離快照。原始TAP、exit、耗時、head/tree與content/base/lore/index前後diff存本線wiki-*，REPORT分開標兩個快照。完成即終局與釋放；此追加不改前述suite結果。
+
+
+## 行政收線證據（2026-10-28，最終驗證終局）
+
+主線確認驗證線Socrates全部DONE並close，明確授權本brief搬移。上方完整保留主線最新wiki追加授權及原文；原始全文SHA256：`1d027cb26abcebd6ea4c82508ed8a25987090db159012211b27cf8cab06568bb`。附件與reportDir原位不動，見[REPORT](../../verify-night-1028/REPORT.md)、[suite status](../../verify-night-1028/status.json)、[wiki status](../../verify-night-1028/wiki-status.json)。
+
+suite：3a20a436／tree9a5ab936，1031案1022過9敗、exit1、515.01秒，九敗診斷與前輪相同；兩截圖未執行，整合仍pending。wiki：4a139221／treed8f73178（含R2），6案全過、exit0、0.111秒；HEAD/tree及3156個content檔位元組前後一致，runner已釋放。兩次快照分開記錄，不宣稱整合全綠。創作、驗證執行與行政產稿完成；最後主線strict/diff/commit/push由主線處理。

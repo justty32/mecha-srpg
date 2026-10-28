@@ -1,0 +1,64 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "status",
+  "定位",
+  "original",
+  "preferred",
+  "alternative",
+  "hypothesis",
+  "evidence",
+  "next_minimum",
+  "limits",
+  "fixed",
+  "stop"
+ ],
+ "rows": [
+  {
+   "id": "CM01",
+   "status": "保留原稿候選；非接受",
+   "定位": "集中雙槍的履帶火力機，槍架仍是單點失能弱處",
+   "original": "gun-mast exposure=1.5，armor25/structure35；其餘沿最後隔離六檔",
+   "preferred": "不改值；exposure維持1.5，不採先前條件式2.0建議",
+   "alternative": "無新增調參候選",
+   "hypothesis": "原側勝率主要含接敵、側別與架砲AP時序影響；不是已證明純傷害過強。換側已有槍架損毀，不能為壓低合計7/10而再加弱點。",
+   "evidence": "comparison.json：原側31/64中、5/5勝；換側24/48中、2/5勝。換側seed1/5槍架broken後退，seed2無broken仍退。不可宣稱所有退場皆由槍架造成。",
+   "next_minimum": "下輪先重核原稿定位與比較門檻。必要再驗時固定原六檔快照、map/skirmish-20、ren-kasai、focus-fire、原配裝與20輪；seed1..5逐一配對原側/換側，保留兩側分組，不以合計平均消掉側別旗標。記first sampled legal、first executed attack、架砲AP、槍架破壞/失雙槍時間與退場狀態；不改地圖或基準。若相同快照可沿用既有證據，毋須為重核而機械重跑。",
+   "limits": "全地圖不是鏡像；首次合法是實際軌跡取樣，不是反事實全域最早。單場部位破壞相關性不是精確AI撤退因果。",
+   "fixed": "",
+   "stop": ""
+  },
+  {
+   "id": "CM02",
+   "status": "新設計待重新核可；未實作未驗",
+   "定位": "低AP、有限次的蓄燼後續壓制：先鋸產燼，再用鐘卸燼兼攻擊；保留短程與脆弱雙臂，不承諾單挑重配裝破城槌",
+   "original": {
+    "file": "content/base/abilities/night-cm-cinderbell.json",
+    "field": "costs[pool=ap,owner=person].amount",
+    "value": 4,
+    "snapshot": "最後accuracy6快照；不是回到accuracy2"
+   },
+   "preferred": {
+    "value": 2,
+    "only_change": "只改新鳴鐘能力AP4→2；若未來實作，定位文案只在原frame/ability的etymology內同步，無新檔",
+    "why": "目前鐘與鋸同為18傷/AP4，鐘另有30燼門檻、冷卻2與3次上限；有限扇面與散燼價值在單敵比較未轉成結果。降低AP是把已蓄燼的回報放在行動餘裕，而非再把accuracy推高或加紙面傷害。",
+    "arithmetic": "ren-kasai AP9；一鋸4＋一鐘2=6，未計移動/其他耗費剩3，原配方剩1。兩鋸8＋一鐘2=10仍超9，不能說必定多打一招。18/2=9只為能力紙面傷/AP，不含前置蓄燼成本，非持續DPS。"
+   },
+   "alternative": {
+    "value": 3,
+    "exclusive": true,
+    "why": "若主線認為AP2對多敵扇面過於廉價，改核AP4→3作較小備選：鋸＋鐘耗7，未計其他耗費剩2；18/3=6同樣不是持續DPS。",
+    "restriction": "在實作前擇一；不是先試2失敗再試3，也不是2..3參數掃描。未核就維持draft。"
+   },
+   "hypothesis": "較便宜的鐘可能減少鳴鐘回合在接敵/移位上的AP擠壓，增加自然可用窗口與有效壓制；是否轉成更多合法行動、目標受傷或延後退場未知。AI若仍保留餘AP而不移動/行動，假設即未得到支持。",
+   "evidence": "",
+   "next_minimum": "下輪先核可角色與AP單值，再於隔離比較保留accuracy6/AP4對照，核可候選依同seed1..5雙側配對；不能用混級展示勝率替代破城槌對照。記每次鐘前後AP/heat、該輪移動與合法行動/未用AP、攻擊chance和roll、受擊部位、對手剩餘HP、死亡/撤退分列。另在原展示觀察扇面實際敵目標數與友軍安全，無須添新敵或新scenario。保留30門檻與自然heat0；僅在新核可驗收範圍確認AP變更合法性，舊fixture不冒充新值證據。",
+   "limits": "",
+   "fixed": "frame accuracy6（原2）、evasion-2、initiative5/perception5；bodyplan/mx-biped-b及全部配裝不動；鐘damage18/armorPen0.1/range1..3/radius1/accuracy0/cooldown2/uses3；heat require30/卸30、frame initial0/max120/regen-8皆不變。component HP18不動。共享熔鋸、寒泉、AI與基準不動。",
+   "stop": "若只是剩AP增加而沒有戰術用途，或仍雙側全敗/扇面失衡，回報候選未證成，保持不接受；不自動續加命中、傷害、HP，不改門檻/禁撤退/配裝以取得勝局。"
+  }
+ ]
+}
