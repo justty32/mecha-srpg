@@ -1,12 +1,12 @@
 # 2026-10-28 已辦訊息索引
 
-本日共 11 則；正文在 [messages.json](messages.json)（11 列）。
-來源：new/ 4 則、mail/lead-review-1028/ 7 則。
+本日共 12 則；正文在 [messages.json](messages.json)（12 列）。
+來源：new/ 5 則、mail/lead-review-1028/ 7 則。
 欄位：file＝原檔名；from＝發信者；status＝狀態；at＝時刻；source＝來源；body＝正文；title＝標題；original＝原件路徑。
 
 ## 統計
 
-DONE 3 則、PROGRESS 8 則
+DONE 4 則、PROGRESS 8 則
 
 <!-- wf-nav -->
 
@@ -23,3 +23,4 @@ DONE 3 則、PROGRESS 8 則
 | 9 | cx-review-people-1028 | DONE | 人物增量審閱完成：200入口、24組全文排除，新增問題0，覆蓋與… |
 | 10 | lead-review-1028 | PROGRESS | 更正領導映射：708入口1046主責檔；原922漏124個不同檔… |
 | 11 | cx-review-world-1028 | DONE | world完成245入口映射與16組全文排除：新問題0、待裁決0… |
+| 12 | lead-review-1028 | DONE | 增量審閱已收線並push至561bc4a4：708入口1046檔… |

@@ -1,116 +1,125 @@
 {
- "contract": "wf-table/1",
- "source": "messages.md",
- "extracted": "2026-10-28",
- "presentation_note": "僅本輪信的相對Markdown連結按原REPORT/README目錄重定位；原投遞信保留.state/acked，歷史標題與初稿數字不改，定稿1046見lead REPORT。",
- "columns": [
-  "file",
-  "from",
-  "status",
-  "at",
-  "source",
-  "body",
-  "title"
- ],
- "rows": [
-  {
-   "file": "20261028T0820-lead-review-1028-PROGRESS.md",
-   "from": "lead-review-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:20:45+08:00",
-   "source": "new/",
-   "body": "# 增量去重審閱三線brief已驗過並開始派工\n\n# 任務：完成跨批增量去重與內容審閱\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`；親自讀 dispatch、investigation、content README、world-pillars 與全部子檔、common/user.md 與 user/working.md、data-files、team-model、dev-env、testing、inbox/README。\n\n## 背景與唯一目標\n\nlead-review-1028 統整可操作的增量審閱清單；以10/27已核32組與fill-rulings為基線，著重新七輪跨批，不重跑舊結論湊數。歷史3d79f69/9364f46在此clone無該物件，以現行b0a5ebef/8a577dcf與原檔核對已修事項。\n\n## 範圍（排除法寫死）\n\n只做使用者授權的本輪行政與審閱文件。入口為bigfill215、pilots148組、gear200、scen63、七輪82概念，預期708個語義入口；人物配套及怪獸四檔另記檔案覆蓋，不重複算概念。不得把review.json的484列誤報148個獨立人物以外的新增入口。\n\n不做content/src/spec/golden/index/batches修改、舊線收線、實作、Fable等待、安裝下載、GUI、刪檔或worktree清理。件數 gate：最多900個批次入口項、全文候選最多150組；容量 gate：本輪產物最多2MB；超出先回報頂層，不擴張。\n\n## 必用工具\n\n| 工具 | 用途 |\n|---|---|\n| `python3 wf/tools/brief_lint.py` | 派工前strict |\n| `wf/tools/tabledb.py` | wf-table讀寫及切片；舊list列由load後zip columns轉dict，不改原檔 |\n| `codex exec` | 三條gpt-6.1-sol外部工人，workspace-write限分區 |\n| `bash wf/tools/wf-lint.sh --strict .` | 收件後全庫一次 |\n| `git diff --check` | 驗收空白 |\n\n## 資源與禁區\n\n可寫程式碼線：此處僅代表可寫授權文件，禁止寫程式與內容。子代理上限3，工人不得再開；總平行工人3，無重負載。領導不包辦全文審閱，抽核全部高信心問題及每線至少1條排除。\n\n不碰鍵鼠螢幕、不開GUI、不裝依賴、不上網、不刪檔、不改~/.codex/config.toml、不建分支、不rebase/reset；工人不commit/push。領導只加明確檔案並main commit及push，今天使用者已授權。使用者已補授權本輪ROSTER列與wf/inbox訊息，外部線照正常mail/poll/ack回報；領導代登記名冊。\n\n## 工作\n\n三線讀取分區：people＝pilots148組＋bigfill34人物＋七輪18人物；gear-scen＝gear200＋scen63，參照新機甲怪獸配套；world＝bigfill181非人物＋七輪64非人物概念。各自核實實數；入口主責互斥，參照可交叉。每線全文候選最多50組，產物最多0.5MB。\n\n候選必須全文讀兩端，記字段/行號、相似與差異、建議、信心；確認問題、待裁決、排除分開，區分真重複、正常配套、刻意變體、設定衝突。未全文覆蓋處明記。表超1KB用wf-table/1，表不可整份進context。\n\n## 交付\n\n短README與分區報告、覆蓋及證據資料存 `/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/`；lead REPORT存 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-review-1028/REPORT.md`。完成後本輪交接及附件移授權done/2026-10-28/並追加索引。\n\n## 驗收（固定4條）\n\n1. 覆蓋與候選證據實際存在，所有問題有來源，入口及容量不超gate。\n2. 領導抽核每條高信心問題及各工人至少1條排除對照，留原檔核對證據。\n3. git diff --check回傳0，提交前所有工人終局且無他線改動混入。\n4. 全庫wf-lint --strict一次，如有既有legacy斷鏈如實記錄，修掉新增問題，不宣稱歷史驗收等於目前遊戲綠燈。\n\n## 完成／阻塞回報\n\n每約60秒向頂層工具回報進度。工人終局DONE/BLOCKED/FAILED寫分區REPORT及last.txt並以inbox_mail.sh --up寄終局；領導核process退出、log與產物後才收線。需要裁決寫清單繼續其他審閱。工具阻塞報實況，不拿歷史輸出冒充。",
-   "title": "增量去重審閱三線brief已驗過並開始派工"
-  },
-  {
-   "file": "20261028T0821-cx-review-gear-1028-PROGRESS.md",
-   "from": "cx-review-gear-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:21:23+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# gear-scen已上線：限定263入口、親讀規矩後做跨批單位與情境審閱\n\n# 任務：審閱gear-scen增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：gear200與fill-scen63入口。參照新七輪機甲/怪獸24概念配套及既有部件/情境，查單位定位/配置/戰鬥目的差異；不重跑已核9槽缺口與近名3組/遭遇4組，應沿用舊證據。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多263批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-gear-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen`。",
-   "title": "gear-scen已上線：限定263入口、親讀規矩後做跨批單位與情境審閱"
-  },
-  {
-   "file": "20261028T0821-cx-review-people-1028-PROGRESS.md",
-   "from": "cx-review-people-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:21:29+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# 人物審閱工人已上線，限定200入口與50候選內做七輪跨批增量比對\n\n# 任務：審閱people增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：pilots148組（review484列配套）＋bigfill人物34＋七輪人物18概念。只主責人物/人物lore；參照既有人物及新勢力/地點限必要對照；新七輪人物wl-、wn-r2-、wm-r4-為增量重心。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多200批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-people-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people`。",
-   "title": "人物審閱工人已上線，限定200入口與50候選內做七輪跨批增量比對"
-  },
-  {
-   "file": "20261028T0821-cx-review-world-1028-PROGRESS.md",
-   "from": "cx-review-world-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:21:20+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# world審閱工人上線：僅審181舊入口與64新概念，交付限world分區\n\n# 任務：審閱world增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：bigfill215排除34人物後181＋七輪82排除18人物後64概念。七輪read來源為lead-world-life-1027六類review與lead-world-next/more-1027/review.json；主責非人物的地點用途/具體事件/勢力/機甲怪獸敘事與跨批，人物由people負責；gear/scen只參照不重算入口。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多245批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-world-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world`。",
-   "title": "world審閱工人上線：僅審181舊入口與64新概念，交付限world分區"
-  },
-  {
-   "file": "20261028T0822-cx-review-gear-1028-PROGRESS.md",
-   "from": "cx-review-gear-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:22:24+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# gear200與scen63全有現檔；七輪機甲怪獸參照實數22而非24\n\n## 做了什麼\n已上線並親讀規矩、主brief、10/27人物與內容摘要、舊候選及fill-rulings。正在核對跨批單位定位、配裝與情境差異。\n## 產出（檔案路徑 / commit / 分支）\n入口實數：gear 200（100 component、24武器、40能力、12effect、24research）；scen63（48scenario、15map）。263路徑全存在且唯一。\n## 沒做到、或證據不足的部分\n本次是進度快照。七輪參照審閱表實數為22概念（首輪6機甲4怪獸、第三輪3+3、第七輪3+3），不是brief所述24；不以配套湊概念數。\n## 需要對方或使用者決定的事\n請領導整併時採實數22，或指出另2概念的權威入口。本線繼續既定263入口與22概念參照，不擴張。",
-   "title": "gear200與scen63全有現檔；七輪機甲怪獸參照實數22而非24"
-  },
-  {
-   "file": "20261028T0824-lead-review-1028-PROGRESS.md",
-   "from": "lead-review-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:24:28+08:00",
-   "source": "new/",
-   "body": "# 三線均運行無阻塞：708入口922檔已對帳，七輪82概念124檔吻合，待候選收件與領導抽核後四項驗收提交推送\n\n# 2026-10-28 跨批增量審閱\n\n[調查入口](../../../notes/investigations/README.md)｜[前次審閱](../../../notes/investigations/content-review-2026-10-27/README.md)\n\n## 問題\n\n新七輪與既有各批是否有真正重複、設定衝突，或應保留的正常配套與刻意變體？本輪只交審閱證據，不改內容，不代替整合驗收。\n\n## 方法與覆蓋\n\n入口已機械核實為708個概念／人物組：bigfill215、pilots148組、gear200、scen63、七輪82。分區主責200／263／245互斥，人物配套與怪獸配套另計，映射922份現行檔案且全存在；七輪124新檔與8ba72b43新增檔清單完全相同。pilots另40招募池屬參照，不重算人物入口。入口與來源逐項在[入口清單](../../../notes/investigations/content-review-2026-10-28/entries.json)，這層不代表已全文讀過。\n\n沿用10/27已核16組人物與16組非人物候選，以新七輪交界為增量重點。fill-rulings的3d79f69／9364f46在公司clone沒有物件，現行歷史為b0a5ebef／8a577dcf；以現檔判斷已修與現行問題，不能只照舊報告。\n\n## 分區與證據\n\n[人物／人物lore](../../../notes/investigations/content-review-2026-10-28/people/README.md)｜[gear／戰鬥情境](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)｜[世界與新七輪](../../../notes/investigations/content-review-2026-10-28/world/README.md)。各區coverage分開機械索引與全文證據，候選兩端全文核對；尚在審閱時不先判全庫無重複。\n\n## 結論與來源\n\n本頁於收件與領導抽核後補定稿；來源為上述原批清單、現行content原檔與分區證據。四條舊線維持暫停，所有draft狀態不變；遊戲整合驗收、黃金與平衡仍留家中。",
-   "title": "三線均運行無阻塞：708入口922檔已對帳，七輪82概念124檔吻合，待候選收件與領導抽核後四項驗收提交推送"
-  },
-  {
-   "file": "20261028T0825-lead-review-1028-PROGRESS.md",
-   "from": "lead-review-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:25:04+08:00",
-   "source": "new/",
-   "body": "# 三線持續審閱；入口對帳完成，現階段約1MB審閱文件，原始執行log將無損壓縮使交付低於2MB，剩候選收件抽核與四項驗收\n\n# 2026-10-28 跨批增量審閱\n\n[調查入口](../../../notes/investigations/README.md)｜[前次審閱](../../../notes/investigations/content-review-2026-10-27/README.md)\n\n## 問題\n\n新七輪與既有各批是否有真正重複、設定衝突，或應保留的正常配套與刻意變體？本輪只交審閱證據，不改內容，不代替整合驗收。\n\n## 方法與覆蓋\n\n入口已機械核實為708個概念／人物組：bigfill215、pilots148組、gear200、scen63、七輪82。分區主責200／263／245互斥，人物配套與怪獸配套另計，映射922份現行檔案且全存在；七輪124新檔與8ba72b43新增檔清單完全相同。pilots另40招募池屬參照，不重算人物入口。入口與來源逐項在[入口清單](../../../notes/investigations/content-review-2026-10-28/entries.json)，這層不代表已全文讀過。\n\n沿用10/27已核16組人物與16組非人物候選，以新七輪交界為增量重點。fill-rulings的3d79f69／9364f46在公司clone沒有物件，現行歷史為b0a5ebef／8a577dcf；以現檔判斷已修與現行問題，不能只照舊報告。\n\n## 分區與證據\n\n[人物／人物lore](../../../notes/investigations/content-review-2026-10-28/people/README.md)｜[gear／戰鬥情境](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)｜[世界與新七輪](../../../notes/investigations/content-review-2026-10-28/world/README.md)。各區coverage分開機械索引與全文證據，候選兩端全文核對；尚在審閱時不先判全庫無重複。\n\n## 結論與來源\n\n本頁於收件與領導抽核後補定稿；來源為上述原批清單、現行content原檔與分區證據。四條舊線維持暫停，所有draft狀態不變；遊戲整合驗收、黃金與平衡仍留家中。",
-   "title": "三線持續審閱；入口對帳完成，現階段約1MB審閱文件，原始執行log將無損壓縮使交付低於2MB，剩候選收件抽核與四項驗收"
-  },
-  {
-   "file": "20261028T0828-cx-review-gear-1028-DONE.md",
-   "from": "cx-review-gear-1028",
-   "status": "DONE",
-   "at": "2026-10-28T08:28:37+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# gear-scen完成263入口核對與8組全文排除：新增問題0，七輪參照實數22\n\n## 做了什麼\n\n親讀本線交接與指定規矩、world-pillars全部子檔、主brief、10/27人物／內容摘要及舊候選、fill-rulings。核對gear200與fill-scen63入口實數、來源映射與缺漏；以rg定位新七輪配裝及同題材情境，全文核對8組候選與直接配套。未修改content/src/spec/golden/index/batches，未開agent，未跑遊戲測試、lint、build、check或sim。\n\n結果：新增確認問題0、新增待裁決0、已排除8組。S01「疊燈／燈腹過閘」提供新跨批全文排除，供領導抽核；其餘包含BW-08、踏拍／開扇、留像、同燈、停步索／扣足矢、針扇與鹽紗對照。舊P01、九槽缺口、近名3組／遭遇4組、74–77與短場節奏不重開。\n\n## 產出（檔案路徑 / commit / 分支）\n\n唯一交付目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen/`。\n\n[README.md](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)記問題、方法、發現、結論與來源；[coverage.json](../../../notes/investigations/content-review-2026-10-28/gear-scen/coverage.json)為346列wf-table，逐檔有read_level、sha256、入口歸屬及來源列映射；[evidence.json](../../../notes/investigations/content-review-2026-10-28/gear-scen/evidence.json)為8組wf-table，兩端與直接配套均有字段、行號、sha256、相似／差異、判定、建議與信心。另保留兩支分區輔助腳本及last.txt；沒有commit或分支操作。\n\n主責263入口全部唯一且有現檔：gear為124部件、40能力、12效果、24研究；scen為48情境、15地圖。七輪參照實數12機甲＋10怪獸＝22概念、64配套檔，領導orders已確認修正brief的24，主責gate不變。首輪怪獸表16個worktree絕對路徑已依content後綴映射現主樹；首輪6份機甲型錄另記覆蓋，不多算概念。六台新機甲實際引用八件gear部件，這是正常配套而非重複創作。\n\n交付前核對：346份來源指紋全相符；8組證據的所有定位行號及全文層級相符，README連結存在。263入口≤263、8組≤50、交付約0.35MB＜0.5MB。上述為文件與靜態來源核對，不是遊戲驗收。\n\n## 沒做到、或證據不足的部分\n\n全文只有54檔：主責gear18＋情境3、七輪參照14、直接既有配套19。主責其餘242檔與七輪其餘50檔只機械索引；未全文審完地圖、研究、其他部件與怪獸，不宣稱全庫無重複／矛盾。候選的「高信心」限於已讀兩端存在實質差異，不代表完成平衡或功能驗證。\n\n七輪仍為draft。AI實戰、AP／冷卻與捕捉運行、平衡、聲望／市場／研究取得及整合驗收均未執行；既知問題沿用舊證據。兩次推測配套檔名查無檔已改依現檔引用定位，不列成入口缺檔，沒有持續工具阻塞。\n\n## 需要對方或使用者決定的事\n\n本分區無新增裁決題。請領導抽核S01，統整時採22個參照概念；保留8組內容與具體取捨，不因共用骨架、效果或部件而合併。未讀區域與既定回家驗收保留，不將本報告升格為全庫或遊戲驗收完成。",
-   "title": "gear-scen完成263入口核對與8組全文排除：新增問題0，七輪參照實數22"
-  },
-  {
-   "file": "20261028T0828-cx-review-people-1028-DONE.md",
-   "from": "cx-review-people-1028",
-   "status": "DONE",
-   "at": "2026-10-28T08:28:51+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# 人物增量審閱完成：200入口、24組全文排除，新增問題0，覆蓋與證據已交付\n\n## 做了什麼\n\n親自讀完人物交接、適用專案規矩與全部世界支柱子檔，先以 cx-review-people-1028 寄上線 PROGRESS，逐步 poll 並採納領導兩則 orders。核實 pilots 148 組、bigfill 34 人物、七輪 18 人物，合計 200 個語義入口；496 個人物／背景／lore 映射加 40 招募池參照，共 536 檔，缺檔 0。148 組背景 person、lore gameRefs 及招募池來源聯集均對齊。沒有將 484 列誤算成人數，也沒有假定背景與人物檔名相同。\n\n七輪 18 篇全部全文親讀；機械人物參照庫為 289 lore＋186 base。以相似詞、職業及主行動定位，完成 24 組兩端全文比較，新增確認問題 0、待裁決 0、排除 24。PE01、PE03、PE10 是不在舊16組中的新跨批排除對照，供領導抽核。PE09 已核札瓦迪現稿與崔恩率不同，不把已退回提案列現行重複；P01、P02、九槽及已修歷史沒有重開。\n\n## 產出（檔案路徑 / commit / 分支）\n\n交付全在本分區：[README.md](../../../notes/investigations/content-review-2026-10-28/people/README.md)、[entries.json](../../../notes/investigations/content-review-2026-10-28/people/entries.json)（200列）、[coverage.json](../../../notes/investigations/content-review-2026-10-28/people/coverage.json)（663列）、[evidence.json](../../../notes/investigations/content-review-2026-10-28/people/evidence.json)（24列）、[last.txt](../../../notes/investigations/content-review-2026-10-28/people/last.txt)。另保留本輪兩份資料產生腳本供追溯。所有表均用 tabledb load／Table.add／save；舊 list 列僅在記憶體正規化，未改來源。\n\ncoverage 逐檔記錄指紋、read_level 與來源歸屬；全文 35 檔（33 人物 lore＋背景及招募樣本各1），機械 628 檔。evidence 每組有兩端字段、實體行號、行內短定位、sha256、相似、差異、信心與建議。寄信前已核來源映射、候選兩端定位與全部覆蓋指紋；入口 200≤200、候選24≤50。報告寫入前分區為446179 bytes，連同本報告與終局摘要仍低於500000 bytes。未 commit／push，審閱 HEAD 記於 coverage metadata。\n\n## 沒做到、或證據不足的部分\n\n舊人物、背景與招募池除列明全文樣本外未逐句審閱，機械索引不能證明其語義無矛盾。未遞移展開事件年表、勢力或場所全文，未宣稱全庫審完。沒有新證據要求刪除／合併人物，不為達候選上限湊問題。\n\n未修改 content／src／spec／golden／index／batches，未改 ROSTER 或 brief，未安裝下載、上網、使用 GUI、跑遊戲測試／lint／build／check／sim，未開子 agent。七輪仍是 draft，整合、平衡與試玩沿用原待辦；本輪完成的是文件審閱。\n\n## 需要對方或使用者決定的事\n\n無新增裁決。建議領導抽核 PE03（嚮導撤回捷徑／新手駕機抵崖救人），其兩端全文、字段與指紋均已交付；其餘排除組建議保留現稿。既有 P01／P02 及其他待驗事項留在10/27入口，不增加重複工單。終局由本線以 --up DONE 寄此報告後停止。",
-   "title": "人物增量審閱完成：200入口、24組全文排除，新增問題0，覆蓋與證據已交付"
-  },
-  {
-   "file": "20261028T0830-lead-review-1028-PROGRESS.md",
-   "from": "lead-review-1028",
-   "status": "PROGRESS",
-   "at": "2026-10-28T08:30:13+08:00",
-   "source": "new/",
-   "body": "# 更正領導映射：708入口1046主責檔；原922漏124個不同檔名背景，工人人物映射原已正確，兩線DONE待世界收件\n\n## 做了什麼\n領導交叉核對人物配套後修正主入口清單。\n## 產出（檔案路徑 / commit / 分支）\n正確708入口／1046主責檔，另40招募池參照；原922因按同檔名配對漏124背景檔，已按background.person與lore.gameRefs修正。人物工人映射原本正確，語義審閱不受影響。\n## 沒做到、或證據不足的部分\n人物及gear兩線DONE，世界線候選16組成稿待終局；共48筆候選無新確認問題。待三線收齊與固定四項驗收。\n## 需要對方或使用者決定的事\n無新增裁決；舊四線仍暫停，draft不改accepted。",
-   "title": "更正領導映射：708入口1046主責檔；原922漏124個不同檔名背景，工人人物映射原已正確，兩線DONE待世界收件"
-  },
-  {
-   "file": "20261028T0831-cx-review-world-1028-DONE.md",
-   "from": "cx-review-world-1028",
-   "status": "DONE",
-   "at": "2026-10-28T08:31:08+08:00",
-   "source": "mail/lead-review-1028/",
-   "body": "# world完成245入口映射與16組全文排除：新問題0、待裁決0，建議抽核W07\n\n# world 審閱完成：245 入口、16 組全文排除，沒有確認新問題\n\n## 做了什麼\n\ncx-review-world-1028 親自讀本線與主交接、適用 wf 規則及 world-pillars 全部子檔、10/27 people/content 摘要與舊16＋16候選、fill-rulings。只審 bigfill 排人物後181入口及七輪排人物後64概念；未派子 agent，工具工作目錄全程留 world 分區。已寄上線 PROGRESS，每步 poll orders，已依領導提醒正規化 worktree/$fmt 地址並精簡輸出。\n\n核實245概念對應287現行檔案（舊181、新106），缺檔0；配套不重複算概念。機械解析2,819份base/lore JSON，新增主責檔沒有ID撞名或同類精確同名。全文核讀48檔，形成16組兩端完整證據，確認新問題0、待裁決0、已排除16。沒有重開P01、九槽缺口或舊候選，歷史識別對應現存b0a5ebef/8a577dcf，不把已修摘要重新列為現況問題。\n\n## 產出（檔案路徑 / commit / 分支）\n\n唯一交付目錄：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world/。\n\nREADME.md 說明問題、方法、發現、結論與來源；entries.json 為245列來源表原列到現檔映射；coverage.json 為292列逐檔指紋與讀取層級；evidence.json 為16組字段、行號、兩端SHA-256、判定/差異/建議/信心；scan.json 保留來源表指紋、機械口徑及交付一致性核對。audit.py、build_evidence.py 保留本線方法；last.txt 為五行摘要。資料表均用wf-table/1，經tabledb載入及add/update/save寫入。\n\n推薦領導抽核 W07：第一輪鐵砧-II斷纜型對第三輪鐵砧-II型・開扇，兩端frame及型錄均全文讀過，骨架、配裝、勤務、前置與月份有具體差異。W01空冠社/穹頂住戶、W02換禮角/望鄉號是正常配套；W14鹽紗的互斥捕獲條件與採收敘事及原工人REPORT:73一致，未誤報新bug。\n\nREPORT前完成檔案存在、全部292列SHA-256、證據兩端全文狀態、字段實際行號與既存README連結核對；245≤245、16≤50，含本報告與摘要的分區產物低於0.25MB（gate 0.5MB）。未commit或push。\n\n## 沒做到、或證據不足的部分\n\n292列中全文48、僅機械索引244；全文為新映射39、舊入口4、額外參照5。新七輪主入口檔只全文讀28/64，配套未全部全文；六份新事件雖全文讀過，沒有沿人物、年表與依賴無限展開。其餘未全文檔逐列標mechanical_index，不能宣稱245入口或全庫語義已審完。\n\n未跑遊戲測試/lint/build/check/sim、取得流程、平衡或實機驗收；怪獸同骨架換招是否足夠豐富實戰尚無動態證據。未修改content/src/spec/golden/index/batches、未下載/安裝/上網、未刪檔或清worktree。\n\n## 需要對方或使用者決定的事\n\n沒有新使用者裁決項。請領導按主交接抽核至少一組新跨批排除，建議W07；高信心新問題為0，無需逐條問題抽核。本線交付後停止，不加碼驗證或恢復舊線實作。",
-   "title": "world完成245入口映射與16組全文排除：新問題0、待裁決0，建議抽核W07"
-  }
- ]
+  "contract": "wf-table/1",
+  "source": "messages.md",
+  "extracted": "2026-10-28",
+  "presentation_note": "僅本輪信的相對Markdown連結按原REPORT/README目錄重定位；原投遞信保留.state/acked，歷史標題與初稿數字不改，定稿1046見lead REPORT。",
+  "columns": [
+    "file",
+    "from",
+    "status",
+    "at",
+    "source",
+    "body",
+    "title"
+  ],
+  "rows": [
+    {
+      "file": "20261028T0820-lead-review-1028-PROGRESS.md",
+      "from": "lead-review-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:20:45+08:00",
+      "source": "new/",
+      "body": "# 增量去重審閱三線brief已驗過並開始派工\n\n# 任務：完成跨批增量去重與內容審閱\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`；親自讀 dispatch、investigation、content README、world-pillars 與全部子檔、common/user.md 與 user/working.md、data-files、team-model、dev-env、testing、inbox/README。\n\n## 背景與唯一目標\n\nlead-review-1028 統整可操作的增量審閱清單；以10/27已核32組與fill-rulings為基線，著重新七輪跨批，不重跑舊結論湊數。歷史3d79f69/9364f46在此clone無該物件，以現行b0a5ebef/8a577dcf與原檔核對已修事項。\n\n## 範圍（排除法寫死）\n\n只做使用者授權的本輪行政與審閱文件。入口為bigfill215、pilots148組、gear200、scen63、七輪82概念，預期708個語義入口；人物配套及怪獸四檔另記檔案覆蓋，不重複算概念。不得把review.json的484列誤報148個獨立人物以外的新增入口。\n\n不做content/src/spec/golden/index/batches修改、舊線收線、實作、Fable等待、安裝下載、GUI、刪檔或worktree清理。件數 gate：最多900個批次入口項、全文候選最多150組；容量 gate：本輪產物最多2MB；超出先回報頂層，不擴張。\n\n## 必用工具\n\n| 工具 | 用途 |\n|---|---|\n| `python3 wf/tools/brief_lint.py` | 派工前strict |\n| `wf/tools/tabledb.py` | wf-table讀寫及切片；舊list列由load後zip columns轉dict，不改原檔 |\n| `codex exec` | 三條gpt-6.1-sol外部工人，workspace-write限分區 |\n| `bash wf/tools/wf-lint.sh --strict .` | 收件後全庫一次 |\n| `git diff --check` | 驗收空白 |\n\n## 資源與禁區\n\n可寫程式碼線：此處僅代表可寫授權文件，禁止寫程式與內容。子代理上限3，工人不得再開；總平行工人3，無重負載。領導不包辦全文審閱，抽核全部高信心問題及每線至少1條排除。\n\n不碰鍵鼠螢幕、不開GUI、不裝依賴、不上網、不刪檔、不改~/.codex/config.toml、不建分支、不rebase/reset；工人不commit/push。領導只加明確檔案並main commit及push，今天使用者已授權。使用者已補授權本輪ROSTER列與wf/inbox訊息，外部線照正常mail/poll/ack回報；領導代登記名冊。\n\n## 工作\n\n三線讀取分區：people＝pilots148組＋bigfill34人物＋七輪18人物；gear-scen＝gear200＋scen63，參照新機甲怪獸配套；world＝bigfill181非人物＋七輪64非人物概念。各自核實實數；入口主責互斥，參照可交叉。每線全文候選最多50組，產物最多0.5MB。\n\n候選必須全文讀兩端，記字段/行號、相似與差異、建議、信心；確認問題、待裁決、排除分開，區分真重複、正常配套、刻意變體、設定衝突。未全文覆蓋處明記。表超1KB用wf-table/1，表不可整份進context。\n\n## 交付\n\n短README與分區報告、覆蓋及證據資料存 `/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/`；lead REPORT存 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-review-1028/REPORT.md`。完成後本輪交接及附件移授權done/2026-10-28/並追加索引。\n\n## 驗收（固定4條）\n\n1. 覆蓋與候選證據實際存在，所有問題有來源，入口及容量不超gate。\n2. 領導抽核每條高信心問題及各工人至少1條排除對照，留原檔核對證據。\n3. git diff --check回傳0，提交前所有工人終局且無他線改動混入。\n4. 全庫wf-lint --strict一次，如有既有legacy斷鏈如實記錄，修掉新增問題，不宣稱歷史驗收等於目前遊戲綠燈。\n\n## 完成／阻塞回報\n\n每約60秒向頂層工具回報進度。工人終局DONE/BLOCKED/FAILED寫分區REPORT及last.txt並以inbox_mail.sh --up寄終局；領導核process退出、log與產物後才收線。需要裁決寫清單繼續其他審閱。工具阻塞報實況，不拿歷史輸出冒充。",
+      "title": "增量去重審閱三線brief已驗過並開始派工"
+    },
+    {
+      "file": "20261028T0821-cx-review-gear-1028-PROGRESS.md",
+      "from": "cx-review-gear-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:21:23+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# gear-scen已上線：限定263入口、親讀規矩後做跨批單位與情境審閱\n\n# 任務：審閱gear-scen增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：gear200與fill-scen63入口。參照新七輪機甲/怪獸24概念配套及既有部件/情境，查單位定位/配置/戰鬥目的差異；不重跑已核9槽缺口與近名3組/遭遇4組，應沿用舊證據。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多263批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-gear-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen`。",
+      "title": "gear-scen已上線：限定263入口、親讀規矩後做跨批單位與情境審閱"
+    },
+    {
+      "file": "20261028T0821-cx-review-people-1028-PROGRESS.md",
+      "from": "cx-review-people-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:21:29+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# 人物審閱工人已上線，限定200入口與50候選內做七輪跨批增量比對\n\n# 任務：審閱people增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：pilots148組（review484列配套）＋bigfill人物34＋七輪人物18概念。只主責人物/人物lore；參照既有人物及新勢力/地點限必要對照；新七輪人物wl-、wn-r2-、wm-r4-為增量重心。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多200批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-people-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people`。",
+      "title": "人物審閱工人已上線，限定200入口與50候選內做七輪跨批增量比對"
+    },
+    {
+      "file": "20261028T0821-cx-review-world-1028-PROGRESS.md",
+      "from": "cx-review-world-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:21:20+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# world審閱工人上線：僅審181舊入口與64新概念，交付限world分區\n\n# 任務：審閱world增量跨批內容\n\n先讀：`/mnt/c/code/mine/mecha-srpg/AGENTS.md`、wf/WORKFLOWS.md、common/user.md及user/working.md、dispatch/README.md、investigation.md、content/README.md、world-pillars.md與全部子檔、data-files.md、team-model.md、dev-env.md、testing.md、inbox/README.md及PROTOCOL.md（均在wf/workflows下）；親自讀不靠摘要。再讀主brief與10/27 people/content摘要、fill-rulings，舊16＋16候選避免重做。3d79f69/9364f46舊識別此clone不存在；現行對應b0a5ebef/8a577dcf，以原檔而非舊摘要裁定。\n\n## 背景與唯一目標\n增量比較新七輪與舊批，形成有操作價值的審閱文件，不為湊數提同題材。正常系列/配套/刻意變體不可誤判真重複。\n\n## 必用工具\n| 工具 | 用途 |\n|---|---|\n| `wf/tools/tabledb.py` | 所有wf-table讀寫，僅切片入context |\n| `wf/tools/inbox_poll.sh` | 每完成一步以自己線名--once讀orders |\n| `wf/tools/inbox_mail.sh` | 上線PROGRESS與終局--up，正文給REPORT檔 |\n| `rg` | 機械索引與候選定位 |\n\n舊表rows有list而非dict導致tabledb CLI slice出錯：用Python from tabledb import load，逐列以dict(zip(t.columns,row))在記憶體正規化；不改來源。新表用load後Table.add/save，無整表輸出。新表統一wf-table/1，路徑若欄名_path要相對JSON或用gitRoot格式。\n\n## 資源與禁區\n可寫程式碼線：僅可寫分派文件目錄；不得寫程式/內容。子代理上限0，不可再開agent；全機最多3工人，無重負載。不碰鍵鼠螢幕、不GUI、不下載、不安裝、不上網、不commit/push、不建分支、不rebase/reset、不刪檔不清worktree、不改codex設定；不跑遊戲測試/lint/build/check/sim。只讀content/src/spec/golden/index/batches與其他線資料。ROSTER由領導代登記，自己只准用inbox腳本投本輪信及poll狀態。\n\n## 工作\n核實入口清單實數、來源到現行檔案映射及缺漏。機械索引可全庫，參照庫不得無限遞移全文。所有候選全文讀完兩端（含字段/行號、sha256、相似與差異、建議、信心），區分確認問題/待裁決/已排除。既知P01、九槽缺口不重開新問題。沒有高價值新問題可明寫零，不硬湊。至少交1組新跨批的全文排除對照供領導抽核。每份完整讀過的content檔逐檔記coverage，機械索引與全文狀態分開；未讀區域明列限制。不宣稱全庫審完。\n\n## 交付\n\n唯一交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world/`。\n分區README.md（含問題/方法/發現/結論/來源）、REPORT.md（四段做了什麼/產出/不足/待決）、coverage.json（逐檔read_level與sha256、入口歸屬）、evidence.json（每組兩端檔案+字段/行號、判定/信心/建議），寫到下述唯一絕對目錄。其餘路徑不可寫（本輪mail/poll例外）。超1KB同質清單全部放wf-table，不整表入context。已修歷史不列現行問題。\n\n## 驗收（固定2條）\n1. 交付與coverage/evidence真實存在，候選兩端全文讀過、每項有可定位來源；入口/候選/容量未超gate。\n2. 寫REPORT後以自己線名inbox_mail.sh --up DONE（或BLOCKED/FAILED）寄自足標題，正文用REPORT絕對路徑，最後5行摘要與REPORT路徑後停止，不自行加碼驗證。\n\n## 完成／阻塞回報\n先以自己線名--up PROGRESS寄上線摘要（可用本brief作正文），每步poll一次。終局必寄--up，不能只留last.txt；工具阻塞照實報告，10分鐘卡住需BLOCKED。需使用者裁決寫清單繼續其他工作。工人不得變更brief。\n\n## 範圍（排除法寫死）\n\n只做：bigfill215排除34人物後181＋七輪82排除18人物後64概念。七輪read來源為lead-world-life-1027六類review與lead-world-next/more-1027/review.json；主責非人物的地點用途/具體事件/勢力/機甲怪獸敘事與跨批，人物由people負責；gear/scen只參照不重算入口。\n\n不做：範圍外審閱與任何內容修改。件數 gate：最多245批次入口、最多50組候選；容量 gate：產物最多0.5MB；超出先回報領導實數，不擴張。配套檔另記檔案覆蓋不重複算語義入口。\n\n自己的線名：cx-review-world-1028；團隊review-1028，領導lead-review-1028。唯一可寫交付絕對目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world`。",
+      "title": "world審閱工人上線：僅審181舊入口與64新概念，交付限world分區"
+    },
+    {
+      "file": "20261028T0822-cx-review-gear-1028-PROGRESS.md",
+      "from": "cx-review-gear-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:22:24+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# gear200與scen63全有現檔；七輪機甲怪獸參照實數22而非24\n\n## 做了什麼\n已上線並親讀規矩、主brief、10/27人物與內容摘要、舊候選及fill-rulings。正在核對跨批單位定位、配裝與情境差異。\n## 產出（檔案路徑 / commit / 分支）\n入口實數：gear 200（100 component、24武器、40能力、12effect、24research）；scen63（48scenario、15map）。263路徑全存在且唯一。\n## 沒做到、或證據不足的部分\n本次是進度快照。七輪參照審閱表實數為22概念（首輪6機甲4怪獸、第三輪3+3、第七輪3+3），不是brief所述24；不以配套湊概念數。\n## 需要對方或使用者決定的事\n請領導整併時採實數22，或指出另2概念的權威入口。本線繼續既定263入口與22概念參照，不擴張。",
+      "title": "gear200與scen63全有現檔；七輪機甲怪獸參照實數22而非24"
+    },
+    {
+      "file": "20261028T0824-lead-review-1028-PROGRESS.md",
+      "from": "lead-review-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:24:28+08:00",
+      "source": "new/",
+      "body": "# 三線均運行無阻塞：708入口922檔已對帳，七輪82概念124檔吻合，待候選收件與領導抽核後四項驗收提交推送\n\n# 2026-10-28 跨批增量審閱\n\n[調查入口](../../../notes/investigations/README.md)｜[前次審閱](../../../notes/investigations/content-review-2026-10-27/README.md)\n\n## 問題\n\n新七輪與既有各批是否有真正重複、設定衝突，或應保留的正常配套與刻意變體？本輪只交審閱證據，不改內容，不代替整合驗收。\n\n## 方法與覆蓋\n\n入口已機械核實為708個概念／人物組：bigfill215、pilots148組、gear200、scen63、七輪82。分區主責200／263／245互斥，人物配套與怪獸配套另計，映射922份現行檔案且全存在；七輪124新檔與8ba72b43新增檔清單完全相同。pilots另40招募池屬參照，不重算人物入口。入口與來源逐項在[入口清單](../../../notes/investigations/content-review-2026-10-28/entries.json)，這層不代表已全文讀過。\n\n沿用10/27已核16組人物與16組非人物候選，以新七輪交界為增量重點。fill-rulings的3d79f69／9364f46在公司clone沒有物件，現行歷史為b0a5ebef／8a577dcf；以現檔判斷已修與現行問題，不能只照舊報告。\n\n## 分區與證據\n\n[人物／人物lore](../../../notes/investigations/content-review-2026-10-28/people/README.md)｜[gear／戰鬥情境](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)｜[世界與新七輪](../../../notes/investigations/content-review-2026-10-28/world/README.md)。各區coverage分開機械索引與全文證據，候選兩端全文核對；尚在審閱時不先判全庫無重複。\n\n## 結論與來源\n\n本頁於收件與領導抽核後補定稿；來源為上述原批清單、現行content原檔與分區證據。四條舊線維持暫停，所有draft狀態不變；遊戲整合驗收、黃金與平衡仍留家中。",
+      "title": "三線均運行無阻塞：708入口922檔已對帳，七輪82概念124檔吻合，待候選收件與領導抽核後四項驗收提交推送"
+    },
+    {
+      "file": "20261028T0825-lead-review-1028-PROGRESS.md",
+      "from": "lead-review-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:25:04+08:00",
+      "source": "new/",
+      "body": "# 三線持續審閱；入口對帳完成，現階段約1MB審閱文件，原始執行log將無損壓縮使交付低於2MB，剩候選收件抽核與四項驗收\n\n# 2026-10-28 跨批增量審閱\n\n[調查入口](../../../notes/investigations/README.md)｜[前次審閱](../../../notes/investigations/content-review-2026-10-27/README.md)\n\n## 問題\n\n新七輪與既有各批是否有真正重複、設定衝突，或應保留的正常配套與刻意變體？本輪只交審閱證據，不改內容，不代替整合驗收。\n\n## 方法與覆蓋\n\n入口已機械核實為708個概念／人物組：bigfill215、pilots148組、gear200、scen63、七輪82。分區主責200／263／245互斥，人物配套與怪獸配套另計，映射922份現行檔案且全存在；七輪124新檔與8ba72b43新增檔清單完全相同。pilots另40招募池屬參照，不重算人物入口。入口與來源逐項在[入口清單](../../../notes/investigations/content-review-2026-10-28/entries.json)，這層不代表已全文讀過。\n\n沿用10/27已核16組人物與16組非人物候選，以新七輪交界為增量重點。fill-rulings的3d79f69／9364f46在公司clone沒有物件，現行歷史為b0a5ebef／8a577dcf；以現檔判斷已修與現行問題，不能只照舊報告。\n\n## 分區與證據\n\n[人物／人物lore](../../../notes/investigations/content-review-2026-10-28/people/README.md)｜[gear／戰鬥情境](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)｜[世界與新七輪](../../../notes/investigations/content-review-2026-10-28/world/README.md)。各區coverage分開機械索引與全文證據，候選兩端全文核對；尚在審閱時不先判全庫無重複。\n\n## 結論與來源\n\n本頁於收件與領導抽核後補定稿；來源為上述原批清單、現行content原檔與分區證據。四條舊線維持暫停，所有draft狀態不變；遊戲整合驗收、黃金與平衡仍留家中。",
+      "title": "三線持續審閱；入口對帳完成，現階段約1MB審閱文件，原始執行log將無損壓縮使交付低於2MB，剩候選收件抽核與四項驗收"
+    },
+    {
+      "file": "20261028T0828-cx-review-gear-1028-DONE.md",
+      "from": "cx-review-gear-1028",
+      "status": "DONE",
+      "at": "2026-10-28T08:28:37+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# gear-scen完成263入口核對與8組全文排除：新增問題0，七輪參照實數22\n\n## 做了什麼\n\n親讀本線交接與指定規矩、world-pillars全部子檔、主brief、10/27人物／內容摘要及舊候選、fill-rulings。核對gear200與fill-scen63入口實數、來源映射與缺漏；以rg定位新七輪配裝及同題材情境，全文核對8組候選與直接配套。未修改content/src/spec/golden/index/batches，未開agent，未跑遊戲測試、lint、build、check或sim。\n\n結果：新增確認問題0、新增待裁決0、已排除8組。S01「疊燈／燈腹過閘」提供新跨批全文排除，供領導抽核；其餘包含BW-08、踏拍／開扇、留像、同燈、停步索／扣足矢、針扇與鹽紗對照。舊P01、九槽缺口、近名3組／遭遇4組、74–77與短場節奏不重開。\n\n## 產出（檔案路徑 / commit / 分支）\n\n唯一交付目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen/`。\n\n[README.md](../../../notes/investigations/content-review-2026-10-28/gear-scen/README.md)記問題、方法、發現、結論與來源；[coverage.json](../../../notes/investigations/content-review-2026-10-28/gear-scen/coverage.json)為346列wf-table，逐檔有read_level、sha256、入口歸屬及來源列映射；[evidence.json](../../../notes/investigations/content-review-2026-10-28/gear-scen/evidence.json)為8組wf-table，兩端與直接配套均有字段、行號、sha256、相似／差異、判定、建議與信心。另保留兩支分區輔助腳本及last.txt；沒有commit或分支操作。\n\n主責263入口全部唯一且有現檔：gear為124部件、40能力、12效果、24研究；scen為48情境、15地圖。七輪參照實數12機甲＋10怪獸＝22概念、64配套檔，領導orders已確認修正brief的24，主責gate不變。首輪怪獸表16個worktree絕對路徑已依content後綴映射現主樹；首輪6份機甲型錄另記覆蓋，不多算概念。六台新機甲實際引用八件gear部件，這是正常配套而非重複創作。\n\n交付前核對：346份來源指紋全相符；8組證據的所有定位行號及全文層級相符，README連結存在。263入口≤263、8組≤50、交付約0.35MB＜0.5MB。上述為文件與靜態來源核對，不是遊戲驗收。\n\n## 沒做到、或證據不足的部分\n\n全文只有54檔：主責gear18＋情境3、七輪參照14、直接既有配套19。主責其餘242檔與七輪其餘50檔只機械索引；未全文審完地圖、研究、其他部件與怪獸，不宣稱全庫無重複／矛盾。候選的「高信心」限於已讀兩端存在實質差異，不代表完成平衡或功能驗證。\n\n七輪仍為draft。AI實戰、AP／冷卻與捕捉運行、平衡、聲望／市場／研究取得及整合驗收均未執行；既知問題沿用舊證據。兩次推測配套檔名查無檔已改依現檔引用定位，不列成入口缺檔，沒有持續工具阻塞。\n\n## 需要對方或使用者決定的事\n\n本分區無新增裁決題。請領導抽核S01，統整時採22個參照概念；保留8組內容與具體取捨，不因共用骨架、效果或部件而合併。未讀區域與既定回家驗收保留，不將本報告升格為全庫或遊戲驗收完成。",
+      "title": "gear-scen完成263入口核對與8組全文排除：新增問題0，七輪參照實數22"
+    },
+    {
+      "file": "20261028T0828-cx-review-people-1028-DONE.md",
+      "from": "cx-review-people-1028",
+      "status": "DONE",
+      "at": "2026-10-28T08:28:51+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# 人物增量審閱完成：200入口、24組全文排除，新增問題0，覆蓋與證據已交付\n\n## 做了什麼\n\n親自讀完人物交接、適用專案規矩與全部世界支柱子檔，先以 cx-review-people-1028 寄上線 PROGRESS，逐步 poll 並採納領導兩則 orders。核實 pilots 148 組、bigfill 34 人物、七輪 18 人物，合計 200 個語義入口；496 個人物／背景／lore 映射加 40 招募池參照，共 536 檔，缺檔 0。148 組背景 person、lore gameRefs 及招募池來源聯集均對齊。沒有將 484 列誤算成人數，也沒有假定背景與人物檔名相同。\n\n七輪 18 篇全部全文親讀；機械人物參照庫為 289 lore＋186 base。以相似詞、職業及主行動定位，完成 24 組兩端全文比較，新增確認問題 0、待裁決 0、排除 24。PE01、PE03、PE10 是不在舊16組中的新跨批排除對照，供領導抽核。PE09 已核札瓦迪現稿與崔恩率不同，不把已退回提案列現行重複；P01、P02、九槽及已修歷史沒有重開。\n\n## 產出（檔案路徑 / commit / 分支）\n\n交付全在本分區：[README.md](../../../notes/investigations/content-review-2026-10-28/people/README.md)、[entries.json](../../../notes/investigations/content-review-2026-10-28/people/entries.json)（200列）、[coverage.json](../../../notes/investigations/content-review-2026-10-28/people/coverage.json)（663列）、[evidence.json](../../../notes/investigations/content-review-2026-10-28/people/evidence.json)（24列）、[last.txt](../../../notes/investigations/content-review-2026-10-28/people/last.txt)。另保留本輪兩份資料產生腳本供追溯。所有表均用 tabledb load／Table.add／save；舊 list 列僅在記憶體正規化，未改來源。\n\ncoverage 逐檔記錄指紋、read_level 與來源歸屬；全文 35 檔（33 人物 lore＋背景及招募樣本各1），機械 628 檔。evidence 每組有兩端字段、實體行號、行內短定位、sha256、相似、差異、信心與建議。寄信前已核來源映射、候選兩端定位與全部覆蓋指紋；入口 200≤200、候選24≤50。報告寫入前分區為446179 bytes，連同本報告與終局摘要仍低於500000 bytes。未 commit／push，審閱 HEAD 記於 coverage metadata。\n\n## 沒做到、或證據不足的部分\n\n舊人物、背景與招募池除列明全文樣本外未逐句審閱，機械索引不能證明其語義無矛盾。未遞移展開事件年表、勢力或場所全文，未宣稱全庫審完。沒有新證據要求刪除／合併人物，不為達候選上限湊問題。\n\n未修改 content／src／spec／golden／index／batches，未改 ROSTER 或 brief，未安裝下載、上網、使用 GUI、跑遊戲測試／lint／build／check／sim，未開子 agent。七輪仍是 draft，整合、平衡與試玩沿用原待辦；本輪完成的是文件審閱。\n\n## 需要對方或使用者決定的事\n\n無新增裁決。建議領導抽核 PE03（嚮導撤回捷徑／新手駕機抵崖救人），其兩端全文、字段與指紋均已交付；其餘排除組建議保留現稿。既有 P01／P02 及其他待驗事項留在10/27入口，不增加重複工單。終局由本線以 --up DONE 寄此報告後停止。",
+      "title": "人物增量審閱完成：200入口、24組全文排除，新增問題0，覆蓋與證據已交付"
+    },
+    {
+      "file": "20261028T0830-lead-review-1028-PROGRESS.md",
+      "from": "lead-review-1028",
+      "status": "PROGRESS",
+      "at": "2026-10-28T08:30:13+08:00",
+      "source": "new/",
+      "body": "# 更正領導映射：708入口1046主責檔；原922漏124個不同檔名背景，工人人物映射原已正確，兩線DONE待世界收件\n\n## 做了什麼\n領導交叉核對人物配套後修正主入口清單。\n## 產出（檔案路徑 / commit / 分支）\n正確708入口／1046主責檔，另40招募池參照；原922因按同檔名配對漏124背景檔，已按background.person與lore.gameRefs修正。人物工人映射原本正確，語義審閱不受影響。\n## 沒做到、或證據不足的部分\n人物及gear兩線DONE，世界線候選16組成稿待終局；共48筆候選無新確認問題。待三線收齊與固定四項驗收。\n## 需要對方或使用者決定的事\n無新增裁決；舊四線仍暫停，draft不改accepted。",
+      "title": "更正領導映射：708入口1046主責檔；原922漏124個不同檔名背景，工人人物映射原已正確，兩線DONE待世界收件"
+    },
+    {
+      "file": "20261028T0831-cx-review-world-1028-DONE.md",
+      "from": "cx-review-world-1028",
+      "status": "DONE",
+      "at": "2026-10-28T08:31:08+08:00",
+      "source": "mail/lead-review-1028/",
+      "body": "# world完成245入口映射與16組全文排除：新問題0、待裁決0，建議抽核W07\n\n# world 審閱完成：245 入口、16 組全文排除，沒有確認新問題\n\n## 做了什麼\n\ncx-review-world-1028 親自讀本線與主交接、適用 wf 規則及 world-pillars 全部子檔、10/27 people/content 摘要與舊16＋16候選、fill-rulings。只審 bigfill 排人物後181入口及七輪排人物後64概念；未派子 agent，工具工作目錄全程留 world 分區。已寄上線 PROGRESS，每步 poll orders，已依領導提醒正規化 worktree/$fmt 地址並精簡輸出。\n\n核實245概念對應287現行檔案（舊181、新106），缺檔0；配套不重複算概念。機械解析2,819份base/lore JSON，新增主責檔沒有ID撞名或同類精確同名。全文核讀48檔，形成16組兩端完整證據，確認新問題0、待裁決0、已排除16。沒有重開P01、九槽缺口或舊候選，歷史識別對應現存b0a5ebef/8a577dcf，不把已修摘要重新列為現況問題。\n\n## 產出（檔案路徑 / commit / 分支）\n\n唯一交付目錄：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world/。\n\nREADME.md 說明問題、方法、發現、結論與來源；entries.json 為245列來源表原列到現檔映射；coverage.json 為292列逐檔指紋與讀取層級；evidence.json 為16組字段、行號、兩端SHA-256、判定/差異/建議/信心；scan.json 保留來源表指紋、機械口徑及交付一致性核對。audit.py、build_evidence.py 保留本線方法；last.txt 為五行摘要。資料表均用wf-table/1，經tabledb載入及add/update/save寫入。\n\n推薦領導抽核 W07：第一輪鐵砧-II斷纜型對第三輪鐵砧-II型・開扇，兩端frame及型錄均全文讀過，骨架、配裝、勤務、前置與月份有具體差異。W01空冠社/穹頂住戶、W02換禮角/望鄉號是正常配套；W14鹽紗的互斥捕獲條件與採收敘事及原工人REPORT:73一致，未誤報新bug。\n\nREPORT前完成檔案存在、全部292列SHA-256、證據兩端全文狀態、字段實際行號與既存README連結核對；245≤245、16≤50，含本報告與摘要的分區產物低於0.25MB（gate 0.5MB）。未commit或push。\n\n## 沒做到、或證據不足的部分\n\n292列中全文48、僅機械索引244；全文為新映射39、舊入口4、額外參照5。新七輪主入口檔只全文讀28/64，配套未全部全文；六份新事件雖全文讀過，沒有沿人物、年表與依賴無限展開。其餘未全文檔逐列標mechanical_index，不能宣稱245入口或全庫語義已審完。\n\n未跑遊戲測試/lint/build/check/sim、取得流程、平衡或實機驗收；怪獸同骨架換招是否足夠豐富實戰尚無動態證據。未修改content/src/spec/golden/index/batches、未下載/安裝/上網、未刪檔或清worktree。\n\n## 需要對方或使用者決定的事\n\n沒有新使用者裁決項。請領導按主交接抽核至少一組新跨批排除，建議W07；高信心新問題為0，無需逐條問題抽核。本線交付後停止，不加碼驗證或恢復舊線實作。",
+      "title": "world完成245入口映射與16組全文排除：新問題0、待裁決0，建議抽核W07"
+    },
+    {
+      "file": "20261028T0838-lead-review-1028-DONE.md",
+      "from": "lead-review-1028",
+      "status": "DONE",
+      "at": "2026-10-28T08:38:21+08:00",
+      "source": "new/",
+      "body": "# 增量審閱已收線並push至561bc4a4：708入口1046檔、48筆46對無新增問題；重跑strict僅既有legacy2，原始log保留未追蹤\n\n# lead-review-1028 — 增量審閱收尾報告\n\n## 做了什麼\n\n領導親讀指定規矩後建立主brief及三份子brief，派工前brief_lint --strict為0違規／4檔；三位gpt-6.1-sol工人分區互斥、子代理上限0、無重負載，親讀規矩並走mail/poll/ack。三線均DONE且codex正常exit0，終局信與原始log可追溯。\n\n以10/27已核16組人物與16組非人物為基線，增量核對新七輪。708入口＝bigfill215＋pilots148組＋gear200＋scen63＋七輪82，映射1046主責檔；另40招募池參照。領導初稿922漏映124個異名背景，已按background.person與lore.gameRefs修正；人物工人的496主責檔映射原本正確，不影響語義候選。新七輪82概念124檔與8ba72b43新增清單一致；機甲12＋怪獸10＝22參照概念已修brief。\n\n## 產出\n\n正式審閱入口：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/README.md`。三區README/REPORT、evidence/coverage、來源入口及領導核驗表均留該目錄。人物24、gear/情境8、世界16筆全文對照，共48筆、46個不同檔案對；G02/W08、G04/W09是跨區不同面向的兩對重疊，不虛增獨立對數。\n\n新增確認問題0、新增待裁決0；建議保留有證據差異的正常配套、同系列與刻意變體，不因同題材合併。沒有新增WAIT_USER項，不重複P01；舊尺寸缺口等維持原待辦。歷史3d79f69/9364f46在此clone無物件，參照現行歷史b0a5ebef/8a577dcf與原檔，未把已修摘要列現行問題。\n\n## 固定四項驗收\n\n1. 覆蓋與證據存在：1046主責檔全在coverage；合併去重1236份來源指紋及候選端點均相符，定位行號有效；48筆候選端點均有全文記錄。708≤900、48≤150；正式產物小於2MB，原始log另小於10MB。\n2. 高信心新問題0；領導親自帶行號全文讀PE01、G01、W01及直接配套，確認角色主行動、換裝功能與局部社群尺度差異，支持排除。不是只信工人自報，證據在leader-checks.json。\n3. 三線DONE及codex正常exit0，無本輪工人殘留；範圍只見授權本輪檔。首筆暫存檢查發現3份終局摘要共12行尾空白，但命令未中止提交；補證已修，最終對完整本輪baseline執行diff --check為0。原始log不stage，不混他線。\n4. 全庫wf-lint --strict固定一次exit1：broken12＝既有legacy斷鏈2＋本輪證據摘錄wiki連結10，其餘residue/oversize/biglist/querycmd/local均0。本輪10已修成來源檔連結，限定13份本輪wf-table檢查broken0。使用者其後授權且要求失敗修正後全庫重跑一次；第二次exit1僅broken2（同兩條legacy），其餘違規計數均0，本輪新增清零。仍不宣稱strict通過；兩份原始輸出完整保留於wf-lint.txt與wf-lint-recheck.txt。\n\n## 沒做到、或證據不足的部分\n\n全文去重126檔；其中主責95檔、另31參照。1046主責其餘951檔僅機械索引，三區全文35/54/48有交集，不能相加。新七輪124檔中全文61檔，52/82概念至少一檔全文；未全文處逐檔列明，不能宣稱全庫或82概念審完。無新問題只限列明候選，並非完整無矛盾證明。\n\n未改content/src/spec/golden/index/batches，未刪檔、清worktree、安裝下載、開GUI或跑遊戲整合測試。舊四線仍暫停，draft不改accepted；黃金、整合、平衡、取得接線與試玩仍待既定家中驗收。遇到既知裁決題沿用原清單，沒有等待Fable或擅自替架構定案。\n\n## 需要決定的事\n\n本輪無新增裁決。可直接採納46對保留建議；若續審，從明列未全文區域另定有界批次，不重跑此輪候選。若要改內容另派授權實作。\n\n## 收件、封存與執行證據\n\n本輪主brief與附件封存於done/2026-10-28/lead-review-1028，CLAIMS/SESSION只移除本輪列，ROSTER只將本輪四人標已收線，原四條暫停線不動。收件以wf/inbox/done/2026-10-28/messages.json留存；原投遞信在inbox/.state/acked內保留，封存呈現層只正規化本輪相對連結。\n\n原始執行log不提交、不刪除、不壓縮，保留絕對目錄 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028/` 的 people.log、gear-scen.log、world.log；最後訊息與brief入庫即可核終局。工作樹因此預期仍顯示本輪三個未追蹤log，不能宣稱完全clean。\n\n本輪資料產生腳本是審閱方法附件，不是遊戲修改；來源JSON指紋證據均入庫。驗收彙總在notes本輪verification.json；實際commit/push以收尾git核對與最終回報為準。\n\n正式notes產物約1.30MB，原始三份log約1.61MB，分別符合2MB／10MB上限；入庫審閱方法附件保留，小型last訊息可核終局。未壓縮或刪除原始log。\n\n## 提交與推送補證\n\n主成果54檔已以 `5fdd59ff` 提交，普通push回報 `013d51c3..5fdd59ff main -> main`。本補證提交只更新第二次lint結果、三份終局摘要尾空白與收尾文字；不改審閱候選或來源內容。最終HEAD與origin/main由推送後git核對。三份原始log維持未追蹤，另有最後DONE信待頂層收件，不能宣稱工作樹完全clean。",
+      "title": "增量審閱已收線並push至561bc4a4：708入口1046檔、48筆46對無新增問題；重跑strict僅既有legacy2，原始log保留未追蹤"
+    }
+  ]
 }
