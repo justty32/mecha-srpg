@@ -1,0 +1,414 @@
+{
+ "contract": "wf-table/1",
+ "source": "PLAN.md",
+ "extracted": "2026-10-28",
+ "columns": [
+  "id",
+  "名稱",
+  "白話",
+  "寫集",
+  "person",
+  "有效屬性",
+  "lore",
+  "故事節奏",
+  "近鄰",
+  "ZIP與夜間排除",
+  "展示",
+  "限制"
+ ],
+ "rows": [
+  {
+   "id": "P01",
+   "名稱": "瑟琳・索韋",
+   "白話": "瑟琳為保住連中紀錄，打穿了最容易命中的護板，卻讓該攔下的敵機砸掉貨架。",
+   "寫集": [
+    "content/base/persons/night-p-serin-sowe.json",
+    "content/lore/characters/night-p-serin-sowe.json"
+   ],
+   "person": {
+    "kind": "human",
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 52,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 52,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {},
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "id": "person/night-p-serin-sowe",
+    "name": "瑟琳・索韋",
+    "nameEn": "Serin Sowe",
+    "etymology": "虛構人名；Serin Sowe為羅馬字寫法，不是機甲稱號。",
+    "attrs": {
+     "accuracy": 56,
+     "evasion": 6,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 7,
+     "control": 46
+    },
+    "traits": [
+     "effect/ax-trait-grudge-ledger"
+    ],
+    "perks": [],
+    "will": {
+     "beliefs": [
+      "hunger-for-glory",
+      "keep-watch"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ]
+   },
+   "有效屬性": {
+    "自然person值": {
+     "accuracy": 56,
+     "evasion": 6,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 7,
+     "control": 46
+    },
+    "特質掛載後標稱": {
+     "accuracy": 60,
+     "evasion": 6,
+     "resolve": 44,
+     "initiative": 5,
+     "perception": 7,
+     "control": 43,
+     "note": "特質若實際掛載的算術值；不是makePerson自然展示初值。"
+    },
+    "自然longspear-v4合併值": {
+     "accuracy": 60,
+     "evasion": 6,
+     "resolve": 44,
+     "initiative": 11,
+     "perception": 13,
+     "control": 46
+    },
+    "證據": "src/rules/state.ts:210-217 makePerson複製attrs但contribs/effects皆空；makeUnit沒有讀PersonDef.traits；contribs.ts:52-65只算已掛貢獻再加frame。",
+    "限制": "依主線裁示以自然base值展示；traits只是資料宣告，這條建構路徑未自動掛載。不預填效果、不修引擎。"
+   },
+   "lore": {
+    "id": "character/night-p-serin-sowe",
+    "name": "瑟琳・索韋",
+    "aka": [],
+    "born": "2079",
+    "faction": "faction/accra",
+    "kind": "human",
+    "role": "阿克拉外勤護運射手，想取得主射席位",
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/night-p-serin-sowe"
+    ],
+    "tags": [
+     "阿克拉",
+     "駕駛員",
+     "命中紀錄"
+    ],
+    "visibility": "public"
+   },
+   "故事節奏": [
+    "欲望：想讓護運隊把最值錢的射手位交給她。缺點：記住每句「碰運氣」，把一串連續命中當成比任務更可靠的證明。",
+    "已做過的事：2107一趟未具名普通護運，她為反駁同伴對上一發的譏笑，在敵對雜牌機衝近貨架時改瞄更寬的外護板；確實打中，卻錯過能阻住其進路的出手機會，貨架被毀，同伴另行迫退敵機。不是新大型戰役，不替既有清剿補戰果。",
+    "現場：暮色下吼光在大護板上留下漂亮白痕，後方貨架卻沿地面翻出一串碎箱；她下艙第一句仍是「那發中了」，搬貨者沒停手聽完。",
+    "後果：她把命中照記，同頁另抄這次護運缺貨的價；不聲稱自掏錢便買到原諒。主射位置仍由隊方照普通勤務安排，沒有長官公開讚美骨氣。",
+    "結尾：下一張短約到手，她先看對方要護的東西，再忍不住摸那本記數冊；毛病還在。正文650–900字、四小標，不以拒絕命令或受害者身分結尾。"
+   ],
+   "近鄰": [
+    {
+     "person檔": "content/base/persons/exp-adela-miro.json",
+     "personSHA": "ece884748b5106a94c518e58df1d65cbf47a739269671491e7cd3aab16a19a44",
+     "attrs": {
+      "accuracy": 60,
+      "evasion": 7,
+      "resolve": 45,
+      "initiative": 6,
+      "perception": 8,
+      "control": 43
+     },
+     "traits": [
+      "effect/trait-steady-hands",
+      "effect/ax-trait-water-shy"
+     ],
+     "hp": 54,
+     "lore檔": "content/lore/characters/exp-adela-miro.json",
+     "原文短介": "阿黛拉寄給敵隊駕駛的情書落到雇主手裡；她承認那是情書，卻不肯替對方勸降。",
+     "敘事差異": "阿黛拉精準短雇射手的衝突是情書不作勸降工具；瑟琳主動為自己的紀錄選錯目標，無戀愛、敵隊私交或雇主逼用人情。",
+     "數值差異": "阿黛拉base60/7/45/6/8/43且穩手+5；瑟琳56/6/44/5/7/46，記仇+4準/-3操，較慢較脆，沒有把65特質掛載後標稱準度再抬高。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+    },
+    {
+     "person檔": "content/base/persons/ren-kasai.json",
+     "personSHA": "8919e80b20689cc32fd2edac164b01056d66459869dc9ab6ec40f50f202f373c",
+     "attrs": {
+      "accuracy": 55,
+      "evasion": 10,
+      "resolve": 48,
+      "initiative": 7,
+      "perception": 5,
+      "control": 40
+     },
+     "traits": [
+      "effect/trait-vengeful"
+     ],
+     "hp": 60,
+     "lore檔": "content/lore/characters/ren-kasai.json",
+     "原文短介": "大阪來的拆船場工頭，2105 年吉大港解拘之夜全家死於被放出來的盾甲；為了復仇上船，為了船上的人沒變成另一個解拘者。",
+     "敘事差異": "葛西蓮遇解拘者因家仇衝出陣線；瑟琳不是喪親復仇，反而因怕失準而選容易打的地方，動作與目的皆不同。",
+     "數值差異": "蓮base55/10/48/7/5/40、HP60；瑟琳感知7但反應5/HP52，少機動與承受，純展示不加古緣／獸緣。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+    }
+   ],
+   "ZIP與夜間排除": "ZIP八人已逐件讀：宮坂假賽／葉榛母旗／莉妲唱歌與鱗／奧瑪賣機留牌／珊雅送妹入教／阿黛拉情書拒勸降／盧恩恐嚇學徒換機／梁苒等認主租機，全部不採。夜間鄭素庭換班、韓苓代宣布、瑪蕾修紙與伊德里斯借展歸還，全部不採；也不把R2八場景改作兩人過往。",
+   "展示": "用既有frame/longspear-v4預設配裝pilot座；兩新人物同frame，差異落在準度／迴避／先手等。",
+   "限制": "只展示，無recruit/market/campaign接線；故事失誤不等於新增錯誤瞄準AI或特殊target技能；普通人未認主、不開古代機，不加傷勢或人格魂。 兩特質自然展示未掛載，故不宣稱迴避+3等已在戰鬥發生。"
+  },
+  {
+   "id": "P02",
+   "名稱": "馬特烏斯・維埃拉",
+   "白話": "馬特烏斯離隊追獵物，困住後假報貨車受襲；對面只問車號，他只好花自己的積蓄請人拖回。",
+   "寫集": [
+    "content/base/persons/night-p-mateus-vieira.json",
+    "content/lore/characters/night-p-mateus-vieira.json"
+   ],
+   "person": {
+    "kind": "human",
+    "pools": [
+     {
+      "id": "ap",
+      "name": "AP",
+      "min": 0,
+      "max": 9,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 9,
+      "regen": 9,
+      "bands": []
+     },
+     {
+      "id": "fatigue",
+      "name": "疲勞",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": []
+     },
+     {
+      "id": "hp",
+      "name": "生命",
+      "min": 0,
+      "max": 60,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 60,
+      "regen": 0,
+      "bands": [],
+      "onDepleted": [
+       "effect/dead"
+      ]
+     }
+    ],
+    "growth": {
+     "xpCurve": "curve/bb-default",
+     "levelDice": {},
+     "perkPointsAt": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11
+     ]
+    },
+    "id": "person/night-p-mateus-vieira",
+    "name": "馬特烏斯・維埃拉",
+    "nameEn": "Mateus Vieira",
+    "etymology": "虛構人名；Mateus Vieira為羅馬字寫法，不是機甲稱號。",
+    "attrs": {
+     "accuracy": 48,
+     "evasion": 9,
+     "resolve": 56,
+     "initiative": 7,
+     "perception": 6,
+     "control": 50
+    },
+    "traits": [
+     "effect/ax-trait-fate-cheater"
+    ],
+    "perks": [],
+    "will": {
+     "beliefs": [
+      "outwit-fate",
+      "survive"
+     ],
+     "burdenLimit": {
+      "ref": "self.attrs.resolve"
+     }
+    },
+    "tags": [
+     "human",
+     "pilot"
+    ]
+   },
+   "有效屬性": {
+    "自然person值": {
+     "accuracy": 48,
+     "evasion": 9,
+     "resolve": 56,
+     "initiative": 7,
+     "perception": 6,
+     "control": 50
+    },
+    "特質掛載後標稱": {
+     "accuracy": 48,
+     "evasion": 12,
+     "resolve": 51,
+     "initiative": 8,
+     "perception": 6,
+     "control": 50,
+     "note": "特質若實際掛載的算術值；不是makePerson自然展示初值。"
+    },
+    "自然longspear-v4合併值": {
+     "accuracy": 52,
+     "evasion": 9,
+     "resolve": 56,
+     "initiative": 13,
+     "perception": 12,
+     "control": 50
+    },
+    "證據": "src/rules/state.ts:210-217 makePerson複製attrs但contribs/effects皆空；makeUnit沒有讀PersonDef.traits；contribs.ts:52-65只算已掛貢獻再加frame。",
+    "限制": "依主線裁示以自然base值展示；traits只是資料宣告，這條建構路徑未自動掛載。不預填效果、不修引擎。"
+   },
+   "lore": {
+    "id": "character/night-p-mateus-vieira",
+    "name": "馬特烏斯・維埃拉",
+    "aka": [],
+    "born": "2076",
+    "faction": "faction/ring-caravan",
+    "kind": "human",
+    "role": "環線護車短雇駕駛，攢錢買一份貨車股",
+    "relations": [],
+    "events": [],
+    "gameRefs": [
+     "base:person/night-p-mateus-vieira"
+    ],
+    "tags": [
+     "環線",
+     "駕駛員",
+     "護車"
+    ],
+    "visibility": "public"
+   },
+   "故事節奏": [
+    "欲望：不想一輩子按段領護車薪，想攢到一份貨車股。缺點：把僥倖當本事，急於在本職之外再賺一筆，還習慣用笑話遮自己的算錯。",
+    "已做過的事：2107某次環線護車，他擅離車尾追一頭已受傷的流獸求額外獵獲；獸走掉，他的普通衍型機陷在廢路邊，既沒有獵物也錯過車隊。不是新獸種、不是R2拆列事件。",
+    "他在天網假報貨車遇襲，想讓護車隊順路帶回；對方問車號，他報了已經過站的一輛，謊話立刻露底。車隊按原約繼續走，沒有主持者宣告他不配得救。",
+    "他留在艙內自己找附近普通回收班，付拖機費與修費，積蓄少掉一截；沒有借新牽引技能、不是無人機會施招，也沒有永久被環線逐出。",
+    "結尾：回到守站，他把私人拖機單折進購股存款袋，仍跟熟人叫這趟「反向護航」。別人先問欠的油錢，笑話沒替他免帳。正文650–900字、四小標；不讓道歉變成人格痊癒。"
+   ],
+   "近鄰": [
+    {
+     "person檔": "content/base/persons/exp-miyasaka-gaku.json",
+     "personSHA": "99b4f5d04a6cb225027d0025b7da26a47ed05f63685f34ebafd7a5efe59637da",
+     "attrs": {
+      "accuracy": 57,
+      "evasion": 12,
+      "resolve": 43,
+      "initiative": 8,
+      "perception": 6,
+      "control": 42
+     },
+     "traits": [
+      "effect/ax-trait-fate-cheater"
+     ],
+     "hp": 58,
+     "lore檔": "content/lore/characters/exp-miyasaka-gaku.json",
+     "原文短介": "宮坂收錢輸比武，對手卻求他認真打一回；他退了錢，沒有答應做對方的老師。",
+     "敘事差異": "宮坂主動假輸比武，因對手求真而退錢並拒收徒；馬特烏斯是追額外獵物後假報求援，無擂場、買勝、師徒或尊嚴逆轉。",
+     "數值差異": "同用fate-cheater；宮坂57/12/43/8/6/42特質掛載後標稱迴避15/先手9/決心38；本案48/9/56/7/6/50特質掛載後標稱12/8/51，犧牲更多準度、避免複製極端閃避。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+    },
+    {
+     "person檔": "content/base/persons/exp-sanya-iliev.json",
+     "personSHA": "89bd828260de2a536166621859e01b76840b3e9a75957ab7a825d4c7330b4a4a",
+     "attrs": {
+      "accuracy": 52,
+      "evasion": 8,
+      "resolve": 57,
+      "initiative": 6,
+      "perception": 6,
+      "control": 48
+     },
+     "traits": [
+      "effect/ax-trait-names-before-orders"
+     ],
+     "hp": 61,
+     "lore檔": "content/lore/characters/exp-sanya-iliev.json",
+     "原文短介": "珊雅把要入教的妹妹送到孟買門，拒絕留下晚禱；回程座位空著，她沒有叫妹妹上來。",
+     "敘事差異": "珊雅護運與親妹入教衝突，送到門前放手；本案沒有家屬、宗教或送別，主動離職責追財與假報產生自付損失。",
+     "數值差異": "珊雅52/8/57/6/6/48；本案base準度48/反應7，特質後快且滑、resolve51；沒有高意志高準度並存。；自然展示對照雙方只用base，特質標稱不代表已掛載。"
+    }
+   ],
+   "ZIP與夜間排除": "ZIP八人已逐件讀：宮坂假賽／葉榛母旗／莉妲唱歌與鱗／奧瑪賣機留牌／珊雅送妹入教／阿黛拉情書拒勸降／盧恩恐嚇學徒換機／梁苒等認主租機，全部不採。夜間鄭素庭換班、韓苓代宣布、瑪蕾修紙與伊德里斯借展歸還，全部不採；也不把R2八場景改作兩人過往。",
+   "展示": "與P01同用frame/longspear-v4原裝；不為迴避人物另配優勢機。對照同frame只換person/既有trait，保留低命中取捨。",
+   "限制": "只展示，無招募。騙援是lore失敗嘗試，不是人物能力；既有跟車補給規矩不改，不讓人物支配全環線。活人成人現役、無死亡／認主／變異設定。 兩特質自然展示未掛載，故不宣稱迴避+3等已在戰鬥發生。"
+  }
+ ]
+}

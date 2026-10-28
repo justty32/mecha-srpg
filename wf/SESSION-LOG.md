@@ -20,4 +20,4 @@
 - [dispatch] lead-fill-pilots 暫停：人物／招募池 `299d084`、黃金 `de65154` 已入庫；去重送審與整合驗收待續 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 - [dispatch] lead-small 暫停：北岸改區＋第三刃營運已提交 `69924b0`；本機未追蹤暫停報告尚未入庫，下次需核對 HEAD、整合驗收與收線證據 → [接續清單](workflows/dispatch/handoffs/next-session.md)。
 
-- [content] 10/28 跨平台22件已納入 `00d74dfd`、證據 `40976305` 已push；本機1031案1022過9已知敗；第一輪12lore `013701c0` 已push，續填至23:00，astra規劃、sol帶線；整合未全綠限制保留 → [整合線](workflows/dispatch/handoffs/integrate-zip-1028.md)／[創作規劃](workflows/dispatch/handoffs/fill-plan-1028-next.md)。
+- [content] 10/28 跨平台22件與第一輪12lore已納入並push；本機1031案1022過9已知敗。續填至23:00：CM末輪燼鐘0/10，六檔整批留隔離不收；CK接單一runner至22:25，R2八lore排隊產稿，最後兩展示駕駛設計中；整合未全綠限制保留 → [整合線](workflows/dispatch/handoffs/integrate-zip-1028.md)／[夜間戰鬥線](workflows/dispatch/handoffs/night-combat-lead-1028.md)。
