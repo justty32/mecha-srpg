@@ -21,6 +21,4 @@
 
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。
 
-- [feature-dev] 礁鷹Canvas基本連續整機已於10/28通過，畫風細節與操作手感待後續主觀評閱 → [離線展示](../art/canvas-mech/index.html)｜[操作與限制](../art/canvas-mech/README.md)；依回饋接續，真正3D另輪。
-
-- [feature-dev] 衡岳真3D程序化低多邊形試作的hero基本造型已於10/28通過，細部美感與操作手感待主觀評閱 → [離線展示](../art/mech-3d/index.html)｜[操作與限制](../art/mech-3d/README.md)；依回饋再續。
+- [feature-dev] 請評閱 10/28 兩個獨立試作的畫風、比例與操作手感 → [Canvas 礁鷹](../art/canvas-mech/README.md)／[真正 3D 衡岳](../art/mech-3d/README.md)（各 README 可開離線展示）。基本連續整機／hero 造型僅由主線與領導 AI 圖驗通過，使用者尚未評閱；兩作已交付，不需重做原型。

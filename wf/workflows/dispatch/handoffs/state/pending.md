@@ -14,7 +14,9 @@
 
 **small**：`lead-small/report.md` 是本機未追蹤暫停報告，尚未入庫，下次需核對；內容是當時快照，不能作目前驗收。第三刃營運、北岸改區、勢力數 7→8 與 index 已在 `69924b0`；提交訊息只記當時單檔／check／typecheck 結果，並明寫全套與戰役黃金待處理，不再視為未提交半成品。
 
-**公司 WSL 當時邊界**：使用者已在家，以下保留公司當時紀錄。公司已完成七輪 lore 創作與限定查重、兩批 SVG 美術與框架。當時整理只做 Markdown 搬檔與接續；不安裝下載、不跑整合驗收／渲染或重錄 golden、不改遊戲內容、不刪檔或清 worktree。必要套件已允許，但下載前須先告知項目、來源與用途，詳見 [使用者偏好](../../../common/user.md)。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../../notes/investigations/content-review-2026-10-27/README.md)。
+**公司 WSL 邊界（10/28 收工）**：使用者目前在公司；以下較早創作紀錄保留。公司已完成七輪 lore 創作與限定查重、兩批 SVG 美術與框架。當時整理只做 Markdown 搬檔與接續；不安裝下載、不跑整合驗收／渲染或重錄 golden、不改遊戲內容、不刪檔或清 worktree。必要套件已允許，但下載前須先告知項目、來源與用途，詳見 [使用者偏好](../../../common/user.md)。文件以 `git diff --check` 與 wf-lint 檢查；內容審閱見 [盤點入口](../../../../notes/investigations/content-review-2026-10-27/README.md)。
+
+10/28 [增量審閱](../../../../notes/investigations/content-review-2026-10-28/README.md)已完成，新增確認問題 0；不等於全庫無矛盾，四線仍暫停。三份原始 log 原地本機保留、不入庫，位置見 [收工證據](../../../../notes/close-2026-10-28.md)。
 
 ## 七輪世界觀交付與待驗收
 

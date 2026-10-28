@@ -45,6 +45,10 @@
 
 需要帳號、付費、授權才能取得的：守鐵律 2（授權來源），並在 [WAIT_USER](../WAIT_USER.md) 記一行。
 
+## 公司 WSL 局部環境（2026-10-28）
+
+本機 Node v24.19.0（nvm）、Python 3.12.3；上表版本保留原家中歷史，不套用為公司現況。今天兩作沿用既有 Chromium 1243／Node 24 WebSocket 直接 CDP；Canvas 的官方 Ubuntu noble 函式庫只解壓在 ignored `node_modules/.canvas-headless/root`，不改系統。Konva 10.9.0、Three 0.186.1／esbuild 0.28.2 的局部工具及 npm cache 留在 ignored node_modules，收工不清除。來源與核驗細節見 [Canvas REPORT](../../art/canvas-mech/viewer/REPORT.md)／[3D REPORT](../../art/mech-3d/viewer/REPORT.md)。這些局部驗證不代表遊戲整合驗收；本次收尾不安裝、不重跑模型／瀏覽器／npm。
+
 ## 交接
 
 - 環境就緒要開工 → [feature-dev](feature-dev/README.md)；先確認驗證跑得動 → [testing](testing.md)。

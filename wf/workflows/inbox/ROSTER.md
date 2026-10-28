@@ -103,6 +103,8 @@
 - **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-world-1028/`
 - **訂閱主題**：無
 
+10/28 主線已實際 close Mencius、Lovelace、Sagan 與 core/UI 兩工人，均回傳先前 completed；舊 Halley id not found。原生資源關閉以主線工具回報為證，不從 ps 推論；本輪只餘文件收尾，終局由主線再 close。
+
 ### `lead-canvas-1028`
 - **狀態**：已收線（2026-10-28）
 - **我是誰**：全新礁鷹Canvas試作領導；core及viewer工人sol、美術Lovelace astra。
