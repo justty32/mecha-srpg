@@ -1,14 +1,14 @@
-import type { ContentDB } from "../../../../../src/content/contentdb.ts";
-import type { BattleState, Command } from "../../../../../src/core/types-state.ts";
-import type { GameEvent } from "../../../../../src/core/events.ts";
-import type { BattleSetup } from "../../../../../src/rules/flow.ts";
-import { createBattle } from "../../../../../src/rules/flow.ts";
-import { startBattle } from "../../../../../src/rules/turn.ts";
-import { abilitiesOf, tryCommand } from "../../../../../src/rules/command.ts";
-import { frameView, layerDefs, partDefs, rt, seatsOf } from "../../../../../src/rules/state.ts";
-import type { Ctx } from "../../../../../src/rules/state.ts";
-import { poolDecls } from "../../../../../src/rules/pools.ts";
-import { hashLog } from "../../../../../src/core/eventlog.ts";
+import type { ContentDB } from "../../../../../../../src/content/contentdb.ts";
+import type { BattleState, Command } from "../../../../../../../src/core/types-state.ts";
+import type { GameEvent } from "../../../../../../../src/core/events.ts";
+import type { BattleSetup } from "../../../../../../../src/rules/flow.ts";
+import { createBattle } from "../../../../../../../src/rules/flow.ts";
+import { startBattle } from "../../../../../../../src/rules/turn.ts";
+import { abilitiesOf, tryCommand } from "../../../../../../../src/rules/command.ts";
+import { frameView, layerDefs, partDefs, rt, seatsOf } from "../../../../../../../src/rules/state.ts";
+import type { Ctx } from "../../../../../../../src/rules/state.ts";
+import { poolDecls } from "../../../../../../../src/rules/pools.ts";
+import { hashLog } from "../../../../../../../src/core/eventlog.ts";
 
 type Provider = { part: string; slot: string; component: string };
 export type Baseline = { id: string; owner: string; modes: string[]; damageAbilities: string[]; intrinsic: string[]; providers: Record<string, Provider[]> };

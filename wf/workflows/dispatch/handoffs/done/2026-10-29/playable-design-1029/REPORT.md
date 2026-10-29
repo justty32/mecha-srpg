@@ -8,7 +8,7 @@
 
 ## 產出
 
-[spec](../../../planning/specs/playable-battlefield-1029.md) 與 [plan](../../../planning/plans/playable-battlefield-1029.md) 已落地。凍結MapDef／MapState.objects、interact Command、地物結算與死亡遺體契約；精確區分引擎／UI／營運檔案所有權。規劃正式情境、營運出戰注入、真實補給效果與友方地面支援。共新增3份文件，容量遠低2 MB。
+[spec](../../../../../planning/specs/playable-battlefield-1029.md) 與 [plan](../../../../../planning/plans/playable-battlefield-1029.md) 已落地。凍結MapDef／MapState.objects、interact Command、地物結算與死亡遺體契約；精確區分引擎／UI／營運檔案所有權。規劃正式情境、營運出戰注入、真實補給效果與友方地面支援。共新增3份文件，容量遠低2 MB。
 
 ## 沒做到或證據不足
 
@@ -20,11 +20,11 @@
 
 ## 本輪後續發想與代表編組補充
 
-新增 [物件與生態發想](../../../planning/specs/battlefield-object-ideas-1029.md)、[本輪編組](../../../planning/specs/battlefield-roster-1029.md)，7列物件與20列生態另存本目錄wf-table資料檔並經tabledb寫讀。已區分實作底座、此次追加代表編組與新機制候選。實查AT-12／GL-02／追矢匣與三怪獸可重用；墜星與獵甲追矢已有los=false，不再誤稱完全沒有越障火力。後續核真AT-12／GL-02帶mech/lineage，撤回純重用frame方案；最終新增共用常規車體、3frame、map/scenario共6內容，core:false且走component能力避免innate被isDriven過濾。普通sol負責產品碼。未跑測試，所有動態完成條件仍待隊長排程。
+新增 [物件與生態發想](../../../../../planning/specs/battlefield-object-ideas-1029.md)、[本輪編組](../../../../../planning/specs/battlefield-roster-1029.md)，7列物件與20列生態另存本目錄wf-table資料檔並經tabledb寫讀。已區分實作底座、此次追加代表編組與新機制候選。實查AT-12／GL-02／追矢匣與三怪獸可重用；墜星與獵甲追矢已有los=false，不再誤稱完全沒有越障火力。後續核真AT-12／GL-02帶mech/lineage，撤回純重用frame方案；最終新增共用常規車體、3frame、map/scenario共6內容，core:false且走component能力避免innate被isDriven過濾。普通sol負責產品碼。未跑測試，所有動態完成條件仍待隊長排程。
 
 ## 預設二十回合平衡設計追加
 
-新增 [平衡契約](../../../planning/specs/demo-balance-1029.md) 與 [量測計畫](../../../planning/plans/demo-balance-1029.md)。採正式demo-hardclash profile接兩slot，局部Scenario rules補無人scripted缺省accuracy，不抬全部舊情境或玩家機體。要求A原bonus0、B此前+15、C修缺省＋節奏三組固定20seed與保留組，真default頁同seed可重現，timeout不算勝負。已提示混合B盾甲高抗性及爆破步兵誤當精粹的語意風險；只查碼，未跑probe或測試。
+新增 [平衡契約](../../../../../planning/specs/demo-balance-1029.md) 與 [量測計畫](../../../../../planning/plans/demo-balance-1029.md)。採正式demo-hardclash profile接兩slot，局部Scenario rules補無人scripted缺省accuracy，不抬全部舊情境或玩家機體。要求A原bonus0、B此前+15、C修缺省＋節奏三組固定20seed與保留組，真default頁同seed可重現，timeout不算勝負。已提示混合B盾甲高抗性及爆破步兵誤當精粹的語意風險；只查碼，未跑probe或測試。
 
 硬剛策略追加核讀：intentMinRound預設8會繞過舊retreatMinRound999整隊撤退；已凍結六參數封住意圖／HP／首領死／輪替通道，逐筆撤退分類與breaking/fleeing差異已提報。未跑測試；舊9回合smoke不算硬剛通過。
 

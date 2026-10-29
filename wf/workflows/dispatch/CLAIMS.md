@@ -6,22 +6,9 @@
 
 ## 活躍工人
 
-- playable-ops-1029（sol）：營運與已授整合測試修正，精確範圍及限制見 [scope](handoffs/playable-ops-1029/scope.json)；已交待隊長增量驗證，無 runner，不碰使用者 Vite。子 gate 30 件／2 MB；全輪產品 gate 162 件（含9 index）／25 MB。
-- playable-design-1029（astra）：凍結default demo硬剛20回合平衡契約，不寫產品。
-
-- playable-review-1029（sol，唯讀審查中）：僅本輪diff與直接依賴，不跑測試；只寫自己REPORT。
-
-
-- playable-engine-1029（sol，修正中；本輪附件交付gate90件，產品162門檻不變）：精確授權與限制見 [交接書](handoffs/playable-engine-1029.md)及其 scope；五級移動與原default 4v4十回合重創驗收依新spec。本線總交付90件 gate僅擴附件；整輪產品162件／25 MB不變。UI不得改型別。
-
-
-10/29 `lead-playable-1029`：sol 隊長接手完整遊玩整合；可寫 `src/`、`content/base/`、`content/index/`、`test/`，限本輪交接所列功能及阻斷問題；wf 管理路徑與根目錄條件授權見 [交接書](handoffs/lead-playable-1029.md)。子線精確鎖檔由隊長追加，最多 3 平行工人；舊暫停線無正在執行的工人。
-
 `expansion-1028-investigate-ops`已終局（sol、子代理0）：三條唯讀資料流與optional可行性兩份報告已交，不測試／不改內容；契約歸當日done。
 
 本輪expansion-1028所有產出／後查agents已終局，無本輪現役工人；領導單獨串行驗收與打包中。契約已歸 [當日done](handoffs/done/2026-10-28/expansion-1028-README.md)，報告／manifest沿原reportDir，不改舊暫停線。
-
-
 
 10/28 增量審閱、Canvas `69403bc2`、真 3D `573575ec` 已完成，REPORT 均在當日 done。主線已關閉今天原生 agents（證據見 [收工記錄](../../notes/close-2026-10-28.md)）；本輪子代理 0，有界文件收尾完成。此處「暫停」與「待驗收」不是派工或占用中的領地。
 
@@ -58,3 +45,7 @@
 ## 本輪 10/28 接續
 
 本輪所有agent已DONE/close，現役0、runner0；R2八lore已提交ff949a2f，base凍結3a20a436，CM未接受。suite1031案／1022過／9同基準敗，wiki6/6；CM後續配方只存未實作建議。詳[收尾入口](../../notes/close-night-2026-10-28.md)。
+
+## 10/29 收線
+
+`lead-playable-1029`及七子線已完成，無現役工人；源碼`a3407d97`已push。[交付與證據](handoffs/done/2026-10-29/lead-playable-1029/REPORT.md)。162產品路徑含9生成index，25MB內；原三未追蹤review logs未動。

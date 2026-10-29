@@ -33,3 +33,10 @@
 
 ## 失敗怎麼處置
 證據不足直說，不推測或補數字；原生工具終局回報。
+
+## 完成證據（2026-10-29）
+
+1. 主REPORT四段正確反映已知證據，未跑的明示待填，<8KB。 → [本線REPORT](playable-close-docs-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 只改兩報告、不啟測試，回報可供隊長補最終數據。 → [本線REPORT](playable-close-docs-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

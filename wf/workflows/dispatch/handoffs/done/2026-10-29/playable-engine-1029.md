@@ -22,8 +22,8 @@
 
 ## 工作
 1. 依凍結契約完成可互動戰場、新幾何命中、傷勢、防禦及多部位；成本和驗證具原子性，預覽與結算一致。
-2. 依 [五級移動](../../planning/specs/combat-movement-1029.md) 實作整回合移動額度與反例；保留原預設編組、地圖、部署與初始資源。
-3. 依 [十回合重創驗收](../../planning/specs/demo-severity-1029.md) 固定判準，先量 seed 1/7/13，再以20校準和5保留seed重驗：原default 4v4十回合內一方原四台全死亡，或死者已解決且存活者全重傷；任何撤退或棄機失格。分別記錄首次重創與真全殲，不把重傷改成遊戲勝負。觀察因果後才小幅調整內容數值；舊20回合結果屬歷史。
+2. 依 [五級移動](../../../../planning/specs/combat-movement-1029.md) 實作整回合移動額度與反例；保留原預設編組、地圖、部署與初始資源。
+3. 依 [十回合重創驗收](../../../../planning/specs/demo-severity-1029.md) 固定判準，先量 seed 1/7/13，再以20校準和5保留seed重驗：原default 4v4十回合內一方原四台全死亡，或死者已解決且存活者全重傷；任何撤退或棄機失格。分別記錄首次重創與真全殲，不把重傷改成遊戲勝負。觀察因果後才小幅調整內容數值；舊20回合結果屬歷史。
 4. 補相關反例與可重現probe，提出精確測試指令供隊長排程；不假稱全套通過。
 
 ## 交付
@@ -36,3 +36,11 @@ REPORT直接寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/play
 
 ## 失敗怎麼處置
 本線regression修好再交，拿不到驗證證據報BLOCKED，不改別線；原生工具回報終局。
+
+## 完成證據（2026-10-29）
+
+1. 凍結契約落地，真實預設與ops戰場具指定物件與地面支援，破壞/拾取/死亡有邏輯回歸。 → [本線REPORT](playable-engine-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 五級移動與預覽結算一致回歸存在；固定重創判準及原4v4十回合目標的量測可重現，並分別報首次重創與真全殲。 → [本線REPORT](playable-engine-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+3. REPORT與精確修改檔清單存在，測試由隊長排程後明列結果。 → [本線REPORT](playable-engine-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

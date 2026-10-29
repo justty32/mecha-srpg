@@ -12,7 +12,7 @@
 
 ## 最新節奏目標（取代舊20回合）
 
-使用者最新要求原預設4v4正面交戰，10回合內至少一方全滅或剩餘存活者全員重傷；死亡與首次重傷達標分開記錄，不把重傷改成遊戲勝利。固定判準見 [demo-severity](../../planning/specs/demo-severity-1029.md)：核心結構或vital生命池≤30%，或至少兩個不同重要部位破壞且造成永久功能失能。外甲傷、暫效、資源不足、退場不算。初始每台必須非重傷，陰陽性反例先驗；未調整cleave36先量1/7/13，再按證據調真數值，最後20固定加5保留。保留原編組、地圖、部署、初始資源及五級2/3/4/5/6整回合移動。每seed列首次達標方與每名存活者理由，另記真全殲回合及勝方。
+使用者最新要求原預設4v4正面交戰，10回合內至少一方全滅或剩餘存活者全員重傷；死亡與首次重傷達標分開記錄，不把重傷改成遊戲勝利。固定判準見 [demo-severity](../../../../planning/specs/demo-severity-1029.md)：核心結構或vital生命池≤30%，或至少兩個不同重要部位破壞且造成永久功能失能。外甲傷、暫效、資源不足、退場不算。初始每台必須非重傷，陰陽性反例先驗；未調整cleave36先量1/7/13，再按證據調真數值，最後20固定加5保留。保留原編組、地圖、部署、初始資源及五級2/3/4/5/6整回合移動。每seed列首次達標方與每名存活者理由，另記真全殲回合及勝方。
 
 ## 範圍（排除法寫死）
 
@@ -64,3 +64,13 @@ REPORT 直接寫到 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/
 ## 失敗怎麼處置
 
 本線 regression 修好再驗；無法修復則只撤回自己的失敗改動並報 FAILED，不動別人工作。拿不到驗證證據就保持現狀報 BLOCKED，寫明解除條件。原生工具回報，不寄外部訊息。遇 gate 只回報等裁決，不擅自擴張。
+
+## 完成證據（2026-10-29）
+
+1. 營運直接網址與頁內導航皆有 headless 載入證據，開新戰役→出戰→戰果返回營運自動測試通過；錯誤狀態可讀且可恢復。 → [本線REPORT](lead-playable-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 預設白手套原4v4正面交戰在20回合內至少一方全dead/alive0，20固定seed與保留seed核UnitDied/雙方alive/dead/retreated/ejected；撤退/棄機/士氣崩/據點/失能仍活/timeout不算，正常頁可重現。命中調整有同情境前後可重現數據，預覽與實際結算一致的回歸測試通過。 → [本線REPORT](lead-playable-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+3. 使用者列出的掩體、地面支援、廢墟碎石、拾取、殘骸與屍體在真實戰場具呈現及對應互動；相關邏輯與 DOM 測試通過。 → [本線REPORT](lead-playable-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+4. testing 規定的必要驗證與 wf-lint 嚴格回傳 0，或逐一提供阻塞證據與影響；不以舊輸出充本輪結果、不掩蓋失敗。 → [本線REPORT](lead-playable-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+5. REPORT、code map、open 狀態一致，提交只含本輪明確路徑，推送結果可核對，子線終局且沒有本輪殘留重負載。 → [本線REPORT](lead-playable-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

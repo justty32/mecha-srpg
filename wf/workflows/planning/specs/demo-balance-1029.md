@@ -34,7 +34,7 @@ berserk策略積極追近，但攻擊估值主要是固定分加距離，不比�
 
 ## 數值調整順序與邊界
 
-已取得實測反例：單seed regen15為25回合，升radiant30反而60timeout，cleave28僅24回合。停止輪流抬槍／降敵準度，採 [核心致命比例證據與A/B候選](../../dispatch/handoffs/playable-design-1029/core-lethality-evidence.md)：共同local45／regen15／radiant22／cleave20，A四個原編組bodyplan核心exposure1→2；B加核心最後結構層HP75%。保留外甲、部位戰術、抗性與原4v4，固定三seed比較後才擴樣本。共享影響13定義與精確檔案見證據；這不是只改demo的局部效果。
+已取得實測反例：單seed regen15為25回合，升radiant30反而60timeout，cleave28僅24回合。停止輪流抬槍／降敵準度，採 [核心致命比例證據與A/B候選](../../dispatch/handoffs/done/2026-10-29/playable-design-1029/core-lethality-evidence.md)：共同local45／regen15／radiant22／cleave20，A四個原編組bodyplan核心exposure1→2；B加核心最後結構層HP75%。保留外甲、部位戰術、抗性與原4v4，固定三seed比較後才擴樣本。共享影響13定義與精確檔案見證據；這不是只改demo的局部效果。
 
 不得用每回合強殺／流血、把失能算死或取消凡鐵抗性來過關。預期主要樣本10–16回合留餘裕、最慢20；尚未跑新候選，不能宣稱已做到。
 

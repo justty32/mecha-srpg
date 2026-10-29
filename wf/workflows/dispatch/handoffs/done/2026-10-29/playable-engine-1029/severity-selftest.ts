@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { loadContentDirs } from "../../../../../src/content/loader.ts";
-import { scenarioToSetup } from "../../../../../src/sim/run.ts";
-import { createBattle } from "../../../../../src/rules/flow.ts";
-import { startBattle } from "../../../../../src/rules/turn.ts";
-import { frameView, layerDefs, partDefs } from "../../../../../src/rules/state.ts";
+import { loadContentDirs } from "../../../../../../../src/content/loader.ts";
+import { scenarioToSetup } from "../../../../../../../src/sim/run.ts";
+import { createBattle } from "../../../../../../../src/rules/flow.ts";
+import { startBattle } from "../../../../../../../src/rules/turn.ts";
+import { frameView, layerDefs, partDefs } from "../../../../../../../src/rules/state.ts";
 import { baselines, classifyUnit } from "./severity.ts";
 const { db, errors } = loadContentDirs(["content/base"]); assert.deepEqual(errors, []);
 const sim = scenarioToSetup(db, "scenario/skirmish-whitegloves", 1), state = createBattle(db, sim.setup, 1), initial = { db, s: state }; startBattle(initial);

@@ -43,3 +43,11 @@ REPORT直接寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/play
 本輪取證：main.ts既有debug hook可增加唯讀peek（複製latest），e2e可選BATTLE_TRACE僅被動事件與peek/audit讀取；不得呼叫snapshot影響dirty bookkeeping或繞正式click。未trace正常單案綠才算修復。
 
 既有回歸契約修正：額外精確授vm/feedback.test.ts僅更新partAim普通射擊操作與幾何機率斷言，保留FX／命中及未命中／取消／數字鍵實判；不改產品、不sync全套暫存驗證樹、不跑程序。
+
+## 完成證據（2026-10-29）
+
+1. 真實預設及ops戰場新物件具文字呈現、地物HP和可用互動按鈕。 → [本線REPORT](playable-ui-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 拾取與破壞從玩家UI送入原session且相關反例回歸存在。 → [本線REPORT](playable-ui-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+3. REPORT明列檔案與實際驗證結果，未拿舊輸出冒充。 → [本線REPORT](playable-ui-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

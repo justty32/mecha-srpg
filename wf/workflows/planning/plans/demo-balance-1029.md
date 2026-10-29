@@ -44,6 +44,6 @@ astra只設計；sol建立探針、調產品資料與最小準度接線。隊長
 
 ## 核心致命比例候選的下一步
 
-以 [精簡證據](../../dispatch/handoffs/playable-design-1029/core-lethality-evidence.md) 的A/B替代先前逐個抬主武器方案。先固定1/7/13各三seed，所有非候選數值相同；記武器失能、斷腿、核心剩HP及死亡時點，驗長尾是否真正縮短。A/B未見改善前不排75局；選中後再正式20＋保留，主要分布期望10–16、最大20。13個共享frame/species影響需在報告揭露並做最小交叉驗證。
+以 [精簡證據](../../dispatch/handoffs/done/2026-10-29/playable-design-1029/core-lethality-evidence.md) 的A/B替代先前逐個抬主武器方案。先固定1/7/13各三seed，所有非候選數值相同；記武器失能、斷腿、核心剩HP及死亡時點，驗長尾是否真正縮短。A/B未見改善前不排75局；選中後再正式20＋保留，主要分布期望10–16、最大20。13個共享frame/species影響需在報告揭露並做最小交叉驗證。
 
 最新移動裁示依 [combat-movement](../specs/combat-movement-1029.md)：普通每自身回合4、重3、快5，累計moveSpent不受Wait／AP恢復重置。舊25/25屬舊移動歷史，正式新量測須於budget接線與單檔反例過關後重跑，不沿用舊結論。

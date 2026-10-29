@@ -32,3 +32,10 @@ REPORT直接寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/play
 
 ## 失敗怎麼處置
 不確定標證據不足，無法讀取則BLOCKED；原生工具回報。
+
+## 完成證據（2026-10-29）
+
+1. REPORT最多5個有證據玩家可觸發findings或明確無發現，不混風格建議。 → [本線REPORT](playable-review-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 無產品改動與測試程序，回報可供隊長直接分派修復。 → [本線REPORT](playable-review-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

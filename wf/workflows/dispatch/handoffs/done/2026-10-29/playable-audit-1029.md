@@ -32,3 +32,10 @@ REPORT直接寫到 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/p
 
 ## 失敗怎麼處置
 取不到工具證據報BLOCKED，不下載。原生工具回報終局。
+
+## 完成證據（2026-10-29）
+
+1. 九敗精簡表與headless可用路徑有來源證據。 → [本線REPORT](playable-audit-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. 無產品改動與測試程序，REPORT存在。 → [本線REPORT](playable-audit-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

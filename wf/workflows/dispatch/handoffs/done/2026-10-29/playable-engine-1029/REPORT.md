@@ -10,7 +10,7 @@
 
 ## 產出
 
-精確產品檔案見[修改清單](changes.json)；UI/data共同修改的鐮劈JSON，本線只調packet20→28。正式規格見[命中傷勢](../../../planning/specs/combat-aim-injuries-1029.md)、[盾與招架](../../../planning/specs/combat-defense-1029.md)、[有限多部位](../../../planning/specs/combat-part-hits-1029.md)。未更動legacy／art、未commit/push。
+精確產品檔案見[修改清單](changes.json)；UI/data共同修改的鐮劈JSON，本線只調packet20→28。正式規格見[命中傷勢](../../../../../planning/specs/combat-aim-injuries-1029.md)、[盾與招架](../../../../../planning/specs/combat-defense-1029.md)、[有限多部位](../../../../../planning/specs/combat-part-hits-1029.md)。未更動legacy／art、未commit/push。
 
 隊長已驗相關命中／部位／血死／器官／盾／存讀單檔；多部位核心4檔20/20、此前實判5檔28/28、盾準備與motion真存讀重播皆綠，資料schema/typecheck也綠。曾失敗的corpse假fixture已改真敵／真開戰／保留第二敵並再驗通過，不放寬產品支付或戰局規則。
 

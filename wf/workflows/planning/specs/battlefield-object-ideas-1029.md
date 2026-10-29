@@ -32,6 +32,6 @@
 
 ## 發想資料與分期
 
-物件候選已抽到 [object-ideas.json](../../dispatch/handoffs/playable-design-1029/object-ideas.json)（7列），欄位涵蓋四屬性、狀態轉換、互動代價、限制與階段。兵種及設施已抽到 [battlefield-ecology.json](../../dispatch/handoffs/playable-design-1029/battlefield-ecology.json)（20列），按群組、戰術角色、四屬性交叉、敵我互動與機制界線整理。
+物件候選已抽到 [object-ideas.json](../../dispatch/handoffs/done/2026-10-29/playable-design-1029/object-ideas.json)（7列），欄位涵蓋四屬性、狀態轉換、互動代價、限制與階段。兵種及設施已抽到 [battlefield-ecology.json](../../dispatch/handoffs/done/2026-10-29/playable-design-1029/battlefield-ecology.json)（20列），按群組、戰術角色、四屬性交叉、敵我互動與機制界線整理。
 
 分期以能力證據判斷：本輪底座與代表編組先完成正常入口、合法指令、真實戰果；之後優先討論單格推移、殘骸防線與持握物件，因為最直接補完上述循環；最後才擴承重建築、供電網、空戰攔截與寄生宿主。資料表中的「優先」不是本輪已承諾實作，只有代表編組文件列出的內容才是此次追加範圍。

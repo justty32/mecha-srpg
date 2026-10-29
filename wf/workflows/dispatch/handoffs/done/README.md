@@ -135,3 +135,5 @@ Socrates已DONE並由主線close；[verify-night-1028](2026-10-28/verify-night-1
 - 2026-10-28 [close-night-1028](2026-10-28/close-night-1028.md)：terra行政產稿已終局，十份契約與24概念導覽齊；主線另歸檔本契約，附件保留，整合九敗仍pending。
 
 - 2026-10-28 [cm-recipe-next-1028](2026-10-28/cm-recipe-next-1028.md)：Astra依兩輪失敗補下輪修訂候選；設計已交、未實作未測，CM仍未接受。
+
+| 2026-10-29 | `lead-playable-1029`及七子線 | 營運／戰場／命中傷勢／版面交付；完整full與強回歸分列，三CLI通過 | [八線索引](2026-10-29/README.md)／[主REPORT](2026-10-29/lead-playable-1029/REPORT.md) |

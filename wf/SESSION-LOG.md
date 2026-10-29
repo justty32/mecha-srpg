@@ -11,7 +11,6 @@
 
 ## 最新進度
 
-- [feature-dev] 10/29 完整遊玩整合驗證已齊：30/30節奏、完整suite加九項強回歸、頁測與三CLI完成；下一步明確提交推送及歸檔 → [本輪交接](workflows/dispatch/handoffs/lead-playable-1029.md)。
 
 - [content] expansion-1028：六機甲／八怪獸形態／八人物三批技術ACCEPT，跨平台交付已依使用者授權納入；本機整合1031案／1022過／9敗，保留兩條歷史軌跡改變限制，不改engine／黃金；舊技術九敗已由10/29整合線強回歸處置，內容draft與人審仍待續 → [原輪狀態](workflows/dispatch/handoffs/expansion-1028/STATE.md)／[本機證據](workflows/dispatch/handoffs/verify-import-1028/REPORT.md)。
 

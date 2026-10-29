@@ -36,3 +36,10 @@ REPORT直接寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/play
 
 ## 失敗怎麼處置
 本線regression修好；拿不到證據回報BLOCKED保留現狀。原生工具回報終局，不能只口述不寫檔。
+
+## 完成證據（2026-10-29）
+
+1. 標題工作落地且有具體檔案與根因或設計取捨證據。 → [本線REPORT](playable-design-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+2. REPORT存在，測試結果或待排程指令明列，不虛報通過。 → [本線REPORT](playable-design-1029/REPORT.md)、[整合驗證](lead-playable-1029/verification.json)。
+
+源碼及驗證提交 `a3407d9711f991472cac6a9dc03dacd2e827edf2` 已push並核對origin/main。原生agent已FINAL_ANSWER，無外部inbox終局檔；本線服務／runner已停止。

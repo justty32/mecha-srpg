@@ -8,7 +8,7 @@
 
 ## 產出
 
-最新原預設4v4目標已量測通過：AP2／鐮肢總傷40、原五級移動、編組／地圖／初資源不變，原25回歸及真正事前固定新5共30/30在9回合內首次達一方全滅或剩員全重傷，並於9回合內真全殲。全為敵方受壓，0拒絕／撤退／棄機，不代表均勢。新保留607／701／809／907／1009首次6／6／8／6／9、真全殲6／6／9／6／9；達標時809及1009唯一存活敵核心結構22.8%／18%，其餘三場首次即全殲。固定判準及健康／純外甲／資源耗盡陰性與真核心／血量陽性自檢，見 [重傷審計](../../../planning/specs/demo-severity-1029.md)及[引擎量測](../playable-engine-1029/DEMO-BALANCE.md)。配置hash `d77becb3755551b8`；舊AP3／傷40僅24/25是診斷歷史，並未冒稱通過。
+最新原預設4v4目標已量測通過：AP2／鐮肢總傷40、原五級移動、編組／地圖／初資源不變，原25回歸及真正事前固定新5共30/30在9回合內首次達一方全滅或剩員全重傷，並於9回合內真全殲。全為敵方受壓，0拒絕／撤退／棄機，不代表均勢。新保留607／701／809／907／1009首次6／6／8／6／9、真全殲6／6／9／6／9；達標時809及1009唯一存活敵核心結構22.8%／18%，其餘三場首次即全殲。固定判準及健康／純外甲／資源耗盡陰性與真核心／血量陽性自檢，見 [重傷審計](../../../../../planning/specs/demo-severity-1029.md)及[引擎量測](../playable-engine-1029/DEMO-BALANCE.md)。配置hash `d77becb3755551b8`；舊AP3／傷40僅24/25是診斷歷史，並未冒稱通過。
 
 五級移動為超重2／重3／普通4／輕5／超輕6，機甲與怪獸共用整回合地形額度，負載及腿結構傷修正，重複move／AP回復／Wait／讀檔不能重領；移動／turn／save／schema27/27。常規混合1／7／13均7回合enemy勝、0timeout／拒絕，不宣稱均勢。營運區域已改一區一穩定anchor文字、普通格無常駐字；新布局含僅計結構層的格內完整度、已知 vital ≤30% 危重提示、未知資訊遮罩與常駐部位面板。營運地圖使用實際 contain 矩形並拒絕留白處導航。
 
@@ -22,10 +22,12 @@
 
 ## 需要決定
 
-無本輪前置產品裁決阻塞；Fable 三題仍待既有裁決，遊玩手感待使用者評閱。產品與證據正按明確路徑提交推送；完成證據將記提交hash。Ubuntu WSL在repo根執行 `npm run dev`，啟動後開 `http://localhost:5173/#/ops` 或首頁戰鬥情境選單；本線測試preview／runner已停止，不宣稱收工後服務在線。
+無本輪前置產品裁決阻塞；Fable 三題仍待既有裁決，遊玩手感待使用者評閱。產品與證據已提交並推送 `a3407d9711f991472cac6a9dc03dacd2e827edf2`，origin/main已核對一致；本目錄已歸檔，文件收線提交見git log。Ubuntu WSL在repo根執行 `npm run dev`，啟動後開 `http://localhost:5173/#/ops` 或首頁戰鬥情境選單；本線測試preview／runner已停止，不宣稱收工後服務在線。
 
 三個12月CLI皆exit0／war errors[]：idle合法no-pilots day104，greedy及merc完成day336（endDay=null）。merc耗時較長，維持nice19／單核，未擴性能重構。完整command／exit／source hash與持久log見[驗證摘要](verification.json)，full快照及後續11檔增量見[SHA差異](post-full-delta.json)；其中僅menus.ts／style.css為runtime UI變更。最終[桌面](evidence/battle-desktop-1280.png)、[360窄窗](evidence/battle-mobile-360.png)、[長選單](evidence/battle-desktop-quickmenu-1280.png)已由astra圖審。
 
 ## 本輪一次性黃金流程裁決
 
 主線核准以凍結 `/tmp/playable-verify-1029` 隔離副本替代營運黃金的字面乾淨worktree要求：本輪source尚未提交，不能為重產先提交未全綠UI。以 [輸入SHA表](frozen-input-sha256.json) 記core/content及固定輸入，保存舊新事件／日期／語義證據、兩次確定性一致後只同步精確黃金檔。此例外不改常態testing規則。兩個過時 campaign fixture 已保留合法合約／提示身分與原 mock 邊界、真 onMuster 初始 setup；原損失、付款、背叛聲望及黑名單語義兩次各 2/2 通過，hash 已由隊長同步。
+
+歸檔後驗證：122個Markdown連結與契約表連結無新斷裂，5個工具imports／語法通過，50份原始log／JSONL／PNG SHA不變；strict lint仍僅原2legacy硬錯，見[歸檔核對](archive-link-check.log)與[最終lint](wf-lint-archive.log)。

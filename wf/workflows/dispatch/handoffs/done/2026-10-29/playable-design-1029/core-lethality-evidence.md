@@ -1,6 +1,6 @@
 # 先全肢解後漫長收尾：證據與凍結候選
 
-[平衡規格](../../../planning/specs/demo-balance-1029.md)｜[量測計畫](../../../planning/plans/demo-balance-1029.md)
+[平衡規格](../../../../../planning/specs/demo-balance-1029.md)｜[量測計畫](../../../../../planning/plans/demo-balance-1029.md)
 
 ## 已有證據，不再逐次猜單seed
 
