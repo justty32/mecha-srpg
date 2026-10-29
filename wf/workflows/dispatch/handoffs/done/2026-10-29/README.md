@@ -10,3 +10,5 @@
 | `playable-ops-1029` | [交接書](playable-ops-1029.md)／[REPORT](playable-ops-1029/REPORT.md) |
 | `playable-review-1029` | [交接書](playable-review-1029.md)／[REPORT](playable-review-1029/REPORT.md) |
 | `playable-ui-1029` | [交接書](playable-ui-1029.md)／[REPORT](playable-ui-1029/REPORT.md) |
+
+- [常規車輛角色AI](lead-roles-1029/REPORT.md)：坦克前線、飛彈退距、工程依需求排熱；角色8/8、整合9/9，產品26ab375e。

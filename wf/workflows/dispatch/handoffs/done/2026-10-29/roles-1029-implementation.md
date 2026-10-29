@@ -1,6 +1,6 @@
 # 任務：實作常規三車角色策略
 
-先讀 AGENTS.md、[總brief](lead-roles-1029.md)指定入口、[角色契約](../../planning/specs/unit-roles-1029.md)。
+先讀 AGENTS.md、[總brief](lead-roles-1029.md)指定入口、[角色契約](../../../../planning/specs/unit-roles-1029.md)。
 
 ## 範圍（排除法）
 
@@ -32,4 +32,4 @@
 
 ## 交付
 
-輸出 /mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/roles-1029-implementation/REPORT.md，四段做了什麼／產出／證據不足／需決定，向隊長回終局。測試未跑明記未跑，不能自稱通過。
+輸出 /mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/done/2026-10-29/roles-1029-implementation/REPORT.md，四段做了什麼／產出／證據不足／需決定，向隊長回終局。測試未跑明記未跑，不能自稱通過。

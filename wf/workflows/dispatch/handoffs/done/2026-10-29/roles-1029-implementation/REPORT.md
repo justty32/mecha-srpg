@@ -1,5 +1,7 @@
 # 角色AI實作
 
+本檔保留子線階段紀錄；補型別與index均已完成，最終提交/驗證見[主REPORT](../lead-roles-1029/REPORT.md)。
+
 ## 做了什麼
 
 三台常規車輛分別引用frontline、standoff、heat-support選填profile。agent僅原tactical路徑在單位私有context合併參數；失控、scripted、撤退與regroup優先，未標註frame或缺query走原路。只對啟用rangeWeight的可見活躍敵人計距離偏好，補可達改善格並保留真路徑預覽；工程沿既有真排熱收益評分，沒有新增修甲。

@@ -40,7 +40,7 @@
 
 ## 交付
 
-REPORT寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lead-roles-1029/REPORT.md`，四段做了什麼／產出／證據不足／需決定，記行為差異、指令、實數及hash。設計寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/planning/specs/unit-roles-1029.md`。根據時間收斂，不以大量文件拖延推送。
+REPORT寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/done/2026-10-29/lead-roles-1029/REPORT.md`，四段做了什麼／產出／證據不足／需決定，記行為差異、指令、實數及hash。設計寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/planning/specs/unit-roles-1029.md`。根據時間收斂，不以大量文件拖延推送。
 
 ## 驗收（固定 4 條）
 
