@@ -49,3 +49,5 @@
 ## 10/29 收線
 
 `lead-playable-1029`及七子線已完成，無現役工人；源碼`a3407d97`已push。[交付與證據](handoffs/done/2026-10-29/lead-playable-1029/REPORT.md)。162產品路徑含9生成index，25MB內；原三未追蹤review logs未動。
+
+手機／快捷產品`7478bd35`、角色AI`26ab375e`、Pages流程`529c8d0f`已push，公開網站三頁及快捷／桌面拖曳smoke通過；本輪工人及測試runner均已結束。手機UI231/231，瀏覽器批次28/29、最後touch完整三連1/3，核心地圖鏈三次均過，圖外觸控觀測不穩定仍明列實機待驗。交付：[手機](handoffs/done/2026-10-29/lead-mobile-1029/REPORT.md)／[角色AI](handoffs/done/2026-10-29/lead-roles-1029/REPORT.md)／[Pages](handoffs/done/2026-10-29/pages-1029/REPORT.md)。原三未追蹤logs保留，三線文件均已歸檔。
