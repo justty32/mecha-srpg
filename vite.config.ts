@@ -5,6 +5,8 @@ import { defineConfig } from "vite";
 
 export default defineConfig({
   root: ".",
+  // 只掃遊戲入口；art/ 的獨立HTML原型使用自己的importmap，不是遊戲相依。
+  optimizeDeps: { entries: ["index.html"] },
   server: { port: 5173, strictPort: false, open: false },
   preview: { port: 4173, open: false },
   build: { outDir: "dist", emptyOutDir: true, target: "es2023", chunkSizeWarningLimit: 1500 },
