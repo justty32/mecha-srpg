@@ -1,0 +1,36 @@
+
+Running 19 tests using 1 worker
+
+(node:1711918) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 e2e/battle.spec.ts:41:1 › 載入：戰場方格、回合、固定指令面板與快捷鍵標示都在 (1.0s)
+  ✓   2 e2e/battle.spec.ts:59:1 › 行動後浮出下一步選單：點可達格移動後仍選取同一台，選單含待機 (986ms)
+  ✓   3 e2e/battle.spec.ts:87:1 › 結束回合：還有未行動機體時第一次 E 出確認，再按 E 才推進；按鈕同樣可用 (1.1s)
+  ✓   4 e2e/battle.spec.ts:113:1 › 縮放：+ 放大、− 縮小、0 回自動貼合；設定存進 localStorage，重新載入後保留 (1.3s)
+  ✓   5 e2e/battle.spec.ts:136:1 › 小地圖自動貼合：20×20 地圖格子放大到填滿戰場面板的一邊 (1.2s)
+  ✓   6 e2e/battle.spec.ts:147:1 › 跳過動畫：敵方回合播放中按 Esc，立刻跳到輪回我方 (920ms)
+  ✓   7 e2e/battle.spec.ts:166:1 › 大地圖 160×160：快捷鍵與滾輪捲動可視區，只渲染可視區的格 (849ms)
+  ✓   8 e2e/battle.spec.ts:187:1 › 觀戰：?spectate=1&anim=off 載入後經 settle 回合或事件有前進、無頁面錯誤 (5.4s)
+  ✓   9 e2e/battle.spec.ts:199:1 › 可互動戰場：地物與回收物可見，支援攻擊送入原戰鬥 (2.0s)
+  ✓  10 e2e/battle.spec.ts:297:1 › 正式情境選單可進混合兵種並返回回收戰場 (2.4s)
+  ✓  11 e2e/battle.spec.ts:311:1 › 正式default觀戰與node同seed命令、hash及逐單位真終局一致 (20.0s)
+  ✓  12 e2e/battle.spec.ts:349:1 › 360窄窗戰場可操作，部位與log循文件排版不遮蓋或橫向溢出 (1.6s)
+  ✓  13 e2e/ops-campaign.spec.ts:19:1 › 營運：從戰鬥導航進入，再切頁返回保留戰役 (2.1s)
+ops-timing {"step":"loaded","elapsedMs":3783}
+ops-timing {"step":"contracts-offered","elapsedMs":9657}
+ops-timing {"step":"world-viewed","elapsedMs":14132}
+ops-timing {"step":"sailed","elapsedMs":17726}
+ops-timing {"step":"travel-0-before","elapsedMs":17758,"day":1,"fuel":40,"route":{"to":"base:place/chittagong","toName":"吉大港","daysLeft":1},"lastLog":"候鳥號離開達卡，船頭轉向吉大港，預計 1 天。","prompt":false}
+ops-timing {"step":"travel-0-after","elapsedMs":18730}
+  ✓  14 e2e/ops-campaign.spec.ts:35:1 › 營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返回營運看戰果 (23.6s)
+  ✓  15 e2e/ops-map.spec.ts:3:1 › 大地圖：開局 → 世界分頁 → 游標到地點 → Enter → 抵達 → 泊 (6.4s)
+ops-overview-click {"width":1280,"target":{"x":346,"y":447,"cellX":62,"cellY":74,"gapX":0,"gapY":95.4,"blankX":454,"blankY":269.7625},"audit":{"x":346,"y":447},"finalViewport":{"w":36,"h":72,"x":44,"y":38}}
+ops-overview-click {"width":1024,"target":{"x":338,"y":409,"cellX":62,"cellY":74,"gapX":0,"gapY":52.20000000000002,"blankX":482,"blankY":210.16250000000002},"audit":{"x":338,"y":409},"finalViewport":{"w":48,"h":72,"x":38,"y":38}}
+ops-overview-click {"width":480,"target":{"x":133,"y":532,"cellX":62,"cellY":74,"gapX":0,"gapY":11.599999999999994,"blankX":240,"blankY":397.8625},"audit":{"x":133,"y":532},"finalViewport":{"w":35,"h":23,"x":45,"y":63}}
+ops-region-rects {"cases":18,"containCases":3,"maxError":0.01187500000000341,"ordinaryText":0,"measurements":[{"width":1280,"zoom":1,"pan":0,"labels":1,"error":0},{"width":1280,"zoom":1,"pan":1,"labels":1,"error":0},{"width":1280,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":1280,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":1280,"zoom":0.25,"pan":0,"labels":26,"error":0.009999999999990905},{"width":1280,"zoom":0.25,"pan":1,"labels":26,"error":0.009999999999990905},{"width":1024,"zoom":1,"pan":0,"labels":1,"error":0},{"width":1024,"zoom":1,"pan":1,"labels":1,"error":0},{"width":1024,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":1024,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":1024,"zoom":0.25,"pan":0,"labels":26,"error":0.01187500000000341},{"width":1024,"zoom":0.25,"pan":1,"labels":26,"error":0.01187500000000341},{"width":480,"zoom":1,"pan":0,"labels":1,"error":0},{"width":480,"zoom":1,"pan":1,"labels":1,"error":0},{"width":480,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":480,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":480,"zoom":0.25,"pan":0,"labels":26,"error":0.008750000000020464},{"width":480,"zoom":0.25,"pan":1,"labels":26,"error":0.008750000000020464}]}
+  ✓  16 e2e/ops-map.spec.ts:36:1 › 世界區域：普通格無文字，固定標籤在縮放平移與視窗改變後仍對齊 (15.6s)
+  ✓  17 e2e/wiki.spec.ts:25:1 › F1 從戰鬥進百科再返回，保留戰鬥回合 (6.2s)
+  ✓  18 e2e/wiki.spec.ts:39:1 › 直接進百科搜尋內容中的 frame 名稱並開啟詳情 (1.5s)
+  ✓  19 e2e/wiki.spec.ts:53:1 › 詳情交叉連結與瀏覽器返回，再由導航回戰場 (2.3s)
+
+  19 passed (1.7m)

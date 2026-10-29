@@ -75,3 +75,13 @@ test("輪始事件、輪末信號定局後停止 advance", () => {
   const count = ctx.s.log.events.length; advance(ctx);
   assert.equal(currentActor(ctx.s), null); assert.equal(ctx.s.log.events.length, count);
 });
+
+test("自身新回合清motion，wait恢復同回合不先清掉", () => {
+  const ctx = fixture(); unit(ctx, "a").motion = { dx: 1, dy: 2 }; unit(ctx, "a").moveSpent = 3;
+  beginTurn(ctx, "a", true);
+  assert.deepEqual(unit(ctx, "a").motion, { dx: 1, dy: 2 });
+  assert.equal(unit(ctx, "a").moveSpent, 3);
+  beginTurn(ctx, "a", false);
+  assert.deepEqual(unit(ctx, "a").motion, { dx: 0, dy: 0 });
+  assert.equal(unit(ctx, "a").moveSpent, 0);
+});

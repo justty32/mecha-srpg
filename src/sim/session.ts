@@ -3,10 +3,11 @@ import type { Id } from "../core/ids.ts";
 import type { FactionSlot } from "../core/types-def.ts";
 import type { GameEvent } from "../core/events.ts";
 import type { BattleOutcome, BattleState, Command } from "../core/types-state.ts";
+import { cloneBattleState } from "../core/clone-state.ts";
 import { hashLog } from "../core/eventlog.ts";
-import { abilitiesOf, battleResult, checkAbility, createBattle, currentActor, damageFactor, previewCommand, rt,
+import { movementBudget, partHitInfo, inspectDefense, injuryEffectApplies, isDead, aimInfo, layerDefs, locomotionOf, partDefs, abilitiesOf, battleResult, checkAbility, createBattle, currentActor, damageFactor, previewCommand, rt,
   startBattle, tryCommand } from "../rules/index.ts";
-import type { BattleResult, Result } from "../rules/index.ts";
+import type { PartHitInfo, DefenseInfo, BattleResult, Result } from "../rules/index.ts";
 import { createFactionAI, observeEvents, runUnitTurn, startRound } from "../ai/index.ts";
 import type { FactionAI, RulesQuery } from "../ai/index.ts";
 import { createRulesQuery } from "../ai/adapters/rules-adapter.ts";
@@ -17,6 +18,9 @@ export type SessionOptions = { db: ContentDB; sim: SimSetup; seed: number; human
 export type AbilityTarget = NonNullable<Extract<Command, { kind: "useAbility" }>["target"]>;
 export type LegalActions = { actor: Id | null; reachable: Record<string, number>;
   abilities: { ability: Id; targets: AbilityTarget[] }[]; wait: boolean; retreat: boolean; eject: boolean; end: boolean };
+export type PartTargetInfo = PartHitInfo & { chance: number; aim: { radius: number; error: number; distance: number; lateral: number; maneuver: number; cover: number; skill: number };
+  fatalOnBreak: boolean; defense: DefenseInfo | null;
+  layers: { type: string; hp: number; max: number }[]; functions: string[]; disabledAbilities: Id[]; effectsOnBreak: Id[]; mobilityAfter: string | null };
 export type SessionStep = { actor: Id; cmd: Command; events: GameEvent[] };
 export type SessionSubmitResult = Result | { ok: false; rejection: { code: "max-steps" | "busy" } };
 export type SessionObserver = (step: SessionStep) => void;
@@ -71,6 +75,20 @@ export class BattleSession {
     return () => { this.observers.delete(fn); };
   }
 
+  movementBudget(id: Id): ReturnType<typeof movementBudget> { return movementBudget({ db: this.db, s: this.s }, id); }
+
+  partTargetInfo(actor: Id, ability: Id, target: Id, part?: string): PartTargetInfo {
+    const ctx = { db: this.db, s: this.s }, geometry = aimInfo(ctx, actor, ability, target, part);
+    const definition = part === undefined ? undefined : partDefs(ctx, target).find(p => p.id === part);
+    const before = abilitiesOf(ctx, target), cloned = cloneBattleState(this.s), after = { db: this.db, s: cloned };
+    if (part !== undefined && cloned.units[target]?.parts[part]) cloned.units[target]!.parts[part]!.broken = true;
+    const remaining = abilitiesOf(after, target);
+    return { ...geometry, ...partHitInfo(ctx, target, part, this.db.require("ability", ability).partPattern, inspectDefense(ctx, actor, ability, target)), fatalOnBreak: part !== undefined && isDead(after, target), defense: inspectDefense(ctx, actor, ability, target),
+      layers: definition ? layerDefs(ctx, target, definition.id).map((layer, index) => ({ type: layer.type, hp: this.s.units[target]!.parts[definition.id]!.layers[index]!.hp, max: layer.hp })) : [],
+      functions: definition ? [...definition.functions] : [], disabledAbilities: before.filter(id => !remaining.includes(id)),
+      effectsOnBreak: (definition?.onBroken ?? []).filter(ref => injuryEffectApplies(ctx, this.db.require("effect", typeof ref === "string" ? ref : ref.effect), { unit: target, ...(part ? { part } : {}) })).map(ref => typeof ref === "string" ? ref : ref.effect), mobilityAfter: locomotionOf(after, target) };
+  }
+
   legalActions(unit: Id | null = this.currentActor()): LegalActions {
     const actions: LegalActions = { actor: unit, reachable: {}, abilities: [], wait: false, retreat: false, eject: false, end: false };
     if (unit === null || unit !== this.currentActor() || this.outcome() || this.attempts >= this.maxSteps) return actions;
@@ -87,6 +105,9 @@ export class BattleSession {
         for (const target of Object.keys(this.s.units).sort()) {
           if (def.target.kind === "unit") add({ unit: target });
           if (def.partAim?.allowed) for (const part of Object.keys(this.s.units[target]!.parts).sort()) add({ unit: target, part });
+        }
+        if (["unit", "part"].includes(def.target.kind) && def.packets.length) {
+          for (let y = 0; y < this.s.map.height; y++) for (let x = 0; x < this.s.map.width; x++) add({ cell: { x, y } });
         }
       } else {
         for (let y = 0; y < this.s.map.height; y++) for (let x = 0; x < this.s.map.width; x++) add({ cell: { x, y } });

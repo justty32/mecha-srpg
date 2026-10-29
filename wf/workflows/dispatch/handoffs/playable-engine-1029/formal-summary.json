@@ -1,0 +1,111 @@
+{
+ "head": "db5704966708969848044ef40c0d9b71e3ffec99",
+ "model": "target-circle-motion-v1 + bounded-part-patterns",
+ "formalOverrides": "round limit 60 only; actual scenario profiles/data; no stat/policy override",
+ "seeds": {
+  "calibration": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20
+  ],
+  "holdout": [
+   101,
+   137,
+   211,
+   307,
+   509
+  ]
+ },
+ "contract": "wf-table/1",
+ "source": "DEMO-BALANCE.md",
+ "extracted": "2026-10-29",
+ "link_columns": [
+  "artifact"
+ ],
+ "status": "historical_before_turn_move_budget",
+ "superseded_by": "combat-movement-1029",
+ "columns": [
+  "cohort",
+  "n",
+  "passed",
+  "min",
+  "median",
+  "p90",
+  "max",
+  "mean",
+  "playerWins",
+  "timeouts",
+  "rejected",
+  "retreats",
+  "ejected",
+  "sourceHashes",
+  "configurationHashes",
+  "artifact",
+  "sha256"
+ ],
+ "rows": [
+  {
+   "cohort": "calibration",
+   "n": 20,
+   "passed": 20,
+   "min": 6,
+   "median": 10.0,
+   "p90": 15,
+   "max": 18,
+   "mean": 10.75,
+   "playerWins": 20,
+   "timeouts": 0,
+   "rejected": 0,
+   "retreats": 0,
+   "ejected": 0,
+   "sourceHashes": [
+    "e0749a3b29020832c05e56d86e900b6e8c9b46a0b0b3a52205a79698f30271b9"
+   ],
+   "configurationHashes": [
+    "592170033fd71d45"
+   ],
+   "artifact": "demo-formal-calibration20.jsonl",
+   "sha256": "663bd7683c199ebe65294e158c9159b4b4456cc27c51037169228a9a16a8cc0e"
+  },
+  {
+   "cohort": "holdout",
+   "n": 5,
+   "passed": 5,
+   "min": 8,
+   "median": 8,
+   "p90": 12,
+   "max": 12,
+   "mean": 9.4,
+   "playerWins": 5,
+   "timeouts": 0,
+   "rejected": 0,
+   "retreats": 0,
+   "ejected": 0,
+   "sourceHashes": [
+    "e0749a3b29020832c05e56d86e900b6e8c9b46a0b0b3a52205a79698f30271b9"
+   ],
+   "configurationHashes": [
+    "592170033fd71d45"
+   ],
+   "artifact": "demo-formal-holdout5.jsonl",
+   "sha256": "02ed0ab9fb189e13ef0d428914c8b8f11de8195e0b66f8af4935c4366814907d"
+  }
+ ]
+}

@@ -1,15 +1,24 @@
 import type { Id } from "../core/ids.ts";
 import type { Cell, DamagePacket, PartId } from "../core/types-def.ts";
 import { evalNum } from "../core/numexpr.ts";
-import { chance, d100, pickWeighted } from "../core/rng.ts";
+import { chance, nextFloat, pickWeighted } from "../core/rng.ts";
 import { commanderOf, constant, distance, emit, evalCtxFor, hostile, isActive, partDefs, rt, seatsOf, terrainAt, unit, unitAt, unitTags } from "./state.ts";
 import type { Ctx, Subject } from "./state.ts";
-import { roleAttr } from "./contribs.ts";
+import { applyPartHits, partHitInfo } from "./part-hits.ts";
+import { interceptDefense } from "./defense.ts";
+import { aimInfo } from "./aim.ts";
+export { partHitInfo } from "./part-hits.ts";
+export type { PartHitInfo } from "./part-hits.ts";
+export { aimInfo } from "./aim.ts";
+export { inspectDefense } from "./defense.ts";
+export type { DefenseInfo } from "./defense.ts";
 import { applyEffect } from "./effects.ts";
 import type { EffectTarget } from "./effects.ts";
 import { dispatchHook, signal } from "./hooks.ts";
 import { applyPacket, isDead } from "./layers.ts";
 import { damageBonus, resistance } from "./resistance.ts";
+
+import { damageTerrain, leaveRemains } from "./battlefield.ts";
 
 function subject(ctx: Ctx, id: Id, abilityId?: Id): Subject {
   const role = abilityId ? ctx.db.require("ability", abilityId).actorRole : undefined;
@@ -18,17 +27,7 @@ function subject(ctx: Ctx, id: Id, abilityId?: Id): Subject {
 }
 
 export function hitChance(ctx: Ctx, actor: Id, abilityId: Id, target: Id, part?: PartId): number {
-  // SPEC-GAP：命中公式描述攻守對抗；self 與只限友方（friendly:"only"）沒有對手，不擲命中骰（ISS-012）。
-  const kind = ctx.db.require("ability", abilityId).target;
-  if (kind.kind === "self" || kind.friendly === "only") return 100;
-  const a = ctx.db.require("ability", abilityId), from = unit(ctx, actor).pos, to = unit(ctx, target).pos;
-  const self = subject(ctx, actor, abilityId), defender = subject(ctx, target), ev = evalCtxFor(ctx, self, defender);
-  const value = roleAttr(ctx, self, "accuracy") + evalNum(a.accuracy ?? 0, ev)
-    - constant(ctx, "rangeAccuracyPenalty") * Math.max(0, distance(from, to) - 1)
-    + constant(ctx, "heightAccuracyBonus") * Math.sign(terrainAt(ctx, from).height - terrainAt(ctx, to).height)
-    - roleAttr(ctx, defender, "evasion") - terrainAt(ctx, to).cover
-    - (part === undefined ? 0 : evalNum(a.partAim?.penalty ?? 0, ev));
-  return Math.max(constant(ctx, "hitChanceMin"), Math.min(constant(ctx, "hitChanceMax"), value));
+  return aimInfo(ctx, actor, abilityId, target, part).chance;
 }
 
 export function pickPart(ctx: Ctx, target: Id, aimed?: PartId): PartId {
@@ -66,6 +65,7 @@ export function modifiedAmount(ctx: Ctx, actor: Id | null, abilityId: Id | null,
 export function killUnit(ctx: Ctx, id: Id, killer: Id | null): void {
   if (!isActive(ctx, id)) return;
   rt(ctx.s).unitStatus[id] = "dead";
+  leaveRemains(ctx, id);
   emit(ctx, "UnitDied", { unit: id, killer });
   signal(ctx, "unitDied", { unit: id, killer });
   signal(ctx, "unitRemoved", { unit: id, status: "dead" });
@@ -88,7 +88,8 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
       const dot = px * dx + py * dy, len = dx * dx + dy * dy;
       return dot > 0 && dot <= len && Math.abs(px * dy - py * dx) <= radius * Math.max(1, distance(from, center));
     });
-  } else targets = target.unit ? [target.unit] : unitAt(ctx, center) ? [unitAt(ctx, center)!] : [];
+  } else if (["unit", "part"].includes(ability.target.kind) && target.cell && !target.unit) targets = [];
+  else targets = target.unit ? [target.unit] : unitAt(ctx, center) ? [unitAt(ctx, center)!] : [];
   targets = targets.filter(id => ability.target.friendly === "yes" || (ability.target.friendly === "no" ? hostile(ctx, actor, id) : !hostile(ctx, actor, id)));
   const apply = (on: "hit" | "miss" | "always" | "self" | "cell", location: EffectTarget) => {
     for (const group of ability.effects.filter(e => e.on === on)) for (const ref of group.apply) {
@@ -97,23 +98,30 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
   };
   for (const id of targets) {
     if (!isActive(ctx, id)) continue;
-    const probability = hitChance(ctx, actor, abilityId, id, target.part), roll = ability.target.kind === "self" || ability.target.friendly === "only" ? null : d100(ctx.s.rng);
+    const probability = hitChance(ctx, actor, abilityId, id, target.part), roll = ability.target.kind === "self" || ability.target.friendly === "only" ? null : nextFloat(ctx.s.rng) * 100;
     const hit = roll === null || roll < probability;
-    const part = hit ? pickPart(ctx, id, target.part) : null;
-    emit(ctx, hit ? "Hit" : "Miss", { unit: actor, target: id, ability: ability.id, chance: probability, roll, part });
+    let part = hit ? pickPart(ctx, id, target.part) : null;
+    const originalPart = part;
+    const plan = hit ? partHitInfo(ctx, id, part!, ability.partPattern) : undefined;
+    const hitEvent = emit(ctx, hit ? "Hit" : "Miss", { unit: actor, target: id, ability: ability.id, chance: probability, roll, part, originalPart });
     if (hit) {
       dispatchHook(ctx, "onHit", { unit: actor });
       if (self.person) dispatchHook(ctx, "onHit", { person: self.person });
       dispatchHook(ctx, "onBeingHit", { unit: id });
       for (const seat of seatsOf(ctx, id)) dispatchHook(ctx, "onBeingHit", { person: seat.person });
       const reach = resistance(ctx, actor, abilityId, id)?.reach;
-      for (const packet of ability.packets) {
+      const packets = ability.packets.map(packet => {
         const packetEv = evalCtxFor(ctx, self, { unit: id });
         const input = { type: packet.type, amount: modifiedAmount(ctx, actor, abilityId, packet, id),
           armorPen: evalNum(packet.armorPen ?? 0, packetEv), resistPen: evalNum(packet.resistPen ?? 0, packetEv),
           layerFilter: packet.layerFilter, conductBonus: evalNum(packet.conductBonus ?? 0, packetEv), ...(reach ? { reach } : {}) };
-        applyPacket(ctx, id, part!, input, actor);
-      }
+        return input;
+      });
+      const share = ability.partPattern?.kind === "spread" ? ability.partPattern.fractions[0]! : 1;
+      const defense = interceptDefense(ctx, actor, abilityId, id, packets.reduce((sum, packet) => sum + packet.amount, 0) * share);
+      if (defense?.applies) part = defense.part;
+      hitEvent.payload.part = part;
+      for (const packet of packets) applyPartHits(ctx, actor, id, originalPart!, packet, ability.partPattern, defense, plan);
     }
     const defender = subject(ctx, id);
     const location = { ...defender, part: part ?? undefined, cell: unit(ctx, id).pos, faction: unit(ctx, id).owner };
@@ -123,6 +131,22 @@ export function resolveAbility(ctx: Ctx, actor: Id, abilityId: Id, target: { uni
       killUnit(ctx, id, actor);
     }
     signal(ctx, "abilityResolved", { actor, ability: ability.id, target: id, hit });
+  }
+  if (["cell", "ball", "line", "cone"].includes(ability.target.kind) || (["unit", "part"].includes(ability.target.kind) && target.cell && !target.unit)) {
+    const from = unit(ctx, actor).pos, radius = evalNum(ability.target.radius ?? 0, ev);
+    const amount = ability.packets.reduce((sum, packet) => sum + Math.max(0, evalNum(packet.amount, ev)), 0);
+    // 格子與單位共用同一幾何；row-major 每格最多傷一次，不擲額外 RNG。
+    for (let y = 0; y < ctx.s.map.height; y++) for (let x = 0; x < ctx.s.map.width; x++) {
+      const pos = { x, y };
+      let affected = distance(pos, center) === 0;
+      if (ability.target.kind === "ball") affected = distance(pos, center) <= radius;
+      else if (["line", "cone"].includes(ability.target.kind)) {
+        const dx = center.x - from.x, dy = center.y - from.y, px = x - from.x, py = y - from.y;
+        const dot = px * dx + py * dy, len = dx * dx + dy * dy;
+        affected = dot > 0 && dot <= len && Math.abs(px * dy - py * dx) <= radius * Math.max(1, distance(from, center));
+      }
+      if (affected) damageTerrain(ctx, pos, amount, actor);
+    }
   }
   apply("self", { ...self, cell: unit(ctx, actor).pos, faction: unit(ctx, actor).owner });
   apply("cell", { cell: center });

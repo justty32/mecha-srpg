@@ -1,0 +1,34 @@
+{
+  "id": "effect/battlefield-off-balance",
+  "name": "失衡",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 2
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -10,
+      "source": "effect/battlefield-off-balance"
+    },
+    {
+      "path": "self.attrs.maneuver",
+      "op": "mul",
+      "value": 0,
+      "source": "effect/battlefield-off-balance"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "debuff",
+    "defense"
+  ],
+  "ui": {
+    "badge": "失衡"
+  }
+}

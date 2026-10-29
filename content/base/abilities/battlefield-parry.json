@@ -1,0 +1,45 @@
+{
+  "id": "ability/battlefield-parry",
+  "name": "武器招架",
+  "mode": "activated",
+  "costs": [
+    {
+      "owner": "person",
+      "pool": "ap",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "cooldown": 1,
+  "require": [],
+  "target": {
+    "kind": "self",
+    "friendly": "only",
+    "range": {
+      "min": 0,
+      "max": 0
+    },
+    "los": false
+  },
+  "packets": [],
+  "effects": [],
+  "defense": {
+    "kind": "parry",
+    "charges": 1,
+    "maxImpact": 35,
+    "maxSizeRatio": 1.5,
+    "damageFactor": 0.5,
+    "onOverload": [
+      "effect/battlefield-off-balance"
+    ]
+  },
+  "tags": [
+    "buff",
+    "defense"
+  ],
+  "ai": {
+    "tactics": {
+      "protect": 1
+    }
+  }
+}

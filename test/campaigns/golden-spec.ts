@@ -2,6 +2,8 @@
 import assert from "node:assert/strict";
 import type { Loc } from "../../src/ops/war/types.ts";
 import { placeAt } from "../../src/ops/war/loc.ts";
+import type { OperationState } from "../../src/ops/war/types.ts";
+import { onMuster } from "../../src/ops/war/merc.ts";
 import type { CampaignEvent, CampaignState, ContractState, OpsCtx, RiftState } from "../../src/ops/state/types.ts";
 import type { CampaignCommand } from "../../src/ops/sim/campaign.ts";
 import { createOpsCtx, newCampaign } from "../../src/ops/content/start.ts";
@@ -9,7 +11,7 @@ import { instantiateMech } from "../../src/ops/content/instantiate.ts";
 import { marketListings } from "../../src/ops/world/market.ts";
 
 export type Golden = { start: string; seed: number; commands: CampaignCommand[];
-  setup?: { rifts?: Record<string, Pick<RiftState, "width" | "anchorAge">>; factions?: Record<string, { rep: number }>; ship?: { pos: Loc };
+  setup?: { betrayal?: boolean; rifts?: Record<string, Pick<RiftState, "width" | "anchorAge">>; factions?: Record<string, { rep: number }>; ship?: { pos: Loc };
     loan?: { id: string; contract: string; model: string; issuer: string } } };
 export type Step = { type: string; field?: string; value?: string };
 export const warOnly = new Set(["OperationStarted", "OperationEngaged", "OperationResolved", "RiftPhase", "ShellSeized", "LineageOpened", "ModelReleased",
@@ -29,17 +31,17 @@ export const sequences: Record<string, Step[]> = {
     { type: "ModelReleased", field: "model", value: "base:model/old-array-ii" },
   ],
   "ops-merc-join": [
-    { type: "ContractAccepted", field: "contract", value: "contract-363" },
+    { type: "ContractAccepted", field: "contract", value: "contract-261" },
     { type: "Arrived", field: "place", value: "base:place/ridge" },
-    { type: "BattleResolved", field: "operation", value: "operation-5" },
-    { type: "OperationResolved", field: "operation", value: "operation-5" },
-    { type: "JoinSettled", field: "contract", value: "contract-363" },
+    { type: "BattleResolved", field: "operation", value: "operation-2" },
+    { type: "OperationResolved", field: "operation", value: "operation-2" },
+    { type: "JoinSettled", field: "contract", value: "contract-261" },
   ],
   "ops-betrayal": [
-    { type: "ContractAccepted", field: "contract", value: "contract-66" },
-    { type: "ContractCancelled", field: "contract", value: "contract-66" },
-    { type: "ContractAccepted", field: "contract", value: "contract-62" },
-    { type: "Betrayed", field: "contract", value: "contract-66" },
+    { type: "ContractAccepted", field: "contract", value: "contract-53" },
+    { type: "ContractCancelled", field: "contract", value: "contract-53" },
+    { type: "ContractAccepted", field: "contract", value: "contract-55" },
+    { type: "Betrayed", field: "contract", value: "contract-53" },
   ],
   "ops-leak": [
     { type: "MechLoaned", field: "model", value: "base:model/union-fr7" },
@@ -61,6 +63,26 @@ export function setupState(ctx: OpsCtx, input: Golden): CampaignState {
     for (const [id, patch] of Object.entries(input.setup.rifts ?? {})) Object.assign(state.rifts[id]!, patch);
     for (const [id, patch] of Object.entries(input.setup.factions ?? {})) state.factions[id]!.rep = patch.rep;
     if (input.setup.ship) state.ship.pos = structuredClone(input.setup.ship.pos);
+    // Controlled contract starting conditions, not a natural world-trajectory fixture.
+    // Both offers still go through onMuster and ordinary accept/drop eligibility.
+    if (input.setup.betrayal) {
+      const actor = ctx.world.require("faction-ops", "faction-ops/residual-league").id;
+      const target = ctx.world.require("faction-ops", "faction-ops/tide-faith").id;
+      const model = ctx.world.require("model", "model/bulwark-i").id;
+      const force = { units: [{ model, count: 12, readiness: 1 }], supply: 100,
+        morale: 0, pos: structuredClone(state.ship.pos), speed: 1 };
+      for (const [id, issuer, opponent] of [["fixture-betrayal-original", actor, target],
+        ["fixture-betrayal-replacement", target, actor]]) {
+        state.factions[opponent!]!.forces = structuredClone(force);
+        const op: OperationState = { id: id!, def: ctx.world.require("operation", "operation/seize").id,
+          actor: issuer!, coActors: [], target: { loc: structuredClone(state.ship.pos), faction: opponent! },
+          phase: "muster", startDay: state.clock.day, phaseEnd: state.clock.day + 3,
+          force: structuredClone(force), initialStr: 12, enemyStr: 12, power: { [model]: 1 },
+          progress: 0, engagesLeft: 7, mercSlots: [], exposed: true, log: [] };
+        state.operations![id!] = op;
+        onMuster(state, ctx, op);
+      }
+    }
     if (input.setup.loan) {
       const { id, contract, model, issuer } = input.setup.loan;
       const definition = ctx.world.require("model", model);

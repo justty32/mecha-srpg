@@ -58,7 +58,8 @@
             "pilot"
           ]
         }
-      ]
+      ],
+      "targetRadius": 0.6
     },
     {
       "id": "head",
@@ -87,8 +88,11 @@
         "sensor"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.22
     },
     {
       "id": "left-scythe",
@@ -118,8 +122,11 @@
         "weaponMount"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.32
     },
     {
       "id": "right-scythe",
@@ -155,8 +162,11 @@
         "weaponMount"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.32
     },
     {
       "id": "abdomen",
@@ -183,8 +193,11 @@
       "slots": [],
       "functions": [],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.45
     },
     {
       "id": "legs",
@@ -213,9 +226,47 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.4,
+      "mobility": [
+        "leg"
+      ]
     }
   ],
-  "symmetry": "bilateral"
+  "symmetry": "bilateral",
+  "targetRadius": 1,
+  "abilityParts": {
+    "ability/reaper-cleave": {
+      "parts": [
+        "left-scythe",
+        "right-scythe"
+      ],
+      "min": 1
+    },
+    "ability/reaper-charge": {
+      "parts": [
+        "left-scythe",
+        "right-scythe"
+      ],
+      "min": 1
+    },
+    "ability/bite": {
+      "parts": [
+        "head"
+      ],
+      "min": 1
+    }
+  },
+  "partAdjacency": {
+    "thorax": [
+      "head",
+      "left-scythe",
+      "right-scythe",
+      "abdomen",
+      "legs"
+    ]
+  }
 }

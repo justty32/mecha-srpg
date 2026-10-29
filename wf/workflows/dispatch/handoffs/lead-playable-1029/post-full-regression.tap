@@ -1,0 +1,618 @@
+TAP version 13
+# ENCOUNTER league-blight-checkpoint: winner=enemy rounds=6 seed=1701
+# ENCOUNTER rival-anvil-carcass: winner=enemy rounds=15 seed=1701
+# ENCOUNTER rival-saltgull-ambush: winner=enemy rounds=9 seed=1701
+# ENCOUNTER selene-whiteglove-audit: winner=enemy rounds=16 seed=1701
+# ENCOUNTER smuggler-farside-ship: winner=enemy rounds=7 seed=1701
+# ENCOUNTER tide-unshacklers: winner=draw rounds=20 seed=1701
+# Subtest: 方格地形生成的怪獸遭遇與 RNG 保持固定指紋
+ok 1 - 方格地形生成的怪獸遭遇與 RNG 保持固定指紋
+  ---
+  duration_ms: 815.257002
+  type: 'test'
+  ...
+# Subtest: 契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊
+ok 2 - 契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊
+  ---
+  duration_ms: 536.176203
+  type: 'test'
+  ...
+# Subtest: 加權編成按每級預算抽，components 明列空表也整組保留
+ok 3 - 加權編成按每級預算抽，components 明列空表也整組保留
+  ---
+  duration_ms: 485.509262
+  type: 'test'
+  ...
+# Subtest: 同契約從候選遭遇穩定挑一份，不受 RNG 位置影響
+ok 4 - 同契約從候選遭遇穩定挑一份，不受 RNG 位置影響
+  ---
+  duration_ms: 473.912909
+  type: 'test'
+  ...
+# Subtest: 只有 target.place 的契約由節點蝕域與第一裂縫族回退
+ok 5 - 只有 target.place 的契約由節點蝕域與第一裂縫族回退
+  ---
+  duration_ms: 808.271586
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 league-blight-checkpoint 編成、配裝、勢力與固定 seed 戰鬥
+ok 6 - 人類遭遇 league-blight-checkpoint 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 1437.904656
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 rival-anvil-carcass 編成、配裝、勢力與固定 seed 戰鬥
+ok 7 - 人類遭遇 rival-anvil-carcass 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 1410.191735
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 rival-saltgull-ambush 編成、配裝、勢力與固定 seed 戰鬥
+ok 8 - 人類遭遇 rival-saltgull-ambush 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 1331.792685
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 selene-whiteglove-audit 編成、配裝、勢力與固定 seed 戰鬥
+ok 9 - 人類遭遇 selene-whiteglove-audit 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 1229.29731
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 smuggler-farside-ship 編成、配裝、勢力與固定 seed 戰鬥
+ok 10 - 人類遭遇 smuggler-farside-ship 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 2839.21297
+  type: 'test'
+  ...
+# Subtest: 人類遭遇 tide-unshacklers 編成、配裝、勢力與固定 seed 戰鬥
+ok 11 - 人類遭遇 tide-unshacklers 編成、配裝、勢力與固定 seed 戰鬥
+  ---
+  duration_ms: 1437.303826
+  type: 'test'
+  ...
+# Subtest: 護送目標帶玩家戰鬥單位 id，人物使用獨立實例
+ok 12 - 護送目標帶玩家戰鬥單位 id，人物使用獨立實例
+  ---
+  duration_ms: 377.646841
+  type: 'test'
+  ...
+# Subtest: 獵殺二名怪補 A 級有 epithet 目標且不重複補既有目標
+ok 13 - 獵殺二名怪補 A 級有 epithet 目標且不重複補既有目標
+  ---
+  duration_ms: 6734.131777
+  type: 'test'
+  ...
+# Subtest: 營運效果與天賦 mastery 在源頭求值，出戰人物貢獻全部是 number
+ok 14 - 營運效果與天賦 mastery 在源頭求值，出戰人物貢獻全部是 number
+  ---
+  duration_ms: 611.362397
+  type: 'test'
+  ...
+# Subtest: 無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物
+ok 15 - 無人遭遇 core 與 crew 帶入 UnitSpawn、UnitInit，空 pilots 維持無人物
+  ---
+  duration_ms: 541.55816
+  type: 'test'
+  ...
+# Subtest: seal 守區避開敵軍初始格且從玩家初始格沿可通行地形可達
+ok 16 - seal 守區避開敵軍初始格且從玩家初始格沿可通行地形可達
+  ---
+  duration_ms: 1063.340637
+  type: 'test'
+  ...
+# Subtest: anchored clear 在錨在場時 killTarget 指向錨，opening 保持 eliminate
+ok 17 - anchored clear 在錨在場時 killTarget 指向錨，opening 保持 eliminate
+  ---
+  duration_ms: 1396.059256
+  type: 'test'
+  ...
+# Subtest: 核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨
+ok 18 - 核區契約依 opening 快照排除潮錨並殲滅先鋒，非 opening 保留潮錨
+  ---
+  duration_ms: 1287.868007
+  type: 'test'
+  ...
+# Subtest: 接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入
+ok 19 - 接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入
+  ---
+  duration_ms: 495.932657
+  type: 'test'
+  ...
+# Subtest: 同 state 與 rng 生成深相等情境
+ok 20 - 同 state 與 rng 生成深相等情境
+  ---
+  duration_ms: 593.653766
+  type: 'test'
+  ...
+# Subtest: hold 缺 zone（含 anchor 與階段目標）展開可達守區，明列 zone 保留
+ok 21 - hold 缺 zone（含 anchor 與階段目標）展開可達守區，明列 zone 保留
+  ---
+  duration_ms: 3913.837337
+  type: 'test'
+  ...
+# Subtest: 活捕 wear 70 的本能起點比 wear 0 高 10
+ok 22 - 活捕 wear 70 的本能起點比 wear 0 高 10
+  ---
+  duration_ms: 563.759483
+  type: 'test'
+  ...
+# Subtest: 屍體改裝機帶駕駛員可出戰，活捕帶座位拒絕
+ok 23 - 屍體改裝機帶駕駛員可出戰，活捕帶座位拒絕
+  ---
+  duration_ms: 673.893803
+  type: 'test'
+  ...
+# Subtest: 狀態複製保留完整資料且預覽修改不會滲回原狀態
+ok 24 - 狀態複製保留完整資料且預覽修改不會滲回原狀態
+  ---
+  duration_ms: 13.433583
+  type: 'test'
+  ...
+# Subtest: 預測歷史保留死亡去重與失控恢復，新增事件內容和序號不變
+ok 25 - 預測歷史保留死亡去重與失控恢復，新增事件內容和序號不變
+  ---
+  duration_ms: 3.25791
+  type: 'test'
+  ...
+# Subtest: 堆積搜尋與原排序搜尋的成本及格子順序相同
+ok 26 - 堆積搜尋與原排序搜尋的成本及格子順序相同
+  ---
+  duration_ms: 39.191633
+  type: 'test'
+  ...
+# Subtest: 快照的 reachable 與 pathTo 一致，普通查詢與新快照讀到最新 AP
+ok 27 - 快照的 reachable 與 pathTo 一致，普通查詢與新快照讀到最新 AP
+  ---
+  duration_ms: 15.5187
+  type: 'test'
+  ...
+# Subtest: AI 成功移動與遭拒之後都重建決策快照
+ok 28 - AI 成功移動與遭拒之後都重建決策快照
+  ---
+  duration_ms: 14.011344
+  type: 'test'
+  ...
+# Subtest: 格數等於 viewport 面積且座標為絕對座標
+ok 29 - 格數等於 viewport 面積且座標為絕對座標
+  ---
+  duration_ms: 150.248304
+  type: 'test'
+  ...
+# Subtest: 格子顯示地形色與單位徽章 label、side class
+ok 30 - 格子顯示地形色與單位徽章 label、side class
+  ---
+  duration_ms: 89.765141
+  type: 'test'
+  ...
+# Subtest: dirty 只更新指定格並重用其他格與子節點
+ok 31 - dirty 只更新指定格並重用其他格與子節點
+  ---
+  duration_ms: 82.217361
+  type: 'test'
+  ...
+# Subtest: viewport 移動後重用格節點並更新絕對座標
+ok 32 - viewport 移動後重用格節點並更新絕對座標
+  ---
+  duration_ms: 173.902733
+  type: 'test'
+  ...
+# Subtest: 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+ok 33 - 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+  ---
+  duration_ms: 96.604514
+  type: 'test'
+  ...
+# Subtest: 獨立部位面板未知 hp 顯示問號
+ok 34 - 獨立部位面板未知 hp 顯示問號
+  ---
+  duration_ms: 51.577159
+  type: 'test'
+  ...
+# Subtest: 戰鬥記錄行數與 kind 對應快照且新行在下
+ok 35 - 戰鬥記錄行數與 kind 對應快照且新行在下
+  ---
+  duration_ms: 93.876222
+  type: 'test'
+  ...
+# Subtest: 結算面板依 outcome 顯示結語
+ok 36 - 結算面板依 outcome 顯示結語
+  ---
+  duration_ms: 92.63505
+  type: 'test'
+  ...
+# Subtest: showHelp 顯示 keyHints 表與 kbd
+ok 37 - showHelp 顯示 keyHints 表與 kbd
+  ---
+  duration_ms: 99.304371
+  type: 'test'
+  ...
+# Subtest: B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+ok 38 - B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+  ---
+  duration_ms: 128.529254
+  type: 'test'
+  ...
+# Subtest: K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+ok 39 - K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+  ---
+  duration_ms: 115.396644
+  type: 'test'
+  ...
+# Subtest: 地物HP與各類回收標記有可讀提示
+ok 40 - 地物HP與各類回收標記有可讀提示
+  ---
+  duration_ms: 104.846978
+  type: 'test'
+  ...
+# Subtest: 部位選單顯示命中率、防護、功能、後果與幾何因素
+ok 41 - 部位選單顯示命中率、防護、功能、後果與幾何因素
+  ---
+  duration_ms: 143.741798
+  type: 'test'
+  ...
+# Subtest: 我方單位面板清楚顯本回合移動剩餘、上限與已花
+ok 42 - 我方單位面板清楚顯本回合移動剩餘、上限與已花
+  ---
+  duration_ms: 93.540972
+  type: 'test'
+  ...
+# Subtest: 結構未知格顯空心標記，血量獨立且部位區常駐
+ok 43 - 結構未知格顯空心標記，血量獨立且部位區常駐
+  ---
+  duration_ms: 109.640749
+  type: 'test'
+  ...
+# Subtest: 操作者摘要預設收合原因與非AP人物池，主要資源和AP常駐
+ok 44 - 操作者摘要預設收合原因與非AP人物池，主要資源和AP常駐
+  ---
+  duration_ms: 97.573806
+  type: 'test'
+  ...
+# Subtest: 已知血量25%即使結構100%也顯瀕危，無blood不造流血提示
+ok 45 - 已知血量25%即使結構100%也顯瀕危，無blood不造流血提示
+  ---
+  duration_ms: 414.90637
+  type: 'test'
+  ...
+# Subtest: 指令 enabled 切換重用同 id 節點，停用提示包含原因
+ok 46 - 指令 enabled 切換重用同 id 節點，停用提示包含原因
+  ---
+  duration_ms: 229.871485
+  type: 'test'
+  ...
+# Subtest: 行動、選取、範圍與殘影使用獨立 class
+ok 47 - 行動、選取、範圍與殘影使用獨立 class
+  ---
+  duration_ms: 192.000786
+  type: 'test'
+  ...
+# Subtest: 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+ok 48 - 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+  ---
+  duration_ms: 0.356423
+  type: 'test'
+  ...
+# Subtest: 縮放後錨格留在可視區內並維持相對位置
+ok 49 - 縮放後錨格留在可視區內並維持相對位置
+  ---
+  duration_ms: 0.94315
+  type: 'test'
+  ...
+# Subtest: Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+ok 50 - Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+  ---
+  duration_ms: 103.963752
+  type: 'test'
+  ...
+# Subtest: 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+ok 51 - 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+  ---
+  duration_ms: 92.406786
+  type: 'test'
+  ...
+# Subtest: quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+ok 52 - quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+  ---
+  duration_ms: 275.09966
+  type: 'test'
+  ...
+# Subtest: confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+ok 53 - confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+  ---
+  duration_ms: 232.626517
+  type: 'test'
+  ...
+# Subtest: part 模式顯示部位選單，數字 2 按鈕送 pickPart
+ok 54 - part 模式顯示部位選單，數字 2 按鈕送 pickPart
+  ---
+  duration_ms: 94.757931
+  type: 'test'
+  ...
+# Subtest: fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+ok 55 - fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+  ---
+  duration_ms: 446.310971
+  type: 'test'
+  ...
+# Subtest: 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+ok 56 - 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+  ---
+  duration_ms: 144.190137
+  type: 'test'
+  ...
+# Subtest: 有 at 的 log 行可點並送 focusLog seq
+ok 57 - 有 at 的 log 行可點並送 focusLog seq
+  ---
+  duration_ms: 138.838312
+  type: 'test'
+  ...
+# Subtest: 格內裝飾在按下與放開間hover重繪，仍只派一個正常格子click
+ok 58 - 格內裝飾在按下與放開間hover重繪，仍只派一個正常格子click
+  ---
+  duration_ms: 201.430641
+  type: 'test'
+  ...
+# Subtest: controller：移動模式高亮可達格，點格移動
+ok 59 - controller：移動模式高亮可達格，點格移動
+  ---
+  duration_ms: 99.358194
+  type: 'test'
+  ...
+# Subtest: controller：能力目標模式點合法目標產生命中或未命中文字
+ok 60 - controller：能力目標模式點合法目標產生命中或未命中文字
+  ---
+  duration_ms: 48.17138
+  type: 'test'
+  ...
+# Subtest: controller：拒絕指令顯示原因並保留模式
+ok 61 - controller：拒絕指令顯示原因並保留模式
+  ---
+  duration_ms: 20.652495
+  type: 'test'
+  ...
+# Subtest: controller：E 與 endTurn 結果相同
+ok 62 - controller：E 與 endTurn 結果相同
+  ---
+  duration_ms: 21.644071
+  type: 'test'
+  ...
+# Subtest: controller：游標移出視窗自動捲動並標全重畫
+ok 63 - controller：游標移出視窗自動捲動並標全重畫
+  ---
+  duration_ms: 70.064272
+  type: 'test'
+  ...
+# Subtest: controller：只靠 dispatch 玩到結局或三十輪
+ok 64 - controller：只靠 dispatch 玩到結局或三十輪
+  ---
+  duration_ms: 1453.094075
+  type: 'test'
+  ...
+# Subtest: controller：一般攻擊可點地物，回收拒絕保留狀態
+ok 65 - controller：一般攻擊可點地物，回收拒絕保留狀態
+  ---
+  duration_ms: 15.659526
+  type: 'test'
+  ...
+# Subtest: controller：物件收益與地物HP可查看，遠距回收清楚禁用
+ok 66 - controller：物件收益與地物HP可查看，遠距回收清楚禁用
+  ---
+  duration_ms: 15.216268
+  type: 'test'
+  ...
+# Subtest: controller：補給滿池拒絕不扣AP，成功回收後格標記及按鈕消失
+ok 67 - controller：補給滿池拒絕不扣AP，成功回收後格標記及按鈕消失
+  ---
+  duration_ms: 20.695238
+  type: 'test'
+  ...
+# Subtest: controller：不可撤離情境標題明示正面交戰，一般情境保留原名
+ok 68 - controller：不可撤離情境標題明示正面交戰，一般情境保留原名
+  ---
+  duration_ms: 16.610359
+  type: 'test'
+  ...
+# Subtest: controller：普通與部位命中率沿原預覽，防護遵循已知快照
+ok 69 - controller：普通與部位命中率沿原預覽，防護遵循已知快照
+  ---
+  duration_ms: 37.975354
+  type: 'test'
+  ...
+# Subtest: 回收戰場支援彈正常選能力再點牆一次即扣AP並拆牆，無第二確認
+ok 70 - 回收戰場支援彈正常選能力再點牆一次即扣AP並拆牆，無第二確認
+  ---
+  duration_ms: 17.629873
+  type: 'test'
+  ...
+# Subtest: 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+ok 71 - 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+  ---
+  duration_ms: 359.291327
+  type: 'test'
+  ...
+# Subtest: 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+ok 72 - 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+  ---
+  duration_ms: 95.263805
+  type: 'test'
+  ...
+# Subtest: 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+ok 73 - 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+  ---
+  duration_ms: 51.437632
+  type: 'test'
+  ...
+# Subtest: 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+ok 74 - 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+  ---
+  duration_ms: 128.167491
+  type: 'test'
+  ...
+# Subtest: 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+ok 75 - 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+  ---
+  duration_ms: 29.27881
+  type: 'test'
+  ...
+# Subtest: 回饋 6：攻擊線與命中部位傷害／未命中浮字
+ok 76 - 回饋 6：攻擊線與命中部位傷害／未命中浮字
+  ---
+  duration_ms: 61.076177
+  type: 'test'
+  ...
+# Subtest: 回饋 7：指令成功保留選取與下一步待機選單
+ok 77 - 回饋 7：指令成功保留選取與下一步待機選單
+  ---
+  duration_ms: 8.619571
+  type: 'test'
+  ...
+# Subtest: 回饋 8：idle 可達格高亮且直接移動
+ok 78 - 回饋 8：idle 可達格高亮且直接移動
+  ---
+  duration_ms: 11.595363
+  type: 'test'
+  ...
+# Subtest: 回饋 9：移動與能力用盡時自動待機並提示
+ok 79 - 回饋 9：移動與能力用盡時自動待機並提示
+  ---
+  duration_ms: 7.927698
+  type: 'test'
+  ...
+# Subtest: 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+ok 80 - 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+  ---
+  duration_ms: 131.598754
+  type: 'test'
+  ...
+# Subtest: 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+ok 81 - 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+  ---
+  duration_ms: 108.038382
+  type: 'test'
+  ...
+# Subtest: 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+ok 82 - 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+  ---
+  duration_ms: 2.837977
+  type: 'test'
+  ...
+# Subtest: 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+ok 83 - 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+  ---
+  duration_ms: 232.128502
+  type: 'test'
+  ...
+# Subtest: 回饋 14：新快捷鍵、加號與層種類中文名
+ok 84 - 回饋 14：新快捷鍵、加號與層種類中文名
+  ---
+  duration_ms: 1.415932
+  type: 'test'
+  ...
+# Subtest: partAim 不需 targetPref 即產生合法核心候選，保留不瞄候選並略過毀損核心
+ok 85 - partAim 不需 targetPref 即產生合法核心候選，保留不瞄候選並略過毀損核心
+  ---
+  duration_ms: 65.74823
+  type: 'test'
+  ...
+# Subtest: 核心快破選瞄核心；核心進度權重可覆寫且小核心幾何低命中會選不瞄
+not ok 86 - 核心快破選瞄核心；核心進度權重可覆寫且小核心幾何低命中會選不瞄
+  ---
+  duration_ms: 100.009655
+  type: 'test'
+  location: '/tmp/playable-verify-1029/test/ai/part-aim.test.ts:59:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+    
+      {
+        cmd: {
+          ability: 'base:ability/aim-test',
+          actor: 'a',
+          kind: 'useAbility',
+          target: {
+    +       part: 'core-belly',
+            unit: 'b'
+          }
+        }
+      }
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+    cmd:
+      kind: 'useAbility'
+      actor: 'a'
+      ability: 'base:ability/aim-test'
+      target:
+        unit: 'b'
+  actual:
+    cmd:
+      kind: 'useAbility'
+      actor: 'a'
+      ability: 'base:ability/aim-test'
+      target:
+        unit: 'b'
+        part: 'core-belly'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///tmp/playable-verify-1029/test/ai/part-aim.test.ts:68:10)
+    Test.runInAsyncScope (node:async_hooks:227:14)
+    Test.run (node:internal/test_runner/test:1382:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:960:18)
+    Test.postRun (node:internal/test_runner/test:1522:19)
+    Test.run (node:internal/test_runner/test:1447:12)
+    async startSubtestAfterBootstrap (node:internal/test_runner/harness:387:3)
+  ...
+# Subtest: 無 partAim 能力不提出任何部位候選（即使合法性 stub 放行）
+ok 87 - 無 partAim 能力不提出任何部位候選（即使合法性 stub 放行）
+  ---
+  duration_ms: 34.016103
+  type: 'test'
+  ...
+# Subtest: MonsterDef partsOverride 替換整欄並改變層 HP，其他部位不變且快取
+ok 88 - MonsterDef partsOverride 替換整欄並改變層 HP，其他部位不變且快取
+  ---
+  duration_ms: 7.663765
+  type: 'test'
+  ...
+# Subtest: MonsterDef extraAbilities 可用且去重穩定，tags 併入
+ok 89 - MonsterDef extraAbilities 可用且去重穩定，tags 併入
+  ---
+  duration_ms: 2.371129
+  type: 'test'
+  ...
+# Subtest: MonsterDef attrMods 求值並以 MonsterDef id 作貢獻來源
+ok 90 - MonsterDef attrMods 求值並以 MonsterDef id 作貢獻來源
+  ---
+  duration_ms: 0.963084
+  type: 'test'
+  ...
+# Subtest: BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP
+ok 91 - BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP
+  ---
+  duration_ms: 1.996373
+  type: 'test'
+  ...
+# Subtest: 沒有 def 的舊 UnitInit 除新增核心與移動計數外保持開工前狀態 hash
+ok 92 - 沒有 def 的舊 UnitInit 除新增核心與移動計數外保持開工前狀態 hash
+  ---
+  duration_ms: 4.440219
+  type: 'test'
+  ...
+# Subtest: 人物 NumExpr 可讀獸緣，未提供屬性時沿用 0
+ok 93 - 人物 NumExpr 可讀獸緣，未提供屬性時沿用 0
+  ---
+  duration_ms: 1.810014
+  type: 'test'
+  ...
+1..93
+# tests 93
+# suites 0
+# pass 92
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 76931.440644

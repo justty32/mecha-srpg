@@ -80,3 +80,16 @@ test("DN-M-10 溢出丟棄、層與部位事件、核心死亡", () => {
   assert.deepEqual(ctx.s.log.events.map(e => e.type), ["LayerDamaged", "LayerBroken", "LayerDamaged", "LayerBroken", "PartBroken"]);
   assert.equal(isDead(ctx, "b"), true);
 });
+
+import { applyPacketDetailed } from "./layers.ts";
+test("detailed保留真餘量與舊steps相容，不用D減hp猜穿透", () => {
+  const ctx = fixture(), before = structuredClone(ctx.s);
+  const result = applyPacketDetailed(ctx, "b", "core", { type: "kinetic", amount: 100 }, "a");
+  assert.equal(result.remaining, 70);
+  const legacy = { db: ctx.db, s: before };
+  assert.deepEqual(applyPacket(legacy, "b", "core", { type: "kinetic", amount: 100 }, "a"), result.steps);
+  assert.deepEqual(legacy.s, ctx.s);
+  const stopped = fixture();
+  const blocked = applyPacketDetailed(stopped, "b", "core", { type: "kinetic", amount: 100, reach: ["armor"] }, "a");
+  assert.equal(blocked.remaining, 0); // armor只掉10，但reach在內層攔停其餘90。
+});

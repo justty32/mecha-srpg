@@ -1,31 +1,33 @@
 import type { ContentDB } from "../content/contentdb.ts";
 import type { Id } from "../core/ids.ts";
 import { cellKey } from "../core/ids.ts";
-import type { Cell, FactionSlot, NumExpr, Objective } from "../core/types-def.ts";
+import type { BattlefieldObjectDef, Cell, FactionSlot, NumExpr, Objective } from "../core/types-def.ts";
 import type { BattleState, MechState, PersonState } from "../core/types-state.ts";
 import type { GameEvent } from "../core/events.ts";
 import { createRng } from "../core/rng.ts";
 import { createLog, hashLog } from "../core/eventlog.ts";
 import type { Ctx, Rejection, UnitInit } from "./state.ts";
 import { commanderOf, constant, distance, emit, inBounds, isActive, makeUnit, newRuntime, partDefs, person, rt, seatsOf, unit, unitAt, unitTags } from "./state.ts";
-import { canPay, pay } from "./pools.ts";
+import { canPay, pay, poolDecls } from "./pools.ts";
 import { onSignal, registerCommand, registerVerb, signal } from "./hooks.ts";
 import { killPerson } from "./injury.ts";
 import { setControl } from "./control.ts";
+import { defensePart } from "./defense.ts";
+import { isDead } from "./layers.ts";
 import { killUnit } from "./attack.ts";
 
 export type BattleSetup = { id: string;
   allies?: Record<FactionSlot, FactionSlot[]>; factions?: Record<FactionSlot, Id>;
-  map: { width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id; hp?: number }[]; exits: Cell[];
+  map: { objects?: BattlefieldObjectDef[]; width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id; hp?: number }[]; exits: Cell[];
     globals?: { tide?: NumExpr; light?: number } };
   units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean;
   /** 情境規則覆蓋（ScenarioDef.rules）；目前只有凡鐵外甲倍率。 */
-  rules?: { conventionalFactor?: number } };
+  rules?: { conventionalFactor?: number; scriptedAccuracyBase?: number } };
 export type BattleResult = { winner: FactionSlot | null; reason: string; rounds: number;
   events?: GameEvent[];
   units: { id: Id; monster?: Id; status: "alive" | "dead" | "retreated" | "derelict-recovered" | "derelict-lost" | "captured"; state: MechState }[];
   persons: { id: Id; status: "alive" | "dead"; state: PersonState; xpGained: number }[];
-  loot: { fromUnit: Id; components: Id[]; materials: Record<string, number> }[]; log: { events: number; hash: string } };
+  loot: { fromUnit: Id; owner?: FactionSlot; collected?: boolean; components: Id[]; materials: Record<string, number> }[]; log: { events: number; hash: string } };
 
 export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): BattleState {
   const s: BattleState = { round: 0, order: [], units: {}, persons: {},
@@ -33,9 +35,19 @@ export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): B
       terrain: Array(setup.map.width * setup.map.height).fill(db.require("terrain", setup.map.fill).id), featureHp: {} },
     factions: {}, knowledge: {}, rng: createRng(seed), pending: [], log: createLog(), rt: newRuntime() };
   const ctx = { db, s }, runtime = rt(s);
+  if (setup.map.objects) {
+    const ids = new Set<string>();
+    for (const object of setup.map.objects) {
+      if (ids.has(object.id) || !inBounds(s, object.at)) throw new Error("非法戰場物件");
+      ids.add(object.id);
+      for (const ref of object.effects ?? []) db.require("effect", typeof ref === "string" ? ref : ref.effect);
+    }
+    s.map.objects = structuredClone(setup.map.objects);
+  }
   runtime.objectives = structuredClone(setup.objectives);
   runtime.maxRounds = setup.maxRounds ?? null;
   runtime.noRetreat = setup.noRetreat ?? false;
+  if (setup.rules?.scriptedAccuracyBase !== undefined) runtime.scriptedAccuracyBase = setup.rules.scriptedAccuracyBase;
   if (setup.rules?.conventionalFactor !== undefined) runtime.conventionalFactor = setup.rules.conventionalFactor;
   runtime.exits = structuredClone(setup.map.exits);
   runtime.globals = structuredClone(setup.map.globals ?? {});
@@ -179,7 +191,7 @@ export function battleResult(ctx: Ctx): BattleResult | null {
     status: ctx.s.log.events.some(e => e.type === "PersonDied" && e.payload.person === id) || person(ctx, id).pools.hp?.cur === 0 ? "dead" : "alive",
     state: structuredClone(person(ctx, id)), xpGained: runtime.xpGained[id] ?? 0 }));
   // SPEC-GAP：凍結內容沒有可連結單位的 lootTables；不臆造掉落。
-  return { ...outcome, rounds: ctx.s.round, units, persons, loot: [], log: { events: ctx.s.log.events.length, hash: hashLog(ctx.s.log) } };
+  return { ...outcome, rounds: ctx.s.round, units, persons, loot: (ctx.s.map.salvage ?? []).map(entry => ({ fromUnit: entry.fromUnit ?? entry.object, owner: entry.owner, collected: true, components: [], materials: { ...entry.materials } })), log: { events: ctx.s.log.events.length, hash: hashLog(ctx.s.log) } };
 }
 
 registerCommand("engagePresence", (ctx, cmd) => {
@@ -233,4 +245,20 @@ onSignal("unitDied", "people.flow.infantry-death", 10, (ctx, p) => {
   if (typeof p.unit === "string" && unit(ctx, p.unit).frame === ctx.db.get("frame", "frame/infantry")?.id) {
     for (const seat of seatsOf(ctx, p.unit)) killPerson(ctx, seat.person, p.unit);
   }
+});
+
+// 任何來源破壞核心（含傷勢鉤子）皆走正常死亡／殘骸與戰果管線。
+onSignal("partBroken", "flow.core-destroyed", 50, (ctx, p) => {
+  if (typeof p.unit === "string" && unit(ctx, p.unit).defense?.part === p.part) delete unit(ctx, p.unit).defense;
+  if (typeof p.unit === "string" && isActive(ctx, p.unit) && isDead(ctx, p.unit)) killUnit(ctx, p.unit, typeof p.attacker === "string" ? p.attacker : null);
+});
+onSignal("poolDepleted", "flow.vital-depleted", 50, (ctx, p) => {
+  if (p.kind !== "unit" || typeof p.owner !== "string" || !isActive(ctx, p.owner)) return;
+  if (poolDecls(ctx, { unit: p.owner }).some(pool => pool.id === p.pool && pool.vital)) killUnit(ctx, p.owner, null);
+});
+
+onSignal("layerBroken", "flow.defense-broken", 40, (ctx, p) => {
+  if (typeof p.unit !== "string") return;
+  const u = unit(ctx, p.unit);
+  if (u.defense && defensePart(ctx, p.unit, u.defense.kind) !== u.defense.part) delete u.defense;
 });

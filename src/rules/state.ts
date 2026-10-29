@@ -80,7 +80,7 @@ export function frameView(ctx: Ctx, unitId: Id): FrameDef {
   }
   // SPEC-GAP：怪獸沒有修復政策，採生物機體的 repair-or-replace。
   const frame: FrameDef = { id: species.id, name: species.name, cls: "bio", grade: monster.grade,
-    bodyPlan: species.bodyPlan, baseAttrs: species.baseAttrsByGrade[monster.grade] ?? {},
+    moveBudget: species.moveBudget, bodyPlan: species.bodyPlan, baseAttrs: species.baseAttrsByGrade[monster.grade] ?? {},
     pools: species.pools, innateAbilities: def ? [...new Set([...species.abilities, ...(def.extraAbilities ?? [])])].sort() : species.abilities,
     repairPolicy: "repair-or-replace", tags: def ? [...new Set([...species.tags, ...def.tags])].sort() : species.tags };
   if (def) cache!.set(key, frame);
@@ -218,7 +218,7 @@ export function makePerson(ctx: Ctx, id: Id, def: Id): PersonState {
 export function makeUnit(ctx: Ctx, init: UnitInit): MechState {
   if ((!init.frame) === (!init.monster)) throw new Error("frame 與 monster 必須二擇一");
   const frame = init.monster ? ctx.db.require("species", init.monster.species).id : ctx.db.require("frame", init.frame!).id;
-  const u: MechState = { id: init.id, frame, core: init.core ?? (init.frame ? ctx.db.require("frame", init.frame).core ?? true : true),
+  const u: MechState = { id: init.id, moveSpent: 0, frame, core: init.core ?? (init.frame ? ctx.db.require("frame", init.frame).core ?? true : true),
     ...(init.crew ? { crew: init.crew } : {}), owner: init.owner, pos: { ...init.pos },
     ...(init.facing ? { facing: init.facing } : {}), parts: {}, pools: {}, contribs: [], effects: [], seats: {},
     controlMode: "none", cooldowns: {}, sustained: [] };

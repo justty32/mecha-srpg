@@ -10,6 +10,53 @@ import type { OpsSnapshot, OpsKeyInput } from "./types.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
 const opts = { db, world, seed: 3, spectate: true };
 
+test("快照與快捷鍵共用計算，回傳副本隔離，所有dispatch使快取失效", () => {
+  let reads = 0;
+  const observedDb = new Proxy(db, { get(target, property, receiver) {
+    if (property === "require") reads++;
+    return Reflect.get(target, property, receiver);
+  } });
+  const c = new OpsController({ ...opts, db: observedDb });
+  const first = c.snapshot(), computed = reads;
+  assert.ok(computed > 0);
+  const originalCash = first.header.cash;
+  first.header.cash = -999;
+  first.tabs.length = 0;
+  const action = c.key({ key: "k" });
+  assert.deepEqual(action, { type: "tab", tab: "mechs" });
+  if (action?.type === "tab") action.tab = "ledger";
+  assert.deepEqual(c.key({ key: "k" }), { type: "tab", tab: "mechs" });
+  const again = c.snapshot();
+  assert.equal(again.header.cash, originalCash);
+  assert.ok(again.tabs.length > 0);
+  assert.equal(reads, computed, "同狀態讀取／按鍵不得再查內容建快照");
+
+  const changed = c.dispatch({ type: "tab", tab: "mechs" });
+  assert.equal(changed.tab, "mechs");
+  assert.ok(reads > computed, "只改UI也必須重建");
+  changed.tab = "ledger";
+  assert.equal(c.snapshot().tab, "mechs");
+  const afterTab = reads;
+  c.dispatch({ type: "toggleHelp" });
+  assert.ok(reads > afterTab);
+  assert.equal(c.snapshot().showHelp, true);
+  assert.equal(c.key({ key: "k" }), null);
+  assert.deepEqual(c.key({ key: "Escape" }), { type: "cancel" });
+  c.dispatch({ type: "cancel" });
+  assert.equal(c.snapshot().showHelp, false);
+  assert.deepEqual(c.key({ key: "k" }), { type: "tab", tab: "mechs" });
+
+  const rejected = c.dispatch({ type: "cmd", cmd: { v: "accept", contract: "missing" } });
+  assert.equal(rejected.message, "契約已非待接狀態");
+  assert.equal(c.snapshot().message, rejected.message);
+  c.dispatch({ type: "tab", tab: "ship" });
+  assert.equal(c.snapshot().message, null);
+  const restored = OpsController.fromSave({ ...opts, db: observedDb }, c.serialize());
+  assert.equal(campaignHash(restored.state), campaignHash(c.state));
+  assert.equal(restored.snapshot().tab, "ship");
+  assert.equal(restored.snapshot().message, null);
+});
+
 test("編隊 AI 駕駛切換可開關，清空座位後仍可自駕", () => {
   const c = new OpsController(opts);
   const opened = c.dispatch({ type: "sortieOpen" });

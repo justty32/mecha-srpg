@@ -1,0 +1,34 @@
+{
+  "id": "component/battlefield-shield",
+  "name": "戰場實體盾",
+  "slot": "weaponMount",
+  "size": 1,
+  "mass": 3,
+  "origin": "mechanical",
+  "hp": 20,
+  "pools": [],
+  "abilities": [
+    "ability/mx-guard-stance"
+  ],
+  "layersAdd": [
+    {
+      "part": "left-arm",
+      "insertAt": 0,
+      "layer": {
+        "type": "shield",
+        "hp": 60,
+        "ablative": true,
+        "structural": false,
+        "resist": {
+          "kinetic": 0.2,
+          "pierce": 0.1
+        },
+        "passThrough": {}
+      }
+    }
+  ],
+  "tags": [
+    "shield"
+  ],
+  "onBroken": []
+}

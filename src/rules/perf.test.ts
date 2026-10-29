@@ -8,7 +8,7 @@ import { createRng } from "../core/rng.ts";
 import { createRulesQuery } from "../ai/adapters/rules-adapter.ts";
 import { createAgent, emptyKnowledge, registerPolicy, takeTurn, updateKnowledge } from "../ai/index.ts";
 import { createStubRules, makeStubBattle } from "../../test/ai/stub-rules.ts";
-import { createBattle, killPerson, recoverBerserk, reachable, rt, stepCost } from "./index.ts";
+import { createBattle, killPerson, movementBudget, recoverBerserk, reachable, rt, stepCost } from "./index.ts";
 
 const { db } = loadContentDirs(["content/base"]);
 function state() {
@@ -61,9 +61,13 @@ test("預測歷史保留死亡去重與失控恢復，新增事件內容和序�
 
 test("堆積搜尋與原排序搜尋的成本及格子順序相同", () => {
   const terrains = db.all("terrain").map(t => t.id);
-  for (const ap of [0, 2, 7, 12]) for (const status of ["active", "derelict", "dead"] as const) {
+  for (const ap of [0, 2, 7, 12]) for (const spent of [0, 1]) for (const status of ["active", "derelict", "dead"] as const) {
     const s = state(), ctx = { db, s };
     s.persons.pilot!.pools.ap!.cur = ap;
+    s.units.a!.moveSpent = spent;
+    const allowance = movementBudget(ctx, "a");
+    const budget = Math.min(ap, allowance.remaining);
+    assert.equal(allowance.reachableBudget, budget);
     rt(s).unitStatus.b = status;
     s.map.terrain = s.map.terrain.map((_, i) => terrains[(i * 3 + ap) % terrains.length]!);
     const start = s.units.a!.pos, result: Record<string, number> = { [cellKey(start.x, start.y)]: 0 };
@@ -77,7 +81,7 @@ test("堆積搜尋與原排序搜尋的成本及格子順序相同", () => {
         const cost = stepCost(ctx, "a", current.cell, next);
         if (cost === null) continue;
         const total = current.cost + cost, key = cellKey(next.x, next.y);
-        if (total > ap || total >= (result[key] ?? Infinity)) continue;
+        if (total > budget || total >= (result[key] ?? Infinity)) continue;
         result[key] = total; queue.push({ cell: next, cost: total });
       }
     }

@@ -1,0 +1,54 @@
+{
+  "id": "frame/battlefield-missile-truck",
+  "name": "常規飛彈車",
+  "etymology": "無機甲核心、機魂與流光池的常規車輛。有限追矢彈藥用來遠距攻擊裝甲怪獸，近距離靠機砲自衛。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/battlefield-ground-vehicle",
+  "defaultLoadout": {
+    "main-gun": "component/autocannon-30",
+    "back-1": "component/mx-hunter-darts"
+  },
+  "baseAttrs": {
+    "initiative": 4,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 120,
+          "to": 150,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 150,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "ground-vehicle",
+    "conventional-arms",
+    "human",
+    "track"
+  ],
+  "moveBudget": 3,
+  "moveLoadCapacity": 12
+}

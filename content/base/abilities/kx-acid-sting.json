@@ -2,7 +2,13 @@
   "id": "ability/kx-acid-sting",
   "name": "蝕露弔針",
   "mode": "activated",
-  "costs": [{ "pool": "ap", "owner": "person", "amount": 3 }],
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
   "produces": [],
   "require": [],
   "target": {
@@ -36,5 +42,14 @@
     "tactics": {
       "attack": 1
     }
+  },
+  "aim": {
+    "dispersion": 0.12,
+    "trackingDelay": 0.15,
+    "projectileSpeed": 12
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
   }
 }

@@ -127,9 +127,10 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
     else throw new Error(`objective 目標不存在：${target}`);
   }
   const setup: BattleSetup = { id: sc.id, factions, allies, map: { width: map.width, height: map.height,
+    ...(map.objects ? { objects: structuredClone(map.objects) } : {}),
     fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits),
     ...(map.globals ? { globals: structuredClone(map.globals) } : {}) }, units, objectives,
-    ...(sc.rules?.conventionalFactor !== undefined ? { rules: { conventionalFactor: sc.rules.conventionalFactor } } : {}) };
+    ...(sc.rules ? { rules: structuredClone(sc.rules), noRetreat: sc.rules.noRetreat ?? false } : {}) };
   const rounds = opts?.rounds ?? sc.rounds;
   if (rounds !== undefined) {
     if (!Number.isInteger(rounds) || rounds < 1) throw new Error("rounds 必須是正整數");

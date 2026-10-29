@@ -78,11 +78,12 @@ test("指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip", t
   assert.equal(tooltip.textContent, ability.getAttribute("title"));
 });
 
-test("單位面板未知 hp 顯示問號", t => {
+test("獨立部位面板未知 hp 顯示問號", t => {
   const { root } = setup(t);
-  const unit = root.querySelector('[data-ui="unit"]')!;
+  const unit = root.querySelector('[data-ui="parts"]')!;
   assert.match(unit.textContent, /core ？ \/ 40/);
-  assert.match(unit.textContent, /主駕：林霧.*士氣 穩定/);
+  const operator = root.querySelector('[data-ui="unit"]')!;
+  assert.match(operator.textContent, /主駕：林霧.*士氣 穩定/);
 });
 
 test("戰鬥記錄行數與 kind 對應快照且新行在下", t => {
@@ -123,7 +124,7 @@ test("B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料", t =>
   unit.parts[0]!.components = [{ id: "component/test", slot: "插槽 1", name: "潮行足", functions: ["能力：踏潮"] }];
   snapshot.cells[0]!.travelNote = "地形基礎通行（潮行）：成本 1；實際可達格依移動預覽";
   snapshot.dirty = "all"; view.render(snapshot);
-  const panel = root.querySelector('[data-ui="unit"]')!.textContent!;
+  const panel = root.querySelector('[data-ui="parts"]')!.textContent!;
   assert.match(panel, /古代機 · 潮行/); assert.match(panel, /怪獸家族：菌絲/);
   assert.match(panel, /蛻皮/); assert.match(panel, /育幼/); assert.match(panel, /並非當下攻擊意圖/);
   assert.match(panel, /部位功能：移動/); assert.match(panel, /插槽 1：潮行足 · 能力：踏潮/);
@@ -149,4 +150,101 @@ test("K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因", 
   const button = root.querySelector('[data-cmd="engagePresence:lord"]')!;
   assert.equal(button.hasAttribute("disabled"), true);
   assert.match(button.parentElement!.getAttribute("data-tip")!, /此戰場不可主動迎戰/);
+});
+
+test("地物HP與各類回收標記有可讀提示", t => {
+  const { root, view, snapshot } = setup(t);
+  snapshot.cells[1]!.feature = { hp: 25, max: 60 };
+  snapshot.cells[1]!.objects = [{ id: "wreck", name: "燕鷗殘骸", kind: "wreck", note: "metal +2" }];
+  snapshot.dirty = "all";
+  view.render(snapshot);
+  const cell = root.querySelector('[data-x="13"][data-y="18"]')! as unknown as HTMLElement;
+  assert.match(cell.title, /HP 25\/60/u);
+  assert.match(cell.title, /燕鷗殘骸.*metal \+2/u);
+  assert.equal(cell.querySelector(".feature-marker")?.textContent, "HP 25");
+  assert.equal(cell.querySelector(".object-marker")?.textContent, "骸");
+});
+
+test("部位選單顯示命中率、防護、功能、後果與幾何因素", t => {
+  const { root, view, snapshot } = setup(t);
+  snapshot.mode = { kind: "part", ability: "ability/test", abilityName: "測試射擊", target: "target", options: [
+    { n: 1, part: null, label: "普通射擊（不指定部位）", enabled: true, chance: 100, protection: [], functions: [], consequences: ["依命中位置決定後果"], aimNote: "距離 1 · 誤差圓 0" },
+    { n: 2, part: "arm", label: "左臂", enabled: true, chance: 62.345, protection: [{ type: "外甲", hp: 12, max: 30, broken: false, structural: false }], functions: ["武器掛載"], consequences: ["失去能力：機砲"], aimNote: "露出半徑 0.5 · 遮蔽 20%", defenseNote: "命中後盾擋承傷：左臂 · 剩餘 2 次", hitNotes: ["主命中左臂 · 總傷份額 70%", "可波及車體（需打穿前部位）", "盾擋僅保護主片"] },
+    { n: 3, part: "leg", label: "右腿", enabled: false, reason: "未觀測", chance: null, protection: [{ type: "結構", hp: null, max: 40, broken: false, structural: true }], functions: [], consequences: ["未知"], aimNote: "目前瞄準條件未知" },
+  ] };
+  view.render(snapshot);
+  assert.ok(root.querySelector('[data-ui="parts"] [data-ui="part-picker"]'));
+  assert.equal(root.querySelector('.battle-field [data-ui="part-picker"]'), null);
+  const ordinary = root.querySelector('[data-part-n="1"]')!;
+  assert.match(ordinary.textContent ?? "", /100% 必中/u);
+  const arm = root.querySelector('[data-part-n="2"]')!;
+  assert.match(arm.textContent ?? "", /62\.3% 命中/u);
+  assert.match(arm.textContent ?? "", /外甲 12\/30/u);
+  assert.match(arm.textContent ?? "", /失去能力：機砲/u);
+  assert.match(arm.textContent ?? "", /露出半徑 0\.5/u);
+  assert.match(arm.textContent ?? "", /命中後盾擋承傷.*剩餘 2 次/u);
+  assert.match(arm.textContent ?? "", /主命中左臂.*70%/u);
+  assert.match(arm.textContent ?? "", /需打穿前部位/u);
+  assert.match(root.querySelector('[data-part-n="3"]')!.textContent ?? "", /結構 ？\/40/u);
+});
+
+test("我方單位面板清楚顯本回合移動剩餘、上限與已花", t => {
+  const { root, view, snapshot } = setup(t);
+  assert.ok(snapshot.selected);
+  snapshot.selected.movement = { remaining: 2, limit: 4, spent: 2, notes: ["配件負載 8／容量 8；負載扣減 0", "移動部位完整度 100%"] };
+  view.render(snapshot);
+  const panel = root.querySelector('[data-ui="unit"]')!;
+  assert.match(panel.textContent ?? "", /本回合移動剩 2／上限 4 · 已花 2/u);
+  assert.match(panel.textContent ?? "", /負載 8／容量 8/u);
+});
+
+test("結構未知格顯空心標記，血量獨立且部位區常駐", t => {
+  const { root, view, snapshot } = setup(t);
+  snapshot.cells[0]!.unit!.hpRatio = null;
+  snapshot.cells[0]!.unit!.blood = { cur: 45, max: 100 };
+  snapshot.dirty = "all";
+  view.render(snapshot);
+  const cell = root.querySelector('[data-x="12"][data-y="18"]')!;
+  assert.ok(cell.querySelector(".cell-hp.unknown"));
+  assert.equal(cell.querySelector(".structure-unknown")?.textContent, "？");
+  assert.ok(cell.querySelector(".cell-blood"));
+  assert.match(cell.getAttribute("title") ?? "", /結構完整度：未知/u);
+  assert.match(cell.getAttribute("title") ?? "", /血量 45\/100/u);
+  assert.ok(root.querySelector('.battle-sidebar [data-ui="parts"]'));
+  assert.equal(root.querySelector('[data-ui="unit"] .meter-row')?.textContent?.includes("core"), false);
+});
+
+test("操作者摘要預設收合原因與非AP人物池，主要資源和AP常駐", t => {
+  const { root, view, snapshot } = setup(t);
+  assert.ok(snapshot.selected);
+  snapshot.selected.movement = { remaining: 3, limit: 4, spent: 1, notes: ["腿傷與負載原因", "分次移動不重置"] };
+  snapshot.selected.pools.push({ id: "pilot:ap", name: "行動點", cur: 7, max: 9 }, { id: "pilot:fatigue", name: "疲勞", cur: 12, max: 100 });
+  view.render(snapshot);
+  const panel = root.querySelector('[data-ui="unit"]')!;
+  const details = panel.querySelector("details")!;
+  assert.equal(details.hasAttribute("open"), false);
+  assert.match(details.textContent ?? "", /腿傷與負載原因/u);
+  assert.match(details.textContent ?? "", /疲勞 12/u);
+  const resources = Array.from(panel.children).filter(node => node.classList.contains("meter-row")).map(node => node.textContent).join("\n");
+  assert.match(resources, /行動點 7/u); assert.match(resources, /能源 8/u);
+  assert.equal(/疲勞/u.test(resources), false);
+});
+
+test("已知血量25%即使結構100%也顯瀕危，無blood不造流血提示", t => {
+  const { root, view, snapshot } = setup(t);
+  const unit = snapshot.cells[0]!.unit!;
+  unit.hpRatio = 1; unit.blood = { cur: 25, max: 100, min: 0, vital: true, bleeding: true }; snapshot.dirty = "all";
+  view.render(snapshot);
+  const cell = root.querySelector('[data-x="12"][data-y="18"]')!;
+  assert.ok(cell.classList.contains("blood-critical"));
+  assert.equal(cell.querySelector(".cell-blood")?.textContent, "危");
+  assert.match(cell.getAttribute("title") ?? "", /結構完整度：100%/u);
+  assert.match(cell.getAttribute("title") ?? "", /瀕危.*流血中/u);
+  unit.blood = { cur: 50, min: 20, max: 120, vital: true }; view.render(snapshot);
+  assert.equal(cell.classList.contains("blood-critical"), true, "正好30%及非零min仍須警示");
+  unit.blood.vital = false; view.render(snapshot);
+  assert.equal(cell.classList.contains("blood-critical"), false, "非vital池不造危重");
+  delete unit.blood; view.render(snapshot);
+  assert.equal(cell.querySelector(".cell-blood"), null);
+  assert.equal(cell.classList.contains("blood-critical"), false);
 });

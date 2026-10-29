@@ -43,6 +43,9 @@ export function runLayers(layers: readonly LayerSlot[], p: PacketIn): { layers: 
 }
 
 export function applyPacket(ctx: Ctx, unitId: Id, partId: PartId, p: PacketIn, attacker: Id | null): LayerStep[] {
+  return applyPacketDetailed(ctx, unitId, partId, p, attacker).steps;
+}
+export function applyPacketDetailed(ctx: Ctx, unitId: Id, partId: PartId, p: PacketIn, attacker: Id | null): { steps: LayerStep[]; remaining: number } {
   const u = unit(ctx, unitId), part = u.parts[partId]!, defs = layerDefs(ctx, unitId, partId);
   const def = partDefs(ctx, unitId).find(d => d.id === partId)!;
   const steps: LayerStep[] = [];
@@ -93,8 +96,8 @@ export function applyPacket(ctx: Ctx, unitId: Id, partId: PartId, p: PacketIn, a
     conduct(ctx, unitId, partId, "partBroken", null, { damageType: p.type, amount: p.amount, conductBonus: bonus });
     for (const pool of Object.keys(u.pools).sort()) recomputePool(ctx, { unit: unitId }, pool);
   }
-  // remaining 只供純演算法預覽；實際溢出不傳到其他部位。
-  return steps;
+  // 單點相容包裝忽略餘量；只有明確partPattern才沿body圖傳遞。
+  return { steps, remaining };
 }
 
 export function isDead(ctx: Ctx, unitId: Id): boolean {

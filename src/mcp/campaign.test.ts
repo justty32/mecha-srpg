@@ -120,58 +120,50 @@ test("new → actions.cmd → act → save → load：日期與 cash 相同；cl
 
 test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () => {
   const { env, call } = setup(), { world } = env.world();
-  const initial = data(await call("campaign_new", { seed: 1 })), { id } = initial;
+  // 使用與營運 e2e 相同的開局近程旅程；本案只驗真實出戰及存讀，不依賴第28日的世界抽牌。
+  const initial = data(await call("campaign_new", { seed: 3 })), { id } = initial;
   const pilots = initial.panels.roster.filter((p: { role: string }) => p.role === "pilot");
   const units = initial.panels.hangar.map((m: { id: string; seats: Record<string, string | null> }, i: number) => ({
     mech: m.id, seats: { ...m.seats, pilot: pilots[i].id }, controlMode: "pilot",
   }));
   for (const unit of units) data(await call("campaign_act", { id, command: { v: "assign", person: unit.seats.pilot, seat: { mech: unit.mech, seat: "pilot" } } }));
-  const promptChoice = (actions: Screen["actions"]) => {
-    const choices = actions.filter(a => a.cmd?.v === "choose" && !a.disabled);
-    // 遭遇交涉保留原等待目標與航線；一般事件仍採第一個合法選項。
-    return choices.find(a => a.cmd.v === "choose" && a.cmd.choice === 3 && a.label.includes("交涉")) ?? choices[0];
-  };
-  let view = data(await call("campaign_advance", { id, days: 28 })).view;
-  let evadeDays = 0;
-  for (let i = 0; view.prompt && i < 200; i++) {
-    const choice = promptChoice(data(await call("campaign_actions", { id })).actions)!;
-    if (view.pendingEncounter && choice.cmd.v === "choose" && choice.cmd.choice === 1) evadeDays++;
-    const acted = data(await call("campaign_act", { id, command: choice.cmd }));
-    view = acted.view;
-  }
-  assert.equal(view.clock.day, 28 + evadeDays);
-  // 世界內容（事件／契約）持續增加，第 28 天不一定剛好有契約：逐日推進（處理待選）直到能承接，最多 60 次。
   const actionsNow = async () => data(await call("campaign_actions", { id })).actions as Screen["actions"];
-  // 本案走一般契約航行與出戰；join 還需要作戰階段與部隊資格，另有履約測試。
-  const normalAccept = (actions: Screen["actions"]) => actions.find(a => {
-    if (a.cmd.v !== "accept" || a.disabled) return false;
-    const id = a.cmd.contract, contract = view.panels.contracts.find((c: { id: string }) => c.id === id);
-    // 新招募池改變遭遇軌跡；保留七日給途中事件，避免五日航程被拖到第十一日才抵達。
-    return contract && world.require("contract", contract.template).kind !== "join" && contract.travel
-      && view.clock.day + contract.travel.days + 7 <= contract.deadlineDay;
-  });
-  let accept = normalAccept(await actionsNow());
-  for (let i = 0; !accept && i < 60; i++) {
+  const promptChoice = (actions: Screen["actions"]) => actions.find(a => a.cmd?.v === "choose" && !a.disabled);
+  let view = data(await call("campaign_advance", { id, days: 1 })).view;
+  for (let step = 0; view.prompt && step < 12; step++) {
     const choice = promptChoice(await actionsNow());
-    view = data(await call(choice ? "campaign_act" : "campaign_advance", choice ? { id, command: choice.cmd } : { id, days: 1 })).view;
-    accept = normalAccept(await actionsNow());
+    assert.ok(choice, "開局事件必須有合法選項");
+    view = data(await call("campaign_act", { id, command: choice.cmd })).view;
   }
+  assert.equal(view.prompt, undefined);
+  const nearby = view.panels.contracts.filter((contract: { status: string; template: string; travel: { days: number; fuel: number } | null }) =>
+    contract.status === "offered" && world.require("contract", contract.template).kind !== "join" && contract.travel
+    && contract.travel.days <= 1 && contract.travel.fuel <= view.panels.ship[0].fuel)
+    .sort((a: { travel: { fuel: number } }, b: { travel: { fuel: number } }) => a.travel.fuel - b.travel.fuel)[0];
+  assert.ok(nearby, "seed3開局必須有一天內可負擔的近程契約");
+  const accept = (await actionsNow()).find(a => a.cmd.v === "accept" && a.cmd.contract === nearby.id && !a.disabled);
   assert.ok(accept);
   view = data(await call("campaign_act", { id, command: accept.cmd })).view;
-  const active = view.panels.contracts.find((c: { status: string }) => c.status === "active");
-  // 節點委託可能就在船所在地（already-there），此時不必航行。
-  const sailed = await call("campaign_act", { id, command: { v: "sail", to: active.target } });
-  if (sailed.isError) assert.match(JSON.stringify(sailed.structuredContent), /already-there/);
-  else view = data(sailed).view;
-  for (let i = 0; i < 90 && !view.pendingBattle && (view.prompt || view.panels.ship?.[0]?.place !== active.target); i++) {
-    const choice = promptChoice(await actionsNow());
-    const resail = !choice && !view.panels.ship?.[0]?.destination && view.panels.ship?.[0]?.place !== active.target;
-    view = data(await call(choice || resail ? "campaign_act" : "campaign_advance", choice ? { id, command: choice.cmd }
-      : resail ? { id, command: { v: "sail", to: active.target } } : { id, days: 1 })).view;
+  const active = view.panels.contracts.find((c: { id: string }) => c.id === nearby.id);
+  assert.equal(active.status, "active");
+  if (view.panels.ship[0].place !== active.target) {
+    view = data(await call("campaign_act", { id, command: { v: "sail", to: active.target } })).view;
   }
-
-  if (!view.pendingBattle) assert.ok(view.panels.contracts.some((c: { id: string; status: string }) =>
-    c.id === active.id && c.status === "active"), `抵達時契約已失效：${JSON.stringify(active)} day=${view.clock.day}`);
+  for (let step = 0; step < 12 && !view.pendingBattle && (view.prompt || view.panels.ship[0].place !== active.target); step++) {
+    const choice = promptChoice(await actionsNow());
+    if (view.prompt) {
+      assert.ok(choice, "近程航行事件必須有合法選項");
+      view = data(await call("campaign_act", { id, command: choice.cmd })).view;
+    } else if (!view.panels.ship[0].destination && view.panels.ship[0].place !== active.target) {
+      view = data(await call("campaign_act", { id, command: { v: "sail", to: active.target } })).view;
+    } else view = data(await call("campaign_advance", { id, days: 1 })).view;
+  }
+  if (view.pendingBattle) assert.equal(view.pendingBattle.contract, active.id, "近程fixture應進入所接契約戰鬥");
+  else {
+    assert.equal(view.prompt, undefined);
+    assert.equal(view.panels.ship[0].place, active.target, "近程fixture應抵達契約目標");
+    assert.ok(view.panels.contracts.some((c: { id: string; status: string }) => c.id === active.id && c.status === "active"));
+  }
   const battle = data(await call("campaign_act", { id, command: { v: "sortie", sortie: view.pendingBattle
     ? { units } : { contract: active.id, place: active.target, units } } }));
   assert.ok(battle.battle.rounds > 0);

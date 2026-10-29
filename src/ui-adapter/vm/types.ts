@@ -14,7 +14,9 @@ export type UnitBadge = {
   name: string;                     // 全名（tooltip 用）
   owner: FactionSlot; side: Side;
   active: boolean;                  // 現在輪到它（行動中高亮；敵方回合也是 true，與 CellView.selected 用不同色）
-  hpRatio: number;                  // 0..1，所有可見層 hp 和／max 和；未偵察的層不計
+  hpRatio: number | null;                  // 0..1，僅 structural 層完整度；任一結構層未知或無結構則 null
+  blood?: { cur: number; max: number | null; min?: number; vital?: boolean; bleeding?: boolean };
+  seenRound?: number | null;
   status: "active" | "derelict" | "presence";
   selectable?: boolean;
   notice?: string;
@@ -27,6 +29,8 @@ export type Highlight = "reach" | "path" | "target" | "range";
 export type CellView = {
   x: number; y: number;
   terrain: { id: Id; name: string; glyph: string; color: string };
+  feature?: { hp: number; max: number };
+  objects?: { id: string; name: string; kind: string; note: string }[];
   travelNote?: string;              // 選中單位的靜態地形通行說明；不代表實際可達
   unit?: UnitBadge;
   selectable?: boolean;
@@ -36,11 +40,11 @@ export type CellView = {
   intent?: boolean;                 // 有敵方意圖宣告指向此格
 };
 
-export type LayerView = { type: string; hp: number | null; max: number; broken: boolean };   // type＝中文名；hp null＝未偵察
+export type LayerView = { type: string; hp: number | null; max: number; broken: boolean; structural: boolean };   // type＝中文名；hp null＝未偵察
 export type PartView = { id: string; name: string; broken: boolean; layers: LayerView[];
   functions?: string[]; components?: { id: Id; slot: string; name: string; functions: string[] }[] };
-export type PoolView = { id: string; name: string; cur: number; max: number | null };         // max null＝無上限
-export type EffectView = { id: Id; name: string; stacks: number; remaining: number | null };
+export type PoolView = { id: string; name: string; cur: number; max: number | null; min?: number; vital?: boolean };         // max null＝無上限
+export type EffectView = { id: Id; name: string; stacks: number; remaining: number | null; part?: string };
 export type PersonView = { id: Id; name: string; seat: string; role: string; morale: string };
 
 /** 單位詳情面板：全部來自玩家陣營的 FactionKnowledge（看不到的就是 null／省略）。 */
@@ -49,8 +53,9 @@ export type UnitView = {
   id: Id; name: string; frameName: string; owner: FactionSlot; side: Side;
   pos: Cell; controlMode: string; status: string;
   movementName?: string; frameClassName?: string;
+  movement?: { remaining: number; limit: number; spent: number; notes: string[] };
   familyName?: string; ecologyNotes?: string[];
-  presenceNote?: string; auraNotes?: string[];
+  presenceNote?: string; auraNotes?: string[]; defenseNote?: string;
   persons: PersonView[]; parts: PartView[]; pools: PoolView[]; effects: EffectView[];
   /** [lead-ui-fix] 敵方：視野內＝全部部件與每層即時血量（stale false）；離開視野＝最後所見快照（stale true、seenRound 為所見輪）。
    *  我方恆為 false／null。從未見過的敵方：stale true、parts 只有結構、hp null。 */
@@ -81,10 +86,12 @@ export type Mode =
   | { kind: "part"; ability: Id; abilityName: string; target: Id; options: PartOption[] };
 
 /** 可瞄的部位；auto 為「不指定（交給規則）」——只在 target.kind 不是 "part" 時出現。n＝數字鍵（1 起算）。 */
-export type PartOption = { n: number; part: string | null; label: string; enabled: boolean; reason?: string };
+export type PartOption = { n: number; part: string | null; label: string; enabled: boolean; reason?: string;
+  chance: number | null; protection: LayerView[]; functions: string[]; consequences: string[]; aimNote: string; defenseNote?: string; hitNotes?: string[];
+};
 
 /** 游標格的資訊卡（點格顯示資訊）。 */
-export type CellInfo = { x: number; y: number; terrainName: string; terrainNote: string; unit?: UnitView };
+export type CellInfo = { x: number; y: number; terrainName: string; terrainNote: string; objects?: CellView["objects"]; feature?: CellView["feature"]; unit?: UnitView };
 
 export type KeyHint = { action: string; label: string; keys: string[] };
 
@@ -113,6 +120,8 @@ export type UiSnapshot = {
   dirty: string[] | "all";          // 自上一份 snapshot 起變過的格（cellKey "x,y"）；viewport 變了就是 "all"
   cursor: Cell;
   mode: Mode;
+  operator?: UnitView | null;
+  partsUnit?: UnitView | null;
   selected: UnitView | null;        // 選取中的單位（預設＝輪到的玩家單位）
   inspect: CellInfo;                // 游標格資訊
   /** [lead-ui-fix] 固定指令面板：恆含 move／standby／defer／end／eject／retreat（＋選取單位的能力、模式中的 cancel、播放中的 skip），
@@ -149,6 +158,9 @@ export type UiAction =
   | { type: "standby" }                           // 待機＝這台行動結束（規則 end 指令）
   | { type: "defer" }                             // 延後＝移到本輪隊尾（規則 wait 指令；每輪一次）
   | { type: "endTurn" }                           // 結束我方本輪：未行動者全部待機；有未行動者先要求再按一次確認
+  | { type: "attackFeature"; ability: Id; cell: Cell }
+  | { type: "throwDebris"; target: Id }
+  | { type: "interact"; object: string }
   | { type: "engagePresence"; target: Id }
   | { type: "eject" }
   | { type: "retreat" }

@@ -1,0 +1,50 @@
+{
+  "id": "ability/battlefield-support",
+  "name": "支援爆破彈",
+  "mode": "activated",
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
+  "produces": [],
+  "require": [],
+  "target": {
+    "kind": "ball",
+    "radius": 0,
+    "range": {
+      "min": 1,
+      "max": 4
+    },
+    "los": true,
+    "friendly": "no"
+  },
+  "accuracy": 20,
+  "packets": [
+    {
+      "type": "kinetic",
+      "amount": 20
+    }
+  ],
+  "effects": [],
+  "tags": [
+    "ranged",
+    "explosive"
+  ],
+  "ai": {
+    "tactics": {
+      "attack": 1
+    }
+  },
+  "partPattern": {
+    "kind": "spread",
+    "fractions": [
+      0.6,
+      0.25,
+      0.15
+    ],
+    "selection": "exposed"
+  }
+}

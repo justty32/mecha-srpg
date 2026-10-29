@@ -2,7 +2,13 @@
   "id": "ability/reaper-cleave",
   "name": "鐮肢劈斬",
   "mode": "activated",
-  "costs": [{ "pool": "ap", "owner": "person", "amount": 4 }],
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 2
+    }
+  ],
   "produces": [],
   "require": [],
   "target": {
@@ -17,7 +23,7 @@
   "packets": [
     {
       "type": "pierce",
-      "amount": 20
+      "amount": 40
     }
   ],
   "effects": [],
@@ -29,5 +35,23 @@
     "tactics": {
       "attack": 1
     }
+  },
+  "aim": {
+    "dispersion": 0.08,
+    "trackingDelay": 0.1,
+    "projectileSpeed": 20,
+    "windup": 0.8
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  },
+  "partPattern": {
+    "kind": "spread",
+    "fractions": [
+      0.7,
+      0.3
+    ],
+    "selection": "adjacent"
   }
 }

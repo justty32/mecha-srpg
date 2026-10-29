@@ -64,6 +64,9 @@ export function beginTurn(ctx: Ctx, unitId: Id, resumed: boolean): void {
   runtime.active = unitId;
   emit(ctx, "TurnStart", { unit: unitId, resumed });
   if (!resumed) {
+    unit(ctx, unitId).motion = { dx: 0, dy: 0 };
+    unit(ctx, unitId).moveSpent = 0;
+    delete unit(ctx, unitId).defense;
     signal(ctx, "turnStartPre", { unit: unitId });
     dispatchHook(ctx, "onTurnStart", { unit: unitId });
     for (const seat of seatsOf(ctx, unitId)) dispatchHook(ctx, "onTurnStart", { person: seat.person });

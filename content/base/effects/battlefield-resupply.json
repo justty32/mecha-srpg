@@ -1,0 +1,29 @@
+{
+  "id": "effect/battlefield-resupply",
+  "name": "戰場流光補給",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "pool",
+        "owner": "mech",
+        "pool": "charge",
+        "delta": 20
+      }
+    ]
+  },
+  "tags": [
+    "supply"
+  ],
+  "ui": {
+    "badge": "流光 +20"
+  }
+}

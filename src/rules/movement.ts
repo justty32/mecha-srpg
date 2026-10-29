@@ -1,9 +1,9 @@
 import type { CellKey, Id } from "../core/ids.ts";
 import { cellKey } from "../core/ids.ts";
-import type { Cell, LocomotionClass } from "../core/types-def.ts";
+import type { Cell, LocomotionClass, TerrainDef } from "../core/types-def.ts";
 import { evalCond, evalNum } from "../core/numexpr.ts";
 import { cloneBattleState } from "../core/clone-state.ts";
-import { commanderOf, constant, distance, emit, evalCtxFor, frameView, hostile, inBounds, isActive, partDefs, person, rt, seatsOf, terrainAt, unit, unitAt } from "./state.ts";
+import { commanderOf, constant, distance, emit, evalCtxFor, frameView, hostile, inBounds, isActive, layerDefs, partDefs, person, rt, seatsOf, terrainAt, unit, unitAt } from "./state.ts";
 import type { Ctx } from "./state.ts";
 import { applyEffect, hasEffectTag } from "./effects.ts";
 import { dispatchHook } from "./hooks.ts";
@@ -13,9 +13,49 @@ import { abilitiesOf, checkAbility, resolveCosts } from "./command.ts";
 import { resolveAbility } from "./attack.ts";
 
 export function locomotionOf(ctx: Ctx, unitId: Id): LocomotionClass | null {
-  if (!partDefs(ctx, unitId).some(p => p.functions.includes("locomotion") && !unit(ctx, unitId).parts[p.id]!.broken)) return null;
-  // SPEC-GAP（契約）：未標登記類別的機體採 leg。
-  return frameView(ctx, unitId).tags.find(t => Object.hasOwn(ctx.db.registries.locomotion, t)) ?? "leg";
+  const parts = partDefs(ctx, unitId), u = unit(ctx, unitId);
+  const preferred = frameView(ctx, unitId).tags.find(t => Object.hasOwn(ctx.db.registries.locomotion, t)) ?? "leg";
+  if (parts.some(p => p.mobility !== undefined)) {
+    const available = parts.filter(p => !u.parts[p.id]!.broken).flatMap(p => p.mobility ?? []);
+    const minimum = ctx.db.require("bodyplan", frameView(ctx, unitId).bodyPlan).mobilityMinimum ?? {};
+    const valid = [...new Set(available)].filter(kind => available.filter(c => c === kind).length >= (minimum[kind] ?? 1));
+    return valid.includes(preferred) ? preferred : valid[0] ?? null;
+  }
+  // 舊bodyplan未宣告mobility時沿用locomotion功能，不改舊內容。
+  return parts.some(p => p.functions.includes("locomotion") && !u.parts[p.id]!.broken) ? preferred : null;
+}
+
+export type MovementBudget = { base: number; mass: number; capacity: number | null; loadPenalty: number; integrity: number;
+  effective: number; spent: number; remaining: number; apRemaining: number; reachableBudget: number };
+
+/** 同一回合的總移動額度與實際消耗；AP回復不會回復此額度。 */
+export function movementBudget(ctx: Ctx, id: Id): MovementBudget {
+  const u = unit(ctx, id), frame = frameView(ctx, id), constants = ctx.db.rules.constants;
+  const base = frame.moveBudget ?? constants.moveBudgetDefault ?? 4;
+  const capacity = frame.moveLoadCapacity ?? null;
+  const mass = Object.values(u.parts).reduce((total, part) => total + Object.values(part.components).reduce((n, component) => n + (component ? ctx.db.require("component", component).mass : 0), 0), 0);
+  const loadPenalty = capacity === null ? 0 : Math.ceil(Math.max(0, mass - capacity) / Math.max(Number.EPSILON, constants.moveLoadStep ?? 5));
+  const loco = locomotionOf(ctx, id) ?? frame.tags.find(tag => Object.hasOwn(ctx.db.registries.locomotion, tag)) ?? "leg";
+  const parts = partDefs(ctx, id), explicit = parts.some(part => part.mobility !== undefined);
+  const movers = parts.filter(part => explicit ? part.mobility?.includes(loco) : part.functions.includes("locomotion"));
+  let current = 0, maximum = 0;
+  for (const part of movers) for (const [index, layer] of layerDefs(ctx, id, part.id).entries()) if (layer.structural) {
+    maximum += layer.hp;
+    current += Math.max(0, Math.min(layer.hp, u.parts[part.id]!.layers[index]!.hp));
+  }
+  const integrity = maximum > 0 ? Math.max(0, Math.min(1, current / maximum)) : 1;
+  const effective = canMove(ctx, id) ? Math.floor(Math.max(0, base - loadPenalty) * (0.5 + 0.5 * integrity)) : 0;
+  const spent = u.moveSpent ?? 0, remaining = Math.max(0, effective - spent);
+  const pid = commanderOf(ctx, id), mechOwner = !pid || ["scripted", "instinct"].includes(u.controlMode);
+  const owner = mechOwner ? { unit: id } : { person: pid! }, pools = mechOwner ? u.pools : person(ctx, pid!).pools;
+  const pool = pools.ap, decl = poolDecls(ctx, owner).find(d => d.id === "ap");
+  const apRemaining = !pool || !decl ? 0 : Math.max(0, decl.inverted ? pool.max - pool.cur : pool.cur - decl.min);
+  return { base, mass, capacity, loadPenalty, integrity, effective, spent, remaining, apRemaining, reachableBudget: Math.min(remaining, apRemaining) };
+}
+
+function terrainCost(ctx: Ctx, loco: LocomotionClass, from: TerrainDef, to: TerrainDef): number | null {
+  const cost = to.moveCost[loco];
+  return cost === null || cost === undefined ? null : Math.max(1, cost + Math.max(0, to.height - from.height) * constant(ctx, "moveHeightCost"));
 }
 
 export function stepCost(ctx: Ctx, unitId: Id, from: Cell, to: Cell): number | null {
@@ -23,9 +63,7 @@ export function stepCost(ctx: Ctx, unitId: Id, from: Cell, to: Cell): number | n
   if (!loco || !inBounds(ctx.s, from) || !inBounds(ctx.s, to) || distance(from, to) !== 1) return null;
   const occupant = unitAt(ctx, to);
   if (occupant !== null && occupant !== unitId) return null;
-  const terrain = terrainAt(ctx, to), cost = terrain.moveCost[loco];
-  if (cost === null || cost === undefined) return null;
-  return Math.max(0, cost + Math.max(0, terrain.height - terrainAt(ctx, from).height) * constant(ctx, "moveHeightCost"));
+  return terrainCost(ctx, loco, terrainAt(ctx, from), terrainAt(ctx, to));
 }
 
 function apCost(ctx: Ctx, id: Id, amount: number): Cost[] {
@@ -35,6 +73,8 @@ function stopped(ctx: Ctx, id: Id): boolean {
   // SPEC-GAP：定身標記採 immobilized／rooted；部位毀損仍由 locomotionOf 判定。
   return !isActive(ctx, id) || locomotionOf(ctx, id) === null || hasEffectTag(ctx, { unit: id }, "immobilized") || hasEffectTag(ctx, { unit: id }, "rooted");
 }
+/** 可移動功能與狀態資格；不含本次AP餘額，供預付迴避共用。 */
+export function canMove(ctx: Ctx, id: Id): boolean { return !stopped(ctx, id); }
 function reactions(ctx: Ctx, mover: Id, from: Cell, to: Cell): void {
   for (const enemy of Object.keys(ctx.s.units).sort()) {
     if (!isActive(ctx, enemy) || !hostile(ctx, enemy, mover) || enemy === mover
@@ -76,9 +116,11 @@ export function moveAlong(ctx: Ctx, unitId: Id, path: Cell[]): void {
     const u = unit(ctx, unitId), from = { ...u.pos }, amount = stepCost(ctx, unitId, from, to);
     if (amount === null) break;
     const pid = commanderOf(ctx, unitId), costs = apCost(ctx, unitId, amount);
-    if (!canPay(ctx, unitId, pid, costs)) break;
+    if ((u.moveSpent ?? 0) + amount > movementBudget(ctx, unitId).effective || !canPay(ctx, unitId, pid, costs)) break;
     pay(ctx, unitId, pid, costs, "move");
+    u.moveSpent = (u.moveSpent ?? 0) + amount;
     u.pos = { ...to };
+    u.motion = { dx: (u.motion?.dx ?? 0) + to.x - from.x, dy: (u.motion?.dy ?? 0) + to.y - from.y };
     emit(ctx, "Moved", { unit: unitId, from: [from.x, from.y], to: [to.x, to.y], cost: amount });
     for (const ref of terrainAt(ctx, to).onEnter) applyEffect(ctx, ref,
       { unit: unitId, ...(pid ? { person: pid } : {}), cell: to, faction: u.owner }, terrainAt(ctx, to).id);
@@ -91,11 +133,7 @@ export function moveAlong(ctx: Ctx, unitId: Id, path: Cell[]): void {
 export function reachable(ctx: Ctx, unitId: Id): Record<CellKey, number> {
   const start = unit(ctx, unitId).pos, result: Record<CellKey, number> = { [cellKey(start.x, start.y)]: 0 };
   if (stopped(ctx, unitId)) return result;
-  const pid = commanderOf(ctx, unitId), owner = pid ? { person: pid } : { unit: unitId };
-  const pool = pid ? person(ctx, pid).pools.ap : unit(ctx, unitId).pools.ap;
-  const decl = poolDecls(ctx, owner).find(d => d.id === "ap");
-  if (!pool || !decl) return result;
-  const budget = decl.inverted ? pool.max - pool.cur : pool.cur - decl.min;
+  const budget = movementBudget(ctx, unitId).reachableBudget;
   // 搜尋期間狀態不變；避免每條邊重算機體與全場佔位。
   const loco = locomotionOf(ctx, unitId)!;
   const occupied = new Map<string, Id>();
@@ -114,9 +152,7 @@ export function reachable(ctx: Ctx, unitId: Id): Record<CellKey, number> {
     if (!inBounds(ctx.s, from) || !inBounds(ctx.s, to) || distance(from, to) !== 1) return null;
     const occupant = occupied.get(cellKey(to.x, to.y));
     if (occupant !== undefined && occupant !== unitId) return null;
-    const target = terrain(to), cost = target.moveCost[loco];
-    if (cost === null || cost === undefined) return null;
-    return Math.max(0, cost + Math.max(0, target.height - terrain(from).height) * constant(ctx, "moveHeightCost"));
+    return terrainCost(ctx, loco, terrain(from), terrain(to));
   };
   const queue = [{ cell: start, cost: 0 }];
   type Entry = typeof queue[number];

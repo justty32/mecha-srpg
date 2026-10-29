@@ -68,3 +68,57 @@ test("save：pack hash 不符但有 snapshot 時載入並警告", () => {
   assert.equal(loaded.warnings.length, 1);
   assert.match(loaded.warnings[0]!, /snapshot/);
 });
+
+test("save：新物件、回收與投石命令可serialize/parse/load並驗證重播", async () => {
+  const { createBattle, startBattle, currentActor, tryCommand } = await import("../../src/rules/index.ts");
+  const setup: import("../../src/rules/index.ts").BattleSetup = {
+    id: "save-battlefield", map: { width: 4, height: 4, fill: "terrain/plain", exits: [], objects: [
+      { id: "stone", name: "碎石", kind: "debris", at: { x: 1, y: 1 }, debris: 2 },
+      { id: "wreck", name: "殘骸", kind: "wreck", at: { x: 1, y: 1 }, salvage: { "stock:scrap": 5 } },
+    ] }, units: [
+      { id: "a", owner: "player", frame: "frame/hound-mk2", pos: { x: 1, y: 1 }, persons: [{ id: "pilot", def: "person/ren-kasai", seat: "pilot" }] },
+      { id: "b", owner: "enemy", frame: "frame/hound-mk2", pos: { x: 2, y: 1 }, crew: "remote", core: false },
+    ], objectives: [],
+  };
+  const state = createBattle(db, setup, 1), ctx = { db, s: state };
+  startBattle(ctx);
+  assert.equal(currentActor(state), "a");
+  const commands: import("../../src/core/types-state.ts").Command[] = [
+    { kind: "move", actor: "a", path: [{ x: 0, y: 1 }] },
+    { kind: "interact", actor: "a", object: "stone" },
+    { kind: "interact", actor: "a", object: "wreck" },
+    { kind: "throwDebris", actor: "a", target: "b" },
+  ];
+  for (const command of commands) assert.equal(tryCommand(ctx, command).ok, true);
+  const save = createSave(db, { scenario: null, seed: 1, setup, commands, snapshot: state });
+  const parsed = parseSave(serializeSave(save));
+  const loaded = loadSave(db, parsed, { verifySnapshot: true });
+  assert.deepEqual(loaded.state, state);
+  assert.deepEqual(loaded.state.units.a!.motion, { dx: -1, dy: 0 });
+  assert.equal(loaded.state.map.objects![0]!.collected, true);
+  assert.equal(loaded.state.map.debrisAmmo!.a, 1);
+  assert.equal(loaded.state.map.salvage![0]!.materials["stock:scrap"], 5);
+  assert.throws(() => parseSave(JSON.stringify({ ...save, commands: [{ kind: "interact", actor: "a", object: 42 }] })));
+});
+
+test("save：預付盾準備與實際motion保留，讀回可驗證同一重播", async () => {
+  const { createBattle, startBattle, currentActor, tryCommand } = await import("../../src/rules/index.ts");
+  const setup: import("../../src/rules/index.ts").BattleSetup = { id: "save-defense", map: { width: 4, height: 4, fill: "terrain/plain", exits: [] }, units: [
+    { id: "a", owner: "player", frame: "frame/moji-tern", pos: { x: 1, y: 1 }, components: { "right-weapon": "component/mx-radiant-rifle", "left-weapon": "component/battlefield-shield" }, persons: [{ id: "pilot", def: "person/ren-kasai", seat: "pilot" }] },
+    { id: "b", owner: "enemy", frame: "frame/moji-tern", pos: { x: 3, y: 1 }, core: false, crew: "remote" },
+  ], objectives: [] };
+  const state = createBattle(db, setup, 1), ctx = { db, s: state }; startBattle(ctx);
+  assert.equal(currentActor(state), "a");
+  const commands: import("../../src/core/types-state.ts").Command[] = [
+    { kind: "useAbility", actor: "a", ability: "ability/mx-guard-stance", target: { unit: "a" } },
+    { kind: "move", actor: "a", path: [{ x: 1, y: 2 }] },
+  ];
+  for (const command of commands) assert.equal(tryCommand(ctx, command).ok, true);
+  const save = createSave(db, { scenario: null, seed: 1, setup, commands, snapshot: state });
+  const loaded = loadSave(db, parseSave(serializeSave(save)), { verifySnapshot: true });
+  assert.deepEqual(loaded.state.units.a!.motion, { dx: 0, dy: 1 });
+  assert.equal(loaded.state.units.a!.moveSpent, 1);
+  assert.equal(loaded.state.units.a!.defense!.kind, "block");
+  assert.equal(loaded.state.units.a!.defense!.charges, 2);
+  assert.deepEqual(loaded.state, state);
+});

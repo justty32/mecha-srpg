@@ -106,6 +106,7 @@ export type WorldPathPreview = { cells: MapCell[]; days: number; fuel: number; r
 export type WorldGridSnapshot = {
   map: string; name: string; size: { w: number; h: number }; viewport: { x: number; y: number; w: number; h: number };
   cells: WorldCellView[]; cursor: MapCell; ship: MapCell; zoom: 1 | .5 | .25;
+  regionLabels?: { id: string; name: string; at: MapCell }[];
   layers: Record<WorldLayer, boolean>; layerMenu: boolean; mapMenu: boolean; showMinimap: boolean;
   maps: { id: string; name: string }[]; hover: { at: MapCell; lines: string[] }; preview: WorldPathPreview;
   actions: OpsButton[]; minimap: { w: number; h: number; colors: string[] };

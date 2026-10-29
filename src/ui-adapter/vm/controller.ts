@@ -110,7 +110,9 @@ export class BattleController {
     const a = q.abilityDef(ability);
     if (a.target.kind === "self") return { unit: actor };
     if (a.target.kind !== "unit" && a.target.kind !== "part") return { cell: { ...cell } };
-    const id = this.vm.cell(cell.x, cell.y).unit?.id;
+    const view = this.vm.cell(cell.x, cell.y);
+    if (!view.unit && view.feature && a.packets.length && (a.target.kind === "unit" || a.target.kind === "part")) return { cell: { ...cell } };
+    const id = view.unit?.id;
     if (!id || this.vm.cell(cell.x, cell.y).unit?.stale || this.vm.cell(cell.x, cell.y).unit?.selectable === false) return {};
     if (a.target.kind !== "part") return { unit: id };
     // 只用第一個合法部位判定格子高亮；實際指令由 part 模式選擇。
@@ -129,12 +131,12 @@ export class BattleController {
   private send(cmd: Command): void {
     const turn = this.turnKey();
     const result = this.session.submit(cmd);
-    if (!result.ok) { this.message = rejectionText(result.rejection.code); return; }
+    if (!result.ok) { this.message = "detail" in result.rejection && result.rejection.detail === "resupply-unneeded" ? "流光已滿或沒有流光池，無需補給" : rejectionText(result.rejection.code); return; }
     this.played.add(turn); this.selected = cmd.actor;
     this.presentation.collect(this.session);
     this.mode = { kind: "idle" }; this.message = null;
     if (cmd.kind !== "engagePresence" && this.session.activeUnit() === cmd.actor && this.session.isPlayerTurn()
-      && !this.vm.commands(cmd.actor).some(c => c.enabled && (c.group === "ability" || c.id === "move"))) {
+      && !this.vm.commands(cmd.actor).some(c => c.enabled && (c.group === "ability" || c.id === "move" || c.action.type === "interact"))) {
       const ended = this.session.submit({ kind: "end", actor: cmd.actor });
       if (ended.ok) this.message = "行動點用完，自動待機";
       this.presentation.collect(this.session);
@@ -148,9 +150,8 @@ export class BattleController {
     if (a.target.kind !== "part") parts.unshift(null);
     return parts.map((part, i) => {
       const rejected = q.checkAbility(s, actor, ability, { unit: target, ...(part === null ? {} : { part }) });
-      const penalty = part !== null && a.partAim ? q.evalNum(s, a.partAim.penalty, actor, target) : 0;
-      const label = part === null ? "不指定" : q.partDefs(s, target).find(p => p.id === part)!.name;
-      return { n: i + 1, part, label: `${label}${penalty ? `（命中 −${penalty}）` : ""}`, enabled: !rejected,
+      const label = part === null ? "普通射擊（不指定部位）" : q.partDefs(s, target).find(p => p.id === part)!.name;
+      return { n: i + 1, part, label, ...this.vm.partTargetDetails(actor, ability, target, part), enabled: !rejected,
         ...(rejected ? { reason: rejectionText(rejected.code) } : {}) };
     });
   }
@@ -234,6 +235,9 @@ export class BattleController {
         else this.message = option?.reason ?? "此單位不可迎戰";
         break;
       }
+      case "attackFeature": if (actor) this.send({ kind: "useAbility", actor, ability: a.ability, target: { cell: a.cell } }); break;
+      case "throwDebris": if (actor) this.send({ kind: "throwDebris", actor, target: a.target }); break;
+      case "interact": if (actor) this.send({ kind: "interact", actor, object: a.object }); break;
       case "pickPart": this.pickPart(a.n); break;
       case "focusLog": {
         this.presentation.collect(this.session);
@@ -298,6 +302,14 @@ export class BattleController {
     const subject = this.session.isPlayerTurn() ? this.session.activeUnit() : this.selected;
     const abilities = subject ? this.session.query.abilitiesOf(this.session.state, subject) : [];
     const options = this.vm.commands(subject);
+    if (subject && this.vm.cell(this.cursor.x, this.cursor.y).feature) for (const ability of abilities) {
+      const a = this.session.query.abilityDef(ability);
+      if (!a.packets.length || a.mode !== "activated") continue;
+      const result = this.session.preview({ kind: "useAbility", actor: subject, ability, target: { cell: this.cursor } }).result;
+      const reason = !this.session.isPlayerTurn() ? "敵方回合中" : !result.ok ? rejectionText(result.rejection.code) : undefined;
+      options.push({ id: `attackFeature:${ability}`, label: `${a.name}：攻擊地物`, group: "ability", tooltip: `${this.vm.abilityDescription(subject, ability)}\n地物命中率：100% · 目標 ${this.cursor.x},${this.cursor.y}`,
+        enabled: !reason, ...(reason ? { reason } : {}), action: { type: "attackFeature", ability, cell: { ...this.cursor } } });
+    }
     if (this.mode.kind !== "idle") options.push({ id: "cancel", label: "取消", group: "system", tooltip: "取消目前操作",
       enabled: true, action: { type: "cancel" } });
     return options.map(option => {
@@ -342,10 +354,20 @@ export class BattleController {
       playerTurn: this.session.isPlayerTurn(), outcome: outcome ? { ...outcome,
         text: outcome.winner === null ? "戰鬥結束：平局" : outcome.winner === this.session.playerSlot ? "戰鬥結束：我方勝利" : "戰鬥結束：我方戰敗" } : null,
       map: { width: s.map.width, height: s.map.height }, viewport: { ...v }, cells, dirty,
+      operator: actor ? this.vm.unit(actor) : null,
+      partsUnit: this.mode.kind === "part" ? this.vm.unit(this.mode.target) : inspected.unit ? this.vm.unit(inspected.unit.id) : this.selected ? this.vm.unit(this.selected) : actor ? this.vm.unit(actor) : null,
       cursor: { ...this.cursor }, mode: structuredClone(this.mode), selected: this.selected ? this.vm.unit(this.selected) : null,
       inspect: { ...this.cursor, terrainName: terrain.name, terrainNote: `高度 ${terrain.height}／掩護 ${terrain.cover}${terrain.blocksLos ? "／阻擋視線" : ""}${inspected.travelNote ? `\n${inspected.travelNote}` : ""}`,
+        ...(inspected.objects ? { objects: inspected.objects } : {}),
+        ...(inspected.feature ? { feature: inspected.feature } : {}),
         ...(inspected.unit ? { unit: this.vm.unit(inspected.unit.id) } : {}) },
-      commands, log: structuredClone(this.presentation.log), message: this.message,
+      commands, log: structuredClone(this.presentation.log), message: this.message ?? (this.mode.kind === "target" && actor ? (() => {
+        const target = this.targetAt(this.mode.ability, this.cursor);
+        const result = this.session.preview({ kind: "useAbility", actor, ability: this.mode.ability, target }).result;
+        if (!result.ok) return null;
+        const hit = result.events.find(e => e.type === "Hit" || e.type === "Miss");
+        return typeof hit?.payload.chance === "number" ? `預覽命中率：${hit.payload.chance >= 100 ? "100% 必中" : `${hit.payload.chance.toFixed(1)}%`}` : target.cell && inspected.feature ? "地物命中率：100%" : null;
+      })() : null),
       busy: this.busy(), confirm: this.confirmation ? { ...this.confirmation } : null, fx: structuredClone(this.presentation.fx),
       quickMenu: this.mode.kind === "idle" && this.session.isPlayerTurn() && this.selected === actor
         ? { at: { ...s.units[actor!]!.pos }, options: commands.filter(c => (c.group === "ability" && c.enabled) || c.id === "standby" || (c.id === "move" && c.enabled)) } : null,
@@ -354,7 +376,9 @@ export class BattleController {
 }
 
 export function controllerForScenario(db: ContentDB, scenario: Id, seed: number, opts?: { viewport?: { w: number; h: number }; spectate?: boolean }): BattleController {
-  // SPEC-GAP：ScenarioDef 沒有 name，標題採內容 id，不在程式寫死情境名稱。
+  // 顯示內容提供的情境名稱；舊資料仍可回退 id。
+  const definition = db.require("scenario", scenario);
+  const title = `${definition.name ?? scenarioTitle(definition.id)}${definition.rules?.noRetreat ? " · 正面交戰・不可撤離" : ""}`;
   return new BattleController({ session: new BattleSession({ db, sim: scenarioToSetup(db, scenario, seed), seed, autoAdvance: false, ...(opts?.spectate ? { spectate: true } : {}) }),
-    title: scenarioTitle(db.require("scenario", scenario).id), viewport: opts?.viewport });
+    title, viewport: opts?.viewport });
 }

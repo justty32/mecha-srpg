@@ -41,6 +41,19 @@ export class BattleSession {
 
   /** 成功指令序列（僅供讀取；型別沿用舊介面）。 */
   get commands(): Command[] { return this.inner.commands as Command[]; }
+  /** 唯讀跨環境稽核；回傳副本，不提供修改內部戰局的參照。 */
+  audit() {
+    return structuredClone({ hash: this.inner.hash(), commands: this.inner.commands,
+      numeric: {
+        units: Object.values(this.state.units).sort((a, b) => a.id.localeCompare(b.id)).map(unit => ({ id: unit.id, pos: unit.pos, moveSpent: unit.moveSpent ?? 0, pools: unit.pools, parts: unit.parts })),
+        persons: Object.values(this.state.persons).sort((a, b) => a.id.localeCompare(b.id)).map(person => ({ id: person.id, attrs: person.attrsBase, pools: person.pools })),
+      } });
+  }
+  movementBudget(unit: Id): ReturnType<SimSession["movementBudget"]> { return this.inner.movementBudget(unit); }
+  partTargetInfo(actor: Id, ability: Id, target: Id, part?: string): ReturnType<SimSession["partTargetInfo"]> {
+    return this.inner.partTargetInfo(actor, ability, target, part);
+  }
+  preview(cmd: Command): ReturnType<SimSession["preview"]> { return this.inner.preview(cmd); }
   activeUnit(): Id | null { return this.inner.currentActor(); }
   isPlayerTurn(): boolean { return this.inner.isHumanTurn(); }
   outcome(): BattleOutcome | null { return this.inner.outcome(); }

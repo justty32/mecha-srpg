@@ -37,22 +37,42 @@ test("船位置不變量：存在的圖與可進格；未知圖和不可進格�
 test("idle 12 蝕月：每天不變量全空", () => {
   const { s, ctx } = fixture(); let days = 0;
   const result = runCampaign({ ...ctx, start: "default", seed: 7, months: 12, policy: "idle", onDay(state) { assert.deepEqual(checkInvariants(state), []); days++; } });
-  // 世界軌跡重錄：新增 40 個招募池改變亂數消耗，seed 7 無駕駛員終局改為第 104 天，完成 3 蝕月。
-  assert.equal(days, 104); assert.equal(result.summary.length, 3);
-  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "no-pilots").length, 1);
+  const ends = result.state.log.filter(e => e.type === "CampaignEnd");
+  assert.equal(ends.length, 1);
+  assert.equal(ends[0]!.payload.reason, "no-pilots");
+  const endDay = ends[0]!.day, calendar = ctx.world.require("calendar", result.state.calendar);
+  assert.ok(endDay > s.clock.day && endDay < s.clock.day + 12 * calendar.daysPerMonth);
+  assert.equal(result.state.clock.day, endDay);
+  assert.equal(days, endDay - s.clock.day);
+  assert.equal(result.summary.length, Math.floor(days / calendar.daysPerMonth));
+  assert.ok(result.state.log.every(event => event.day <= endDay));
+  assert.equal(result.state.pendingTicks, 0);
+  assert.equal(result.state.log.at(-1)?.type, "DaySummary");
+  assert.equal(result.state.log.at(-1)?.day, endDay);
   // 同一條測試也確認檢查器確實會擋錯帳、斷引用與 mastery 越界。
   s.ledger.balances.cash++; s.restraint.beasts["missing"] = { mech: "missing", kind: "live", wear: 0, vitality: 100, bond: {} };
   s.roster.mastery.bad = { node: 2 }; const errors = checkInvariants(s);
   assert(errors.some(e => e.includes("balance mismatch"))); assert(errors.some(e => e.includes("missing beast"))); assert(errors.some(e => e.includes("mastery")));
 });
 test("長時間 wait 在駕駛員歸零終局當天停止", () => {
-  const { ctx } = fixture();
+  const { s, ctx } = fixture(), completedDays: number[] = [];
+  const daysPerMonth = ctx.world.require("calendar", s.calendar).daysPerMonth;
+  const target = s.clock.day + 12 * daysPerMonth;
   const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 12,
-    policy(s, c) { const command = idle(s, c); return command.v === "wait" ? { v: "wait", days: Math.max(1, 336 - s.clock.day) } : command; } });
-  assert.equal(result.state.clock.day, 132);
+    onDay(state) { completedDays.push(state.clock.day); },
+    policy(s, c) { const command = idle(s, c); return command.v === "wait" ? { v: "wait", days: Math.max(1, target - s.clock.day) } : command; } });
+  const ends = result.state.log.filter(e => e.type === "CampaignEnd");
+  assert.equal(ends.length, 1);
+  assert.equal(ends[0]!.payload.reason, "no-pilots");
+  const endDay = ends[0]!.day;
+  assert.ok(endDay > s.clock.day && endDay < target, "長wait必須被駕駛歸零終局提早截斷");
+  assert.equal(result.state.clock.day, endDay);
+  assert.equal(completedDays.at(-1), endDay);
+  assert.ok(completedDays.every(day => day <= endDay));
+  assert.ok(result.state.log.every(event => event.day <= endDay), "終局後不可再開新日或產生後續事件");
   assert.equal(result.state.pendingTicks, 0);
   assert.equal(result.state.log.at(-1)?.type, "DaySummary");
-  assert.equal(result.state.log.filter(e => e.type === "CampaignEnd" && e.payload.reason === "no-pilots").length, 1);
+  assert.equal(result.state.log.at(-1)?.day, endDay);
 });
 test("continueAfterEnd：終局後世界照走，原政策不再行動", () => {
   const { ctx } = fixture(); let policyAfterEnd = 0;

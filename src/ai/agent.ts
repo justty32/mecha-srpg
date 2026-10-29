@@ -22,7 +22,7 @@ export function createAgent(unit: Id, policy: Id, memory?: Record<string, unknow
 export function policyFor(q: RulesQuery, s: BattleState, unitId: Id, fallback: Id, params: AiParams = {}): Id {
   if (s.units[unitId]?.controlMode === "berserk") return "berserk";
   const commander = q.commanderOf(s, unitId);
-  if (commander && s.persons[commander]?.morale === "fleeing" && individualRetreatReady(q, s, unitId, params)) return "flee";
+  if (!s.rt?.noRetreat && commander && s.persons[commander]?.morale === "fleeing" && individualRetreatReady(q, s, unitId, params)) return "flee";
   return fallback;
 }
 

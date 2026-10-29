@@ -1,8 +1,54 @@
-{"id":"frame/hound-mk2","name":"獵犬-II型","cls":"mechanical","grade":"C","bodyPlan":"bodyplan/biped-light",
+{
+  "id": "frame/hound-mk2",
+  "name": "獵犬-II型",
+  "cls": "mechanical",
+  "grade": "C",
+  "bodyPlan": "bodyplan/biped-light",
   "defaultLoadout": {
     "right-weapon": "component/mx-singing-blade",
     "left-weapon": "component/mx-binding-harpoon"
   },
- "baseAttrs":{"initiative":6,"perception":5},"pools":[{"id":"heat","name":"燼","min":0,"max":100,"capKind":"soft",
- "inverted":true,"initial":0,"regen":-15,"bands":[{"from":100,"to":125,"effects":["effect/overheat-1"]},{"from":125,"to":null,"effects":["effect/overheat-2"]}]}],
- "innateAbilities":["ability/mx-head-vulcan"],"repairPolicy":"repair-or-replace","tags":["mech","human","lineage-kuafu"]}
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 5
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 100,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 100,
+          "to": 125,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 125,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [
+    "ability/mx-head-vulcan"
+  ],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "mech",
+    "human",
+    "lineage-kuafu"
+  ],
+  "moveBudget": 5,
+  "moveLoadCapacity": 8
+}

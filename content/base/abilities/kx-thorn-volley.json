@@ -2,7 +2,13 @@
   "id": "ability/kx-thorn-volley",
   "name": "棘冠禮雨",
   "mode": "activated",
-  "costs": [{ "pool": "ap", "owner": "person", "amount": 4 }],
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 4
+    }
+  ],
   "produces": [],
   "require": [],
   "target": {
@@ -32,5 +38,14 @@
       "attackArea": 1
     }
   },
-  "cooldown": 2
+  "cooldown": 2,
+  "aim": {
+    "dispersion": 0.12,
+    "trackingDelay": 0.15,
+    "projectileSpeed": 12
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
 }

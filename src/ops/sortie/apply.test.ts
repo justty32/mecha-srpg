@@ -111,3 +111,55 @@ test("非作戰護送友軍死亡不算敵方頭數、不回收屍體或戰利�
   assert.equal(s.ledger.balances["stock:scrap"], scrap);
   assert.equal(s.mechs[escort.id], undefined);
 });
+
+test("玩家明確回收材料走ledger，重複來源與重結算不重領，撤退仍保留", () => {
+  const { s, ctx, sortie } = fixture(), battle = result();
+  battle.winner = "enemy"; battle.reason = "withdrew";
+  const before = s.ledger.balances["stock:scrap"]!;
+  const pickup = { fromUnit: "wreck-source", owner: "player" as const, collected: true, components: [], materials: { scrap: 5 } };
+  battle.loot.push(pickup, structuredClone(pickup), { fromUnit: pickup.fromUnit, components: [], materials: { scrap: 5 } });
+  applyBattleResult(s, ctx, sortie, battle);
+  assert.equal(s.ledger.balances["stock:scrap"], before + 5);
+  assert.deepEqual(checkLedger(s), []);
+  const after = structuredClone(s);
+  applyBattleResult(s, ctx, sortie, battle);
+  assert.deepEqual(s, after);
+});
+
+test("回收容量不足只存可容納材料，其餘stash於出戰地點", () => {
+  const { s, ctx, sortie } = fixture(), battle = result();
+  const used = s.inventory.components.length + s.inventory.relics.length + Object.entries(s.ledger.balances)
+    .filter(([key]) => key.startsWith("stock:") && key !== "stock:fuel").reduce((sum, [, amount]) => sum + amount, 0);
+  s.ship.capacity.cargo = used + 2;
+  const before = s.ledger.balances["stock:flesh"] ?? 0;
+  battle.loot.push({ fromUnit: "corpse-source", owner: "player", collected: true, components: [], materials: { flesh: 5 } });
+  applyBattleResult(s, ctx, sortie, battle);
+  assert.equal(s.ledger.balances["stock:flesh"], before + 2);
+  assert.ok(s.places[sortie.place!]!.wreckage.some(bundle => bundle.materials["stock:flesh"] === 3));
+  assert.deepEqual(checkLedger(s), []);
+});
+
+test("已回收怪獸不再給拆／整屍選擇，非玩家回收也不入我方庫", () => {
+  for (const owner of ["player", "enemy"] as const) {
+    const { s, ctx, sortie } = fixture(), battle = result();
+    const beast = instantiateMech(ctx.db, "collected-beast", "frame/bio-nestmother"); beast.owner = "enemy";
+    battle.units.push({ id: beast.id, status: "dead", state: beast });
+    battle.loot.push({ fromUnit: beast.id, owner, collected: true, components: [], materials: { flesh: 5 } });
+    const before = s.ledger.balances["stock:flesh"] ?? 0;
+    applyBattleResult(s, ctx, sortie, battle);
+    assert.equal(s.pendingChoices.length, 0);
+    assert.equal(s.ledger.balances["stock:flesh"] ?? 0, before + (owner === "player" ? 5 : 0));
+  }
+});
+
+test("自機殘骸已轉材料回收不再發部件，非玩家材料不入庫或stash", () => {
+  const { s, ctx, sortie, mech } = fixture(), battle = result();
+  battle.units.push({ id: mech, status: "dead", state: structuredClone(s.mechs[mech]!) });
+  battle.loot.push({ fromUnit: mech, owner: "enemy", collected: true, components: [], materials: { scrap: 5 } });
+  const components = structuredClone(s.inventory.components), scrap = s.ledger.balances["stock:scrap"];
+  const wreckage = structuredClone(s.places[sortie.place!]!.wreckage);
+  applyBattleResult(s, ctx, sortie, battle);
+  assert.deepEqual(s.inventory.components, components);
+  assert.equal(s.ledger.balances["stock:scrap"], scrap);
+  assert.deepEqual(s.places[sortie.place!]!.wreckage, wreckage);
+});

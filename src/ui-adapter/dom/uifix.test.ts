@@ -126,8 +126,8 @@ test("confirm 顯示文字，確定與取消分別送 endTurn 與 cancel", t => 
 test("part 模式顯示部位選單，數字 2 按鈕送 pickPart", t => {
   const { root, win, view, snapshot, actions } = setup(t);
   snapshot.mode = { kind: "part", ability: "test:beam", abilityName: "光束", target: "test:enemy", options: [
-    { n: 1, part: null, label: "不指定", enabled: true },
-    { n: 2, part: "arm", label: "左臂 命中 −10", enabled: true },
+    { n: 1, part: null, label: "不指定", enabled: true, chance: 100, protection: [], functions: [], consequences: [], aimNote: "" },
+    { n: 2, part: "arm", label: "左臂", enabled: true, chance: 75, protection: [], functions: [], consequences: [], aimNote: "" },
   ] };
   view.render(snapshot);
   const picker = root.querySelector('[data-ui="part-picker"]')!;
@@ -195,4 +195,18 @@ test("有 at 的 log 行可點並送 focusLog seq", t => {
   line.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
   assert.deepEqual(actions, [{ type: "focusLog", seq: 2 }]);
   assert.equal(root.querySelector('[data-ui="log"] li[data-seq="1"]'), null);
+});
+
+test("格內裝飾在按下與放開間hover重繪，仍只派一個正常格子click", t => {
+  const { root, win, view, snapshot, actions } = setup(t);
+  snapshot.cells[0]!.feature = { hp: 60, max: 60 }; snapshot.dirty = "all"; view.render(snapshot);
+  const cell = root.querySelector('[data-x="12"][data-y="18"]')!;
+  cell.dispatchEvent(new win.MouseEvent("mousedown", { bubbles: true }));
+  cell.dispatchEvent(new win.MouseEvent("mouseover", { bubbles: true }));
+  snapshot.dirty = "all"; view.render(snapshot);
+  cell.querySelector(".feature-marker")!.dispatchEvent(new win.MouseEvent("mouseover", { bubbles: true }));
+  cell.dispatchEvent(new win.MouseEvent("mouseup", { bubbles: true }));
+  cell.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+  assert.equal(actions.filter(action => action.type === "hoverCell").length, 1);
+  assert.deepEqual(actions.filter(action => action.type === "clickCell"), [{ type: "clickCell", x: 12, y: 18 }]);
 });

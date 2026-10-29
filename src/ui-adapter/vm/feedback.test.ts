@@ -95,8 +95,23 @@ test("回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦", () 
 test("回饋 6：攻擊線與命中部位傷害／未命中浮字", () => {
   let hit = false, miss = false;
   for (let seed = 1; seed <= 30 && (!hit || !miss); seed++) {
-    const c = closeController(seed); c.dispatch({ type: "beginAbility", ability: "ability/reaper-cleave" });
-    const result = c.dispatch({ type: "clickCell", x: 3, y: 2 });
+    const c = closeController(seed), actor = c.session.activeUnit()!;
+    // 靜止近身普通射擊已可必中；真橫移讓誤差圓產生可驗的命中與未命中分支。
+    c.session.state.units["enemy-0"]!.motion = { dx: 0, dy: 2 };
+    const chance = c.session.partTargetInfo(actor, "ability/reaper-cleave", "enemy-0").chance;
+    assert.ok(chance > 0 && chance < 100);
+    c.dispatch({ type: "beginAbility", ability: "ability/reaper-cleave" });
+    const picked = c.dispatch({ type: "clickCell", x: 3, y: 2 });
+    assert.ok(picked.mode.kind === "part");
+    const ordinary = picked.mode.options.find(option => option.part === null)!;
+    assert.ok(ordinary.enabled);
+    const before = c.session.commands.length;
+    const result = c.dispatch({ type: "pickPart", n: ordinary.n });
+    assert.equal(c.session.commands.length, before + 1);
+    const command = c.session.commands.at(-1)!;
+    assert.ok(command.kind === "useAbility");
+    assert.equal(command.target?.unit, "enemy-0"); assert.equal(command.target?.part, undefined);
+    assert.ok(result.log.some(line => line.kind === "hit" || line.kind === "miss"));
     const attack = result.fx.items.find(f => f.kind === "attack"); assert.ok(attack && attack.kind === "attack");
     assert.deepEqual(attack.from, { x: 2, y: 2 }); assert.deepEqual(attack.to, { x: 3, y: 2 });
     if (attack.hit) {
@@ -169,7 +184,7 @@ test("回饋 12：可見敵方即時 hp，離開視野保留快照與殘影", ()
 });
 
 test("回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位", () => {
-  // SPEC-GAP：基礎內容包無 partAim；測試專用內容變體不更改正式內容或規則。
+  // 測試unit/part兩種目標變體與指定部位數字鍵；不更改正式內容或規則。
   for (const kind of ["unit", "part"] as const) {
     const defs = Object.fromEntries(CONTENT_KINDS.map(kind => [kind, Object.fromEntries(db.all(kind).map(def => [def.id, structuredClone(def)]))])) as Parameters<typeof createContentDB>[3];
     const ability = defs.ability![db.require("ability", "ability/reaper-cleave").id]!;
@@ -181,7 +196,11 @@ test("回饋 13：瞄準部位與 part 目標可選取，取消回 target，數�
     picked = c.dispatch({ type: "clickCell", x: 3, y: 2 }); assert.ok(picked.mode.kind === "part");
     assert.equal(picked.mode.options[0]!.part === null, kind === "unit");
     const option = picked.mode.options.find(o => o.part !== null && o.enabled)!; assert.ok(option);
-    assert.match(option.label, /命中 −12/u);
+    const expected = c.session.partTargetInfo(c.session.activeUnit()!, ability.id, "enemy-0", option.part!);
+    assert.equal(option.chance, expected.chance);
+    assert.ok(option.chance !== null && option.chance >= 0 && option.chance <= 100);
+    assert.match(option.aimNote, /誤差圓/u);
+    assert.equal(/命中 −12/u.test(option.label), false);
     c.dispatch({ type: kind === "unit" ? "pickPart" : "abilitySlot", n: option.n });
     const command = c.session.commands.find(cmd => cmd.kind === "useAbility");
     assert.ok(command && command.kind === "useAbility"); assert.equal(command.target?.part, option.part);

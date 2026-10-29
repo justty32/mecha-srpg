@@ -2,11 +2,38 @@ import { test, type TestContext } from "node:test";
 import assert from "node:assert/strict";
 import { Window } from "happy-dom";
 import { mountOps } from "./render.ts";
+import { mountWorldMap, worldMapContentRect } from "./world-map.ts";
 import { opsFixture, promptFixture, reportFixture, sortieFixture } from "./fixtures.ts";
 import { TAB_ORDER } from "./tabs.ts";
 import type { OpsKeyInput, OpsSnapshot, OpsUiAction } from "../vm/types.ts";
 import { loadWorldDirs } from "../../../ops/content/load.ts";
 import { OpsController } from "../vm/controller.ts";
+
+test("全圖contain留白不屬於世界座標：600×450圖在600×240盒的25%位置為220", () => {
+  const rect = worldMapContentRect({ x: 0, y: 0, width: 600, height: 240 }, { w: 600, h: 450 });
+  assert.deepEqual(rect, { x: 140, y: 0, width: 320, height: 240 });
+  assert.equal(rect.x + rect.width * .25, 220);
+  const wide = worldMapContentRect({ x: 10, y: 20, width: 240, height: 600 }, { w: 600, h: 450 });
+  assert.deepEqual(wide, { x: 10, y: 230, width: 240, height: 180 });
+});
+
+test("全圖真click(220,120)投影為(150,225)，留白不導航", t => {
+  const { db, world } = loadWorldDirs(["content/base"]), controller = new OpsController({ db, world, seed: 3 });
+  const source = controller.dispatch({ type: "tab", tab: "world" }).world;
+  const grid = source.grid!;
+  grid.size = { w: 600, h: 450 }; grid.zoom = .25; grid.regionLabels = [];
+  const win = new Window(), root = win.document.createElement("div"); win.document.body.append(root);
+  const actions: OpsUiAction[] = [];
+  const view = mountWorldMap(root as unknown as HTMLElement, { onAction: action => actions.push(action) });
+  t.after(() => { view.destroy(); win.close(); });
+  const canvas = root.querySelector('[data-ui="world-overview"]')!;
+  canvas.getBoundingClientRect = () => new win.DOMRect(0, 0, 600, 240);
+  view.render(source);
+  canvas.dispatchEvent(new win.MouseEvent("click", { clientX: 70, clientY: 120, bubbles: true }));
+  assert.deepEqual(actions, []);
+  canvas.dispatchEvent(new win.MouseEvent("click", { clientX: 220, clientY: 120, bubbles: true }));
+  assert.deepEqual(actions, [{ type: "mapZoom", dir: 1 }, { type: "mapViewport", x: 150, y: 225 }]);
+});
 
 function setup(t: TestContext, snapshot: OpsSnapshot = opsFixture()) {
   const win = new Window();
@@ -94,6 +121,11 @@ test("世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail
   t.after(() => { view.destroy(); win.close(); });
   const s = c.dispatch({ type: "tab", tab: "world" }); view.render(s);
   assert.equal(root.querySelectorAll(".world-cell").length, s.world.grid!.viewport.w * s.world.grid!.viewport.h);
+  assert.equal(root.querySelectorAll(".world-glyph, .world-age, .world-region").length, 0);
+  assert.ok([...root.querySelectorAll(".world-cell")].every(cell => !cell.textContent || cell.querySelector(".world-badge")));
+  const labels = [...root.querySelectorAll("[data-region-label]")];
+  assert.equal(new Set(labels.map(label => label.getAttribute("data-region-label"))).size, labels.length);
+  assert.ok(labels.length <= s.world.grid!.regionLabels!.length);
   const first = root.querySelector(".world-cell")!;
   assert.match(first.className, /terrain-/);
   view.render(c.dispatch({ type: "mapLayer", layer: "terrain" }));

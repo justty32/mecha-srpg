@@ -13,7 +13,6 @@
 - [content] 裁決人物清單 P01 朴仁哲失腿採前盾撞碎或閘門夾斷；其餘內容候選一併待審 → [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
 - [planning] 使用者另開 Claude Fable 後，交付 [設計報告題綱](notes/investigations/content-review-2026-10-27/fable-brief.md)；取得報告與裁決後再派實作。
 
-- [testing] 2026-10-27 使用者指定整合驗收留到家裡，公司那輪未安裝下載；必要套件已允許但下載前先告知 → 下次依 [接續清單](workflows/dispatch/handoffs/next-session.md) 核對目前 HEAD 與黃金，再執行必要驗證；本次不視為已驗收。
 
 - [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)；機甲核心試玩重點見 [lead-cockpit REPORT「需要使用者決定或試玩」四點](workflows/dispatch/handoffs/done/2026-10-25/lead-cockpit/REPORT.md)（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）
 
@@ -22,3 +21,5 @@
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。
 
 - [feature-dev] 請評閱 10/28 兩個獨立試作的畫風、比例與操作手感 → [Canvas 礁鷹](../art/canvas-mech/README.md)／[真正 3D 衡岳](../art/mech-3d/README.md)（各 README 可開離線展示）。基本連續整機／hero 造型僅由主線與領導 AI 圖驗通過，使用者尚未評閱；兩作已交付，不需重做原型。
+
+- [feature-dev] 請以Ubuntu WSL啟動遊戲，實機評閱10/29營運地圖／戰鬥布局、2–6格移動、命中與傷勢手感；agent驗證及啟動入口見[本輪交付](workflows/dispatch/handoffs/lead-playable-1029/REPORT.md)，依具體回饋續修。

@@ -1,0 +1,28 @@
+{
+  "id": "effect/injury-bleeding-light",
+  "name": "傷口出血",
+  "scope": "part",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.blood.regen",
+      "op": "add",
+      "value": -6,
+      "source": "effect/injury-bleeding-light"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury",
+    "bleeding"
+  ],
+  "ui": {
+    "badge": "傷口出血"
+  },
+  "perPartSeparate": true
+}

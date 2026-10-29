@@ -2,7 +2,13 @@
   "id": "ability/kx-thorn-snipe",
   "name": "一棘穿夢",
   "mode": "activated",
-  "costs": [{ "pool": "ap", "owner": "person", "amount": 3 }],
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
   "produces": [],
   "require": [],
   "target": {
@@ -30,5 +36,14 @@
     "tactics": {
       "attack": 1
     }
+  },
+  "aim": {
+    "dispersion": 0.06,
+    "trackingDelay": 0.08,
+    "projectileSpeed": 30
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
   }
 }

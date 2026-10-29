@@ -11,6 +11,29 @@ export type ShellOptions = {
   onBattleKey?(key: KeyInput): boolean;
 };
 
+/** 懶載入頁面只在成功後鎖定；失敗可按鈕重試，也可重新導航進入。 */
+export function lazyPage(root: HTMLElement, label: string, mount: () => Promise<void>): () => Promise<void> {
+  let ready = false;
+  let pending: Promise<void> | null = null;
+  const load = (): Promise<void> => {
+    if (ready) return Promise.resolve();
+    if (pending) return pending;
+    root.textContent = `${label}載入中…`;
+    pending = Promise.resolve().then(mount).then(() => { ready = true; }).catch((error: unknown) => {
+      const message = root.ownerDocument.createElement("p");
+      message.setAttribute("role", "alert");
+      message.textContent = `${label}載入失敗：${error instanceof Error ? error.message : String(error)}`;
+      const retry = root.ownerDocument.createElement("button");
+      retry.type = "button";
+      retry.textContent = `重新載入${label}`;
+      retry.addEventListener("click", () => { void load(); });
+      root.replaceChildren(message, retry);
+    }).finally(() => { pending = null; });
+    return pending;
+  };
+  return load;
+}
+
 export function mountShell(root: HTMLElement, opts: ShellOptions) {
   const doc = root.ownerDocument, host = doc.defaultView!;
   const nav = doc.createElement("nav");

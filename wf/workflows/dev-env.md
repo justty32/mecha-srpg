@@ -12,6 +12,8 @@
 - 照「流程（fresh clone 後）」走完，`node --version` 為 v24 以上，且 [testing](testing.md) 的快速驗證回傳 0。
 - 下面三張表沒有空欄；要使用者親自做的（帳號、授權、金鑰）在 [WAIT_USER](../WAIT_USER.md) 各佔一行。
 
+**目前環境（2026-10-29）**：使用者指定後續在 Ubuntu WSL 執行；PowerShell 曾找不到 vite，WSL 已正常。請在 WSL 的專案根執行 `npm run dev`，沿用既有依賴；不為此重裝 Windows 工具。啟動前檢查既有 Vite 與埠，保留使用者服務。
+
 ## 流程（fresh clone 後）
 
 1. 確認 node 24（fnm 管理；專案根 `.nvmrc` 由實作線建立）：node 24 可原生執行 `.ts`（type stripping），不必 tsc 編譯。

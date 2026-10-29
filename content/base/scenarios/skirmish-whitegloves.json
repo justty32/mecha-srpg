@@ -1,7 +1,7 @@
 {
   "id": "scenario/skirmish-whitegloves",
   "name": "白手套的索債戰書",
-  "brief": "白手套攔住獵團的去路，沉默的無人鐵偶將欠帳寫成戰書。擊潰攔路鐵偶，讓這支漏風老船上的獵團帶著自己的名字離開。",
+  "brief": "白手套攔住獵團的去路，沉默的無人鐵偶將欠帳寫成戰書。擊潰攔路鐵偶，讓這支漏風老船上的獵團帶著自己的名字離開。 正面交戰，不撤離。",
   "map": "map/skirmish-20",
   "slots": {
     "player": {
@@ -51,7 +51,8 @@
           ],
           "at": "zone"
         }
-      ]
+      ],
+      "ai": "aiprofile/demo-hardclash"
     },
     "enemy": {
       "faction": "faction/selene-whitegloves",
@@ -84,7 +85,8 @@
           "crew": "remote",
           "core": false
         }
-      ]
+      ],
+      "ai": "aiprofile/demo-hardclash"
     }
   },
   "objectives": [
@@ -102,5 +104,9 @@
     }
   ],
   "seed": 2108,
-  "rounds": 20
+  "rounds": 20,
+  "rules": {
+    "scriptedAccuracyBase": 45,
+    "noRetreat": true
+  }
 }

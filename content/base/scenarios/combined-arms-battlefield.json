@@ -1,0 +1,144 @@
+{
+  "id": "scenario/combined-arms-battlefield",
+  "name": "常規地面編組交火",
+  "brief": "三輛無機甲核心、無機魂與無流光池的常規車輛，與燕鷗機甲及地面爆破班協同迎戰。履帶戰車提供直射與迫砲、飛彈車遠距獵甲，排熱工程車替友軍排燼並以機砲自衛，不具修甲或拖救能力。敵方蝕蟲為小型群獸，吐棘擔任射手、扣甲擔任重甲護衛；單格是戰術抽象，尚無實體尺寸碰撞規則。",
+  "map": "map/combined-arms-battlefield",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/battlefield-tank",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 3,
+            "y": 6
+          },
+          "core": false,
+          "pools": {
+            "heat": 30
+          }
+        },
+        {
+          "mech": "frame/battlefield-missile-truck",
+          "persons": [
+            {
+              "id": "person/aigerim-sarsen",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 3,
+            "y": 10
+          },
+          "core": false
+        },
+        {
+          "mech": "frame/battlefield-engineer",
+          "persons": [
+            {
+              "id": "person/chen-xiaohai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 2,
+            "y": 7
+          },
+          "core": false
+        },
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 4,
+            "y": 8
+          },
+          "pools": {
+            "charge": 10
+          }
+        },
+        {
+          "mech": "frame/battlefield-support",
+          "persons": [
+            {
+              "id": "person/alina-trofimova",
+              "seat": "pilot"
+            }
+          ],
+          "at": {
+            "x": 4,
+            "y": 11
+          },
+          "core": false
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 12,
+            "y": 3
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 13,
+            "y": 8
+          }
+        },
+        {
+          "monster": "monster/mite-d",
+          "at": {
+            "x": 12,
+            "y": 14
+          }
+        },
+        {
+          "monster": "monster/spitter-c",
+          "at": {
+            "x": 17,
+            "y": 10
+          }
+        },
+        {
+          "monster": "monster/hinge-crab-c",
+          "at": {
+            "x": 17,
+            "y": 6
+          }
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "seed": 2108,
+  "rounds": 30
+}

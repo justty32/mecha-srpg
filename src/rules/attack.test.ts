@@ -25,7 +25,7 @@ function fixture(edit?: (d: { body: BodyPlanDef; frame: FrameDef; ability: Abili
   pilot.id = "cb:person/test"; pilot.attrs = { initiative: 10, accuracy: 70, evasion: 0 };
   const terrain = structuredClone(base.require("terrain", "terrain/plain")); terrain.id = "cb:terrain/test";
   edit?.({ body, frame, ability, effect, pilot, terrain });
-  const db = createContentDB([{ id: "cb", version: "1", depends: [] }], base.registries, { ...base.rules, moraleEvents: [], injuries: [] },
+  const db = createContentDB([{ id: "cb", version: "1", depends: [] }], base.registries, { ...base.rules, constants: { ...base.rules.constants, attackAccuracyBonus: 0 }, moraleEvents: [], injuries: [] },
     { bodyplan: { [body.id]: body }, frame: { [frame.id]: frame }, ability: { [ability.id]: ability },
       effect: { [effect.id]: effect }, person: { [pilot.id]: pilot }, terrain: { [terrain.id]: terrain } });
   const ctx: Ctx = { db, s: { round: 1, order: ["a", "b"], units: {}, persons: {},
@@ -51,15 +51,14 @@ test("self 能力必中且不消耗命中 RNG，無單位目標也不擲命中�
   assert.deepEqual(empty.s.rng, emptyRng);
   assert.equal(empty.s.log.events.some(e => e.type === "Hit" || e.type === "Miss"), false);
 });
-test("命中夾在 5..95，指定部位懲罰", () => {
+test("近距靜止目標與指定部位可達100，不再保留舊5/95夾限", () => {
   const ctx = fixture();
-  assert.equal(hitChance(ctx, "a", "ability/test", "b"), 70);
-  assert.equal(hitChance(ctx, "a", "ability/test", "b", "core"), 60);
+  assert.equal(hitChance(ctx, "a", "ability/test", "b"), 100);
+  assert.equal(hitChance(ctx, "a", "ability/test", "b", "core"), 100);
   person(ctx, "a-pilot").attrsBase.accuracy = 1000;
-  assert.equal(hitChance(ctx, "a", "ability/test", "b"), 95);
-  person(ctx, "a-pilot").attrsBase.accuracy = -1000;
-  assert.equal(hitChance(ctx, "a", "ability/test", "b"), 5);
+  assert.equal(hitChance(ctx, "a", "ability/test", "b"), 100);
 });
+
 test("未指定依 exposure 抽、忽略已毀部位、指定不耗 RNG", () => {
   const ctx = fixture(d => { const leg = structuredClone(d.body.parts[0]!); leg.id = "leg"; leg.exposure = 3; leg.seats = []; d.body.parts.push(leg); });
   const before = structuredClone(ctx.s.rng);
@@ -96,4 +95,30 @@ test("無核心凡鐵對 kaiju 傷害 ×0.1，有核心遙控保留武器傷害"
   const driven = modifiedAmount(ctx, "a", "ability/mx-frame-strike", packet, "b");
   unit(ctx, "a").core = false;
   assert.equal(modifiedAmount(ctx, "a", "ability/mx-frame-strike", packet, "b"), driven * 0.1);
+});
+
+test("新幾何不疊舊attackAccuracyBonus，命中預覽不耗RNG", () => {
+  const ctx = fixture(d => { d.body.targetRadius = 0.1; });
+  ctx.db = { ...ctx.db, rules: { ...ctx.db.rules, constants: { ...ctx.db.rules.constants } } };
+  const before = hitChance(ctx, "a", "ability/test", "b");
+  ctx.db.rules.constants.attackAccuracyBonus = 1000;
+  assert.equal(hitChance(ctx, "a", "ability/test", "b"), before);
+});
+
+test("預覽與實際結算使用相同命中機率且不先消耗RNG", async () => {
+  const { previewCommand, tryCommand } = await import("./command.ts");
+  const ctx = fixture();
+  ctx.db = { ...ctx.db, rules: { ...ctx.db.rules, constants: { ...ctx.db.rules.constants, attackAccuracyBonus: 15 } } };
+  const command = { kind: "useAbility" as const, actor: "a", ability: "ability/test", target: { unit: "b", part: "core" } };
+  const chance = hitChance(ctx, "a", command.ability, "b", "core"), rng = structuredClone(ctx.s.rng);
+  const preview = previewCommand(ctx, command);
+  assert.equal(preview.result.ok, true);
+  assert.deepEqual(ctx.s.rng, rng);
+  const actual = tryCommand(ctx, command);
+  assert.equal(actual.ok, true);
+  if (preview.result.ok && actual.ok) {
+    const event = (events: typeof actual.events) => events.find(e => e.type === "Hit" || e.type === "Miss")!;
+    assert.equal(event(preview.result.events).payload.chance, chance);
+    assert.deepEqual(event(preview.result.events), event(actual.events));
+  }
 });

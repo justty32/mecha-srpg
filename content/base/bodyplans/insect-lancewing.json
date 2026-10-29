@@ -59,7 +59,8 @@
             "pilot"
           ]
         }
-      ]
+      ],
+      "targetRadius": 0.42
     },
     {
       "id": "crown",
@@ -88,8 +89,11 @@
         "sensor"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.154
     },
     {
       "id": "left-wing",
@@ -118,8 +122,14 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.35,
+      "mobility": [
+        "flight"
+      ]
     },
     {
       "id": "right-wing",
@@ -148,8 +158,14 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.35,
+      "mobility": [
+        "flight"
+      ]
     },
     {
       "id": "sting",
@@ -178,8 +194,11 @@
         "weaponMount"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.175
     },
     {
       "id": "lantern",
@@ -206,8 +225,39 @@
       "slots": [],
       "functions": [],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.28
     }
-  ]
+  ],
+  "targetRadius": 0.7,
+  "abilityParts": {
+    "ability/kx-wing-dive": {
+      "parts": [
+        "left-wing",
+        "right-wing"
+      ],
+      "min": 2
+    },
+    "ability/kx-acid-sting": {
+      "parts": [
+        "sting"
+      ],
+      "min": 1
+    }
+  },
+  "mobilityMinimum": {
+    "flight": 2
+  },
+  "partAdjacency": {
+    "heart-shrine": [
+      "crown",
+      "left-wing",
+      "right-wing",
+      "sting",
+      "lantern"
+    ]
+  }
 }

@@ -1,0 +1,67 @@
+{
+  "id": "scenario/playable-battlefield",
+  "name": "廢墟回收交火",
+  "brief": "回收補給與碎石、用一般武器摧毀殘牆，指揮地面爆破班共同迎擊怪獸。殘骸與屍體可回收材料。",
+  "map": "map/playable-battlefield",
+  "slots": {
+    "player": {
+      "faction": "faction/migrant-crew",
+      "units": [
+        {
+          "mech": "frame/moji-tern",
+          "persons": [
+            {
+              "id": "person/ren-kasai",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone",
+          "pools": {
+            "charge": 10
+          },
+          "components": {
+            "right-weapon": "component/mx-radiant-rifle",
+            "armor-mount": "component/mx-porcelain-plate",
+            "left-weapon": "component/battlefield-shield"
+          }
+        },
+        {
+          "mech": "frame/battlefield-support",
+          "persons": [
+            {
+              "id": "person/mara-okoye",
+              "seat": "pilot"
+            }
+          ],
+          "at": "zone",
+          "core": false
+        }
+      ]
+    },
+    "enemy": {
+      "faction": "faction/selene-whitegloves",
+      "units": [
+        {
+          "monster": "monster/grit-fan-d",
+          "at": "zone"
+        }
+      ]
+    }
+  },
+  "objectives": [
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "player",
+      "onComplete": "win"
+    },
+    {
+      "kind": "eliminate",
+      "params": {},
+      "for": "enemy",
+      "onComplete": "win"
+    }
+  ],
+  "seed": 2108,
+  "rounds": 20
+}

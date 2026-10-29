@@ -21,8 +21,11 @@
         "weaponMount"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-light"
+      ],
+      "conduct": [],
+      "targetRadius": 0.28
     },
     {
       "id": "low-core",
@@ -72,7 +75,8 @@
             "pilot"
           ]
         }
-      ]
+      ],
+      "targetRadius": 0.48
     },
     {
       "id": "short-leg",
@@ -93,8 +97,14 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.24,
+      "mobility": [
+        "leg"
+      ]
     },
     {
       "id": "bent-leg",
@@ -115,8 +125,14 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.24,
+      "mobility": [
+        "leg"
+      ]
     },
     {
       "id": "long-leg",
@@ -137,9 +153,41 @@
         "locomotion"
       ],
       "onLayerBroken": {},
-      "onBroken": [],
-      "conduct": []
+      "onBroken": [
+        "effect/injury-bleeding-heavy"
+      ],
+      "conduct": [],
+      "targetRadius": 0.24,
+      "mobility": [
+        "leg"
+      ]
     }
   ],
-  "symmetry": "asymmetric"
+  "symmetry": "asymmetric",
+  "targetRadius": 0.8,
+  "abilityParts": {
+    "ability/kx-thorn-snipe": {
+      "parts": [
+        "thorn-crown"
+      ],
+      "min": 1
+    },
+    "ability/kx-thorn-volley": {
+      "parts": [
+        "thorn-crown"
+      ],
+      "min": 1
+    }
+  },
+  "mobilityMinimum": {
+    "leg": 2
+  },
+  "partAdjacency": {
+    "low-core": [
+      "thorn-crown",
+      "short-leg",
+      "bent-leg",
+      "long-leg"
+    ]
+  }
 }

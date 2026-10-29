@@ -157,8 +157,7 @@
 .ops-view .world-grid[hidden], .ops-view .world-overview[hidden] { display: none; }
 .ops-view .world-tools { flex-wrap: wrap; align-items: center; }
 .ops-view .world-cell { position: relative; width: var(--cell-size); height: var(--cell-size); border: 1px solid #ffffff12; box-sizing: border-box; cursor: pointer; font: 12px monospace; text-align: center; color: #e6e8e9; }
-.ops-view .world-glyph { opacity: .45; }
-.ops-view .world-badge { position: absolute; inset: 0; font-weight: bold; line-height: var(--cell-size); }
+.ops-view .world-badge { position: absolute; inset: 0; display: grid; place-items: center; font-weight: bold; font-size: min(12px, var(--cell-size)); line-height: 1; }
 .ops-view .world-cell.cursor { outline: 2px solid #fff0a0; outline-offset: -2px; z-index: 2; }
 .ops-view .world-cell.ship { color: #ffe17d; }
 .ops-view .world-cell.world-path { border: 1px dashed #6ef0da; }
@@ -168,11 +167,8 @@
 .ops-view .world-cell.fog-unknown { background: #050608; }
 .ops-view .world-cell.blight-core { animation: world-core 2s ease-in-out infinite; }
 @keyframes world-core { 50% { box-shadow: inset 0 0 6px #ff6a9c; } }
-.ops-view .world-region { position: absolute; left: 0; top: 0; pointer-events: none; font-size: 9px; white-space: nowrap; }
-.ops-view .world-age { position: absolute; right: 0; bottom: 0; font-size: 8px; }
-.ops-view .world-grid[data-zoom="0.5"] .world-glyph { visibility: hidden; }
-.ops-view .world-grid[data-zoom="0.5"] .world-region { display: none; }
-.ops-view .world-grid[data-zoom="0.5"] .world-cell:nth-child(12n) .world-region { display: block; z-index: 1; }
+.ops-view .world-region-labels { position: absolute; inset: 0; pointer-events: none; overflow: hidden; }
+.ops-view .world-region-label { position: absolute; transform: translate(-50%, -50%); white-space: nowrap; font-size: 12px; line-height: 1.2; color: #f0ead7; text-shadow: 0 1px 3px #000, 0 0 4px #000; }
 .ops-view .world-minimap { position: absolute; right: 8px; bottom: 8px; width: min(180px, 35%); border: 1px solid #afc9dc; background: #111; }
 .ops-view .world-minimap canvas { display: block; width: 100%; height: 100%; image-rendering: pixelated; cursor: crosshair; }
 .ops-view .world-mini-viewport { position: absolute; border: 1px solid #fff; pointer-events: none; box-sizing: border-box; }
@@ -239,6 +235,20 @@
   .ops-view .ops-layout { grid-template-columns: 160px minmax(0, 1fr) 220px; gap: 8px; }
   .ops-view .world-wrap { grid-template-columns: minmax(0, 1fr); }
   .ops-view .ops-split { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* 窄窗保留導航及記錄，改在地圖上下排列，避免兩側欄吃光地圖寬度。 */
+@media (max-width: 760px) {
+  .ops-view .ops-layout { grid-template-columns: minmax(0, 1fr); grid-auto-rows: max-content; align-content: start; overflow-y: auto; }
+  .ops-view .ops-left { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; }
+  .ops-view [data-ui="ops-tabs"] { grid-column: 1 / -1; }
+  .ops-view .ops-tab-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
+  .ops-view .ops-tab-list button { padding: 6px; }
+  .ops-view [data-ui="ops-rifts"], .ops-view [data-ui="ops-queue"] { max-height: 100px; overflow-y: auto; }
+  .ops-view [data-ui="ops-main"] { overflow: visible; }
+  .ops-view .world-wrap { height: auto; }
+  .ops-view .world-map-col { height: 360px; }
+  .ops-view .ops-log-panel { height: 180px; }
 }
 
 /* 出戰時的戰鬥層（battle-host.ts）：外層借 .ops-view 色票，戰鬥本體沿用 .battle-view 樣式 */

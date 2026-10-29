@@ -198,3 +198,62 @@ test("K2：presence 公開標記、不可交戰說明、迎戰灰鈕原因與潮
   s.rt!.unitStatus.named = "captured";
   assert.equal(vm.unit("named").auraNotes, undefined);
 });
+
+test("穿透沿共享query顯示盾臂到瞄準部位，只有分散攻擊說盾僅主片", () => {
+  const { session, vm } = fixture(), target = "enemy-0", actor = "player-0", ability = "ability/mx-radiant-shot";
+  session.state.knowledge.player!.visible = [target];
+  const base = session.partTargetInfo(actor, ability, target, "torso");
+  session.partTargetInfo = () => ({ ...base, pattern: "penetrate", maxParts: 2,
+    partHits: [{ part: "left-arm", fraction: 1, conditional: false, primary: true }, { part: "torso", fraction: null, conditional: true, primary: false }],
+    possibleParts: ["left-arm", "torso"] });
+  const details = vm.partTargetDetails(actor, ability, target, "torso"), text = details.hitNotes!.join("\n");
+  assert.match(text, /可能穿透路徑：左臂 → 軀幹/u);
+  assert.match(text, /承傷臂計入上限/u);
+  assert.match(text, /僅實際剩餘能量.*無餘量即止/u);
+  assert.equal(/盾擋僅保護主片|旁波/u.test(text), false);
+  assert.equal(/盾擋只保護主片/u.test(vm.abilityDescription(actor, ability)), false);
+  assert.match(vm.abilityDescription("player-2", "ability/reaper-cleave"), /盾擋只保護主片/u);
+});
+
+test("移動面板沿共享query顯回合額度與原因，敵方不洩漏spent", () => {
+  const { session, vm } = fixture();
+  session.movementBudget = () => ({ base: 5, mass: 13, capacity: 8, loadPenalty: 1, integrity: 0.75,
+    effective: 3, spent: 1, remaining: 2, apRemaining: 1, reachableBudget: 1 });
+  const own = vm.unit("player-0").movement!;
+  assert.deepEqual([own.remaining, own.limit, own.spent], [2, 3, 1]);
+  assert.match(own.notes.join("\n"), /平地約 1 格/u);
+  assert.match(own.notes.join("\n"), /完整度 75%/u);
+  assert.match(own.notes.join("\n"), /機動定位：輕 · 基礎移動上限 5/u);
+  assert.match(own.notes.join("\n"), /負載 13／容量 8；負載扣減 1/u);
+  session.state.knowledge.player!.visible = ["enemy-0"];
+  assert.equal(vm.unit("enemy-0").movement, undefined);
+  session.state.knowledge.player!.visible = [];
+  assert.equal(vm.unit("enemy-0").movement, undefined);
+});
+
+test("格旗結構完整度排除甲盾，無結構或未知結構回null", () => {
+  const { session, vm } = fixture(), own = session.state.units["player-0"]!;
+  assert.equal(vm.cell(own.pos.x, own.pos.y).unit?.hpRatio, 1);
+  for (const [id, part] of Object.entries(own.parts)) for (const [i, layer] of part.layers.entries()) {
+    if (!session.query.layerDefs(session.state, own.id, id)[i]!.structural) { layer.hp = 0; layer.broken = true; }
+  }
+  assert.equal(vm.cell(own.pos.x, own.pos.y).unit?.hpRatio, 1, "只有甲盾損失不能降低結構完整度");
+  const original = vm.unit.bind(vm);
+  vm.unit = id => { const view = original(id); return { ...view, parts: view.parts.map(p => ({ ...p, layers: p.layers.map(l => ({ ...l, structural: false })) })) }; };
+  assert.equal(vm.cell(own.pos.x, own.pos.y).unit?.hpRatio, null);
+  vm.unit = id => { const view = original(id); return { ...view, parts: view.parts.map(p => ({ ...p, layers: p.layers.map(l => ({ ...l, hp: l.structural ? null : l.hp })) })) }; };
+  assert.equal(vm.cell(own.pos.x, own.pos.y).unit?.hpRatio, null);
+});
+
+test("敵格結構只沿最後所見，不讀敵方現時傷害或血池", () => {
+  const { session, vm } = fixture(), enemy = session.state.units["enemy-0"]!, k = session.state.knowledge.player!;
+  k.visible = [enemy.id]; k.lastSeen[enemy.id] = { cell: { ...enemy.pos }, round: session.state.round };
+  vm.captureVisible();
+  const visible = vm.cell(enemy.pos.x, enemy.pos.y).unit!;
+  k.visible = [];
+  enemy.pools.blood = { cur: 1, max: 100, regen: -12, band: 0 };
+  for (const part of Object.values(enemy.parts)) for (const layer of part.layers) layer.hp = 0;
+  const stale = vm.cell(enemy.pos.x, enemy.pos.y).unit!;
+  assert.equal(stale.stale, true); assert.equal(stale.hpRatio, visible.hpRatio);
+  assert.equal(stale.blood, undefined);
+});

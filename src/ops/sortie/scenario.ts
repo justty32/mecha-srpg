@@ -393,6 +393,34 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
     rounds, rules: { conventionalFactor: ctx.db.rules.constants.conventionalFactor ?? 0.1 }, seed: nextU32(s.rng),
     mapDef: map, personStates: persons, ops: { map, unitIds: ordered.map(u => u.mech),
       ...(Object.keys(temporaryIds).length ? { forceIds: temporaryIds } : {}) } };
+  // 正式內容提供戰場物件配方；不覆蓋部署、出口或目標區，位置選擇不消耗RNG。
+  const battlefield = ctx.db.get("map", "map/playable-battlefield");
+  if (battlefield) {
+    const reserved = new Set(Object.values(map.deployZones).flat().concat(map.exits).map(c => `${c.x},${c.y}`));
+    for (const objective of objectives) {
+      const zone = objective.params.zone;
+      if (Array.isArray(zone)) for (const c of zone) if (c && typeof c === "object" && "x" in c && "y" in c) reserved.add(`${c.x},${c.y}`);
+    }
+    const available = Array.from({ length: map.width * map.height }, (_, index) => ({ x: index % map.width, y: Math.floor(index / map.width) }))
+      .filter(c => !reserved.has(`${c.x},${c.y}`));
+    for (const object of battlefield.objects ?? []) {
+      if (!["pickup", "debris"].includes(object.kind)) continue;
+      const at = available.shift(); if (!at) break;
+      (map.objects ??= []).push({ ...structuredClone(object), id: `ops:${object.id}`, at });
+    }
+    const configuredFeatures = [...(battlefield.features ?? [])];
+    if (typeof battlefield.cells === "string") for (const [index, glyph] of [...battlefield.cells].entries()) {
+      if (configuredFeatures.some(feature => feature.at.x === index % battlefield.width && feature.at.y === Math.floor(index / battlefield.width))) continue;
+      const terrainId = battlefield.legend[glyph];
+      if (!terrainId) continue;
+      const terrain = ctx.db.require("terrain", terrainId);
+      if (terrain.destructible || terrain.tags.includes("ruin")) configuredFeatures.push({ at: { x: index % battlefield.width, y: Math.floor(index / battlefield.width) }, terrain: terrain.id });
+    }
+    for (const feature of configuredFeatures) {
+      const at = available.shift(); if (!at) break;
+      (map.features ??= []).push({ ...structuredClone(feature), at });
+    }
+  }
   if (sortie.lordEncounter && lordScript) { scenario.name = "吉大港守牆"; scenario.brief = lordScript.gate.text; }
   else if (template?.text) { scenario.name = template.name; scenario.brief = template.text; }
   // SPEC-GAP：支援沒有 conventional-arms frame／能力內容；不憑空造可攻擊的船或砲台。

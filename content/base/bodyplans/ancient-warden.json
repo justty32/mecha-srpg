@@ -47,7 +47,8 @@
             "pilot"
           ]
         }
-      ]
+      ],
+      "targetRadius": 0.75
     },
     {
       "id": "left-arm",
@@ -77,7 +78,8 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
-      "conduct": []
+      "conduct": [],
+      "targetRadius": 0.4
     },
     {
       "id": "right-arm",
@@ -107,7 +109,8 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
-      "conduct": []
+      "conduct": [],
+      "targetRadius": 0.4
     },
     {
       "id": "legs",
@@ -137,8 +140,28 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
-      "conduct": []
+      "conduct": [],
+      "targetRadius": 0.5,
+      "mobility": [
+        "leg"
+      ]
     }
   ],
-  "symmetry": "bilateral"
+  "symmetry": "bilateral",
+  "targetRadius": 1.25,
+  "abilityParts": {
+    "ability/shell-lance": {
+      "parts": [
+        "right-arm"
+      ],
+      "min": 1
+    }
+  },
+  "partAdjacency": {
+    "shell-core": [
+      "left-arm",
+      "right-arm",
+      "legs"
+    ]
+  }
 }

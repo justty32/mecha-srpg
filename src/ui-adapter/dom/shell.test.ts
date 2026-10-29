@@ -1,10 +1,34 @@
 import { test, type TestContext } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import { Window } from "happy-dom";
-import { mountShell } from "./shell.ts";
+import { lazyPage, mountShell } from "./shell.ts";
 import { mountBattle } from "./render.ts";
 import { snapshotFixture } from "./fixtures.ts";
 import type { AppRoute } from "../vm/wiki/types.ts";
+
+test("shell：營運瀏覽器依賴圖不帶入 Node CLI", () => {
+  const check = (oldBarrel: boolean): void => {
+    const seen = new Set<string>();
+    const visit = (url: URL): void => {
+      if (seen.has(url.href)) return;
+      seen.add(url.href);
+      assert.ok(!url.pathname.endsWith("/sim/cli.ts"), `瀏覽器載入 Node CLI：${url.pathname}`);
+      let source = readFileSync(url, "utf8");
+      // 注入原故障邊，證明守門真的會沿 barrel 找到 CLI。
+      if (oldBarrel && url.pathname.endsWith("/ops/sortie/run.ts")) source = source.replaceAll('"../../sim/run.ts"', '"../../sim/index.ts"');
+      // 只沿靜態值 import／export，型別引用會在瀏覽器編譯時移除。
+      const edges = source.matchAll(/^\s*(?:import|export)\s+(?!type\b)[^;]*?\sfrom\s*["']([^"']+)["']/gm);
+      for (const edge of edges) {
+        const specifier = edge[1]!;
+        if (specifier.startsWith(".") && specifier.endsWith(".ts")) visit(new URL(specifier, url));
+      }
+    };
+    visit(new URL("../ops/dom/main.ts", import.meta.url));
+  };
+  assert.throws(() => check(true), /瀏覽器載入 Node CLI/);
+  check(false);
+});
 
 function setup(t: TestContext, hash = "#/battle") {
   const win = new Window({ url: `http://localhost/?seed=17&anim=off${hash}` });
@@ -15,6 +39,28 @@ function setup(t: TestContext, hash = "#/battle") {
   t.after(() => { shell.destroy(); win.close(); });
   return { win, root, shell, routes };
 }
+
+test("shell：懶頁載入去重，失敗可重試，成功後保留頁面", async t => {
+  const { shell } = setup(t, "#/ops");
+  let attempts = 0;
+  const load = lazyPage(shell.pages.ops, "營運", async () => {
+    attempts++;
+    if (attempts === 1) throw new Error("暫時無法載入");
+    shell.pages.ops.textContent = "新戰役";
+  });
+  const first = load();
+  assert.equal(load(), first);
+  await first;
+  assert.match(shell.pages.ops.querySelector('[role="alert"]')!.textContent!, /暫時無法載入/);
+  const retry = shell.pages.ops.querySelector("button")!;
+  assert.equal(retry.textContent, "重新載入營運");
+  retry.click();
+  await load();
+  assert.equal(attempts, 2);
+  assert.equal(shell.pages.ops.textContent, "新戰役");
+  await load();
+  assert.equal(attempts, 2);
+});
 
 test("shell：三個導航與頁面，route 切換 hidden 與 aria-current", t => {
   const { win, root, shell, routes } = setup(t);

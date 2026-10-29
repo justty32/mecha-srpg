@@ -1,0 +1,29 @@
+{
+  "id": "effect/injury-stabilized",
+  "name": "傷口止血",
+  "scope": "mech",
+  "clock": {
+    "kind": "ownerTurns",
+    "n": 1
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [],
+  "hooks": {
+    "onApply": [
+      {
+        "do": "remove",
+        "tags": [
+          "bleeding"
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "medical"
+  ],
+  "ui": {
+    "badge": "止血"
+  }
+}

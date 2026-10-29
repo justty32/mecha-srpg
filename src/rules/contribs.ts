@@ -60,6 +60,10 @@ export function roleAttr(ctx: Ctx, s: Subject, role: AttrRole): number {
   const attr = attrByRole(ctx.db.registries, role);
   if (!attr) return 0;
   const uid = s.unit ?? (s.person ? person(ctx, s.person).seat?.mech : undefined);
-  // SPEC-GAP（契約）：無人物時只取機體屬性。
+  // 無人遙控單位的命中底值由內容提供；顯式機體值（包括0）與人物皆優先。
+  if (role === "accuracy" && !s.person && uid && unit(ctx, uid).controlMode === "scripted"
+    && !Object.hasOwn(frameView(ctx, uid).baseAttrs, attr)) {
+    return statValue(rt(ctx.s).scriptedAccuracyBase ?? ctx.db.rules.constants.scriptedAccuracyBase ?? 0, unit(ctx, uid).contribs, `self.attrs.${attr}`);
+  }
   return (s.person ? personAttr(ctx, s.person, attr) : 0) + (uid ? unitAttr(ctx, uid, attr) : 0);
 }

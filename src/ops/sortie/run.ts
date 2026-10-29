@@ -1,7 +1,7 @@
 import { lordScripts } from "../world/lords.ts";
 import { classifyOutcome } from "./outcome.ts";
-import { runBattle, scenarioToSetup } from "../../sim/index.ts";
-import type { SimSetup } from "../../sim/index.ts";
+import { runBattle, scenarioToSetup } from "../../sim/run.ts";
+import type { SimSetup } from "../../sim/run.ts";
 import type { CampaignState, OpsCtx, Sortie } from "../state/types.ts";
 import type { CmdResult } from "../crew/index.ts";
 import { validateSortie } from "./validate.ts";

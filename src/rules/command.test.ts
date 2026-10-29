@@ -66,7 +66,7 @@ test("③ 所有成本一起判斷，缺池／不足拒絕且查詢無副作用"
   assert.deepEqual(ctx.s, before);
 });
 test("④ 未命中不退費、冷卻與次數入帳，preview 不改原狀態", () => {
-  const ctx = fixture(d => { d.ability.accuracy = -1000; d.ability.cooldown = 2; d.ability.usesPerBattle = 1; });
+  const ctx = fixture(d => { d.ability.aim = { dispersion: 100, trackingDelay: 0.1, projectileSpeed: 20 }; d.ability.cooldown = 2; d.ability.usesPerBattle = 1; });
   const before = structuredClone(ctx.s);
   const cmd = { kind: "useAbility" as const, actor: "a", ability: "ability/test", target: { unit: "b" } };
   const preview = previewCommand(ctx, cmd);

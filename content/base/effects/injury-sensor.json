@@ -1,0 +1,32 @@
+{
+  "id": "effect/injury-sensor",
+  "name": "感測器損毀",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.attrs.accuracy",
+      "op": "add",
+      "value": -15,
+      "source": "effect/injury-sensor"
+    },
+    {
+      "path": "self.attrs.perception",
+      "op": "add",
+      "value": -2,
+      "source": "effect/injury-sensor"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury"
+  ],
+  "ui": {
+    "badge": "感測器損毀"
+  }
+}

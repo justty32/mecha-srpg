@@ -4,9 +4,36 @@ import { loadWorldDirs } from "../../../ops/content/load.ts";
 import { newCampaign, createOpsCtx } from "../../../ops/content/start.ts";
 import { gridOf, findPath, terrainAt } from "../../../ops/world/grid.ts";
 import { worldRules } from "../../../ops/world/places.ts";
-import { createWorldUi, WorldViewModel } from "./world.ts";
+import { createWorldUi, regionLabelAnchors, WorldViewModel } from "./world.ts";
 import { OpsController } from "./controller.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
+
+test("區域標籤只取最大四連通片內實格，不把凹形中心或孤島當錨點", () => {
+  const region = new Uint16Array(7 * 5);
+  const main = [[0, 0], [1, 0], [2, 0], [0, 1], [0, 2], [1, 2], [2, 2]];
+  for (const [x, y] of [...main, [6, 4]]) region[y! * 7 + x!] = 1;
+  region[4] = 2; region[7 + 5] = 2; // 對角接觸不能合成四連通片。
+  const labels = regionLabelAnchors({ width: 7, height: 5, region, regionKeys: ["", "c-shaped", "diagonal"] });
+  assert.deepEqual(labels, [{ id: "c-shaped", at: { x: 0, y: 1 } }, { id: "diagonal", at: { x: 4, y: 0 } }]);
+});
+
+test("區域錨點不隨平移縮放改選，未知anchor不因關閉迷霧洩露", () => {
+  const s = newCampaign(db, world, "start/default", 3), ctx = createOpsCtx(s, db, world), ui = createWorldUi(s);
+  const first = new WorldViewModel(s, ctx, ui).snapshot().regionLabels!;
+  assert.ok(first.length > 0);
+  assert.equal(new Set(first.map(label => label.id)).size, first.length);
+  const grid = gridOf(world, ui.map);
+  for (const label of first) {
+    assert.equal(grid.regionKeys[grid.region[label.at.y * grid.width + label.at.x]!], label.id);
+    assert.ok(!grid.dark[label.at.y * grid.width + label.at.x] || s.maps[ui.map]?.known[`${label.at.x},${label.at.y}`]);
+  }
+  ui.viewport = { x: 0, y: 0, w: 7, h: 5 }; ui.zoom = .5; ui.layers.fog = false;
+  assert.deepEqual(new WorldViewModel(s, ctx, ui).snapshot().regionLabels, first);
+  ui.zoom = .25;
+  assert.deepEqual(new WorldViewModel(s, ctx, ui).snapshot().regionLabels, first);
+  ui.layers.region = false;
+  assert.deepEqual(new WorldViewModel(s, ctx, ui).snapshot().regionLabels, []);
+});
 
 test("世界游標到地點 Enter 航向 id；空格 Enter 航向座標", () => {
   const c = new OpsController({ db, world, seed: 3 });

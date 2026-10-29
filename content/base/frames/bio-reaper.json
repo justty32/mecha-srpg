@@ -19,11 +19,25 @@
       "initial": 20,
       "regen": 5,
       "bands": []
+    },
+    {
+      "id": "blood",
+      "name": "血量",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 100,
+      "regen": 0,
+      "vital": true,
+      "bands": []
     }
   ],
   "innateAbilities": [
     "ability/reaper-cleave",
-    "ability/reaper-charge"
+    "ability/reaper-charge",
+    "ability/battlefield-stabilize",
+    "ability/bite"
   ],
   "repairPolicy": "repair-or-replace",
   "tags": [
@@ -31,5 +45,6 @@
     "insect",
     "kaiju"
   ],
-  "burden": 6
+  "burden": 6,
+  "moveBudget": 4
 }

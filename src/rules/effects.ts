@@ -48,9 +48,17 @@ function install(ctx: Ctx, inst: EffectInstance): void {
   runActions(ctx, def.hooks.onApply ?? [], { inst, self: inst.owner, source: inst.source });
   emit(ctx, "EffectApplied", { uid: inst.uid, effect: inst.effect, owner: ownerId(inst), part: inst.owner.part ?? null, source: inst.source });
 }
+/** 本輪部位傷勢只對真實承載對應資源池的單位生效。 */
+export function injuryEffectApplies(ctx: Ctx, def: EffectDef, target: EffectTarget): boolean {
+  const name = def.id.replace(/^[^:]+:/u, "");
+  const pool = def.tags.includes("bleeding") ? "blood" : name === "effect/injury-cooling" ? "heat" : name === "effect/injury-power" ? "charge" : null;
+  return !pool || !!(target.unit && ctx.s.units[target.unit]?.pools[pool]);
+}
+
 export function applyEffect(ctx: Ctx, ref: EffectRef, target: EffectTarget, source: Id): EffectInstance | null {
   const r = typeof ref === "string" ? { effect: ref } : ref;
   const def = ctx.db.require("effect", r.effect);
+  if (!injuryEffectApplies(ctx, def, target)) return null;
   // 容器不存在就沒有承載者（例：person scope 打在無駕駛怪獸、mech scope 沒有單位）：靜默略過、不擲骰。
   if (def.scope === "person" && (target.person === undefined || !ctx.s.persons[target.person])) return null;
   if (["mech", "part", "layer"].includes(def.scope) && (target.unit === undefined || !ctx.s.units[target.unit])) return null;

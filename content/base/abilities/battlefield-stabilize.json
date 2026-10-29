@@ -1,0 +1,42 @@
+{
+  "id": "ability/battlefield-stabilize",
+  "name": "戰場止血",
+  "mode": "activated",
+  "costs": [
+    {
+      "owner": "person",
+      "pool": "ap",
+      "amount": 3
+    }
+  ],
+  "produces": [],
+  "cooldown": 2,
+  "require": [],
+  "target": {
+    "kind": "unit",
+    "friendly": "only",
+    "range": {
+      "min": 0,
+      "max": 1
+    },
+    "los": true
+  },
+  "packets": [],
+  "effects": [
+    {
+      "on": "always",
+      "apply": [
+        "effect/injury-stabilized"
+      ]
+    }
+  ],
+  "tags": [
+    "support",
+    "medical"
+  ],
+  "ai": {
+    "tactics": {
+      "heal": 1
+    }
+  }
+}

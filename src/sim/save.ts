@@ -66,7 +66,8 @@ function command(v: unknown): boolean {
     case "useAbility": return string(v.ability) && (v.target === undefined || (object(v.target)
       && (v.target.unit === undefined || string(v.target.unit)) && (v.target.part === undefined || string(v.target.part))
       && (v.target.cell === undefined || cell(v.target.cell))));
-    case "engagePresence": return string(v.target);
+    case "engagePresence": case "throwDebris": return string(v.target);
+    case "interact": return string(v.object);
     case "end": case "wait": case "eject": case "retreat": return true;
     default: return false;
   }
@@ -87,7 +88,11 @@ function setupShape(v: unknown): boolean {
 function snapshotShape(v: unknown): boolean {
   return object(v) && integer(v.round) && Array.isArray(v.order) && v.order.every(string)
     && object(v.units) && Object.values(v.units).every(u => object(u) && string(u.id) && string(u.frame)
-      && string(u.owner) && cell(u.pos) && object(u.parts) && object(u.pools) && Array.isArray(u.contribs) && Array.isArray(u.effects))
+      && string(u.owner) && cell(u.pos)
+      && (u.moveSpent === undefined || typeof u.moveSpent === "number" && Number.isFinite(u.moveSpent) && u.moveSpent >= 0)
+      && (u.motion === undefined || object(u.motion) && typeof u.motion.dx === "number" && Number.isFinite(u.motion.dx) && typeof u.motion.dy === "number" && Number.isFinite(u.motion.dy))
+      && (u.defense === undefined || object(u.defense) && string(u.defense.ability) && ["block", "parry"].includes(String(u.defense.kind)) && string(u.defense.part) && integer(u.defense.charges) && u.defense.charges > 0)
+      && object(u.parts) && object(u.pools) && Array.isArray(u.contribs) && Array.isArray(u.effects))
     && object(v.persons) && Object.values(v.persons).every(p => object(p) && string(p.id) && string(p.def)
       && object(p.pools) && Array.isArray(p.contribs) && Array.isArray(p.effects))
     && object(v.map) && integer(v.map.width) && integer(v.map.height) && Array.isArray(v.map.terrain) && v.map.terrain.every(string)

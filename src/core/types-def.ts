@@ -31,7 +31,7 @@ export type SeatRole = "pilot" | "soul" | "passenger";
 // "instinct"：無座位人物的怪獸由本能驅動（lead-impl-sim 2026-10-24 追加；SPEC-GAP，spec 只列七值）。
 export type ControlMode = "pilot" | "soul" | "shared" | "contested" | "none" | "disabled" | "berserk" | "instinct" | "scripted";
 export type MoraleStage = "steady" | "shaken" | "breaking" | "fleeing";
-export type AttrRole = "accuracy" | "evasion" | "resolve" | "initiative" | "perception" | "control";
+export type AttrRole = "accuracy" | "evasion" | "resolve" | "initiative" | "perception" | "control" | "maneuver";
 export type Cell = { x: number; y: number };
 export type Dir = "n" | "ne" | "e" | "se" | "s" | "sw" | "w" | "nw";   // SPEC-GAP：spec 只寫 facing?: Dir
 export type FactionSlot = string;     // player / enemy / third / berserk…（情境決定）
@@ -96,6 +96,7 @@ export type EffectDef = {
 // ---------- 資源池（data-model-mech §PoolDecl、rules-resources-effects §PoolBand） ----------
 export type PoolBand = { from: NumExpr; to: NumExpr | null; effects: EffectRef[]; label?: string };
 export type PoolDecl = {
+  vital?: boolean;
   id: PoolId; name: string;
   min: number; max: NumExpr | null;
   capKind: "hard" | "soft";
@@ -123,6 +124,7 @@ export type LayerDef = {
 export type SlotDecl = { id: SlotId; type: SlotType; size: number };            // SPEC-GAP：spec 未展開
 export type SeatDecl = { id: SeatId; accepts: SeatRole[] };                     // SPEC-GAP：spec 未展開
 export type PartDef = {
+  targetRadius?: number; mobility?: LocomotionClass[];
   id: PartId; name: string; exposure: number;
   layers: LayerDef[];
   slots: SlotDecl[];
@@ -132,8 +134,9 @@ export type PartDef = {
   conduct: ConductRule[];
   seats?: SeatDecl[];
 };
-export type BodyPlanDef = { id: Id; nameEn?: string; etymology?: string; name?: string; parts: PartDef[]; symmetry?: string };
+export type BodyPlanDef = { targetRadius?: number; partAdjacency?: Record<PartId, PartId[]>; mobilityMinimum?: Record<LocomotionClass, number>; abilityParts?: Record<Id, { parts: PartId[]; min: number }>; id: Id; nameEn?: string; etymology?: string; name?: string; parts: PartDef[]; symmetry?: string };
 export type FrameDef = {
+  moveBudget?: number; moveLoadCapacity?: number;
   core?: boolean;
   series?: string;
   mark?: number;
@@ -176,7 +179,11 @@ export type AiHints = {
   targetPref?: { parts?: PartFunction[]; grades?: Grade[] };
   cooldownValue?: number;
 };
+export type PartPattern = { kind: "spread"; fractions: number[]; selection: "adjacent" | "exposed" } | { kind: "penetrate"; maxParts: 2 | 3; falloff: number; selection: "adjacent" };
 export type AbilityDef = {
+  partPattern?: PartPattern;
+  aim?: { dispersion: number; trackingDelay: number; projectileSpeed: number; windup?: number };
+  defense?: { kind: "block" | "parry"; charges: number; maxImpact: number; maxSizeRatio: number; damageFactor?: number; onOverload?: EffectRef[] };
   id: Id; nameEn?: string; etymology?: string; name: string; mode: AbilityMode;
   grade?: Grade;
   /** 武器的精粹等級（抵抗性結算；engine-backlog 28）。省略＝取攻方機體等級；帶 conventional-arms 的一律算凡鐵。 */
@@ -225,7 +232,12 @@ export type TerrainDef = {
   destructible?: { hp: number; becomes: Id };
   tags: string[];
 };
+export type BattlefieldObjectDef = {
+  id: string; name: string; kind: "pickup" | "wreck" | "corpse" | "debris"; at: Cell; effects?: EffectRef[];
+  salvage?: Record<string, number>; debris?: number;
+};
 export type MapDef = {
+  objects?: BattlefieldObjectDef[];
   id: Id; nameEn?: string; etymology?: string; width: number; height: number;
   cells: string | { rle: string };
   legend: Record<string, Id>;
@@ -240,6 +252,7 @@ export type FactionDef = {
   strategy: Id; sensing: "shared"; tags: string[];
 };
 export type SpeciesDef = {
+  moveBudget?: number;
   id: Id; nameEn?: string; etymology?: string; name: string; family: string;
   bodyPlan: Id; gradeRange: Grade[];
   baseAttrsByGrade: Partial<Record<Grade, Record<AttrId, number>>>;
@@ -272,7 +285,7 @@ export type ScenarioDef = {
   name?: string; brief?: string;
   slots: Record<FactionSlot, { faction: Id; units: UnitSpawn[]; ai?: Id; allies?: FactionSlot[] /* 情境層同盟（lead-fix-scenario-ai 新增） */ }>;
   objectives: Objective[]; rounds?: number;
-  rules?: { conventionalFactor?: number }; seed?: number;
+  rules?: { conventionalFactor?: number; scriptedAccuracyBase?: number; noRetreat?: boolean }; seed?: number;
 };
 /** SPEC-GAP：loot/ 與 aiprofiles/ 形狀 spec 未定，以下為最小解。 */
 export type LootDef = { id: Id; nameEn?: string; etymology?: string; entries: { item: Id; weight: number; count?: number }[] };

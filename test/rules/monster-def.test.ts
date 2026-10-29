@@ -58,10 +58,17 @@ test("BattleResult 怪獸 id 包含捕捉前與捕捉後，保留捕捉時 HP", 
   assert.equal(result.monster, "base:monster/engine-test");
   assert.deepEqual(result.state.parts[body.parts[0]!.id]!.layers.map(l => l.hp), hp);
 });
-test("沒有 def 的舊 UnitInit 除新增核心標記外保持開工前狀態 hash", () => {
+test("沒有 def 的舊 UnitInit 除新增核心與移動計數外保持開工前狀態 hash", () => {
   const ctx = context(false);
   assert(Object.values(ctx.s.units).every(u => u.core === true));
-  const priorShape = { ...ctx.s, units: Object.fromEntries(Object.entries(ctx.s.units).map(([id, { core, ...u }]) => [id, u])) };
+  for (const unit of Object.values(ctx.s.units)) {
+    assert.equal(unit.moveSpent, 0);
+    assert.equal(Object.hasOwn(unit, "motion"), false);
+    assert.equal(Object.hasOwn(unit, "defense"), false);
+  }
+  for (const key of ["objects", "salvage", "debrisAmmo"]) assert.equal(Object.hasOwn(ctx.s.map, key), false);
+  assert.equal(Object.hasOwn(rt(ctx.s), "scriptedAccuracyBase"), false);
+  const priorShape = { ...ctx.s, units: Object.fromEntries(Object.entries(ctx.s.units).map(([id, { core, moveSpent, ...u }]) => [id, u])) };
   assert.equal(fnv1a64(canonicalJson(priorShape)), "659804c7a60fdc98");
   const changed = structuredClone(priorShape);
   changed.units.m!.parts[body.parts[0]!.id]!.layers[0]!.hp += 1;

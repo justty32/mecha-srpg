@@ -43,12 +43,25 @@
       "initial": 9,
       "regen": 9,
       "bands": []
+    },
+    {
+      "id": "blood",
+      "name": "血量",
+      "min": 0,
+      "max": 100,
+      "capKind": "hard",
+      "inverted": false,
+      "initial": 100,
+      "regen": 0,
+      "vital": true,
+      "bands": []
     }
   ],
   "abilities": [
     "ability/kx-acid-sting",
     "ability/kx-wing-dive",
-    "ability/kx-brood-call"
+    "ability/kx-brood-call",
+    "ability/battlefield-stabilize"
   ],
   "capture": {
     "requireIntact": [
@@ -67,5 +80,6 @@
   "tags": [
     "kaiju",
     "insect"
-  ]
+  ],
+  "moveBudget": 5
 }

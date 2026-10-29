@@ -1,0 +1,170 @@
+{
+  "id": "bodyplan/battlefield-ground-vehicle",
+  "name": "常規履帶車輛",
+  "parts": [
+    {
+      "id": "hull",
+      "name": "車體",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [],
+      "functions": [
+        "core",
+        "cockpit"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 30,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "cockpit-shell",
+          "hp": 30,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "seats": [
+        {
+          "id": "pilot",
+          "accepts": [
+            "pilot"
+          ]
+        }
+      ],
+      "targetRadius": 0.39
+    },
+    {
+      "id": "turret",
+      "name": "武器平台",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [
+        {
+          "id": "main-gun",
+          "type": "weaponMount",
+          "size": 2
+        },
+        {
+          "id": "back-1",
+          "type": "backMount",
+          "size": 2
+        },
+        {
+          "id": "system-1",
+          "type": "systemMount",
+          "size": 1
+        }
+      ],
+      "functions": [
+        "weaponMount",
+        "sensor"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "targetRadius": 0.2925
+    },
+    {
+      "id": "tracks",
+      "name": "履帶",
+      "exposure": 1,
+      "onLayerBroken": {},
+      "onBroken": [],
+      "conduct": [],
+      "slots": [],
+      "functions": [
+        "locomotion"
+      ],
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 15,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "targetRadius": 0.325,
+      "mobility": [
+        "track"
+      ]
+    },
+    {
+      "id": "radiator",
+      "name": "散熱器",
+      "exposure": 0.5,
+      "targetRadius": 0.2,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 10,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 15,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "cooling"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/injury-cooling"
+      ],
+      "conduct": []
+    }
+  ],
+  "symmetry": "bilateral",
+  "targetRadius": 0.65,
+  "partAdjacency": {
+    "hull": [
+      "turret",
+      "tracks",
+      "radiator"
+    ]
+  }
+}

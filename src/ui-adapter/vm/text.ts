@@ -35,7 +35,11 @@ export function eventText(db: ContentDB, state: BattleState, evt: GameEvent): Lo
   };
   const unit = name("unit"), ability = db.get("ability", value("ability"))?.name ?? "能力";
   const u = state.units[value("unit")], body = u && (db.get("frame", u.frame) ?? db.get("species", u.frame));
-  const part = body ? db.require("bodyplan", body.bodyPlan).parts.find(x => x.id === p.part)?.name ?? value("part") : value("part");
+  const partName = (unitId: string, partId: string): string => {
+    const target = state.units[unitId], definition = target && (db.get("frame", target.frame) ?? db.get("species", target.frame));
+    return definition ? db.require("bodyplan", definition.bodyPlan).parts.find(x => x.id === partId)?.name ?? partId : partId;
+  };
+  const part = partName(value("unit"), value("part"));
   const layer = layerTypeLabel(db, value("layerType"));
   const morale: Record<string, string> = { steady: "穩定", shaken: "動搖", breaking: "崩潰", fleeing: "逃離" };
   let text: string, kind: LogKind;
@@ -49,8 +53,20 @@ export function eventText(db: ContentDB, state: BattleState, evt: GameEvent): Lo
     case "LayerBroken": text = `${unit}的${part}／${layer}破損`; kind = "break"; break;
     case "PartBroken": text = `${unit}的${part}毀損`; kind = "break"; break;
     case "EffectApplied": text = `${name("owner")}受到「${db.get("effect", value("effect"))?.name ?? "效果"}」影響`; kind = "effect"; break;
+    case "FeatureDamaged": text = `地物受到 ${value("amount")} 點傷害`; kind = "damage"; break;
+    case "FeatureDestroyed": text = "地物已破壞，留下可回收碎石"; kind = "break"; break;
+    case "BattlefieldObjectCollected": text = `${unit}回收${state.map.objects?.find(o => o.id === value("object"))?.name ?? value("object")}`; kind = "effect"; break;
+    case "DefensePrepared": text = `${unit}準備以${part}${p.kind === "parry" ? "招架" : "盾擋"}，可用 ${value("charges")} 次`; kind = "system"; break;
+    case "AttackBlocked": text = `${unit}以${part}盾擋${name("actor")}的攻擊，剩餘 ${value("charges")} 次`; kind = "system"; break;
+    case "AttackParried": text = `${unit}以${part}招架${name("actor")}的攻擊，剩餘 ${value("charges")} 次`; kind = "system"; break;
+    case "DefenseOverloaded": text = `${unit}的${part}防禦超出承受能力，失衡破勢`; kind = "break"; break;
+    case "DebrisThrown": text = `${unit}向${name("target")}的${partName(value("target"), value("part"))}投擲碎石`; kind = "system"; break;
     case "PresenceEngaged": text = `${name("by")}迎戰${unit}`; kind = "system"; break;
-    case "UnitDied": text = `${unit}被擊毀`; kind = "death"; break;
+    case "UnitDied":
+      text = u?.pools.blood && u.pools.blood.cur <= 0 ? `${unit}失血死亡`
+        : body?.tags.includes("infantry") ? `${unit}陣亡`
+        : body && (!("cls" in body) || body.cls === "bio") ? `${unit}死亡` : `${unit}被擊毀`;
+      kind = "death"; break;
     case "MoraleChanged": text = `${name("person")}的士氣變為${morale[value("to")] ?? value("to")}`; kind = "morale"; break;
     case "RoundStart": text = `第 ${evt.round} 輪開始`; kind = "turn"; break;
     case "BattleEnd": text = p.winner === null ? "戰鬥結束，平局" : `戰鬥結束，${value("winner")}陣營獲勝`; kind = "system"; break;

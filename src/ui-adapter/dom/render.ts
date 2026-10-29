@@ -73,6 +73,8 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   commands.setAttribute("aria-label", "戰鬥指令");
   const message = anchor("p", "message");
   message.setAttribute("role", "status");
+  const messageSlot = element(doc, "div", "", "battle-message-slot");
+  messageSlot.append(message);
   const outcome = anchor("section", "outcome");
   outcome.setAttribute("role", "status");
   const help = anchor("section", "help");
@@ -83,7 +85,10 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   log.setAttribute("aria-label", "戰鬥記錄");
   logPanel.append(element(doc, "h2", "戰鬥記錄"), log);
   const sidebar = element(doc, "aside", "", "battle-sidebar");
-  sidebar.append(unit, inspect);
+  sidebar.setAttribute("aria-label", "部位與傷勢");
+  const parts = anchor("section", "parts");
+  const partsBody = anchor("div", "parts-body");
+  parts.append(partsBody); sidebar.append(parts);
   const commandPanel = element(doc, "aside", "", "command-panel");
   const controls = anchor("section", "view-controls");
   const viewActions = new Map<string, UiAction>([
@@ -100,16 +105,16 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     (name.startsWith("board-") ? corner : controls).append(button);
   }
   frame.append(corner);
-  commandPanel.append(commands, controls);
-  field.append(frame, message, outcome, help);
-  sidebar.append(logPanel);
-  layout.append(commandPanel, field, sidebar);
+  commandPanel.setAttribute("aria-label", "指揮區");
+  commandPanel.append(unit, commands, controls);
+  field.append(frame, inspect, messageSlot, outcome, help);
+  layout.append(field, commandPanel, sidebar, logPanel);
   shell.append(topbar, layout);
   root.append(shell);
   message.hidden = outcome.hidden = help.hidden = true;
   const paintBoard = createBoard(board, cellSize);
-  const paintPanels = createPanels({ commands, message, outcome, help, unit, inspect, log });
-  const paintMenus = createMenus(stage, field);
+  const paintPanels = createPanels({ commands, message, outcome, help, unit, inspect, log, parts: partsBody });
+  const paintMenus = createMenus(stage, field, parts);
   const fx = createFx(fxLayer);
   const tooltip = mountTooltip(shell);
   let current: UiSnapshot | null = null;
@@ -136,6 +141,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     const previous = current.viewport, map = current.map, at = mouseCell ?? current.cursor;
     if (zoom === "auto") cellSize = fitCellSize(width, height, map.width, map.height);
     board.style.setProperty("--cell-size", `${cellSize}px`);
+    board.dataset.density = cellSize < 20 ? "tiny" : cellSize < 32 ? "small" : "normal";
     const w = Math.max(1, Math.min(map.width, Math.floor(width / cellSize)));
     const h = Math.max(1, Math.min(map.height, Math.floor(height / cellSize)));
     measuring = true;
@@ -155,6 +161,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       zoom = a.dir === 0 ? "auto" : zoomStep(cellSize, a.dir);
       if (typeof zoom === "number") cellSize = zoom;
       board.style.setProperty("--cell-size", `${cellSize}px`);
+    board.dataset.density = cellSize < 20 ? "tiny" : cellSize < 32 ? "small" : "normal";
       measure(true);
     }
     paintControls();
@@ -194,8 +201,10 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   const hover = (event: MouseEvent): void => {
     const cell = closest(event, "[data-x][data-y]");
     if (!cell || !board.contains(cell) || (event.relatedTarget && cell.contains(event.relatedTarget as Node))) return;
-    mouseCell = { x: Number(cell.dataset.x), y: Number(cell.dataset.y) };
-    opts.onAction({ type: "hoverCell", x: Number(cell.dataset.x), y: Number(cell.dataset.y) });
+    const at = { x: Number(cell.dataset.x), y: Number(cell.dataset.y) };
+    if (mouseCell?.x === at.x && mouseCell.y === at.y) return;
+    mouseCell = at;
+    opts.onAction({ type: "hoverCell", ...at });
   };
   const leave = (): void => { mouseCell = null; };
   const wheel = (event: WheelEvent): void => {
@@ -240,7 +249,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     render(s) {
       if (destroyed) return;
       current = s;
-      title.textContent = s.title;
+      title.textContent = s.title; title.title = s.title;
       round.textContent = `第 ${s.round} 輪${s.maxRounds === null ? "" : ` / ${s.maxRounds}`}`;
       // SPEC-GAP：快照無獨立行動者名稱；優先查可視格／選取單位，否則顯示 id。
       const activeName = s.cells.find(c => c.unit?.id === s.activeUnit)?.unit?.name

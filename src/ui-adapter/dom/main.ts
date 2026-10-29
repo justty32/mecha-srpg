@@ -8,7 +8,7 @@ import { DEFAULT_KEYMAP, resolveKey } from "../vm/keymap.ts";
 import type { AnimMode, KeyInput, UiAction } from "../vm/types.ts";
 import type { AppRoute } from "../vm/wiki/types.ts";
 import { formatRoute } from "../vm/route.ts";
-import { mountShell } from "./shell.ts";
+import { lazyPage, mountShell } from "./shell.ts";
 import type { WikiMount } from "./wiki/mount.ts";
 import { mountBattle } from "./render.ts";
 import type { BattleView } from "./render.ts";
@@ -35,7 +35,8 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
   }
   const params = new URLSearchParams(location.search);
   const seed = Number(params.get("seed") ?? 1) || 1;
-  const scenario = params.get("scenario") ?? "scenario/skirmish-whitegloves";
+  const requestedScenario = params.get("scenario") ?? "scenario/skirmish-whitegloves";
+  const scenario = requestedScenario === "debug-big" || requestedScenario.includes("/") ? requestedScenario : `scenario/${requestedScenario}`;
   let controller: BattleController;
   if (scenario === "debug-big") {
     const size = Math.max(121, Number(params.get("size") ?? 160) || 160);
@@ -87,11 +88,40 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
     onAction: send,
     onKey,
   });
+  const scenarioLabel = document.createElement("label");
+  scenarioLabel.textContent = "戰鬥情境 ";
+  const scenarioSelect = document.createElement("select");
+  scenarioSelect.dataset.ui = "scenario-select";
+  scenarioSelect.setAttribute("aria-label", "戰鬥情境");
+  for (const [id, label] of [["scenario/skirmish-whitegloves", "預設戰鬥"], ["scenario/playable-battlefield", "廢墟回收戰場"], ["scenario/combined-arms-battlefield", "混合兵種交火"]]) {
+    const option = document.createElement("option");
+    option.value = id!; option.textContent = label!; option.selected = scenario === id;
+    scenarioSelect.append(option);
+  }
+  scenarioSelect.addEventListener("keydown", event => {
+    if (event.key !== "F1" && event.key !== "Escape") event.stopPropagation();
+  });
+  scenarioSelect.addEventListener("change", () => {
+    const url = new URL(location.href);
+    url.searchParams.set("scenario", scenarioSelect.value);
+    url.searchParams.delete("spectate"); url.hash = "#/battle";
+    location.assign(url.href);
+  });
+  scenarioLabel.append(scenarioSelect);
+  root.querySelector('[data-ui="topbar"]')?.append(scenarioLabel);
   view.render(latest);
   schedule();
   // e2e／除錯掛鉤；settle 與玩家按「跳過」走同一條路。
   (window as unknown as { __battle?: unknown }).__battle = {
-    snapshot: () => controller.snapshot(), settle: () => send({ type: "skip" }),
+    snapshot: () => controller.snapshot(), peek: () => structuredClone(latest), settle: () => send({ type: "skip" }),
+    audit: () => {
+      const state = controller.session.state;
+      return { ...controller.session.audit(), round: state.round, outcome: state.rt?.outcome ? { ...state.rt.outcome } : null,
+        units: Object.values(state.units).map(unit => ({ id: unit.id, owner: unit.owner, status: state.rt?.unitStatus[unit.id] ?? "active" })),
+        deathIds: state.log.events.filter(event => event.type === "UnitDied").map(event => String(event.payload.unit)),
+        retreatCount: state.log.events.filter(event => event.type === "Retreated").length,
+        ejectCount: state.log.events.filter(event => event.type === "Ejected").length };
+    },
   };
   return onKey;
 }
@@ -103,7 +133,7 @@ if (root) {
   let wiki: WikiMount | null = null;
   let loading: Promise<void> | null = null;
   let latestRoute: AppRoute = { page: "battle" };
-  let opsStarted = false;   // [lead-ui-ops] 營運頁：第一次進 #/ops 才載入
+  let loadOps: (() => Promise<void>) | null = null;
   const shell = mountShell(root, {
     getWiki: () => wiki,
     onBattleKey: key => battleKey?.(key) ?? false,
@@ -114,11 +144,13 @@ if (root) {
         try { battleKey = start(pages.battle, hash => shell.navigate(hash)); }
         catch (e) { pages.battle.textContent = `啟動失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); }
       }
-      if (route.page === "ops" && !opsStarted) {
-        opsStarted = true;
-        pages.ops.textContent = "營運載入中…";
-        import("../ops/dom/main.ts").then(({ mountOpsPage }) => { pages.ops.textContent = ""; mountOpsPage(pages.ops); })
-          .catch((e: unknown) => { pages.ops.textContent = `營運載入失敗：${e instanceof Error ? e.message : String(e)}`; console.error(e); });
+      if (route.page === "ops") {
+        loadOps ??= lazyPage(pages.ops, "營運", async () => {
+          const { mountOpsPage } = await import("../ops/dom/main.ts");
+          pages.ops.textContent = "";
+          mountOpsPage(pages.ops);
+        });
+        void loadOps();
       }
       if (route.page !== "wiki") return;
       if (wiki) { wiki.show(route.view); return; }

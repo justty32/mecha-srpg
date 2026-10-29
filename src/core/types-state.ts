@@ -5,7 +5,7 @@
 import type { Id, CellKey } from "./ids.ts";
 import type {
   AttrId, PoolId, PartId, SlotId, SeatId, SeatRole, ControlMode, MoraleStage, Cell, Dir,
-  FactionSlot, Contribution, EffectScope, LayerType,
+  FactionSlot, Contribution, EffectScope, LayerType, BattlefieldObjectDef,
 } from "./types-def.ts";
 import type { Grade, Objective } from "./types-def.ts";
 import type { NumExpr } from "./types-def.ts";
@@ -51,6 +51,9 @@ export type PersonState = {
 export type LayerState = { hp: number; broken: boolean; maxHp?: number };
 export type PartState = { layers: LayerState[]; broken: boolean; components: Record<SlotId, Id | null> };
 export type MechState = {
+  moveSpent?: number;
+  motion?: { dx: number; dy: number };
+  defense?: { ability: Id; kind: "block" | "parry"; part: PartId; charges: number };
   aiBattles?: number;
   core: boolean; crew?: "ai" | "remote";
   id: Id; frame: Id; owner: FactionSlot; pos: Cell; facing?: Dir;
@@ -61,7 +64,11 @@ export type MechState = {
 };
 
 // ---------- 地圖、陣營、知識 ----------
+export type BattlefieldObjectState = BattlefieldObjectDef & { collected?: boolean; sourceUnit?: Id };
 export type MapState = {
+  objects?: BattlefieldObjectState[];
+  salvage?: { object: string; fromUnit?: Id; owner: FactionSlot; materials: Record<string, number> }[];
+  debrisAmmo?: Record<Id, number>;
   def: Id; width: number; height: number;
   terrain: Id[];                      // row-major，長度 width*height
   featureHp: Record<CellKey, number>;
@@ -109,6 +116,7 @@ export type RulesRuntime = {
   moraleStreak: Record<Id, number>;   // 人物連續士氣檢定成功次數
   berserkFrom: Record<Id, FactionSlot>; // 失控單位的原 slot
   xpGained: Record<Id, number>;
+  scriptedAccuracyBase?: number;       // 情境局部無人準度；省略則讀內容常數
   conventionalFactor?: number;        // 情境 rules.conventionalFactor 覆蓋凡鐵外甲倍率（抵抗性）；省略＝用 constants
   fieldEffects: EffectInstance[];     // scope = cell／faction／battle 的效果
   objectives: Objective[]; maxRounds: number | null; exits: Cell[]; noRetreat: boolean;
@@ -118,6 +126,8 @@ export type RulesRuntime = {
 
 // ---------- 指令（rules-turn-and-actions：Move | UseAbility | Wait | End | Eject | Retreat） ----------
 export type Command =
+  | { kind: "throwDebris"; actor: Id; target: Id }
+  | { kind: "interact"; actor: Id; object: string }
   | { kind: "move"; actor: Id; path: Cell[] }
   | { kind: "useAbility"; actor: Id; ability: Id; target?: { unit?: Id; cell?: Cell; part?: PartId } }
   | { kind: "wait"; actor: Id }

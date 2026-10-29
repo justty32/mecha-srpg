@@ -34,6 +34,7 @@ export class OpsController {
   private commands: CampaignCommand[] = [];
   private live: LiveBattle | null = null;
   private customNamed = false;
+  private cachedSnapshot: OpsSnapshot | null = null;
   private ui: ViewState = { tab: "ship", node: null, contract: null, mech: null, person: null, draft: null, battle: null, report: null, message: null, showHelp: false };
 
   constructor(opts: OpsControllerOptions) {
@@ -46,6 +47,7 @@ export class OpsController {
     const blob = parseCampaign(text), controller = new OpsController({ ...opts, start: blob.start, seed: blob.seed });
     controller.current = loadCampaign(opts.db, opts.world, text);
     controller.ui.map = createWorldUi(controller.current);
+    controller.cachedSnapshot = null;
     controller.commands = structuredClone(blob.commands); return controller;
   }
   serialize(): string {
@@ -56,11 +58,16 @@ export class OpsController {
   get state(): Readonly<CampaignState> { return structuredClone(this.current); }
   battleController(): BattleController | null { return this.live?.controller ?? null; }
   private ctx() { return createOpsCtx(this.current, this.opts.db, this.opts.world); }
-  snapshot(): OpsSnapshot {
-    const snapshot = buildSnapshot(this.current, this.ctx(), this.ui);
-    bindButtons(snapshot, this.bindings); return structuredClone(snapshot);
+  private viewSnapshot(): OpsSnapshot {
+    if (!this.cachedSnapshot) {
+      const snapshot = buildSnapshot(this.current, this.ctx(), this.ui);
+      bindButtons(snapshot, this.bindings);
+      this.cachedSnapshot = snapshot;
+    }
+    return this.cachedSnapshot;
   }
-  key(k: OpsKeyInput): OpsUiAction | null { return resolveButtonKey(this.snapshot(), this.bindings, k); }
+  snapshot(): OpsSnapshot { return structuredClone(this.viewSnapshot()); }
+  key(k: OpsKeyInput): OpsUiAction | null { return resolveButtonKey(this.viewSnapshot(), this.bindings, k); }
 
   private execute(cmd: OpsCommand, battle: BattleRunner = defaultBattleRunner): { ok: boolean; result?: BattleResult } {
     const record: CampaignCommand = structuredClone(cmd), captured: { result?: BattleResult } = {};
@@ -150,6 +157,8 @@ export class OpsController {
     }
   }
   dispatch(action: OpsUiAction): OpsSnapshot {
+    // UI 也有原地更新；每次指令（含拒絕提示）都必須重建，不能只比 campaign identity。
+    this.cachedSnapshot = null;
     this.ui.message = null;
     if (this.live && action.type !== "battleDone") { this.ui.message = "戰鬥進行中"; return this.snapshot(); }
     const choosing = action.type === "nameSubmit" || action.type === "cmd" && action.cmd.v === "choose";

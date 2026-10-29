@@ -15,6 +15,9 @@ import { advance, endTurn } from "./turn.ts";
 import { locomotionOf, moveAlong } from "./movement.ts";
 import { deferBattleEnd } from "./objectives.ts";
 
+import { canManeuver } from "./aim.ts";
+import { checkDefense, prepareDefense } from "./defense.ts";
+import { interact, throwDebris } from "./battlefield.ts";
 import { isDriven } from "./control.ts";
 
 function actorPerson(ctx: Ctx, id: Id, aid: Id): Id | null {
@@ -41,8 +44,10 @@ export function abilitiesOf(ctx: Ctx, unitId: Id): Id[] {
         driven || !ctx.db.require("ability", id).tags.some(tag => cockpit?.drivenOnlyTags.includes(tag))));
     }
   }
+  const requirements = ctx.db.require("bodyplan", frameView(ctx, unitId).bodyPlan).abilityParts ?? {};
   return [...new Set(ids.map(id => ctx.db.require("ability", id).id))]
-    .filter(id => driven || !ctx.db.require("ability", id).actorRole).sort();
+    .filter(id => driven || !ctx.db.require("ability", id).actorRole)
+    .filter(id => { const need = requirements[id] ?? requirements[id.replace(/^[^:]+:/u, "")]; return !need || need.parts.filter(part => u.parts[part] && !u.parts[part]!.broken).length >= need.min; }).sort();
 }
 export function resolveCosts(ctx: Ctx, unitId: Id, abilityId: Id): Cost[] {
   const a = ctx.db.require("ability", abilityId), pid = actorPerson(ctx, unitId, abilityId);
@@ -70,6 +75,9 @@ export function checkAbility(ctx: Ctx, unitId: Id, abilityId: Id, target?: { uni
   if (!a || !abilitiesOf(ctx, unitId).includes(a.id)) return { code: "unknown-ability" };
   const pid = actorPerson(ctx, unitId, a.id), u = unit(ctx, unitId);
   if (["none", "disabled"].includes(u.controlMode) || (a.actorRole && !pid)) return { code: "no-commander" };
+  const defenseRejection = checkDefense(ctx, unitId, a.id);
+  if (defenseRejection) return defenseRejection;
+  if ((a.tags.includes("maneuver") || a.effects.some(group => group.apply.some(ref => ctx.db.require("effect", typeof ref === "string" ? ref : ref.effect).contribs.some(c => c.path === "self.attrs.maneuver")))) && !canManeuver(ctx, unitId)) return { code: "require-failed", detail: "no-sidestep-space" };
   if (a.mode === "passive") return { code: "require-failed" };
   if (target?.unit && (!ctx.s.units[target.unit] || !isActive(ctx, target.unit))) return { code: "bad-target" };
   const selected = a.target.kind === "self" ? unitId : target?.unit;
@@ -78,17 +86,20 @@ export function checkAbility(ctx: Ctx, unitId: Id, abilityId: Id, target?: { uni
   if ((u.cooldowns[a.id] ?? 0) > 0) return { code: "cooldown" };
   if (a.usesPerBattle !== undefined && (rt(ctx.s).reactUsed[`uses:${unitId}:${a.id}`] ?? 0) >= a.usesPerBattle) return { code: "uses-exhausted" };
   if (target !== undefined || a.target.kind === "self") {
-    if (["unit", "part"].includes(a.target.kind) && !selected) return { code: "bad-target" };
+    if (["unit", "part"].includes(a.target.kind) && !selected
+      && !(["unit", "part"].includes(a.target.kind) && target?.cell && inBounds(ctx.s, target.cell) && !target.part && a.packets.length
+        && terrainAt(ctx, target.cell).destructible)) return { code: "bad-target" };
     if (a.target.kind === "self" && target?.unit && target.unit !== unitId) return { code: "bad-target" };
     const cell = selected ? unit(ctx, selected).pos : target?.cell;
     if (!cell || !inBounds(ctx.s, cell)) return { code: "bad-target" };
     if (selected && target?.cell && distance(cell, target.cell) !== 0) return { code: "bad-target" };
+    if (selected && selected !== unitId && a.packets.length && terrainAt(ctx, cell).cover >= 100) return { code: "bad-target", detail: "fully-covered" };
     if (selected && a.target.kind !== "self" && (a.target.friendly === "no" && !hostile(ctx, unitId, selected)
       || a.target.friendly === "only" && hostile(ctx, unitId, selected))) return { code: "bad-target" };
     const range = distance(u.pos, cell);
     if (range < evalNum(a.target.range.min, ev) || range > evalNum(a.target.range.max, ev)) return { code: "out-of-range" };
     if (a.target.los && !los(ctx, u.pos, cell)) return { code: "no-los" };
-    if (a.target.kind === "part" && target?.part === undefined) return { code: "bad-part" };
+    if (a.target.kind === "part" && target?.part === undefined && !target?.cell) return { code: "bad-part" };
     if (target?.part !== undefined && (!selected || !a.partAim?.allowed || !unit(ctx, selected).parts[target.part] || unit(ctx, selected).parts[target.part]!.broken)) return { code: "bad-part" };
   }
   if (!canPay(ctx, unitId, pid, resolveCosts(ctx, unitId, a.id))) return { code: "cannot-pay" };
@@ -133,6 +144,7 @@ function runCommand(ctx: Ctx, cmd: Command): Result {
     u.cooldowns[a.id] = cooldown;
     runtime.reactUsed[`uses:${cmd.actor}:${a.id}`] = (runtime.reactUsed[`uses:${cmd.actor}:${a.id}`] ?? 0) + 1;
     emit(ctx, "AbilityUsed", { unit: cmd.actor, ability: a.id, target: cmd.target?.unit ?? null, part: cmd.target?.part ?? null });
+    prepareDefense(ctx, cmd.actor, a.id);
     if (a.mode === "sustained" && u.sustained.includes(a.id)) stopSustain(ctx, cmd.actor, a.id);
     else {
       if (a.mode === "sustained") {
@@ -148,6 +160,12 @@ function runCommand(ctx: Ctx, cmd: Command): Result {
       const owner = c.owner === "mech" ? { unit: cmd.actor } : pid ? { person: pid } : null;
       if (owner) changePool(ctx, owner, c.pool, c.amount, "produces");
     }
+  } else if (cmd.kind === "throwDebris") {
+    rejection = throwDebris(ctx, cmd.actor, cmd.target);
+    if (rejection) return { ok: false, rejection };
+  } else if (cmd.kind === "interact") {
+    rejection = interact(ctx, cmd.actor, cmd.object);
+    if (rejection) return { ok: false, rejection };
   } else if (cmd.kind === "move") {
     if (!locomotionOf(ctx, cmd.actor)) return { ok: false, rejection: { code: "no-locomotion" } };
     let previous = u.pos;

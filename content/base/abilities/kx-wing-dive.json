@@ -2,7 +2,13 @@
   "id": "ability/kx-wing-dive",
   "name": "垂幡墜星",
   "mode": "activated",
-  "costs": [{ "pool": "ap", "owner": "person", "amount": 3 }],
+  "costs": [
+    {
+      "pool": "ap",
+      "owner": "person",
+      "amount": 3
+    }
+  ],
   "produces": [],
   "require": [],
   "target": {
@@ -30,5 +36,15 @@
       "attack": 1
     }
   },
-  "cooldown": 2
+  "cooldown": 2,
+  "aim": {
+    "dispersion": 0.08,
+    "trackingDelay": 0.1,
+    "projectileSpeed": 20,
+    "windup": 0.8
+  },
+  "partAim": {
+    "allowed": true,
+    "penalty": 10
+  }
 }

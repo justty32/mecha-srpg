@@ -1,0 +1,26 @@
+{
+  "id": "effect/injury-cooling",
+  "name": "散熱器損毀",
+  "scope": "mech",
+  "clock": {
+    "kind": "permanent"
+  },
+  "stack": {
+    "policy": "refresh"
+  },
+  "contribs": [
+    {
+      "path": "self.pools.heat.regen",
+      "op": "add",
+      "value": 10,
+      "source": "effect/injury-cooling"
+    }
+  ],
+  "hooks": {},
+  "tags": [
+    "injury"
+  ],
+  "ui": {
+    "badge": "散熱器損毀"
+  }
+}

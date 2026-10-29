@@ -6,8 +6,8 @@ export function unitFixture(): UnitView {
     pos: { x: 12, y: 18 }, controlMode: "pilot", status: "active", stale: false, seenRound: null,
     persons: [{ id: "test:pilot", name: "林霧", seat: "pilot", role: "主駕", morale: "穩定" }],
     parts: [{ id: "body", name: "軀幹", broken: false, layers: [
-      { type: "armor", hp: 30, max: 60, broken: false },
-      { type: "core", hp: null, max: 40, broken: false },
+      { type: "armor", hp: 30, max: 60, broken: false, structural: false },
+      { type: "core", hp: null, max: 40, broken: false, structural: true },
     ] }],
     pools: [{ id: "energy", name: "能源", cur: 8, max: 10 }],
     effects: [{ id: "test:guard", name: "防禦", stacks: 2, remaining: 1 }],

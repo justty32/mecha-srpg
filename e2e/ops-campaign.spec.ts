@@ -11,18 +11,41 @@ type OpsSnap = {
   prompt: { choices: { n: number; enabled: boolean }[] } | null;
   contracts: { id: string; status: string }[];
   battle: unknown; report: { winnerText: string } | null; log: { text: string }[];
-  header: { route: unknown };
+  header: { day: number; route: unknown; fuel: { cur: number; max: number } };
 };
 
 const ops = (page: Page) => page.evaluate(() => (window as unknown as { __ops: { snapshot(): OpsSnap } }).__ops.snapshot());
 
+test("營運：從戰鬥導航進入，再切頁返回保留戰役", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", e => errors.push(e.message));
+  await page.goto("/?seed=3&anim=off#/battle");
+  await page.locator('[data-nav="ops"]').click();
+  const root = page.locator('[data-page="ops"] [data-ui="ops"]');
+  await expect(root).toBeVisible();
+  const before = await ops(page);
+  await page.locator('[data-nav="battle"]').click();
+  await expect(root).toBeHidden();
+  await page.locator('[data-nav="ops"]').click();
+  await expect(root).toBeVisible();
+  expect(await ops(page)).toEqual(before);
+  expect(errors).toEqual([]);
+});
+
 test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返回營運看戰果", async ({ page }) => {
+  const started = Date.now();
+  const mark = (step: string, snapshot?: OpsSnap): void => {
+    console.info("ops-timing", JSON.stringify({ step, elapsedMs: Date.now() - started,
+      ...(snapshot ? { day: snapshot.header.day, fuel: snapshot.header.fuel.cur, route: snapshot.header.route,
+        lastLog: snapshot.log.at(-1)?.text, prompt: !!snapshot.prompt } : {}) }));
+  };
   const errors: string[] = [];
   page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
   await page.goto("/?seed=3&spectate=1&anim=off#/ops");
   const root = page.locator('[data-page="ops"] [data-ui="ops"]');
   await expect(root).toBeVisible();
+  mark("loaded");
   await expect(root.locator('[data-ui="ops-header"]')).toContainText("第 1 蝕月");
   await expect(root.locator('[data-ui="ops-tabs"] button[data-action-id="tab:world"] kbd')).toBeVisible();
   await shot(page, "ship");
@@ -37,12 +60,14 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
     } else await page.keyboard.press("e");
   }
   expect((await ops(page)).contracts.some(c => c.status === "offered")).toBe(true);
+  mark("contracts-offered");
 
   await page.keyboard.press("g");
   await expect(root.locator('[data-ui="world-map"] .world-cell').first()).toBeVisible();
   await root.locator('[data-ui="world-map"] [data-node]').first().click();
   await expect(root.locator('[data-ui="world-detail"] h2')).not.toBeEmpty();
   await shot(page, "world");
+  mark("world-viewed");
 
   await root.locator('button[data-action-id="tab:contracts"]').click();
   const pane = root.locator('[data-tab="contracts"]');
@@ -53,15 +78,18 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   const accepted = (await ops(page)).contracts.find(c => c.status === "active");
   expect(accepted).toBeTruthy();
   await pane.locator(`button[data-action-id="sail:contract:${accepted!.id}"]`).click();
+  mark("sailed");
   const sortieButton = pane.locator(`button[data-action-id="sortieOpen:${accepted!.id}"]`);
   // 起航只排路徑；逐日推進到目標，期間照常回應事件。
   // 途中遇到行動者時第一個可選＝迴避會停船；沒有航線就重按航向契約。
   const sailButton = pane.locator(`button[data-action-id="sail:contract:${accepted!.id}"]`);
   for (let i = 0; i < 60 && !await sortieButton.isEnabled(); i++) {
     const s = await ops(page);
+    mark(`travel-${i}-before`, s);
     if (s.prompt) await page.keyboard.press(String(s.prompt.choices.find(c => c.enabled)!.n));
     else if (!s.header.route && await sailButton.isEnabled()) await sailButton.click();
     else await page.keyboard.press("w");
+    mark(`travel-${i}-after`);
   }
   await expect(sortieButton).toBeEnabled();
 

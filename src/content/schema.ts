@@ -7,7 +7,7 @@ export const CONTENT_SCHEMA: Record<string, unknown> = schema;
 type Schema = {
   type?: string | string[]; required?: string[]; properties?: Record<string, Schema>;
   additionalProperties?: boolean | Schema; items?: Schema; enum?: unknown[]; const?: unknown;
-  minimum?: number; maximum?: number; minItems?: number; oneOf?: Schema[]; anyOf?: Schema[]; $ref?: string;
+  minimum?: number; maximum?: number; minItems?: number; maxItems?: number; oneOf?: Schema[]; anyOf?: Schema[]; $ref?: string;
 };
 
 function equal(a: unknown, b: unknown): boolean {
@@ -60,6 +60,7 @@ function validate(rule: Schema, value: unknown, path: string): SchemaError[] {
   }
   if (Array.isArray(value)) {
     if (rule.minItems !== undefined && value.length < rule.minItems) fail(`requires at least ${rule.minItems} items`);
+    if (rule.maxItems !== undefined && value.length > rule.maxItems) fail(`allows at most ${rule.maxItems} items`);
     if (rule.items) value.forEach((item, index) => errors.push(...validate(rule.items!, item, `${path}[${index}]`)));
   } else if (value !== null && typeof value === "object") {
     const object = value as Record<string, unknown>;
@@ -74,5 +75,21 @@ function validate(rule: Schema, value: unknown, path: string): SchemaError[] {
 }
 
 export function validateAgainst(name: SchemaName, value: unknown): SchemaError[] {
-  return validate({ $ref: `#/$defs/${name}` }, value, "$");
+  const errors = validate({ $ref: `#/$defs/${name}` }, value, "$");
+  if (value && typeof value === "object" && !Array.isArray(value)) {
+    const object = value as Record<string, unknown>;
+    const pattern = object.partPattern as { kind?: string; fractions?: unknown[] } | undefined;
+    if (name === "ability" && pattern?.kind === "spread" && Array.isArray(pattern.fractions) && pattern.fractions.every(n => typeof n === "number" && Number.isFinite(n))) {
+      if (Number(pattern.fractions[0]) <= 0) errors.push({ path: "$.partPattern.fractions[0]", message: "primary fraction must be positive" });
+      if (pattern.fractions.reduce<number>((sum, n) => sum + Number(n), 0) > 1) errors.push({ path: "$.partPattern.fractions", message: "total fractions must not exceed 1" });
+    }
+    if (name === "bodyplan" && object.partAdjacency && typeof object.partAdjacency === "object" && Array.isArray(object.parts)) {
+      const ids = new Set(object.parts.map(part => (part as { id?: unknown }).id));
+      for (const [from, neighbors] of Object.entries(object.partAdjacency)) {
+        if (!ids.has(from)) errors.push({ path: `$.partAdjacency.${from}`, message: "unknown part" });
+        if (Array.isArray(neighbors)) for (const [index, to] of neighbors.entries()) if (!ids.has(to) || from === to) errors.push({ path: `$.partAdjacency.${from}[${index}]`, message: from === to ? "self edge is not allowed" : "unknown part" });
+      }
+    }
+  }
+  return errors;
 }

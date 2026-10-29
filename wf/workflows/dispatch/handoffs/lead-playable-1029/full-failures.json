@@ -1,0 +1,147 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-29",
+ "link_columns": [
+  "path",
+  "evidence"
+ ],
+ "columns": [
+  "case",
+  "test",
+  "path",
+  "line",
+  "classification",
+  "full",
+  "regression",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "case": 227,
+   "test": "方格地形生成的怪獸遭遇與 RNG 保持固定指紋",
+   "path": {
+    "$fmt": "${gitRoot}/src/ops/sortie/encounter.test.ts"
+   },
+   "line": 32,
+   "classification": "新增objects/features：精確舊投影與新全指紋",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 275,
+   "test": "接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入",
+   "path": {
+    "$fmt": "${gitRoot}/src/ops/sortie/scenario.test.ts"
+   },
+   "line": 70,
+   "classification": "覆寫patch非dense最終格數：驗真MapState與feature HP",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 651,
+   "test": "堆積搜尋與原排序搜尋的成本及格子順序相同",
+   "path": {
+    "$fmt": "${gitRoot}/src/rules/perf.test.ts"
+   },
+   "line": 62,
+   "classification": "參照搜尋納入整回合剩額",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 692,
+   "test": "獨立部位面板未知 hp 顯示問號",
+   "path": {
+    "$fmt": "${gitRoot}/src/ui-adapter/dom/render.test.ts"
+   },
+   "line": 81,
+   "classification": "獨立部位與操作者面板分工",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 777,
+   "test": "controller：能力目標模式點合法目標產生命中或未命中文字",
+   "path": {
+    "$fmt": "${gitRoot}/src/ui-adapter/vm/controller.test.ts"
+   },
+   "line": 21,
+   "classification": "指定目標後真選普通射擊再送命令",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 793,
+   "test": "回饋 6：攻擊線與命中部位傷害／未命中浮字",
+   "path": {
+    "$fmt": "${gitRoot}/src/ui-adapter/vm/feedback.test.ts"
+   },
+   "line": 95,
+   "classification": "近身100%與真橫移可miss的FX反例",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 800,
+   "test": "回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位",
+   "path": {
+    "$fmt": "${gitRoot}/src/ui-adapter/vm/feedback.test.ts"
+   },
+   "line": 171,
+   "classification": "幾何機率欄取代舊flat扣分label",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "case": 958,
+   "test": "核心快破選瞄核心；核心進度權重可覆寫且過高命中懲罰會選不瞄",
+   "path": {
+    "$fmt": "${gitRoot}/test/ai/part-aim.test.ts"
+   },
+   "line": 52,
+   "classification": "隔離spawner目標floor；保非致死真傷、progress0嚴格排名及小核心幾何",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/part-aim-final.tap"
+   }
+  },
+  {
+   "case": 1034,
+   "test": "沒有 def 的舊 UnitInit 除新增核心標記外保持開工前狀態 hash",
+   "path": {
+    "$fmt": "${gitRoot}/test/rules/monster-def.test.ts"
+   },
+   "line": 61,
+   "classification": "驗moveSpent初值後僅投影新增欄，保舊hash與負對照",
+   "full": "failed (original snapshot)",
+   "regression": "passed",
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  }
+ ]
+}

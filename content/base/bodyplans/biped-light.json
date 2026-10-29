@@ -43,7 +43,8 @@
             "soul"
           ]
         }
-      ]
+      ],
+      "targetRadius": 0.51
     },
     {
       "id": "left-arm",
@@ -72,7 +73,8 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
-      "conduct": []
+      "conduct": [],
+      "targetRadius": 0.272
     },
     {
       "id": "right-arm",
@@ -101,7 +103,8 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
-      "conduct": []
+      "conduct": [],
+      "targetRadius": 0.272
     },
     {
       "id": "legs",
@@ -123,8 +126,88 @@
       ],
       "onLayerBroken": {},
       "onBroken": [],
+      "conduct": [],
+      "targetRadius": 0.34,
+      "mobility": [
+        "leg"
+      ]
+    },
+    {
+      "id": "radiator",
+      "name": "散熱器",
+      "exposure": 0.5,
+      "targetRadius": 0.25,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 10,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 20,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "cooling"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/injury-cooling"
+      ],
+      "conduct": []
+    },
+    {
+      "id": "power-unit",
+      "name": "供能單元",
+      "exposure": 0.5,
+      "targetRadius": 0.3,
+      "layers": [
+        {
+          "type": "armor",
+          "hp": 15,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": false
+        },
+        {
+          "type": "structure",
+          "hp": 25,
+          "ablative": true,
+          "resist": {},
+          "passThrough": {},
+          "structural": true
+        }
+      ],
+      "slots": [],
+      "functions": [
+        "power"
+      ],
+      "onLayerBroken": {},
+      "onBroken": [
+        "effect/injury-power"
+      ],
       "conduct": []
     }
   ],
-  "symmetry": "bilateral"
+  "symmetry": "bilateral",
+  "targetRadius": 0.85,
+  "partAdjacency": {
+    "torso": [
+      "left-arm",
+      "right-arm",
+      "legs",
+      "radiator",
+      "power-unit"
+    ]
+  }
 }

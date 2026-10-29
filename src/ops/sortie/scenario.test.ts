@@ -1,6 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { scenarioToSetup } from "../../sim/index.ts";
+import { createBattle } from "../../rules/index.ts";
 import { createOpsCtx } from "../content/start.ts";
 import { generateScenario } from "./scenario.ts";
 import { fixture } from "./test-support.ts";
@@ -73,7 +74,15 @@ test("接下 clear 契約後的 ScenarioDef 可由 scenarioToSetup 載入", () =
   const sim = scenarioToSetup(ctx.db, def, def.seed!);
   assert.ok(sim.setup.units.some(u => u.owner === "player"));
   assert.ok(sim.setup.units.some(u => u.owner === "enemy"));
-  assert.equal(sim.setup.map.width * sim.setup.map.height, sim.setup.map.cells!.length);
+  // cells是順序覆寫patch；glyph底圖後還有features，真正的稠密地圖在createBattle產生。
+  const battle = createBattle(ctx.db, sim.setup, def.seed!);
+  assert.equal(battle.map.terrain.length, sim.setup.map.width * sim.setup.map.height);
+  assert.ok(def.mapDef!.features?.length);
+  for (const feature of def.mapDef!.features!) {
+    const terrain = ctx.db.require("terrain", feature.terrain), key = `${feature.at.x},${feature.at.y}`;
+    assert.equal(battle.map.terrain[feature.at.y * battle.map.width + feature.at.x], terrain.id);
+    assert.equal(battle.map.featureHp[key], terrain.destructible ? feature.hp ?? terrain.destructible.hp : undefined);
+  }
   assert.ok(def.objectives.some(o => o.kind === "killTarget" && o.for === "player"));
 });
 test("同 state 與 rng 生成深相等情境", () => {

@@ -1,0 +1,161 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-29",
+ "columns": [
+  "file",
+  "baseline",
+  "final",
+  "reason"
+ ],
+ "rows": [
+  {
+   "file": "test/golden/combat-conduct.hash",
+   "baseline": "02429ecee80e088a",
+   "final": "c298f4c39b370c05",
+   "reason": "固定指令/原語義斷言保留，新命中／多部位／傷勢結算兩次決定性一致"
+  },
+  {
+   "file": "test/golden/combat-layers.hash",
+   "baseline": "ff765945dad0d274",
+   "final": "6619dc7942303128",
+   "reason": "固定指令/原語義斷言保留，新命中／多部位／傷勢結算兩次決定性一致"
+  },
+  {
+   "file": "test/golden/combat-tenth.hash",
+   "baseline": "1d8a7aa4808ad427",
+   "final": "7d91afbcb59ec6a8",
+   "reason": "固定指令/原語義斷言保留，新命中／多部位／傷勢結算兩次決定性一致"
+  },
+  {
+   "file": "test/golden/people-capture.hash",
+   "baseline": "f7a55f7012a0b0a0",
+   "final": "40e30f5ca588862f",
+   "reason": "固定指令/原語義斷言保留，新命中／多部位／傷勢結算兩次決定性一致"
+  },
+  {
+   "file": "src/ops/sim/fixtures/campaign-hash.json",
+   "baseline": {
+    "logHash": "3c8814d7d531c515",
+    "events": 795,
+    "day": 31
+   },
+   "final": {
+    "logHash": "aacf251adb7030aa",
+    "events": 840,
+    "day": 31
+   },
+   "reason": "舊基準已漂移；本輪固定輸入語義／日期與兩次重播一致"
+  },
+  {
+   "file": "test/campaigns/grid-actors.hash.json",
+   "baseline": {
+    "hash": "d415f49fe5b6826f",
+    "events": [
+     {
+      "day": 1,
+      "type": "EncounterOffered"
+     },
+     {
+      "day": 1,
+      "type": "Evaded"
+     },
+     {
+      "day": 3,
+      "type": "Arrived"
+     }
+    ],
+    "day": 3
+   },
+   "final": {
+    "hash": "20390962f8625caa",
+    "events": [
+     {
+      "day": 1,
+      "type": "EncounterOffered"
+     },
+     {
+      "day": 1,
+      "type": "Evaded"
+     },
+     {
+      "day": 3,
+      "type": "Arrived"
+     }
+    ],
+    "day": 3
+   },
+   "reason": "舊基準已漂移；本輪固定輸入語義／日期與兩次重播一致"
+  },
+  {
+   "file": "test/campaigns/ops-betrayal.hash.json",
+   "baseline": {
+    "logHash": "db09bf4e32f144ad",
+    "events": 259,
+    "day": 6
+   },
+   "final": {
+    "logHash": "6d984024979a7031",
+    "events": 159,
+    "day": 0
+   },
+   "reason": "受控初始雙operation經onMuster合法接退再接；-40/blacklist/原順序兩次通過"
+  },
+  {
+   "file": "test/campaigns/ops-leak.hash.json",
+   "baseline": {
+    "logHash": "eb2d23f3641f6c6e",
+    "events": 246,
+    "day": 6
+   },
+   "final": {
+    "logHash": "3ced084c80b5a8c7",
+    "events": 258,
+    "day": 6
+   },
+   "reason": "舊基準已漂移；本輪固定輸入語義／日期與兩次重播一致"
+  },
+  {
+   "file": "test/campaigns/ops-merc-join.hash.json",
+   "baseline": {
+    "logHash": "5f4014ad02b75c28",
+    "events": 1299,
+    "day": 50
+   },
+   "final": {
+    "logHash": "8b012bc9ecba8673",
+    "events": 897,
+    "day": 35
+   },
+   "reason": "真sortie context及參戰者匹配的原受控mock結果；attachedLoss/join-pay原語義兩次通過"
+  },
+  {
+   "file": "test/campaigns/ops-relic.hash.json",
+   "baseline": {
+    "logHash": "7d50e9aa5867bcb1",
+    "events": 19897,
+    "day": 896
+   },
+   "final": {
+    "logHash": "b3d1e67583ca10c5",
+    "events": 19939,
+    "day": 896
+   },
+   "reason": "舊基準已漂移；本輪固定輸入語義／日期與兩次重播一致"
+  },
+  {
+   "file": "test/campaigns/ops-war-assault.hash.json",
+   "baseline": {
+    "logHash": "8f5c3d2665ae48b1",
+    "events": 503,
+    "day": 16
+   },
+   "final": {
+    "logHash": "41aa023e9a3e0d46",
+    "events": 540,
+    "day": 16
+   },
+   "reason": "舊基準已漂移；本輪固定輸入語義／日期與兩次重播一致"
+  }
+ ]
+}

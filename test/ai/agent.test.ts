@@ -23,6 +23,10 @@ test("policyFor：berserk 與 fleeing 接管，失控優先", () => {
   assert.equal(policyFor(q, s, "a", "sentinel"), "sentinel");
   s.persons.pilot!.morale = "fleeing";
   assert.equal(policyFor(q, s, "a", "sentinel"), "flee");
+  s.rt!.noRetreat = true;
+  assert.equal(policyFor(q, s, "a", "sentinel"), "sentinel");
+  s.rt!.noRetreat = false;
+  assert.equal(policyFor(q, s, "a", "sentinel"), "flee");
   s.units.a!.controlMode = "berserk";
   assert.equal(policyFor(q, s, "a", "sentinel"), "berserk");
 });
@@ -75,4 +79,22 @@ test("agent：maxActions 限制成功候選數並補 end", () => {
   assert.deepEqual(commands.map((cmd) => cmd.kind), ["move", "move", "end"]);
   assert.deepEqual(env.s.units.a!.pos, { x: 2, y: 1 });
   assert.equal(agent.memory.step, 2);
+});
+
+test("agent：noRetreat的fleeing駕駛仍使用合法攻擊，普通場仍選flee", () => {
+  const { q, exec } = createStubRules();
+  const s = makeStubBattle({ width: 4, height: 3, units: [
+    { id: "a", owner: "blue", pos: { x: 1, y: 1 }, abilities: ["stub:ability/rifle"], ap: 4, commander: { id: "pilot", morale: "fleeing" } },
+    { id: "b", owner: "red", pos: { x: 2, y: 1 }, abilities: [] },
+  ] }, 31);
+  s.round = 3;
+  assert.equal(policyFor(q, s, "a", "tactical"), "flee");
+  s.rt!.noRetreat = true;
+  assert.equal(policyFor(q, s, "a", "tactical"), "tactical");
+  assert.equal(q.checkAbility(s, "a", "stub:ability/rifle", { unit: "b" }), null);
+  const env: TurnEnv = { q, exec, s, slot: "blue", know: updateKnowledge(q, s, "blue", emptyKnowledge()),
+    assignment: { unit: "a", stance: "attack", allowRetreat: false }, params: { band: 1, dangerK: 0 }, rng: createRng(31, 101) };
+  const commands = takeTurn(env, createAgent("a", "tactical"), { maxActions: 1 });
+  assert.ok(commands.some(c => c.kind === "useAbility"));
+  assert.equal(commands.some(c => c.kind === "retreat"), false);
 });

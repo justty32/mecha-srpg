@@ -16,8 +16,7 @@ export function mountOpsPage(container: HTMLElement): { destroy(): void } {
   const doc = container.ownerDocument;
   const { db, world, errors } = loadWorldPacks(packsFromGlob(modules));
   if (errors.length) {
-    container.textContent = `營運內容載入失敗：${errors.length} 個錯誤（第一個：${errors[0]!.file} ${errors[0]!.message}）`;
-    return { destroy() { container.textContent = ""; } };
+    throw new Error(`營運內容載入失敗：${errors.length} 個錯誤（第一個：${errors[0]!.file} ${errors[0]!.message}）`);
   }
   // 營運畫面自帶外距與滿版高度；殼給容器的 padding 會讓下緣超出視窗，掛載時歸零。
   container.style.padding = "0";

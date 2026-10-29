@@ -99,6 +99,9 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   const guests = new Set(result.units.filter(u => !ownId(u.id) && u.state.owner === "player" && u.status !== "captured").map(u => u.id));
   const personalIds = new Set(ordered.flatMap(u => Object.values(u.seats).filter((id): id is string => !!id)));
   const deferredLoot = new Set<string>();
+  // 明確回收已把整份來源帶離戰場，不能再拆整屍或領舊式掉落。
+  const collectedSources = new Set(result.loot.filter(loot => loot.collected).map(loot => loot.fromUnit));
+  const creditedSources = new Set<string>();
   if (sortie.trigger === "operation") for (const entry of result.units) {
     const loan = s.contracts[sortie.contract ?? ""]?.merc?.loans[entry.id];
     if (loan && entry.status === "dead") loan.destroyed = true;
@@ -125,7 +128,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
             // SPEC-GAP：BattleResult 沒有 component instance HP，保留所在層最小 HP，不造滿血零件。
             items.push({ id: nextId(s, "component"), def, origin: "loot", layerHp: Math.min(...mech.parts[part]!.layers.map(l => l.hp)) });
           }
-          componentLoot(s, ctx, sortie, items.filter(item => !result.loot.some(loot => loot.fromUnit === entry.id && loot.components.includes(item.def))));
+          if (!collectedSources.has(entry.id)) componentLoot(s, ctx, sortie, items.filter(item => !result.loot.some(loot => loot.fromUnit === entry.id && loot.components.includes(item.def))));
         }
         delete s.mechs[before.id];
       } else if (entry.status === "derelict-recovered") {
@@ -151,7 +154,7 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
       }
     } else if (entry.status === "dead" && !id) {
       const species = beastSpecies(ctx, entry.state.frame), cfg = species && ctx.world.get("beasts", `beasts/${species.family}`);
-      if (species && cfg && !deferredLoot.has(entry.id)) {
+      if (species && cfg && !deferredLoot.has(entry.id) && !collectedSources.has(entry.id)) {
         deferredLoot.add(entry.id);
         const loot: LootBundle = { components: [], materials: {} };
         for (const item of result.loot.filter(l => l.fromUnit === entry.id)) {
@@ -192,6 +195,11 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
   }
   // 三、戰利品：實體與材料分流，材料的唯一寫入入口為 post。
   for (const loot of result.loot) {
+    if (loot.owner !== undefined && loot.owner !== "player") continue;
+    if (loot.collected) {
+      if (loot.owner !== "player" || creditedSources.has(loot.fromUnit)) continue;
+      creditedSources.add(loot.fromUnit);
+    } else if (collectedSources.has(loot.fromUnit)) continue;
     if (deferredLoot.has(loot.fromUnit) || guests.has(loot.fromUnit)) continue;
     const source = result.units.find(u => u.id === loot.fromUnit)?.state;
     componentLoot(s, ctx, sortie, [...loot.components].sort().map(def => {

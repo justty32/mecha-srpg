@@ -1,0 +1,54 @@
+{
+  "id": "frame/battlefield-engineer",
+  "name": "排熱工程車",
+  "etymology": "無機甲核心、機魂與流光池的常規車輛。扶架替同伴排燼，機砲可攻擊與破壞地物；沒有修甲或拖救能力。",
+  "cls": "mechanical",
+  "grade": "D",
+  "bodyPlan": "bodyplan/battlefield-ground-vehicle",
+  "defaultLoadout": {
+    "main-gun": "component/autocannon-30",
+    "system-1": "component/m2-relief-cradle"
+  },
+  "baseAttrs": {
+    "initiative": 6,
+    "perception": 8
+  },
+  "pools": [
+    {
+      "id": "heat",
+      "name": "燼",
+      "min": 0,
+      "max": 120,
+      "capKind": "soft",
+      "inverted": true,
+      "initial": 0,
+      "regen": -15,
+      "bands": [
+        {
+          "from": 120,
+          "to": 150,
+          "effects": [
+            "effect/overheat-1"
+          ]
+        },
+        {
+          "from": 150,
+          "to": null,
+          "effects": [
+            "effect/overheat-2"
+          ]
+        }
+      ]
+    }
+  ],
+  "innateAbilities": [],
+  "repairPolicy": "repair-or-replace",
+  "tags": [
+    "ground-vehicle",
+    "conventional-arms",
+    "human",
+    "track"
+  ],
+  "moveBudget": 3,
+  "moveLoadCapacity": 10
+}

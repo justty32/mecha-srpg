@@ -33,7 +33,21 @@ test("方格地形生成的怪獸遭遇與 RNG 保持固定指紋", () => {
   const { s, ctx, sortie } = fixture();
   s.rng = { state: "0522a486b3bda0d1", inc: "000000000000006d" };
   const sc = generateScenario(s, ctx, sortie);
-  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "be2027dc27300024");
+  // 本輪合法新增物件／地物配方；完整結構與生成後RNG仍固定。
+  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "3d6e033ffcd15824");
+  // 只移除這兩個新增欄位，仍須完全符合原結構＋原RNG指紋，不能靠換hash掩蓋亂數漂移。
+  const legacy = structuredClone(sc);
+  for (const map of [legacy.mapDef!, legacy.ops.map]) { delete map.objects; delete map.features; }
+  assert.equal(fnv1a64(JSON.stringify({ sc: legacy, rng: s.rng })), "be2027dc27300024");
+  const map = sc.mapDef!;
+  assert.deepEqual(sc.ops.map, map);
+  assert.ok(map.objects?.some(object => object.kind === "pickup"));
+  assert.ok(map.objects?.some(object => object.kind === "debris"));
+  assert.ok(map.features?.some(feature => ctx.db.require("terrain", feature.terrain).destructible));
+  const reserved = new Set([...Object.values(map.deployZones).flat(), ...map.exits].map(cell => `${cell.x},${cell.y}`));
+  const occupied = [...(map.objects ?? []), ...(map.features ?? [])].map(entry => `${entry.at.x},${entry.at.y}`);
+  assert.equal(new Set(occupied).size, occupied.length);
+  assert.ok(occupied.every(cell => !reserved.has(cell)));
 });
 
 test("契約明選人類編成跳過裂縫與錨，人物模板先不重複且不撞名冊", () => {

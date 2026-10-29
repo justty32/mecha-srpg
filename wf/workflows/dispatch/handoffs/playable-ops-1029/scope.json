@@ -1,0 +1,25 @@
+{
+ "contract": "wf-table/1",
+ "source": "../playable-ops-1029.md",
+ "extracted": "2026-10-29",
+ "columns": [
+  "scope"
+ ],
+ "rows": [
+  {
+   "scope": "追加精確授權：test/rules/monster-def.test.ts，僅驗新增state欄初值、投影剝除moveSpent仍精確保留原hash與HP+1負對照；不直接換hash，不同步正在驗證的tmp。"
+  },
+  {
+   "scope": "追加精確授權：src/rules/perf.test.ts、test/ai/part-aim.test.ts，僅移動額度sorted oracle與幾何部位瞄準測試前提；不得改rules/AI產品或放寬成本/排序/選擇斷言。"
+  },
+  {
+   "scope": "追加精確授權：src/ops/sortie/scenario.test.ts，僅clear情境載入案改驗createBattle最終稠密地圖與feature覆寫/HP；不得為cells覆寫patch數目改runtime或loader。"
+  },
+  {
+   "scope": "追加精確授權：src/ops/sortie/encounter.test.ts，僅本輪新增物件／地物的完整結構指紋與語義回歸；舊結構＋生成後RNG指紋不得弱化，不同步正在full的tmp、不重錄黃金。"
+  },
+  {
+   "scope": "只做：src/ui-adapter/ops/vm/types.ts、src/ui-adapter/ops/vm/world.ts、src/ui-adapter/ops/vm/world.test.ts（僅regionLabels穩定anchor與反例），src/ui-adapter/ops/dom/world-map.ts、src/ui-adapter/ops/dom/ops.css、e2e/ops-map.spec.ts（營運文字定位與回歸），src/ops/sim/health.test.ts（僅診斷訊息與標題校正），src/mcp/campaign.test.ts、src/ops/sim/campaign.test.ts（合法補給與內容無關終局驗法），src/ui-adapter/ops/vm/controller.ts、src/ui-adapter/ops/vm/controller.test.ts（安全快照cache及反例），src/ops/sortie/apply.ts、src/ops/sortie/apply.test.ts（回收戰果最小接線與回歸）、src/ops/sortie/run.ts（僅把sim/index.ts import改sim/run.ts）、src/ui-adapter/dom/main.ts、src/ui-adapter/dom/shell.ts、src/ui-adapter/dom/shell.test.ts、src/ui-adapter/ops/dom/main.ts、src/ui-adapter/ops/dom/render.ts、src/ui-adapter/ops/dom/render.test.ts、e2e/ops-campaign.spec.ts，及自己的報告目錄。"
+  }
+ ]
+}

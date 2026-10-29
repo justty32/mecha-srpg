@@ -3,68 +3,11 @@
   "seed": 2,
   "commands": [
     {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "choose",
-      "choice": 1
-    },
-    {
-      "v": "choose",
-      "choice": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
-    },
-    {
-      "v": "wait",
-      "days": 1
+      "v": "sail",
+      "to": {
+        "x": 133,
+        "y": 87
+      }
     },
     {
       "v": "wait",
@@ -127,10 +70,6 @@
       "days": 1
     },
     {
-      "v": "choose",
-      "choice": 1
-    },
-    {
       "v": "wait",
       "days": 1
     },
@@ -143,8 +82,12 @@
       "days": 1
     },
     {
-      "v": "choose",
-      "choice": 1
+      "v": "wait",
+      "days": 1
+    },
+    {
+      "v": "wait",
+      "days": 1
     },
     {
       "v": "wait",
@@ -168,7 +111,7 @@
     },
     {
       "v": "accept",
-      "contract": "contract-363"
+      "contract": "contract-261"
     },
     {
       "v": "sail",
@@ -195,18 +138,14 @@
       "days": 1
     },
     {
-      "v": "choose",
-      "choice": 1
-    },
-    {
       "v": "wait",
       "days": 1
     },
     {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-370",
-        "day": 43,
+        "id": "sortie-266",
+        "day": 29,
         "loc": {
           "map": "base:map/longland",
           "region": "cloud-throne",
@@ -217,8 +156,8 @@
         },
         "place": "base:place/ridge",
         "trigger": "operation",
-        "operation": "operation-5",
-        "contract": "contract-363",
+        "operation": "operation-2",
+        "contract": "contract-261",
         "units": [
           {
             "mech": "mech-10",
@@ -254,8 +193,8 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-370",
-          "day": 43,
+          "id": "sortie-266",
+          "day": 29,
           "loc": {
             "map": "base:map/longland",
             "region": "cloud-throne",
@@ -266,8 +205,6 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
-          "operation": "operation-5",
-          "contract": "contract-363",
           "units": [
             {
               "mech": "mech-10",
@@ -299,7 +236,9 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": []
+          "injected": [],
+          "contract": "contract-261",
+          "operation": "operation-2"
         },
         "outcome": {
           "ok": true
@@ -310,14 +249,16 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-370/enemy-0",
+              "id": "sortie-266/enemy-0",
               "state": {
-                "id": "sortie-370/enemy-0",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-266/enemy-0",
+                "moveSpent": 0,
+                "frame": "base:species/sac",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 3
                 },
                 "parts": {
                   "sac": {
@@ -336,6 +277,16 @@
                       "cockpit": null,
                       "restraint": null
                     }
+                  },
+                  "tendril-short": {
+                    "layers": [
+                      {
+                        "hp": 15,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {}
                   },
                   "tendril-coiled": {
                     "layers": [
@@ -356,19 +307,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "tendril-short": {
-                    "layers": [
-                      {
-                        "hp": 15,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {}
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 9,
+                    "max": 9,
+                    "regen": 9,
+                    "band": -1
+                  },
                   "instinct": {
                     "cur": 20,
                     "max": 100,
@@ -381,31 +328,33 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-370/enemy-1",
+              "id": "sortie-266/enemy-1",
               "state": {
-                "id": "sortie-370/enemy-1",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-266/enemy-1",
+                "moveSpent": 0,
+                "frame": "base:species/bent-needle",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 11
                 },
                 "parts": {
-                  "sac": {
+                  "heart": {
                     "layers": [
                       {
-                        "hp": 30,
+                        "hp": 10,
                         "broken": false
                       },
                       {
-                        "hp": 20,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
@@ -415,8 +364,12 @@
                       "restraint": null
                     }
                   },
-                  "tendril-coiled": {
+                  "needle": {
                     "layers": [
+                      {
+                        "hp": 10,
+                        "broken": false
+                      },
                       {
                         "hp": 20,
                         "broken": false
@@ -425,20 +378,20 @@
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-long": {
+                  "foot": {
                     "layers": [
                       {
-                        "hp": 25,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-short": {
+                  "plate": {
                     "layers": [
                       {
-                        "hp": 15,
+                        "hp": 20,
                         "broken": false
                       }
                     ],
@@ -447,10 +400,16 @@
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 6,
+                    "max": 6,
+                    "regen": 6,
+                    "band": -1
+                  },
                   "instinct": {
-                    "cur": 20,
+                    "cur": 5,
                     "max": 100,
-                    "regen": 5,
+                    "regen": 2,
                     "band": -1
                   }
                 },
@@ -459,23 +418,48 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-370/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-370/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 1
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -501,11 +485,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -521,44 +529,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -575,26 +554,51 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-370/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-370/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 6
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -620,11 +624,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -640,44 +668,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -694,10 +693,10 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
@@ -712,10 +711,10 @@
           }
         },
         "rng": {
-          "state": "7f4dcd74d61db0ce",
+          "state": "bf40db3c51d25155",
           "inc": "000000000000006d"
         },
-        "effectCounter": 0
+        "effectCounter": 3
       }
     },
     {
@@ -733,8 +732,8 @@
     {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-374",
-        "day": 44,
+        "id": "sortie-270",
+        "day": 30,
         "loc": {
           "map": "base:map/longland",
           "region": "cloud-throne",
@@ -745,8 +744,8 @@
         },
         "place": "base:place/ridge",
         "trigger": "operation",
-        "operation": "operation-5",
-        "contract": "contract-363",
+        "operation": "operation-2",
+        "contract": "contract-261",
         "units": [
           {
             "mech": "mech-10",
@@ -782,8 +781,8 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-374",
-          "day": 44,
+          "id": "sortie-270",
+          "day": 30,
           "loc": {
             "map": "base:map/longland",
             "region": "cloud-throne",
@@ -794,8 +793,6 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
-          "operation": "operation-5",
-          "contract": "contract-363",
           "units": [
             {
               "mech": "mech-10",
@@ -827,7 +824,9 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": []
+          "injected": [],
+          "contract": "contract-261",
+          "operation": "operation-2"
         },
         "outcome": {
           "ok": true
@@ -838,13 +837,15 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-374/enemy-0",
+              "id": "sortie-270/enemy-0",
               "state": {
-                "id": "sortie-374/enemy-0",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-270/enemy-0",
+                "moveSpent": 0,
+                "frame": "base:species/sac",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
+                  "x": 9,
                   "y": 0
                 },
                 "parts": {
@@ -865,6 +866,16 @@
                       "restraint": null
                     }
                   },
+                  "tendril-short": {
+                    "layers": [
+                      {
+                        "hp": 15,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {}
+                  },
                   "tendril-coiled": {
                     "layers": [
                       {
@@ -884,19 +895,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "tendril-short": {
-                    "layers": [
-                      {
-                        "hp": 15,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {}
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 9,
+                    "max": 9,
+                    "regen": 9,
+                    "band": -1
+                  },
                   "instinct": {
                     "cur": 20,
                     "max": 100,
@@ -909,31 +916,33 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-374/enemy-1",
+              "id": "sortie-270/enemy-1",
               "state": {
-                "id": "sortie-374/enemy-1",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-270/enemy-1",
+                "moveSpent": 0,
+                "frame": "base:species/bent-needle",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 14
                 },
                 "parts": {
-                  "sac": {
+                  "heart": {
                     "layers": [
                       {
-                        "hp": 30,
+                        "hp": 10,
                         "broken": false
                       },
                       {
-                        "hp": 20,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
@@ -943,8 +952,12 @@
                       "restraint": null
                     }
                   },
-                  "tendril-coiled": {
+                  "needle": {
                     "layers": [
+                      {
+                        "hp": 10,
+                        "broken": false
+                      },
                       {
                         "hp": 20,
                         "broken": false
@@ -953,20 +966,20 @@
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-long": {
+                  "foot": {
                     "layers": [
                       {
-                        "hp": 25,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-short": {
+                  "plate": {
                     "layers": [
                       {
-                        "hp": 15,
+                        "hp": 20,
                         "broken": false
                       }
                     ],
@@ -975,10 +988,16 @@
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 6,
+                    "max": 6,
+                    "regen": 6,
+                    "band": -1
+                  },
                   "instinct": {
-                    "cur": 20,
+                    "cur": 5,
                     "max": 100,
-                    "regen": 5,
+                    "regen": 2,
                     "band": -1
                   }
                 },
@@ -987,23 +1006,48 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-374/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-374/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 14
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -1029,11 +1073,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -1049,44 +1117,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -1103,26 +1142,51 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-374/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-374/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 15
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -1148,11 +1212,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -1168,44 +1256,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -1222,10 +1281,10 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
@@ -1240,10 +1299,10 @@
           }
         },
         "rng": {
-          "state": "c6e9254a57db4309",
+          "state": "8c4bfd71a43a0336",
           "inc": "000000000000006d"
         },
-        "effectCounter": 0
+        "effectCounter": 6
       }
     },
     {
@@ -1261,8 +1320,8 @@
     {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-377",
-        "day": 45,
+        "id": "sortie-273",
+        "day": 31,
         "loc": {
           "map": "base:map/longland",
           "region": "cloud-throne",
@@ -1273,8 +1332,8 @@
         },
         "place": "base:place/ridge",
         "trigger": "operation",
-        "operation": "operation-5",
-        "contract": "contract-363",
+        "operation": "operation-2",
+        "contract": "contract-261",
         "units": [
           {
             "mech": "mech-10",
@@ -1310,8 +1369,8 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-377",
-          "day": 45,
+          "id": "sortie-273",
+          "day": 31,
           "loc": {
             "map": "base:map/longland",
             "region": "cloud-throne",
@@ -1322,8 +1381,6 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
-          "operation": "operation-5",
-          "contract": "contract-363",
           "units": [
             {
               "mech": "mech-10",
@@ -1355,7 +1412,9 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": []
+          "injected": [],
+          "contract": "contract-261",
+          "operation": "operation-2"
         },
         "outcome": {
           "ok": true
@@ -1366,14 +1425,16 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-377/enemy-0",
+              "id": "sortie-273/enemy-0",
               "state": {
-                "id": "sortie-377/enemy-0",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-273/enemy-0",
+                "moveSpent": 0,
+                "frame": "base:species/sac",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 2
                 },
                 "parts": {
                   "sac": {
@@ -1392,6 +1453,16 @@
                       "cockpit": null,
                       "restraint": null
                     }
+                  },
+                  "tendril-short": {
+                    "layers": [
+                      {
+                        "hp": 15,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {}
                   },
                   "tendril-coiled": {
                     "layers": [
@@ -1412,19 +1483,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "tendril-short": {
-                    "layers": [
-                      {
-                        "hp": 15,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {}
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 9,
+                    "max": 9,
+                    "regen": 9,
+                    "band": -1
+                  },
                   "instinct": {
                     "cur": 20,
                     "max": 100,
@@ -1437,21 +1504,23 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-377/enemy-1",
+              "id": "sortie-273/enemy-1",
               "state": {
-                "id": "sortie-377/enemy-1",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-273/enemy-1",
+                "moveSpent": 0,
+                "frame": "base:species/sac",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 13
                 },
                 "parts": {
                   "sac": {
@@ -1470,6 +1539,16 @@
                       "cockpit": null,
                       "restraint": null
                     }
+                  },
+                  "tendril-short": {
+                    "layers": [
+                      {
+                        "hp": 15,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {}
                   },
                   "tendril-coiled": {
                     "layers": [
@@ -1490,19 +1569,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "tendril-short": {
-                    "layers": [
-                      {
-                        "hp": 15,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {}
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 9,
+                    "max": 9,
+                    "regen": 9,
+                    "band": -1
+                  },
                   "instinct": {
                     "cur": 20,
                     "max": 100,
@@ -1515,23 +1590,48 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-377/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-377/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 13
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -1557,11 +1657,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -1577,44 +1701,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -1631,26 +1726,51 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-377/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-377/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 2
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -1676,11 +1796,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -1696,44 +1840,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -1750,10 +1865,10 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-273/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
@@ -1768,10 +1883,10 @@
           }
         },
         "rng": {
-          "state": "221e06c0e8094002",
+          "state": "ddcdab46453cd47e",
           "inc": "000000000000006d"
         },
-        "effectCounter": 0
+        "effectCounter": 9
       }
     },
     {
@@ -1791,10 +1906,14 @@
       "choice": 1
     },
     {
+      "v": "choose",
+      "choice": 1
+    },
+    {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-380",
-        "day": 46,
+        "id": "sortie-277",
+        "day": 32,
         "loc": {
           "map": "base:map/longland",
           "region": "cloud-throne",
@@ -1805,8 +1924,8 @@
         },
         "place": "base:place/ridge",
         "trigger": "operation",
-        "operation": "operation-5",
-        "contract": "contract-363",
+        "operation": "operation-2",
+        "contract": "contract-261",
         "units": [
           {
             "mech": "mech-10",
@@ -1842,8 +1961,8 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-380",
-          "day": 46,
+          "id": "sortie-277",
+          "day": 32,
           "loc": {
             "map": "base:map/longland",
             "region": "cloud-throne",
@@ -1854,8 +1973,6 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
-          "operation": "operation-5",
-          "contract": "contract-363",
           "units": [
             {
               "mech": "mech-10",
@@ -1887,7 +2004,9 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": []
+          "injected": [],
+          "contract": "contract-261",
+          "operation": "operation-2"
         },
         "outcome": {
           "ok": true
@@ -1898,24 +2017,26 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-380/enemy-0",
+              "id": "sortie-277/enemy-0",
               "state": {
-                "id": "sortie-380/enemy-0",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-277/enemy-0",
+                "moveSpent": 0,
+                "frame": "base:species/bent-needle",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 12
                 },
                 "parts": {
-                  "sac": {
+                  "heart": {
                     "layers": [
                       {
-                        "hp": 30,
+                        "hp": 10,
                         "broken": false
                       },
                       {
-                        "hp": 20,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
@@ -1925,8 +2046,12 @@
                       "restraint": null
                     }
                   },
-                  "tendril-coiled": {
+                  "needle": {
                     "layers": [
+                      {
+                        "hp": 10,
+                        "broken": false
+                      },
                       {
                         "hp": 20,
                         "broken": false
@@ -1935,20 +2060,20 @@
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-long": {
+                  "foot": {
                     "layers": [
                       {
-                        "hp": 25,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-short": {
+                  "plate": {
                     "layers": [
                       {
-                        "hp": 15,
+                        "hp": 20,
                         "broken": false
                       }
                     ],
@@ -1957,10 +2082,16 @@
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 6,
+                    "max": 6,
+                    "regen": 6,
+                    "band": -1
+                  },
                   "instinct": {
-                    "cur": 20,
+                    "cur": 5,
                     "max": 100,
-                    "regen": 5,
+                    "regen": 2,
                     "band": -1
                   }
                 },
@@ -1969,31 +2100,33 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-380/enemy-1",
+              "id": "sortie-277/enemy-1",
               "state": {
-                "id": "sortie-380/enemy-1",
-                "frame": "base:frame/bio-sac",
+                "id": "sortie-277/enemy-1",
+                "moveSpent": 0,
+                "frame": "base:species/bent-needle",
+                "core": true,
                 "owner": "enemy",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 9,
+                  "y": 2
                 },
                 "parts": {
-                  "sac": {
+                  "heart": {
                     "layers": [
                       {
-                        "hp": 30,
+                        "hp": 10,
                         "broken": false
                       },
                       {
-                        "hp": 20,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
@@ -2003,8 +2136,12 @@
                       "restraint": null
                     }
                   },
-                  "tendril-coiled": {
+                  "needle": {
                     "layers": [
+                      {
+                        "hp": 10,
+                        "broken": false
+                      },
                       {
                         "hp": 20,
                         "broken": false
@@ -2013,20 +2150,20 @@
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-long": {
+                  "foot": {
                     "layers": [
                       {
-                        "hp": 25,
+                        "hp": 30,
                         "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {}
                   },
-                  "tendril-short": {
+                  "plate": {
                     "layers": [
                       {
-                        "hp": 15,
+                        "hp": 20,
                         "broken": false
                       }
                     ],
@@ -2035,10 +2172,16 @@
                   }
                 },
                 "pools": {
+                  "ap": {
+                    "cur": 6,
+                    "max": 6,
+                    "regen": 6,
+                    "band": -1
+                  },
                   "instinct": {
-                    "cur": 20,
+                    "cur": 5,
                     "max": 100,
-                    "regen": 5,
+                    "regen": 2,
                     "band": -1
                   }
                 },
@@ -2047,23 +2190,48 @@
                 "seats": {
                   "pilot": null
                 },
-                "controlMode": "none",
+                "controlMode": "instinct",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-380/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-380/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 13
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -2089,11 +2257,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -2109,44 +2301,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -2163,26 +2326,51 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
               "status": "dead"
             },
             {
-              "id": "sortie-380/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-380/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
+                "core": true,
                 "owner": "player",
                 "pos": {
-                  "x": 0,
-                  "y": 0
+                  "x": 1,
+                  "y": 6
                 },
                 "parts": {
+                  "torso": {
+                    "layers": [
+                      {
+                        "hp": 30,
+                        "broken": false
+                      },
+                      {
+                        "hp": 40,
+                        "broken": false
+                      },
+                      {
+                        "hp": 8,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "armor-mount": null,
+                      "cockpit": null,
+                      "soul-core": null,
+                      "system-1": "base:component/mx-frost-fins"
+                    }
+                  },
                   "head": {
                     "layers": [
                       {
@@ -2208,11 +2396,35 @@
                       {
                         "hp": 25,
                         "broken": false
+                      },
+                      {
+                        "hp": 16,
+                        "broken": false
                       }
                     ],
                     "broken": false,
                     "components": {
-                      "left-weapon": null
+                      "left-weapon": "base:component/mx-molten-saw"
+                    }
+                  },
+                  "right-arm": {
+                    "layers": [
+                      {
+                        "hp": 20,
+                        "broken": false
+                      },
+                      {
+                        "hp": 25,
+                        "broken": false
+                      },
+                      {
+                        "hp": 12,
+                        "broken": false
+                      }
+                    ],
+                    "broken": false,
+                    "components": {
+                      "right-weapon": "base:component/mx-binding-harpoon"
                     }
                   },
                   "legs": {
@@ -2228,44 +2440,15 @@
                     ],
                     "broken": false,
                     "components": {}
-                  },
-                  "right-arm": {
-                    "layers": [
-                      {
-                        "hp": 20,
-                        "broken": false
-                      },
-                      {
-                        "hp": 25,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "right-weapon": null
-                    }
-                  },
-                  "torso": {
-                    "layers": [
-                      {
-                        "hp": 30,
-                        "broken": false
-                      },
-                      {
-                        "hp": 40,
-                        "broken": false
-                      }
-                    ],
-                    "broken": false,
-                    "components": {
-                      "armor-mount": null,
-                      "cockpit": null,
-                      "soul-core": null,
-                      "system-1": null
-                    }
                   }
                 },
                 "pools": {
+                  "bind-spike": {
+                    "cur": 3,
+                    "max": 3,
+                    "regen": 0,
+                    "band": -1
+                  },
                   "charge": {
                     "cur": 40,
                     "max": 40,
@@ -2282,10 +2465,10 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": null,
-                  "soul": null
+                  "pilot": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
-                "controlMode": "none",
+                "controlMode": "pilot",
                 "cooldowns": {},
                 "sustained": []
               },
@@ -2300,10 +2483,10 @@
           }
         },
         "rng": {
-          "state": "85207516bb834cf6",
+          "state": "ca8f3a38d3ea492f",
           "inc": "000000000000006d"
         },
-        "effectCounter": 0
+        "effectCounter": 12
       }
     },
     {

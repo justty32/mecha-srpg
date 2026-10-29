@@ -1,0 +1,282 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-29",
+ "link_columns": [
+  "source_path",
+  "evidence"
+ ],
+ "source_hash_definition": "runtime-only hash per post-full-delta metadata; CLI/check core-content hash excludes UI and test/fixture code",
+ "core_content_sha256": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+ "final_runtime_sha256": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+ "notes": "Overlapping runs are not added. Full original exit1 preserved; nine failures eliminated by bounded stronger regressions. Browser commands additionally use LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu.",
+ "columns": [
+  "check",
+  "command",
+  "workdir",
+  "exit",
+  "result",
+  "source_hash",
+  "source_path",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "check": "full",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu GOLDEN_UPDATE=0 nice -n 19 node --test --test-concurrency=1 --test-reporter=tap 'src/**/*.test.ts' 'test/**/*.test.ts'",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 1,
+   "result": {
+    "tests": 1122,
+    "pass": 1111,
+    "fail": 9,
+    "skip": 2,
+    "duration_ms": 1977006.230691
+   },
+   "source_hash": "ed31822375b248555b25d4e1080e4a27aee9a11d027b506f1215acb838dd5c57",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/full-snapshot-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/full-suite.tap"
+   }
+  },
+  {
+   "check": "post-full-nine-files",
+   "command": "GOLDEN_UPDATE=0 nice -n 19 node --test --test-concurrency=1 --test-reporter=tap src/ops/sortie/encounter.test.ts src/ops/sortie/scenario.test.ts src/rules/perf.test.ts src/ui-adapter/dom/render.test.ts src/ui-adapter/dom/uifix.test.ts src/ui-adapter/vm/controller.test.ts src/ui-adapter/vm/feedback.test.ts test/ai/part-aim.test.ts test/rules/monster-def.test.ts",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 1,
+   "result": {
+    "tests": 93,
+    "pass": 92,
+    "fail": 1,
+    "note": "AI fixture spawner-floor tie subsequently isolated; runtime matches final"
+   },
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-regression.tap"
+   }
+  },
+  {
+   "check": "ai-final",
+   "command": "GOLDEN_UPDATE=0 nice -n 19 node --test --test-concurrency=1 --test-reporter=tap test/ai/part-aim.test.ts",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "tests": 3,
+    "pass": 3,
+    "fail": 0
+   },
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/part-aim-final.tap"
+   }
+  },
+  {
+   "check": "e2e-full-19",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu BATTLE_SHOTS=/tmp/playable-layout-shots nice -n 19 node_modules/.bin/playwright test -c /tmp/playable-playwright.config.mjs --workers=1",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "tests": 19,
+    "pass": 19,
+    "timeout_ms": 30000,
+    "chromium": 1243
+   },
+   "source_hash": "ed31822375b248555b25d4e1080e4a27aee9a11d027b506f1215acb838dd5c57",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/full-snapshot-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/e2e-full-19.log"
+   }
+  },
+  {
+   "check": "e2e-quickmenu-single",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu BATTLE_SHOTS=/tmp/playable-layout-shots nice -n 19 node_modules/.bin/playwright test -c /tmp/playable-playwright.config.mjs e2e/battle.spec.ts --grep '桌面靠下格長浮出選單' --workers=1",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "tests": 1,
+    "pass": 1
+   },
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/e2e-quickmenu-single.log"
+   }
+  },
+  {
+   "check": "e2e-ui-incremental",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu BATTLE_SHOTS=/tmp/playable-layout-shots nice -n 19 node_modules/.bin/playwright test -c /tmp/playable-playwright.config.mjs e2e/battle.spec.ts --grep '載入：|行動後浮出|縮放：|可互動戰場|360窄窗|桌面靠下格' --workers=1",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "tests": 6,
+    "pass": 6,
+    "duration_seconds": 12.3
+   },
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/e2e-ui-incremental.log"
+   }
+  },
+  {
+   "check": "cli-idle",
+   "command": "nice -n 19 npm run sim:campaign -- --months 12 --policy idle",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "target_months": 12,
+    "seed": 7,
+    "activeDays": 104,
+    "endDay": 104,
+    "war_errors": [],
+    "OperationResolved": 5,
+    "note": "legal early end"
+   },
+   "source_hash": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/final-input-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/cli-idle.log"
+   }
+  },
+  {
+   "check": "cli-greedy",
+   "command": "nice -n 19 npm run sim:campaign -- --months 12 --policy greedy",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "target_months": 12,
+    "seed": 7,
+    "activeDays": 336,
+    "endDay": null,
+    "war_errors": [],
+    "OperationResolved": 10,
+    "note": "completed 12 months"
+   },
+   "source_hash": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/final-input-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/cli-greedy.log"
+   }
+  },
+  {
+   "check": "cli-merc",
+   "command": "nice -n 19 npm run sim:campaign -- --months 12 --policy merc",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "target_months": 12,
+    "seed": 7,
+    "activeDays": 336,
+    "endDay": null,
+    "war_errors": [],
+    "OperationResolved": 11,
+    "note": "completed 12 months"
+   },
+   "source_hash": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/final-input-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/cli-merc.log"
+   }
+  },
+  {
+   "check": "typecheck",
+   "command": "nice -n 19 npm run typecheck",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": "both logic/UI tsconfig passed",
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/typecheck.log"
+   }
+  },
+  {
+   "check": "content-check",
+   "command": "nice -n 19 npm run check",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": "content and ops content checks passed",
+   "source_hash": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/final-input-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/content-check.log"
+   }
+  },
+  {
+   "check": "build",
+   "command": "nice -n 19 npm run build",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": "Vite production build passed",
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/build.log"
+   }
+  },
+  {
+   "check": "goldens",
+   "command": "GOLDEN_UPDATE=1 nice -n 19 node --test --test-concurrency=1 --test-reporter=tap test/golden.test.ts src/ops/sim/golden.test.ts test/campaigns/campaigns.test.ts test/campaigns/grid-actors.test.ts",
+   "workdir": "/tmp/playable-verify-1029",
+   "exit": 0,
+   "result": {
+    "tests": 15,
+    "pass": 15,
+    "semantic_assertions": "retained; corresponding repeat results identical"
+   },
+   "source_hash": "60c703b3d08888b93798de457689b3cc63be10353fb57d5cb4fa11c4ebf1103d",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/final-input-sha256.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/golden-update.tap"
+   }
+  },
+  {
+   "check": "wf-lint",
+   "command": "nice -n 19 bash wf/tools/wf-lint.sh --strict .",
+   "workdir": "repository root",
+   "exit": 1,
+   "result": {
+    "broken": 2,
+    "baseline": "unchanged readonly legacy external links",
+    "oversize": 0,
+    "biglist": 0,
+    "local": 0
+   },
+   "source_hash": "47560ef769d43e4089eb48f1947a15dcd3233d5d94bb4022fdf4bb8838db5db4",
+   "source_path": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/post-full-delta.json"
+   },
+   "evidence": {
+    "$fmt": "${gitRoot}/wf/workflows/dispatch/handoffs/lead-playable-1029/wf-lint.log"
+   }
+  }
+ ]
+}

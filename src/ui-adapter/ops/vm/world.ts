@@ -6,6 +6,33 @@ import { visibleCells, knownActors } from "../../../ops/world/fog.ts";
 import type { MapCell, WorldLayer, WorldMapAction, WorldGridSnapshot, WorldCellView, WorldPathPreview, OpsButton } from "./types.ts";
 
 export const WORLD_LAYERS: WorldLayer[] = ["terrain", "blight", "places", "actors", "path", "region", "fog", "sight", "territory"];
+
+/** 每區最大四連通片取最接近片內平均位置的實際格；不把標籤放在區外的幾何中心。 */
+export function regionLabelAnchors(grid: { width: number; height: number; region: Uint16Array; regionKeys: string[] }): { id: string; at: MapCell }[] {
+  const visited = new Uint8Array(grid.region.length), largest = new Map<number, number[]>();
+  for (let start = 0; start < grid.region.length; start++) {
+    const region = grid.region[start]!;
+    if (!region || visited[start]) continue;
+    const cells = [start]; visited[start] = 1;
+    for (let head = 0; head < cells.length; head++) {
+      const cell = cells[head]!, x = cell % grid.width, y = Math.floor(cell / grid.width);
+      for (const [nx, ny] of [[x - 1, y], [x + 1, y], [x, y - 1], [x, y + 1]]) {
+        if (nx! < 0 || nx! >= grid.width || ny! < 0 || ny! >= grid.height) continue;
+        const next = ny! * grid.width + nx!;
+        if (!visited[next] && grid.region[next] === region) { visited[next] = 1; cells.push(next); }
+      }
+    }
+    if (cells.length > (largest.get(region)?.length ?? 0)) largest.set(region, cells);
+  }
+  return [...largest].sort(([a], [b]) => a - b).map(([region, cells]) => {
+    const cx = cells.reduce((sum, cell) => sum + cell % grid.width, 0) / cells.length;
+    const cy = cells.reduce((sum, cell) => sum + Math.floor(cell / grid.width), 0) / cells.length;
+    const score = (cell: number) => (cell % grid.width - cx) ** 2 + (Math.floor(cell / grid.width) - cy) ** 2;
+    const anchor = cells.reduce((best, cell) => score(cell) < score(best) || score(cell) === score(best) && cell < best ? cell : best);
+    return { id: grid.regionKeys[region]!, at: { x: anchor % grid.width, y: Math.floor(anchor / grid.width) } };
+  });
+}
+const anchorCache = new WeakMap<object, ReturnType<typeof regionLabelAnchors>>();
 export type WorldUi = {
   map: string; cursor: MapCell; hover: MapCell | null; viewport: { x: number; y: number; w: number; h: number };
   zoom: 1 | .5 | .25; layers: Record<WorldLayer, boolean>; layerMenu: boolean; mapMenu: boolean; showMinimap: boolean; preview: boolean;
@@ -152,7 +179,14 @@ export class WorldViewModel {
     const cells: WorldCellView[] = [], v = this.viewport;
     for (let y = v.y; y < v.y + v.h; y++) for (let x = v.x; x < v.x + v.w; x++) cells.push(this.cell(x, y));
     const hover = this.ui.hover ?? this.cursor, mini = this.minimap();
-    return { map: this.map, name: this.ctx.world.require("map", this.map).name, size: this.size, viewport: v, cells,
+    let anchors = anchorCache.get(this.grid);
+    if (!anchors) { anchors = regionLabelAnchors(this.grid); anchorCache.set(this.grid, anchors); }
+    const names = this.ctx.world.all("regions").find(region => region.map === this.map)?.regions;
+    const regionLabels = this.layers.region ? anchors.filter(label => !this.grid.dark[label.at.y * this.size.w + label.at.x]
+      || !!this.s.maps[this.map]?.known[cellKey(label.at)]).map(label => ({
+      ...label, name: names?.[label.id]?.name ?? label.id, at: { ...label.at },
+    })) : [];
+    return { map: this.map, name: this.ctx.world.require("map", this.map).name, size: this.size, viewport: v, cells, regionLabels,
       cursor: this.cursor, ship: this.ship, zoom: this.ui.zoom, layers: this.layers, layerMenu: this.ui.layerMenu, mapMenu: this.ui.mapMenu, showMinimap: this.ui.showMinimap,
       maps: this.ctx.world.all("map").map(m => ({ id: m.id, name: m.name })), hover: { at: hover, ...this.hover(hover.x, hover.y) }, preview: this.preview,
       actions: this.actions(), minimap: { w: mini.w, h: mini.h, colors: mini.colors } };
