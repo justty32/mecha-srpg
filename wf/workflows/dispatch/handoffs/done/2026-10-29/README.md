@@ -14,3 +14,5 @@
 - [常規車輛角色AI](lead-roles-1029/REPORT.md)：坦克前線、飛彈退距、工程依需求排熱；角色8/8、整合9/9，產品26ab375e。
 
 | 2026-10-29 | `lead-mobile-1029` | 手機雙圖拖曳與最近／最愛；帶明確觸控模擬限制交付7478bd35 | [REPORT](lead-mobile-1029/REPORT.md) |
+
+- [GitHub Pages 公開部署](pages-1029/REPORT.md)：三頁、快捷釘選與桌面地圖拖曳線上smoke成功；手機產品7478bd35已部署。
