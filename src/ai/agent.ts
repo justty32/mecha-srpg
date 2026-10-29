@@ -27,6 +27,7 @@ export function policyFor(q: RulesQuery, s: BattleState, unitId: Id, fallback: I
 }
 
 export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Command[] {
+  // 不修改共用陣營環境或單位原策略。
   const { q, s } = env;
   const commands: Command[] = [];
   let cachedContext: AiCtx | undefined;
@@ -55,6 +56,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
       danger: dangerMap(query, view, env.slot, env.know), assignment: env.assignment, params: env.params, rng: env.rng };
   };
   if (!q.isActive(s, agent.unit)) return commands;
+  const frameProfile = agent.policy === "tactical" ? q.frameAiProfile?.(s, agent.unit) : undefined;
   const maxActions = Math.max(0, Math.floor(opts?.maxActions ?? DEFAULTS.maxActions));
   const maxRetries = Math.max(1, Math.floor(opts?.maxRetries ?? DEFAULTS.maxRetries));
   const maxPureMoves = Math.max(0, Math.floor(env.params.maxPureMoves ?? DEFAULTS.maxPureMoves));
@@ -67,8 +69,11 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     const withdraw = mobile(q, s, agent.unit) && !s.rt?.noRetreat
       && (mode === "retreat" || individualRetreat(ctx, agent.unit));
     // 設定檔採狂攻策略不等於機體失控；只有真正失控才拒絕撤退／輪替指令。
+    const useFrame = !!frameProfile && base === "tactical" && !withdraw
+      && (!mode || mode === "instinct");
+    if (useFrame) ctx = { ...ctx, params: { ...env.params, ...frameProfile.params } };
     const policy = getPolicy(s.units[agent.unit]!.controlMode === "berserk" ? "berserk" : withdraw ? "flee"
-      : mode === "regroup" ? "regroup" : mode === "instinct" ? "tactical" : mode === "gather" ? "swarm" : base);
+      : mode === "regroup" ? "regroup" : mode === "instinct" ? "tactical" : mode === "gather" ? "swarm" : useFrame ? frameProfile.policy : base);
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
     // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
     const limitMoves = ["tactical", "sentinel", "swarm"].includes(policy.id);
@@ -83,11 +88,12 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     while (true) {
       if (failures >= maxRetries) return end();
       ctx = context();
+      if (useFrame) ctx = { ...ctx, params: { ...env.params, ...frameProfile.params } };
       const scored = candidates.map((c) => ({ c, score: policy.score(ctx, agent, c) }));
       // End 是無可取行動時的退路，不能用固定小正分蓋過有效的低傷害攻擊。
       const canAct = scored.some(({ c, score }) => c.cmd.kind !== "end" && Number.isFinite(score) && score > 0);
       const candidate = selectCandidate(env.rng, canAct ? scored.filter(({ c }) => c.cmd.kind !== "end") : scored,
-        policy.band ?? env.params.band ?? DEFAULTS.band);
+        policy.band ?? ctx.params.band ?? DEFAULTS.band);
       if (!candidate) return end();
       if (candidate.move && q.distance(s.units[agent.unit]!.pos, candidate.move) !== 0) {
         const path = q.pathTo(s, agent.unit, candidate.move);
@@ -96,6 +102,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
           continue;
         }
         if (!q.isActive(s, agent.unit)) return commands;
+  const frameProfile = agent.policy === "tactical" ? q.frameAiProfile?.(s, agent.unit) : undefined;
       }
       if (!execute(candidate.cmd).ok) {
         reject(candidate);

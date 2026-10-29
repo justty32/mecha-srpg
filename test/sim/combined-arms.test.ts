@@ -134,3 +134,19 @@ test("兩新情境爆破步兵無核心仍有basic攻擊，凡鐵不能穿怪獸
   }
   assert.equal(hitVerified, true, "至少驗到一次真正命中，避免未命中造成假零傷害");
 });
+
+// 本輪固定樣本，僅驗完整指令路徑與有界終局，不聲稱三樣本證明全面平衡。
+for (const seed of [3, 17, 41]) test(`角色AI完整交戰 seed=${seed}`, () => {
+  const session = createSession({ db, sim: scenarioToSetup(db, "scenario/combined-arms-battlefield", seed), seed, human: [], maxSteps: 1200 });
+  // Session尚無公開拒絕計數；只在測試攔截既有執行入口，產品API維持不變。
+  const execution = session as unknown as { execute(cmd: Parameters<BattleSession["submit"]>[0]): ReturnType<BattleSession["submit"]> };
+  const original = execution.execute.bind(session); let rejected = 0;
+  execution.execute = cmd => { const result = original(cmd); if (!result.ok) rejected++; return result; };
+  let steps = 0;
+  while (steps < 1200 && session.stepAi() !== null) steps++;
+  const result = session.result();
+  console.log(JSON.stringify({ rolesSample: seed, steps, rejected, round: session.state.round,
+    winner: result?.winner ?? null, reason: result?.reason ?? "stalled-or-limit", hash: session.hash() }));
+  assert.ok(result, `seed=${seed}未終局；steps=${steps} rejected=${rejected}`);
+  assert.equal(rejected, 0, `seed=${seed}出現非法候選`);
+});

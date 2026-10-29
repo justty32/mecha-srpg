@@ -58,6 +58,12 @@ export function createRulesQuery(db: ContentDB, snapshot?: BattleState): RulesQu
     perception: (s, id) => R.roleAttr(c(s), subjectOf(c(s), id), "perception"),
     unitGrade: (s, id) => R.frameView(c(s), id).grade,
     unitTags: (s, id) => R.unitTags(c(s), id),
+    frameAiProfile(s, id) {
+      const profile = R.frameView(c(s), id).aiProfile;
+      if (!profile) return undefined;
+      const def = db.require("aiprofile", profile);
+      return { policy: def.policy, params: { ...def.params } };
+    },
     speciesIntent(s, id) {
       const monster = s.rt?.monsters[id];
       if (!monster) return undefined;

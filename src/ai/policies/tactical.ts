@@ -3,7 +3,7 @@ import type { Cell } from "../../core/types-def.ts";
 import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
-import { lethalParts, scoreCandidate } from "../score.ts";
+import { lethalParts, rangeGap, scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
 import { pursuitCells } from "../knowledge.ts";
 import { mobile } from "../intent.ts";
@@ -86,6 +86,19 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
       .slice(0, Math.max(0, Math.floor(ctx.params.objMoves ?? OBJECTIVE_DEFAULTS.objMoves)));
     for (const { cell } of objectiveMoves) if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
   }
+  const roleMoves = new Set<string>();
+  const currentGap = rangeGap(ctx, actor, self.pos);
+  if (currentGap !== null && currentGap > 0 && moveLimit > 0) {
+    const improving = reachable.map(cell => ({ cell, gap: rangeGap(ctx, actor, cell)! }))
+      .filter(entry => entry.gap < currentGap)
+      .sort((a, b) => a.gap - b.gap || dangerAt(ctx.danger, a.cell) - dangerAt(ctx.danger, b.cell)
+        || reachCosts[cellKey(a.cell.x, a.cell.y)]! - reachCosts[cellKey(b.cell.x, b.cell.y)]!
+        || a.cell.x - b.cell.x || a.cell.y - b.cell.y).slice(0, moveLimit);
+    for (const { cell } of improving) {
+      roleMoves.add(cellKey(cell.x, cell.y));
+      if (!moves.some(c => q.distance(c, cell) === 0)) moves.push(cell);
+    }
+  }
   const candidates: Candidate[] = [];
   for (const move of [undefined, ...moves]) {
     let state = view;
@@ -148,7 +161,7 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
       const c = candidates[i]!;
       if (c.cmd.kind !== "move") continue;
       const dest = c.cmd.path.at(-1) ?? self.pos;
-      if (!ready.has(cellKey(dest.x, dest.y)) && objectiveMoveValue(ctx, actor, self.pos, dest) <= 0) candidates.splice(i, 1);
+      if (!ready.has(cellKey(dest.x, dest.y)) && !roleMoves.has(cellKey(dest.x, dest.y)) && objectiveMoveValue(ctx, actor, self.pos, dest) <= 0) candidates.splice(i, 1);
     }
   }
   // 本輪已用過 Wait 就不提（真規則會拒絕 wait-used；stub 無 rt.waitUsed 簿記時照舊）。

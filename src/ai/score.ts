@@ -158,6 +158,17 @@ function captureProximity(q: RulesQuery, view: BattleState, id: Id): number {
   return max > 0 ? Math.max(0, Math.min(1, 1 - hp / max)) : 0;
 }
 
+/** 選填角色距離偏好只讀可見且活躍的敵方情報。 */
+export function rangeGap(ctx: AiCtx, actor: Id, cell: Cell): number | null {
+  if (!(ctx.params.rangeWeight! > 0)) return null;
+  const enemies = ctx.know.visible.filter(id => ctx.view.units[id] && ctx.q.isActive(ctx.view, id)
+    && ctx.q.hostile(ctx.view, actor, id));
+  if (!enemies.length) return null;
+  const distance = Math.min(...enemies.map(id => ctx.q.distance(cell, ctx.view.units[id]!.pos)));
+  const min = Math.max(0, ctx.params.rangeMin ?? 0), max = Math.max(min, ctx.params.rangeMax ?? min);
+  return Math.max(min - distance, 0, distance - max);
+}
+
 export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const { q, view } = ctx, p = { ...DEFAULTS, ...ctx.params }, cmd = c.cmd;
   if (cmd.kind === "engagePresence" || cmd.kind === "interact" || cmd.kind === "throwDebris") return -Infinity;
@@ -177,7 +188,10 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   if (cmd.kind === "move") {
     const targets = pursuitCells(ctx, agent.unit);
     const nearest = (cell: Cell): number => Math.min(...targets.map(target => q.distance(cell, target)));
-    return p.reposition * (nearest(actor.pos) - nearest(destination)) - danger + objectiveMove;
+    const gap = rangeGap(ctx, agent.unit, actor.pos), next = rangeGap(ctx, agent.unit, destination);
+    const progress = gap !== null && next !== null ? ctx.params.rangeWeight! * (gap - next)
+      : p.reposition * (nearest(actor.pos) - nearest(destination));
+    return progress - danger + objectiveMove;
   }
   let state = view, steps = 0;
   if (c.move) {
@@ -221,8 +235,10 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
     const hp = core ? state.units[id]!.parts[core.id]!.layers.reduce((sum, layer) => sum + layer.hp, 0)
       : remainingHp(q, state, id);
     const ratio = damage / Math.max(1, hp) * (core ? p.partAimProgress : 1);
-    return value * Math.min(2, factor > 1 ? Math.max(ratio, damage / Math.max(1, p.objHpScale)) : ratio) +
-      (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0);
+    const gap = rangeGap(ctx, agent.unit, destination);
+    const preference = gap === null ? 1 : 1 / (1 + ctx.params.rangeWeight! * gap);
+    return preference * (value * Math.min(2, factor > 1 ? Math.max(ratio, damage / Math.max(1, p.objHpScale)) : ratio) +
+      (outcome.killed.includes(id) ? value * (info.spare.includes(id) ? -(ctx.params.objSpare ?? OBJECTIVE_DEFAULTS.objSpare) : 1) : 0));
   };
   let score = 0, oldSupport = 0;
   for (const tactic of Object.keys(weights).sort()) {

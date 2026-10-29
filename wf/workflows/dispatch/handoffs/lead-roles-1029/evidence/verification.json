@@ -1,0 +1,63 @@
+{
+ "contract": "wf-table/1",
+ "source": "../REPORT.md",
+ "extracted": "2026-10-29",
+ "columns": [
+  "command",
+  "exit",
+  "result",
+  "raw",
+  "source_sha256"
+ ],
+ "rows": [
+  {
+   "command": "nice -n 19 node node_modules/typescript/bin/tsc --noEmit",
+   "exit": 0,
+   "result": "initial + fixture修復後均0",
+   "raw": "raw-logs.tar.gz:roles-typecheck-final.log",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "nice -n 19 node node_modules/typescript/bin/tsc --noEmit -p tsconfig.ui.json",
+   "exit": 0,
+   "result": "0 errors",
+   "raw": "raw-logs.tar.gz:roles-typecheck-ui.log",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "nice -n 19 node src/content/loader.ts content/base",
+   "exit": 0,
+   "result": "0 errors / 45 warnings",
+   "raw": "raw-logs.tar.gz:roles-content.log",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "nice -n 19 node src/ops/content/check.ts content/base",
+   "exit": 0,
+   "result": "0 errors / 17 warnings",
+   "raw": "raw-logs.tar.gz:roles-ops-content.log",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "nice -n 19 node --test --test-concurrency=1 --test-reporter=tap test/ai/unit-roles.test.ts",
+   "exit": 0,
+   "result": "8/8 pass，8282ms；首次5/8因fixture空配裝，修復後8/8",
+   "raw": "raw-logs.tar.gz:roles-unit-final.tap（首次roles-unit.tap）",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "nice -n 19 node --test --test-concurrency=1 --test-reporter=tap test/sim/combined-arms.test.ts",
+   "exit": 0,
+   "result": "9/9 pass，16432ms；seed3/17/41，7/7/9回合，184/175/223步；均enemy eliminate、0 rejected",
+   "raw": "raw-logs.tar.gz:roles-combined.tap",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  },
+  {
+   "command": "python3 -I wf/tools/content_index.py --check",
+   "exit": 0,
+   "result": "73分片與內容一致",
+   "raw": "../REPORT.md",
+   "source_sha256": "5a2cc9963b464953d940c26590e025c931c3ccf02055aea48d66376f346154e7"
+  }
+ ]
+}

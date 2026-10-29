@@ -136,6 +136,8 @@ export type PartDef = {
 };
 export type BodyPlanDef = { targetRadius?: number; partAdjacency?: Record<PartId, PartId[]>; mobilityMinimum?: Record<LocomotionClass, number>; abilityParts?: Record<Id, { parts: PartId[]; min: number }>; id: Id; nameEn?: string; etymology?: string; name?: string; parts: PartDef[]; symmetry?: string };
 export type FrameDef = {
+  /** 單位選填戰術設定；陣營與特殊策略維持優先序。 */
+  aiProfile?: Id;
   moveBudget?: number; moveLoadCapacity?: number;
   core?: boolean;
   series?: string;

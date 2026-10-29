@@ -40,6 +40,7 @@ export interface RulesQuery {
   unitGrade(s: BattleState, unitId: Id): Grade;
   unitTags(s: BattleState, unitId: Id): string[];
   /** 物種既有行為與 profile 數值；只查己方單位，不擴充內容 schema。 */
+  frameAiProfile?(s: BattleState, unitId: Id): { policy: string; params: Record<string, number> } | undefined;
   speciesIntent?(s: BattleState, unitId: Id): { behaviors: string[]; params: Record<string, number> } | undefined;
   /** body plan 的部位，依宣告順序（公開情報）。 */
   partDefs(s: BattleState, unitId: Id): PartDef[];
