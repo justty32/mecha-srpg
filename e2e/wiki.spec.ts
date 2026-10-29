@@ -1,4 +1,6 @@
 import { readdirSync, readFileSync } from "node:fs";
+import { mkdir } from "node:fs/promises";
+import { join } from "node:path";
 import { test, expect, type Page } from "@playwright/test";
 
 function watchErrors(page: Page): string[] {
@@ -68,4 +70,26 @@ test("詳情交叉連結與瀏覽器返回，再由導航回戰場", async ({ pa
   await page.locator('[data-ui="app-nav"] a[data-nav="battle"]').click();
   await expect(page.locator('[data-ui="board"] [data-x][data-y]').first()).toBeVisible();
   expect(errors).toEqual([]);
+});
+
+test("手機與橫向百科控制可達且頁面沒有水平溢出", async ({ page }) => {
+  for (const size of [{ width: 360, height: 800 }, { width: 390, height: 844 }, { width: 430, height: 932 }, { width: 844, height: 390 }]) {
+    await page.setViewportSize(size);
+    await page.goto("/#/wiki");
+    const search = page.locator('[data-ui="wiki-search"]');
+    const toggle = page.locator('[data-ui="wiki-sidebar-toggle"]');
+    await expect(search).toBeVisible();
+    await expect(toggle).toBeVisible();
+    await toggle.click();
+    await expect(page.locator('[data-ui="wiki-sidebar"]')).toBeVisible();
+    await toggle.click();
+    await expect(page.locator('[data-ui="wiki-sidebar"]')).not.toBeVisible();
+    const bounds = await page.evaluate(() => ({ width: document.documentElement.clientWidth, scroll: document.documentElement.scrollWidth }));
+    expect(bounds.scroll).toBeLessThanOrEqual(bounds.width + 1);
+    expect((await toggle.boundingBox())!.height).toBeGreaterThanOrEqual(44);
+    if (process.env.MOBILE_SHOTS && size.width === 390 && size.height === 844) {
+      await mkdir(process.env.MOBILE_SHOTS, { recursive: true });
+      await page.screenshot({ path: join(process.env.MOBILE_SHOTS, "wiki-390x844.png"), fullPage: true });
+    }
+  }
 });

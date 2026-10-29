@@ -1,5 +1,6 @@
 // DOM 只消費世界 vm 快照；操作一律交回 controller。
 import type { OpsUiAction, WorldView, WorldGridSnapshot, WorldCellView, WorldLayer } from "../vm/types.ts";
+import { mountMapDrag } from "../../dom/map-drag.ts";
 import { createGridView } from "../../dom/grid-view.ts";
 import { buttonRow, el, registeredAction, type ActionRegistry } from "./ui.ts";
 export type WorldMap = { render(view: WorldView): void; destroy(): void };
@@ -35,6 +36,10 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
     addTool("world-zoom-out", "縮小 −", { type: "mapZoom", dir: -1 }), addTool("world-zoom-fit", "原比例 0", { type: "mapZoom", dir: 0 }),
     addTool("world-mini-toggle", "縮圖 M", { type: "mapMinimap" }));
   scroller.append(board, overview, labels, miniWrap); col.append(tools, scroller); shell.append(col, detail); root.append(shell);
+  const drag = mountMapDrag(scroller, {
+    start: () => current ? { x: current.viewport.x, y: current.viewport.y, cellSize: 24 * current.zoom } : null,
+    move: (x, y) => { if (current && current.zoom !== .25) opts.onAction({ type: "mapScroll", dx: x - current.viewport.x, dy: y - current.viewport.y }); },
+  });
   const draw = createGridView<WorldCellView>(board, (node, cell) => {
     node.className = cell.classes.join(" "); node.style.backgroundColor = cell.color;
     node.dataset.tip = node.title = cell.title; node.setAttribute("aria-label", cell.title); node.dataset.age = String(cell.age);
@@ -71,6 +76,7 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
     const width = scroller.clientWidth, height = scroller.clientHeight; if (!width || !height) return;
     const cell = 24 * current.zoom, w = Math.max(1, Math.min(current.size.w, Math.floor(width / cell))), h = Math.max(1, Math.min(current.size.h, Math.floor(height / cell)));
     if (w === current.viewport.w && h === current.viewport.h) return;
+    drag.cancel();
     measuring = true; try { opts.onAction({ type: "mapResize", w, h }); } finally { measuring = false; }
   };
   const cellHit = (event: MouseEvent) => {
@@ -98,6 +104,7 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
     const sail = current.actions.find(a => a.id === "map:sail"); if (sail?.enabled) opts.onAction(sail.action);
   };
   const hover = (e: MouseEvent) => {
+    if (drag.active) return;
     const cell = cellHit(e); if (!cell || !current) return;
     if (cell.x !== current.hover.at.x || cell.y !== current.hover.at.y) opts.onAction({ type: "mapHover", ...cell });
   };
@@ -107,6 +114,7 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
   const Observer = doc.defaultView?.ResizeObserver, observer = Observer ? new Observer(() => { measure(); if (current) paintLabels(current); }) : null; observer?.observe(scroller);
   return {
     render(view) {
+      if (current && (!view.grid || current.map !== view.grid.map || current.zoom !== view.grid.zoom || current.viewport.w !== view.grid.viewport.w || current.viewport.h !== view.grid.viewport.h)) drag.cancel();
       current = view.grid; const g = current;
       if (!g) {
         info.replaceChildren(el(doc, "h2", view.selected?.name ?? "地點"), ...(view.selected?.lines ?? []).map(l => el(doc, "p", l)));
@@ -135,6 +143,6 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
       const hovered = board.querySelector<HTMLElement>(`[data-x="${g.hover.at.x}"][data-y="${g.hover.at.y}"]`);
       if (hovered) hovered.dataset.tip = hovered.title = g.hover.lines.join("\n"); measure();
     },
-    destroy() { observer?.disconnect(); shell.removeEventListener("click", click); board.removeEventListener("dblclick", double); board.removeEventListener("mouseover", hover); scroller.removeEventListener("wheel", wheel); shell.remove(); },
+    destroy() { drag.destroy(); observer?.disconnect(); shell.removeEventListener("click", click); board.removeEventListener("dblclick", double); board.removeEventListener("mouseover", hover); scroller.removeEventListener("wheel", wheel); shell.remove(); },
   };
 }

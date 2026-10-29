@@ -1,3 +1,5 @@
+import { commandPreferences } from "../../dom/command-preferences.ts";
+import { battleShortcutForAction } from "../../dom/command-shortcuts.ts";
 // ui-adapter/ops/dom/battle-host — 營運出戰時掛戰鬥畫面（仿 src/ui-adapter/dom/main.ts 的 start()，不改那個檔）。
 // 演出計時 step、skip、動畫／縮放設定讀寫與戰鬥頁同一組 localStorage 鍵；分出勝負後出現「返回營運」（Enter）。
 import "../../dom/style.css";
@@ -47,6 +49,7 @@ export function hostBattle(root: HTMLElement, controller: BattleController, opts
   let view: BattleView | null = null;
   let timer: number | null = null;
   let destroyed = false;
+  const shortcutStore = commandPreferences("battle");
   let latest: UiSnapshot = controller.snapshot();
   const done = (): boolean => latest.outcome !== null;
   const finish = (): void => { if (!destroyed && done()) opts.onDone(); };
@@ -65,7 +68,9 @@ export function hostBattle(root: HTMLElement, controller: BattleController, opts
     if ((action as { type: string }).type === "navigate") return;
     if (view?.apply(action)) return;
     if (action.type === "skip" || (latest.busy && (action.type === "cancel" || action.type === "confirm"))) view?.skipFx();
+    const shortcutId = battleShortcutForAction(controller.snapshot(), action);
     latest = controller.dispatch(action);
+    if (shortcutId) shortcutStore.record(shortcutId);
     view?.render(latest);
     back.hidden = !done();
     schedule();
@@ -78,7 +83,7 @@ export function hostBattle(root: HTMLElement, controller: BattleController, opts
     return true;
   };
   view = mountBattle(stage, {
-    anim, zoom,
+    anim, zoom, shortcutStore,
     onSettings: settings => {
       anim = settings.anim;
       writeSetting("mecha-srpg.ui.anim", settings.anim);

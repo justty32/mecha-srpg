@@ -405,3 +405,195 @@ test("桌面靠下格長浮出選單留在戰場內，捲到尾項仍可正常�
   const after = await snap(page);
   expect(after.activeUnit !== before.activeUnit || after.round > before.round).toBe(true);
 });
+
+for (const input of ['mouse', 'touch'] as const) test(`戰場安全拖曳：${input}、邊界反向、取消、縮放與輕點`, async ({ browser }) => {
+  const context = await browser.newContext({ viewport: input === 'mouse' ? { width: 1280, height: 800 } : { width: 390, height: 844 }, hasTouch: input === 'touch', isMobile: input === 'touch' });
+  const page = await context.newPage();
+  try {
+    await page.goto('/?scenario=debug-big&size=160&anim=off'); await settle(page);
+    const cdp = await context.newCDPSession(page);
+    await page.evaluate(() => {
+      const events: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] = [];
+      (window as unknown as { __panPointers: typeof events }).__panPointers = events;
+      for (const type of ['pointerdown', 'pointermove', 'pointerup', 'pointercancel']) document.addEventListener(type, event => {
+        const p = event as PointerEvent; events.push({ type, x: p.clientX, y: p.clientY, trusted: p.isTrusted, pointerType: p.pointerType });
+      }, { capture: true, passive: true });
+    });
+    const activate = async (selector: string) => {
+      const button = page.locator(selector); await button.scrollIntoViewIfNeeded();
+      if (input === 'mouse') await button.click();
+      else {
+        const box = (await button.boundingBox())!;
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      }
+    };
+    await activate('[data-ui="board-zoom-in"]');
+    await expect(page.locator('[data-ui="commands"] [data-cmd="move"]')).toBeEnabled();
+    await activate('[data-ui="commands"] [data-cmd="move"]');
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __battle: { peek(): { mode: { kind: string } } } }).__battle.peek().mode.kind)).toBe('move');
+    const surface = page.locator('.board-viewport');
+    const drag = async (dx: number, cancel = false, reverse = false) => {
+      await surface.scrollIntoViewIfNeeded();
+      const cell = await cellWidth(page), reverseDistance = reverse ? cell * 1.2 : 0;
+      const point = await surface.evaluate((surface, { dx, reverseDistance }) => {
+        const box = surface.getBoundingClientRect();
+        for (const fy of [.55, .25, .8]) for (const fx of [.55, .35, .75, .2, .85]) {
+          const x = box.x + box.width * fx, y = box.y + box.height * fy, hit = document.elementFromPoint(x, y);
+          if (x > 0 && x < innerWidth && y > 0 && y < innerHeight && x + dx - reverseDistance > 0 && x + dx - reverseDistance < innerWidth
+            && hit && surface.contains(hit) && !hit.closest('button, [data-ui="quick-menu"]')) return { x, y };
+        }
+        return null;
+      }, { dx, reverseDistance });
+      expect(point).not.toBeNull(); const { x, y } = point!;
+      if (input === 'mouse') {
+        await page.mouse.move(x, y); await page.mouse.down(); await page.mouse.move(x + dx, y, { steps: 5 });
+        if (reverse) await page.mouse.move(x + dx - reverseDistance, y);
+        if (cancel) await page.evaluate(() => { const node = document.querySelector<HTMLElement>('.board-viewport')!; if (node.hasPointerCapture(1)) node.releasePointerCapture(1); });
+        await page.mouse.up(); return Math.trunc(-(dx - reverseDistance) / cell);
+      }
+      const offset = await page.evaluate(() => (window as unknown as { __panPointers: unknown[] }).__panPointers.length);
+      if (cancel || reverse) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + dx, y }] });
+        if (reverse) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + dx - reverseDistance, y }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: cancel ? 'touchCancel' : 'touchEnd', touchPoints: [] });
+      } else await cdp.send('Input.synthesizeScrollGesture', { x, y, xDistance: dx, yDistance: 0, gestureSourceType: 'touch', preventFling: true });
+      const events = await page.evaluate(offset => (window as unknown as { __panPointers: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] }).__panPointers.slice(offset), offset);
+      const down = events.find(e => e.type === 'pointerdown')!, moves = events.filter(e => e.type === 'pointermove');
+      expect(down?.trusted).toBe(true); expect(down?.pointerType).toBe('touch'); expect(moves.length).toBeGreaterThan(0);
+      expect(moves.every(e => e.trusted && e.pointerType === 'touch')).toBe(true);
+      return Math.trunc(-(moves.at(-1)!.x - down.x) / cell);
+    };
+    const audit = () => page.evaluate(() => (window as unknown as { __battle: { audit(): { commands: unknown[] } } }).__battle.audit().commands);
+    const commands = await audit(), before = await viewportPos(page);
+    await drag(-80); expect((await viewportPos(page)).x).toBeGreaterThan(before.x); expect(await audit()).toEqual(commands);
+    await drag(-65); expect(await audit()).toEqual(commands);
+    await drag(40, true); expect(await audit()).toEqual(commands);
+    await page.keyboard.press('Escape');
+    for (let i = 0; i < 20 && (await viewportPos(page)).x > 0; i++) await activate('[data-ui="scroll-left"]');
+    expect((await viewportPos(page)).x).toBe(0);
+    await drag(60); expect((await viewportPos(page)).x).toBe(0);
+    await drag(60, false, true); expect((await viewportPos(page)).x).toBeGreaterThan(0);
+    await drag(-60); expect((await viewportPos(page)).x).toBeGreaterThan(0);
+    await activate('[data-ui="board-zoom-in"]');
+    const start = await viewportPos(page), cells = await drag(-await cellWidth(page) * 2.2);
+    expect(cells).toBeGreaterThan(0); expect((await viewportPos(page)).x).toBe(start.x + cells);
+    await surface.scrollIntoViewIfNeeded();
+    const hit = await surface.evaluate(surface => {
+      for (const cell of surface.querySelectorAll<HTMLElement>('[data-ui="board"] [data-x][data-y]:not(.highlight-reach)')) {
+        if (cell.querySelector('.unit-badge')) continue;
+        const box = cell.getBoundingClientRect(), x = box.x + box.width / 2, y = box.y + box.height / 2;
+        if (x > 0 && x < innerWidth && y > 0 && y < innerHeight && cell.contains(document.elementFromPoint(x, y))) return { x, y, at: { x: Number(cell.dataset.x), y: Number(cell.dataset.y) } };
+      }
+      return null;
+    });
+    expect(hit).not.toBeNull();
+    await page.evaluate(() => {
+      const clicks: { trusted: boolean; x: number | null; y: number | null }[] = [];
+      (window as unknown as { __panTapClicks: typeof clicks }).__panTapClicks = clicks;
+      document.addEventListener('click', event => {
+        const cell = (event.target as Element | null)?.closest<HTMLElement>('[data-ui="board"] [data-x][data-y]');
+        clicks.push({ trusted: event.isTrusted, x: cell ? Number(cell.dataset.x) : null, y: cell ? Number(cell.dataset.y) : null });
+      }, { capture: true, passive: true });
+    });
+    if (input === 'mouse') await page.mouse.click(hit!.x, hit!.y);
+    else {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: hit!.x, y: hit!.y }] });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    }
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __panTapClicks: unknown[] }).__panTapClicks)).toEqual([{ trusted: true, ...hit!.at }]);
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __battle: { peek(): { cursor: unknown } } }).__battle.peek().cursor)).toEqual(hit!.at);
+    expect(await audit()).toEqual(commands);
+    if (input === 'touch') {
+      await page.locator('.command-panel').scrollIntoViewIfNeeded();
+      // scrollIntoView可能正好停在頁底；先留實際可捲餘量，再選當下可見資訊區。
+      await page.evaluate(() => scrollTo(0, Math.max(0, scrollY - 200)));
+      const swipe = await page.evaluate(() => {
+        const maximum = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const panel = document.querySelector<HTMLElement>('.command-panel')!, box = panel.getBoundingClientRect();
+        for (const fy of [.5, .35, .65, .2, .8]) for (const fx of [.5, .35, .65]) {
+          const x = box.left + box.width * fx, y = Math.max(240, Math.min(innerHeight - 40, box.top + box.height * fy));
+          const hit = document.elementFromPoint(x, y);
+          if (x >= 40 && x <= innerWidth - 40 && y >= 220 && y <= innerHeight - 40 && hit && panel.contains(hit)
+            && !hit.closest('button, a, input, textarea, select, summary, [data-ui="board"], [data-ui="command-shortcuts"]')
+            && maximum - scrollY >= 180) return { x, y, scroll: scrollY, remaining: maximum - scrollY };
+        }
+        return null;
+      });
+      expect(swipe, '圖外非互動真hit、離窗邊40px且有180px可捲餘量').not.toBeNull();
+      expect(swipe!.y - 180).toBeGreaterThanOrEqual(40);
+      const beforeViewport = await page.evaluate(() => (window as unknown as { __battle: { peek(): { viewport: unknown } } }).__battle.peek().viewport);
+      const offset = await page.evaluate(() => (window as unknown as { __panPointers: unknown[] }).__panPointers.length);
+      const touchX = Math.round(swipe!.x), touchY = Math.round(swipe!.y);
+      await cdp.send('Emulation.setEmitTouchEventsForMouse', { enabled: true, configuration: 'mobile' });
+      try {
+        await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mousePressed', x: touchX, y: touchY, button: 'left' });
+        for (let step = 1; step <= 8; step++) await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mouseMoved', x: touchX, y: Math.round(touchY - 180 * step / 8), button: 'left' });
+        await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mouseReleased', x: touchX, y: touchY - 180, button: 'left' });
+      } finally { await cdp.send('Emulation.setEmitTouchEventsForMouse', { enabled: false }); }
+      const pointers = await page.evaluate(offset => (window as unknown as { __panPointers: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] }).__panPointers.slice(offset), offset);
+      const moves = pointers.filter(event => event.type === 'pointermove');
+      expect(pointers.some(event => event.type === 'pointerdown' && event.trusted && event.pointerType === 'touch')).toBe(true);
+      expect(moves.length).toBeGreaterThan(0); expect(moves.every(event => event.trusted && event.pointerType === 'touch')).toBe(true);
+      await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(swipe!.scroll);
+      expect(await page.evaluate(() => (window as unknown as { __battle: { peek(): { viewport: unknown } } }).__battle.peek().viewport)).toEqual(beforeViewport);
+      expect(await audit()).toEqual(commands);
+      console.info('battle-outside-swipe', JSON.stringify({ before: swipe!.scroll, after: await page.evaluate(() => scrollY), trustedTouchMoves: moves.length }));
+    }
+  } finally { await context.close(); }
+});
+
+test('手機戰場四尺寸：無整頁橫溢、主控制可達且方向鍵44px', async ({ page }) => {
+  await page.goto('/?anim=off'); await settle(page);
+  const sizes = [{ width: 360, height: 844 }, { width: 390, height: 844 }, { width: 430, height: 844 }, { width: 844, height: 390 }];
+  for (const size of sizes) {
+    await page.setViewportSize(size);
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+    const viewport = page.locator('.board-viewport'); await viewport.scrollIntoViewIfNeeded();
+    await expect(viewport).toBeInViewport(); expect((await viewport.boundingBox())!.height).toBeGreaterThanOrEqual(100);
+    for (const id of ['scroll-up', 'scroll-down', 'scroll-left', 'scroll-right', 'board-zoom-in', 'board-zoom-out', 'help-toggle']) {
+      const button = page.locator(`[data-ui="${id}"]`); await button.scrollIntoViewIfNeeded();
+      await expect(button).toBeVisible(); await expect(button).toBeInViewport();
+      const box = (await button.boundingBox())!; expect(box.height, `${size.width}/${id}`).toBeGreaterThanOrEqual(43.9);
+      expect(box.x).toBeGreaterThanOrEqual(-1); expect(box.x + box.width).toBeLessThanOrEqual(size.width + 1);
+      await button.click({ trial: true });
+    }
+    const commands = page.locator('[data-ui="commands"]'); await commands.scrollIntoViewIfNeeded(); await expect(commands).toBeInViewport();
+    await expect(commands.locator('[data-cmd="end"]')).toBeVisible();
+    if (size.width === 844) {
+      const shortcuts = page.locator('.command-panel [data-ui="command-shortcuts"]');
+      for (const open of [false, true]) {
+        if (await shortcuts.evaluate(node => (node as HTMLDetailsElement).open) !== open) await shortcuts.locator('summary').click();
+        expect(await shortcuts.evaluate(node => (node as HTMLDetailsElement).open)).toBe(open);
+        const geometry = await page.locator('.command-panel').evaluate(panel => {
+          const rect = (node: Element) => { const r = node.getBoundingClientRect(); return { top: r.top, bottom: r.bottom, left: r.left, right: r.right, height: r.height }; };
+          const shortcuts = panel.querySelector('[data-ui="command-shortcuts"]')!;
+          const nodes = [panel.querySelector('[data-ui="unit"]')!, shortcuts.parentElement!, panel.querySelector('[data-ui="commands"]')!, panel.querySelector('[data-ui="view-controls"]')!];
+          return { panel: rect(panel), children: nodes.map(rect), shortcuts: rect(shortcuts) };
+        });
+        for (const child of geometry.children) {
+          expect(child.height, `橫向快捷${open ? '展開' : '收合'}子區塊高度`).toBeGreaterThan(0);
+          expect(child.top).toBeGreaterThanOrEqual(geometry.panel.top - 1);
+          expect(child.bottom).toBeLessThanOrEqual(geometry.panel.bottom + 1);
+          expect(child.left).toBeGreaterThanOrEqual(geometry.panel.left - 1);
+          expect(child.right).toBeLessThanOrEqual(geometry.panel.right + 1);
+        }
+        for (let i = 1; i < geometry.children.length; i++) expect(geometry.children[i]!.top).toBeGreaterThanOrEqual(geometry.children[i - 1]!.bottom - 1);
+        const root = geometry.children[1]!;
+        expect(geometry.shortcuts.top).toBeGreaterThanOrEqual(root.top - 1);
+        expect(geometry.shortcuts.bottom).toBeLessThanOrEqual(root.bottom + 1);
+        console.info('battle-landscape-command-rects', JSON.stringify({ open, ...geometry }));
+      }
+      // 留展開代表狀態，供橫向圖審核對之前180px上限造成的互蓋。
+    }
+    if (process.env.MOBILE_SHOTS && (size.width === 390 || size.width === 844)) {
+      await mkdir(process.env.MOBILE_SHOTS, { recursive: true });
+      await page.screenshot({ path: join(process.env.MOBILE_SHOTS, `battle-${size.width}x${size.height}.png`), fullPage: true });
+    }
+  }
+  if (process.env.MOBILE_SHOTS) {
+    await page.setViewportSize({ width: 1280, height: 800 }); await page.evaluate(() => scrollTo(0, 0));
+    await page.screenshot({ path: join(process.env.MOBILE_SHOTS, 'battle-1280x800.png'), fullPage: true });
+  }
+});

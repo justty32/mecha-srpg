@@ -1,4 +1,6 @@
 import { test, expect } from "@playwright/test";
+import { mkdir } from "node:fs/promises";
+import { join } from "node:path";
 
 test("大地圖：開局 → 世界分頁 → 游標到地點 → Enter → 抵達 → 泊", async ({ page }) => {
   const errors: string[] = [];
@@ -136,4 +138,138 @@ test("世界區域：普通格無文字，固定標籤在縮放平移與視窗�
   }
   expect(containCases).toBeGreaterThan(0);
   console.info("ops-region-rects", JSON.stringify({ cases: measurements.length, containCases, maxError: Math.max(...measurements.map(row => row.error)), ordinaryText: 0, measurements }));
+});
+
+for (const input of ['mouse', 'touch'] as const) test(`世界安全拖曳：${input}、連拖無航行、取消與縮放後點格`, async ({ browser }) => {
+  const context = await browser.newContext({ viewport: input === 'mouse' ? { width: 1280, height: 800 } : { width: 390, height: 844 }, hasTouch: input === 'touch', isMobile: input === 'touch' });
+  const page = await context.newPage();
+  try {
+    await page.goto('/?seed=3&anim=off#/ops'); await page.locator('[data-action-id="tab:world"]').click();
+    const state = () => page.evaluate(() => {
+      const s = (window as unknown as { __ops: { snapshot(): { header: { route: unknown }; world: { grid: { viewport: { x: number; y: number }; cursor: { x: number; y: number }; zoom: number } } } } }).__ops.snapshot();
+      return { ...s.world.grid, route: s.header.route };
+    });
+    await page.locator('.world-scroll').scrollIntoViewIfNeeded();
+    const cdp = await context.newCDPSession(page);
+    await page.evaluate(() => {
+      const events: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] = [];
+      (window as unknown as { __worldPanPointers: typeof events }).__worldPanPointers = events;
+      for (const type of ['pointerdown', 'pointermove']) document.addEventListener(type, event => {
+        const p = event as PointerEvent; events.push({ type, x: p.clientX, y: p.clientY, trusted: p.isTrusted, pointerType: p.pointerType });
+      }, { capture: true, passive: true });
+    });
+
+    const drag = async (dx: number, cancel = false, reverse = false) => {
+      const surface = page.locator('.world-scroll'); await surface.scrollIntoViewIfNeeded();
+      const box = (await surface.boundingBox())!, cell = 24 * (await state()).zoom;
+      const x = box.x + box.width * .55, y = box.y + Math.min(box.height * .55, 140), distance = reverse ? cell * 1.2 : 0;
+      if (input === 'mouse') {
+        await page.mouse.move(x, y); await page.mouse.down(); await page.mouse.move(x + dx, y, { steps: 5 });
+        if (reverse) await page.mouse.move(x + dx - distance, y);
+        if (cancel) await page.evaluate(() => { const node = document.querySelector<HTMLElement>('.world-scroll')!; if (node.hasPointerCapture(1)) node.releasePointerCapture(1); });
+        await page.mouse.up(); return Math.trunc(-(dx - distance) / cell);
+      }
+      const offset = await page.evaluate(() => (window as unknown as { __worldPanPointers: unknown[] }).__worldPanPointers.length);
+      if (cancel || reverse) {
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x, y }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + dx, y }] });
+        if (reverse) await cdp.send('Input.dispatchTouchEvent', { type: 'touchMove', touchPoints: [{ x: x + dx - distance, y }] });
+        await cdp.send('Input.dispatchTouchEvent', { type: cancel ? 'touchCancel' : 'touchEnd', touchPoints: [] });
+      } else await cdp.send('Input.synthesizeScrollGesture', { x, y, xDistance: dx, yDistance: 0, gestureSourceType: 'touch', preventFling: true });
+      const events = await page.evaluate(offset => (window as unknown as { __worldPanPointers: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] }).__worldPanPointers.slice(offset), offset);
+      const down = events.find(e => e.type === 'pointerdown')!, moves = events.filter(e => e.type === 'pointermove');
+      expect(down?.trusted).toBe(true); expect(down?.pointerType).toBe('touch'); expect(moves.length).toBeGreaterThan(0);
+      expect(moves.every(e => e.trusted && e.pointerType === 'touch')).toBe(true);
+      return Math.trunc(-(moves.at(-1)!.x - down.x) / cell);
+    };
+    const before = await state(); await drag(-72);
+    expect((await state()).viewport.x).toBeGreaterThan(before.viewport.x);
+    await drag(-60); const after = await state(); expect(after.cursor).toEqual(before.cursor); expect(after.route).toEqual(before.route);
+    await drag(40, true); expect((await state()).route).toEqual(before.route);
+    await page.evaluate(() => (window as unknown as { __ops: { dispatch(a: unknown): void } }).__ops.dispatch({ type: 'mapScroll', dx: -9999, dy: 0 }));
+    await drag(60); expect((await state()).viewport.x).toBe(0); await drag(60, false, true); expect((await state()).viewport.x).toBeGreaterThan(0); await drag(-60); expect((await state()).viewport.x).toBeGreaterThan(0);
+    const zoomButton = page.locator('[data-ui="world-zoom-out"]'); await zoomButton.scrollIntoViewIfNeeded();
+    if (input === 'mouse') await zoomButton.click(); else {
+      const box = (await zoomButton.boundingBox())!;
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: box.x + box.width / 2, y: box.y + box.height / 2 }] });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    }
+    const zoomed = await state(), cells = await drag(-30);
+    expect(cells).toBeGreaterThan(0); expect((await state()).viewport.x).toBe(zoomed.viewport.x + cells);
+    const surface = page.locator('.world-scroll'); await surface.scrollIntoViewIfNeeded();
+    const hit = await surface.evaluate(surface => {
+      for (const cell of surface.querySelectorAll<HTMLElement>('.world-cell')) {
+        const box = cell.getBoundingClientRect(), x = box.x + box.width / 2, y = box.y + box.height / 2;
+        if (x > 0 && x < innerWidth && y > 0 && y < innerHeight && cell.contains(document.elementFromPoint(x, y))) return { x, y, at: { x: Number(cell.dataset.x), y: Number(cell.dataset.y) } };
+      }
+      return null;
+    });
+    expect(hit).not.toBeNull();
+    await page.evaluate(() => {
+      const clicks: { trusted: boolean; x: number | null; y: number | null }[] = [];
+      (window as unknown as { __worldPanClicks: typeof clicks }).__worldPanClicks = clicks;
+      document.addEventListener('click', event => {
+        const cell = (event.target as Element | null)?.closest<HTMLElement>('.world-cell');
+        clicks.push({ trusted: event.isTrusted, x: cell ? Number(cell.dataset.x) : null, y: cell ? Number(cell.dataset.y) : null });
+      }, { capture: true, passive: true });
+    });
+    if (input === 'mouse') await page.mouse.click(hit!.x, hit!.y);
+    else {
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchStart', touchPoints: [{ x: hit!.x, y: hit!.y }] });
+      await cdp.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    }
+    await expect.poll(() => page.evaluate(() => (window as unknown as { __worldPanClicks: unknown[] }).__worldPanClicks)).toEqual([{ trusted: true, ...hit!.at }]);
+    expect((await state()).cursor).toEqual(hit!.at); expect((await state()).route).toEqual(before.route);
+  } finally { await context.close(); }
+});
+
+test('手機世界四尺寸：無整頁橫溢、導航縮放可達且地圖有高度', async ({ page }) => {
+  await page.goto('/?seed=3&anim=off#/ops'); await page.locator('[data-action-id="tab:world"]').click();
+  const sizes = [{ width: 360, height: 844 }, { width: 390, height: 844 }, { width: 430, height: 844 }, { width: 844, height: 390 }];
+  for (const size of sizes) {
+    await page.setViewportSize(size);
+    await expect.poll(() => page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth)).toBeLessThanOrEqual(1);
+    const viewport = page.locator('.world-scroll'); await viewport.scrollIntoViewIfNeeded();
+    await expect(viewport).toBeInViewport(); expect((await viewport.boundingBox())!.height).toBeGreaterThanOrEqual(200);
+    await expect(page.locator('.world-cell').first()).toBeVisible();
+    for (const selector of ['[data-action-id="tab:world"]', '[data-ui="world-zoom-in"]', '[data-ui="world-zoom-out"]', '[data-ui="world-zoom-fit"]', '[data-ui="world-mini-toggle"]']) {
+      const button = page.locator(selector); await button.scrollIntoViewIfNeeded();
+      await expect(button).toBeVisible(); await expect(button).toBeInViewport();
+      const box = (await button.boundingBox())!; expect(box.height, `${size.width}/${selector}`).toBeGreaterThanOrEqual(43.9);
+      expect(box.x).toBeGreaterThanOrEqual(-1); expect(box.x + box.width).toBeLessThanOrEqual(size.width + 1);
+      await button.click({ trial: true });
+    }
+    const header = page.locator('[data-ui="ops-header"]'); await header.scrollIntoViewIfNeeded(); await expect(header).toBeInViewport();
+    await expect(header).not.toBeEmpty();
+    if (process.env.MOBILE_SHOTS && (size.width === 390 || size.width === 844)) {
+      await mkdir(process.env.MOBILE_SHOTS, { recursive: true });
+      await page.screenshot({ path: join(process.env.MOBILE_SHOTS, `world-${size.width}x${size.height}.png`), fullPage: true });
+    }
+  }
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.locator('[data-ui="ops-header"]').scrollIntoViewIfNeeded();
+  const facts = await page.locator('.ops-fact b').evaluateAll(nodes => nodes.map(node => {
+    const value = node as HTMLElement, range = document.createRange(); range.selectNodeContents(value);
+    const text = range.getBoundingClientRect();
+    const clipped: string[] = [];
+    for (let parent = value.parentElement; parent; parent = parent.parentElement) {
+      const style = getComputedStyle(parent), box = parent.getBoundingClientRect();
+      const left = box.left + parent.clientLeft, top = box.top + parent.clientTop;
+      if (/(hidden|clip|auto|scroll)/.test(style.overflowX) && (text.left < left - 1 || text.right > left + parent.clientWidth + 1)) clipped.push(`${parent.className}:x`);
+      if (/(hidden|clip|auto|scroll)/.test(style.overflowY) && (text.top < top - 1 || text.bottom > top + parent.clientHeight + 1)) clipped.push(`${parent.className}:y`);
+    }
+    return { text: value.textContent, width: value.clientWidth, scrollWidth: value.scrollWidth, height: value.clientHeight, scrollHeight: value.scrollHeight, clipped };
+  }));
+  expect(facts.length).toBeGreaterThan(0);
+  for (const fact of facts) {
+    expect(fact.text?.trim()).toBeTruthy(); expect(fact.width).toBeGreaterThan(0); expect(fact.height).toBeGreaterThan(0);
+    expect(fact.scrollWidth, fact.text ?? '').toBeLessThanOrEqual(fact.width);
+    expect(fact.scrollHeight, fact.text ?? '').toBeLessThanOrEqual(fact.height + 1);
+    expect(fact.clipped, fact.text ?? '').toEqual([]);
+  }
+  console.info('world-desktop-facts-rects', JSON.stringify(facts));
+  if (process.env.MOBILE_SHOTS) {
+    await page.evaluate(() => scrollTo(0, 0));
+    await page.screenshot({ path: join(process.env.MOBILE_SHOTS, 'world-1280x800.png'), fullPage: true });
+  }
 });

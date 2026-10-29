@@ -1,0 +1,1563 @@
+TAP version 13
+# Subtest: 最近6筆去重移首；最愛8筆滿額不擅自取代，取消釘選不改最近
+ok 1 - 最近6筆去重移首；最愛8筆滿額不擅自取代，取消釘選不改最近
+  ---
+  duration_ms: 4.926493
+  type: 'test'
+  ...
+# Subtest: 持久化隔離scope，重新掛載保留；只寫版本與id陣列
+ok 2 - 持久化隔離scope，重新掛載保留；只寫版本與id陣列
+  ---
+  duration_ms: 1.545472
+  type: 'test'
+  ...
+# Subtest: 惡意格式、錯誤版本與危險操作不進偏好
+ok 3 - 惡意格式、錯誤版本與危險操作不進偏好
+  ---
+  duration_ms: 1.682103
+  type: 'test'
+  ...
+# Subtest: storage讀寫及property getter拋錯仍能操作並通知；state不可外改
+ok 4 - storage讀寫及property getter拋錯仍能操作並通知；state不可外改
+  ---
+  duration_ms: 0.894776
+  type: 'test'
+  ...
+# Subtest: 空字串與損毀來源在record後修復，刷新保留最近與釘選
+ok 5 - 空字串與損毀來源在record後修復，刷新保留最近與釘選
+  ---
+  duration_ms: 2.468903
+  type: 'test'
+  ...
+# Subtest: 戰鬥allowlist核對action、end仍走endTurn；busy/confirm/選部位不能啟用
+ok 6 - 戰鬥allowlist核對action、end仍走endTurn；busy/confirm/選部位不能啟用
+  ---
+  duration_ms: 8.978004
+  type: 'test'
+  ...
+# Subtest: 營運只取當前分頁導航／安全世界動作，prompt禁用
+ok 7 - 營運只取當前分頁導航／安全世界動作，prompt禁用
+  ---
+  duration_ms: 1.385835
+  type: 'test'
+  ...
+# Subtest: 釘選不執行或記最近；live catalog重解、缺席保留取消、額滿可讀
+ok 8 - 釘選不執行或記最近；live catalog重解、缺席保留取消、額滿可讀
+  ---
+  duration_ms: 39.284793
+  type: 'test'
+  ...
+# Subtest: GridView：可視格數、dirty 更新與同尺寸捲動
+ok 9 - GridView：可視格數、dirty 更新與同尺寸捲動
+  ---
+  duration_ms: 16.209787
+  type: 'test'
+  ...
+# Subtest: 點格傳出絕對座標的 clickCell
+ok 10 - 點格傳出絕對座標的 clickCell
+  ---
+  duration_ms: 131.413937
+  type: 'test'
+  ...
+# Subtest: 點指令按鈕傳出對應 action
+ok 11 - 點指令按鈕傳出對應 action
+  ---
+  duration_ms: 124.235245
+  type: 'test'
+  ...
+# Subtest: 按 e 呼叫 onKey，回 true 時阻止預設行為
+ok 12 - 按 e 呼叫 onKey，回 true 時阻止預設行為
+  ---
+  duration_ms: 69.488132
+  type: 'test'
+  ...
+# Subtest: input 有焦點時不攔截快捷鍵
+ok 13 - input 有焦點時不攔截快捷鍵
+  ---
+  duration_ms: 102.837673
+  type: 'test'
+  ...
+# Subtest: 滾輪傳出 scroll，Shift 改為水平捲動
+ok 14 - 滾輪傳出 scroll，Shift 改為水平捲動
+  ---
+  duration_ms: 124.410584
+  type: 'test'
+  ...
+# Subtest: 鍵盤快捷鍵經 keymap → controller → DOM：M 顯示可達格、Esc 取消、E（確認）結束回合、K 跳過演出
+ok 15 - 鍵盤快捷鍵經 keymap → controller → DOM：M 顯示可達格、Esc 取消、E（確認）結束回合、K 跳過演出
+  ---
+  duration_ms: 957.171681
+  type: 'test'
+  ...
+# Subtest: 閾值以起點距離判斷；微抖輕點保留，拖後吞click/dblclick但下一次輕點恢復
+ok 16 - 閾值以起點距離判斷；微抖輕點保留，拖後吞click/dblclick但下一次輕點恢復
+  ---
+  duration_ms: 24.506782
+  type: 'test'
+  ...
+# Subtest: cancel、多指、未capture離開與外部取消均清理，控制不啟動手勢
+ok 17 - cancel、多指、未capture離開與外部取消均清理，控制不啟動手勢
+  ---
+  duration_ms: 4.604658
+  type: 'test'
+  ...
+# Subtest: 邊界clamp後同一手勢立即反向，不累積越界距離
+ok 18 - 邊界clamp後同一手勢立即反向，不累積越界距離
+  ---
+  duration_ms: 2.688247
+  type: 'test'
+  ...
+# Subtest: 格數等於 viewport 面積且座標為絕對座標
+ok 19 - 格數等於 viewport 面積且座標為絕對座標
+  ---
+  duration_ms: 120.682312
+  type: 'test'
+  ...
+# Subtest: 格子顯示地形色與單位徽章 label、side class
+ok 20 - 格子顯示地形色與單位徽章 label、side class
+  ---
+  duration_ms: 89.053069
+  type: 'test'
+  ...
+# Subtest: dirty 只更新指定格並重用其他格與子節點
+ok 21 - dirty 只更新指定格並重用其他格與子節點
+  ---
+  duration_ms: 65.039924
+  type: 'test'
+  ...
+# Subtest: viewport 移動後重用格節點並更新絕對座標
+ok 22 - viewport 移動後重用格節點並更新絕對座標
+  ---
+  duration_ms: 161.362023
+  type: 'test'
+  ...
+# Subtest: 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+ok 23 - 指令顯示 data-cmd、快捷鍵、disabled 與含 reason 的 tooltip
+  ---
+  duration_ms: 54.900226
+  type: 'test'
+  ...
+# Subtest: 獨立部位面板未知 hp 顯示問號
+ok 24 - 獨立部位面板未知 hp 顯示問號
+  ---
+  duration_ms: 63.109978
+  type: 'test'
+  ...
+# Subtest: 戰鬥記錄行數與 kind 對應快照且新行在下
+ok 25 - 戰鬥記錄行數與 kind 對應快照且新行在下
+  ---
+  duration_ms: 57.539343
+  type: 'test'
+  ...
+# Subtest: 結算面板依 outcome 顯示結語
+ok 26 - 結算面板依 outcome 顯示結語
+  ---
+  duration_ms: 79.066424
+  type: 'test'
+  ...
+# Subtest: showHelp 顯示 keyHints 表與 kbd
+ok 27 - showHelp 顯示 keyHints 表與 kbd
+  ---
+  duration_ms: 157.512081
+  type: 'test'
+  ...
+# Subtest: B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+ok 28 - B02／B04／B06：單位卡與格子呈現 VM 提供的中文資料
+  ---
+  duration_ms: 102.679205
+  type: 'test'
+  ...
+# Subtest: K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+ok 29 - K2：在場棋盤標記與查看卡說明、潮懼光環及灰鈕原因
+  ---
+  duration_ms: 112.914152
+  type: 'test'
+  ...
+# Subtest: 地物HP與各類回收標記有可讀提示
+ok 30 - 地物HP與各類回收標記有可讀提示
+  ---
+  duration_ms: 115.693205
+  type: 'test'
+  ...
+# Subtest: 部位選單顯示命中率、防護、功能、後果與幾何因素
+ok 31 - 部位選單顯示命中率、防護、功能、後果與幾何因素
+  ---
+  duration_ms: 143.67824
+  type: 'test'
+  ...
+# Subtest: 我方單位面板清楚顯本回合移動剩餘、上限與已花
+ok 32 - 我方單位面板清楚顯本回合移動剩餘、上限與已花
+  ---
+  duration_ms: 131.57028
+  type: 'test'
+  ...
+# Subtest: 結構未知格顯空心標記，血量獨立且部位區常駐
+ok 33 - 結構未知格顯空心標記，血量獨立且部位區常駐
+  ---
+  duration_ms: 139.382484
+  type: 'test'
+  ...
+# Subtest: 操作者摘要預設收合原因與非AP人物池，主要資源和AP常駐
+ok 34 - 操作者摘要預設收合原因與非AP人物池，主要資源和AP常駐
+  ---
+  duration_ms: 104.175601
+  type: 'test'
+  ...
+# Subtest: 已知血量25%即使結構100%也顯瀕危，無blood不造流血提示
+ok 35 - 已知血量25%即使結構100%也顯瀕危，無blood不造流血提示
+  ---
+  duration_ms: 298.583563
+  type: 'test'
+  ...
+# Subtest: shell：營運瀏覽器依賴圖不帶入 Node CLI
+ok 36 - shell：營運瀏覽器依賴圖不帶入 Node CLI
+  ---
+  duration_ms: 23.180536
+  type: 'test'
+  ...
+# Subtest: shell：懶頁載入去重，失敗可重試，成功後保留頁面
+ok 37 - shell：懶頁載入去重，失敗可重試，成功後保留頁面
+  ---
+  duration_ms: 21.067415
+  type: 'test'
+  ...
+# Subtest: shell：三個導航與頁面，route 切換 hidden 與 aria-current
+ok 38 - shell：三個導航與頁面，route 切換 hidden 與 aria-current
+  ---
+  duration_ms: 5.890179
+  type: 'test'
+  ...
+# Subtest: shell：隱藏戰鬥頁時 mountBattle 不接收快捷鍵
+ok 39 - shell：隱藏戰鬥頁時 mountBattle 不接收快捷鍵
+  ---
+  duration_ms: 133.242582
+  type: 'test'
+  ...
+# Subtest: shell：百科 input 焦點時 t 不導航，F1 回戰鬥
+ok 40 - shell：百科 input 焦點時 t 不導航，F1 回戰鬥
+  ---
+  duration_ms: 4.154172
+  type: 'test'
+  ...
+# Subtest: 指令 enabled 切換重用同 id 節點，停用提示包含原因
+ok 41 - 指令 enabled 切換重用同 id 節點，停用提示包含原因
+  ---
+  duration_ms: 204.61264
+  type: 'test'
+  ...
+# Subtest: 行動、選取、範圍與殘影使用獨立 class
+ok 42 - 行動、選取、範圍與殘影使用獨立 class
+  ---
+  duration_ms: 160.842578
+  type: 'test'
+  ...
+# Subtest: 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+ok 43 - 貼合放大小圖、大圖最低 24；手動每步 1.25 並夾 12–96
+  ---
+  duration_ms: 0.312294
+  type: 'test'
+  ...
+# Subtest: 縮放後錨格留在可視區內並維持相對位置
+ok 44 - 縮放後錨格留在可視區內並維持相對位置
+  ---
+  duration_ms: 0.840125
+  type: 'test'
+  ...
+# Subtest: Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+ok 45 - Ctrl 滾輪改格大小並回報設定，一般滾輪仍捲動
+  ---
+  duration_ms: 91.814145
+  type: 'test'
+  ...
+# Subtest: 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+ok 46 - 動畫設定循環 on→fast→off→on 並更新按鈕與回呼
+  ---
+  duration_ms: 72.182718
+  type: 'test'
+  ...
+# Subtest: quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+ok 47 - quickMenu 顯示指令、kbd；null 或格在視野外時隱藏
+  ---
+  duration_ms: 255.542386
+  type: 'test'
+  ...
+# Subtest: confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+ok 48 - confirm 顯示文字，確定與取消分別送 endTurn 與 cancel
+  ---
+  duration_ms: 138.50147
+  type: 'test'
+  ...
+# Subtest: part 模式顯示部位選單，數字 2 按鈕送 pickPart
+ok 49 - part 模式顯示部位選單，數字 2 按鈕送 pickPart
+  ---
+  duration_ms: 93.084402
+  type: 'test'
+  ...
+# Subtest: fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+ok 50 - fx path 與 float 進疊層，同 id 不重播，epoch 改變與 skip 清空計時器
+  ---
+  duration_ms: 355.96108
+  type: 'test'
+  ...
+# Subtest: 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+ok 51 - 動畫關閉只畫 path 與 damage／miss float，不畫攻擊與狀態
+  ---
+  duration_ms: 113.541735
+  type: 'test'
+  ...
+# Subtest: 有 at 的 log 行可點並送 focusLog seq
+ok 52 - 有 at 的 log 行可點並送 focusLog seq
+  ---
+  duration_ms: 100.765133
+  type: 'test'
+  ...
+# Subtest: 格內裝飾在按下與放開間hover重繪，仍只派一個正常格子click
+ok 53 - 格內裝飾在按下與放開間hover重繪，仍只派一個正常格子click
+  ---
+  duration_ms: 188.213827
+  type: 'test'
+  ...
+# Subtest: 首頁有分類卡片、總數及 lore 缺資料提示
+ok 54 - 首頁有分類卡片、總數及 lore 缺資料提示
+  ---
+  duration_ms: 22.165219
+  type: 'test'
+  ...
+# Subtest: 側欄分類導航及抽屜切換，修飾鍵保留預設行為
+ok 55 - 側欄分類導航及抽屜切換，修飾鍵保留預設行為
+  ---
+  duration_ms: 9.876321
+  type: 'test'
+  ...
+# Subtest: 分類清單只畫現有面向並傳遞排序與篩選 query
+ok 56 - 分類清單只畫現有面向並傳遞排序與篩選 query
+  ---
+  duration_ms: 7.955195
+  type: 'test'
+  ...
+# Subtest: 搜尋 debounce 120ms replace 導航，重畫保留輸入節點及焦點
+ok 57 - 搜尋 debounce 120ms replace 導航，重畫保留輸入節點及焦點
+  ---
+  duration_ms: 11.812083
+  type: 'test'
+  ...
+# Subtest: 隱藏時鍵盤不處理，說明表切換且輸入欄 Escape 失焦
+ok 58 - 隱藏時鍵盤不處理，說明表切換且輸入欄 Escape 失焦
+  ---
+  duration_ms: 7.120283
+  type: 'test'
+  ...
+# Subtest: 靜態限制與 import 邊界，destroy 清空並解除 keydown
+ok 59 - 靜態限制與 import 邊界，destroy 清空並解除 keydown
+  ---
+  duration_ms: 5.168639
+  type: 'test'
+  ...
+# Subtest: 側欄分類件數放在獨立 wiki-count 徽章，不用括號件數
+ok 60 - 側欄分類件數放在獨立 wiki-count 徽章，不用括號件數
+  ---
+  duration_ms: 6.165843
+  type: 'test'
+  ...
+# Subtest: 詳情繪出所有資料卡、引用、壞引用與分組反向引用
+ok 61 - 詳情繪出所有資料卡、引用、壞引用與分組反向引用
+  ---
+  duration_ms: 35.550768
+  type: 'test'
+  ...
+# Subtest: markdown 各種結構、巢狀清單及對齊正確，標籤只呈現文字
+ok 62 - markdown 各種結構、巢狀清單及對齊正確，標籤只呈現文字
+  ---
+  duration_ms: 9.370653
+  type: 'test'
+  ...
+# Subtest: 年表按時代分段，勢力及時代篩選保留 query
+ok 63 - 年表按時代分段，勢力及時代篩選保留 query
+  ---
+  duration_ms: 11.302053
+  type: 'test'
+  ...
+# Subtest: U02 列表、搜尋與年表用相同徽章呈現傳聞／可能發生，公開列不加徽章
+ok 64 - U02 列表、搜尋與年表用相同徽章呈現傳聞／可能發生，公開列不加徽章
+  ---
+  duration_ms: 11.96851
+  type: 'test'
+  ...
+# Subtest: W04／W05 列表呈現中文欄值，機型原 ID 作為次要文字
+ok 65 - W04／W05 列表呈現中文欄值，機型原 ID 作為次要文字
+  ---
+  duration_ms: 7.900977
+  type: 'test'
+  ...
+# Subtest: 勢力矩陣格子對應 cells，關係 class 與來源正確
+ok 66 - 勢力矩陣格子對應 cells，關係 class 與來源正確
+  ---
+  duration_ms: 13.378348
+  type: 'test'
+  ...
+# Subtest: kv 值與巢狀物件繪成 dl.wiki-kv，表格物件不含 ul
+ok 67 - kv 值與巢狀物件繪成 dl.wiki-kv，表格物件不含 ul
+  ---
+  duration_ms: 6.742525
+  type: 'test'
+  ...
+# Subtest: 短 list 以頓號行內分隔，九項 list 使用 ul
+ok 68 - 短 list 以頓號行內分隔，九項 list 使用 ul
+  ---
+  duration_ms: 9.016369
+  type: 'test'
+  ...
+# Subtest: 關係格依 tone 上色、顯示 label 與 note，清單涵蓋有關係勢力
+ok 69 - 關係格依 tone 上色、顯示 label 與 note，清單涵蓋有關係勢力
+  ---
+  duration_ms: 8.209914
+  type: 'test'
+  ...
+# Subtest: 全圖contain留白不屬於世界座標：600×450圖在600×240盒的25%位置為220
+ok 70 - 全圖contain留白不屬於世界座標：600×450圖在600×240盒的25%位置為220
+  ---
+  duration_ms: 3.78289
+  type: 'test'
+  ...
+# Subtest: 全圖真click(220,120)投影為(150,225)，留白不導航
+ok 71 - 全圖真click(220,120)投影為(150,225)，留白不導航
+  ---
+  duration_ms: 1091.79771
+  type: 'test'
+  ...
+# Subtest: 根元素與常駐面板：頂列、分頁、主區、記錄五色
+ok 72 - 根元素與常駐面板：頂列、分頁、主區、記錄五色
+  ---
+  duration_ms: 66.932851
+  type: 'test'
+  ...
+# Subtest: 八個分頁各畫出主區，且只顯示當前分頁
+ok 73 - 八個分頁各畫出主區，且只顯示當前分頁
+  ---
+  duration_ms: 84.291523
+  type: 'test'
+  ...
+# Subtest: 按鈕標 kbd 與 tooltip；disabled 按鈕 tooltip 末行寫 reason
+ok 74 - 按鈕標 kbd 與 tooltip；disabled 按鈕 tooltip 末行寫 reason
+  ---
+  duration_ms: 21.824999
+  type: 'test'
+  ...
+# Subtest: 點按鈕送出該按鈕的 action；disabled 不送
+ok 75 - 點按鈕送出該按鈕的 action；disabled 不送
+  ---
+  duration_ms: 16.751149
+  type: 'test'
+  ...
+# Subtest: 世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail
+ok 76 - 世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail
+  ---
+  duration_ms: 1497.764276
+  type: 'test'
+  ...
+# Subtest: 列表選取：契約、機甲、名冊
+ok 77 - 列表選取：契約、機甲、名冊
+  ---
+  duration_ms: 19.070971
+  type: 'test'
+  ...
+# Subtest: prompt 疊層：選項標鍵、disabled 有 reason、點選送 choose
+ok 78 - prompt 疊層：選項標鍵、disabled 有 reason、點選送 choose
+  ---
+  duration_ms: 18.139594
+  type: 'test'
+  ...
+# Subtest: naming：輸入框＋送出鈕送 nameSubmit；Enter 也送
+ok 79 - naming：輸入框＋送出鈕送 nameSubmit；Enter 也送
+  ---
+  duration_ms: 20.80044
+  type: 'test'
+  ...
+# Subtest: 編成疊層：勾選、座位下拉、錯誤訊息、按鈕
+ok 80 - 編成疊層：勾選、座位下拉、錯誤訊息、按鈕
+  ---
+  duration_ms: 19.957672
+  type: 'test'
+  ...
+# Subtest: 戰果報告與說明疊層；提示列
+ok 81 - 戰果報告與說明疊層；提示列
+  ---
+  duration_ms: 15.761056
+  type: 'test'
+  ...
+# Subtest: 鍵盤：交給 onKey；setActive(false) 時不收且隱藏；select 焦點只放 Esc
+ok 82 - 鍵盤：交給 onKey；setActive(false) 時不收且隱藏；select 焦點只放 Esc
+  ---
+  duration_ms: 15.033261
+  type: 'test'
+  ...
+# Subtest: U01 蝕曆標題與頂列同為顯示月序，來源 month 維持零起算
+ok 83 - U01 蝕曆標題與頂列同為顯示月序，來源 month 維持零起算
+  ---
+  duration_ms: 40.532726
+  type: 'test'
+  ...
+# Subtest: R01 市場常駐聲望門檻、達標數字與購買灰鈕原因
+ok 84 - R01 市場常駐聲望門檻、達標數字與購買灰鈕原因
+  ---
+  duration_ms: 20.997574
+  type: 'test'
+  ...
+# Subtest: R03／R04 頂列潮候潮級與天象短標；蝕曆有說明及可導航百科連結
+ok 85 - R03／R04 頂列潮候潮級與天象短標；蝕曆有說明及可導航百科連結
+  ---
+  duration_ms: 13.071176
+  type: 'test'
+  ...
+# Subtest: R02／R05 蝕曆區分漲潮與下一次大潮，含今天與期限內無
+ok 86 - R02／R05 蝕曆區分漲潮與下一次大潮，含今天與期限內無
+  ---
+  duration_ms: 64.665474
+  type: 'test'
+  ...
+# Subtest: K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰鈕原因可見
+ok 87 - K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰鈕原因可見
+  ---
+  duration_ms: 66.482118
+  type: 'test'
+  ...
+# Subtest: 快捷安全解析當前snapshot；prompt禁用、釘選不dispatch
+ok 88 - 快捷安全解析當前snapshot；prompt禁用、釘選不dispatch
+  ---
+  duration_ms: 17.53798
+  type: 'test'
+  ...
+# Subtest: 快照與快捷鍵共用計算，回傳副本隔離，所有dispatch使快取失效
+ok 89 - 快照與快捷鍵共用計算，回傳副本隔離，所有dispatch使快取失效
+  ---
+  duration_ms: 1068.381491
+  type: 'test'
+  ...
+# Subtest: 編隊 AI 駕駛切換可開關，清空座位後仍可自駕
+ok 90 - 編隊 AI 駕駛切換可開關，清空座位後仍可自駕
+  ---
+  duration_ms: 436.504563
+  type: 'test'
+  ...
+# Subtest: seed 3 完整 command 出戰、spectate skip、兩段回寫、戰果與重播
+ok 91 - seed 3 完整 command 出戰、spectate skip、兩段回寫、戰果與重播
+  ---
+  duration_ms: 18347.390178
+  type: 'test'
+  ...
+# Subtest: seed 3 完整 auto 出戰、戰果與 serialize/fromSave 雜湊一致
+ok 92 - seed 3 完整 auto 出戰、戰果與 serialize/fromSave 雜湊一致
+  ---
+  duration_ms: 17102.524386
+  type: 'test'
+  ...
+# Subtest: 快照唯讀、鍵盤 disabled、編成取消與錯誤原因
+ok 93 - 快照唯讀、鍵盤 disabled、編成取消與錯誤原因
+  ---
+  duration_ms: 8490.886675
+  type: 'test'
+  ...
+# Subtest: ISS-042：spectate 互動出戰回寫含完整事件，計功／耗材與 auto 出戰一致
+ok 94 - ISS-042：spectate 互動出戰回寫含完整事件，計功／耗材與 auto 出戰一致
+  ---
+  duration_ms: 42843.543882
+  type: 'test'
+  ...
+# Subtest: R01 市場聲望原因與常駐門檻取自交易查詢；可見商品不擴張
+ok 95 - R01 市場聲望原因與常駐門檻取自交易查詢；可見商品不擴張
+  ---
+  duration_ms: 1696.33323
+  type: 'test'
+  ...
+# Subtest: R02 朔望 spring 與喚醒限制統一稱漲潮
+ok 96 - R02 朔望 spring 與喚醒限制統一稱漲潮
+  ---
+  duration_ms: 0.215445
+  type: 'test'
+  ...
+# Subtest: R03 頂列與逐日潮候／潮級含天象修正，區分漲潮、大潮與連珠潮
+ok 97 - R03 頂列與逐日潮候／潮級含天象修正，區分漲潮、大潮與連珠潮
+  ---
+  duration_ms: 1330.422642
+  type: 'test'
+  ...
+# Subtest: R04 天象短標、說明、潮級修正與百科連結源自現有定義
+ok 98 - R04 天象短標、說明、潮級修正與百科連結源自現有定義
+  ---
+  duration_ms: 1011.698714
+  type: 'test'
+  ...
+# Subtest: R05 真正大潮預報找 day70、包含今日、區別朔望並有 800 日上限
+ok 99 - R05 真正大潮預報找 day70、包含今日、區別朔望並有 800 日上限
+  ---
+  duration_ms: 935.753073
+  type: 'test'
+  ...
+# Subtest: K1 艦橋王跡三態原文與最後目擊日、守牆邀請與灰按鈕原因
+ok 100 - K1 艦橋王跡三態原文與最後目擊日、守牆邀請與灰按鈕原因
+  ---
+  duration_ms: 1268.828355
+  type: 'test'
+  ...
+# Subtest: K1 營運共用戰鬥 controller 迎戰須確認；灰鈕有原因，取消不迎戰
+ok 101 - K1 營運共用戰鬥 controller 迎戰須確認；灰鈕有原因，取消不迎戰
+  ---
+  duration_ms: 802.814839
+  type: 'test'
+  ...
+# Subtest: 鍵表同 context 無重複且能擋衝突；世界圖決定性、留邊及最短距離
+ok 102 - 鍵表同 context 無重複且能擋衝突；世界圖決定性、留邊及最短距離
+  ---
+  duration_ms: 19.508641
+  type: 'test'
+  ...
+# Subtest: 區域標籤只取最大四連通片內實格，不把凹形中心或孤島當錨點
+ok 103 - 區域標籤只取最大四連通片內實格，不把凹形中心或孤島當錨點
+  ---
+  duration_ms: 7.03088
+  type: 'test'
+  ...
+# Subtest: 區域錨點不隨平移縮放改選，未知anchor不因關閉迷霧洩露
+ok 104 - 區域錨點不隨平移縮放改選，未知anchor不因關閉迷霧洩露
+  ---
+  duration_ms: 651.476585
+  type: 'test'
+  ...
+# Subtest: 世界游標到地點 Enter 航向 id；空格 Enter 航向座標
+ok 105 - 世界游標到地點 Enter 航向 id；空格 Enter 航向座標
+  ---
+  duration_ms: 1092.873542
+  type: 'test'
+  ...
+# Subtest: 世界 pathPreview 天數與 findPath 一致；空 blight／actors 可畫
+ok 106 - 世界 pathPreview 天數與 findPath 一致；空 blight／actors 可畫
+  ---
+  duration_ms: 276.023644
+  type: 'test'
+  ...
+# Subtest: boundary 自測：rules／ai 的 import、import type、export from 會被擋，sim 放行
+ok 107 - boundary 自測：rules／ai 的 import、import type、export from 會被擋，sim 放行
+  ---
+  duration_ms: 3.735137
+  type: 'test'
+  ...
+# Subtest: boundary：src/ui-adapter/**/*.ts 不 import src/rules、src/ai
+ok 108 - boundary：src/ui-adapter/**/*.ts 不 import src/rules、src/ai
+  ---
+  duration_ms: 17.035394
+  type: 'test'
+  ...
+# Subtest: controller：移動模式高亮可達格，點格移動
+ok 109 - controller：移動模式高亮可達格，點格移動
+  ---
+  duration_ms: 157.003967
+  type: 'test'
+  ...
+# Subtest: controller：能力目標模式點合法目標產生命中或未命中文字
+ok 110 - controller：能力目標模式點合法目標產生命中或未命中文字
+  ---
+  duration_ms: 82.870964
+  type: 'test'
+  ...
+# Subtest: controller：拒絕指令顯示原因並保留模式
+ok 111 - controller：拒絕指令顯示原因並保留模式
+  ---
+  duration_ms: 33.180018
+  type: 'test'
+  ...
+# Subtest: controller：E 與 endTurn 結果相同
+ok 112 - controller：E 與 endTurn 結果相同
+  ---
+  duration_ms: 37.632246
+  type: 'test'
+  ...
+# Subtest: controller：游標移出視窗自動捲動並標全重畫
+ok 113 - controller：游標移出視窗自動捲動並標全重畫
+  ---
+  duration_ms: 99.687938
+  type: 'test'
+  ...
+# Subtest: controller：只靠 dispatch 玩到結局或三十輪
+ok 114 - controller：只靠 dispatch 玩到結局或三十輪
+  ---
+  duration_ms: 1711.223355
+  type: 'test'
+  ...
+# Subtest: controller：一般攻擊可點地物，回收拒絕保留狀態
+ok 115 - controller：一般攻擊可點地物，回收拒絕保留狀態
+  ---
+  duration_ms: 22.995303
+  type: 'test'
+  ...
+# Subtest: controller：物件收益與地物HP可查看，遠距回收清楚禁用
+ok 116 - controller：物件收益與地物HP可查看，遠距回收清楚禁用
+  ---
+  duration_ms: 15.132108
+  type: 'test'
+  ...
+# Subtest: controller：補給滿池拒絕不扣AP，成功回收後格標記及按鈕消失
+ok 117 - controller：補給滿池拒絕不扣AP，成功回收後格標記及按鈕消失
+  ---
+  duration_ms: 23.103016
+  type: 'test'
+  ...
+# Subtest: controller：不可撤離情境標題明示正面交戰，一般情境保留原名
+ok 118 - controller：不可撤離情境標題明示正面交戰，一般情境保留原名
+  ---
+  duration_ms: 21.209337
+  type: 'test'
+  ...
+# Subtest: controller：普通與部位命中率沿原預覽，防護遵循已知快照
+ok 119 - controller：普通與部位命中率沿原預覽，防護遵循已知快照
+  ---
+  duration_ms: 55.504873
+  type: 'test'
+  ...
+# Subtest: 回收戰場支援彈正常選能力再點牆一次即扣AP並拆牆，無第二確認
+ok 120 - 回收戰場支援彈正常選能力再點牆一次即扣AP並拆牆，無第二確認
+  ---
+  duration_ms: 30.407756
+  type: 'test'
+  ...
+# Subtest: 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+ok 121 - 回饋 1：stepAi 與 advanceAi 同 seed 同指令逐筆一致
+  ---
+  duration_ms: 608.574951
+  type: 'test'
+  ...
+# Subtest: 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+ok 122 - 回饋 2：autoAdvance false 保留 AI busy，逐步推進至玩家
+  ---
+  duration_ms: 160.112136
+  type: 'test'
+  ...
+# Subtest: 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+ok 123 - 回饋 3：step 先聚焦進 viewport，第二次才執行 AI
+  ---
+  duration_ms: 107.780164
+  type: 'test'
+  ...
+# Subtest: 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+ok 124 - 回饋 4：skip 與 busy cancel 清除 busy／fx 並增加 epoch
+  ---
+  duration_ms: 248.89318
+  type: 'test'
+  ...
+# Subtest: 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+ok 125 - 回饋 5：移動合成單一路徑與單行記錄，記錄可聚焦
+  ---
+  duration_ms: 117.743684
+  type: 'test'
+  ...
+# Subtest: 回饋 6：攻擊線與命中部位傷害／未命中浮字
+ok 126 - 回饋 6：攻擊線與命中部位傷害／未命中浮字
+  ---
+  duration_ms: 135.971155
+  type: 'test'
+  ...
+# Subtest: 回饋 7：指令成功保留選取與下一步待機選單
+ok 127 - 回饋 7：指令成功保留選取與下一步待機選單
+  ---
+  duration_ms: 14.552523
+  type: 'test'
+  ...
+# Subtest: 回饋 8：idle 可達格高亮且直接移動
+ok 128 - 回饋 8：idle 可達格高亮且直接移動
+  ---
+  duration_ms: 18.173508
+  type: 'test'
+  ...
+# Subtest: 回饋 9：移動與能力用盡時自動待機並提示
+ok 129 - 回饋 9：移動與能力用盡時自動待機並提示
+  ---
+  duration_ms: 13.824527
+  type: 'test'
+  ...
+# Subtest: 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+ok 130 - 回饋 10：結束回合先確認台數，其他操作清除，確認後本輪我方全待機
+  ---
+  duration_ms: 210.941572
+  type: 'test'
+  ...
+# Subtest: 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+ok 131 - 回饋 11：固定指令恆在；敵方回合原因與結束回合仍可用
+  ---
+  duration_ms: 178.396511
+  type: 'test'
+  ...
+# Subtest: 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+ok 132 - 回饋 12：可見敵方即時 hp，離開視野保留快照與殘影
+  ---
+  duration_ms: 7.892959
+  type: 'test'
+  ...
+# Subtest: 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+ok 133 - 回饋 13：瞄準部位與 part 目標可選取，取消回 target，數字鍵送出部位
+  ---
+  duration_ms: 333.908296
+  type: 'test'
+  ...
+# Subtest: 回饋 14：新快捷鍵、加號與層種類中文名
+ok 134 - 回饋 14：新快捷鍵、加號與層種類中文名
+  ---
+  duration_ms: 1.142018
+  type: 'test'
+  ...
+# Subtest: keymap：預設鍵位合法
+ok 135 - keymap：預設鍵位合法
+  ---
+  duration_ms: 8.932286
+  type: 'test'
+  ...
+# Subtest: keymap：修飾鍵順序固定、字母小寫
+ok 136 - keymap：修飾鍵順序固定、字母小寫
+  ---
+  duration_ms: 0.320911
+  type: 'test'
+  ...
+# Subtest: keymap：e／1／Shift+ArrowUp／Escape 解析操作
+ok 137 - keymap：e／1／Shift+ArrowUp／Escape 解析操作
+  ---
+  duration_ms: 0.489198
+  type: 'test'
+  ...
+# Subtest: keymap：未綁定鍵回 null
+ok 138 - keymap：未綁定鍵回 null
+  ---
+  duration_ms: 0.169554
+  type: 'test'
+  ...
+# Subtest: keymap：重複鍵與未知操作被攔下
+ok 139 - keymap：重複鍵與未知操作被攔下
+  ---
+  duration_ms: 0.397381
+  type: 'test'
+  ...
+# Subtest: keymap：結束回合鍵標為 E
+ok 140 - keymap：結束回合鍵標為 E
+  ---
+  duration_ms: 0.338879
+  type: 'test'
+  ...
+# Subtest: parseHash：契約所有路由、空 hash 與未知頁面
+ok 141 - parseHash：契約所有路由、空 hash 與未知頁面
+  ---
+  duration_ms: 4.451183
+  type: 'test'
+  ...
+# Subtest: formatRoute：正規形式往返、key 編碼、分類 sort／desc／facet
+ok 142 - formatRoute：正規形式往返、key 編碼、分類 sort／desc／facet
+  ---
+  duration_ms: 1.563133
+  type: 'test'
+  ...
+# Subtest: wikiHref 與 formatRoute 一致，中文與空白搜尋可往返
+ok 143 - wikiHref 與 formatRoute 一致，中文與空白搜尋可往返
+  ---
+  duration_ms: 0.887834
+  type: 'test'
+  ...
+# Subtest: 戰鬥 keymap：F1／Shift+W 導航，W 待機，navigate 不改 snapshot
+ok 144 - 戰鬥 keymap：F1／Shift+W 導航，W 待機，navigate 不改 snapshot
+  ---
+  duration_ms: 693.644431
+  type: 'test'
+  ...
+# Subtest: 百科 keymap：無重複、action 全認得、指定按鍵與提示列數
+ok 145 - 百科 keymap：無重複、action 全認得、指定按鍵與提示列數
+  ---
+  duration_ms: 0.995318
+  type: 'test'
+  ...
+# Subtest: session：建立後輪到玩家或已分勝負
+ok 146 - session：建立後輪到玩家或已分勝負
+  ---
+  duration_ms: 16.115864
+  type: 'test'
+  ...
+# Subtest: session：玩家結束回合後 AI 跑到玩家
+ok 147 - session：玩家結束回合後 AI 跑到玩家
+  ---
+  duration_ms: 160.51469
+  type: 'test'
+  ...
+# Subtest: session：非玩家回合拒絕 submit
+ok 148 - session：非玩家回合拒絕 submit
+  ---
+  duration_ms: 3.852462
+  type: 'test'
+  ...
+# Subtest: session：相同 seed 與指令的 hash 一致
+ok 149 - session：相同 seed 與指令的 hash 一致
+  ---
+  duration_ms: 298.528531
+  type: 'test'
+  ...
+# Subtest: session：全部成功指令可重播得到相同 hash
+ok 150 - session：全部成功指令可重播得到相同 hash
+  ---
+  duration_ms: 134.598158
+  type: 'test'
+  ...
+# Subtest: session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與指令等於 runBattle
+ok 151 - session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與指令等於 runBattle
+  ---
+  duration_ms: 9846.960166
+  type: 'test'
+  ...
+# Subtest: controllerForScenario：spectate 選項建出全 AI controller，step 後有輸出
+ok 152 - controllerForScenario：spectate 選項建出全 AI controller，step 後有輸出
+  ---
+  duration_ms: 163.699039
+  type: 'test'
+  ...
+# Subtest: text：指定十三種事件各產生中文
+ok 153 - text：指定十三種事件各產生中文
+  ---
+  duration_ms: 5.94699
+  type: 'test'
+  ...
+# Subtest: text：人物、機體、能力、部位、效果均引用內容名稱
+ok 154 - text：人物、機體、能力、部位、效果均引用內容名稱
+  ---
+  duration_ms: 0.586216
+  type: 'test'
+  ...
+# Subtest: text：真防禦顯示承傷部位與剩次，不誤稱未命中
+ok 155 - text：真防禦顯示承傷部位與剩次，不誤稱未命中
+  ---
+  duration_ms: 0.594362
+  type: 'test'
+  ...
+# Subtest: text：投石與回收引用內容名稱，分辨失血、生體死亡及機械擊毀
+ok 156 - text：投石與回收引用內容名稱，分辨失血、生體死亡及機械擊毀
+  ---
+  duration_ms: 0.946404
+  type: 'test'
+  ...
+# Subtest: viewmodel：viewport 夾在一般與 160×160 地圖內
+ok 157 - viewmodel：viewport 夾在一般與 160×160 地圖內
+  ---
+  duration_ms: 128.133491
+  type: 'test'
+  ...
+# Subtest: viewmodel：cell 地形取自內容包
+ok 158 - viewmodel：cell 地形取自內容包
+  ---
+  duration_ms: 11.303415
+  type: 'test'
+  ...
+# Subtest: viewmodel：未見敵軍不出現在格子
+ok 159 - viewmodel：未見敵軍不出現在格子
+  ---
+  duration_ms: 17.530509
+  type: 'test'
+  ...
+# Subtest: viewmodel：移動 dirty 包含起訖格且讀取後清空
+ok 160 - viewmodel：移動 dirty 包含起訖格且讀取後清空
+  ---
+  duration_ms: 58.85297
+  type: 'test'
+  ...
+# Subtest: viewmodel：敵方未偵察層 hp 為 null，已偵察值使用知識
+ok 161 - viewmodel：敵方未偵察層 hp 為 null，已偵察值使用知識
+  ---
+  duration_ms: 13.385887
+  type: 'test'
+  ...
+# Subtest: B01：成本依 owner 使用宣告池名，特殊池仍顯示中文
+ok 162 - B01：成本依 owner 使用宣告池名，特殊池仍顯示中文
+  ---
+  duration_ms: 44.186325
+  type: 'test'
+  ...
+# Subtest: B02：五種移動與機體類別用中文，地形成本是靜態宣告
+ok 163 - B02：五種移動與機體類別用中文，地形成本是靜態宣告
+  ---
+  duration_ms: 3.963448
+  type: 'test'
+  ...
+# Subtest: B03：能力說明包含傷害、效果、產出、冷卻與五種形狀半徑
+ok 164 - B03：能力說明包含傷害、效果、產出、冷卻與五種形狀半徑
+  ---
+  duration_ms: 3.62464
+  type: 'test'
+  ...
+# Subtest: B04：我方已裝部件與中文功能可見，敵方不洩漏配裝
+ok 165 - B04：我方已裝部件與中文功能可見，敵方不洩漏配裝
+  ---
+  duration_ms: 10.813396
+  type: 'test'
+  ...
+# Subtest: B05：可見怪獸用個體名與稱號，未見敵軍仍隱藏
+ok 166 - B05：可見怪獸用個體名與稱號，未見敵軍仍隱藏
+  ---
+  duration_ms: 5.906829
+  type: 'test'
+  ...
+# Subtest: B06：四怪獸家族與三生態說明只在可見時公開
+ok 167 - B06：四怪獸家族與三生態說明只在可見時公開
+  ---
+  duration_ms: 46.213047
+  type: 'test'
+  ...
+# Subtest: K2：presence 公開標記、不可交戰說明、迎戰灰鈕原因與潮懼光環
+ok 168 - K2：presence 公開標記、不可交戰說明、迎戰灰鈕原因與潮懼光環
+  ---
+  duration_ms: 31.016642
+  type: 'test'
+  ...
+# Subtest: 穿透沿共享query顯示盾臂到瞄準部位，只有分散攻擊說盾僅主片
+ok 169 - 穿透沿共享query顯示盾臂到瞄準部位，只有分散攻擊說盾僅主片
+  ---
+  duration_ms: 8.417031
+  type: 'test'
+  ...
+# Subtest: 移動面板沿共享query顯回合額度與原因，敵方不洩漏spent
+ok 170 - 移動面板沿共享query顯回合額度與原因，敵方不洩漏spent
+  ---
+  duration_ms: 2.032265
+  type: 'test'
+  ...
+# Subtest: 格旗結構完整度排除甲盾，無結構或未知結構回null
+ok 171 - 格旗結構完整度排除甲盾，無結構或未知結構回null
+  ---
+  duration_ms: 8.968704
+  type: 'test'
+  ...
+# Subtest: 敵格結構只沿最後所見，不讀敵方現時傷害或血池
+ok 172 - 敵格結構只沿最後所見，不讀敵方現時傷害或血池
+  ---
+  duration_ms: 3.847857
+  type: 'test'
+  ...
+# Subtest: W01 物種與怪獸共享生態、捕獲、AI 策略，保留原始資料與索引
+ok 173 - W01 物種與怪獸共享生態、捕獲、AI 策略，保留原始資料與索引
+  ---
+  duration_ms: 22.901378
+  type: 'test'
+  ...
+# Subtest: W01 怪獸繼承蛻變目標、觸發條件與期間效果；缺物種不拋錯
+ok 174 - W01 怪獸繼承蛻變目標、觸發條件與期間效果；缺物種不拋錯
+  ---
+  duration_ms: 1.339417
+  type: 'test'
+  ...
+# Subtest: W03 部件專區呈現修正、附加層、共鳴與負擔，未知資料仍在 raw
+ok 175 - W03 部件專區呈現修正、附加層、共鳴與負擔，未知資料仍在 raw
+  ---
+  duration_ms: 0.681953
+  type: 'test'
+  ...
+# Subtest: W03 真實機型的機體與製造勢力是連結，前置機型及解鎖條件可見
+ok 176 - W03 真實機型的機體與製造勢力是連結，前置機型及解鎖條件可見
+  ---
+  duration_ms: 0.739208
+  type: 'test'
+  ...
+# Subtest: W03 天象週期、湧現條件、潮級改變、效果與曆法朔望可見
+ok 177 - W03 天象週期、湧現條件、潮級改變、效果與曆法朔望可見
+  ---
+  duration_ms: 20.638978
+  type: 'test'
+  ...
+# Subtest: W04 指定枚舉依欄位轉中文，機體及人物徽章同步轉譯
+ok 178 - W04 指定枚舉依欄位轉中文，機體及人物徽章同步轉譯
+  ---
+  duration_ms: 10.232464
+  type: 'test'
+  ...
+# Subtest: W04 八種槽位含構型內槽位轉譯；lore 人物與未知值、普通文字各守情境
+ok 179 - W04 八種槽位含構型內槽位轉譯；lore 人物與未知值、普通文字各守情境
+  ---
+  duration_ms: 16.254912
+  type: 'test'
+  ...
+# Subtest: 人物百科卡以開局年資顯示外貌與實齡
+ok 180 - 人物百科卡以開局年資顯示外貌與實齡
+  ---
+  duration_ms: 4.041468
+  type: 'test'
+  ...
+# Subtest: 未知 key 回 null；每頁 raw 排除頂層 id/name 並保存未知欄位與引用
+ok 181 - 未知 key 回 null；每頁 raw 排除頂層 id/name 並保存未知欄位與引用
+  ---
+  duration_ms: 7.254387
+  type: 'test'
+  ...
+# Subtest: frame 概要、構型部位層、資源池與固有能力
+ok 182 - frame 概要、構型部位層、資源池與固有能力
+  ---
+  duration_ms: 2.192595
+  type: 'test'
+  ...
+# Subtest: 缺少構型保留 target null 引用
+ok 183 - 缺少構型保留 target null 引用
+  ---
+  duration_ms: 0.513708
+  type: 'test'
+  ...
+# Subtest: ability 成本、產出、射程、傷害包與新增包欄位
+ok 184 - ability 成本、產出、射程、傷害包與新增包欄位
+  ---
+  duration_ms: 1.298732
+  type: 'test'
+  ...
+# Subtest: species 與 monster 展開族、等級範圍與二名稱號
+ok 185 - species 與 monster 展開族、等級範圍與二名稱號
+  ---
+  duration_ms: 1.079604
+  type: 'test'
+  ...
+# Subtest: person 屬性、資源池與 growth.tree 引用
+ok 186 - person 屬性、資源池與 growth.tree 引用
+  ---
+  duration_ms: 0.470039
+  type: 'test'
+  ...
+# Subtest: faction 關係表每列的引用帶 rel
+ok 187 - faction 關係表每列的引用帶 rel
+  ---
+  duration_ms: 0.657157
+  type: 'test'
+  ...
+# Subtest: lore 本文、object/array 關係與 gameRefs
+ok 188 - lore 本文、object/array 關係與 gameRefs
+  ---
+  duration_ms: 8.271718
+  type: 'test'
+  ...
+# Subtest: backlinks 依來源分類分組且使用中文分類名
+ok 189 - backlinks 依來源分類分組且使用中文分類名
+  ---
+  duration_ms: 0.565468
+  type: 'test'
+  ...
+# Subtest: content/base 每個真實 JSON 都能產生非空資料卡
+ok 190 - content/base 每個真實 JSON 都能產生非空資料卡
+  ---
+  duration_ms: 512.147704
+  type: 'test'
+  ...
+# Subtest: nameEn／etymology 有值時百科概要顯示，沒值時不顯示
+ok 191 - nameEn／etymology 有值時百科概要顯示，沒值時不顯示
+  ---
+  duration_ms: 0.651315
+  type: 'test'
+  ...
+# Subtest: U02 列表與搜尋傳遞傳聞／可能發生狀態，年表繼承事件或列本身的傳聞標記
+ok 192 - U02 列表與搜尋傳遞傳聞／可能發生狀態，年表繼承事件或列本身的傳聞標記
+  ---
+  duration_ms: 23.095526
+  type: 'test'
+  ...
+# Subtest: W06 英文原名與詞源可搜尋，保留大小寫容錯、片段及既有名稱優先序
+ok 193 - W06 英文原名與詞源可搜尋，保留大小寫容錯、片段及既有名稱優先序
+  ---
+  duration_ms: 5.299963
+  type: 'test'
+  ...
+# Subtest: W04 六類枚舉的篩選選項與列表欄值顯示中文，篩選與原資料保留英文值
+ok 194 - W04 六類枚舉的篩選選項與列表欄值顯示中文，篩選與原資料保留英文值
+  ---
+  duration_ms: 7.566585
+  type: 'test'
+  ...
+# Subtest: W02 十一種分類有中文標題與固定排序，未知種類仍保留原名
+ok 195 - W02 十一種分類有中文標題與固定排序，未知種類仍保留原名
+  ---
+  duration_ms: 2.335118
+  type: 'test'
+  ...
+# Subtest: W05 機型由機體中文名命名，引用標籤同步，明確命名與缺引用保留
+ok 196 - W05 機型由機體中文名命名，引用標籤同步，明確命名與缺引用保留
+  ---
+  duration_ms: 4.937612
+  type: 'test'
+  ...
+# Subtest: W05 真實機型全數取對應機體標題，原 ID 保留供辨識
+ok 197 - W05 真實機型全數取對應機體標題，原 ID 保留供辨識
+  ---
+  duration_ms: 47.773267
+  type: 'test'
+  ...
+# Subtest: 1 空輸入產生空索引
+ok 198 - 1 空輸入產生空索引
+  ---
+  duration_ms: 4.61701
+  type: 'test'
+  ...
+# Subtest: 2 id、檔案鍵與分類正確，壞結構記錄 issue
+ok 199 - 2 id、檔案鍵與分類正確，壞結構記錄 issue
+  ---
+  duration_ms: 3.512708
+  type: 'test'
+  ...
+# Subtest: 3 無 name 的怪獸由物種與 grade 推導名稱與族
+ok 200 - 3 無 name 的怪獸由物種與 grade 推導名稱與族
+  ---
+  duration_ms: 0.824353
+  type: 'test'
+  ...
+# Subtest: 4 遞迴收陣列、巢狀值與關係物件 key
+ok 201 - 4 遞迴收陣列、巢狀值與關係物件 key
+  ---
+  duration_ms: 0.539376
+  type: 'test'
+  ...
+# Subtest: 5 不存在的 id 是壞引用，一般文字不是引用
+ok 202 - 5 不存在的 id 是壞引用，一般文字不是引用
+  ---
+  duration_ms: 0.304484
+  type: 'test'
+  ...
+# Subtest: 6 lore 優先同 pack，base 前綴直達並建立反向引用
+ok 203 - 6 lore 優先同 pack，base 前綴直達並建立反向引用
+  ---
+  duration_ms: 0.507283
+  type: 'test'
+  ...
+# Subtest: 7 markdown 兩種內部連結收為 body 引用且去重
+ok 204 - 7 markdown 兩種內部連結收為 body 引用且去重
+  ---
+  duration_ms: 1.188535
+  type: 'test'
+  ...
+# Subtest: 8 年表日期、時代、事件與勢力解析，缺欄位仍可篩選
+ok 205 - 8 年表日期、時代、事件與勢力解析，缺欄位仍可篩選
+  ---
+  duration_ms: 13.594412
+  type: 'test'
+  ...
+# Subtest: 12 真實 base 全部 JSON 可建索引、解析引用與搜尋自己
+ok 206 - 12 真實 base 全部 JSON 可建索引、解析引用與搜尋自己
+  ---
+  duration_ms: 4858.528524
+  type: 'test'
+  ...
+# Subtest: lore 關係陣列保留 rel、note，勢力矩陣提供中文 label 與 tone
+ok 207 - lore 關係陣列保留 rel、note，勢力矩陣提供中文 label 與 tone
+  ---
+  duration_ms: 31.464135
+  type: 'test'
+  ...
+# Subtest: event period 進面向與年表；負年、完整日期、自由年份與未知日期依序排序
+ok 208 - event period 進面向與年表；負年、完整日期、自由年份與未知日期依序排序
+  ---
+  duration_ms: 7.622957
+  type: 'test'
+  ...
+# Subtest: era 段落依條目 from 排序，沒有 era 條目的段落最後
+ok 209 - era 段落依條目 from 排序，沒有 era 條目的段落最後
+  ---
+  duration_ms: 6.340474
+  type: 'test'
+  ...
+# Subtest: lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清單且已用欄位不重複
+ok 210 - lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清單且已用欄位不重複
+  ---
+  duration_ms: 6.891137
+  type: 'test'
+  ...
+# Subtest: 真實 frame 構型一層一列、九欄與 kv 抗性，整頁沒有交錯鍵值清單
+ok 211 - 真實 frame 構型一層一列、九欄與 kv 抗性，整頁沒有交錯鍵值清單
+  ---
+  duration_ms: 432.445687
+  type: 'test'
+  ...
+# Subtest: 真實 base 與可選 lore 整合：每條目可產卡並搜尋自己，game 前三分類固定
+ok 212 - 真實 base 與可選 lore 整合：每條目可產卡並搜尋自己，game 前三分類固定
+  ---
+  duration_ms: 85487.28757
+  type: 'test'
+  ...
+# Subtest: 標題一至六級、段落合併與明確換行
+ok 213 - 標題一至六級、段落合併與明確換行
+  ---
+  duration_ms: 11.973691
+  type: 'test'
+  ...
+# Subtest: 粗斜體、行內碼與巢狀，保留字內底線
+ok 214 - 粗斜體、行內碼與巢狀，保留字內底線
+  ---
+  duration_ms: 2.25295
+  type: 'test'
+  ...
+# Subtest: 跳脫與未閉合標記當文字
+ok 215 - 跳脫與未閉合標記當文字
+  ---
+  duration_ms: 3.198579
+  type: 'test'
+  ...
+# Subtest: 無序、有序清單與二至四格縮排巢狀
+ok 216 - 無序、有序清單與二至四格縮排巢狀
+  ---
+  duration_ms: 1.103128
+  type: 'test'
+  ...
+# Subtest: 內部連結解析、未知目標降級與 wiki 預設名稱
+ok 217 - 內部連結解析、未知目標降級與 wiki 預設名稱
+  ---
+  duration_ms: 20.153515
+  type: 'test'
+  ...
+# Subtest: 僅 http(s) 產生外部連結，其他 scheme 留文字
+ok 218 - 僅 http(s) 產生外部連結，其他 scheme 留文字
+  ---
+  duration_ms: 0.352786
+  type: 'test'
+  ...
+# Subtest: 表格的表頭、對齊與不齊欄位正規化
+ok 219 - 表格的表頭、對齊與不齊欄位正規化
+  ---
+  duration_ms: 0.841312
+  type: 'test'
+  ...
+# Subtest: 引用內清單及巢狀引用、原樣程式碼塊、分隔線
+ok 220 - 引用內清單及巢狀引用、原樣程式碼塊、分隔線
+  ---
+  duration_ms: 1.390561
+  type: 'test'
+  ...
+# Subtest: 原始 HTML 標籤完整保留在文字節點
+ok 221 - 原始 HTML 標籤完整保留在文字節點
+  ---
+  duration_ms: 0.982925
+  type: 'test'
+  ...
+# Subtest: 混合文件的 plainText 與 extractLinkTargets 保留既有行為
+ok 222 - 混合文件的 plainText 與 extractLinkTargets 保留既有行為
+  ---
+  duration_ms: 6.30781
+  type: 'test'
+  ...
+# Subtest: 9 分類排序、反序與面向篩選只呈現存在的選項
+ok 223 - 9 分類排序、反序與面向篩選只呈現存在的選項
+  ---
+  duration_ms: 21.537562
+  type: 'test'
+  ...
+# Subtest: 10 搜尋名稱排名優先，別名、本文摘要與空查詢正確
+ok 224 - 10 搜尋名稱排名優先，別名、本文摘要與空查詢正確
+  ---
+  duration_ms: 5.680178
+  type: 'test'
+  ...
+# Subtest: 11 兩種勢力關係進矩陣且去重，首頁計數與壞引用一致
+ok 225 - 11 兩種勢力關係進矩陣且去重，首頁計數與壞引用一致
+  ---
+  duration_ms: 3.311442
+  type: 'test'
+  ...
+# Subtest: 可見度讀法：沒標是 public；物件看自己的 visibility，純值欄看 fieldVisibility
+ok 226 - 可見度讀法：沒標是 public；物件看自己的 visibility，純值欄看 fieldVisibility
+  ---
+  duration_ms: 2.014572
+  type: 'test'
+  ...
+# Subtest: publicFiles：hidden 整筆、整物件、整欄、引用與本文連結都拿掉；rumor 保留；不改輸入；base 不動
+ok 227 - publicFiles：hidden 整筆、整物件、整欄、引用與本文連結都拿掉；rumor 保留；不改輸入；base 不動
+  ---
+  duration_ms: 6.434275
+  type: 'test'
+  ...
+# Subtest: 百科索引、搜尋、詳情卡、年表、反向引用都看不到 hidden
+ok 228 - 百科索引、搜尋、詳情卡、年表、反向引用都看不到 hidden
+  ---
+  duration_ms: 24.50234
+  type: 'test'
+  ...
+# Subtest: 真實 lore：每一則 hidden 真相都不出現在百科任何畫面資料裡（含塞勒涅三層知情）
+ok 229 - 真實 lore：每一則 hidden 真相都不出現在百科任何畫面資料裡（含塞勒涅三層知情）
+  ---
+  duration_ms: 2098.770365
+  type: 'test'
+  ...
+# Subtest: 詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞加（傳聞）、secrets 剩下的列成傳聞清單、visibility 不當資料列
+ok 230 - 詳情卡把 rumor 呈現為傳聞：整筆加徽章、欄名與關係詞加（傳聞）、secrets 剩下的列成傳聞清單、visibility 不當資料列
+  ---
+  duration_ms: 8.202011
+  type: 'test'
+  ...
+# Subtest: occurs: possible 的事件不進年表（含 timeline.json 引用與未列入的事件檔），詳情卡標「可能發生」
+ok 231 - occurs: possible 的事件不進年表（含 timeline.json 引用與未列入的事件檔），詳情卡標「可能發生」
+  ---
+  duration_ms: 1.370026
+  type: 'test'
+  ...
+1..231
+# tests 231
+# suites 0
+# pass 231
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 404305.266717
+
+## e2e-final29.log
+
+Running 29 tests using 1 worker
+
+(node:2138187) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✓   1 e2e/battle.spec.ts:41:1 › 載入：戰場方格、回合、固定指令面板與快捷鍵標示都在 (607ms)
+  ✓   2 e2e/battle.spec.ts:59:1 › 行動後浮出下一步選單：點可達格移動後仍選取同一台，選單含待機 (699ms)
+  ✓   3 e2e/battle.spec.ts:87:1 › 結束回合：還有未行動機體時第一次 E 出確認，再按 E 才推進；按鈕同樣可用 (786ms)
+  ✓   4 e2e/battle.spec.ts:113:1 › 縮放：+ 放大、− 縮小、0 回自動貼合；設定存進 localStorage，重新載入後保留 (978ms)
+  ✓   5 e2e/battle.spec.ts:136:1 › 小地圖自動貼合：20×20 地圖格子放大到填滿戰場面板的一邊 (674ms)
+  ✓   6 e2e/battle.spec.ts:147:1 › 跳過動畫：敵方回合播放中按 Esc，立刻跳到輪回我方 (639ms)
+  ✓   7 e2e/battle.spec.ts:166:1 › 大地圖 160×160：快捷鍵與滾輪捲動可視區，只渲染可視區的格 (640ms)
+  ✓   8 e2e/battle.spec.ts:187:1 › 觀戰：?spectate=1&anim=off 載入後經 settle 回合或事件有前進、無頁面錯誤 (3.4s)
+  ✓   9 e2e/battle.spec.ts:199:1 › 可互動戰場：地物與回收物可見，支援攻擊送入原戰鬥 (1.2s)
+  ✓  10 e2e/battle.spec.ts:297:1 › 正式情境選單可進混合兵種並返回回收戰場 (1.3s)
+  ✓  11 e2e/battle.spec.ts:311:1 › 正式default觀戰與node同seed命令、hash及逐單位真終局一致 (8.5s)
+  ✓  12 e2e/battle.spec.ts:349:1 › 360窄窗戰場可操作，部位與log循文件排版不遮蓋或橫向溢出 (560ms)
+  ✓  13 e2e/battle.spec.ts:371:1 › 桌面靠下格長浮出選單留在戰場內，捲到尾項仍可正常待機 (855ms)
+  ✓  14 e2e/battle.spec.ts:409:50 › 戰場安全拖曳：mouse、邊界反向、取消、縮放與輕點 (2.1s)
+  ✘  15 e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 (8.2s)
+(node:2146819) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+battle-landscape-command-rects {"open":false,"panel":{"top":-190,"bottom":382,"left":8,"right":836,"height":572},"children":[{"top":-181,"bottom":37,"left":17,"right":827,"height":218},{"top":37,"bottom":115,"left":17,"right":827,"height":78},{"top":115,"bottom":275,"left":17,"right":827,"height":160},{"top":281,"bottom":373,"left":17,"right":827,"height":92}],"shortcuts":{"top":45,"bottom":107,"left":17,"right":827,"height":62}}
+battle-landscape-command-rects {"open":true,"panel":{"top":-190,"bottom":626,"left":8,"right":836,"height":816},"children":[{"top":-181,"bottom":37,"left":17,"right":827,"height":218},{"top":37,"bottom":359,"left":17,"right":827,"height":322},{"top":359,"bottom":519,"left":17,"right":827,"height":160},{"top":525,"bottom":617,"left":17,"right":827,"height":92}],"shortcuts":{"top":45,"bottom":351,"left":17,"right":827,"height":306}}
+  ✓  16 e2e/battle.spec.ts:518:1 › 手機戰場四尺寸：無整頁橫溢、主控制可達且方向鍵44px (5.1s)
+  ✓  17 e2e/ops-campaign.spec.ts:19:1 › 營運：從戰鬥導航進入，再切頁返回保留戰役 (1.6s)
+ops-timing {"step":"loaded","elapsedMs":1075}
+ops-timing {"step":"contracts-offered","elapsedMs":4342}
+ops-timing {"step":"world-viewed","elapsedMs":9105}
+ops-timing {"step":"sailed","elapsedMs":12979}
+ops-timing {"step":"travel-0-before","elapsedMs":13016,"day":1,"fuel":40,"route":{"to":"base:place/chittagong","toName":"吉大港","daysLeft":1},"lastLog":"候鳥號離開達卡，船頭轉向吉大港，預計 1 天。","prompt":false}
+ops-timing {"step":"travel-0-after","elapsedMs":14097}
+  ✓  18 e2e/ops-campaign.spec.ts:35:1 › 營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返回營運看戰果 (20.3s)
+  ✓  19 e2e/ops-campaign.spec.ts:141:1 › 快捷：釘選刷新保留、鍵盤最近、end沿確認且不提前送命令 (1.9s)
+  ✓  20 e2e/ops-campaign.spec.ts:173:1 › 快捷：localStorage getter失效仍能記最近及釘選 (973ms)
+  ✓  21 e2e/ops-map.spec.ts:5:1 › 大地圖：開局 → 世界分頁 → 游標到地點 → Enter → 抵達 → 泊 (5.8s)
+ops-overview-click {"width":1280,"target":{"x":346,"y":478,"cellX":62,"cellY":75,"gapX":0,"gapY":95.4,"blankX":454,"blankY":300.325},"audit":{"x":346,"y":478},"finalViewport":{"w":36,"h":72,"x":44,"y":39}}
+ops-overview-click {"width":1024,"target":{"x":338,"y":476,"cellX":62,"cellY":75,"gapX":0,"gapY":52.20000000000002,"blankX":482,"blankY":276.725},"audit":{"x":338,"y":476},"finalViewport":{"w":48,"h":72,"x":38,"y":39}}
+ops-overview-click {"width":480,"target":{"x":133,"y":650,"cellX":62,"cellY":74,"gapX":0,"gapY":21.599999999999994,"blankX":240,"blankY":511.05},"audit":{"x":133,"y":650},"finalViewport":{"w":35,"h":25,"x":45,"y":62}}
+ops-region-rects {"cases":18,"containCases":3,"maxError":0.01187500000000341,"ordinaryText":0,"measurements":[{"width":1280,"zoom":1,"pan":0,"labels":1,"error":0},{"width":1280,"zoom":1,"pan":1,"labels":1,"error":0},{"width":1280,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":1280,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":1280,"zoom":0.25,"pan":0,"labels":26,"error":0.009999999999990905},{"width":1280,"zoom":0.25,"pan":1,"labels":26,"error":0.009999999999990905},{"width":1024,"zoom":1,"pan":0,"labels":1,"error":0},{"width":1024,"zoom":1,"pan":1,"labels":1,"error":0},{"width":1024,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":1024,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":1024,"zoom":0.25,"pan":0,"labels":26,"error":0.01187500000000341},{"width":1024,"zoom":0.25,"pan":1,"labels":26,"error":0.01187500000000341},{"width":480,"zoom":1,"pan":0,"labels":1,"error":0},{"width":480,"zoom":1,"pan":1,"labels":1,"error":0},{"width":480,"zoom":0.5,"pan":0,"labels":1,"error":0},{"width":480,"zoom":0.5,"pan":1,"labels":1,"error":0},{"width":480,"zoom":0.25,"pan":0,"labels":26,"error":0.008750000000077307},{"width":480,"zoom":0.25,"pan":1,"labels":26,"error":0.008750000000077307}]}
+  ✓  22 e2e/ops-map.spec.ts:38:1 › 世界區域：普通格無文字，固定標籤在縮放平移與視窗改變後仍對齊 (9.7s)
+  ✓  23 e2e/ops-map.spec.ts:143:50 › 世界安全拖曳：mouse、連拖無航行、取消與縮放後點格 (6.4s)
+  ✓  24 e2e/ops-map.spec.ts:143:50 › 世界安全拖曳：touch、連拖無航行、取消與縮放後點格 (4.7s)
+world-desktop-facts-rects [{"text":"第 1 蝕月 第 1 日（漲潮）","width":194,"scrollWidth":194,"height":19,"scrollHeight":19,"clipped":[]},{"text":"漲潮","width":32,"scrollWidth":32,"height":19,"scrollHeight":19,"clipped":[]},{"text":"朔潮、鎮星合月、春分","width":160,"scrollWidth":160,"height":19,"scrollHeight":19,"clipped":[]},{"text":"漲潮","width":32,"scrollWidth":32,"height":19,"scrollHeight":19,"clipped":[]},{"text":"2・漲潮","width":59,"scrollWidth":59,"height":19,"scrollHeight":19,"clipped":[]},{"text":"1,200","width":51,"scrollWidth":51,"height":19,"scrollHeight":19,"clipped":[]},{"text":"24,000","width":62,"scrollWidth":62,"height":19,"scrollHeight":19,"clipped":[]},{"text":"達卡（停泊）","width":96,"scrollWidth":96,"height":19,"scrollHeight":19,"clipped":[]},{"text":"—","width":22,"scrollWidth":22,"height":19,"scrollHeight":19,"clipped":[]},{"text":"0","width":22,"scrollWidth":22,"height":19,"scrollHeight":19,"clipped":[]}]
+  ✓  25 e2e/ops-map.spec.ts:222:1 › 手機世界四尺寸：無整頁橫溢、導航縮放可達且地圖有高度 (4.1s)
+  ✓  26 e2e/wiki.spec.ts:27:1 › F1 從戰鬥進百科再返回，保留戰鬥回合 (704ms)
+  ✓  27 e2e/wiki.spec.ts:41:1 › 直接進百科搜尋內容中的 frame 名稱並開啟詳情 (821ms)
+  ✓  28 e2e/wiki.spec.ts:55:1 › 詳情交叉連結與瀏覽器返回，再由導航回戰場 (926ms)
+  ✓  29 e2e/wiki.spec.ts:75:1 › 手機與橫向百科控制可達且頁面沒有水平溢出 (1.1s)
+
+
+  1) e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ────────────────────────────────────────
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 530
+    Received:   530
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      511 |       const scroll = await page.evaluate(() => scrollY);
+      512 |       await cdp.send('Input.synthesizeScrollGesture', { x, y, xDistance: 0, yDistance: -180, gestureSourceType: 'touch', preventFling: true });
+    > 513 |       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(scroll); expect(await audit()).toEqual(commands);
+          |                                                             ^
+      514 |     }
+      515 |   } finally { await context.close(); }
+      516 | });
+        at /tmp/playable-verify-1029/e2e/battle.spec.ts:513:61
+
+    Error Context: ../../mnt/c/code/mine/mecha-srpg/node_modules/.cache/playwright-results/battle-戰場安全拖曳：touch、邊界反向、取消、縮放與輕點/error-context.md
+
+  1 failed
+    e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ─────────────────────────────────────────
+  28 passed (1.7m)
+
+## touch-final-validated.log
+
+Running 3 tests using 1 worker
+
+(node:2777631) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+battle-outside-swipe {"before":333,"after":347,"trustedTouchMoves":1}
+  ✓  1 e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 (3.2s)
+(node:2779039) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  2 e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 (7.9s)
+(node:2781599) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  3 e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 (3.0s)
+
+
+  1) e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ────────────────────────────────────────
+
+    Error: expect(received).toBeGreaterThan(expected)
+
+    Expected: > 333
+    Received:   333
+
+    Call Log:
+    - Timeout 5000ms exceeded while waiting on the predicate
+
+      537 |       expect(pointers.some(event => event.type === 'pointerdown' && event.trusted && event.pointerType === 'touch')).toBe(true);
+      538 |       expect(moves.length).toBeGreaterThan(0); expect(moves.every(event => event.trusted && event.pointerType === 'touch')).toBe(true);
+    > 539 |       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(swipe!.scroll);
+          |                                                             ^
+      540 |       expect(await page.evaluate(() => (window as unknown as { __battle: { peek(): { viewport: unknown } } }).__battle.peek().viewport)).toEqual(beforeViewport);
+      541 |       expect(await audit()).toEqual(commands);
+      542 |       console.info('battle-outside-swipe', JSON.stringify({ before: swipe!.scroll, after: await page.evaluate(() => scrollY), trustedTouchMoves: moves.length }));
+        at /tmp/playable-verify-1029/e2e/battle.spec.ts:539:61
+
+    Error Context: ../../mnt/c/code/mine/mecha-srpg/node_modules/.cache/playwright-results/battle-戰場安全拖曳：touch、邊界反向、取消、縮放與輕點-repeat1/error-context.md
+
+  2) e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ────────────────────────────────────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      535 |       const pointers = await page.evaluate(offset => (window as unknown as { __panPointers: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] }).__panPointers.slice(offset), offset);
+      536 |       const moves = pointers.filter(event => event.type === 'pointermove');
+    > 537 |       expect(pointers.some(event => event.type === 'pointerdown' && event.trusted && event.pointerType === 'touch')).toBe(true);
+          |                                                                                                                      ^
+      538 |       expect(moves.length).toBeGreaterThan(0); expect(moves.every(event => event.trusted && event.pointerType === 'touch')).toBe(true);
+      539 |       await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(swipe!.scroll);
+      540 |       expect(await page.evaluate(() => (window as unknown as { __battle: { peek(): { viewport: unknown } } }).__battle.peek().viewport)).toEqual(beforeViewport);
+        at /tmp/playable-verify-1029/e2e/battle.spec.ts:537:118
+
+    Error Context: ../../mnt/c/code/mine/mecha-srpg/node_modules/.cache/playwright-results/battle-戰場安全拖曳：touch、邊界反向、取消、縮放與輕點-repeat2/error-context.md
+
+  2 failed
+    e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ─────────────────────────────────────────
+    e2e/battle.spec.ts:409:50 › 戰場安全拖曳：touch、邊界反向、取消、縮放與輕點 ─────────────────────────────────────────
+  1 passed (19.1s)
+
+## native-pan-html.log
+
+Running 1 test using 1 worker
+
+(node:2019010) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+smooth-touch-pointers {"phase":"after-two-drags","down":2,"up":2,"moves":13,"cancel":0,"durationsMs":[208.80000000074506,193.69999999925494]}
+smooth-touch-pointers {"phase":"after-final-tap","down":3,"up":3,"moves":13,"cancel":0,"durationsMs":[208.80000000074506,193.69999999925494,2.800000000745058]}
+smooth-empty-touch-viewport {"before":{"scrollX":0,"scrollY":0,"viewport":{"scale":1,"offsetLeft":0,"offsetTop":0,"width":390,"height":844}},"after":{"scrollX":0,"scrollY":0,"viewport":{"scale":1,"offsetLeft":0,"offsetTop":0,"width":390,"height":844}}}
+smooth-empty-native-click {"clicks":[{"trusted":true,"target":"target"}],"count":1}
+  ✓  1 e2e/battle.spec.ts:1072:1 › browser平滑觸拖：空HTML原生按鈕 (708ms)
+
+  1 passed (2.5s)
+
+## native-pan-battle.log
+
+Running 1 test using 1 worker
+
+(node:2032378) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+smooth-touch-pointers {"phase":"after-two-drags","down":2,"up":2,"moves":15,"cancel":0,"durationsMs":[208.69999999925494,193.80000000074506]}
+smooth-touch-pointers {"phase":"after-final-tap","down":3,"up":3,"moves":15,"cancel":0,"durationsMs":[208.69999999925494,193.80000000074506,6]}
+smooth-battle-native-click {"positions":[{"x":0,"y":0},{"x":3,"y":0},{"x":6,"y":0}],"at":{"x":6,"y":0},"trustedClicks":1}
+  ✓  1 e2e/battle.spec.ts:1128:1 › browser平滑觸拖：戰場雙拖後原生點格 (1.3s)
+
+  1 passed (2.8s)
+
+## scroll-emulated-mouse-touch.log
+{"mode":"mouse-touch","before":{"scrollY":400,"focus":true,"visibility":"visible","touch":1,"height":844,"scale":1,"events":[]},"after":{"scrollY":693,"focus":true,"visibility":"visible","touch":1,"height":844,"scale":1,"events":[{"type":"pointerdown","trusted":true,"prevented":false,"y":480},{"type":"touchstart","trusted":true,"prevented":false,"touches":1},{"type":"pointermove","trusted":true,"prevented":false,"y":322},{"type":"touchmove","trusted":true,"prevented":false,"touches":1},{"type":"pointerup","trusted":true,"prevented":false,"y":300},{"type":"touchend","trusted":true,"prevented":false,"touches":0}]}}

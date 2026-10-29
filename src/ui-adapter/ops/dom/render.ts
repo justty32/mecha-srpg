@@ -2,12 +2,14 @@
 // 佈局：頂列（日期、潮相、錢、位置、航程、燃料、船體＋推進鈕）常駐；左欄分頁＋裂縫／佇列小表；主區依 tab；右欄記錄。
 // 疊層（prompt／編成／戰果／說明）蓋在上面，不改變底下面板位置。
 import type { OpsKeyInput, OpsSnapshot, OpsUiAction } from "../vm/types.ts";
+import { commandPreferences, type CommandPreferenceStore } from "../../dom/command-preferences.ts";
+import { mountCommandShortcuts, opsShortcutCatalog } from "../../dom/command-shortcuts.ts";
 import { mountTooltip } from "../../dom/tooltip.ts";
 import { buttonRow, changeCache, el, meter, registeredAction, type ActionRegistry } from "./ui.ts";
 import { createTabs } from "./tabs.ts";
 import { createOverlays } from "./overlays.ts";
 
-export type OpsMountOptions = { onAction(a: OpsUiAction): void; onKey(k: OpsKeyInput): boolean };
+export type OpsMountOptions = { shortcutStore?: CommandPreferenceStore; onAction(a: OpsUiAction): void; onKey(k: OpsKeyInput): boolean };
 export type OpsView = { render(s: OpsSnapshot): void; setActive(on: boolean): void; destroy(): void };
 
 const money = (n: number): string => `${n < 0 ? "−" : ""}${Math.abs(n).toLocaleString("en-US")}`;
@@ -56,6 +58,17 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
   shell.append(header, message, over, layout, overlayLayer);
   root.append(shell);
 
+  let current: OpsSnapshot | null = null;
+  const shortcutRoot = el(doc, "div");
+  left.insertBefore(shortcutRoot, rifts);
+  const shortcuts = mountCommandShortcuts(shortcutRoot, {
+    store: opts.shortcutStore ?? commandPreferences("ops"),
+    catalog: () => current ? opsShortcutCatalog(current) : [],
+    onActivate: id => {
+      const option = current && opsShortcutCatalog(current).find(c => c.id === id && c.enabled);
+      if (option) opts.onAction(option.action);
+    },
+  });
   const panes = createTabs(main, registry, opts.onAction);
   const overlays = createOverlays(overlayLayer, registry, opts.onAction);
   const tooltip = mountTooltip(shell);
@@ -121,6 +134,8 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
   return {
     render(s) {
       if (destroyed) return;
+      current = s;
+      shortcuts.render();
       if (changed("header", s.header)) paintHeader(s);
       if (changed("time", s.timeButtons)) time.replaceChildren(buttonRow(doc, s.timeButtons, registry));
       if (changed("tabs", s.tabs)) tabs.replaceChildren(buttonRow(doc, s.tabs, registry, "ops-buttons ops-tab-list"));
@@ -146,6 +161,7 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
       doc.removeEventListener("keydown", keydown);
       shell.removeEventListener("click", click);
       panes.destroy();
+      shortcuts.destroy();
       tooltip.destroy();
       shell.remove();
     },

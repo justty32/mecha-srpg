@@ -1,0 +1,245 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-10-29",
+ "columns": [
+  "check",
+  "command",
+  "exit",
+  "result",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "check": "gesture-unit",
+   "command": "nice -n 19 node --test --test-concurrency=1 src/ui-adapter/dom/map-drag.test.ts src/ui-adapter/dom/input.test.ts",
+   "exit": 0,
+   "result": "8/8 pass; source tree",
+   "evidence": "final UI suite supersedes targeted run"
+  },
+  {
+   "check": "core-typecheck",
+   "command": "nice -n 19 node_modules/.bin/tsc --noEmit",
+   "exit": 0,
+   "result": "pass in verified /tmp snapshot",
+   "evidence": "exit 0; empty stdout observed"
+  },
+  {
+   "check": "build",
+   "command": "nice -n 19 node_modules/.bin/vite build",
+   "exit": 0,
+   "result": "final build exit 0; 2.19s; existing node:fs/chunk-size notices",
+   "evidence": "exit 0 observed; full e2e served this dist"
+  },
+  {
+   "check": "ui-dom-final",
+   "command": "nice -n 19 node --test --test-concurrency=1 --test-reporter=tap 'src/ui-adapter/**/*.test.ts'",
+   "exit": 0,
+   "result": "231/231; 404305ms; single runner",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "ui-typecheck-final",
+   "command": "nice -n 19 node_modules/.bin/tsc --noEmit -p tsconfig.ui.json",
+   "exit": 0,
+   "result": "pass after HappyDOM test-fixture type repairs",
+   "evidence": "exit 0; empty stdout observed"
+  },
+  {
+   "check": "e2e-full-initial",
+   "command": "LD_LIBRARY_PATH=<existing local libs> nice -n 19 playwright test -c /tmp/playable-playwright.config.mjs <four authorized e2e files> --workers=1",
+   "exit": 1,
+   "result": "25/29; failures: mobile quick-menu CSS, battle mouse/touch blocked starting point, campaign Enter focus remained in shortcuts",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "e2e-repair",
+   "command": "same config --grep '360窄窗|戰場安全拖曳|營運：開新戰役|手機戰場|手機世界|手機與橫向百科' --workers=1",
+   "exit": 1,
+   "result": "6/7; only touch final precise tap remained; CSS restore, true map start and back-button Enter retained original assertions",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "layout-final",
+   "command": "same config --grep '手機戰場|手機世界|手機與橫向百科' --workers=1",
+   "exit": 0,
+   "result": "3/3; 360/390/430 portrait and 844 landscape; no page overflow, 44px controls; expanded shortcuts nonoverlap, desktop facts no text clipping",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "visual-review",
+   "command": "astra view_image; seven headless images and two corrected replacements",
+   "exit": 0,
+   "result": "final no P1/P2; landscape expanded shortcuts and desktop 1200/24000 readable",
+   "evidence": "../mobile-1029-design/REPORT.md"
+  },
+  {
+   "check": "final-formal-e2e",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu nice -n 19 node_modules/.bin/playwright test -c /tmp/playable-playwright.config.mjs e2e/battle.spec.ts e2e/ops-map.spec.ts e2e/ops-campaign.spec.ts e2e/wiki.spec.ts --workers=1",
+   "exit": 1,
+   "result": "28/29; only off-map page-scroll gesture observation remained; latest snapshot includes AI a40e28da; no claim single-batch all green",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "final-touch-repeat-full-chrome",
+   "command": "same LD_LIBRARY_PATH; nice -n 19 playwright test -c node_modules/.cache/mobile-1029/full-browser.config.mjs e2e/battle.spec.ts --grep '戰場安全拖曳：touch' --repeat-each=3 --workers=1",
+   "exit": 1,
+   "result": "1/3 complete pass; 2/3 fail only at off-map emulated touch pointerdown observation; all three move-mode, real drag/cancel/boundary/zoom/native click/cursor/audit chains passed; Chromium1248 full chrome headless, not headless_shell",
+   "evidence": "verification.log"
+  },
+  {
+   "check": "final-ui-typecheck",
+   "command": "nice -n 19 node_modules/.bin/tsc --noEmit -p tsconfig.ui.json",
+   "exit": 0,
+   "result": "pass; final e2e source included",
+   "evidence": "empty stdout; observed exit 0"
+  },
+  {
+   "check": "source:e2e/battle.spec.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "13393d938f015b26c572d8f894dccaa7820c6fa0228ebb4872ea19a1162ccc23",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:e2e/ops-campaign.spec.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "3f101170f67fcd313d3c06b58e876f0ed53b7e7b09e93464087f218cb0796d00",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:e2e/ops-map.spec.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "39d8e0064b385f277693cd1aaa60529c7290c3cebda1da95912c2372e8dbb445",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:e2e/wiki.spec.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "a79947032581c9c5250f773d4dc275772ab58889cf1ef6d20593c91b69d0d637",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/main.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "b114ac18e9d6a8f208ef53cecc7e099ca1b170ca36b15ab0939a263da1dfed86",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/render.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "ebdd8bafb64fbb5cd52ef22cfedbd4cde94971b8fdc77eb26c047d2b8d1b8218",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/shell.css",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "7ed309f2bac621fdee25454668043ca0ebff5e24550648007ec490d7fa270def",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/style.css",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "64d00c1d1b29cb8e22b4e2738b5fca187c058e560af592282729208aa97cd4b1",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/wiki/wiki.css",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "8a20742cfa5836cbac94b61d263f23c0c54410296b2bacf2cfd82411ec09f2fe",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/battle-host.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "692c5222e4fba49413c65867b2f8d238114f530713309a1df1e0ffd4505959ad",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/main.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "cf723dfaae6443f42f48e83078a555894b0b2de99d98268ca615101d730fdef0",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/ops.css",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "82c5ed15790c1a9b019563ad86ac28ed2f1817d1bfda7e0acaa6fa7169258822",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/render.test.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "fabf1d5a0885cde425f10144eb0ee4702e85e60370107c88b110ddc8bf3422ea",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/render.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "5e709f7db6b3f2fcf17783ee262a4be4788f95d7416f8fdddcdbad715e39b07b",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/ops/dom/world-map.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "b6008044aec31006e5dacb11479f953dfebd31143ef380f80f25ea5a7842c230",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/command-preferences.test.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "da8ec44fe28d4dff5da77192877d8cad754c095440ead30b40e172b0ab7b09b7",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/command-preferences.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "8858b4c12f4a787b4d8f8af7aea3b0e0548b135916a0789ebfb786e275917eb9",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/command-shortcuts.test.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "f07b39cd99d1b828e014e125287a75de1835f4250d9f6ea66720931554309e02",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/command-shortcuts.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "0be282c0f82d9656a1f18b8351cfb8e5e11bab1ae8b29958b4ee1be04da6e7a0",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/map-drag.test.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "694a6bfe080ceb0c8a4b68c72332435e5978b39ca2e78eb6d91816326a811755",
+   "evidence": "exact match"
+  },
+  {
+   "check": "source:src/ui-adapter/dom/map-drag.ts",
+   "command": "sha256 main tree and /tmp snapshot",
+   "exit": 0,
+   "result": "adf9db6576ca5afa7e929a16370a675fa1b470aa539adedea8721a79ffc70e23",
+   "evidence": "exact match"
+  }
+ ]
+}

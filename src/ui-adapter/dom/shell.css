@@ -15,3 +15,25 @@ html, body { margin: 0; background: #0c121d; color: #e5edf8; font-family: system
 [data-page][hidden] { display: none !important; }
 [data-page="wiki"], [data-page="ops"] { min-height: calc(100dvh - 40px); }
 [data-page="ops"] { box-sizing: border-box; padding: 24px; color: #acbcd1; }
+
+[data-page] { min-width: 0; }
+@media (max-width: 760px), (max-width: 900px) and (max-height: 500px) {
+  [data-ui="app-nav"] { height: auto; min-height: 44px; padding: 0 4px; flex-wrap: wrap; }
+  [data-ui="app-nav"] a { min-height: 44px; padding: 0 10px; }
+  [data-page="ops"] { padding: 0; }
+}
+
+/* 戰鬥與營運共用快捷區，保持在頁面正常文流。 */
+.command-shortcuts { min-width: 0; margin: 8px 0; padding: 8px; border: 1px solid #35465d; border-radius: 6px; background: #151f2e; }
+.command-shortcuts > summary { cursor: pointer; min-height: 44px; display: flex; align-items: center; }
+.command-shortcuts .shortcut-section { margin-top: 8px; min-width: 0; }
+.command-shortcuts h3 { margin: 4px 0; font-size: .85rem; }
+.command-shortcuts .shortcut-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.command-shortcuts .shortcut-row { display: flex; flex-wrap: wrap; align-items: stretch; min-width: 0; max-width: 100%; gap: 3px; }
+.command-shortcuts .shortcut-activate { min-width: 0; white-space: normal; overflow-wrap: anywhere; }
+.command-shortcuts .shortcut-pin { min-width: 44px; justify-content: center; }
+.command-shortcuts .shortcut-reason { flex-basis: 100%; color: #acbcd1; overflow-wrap: anywhere; }
+.command-shortcuts .shortcut-empty, .command-shortcuts .shortcut-status { margin: 4px 0; color: #acbcd1; }
+@media (max-width: 760px), (max-width: 900px) and (max-height: 500px) {
+  .command-shortcuts button { min-height: 44px; }
+}

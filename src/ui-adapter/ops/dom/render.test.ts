@@ -1,6 +1,6 @@
 import { test, type TestContext } from "node:test";
 import assert from "node:assert/strict";
-import { Window } from "happy-dom";
+import { Window, type HTMLButtonElement as HappyButton } from "happy-dom";
 import { mountOps } from "./render.ts";
 import { mountWorldMap, worldMapContentRect } from "./world-map.ts";
 import { opsFixture, promptFixture, reportFixture, sortieFixture } from "./fixtures.ts";
@@ -310,4 +310,18 @@ test("K1 艦橋保留王跡原文與最後目擊日，守牆邀請與中文灰�
   assert.match(q('[data-ui="ops-prompt"]')!.textContent!, /守牆邀請/);
   const choice = q('[data-choice="1"]') as HTMLButtonElement;
   assert(choice.disabled); assert.match(choice.dataset.tip!, /守牆邀請已失效或出戰編成不符/);
+});
+
+test("快捷安全解析當前snapshot；prompt禁用、釘選不dispatch", t => {
+  const { root, view, actions, win } = setup(t);
+  const panel = root.querySelector(".command-shortcuts")!;
+  const catalog = [...panel.querySelectorAll(".shortcut-section")].find(s => s.querySelector("h3")?.textContent === "可釘選操作")!;
+  const row = [...catalog.querySelectorAll(".shortcut-row")].find(r => r.querySelector("button")?.getAttribute("data-shortcut-id") === "tab:world")!;
+  row.querySelector(".shortcut-pin")!.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+  assert.deepEqual(actions, []);
+  const stale = row.querySelector(".shortcut-activate")!;
+  const snapshot = opsFixture(); snapshot.prompt = promptFixture(); view.render(snapshot);
+  stale.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
+  assert.deepEqual(actions, []);
+  assert.ok([...panel.querySelectorAll<HappyButton>(".shortcut-activate")].every(b => b.disabled));
 });

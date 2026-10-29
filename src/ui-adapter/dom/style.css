@@ -288,7 +288,6 @@ svg.fx-item { inset: 0; width: 100%; height: 100%; }
 .battle-view .operator-details { margin: 6px 0; color: var(--muted); }
 .battle-view .operator-details summary { cursor: pointer; padding: 4px 0; }
 @media (max-width: 759px) {
-  .battle-view [data-ui="quick-menu"] { display: none !important; }
   .battle-view .command-panel { overflow: visible; }
   .battle-view .command-panel > [data-ui="unit"] { max-height: none; overflow: visible; }
   .battle-view .command-panel > [data-ui="commands"] { flex: 0 0 auto; min-height: 0; overflow: visible; }
@@ -304,3 +303,25 @@ svg.fx-item { inset: 0; width: 100%; height: 100%; }
 /* 桌面浮出指令完整留在可見戰場；過長清單可在選單內捲到尾項。 */
 .battle-view [data-ui="quick-menu"] { min-width: 0; overflow-y: auto; overflow-x: hidden; overscroll-behavior: contain; }
 .battle-view [data-ui="quick-menu"] button { flex: 0 0 auto; white-space: normal; overflow-wrap: anywhere; }
+
+/* 僅地圖表面接管觸控，頁面其他區域保留原生捲動。 */
+.battle-view .board-viewport { touch-action: none; user-select: none; }
+@media (max-width: 759px), (max-width: 900px) and (max-height: 500px) {
+  .battle-view { height: auto; min-height: calc(100dvh - 40px); padding: 8px; }
+  .battle-view [data-ui="topbar"] h1 { white-space: normal; overflow: visible; }
+  .battle-view .battle-layout { display: flex; flex-direction: column; gap: 10px; }
+  .battle-view .battle-field { order: 0; flex: 0 0 auto; height: auto; overflow: visible; }
+  .battle-view .board-frame { flex: 0 0 auto; height: clamp(240px, 45dvh, 420px); grid-template-columns: 44px minmax(0, 1fr) 44px; grid-template-rows: 44px minmax(0, 1fr) 44px; }
+  .battle-view .command-panel { order: 1; flex: 0 0 auto; height: auto; max-height: none; overflow: visible; }
+  .battle-view .battle-sidebar { order: 2; overflow: visible; }
+  .battle-view .log-panel { order: 3; height: 160px; flex: 0 0 160px; }
+  .battle-view .command-panel > * { flex: 0 0 auto; min-width: 0; }
+  .battle-view .command-panel > [data-ui="unit"], .battle-view .command-panel > [data-ui="commands"] { max-height: none; min-height: 0; overflow: visible; }
+  .battle-view [data-ui="commands"] { position: static; flex-flow: row wrap; }
+  .battle-view .command-option { flex: 1 1 140px; min-width: 0; }
+  .battle-view button { min-height: 44px; }
+  .battle-view [data-ui="quick-menu"] { display: none !important; }
+}
+@media (max-width: 900px) and (max-height: 500px) {
+  .battle-view .board-frame { height: 240px; }
+}

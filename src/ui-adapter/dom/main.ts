@@ -1,3 +1,5 @@
+import { commandPreferences } from "./command-preferences.ts";
+import { battleShortcutForAction } from "./command-shortcuts.ts";
 // ui-adapter/dom/main — 瀏覽器入口（唯一接線處）：載內容 → 建 controller → 掛 DOM。
 // URL 參數：?scenario=<id 或 debug-big>&seed=<n>&size=<大地圖邊長>&spectate=1（全 AI 觀戰）；預設 scenario/skirmish-whitegloves、seed 1。
 import "./style.css";
@@ -51,6 +53,7 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
   // mountBattle 可能在掛載當下就回呼（例：量到容器大小送 resize），所以 view 先宣告、回呼裡判空。
   let view: BattleView | null = null;
   let timer: number | null = null;
+  const shortcutStore = commandPreferences("battle");
   let latest = controller.snapshot();
   const schedule = (): void => {
     if (timer !== null) window.clearTimeout(timer);
@@ -67,7 +70,9 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
     }
     if (view?.apply(action)) return;
     if (action.type === "skip" || (latest.busy && (action.type === "cancel" || action.type === "confirm"))) view?.skipFx();
+    const shortcutId = battleShortcutForAction(controller.snapshot(), action);
     latest = controller.dispatch(action);
+    if (shortcutId) shortcutStore.record(shortcutId);
     view?.render(latest);
     schedule();
   };
@@ -78,7 +83,7 @@ function start(root: HTMLElement, navigate: (hash: string) => void): ((key: KeyI
     return true;
   };
   view = mountBattle(root, {
-    anim, zoom,
+    anim, zoom, shortcutStore,
     onSettings: settings => {
       anim = settings.anim;
       writeSetting("mecha-srpg.ui.anim", settings.anim);

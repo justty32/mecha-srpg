@@ -42,6 +42,7 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   const errors: string[] = [];
   page.on("pageerror", e => errors.push(e.message));
   page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
+  await page.addInitScript(() => localStorage.setItem("mecha-srpg.ui.shortcuts.v1", JSON.stringify({ version: 1, battle: { recent: [], favorites: ["move"] }, ops: { recent: [], favorites: [] } })));
   await page.goto("/?seed=3&spectate=1&anim=off#/ops");
   const root = page.locator('[data-page="ops"] [data-ui="ops"]');
   await expect(root).toBeVisible();
@@ -104,10 +105,15 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
 
   const back = page.locator('[data-ui="battle-return"]');
   await expect(page.locator('[data-ui="ops-battle"] [data-ui="board"]')).toBeVisible();
+  const battleShortcuts = page.locator('[data-ui="ops-battle"] .command-shortcuts');
+  await battleShortcuts.locator("summary").click();
+  const battleFavorites = battleShortcuts.locator(".shortcut-section").filter({ has: page.locator("h3", { hasText: "我的最愛" }) });
+  await expect(battleFavorites.locator('[data-shortcut-id="move"]')).toBeDisabled();
+  await expect(battleShortcuts.locator('[data-shortcut-id="map:sail"]')).toHaveCount(0);
   await expect(root).toBeHidden();
   await page.evaluate(() => (window as unknown as { __opsBattle: { settle(): void } }).__opsBattle.settle());
   await expect(back).toBeVisible({ timeout: 20_000 });
-  await page.keyboard.press("Enter");
+  await back.press("Enter");
 
   await expect(root).toBeVisible();
   const report = root.locator('[data-ui="ops-report"]');
@@ -130,4 +136,50 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   await page.keyboard.press("Escape");
   await expect(report).toBeHidden();
   expect(errors).toEqual([]);
+});
+
+test("快捷：釘選刷新保留、鍵盤最近、end沿確認且不提前送命令", async ({ page }) => {
+  await page.goto("/?anim=off#/battle");
+  await page.evaluate(() => (window as unknown as { __battle: { settle(): void } }).__battle.settle());
+  const panel = page.locator('[data-page="battle"] .command-shortcuts');
+  await panel.locator("summary").click();
+  const catalog = panel.locator(".shortcut-section").filter({ has: page.locator("h3", { hasText: "可釘選操作" }) });
+  const row = catalog.locator(".shortcut-row").filter({ has: page.locator('[data-shortcut-id="end"]') });
+  const audit = () => page.evaluate(() => (window as unknown as { __battle: { audit(): { commands: unknown[] } } }).__battle.audit().commands);
+  const before = await audit();
+  await row.locator(".shortcut-pin").click();
+  expect(await audit()).toEqual(before);
+  await page.reload();
+  await page.evaluate(() => (window as unknown as { __battle: { settle(): void } }).__battle.settle());
+  await panel.locator("summary").click();
+  const favorites = panel.locator(".shortcut-section").filter({ has: page.locator("h3", { hasText: "我的最愛" }) });
+  await expect(favorites.locator('[data-shortcut-id="end"]')).toBeEnabled();
+  await favorites.locator('[data-shortcut-id="end"]').click();
+  await expect(page.locator('[data-page="battle"] [data-ui="confirm"]')).toBeVisible();
+  expect(await audit()).toEqual(before);
+  await expect(favorites.locator('[data-shortcut-id="end"]')).toBeDisabled();
+  await page.locator("body").press("Escape");
+  await page.locator("body").press("m");
+  const recent = await page.evaluate(() => JSON.parse(localStorage.getItem("mecha-srpg.ui.shortcuts.v1")!).battle.recent as string[]);
+  expect(recent.slice(0, 2)).toEqual(["move", "end"]);
+  await page.locator('[data-nav="ops"]').click();
+  const opsPanel = page.locator('[data-page="ops"] .command-shortcuts');
+  await opsPanel.locator("summary").click();
+  await expect(opsPanel.locator('[data-shortcut-id="end"]')).toHaveCount(0);
+  await page.locator('[data-nav="battle"]').click();
+  await expect(favorites.locator('[data-shortcut-id="end"]')).toBeEnabled();
+});
+
+test("快捷：localStorage getter失效仍能記最近及釘選", async ({ page }) => {
+  await page.addInitScript(() => { Object.defineProperty(window, "localStorage", { configurable: true, get() { throw Error("storage unavailable"); } }); });
+  await page.goto("/?anim=off#/battle");
+  await page.evaluate(() => (window as unknown as { __battle: { settle(): void } }).__battle.settle());
+  const panel = page.locator('[data-page="battle"] .command-shortcuts');
+  await panel.locator("summary").click();
+  await panel.getByRole("button", { name: "釘選 移動", exact: true }).click();
+  await page.locator("body").press("m");
+  const favorites = panel.locator(".shortcut-section").filter({ has: page.locator("h3", { hasText: "我的最愛" }) });
+  const recent = panel.locator(".shortcut-section").filter({ has: page.locator("h3", { hasText: "最近使用" }) });
+  await expect(favorites.locator('[data-shortcut-id="move"]')).toBeVisible();
+  await expect(recent.locator('[data-shortcut-id="move"]')).toBeVisible();
 });

@@ -1,4 +1,7 @@
 import type { UiSnapshot, UiAction, KeyInput, AnimMode } from "../vm/types.ts";
+import { commandPreferences, type CommandPreferenceStore } from "./command-preferences.ts";
+import { battleShortcutCatalog, mountCommandShortcuts } from "./command-shortcuts.ts";
+import { mountMapDrag } from "./map-drag.ts";
 import { createBoard } from "./board.ts";
 import { createPanels, element } from "./panels.ts";
 import { mountTooltip } from "./tooltip.ts";
@@ -9,6 +12,7 @@ import { createMenus } from "./menus.ts";
 export type MountOptions = {
   onAction(a: UiAction): void;
   onKey(k: KeyInput): boolean;
+  shortcutStore?: CommandPreferenceStore;
   cellSize?: number;
   anim?: AnimMode;
   zoom?: number | "auto";
@@ -118,6 +122,16 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   const fx = createFx(fxLayer);
   const tooltip = mountTooltip(shell);
   let current: UiSnapshot | null = null;
+  const shortcutRoot = element(doc, "div");
+  commands.before(shortcutRoot);
+  const shortcuts = mountCommandShortcuts(shortcutRoot, {
+    store: opts.shortcutStore ?? commandPreferences("battle"),
+    catalog: () => current ? battleShortcutCatalog(current) : [],
+    onActivate: id => {
+      const command = current && battleShortcutCatalog(current).find(c => c.id === id && c.enabled);
+      if (command) opts.onAction(command.action);
+    },
+  });
   let destroyed = false;
   let mouseCell: UiSnapshot["cursor"] | null = null;
   const paintControls = (): void => {
@@ -133,6 +147,10 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       button.dataset.tip = button.title = `${label}${key ? `（快捷鍵：${key}）` : ""}`;
     }
   };
+  const drag = mountMapDrag(viewport, {
+    start: () => current ? { x: current.viewport.x, y: current.viewport.y, cellSize } : null,
+    move: (x, y) => opts.onAction({ type: "setViewport", x, y }),
+  });
   let measuring = false;
   const measure = (preserveAnchor = false): void => {
     if (destroyed || measuring || !current) return;
@@ -146,7 +164,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     const h = Math.max(1, Math.min(map.height, Math.floor(height / cellSize)));
     measuring = true;
     try {
-      if (previous.w !== w || previous.h !== h) opts.onAction({ type: "resize", w, h });
+      if (previous.w !== w || previous.h !== h) { drag.cancel(); opts.onAction({ type: "resize", w, h }); }
       if (preserveAnchor) {
         const position = anchorViewport(previous, { w, h }, at, map);
         opts.onAction({ type: "setViewport", ...position });
@@ -158,6 +176,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     if (destroyed || (a.type !== "zoom" && a.type !== "cycleAnim")) return false;
     if (a.type === "cycleAnim") anim = anim === "on" ? "fast" : anim === "fast" ? "off" : "on";
     else {
+      drag.cancel();
       zoom = a.dir === 0 ? "auto" : zoomStep(cellSize, a.dir);
       if (typeof zoom === "number") cellSize = zoom;
       board.style.setProperty("--cell-size", `${cellSize}px`);
@@ -199,6 +218,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     }
   };
   const hover = (event: MouseEvent): void => {
+    if (drag.active) return;
     const cell = closest(event, "[data-x][data-y]");
     if (!cell || !board.contains(cell) || (event.relatedTarget && cell.contains(event.relatedTarget as Node))) return;
     const at = { x: Number(cell.dataset.x), y: Number(cell.dataset.y) };
@@ -248,6 +268,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     fxBusyMs: fx.busyMs,
     render(s) {
       if (destroyed) return;
+      if (current && (current.map.width !== s.map.width || current.map.height !== s.map.height)) drag.cancel();
       current = s;
       title.textContent = s.title; title.title = s.title;
       round.textContent = `第 ${s.round} 輪${s.maxRounds === null ? "" : ` / ${s.maxRounds}`}`;
@@ -260,6 +281,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       helpToggle.setAttribute("aria-expanded", String(s.showHelp));
       paintBoard(s);
       paintPanels(s);
+      shortcuts.render();
       paintControls();
       paintMenus(s, cellSize);
       fx.render(s, cellSize, anim);
@@ -270,6 +292,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       if (destroyed) return;
       destroyed = true;
       fx.clear();
+      drag.destroy();
       observer?.disconnect();
       host?.removeEventListener("resize", resized);
       doc.removeEventListener("keydown", keydown);
@@ -278,6 +301,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       board.removeEventListener("mouseleave", leave);
       viewport.removeEventListener("wheel", wheel);
       tooltip.destroy();
+      shortcuts.destroy();
       shell.remove();
       current = null;
     },

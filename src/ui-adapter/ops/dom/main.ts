@@ -1,3 +1,5 @@
+import { commandPreferences } from "../../dom/command-preferences.ts";
+import { opsShortcutForAction } from "../../dom/command-shortcuts.ts";
 // ui-adapter/ops/dom/main — 營運頁接線（唯一 import vm 實作處）：載內容 → 建 OpsController → 掛營運 DOM；
 // snapshot.battle 非 null 時藏起營運、另開一層掛戰鬥畫面，分出勝負按「返回營運」→ battleDone。
 // URL：?seed=<n>（預設 1）&spectate=1（出戰全 AI 觀戰）。由殼的 #/ops 路由呼叫 mountOpsPage。
@@ -25,6 +27,7 @@ export function mountOpsPage(container: HTMLElement): { destroy(): void } {
   const spectate = params.get("spectate") === "1";
   const options: OpsControllerOptions = { db, world, seed, spectate };
   let controller = new OpsController(options);
+  const shortcutStore = commandPreferences("ops");
   let latest: OpsSnapshot = controller.snapshot();
   let notice: string | null = null;   // DOM 自己的提示（存讀檔），蓋在 snapshot.message 上
   let battle: BattleHost | null = null;
@@ -48,7 +51,9 @@ export function mountOpsPage(container: HTMLElement): { destroy(): void } {
   };
   const send = (action: OpsUiAction): void => {
     notice = null;
+    const shortcutId = opsShortcutForAction(controller.snapshot(), action);
     latest = controller.dispatch(action);
+    if (shortcutId) shortcutStore.record(shortcutId);
     if (action.type === "cmd" && action.cmd.v === "save" && latest.message === null) {
       try {
         localStorage.setItem(SAVE_KEY, controller.serialize());
@@ -73,6 +78,7 @@ export function mountOpsPage(container: HTMLElement): { destroy(): void } {
   };
 
   const view = mountOps(container, {
+    shortcutStore,
     onAction: send,
     onKey: k => {
       // 殼把頁面藏起時不收（戰鬥 render.ts 同做法）。

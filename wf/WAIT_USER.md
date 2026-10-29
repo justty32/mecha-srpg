@@ -21,5 +21,3 @@
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。
 
 - [feature-dev] 請評閱 10/28 兩個獨立試作的畫風、比例與操作手感 → [Canvas 礁鷹](../art/canvas-mech/README.md)／[真正 3D 衡岳](../art/mech-3d/README.md)（各 README 可開離線展示）。基本連續整機／hero 造型僅由主線與領導 AI 圖驗通過，使用者尚未評閱；兩作已交付，不需重做原型。
-
-- [feature-dev] 請以Ubuntu WSL啟動遊戲，實機評閱10/29營運地圖／戰鬥布局、2–6格移動、命中與傷勢手感；agent驗證及啟動入口見[本輪交付](workflows/dispatch/handoffs/done/2026-10-29/lead-playable-1029/REPORT.md)，依具體回饋續修。
