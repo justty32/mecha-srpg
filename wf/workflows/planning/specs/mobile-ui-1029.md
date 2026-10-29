@@ -1,6 +1,6 @@
 # 手機布局、雙平台地圖拖曳與快捷操作契約
 
-母交接： [lead-mobile-1029](../../dispatch/handoffs/lead-mobile-1029.md)。不改玩法、數值、迷霧權限、座標投影與命令確認規則。
+母交接： [lead-mobile-1029](../../dispatch/handoffs/done/2026-10-29/lead-mobile-1029.md)。不改玩法、數值、迷霧權限、座標投影與命令確認規則。
 
 ## 方案與取捨
 

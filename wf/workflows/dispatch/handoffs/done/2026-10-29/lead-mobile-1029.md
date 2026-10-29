@@ -55,3 +55,7 @@ REPORT 直接寫 `/mnt/c/code/mine/mecha-srpg/wf/workflows/dispatch/handoffs/lea
 ## 完成／阻塞回報
 
 原生工具向 root 回報，需擴範圍或遇實際阻礙先說具體證據。測出問題先修本輪，不任意回滾別人檔案。領導持續監看至全部工人終局，收尾只做必要紀錄，避免冗長文件潤飾。
+
+## 完成證據
+
+產品7478bd35已push；本線原生工具已終局。UI DOM231/231、正式批次28/29；最後touch三連1/3，圖外模擬pointerdown觀測限制未宣稱全綠，依主線16:48裁示帶限制交付。精確證據及主線後續見lead-mobile-1029/REPORT.md。

@@ -6,7 +6,7 @@
 
 ## 產出
 
-21個UI／e2e產品檔；設計見[手機契約](../../../planning/specs/mobile-ui-1029.md)。來源雜湊及精確命令見[驗證資料](verification.json)。七張headless圖已由astra複審，無可見P1/P2。
+21個UI／e2e產品檔；設計見[手機契約](../../../../../planning/specs/mobile-ui-1029.md)。來源雜湊及精確命令見[驗證資料](verification.json)。七張headless圖已由astra複審，無可見P1/P2。
 
 UI DOM 231/231、core/UI typecheck、build通過；最新快照含已push AI產品26ab375e／docs a40e28da。正式29案批次28過、唯一touch案圖外scroll測試未過；最終完整Chrome三連1過2敗（exit1），失敗均在圖外emulated touch pointerdown觀測，三次move啟用、真拖、cancel、邊界反向、zoom後唯一trusted click與真格座標皆過。不稱單次29全綠或三連全綠。
 
@@ -18,4 +18,6 @@ UI DOM 231/231、core/UI typecheck、build通過；最新快照含已push AI產�
 
 ## 需要決定
 
-主線16:48裁示先推已驗手機產品並明列限制；不再開新診斷。原三份review logs與使用者dev服務保留，自有4178 preview收線關閉。SESSION／CLAIMS及最小歸檔由root統一收尾，Pages另線負責最終線上smoke。
+主線16:48裁示先推已驗手機產品並明列限制；不再開新診斷。原三份review logs與使用者dev服務保留，自有4178 preview收線關閉。本線已最小歸檔；SESSION／CLAIMS由root統一收尾，Pages另線負責最終線上smoke。
+
+產品提交：`7478bd35393d76318fbc22f6162e57e51bd8fa7a`；Pages最終線上smoke三頁及快捷／desktop drag皆通過（Pages線回報）。

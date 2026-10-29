@@ -82,7 +82,7 @@
   },
   {
    "check": "final-touch-repeat-full-chrome",
-   "command": "same LD_LIBRARY_PATH; nice -n 19 playwright test -c node_modules/.cache/mobile-1029/full-browser.config.mjs e2e/battle.spec.ts --grep '戰場安全拖曳：touch' --repeat-each=3 --workers=1",
+   "command": "LD_LIBRARY_PATH=/mnt/c/code/mine/mecha-srpg/node_modules/.canvas-headless/root/usr/lib/x86_64-linux-gnu nice -n 19 node_modules/.bin/playwright test -c /mnt/c/code/mine/mecha-srpg/node_modules/.cache/mobile-1029/full-browser.config.mjs e2e/battle.spec.ts --grep '戰場安全拖曳：touch' --repeat-each=3 --workers=1",
    "exit": 1,
    "result": "1/3 complete pass; 2/3 fail only at off-map emulated touch pointerdown observation; all three move-mode, real drag/cancel/boundary/zoom/native click/cursor/audit chains passed; Chromium1248 full chrome headless, not headless_shell",
    "evidence": "verification.log"
