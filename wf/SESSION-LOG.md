@@ -14,4 +14,3 @@
 - [feature-dev] fix-playtest-1105：試玩問題與平衡修正進行中（隔離 worktree，Opus）→ 完成後由頂層 merge／[試玩報告](workflows/dispatch/handoffs/playtest-1105/REPORT.md)
 - [feature-dev] Fable 三題已裁決（2026-11-05），實作排在 fix-playtest 合併之後，避免同時改戰鬥碼與黃金 → [報告](notes/investigations/content-review-2026-10-27/fable-report.md)
 - [testing] 使用者 2026-11-05 不追認 a3407d97 對黃金與斷言的改寫；待 fix-playtest 合併後開 Opus 線，逐條比對 10/28 九條的行為改變 → [驗收基準](workflows/dispatch/handoffs/verify-head-1105/REPORT.md)
-- [tidy] slim-1105 瘦身執行中（刪封存與舊線、改規矩、導航 tidy）→ 完成即刪本行；計畫在 tidy 工作流

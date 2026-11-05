@@ -10,7 +10,6 @@
 |----|----|------|------|
 | fix-playtest-1105 | Opus（隔離 worktree `.claude/worktrees/`）| 該 worktree 內 `src/`、`content/`、`code-map.json` 等試玩修正範圍 | 完成後由頂層 merge；依據 [playtest-1105](handoffs/playtest-1105/REPORT.md) |
 | test-prune-1105 | 原生 agent | `test/`、`src/**/*.test.ts`、`wf/workflows/testing.md`、`wf/notes/investigations/test-prune-1105/` | 測試刪減 |
-| slim-1105 | 原生 agent（調度者授權）| `wf/`（上兩列除外）、`art/*/evidence`、`legacy/`、頂層文件的 legacy 句、`.gitignore` | 文件瘦身；不動 `src/`、`test/`、`e2e/` |
 
 ## 保留給調度者，任何線都不得寫
 
