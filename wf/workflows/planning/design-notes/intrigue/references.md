@@ -1,6 +1,6 @@
 # intrigue／references — 參考作品怎麼做「局勢」與「掙扎」
 
-[intrigue 入口](../intrigue.md)｜查證線 `cx-intrigue-ref` 的 [REPORT](../../../dispatch/handoffs/plan-intrigue/cx-intrigue-ref/REPORT.md)
+[intrigue 入口](../intrigue.md)｜查證線 `cx-intrigue-ref` 的 REPORT（原文見 git `3fad8aea`）
 
 逐部明細已抽到 [references.json](references.json)（18 列，codex `gpt-6-astra` 開網路搜尋查證，每列 2–3 條來源連結）。欄位：`work` 作品／`medium_year`／`situation` 局勢怎麼搭／`struggle` 主角的掙扎怎麼做／`technique` 可抽的手法（≤3 條）／`pitfall` 它做壞或容易學壞的地方／`relevance` 對本作最可借的一句／`sources` 連結。證據最弱的一列是 Front Mission 5（角色頁只讀到索引摘錄），其餘各列至少有百科加一條訪談或官方介紹。本檔只寫從 18 列裡抽出來的共通結構，**抽的是手法，不是元素**。
 

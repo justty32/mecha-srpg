@@ -16,4 +16,4 @@
 
 繪圖接口為 `drawing/index.js` 的 `drawLeaf(ctx, job, visualState)`：ctx 已套一次 core 世界矩陣，畫件使用葉局部座標；requiredCoverage 原樣交給畫件。顯隱／Solo 依語義樹，動作依 rig；分解以明示位移呈現，不改核心幾何。
 
-可查看 [待機](viewer/evidence/complete-1.1.0-idle.png)、[舉盾瞄準](viewer/evidence/complete-1.1.0-shield-aim.png)、[低姿支撐](viewer/evidence/complete-1.1.0-low-brace.png)、[分解與骨架](viewer/evidence/complete-1.1.0-exploded-skeleton.png)。來源、雜湊、驗證結果與修訂紀錄集中於 [REPORT](viewer/REPORT.md)。
+證據圖（待機、舉盾瞄準、低姿支撐、分解與骨架）不進版控：跑 `node art/canvas-mech/headless.mjs` 重產到 `viewer/evidence/`，舊圖見 git `706da1e6`。來源、雜湊、驗證結果與修訂紀錄集中於 [REPORT](viewer/REPORT.md)。

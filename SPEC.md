@@ -10,4 +10,4 @@
 
 - 兩份入口衝突時以 `constraints.json` 與使用者裁示原文（[design-notes](wf/workflows/planning/design-notes.md)）為準；為什麼這樣選見 [decisions](wf/workflows/decisions.md)。
 - 程式碼與 spec 不一致時，先在實作線 REPORT 標 `SPEC-GAP`，由頂層改 spec，不在程式裡另立規則。
-- 舊版 Python 專案的 SPEC 原文封存在 `legacy/SPEC.md`，不再維護、不是契約。
+- 舊版 Python 專案的 SPEC 原文已刪（git `706da1e6` 的 `legacy/SPEC.md`），不是契約。

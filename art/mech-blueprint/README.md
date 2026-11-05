@@ -14,9 +14,9 @@
 
 目前正式來源為 `blueprint-4`，64／64份獨立SVG與附件版本一致。兩個重建命令已實測：配置線執行 `node art/mech-blueprint/build.ts` 得64工作單、0診斷；本線執行 `nice -n 19 node art/mech-blueprint/build-viewer.ts` 得64 parsed、0診斷、0 sampleFailures。六條bind→目標路徑各21點，連同反向回程共12段，再加bind共253次姿態檢查。兩命令只依賴本原型內程式、data與parts，不讀wf交接暫存、規劃表或/tmp參考圖。
 
-最後一次重跑完成於2026-10-27 20:25（Asia/Taipei），已包含pelvis-frame腰軸可視承力帶由20加厚至21.6 units並重新parse的64件metadata；rev4維持不變。build-viewer再次exit0、64 parsed／253次檢查／零診斷；正式 `nice -n 19 node art/mech-blueprint/headless.mjs` 再次exit0、20項檢查通過。file入口初始即完整組裝，沒有PARTIAL／施工標記；實際操作三模式、分件格內置中、三級顯隱、配置祖先顯隱與solo、選件、還原、疊圖、左右六動作、scrub、播放暫停、bind與減少動態。SVG實測視覺深度4，僅file文件本身1次請求、0 pageerror。來源hash與revision記在 [interaction.json](evidence/interaction.json)，`completeAcceptance:true` 指本原型的固定驗收通過。
+最後一次重跑完成於2026-10-27 20:25（Asia/Taipei），已包含pelvis-frame腰軸可視承力帶由20加厚至21.6 units並重新parse的64件metadata；rev4維持不變。build-viewer再次exit0、64 parsed／253次檢查／零診斷；正式 `nice -n 19 node art/mech-blueprint/headless.mjs` 再次exit0、20項檢查通過。file入口初始即完整組裝，沒有PARTIAL／施工標記；實際操作三模式、分件格內置中、三級顯隱、配置祖先顯隱與solo、選件、還原、疊圖、左右六動作、scrub、播放暫停、bind與減少動態。SVG實測視覺深度4，僅file文件本身1次請求、0 pageerror。來源hash與revision記在 interaction.json，`completeAcceptance:true` 指本原型的固定驗收通過。
 
-正式影像均已親看：[bind](evidence/bind.png)、[骨架](evidence/skeleton.png)、[分件](evidence/exploded.png)、[抬臂](evidence/raise-arm.png)、[屈肘](evidence/bend-elbow.png)、[屈膝](evidence/bend-knee.png)。`evidence/partial.png` 保留為較早局部快照，正式證據以上述六張及目前interaction為準；合計七張PNG，維持本線5MB上限。造型品質仍交使用者評閱；固定視角剛性2D與前述驗證範圍不因此擴大。
+正式影像均已親看：bind、骨架、分件、抬臂、屈肘、屈膝（證據圖不進版控，`headless.mjs` 重產到 `evidence/`，舊圖見 git `706da1e6`）。`evidence/partial.png` 保留為較早局部快照，正式證據以上述六張及目前interaction為準；合計七張PNG，維持本線5MB上限。造型品質仍交使用者評閱；固定視角剛性2D與前述驗證範圍不因此擴大。
 
 局部UI模式 `node art/mech-blueprint/headless.mjs --partial` 僅供缺件試接，會明示未完成且不算正式驗收。正式模式必須64掛件及零幾何錯誤才通過；禁止拿局部log或舊圖替代新證據。
 

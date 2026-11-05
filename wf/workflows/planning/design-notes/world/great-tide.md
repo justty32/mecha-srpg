@@ -2,7 +2,7 @@
 
 [world](../world.md)｜[design-notes 入口](../../design-notes.md)｜大潮改讀（末日級）→ [scale.md](scale.md)｜天象 → [tide-sky](../tide-sky.md)｜節點 → [history-nodes.json](history-nodes.json) N10
 
-來源：talk-decide 對談（2026-10-25，Fable），記錄在 `wf/workflows/dispatch/handoffs/talk-decide/decisions/world.md`；收掉 talk-world [open.md](../../../dispatch/handoffs/talk-world/handover/open.md) 第 5、6、7.5、7.7、7.8、7.9 條與 history-reconcile R08、R24。「大潮全球同一時刻」是**裁示**；其餘使用者回「隨意」「都OK」，照對談提案定，數值是**暫值、可改**。
+來源：talk-decide 對談（2026-10-25，Fable），記錄在 `wf/workflows/dispatch/handoffs/talk-decide/decisions/world.md`；收掉 talk-world open.md 第 5、6、7.5、7.7、7.8、7.9 條與 history-reconcile R08、R24。「大潮全球同一時刻」是**裁示**；其餘使用者回「隨意」「都OK」，照對談提案定，數值是**暫值、可改**。（原文見 git `3fad8aea`）
 
 ## 原話（照錄）
 

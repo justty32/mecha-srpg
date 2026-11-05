@@ -2,7 +2,7 @@
 
 [world](../world.md)｜古代機規則 [essence.md](essence.md)、[great-tide.md](great-tide.md)｜歐傘 [before-collapse-powers.md](before-collapse-powers.md)
 
-來源：[plan-epic v3](../../../dispatch/handoffs/plan-epic/v3.md) 第 1 節；使用者 2026-10-26 回「都按照建議」。前因：v1 裁示古代機維持高高在上、硬要當主角就挑一台演繹傳統日本超級機器人、融入本作基調；v2 選處容被否決（「釜山？不是，韓國人」），且「招式名＝會計制度」「不親手殺」兩條不採。本檔只記**定案方向**；認主事件與歐傘那一盤由 lead-aegir 填進 lore（見末節），引擎走 engine-backlog。
+來源：plan-epic v3 第 1 節；使用者 2026-10-26 回「都按照建議」。前因：v1 裁示古代機維持高高在上、硬要當主角就挑一台演繹傳統日本超級機器人、融入本作基調；v2 選處容被否決（「釜山？不是，韓國人」），且「招式名＝會計制度」「不親手殺」兩條不採。本檔只記**定案方向**；認主事件與歐傘那一盤由 lead-aegir 填進 lore（見末節），引擎走 engine-backlog。（原文見 git `3fad8aea`）
 
 ## 定案
 

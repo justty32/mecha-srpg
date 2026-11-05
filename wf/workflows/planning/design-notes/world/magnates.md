@@ -2,7 +2,7 @@
 
 [world](../world.md)｜基線 [before-collapse.md](before-collapse.md)｜各國 [before-collapse-powers.md](before-collapse-powers.md)｜三層與城邦類型 [polity.md](polity.md)
 
-來源：[plan-epic v3](../../../dispatch/handoffs/plan-epic/v3.md) 第 3 節 B 與第 3.5 節補，使用者 2026-10-26 回「都按照建議」，方向**已定（2026-10-26）**；巨頭各類的具體公司名、公司城的數量與地名都**留填充層**，不在這裡取。使用者對 v2 的原話：「賽勒涅沒那麼厲害吧？除非他是頂級富豪的聚集地。」
+來源：plan-epic v3 第 3 節 B 與第 3.5 節補，使用者 2026-10-26 回「都按照建議」，方向**已定（2026-10-26）**；巨頭各類的具體公司名、公司城的數量與地名都**留填充層**，不在這裡取。使用者對 v2 的原話：「賽勒涅沒那麼厲害吧？除非他是頂級富豪的聚集地。」（原文見 git `3fad8aea`）
 
 ## 巨頭與國家
 

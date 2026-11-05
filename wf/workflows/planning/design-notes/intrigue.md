@@ -1,8 +1,8 @@
 # design-notes／intrigue — 局勢與掙扎（規劃線提案，2026-10-24）
 
-[design-notes 入口](../design-notes.md)｜[planning](../../planning.md)｜守則 [world-pillars](../../content/world-pillars.md)｜REPORT [plan-intrigue](../../dispatch/handoffs/plan-intrigue/REPORT.md)
+[design-notes 入口](../design-notes.md)｜[planning](../../planning.md)｜守則 [world-pillars](../../content/world-pillars.md)｜REPORT plan-intrigue（原文見 git `3fad8aea`）
 
-**這不是裁示，是規劃線（Fable，線名 `plan-intrigue`）寫給使用者拍板的設計筆記。** 與 design-notes 其他子檔不同：那些是使用者原話，這份是提案，每一條都可以推翻。**例外：末段「五件事」2026-10-24 已定**（使用者「就用暫定答案」，暫定答案見 talk-world [open.md](../../dispatch/handoffs/talk-world/handover/open.md) 第 9 條）。不改 spec、不改 `src/`；要動 spec 或引擎的地方全標成「提案」，彙整在 REPORT。
+**這不是裁示，是規劃線（Fable，線名 `plan-intrigue`）寫給使用者拍板的設計筆記。** 與 design-notes 其他子檔不同：那些是使用者原話，這份是提案，每一條都可以推翻。**例外：末段「五件事」2026-10-24 已定**（使用者「就用暫定答案」，暫定答案見 talk-world open.md 第 9 條）。不改 spec、不改 `src/`；要動 spec 或引擎的地方全標成「提案」，彙整在 REPORT。（原文見 git `3fad8aea`）
 
 ## 出發點
 

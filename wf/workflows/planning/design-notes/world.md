@@ -38,3 +38,7 @@
 → [world/city-types.md](world/city-types.md)：自由城市與黑幫城市（類型是裁示；數量、分布、獵牌與催收規則、吉大港與環線商隊歸屬已定 2026-10-26，其餘提案）。
 → [world/aegir.md](world/aegir.md)：超級機器人式的那一台＝埃吉爾（定案方向；認主事件與歐傘填充另開線）。
 → 崩年的底色十三句掛線：[world/history-lines.md](world/history-lines.md) 框架一節。
+
+## 2026-10-26：萬潮葬王副線（plan-wanchao）
+
+→ [world/wanchao.md](world/wanchao.md)：不開第九條線，當一面會走的天氣橫切 F／G／H、終點 N10；三拍、七條守則與四題裁示（北上、拍三可選正面打、北岸一區轉淺蝕、王跡）。

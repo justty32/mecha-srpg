@@ -8,7 +8,7 @@
 
 唯一交付目錄：`/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen/`。
 
-[README.md](README.md)記問題、方法、發現、結論與來源；[coverage.json](coverage.json)為346列wf-table，逐檔有read_level、sha256、入口歸屬及來源列映射；[evidence.json](evidence.json)為8組wf-table，兩端與直接配套均有字段、行號、sha256、相似／差異、判定、建議與信心。另保留兩支分區輔助腳本及last.txt；沒有commit或分支操作。
+[README.md](README.md)記問題、方法、發現、結論與來源；coverage.json為346列wf-table，逐檔有read_level、sha256、入口歸屬及來源列映射；evidence.json為8組wf-table，兩端與直接配套均有字段、行號、sha256、相似／差異、判定、建議與信心。另保留兩支分區輔助腳本及last.txt；沒有commit或分支操作。
 
 主責263入口全部唯一且有現檔：gear為124部件、40能力、12效果、24研究；scen為48情境、15地圖。七輪參照實數12機甲＋10怪獸＝22概念、64配套檔，領導orders已確認修正brief的24，主責gate不變。首輪怪獸表16個worktree絕對路徑已依content後綴映射現主樹；首輪6份機甲型錄另記覆蓋，不多算概念。六台新機甲實際引用八件gear部件，這是正常配套而非重複創作。
 

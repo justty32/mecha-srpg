@@ -2,7 +2,7 @@
 
 [world](../world.md)｜基線 [before-collapse.md](before-collapse.md)｜各國 [before-collapse-powers.md](before-collapse-powers.md)｜巨頭 [magnates.md](magnates.md)｜自由城市與黑幫城市 [city-types.md](city-types.md)｜數字 [scale.md](scale.md)
 
-來源：[plan-epic v3](../../../dispatch/handoffs/plan-epic/v3.md) 第 2 節、第 3 節末（1.7 債）、第 4 節；使用者 2026-10-26 回「都按照建議」，**已定（2026-10-26）**。使用者對 v2 的原話：「國家之死？國家不會那麼容易死的。」2026-10-24 原話本就站在這邊：「科研力量／普通人的生產力各種東西都還是在國家掌控下。」
+來源：plan-epic v3 第 2 節、第 3 節末（1.7 債）、第 4 節；使用者 2026-10-26 回「都按照建議」，**已定（2026-10-26）**。使用者對 v2 的原話：「國家之死？國家不會那麼容易死的。」2026-10-24 原話本就站在這邊：「科研力量／普通人的生產力各種東西都還是在國家掌控下。」（原文見 git `3fad8aea`）
 
 ## 三層
 

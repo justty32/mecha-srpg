@@ -6,7 +6,7 @@
 
 ## 產出（檔案路徑 / commit / 分支）
 
-交付全在本分區：[README.md](README.md)、[entries.json](entries.json)（200列）、[coverage.json](coverage.json)（663列）、[evidence.json](evidence.json)（24列）、[last.txt](last.txt)。另保留本輪兩份資料產生腳本供追溯。所有表均用 tabledb load／Table.add／save；舊 list 列僅在記憶體正規化，未改來源。
+交付全在本分區：[README.md](README.md)、entries.json（200列）、coverage.json（663列）、evidence.json（24列）、last.txt。另保留本輪兩份資料產生腳本供追溯。所有表均用 tabledb load／Table.add／save；舊 list 列僅在記憶體正規化，未改來源。
 
 coverage 逐檔記錄指紋、read_level 與來源歸屬；全文 35 檔（33 人物 lore＋背景及招募樣本各1），機械 628 檔。evidence 每組有兩端字段、實體行號、行內短定位、sha256、相似、差異、信心與建議。寄信前已核來源映射、候選兩端定位與全部覆蓋指紋；入口 200≤200、候選24≤50。報告寫入前分區為446179 bytes，連同本報告與終局摘要仍低於500000 bytes。未 commit／push，審閱 HEAD 記於 coverage metadata。
 

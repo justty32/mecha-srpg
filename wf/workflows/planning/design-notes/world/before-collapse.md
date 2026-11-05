@@ -2,7 +2,7 @@
 
 [world](../world.md)｜[design-notes 入口](../../design-notes.md)｜各國局勢 → [before-collapse-powers.md](before-collapse-powers.md)｜巨頭與塞勒涅量級 → [magnates.md](magnates.md)｜崩年後的國家與城邦 → [polity.md](polity.md)｜崩年的底色 → [history-lines.md](history-lines.md)「崩年的底色」
 
-來源：plan-epic 規劃線 [REPORT-v2](../../../dispatch/handoffs/plan-epic/REPORT-v2.md) 第 0 節（國家格局一段由 [v3](../../../dispatch/handoffs/plan-epic/v3.md) 第 3.5 節取代）。使用者 2026-10-26 對 v2 回「剩下八題都 OK」、對 v3 回「都按照建議」，所以本檔讀法是**已定（2026-10-26）**；新名詞標「提案名」。寫崩年後續影響前，先立崩年前是什麼樣子：2108 的每一件事都是「崩年前是 X，崩年後變成 Y」。**先民前史不在這裡展開**（一萬年前保持神祕，使用者 2026-10-26）。
+來源：plan-epic 規劃線 REPORT-v2 第 0 節（國家格局一段由 v3 第 3.5 節取代）。使用者 2026-10-26 對 v2 回「剩下八題都 OK」、對 v3 回「都按照建議」，所以本檔讀法是**已定（2026-10-26）**；新名詞標「提案名」。寫崩年後續影響前，先立崩年前是什麼樣子：2108 的每一件事都是「崩年前是 X，崩年後變成 Y」。**先民前史不在這裡展開**（一萬年前保持神祕，使用者 2026-10-26）。（原文見 git `3fad8aea`）
 
 ## 秩序
 

@@ -16,4 +16,4 @@
 
 ## 狀態
 
-2026-10-24：核心 spec v1 定案、世界觀提案第二版進行中；舊版 Python 專案已封存到 `legacy/`，實作從 `src/core`＋`src/content` 地基開始。
+2026-10-24：核心 spec v1 定案、世界觀提案第二版進行中；舊版 Python 專案已封存到 `legacy/`（2026-11-05 刪除，見 git 歷史），實作從 `src/core`＋`src/content` 地基開始。

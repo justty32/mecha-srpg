@@ -1,6 +1,6 @@
 # mecha-srpg — AI agent 專案備忘
 
-mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite、邏輯與 DOM 分離、node 裡 headless 可測**（舊版 Python 專案封存在 `legacy/`，只讀）。本檔是最頂層路由器，只指向下一層；細節不寫這裡（分層原則見 [STRUCTURE.md](wf/STRUCTURE.md)）。
+mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite、邏輯與 DOM 分離、node 裡 headless 可測**（舊版 Python 專案 2026-11-05 已從工作樹刪除，見 git 歷史 `706da1e6`）。本檔是最頂層路由器，只指向下一層；細節不寫這裡（分層原則見 [STRUCTURE.md](wf/STRUCTURE.md)）。
 
 ## 開場與入口
 

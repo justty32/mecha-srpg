@@ -14,4 +14,4 @@
 
 在專案根目錄執行 `node art/mech-3d/build.mjs` 重建全內嵌 HTML；`node art/mech-3d/headless.mjs` 執行既定互動驗證並更新同 6 張圖，`--first-frame` 僅更新 hero 並驗光窗。工具需要既有 Chromium 1243 與局部依賴，環境及來源詳見 [REPORT](viewer/REPORT.md)。headless 依專案排程單一執行，完成關閉瀏覽器。
 
-圖像：[hero](viewer/evidence/hero.png) · [正面](viewer/evidence/front.png) · [側面](viewer/evidence/side.png) · [背面](viewer/evidence/back.png) · [戒備](viewer/evidence/guard.png) · [分解](viewer/evidence/exploded.png)。
+圖像（hero、正面、側面、背面、戒備、分解）不進版控：跑 `node art/mech-3d/headless.mjs` 重產到 `viewer/evidence/`，舊圖見 git `706da1e6`。
