@@ -52,7 +52,7 @@
 
 ## slim-1105（2026-11-05 全 repo 瘦身）結論
 
-tracked 檔 7429 → 約 4320、83.1 → 約 20 MB（`.git` 不縮）。刪：封存（handoffs `done/`、inbox archive／done、`wf/archive/`）、只增紀錄（舊線證據、收工流水、backlog 已完成列）、10/26–10/29 舊線文件、`legacy/`、美術證據圖、10/28 審閱大 json。plan／talk 七份先核對已被 design-notes 吸收，未吸收的萬潮葬王副線併成 `design-notes/world/wanchao.md`、基調教訓併進 content polish。保留：`specs/*-1029.md` 與 `plans/*-1029.md`（core README 仍以它們為 10/29 戰鬥增補契約，待併進 core 規則子檔）。規矩改成「git 歷史即封存」（STRUCTURE「過時就刪」、dispatch 收線、handoffs 報告保留期、本檔長度上限、wf-lint STALE／HEAVY）。未做：F 類程式碼拆檔（18 檔 > 300 行，排在試玩修正線合併後、照 refactor 先跑測試基準）；`decisions.md`＋`decisions/` 約 20 KB 仍超 16 KB 上限，要逐筆判斷哪些已落實進 spec。計畫原文見 git `149c187f` 的 `wf/workflows/tidy/slim-1105-*`。
+tracked 檔 7429 → 約 4320、83.1 → 約 20 MB（`.git` 不縮）。刪：封存（handoffs `done/`、inbox archive／done、`wf/archive/`）、只增紀錄（舊線證據、收工流水、backlog 已完成列）、10/26–10/29 舊線文件、`legacy/`、美術證據圖、10/28 審閱大 json。plan／talk 七份先核對已被 design-notes 吸收，未吸收的萬潮葬王副線併成 `design-notes/world/wanchao.md`、基調教訓併進 content polish。保留：`specs/*-1029.md` 與 `plans/*-1029.md`（core README 仍以它們為 10/29 戰鬥增補契約，待併進 core 規則子檔）。規矩改成「git 歷史即封存」（STRUCTURE「過時就刪」、dispatch 收線、handoffs 報告保留期、本檔長度上限、wf-lint STALE／HEAVY）。未做：F 類程式碼拆檔（18 檔 > 300 行，排在試玩修正線合併後、照 refactor 先跑測試基準）。計畫原文見 git `149c187f` 的 `wf/workflows/tidy/slim-1105-*`。
 
 ## 踩過的坑
 
