@@ -24,6 +24,8 @@ skill=clamp(50/max(1,roleAccuracy),.5,2)。射擊r=(distance×dispersion+vEff×(
 
 kx-thorn-snipe精確射擊aim=.06/.08/30；mx-radiant-shot與shell-lance=.08/.1/20；kx-thorn-volley與kx-acid-sting=.12/.15/12；mx-singing-slash、reaper-cleave、kx-wing-dive近戰windup.8。原partAim.allowed不支持者本批允許，原penalty已存在則保留，新增預設10；部位差異主要由半徑、遮蔽、橫移和狀態導出，不是每處同一扣分。
 
+**2026-11-05 修訂（playtest-1105）**：近戰windup .8使相鄰大目標只要上回合橫移滿速（vPerp 1.5）命中就掉到約50%，而6格遠射仍100%，與下段「近距大目標仍可能100%，遠距小部位和付費迴避才降低」相反；constants.aimMeleeWindup與reaper-cleave、mx-singing-slash、kx-wing-dive的windup改.3（約等於4–5格遠射的時間項）。公式不變。
+
 mx-flaring去掉舊evasion15，改maneuver1.5，既有閃身AP1／flare-fuel1／heat10不改。近距大目標仍可能100%，遠距小部位和付費迴避才降低；不能把機動宣稱為無條件必中閃躲。
 
 ## 功能必須真的關閉

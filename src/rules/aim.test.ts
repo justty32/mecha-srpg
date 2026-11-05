@@ -112,3 +112,15 @@ test("非整數chance保留浮點，同一nextFloat實骰不偷偷取整或加�
   assert.equal(event.payload.chance, chance); assert.equal(event.payload.roll, expectedRoll);
   assert.equal(event.type === "Hit", expectedRoll < chance);
 });
+
+test("近距大目標：橫移後的近戰仍能必中，且打小部位不比遠射難（playtest-1105 命中不對稱）", () => {
+  const melee = fixture(d => { d.pilot.attrs.accuracy = 55; d.body.targetRadius = 1; d.body.parts[0]!.targetRadius = 0.32;
+    d.ability.tags = ["melee"]; d.ability.target.range = { min: 1, max: 1 }; });
+  unit(melee, "a").pos = { x: 0, y: 0 }; unit(melee, "b").pos = { x: 1, y: 0 }; unit(melee, "b").motion = { dx: 0, dy: 3 };
+  assert.equal(aimInfo(melee, "a", "ability/test", "b").aim.lateral, 1.5);
+  assert.equal(hitChance(melee, "a", "ability/test", "b"), 100, "相鄰大目標即使橫移滿速，近戰也不該掉到五成");
+  const ranged = fixture(d => { d.pilot.attrs.accuracy = 55; d.body.targetRadius = 1; d.body.parts[0]!.targetRadius = 0.32; d.ability.tags = ["ranged"]; });
+  ranged.s.map = { ...ranged.s.map, width: 8, terrain: Array(40).fill(ranged.s.map.terrain[0]!) };
+  unit(ranged, "a").pos = { x: 0, y: 0 }; unit(ranged, "b").pos = { x: 6, y: 0 }; unit(ranged, "b").motion = { dx: 0, dy: 3 };
+  assert.ok(hitChance(melee, "a", "ability/test", "b", "core") >= hitChance(ranged, "a", "ability/test", "b", "core"), "近距打小部位不應比 6 格外更難");
+});
