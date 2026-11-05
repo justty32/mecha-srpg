@@ -14,8 +14,6 @@
 
 - [content] 其餘內容候選待審（P01 朴仁哲失腿已定案：閘門夾斷）；10/27 七輪與 10/28 expansion／night 的 23 份 batch manifest 仍是 draft（技術已入庫，11/05 audit-paused-1105 已機械核對）→ [審閱入口](notes/investigations/content-review-2026-10-27/README.md)、[四線審查](workflows/dispatch/handoffs/audit-paused-1105/REPORT.md)。
 
-- [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 lead-ui-fix feedback、機甲核心試玩四點見 lead-cockpit REPORT「需要使用者決定或試玩」（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）；兩份原文見 git `3fad8aea`。11/05 agent 試玩見 [playtest-1105](workflows/dispatch/handoffs/playtest-1105/REPORT.md)。
-
 - [feature-dev] SVG美術、紙娃娃與機甲百層／五層深度演出待評閱；實際瀏覽器互動／動畫待使用者實機驗 → [集中看圖與驗收](../art/README.md)。
 
 - [feature-dev] 請評閱新機甲原型的畫風、比例與手感 → [展示入口](../art/mech-blueprint/index.html)｜[製作與使用說明](../art/mech-blueprint/README.md)；agent 已驗固定視角 2D 抬臂、屈肘與屈膝，尚未接 Spine 或遊戲；依回饋接續調整。
