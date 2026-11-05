@@ -1,6 +1,6 @@
 import type { Id } from "../../core/ids.ts";
 import { controlLabel, moraleLabel, roleLabel, statusLabel, layerTypeLabel, poolLabel, movementLabel, frameClassLabel,
-  familyLabel, targetShapeLabel, effectTimingLabel, functionLabel, damageTypeLabel } from "./labels.ts";
+  familyLabel, targetShapeLabel, effectTimingLabel, functionLabel, damageTypeLabel, defenseSummary } from "./labels.ts";
 import { cellKey } from "../../core/ids.ts";
 import type { GameEvent } from "../../core/events.ts";
 import type { PoolDecl, NumExpr } from "../../core/types-def.ts";
@@ -227,7 +227,7 @@ export class BattleViewModel {
       : `分散份額 ${pattern.fractions.map(n => `${n * 100}%`).join("／")}，${pattern.selection === "adjacent" ? "沿相鄰部位" : "可波及露出部位"}`;
     return [`消耗：${resources(a.costs)}`, `射程：${range.min}–${range.max}`,
       `範圍：${shape}${radius === undefined ? "" : `／半徑 ${value(radius)} 格`}`,
-      `傷害（基礎）：${damage}`, `部位傷害：${partDamage}${pattern?.kind === "spread" ? "；指定部位是主入口，盾擋只保護主片" : pattern?.kind === "penetrate" ? "；遇盾先穿盾與承傷臂，僅實際剩餘能量再進原瞄準部位，無餘量即止" : ""}`, `效果：${effects}`, `產出：${resources(a.produces)}`,
+      `傷害（基礎）：${damage}`, ...(a.defense ? [`防禦：${defenseSummary(db, a.defense)}`] : []), `部位傷害：${partDamage}${pattern?.kind === "spread" ? "；指定部位是主入口，盾擋只保護主片" : pattern?.kind === "penetrate" ? "；遇盾先穿盾與承傷臂，僅實際剩餘能量再進原瞄準部位，無餘量即止" : ""}`, `效果：${effects}`, `產出：${resources(a.produces)}`,
       `冷卻：${value(a.cooldown ?? 0)} 回合`].join("\n");
   }
 

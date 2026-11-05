@@ -1,7 +1,7 @@
 import { test, describe } from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "../content/load.ts";
-import { createOpsCtx, newCampaign } from "../content/start.ts";
+import { beginCampaign, createOpsCtx, newCampaign } from "../content/start.ts";
 import { createWorldDB } from "../content/worlddb.ts";
 import type { WorldTables } from "../content/worlddb.ts";
 import { checkWorld } from "../content/check.ts";
@@ -368,8 +368,9 @@ describe("萬潮世界：E5 守牆與一次捕捉", () => {
     assert.throws(() => applySortieResult(f.s, f.ctx, { ...sortie, id: "second-sortie" }, result), /invalid lord/);
     assert.throws(() => applySortieResult(f.s, f.ctx, { ...sortie, id: "fake", lordEncounter: undefined }, result), /invalid named lord result|requires gate/);
     const copy = JSON.parse(JSON.stringify(f.s)); rebuildBlightIndex(copy); assert.equal(copy.namedLords[LORD].captured, true);
-    const initial = setup(); const saved = serializeCampaign(createCampaignBlob("start/default", 1, [], initial.s));
-    assert.equal(campaignHash(loadCampaign(db, world, saved)), campaignHash(initial.s));
+    // 存檔從可玩開局（含第 0 天開場待選）重播，空指令存檔要對上 beginCampaign 的狀態。
+    const initial = beginCampaign(db, world, "start/default", 1); const saved = serializeCampaign(createCampaignBlob("start/default", 1, [], initial));
+    assert.equal(campaignHash(loadCampaign(db, world, saved)), campaignHash(initial));
   });
 });
 
@@ -385,7 +386,7 @@ test("營運存讀：北行、gate待選、接受與capture鎖沿指令重播，
   const start = tables.start!["base:start/default"]!; start.cash = 1e9; start.debt = 0;
   tables.action!["base:action/wanchao-script"]!.lordScript!.gate.allowedRegions = [...new Set(Object.values(tables.map!["base:map/longland"]!.region!.legend))];
   const short = createWorldDB(world.packs, tables), records: CampaignCommand[] = [];
-  let state = newCampaign(db, short, "start/default", 1), savedNorth = false;
+  let state = beginCampaign(db, short, "start/default", 1), savedNorth = false;
   const verify = () => {
     const text = serializeCampaign(createCampaignBlob("start/default", 1, records, state));
     const restored = loadCampaign(db, short, text, () => { throw new Error("不可重跑戰鬥"); });

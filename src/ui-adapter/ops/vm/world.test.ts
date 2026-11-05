@@ -37,6 +37,9 @@ test("區域錨點不隨平移縮放改選，未知anchor不因關閉迷霧洩�
 
 test("世界游標到地點 Enter 航向 id；空格 Enter 航向座標", () => {
   const c = new OpsController({ db, world, seed: 3 });
+  // 開局第 0 天先處理開場劇情（待選期間航向會被擋）。
+  for (let i = 0; c.snapshot().prompt && i < 10; i++) c.dispatch({ type: "cmd", cmd: { v: "choose", choice: c.snapshot().prompt!.choices.find(x => x.enabled)!.n } });
+  assert.equal(c.snapshot().prompt, null);
   c.dispatch({ type: "tab", tab: "world" });
   const p = world.require("place", "place/chittagong");
   c.dispatch({ type: "mapCursor", ...p.at });

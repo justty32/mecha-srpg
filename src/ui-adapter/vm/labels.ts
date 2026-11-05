@@ -1,6 +1,7 @@
 // ui-adapter/vm/labels — 引擎列舉值（座位、士氣、單位狀態、控制模式）的中文顯示名。
 // 只管 UI 顯示；內容包的名稱（部位、能力、人物…）一律從 def.name 取，不放這裡。
 import type { ContentDB } from "../../content/contentdb.ts";
+import type { AbilityDef } from "../../core/types-def.ts";
 const LAYER: Record<string, string> = { shield: "護盾", armor: "裝甲", chitin: "甲殼", flesh: "肉體", organ: "器官",
   "cockpit-shell": "駕駛艙殼", component: "組件", structure: "結構", "resonant-shell": "共鳴裝甲" };
 export function layerTypeLabel(db: ContentDB, id: string): string {
@@ -37,6 +38,15 @@ export function damageTypeLabel(db: ContentDB, id: string): string {
   const name = db.registries["damage-types"][id]?.name;
   const labels: Record<string, string> = { kinetic: "動能", acid: "酸蝕", energy: "能量", thermal: "熱能", pierce: "穿刺" };
   return name && name !== id ? name : labels[id] ?? "其他傷害";
+}
+/** 能力的防禦宣告（盾擋／招架）一句話說明；沒有傷害包的防禦能力靠這句讓玩家看懂價值。 */
+export function defenseSummary(db: ContentDB, defense: AbilityDef["defense"]): string {
+  if (!defense) return "";
+  const overload = (defense.onOverload ?? []).map(ref => db.get("effect", typeof ref === "string" ? ref : ref.effect)?.name).filter(Boolean).join("、");
+  const parry = defense.kind === "parry";
+  const factor = defense.damageFactor !== undefined && defense.damageFactor !== 1 ? `，傷害 ×${defense.damageFactor}` : "";
+  return `${parry ? "招架" : "盾擋"}：準備到下個自身回合開始，接下 ${defense.charges} 次${parry ? "近戰實體（動能／穿刺）" : ""}命中，改由${parry ? "武器臂" : "盾臂"}承受${factor}`
+    + `（單次傷害 ≤${defense.maxImpact}、攻方體型 ≤${defense.maxSizeRatio} 倍；超過則照原部位受傷${overload ? `並陷入${overload}` : ""}）`;
 }
 /** 情境標題：ScenarioDef 沒有 name 欄（SPEC-GAP），取 id 末段。 */
 export const scenarioTitle = (id: string): string => `戰鬥：${id.replace(/^.*\//u, "")}`;

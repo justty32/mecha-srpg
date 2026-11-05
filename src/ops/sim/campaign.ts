@@ -1,6 +1,6 @@
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDB } from "../content/worlddb.ts";
-import { createOpsCtx, newCampaign } from "../content/start.ts";
+import { createOpsCtx, beginCampaign } from "../content/start.ts";
 import type { CampaignState, OpsCommand, Sortie } from "../state/types.ts";
 import type { BattleResult } from "../sortie/apply.ts";
 import { applyCommand } from "../time/index.ts";
@@ -22,7 +22,7 @@ export function runCampaign(options: CampaignOptions): { state: CampaignState; c
   if (!Number.isSafeInteger(months) || months < 0) throw new RangeError("invalid-months");
   const policy = typeof options.policy === "string" ? policies[options.policy] : options.policy;
   if (!policy) throw new Error("unknown-policy");
-  let state = newCampaign(db, world, start.includes("/") ? start : `start/${start}`, seed);
+  let state = beginCampaign(db, world, start.includes("/") ? start : `start/${start}`, seed);
   const firstDay = state.clock.day, daysPerMonth = world.require("calendar", state.calendar).daysPerMonth;
   const target = firstDay + months * daysPerMonth;
   if (!Number.isSafeInteger(target)) throw new RangeError("invalid-months");

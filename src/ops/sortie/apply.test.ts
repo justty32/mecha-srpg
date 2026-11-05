@@ -5,6 +5,8 @@ import { instantiateMech } from "../content/instantiate.ts";
 import { checkLedger } from "../state/ledger.ts";
 import { fixture, result } from "./test-support.ts";
 import { offerContract, cmdDrop, contractsDaily7 } from "../contracts/index.ts";
+import { applyOpsEffects } from "../content/opseffect.ts";
+import { eventLog } from "../text/templates.ts";
 
 test("alive 機甲與人物直接寫回已含舊傷的戰果", () => {
   const { s, ctx, sortie, mech, person } = fixture(), battle = result();
@@ -162,4 +164,34 @@ test("自機殘骸已轉材料回收不再發部件，非玩家材料不入庫�
   assert.deepEqual(s.inventory.components, components);
   assert.equal(s.ledger.balances["stock:scrap"], scrap);
   assert.deepEqual(s.places[sortie.place!]!.wreckage, wreckage);
+});
+
+test("戰場上沒回收的怪獸屍體選「拆」會入帳屍料，log 用中文品名列出拆到什麼", () => {
+  const { s, ctx, sortie } = fixture(), battle = result();
+  const beast = instantiateMech(ctx.db, "uncollected-beast", "frame/bio-nestmother"); beast.owner = "enemy";
+  battle.units.push({ id: beast.id, status: "dead", state: beast });
+  applyBattleResult(s, ctx, sortie, battle);
+  const prompt = s.pendingChoices.find(p => p.choices[0]?.text === "拆")!;
+  assert.ok(prompt);
+  const before = s.ledger.balances["stock:flesh"] ?? 0, seq = s.log.length, amount = ctx.db.rules.constants.battlefieldCorpseSalvage!;
+  assert.ok(amount > 0);
+  assert(applyOpsEffects(s, ctx, prompt.choices[0]!.effects));
+  assert.equal(s.ledger.balances["stock:flesh"], before + amount);
+  assert.deepEqual(checkLedger(s), []);
+  const lines = s.log.slice(seq).map(e => eventLog(e, s, ctx.world).text);
+  assert.ok(lines.includes(`拆下：屍料 +${amount}。`), lines.join("\n"));
+  assert.ok(!lines.some(line => line.includes("stock:") || line.includes("計畫外")), lines.join("\n"));
+});
+
+test("拆屍時貨艙滿，留在原地的份量也以中文回報", () => {
+  const { s, ctx, sortie } = fixture();
+  const used = Object.entries(s.ledger.balances).filter(([key]) => key.startsWith("stock:") && key !== "stock:fuel").reduce((sum, [, n]) => sum + n, 0)
+    + s.inventory.components.length + s.inventory.relics.length;
+  s.ship.capacity.cargo = used + 1;
+  const carcass = { id: "carcass-x", species: ctx.db.all("species")[0]!.id, grade: "C" as const, parts: {}, decayPerDay: 0.1, slot: -1 };
+  const seq = s.log.length;
+  assert(applyOpsEffects(s, ctx, [{ salvage: { place: sortie.place!, loot: { components: [], materials: { "stock:flesh": 3 } }, carcass, keep: false } }]));
+  const lines = s.log.slice(seq).map(e => eventLog(e, s, ctx.world).text);
+  assert.ok(lines.includes("拆下：屍料 +1。"), lines.join("\n"));
+  assert.ok(lines.some(line => line.startsWith("貨艙裝不下：屍料 2 份")), lines.join("\n"));
 });

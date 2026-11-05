@@ -21,6 +21,19 @@ function summary(result: ToolResult): string { return (result.content[0] as { te
 
 test("營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項", async () => {
   const { call } = setup(), initial = data(await call("campaign_new", { seed: 5 })), { id } = initial;
+  // 開局第 0 天的開場劇情就是待選事件：其他指令被擋，錯誤訊息列出題目與 choose 指令。
+  const pending = initial.prompt;
+  assert.ok(pending?.choices.length);
+  const rejected = await call("campaign_act", { id, command: { v: "board" } });
+  assert.equal(rejected.isError, true);
+  assert.equal(rejected.structuredContent!.error, "pending-choice");
+  assert.ok(summary(rejected).includes(pending.text));
+  for (const choice of pending.choices) {
+    assert.ok(summary(rejected).includes(choice.text));
+    assert.ok(summary(rejected).includes(JSON.stringify({ v: "choose", choice: choice.n })));
+  }
+  // 處理完開場劇情才能派駕駛。
+  for (let i = 0; i < 5 && data(await call("campaign_view", { id, log: 0 })).prompt; i++) data(await call("campaign_act", { id, command: { v: "choose", choice: 1 } }));
   const pilots = initial.panels.roster.filter((p: { role: string }) => p.role === "pilot");
   assert(initial.panels.roster.every((p: { driveHours: number }) => p.driveHours === 0));
   const veteran = initial.panels.roster.find((p: { realAge: number | null }) => p.realAge === 35);
@@ -50,16 +63,6 @@ test("營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pe
   const badId = await call("campaign_act", { id, text: "買 不存在" });
   assert.match(summary(badId), /可用的 id/);
   assert.ok((badId.structuredContent!.candidates as string[]).length <= 10);
-  const pending = data(await call("campaign_advance", { id, days: 30 })).view.prompt;
-  assert.ok(pending?.choices.length);
-  const rejected = await call("campaign_act", { id, command: { v: "board" } });
-  assert.equal(rejected.isError, true);
-  assert.equal(rejected.structuredContent!.error, "pending-choice");
-  assert.ok(summary(rejected).includes(pending.text));
-  for (const choice of pending.choices) {
-    assert.ok(summary(rejected).includes(choice.text));
-    assert.ok(summary(rejected).includes(JSON.stringify({ v: "choose", choice: choice.n })));
-  }
 });
 
 test("出戰資訊：actions／唯讀 preview 與自動戰果報告", async () => {

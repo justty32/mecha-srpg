@@ -22,8 +22,9 @@ test("所有戰鬥工具：動作、AI、觀察、事件、檔案與字串重播
   assert.ok(initial.current.playerTurn);
   const full = await call("battle_observe", { id, detail: "full", map: true });
   assert.ok(full.units[0].parts[0].layers[0].max > 0); assert.ok(lastText.split("\n").some(line => /^ *\d* +[^ ]*\?/u.test(line)));
-  // summary 與 ascii 只出現在 text，不在 JSON 重複。
+  // summary 只出現在 text；地圖在 JSON 以 rows 逐列給出（只讀 structuredContent 的 client 也看得到，playtest-1105）。
   assert.ok(full.units.every((u: object) => !("summary" in u))); assert.ok(!("ascii" in full.map)); assert.ok(full.map.legend.length);
+  assert.ok(full.map.rows.length > 1 && full.map.rows.every((row: string) => lastText.includes(row)), "structured map.rows 與 text 地圖一致");
   assert.ok(full.units.every((u: { owner: string }) => u.owner === "player"));
   const legal = await call("battle_legal_actions", { id });
   assert.ok(legal.moves.length); assert.ok(legal.abilities.length);

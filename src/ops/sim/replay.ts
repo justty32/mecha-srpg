@@ -1,6 +1,6 @@
 import type { ContentDB } from "../../content/contentdb.ts";
 import type { WorldDB } from "../content/worlddb.ts";
-import { newCampaign } from "../content/start.ts";
+import { beginCampaign } from "../content/start.ts";
 import type { CampaignState } from "../state/types.ts";
 import { applyCommand } from "../time/index.ts";
 import type { BattleRunner } from "../time/index.ts";
@@ -10,7 +10,7 @@ import { applySortieResult } from "../sortie/run.ts";
 
 // 保留 runner 參數相容舊呼叫；重播只消費紀錄，絕不呼叫外部 runner。
 export function replayCampaign(db: ContentDB, world: WorldDB, start: string, seed: number, commands: readonly CampaignCommand[], _battle?: BattleRunner): CampaignState {
-  let state = newCampaign(db, world, start.includes("/") ? start : `start/${start}`, seed);
+  let state = beginCampaign(db, world, start.includes("/") ? start : `start/${start}`, seed);
   for (const command of commands) {
     const record = command.battle;
     let consumed = false;

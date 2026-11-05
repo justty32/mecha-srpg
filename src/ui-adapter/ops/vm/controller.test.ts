@@ -17,6 +17,7 @@ test("快照與快捷鍵共用計算，回傳副本隔離，所有dispatch使快
     return Reflect.get(target, property, receiver);
   } });
   const c = new OpsController({ ...opts, db: observedDb });
+  prompts(c); // 開局第 0 天先處理開場劇情
   const first = c.snapshot(), computed = reads;
   assert.ok(computed > 0);
   const originalCash = first.header.cash;
@@ -58,7 +59,7 @@ test("快照與快捷鍵共用計算，回傳副本隔離，所有dispatch使快
 });
 
 test("編隊 AI 駕駛切換可開關，清空座位後仍可自駕", () => {
-  const c = new OpsController(opts);
+  const c = new OpsController(opts); prompts(c);
   const opened = c.dispatch({ type: "sortieOpen" });
   const unit = opened.sortie!.units.find(u => u.included)!;
   assert(unit);
@@ -135,10 +136,11 @@ test("快照唯讀、鍵盤 disabled、編成取消與錯誤原因", () => {
   const c = new OpsController(opts), before = campaignHash(c.state);
   const s = c.snapshot(); s.header.cash = -999; const copy = c.state; copy.ledger.balances.cash = -999;
   assert.equal(campaignHash(c.state), before);
-  assert.equal(c.dispatch({ type: "cmd", cmd: { v: "accept", contract: "missing" } }).message, "契約已非待接狀態");
-  c.dispatch({ type: "advance", until: "event" }); assert.ok(c.snapshot().prompt);
+  // 開局第 0 天就是開場劇情的待選畫面：推進鍵停用，選完才可下其他指令。
+  assert.ok(c.snapshot().prompt); assert.equal(c.state.clock.day, 0);
   assert.equal(c.key({ key: "w" }), null); verifySnapshot(c);
   prompts(c);
+  assert.equal(c.dispatch({ type: "cmd", cmd: { v: "accept", contract: "missing" } }).message, "契約已非待接狀態");
   c.dispatch({ type: "toggleHelp" }); verifySnapshot(c);
   assert.deepEqual(c.key({ key: "Escape" }), { type: "cancel" }); c.dispatch({ type: "cancel" });
   c.dispatch({ type: "sortieOpen" }); verifySnapshot(c); c.dispatch({ type: "sortieCancel" }); assert.equal(c.snapshot().sortie, null);

@@ -8,6 +8,11 @@ import type { OpsKeyInput, OpsSnapshot, OpsUiAction } from "../vm/types.ts";
 import { loadWorldDirs } from "../../../ops/content/load.ts";
 import { OpsController } from "../vm/controller.ts";
 
+// 開局第 0 天先處理開場劇情，畫面才回到可操作的營運頁。
+function opened(c: OpsController): OpsController {
+  for (let i = 0; c.snapshot().prompt && i < 5; i++) c.dispatch({ type: "cmd", cmd: { v: "choose", choice: 1 } });
+  return c;
+}
 test("全圖contain留白不屬於世界座標：600×450圖在600×240盒的25%位置為220", () => {
   const rect = worldMapContentRect({ x: 0, y: 0, width: 600, height: 240 }, { w: 600, h: 450 });
   assert.deepEqual(rect, { x: 140, y: 0, width: 320, height: 240 });
@@ -17,7 +22,7 @@ test("全圖contain留白不屬於世界座標：600×450圖在600×240盒的25%
 });
 
 test("全圖真click(220,120)投影為(150,225)，留白不導航", t => {
-  const { db, world } = loadWorldDirs(["content/base"]), controller = new OpsController({ db, world, seed: 3 });
+  const { db, world } = loadWorldDirs(["content/base"]), controller = opened(new OpsController({ db, world, seed: 3 }));
   const source = controller.dispatch({ type: "tab", tab: "world" }).world;
   const grid = source.grid!;
   grid.size = { w: 600, h: 450 }; grid.zoom = .25; grid.regionLabels = [];
@@ -74,7 +79,7 @@ test("點按鈕送出該按鈕的 action；disabled 不送", t => {
 });
 
 test("世界方格：格數等於 viewport、切圖層改 class、Enter 送 sail", t => {
-  const { db, world } = loadWorldDirs(["content/base"]), c = new OpsController({ db, world, seed: 3 });
+  const { db, world } = loadWorldDirs(["content/base"]), c = opened(new OpsController({ db, world, seed: 3 }));
   const win = new Window(), root = win.document.createElement("div"); win.document.body.append(root);
   const actions: OpsUiAction[] = [];
   const view = mountOps(root as unknown as HTMLElement, {

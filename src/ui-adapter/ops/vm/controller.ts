@@ -1,7 +1,7 @@
 import type { ContentDB } from "../../../content/contentdb.ts";
 import type { WorldDB } from "../../../ops/content/worlddb.ts";
 import type { CampaignState, OpsCommand, Sortie } from "../../../ops/state/types.ts";
-import { newCampaign, createOpsCtx } from "../../../ops/content/start.ts";
+import { beginCampaign, createOpsCtx } from "../../../ops/content/start.ts";
 import { applyCommand, advanceDays } from "../../../ops/time/index.ts";
 import type { BattleRunner, CmdResult } from "../../../ops/time/index.ts";
 import { applyName } from "../../../ops/crew/names.ts";
@@ -39,7 +39,7 @@ export class OpsController {
 
   constructor(opts: OpsControllerOptions) {
     this.opts = opts; this.start = opts.start ?? "start/default";
-    this.current = newCampaign(opts.db, opts.world, this.start, opts.seed);
+    this.current = beginCampaign(opts.db, opts.world, this.start, opts.seed);
     this.ui.map = createWorldUi(this.current);
     this.bindings = mergedBindings(opts.world);
   }

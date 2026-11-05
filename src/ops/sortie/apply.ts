@@ -168,6 +168,9 @@ export function applyBattleResult(s: CampaignState, ctx: OpsCtx, sortie: Sortie,
             loot.materials[account] = (loot.materials[account] ?? 0) + amount;
           }
         }
+        // 戰果 loot 只含戰場上已拾取的材料；屍體沒在戰場上回收時，拆屍改給戰場遺骸同一份內容常數的屍料。
+        const corpse = ctx.db.rules.constants.battlefieldCorpseSalvage ?? 0;
+        if (!loot.components.length && !Object.keys(loot.materials).length && corpse > 0) loot.materials["stock:flesh"] = corpse;
         const grade = ctx.db.get("monster", entry.state.frame)?.grade ?? ctx.db.require("frame", species.capture.frame).grade;
         const carcass = { id: nextId(s, "carcass"), species: species.id, grade, parts: structuredClone(entry.state.parts), decayPerDay: cfg.decay, slot: -1 };
         s.pendingChoices.push({ text: `${species.name} 的屍體如何處理？`, choices: [

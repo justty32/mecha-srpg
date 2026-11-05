@@ -184,7 +184,7 @@ export type TemplatesDef = { id: Id; entries: Record<string, { kind: LogKind; te
 // SPEC-GAP：開局未指定僱用條件；允許人物列帶 role/wage，裸 id 使用檔內 defaults。
 export type StartPerson = Id | { def: Id; role: Employment["role"]; wage: number; soulNodes?: Id[] };
 export type StartDef = { id: Id; day: number; place: Id; ship: Id; calendar?: Id; cash: number; debt: number; mechs: (Id | { frame: Id; components?: Record<string, Id> })[]; persons: StartPerson[];
-  stocks: Partial<Record<Account, number>>; tickets: Partial<Inventory["tickets"]>; flags: string[]; pressure?: number;
+  stocks: Partial<Record<Account, number>>; tickets: Partial<Inventory["tickets"]>; flags: string[]; pressure?: number; events?: Id[];
   rifts?: (Pick<RiftState, "site" | "family" | "width" | "phase" | "anchorAge"> & Partial<Omit<RiftState, "patches">> & { prePatches?: number })[];
   employment?: { role: Employment["role"]; wage: number } };
 export type Ask = "total" | "advance" | "perHead";

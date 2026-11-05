@@ -96,8 +96,10 @@ test("回饋 6：攻擊線與命中部位傷害／未命中浮字", () => {
   let hit = false, miss = false;
   for (let seed = 1; seed <= 30 && (!hit || !miss); seed++) {
     const c = closeController(seed), actor = c.session.activeUnit()!;
-    // 靜止近身普通射擊已可必中；真橫移讓誤差圓產生可驗的命中與未命中分支。
+    // 靜止近身普通射擊已可必中；真橫移加上低準度駕駛（skill 2）讓誤差圓產生可驗的命中與未命中分支。
+    // （playtest-1105 近戰 windup .8→.3 後，單靠橫移已不足以讓相鄰大目標落到 100% 以下。）
     c.session.state.units["enemy-0"]!.motion = { dx: 0, dy: 2 };
+    for (const pid of Object.values(c.session.state.units[actor]!.seats)) if (pid) c.session.state.persons[pid]!.attrsBase.accuracy = 20;
     const chance = c.session.partTargetInfo(actor, "ability/reaper-cleave", "enemy-0").chance;
     assert.ok(chance > 0 && chance < 100);
     c.dispatch({ type: "beginAbility", ability: "ability/reaper-cleave" });

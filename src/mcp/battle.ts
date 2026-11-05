@@ -7,6 +7,7 @@ import type { BattleSession } from "../sim/session.ts";
 import { runBattle, scenarioToSetup } from "../sim/run.ts";
 import { createSave, serializeSave, parseSave } from "../sim/save.ts";
 import { rejectionText } from "../ui-adapter/vm/text.ts";
+import { defenseSummary } from "../ui-adapter/vm/labels.ts";
 import { displayNumber, displayValues } from "./battle-view.ts";
 import type { EventLine } from "./battle-view.ts";
 import { isObject, validateSchema } from "./schema.ts";
@@ -108,7 +109,8 @@ export function createBattleTools(env: McpEnv, hub: BattleHub = createBattleHub(
       // 能力效果一行：傷害包（類型 數值）與施加效果名，讓 agent 不必翻內容檔。
       const effectName = (ref: string | { effect: string }) => b.view.contentName("effect", typeof ref === "string" ? ref : ref.effect);
       const does = [...def.packets.map(p => `${p.type} ${displayNumber(typeof p.amount === "number" ? p.amount : q.evalNum(state, p.amount, unit))}`),
-        ...def.effects.map(e => `${{ hit: "命中", miss: "未中", self: "自身", cell: "地格", always: "必定" }[e.on]}：${e.apply.map(effectName).join("、")}`)].join("；");
+        ...def.effects.map(e => `${{ hit: "命中", miss: "未中", self: "自身", cell: "地格", always: "必定" }[e.on]}：${e.apply.map(effectName).join("、")}`),
+        ...(def.defense ? [defenseSummary(s.contentDb, def.defense)] : [])].join("；");
       return { id, name: b.view.contentName("ability", id), does, costs: def.costs.map(c => ({ pool: c.pool, owner: c.owner, amount: displayNumber(q.evalNum(state, c.amount, unit)) })),
         range, cooldown: state.units[unit]!.cooldowns[id] ?? 0, reason, targets };
     }) : [];
