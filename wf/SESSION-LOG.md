@@ -9,8 +9,13 @@
 
 > 上限 4096 bytes：超過代表有做完的項沒刪，先刪再說，不拆檔（照 [STRUCTURE](STRUCTURE.md)）。收工狀態只寫這裡一行和 commit，不另寫收工流水。
 
-## 最新進度
+## 下次接續（open）
 
-- [feature-dev] fix-playtest-1105：試玩問題與平衡修正進行中（隔離 worktree，Opus）→ 完成後由頂層 merge／[試玩報告](workflows/dispatch/handoffs/playtest-1105/REPORT.md)
-- [feature-dev] Fable 三題已裁決（2026-11-05），實作排在 fix-playtest 合併之後，避免同時改戰鬥碼與黃金 → [報告](notes/investigations/content-review-2026-10-27/fable-report.md)
-- [testing] 使用者 2026-11-05 不追認 a3407d97 對黃金與斷言的改寫；待 fix-playtest 合併後開 Opus 線，逐條比對 10/28 九條的行為改變 → [驗收基準](workflows/dispatch/handoffs/verify-head-1105/REPORT.md)
+- [feature-dev] AI 三項實作：照計畫，估 2 次全套 → [計畫](workflows/planning/plans/ai-retreat-search-1105.md)
+- [testing] 測試刪減第二階段約 79 案，含補 cards-new 刪後四項覆蓋、審 playtest-1105 新測試 → [test-prune-1105](notes/investigations/test-prune-1105/README.md)
+- [testing] 測試刪減第三階段（黃金縮減）：a3407d97 已追認，現可做 → [鑑定](notes/investigations/golden-a3407d97/README.md)、[裁決](workflows/decisions/2026-11-05-golden-a3407d97.md)
+- [feature-dev] Fable 三題實作（SIZE、LINK-01、LINK-02 E1→E3′），連同把 10/29 的 specs／plans 併進 core → [裁決](workflows/decisions/2026-11-05-fable-three.md)、[specs](workflows/planning/specs/core/README.md)
+- [refactor] F 類程式碼拆檔：18 檔超過 300 行 → [STRUCTURE](STRUCTURE.md)
+- [tidy] decisions 精簡到 16 KB 以內 → [decisions](workflows/decisions.md)
+- [balance] 數值（經濟變緊、命中變異）待使用者試玩後再定 → [WAIT_USER](WAIT_USER.md)
+- [testing] e2e 與 ui.test 今天都沒實跑，找沒有其他 node 的時段補跑 → [testing](workflows/testing.md)

@@ -13,7 +13,7 @@
 
 - 新檔都在 `content/base/<kind>/` 或 `content/lore/<kind>/`，一檔一筆、檔名＝id name 段。
 - `npm run check` 末行 `OK 0 errors`；動到 `content/base/world/` 另跑 `node src/ops/content/check.ts content/base` 末行 OK；動到 lore 跑 `node content/lore/check.ts` 0 錯。
-- `npm test` 無新 fail；`test/golden/` 與 `src/ops/sim/fixtures/campaign-hash.json` **不變**（變了＝你改到既有數值或情境，回頭看範圍）。
+- `npm test` 無新 fail；`test/golden/` 與 `src/ops/sim/fixtures/campaign-hash.json` **不變**（變了＝你改到既有數值或情境，回頭看範圍）。若改勢力營運或世界內容而黃金必然變，須在同一個 commit 重錄並在訊息寫明原因。
 - 自動對戰煙霧：每個新單位至少進一場 `runBattle`（5 seed）0 例外、每個新能力至少被 AI 用過 1 次（見 [acceptance-playtest](acceptance-playtest.md)）。
 - MCP 試玩一輪，量測數字落在 [playtest-baselines.json](playtest-baselines.json) 門檻內，或 REPORT 寫明為何例外。
 - `bash wf/tools/wf-lint.sh --strict .` 對你碰過的 wf 檔 0 違規；commit 只 add 明確路徑。

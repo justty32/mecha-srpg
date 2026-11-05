@@ -22,6 +22,8 @@
 
 **全套基準**（node 套件，不含 `src/mcp/ui.test.ts` 與 e2e；nice 19、`--test-concurrency=1`）：2026-11-05 瘦身第一階段後 163 檔、1012 案全綠，序列耗時**估算**約 1060 秒（瘦身前 169 檔、1143 案、實測 1690 秒）；最慢的是 `war-invariants`（縮後約 150 秒）、`ops/sim/health`、`campaigns`。瘦身進度與剩餘階段見 [test-prune-1105](../notes/investigations/test-prune-1105/README.md)。
 
+**黃金規矩**：改勢力營運或世界內容的 commit，必須在同一個 commit 重錄黃金，並在訊息寫明原因（見 [decisions](decisions/2026-11-05-golden-a3407d97.md)）。
+
 「誰跑」只有兩種值：**agent**（本機跑得動）、**使用者 → WAIT_USER**（要實機、外部服務、帳號、付費、目視）。判不準就當後者。
 
 ## 測試分類

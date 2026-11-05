@@ -17,6 +17,7 @@
 
 ### 整筆在 `decisions/` 子檔，本檔只留導航（2026-10-24 起新決定直接開子檔；2026-10-23 五筆於 2026-10-24 由 lead-tidy 搬出，標題留在下方以保留錨點）
 
+- [golden-a3407d97](decisions/2026-11-05-golden-a3407d97.md)：2026-11-05 追認黃金 a3407d97 改寫（根源是 RNG 順序、無產品 bug），並定「改營運／世界內容的 commit 同 commit 重錄黃金」。
 - [fable-three](decisions/2026-11-05-fable-three.md)：2026-11-05 Fable 三題全照推薦——size 2 保留並升 5 個重型骨架槽、74 只修戰鬥結算、E1 後 E3′（E2 擱置、D2 不做）。
 - [bio-ui](decisions/2026-10-24-bio-ui.md)：生物系兩類、沒有餵養（磨損取代飢餓）、四種稱號、UI 按鈕＋快捷鍵。
 - [spec-integrate](decisions/2026-10-24-spec-integrate.md)：world-grid 整合進既有 ops spec、太空歌劇只換名不換機制、content-format-ops 拆資料夾、開場樣稿對齊實作與 lore。
