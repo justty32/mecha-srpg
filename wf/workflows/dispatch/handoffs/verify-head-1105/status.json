@@ -1,0 +1,30 @@
+{
+ "head": "4d47f48520053c6fa4bdbae99ed4a32f8e67cff2",
+ "tree": "81e4223d493fbdf341f25144c6964b659283aeb9",
+ "snapshot": "git archive HEAD -> scratchpad, tree verified identical before and after",
+ "node": "v24.19.0",
+ "command": "env -u GOLDEN_UPDATE -u UPDATE_GOLDEN flock <repo>/.git nice -n 19 node --test --test-concurrency=1 --test-reporter=tap $(cat sources.txt)",
+ "excluded": [
+  "src/mcp/ui.test.ts (2 ui_screenshot cases)"
+ ],
+ "source_files": 169,
+ "status_raw": "start 2026-11-05T09:30:34+08:00\nexit 0 elapsed 1689.744006280 end 2026-11-05T09:58:44+08:00\n",
+ "statistics": {
+  "battle_act": "{\"kind\":\"end\",\"actor\":\"mech-8\"}",
+  "campaign_save": "hash=c1998fab43572164",
+  "campaign_load": "hash=c1998fab43572164",
+  "war統計": "{\"enteredWar\":1,\"ceasefires\":1,\"PlaceTransferred\":1,\"OperationResolved\":4,\"maxOperations\":2,\"maxDays\":11,\"maxWarRatio\":0.006535947712418301,\"maxAlliedRatio\":0,\"maxWarStreakDays\":39,\"minMajorStates\":3,\"minPowerRatio\":0.662962962962963,\"errors\":[]}",
+  "actor統計": "{\"minActors\":65,\"maxActors\":114,\"encounters\":3,\"activeDays\":59,\"endDay\":null,\"encountersPerDay\":0.05084745762711865,\"maxEncounters\":1,\"maxTickMs\":230,\"meanTickMs\":62.11764705882353}",
+  "COAST_FIXTURE": "{\"before\":[{\"cell\":\"129,97\",\"depth\":\"deep\"},{\"cell\":\"130,97\",\"depth\":\"deep\"},{\"cell\":\"131,97\",\"depth\":\"deep\"},{\"cell\":\"129,98\",\"depth\":\"deep\"},{\"cell\":\"130,98\",\"depth\":\"deep\"},{\"cell\":\"131,98\",\"depth\":\"deep\"},{\"cell\":\"129,99\",\"depth\":\"deep\"},{\"cell\":\"130,99\",\"depth\":\"clear\"},{\"cell\":\"131,99\",\"depth\":\"clear\"}],\"after\":[{\"cell\":\"129,97\",\"depth\":\"shallow\"},{\"cell\":\"130,97\",\"depth\":\"shallow\"},{\"cell\":\"131,97\",\"depth\":\"shallow\"},{\"cell\":\"129,98\",\"depth\":\"shallow\"},{\"cell\":\"130,98\",\"depth\":\"shallow\"},{\"cell\":\"131,98\",\"depth\":\"shallow\"},{\"cell\":\"129,99\",\"depth\":\"shallow\"},{\"cell\":\"130,99\",\"depth\":\"shallow\"},{\"cell\":\"131,99\",\"depth\":\"shallow\"}]}",
+  "COAST_TRAJECTORY": "{\"seed\":1,\"day\":490,\"before\":[{\"cell\":\"129,97\",\"depth\":\"deep\"},{\"cell\":\"130,97\",\"depth\":\"clear\"},{\"cell\":\"131,97\",\"depth\":\"deep\"},{\"cell\":\"129,98\",\"depth\":\"deep\"},{\"cell\":\"130,98\",\"depth\":\"deep\"},{\"cell\":\"131,98\",\"depth\":\"deep\"},{\"cell\":\"129,99\",\"depth\":\"deep\"},{\"cell\":\"130,99\",\"depth\":\"deep\"},{\"cell\":\"131,99\",\"depth\":\"deep\"}],\"after\":[{\"cell\":\"129,97\",\"depth\":\"shallow\"},{\"cell\":\"130,97\",\"depth\":\"shallow\"},{\"cell\":\"131,97\",\"depth\":\"shallow\"},{\"cell\":\"129,98\",\"depth\":\"shallow\"},{\"cell\":\"130,98\",\"depth\":\"shallow\"},{\"cell\":\"131,98\",\"depth\":\"shallow\"},{\"cell\":\"129,99\",\"depth\":\"shallow\"},{\"cell\":\"130,99\",\"depth\":\"shallow\"},{\"cell\":\"131,99\",\"depth\":\"shallow\"}],\"beforeCounts\":{\"clear\":1,\"shallow\":0,\"deep\":8,\"core\":0},\"afterCounts\":{\"clear\":0,\"shallow\":9,\"deep\":0,\"core\":0},\"converted\":8,\"changed\":9}",
+  "不變量違規場數": "{\"no-throw\":0,\"preview-pure\":0,\"pool-bounds\":0,\"layer-hp\":0,\"death-consistency\":0,\"dead-dont-act\":0,\"positions\":0,\"seats\":0,\"contrib-valid\":0,\"effects-valid\":0,\"cooldowns\":0,\"events\":0,\"termination\":0,\"replay-hash\":0,\"ai-determinism\":0,\"save-roundtrip\":0,\"ai-legal\":0,\"legal-enum\":0,\"gen-error\":0,\"setup-rejected\":0,\"legal-rejected\":0,\"no-termination\":0,\"ai-rejected\":0}",
+  "tests": "1143",
+  "suites": "4",
+  "pass": "1143",
+  "fail": "0",
+  "cancelled": "0",
+  "skipped": "0",
+  "todo": "0",
+  "duration_ms": "1689698.451369"
+ }
+}
