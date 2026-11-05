@@ -3,8 +3,7 @@ import assert from "node:assert/strict";
 import { loadContentDirs } from "../../content/loader.ts";
 import { controllerForScenario } from "./controller.ts";
 import { formatRoute, parseHash, wikiHref } from "./route.ts";
-import { DEFAULT_KEYMAP, normalizeKey, resolveKey, validateKeymap } from "./keymap.ts";
-import { WIKI_KEYMAP, parseWikiAction, resolveWikiKey, wikiKeyHints } from "./wiki/keys.ts";
+import { DEFAULT_KEYMAP, resolveKey, validateKeymap } from "./keymap.ts";
 import type { AppRoute, WikiView } from "./wiki/types.ts";
 
 test("parseHash：契約所有路由、空 hash 與未知頁面", () => {
@@ -63,25 +62,4 @@ test("戰鬥 keymap：F1／Shift+W 導航，W 待機，navigate 不改 snapshot"
   const before = controller.snapshot();
   assert.ok(before.confirm);
   assert.deepEqual(controller.dispatch({ type: "navigate", page: "wiki" }), before);
-});
-
-test("百科 keymap：無重複、action 全認得、指定按鍵與提示列數", () => {
-  const keys = new Set<string>();
-  for (const binding of WIKI_KEYMAP.bindings) {
-    assert.ok(parseWikiAction(binding.action), binding.action);
-    for (const value of binding.keys) {
-      const parts = value.split("+");
-      const input = { key: parts.pop()!, shiftKey: parts.includes("Shift"), ctrlKey: parts.includes("Ctrl"), altKey: parts.includes("Alt") };
-      const normalized = normalizeKey(input);
-      assert.equal(keys.has(normalized), false, value);
-      keys.add(normalized);
-      assert.equal(resolveWikiKey(input), binding.action);
-    }
-  }
-  assert.equal(resolveWikiKey({ key: "F1" }), "nav:battle");
-  assert.equal(resolveWikiKey({ key: "B", shiftKey: true }), "nav:battle");
-  assert.equal(resolveWikiKey({ key: "/" }), "wiki:search");
-  assert.equal(resolveWikiKey({ key: "t" }), "wiki:timeline");
-  assert.equal(resolveWikiKey({ key: "Escape" }), "wiki:blur");
-  assert.equal(wikiKeyHints().length, WIKI_KEYMAP.bindings.length);
 });

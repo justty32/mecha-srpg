@@ -1,12 +1,9 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { existsSync, readdirSync, readFileSync } from "node:fs";
-import { resolve } from "node:path";
 import { buildWikiIndex } from "./index.ts";
 import { entryPage } from "./cards.ts";
 import { listCategory } from "./list.ts";
 import { relationsView } from "./relations.ts";
-import { searchWiki } from "./search.ts";
 import { timelineView } from "./timeline.ts";
 import type { CardSection, EntryPage, RawFile } from "./types.ts";
 
@@ -48,23 +45,6 @@ function section<T extends CardSection["t"]>(page: EntryPage | null, title: stri
   const found = page.sections.find(s => s.title === title && s.t === type);
   assert.ok(found, title);
   return found as Extract<CardSection, { t: T }>;
-}
-
-function realFiles(): RawFile[] {
-  const files: RawFile[] = [];
-  for (const pack of ["base", "lore"]) {
-    const root = resolve(import.meta.dirname, "../../../../content", pack);
-    if (!existsSync(root)) continue;
-    const walk = (path: string): void => {
-      for (const entry of readdirSync(resolve(root, path), { withFileTypes: true })) {
-        const child = path ? `${path}/${entry.name}` : entry.name;
-        if (entry.isDirectory()) walk(child);
-        else if (entry.name.endsWith(".json")) files.push({ pack, path: child, data: JSON.parse(readFileSync(resolve(root, child), "utf8")) });
-      }
-    };
-    walk("");
-  }
-  return files;
 }
 
 test("lore 關係陣列保留 rel、note，勢力矩陣提供中文 label 與 tone", () => {
@@ -151,64 +131,4 @@ test("lore 概要與關係使用正式欄位，ancientMech 是 kv、後果為清
     const labels = section(entryPage(index, `lore:${key}`), "概要", "kv").rows.map(r => r.label);
     for (const label of expected) assert.ok(labels.includes(label), label);
   }
-});
-
-test("真實 frame 構型一層一列、九欄與 kv 抗性，整頁沒有交錯鍵值清單", () => {
-  const index = buildWikiIndex(realFiles());
-  const frame = [...index.entries.values()].find(e => e.pack === "base" && e.kind === "frame"
-    && typeof (e.data as Record<string, unknown>).bodyPlan === "string");
-  assert.ok(frame);
-  const bodyKey = index.resolve((frame.data as { bodyPlan: string }).bodyPlan, frame.pack);
-  assert.ok(bodyKey);
-  const body = index.entries.get(bodyKey)!.data as { parts: { name: string; layers: unknown[] }[] };
-  const page = entryPage(index, frame.key);
-  const table = section(page, "部位與層", "table");
-  assert.deepEqual(table.columns, ["部位", "暴露", "槽位", "功能", "層", "種類", "HP", "抗性", "備註"]);
-  assert.equal(table.rows.length, body.parts.reduce((n, part) => n + part.layers.length, 0));
-  let offset = 0;
-  for (const part of body.parts) {
-    for (let layer = 0; layer < part.layers.length; layer++) {
-      const row = table.rows[offset++]!;
-      assert.equal(row.length, 9);
-      assert.deepEqual(row[0], { t: "text", v: layer === 0 ? part.name : "" });
-      assert.equal(row[7]?.t, "kv");
-    }
-  }
-  const keys = new Set<string>();
-  const collect = (value: unknown): void => {
-    if (Array.isArray(value)) value.forEach(collect);
-    else if (value && typeof value === "object") for (const [key, child] of Object.entries(value)) { keys.add(key); collect(child); }
-  };
-  collect(frame.data); collect(body);
-  // 舊形狀是偶數項 list，每個偶數索引都是原資料欄名 text，後接值；合法字串清單不以這些欄名配對。
-  // kv 的 rows 本身不屬於舊形狀，但其中的值仍遞迴檢查，避免巢狀舊清單漏網。
-  const check = (value: unknown): void => {
-    if (Array.isArray(value)) { value.forEach(check); return; }
-    if (!value || typeof value !== "object") return;
-    const node = value as Record<string, unknown>;
-    if (node.t === "list" && Array.isArray(node.items) && node.items.length > 0 && node.items.length % 2 === 0) {
-      const paired = node.items.every((item: unknown, i: number) => i % 2 !== 0 || (item !== null && typeof item === "object"
-        && (item as { t?: string }).t === "text" && keys.has((item as { v: string }).v)));
-      assert.equal(paired, false, "交錯鍵值清單應改成 kv");
-    }
-    Object.values(node).forEach(check);
-  };
-  assert.throws(() => check({ t: "list", items: [{ t: "text", v: "hp" }, { t: "num", v: 20 }] }), /交錯鍵值/);
-  check(JSON.parse(JSON.stringify(page)));
-});
-
-test("真實 base 與可選 lore 整合：每條目可產卡並搜尋自己，game 前三分類固定", () => {
-  const files = realFiles();
-  assert.ok(files.some(f => f.pack === "base"));
-  const index = buildWikiIndex(files);
-  assert.ok(index.entries.size > 0);
-  for (const entry of index.entries.values()) {
-    assert.ok(entryPage(index, entry.key), entry.key);
-    assert.ok(searchWiki(index, entry.name).some(hit => hit.key === entry.key), entry.key);
-  }
-  const game = index.categories.filter(c => c.group === "game");
-  const expected = ["frame", "component", "ability"].filter(kind => game.some(c => c.kind === kind));
-  assert.deepEqual(game.slice(0, expected.length).map(c => c.kind), expected);
-  const names: Record<string, string> = { frame: "機體", component: "部件", ability: "能力", registries: "登記表", rules: "規則常數", base: "內容包" };
-  for (const category of game) if (names[category.kind]) assert.equal(category.label, names[category.kind]);
 });

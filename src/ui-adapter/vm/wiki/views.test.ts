@@ -28,7 +28,7 @@ test("9 分類排序、反序與面向篩選只呈現存在的選項", () => {
   assert.equal(listCategory(index, { category: "missing" }), null);
 });
 
-test("10 搜尋名稱排名優先，別名、本文摘要與空查詢正確", () => {
+test("10 搜尋名稱排名優先，別名、英文原名、詞源、本文摘要與空查詢正確；hidden 欄不可搜", () => {
   const index = buildWikiIndex([
     file({ id: "character/a", name: "Orion" }, "lore"),
     file({ id: "character/b", name: "Orion crew" }, "lore"),
@@ -46,6 +46,21 @@ test("10 搜尋名稱排名優先，別名、本文摘要與空查詢正確", ()
   assert.equal(hits.at(-1)?.snippet, `…${"前".repeat(30)}Orion${"後".repeat(30)}…`);
   assert.equal(searchWiki(index, "orion", 2).length, 2);
   assert.deepEqual(searchWiki(index, "  "), []);
+  const named = buildWikiIndex([
+    file({ id: "ability/breath", name: "借我一息", nameEn: "A Breathing Space", etymology: "取自古老的喘息祈願" }),
+    file({ id: "ability/named", name: "A Breathing Space" }),
+    file({ id: "ability/malformed", name: "容錯", nameEn: 123, etymology: {} }),
+    file({ id: "event/secret", name: "秘聞", nameEn: "Classified Breath", etymology: "隱藏語源", fieldVisibility: { nameEn: "hidden", etymology: "hidden" } }, "lore"),
+  ]);
+  const english = searchWiki(named, "  a BREATHING space  ");
+  assert.deepEqual(english.map(hit => hit.key), ["base:ability/named", "base:ability/breath"]);
+  assert.equal(english[1]?.field, "nameEn");
+  assert.equal(english[1]?.snippet, "A Breathing Space");
+  const etymology = searchWiki(named, "喘息祈願");
+  assert.equal(etymology[0]?.key, "base:ability/breath");
+  assert.equal(etymology[0]?.field, "etymology");
+  assert.deepEqual(searchWiki(named, "Classified Breath"), []);
+  assert.deepEqual(searchWiki(named, "隱藏語源"), []);
 });
 
 test("11 兩種勢力關係進矩陣且去重，首頁計數與壞引用一致", () => {

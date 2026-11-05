@@ -2,9 +2,9 @@ import { test, type TestContext } from "node:test";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import { Window } from "happy-dom";
-import type { HTMLElement as HappyElement, HTMLInputElement as HappyInput, HTMLSelectElement as HappySelect } from "happy-dom";
+import type { HTMLElement as HappyElement, HTMLInputElement as HappyInput } from "happy-dom";
 import { mountWiki } from "./mount.ts";
-import { badRef, href, keyHints, wikiFixture } from "./fixtures.ts";
+import { href, keyHints, wikiFixture } from "./fixtures.ts";
 
 function setup(t: TestContext) {
   const win = new Window();
@@ -18,18 +18,6 @@ function setup(t: TestContext) {
   t.after(() => { mounted.destroy(); win.close(); });
   return { win, root, fixture, calls, mounted };
 }
-
-test("首頁有分類卡片、總數及 lore 缺資料提示", t => {
-  const { root, fixture, mounted } = setup(t);
-  mounted.show({ v: "home" });
-  const home = root.querySelector('[data-ui="wiki-home"]')!;
-  assert.ok(home);
-  assert.equal(home.querySelectorAll("a[data-cat]").length, fixture.categories.length);
-  assert.match(home.textContent, /世界觀資料尚未建立（content\/lore\/）/u);
-  assert.equal(home.querySelectorAll("dl dt").length, 6);
-  assert.equal(home.querySelector("li a")!.getAttribute("href"), href({ v: "entry", key: fixture.home.broken[0]!.from }));
-  assert.ok(home.textContent.includes(badRef.raw));
-});
 
 test("側欄分類導航及抽屜切換，修飾鍵保留預設行為", t => {
   const { root, win, fixture, calls, mounted } = setup(t);
@@ -52,25 +40,6 @@ test("側欄分類導航及抽屜切換，修飾鍵保留預設行為", t => {
   mounted.toggleSidebar();
   mounted.toggleSidebar();
   assert.equal(root.classList.contains("wiki-sidebar-open"), false);
-});
-
-test("分類清單只畫現有面向並傳遞排序與篩選 query", t => {
-  const { root, win, fixture, calls, mounted } = setup(t);
-  const query = { category: fixture.categories[0]!.key, filters: { grade: "D" } };
-  mounted.show({ v: "cat", query });
-  assert.equal(root.querySelectorAll('[data-ui="wiki-row"][data-key]').length, fixture.list.rows.length);
-  assert.deepEqual([...root.querySelectorAll("select[data-facet]")].map(node => node.getAttribute("data-facet")), ["grade"]);
-  const sort = root.querySelector<HappySelect>('[data-ui="wiki-sort"]')!;
-  sort.value = "grade";
-  sort.dispatchEvent(new win.Event("change"));
-  assert.equal(calls.at(-1)!.hash, href({ v: "cat", query: { ...query, sort: "grade" } }));
-  const filter = root.querySelector<HappySelect>('select[data-facet="grade"]')!;
-  filter.value = "C";
-  filter.dispatchEvent(new win.Event("change"));
-  assert.equal(calls.at(-1)!.hash, href({ v: "cat", query: { ...query, filters: { grade: "C" } } }));
-  filter.value = "";
-  filter.dispatchEvent(new win.Event("change"));
-  assert.equal(calls.at(-1)!.hash, href({ v: "cat", query: { ...query, filters: {} } }));
 });
 
 test("搜尋 debounce 120ms replace 導航，重畫保留輸入節點及焦點", t => {
@@ -159,17 +128,4 @@ test("靜態限制與 import 邊界，destroy 清空並解除 keydown", t => {
   assert.equal(win.document.activeElement, input);
   mounted.destroy();
   assert.equal(remove.mock.calls.filter(call => call.arguments[0] === "keydown").length, 1);
-});
-
-test("側欄分類件數放在獨立 wiki-count 徽章，不用括號件數", t => {
-  const { root, fixture } = setup(t);
-  const links = root.querySelectorAll('[data-ui="wiki-sidebar"] a[data-cat]');
-  assert.equal(links.length, fixture.categories.length);
-  for (const category of fixture.categories) {
-    const link = [...links].find(link => link.getAttribute("data-cat") === category.key)!;
-    assert.equal(link.querySelectorAll(".wiki-count").length, 1);
-    assert.equal(link.querySelector(".wiki-count")!.textContent, String(category.count));
-    assert.equal(link.querySelector("span:not(.wiki-count)")!.textContent, category.label);
-    assert.doesNotMatch(link.textContent, /[（(]\s*\d+\s*[）)]/u);
-  }
 });

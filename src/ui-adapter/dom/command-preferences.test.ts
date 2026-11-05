@@ -25,16 +25,6 @@ test("持久化隔離scope，重新掛載保留；只寫版本與id陣列", () =
   assert.deepEqual(createCommandPreferenceStore("ops", disk).state.recent, ["tab:world"]);
   assert.deepEqual(Object.keys(JSON.parse(disk.getItem(PREFERENCE_KEY)!)).sort(), ["battle", "ops", "version"]);
 });
-test("惡意格式、錯誤版本與危險操作不進偏好", () => {
-  for (const source of ["{", "null", '{"version":2,"battle":{"recent":["move"]}}']) {
-    assert.deepEqual(createCommandPreferenceStore("battle", memory(source)).state, { recent: [], favorites: [] });
-  }
-  const source = JSON.stringify({ version: 1, battle: { recent: ["move", "move", "eject", "attackFeature:a", "ability:<img>", {}, "end"], favorites: "move" } });
-  const store = createCommandPreferenceStore("battle", memory(source));
-  assert.deepEqual(store.state.recent, ["move", "end"]);
-  assert.equal(store.togglePin("retreat"), "invalid");
-  store.record("map:sail"); assert.deepEqual(store.state.recent, ["move", "end"]);
-});
 test("storage讀寫及property getter拋錯仍能操作並通知；state不可外改", () => {
   const badGetter = Object.defineProperty({}, "getItem", { get() { throw Error("getter"); } }) as PreferenceStorage;
   for (const disk of [badGetter, { getItem() { throw Error("read"); }, setItem() {} }, { getItem: () => null, setItem() { throw Error("write"); } }]) {
@@ -46,8 +36,8 @@ test("storage讀寫及property getter拋錯仍能操作並通知；state不可�
   }
 });
 
-test("空字串與損毀來源在record後修復，刷新保留最近與釘選", () => {
-  for (const source of ["", "{", "undefined", '[broken']) {
+test("空字串、損毀來源與錯誤版本在record後修復；惡意id與危險操作不進偏好", () => {
+  for (const source of ["", "{", "null", "undefined", '[broken', '{"version":2,"battle":{"recent":["move"]}}']) {
     const disk = memory(source), store = createCommandPreferenceStore("battle", disk);
     assert.deepEqual(store.state, { recent: [], favorites: [] });
     store.record("move");
@@ -55,4 +45,9 @@ test("空字串與損毀來源在record後修復，刷新保留最近與釘選",
     store.togglePin("end");
     assert.deepEqual(createCommandPreferenceStore("battle", disk).state, { recent: ["move"], favorites: ["end"] });
   }
+  const source = JSON.stringify({ version: 1, battle: { recent: ["move", "move", "eject", "attackFeature:a", "ability:<img>", {}, "end"], favorites: "move" } });
+  const store = createCommandPreferenceStore("battle", memory(source));
+  assert.deepEqual(store.state.recent, ["move", "end"]);
+  assert.equal(store.togglePin("retreat"), "invalid");
+  store.record("map:sail"); assert.deepEqual(store.state.recent, ["move", "end"]);
 });

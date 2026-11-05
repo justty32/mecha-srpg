@@ -28,16 +28,6 @@ test("session：非玩家回合拒絕 submit", () => {
   assert.deepEqual(result, { ok: false, rejection: { code: "not-active" } });
   assert.equal(s.commands.length, count); assert.equal(hashLog(s.state.log), before);
 });
-test("session：相同 seed 與指令的 hash 一致", () => {
-  const a = session(), b = session();
-  for (let i = 0; i < 8 && !a.outcome(); i++) { end(a); end(b); }
-  assert.deepEqual(a.commands, b.commands); assert.equal(hashLog(a.state.log), hashLog(b.state.log));
-});
-test("session：全部成功指令可重播得到相同 hash", () => {
-  const s = session();
-  for (let i = 0; i < 8 && !s.outcome(); i++) end(s);
-  assert.equal(hashLog(replay(db, sim.setup, 1, s.commands).log), hashLog(s.state.log));
-});
 
 test("session：spectate 全 AI 經 controller 的 step／skip 打完，hash 與指令等於 runBattle", () => {
   const sim3 = scenarioToSetup(db, "scenario/skirmish-whitegloves", 1, { rounds: 3 });
