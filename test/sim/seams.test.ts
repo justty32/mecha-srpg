@@ -8,6 +8,8 @@ import { CONTENT_KINDS } from "../../src/core/ids.ts";
 import { createRulesQuery } from "../../src/ai/adapters/rules-adapter.ts";
 import { createBattle, checkAbility, hostile, rt, objectiveDone, evaluateObjectives, signal, evalCtxFor } from "../../src/rules/index.ts";
 import { scenarioToSetup } from "../../src/sim/run.ts";
+import { createSession } from "../../src/sim/index.ts";
+import type { BattleSession } from "../../src/sim/session.ts";
 import { db } from "./helpers.ts";
 
 const nest = "scenario/rift-edge-nest";
@@ -143,4 +145,44 @@ test("地圖：destructible fill 沒有 feature 時每格使用預設 hp", () =>
     units: [], objectives: [] }, 1);
   const hp = db.require("terrain", "terrain/ruin-wall").destructible!.hp;
   assert.deepEqual(s.map.featureHp, { "0,0": hp, "1,0": hp, "0,1": hp });
+});
+
+// 常規車對地物的互動（原 combined-arms 情境的兩條地形案）。
+const combined = "scenario/combined-arms-battlefield";
+function combinedSession(move: Record<string, { x: number; y: number }> = {}): BattleSession {
+  const sim = scenarioToSetup(db, combined, 2108);
+  for (const [id, pos] of Object.entries(move)) sim.setup.units.find(u => u.id === id)!.pos = pos;
+  return createSession({ db, sim, seed: 2108, human: ["player", "enemy"] });
+}
+function turnTo(session: BattleSession, actor: string): void {
+  for (let i = 0; session.currentActor() !== actor && i < 20; i++) {
+    const active = session.currentActor(); assert.ok(active);
+    assert.equal(session.submit({ kind: "end", actor: active }).ok, true);
+  }
+  assert.equal(session.currentActor(), actor);
+}
+
+test("地圖：常規戰車的一般機砲可經原session點格拆牆", () => {
+  const session = combinedSession(); turnTo(session, "player-0");
+  const hp = session.state.map.featureHp["9,6"]!;
+  const cmd = { kind: "useAbility" as const, actor: "player-0", ability: "ability/burst-30", target: { cell: { x: 9, y: 6 } } };
+  const preview = session.preview(cmd);
+  assert.equal(preview.result.ok, true);
+  assert.equal(session.state.map.featureHp["9,6"], hp);
+  assert.equal(session.submit(cmd).ok, true);
+  assert.ok(session.state.map.featureHp["9,6"]! < hp);
+  assert.ok(session.state.log.events.some(e => e.type === "FeatureDamaged"));
+});
+
+test("地圖：常規迫砲確實越過阻視殘牆，直射機砲在相同線路被擋", () => {
+  const session = combinedSession({ "player-0": { x: 5, y: 6 }, "enemy-4": { x: 10, y: 6 } });
+  turnTo(session, "player-0");
+  // 同一目標向西一格的殘牆，確實位於車與目標之間。
+  const throughWall = session.preview({ kind: "useAbility", actor: "player-0", ability: "ability/burst-30", target: { unit: "enemy-4" } });
+  assert.equal(throughWall.result.ok, false);
+  assert.ok(!throughWall.result.ok && throughWall.result.rejection.code === "no-los");
+  const ammo = session.state.units["player-0"]!.pools["star-shell"]!.cur;
+  const lob = session.submit({ kind: "useAbility", actor: "player-0", ability: "ability/mx-falling-star", target: { cell: { x: 10, y: 6 } } });
+  assert.equal(lob.ok, true);
+  assert.equal(session.state.units["player-0"]!.pools["star-shell"]!.cur, ammo - 1);
 });

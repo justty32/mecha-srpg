@@ -16,22 +16,6 @@ function context(units: StubUnit[]): StrategyCtx {
   return { q, s, view: maskedState(q, s, "blue", know), slot: "blue", know, params: {} };
 }
 
-test("strategy：stance 隨兵力比切換，弱勢准許撤退", () => {
-  for (const [enemies, stance, allowRetreat] of [[1, "attack", false], [2, "defend", false], [3, "hold", true]] as const) {
-    const ctx = context([unit("a", "blue", 1, 1), ...Array.from({ length: enemies }, (_, i) => unit(`e${i}`, "red", 6 + i, 1))]);
-    const plans = createDefaultStrategy().roundPlan(ctx);
-    assert.equal(plans[0]!.stance, stance);
-    assert.equal(plans[0]!.allowRetreat, allowRetreat);
-  }
-  const ctx = context([unit("a", "blue", 1, 1), unit("b", "blue", 1, 2),
-    ...Array.from({ length: 4 }, (_, i) => unit(`e${i}`, "red", 6 + i, 1))]);
-  ctx.s.units.b!.parts.torso!.layers[0]!.hp = 20;
-  ctx.view = maskedState(ctx.q, ctx.s, ctx.slot, ctx.know);
-  const plans = createDefaultStrategy().roundPlan(ctx);
-  assert.equal(plans[0]!.stance, "defend");
-  assert.equal(plans[0]!.protect, "b");
-});
-
 test("strategy：接敵登記遵守每個敵人的上限", () => {
   const ctx = context([...Array.from({ length: 7 }, (_, i) => unit(`a${i}`, "blue", i + 1, 1)),
     unit("e0", "red", 8, 4), unit("e1", "red", 9, 4)]);

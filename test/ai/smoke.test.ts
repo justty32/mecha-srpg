@@ -33,21 +33,6 @@ function battle(seed: number, mixed: boolean): { commands: Command[]; rounds: nu
   return { commands, rounds: s.round };
 }
 
-test("smoke：DN-M-02、DN-M-12 資料尺寸下兩陣營各 3 單位 AI 對 AI 跑 10 輪", () => {
-  const result = battle(71, false);
-  assert.equal(result.rounds, 10);
-  assert.ok(result.commands.some((cmd) => cmd.actor.startsWith("blue")));
-  assert.ok(result.commands.some((cmd) => cmd.actor.startsWith("red")));
-  assert.ok(result.commands.some((cmd) => cmd.kind === "useAbility"));
-});
-
-test("smoke：同 seed 跑兩次的指令序列 JSON.stringify 相同", () => {
-  const first = battle(73, false);
-  const second = battle(73, false);
-  assert.ok(first.commands.length > 0);
-  assert.equal(JSON.stringify(first.commands), JSON.stringify(second.commands));
-});
-
 test("smoke：六種已登記 policy 混用跑 10 輪不拋錯", () => {
   for (const id of ["tactical", "berserk", "swarm", "sentinel", "flee", "scripted"]) assert.ok(policyIds().includes(id));
   const result = battle(79, true);

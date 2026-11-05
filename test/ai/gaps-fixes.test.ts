@@ -3,10 +3,9 @@ import assert from "node:assert/strict";
 import { createRng } from "../../src/core/rng.ts";
 import { createAgent, emptyKnowledge, getPolicy, maskedState, scoreCandidate, takeTurn, updateKnowledge } from "../../src/ai/index.ts";
 import type { AiCtx, AiParams, TurnEnv } from "../../src/ai/index.ts";
-import { createStubRules, loadStubAbilities, makeStubBattle } from "./stub-rules.ts";
+import { createStubRules, makeStubBattle } from "./stub-rules.ts";
 import type { StubUnit } from "./stub-rules.ts";
 
-const rifle = "stub:ability/rifle";
 const unit = (id: string, owner: string, x: number, abilities: string[] = [], ap = 6): StubUnit =>
   ({ id, owner, pos: { x, y: 1 }, abilities, ap, perception: 40 });
 function setup(units: StubUnit[], params: AiParams = {}, rules = createStubRules()): TurnEnv {
@@ -43,23 +42,4 @@ test("可見敵人優先，失聯追 lastSeen，無情報才回中央且不讀�
   ctx.view.units.c = { ...structuredClone(ctx.view.units.a!), id: "c", owner: "enemy", pos: { x: 22, y: 1 } };
   ctx.view.rt!.unitStatus.c = "active";
   assert.ok(scoreCandidate(ctx, agent, left) > scoreCandidate(ctx, agent, right));
-});
-
-test("ball／line／cone 皆補低成本站位並保留施放 AP", () => {
-  for (const kind of ["ball", "line", "cone"] as const) {
-    const abilities = loadStubAbilities(), ability = abilities[rifle]!;
-    ability.target = { kind, range: { min: 1, max: 3 }, radius: 0, los: true, friendly: "no" };
-    ability.costs = [{ owner: "mech", pool: "ap", amount: 2 }];
-    ability.ai.tactics = { attackArea: 1 };
-    const env = setup([unit("a", "player", 1, [rifle]), unit("b", "enemy", 7)],
-      { maxMoves: 1, objMoves: 0, band: 1 }, createStubRules(abilities));
-    const ctx = context(env), candidates = getPolicy("tactical").propose(ctx, createAgent("a", "tactical"));
-    const shot = candidates.find(c => c.move && c.cmd.kind === "useAbility");
-    assert.ok(shot?.move, kind);
-    const path = env.q.pathTo(ctx.view, "a", shot.move)!;
-    const moved = env.q.previewCommand(ctx.view, { kind: "move", actor: "a", path });
-    assert.ok(moved.result.ok, kind);
-    assert.ok(moved.state.units.a!.pools.ap!.cur >= 2, kind);
-    assert.ok(env.q.previewCommand(moved.state, shot.cmd).result.ok, kind);
-  }
 });

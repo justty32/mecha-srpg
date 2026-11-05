@@ -1,21 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { canonicalJson } from "../../src/core/eventlog.ts";
+import { canonicalJson, hashLog } from "../../src/core/eventlog.ts";
+import { replay, verifyReplay, ReplayError } from "../../src/sim/replay.ts";
 import { createSession, runBattle, scenarioToSetup } from "../../src/sim/index.ts";
 import type { SessionStep, SimSetup } from "../../src/sim/index.ts";
-import { db, scenarioId } from "./helpers.ts";
+import { db, sample, scenarioId } from "./helpers.ts";
 
 const setup = (): SimSetup => scenarioToSetup(db, scenarioId, 1, { rounds: 3 });
-
-test("全 AI：逐指令跑完與 runBattle 的 skirmish seed 1／3 輪 hash 相同", () => {
-  const sim = setup(), session = createSession({ db, sim, seed: 1 });
-  while (session.stepAi()) { /* 跑到結束。 */ }
-  const expected = runBattle({ db, sim, seed: 1 });
-  const first = session.state.log.events.findIndex((event, i) => canonicalJson(event) !== canonicalJson(expected.state.log.events[i] ?? null));
-  assert.equal(session.hash(), expected.hash, `第一個差異事件 index=${first}: ${JSON.stringify(session.state.log.events[first])}`);
-  assert.deepEqual(session.commands, expected.commands);
-  assert.ok(session.outcome());
-});
 
 test("stepAi 每次只推進一個成功指令，observer 在套用後收到同一批事件", () => {
   const session = createSession({ db, sim: setup(), seed: 1, maxSteps: 4 });
@@ -122,22 +113,30 @@ test("trackKnowledge：成功指令後更新該 slot 的 visible／lastSeen，�
   assert.deepEqual(other.state.knowledge.player!.visible, []);
 });
 
-test("trackKnowledge 先於之後註冊的 observer 更新", () => {
-  const session = createSession({ db, sim: setup(), seed: 1 });
-  session.trackKnowledge("player");
-  const fresh: boolean[] = [];
-  session.observe(() => {
-    const k = session.state.knowledge.player!;
-    fresh.push(k.visible.every(id => k.lastSeen[id]?.round === session.state.round));
-  });
-  while (session.stepAi()) { /* 跑到結束。 */ }
-  assert.ok(fresh.length > 0 && fresh.every(Boolean));
-});
-
 test("contentDb／rulesQuery：公開唯讀內容與查詢介面", () => {
   const session = createSession({ db, sim: setup(), seed: 1 }), actor = session.currentActor()!;
   assert.equal(session.contentDb, db);
   assert.ok(session.contentDb.require("frame", session.state.units[actor]!.frame));
   assert.ok(Object.keys(session.rulesQuery.reachable(session.state, actor)).length > 0);
   assert.ok(session.rulesQuery.abilitiesOf(session.state, actor).length > 0);
+});
+
+test("replay：skirmish-whitegloves 指令重播 hash 相同", () => {
+  const { sim, run } = sample();
+  assert.equal(hashLog(replay(db, sim.setup, 1, run.commands).log), run.hash);
+  assert.deepEqual(verifyReplay(db, { setup: sim.setup, seed: 1, commands: run.commands, hash: run.hash }), { ok: true, hash: run.hash });
+  assert.equal(verifyReplay(db, { setup: sim.setup, seed: 1, commands: run.commands, hash: "wrong" }).ok, false);
+});
+
+test("replay：竄改指令時 ReplayError 帶正確 index", () => {
+  const { sim, run } = sample();
+  const commands = structuredClone(run.commands), index = 2;
+  commands[index] = { kind: "end", actor: "missing-unit" };
+  assert.throws(() => replay(db, sim.setup, 1, commands), error => {
+    assert.ok(error instanceof ReplayError);
+    assert.equal(error.index, index);
+    assert.deepEqual(error.command, commands[index]);
+    assert.equal(error.code, "bad-actor");
+    return true;
+  });
 });

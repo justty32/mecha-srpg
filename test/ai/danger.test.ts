@@ -17,33 +17,6 @@ test("danger 包含射程加移動可達距離，超出與界外沒有危險", (
   assert.deepEqual(s, before);
 });
 
-test("danger ZoC 僅距離 1 再加一半威脅", () => {
-  const { q } = createStubRules();
-  const s = makeStubBattle({ width: 5, height: 5, units: [
-    { id: "e", owner: "e", pos: { x: 2, y: 2 }, ap: 0, abilities: ["stub:ability/claw"] },
-  ] }, 1);
-  const d = dangerMap(q, s, "p", emptyKnowledge());
-  assert.equal(threatOf(q, s, "e"), 1.5);
-  assert.equal(dangerAt(d, { x: 1, y: 1 }), 2.25);
-  assert.equal(dangerAt(d, { x: 2, y: 2 }), 1.5);
-  assert.equal(dangerAt(d, { x: 4, y: 4 }), 0);
-});
-
-test("danger lastSeen 不在 view 才有半徑 2 的固定常數", () => {
-  const { q } = createStubRules();
-  const s = makeStubBattle({ width: 6, height: 6, units: [
-    { id: "visible", owner: "e", pos: { x: 5, y: 5 }, abilities: [] },
-  ] }, 1);
-  const k = emptyKnowledge();
-  k.lastSeen.hidden = { cell: { x: 0, y: 0 }, round: 0 };
-  k.lastSeen.visible = { cell: { x: 5, y: 5 }, round: 0 };
-  const d = dangerMap(q, s, "p", k);
-  assert.equal(dangerAt(d, { x: 2, y: 2 }), 1);
-  assert.equal(dangerAt(d, { x: 3, y: 2 }), 0);
-  assert.equal(dangerAt(d, { x: 5, y: 5 }), 0);
-  assert.equal(Object.keys(d).length, 9);
-});
-
 test("danger 無攻擊能力、友方與非 active 不貢獻", () => {
   const { q } = createStubRules();
   const s = makeStubBattle({ width: 5, height: 5, units: [

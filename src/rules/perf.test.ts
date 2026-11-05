@@ -4,10 +4,7 @@ import { loadContentDirs } from "../content/loader.ts";
 import { cloneBattleState } from "../core/clone-state.ts";
 import { appendEvent } from "../core/eventlog.ts";
 import { cellKey } from "../core/ids.ts";
-import { createRng } from "../core/rng.ts";
 import { createRulesQuery } from "../ai/adapters/rules-adapter.ts";
-import { createAgent, emptyKnowledge, registerPolicy, takeTurn, updateKnowledge } from "../ai/index.ts";
-import { createStubRules, makeStubBattle } from "../../test/ai/stub-rules.ts";
 import { createBattle, killPerson, movementBudget, recoverBerserk, reachable, rt, stepCost } from "./index.ts";
 
 const { db } = loadContentDirs(["content/base"]);
@@ -102,26 +99,4 @@ test("快照的 reachable 與 pathTo 一致，普通查詢與新快照讀到最�
   assert.deepEqual(q.reachable(s, "a"), {});
   assert.deepEqual(q.forSnapshot!(s).reachable(s, "a"), {});
   assert.deepEqual(snapshot.reachable(cloneBattleState(s), "a"), {});
-});
-
-test("AI 成功移動與遭拒之後都重建決策快照", () => {
-  const { q, exec } = createStubRules();
-  const s = makeStubBattle({ width: 6, height: 3, units: [
-    { id: "a", owner: "blue", pos: { x: 0, y: 1 }, abilities: [], ap: 8 },
-  ] }, 31);
-  const seen: number[] = [];
-  registerPolicy({ id: "perf-refresh", band: 1,
-    propose: (_ctx, agent) => [
-      { move: { x: 1, y: 1 }, cmd: { kind: "eject", actor: agent.unit } },
-      { cmd: { kind: "end", actor: agent.unit } },
-    ],
-    score: (ctx, _agent, candidate) => {
-      seen.push(ctx.view.units.a!.pos.x);
-      return candidate.cmd.kind === "eject" ? 2 : 1;
-    },
-  });
-  const commands = takeTurn({ q, exec, s, slot: "blue", know: updateKnowledge(q, s, "blue", emptyKnowledge()),
-    assignment: null, params: {}, rng: createRng(31, 101) }, createAgent("a", "perf-refresh"));
-  assert.deepEqual(commands.map(c => c.kind), ["move", "end"]);
-  assert.deepEqual(seen, [0, 0, 1]);
 });

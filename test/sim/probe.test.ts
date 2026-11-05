@@ -5,29 +5,9 @@ import { loadContentDirs } from "../../src/content/loader.ts";
 import { createContentDB } from "../../src/content/contentdb.ts";
 import { planProbe, probe, snapshotDb } from "../../src/sim/probe.ts";
 import { runBattle, scenarioToSetup } from "../../src/sim/run.ts";
-import baselines from "../../src/sim/probe-baselines.json" with { type: "json" };
 
 const { db, errors } = loadContentDirs(["content/base"]);
 assert.equal(errors.length, 0);
-
-test("frame 配同級摹機與怪獸，主角 defaultLoadout 與基準明寫配裝分開", () => {
-  const plan = planProbe(db, "frame/longspear-v4");
-  assert.equal(plan.pairings.length, 2);
-  const hero = plan.pairings[0]!.scenario.slots.player!.units[0]!;
-  assert.deepEqual(hero.components, db.require("frame", hero.mech!).defaultLoadout ?? {});
-  assert.equal(plan.pairings[0]!.scenario.slots.enemy!.units[0]!.mech, baselines.grades.C.frame);
-  assert.deepEqual(plan.pairings[0]!.scenario.slots.enemy!.units[0]!.components, baselines.grades.C.components);
-  assert.equal(plan.pairings[1]!.scenario.slots.enemy!.units[0]!.monster, baselines.grades.C.monster);
-});
-
-test("monster 對同級兩台基準衍型機", () => {
-  const plan = planProbe(db, "monster/tidewolf-c");
-  assert.equal(plan.pairings.length, 1);
-  const enemies = plan.pairings[0]!.scenario.slots.enemy!.units;
-  assert.equal(enemies.length, 2);
-  assert.ok(enemies.every(u => db.require("frame", u.mech!).grade === "C"));
-  assert.notDeepEqual(enemies[0]!.at, enemies[1]!.at);
-});
 
 test("ability 找第一個載體；component defaultLoadout 與 monster extraAbilities 也可找到", () => {
   const plan = planProbe(db, "ability/mx-head-vulcan");

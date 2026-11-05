@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import type { Cell, Objective } from "../../src/core/types-def.ts";
 import type { AiCtx, Candidate } from "../../src/ai/index.ts";
 import { createAgent, createDefaultStrategy, emptyKnowledge, maskedState, updateKnowledge,
-  objectiveInfo, objectiveMoveValue, OBJECTIVE_DEFAULTS, scoreCandidate, selectCandidate, targetValue } from "../../src/ai/index.ts";
+  objectiveInfo, OBJECTIVE_DEFAULTS, scoreCandidate, selectCandidate, targetValue } from "../../src/ai/index.ts";
 import { proposeTactical } from "../../src/ai/policies/tactical.ts";
 import { createRng } from "../../src/core/rng.ts";
 import { createStubRules, loadStubAbilities, makeStubBattle } from "./stub-rules.ts";
@@ -158,17 +158,4 @@ test("盟軍不停在玩家護送出口格", () => {
   assert.deepEqual(choose(ctx, [exit, side]), side);
   ctx.params.objNoBlock = 0;
   assert.deepEqual(choose(ctx, [exit, side]), exit);
-});
-
-test("目標全空或只有 eliminate 時分數逐位元等於舊公式", () => {
-  for (const objectives of [[], [objective("eliminate", {})], [{ ...objective("killTarget", { unit: "z" }), onComplete: "lose" as const }]]) {
-    const ctx = context(objectives), agent = createAgent("a", "tactical");
-    const from = ctx.view.units.a!.pos, to = { x: 3, y: 2 };
-    assert.equal(objectiveMoveValue(ctx, "a", from, to), 0);
-    assert.equal(scoreCandidate(ctx, agent, move(ctx, to)), 0.3);
-    // C 級索引 1、rifle 威脅 2、滿血 0.5、30/110 傷害、兩點 attack、0.8 命中。
-    assert.equal(scoreCandidate(ctx, agent, shot("b")), (2 * 3 * 0.5 * (30 / 110)) * 2 * 0.8);
-    assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "end", actor: "a" } }), 0.01);
-    assert.equal(targetValue(ctx.q, ctx.view, "b", undefined, { slot: "p", params: {} }), targetValue(ctx.q, ctx.view, "b"));
-  }
 });

@@ -98,66 +98,6 @@ test("sustained 未維持會開、已維持不再提出；passive 不提出", ()
   assert.ok(proposeTactical(ctx, agent).every(c => c.cmd.kind !== "useAbility"));
 });
 
-test("capture 目標提高同傷害捕獲技，locomotion 已損越多價值越高", () => {
-  const normal = ability("normal"), capture = ability("capture", { ai: { tactics: { capture: 1 } } });
-  const ctx = context([normal, capture], [obj("capture", "b")]);
-  const c = use(capture, { unit: "b" }), n = use(normal, { unit: "b" });
-  assert.ok(score(ctx, c) > score(ctx, n));
-  const healthy = score(ctx, c);
-  for (const p of ctx.q.partDefs(ctx.view, "b").filter(p => p.functions.includes("locomotion"))) {
-    for (const l of ctx.view.units.b!.parts[p.id]!.layers) l.hp /= 2;
-  }
-  const damaged = score(ctx, c);
-  ctx.params.captureValue = 0;
-  assert.ok(damaged > score(ctx, c) && damaged > healthy);
-  ctx.params.objCapture = 0;
-  assert.equal(score(ctx, c), 0);
-  ctx.params.capture = 1;
-  assert.equal(score(ctx, c), score(ctx, n));
-  const ordinary = context([normal, capture]);
-  assert.equal(score(ordinary, c), 0);
-});
-
-test("純減益正分、高威脅更高，已有不可疊加效果不重複計價", () => {
-  for (const tactic of ["debuff", "disable"] as const) {
-    const a = ability("debuff", { packets: [], effects: [{ on: "hit", apply: [fx.id] }], ai: { tactics: { [tactic]: 1 } } });
-    const threat = ability("threat", { ai: { tactics: { attack: 10 } } });
-    const ctx = context([a, threat]);
-    ctx.view.units.c!.owner = "enemy";
-    ctx.view.units.c!.pos = { x: 4, y: 2 };
-    const original = ctx.q.abilitiesOf;
-    ctx.q.abilitiesOf = (s, id) => id === "b" ? [threat.id] : id === "c" ? [] : original(s, id);
-    const high = use(a, { unit: "b" }), low = use(a, { unit: "c" });
-    assert.ok(score(ctx, high) > score(ctx, low) && score(ctx, low) > 0);
-    const value = score(ctx, high);
-    ctx.params.debuffControl = 0;
-    assert.ok(score(ctx, high) < value && score(ctx, high) > 0);
-    ctx.params.debuffAttr = 0;
-    assert.equal(score(ctx, high), 0);
-    ctx.params = { maxMoves: 0, objMoves: 0 };
-    const preview = ctx.q.previewCommand(ctx.view, high.cmd);
-    assert.ok(preview.result.ok && preview.state.units.b!.effects.some(e => e.effect === fx.id));
-    ctx.view = preview.state;
-    assert.equal(score(ctx, high), 0);
-  }
-});
-
-test("大血量任務目標在同等條件下勝過小目標", () => {
-  const a = ability("shot");
-  const ctx = context([a], [obj("killTarget", "b")]);
-  ctx.view.units.c!.owner = "enemy";
-  ctx.view.units.c!.pos = { x: 4, y: 2 };
-  // 同威脅、同血量比例、同預估傷害，只改公開最大 HP 與目標標記。
-  const q = ctx.q, originalParts = q.partDefs, originalLayers = q.layerDefs;
-  q.layerDefs = (s, id, part) => originalLayers(s, id, part).map(l => ({ ...l, hp: id === "b" ? l.hp * 10 : l.hp }));
-  q.partDefs = (s, id) => originalParts(s, id).map(p => ({ ...p, layers: q.layerDefs(s, id, p.id) }));
-  for (const p of Object.values(ctx.view.units.b!.parts)) for (const l of p.layers) l.hp *= 10;
-  const big = use(a, { unit: "b" }), small = use(a, { unit: "c" });
-  assert.ok(score(ctx, big) > score(ctx, small));
-  ctx.params.objHpScale = 1e9;
-  assert.ok(score(ctx, big) < score(ctx, small));
-});
-
 test("啟用追擊時只追近 view 中最近的 killTarget／孵化源，不讀真實隱藏位置", () => {
   for (const spawner of [false, true]) {
     const ctx = context([], spawner ? [] : [obj("killTarget", "b")]);

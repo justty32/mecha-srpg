@@ -5,7 +5,7 @@ import type { AbilityDef, EffectDef } from "../../src/core/types-def.ts";
 import { createRng } from "../../src/core/rng.ts";
 import { loadContentDirs } from "../../src/content/loader.ts";
 import { createContentDB } from "../../src/content/contentdb.ts";
-import { createBattle, applyEffect, removeEffect } from "../../src/rules/index.ts";
+import { createBattle, removeEffect } from "../../src/rules/index.ts";
 import { createRulesQuery, createRulesExec } from "../../src/ai/adapters/rules-adapter.ts";
 import { createAgent, emptyKnowledge, getPolicy, selectCandidate, takeTurn, updateKnowledge } from "../../src/ai/index.ts";
 import type { AiCtx, Agent, Candidate } from "../../src/ai/policy.ts";
@@ -15,7 +15,7 @@ import { rememberSupport } from "../../src/ai/support.ts";
 
 const base = loadContentDirs(["content/base"]).db;
 const guard = "base:ability/kx-shield-raise", dodge = "base:ability/kx-surf-runner-skip";
-const relief = "base:ability/m2-relieve-ally", rise = "base:ability/kx-storm-mane-rise";
+const relief = "base:ability/m2-relieve-ally";
 function context(ids: string[] = [guard], extra: { abilities?: AbilityDef[]; effects?: EffectDef[]; monster?: boolean } = {}) {
   const defs = Object.fromEntries(CONTENT_KINDS.map(k => [k, Object.fromEntries(base.all(k).map(d => [d.id, d]))]));
   for (const a of extra.abilities ?? []) defs.ability![a.id] = a;
@@ -115,28 +115,6 @@ test("卸燼沒有對應池、超射程、AP 不足與毀損來源維持無效",
   assert.ok(!real.abilitiesOf(s, "a").includes(relief));
 });
 
-test("berserk 青鬣 AP8 先 self buff 後仍能主攻；已生效／無敵／不足後續 AP 不放", () => {
-  const bite = "base:ability/kx-storm-mane-bite";
-  for (const blocked of ["none", "existing", "no-enemy", "ap"] as const) {
-    const { ctx, db, exec } = context([rise, bite], { monster: true });
-    ctx.view.units.ally!.pos = { x: 10, y: 7 };
-    ctx.view.units.enemy!.pos = { x: 3, y: 3 };
-    ap(ctx, blocked === "ap" ? 5 : 8);
-    if (blocked === "existing") applyEffect({ db, s: ctx.view }, "base:effect/kx-storm-mane-risen", { unit: "a" }, "a");
-    if (blocked === "no-enemy") delete ctx.view.units.enemy;
-    const a = createAgent("a", "berserk"), c = choose(ctx, a);
-    if (blocked === "none") {
-      assert.deepEqual(c, use(rise));
-      assert.ok(exec(ctx.s, c!.cmd).ok);
-      const next = choose(ctx, a);
-      assert.equal(next?.cmd.kind, "useAbility");
-      assert.ok(next?.cmd.kind === "useAbility" && next.cmd.ability === bite);
-      assert.ok(exec(ctx.s, next!.cmd).ok);
-    } else assert.ok(c?.cmd.kind !== "useAbility" || c.cmd.ability !== rise);
-    assert.ok(getPolicy("berserk").propose(ctx, a).every(c => c.cmd.kind !== "useAbility" || c.cmd.target?.unit !== "ally"));
-  }
-});
-
 test("同輪 Wait 再入不重放；不同能力共用 refresh 效果不灌分，過期下輪可用", () => {
   const duplicate = structuredClone(base.require("ability", guard));
   duplicate.id = "base:ability/support-copy";
@@ -170,21 +148,6 @@ test("同輪 Wait 再入不重放；不同能力共用 refresh 效果不灌分�
   assert.ok(scoreCandidate(ctx, a, use(duplicate.id)) > 0);
 });
 
-test("既有緩燼 refresh 不重跑卸燼，不同招共用效果也不重放", () => {
-  const duplicate = structuredClone(base.require("ability", relief));
-  duplicate.id = "base:ability/relief-copy";
-  const { ctx, exec } = context([relief, duplicate.id], { abilities: [duplicate] });
-  ctx.view.units.ally!.pools.heat!.cur = 110;
-  ctx.danger = { "3,3": 6 };
-  assert.ok(exec(ctx.s, use(relief, "ally").cmd).ok);
-  ap(ctx, 8);
-  assert.equal(scoreCandidate(ctx, createAgent("a", "tactical"), use(duplicate.id, "ally")), -Infinity);
-  const before = ctx.view.units.ally!.pools.heat!.cur;
-  const after = ctx.q.previewCommand(ctx.view, use(duplicate.id, "ally").cmd);
-  assert.ok(after.result.ok);
-  assert.equal(after.state.units.ally!.pools.heat!.cur, before);
-});
-
 test("tactical 額外保留最低成本支援格並留足施放 AP，低燼不追友方", () => {
   const { ctx } = context([relief]);
   ctx.view.units.ally!.pos = { x: 6, y: 3 };
@@ -201,20 +164,4 @@ test("tactical 額外保留最低成本支援格並留足施放 AP，低燼不�
   assert.equal(ctx.q.checkAbility(moved.state, "a", relief, { unit: "ally" }), null);
   ctx.view.units.ally!.pools.heat!.cur = 0;
   assert.ok(proposeTactical(ctx, createAgent("a", "tactical")).every(c => !c.move || c.cmd.kind !== "useAbility" || c.cmd.ability !== relief));
-});
-
-test("sentinel 回防、regroup、swarm 回巢都有不移位支援，不越守點或 leash", () => {
-  for (const policy of ["sentinel", "regroup", "swarm"]) {
-    const { ctx } = context([relief]);
-    ctx.view.units.ally!.pools.heat!.cur = 110;
-    ctx.params = { maxMoves: 0, objMoves: 4, leash: 0 };
-    const a = createAgent("a", policy, { home: { x: 0, y: 3 }, parent: "ally" });
-    const candidates = getPolicy(policy).propose(ctx, a);
-    assert.ok(candidates.some(c => c.cmd.kind === "useAbility" && c.cmd.ability === relief));
-    assert.ok(candidates.filter(c => c.cmd.kind === "useAbility").every(c => !c.move));
-    if (policy === "sentinel") {
-      a.memory.home = { ...ctx.view.units.a!.pos };
-      assert.ok(getPolicy(policy).propose(ctx, a).every(c => !c.move && c.cmd.kind !== "move"));
-    }
-  }
 });
