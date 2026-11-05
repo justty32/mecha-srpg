@@ -8,7 +8,7 @@
 
 戰場示意包含四地格、單位圓標、HP、選取框及範圍色塊。按鈕各播一次射擊、命中、爆炸，結束即清除，尊重減少動態偏好。城市是分層示意／微縮景初版，供選畫風；特效靜態圖不代表動畫時間序列已目視驗收。
 
-[設定來源](SOURCES.md)｜[三套畫風](art-direction.md)｜[交付報告](../../wf/workflows/dispatch/handoffs/svg-art-1027/REPORT.md)
+[設定來源](SOURCES.md)｜[三套畫風](art-direction.md)｜交付報告 svg-art-1027 REPORT（原文見 git `3fad8aea`）
 
 ## 程式框架最小用法
 
@@ -53,7 +53,7 @@ ArtDemo.assemble(document,
 
 機甲保留三風格換件，以獨立語意樹管理頭、軀幹、左右臂腿及武器；大部位下有總成，再下為真實面板、套環、管線等細層。機體左側位於畫面右側。邏輯父子與SVG畫序分離，關父層保留子層偏好，單看退出會恢復原先開關；只統計當前裝配的葉層。
 
-最新範圍與資料契約見[本輪契約](../../wf/workflows/dispatch/handoffs/mech-layers-1027/contract.md)，進度見[本輪狀態](../../wf/workflows/dispatch/handoffs/mech-layers-1027/STATUS.md)。原美術歷史報告保留，不以本輪結果回寫歷史。
+最新範圍與資料契約見 mech-layers-1027 的 contract／STATUS（原文見 git `3fad8aea`）。原美術歷史報告保留，不以本輪結果回寫歷史。
 
 `mech-layers.json` 定義大／中／細父子樹與用途；`mech-parts.svg` 的 `data-mech-node` 對應真實圖形。`mech-tree.js` 只計算可見性，`mech-tree-ui.js` 接原生摺疊／勾選／單看控件，`mech-tree.css` 排版。來源11個symbol依配方選用後，展示僅複製該instance幾何；共用defs與其他預覽不會被關掉。語意樹含root深4，實際SVG連組裝包裝最深5。
 

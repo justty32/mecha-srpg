@@ -24,4 +24,4 @@ bigfill、gear、scen 與既有非人物內容是否重複、矛盾或缺少掛�
 
 ## 來源
 
-逐列 evidence 提供具體檔案、欄位、短引文及影響／建議；scan／method／limits 記統計、方法與限制。先讀 [fill裁示](../../../workflows/dispatch/handoffs/fill-rulings.md)、[bigfill報告](../../../workflows/dispatch/handoffs/lead-bigfill/report.md)、[gear報告](../../../workflows/dispatch/handoffs/lead-fill-gear/report.md)、[scen計畫](../../../workflows/dispatch/handoffs/done/2026-10-26/lead-fill-scen/plan/plan.md)。本輪只寫本頁與資料檔，其他工作線的既有改動未覆寫。
+逐列 evidence 提供具體檔案、欄位、短引文及影響／建議；scan／method／limits 記統計、方法與限制。先讀 fill裁示、bigfill報告、gear報告、scen計畫。本輪只寫本頁與資料檔，其他工作線的既有改動未覆寫。

@@ -26,8 +26,8 @@
 
 ## 證據與其他待辦
 
-[首批交付與圖像證據](../../workflows/dispatch/handoffs/svg-art-1027/README.md)｜[機甲階層／演出與證據](../../workflows/dispatch/handoffs/mech-layers-1027/README.md)｜[目前機甲 API 契約](../../workflows/dispatch/handoffs/mech-layers-1027/contract.md)
+首批交付與圖像證據｜機甲階層／演出與證據｜目前機甲 API 契約
 
 報告、驗證程式、JSON、PNG 與 SVG 證據均留原位置；已執行 brief 分到各報告的 briefs/，歷史驗證及 hash 不回寫。
 
-[全專案接續](../../workflows/dispatch/handoffs/next-session.md) 保留七輪世界觀 draft 待家驗、P01／Fable 裁決及四條舊暫停線；不因今日美術收工代替舊線收線，也不清 worktrees 或本機 logs。
+全專案接續（10/28 的 next-session，原文見 git `3fad8aea`）保留七輪世界觀 draft 待家驗、P01／Fable 裁決及四條舊暫停線；不因今日美術收工代替舊線收線，也不清 worktrees 或本機 logs。

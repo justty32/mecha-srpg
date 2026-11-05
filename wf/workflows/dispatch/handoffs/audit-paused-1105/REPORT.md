@@ -1,6 +1,6 @@
 # audit-paused-1105 — 四條暫停填充線的唯讀審查
 
-[handoffs](../README.md)｜接續 [next-session](../next-session.md)｜前次審閱 [10/27](../../../../notes/investigations/content-review-2026-10-27/README.md)、[10/28](../../../../notes/investigations/content-review-2026-10-28/README.md)
+[handoffs](../README.md)｜前次審閱 [10/27](../../../../notes/investigations/content-review-2026-10-27/README.md)、[10/28](../../../../notes/investigations/content-review-2026-10-28/README.md)
 
 2026-11-05，HEAD `6f28e4d9`。本次只做審查：沒有改內容、程式碼或狀態檔，沒有 commit，也沒有跑 node（同時段另一個 agent 在跑全套測試）。機械比對全部用 python 與 git。loader 結果引用同日 verify-head-1105 的 check.log：`OK 0 errors, 17 warnings`，index 73 分片一致。
 

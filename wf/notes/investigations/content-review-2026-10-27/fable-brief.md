@@ -1,6 +1,6 @@
 # 給 Fable 的設計報告題綱
 
-[審閱入口](README.md)｜[現行交接](../../../workflows/dispatch/handoffs/next-session.md)
+[審閱入口](README.md)
 
 ## 目的與邊界
 

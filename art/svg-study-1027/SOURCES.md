@@ -40,4 +40,4 @@
 
 `mech-layers.json` 是既有堅盾三風格的美術語意樹，對應 `mech-parts.svg` 中的真實零件與附屬效果；面板、承重件、管束及固定栓的名稱屬視覺管理，不新增遊戲部件或世界事實。原設定、姿態、接點、左右武器與三風格基礎造型保留。`mech-effects.css` 與來源內的感測校準、掠光、熱羽流、電暈及粒子由 gpt-6-astra 設計，皆為可選視覺演出。
 
-`mech-tree.js`、`mech-tree-ui.js`、`mech-tree.css`、`mech-motion.js` 與既有 `demo.js`／`rebuild.py` 為 sol 的離線框架接線。來源與效果資源全部本機，無下載素材、外部字型或新依賴。靜態證據與限制見[本輪交付入口](../../wf/workflows/dispatch/handoffs/mech-layers-1027/README.md)，不改前輪歷史報告。
+`mech-tree.js`、`mech-tree-ui.js`、`mech-tree.css`、`mech-motion.js` 與既有 `demo.js`／`rebuild.py` 為 sol 的離線框架接線。來源與效果資源全部本機，無下載素材、外部字型或新依賴。靜態證據與限制見本輪交付入口，不改前輪歷史報告。

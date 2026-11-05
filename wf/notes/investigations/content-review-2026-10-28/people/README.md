@@ -28,6 +28,6 @@ pilots 的 148 個背景 person 引用、148 個 lore gameRefs 均對齊 148 個
 
 ## 來源與交付
 
-[終局報告](REPORT.md)；[本輪人物交接](../../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028/people.md)；[舊人物摘要](../../content-review-2026-10-27/people.md)；[舊非人物摘要](../../content-review-2026-10-27/content.md)；[既定裁示](../../../../workflows/dispatch/handoffs/fill-rulings.md)。來源表及舊清單指紋、審閱 HEAD、計數與方法在 coverage metadata。逐項原檔出處見 evidence，README 不另抄候選表。
+[終局報告](REPORT.md)；本輪人物交接；[舊人物摘要](../../content-review-2026-10-27/people.md)；[舊非人物摘要](../../content-review-2026-10-27/content.md)；既定裁示。來源表及舊清單指紋、審閱 HEAD、計數與方法在 coverage metadata。逐項原檔出處見 evidence，README 不另抄候選表。
 
 本分區另保留本輪資料產生腳本 review_work.py、finalize_review.py 供領導追溯；工人沒有執行遊戲測試、lint、build、sim，沒有安裝、下載、commit、push 或開子 agent。

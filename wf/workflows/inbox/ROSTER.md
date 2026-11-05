@@ -7,9 +7,9 @@
 ## 規則
 
 1. 上線第一件事：在「現役成員」下**追加自己那格**（不要改別人的），再寄一封 `PROGRESS` 給上游（升級後佈局用 `inbox_mail.sh <我> --up PROGRESS '…'`）、正文貼上那格內容——這樣別人不必輪詢本檔也知道你上線了。
-2. 收線**不要刪自己那格**，把「狀態」改成 `已收線（YYYY-MM-DD）`。歷史留著，別人才知道誰做過什麼。
+2. 收線由調度者**刪掉那一格**（git 歷史即封存，誰做過什麼查 git log）；本檔只列現役。
 3. 本檔是**快取，可能不全**。沒列到的對象問使用者，或直接去對方資料夾確認它有 `inbox/`、收什麼信——**權威永遠是對方資料夾自己**。
-4. 已收線的格子堆多了就整段封存（照 [STRUCTURE](../../STRUCTURE.md) 的 archive 規則）；已收線的線不要再回填本檔，封存與整理歸調度者。
+4. 已收線的線不要再回填本檔；刪格與整理歸調度者（規則見 [STRUCTURE](../../STRUCTURE.md)「過時就刪」）。
 
 **地址規則**：inbox 路徑是**機器本地的**，換一台機器就不一樣，**每台機器各自維護這份簿子**。若所有對象都掛在同一個共同 root 底下，改成寫**相對那個 root 的路徑**，並在本檔頂端寫明 root 怎麼定（例：`$REPOS/`），換機只改 root 一處。
 
@@ -39,90 +39,4 @@
 - **答得出什麼**：優先序、資源與授權（含要不要 push、刪檔）、範圍裁定
 - **答不出什麼**：實作細節（問該線的領導或 REPORT）
 - **怎麼找我**：`/home/lorkhan/repo/game_dev/mecha-srpg/wf/inbox/new/`（`inbox_mail.sh <我> --up …` 或 `--to dispatcher`）
-- **訂閱主題**：無
-
-### `lead-engine-next`（含代登記工人 `cx-en-ai-plan`、`cx-en-ai`、`cx-en-wc-plan`、`cx-en-wc`）
-- **狀態**：已收線（2026-10-26）
-- **我是誰**：Opus 領導：引擎一批——AI 自護／友方支援招（backlog 68、73）、萬潮葬王副線引擎（57–61）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
-- **團隊**：`teams/engnext`
-- **上游**：`dispatcher`（工人的上游是 `lead-engine-next`）
-- **領地**：CLAIMS「lead-engine-next」列；工人在隔離 worktree，照交接書 `handoffs/lead-engine-next/cx-en-*.md`
-- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
-
-### `lead-bigfill`（含代登記工人 `cx-bf-*`）
-- **狀態**：現役（2026-10-26 上線）
-- **我是誰**：Opus 領導：下一輪大填充（月面、可玩內容、加深）；工人 codex（計畫 gpt-6-astra、產出 gpt-6.1-sol）。
-- **團隊**：`teams/bigfill`
-- **上游**：`dispatcher`（工人的上游是 `lead-bigfill`）
-- **領地**：CLAIMS「lead-bigfill」列；工人在隔離 worktree，照交接書 `handoffs/lead-bigfill/cx-bf-*.md`
-- **怎麼找我**：行程內；工人 `wf/inbox/orders/<線名>.md`；**訂閱主題**：無
-
-已收線成員原格見 [封存索引](archive/README.md)（ROSTER-2026-10-26.md）。
-
-### `lead-review-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
-- **團隊**：`teams/review-1028`
-- **上游**：dispatcher
-- **領地**：使用者明列行政檔與本輪整合
-- **答得出什麼**：本輪覆蓋與候選證據
-- **答不出什麼**：遊戲整合驗收與架構定案
-- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/lead-review-1028/`
-- **訂閱主題**：無
-
-### `cx-review-people-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
-- **團隊**：`teams/review-1028`
-- **上游**：lead-review-1028
-- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/people
-- **答得出什麼**：本輪覆蓋與候選證據
-- **答不出什麼**：遊戲整合驗收與架構定案
-- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-people-1028/`
-- **訂閱主題**：無
-
-### `cx-review-gear-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
-- **團隊**：`teams/review-1028`
-- **上游**：lead-review-1028
-- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/gear-scen
-- **答得出什麼**：本輪覆蓋與候選證據
-- **答不出什麼**：遊戲整合驗收與架構定案
-- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-gear-1028/`
-- **訂閱主題**：無
-
-### `cx-review-world-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：本輪增量審閱，工人gpt-6.1-sol，領導統整抽核。
-- **團隊**：`teams/review-1028`
-- **上游**：lead-review-1028
-- **領地**：/mnt/c/code/mine/mecha-srpg/wf/notes/investigations/content-review-2026-10-28/world
-- **答得出什麼**：本輪覆蓋與候選證據
-- **答不出什麼**：遊戲整合驗收與架構定案
-- **怎麼找我**：`/mnt/c/code/mine/mecha-srpg/wf/inbox/mail/cx-review-world-1028/`
-- **訂閱主題**：無
-
-10/28 主線已實際 close Mencius、Lovelace、Sagan 與 core/UI 兩工人，均回傳先前 completed；舊 Halley id not found。原生資源關閉以主線工具回報為證，不從 ps 推論；本輪只餘文件收尾，終局由主線再 close。
-
-### `lead-canvas-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：全新礁鷹Canvas試作領導；core及viewer工人sol、美術Lovelace astra。
-- **團隊**：無，原生task通訊
-- **上游**：主線，原生工具回傳，不寄頂層inbox
-- **領地**：本輪CLAIMS明列，core/drawing/viewer分開獨占
-- **答得出什麼**：配置凍結、葉工作單、四類驗證與進度
-- **答不出什麼**：舊藝術及遊戲整合驗收
-- **怎麼找我**：本原生task，進度見本輪handoff README
-- **訂閱主題**：無
-
-### `lead-mech3d-1028`
-- **狀態**：已收線（2026-10-28）
-- **我是誰**：衡岳真3D試作領導，astra同持配置/幾何、sol展示與驗證
-- **團隊**：無，原生task
-- **上游**：主線，原生回傳不寄頂層inbox
-- **領地**：本輪CLAIMS，art/mech-3d兩互斥寫集與本輪行政
-- **答得出什麼**：先配置凍結後mesh、首圖、四類驗證與收線
-- **答不出什麼**：遊戲整合、GPU效能與完整IK
-- **怎麼找我**：本原生task及本輪handoff README
 - **訂閱主題**：無

@@ -1,6 +1,6 @@
 # 2026-10-27 內容審閱
 
-[調查入口](../README.md)｜[接續清單](../../../workflows/dispatch/handoffs/next-session.md)
+[調查入口](../README.md)
 
 ## 問題與範圍
 

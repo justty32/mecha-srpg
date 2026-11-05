@@ -1,6 +1,6 @@
 {
  "contract": "wf-table/1",
- "source": "codex-handover.md",
+ "source": "batch.md",
  "extracted": "2026-10-24",
  "columns": [
   "序",
@@ -12,15 +12,6 @@
   "狀態"
  ],
  "rows": [
-  {
-   "序": "1",
-   "批次": "用語改名＋翻譯腔重審",
-   "模式": "polish",
-   "允許的 kind（相對 content/）": "全庫文字欄（`content/base/**`、`content/lore/**` 的 name／summary／body／text／lines…；含 lore glossary.json、style.md 由領導改）",
-   "規模": "分 10–20 檔一批、按類別切，3–4 批並行",
-   "注意": "依 design-notes/terms.md（古代機／裝甲、衍型、蝕潮系、鎧甲／靈目／矢）；飛魚與 lore 試點批的「潮」舊詞併入；agy 審查；「鞘」系衍生詞、潮信會、大潮小潮、工作名**先擬一版交使用者定**，定案前不換",
-   "狀態": "完成（lead-rename，2026-10-24）"
-  },
   {
    "序": "2",
    "批次": "第三刃、背面補成正式勢力（lore 與營運事件）",
@@ -58,15 +49,6 @@
    "狀態": "已完成一批（lc-lore-01，2026-10-24：5 勢力代表事件；四小節已由 lc-merge-01 併入勢力檔）；其餘勢力可再開"
   },
   {
-   "序": "6",
-   "批次": "A 級以上怪獸二名",
-   "模式": "polish／add",
-   "允許的 kind（相對 content/）": "`base/monsters` 的 name（polish）或 lore 條目",
-   "規模": "10–20",
-   "注意": "B 級以下不給；四字為主「做過的事＋樣子」",
-   "狀態": "lore 部分已完成（lc-lore-03，2026-10-24：既有 A／S 二名由來事件 6）；A 級以上二名皆已存在，polish 不需要"
-  },
-  {
    "序": "7",
    "批次": "地圖與情境",
    "模式": "add",
@@ -101,42 +83,6 @@
    "規模": "10–15",
    "注意": "古代機等級無上限可寫進化敘述，但進化機制未實作；機魂個性只限 S；passive／molt／territorial 不生效先不用",
    "狀態": "可開"
-  },
-  {
-   "序": "11",
-   "批次": "B5 翻譯腔重審 dl-01（開局勢力與人物）",
-   "模式": "polish",
-   "允許的 kind（相對 content/）": "`lore/factions`（31，全部）＋`lore/characters`（10）",
-   "規模": "41 檔（使用者裁示每批約 40，超過 batch.md 的 20 上限屬裁示例外）",
-   "注意": "manifest 草稿 `handoffs/done/2026-10-25/lead-decide-land/b5/dl-01.manifest.json`、工人交接書草稿 `cx-dl-01.md`、共用指引 `b5/guide.md`；`allow.textFields` summary／body／note，`allow.proseFields` consequences／role／scale／doctrine／ideology／mechSeries／status2108；name／aka／tags 不動；順帶對齊 2026-10-25 裁示（機甲核心用詞、機魂能獨駕、無人機普通開、不老）",
-   "狀態": "accepted（lead-polish，2026-10-25；見 content/batches/2026-10/dl-01.json）"
-  },
-  {
-   "序": "12",
-   "批次": "B5 翻譯腔重審 dl-02（人物）",
-   "模式": "polish",
-   "允許的 kind（相對 content/）": "`lore/characters`（40）",
-   "規模": "40 檔（使用者裁示每批約 40，超過 batch.md 的 20 上限屬裁示例外）",
-   "注意": "manifest 草稿 `handoffs/done/2026-10-25/lead-decide-land/b5/dl-02.manifest.json`、工人交接書草稿 `cx-dl-02.md`、共用指引 `b5/guide.md`；`allow.textFields` summary／body／note，`allow.proseFields` consequences／role／scale／doctrine／ideology／mechSeries／status2108；name／aka／tags 不動；順帶對齊 2026-10-25 裁示（機甲核心用詞、機魂能獨駕、無人機普通開、不老）",
-   "狀態": "accepted（lead-polish，2026-10-25；見 content/batches/2026-10/dl-02.json）"
-  },
-  {
-   "序": "13",
-   "批次": "B5 翻譯腔重審 dl-03（人物其餘、時代、年表、事件、地點）",
-   "模式": "polish",
-   "允許的 kind（相對 content/）": "`lore/characters`（15）、`lore/eras`（7）、`lore/timeline.json`、`lore/events`（15）、`lore/places`（2）",
-   "規模": "40 檔（使用者裁示每批約 40，超過 batch.md 的 20 上限屬裁示例外）",
-   "注意": "manifest 草稿 `handoffs/done/2026-10-25/lead-decide-land/b5/dl-03.manifest.json`、工人交接書草稿 `cx-dl-03.md`、共用指引 `b5/guide.md`；`allow.textFields` summary／body／note，`allow.proseFields` consequences／role／scale／doctrine／ideology／mechSeries／status2108；name／aka／tags 不動；順帶對齊 2026-10-25 裁示（機甲核心用詞、機魂能獨駕、無人機普通開、不老）",
-   "狀態": "accepted（lead-polish，2026-10-25；見 content/batches/2026-10/dl-03.json）"
-  },
-  {
-   "序": "14",
-   "批次": "B5 翻譯腔重審第二輪（事件 56、地點 48）",
-   "模式": "polish",
-   "允許的 kind（相對 content/）": "`lore/events`、`lore/places`（dl-01～03 未涵蓋的 104 檔）",
-   "規模": "約 40 檔一批、三批",
-   "注意": "沿用 `handoffs/done/2026-10-25/lead-decide-land/b5/guide.md` 與 dl 系列交接書格式；等 dl-01～03 收件後看退件率再排",
-   "狀態": "accepted（lead-polish，2026-10-25；拆兩批 dl-04 事件 56、dl-05 地點 48，見 content/batches/2026-10/dl-04／05.json）"
   },
   {
    "序": "15",

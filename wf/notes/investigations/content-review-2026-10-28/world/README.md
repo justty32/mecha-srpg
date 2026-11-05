@@ -32,4 +32,4 @@ W01 空冠社／穹頂住戶及 W02 換禮角／望鄉號是正常配套。W07�
 
 主來源與索引列位置見 entries，來源表 SHA-256 見 scan，現檔全文狀態見 coverage，逐組裁定見 evidence。機械索引與全文記錄方法留在 [audit.py](audit.py)，已讀候選的判斷整理留在 [build_evidence.py](build_evidence.py)。
 
-[本線交接](../../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028/world.md)｜[主交接](../../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028.md)｜[10/27 人物摘要](../../content-review-2026-10-27/people.md)｜[10/27 其他內容摘要](../../content-review-2026-10-27/content.md)｜[fill-rulings](../../../../workflows/dispatch/handoffs/fill-rulings.md)｜[終局報告](REPORT.md)
+本線交接｜主交接｜[10/27 人物摘要](../../content-review-2026-10-27/people.md)｜[10/27 其他內容摘要](../../content-review-2026-10-27/content.md)｜fill-rulings｜[終局報告](REPORT.md)

@@ -13,7 +13,6 @@ mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite�
 | `.claude/commands/` | slash 指令適配層（可選）。Claude Code 為例：只讀專案根的這層，非侵入式佈局也留在根；沒有 slash 機制的工具忽略本目錄，直接跑 `tools/wf-lint.sh` |
 | `tools/` | kernel 工具：`wf-lint.sh`（檢查）、`tabledb.py`（資料檔 CRUD／連結）、`find_big_lists.py`、`fix_moved_links.py`；非侵入式佈局在 `wf/tools/`；資料檔契約見 [workflows/common/data-files.md](workflows/common/data-files.md) |
 | 頂層 `SPEC.md`／`PROJECT.md`／`README.md` | 設計契約入口（指向 [specs/core](workflows/planning/specs/core/README.md)）／定位與狀態／給人看的導覽 |
-| `wf/archive/` | 封存：建立期的 [session_log](archive/session_log-2026-06-26.md)（2026-06-26，只讀）|
 | 頂層 `package.json`／`tsconfig.json`／`.nvmrc` | 專案設定（無執行期依賴；由實作線建立）|
 | `wf/inbox/` | agent 之間的信件放信處：`new/`＝給頂層的終局回報、`mail/`／`teams/`／`orders/`／`topics/` 用到才長出來、`done/`＝已處理；使用方式 [workflows/inbox/](workflows/inbox/README.md) |
 | [notes/](notes/README.md) | 調查證據與待審閱問題；不代替設計契約或驗收結果 |

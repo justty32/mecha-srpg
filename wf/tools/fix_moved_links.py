@@ -81,6 +81,8 @@ def fix_table(path, bo, bn, edits, apply):
     t = tabledb.load(path)
     lcols = tabledb_links.link_columns(t)
     for row in t.rows:
+        if not isinstance(row, dict):  # 舊式 list 列：不重寫
+            continue
         for k in list(row):
             row[k] = RW.value(row[k], k in lcols, bo, bn, path, edits)
     src = t.meta.get("source")  # source 也是相對本檔的路徑，可以是 $fmt 指示詞

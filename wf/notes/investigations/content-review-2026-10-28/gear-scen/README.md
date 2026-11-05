@@ -24,4 +24,4 @@
 
 ## 來源
 
-[分區交接](../../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028/gear-scen.md)、[主 brief](../../../../workflows/dispatch/handoffs/done/2026-10-28/lead-review-1028.md)、[10/27 內容摘要](../../content-review-2026-10-27/content.md)、[人物摘要](../../content-review-2026-10-27/people.md)、[填充裁定](../../../../workflows/dispatch/handoffs/fill-rulings.md)、[七輪待驗收摘要](../../../../workflows/dispatch/handoffs/tidy-world-1027/pending.md)。來源表逐列映射與指紋見 coverage；八組原檔定位見 evidence；終局四段見 [REPORT.md](REPORT.md)。
+分區交接、主 brief、[10/27 內容摘要](../../content-review-2026-10-27/content.md)、[人物摘要](../../content-review-2026-10-27/people.md)、填充裁定、七輪待驗收摘要。來源表逐列映射與指紋見 coverage；八組原檔定位見 evidence；終局四段見 [REPORT.md](REPORT.md)。

@@ -10,9 +10,9 @@
 
 ## 待使用者項
 
-- [content] 其餘內容候選待審（P01 朴仁哲失腿已定案：閘門夾斷）→ [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
+- [content] 其餘內容候選待審（P01 朴仁哲失腿已定案：閘門夾斷）；10/27 七輪與 10/28 expansion／night 的 23 份 batch manifest 仍是 draft（技術已入庫，11/05 audit-paused-1105 已機械核對）→ [審閱入口](notes/investigations/content-review-2026-10-27/README.md)、[四線審查](workflows/dispatch/handoffs/audit-paused-1105/REPORT.md)。
 
-- [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 [feedback](workflows/dispatch/handoffs/done/2026-10-24/lead-ui-fix/feedback.md)；機甲核心試玩重點見 [lead-cockpit REPORT「需要使用者決定或試玩」四點](workflows/dispatch/handoffs/done/2026-10-25/lead-cockpit/REPORT.md)（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）
+- [feature-dev] 使用者 2026-10-25 已試玩（戰鬥 http://localhost:5173/、營運 `#/ops`、百科 `#/wiki`、機甲核心與座艙），尚未給具體回饋 → 有回饋就派對應修正線（戰鬥／營運／百科）。戰鬥九項見 lead-ui-fix feedback、機甲核心試玩四點見 lead-cockpit REPORT「需要使用者決定或試玩」（駕駛離職就終局的節奏、醒魂「相乘」讀法、長能力節奏、強化打擊／遠程分近遠增傷）；兩份原文見 git `3fad8aea`。11/05 agent 試玩見 [playtest-1105](workflows/dispatch/handoffs/playtest-1105/REPORT.md)。
 
 - [feature-dev] SVG美術、紙娃娃與機甲百層／五層深度演出待評閱；實際瀏覽器互動／動畫待使用者實機驗 → [集中看圖與驗收](notes/art-review-2026-10-27/README.md)（今天收工，先記待辦，不要求當場驗收）。
 
@@ -20,4 +20,4 @@
 
 - [feature-dev] 請評閱 10/28 兩個獨立試作的畫風、比例與操作手感 → [Canvas 礁鷹](../art/canvas-mech/README.md)／[真正 3D 衡岳](../art/mech-3d/README.md)（各 README 可開離線展示）。基本連續整機／hero 造型僅由主線與領導 AI 圖驗通過，使用者尚未評閱；兩作已交付，不需重做原型。
 
-- [feature-dev] 手機版已帶限制交付，請以實體手機確認兩圖拖曳、圖外捲動與快捷手感；自動驗證28/29、touch三連1/3（只圖外模擬觀測未穩） → [交付證據](workflows/dispatch/handoffs/done/2026-10-29/lead-mobile-1029/REPORT.md)。
+- [feature-dev] 手機版已帶限制交付，請以實體手機確認兩圖拖曳、圖外捲動與快捷手感；自動驗證28/29、touch三連1/3（只圖外模擬觀測未穩）→ 交付證據 lead-mobile-1029 REPORT（原文見 git `3fad8aea`），契約見 [mobile-ui-1029](workflows/planning/specs/mobile-ui-1029.md)。

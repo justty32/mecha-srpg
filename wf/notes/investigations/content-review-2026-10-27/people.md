@@ -12,4 +12,4 @@
 
 **覆蓋限制**：bigfill 34 人物與 pilots 148 人物皆納入機械比對；語義只深入候選，並非逐句審完全部人物。共解析 2,695 份 content JSON 以核範圍／配套，不代表其餘內容全已語義驗證；未擴成全面事件年表、人口知情 D 線或引擎稽核。
 
-**來源**：[fill-rulings](../../../workflows/dispatch/handoffs/fill-rulings.md)、[pilots report](../../../workflows/dispatch/handoffs/lead-fill-pilots/report.md)、[bigfill report](../../../workflows/dispatch/handoffs/lead-bigfill/report.md)；逐項現檔出處見資料檔 evidence。
+**來源**：fill-rulings、pilots report、bigfill report；逐項現檔出處見資料檔 evidence。
