@@ -39,7 +39,7 @@ cx-fg-ga-03 — **FAILED：固定驗收第 3 條未通過**。14 個內容檔已
 
    **失敗原因**：8 件被動件共 20 項 attrMods／poolMods 實裝差值全為 0；含寒燈的 heat.regen 預期 −2、charge.regen 預期 −2，實際均 0，遮燈 charge.regen 預期 −3，實際 0。來源追查顯示此 base 的 makeUnit 僅套用 MonsterDef.attrMods，未消費 ComponentDef.attrMods；poolDecls 也未消費 ComponentDef.poolMods。觀察值保留 createBattle 後及 startBattle 後兩階段，並非漏跑生命週期。鐵眉頭部插 armor 25 HP 正常，其他部位層序未受影響；能力授予與兩個效果正常。不能透過 scratch 補加貢獻冒充通過，也不能改規格或引擎繞過此條。
 
-   原始結果見 [smoke](smoke.json)、[安裝前後完整狀態](installation-observations.json)、[人工指令與事件](manual-commands.json)、[執行摘要](smoke-run.log)、[引擎讀取位置](engine-evidence.log)。五場逐事件與命令紀錄為 [seed 1](runBattle-seed-1.json)、[seed 2](runBattle-seed-2.json)、[seed 3](runBattle-seed-3.json)、[seed 4](runBattle-seed-4.json)、[seed 5](runBattle-seed-5.json)。[runner](smoke-runner.mjs) 與 [規格輸入](specs-runtime.json) 相鄰保存；可在此 worktree 根執行報告區 runner 復現。runner 輸出的語義 verdict=FAILED，20 項失敗不是例外。
+   原始結果見 [smoke](smoke.json)、安裝前後完整狀態（installation-observations.json）、人工指令與事件（manual-commands.json）、[執行摘要](smoke-run.log)、[引擎讀取位置](engine-evidence.log)。五場逐事件與命令紀錄為 runBattle-seed-1..5.json。上述 installation-observations、manual-commands、runBattle-seed-* 為純文字檔名，原始紀錄已移除，見 git a66cd46。[runner](smoke-runner.mjs) 與 [規格輸入](specs-runtime.json) 相鄰保存；可在此 worktree 根執行報告區 runner 復現。runner 輸出的語義 verdict=FAILED，20 項失敗不是例外。
 
 4. **PASS**：本報告列全 20 個點名來源與四條證據；[review.json](review.json) 14 列、白話最長 27 字（≤60）；[naming.json](naming.json) 14 列保留指定英名、意涵與「提案」標記。所有原始 smoke、安裝、人工指令與 runner 輸入已交齊；REPORT≤12 KB。內容只潤飾 etymology，同準的到期措辭明確為「到隊友下一次行動時」，未改時鐘。
 

@@ -27,7 +27,7 @@
 
 兩招各有真實 AI AbilityUsed 一次：落樁站穩在 seed 3，扳扣脫網在 seed 5；沒有 AI 未使用缺口。AI 出手與人工 tryCommand 分開記錄，人工不計入 aiUsed。
 
-人工落樁站穩：預掛牽滯＋縛網，initiative 1→13（移除 −4，再加 +8）；牽滯移除、縛網保留。人工扳扣脫網：預掛縛網＋絆足，evasion −26→−6（撤回 −15，再加 +5）；縛網移除、只有 debuff 的絆足保留。各花 AP 3、cooldown=3、使用次數記 1；短效在下一個自身回合消失。原始檔為 `manual-fa-regain-footing.json`、`manual-fa-shed-bonds.json`。
+人工落樁站穩：預掛牽滯＋縛網，initiative 1→13（移除 −4，再加 +8）；牽滯移除、縛網保留。人工扳扣脫網：預掛縛網＋絆足，evasion −26→−6（撤回 −15，再加 +5）；縛網移除、只有 debuff 的絆足保留。各花 AP 3、cooldown=3、使用次數記 1；短效在下一個自身回合消失。原始檔為 `manual-fa-regain-footing.json`、`manual-fa-shed-bonds.json`（另有 run-seed-1..5.json；原始紀錄已移除，見 git a66cd46）。
 
 續燈光幕損傷 fixture：torso shield HP 15→19；charge 30→36，包含機體本回合 +10 與補幕消耗 −4。`screen-regen.json` 保存池事件；未靠零效果出手充數。
 
