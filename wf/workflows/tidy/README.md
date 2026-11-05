@@ -50,6 +50,10 @@
 5. **搬檔後修連結**：用各批的 `moves.tsv` 跑 `tools/fix_moved_links.py`（先 dry-run 再 `--apply`；它跳過 code fence、解析相對路徑後重算）。**指向被刪檔的連結不重寫**——照第 1 條原則改純文字＋commit hash。跨資料夾／跨 repo 的壞連結留給調度者收尾。
 6. **收尾**：確認 Done when 全過，commit 由使用者或調度者決定。
 
+## slim-1105（2026-11-05 全 repo 瘦身）結論
+
+tracked 檔 7429 → 約 4320、83.1 → 約 20 MB（`.git` 不縮）。刪：封存（handoffs `done/`、inbox archive／done、`wf/archive/`）、只增紀錄（舊線證據、收工流水、backlog 已完成列）、10/26–10/29 舊線文件、`legacy/`、美術證據圖、10/28 審閱大 json。plan／talk 七份先核對已被 design-notes 吸收，未吸收的萬潮葬王副線併成 `design-notes/world/wanchao.md`、基調教訓併進 content polish。保留：`specs/*-1029.md` 與 `plans/*-1029.md`（core README 仍以它們為 10/29 戰鬥增補契約，待併進 core 規則子檔）。規矩改成「git 歷史即封存」（STRUCTURE「過時就刪」、dispatch 收線、handoffs 報告保留期、本檔長度上限、wf-lint STALE／HEAVY）。未做：F 類程式碼拆檔（18 檔 > 300 行，排在試玩修正線合併後、照 refactor 先跑測試基準）；`decisions.md`＋`decisions/` 約 20 KB 仍超 16 KB 上限，要逐筆判斷哪些已落實進 spec。計畫原文見刪除它的 commit 的父 commit。
+
 ## 踩過的坑
 
 整理與拆檔實際踩過的坑集中在 [gotchas.md](gotchas.md)；動手前先讀一遍。

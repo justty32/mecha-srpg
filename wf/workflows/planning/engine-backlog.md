@@ -1,6 +1,6 @@
 # engine-backlog — 非 codex 的工作（引擎、AI、平衡、規則、效能）
 
-[dispatch](../README.md)｜[planning](../../planning.md)
+[dispatch](../dispatch/README.md)｜[planning](../planning.md)
 
 各線 REPORT「剩餘工作／需要決定」彙整去重的待辦。**codex 只做新增內容與文字潤飾**；本表是那兩件事以外、要開 Opus 領導線（feature-dev／planning）做的事。已抽到 [engine-backlog.json](engine-backlog.json)（70 列，只放未完成）。
 
@@ -17,5 +17,5 @@
 
 ## 交接
 
-- 開線照 [dispatch](../README.md)：切線按明列路徑、交接書過 `brief_lint --strict`；**完成一列就從 json 刪掉**，commit 訊息寫序號。
+- 開線照 [dispatch](../dispatch/README.md)：切線按明列路徑、交接書過 `brief_lint --strict`；**完成一列就從 json 刪掉**，commit 訊息寫序號。
 - 新冒出的非 codex 工作追加到 json（序接最大號），不寫回各 REPORT。

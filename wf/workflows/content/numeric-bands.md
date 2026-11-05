@@ -2,7 +2,7 @@
 
 [content README](README.md)｜規則出處 [rules-attack-resolution](../planning/specs/core/rules-attack-resolution.md)、[rules-resources-effects](../planning/specs/core/rules-resources-effects.md)
 
-目的：讓填內容的人不用猜數字。每個指標給三樣——**觀察**（現有 content/base 的中位數與 p10–p90，`tools/stats.ts` 2026-10-24 算出）、**建議區間**（落在裡面不必解釋）、**硬上限**（超過就是失衡，REPORT 要寫理由）。已抽到 [numeric-bands.json](numeric-bands.json)（24 列）。
+目的：讓填內容的人不用猜數字。每個指標給三樣——**觀察**（現有 content/base 的中位數與 p10–p90，`scripts/content/stats.ts` 2026-10-24 算出）、**建議區間**（落在裡面不必解釋）、**硬上限**（超過就是失衡，REPORT 要寫理由）。已抽到 [numeric-bands.json](numeric-bands.json)（24 列）。
 
 欄位：`類別`（摹機＝衍型機；這個值是 `src/sim/probe.ts` 讀數值帶的鍵，引擎改鍵前保留舊字／部件／能力／怪獸／生物機甲／古代機／效果／人物／情境／地形／營運）、`指標`、`D`…`S` 各級建議值、`觀察`、`建議區間與硬上限`。
 
@@ -36,4 +36,4 @@
 
 ## 觀察值會過期
 
-新內容進去後中位數會動。每批交付前跑一次 `node wf/workflows/content/tools/stats.ts --json <scratchpad>/stats.json`，若某列觀察值偏離本表 >20%，在 REPORT 寫一行；建議區間與硬上限由本工作流維護者改，不由填內容的線改。
+新內容進去後中位數會動。每批交付前跑一次 `node scripts/content/stats.ts --json <scratchpad>/stats.json`，若某列觀察值偏離本表 >20%，在 REPORT 寫一行；建議區間與硬上限由本工作流維護者改，不由填內容的線改。

@@ -24,7 +24,7 @@
 0. **開 batch**（agent 批量產出必做）：照 [batch](batch.md)。
 1. **選題**：從任務書或 catalog 缺口選；一批 ≤ 20 檔、一個類別，先小後大。
 2. **讀範本**：查 templates.json 的範本檔、必配套、常見錯誤，整檔讀過再動筆；再讀該類原則檔。
-3. **查數值帶與引擎事實**：numeric-bands.json 建議區間（超出寫理由；觀察值由 `tools/stats.ts` 重算）；engine-facts.json 21 條（標「待引擎缺口線」的照其落地前寫法）。
+3. **查數值帶與引擎事實**：numeric-bands.json 建議區間（超出寫理由；觀察值由 `scripts/content/stats.ts` 重算）；engine-facts.json 21 條（標「待引擎缺口線」的照其落地前寫法）。
 4. **寫**：id 英文 kebab、文字照 style.md；每檔寫完 `npm run check`。
 5. **自動對戰煙霧**：scratch pack、5 seed 0 THROW、能力有被用（見 acceptance-playtest）。
 6. **MCP 試玩**：自己起 socket server，打基準對手、量勝率／輪數／能力使用；失衡照「怎麼調」改再跑。
@@ -50,7 +50,8 @@
 | [polish.md](polish.md) | 潤飾模式：只改文字欄、欄位白名單、閘門判定表 |
 | [playtest.md](playtest.md) | codex 在 worktree 自測：MCP socket 試玩、`content:probe`、`playtest.json` 格式 |
 | [acceptance-playtest.md](acceptance-playtest.md)＋[playtest-baselines.json](playtest-baselines.json) | 每批驗收清單、MCP 試玩規程、基準對手、失衡門檻、調整順序 |
-| `tools/stats.ts` | 零依賴統計：`node wf/workflows/content/tools/stats.ts --json <out>` 重算觀察值 |
+| [codex-batches.json](codex-batches.json) | 可直接開的內容批次與待派支線（只放未完成列）|
+| `scripts/content/` | 零依賴量測：`stats.ts --json <out>` 重算數值帶觀察值；`sweep.ts`、`scenario-measure.ts` 跑情境 × seed 量測（見 acceptance-playtest）|
 
 ## 禁區
 

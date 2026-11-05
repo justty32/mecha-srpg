@@ -1,0 +1,267 @@
+{
+ "contract": "wf-table/1",
+ "source": "slim-1105-plan.md",
+ "extracted": "2026-11-05",
+ "columns": [
+  "id",
+  "cat",
+  "pattern",
+  "files",
+  "bytes",
+  "reason",
+  "action",
+  "note"
+ ],
+ "rows": [
+  {
+   "id": "A1",
+   "cat": "A",
+   "pattern": "wf/workflows/dispatch/handoffs/done/**（除兩份 mechanics 參照表）",
+   "files": "1235",
+   "bytes": "15820000",
+   "reason": "收線後封存的交接書／REPORT／證據；git 歷史保留",
+   "action": "刪",
+   "note": "done/README.md 一起刪"
+  },
+  {
+   "id": "A2",
+   "cat": "A",
+   "pattern": "wf/workflows/inbox/archive/**",
+   "files": "8",
+   "bytes": "67500",
+   "reason": "舊 ROSTER 快照",
+   "action": "刪",
+   "note": ""
+  },
+  {
+   "id": "A3",
+   "cat": "A",
+   "pattern": "wf/inbox/done/**（留 .gitkeep）",
+   "files": "7",
+   "bytes": "46000",
+   "reason": "已辦信件與 ack-log；inbox_ack 會自動重建目錄",
+   "action": "刪",
+   "note": "ack-log 為只增流水"
+  },
+  {
+   "id": "A4",
+   "cat": "A",
+   "pattern": "wf/archive/**、wf/workflows/dispatch/handoffs/state/archive/**",
+   "files": "3",
+   "bytes": "3900",
+   "reason": "建立期 session_log、STATE 歷史",
+   "action": "刪",
+   "note": ""
+  },
+  {
+   "id": "B1",
+   "cat": "B",
+   "pattern": "wf/workflows/dispatch/handoffs/<42 個非 1105 舊線>/** 的 .gz .jsonl .tap .log .txt .png .svg sha256 signatures mcp-rpc evidence/ shots/ log/ trash/",
+   "files": "529",
+   "bytes": "18310000",
+   "reason": "測試輸出、MCP 錄音、快照雜湊、對照圖；無程式讀取",
+   "action": "刪",
+   "note": "night-combat-lead-1028 一線就 11.7 MB"
+  },
+  {
+   "id": "B2",
+   "cat": "B",
+   "pattern": "wf/notes/close-*.md",
+   "files": "2",
+   "bytes": "11200",
+   "reason": "10/28 收工流水",
+   "action": "刪",
+   "note": "WAIT_USER／notes README 連結改純文字"
+  },
+  {
+   "id": "B3",
+   "cat": "B",
+   "pattern": "wf/workflows/dispatch/handoffs/engine-backlog.json 已完成列",
+   "files": "27",
+   "bytes": "15000",
+   "reason": "backlog 只增：92 列中 27 列標已完成",
+   "action": "刪列",
+   "note": "活檔保留，只修剪"
+  },
+  {
+   "id": "B4",
+   "cat": "B",
+   "pattern": "wf/workflows/dispatch/handoffs/codex-batches.json 已完成列",
+   "files": "13",
+   "bytes": "6000",
+   "reason": "批次狀態表多為已完成",
+   "action": "刪列或整檔併入 content/batch.md",
+   "note": ""
+  },
+  {
+   "id": "C1",
+   "cat": "C",
+   "pattern": "wf/workflows/dispatch/handoffs/<42 個非 1105 舊線與散檔> 其餘 md／json（STATE、next-session、next-tidy、codex-handover、fill-rulings、tidy-*.md、state/）",
+   "files": "1201",
+   "bytes": "13850000",
+   "reason": "10/26–10/29 已結束或暫停線；audit-paused-1105 已給結論",
+   "action": "刪",
+   "note": "SESSION-LOG 四條暫停線要先依 audit 結論關掉"
+  },
+  {
+   "id": "C2",
+   "cat": "C",
+   "pattern": "wf/inbox/orders/cx-review-*-1028.md",
+   "files": "3",
+   "bytes": "2600",
+   "reason": "已收線 codex 線的 orders",
+   "action": "刪",
+   "note": ""
+  },
+  {
+   "id": "C3",
+   "cat": "C",
+   "pattern": "wf/notes/investigations/dev-start-2026-10-29.md",
+   "files": "1",
+   "bytes": "1600",
+   "reason": "已解決的環境調查",
+   "action": "刪",
+   "note": ""
+  },
+  {
+   "id": "D1",
+   "cat": "D",
+   "pattern": "legacy/**",
+   "files": "39",
+   "bytes": "270000",
+   "reason": "舊 Python 專案；wf-lint 的 4 份超標 md 都在這",
+   "action": "建議刪",
+   "note": "無程式引用；INDEX 有一列"
+  },
+  {
+   "id": "D2",
+   "cat": "D",
+   "pattern": "art/canvas-mech/**",
+   "files": "78",
+   "bytes": "9740000",
+   "reason": "Canvas 試作；evidence 圖 8 MB",
+   "action": "建議只刪 viewer/evidence/",
+   "note": "WAIT_USER 尚待評閱"
+  },
+  {
+   "id": "D3",
+   "cat": "D",
+   "pattern": "art/mech-blueprint/**",
+   "files": "117",
+   "bytes": "6850000",
+   "reason": "2D 骨架試作；data/overlaps.json 1.5 MB、evidence 3.5 MB",
+   "action": "建議刪 evidence/、評閱後再定",
+   "note": "WAIT_USER 尚待評閱"
+  },
+  {
+   "id": "D4",
+   "cat": "D",
+   "pattern": "art/mech-3d/**",
+   "files": "74",
+   "bytes": "3800000",
+   "reason": "Three 試作；含 vendor three.module 742 KB",
+   "action": "建議刪 viewer/evidence/",
+   "note": "WAIT_USER 尚待評閱"
+  },
+  {
+   "id": "D5",
+   "cat": "D",
+   "pattern": "art/svg-study-1027/**",
+   "files": "48",
+   "bytes": "1010000",
+   "reason": "SVG 樣張",
+   "action": "評閱後刪或留",
+   "note": ""
+  },
+  {
+   "id": "D6",
+   "cat": "D",
+   "pattern": "wf/notes/investigations/content-review-2026-10-28/**",
+   "files": "28",
+   "bytes": "1290000",
+   "reason": "10/28 增量審閱；coverage／entries 大 json",
+   "action": "建議刪 json 與 py，只留 README／REPORT",
+   "note": "audit-paused-1105 連到它"
+  },
+  {
+   "id": "D7",
+   "cat": "D",
+   "pattern": "wf/workflows/dispatch/handoffs/plan-*/、talk-*/",
+   "files": "22",
+   "bytes": "190000",
+   "reason": "設計討論與規劃報告；design-notes 有 9 處連入",
+   "action": "逐份確認已被 design-notes／spec 吸收再刪",
+   "note": ""
+  },
+  {
+   "id": "D8",
+   "cat": "D",
+   "pattern": "wf/workflows/planning/specs/*-1029.md、plans/*",
+   "files": "14",
+   "bytes": "80000",
+   "reason": "10/29 已實作的 spec/plan；照規則該封存",
+   "action": "確認已併入 specs/core 後刪",
+   "note": ""
+  },
+  {
+   "id": "E1",
+   "cat": "E",
+   "pattern": "src/ test/ e2e/ scripts/ schemas/ package*.json 設定檔",
+   "files": "0",
+   "bytes": "0",
+   "reason": "程式與測試",
+   "action": "保留",
+   "note": ""
+  },
+  {
+   "id": "E2",
+   "cat": "E",
+   "pattern": "content/base content/lore content/index content/batches",
+   "files": "0",
+   "bytes": "0",
+   "reason": "content/batches 被 wf/tools/content_index.py 讀，test/content/index.test.ts 驗一致",
+   "action": "保留",
+   "note": ""
+  },
+  {
+   "id": "E3",
+   "cat": "E",
+   "pattern": "wf/workflows/content/numeric-bands.json、playtest-baselines.json",
+   "files": "2",
+   "bytes": "16400",
+   "reason": "src/sim/probe.ts、src/content/lint.ts、test/sim/probe.test.ts 直接讀",
+   "action": "保留",
+   "note": ""
+  },
+  {
+   "id": "E4",
+   "cat": "E",
+   "pattern": "wf/tools/**",
+   "files": "35",
+   "bytes": "217500",
+   "reason": "package.json content:index、index.test 呼叫",
+   "action": "保留",
+   "note": ""
+  },
+  {
+   "id": "E5",
+   "cat": "E",
+   "pattern": "wf/workflows/dispatch/handoffs/verify-head-1105/ audit-paused-1105/ playtest-1105/、decisions/2026-11-05-fable-three.md、content-review-2026-10-27/fable-*",
+   "files": "25",
+   "bytes": "400000",
+   "reason": "11/05 現役報告",
+   "action": "保留",
+   "note": "SESSION-LOG 連入"
+  },
+  {
+   "id": "E6",
+   "cat": "E",
+   "pattern": "wf/workflows/dispatch/handoffs/done/2026-10-23/lead-combat-ref/mechanics.json、lead-tome4-ref/mechanics-tome4.json",
+   "files": "2",
+   "bytes": "166400",
+   "reason": "specs/core/adoption.json 131 列 table_path 指向它們",
+   "action": "移到 specs/core/ref/ 再改路徑",
+   "note": "不能隨 A1 刪"
+  }
+ ]
+}

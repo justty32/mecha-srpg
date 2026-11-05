@@ -51,6 +51,10 @@
 
 本機 Node v24.19.0（nvm）、Python 3.12.3；上表版本保留原家中歷史，不套用為公司現況。今天兩作沿用既有 Chromium 1243／Node 24 WebSocket 直接 CDP；Canvas 的官方 Ubuntu noble 函式庫只解壓在 ignored `node_modules/.canvas-headless/root`，不改系統。Konva 10.9.0、Three 0.186.1／esbuild 0.28.2 的局部工具及 npm cache 留在 ignored node_modules，收工不清除。來源與核驗細節見 [Canvas REPORT](../../art/canvas-mech/viewer/REPORT.md)／[3D REPORT](../../art/mech-3d/viewer/REPORT.md)。這些局部驗證不代表遊戲整合驗收；本次收尾不安裝、不重跑模型／瀏覽器／npm。
 
+## GitHub Pages 遊玩入口
+
+[線上戰鬥](https://justty32.github.io/mecha-srpg/)｜[營運](https://justty32.github.io/mecha-srpg/#/ops)｜[百科](https://justty32.github.io/mecha-srpg/#/wiki)。每次推送 main 後，[Pages 工作流](https://github.com/justty32/mecha-srpg/actions/workflows/pages.yml) 以 Node 24 與現有 lock 建置、只發布 dist，也可在 Actions 手動執行；部署用 `/mecha-srpg/` base，本機仍以 `npm run dev` 開根路徑。營運存檔與操作設定存在該瀏覽器的 localStorage：localhost 與 Pages 分開、不跨裝置同步，清網站資料即消失（2026-10-29 pages-1029 交付，原證據見 git `3fad8aea`）。
+
 ## 交接
 
 - 環境就緒要開工 → [feature-dev](feature-dev/README.md)；先確認驗證跑得動 → [testing](testing.md)。

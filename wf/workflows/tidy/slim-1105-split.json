@@ -1,0 +1,147 @@
+{
+ "contract": "wf-table/1",
+ "source": "slim-1105-refactor.md",
+ "extracted": "2026-11-05",
+ "columns": [
+  "path",
+  "lines",
+  "kind",
+  "split_direction",
+  "conflict"
+ ],
+ "rows": [
+  {
+   "path": "e2e/battle.spec.ts",
+   "lines": "599",
+   "kind": "程式",
+   "split_direction": "按畫面區塊拆 spec（地圖／指令／傷勢 panel／手機）",
+   "conflict": "衝突：戰鬥 UI"
+  },
+  {
+   "path": "src/ops/world/lords.test.ts",
+   "lines": "454",
+   "kind": "測試",
+   "split_direction": "按領主腳本、存讀檔、北岸改區分檔",
+   "conflict": "無"
+  },
+  {
+   "path": "src/ops/sortie/scenario.ts",
+   "lines": "428",
+   "kind": "程式",
+   "split_direction": "出戰情境組裝與敵編組產生分開",
+   "conflict": "低：產生戰鬥情境"
+  },
+  {
+   "path": "src/ui-adapter/vm/controller.ts",
+   "lines": "384",
+   "kind": "程式",
+   "split_direction": "指令派發／選取狀態／AI 回合推進分檔",
+   "conflict": "衝突：與 viewmodel 同區"
+  },
+  {
+   "path": "wf/tools/brief_lint.py",
+   "lines": "347",
+   "kind": "工具",
+   "split_direction": "規則表與 CLI 分開",
+   "conflict": "無"
+  },
+  {
+   "path": "wf/tools/content_index.py",
+   "lines": "344",
+   "kind": "工具",
+   "split_direction": "git 讀檔層與分片輸出分開",
+   "conflict": "無；改後須 index.test 綠"
+  },
+  {
+   "path": "wf/tools/content_gate.py",
+   "lines": "344",
+   "kind": "工具",
+   "split_direction": "manifest 驗證與 diff 判定分開",
+   "conflict": "無"
+  },
+  {
+   "path": "src/ui-adapter/vm/viewmodel.ts",
+   "lines": "344",
+   "kind": "程式",
+   "split_direction": "單位卡／地圖格／事件文字分檔",
+   "conflict": "衝突：fix-playtest 已改"
+  },
+  {
+   "path": "src/ops/world/actors.ts",
+   "lines": "342",
+   "kind": "程式",
+   "split_direction": "按 actor 種類拆",
+   "conflict": "無"
+  },
+  {
+   "path": "src/ops/content/check.ts",
+   "lines": "334",
+   "kind": "程式",
+   "split_direction": "每類內容檢查各一檔＋總入口",
+   "conflict": "低：npm run check"
+  },
+  {
+   "path": "src/core/types-def.ts",
+   "lines": "330",
+   "kind": "程式",
+   "split_direction": "按 def 種類拆型別檔，index 重新匯出",
+   "conflict": "衝突：Fable 三題實作會動核心型別"
+  },
+  {
+   "path": "src/ops/sim/policies.ts",
+   "lines": "329",
+   "kind": "程式",
+   "split_direction": "每種營運策略一檔",
+   "conflict": "無"
+  },
+  {
+   "path": "src/ui-adapter/ops/dom/render.test.ts",
+   "lines": "327",
+   "kind": "測試",
+   "split_direction": "按畫面分檔",
+   "conflict": "無"
+  },
+  {
+   "path": "src/sim/probe.ts",
+   "lines": "323",
+   "kind": "程式",
+   "split_direction": "探針執行與報表輸出分開",
+   "conflict": "低：讀 numeric-bands"
+  },
+  {
+   "path": "src/ui-adapter/dom/render.ts",
+   "lines": "309",
+   "kind": "程式",
+   "split_direction": "戰鬥畫面各 panel 分檔",
+   "conflict": "衝突：戰鬥 UI"
+  },
+  {
+   "path": "src/content/loader.ts",
+   "lines": "307",
+   "kind": "程式",
+   "split_direction": "檔案讀取與 registry 建立分開",
+   "conflict": "中：怪獸／效果內容載入"
+  },
+  {
+   "path": "test/ai/intent.test.ts",
+   "lines": "301",
+   "kind": "測試",
+   "split_direction": "按意圖類別分檔",
+   "conflict": "衝突：AI"
+  },
+  {
+   "path": "src/rules/state.ts",
+   "lines": "301",
+   "kind": "程式",
+   "split_direction": "接近門檻，可暫不拆",
+   "conflict": "衝突：戰鬥規則"
+  },
+  {
+   "path": "legacy/docs/part2_battlefield.md 等 6 檔",
+   "lines": "375",
+   "kind": "手冊",
+   "split_direction": "不拆，隨 legacy 去留決定",
+   "conflict": "無"
+  }
+ ]
+}

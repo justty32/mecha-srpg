@@ -1,3 +1,4 @@
+// @ts-nocheck — 2026-11-05 自 wf/workflows/content/tools/ 搬來的零依賴統計腳本，原本不在 typecheck 範圍；動它時再補型別。
 // 內容數值分佈統計。用法：node stats.ts [--content content/base] [--json <out>]
 import { readdirSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
 import { join, dirname } from 'node:path';

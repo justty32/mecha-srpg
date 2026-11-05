@@ -1,6 +1,6 @@
 # intrigue／systems — 落到引擎：現在就做得到的、要新做的
 
-[intrigue 入口](../intrigue.md)｜ops spec [README](../../specs/ops/README.md)｜引擎待辦 [engine-backlog](../../../dispatch/handoffs/engine-backlog.md)
+[intrigue 入口](../intrigue.md)｜ops spec [README](../../specs/ops/README.md)｜引擎待辦 [engine-backlog](../../engine-backlog.md)
 
 對照表已抽到 [engine-gaps.json](engine-gaps.json)（13 列）。欄位：`need` 這份筆記要的東西／`now` 現有機制（讀 `src/ops/` 與 ops spec 核過）／`gap` 差在哪／`proposal` 提案（spec 欄位或引擎改動，寫到可以切線的程度）／`kind`（content＝零程式、spec、engine）／`size`（小＝一條工人、中＝一位領導帶 1–3 工人）。統計：content 2 列、spec 2 列、engine 2 列、spec＋engine 5 列、混合 2 列；小 8、中 5。
 
