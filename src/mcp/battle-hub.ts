@@ -48,12 +48,13 @@ export function createBattleHub(env: McpEnv) {
     const sc = b.sim.scenario ? env.battleDb().get("scenario", b.sim.scenario) : undefined;
     const metadata = { ...(sc?.name !== undefined ? { name: sc.name } : {}), ...(sc?.brief !== undefined ? { brief: sc.brief } : {}) };
     const data = { id, ...metadata, playerSlot: b.playerSlot, spectate: b.spectate, autoAdvance: b.autoAdvance,
-      ...b.view.status(), objectives: b.view.objectives(), globals: b.view.globals(), units: b.view.units(detail), ...(map ? { map: b.view.map(window) } : {}) };
+      ...b.view.status(), objectives: b.view.objectives(), globals: b.view.globals(), units: b.view.units(detail), departed: b.view.departed(), ...(map ? { map: b.view.map(window) } : {}) };
     const turn = turnLine(b);
-    // 每台的 summary 只放 text；JSON 不重複整段字串（也不重複 ascii 地圖），省一半 token。
-    const json = { ...data, units: data.units.map(({ summary: _, ...u }) => u), ...(data.map ? { map: { window: data.map.window, legend: data.map.legend, terrainLegend: data.map.terrainLegend, cellWidth: data.map.cellWidth } } : {}) };
+    // 每台的 summary 只放 text；JSON 不重複單位 summary。地圖以 rows（逐列字串）放進 JSON：
+    // 只讀 structuredContent 的 client 看不到 text，拿掉地圖就等於盲走（playtest-1105）。
+    const json = { ...data, units: data.units.map(({ summary: _, ...u }) => u), ...(data.map ? { map: { window: data.map.window, rows: data.map.ascii.split("\n"), key: data.map.key, legend: data.map.legend, terrainLegend: data.map.terrainLegend, cellWidth: data.map.cellWidth } } : {}) };
     const globals = Object.entries(data.globals).map(([key, value]) => `${key === "tide" ? "潮汐" : "光照"} ${value}`).join("；") || "無";
-    return okResult(`${sc?.name !== undefined ? `${sc.name}\n` : ""}${sc?.brief !== undefined ? `${sc.brief}\n` : ""}${id} 第 ${data.round}/${data.rounds ?? "∞"} 輪；${turn}\n${data.objectives.map(o => o.text).join("\n")}\n全域效果：${globals}\n${data.units.map(u => u.summary).join("\n")}`
+    return okResult(`${sc?.name !== undefined ? `${sc.name}\n` : ""}${sc?.brief !== undefined ? `${sc.brief}\n` : ""}${id} 第 ${data.round}/${data.rounds ?? "∞"} 輪；${turn}\n${data.objectives.map(o => o.text).join("\n")}\n全域效果：${globals}\n${data.units.map(u => u.summary).join("\n")}${data.departed.length ? `\n已退場敵方：${data.departed.map(d => `${d.id} ${d.name}（第 ${d.round} 輪${d.status}）`).join("、")}` : ""}`
       + (data.map ? `\n${data.map.ascii}\n${data.map.key}\n${data.map.legend.map(u => `${u.glyph}=${u.id} ${u.name}`).join("；")}` : ""), json);
   };
   const register = (b: Battle) => { const id = `b${nextId++}`; battles.set(id, b); return observation(id, b); };

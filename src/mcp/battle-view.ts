@@ -22,6 +22,8 @@ export class BattleView {
   readonly playerSlot: string;
   readonly spectate: boolean;
   private seen = new Map<string, ReturnType<BattleView["liveUnit"]>>();
+  /** 玩家親眼看到退場（陣亡／撤離／被俘）的敵方：從單位列表移除，改列在 departed（playtest-1105）。 */
+  private gone = new Map<string, { status: string; round: number }>();
   readonly events: EventLine[] = [];
   constructor(session: BattleSession, playerSlot: string, spectate: boolean) {
     this.session = session; this.playerSlot = playerSlot; this.spectate = spectate;
@@ -51,7 +53,8 @@ export class BattleView {
   name(id: string): string {
     const s = this.session.state, db = this.session.contentDb, u = s.units[id];
     if (!u) return id;
-    return this.spectate || this.friendly(u.owner) ? unitName(db, s, id)
+    // 怪獸形態名（例：鹽針・倒鉤）是外觀可辨的公開資訊，與戰場 UI 一致；敵方機甲仍只露機體名。
+    return this.spectate || this.friendly(u.owner) || s.rt?.monsters[id] ? unitName(db, s, id)
       : (db.get("frame", u.frame) ?? db.get("species", u.frame))?.name ?? id;
   }
   private liveUnit(id: string) {
@@ -90,6 +93,8 @@ export class BattleView {
     };
     for (const event of events) {
       if (!this.spectate && Object.values(event.payload).some(v => typeof v === "string" && !allowed(v))) continue;
+      const left = { UnitDied: "陣亡", Retreated: "已撤離", Captured: "被俘" }[event.type as string];
+      if (left && typeof event.payload.unit === "string") this.gone.set(event.payload.unit, { status: left, round: event.round });
       const effect = db.get("effect", String(event.payload.effect ?? ""));
       if (effect?.ui.hidden) continue;
       const line = eventText(db, s, { ...event, payload: displayValues(event.payload) });
@@ -118,6 +123,7 @@ export class BattleView {
   units(detail: "brief" | "full") {
     const s = this.session.state, knowledge = s.knowledge[this.playerSlot];
     return Object.keys(s.units).sort().flatMap(id => {
+      if (this.gone.has(id) && !this.friendly(s.units[id]!.owner)) return [];
       // knowledge 可能移除失聯敵方；保留本視圖快照，絕不以離場狀態偷讀即時位置。
       const remembered = this.seen.get(id), visible = this.known(id);
       const last = knowledge?.lastSeen[id] ?? (remembered ? { cell: remembered.pos, round: remembered.seenRound } : undefined);
@@ -125,13 +131,19 @@ export class BattleView {
       const snapshot = visible ? this.liveUnit(id) : this.seen.get(id);
       const pos = visible ? s.units[id]!.pos : last!.cell;
       const base = { id, name: this.name(id), owner: s.units[id]!.owner, pos: { ...pos }, stale: !visible,
-        seenRound: visible ? s.round : last!.round, hpPercent: snapshot?.hpPercent ?? null };
+        seenRound: visible ? s.round : last!.round, hpPercent: snapshot?.hpPercent ?? null, status: snapshot?.status ?? "未知" };
       const summary = `${id} ${base.name} (${pos.x},${pos.y}) ${snapshot?.status ?? "未知"} ${snapshot?.control ?? "未知"} HP ${base.hpPercent ?? "?"}%`
         + (snapshot?.pools && Object.keys(snapshot.pools).length ? ` ${pools(snapshot.pools)}` : "")
         + (snapshot?.persons?.length ? `｜${snapshot.persons.map(p => `${p.name} ${p.morale} ${pools(p.pools)}`).join("；")}` : "")
         + (!visible ? `【最後所見第 ${last!.round} 輪】` : "");
       return [{ ...(detail === "full" ? snapshot : {}), ...base, summary }];
     });
+  }
+  /** 已親眼看到退場的敵方（id、名稱、退場方式、輪數）。 */
+  departed() {
+    const s = this.session.state;
+    return [...this.gone].filter(([id]) => s.units[id] && !this.friendly(s.units[id]!.owner)).sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, g]) => ({ id, name: this.name(id), status: g.status, round: g.round }));
   }
   objectives() {
     const { state: s, rulesQuery: q } = this.session, rt = s.rt!;

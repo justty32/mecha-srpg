@@ -31,6 +31,9 @@ export function ownUnits(q: RulesQuery, s: BattleState, slot: FactionSlot): Id[]
   return Object.keys(s.units).sort().filter(id => s.units[id]!.owner === slot && q.isActive(s, id));
 }
 
+const GONE = new Set(["dead", "retreated", "captured"]);
+const gone = (s: BattleState, id: Id) => GONE.has(s.rt?.unitStatus[id] ?? "");
+
 export function updateKnowledge(q: RulesQuery, s: BattleState, slot: FactionSlot, prev: FactionKnowledge, ttl: number = DEFAULTS.ttl): FactionKnowledge {
   const own = ownUnits(q, s, slot);
   const visible = Object.keys(s.units).sort().filter(id => s.units[id]!.owner !== slot && q.isActive(s, id) &&
@@ -39,6 +42,8 @@ export function updateKnowledge(q: RulesQuery, s: BattleState, slot: FactionSlot
   next.visible = visible;
   for (const id of [...new Set([...Object.keys(prev.lastSeen), ...visible])].sort()) {
     if (visible.includes(id)) next.lastSeen[id] = { cell: { ...s.units[id]!.pos }, round: s.round };
+    // 在感知範圍內陣亡／撤離／被俘：親眼看到它退場，不再留「最後所見」殘影（playtest-1105）。
+    else if (gone(s, id) && own.some(observer => q.distance(s.units[observer]!.pos, s.units[id]!.pos) <= q.perception(s, observer))) continue;
     else if (s.round - prev.lastSeen[id]!.round <= ttl) next.lastSeen[id] = structuredClone(prev.lastSeen[id]!);
   }
   for (const id of Object.keys(prev.revealed).sort()) {
