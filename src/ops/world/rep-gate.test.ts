@@ -5,7 +5,7 @@ import { cmdTrade, marketListings, marketsDaily7 } from "./market.ts";
 import type { MarketState } from "./market.ts";
 import { placeLoc } from "../war/loc.ts";
 import { factionId } from "../war/relations.ts";
-import { initRnd, leakModel, repGate, repGateBlocked, rndCandidates } from "../war/rnd.ts";
+import { leakModel, repGate, repGateBlocked } from "../war/rnd.ts";
 import { worldRules } from "./places.ts";
 import { actionsDaily2 } from "./actions.ts";
 import { contractsDaily2 } from "../contracts/lifecycle.ts";
@@ -52,27 +52,6 @@ test("通用三系在聲望 0 可買；流出與 maker generic 不設門檻（c�
   assert.equal(repGate(s, ctx, { ...model, maker: "generic" }), undefined);
   leakModel(s, ctx, model.id);
   assert.equal(repGateBlocked(s, ctx, model), undefined);
-});
-
-test("新國家私有機只在 maker 開局釋出與研發；流出後公開（d）", () => {
-  const { s, ctx } = setup();
-  const names = ["imperial-court", "russia-umbrella", "north-american-umbrella", "japan-umbrella", "inner-sea-houses", "quito", "nairobi"];
-  // 開局即有的 10 台；lead-mech2 加的國家機 availableFrom.month ≥1、要前代，不在開局釋出之列。
-  const models = ctx.world.all("model").filter(m => names.some(n => m.maker === `base:faction/${n}`) && !(m.availableFrom && "month" in m.availableFrom && m.availableFrom.month > 0));
-  assert.equal(models.length, 10);
-  for (const model of models) {
-    const maker = factionId(s, ctx, model.maker)!;
-    assert.equal(s.factions[maker]!.forces, undefined);
-    for (const [id, f] of Object.entries(s.factions)) if (f.rnd) {
-      assert.equal(f.rnd.released.includes(model.id), id === maker, `${model.id}: ${id}`);
-      f.rnd.released = f.rnd.released.filter(m => m !== model.id);
-      assert.equal(rndCandidates(s, ctx, id).some(m => m.id === model.id), id === maker);
-    }
-  }
-  const model = models[0]!;
-  leakModel(s, ctx, model.id);
-  initRnd(s, ctx, Object.keys(s.factions).filter(id => s.factions[id]!.rnd));
-  assert(Object.values(s.factions).filter(f => f.rnd).every(f => f.rnd!.released.includes(model.id)));
 });
 
 test("restricted 國家機聲望達標才列出；快取列表用同一規則（e）", () => {

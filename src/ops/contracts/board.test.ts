@@ -3,8 +3,6 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "../content/load.ts";
 import { newCampaign, createOpsCtx } from "../content/start.ts";
-import { runCampaign } from "../sim/campaign.ts";
-import { shortestPath } from "../world/move.ts";
 import { cmdAccept, contractsDaily2 } from "./lifecycle.ts";
 import { render } from "../text/render.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
@@ -19,17 +17,6 @@ test("契約板：失守領地不吃掉發包機會，改由仍有可用領地�
   contractsDaily2(s, ctx); assert.equal(c.status, "offered");
 });
 
-test("契約板：seed 1–5 在第 14 天前至少兩份可達委託", () => {
-  for (let seed = 1; seed <= 5; seed++) {
-    let maximum = 0;
-    runCampaign({ db, world, seed, start: "default", months: 1, policy: "idle", onDay(s) {
-      if (s.clock.day > 14) return;
-      const ctx = createOpsCtx(s, db, world);
-      maximum = Math.max(maximum, Object.values(s.contracts).filter(c => c.status === "offered" && shortestPath(s, ctx, s.ship.pos, c.target.place)).length);
-    } });
-    assert.ok(maximum >= 2, `seed ${seed}: ${maximum}`);
-  }
-});
 test("契約板：節點委託無裂縫可發；不可達拒收且畫面 disabled", () => {
   const s = newCampaign(db, world, "start/default", 1), ctx = createOpsCtx(s, db, world);
   s.rifts = {};

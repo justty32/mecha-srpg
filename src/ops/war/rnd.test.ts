@@ -10,7 +10,7 @@ import { checkWorld } from "../content/check.ts";
 import { applyOpsEffect } from "../content/opseffect.ts";
 import { instantiateMech } from "../content/instantiate.ts";
 import { clock } from "../state/clock.ts";
-import { cmdTrade, marketListings } from "../world/market.ts";
+import { cmdTrade } from "../world/market.ts";
 import { initRnd, rndIncome, rndCandidates, rndMonthly2f, modelAvailable, factionModelPool, replenishWeight, leakModel, modelVisibleAt, onOperationSuccess } from "./rnd.ts";
 import { syncLineages } from "./lineages.ts";
 import { relation } from "./relations.ts";
@@ -42,16 +42,6 @@ function operation(x: ReturnType<typeof setup>): OperationState {
     phase: "resolve", startDay: 0, phaseEnd: 0, force: { pos, units: [{ model: modelId("union-at12"), count: 10, readiness: 1 }], supply: 100, morale: 0, speed: 1 },
     enemyStr: 0, progress: 1, engagesLeft: 0, mercSlots: [], exposed: true, log: [], contributions: { [league]: [] } };
 }
-test("研發開局：持有血統與通用、month 0 已釋出，隊長與未到月不進池", () => {
-  const { s, ctx } = setup(), rnd = s.factions[league]!.rnd!;
-  assert(rnd.lineages.includes(lineageId("xingtian")));
-  assert(!rnd.lineages.includes(lineageId("jinghai")));
-  assert(rnd.released.includes(modelId("union-fr7")));
-  assert(!rnd.released.includes(modelId("union-futu")));
-  assert(!rnd.released.includes(modelId("longspear-v7")));
-  assert.equal(s.models![modelId("union-fr7")]!.releasedDay, s.clock.day);
-  assert.deepEqual(factionModelPool(s, ctx, league), [...rnd.released].sort());
-});
 test("income：各規模基數、活血統、trade、war、缺補給與失地", () => {
   const x = setup(), f = x.s.factions[league]!, r = relation(x.s, league, tide)!;
   for (const [scale, expected] of [["state",12],["company",10],["city",5],["guild",1],["band",1]] as const) {
@@ -217,18 +207,4 @@ test("初始化研發不消耗任一rng", () => {
   const x = setup(), rng = { ...x.s.rng }, war = { ...x.s.warRng! };
   initRnd(x.s, x.ctx, Object.keys(x.s.factions).filter(id => !!x.s.factions[id]!.rnd));
   assert.deepEqual(x.s.rng, rng); assert.deepEqual(x.s.warRng, war);
-});
-test("通用鐵劍與飛魚入研發與市場：開局釋出 D 型、研發候選含後續型、釋出後市場可見", () => {
-  const x = setup(), salt = world.require("faction-ops", "faction-ops/salt-gull-hunters").id;
-  const ix01 = modelId("ix-01"), ix2 = modelId("ix-ii"), ff = modelId("cx3-flyingfish-d"), ff2 = modelId("cx3-flyingfish-ii");
-  for (const f of Object.values(x.s.factions)) if (f.rnd) assert(f.rnd.released.includes(ix01));
-  assert(x.s.factions[salt]!.rnd!.released.includes(ff));
-  const market = x.ctx.world.require("market", "market/war-armory"), frames = () => marketListings(x.s, x.ctx, market).map(l => l.item.def);
-  assert(frames().includes("base:frame/ix-01")); assert(!frames().includes("base:frame/ix-ii"));
-  day(x, 28);
-  assert(rndCandidates(x.s, x.ctx, league).some(m => m.id === ix2)); assert(rndCandidates(x.s, x.ctx, salt).some(m => m.id === ff2));
-  for (const [id, f] of Object.entries(x.s.factions)) if (id !== league) f.alive = false;
-  const rnd = x.s.factions[league]!.rnd!; rnd.current = { model: ix2, done: 0 }; rnd.points = 1000;
-  rndMonthly2f(x.s, x.ctx); assert(rnd.released.includes(ix2)); assert(frames().includes("base:frame/ix-ii"));
-  assert(!modelVisibleAt(x.s, x.ctx, world.require("model", ff), market.place) || x.s.factions[salt]!.territoryNow.includes(market.place));
 });

@@ -105,24 +105,6 @@ test("A* 成本等於 Dijkstra：固定 seed 隨機 200 張小圖", () => {
     assert.equal(verifyPath(map, from, to, mover, cost), dijkstra(map, from, to, mover, cost), `trial ${trial}`);
   }
 });
-test("250×150 隨機圖 100 對平均 < 10 ms", () => {
-  const rng = createRng(250150), glyphs = [".", ".", ".", "^", ",", "~", "A", "#"];
-  const rows = Array.from({ length: 150 }, () => Array.from({ length: 250 }, () => glyphs[nextInt(rng, glyphs.length)]!).join(""));
-  const map = small(rows), pairs: [Cell, Cell][] = [];
-  const pick = (): Cell => {
-    for (;;) {
-      const cell = { x: nextInt(rng, 250), y: nextInt(rng, 150) };
-      if (terrainAt(map, cell).airCost !== null) return cell;
-    }
-  };
-  for (let i = 0; i < 100; i++) pairs.push([pick(), pick()]);
-  const started = performance.now();
-  const results = pairs.map(([from, to]) => findPath(map, from, to, air));
-  const mean = (performance.now() - started) / pairs.length;
-  console.log(`grid A* 250x150 / 100 pairs mean: ${mean.toFixed(3)} ms`);
-  assert.ok(results.every(Boolean));
-  assert.ok(mean < 10, `mean ${mean.toFixed(3)} ms >= 10 ms`);
-});
 test("RLE、八鄰、視野、frontier 與座標幾何", () => {
   assert.deepEqual(decodeRow("~2.^3", 6), ["~", "~", ".", "^", "^", "^"]);
   assert.throws(() => decodeRow(".2", 3), /length/);

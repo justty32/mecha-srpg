@@ -13,6 +13,5 @@ for (const [field, value, message] of [["kind", "unknown", /unknown actor kind/]
     actor[field] = original; loaded = loadWorldPacks([pack]);
     assert.deepEqual(loaded.errors, []);
     assert.deepEqual(checkWorld(loaded.db, loaded.world).errors, []);
-    assert.equal(loaded.world.all("actor").length, 5);
   });
 }

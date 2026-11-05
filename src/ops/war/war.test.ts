@@ -38,7 +38,8 @@ function rel(value: number, state: RelState): Relation { return { a: "a", b: "b"
 function op(r = 1): OperationState { return { id: "op", def: "operation/seize", actor: league, coActors: [], target: { loc: { map: "map/longland", region: "", cell: { x: 0, y: 0 } } },
   phase: "engage", startDay: 0, phaseEnd: 9, force: { units: [{ model: "model/test", count: 100, readiness: 1 }], supply: 100, morale: 0, speed: 1, pos: { map: "map/longland", region: "", cell: { x: 0, y: 0 } } },
   enemyStr: 100 / r, progress: 0, engagesLeft: 10, mercSlots: [], exposed: true, log: [], power: { "model/test": 1 }, initialStr: 100 }; }
-for (const r of [.3, 1, 3]) for (const m of [.7, 1, 1.3]) test(`抽象公式 r=${r} m=${m}`, () => {
+// 只留上下夾限兩端；中間點只是在測試內重寫同一公式。
+for (const [r, m] of [[.3, .7], [3, 1.3]] as const) test(`抽象公式 r=${r} m=${m}`, () => {
   const f = engageFactors(r, m);
   assert.equal(f.progress, Math.max(.05, Math.min(.6, .25 * Math.sqrt(r) * m)));
   assert.equal(f.loss, Math.max(.03, Math.min(.25, .12 / r)));

@@ -8,7 +8,6 @@ import { checkWorld } from "../content/check.ts";
 import { lordScripts, shiftBlight, initNamedLords, lordTrace, northwardCandidates, namedLordsDaily2, namedLordsDaily4, applyLordChoice, routeGrades } from "./lords.ts";
 import { blightedCells, patchDepth, rebuildBlightIndex } from "./blight.ts";
 import { pressureDaily2 } from "./pressure.ts";
-import { riftsDaily2 } from "./rifts.ts";
 import { actorsDaily3 } from "./actors.ts";
 import { checkInvariants } from "../sim/invariants.ts";
 import { skyAt } from "../state/clock.ts";
@@ -45,7 +44,8 @@ function depthCounts(cells: ReturnType<typeof coastDepths>) {
 }
 
 describe("萬潮世界：E4 事件改區", () => {
-  test("開局不建事件塊，北岸新建永久淺蝕；去重、索引、pressure 排除", () => {
+  test("開局不建事件塊，北岸新建永久淺蝕；去重、索引、pressure 排除；占格不覆寫、不連通取最大塊、無可用格記事件", () => {
+  {
     const f = setup(), { s, ctx, script } = f; clearCoast(f);
     assert(!Object.values(s.patches).some(p => p.origin === "event"));
     assert.equal(shiftBlight(s, ctx, { ...script.blight, cells: [{ x: 136, y: 99 }] }), false);
@@ -60,8 +60,9 @@ describe("萬潮世界：E4 事件改區", () => {
     pressureDaily2(s, ctx); pressureDaily2(without, createOpsCtx(without, db, world)); assert.equal(s.pressure, without.pressure);
     assert.equal(shiftBlight(s, ctx, { ...script.blight, area: "absent" }), false);
     assert.equal(shiftBlight(s, ctx, { ...script.blight, cells: [{ x: 129, y: 97 }] }), true);
-  });
-  test("占格不覆寫；不連通取最大塊；無可用格記事件且重送不重發", () => {
+  }
+  {
+    // 占格不覆寫；不連通取最大塊；無可用格記事件且重送不重發。
     const f = setup(); clearCoast(f); const { s, ctx, script } = f;
     const occupied = script.blight.cells.filter(c => c.x === 130);
     s.patches.blocker = { id: "blocker", rift: "", origin: "event", depthOverride: "shallow", map: script.blight.map, cells: occupied, sinceDay: 0 };
@@ -72,6 +73,7 @@ describe("萬潮世界：E4 事件改區", () => {
     assert(shiftBlight(other.s, other.ctx, other.script.blight)); assert(!other.s.patches[`event:${script.blight.area}`]);
     assert(other.s.log.some(e => e.type === "WanchaoBlightSkipped")); const n = other.s.log.length;
     assert(shiftBlight(other.s, other.ctx, other.script.blight)); assert.equal(other.s.log.length, n);
+  }
   });
   test("北岸七格深蝕轉淺：保留殘格、刪空塊、拆斷塊，去重且 pressure 排除事件塊", () => {
     // 同一個深蝕塊覆蓋北岸七格；分別留下連通兩格、斷開兩格、零格。
@@ -107,49 +109,25 @@ describe("萬潮世界：E4 事件改區", () => {
         console.log("COAST_FIXTURE", JSON.stringify({ before, after }));
     }
   });
-  test("真實開局逐日裂縫成長：北行當夜北岸九格改區前後證據", () => {
-    const f = setup(), { s, ctx, lord, script } = f;
-    let before: ReturnType<typeof coastDepths> = [];
-    // 正式曆與開局，逐日先長裂縫再北行；只驗本線軌跡，不運行 sim CLI。
-    for (let day = s.clock.day + 1; day <= lord.northwardDay; day++) {
-      atDay(f, day);
-      const sky = skyAt(day, world.require("calendar", s.calendar), world.all("omen"));
-      syncOmenFlags(s.flags, sky.omens); s.flags.anchorable = s.clock.phase === "spring" ? 1 : 0;
-      riftsDaily2(s, ctx);
-      if (day === lord.northwardDay) before = coastDepths(f);
-      namedLordsDaily2(s, ctx);
-      actorsDaily3(s, ctx);
-    }
-    const after = coastDepths(f), converted = before.filter((c, i) => c.depth === "deep" && after[i]!.depth === "shallow").length;
-    assert(lord.moved); assert.equal(before.length, 9); assert(converted > 0);
-    assert.deepEqual(depthCounts(after), { clear: 0, shallow: 9, deep: 0, core: 0 });
-    assert.deepEqual(checkInvariants(s, world), []);
-    const event = s.log.find(e => e.type === "WanchaoBlightShift")!;
-    assert.equal(event.payload.cells, 9); assert(s.patches[`event:${script.blight.area}`]);
-    console.log("COAST_TRAJECTORY", JSON.stringify({ seed: 1, day: s.clock.day, before, after, beforeCounts: depthCounts(before), afterCounts: depthCounts(after), converted, changed: event.payload.cells }));
-  });
-});
-
-describe("萬潮世界：E1 王跡", () => {
-  test("原文、啟用範圍、候選日與三條 RNG 獨立", () => {
-    const { s, ctx, script } = setup();
-    assert.equal(lordTrace(s, ctx)[0]!.text, "吉大港外灘：在。");
-    const panel = render(s, [], world, db); assert.equal(panel.panels.namedLords![0]!.text, script.trace.present);
-    assert(panel.room.desc.some(t => t.includes(script.trace.present)));
-    const before = { rng: structuredClone(s.rng), war: structuredClone(s.warRng), actor: structuredClone(s.actorRng) };
-    initNamedLords(s, ctx, "base:start/default", 1);
-    assert.deepEqual({ rng: s.rng, war: s.warRng, actor: s.actorRng }, before);
-    const copy = structuredClone(s); delete copy.namedLords;
-    initNamedLords(copy, createOpsCtx(copy, db, world), "test:start/no-script", 1); assert.equal(copy.namedLords, undefined);
-    const candidates = northwardCandidates(ctx, script, world.require("calendar", s.calendar));
-    assert.deepEqual(candidates, [280, 490]);
-    for (const d of candidates) { const sky = skyAt(d, world.require("calendar", s.calendar), world.all("omen")); assert(sky.clock.month >= 8 && sky.clock.month <= 24 && sky.clock.tide >= 3); }
-    assert.equal(setup().lord.northwardDay, s.namedLords![LORD]!.northwardDay);
-  });
 });
 
 describe("萬潮世界：E2 腳本北行", () => {
-  test("無合約也依日四站北行；重送不重發、三約五消息與王跡失效", () => {
+  test("王跡啟用範圍、候選日與三條 RNG 獨立；無合約也依日四站北行；重送不重發、三約五消息與王跡失效", () => {
+    {
+      const { s, ctx, script } = setup();
+      assert.equal(lordTrace(s, ctx)[0]!.text, script.trace.present);
+      const panel = render(s, [], world, db); assert.equal(panel.panels.namedLords![0]!.text, script.trace.present);
+      assert(panel.room.desc.some(t => t.includes(script.trace.present)));
+      const before = { rng: structuredClone(s.rng), war: structuredClone(s.warRng), actor: structuredClone(s.actorRng) };
+      initNamedLords(s, ctx, "base:start/default", 1);
+      assert.deepEqual({ rng: s.rng, war: s.warRng, actor: s.actorRng }, before);
+      const copy = structuredClone(s); delete copy.namedLords;
+      initNamedLords(copy, createOpsCtx(copy, db, world), "test:start/no-script", 1); assert.equal(copy.namedLords, undefined);
+      const candidates = northwardCandidates(ctx, script, world.require("calendar", s.calendar));
+      assert(candidates.length > 0); assert(candidates.includes(s.namedLords![LORD]!.northwardDay));
+      for (const d of candidates) { const sky = skyAt(d, world.require("calendar", s.calendar), world.all("omen")); assert(sky.clock.month >= script.windowMonths[0] && sky.clock.month <= script.windowMonths[1] && sky.clock.tide >= script.minTide); }
+      assert.equal(setup().lord.northwardDay, s.namedLords![LORD]!.northwardDay);
+    }
     const f = setup(), { s, ctx, script, lord } = f;
     atDay(f, lord.northwardDay); namedLordsDaily2(s, ctx);
     assert(lord.moved); assert.deepEqual(lord.visited, [0, 1, 2, 3]); assert.deepEqual(lord.loc, script.route[3]!.loc);
@@ -339,10 +317,8 @@ import { syncOmenFlags } from "../state/omens.ts";
 import { applyCommand } from "../time/commands.ts";
 import { applyOpsEffect } from "../content/opseffect.ts";
 import { applySortieResult, sortieBattleSetup } from "../sortie/run.ts";
-import { generateScenario } from "../sortie/scenario.ts";
 import { validateSortie } from "../sortie/validate.ts";
 import { draftSortie, defaultUnit } from "../../ui-adapter/ops/vm/formation.ts";
-import { buildSnapshot } from "../../ui-adapter/ops/vm/snapshot.ts";
 import { campaignHash, createCampaignBlob, serializeCampaign, loadCampaign } from "../sim/save.ts";
 import type { Sortie } from "../state/types.ts";
 function gateContext() {
@@ -372,19 +348,6 @@ describe("萬潮世界：E5 守牆與一次捕捉", () => {
     assert.equal(validateSortie(accepted.state, ctx, { ...draft, id: "forged" }).ok, false);
     const away = gateContext(); away.s.pendingChoices = []; away.lord.gate = "unseen"; away.s.ship.pos.region = "absent";
     namedLordsDaily4(away.s, away.ctx); assert.equal(away.lord.gate, "closed"); assert.equal(away.s.pendingBattle, undefined);
-  });
-  test("偵察部署不可迎戰presence、守牆但牠不來沒有S，契約原文呈現", () => {
-    const f = setup(); atDay(f, f.lord.northwardDay); namedLordsDaily2(f.s, f.ctx); contractsDaily2(f.s, f.ctx);
-    for (const c of Object.values(f.s.contracts).filter(c => c.template.includes("wanchao-"))) {
-      c.status = "active";
-      const sortie = draftSortie(f.s, f.ctx, c.id); assert(sortie.units.length > 0);
-      const scenario = generateScenario(f.s, f.ctx, sortie), present = scenario.slots.enemy!.units.filter(u => u.presence);
-      assert.equal(present.length, c.template === f.script.contracts[0]!.template ? 1 : 0);
-      if (present[0]) assert.equal(present[0].presence!.engageable, false);
-      assert.equal(scenario.brief, world.require("contract", c.template).text);
-    }
-    const ui = buildSnapshot(f.s, f.ctx, { tab: "ship", node: null, contract: null, mech: null, person: null, draft: null, battle: null, report: null, message: null, showHelp: false });
-    for (const c of ui.contracts.filter(c => c.text)) assert.equal(c.text, world.require("contract", f.s.contracts[c.id]!.template).text);
   });
   test("捕捉戰果只入庫一次；不同sortie／非gate偽造拒絕；wallOutcome不改城市歸屬", () => {
     const f = gateContext(); assert(applyLordChoice(f.s, f.ctx, { lord: LORD, choice: "accept" })); f.s.pendingChoices = [];

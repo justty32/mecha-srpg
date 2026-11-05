@@ -73,31 +73,6 @@ test("num-packet-ratio：三個比例欄上下界與效果 hook packets", () => 
   }, f => { f.effect.hooks.onTick = []; });
 });
 
-// 領導收尾 order 新增的 band-* 警告；仍以同一 loadPacks 紅綠驗證，不增加驗收指令。
-test("band-armorpen：0.6 警告、0.5 合法、動態式跳過", () => {
-  redGreen("band-armorpen", "warnings", f => { f.ability.packets[0]!.armorPen = 0.6; },
-    f => { f.ability.packets[0]!.armorPen = 0.5; });
-  const f = fixture(); f.ability.packets[0]!.armorPen = { sum: [0.6] };
-  assert.deepEqual(load(f).warnings, []);
-});
-
-test("band-accuracy：±25 警告，±20 合法，動態式跳過", () => {
-  for (const sign of [-1, 1]) redGreen("band-accuracy", "warnings", f => { f.ability.accuracy = sign * 25; },
-    f => { f.ability.accuracy = sign * 20; });
-  const f = fixture(); f.ability.accuracy = { sum: [25] };
-  assert.deepEqual(load(f).warnings, []);
-});
-
-test("band-evasion：效果加值 23 警告，22 合法；非 add／動態值跳過", () => {
-  redGreen("band-evasion", "warnings", f => {
-    f.effect.contribs = [{ path: "self.attrs.evasion", op: "add", value: 23, source: f.effect.id }];
-  }, f => { f.effect.contribs[0]!.value = 22; });
-  for (const value of [23, { sum: [23] }]) {
-    const f = fixture(); f.effect.contribs = [{ path: "self.attrs.evasion", op: typeof value === "number" ? "set" : "add", value, source: f.effect.id }];
-    assert.deepEqual(load(f).warnings, []);
-  }
-});
-
 function body(f: Fixture, hp: number, resist: number): void {
   f.extra["registries/layer-types.json"] = { kind: "layer-types", entries: [{ id: "armor", name: "裝甲" }] };
   f.extra["bodyplans/trial.json"] = { id: "bodyplan/trial", parts: [{ id: "core", name: "核心", exposure: 1,
@@ -105,41 +80,77 @@ function body(f: Fixture, hp: number, resist: number): void {
     slots: [], functions: ["core"], onLayerBroken: {}, onBroken: [], conduct: [] }] };
 }
 
-test("band-resist：層抗性 0.85 警告，0.8 合法", () => {
-  redGreen("band-resist", "warnings", f => body(f, 100, 0.85), f => body(f, 100, 0.8));
-});
+// 領導收尾 order 新增的 band-* 警告：同一形狀「門檻兩側警告／合法、動態式跳過」，合成一張表。
+const bandCases: [string, () => void][] = [
+  ["band-armorpen：0.6 警告、0.5 合法、動態式跳過", () => {
+    redGreen("band-armorpen", "warnings", f => { f.ability.packets[0]!.armorPen = 0.6; },
+      f => { f.ability.packets[0]!.armorPen = 0.5; });
+    const f = fixture(); f.ability.packets[0]!.armorPen = { sum: [0.6] };
+    assert.deepEqual(load(f).warnings, []);
+  }],
+  ["band-accuracy：±25 警告，±20 合法，動態式跳過", () => {
+    for (const sign of [-1, 1]) redGreen("band-accuracy", "warnings", f => { f.ability.accuracy = sign * 25; },
+      f => { f.ability.accuracy = sign * 20; });
+    const f = fixture(); f.ability.accuracy = { sum: [25] };
+    assert.deepEqual(load(f).warnings, []);
+  }],
+  ["band-evasion：效果加值 23 警告，22 合法；非 add／動態值跳過", () => {
+    redGreen("band-evasion", "warnings", f => {
+      f.effect.contribs = [{ path: "self.attrs.evasion", op: "add", value: 23, source: f.effect.id }];
+    }, f => { f.effect.contribs[0]!.value = 22; });
+    for (const value of [23, { sum: [23] }]) {
+      const f = fixture(); f.effect.contribs = [{ path: "self.attrs.evasion", op: typeof value === "number" ? "set" : "add", value, source: f.effect.id }];
+      assert.deepEqual(load(f).warnings, []);
+    }
+  }],
+  ["band-resist：層抗性 0.85 警告，0.8 合法", () => {
+    redGreen("band-resist", "warnings", f => body(f, 100, 0.85), f => body(f, 100, 0.8));
+  }],
+  ["band-frame-hp：S 摹機基礎總層 HP 1201 警告，1200 合法", () => {
+    redGreen("band-frame-hp", "warnings", f => { f.frame.grade = "S"; body(f, 1201, 0); },
+      f => body(f, 1200, 0));
+  }],
+  ["band-damage：單體 48／範圍 26，動態封包不求總和", () => {
+    for (const kind of ["unit", "ball", "line", "cone"] as const) {
+      const limit = kind === "unit" ? 48 : 26;
+      redGreen("band-damage", "warnings", f => { f.ability.target.kind = kind; f.ability.packets[0]!.amount = limit + 1; },
+        f => { f.ability.packets[0]!.amount = limit; });
+    }
+    const f = fixture(); f.ability.packets[0]!.amount = { sum: [100] };
+    assert.deepEqual(load(f).warnings, []);
+  }],
+  ["band-person-hp：人物 hp.max 71 警告，70 合法", () => {
+    const set = (f: Fixture, max: number): void => {
+      f.extra["curves/trial.json"] = { id: "curve/trial", name: "曲線", points: [0] };
+      f.extra["persons/trial.json"] = { id: "person/trial", name: "人物", kind: "human", attrs: {}, traits: [], perks: [],
+        pools: [{ ...f.pool, id: "hp", max, inverted: false }], will: { beliefs: [], burdenLimit: 0 },
+        growth: { xpCurve: "curve/trial", levelDice: {}, perkPointsAt: [] }, tags: [] };
+    };
+    redGreen("band-person-hp", "warnings", f => set(f, 71), f => set(f, 70));
+  }],
+  ["band-cover：地形 cover 51 警告，50 合法", () => {
+    const set = (f: Fixture, cover: number): void => {
+      f.extra["terrains/trial.json"] = { id: "terrain/trial", name: "地形", glyph: ".", color: "gray", moveCost: {},
+        height: 0, cover, blocksLos: false, onEnter: [], onTurnStart: [], tags: [] };
+    };
+    redGreen("band-cover", "warnings", f => set(f, 51), f => set(f, 50));
+  }],
+  ["soft-overflow-band：空／只達 max 警告；max 以上及動態界線豁免", () => {
+    for (const bounded of [false, true]) redGreen("soft-overflow-band", "warnings", f => {
+      f.pool.capKind = "soft";
+      f.pool.bands = bounded ? [{ from: 0, to: 100, effects: [] }] : [];
+    }, f => { f.pool.bands.push({ from: 100, to: null, effects: [] }); });
+    for (const to of [101, { ref: "self.pools.heat.max", mul: 2 }]) {
+      const f = fixture(); f.pool.capKind = "soft"; f.pool.bands = [{ from: 0, to, effects: [] }];
+      assert.deepEqual(load(f).warnings, []);
+    }
+  }],
+];
 
-test("band-frame-hp：S 摹機基礎總層 HP 1201 警告，1200 合法", () => {
-  redGreen("band-frame-hp", "warnings", f => { f.frame.grade = "S"; body(f, 1201, 0); },
-    f => body(f, 1200, 0));
-});
-
-test("band-damage：單體 48／範圍 26，動態封包不求總和", () => {
-  for (const kind of ["unit", "ball", "line", "cone"] as const) {
-    const limit = kind === "unit" ? 48 : 26;
-    redGreen("band-damage", "warnings", f => { f.ability.target.kind = kind; f.ability.packets[0]!.amount = limit + 1; },
-      f => { f.ability.packets[0]!.amount = limit; });
+test("band-*：門檻兩側警告／合法（9 條規則參數化）", () => {
+  for (const [name, run] of bandCases) {
+    try { run(); } catch (e) { throw new Error(`${name}：${(e as Error).message}`, { cause: e }); }
   }
-  const f = fixture(); f.ability.packets[0]!.amount = { sum: [100] };
-  assert.deepEqual(load(f).warnings, []);
-});
-
-test("band-person-hp：人物 hp.max 71 警告，70 合法", () => {
-  const set = (f: Fixture, max: number): void => {
-    f.extra["curves/trial.json"] = { id: "curve/trial", name: "曲線", points: [0] };
-    f.extra["persons/trial.json"] = { id: "person/trial", name: "人物", kind: "human", attrs: {}, traits: [], perks: [],
-      pools: [{ ...f.pool, id: "hp", max, inverted: false }], will: { beliefs: [], burdenLimit: 0 },
-      growth: { xpCurve: "curve/trial", levelDice: {}, perkPointsAt: [] }, tags: [] };
-  };
-  redGreen("band-person-hp", "warnings", f => set(f, 71), f => set(f, 70));
-});
-
-test("band-cover：地形 cover 51 警告，50 合法", () => {
-  const set = (f: Fixture, cover: number): void => {
-    f.extra["terrains/trial.json"] = { id: "terrain/trial", name: "地形", glyph: ".", color: "gray", moveCost: {},
-      height: 0, cover, blocksLos: false, onEnter: [], onTurnStart: [], tags: [] };
-  };
-  redGreen("band-cover", "warnings", f => set(f, 51), f => set(f, 50));
 });
 
 test("num-accuracy：上下界", () => {
@@ -229,17 +240,6 @@ test("ai-shape：模式、反應事件／tag、部位與 tactics；範圍／持�
   for (const kind of ["self", "unit", "cell", "ball", "line", "cone"] as const) {
     const f = fixture(); f.ability.mode = "sustained"; f.ability.target.kind = kind;
     f.ability.target.friendly = "only"; f.ability.ai.tactics = { buff: 1 };
-    assert.deepEqual(load(f).warnings, []);
-  }
-});
-
-test("soft-overflow-band：空／只達 max 警告；max 以上及動態界線豁免", () => {
-  for (const bounded of [false, true]) redGreen("soft-overflow-band", "warnings", f => {
-    f.pool.capKind = "soft";
-    f.pool.bands = bounded ? [{ from: 0, to: 100, effects: [] }] : [];
-  }, f => { f.pool.bands.push({ from: 100, to: null, effects: [] }); });
-  for (const to of [101, { ref: "self.pools.heat.max", mul: 2 }]) {
-    const f = fixture(); f.pool.capKind = "soft"; f.pool.bands = [{ from: 0, to, effects: [] }];
     assert.deepEqual(load(f).warnings, []);
   }
 });
