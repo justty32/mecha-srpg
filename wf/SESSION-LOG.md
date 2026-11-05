@@ -23,3 +23,4 @@
 - [content] 10/28 夜間24概念／38新JSON已入庫：20lore、2怪獸種、2展示駕駛；CM六檔未接受、可攜稿保留。固定base `3a20a436` 整合1031案1022過9同基準敗，含R2的 `4a139221` wiki6/6；新manifest維持draft/integration pending，舊技術失敗由10/29強回歸處置，CM設計與內容人審仍待續 → [收尾與內容導覽](notes/close-night-2026-10-28.md)。
 - [feature-dev] fix-playtest-1105：試玩問題與平衡修正進行中（隔離 worktree，Opus）→ 完成後由頂層 merge／[試玩報告](workflows/dispatch/handoffs/playtest-1105/REPORT.md)
 - [feature-dev] Fable 三題已裁決（2026-11-05），實作排在 fix-playtest 合併之後，避免同時改戰鬥碼與黃金 → [報告](notes/investigations/content-review-2026-10-27/fable-report.md)
+- [testing] 使用者 2026-11-05 不追認 a3407d97 對黃金與斷言的改寫；待 fix-playtest 合併後開 Opus 線，逐條比對 10/28 九條的行為改變 → [驗收基準](workflows/dispatch/handoffs/verify-head-1105/REPORT.md)
