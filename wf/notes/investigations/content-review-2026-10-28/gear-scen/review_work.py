@@ -23,7 +23,7 @@ def digest(p):
 def build():
     records = {}
     h = 'wf/workflows/dispatch/handoffs/'
-    for label, rel in [('gear200', h+'lead-fill-gear/review.json'), ('fill-scen63', h+'lead-fill-scen/review.json')]:
+    for label, rel in [('gear200', h+'lead-fill-gear/review.json'), ('fill-scen63', h+'done/2026-10-26/lead-fill-scen/review.json')]:
         for i, r in enumerate(rows(rel)):
             p = r['檔']
             records[p] = {'file_path': {'$fmt': '${gitRoot}/'+p}, 'entry_owner': label,
