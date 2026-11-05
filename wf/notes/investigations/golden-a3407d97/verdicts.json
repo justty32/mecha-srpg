@@ -1,0 +1,128 @@
+{
+ "contract": "wf-table/1",
+ "source": "README.md",
+ "extracted": "2026-11-05",
+ "columns": [
+  "id",
+  "test",
+  "old",
+  "new",
+  "cause",
+  "verdict",
+  "evidence",
+  "action",
+  "test_cmd"
+ ],
+ "rows": [
+  {
+   "id": "1",
+   "test": "campaign-hash（src/ops/sim/fixtures/campaign-hash.json）",
+   "old": "3c8814d7d531c515／795 事件／day 31",
+   "new": "aacf251adb7030aa／840／day 31",
+   "cause": "69924b05（第三刃 presence-board 勢力，代表勢力 7→8）＋8ba72b43（32 frames／12 models／10 monsters）改變 RNG 消耗",
+   "verdict": "(a)",
+   "evidence": "00d74dfd:…/expansion-1028/test-comparison.json 第 3 列 actual 與 a3407d97 寫入值相同；src/ops/world/rep-gate.test.ts:124",
+   "action": "追認；今天 902775f7 又重錄，以 HEAD 為準",
+   "test_cmd": "node --test src/ops/sim/campaign.test.ts"
+  },
+  {
+   "id": "2",
+   "test": "黃金戰役 ops-relic",
+   "old": "7d50e9aa5867bcb1／19897／day 896",
+   "new": "b3d1e67583ca10c5／19939／day 896（c09b0269 為 ad03741d873661ba／20889）",
+   "cause": "同 1，再被 10/28 內容批（f45eca1d 等）推動一次",
+   "verdict": "(a)",
+   "evidence": "test-comparison.json 第 5 列（changed trajectory）",
+   "action": "追認",
+   "test_cmd": "node --test test/campaigns/campaigns.test.ts"
+  },
+  {
+   "id": "3",
+   "test": "黃金戰役 ops-war-assault",
+   "old": "8f5c3d2665ae48b1／503／day 16",
+   "new": "41aa023e9a3e0d46／540／day 16",
+   "cause": "同 1",
+   "verdict": "(a)",
+   "evidence": "test-comparison.json 第 4 列",
+   "action": "追認",
+   "test_cmd": "同 2"
+  },
+  {
+   "id": "4",
+   "test": "黃金戰役 ops-leak",
+   "old": "eb2d23f3641f6c6e／246／day 6",
+   "new": "3ced084c80b5a8c7／258／day 6",
+   "cause": "同 1",
+   "verdict": "(a)",
+   "evidence": "test-comparison.json 第 8 列",
+   "action": "追認",
+   "test_cmd": "同 2"
+  },
+  {
+   "id": "5",
+   "test": "黃金戰役 ops-merc-join",
+   "old": "5f4014ad02b75c28／1299／day 50；contract-363、operation-5",
+   "new": "8b012bc9ecba8673／897／day 35；contract-261、operation-2；ops-merc-join.json 重錄 1087 行",
+   "cause": "同 1；失敗原因 unused-battle-record（src/ops/sim/replay.ts:26）：黃金內嵌戰鬥紀錄，世界漂移後 sortie 對不上",
+   "verdict": "(a)＋(c)",
+   "evidence": "test-failures.json merc-join 列；test/campaigns/campaigns.test.ts:31；golden-spec.ts:34-38",
+   "action": "追認重錄；HEAD 已被 902775f7 再改",
+   "test_cmd": "同 2"
+  },
+  {
+   "id": "6",
+   "test": "黃金戰役 ops-betrayal",
+   "old": "db09bf4e32f144ad／259／day 6；自然軌跡 wait×6＋choose×2 後 accept 66→drop 66→accept 62",
+   "new": "6d984024979a7031／159／day 0；setup.betrayal=true 直接塞兩個 muster 中 operation 經 onMuster，再 accept 53→drop 53→accept 55",
+   "cause": "同 1：自然世界第 6 日不再湊出可背叛的雙 muster；a3407d97 改成受控 fixture",
+   "verdict": "(c)（測試語義改寫，不只是重錄）",
+   "evidence": "golden-spec.ts:66-85；ops-betrayal.json diff；campaigns.test.ts:35-38 仍驗 -40 聲望與黑名單",
+   "action": "使用者裁決：接受受控 fixture，或要求回自然軌跡（node test/campaigns/rerecord.ts ops-betrayal --dry）",
+   "test_cmd": "同 2"
+  },
+  {
+   "id": "7",
+   "test": "黃金戰役 grid-actors",
+   "old": "d415f49fe5b6826f",
+   "new": "20390962f8625caa（三個事件與日期全同）",
+   "cause": "同 1",
+   "verdict": "(a)",
+   "evidence": "test-comparison.json 第 9 列",
+   "action": "追認",
+   "test_cmd": "同 2"
+  },
+  {
+   "id": "8",
+   "test": "長時間 wait 在駕駛員歸零終局當天停止（src/ops/sim/campaign.test.ts）",
+   "old": "assert clock.day === 132（9e23317a 於 10/26 記下的 seed 1 idle 無駕駛員終局日）",
+   "new": "endDay < start+12×28=336，加 completedDays／log.every(day<=endDay)／pendingTicks 斷言；實際天數未印出",
+   "cause": "同 1：c09b0269 實測 118、10/28 內容後 90；a3407d97 後現值未查",
+   "verdict": "(c)",
+   "evidence": "test-failures.json wait 兩列（118、90）；git log -S'clock.day, 132)'",
+   "action": "改測試：保留新不變量，另記錄實際終局日恢復漂移偵測",
+   "test_cmd": "node --test src/ops/sim/campaign.test.ts（臨時 console.log(waitEnd) 取現值）"
+  },
+  {
+   "id": "9",
+   "test": "socket CLI（src/mcp/cli.test.ts:8）",
+   "old": "listen EPERM /tmp/cx-mcp-core/cli-*.sock",
+   "new": "a3407d97 未碰此檔；今天通過",
+   "cause": "10/28 跑在 /workspace/scratch 容器，不准建 unix socket",
+   "verdict": "環境，無行為改變",
+   "evidence": "test-failures.json socket 列；verify-head-1105/suite.tap:543",
+   "action": "不處置",
+   "test_cmd": "node --test src/mcp/cli.test.ts"
+  },
+  {
+   "id": "附",
+   "test": "campaign_act sortie（src/mcp/campaign.test.ts:121，改寫 72 行）",
+   "old": "seed 1 推 28 天後挑契約只看期限；第 169 行 sail 回 insufficient-fuel",
+   "new": "seed 3 開局挑 1 日內、燃料夠的近程契約",
+   "cause": "同 1：seed 1 第 28 日的契約板漂移",
+   "verdict": "(c)",
+   "evidence": "test-failures.json sortie 列",
+   "action": "追認",
+   "test_cmd": "node --test src/mcp/campaign.test.ts"
+  }
+ ]
+}
