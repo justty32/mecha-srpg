@@ -1,6 +1,6 @@
 # 任務：<動詞開頭的一句話>
 
-> 複製本檔改寫成 `dispatch/handoffs/<線名>.md`（現役在頂層、做完移 `done/<日期>/` 附證據）。派線規則見 [dispatch](dispatch/README.md)，工具對照見 [dispatch/tool-index](dispatch/tool-index.md)。把所有 `<…>` 換掉；用不到的段整段刪掉，**但「先讀」行、範圍的件數／容量 gate、必用工具表、資源與禁區、交付的絕對路徑、驗收條數不可刪**——送出前跑 `python3 wf/tools/brief_lint.py <本檔> --strict` 要 0 違規（本範本自己滿是佔位，不拿來 lint）。
+> 複製本檔改寫成 `dispatch/handoffs/<線名>.md`（現役在頂層；收線即刪，證據寫進收線 commit 訊息）。派線規則見 [dispatch](dispatch/README.md)，工具對照見 [dispatch/tool-index](dispatch/tool-index.md)。把所有 `<…>` 換掉；用不到的段整段刪掉，**但「先讀」行、範圍的件數／容量 gate、必用工具表、資源與禁區、交付的絕對路徑、驗收條數不可刪**——送出前跑 `python3 wf/tools/brief_lint.py <本檔> --strict` 要 0 違規（本範本自己滿是佔位，不拿來 lint）。
 > **交接書是唯一契約**：沒寫在裡面的授權等於沒有；沒寫的禁區等於允許。
 
 先讀：`/home/lorkhan/repo/game_dev/mecha-srpg/AGENTS.md`，再照它讀到本線用的工作流入口（`<例：wf/workflows/feature-dev/README.md>`）與 `wf/workflows/common/user.md`——**親自讀，不靠本交接書的摘要**（雜活線可寫「先讀：AGENTS.md（雜活，只讀這份）」）。

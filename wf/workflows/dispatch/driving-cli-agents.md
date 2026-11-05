@@ -90,7 +90,7 @@ sleep 5
 1. 依交接書寫死的驗收**逐條核**，不只看自我宣告。
 2. 核 commit 與未推狀態（`git log --oneline --all --not --remotes`）；線不能 commit 的環境改核工作樹 diff。
 3. 確認鎖已釋放、該線起的行程清乾淨（見 [resources](../resources.md)）。
-4. 交接書移到 `done/` 並附完成證據。
+4. 收線證據寫進收線 commit 訊息，然後 `git rm -r` 交接書與附件夾（見 [handoffs](handoffs/README.md)）。
 5. 把該線從領地表「現役」移到「歷史」。
 6. 報告進版控；大型中間產物不留在 repo 或家目錄，要刪除先問使用者。
 7. **現役線歸零**才回報「全部收完」。

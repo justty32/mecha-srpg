@@ -2,16 +2,16 @@
 
 [tidy](README.md)｜通用規則在 [README](README.md) 與 [data-files](../common/data-files.md)
 
-## 封存與搬檔
+## 刪檔與搬檔
 
 <!-- wf-nav -->
-- 母 repo 的全庫連結檢查工具可能吃**檔案**路徑不吃目錄、且只掃母 repo 追蹤的檔；子 repo 內部用它自己的 `wf-lint.sh`，全庫檢查由調度者在母 repo 根跑。
 - ```markdown 圍籬內可能刻意放「壞」連結當測試字串；改寫器與檢查都要跳過 code fence。
 - **目錄改名**會留正文引註殘留（`x.md:48` 這種），連結檢查抓不到，要另外 grep 舊目錄名。
-- 線會把「archive 不維護內部連結」讀成「archive 不能動」而卡住 `broken=0`；交接書要明說：archive 內只准動指向現役檔的「取代者」連結，且 `archive/README.md` 只准**追加**列。
+- 刪整個目錄前，除了連結還要 grep **純文字路徑**（反引號裡的工具、護欄、契約路徑）：連結掃描抓不到，活工作流可能正照著它做事（slim-1105：content 工作流引用 `done/` 裡的 sweep.ts 與護欄，先搬 `scripts/` 或精簡併入才刪）。
 - 名冊、領地登記這種表格類活檔要**把規則段留在活檔**、只搬歷史條目；表格裡的「狀態」欄不可信，判準改用 `SESSION-LOG.md` 或明確給出的現役清單作證據，交接書要直接給出證據，否則線會「不敢猜」留一半。
-- 「不搬某個現役目錄」與「清指向 archive 的連結」會在同一批檔上打架；驗收命令只擋 rename／delete（`git diff --cached --name-status -M <dir>/ | grep -v '^M'`），不擋 modify。
+- 「不搬某個現役目錄」與「清指向被刪檔的連結」會在同一批檔上打架；驗收命令只擋 rename／delete（`git diff --cached --name-status -M <dir>/ | grep -v '^M'`），不擋 modify。
 - 資料夾可能有 `.` 開頭的隱藏檔；用 `ls -A`，否則大小統計也可能漏掉。
+- 上千個路徑的 `git rm`／`git commit --` 用 `xargs -a <清單>` 餵；zsh 不會把 `$VAR` 拆字，`git ls-files -- $DEL` 會靜默變成 0 個檔。
 - 線報告的「需要裁示」清單要照 [WAIT_USER](../../WAIT_USER.md) 的格式落地，不能只留在回報裡。
 
 ## 拆檔與資料檔
@@ -30,8 +30,6 @@
 - 便宜模型的工人可能把中途追加的規則當側路訊息拒收；規則改了就開新工人、把規則寫進主交接書，不要用續訊息機制追加。
 - 工人偶爾漏 stage 改過的 md；管理線驗收要含 `git status --short | grep -v '^[MADR] '` → 0，並以明確路徑補 `git add`。
 - 工人的暫存要放 scratchpad 並帶批次前綴；曾有暫存檔落到 repo 根、兩個工人撞同名暫存檔。
-- 規則中途改三次（`.py`→`json`、1 KB 門檻、導航表先抽後收回）的代價是十幾個回補批；能先把契約定稿再派最省。
-- 母 repo 的 lint 用 `.` 會遞迴掃進所有子 repo，數字會隨別條線在動；母 repo 自己只掃自己那一份。
 
 ## 執行環境
 

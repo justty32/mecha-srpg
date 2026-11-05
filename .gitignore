@@ -35,8 +35,18 @@ wf/workflows/dispatch/handoffs/**/trash/
 test-results/
 playwright-report/
 
-# codex 工人原始執行紀錄（本機保留、不入庫，2026-11-05）
-wf/workflows/dispatch/handoffs/done/**/*.log
+# 線的原始證據只留本機、不入庫（2026-11-05 slim-1105；git 歷史即封存）
+wf/workflows/dispatch/handoffs/*/raw/
+wf/workflows/dispatch/handoffs/**/*.tap
+wf/workflows/dispatch/handoffs/**/*.jsonl
+wf/workflows/dispatch/handoffs/**/*.gz
+wf/workflows/dispatch/handoffs/**/*.log
+# 已辦信件只留本機（已辦的證據是 commit）
+wf/inbox/done/*
+!wf/inbox/done/.gitkeep
+# 美術試作的證據圖由 headless.mjs 重產
+art/*/evidence/
+art/*/viewer/evidence/
 
 # Claude Code 隔離 worktree
 .claude/worktrees/

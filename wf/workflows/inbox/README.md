@@ -64,7 +64,7 @@ wf/tools/inbox_read.sh wf/inbox/new   # 只讀不搬；沒信就完全靜默（�
 
 ### 辦完務必歸檔
 
-一封信一旦辦完（做完事、或決定不做／不回），**立刻 `mv` 進 [`wf/inbox/done/`](../../inbox/done/)（或用 `inbox_ack.sh`）**。頂層只准留「還沒辦的」——沒歸檔的已辦信會讓下一個 session 分不清哪些還沒做。別漏這步。
+一封信一旦辦完（做完事、或決定不做／不回），**立刻 `mv` 進 [`wf/inbox/done/`](../../inbox/done/)（或用 `inbox_ack.sh`）**。頂層只准留「還沒辦的」——沒歸檔的已辦信會讓下一個 session 分不清哪些還沒做。別漏這步。`done/` 只留本機、不進版控（`.gitignore`；已辦的證據是 commit）。
 
 ## 內容
 

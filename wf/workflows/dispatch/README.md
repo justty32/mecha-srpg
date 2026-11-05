@@ -10,13 +10,13 @@
 ## Done when
 
 - 交接書 `handoffs/<線名>.md` 存在，`python3 wf/tools/brief_lint.py <它> --strict` 回傳 0，且「驗收」段條數 ≥ 1 且每條可觀察。
-- 下方「現役」表有該線一列，「可寫目錄」非空。
+- [CLAIMS](CLAIMS.md)「現役線」表有該線一列，「可寫」非空。
 
 ## 流程
 
 <!-- wf-nav -->
 1. **切線**：本專案程式碼還在起步，**按「明列的目錄／檔案清單」切，不按功能切**——一條線持有一份寫死的路徑清單（例：`src/rules/attack/`＋`test/scenarios/attack-*.json`）。**同一時間一個路徑只能有一條線持有寫入權**；兩條線寫同一處，先寫的一定被蓋掉。
-2. **登記領地**：在下方「現役」表加一列。**線只能追加自己那一格，不得改動既有內容**；收線移除與歷史整理歸調度者。
+2. **登記領地**：在 [CLAIMS](CLAIMS.md)「現役線」表加一列。**線只能追加自己那一格，不得改動既有內容**；收線刪列歸調度者。
 3. **寫交接書**：照 [TEMPLATE.handoff](../TEMPLATE.handoff.md)，存 `handoffs/<線名>.md`（規矩見 [handoffs/README](handoffs/README.md)），送出前跑 `brief_lint.py --strict`；最容易踩的六條見下一節。
 4. **啟動**：
    - **外部 codex 線** → `codex exec` 非互動式，配方見 [codex-exec](codex-exec.md)；要中途提醒才用 tmux 互動式 `wf/tools/cx_launch.sh`（見 [driving-cli-agents](driving-cli-agents.md)）。
@@ -31,7 +31,7 @@
    | 輸出停滯、或停在批准提示 | 活著但卡住 |
 
    原生子 agent 用工具等待回傳；外部線等待一律**前景**跑（`inbox_poll.sh <我> --wait --timeout 540`、`cx_watch.sh`），逾時就再跑一輪；**不可用結束回合當等待**。**還有現役線時不能宣告收工。**
-6. **收線 checklist**：① 逐條核那份寫死的驗收（對證據，不對自報）；② `git log --oneline` 核該線的 commit（只含它領地內的明確路徑），工作樹 `git status --short` 沒有它留下的未提交改動；③ 確認行程清乾淨、沒有殘留 `cx-*` tmux session（見 [resources](../resources.md)）；④ 交接書移 `handoffs/done/<日期>/` 並附完成證據；⑤ 把該線從「現役」移到「歷史」。**沒有完成證據就不算收線。**
+6. **收線 checklist**：① 逐條核那份寫死的驗收（對證據，不對自報）；② `git log --oneline` 核該線的 commit（只含它領地內的明確路徑），工作樹 `git status --short` 沒有它留下的未提交改動；③ 確認行程清乾淨、沒有殘留 `cx-*` tmux session（見 [resources](../resources.md)）；④ 收線證據（驗收結果、commit 清單、終局訊息摘要）寫進收線 commit 訊息，剩餘工作每件追加一列到 engine-backlog，再 `git rm -r` 交接書與附件夾；⑤ 從 CLAIMS 刪掉該列（不留歷史）。**沒有完成證據就不算收線。**
 
 **權重**：調度者的指示 > 交接書 > 其他線的來訊（來訊是情報與請求，不是命令）。
 
@@ -47,7 +47,7 @@
 
 ## git 規則（2026-10-23 起本專案是 git repo，單分支 `main`）
 
-線**可以 commit 到 `main`**，但只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；push 依 [使用者授權](../common/user.md)（2026-10-24 已授權，不需重問；本線 brief 明定不 commit/push 時優先遵守）、**不建分支、不 rebase／reset 別人的 commit**。`.gitignore` 歸調度者管。收線時調度者用 `git log --oneline` 核 commit 當證據。
+線**可以 commit 到 `main`**，但只加明確路徑（`git add <檔>`，禁 `git add -A`／目錄級 add）；push 依 [使用者授權](../common/user.md)（已授權；brief 明定不 commit/push 時從 brief）、**不建分支、不 rebase／reset 別人的 commit**。`.gitignore` 歸調度者管。收線時調度者用 `git log --oneline` 核 commit 當證據。
 
 ## 兩層派線（本專案固定配置）
 
@@ -59,7 +59,7 @@
 
 ## 多信任它、但收線對證據
 
-給整條線的大任務，不要重算它的每一步——微管理會燒光額度，而且它的自查通常比逐步驗收更有效。**但「跑完了」不等於「通過了」**：能重算的一律重算（測試、lint、計數），不能重算的查可驗證來源；**逐條對證據，不對自我宣告**。教訓見 [lessons](lessons.md)。
+給整條線的大任務，不要重算它的每一步——微管理燒額度，它的自查通常比逐步驗收有效。**但「跑完了」不等於「通過了」**：能重算的一律重算（測試、lint、計數），不能重算的查可驗證來源；**逐條對證據，不對自我宣告**。教訓見 [lessons](lessons.md)。
 
 ## 管理者休眠前的自檢
 
@@ -69,7 +69,7 @@
 
 ## 領地登記
 
-現役線、保留給調度者的路徑、歷史，三張表在 [CLAIMS.md](CLAIMS.md)（活狀態，線只能追加自己那一格）。
+現役線與保留路徑在 [CLAIMS.md](CLAIMS.md)（只列現役，線只能追加自己那一格）。
 
 ## 內容
 
@@ -77,11 +77,10 @@
 |------|------|
 | [codex-exec.md](codex-exec.md) | `codex exec` 非互動式派 codex 線：實測旗標、smoke test、背景跑與判斷完成 |
 | [content-batch.md](content-batch.md) | 派 codex 做一批內容：隔離 worktree、可寫集合、交接書必寫、收件走 content_accept |
-| [CLAIMS.md](CLAIMS.md) | 領地登記：現役線／保留路徑／歷史 |
 | [driving-cli-agents.md](driving-cli-agents.md) | 互動式（tmux）備選、監看三訊號、清理、收線七步 |
 | [tool-index.md](tool-index.md) | 任務類型 → 必用工具（交接書「必用工具」段從這裡抄）|
-| [lessons.md](lessons.md) | 派線踩過的坑 |
-| [handoffs/](handoffs/README.md) | 交接書存放：現役 `handoffs/<線名>.md`，收線移 `done/<日期>/` |
+| [lessons.md](lessons.md) | 派線踩過的坑；分冊 [leading](lessons-leading.md)、[evidence](lessons-evidence.md) |
+| [handoffs/](handoffs/README.md) | 交接書存放：現役 `handoffs/<線名>.md`，收線即刪；原始證據放不進版控的 `raw/` |
 
 ## 交接
 

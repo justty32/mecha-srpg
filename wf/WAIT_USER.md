@@ -6,7 +6,7 @@
 
 條目格式：`- [工作流] 請使用者做什麼 → 做完我接著做什麼`，做完即刪。等別的 session / agent 不記這裡（判別表見 [WORKFLOWS](WORKFLOWS.md)）。
 
-> 膨脹就拆：堆多了就開 `wait-user/` 按類別拆檔，本檔只留一張 `| 類別 | open | 清單 |` 導航表，每列連到 `wait-user/<類別>.md`（照 [STRUCTURE](STRUCTURE.md)）。
+> 上限 4096 bytes：超過代表有做完的項沒刪，先刪再說，不拆檔（照 [STRUCTURE](STRUCTURE.md)）。連結只指現役檔；要引已刪的報告就寫線名＋commit。
 
 ## 待使用者項
 
