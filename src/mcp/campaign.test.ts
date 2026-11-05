@@ -22,6 +22,25 @@ function data(result: ToolResult): Record<string, any> {
   assert.ok(result.structuredContent);
   return result.structuredContent;
 }
+// 開局第 0 天先處理開場劇情（葬禮→債主來電），之後才能自由下指令。
+async function opening(call: ReturnType<typeof setup>["call"], id: string): Promise<void> {
+  for (let i = 0; i < 5; i++) {
+    if (!data(await call("campaign_view", { id, log: 0 })).prompt) return;
+    data(await call("campaign_act", { id, command: { v: "choose", choice: 1 } }));
+  }
+  assert.fail("開場劇情沒有結束");
+}
+
+test("campaign_new：開場劇情在第 0 天就擋在出擊之前", async () => {
+  const { call } = setup(), first = data(await call("campaign_new", { seed: 5 }));
+  assert.equal(first.clock.day, 0);
+  assert.ok(first.prompt?.choices.length);
+  const blocked = await call("campaign_sortie_begin", { id: first.id, sortie: { units: [] } });
+  assert.equal(blocked.isError, true);
+  assert.equal(blocked.structuredContent!.error, "pending-choice");
+  await opening(call, first.id);
+  assert.equal(data(await call("campaign_view", { id: first.id })).clock.day, 0);
+});
 
 test("campaign_new / view：獨立 session、精簡畫面與 log 游標", async () => {
   const { call } = setup();
@@ -33,6 +52,7 @@ test("campaign_new / view：獨立 session、精簡畫面與 log 游標", async 
   assert.equal(first.rng, undefined);
   assert.equal(data(await call("campaign_new", { seed: 8, start: "start/default" })).id, "c2");
   assert.deepEqual(data(await call("campaign_view", { id: "c1" })).log, []);
+  await opening(call, "c1");
   await call("campaign_advance", { id: "c1", days: 1 });
   const view = data(await call("campaign_view", { id: "c1", log: 1 }));
   assert.equal(view.log.length, 1);
@@ -43,6 +63,7 @@ test("campaign_new / view：獨立 session、精簡畫面與 log 游標", async 
 
 test("campaign_actions / act：原樣 cmd、中文解析、錯誤與 candidates", async () => {
   const { call } = setup(), { id } = data(await call("campaign_new", { seed: 7 }));
+  await opening(call, id);
   const actions = data(await call("campaign_actions", { id }));
   assert.equal(actions.verbs, undefined);
   assert.ok(data(await call("campaign_actions", { id, verbs: true })).verbs.some((v: { v: string }) => v.v === "sortie"));
@@ -93,7 +114,8 @@ test("campaign_auto：seed 7 greedy 一蝕月 hash 等於直接 runCampaign", as
 
 test("new → actions.cmd → act → save → load：日期與 cash 相同；close 隔離 session", async () => {
   const { env, call } = setup(), { id } = data(await call("campaign_new", { seed: 7 }));
-  const action = (data(await call("campaign_actions", { id })).actions as Screen["actions"]).find(a => !a.disabled && a.cmd.v === "wait")!;
+  await opening(call, id);
+  const action =(data(await call("campaign_actions", { id })).actions as Screen["actions"]).find(a => !a.disabled && a.cmd.v === "wait")!;
   assert.ok(action);
   data(await call("campaign_act", { id, command: action.cmd }));
   const saved = data(await call("campaign_save", { id }));
@@ -122,6 +144,7 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   const { env, call } = setup(), { world } = env.world();
   // 使用與營運 e2e 相同的開局近程旅程；本案只驗真實出戰及存讀，不依賴第28日的世界抽牌。
   const initial = data(await call("campaign_new", { seed: 3 })), { id } = initial;
+  await opening(call, id);
   const pilots = initial.panels.roster.filter((p: { role: string }) => p.role === "pilot");
   const units = initial.panels.hangar.map((m: { id: string; seats: Record<string, string | null> }, i: number) => ({
     mech: m.id, seats: { ...m.seats, pilot: pilots[i].id }, controlMode: "pilot",

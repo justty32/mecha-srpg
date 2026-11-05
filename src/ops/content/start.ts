@@ -20,6 +20,7 @@ import { rebuildBlightIndex } from "../world/blight.ts";
 import { nextSpring, riftDefinition } from "../world/rifts.ts";
 import { initActors } from "../world/actors.ts";
 import { refreshFog } from "../world/fog.ts";
+import { queuedEvents } from "../time/tick.ts";
 
 export function createOpsCtx(s: CampaignState, db: ContentDB, world: WorldDB): OpsCtx {
   registerTextDB(world, db);
@@ -97,5 +98,13 @@ export function newCampaign(db: ContentDB, world: WorldDB, startId: string, seed
   initWar(s, ctx, seed);
   initActors(s, ctx);
   refreshFog(s, ctx);
+  return s;
+}
+// 玩家可玩的開局＝newCampaign＋開場劇情：StartDef.events 在第 0 天、任何指令之前就成為待選事件，
+// 待選期間出擊等指令照既有 pending-choice 規則被擋。newCampaign 本身維持「無待選」的世界初始狀態供單元測試起手。
+export function beginCampaign(db: ContentDB, world: WorldDB, startId: string, seed: number): CampaignState {
+  const s = newCampaign(db, world, startId, seed), start = world.require("start", startId);
+  for (const id of start.events ?? []) s.pendingEvents.push(world.require("event", id).id);
+  queuedEvents(s, createOpsCtx(s, db, world));
   return s;
 }

@@ -1,7 +1,7 @@
 // session 與指令歷史各自封存在工具組中；不依賴協定層。
 import { readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
-import { newCampaign, createOpsCtx } from "../ops/content/start.ts";
+import { beginCampaign, createOpsCtx } from "../ops/content/start.ts";
 import type { CampaignState, OpsCommand } from "../ops/state/types.ts";
 import { applyCommand } from "../ops/time/index.ts";
 import type { BattleRunner } from "../ops/time/index.ts";
@@ -104,7 +104,7 @@ export function createCampaignTools(env: McpEnv, hub: BattleHub = createBattleHu
   return [
     define("campaign_new", "開新戰役，回傳 id 與畫面摘要。", { seed: seedSchema, start: startSchema }, ["seed"], args => {
       const seed = integer(args.seed, "seed"), start = startId(args.start), { db, world } = env.world();
-      return view(add(newCampaign(db, world, start, seed), start, seed));
+      return view(add(beginCampaign(db, world, start, seed), start, seed));
     }),
     define("campaign_view", "看畫面與自上次 view 以來的新 log；log 為最多行數（預設 20），較早的省略行數另列；map=true 附世界圖（航行天數／燃料）。", {
       id: idSchema, log: { type: "integer", minimum: 0, default: 20 }, map: { type: "boolean", description: "附世界圖：可達節點的航行天數與燃料" },

@@ -84,6 +84,7 @@ export function checkWorld(db: ContentDB, world: WorldDB): WorldCheckResult {
       reference(raw.place, `${def.id}.place`, "place");
       if ("node" in raw) errors.push(`${def.id}.node: obsolete key; use place`);
     }
+    if (kind === "start") for (const id of Array.isArray(raw.events) ? raw.events : raw.events === undefined ? [] : [null]) reference(id, `${def.id}.events`, "event");
     for (const key of REQUIRED_ARRAYS[kind] ?? []) if (!Array.isArray(raw[key])) errors.push(`${def.id}.${key}: expected array`);
     walk(def, def.id, kind);
   }

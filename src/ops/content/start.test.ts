@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { loadWorldDirs } from "./load.ts";
-import { newCampaign } from "./start.ts";
+import { newCampaign, beginCampaign } from "./start.ts";
 import { checkLedger } from "../state/ledger.ts";
 import { instantiatePools } from "./instantiate.ts";
 import { readPackDir } from "../../content/loader.ts";
@@ -12,6 +12,7 @@ import type { SortieScenario } from "../sortie/scenario.ts";
 import { fixture } from "../sortie/test-support.ts";
 import { createBattle } from "../../rules/flow.ts";
 import { abilitiesOf } from "../../rules/command.ts";
+import { applyCommand } from "../time/index.ts";
 
 test("開局裝備含部件層與彈藥，舊字串合法，錯槽／缺部件能被檢查擋下", () => {
   const pack = readPackDir("content/base"), loaded = loadWorldPacks([pack]);
@@ -62,4 +63,20 @@ test("instantiate：開局機甲有部位、池與空座位，無上限池仍可
   }
   const pools = instantiatePools([{ id: "unlimited", name: "無上限", min: 0, max: null, initial: 3, regen: 0, capKind: "soft", inverted: false, bands: [] }], {});
   assert.deepEqual(JSON.parse(JSON.stringify(pools)), pools);
+});
+test("開場劇情：第 0 天就是待選事件，處理前不能出擊，處理完不在第一天重抽", () => {
+  const { db, world } = loadWorldDirs(["content/base"]), s = beginCampaign(db, world, "start/default", 5);
+  const funeral = world.require("event", "event/funeral").id, call = world.require("event", "event/credit-call").id;
+  assert.equal(newCampaign(db, world, "start/default", 5).pendingChoices.length, 0);
+  assert.equal(s.clock.day, 0);
+  assert.equal(s.pendingChoices[0]?.event, funeral);
+  assert.ok(s.log.some(e => e.type === "EventOffered" && e.payload.event === funeral));
+  const blocked = applyCommand(s, db, world, { v: "sortie", sortie: { units: [] } }, { battle: () => ({ ok: true }) });
+  assert.deepEqual(blocked.result, { ok: false, error: "pending-choice" });
+  let state = applyCommand(s, db, world, { v: "choose", choice: 1 }).state;
+  assert.equal(state.pendingChoices[0]?.event, call);
+  for (let n = 0; state.pendingChoices.length && n < 5; n++) state = applyCommand(state, db, world, { v: "choose", choice: 1 }).state;
+  assert.equal(state.pendingChoices.length, 0); assert.equal(state.clock.day, 0); assert.equal(state.flags["opening-funeral"], 0);
+  const next = applyCommand(state, db, world, { v: "wait", days: 1 });
+  assert.ok(!next.events.some(e => e.type === "EventOffered" && e.payload.event === funeral));
 });
