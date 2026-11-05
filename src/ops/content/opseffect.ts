@@ -220,14 +220,20 @@ export function applyOpsEffect(s: CampaignState, ctx: OpsCtx, effect: OpsEffect,
       const slot = s.restraint.slots.indexOf(null); if (slot < 0) return false;
       s.restraint.slots[slot] = carcass.id; s.restraint.carcasses.push({ ...structuredClone(carcass), slot });
     } else {
-      const ref = eventRef(ctx.emit("OpsEffectApplied", { carcass: carcass.id }));
+      const ref = eventRef(ctx.emit("CarcassSalvaged", { carcass: carcass.id, species: carcass.species }));
       const overflow = { components: [] as typeof loot.components, materials: {} as typeof loot.materials, day: s.clock.day };
       const used = () => s.inventory.components.length + s.inventory.relics.length + Object.entries(s.ledger.balances).filter(([key]) => key.startsWith("stock:") && key !== "stock:fuel").reduce((sum, [, value]) => sum + value, 0);
-      for (const c of loot.components) (used() < s.ship.capacity.cargo ? s.inventory.components : overflow.components).push(structuredClone(c));
+      // 逐項回報拆到什麼、哪些因貨艙滿留在原地；品項以 id 送出，由文字層換成中文名。
+      const gained = (item: string, amount: number) => ctx.emit("SalvageGained", { item, amount });
+      const stashed = (item: string, amount: number) => ctx.emit("SalvageStashed", { item, amount, place: node });
+      for (const c of loot.components) {
+        if (used() < s.ship.capacity.cargo) { s.inventory.components.push(structuredClone(c)); gained(c.def, 1); }
+        else { overflow.components.push(structuredClone(c)); stashed(c.def, 1); }
+      }
       for (const account of Object.keys(loot.materials).sort() as (keyof typeof loot.materials)[]) {
         const amount = loot.materials[account]!, stored = Math.min(amount, Math.max(0, s.ship.capacity.cargo - used()));
-        if (stored) post(s, ctx, { account, delta: stored, reason: "carcass-salvage", ref });
-        if (stored < amount) overflow.materials[account] = amount - stored;
+        if (stored) { post(s, ctx, { account, delta: stored, reason: "carcass-salvage", ref }); gained(account, stored); }
+        if (stored < amount) { overflow.materials[account] = amount - stored; stashed(account, amount - stored); }
       }
       if (overflow.components.length || Object.keys(overflow.materials).length) s.places[node]?.wreckage.push(overflow);
     }
