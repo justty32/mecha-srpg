@@ -12,7 +12,7 @@
 
 **填充規模（同日再澄清）**：期待多 agent 並行擴充機甲、怪獸、人物、地點、事件、勢力等內容，不只少量 lore 或文案一致性整理；按類別分批、相互掛接與去重，仍遵守資源限流。
 
-**資源節制（使用者 2026-10-26）**：「不要濫用npm，電腦的cpu和memory都被整個弄爆了。」全機同時最多一個重負載（`npm test`／`test:e2e`／`test:dom`／sim／fuzz／平衡探針），開跑前 `pgrep -fa 'node --test|playwright|npm (test|run)'` 確認；codex 工人與子 agent 只跑相關單檔測試、lore check、typecheck，全套只由領導收件後跑一次（`--test-concurrency` 壓低）；平行 codex 工人上限 3。派線交接書要寫進這條。
+**資源節制（使用者 2026-10-26）**：「不要濫用npm，電腦的cpu和memory都被整個弄爆了。」全機同時最多一個重負載（`npm test`／`test:e2e`／`test:dom`／sim／fuzz／平衡探針），開跑前 `pgrep -fa 'node --test|playwright|npm (test|run)'` 確認；codex 工人與子 agent 只跑相關單檔測試、lore check、typecheck，全套只由領導收件後跑一次（`--test-concurrency` 壓低）；平行 codex 工人上限 3。派線交接書要寫進這條。（使用者 2026-11-05 再收緊）不只重負載，全機任何 node／npm 程序一次只准一個，不把資源吃滿；常駐的 MCP server 除外。
 
 **逐輪填充（2026-10-27）**：使用者授權持續分輪產出，明確要求比對與既有內容的相似或重複。候選先查、交稿再查；不能只比名稱，應比對具體情節、角色功能、場所用途及單位定位，退回重複構想而不刪舊內容。
 
