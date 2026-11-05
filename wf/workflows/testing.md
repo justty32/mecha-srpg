@@ -18,7 +18,9 @@
 
 欄位：`驗證`（名稱與何時跑）、`指令`、`誰跑`（agent，或 使用者 → WAIT_USER）。查法見 [data-files](common/data-files.md)。
 
-**改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM＋模組邊界 `vm/boundary.test.ts`＋全 AI 觀戰 hash 等於 `runBattle`，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless：`battle.spec.ts` 戰鬥 7 條＝載入、行動後浮出選單、結束回合確認、縮放與記住設定、小地圖自動貼合、跳過動畫、大地圖捲動；`wiki.spec.ts` 百科 3 條＝F1 進出百科、搜尋開詳情、交叉連結與瀏覽器返回；`ops-campaign.spec.ts` 營運 1 條＝開新戰役→推進→接約→航行→出戰→返回營運看戰果（`/?seed=3&spectate=1&anim=off#/ops`，掛鉤 `window.__ops`／`__opsBattle.settle()`；設環境變數 `OPS_SHOTS=<目錄>` 才存六張截圖）；自動 build＋preview 在 4174 埠；URL `?anim=off` 讓演出不延遲，`window.__battle.settle()` 跳過演出）。
+**改 `src/ui-adapter/` 必跑**（agent）：`npm run test:dom`（vm 單元＋happy-dom DOM＋模組邊界 `vm/boundary.test.ts`＋全 AI 觀戰 hash 等於 `runBattle`，已含在 `npm test`）、`npm run build`、`npm run test:e2e`（Playwright headless，2026-11-05 瘦身後 4 檔 19 案、未實跑：`battle.spec.ts` 戰鬥 11 案＝載入、行動後浮出選單、結束回合確認、縮放與記住設定、跳過動畫、大地圖捲動、觀戰、混合兵種情境、正式觀戰與 node 同 hash、安全拖曳 mouse／touch；`wiki.spec.ts` 百科 3 案＝F1 進出百科、搜尋開詳情、交叉連結與瀏覽器返回；`ops-map.spec.ts` 大地圖 3 案＝開局→抵達→泊、安全拖曳 mouse／touch；`ops-campaign.spec.ts` 營運 2 案＝導航進出保留戰役、開新戰役→推進→接約→航行→出戰→返回營運看戰果（`/?seed=3&spectate=1&anim=off#/ops`，掛鉤 `window.__ops`／`__opsBattle.settle()`；設環境變數 `OPS_SHOTS=<目錄>` 才存六張截圖）；自動 build＋preview 在 4174 埠；URL `?anim=off` 讓演出不延遲，`window.__battle.settle()` 跳過演出）。
+
+**全套基準**（node 套件，不含 `src/mcp/ui.test.ts` 與 e2e；nice 19、`--test-concurrency=1`）：2026-11-05 瘦身第一階段後 163 檔、1012 案全綠，序列耗時**估算**約 1060 秒（瘦身前 169 檔、1143 案、實測 1690 秒）；最慢的是 `war-invariants`（縮後約 150 秒）、`ops/sim/health`、`campaigns`。瘦身進度與剩餘階段見 [test-prune-1105](../notes/investigations/test-prune-1105/README.md)。
 
 「誰跑」只有兩種值：**agent**（本機跑得動）、**使用者 → WAIT_USER**（要實機、外部服務、帳號、付費、目視）。判不準就當後者。
 
