@@ -3,6 +3,14 @@
   "seed": 2,
   "commands": [
     {
+      "v": "choose",
+      "choice": 1
+    },
+    {
+      "v": "choose",
+      "choice": 1
+    },
+    {
       "v": "sail",
       "to": {
         "x": 133,
@@ -12,14 +20,6 @@
     {
       "v": "wait",
       "days": 1
-    },
-    {
-      "v": "choose",
-      "choice": 1
-    },
-    {
-      "v": "choose",
-      "choice": 1
     },
     {
       "v": "choose",
@@ -144,7 +144,7 @@
     {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-266",
+        "id": "sortie-265",
         "day": 29,
         "loc": {
           "map": "base:map/longland",
@@ -193,7 +193,7 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-266",
+          "id": "sortie-265",
           "day": 29,
           "loc": {
             "map": "base:map/longland",
@@ -205,6 +205,8 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
+          "operation": "operation-2",
+          "contract": "contract-261",
           "units": [
             {
               "mech": "mech-10",
@@ -236,9 +238,7 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": [],
-          "contract": "contract-261",
-          "operation": "operation-2"
+          "injected": []
         },
         "outcome": {
           "ok": true
@@ -249,9 +249,9 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-266/enemy-0",
+              "id": "sortie-265/enemy-0",
               "state": {
-                "id": "sortie-266/enemy-0",
+                "id": "sortie-265/enemy-0",
                 "moveSpent": 0,
                 "frame": "base:species/sac",
                 "core": true,
@@ -335,9 +335,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-266/enemy-1",
+              "id": "sortie-265/enemy-1",
               "state": {
-                "id": "sortie-266/enemy-1",
+                "id": "sortie-265/enemy-1",
                 "moveSpent": 0,
                 "frame": "base:species/bent-needle",
                 "core": true,
@@ -425,9 +425,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -554,8 +554,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
-                  "soul": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
+                  "pilot": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -564,9 +564,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -693,8 +693,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
-                  "soul": "sortie-266/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
+                  "pilot": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-265/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -711,10 +711,10 @@
           }
         },
         "rng": {
-          "state": "bf40db3c51d25155",
+          "state": "1f3b73c2dfdcd085",
           "inc": "000000000000006d"
         },
-        "effectCounter": 3
+        "effectCounter": 0
       }
     },
     {
@@ -732,7 +732,7 @@
     {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-270",
+        "id": "sortie-269",
         "day": 30,
         "loc": {
           "map": "base:map/longland",
@@ -781,7 +781,7 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-270",
+          "id": "sortie-269",
           "day": 30,
           "loc": {
             "map": "base:map/longland",
@@ -793,6 +793,8 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
+          "operation": "operation-2",
+          "contract": "contract-261",
           "units": [
             {
               "mech": "mech-10",
@@ -824,9 +826,7 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": [],
-          "contract": "contract-261",
-          "operation": "operation-2"
+          "injected": []
         },
         "outcome": {
           "ok": true
@@ -837,9 +837,9 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-270/enemy-0",
+              "id": "sortie-269/enemy-0",
               "state": {
-                "id": "sortie-270/enemy-0",
+                "id": "sortie-269/enemy-0",
                 "moveSpent": 0,
                 "frame": "base:species/sac",
                 "core": true,
@@ -923,9 +923,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-270/enemy-1",
+              "id": "sortie-269/enemy-1",
               "state": {
-                "id": "sortie-270/enemy-1",
+                "id": "sortie-269/enemy-1",
                 "moveSpent": 0,
                 "frame": "base:species/bent-needle",
                 "core": true,
@@ -1013,9 +1013,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -1142,8 +1142,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
-                  "soul": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
+                  "pilot": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -1152,9 +1152,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -1281,8 +1281,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
-                  "soul": "sortie-270/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
+                  "pilot": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-269/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -1299,10 +1299,10 @@
           }
         },
         "rng": {
-          "state": "8c4bfd71a43a0336",
+          "state": "4d89d75ce1775286",
           "inc": "000000000000006d"
         },
-        "effectCounter": 6
+        "effectCounter": 0
       }
     },
     {
@@ -1381,6 +1381,8 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
+          "operation": "operation-2",
+          "contract": "contract-261",
           "units": [
             {
               "mech": "mech-10",
@@ -1412,9 +1414,7 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": [],
-          "contract": "contract-261",
-          "operation": "operation-2"
+          "injected": []
         },
         "outcome": {
           "ok": true
@@ -1883,10 +1883,10 @@
           }
         },
         "rng": {
-          "state": "ddcdab46453cd47e",
+          "state": "d81d445e2fdb8c3a",
           "inc": "000000000000006d"
         },
-        "effectCounter": 9
+        "effectCounter": 0
       }
     },
     {
@@ -1910,9 +1910,13 @@
       "choice": 1
     },
     {
+      "v": "choose",
+      "choice": 1
+    },
+    {
       "v": "sortie",
       "sortie": {
-        "id": "sortie-277",
+        "id": "sortie-276",
         "day": 32,
         "loc": {
           "map": "base:map/longland",
@@ -1961,7 +1965,7 @@
       },
       "battle": {
         "sortie": {
-          "id": "sortie-277",
+          "id": "sortie-276",
           "day": 32,
           "loc": {
             "map": "base:map/longland",
@@ -1973,6 +1977,8 @@
           },
           "place": "base:place/ridge",
           "trigger": "operation",
+          "operation": "operation-2",
+          "contract": "contract-261",
           "units": [
             {
               "mech": "mech-10",
@@ -2004,9 +2010,7 @@
             "restraintRounds": 0,
             "shipOverhead": false
           },
-          "injected": [],
-          "contract": "contract-261",
-          "operation": "operation-2"
+          "injected": []
         },
         "outcome": {
           "ok": true
@@ -2017,9 +2021,9 @@
           "rounds": 3,
           "units": [
             {
-              "id": "sortie-277/enemy-0",
+              "id": "sortie-276/enemy-0",
               "state": {
-                "id": "sortie-277/enemy-0",
+                "id": "sortie-276/enemy-0",
                 "moveSpent": 0,
                 "frame": "base:species/bent-needle",
                 "core": true,
@@ -2107,9 +2111,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-277/enemy-1",
+              "id": "sortie-276/enemy-1",
               "state": {
-                "id": "sortie-277/enemy-1",
+                "id": "sortie-276/enemy-1",
                 "moveSpent": 0,
                 "frame": "base:species/bent-needle",
                 "core": true,
@@ -2197,9 +2201,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+              "id": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
               "state": {
-                "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
+                "id": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -2326,8 +2330,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
-                  "soul": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
+                  "pilot": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/pilot",
+                  "soul": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/0/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -2336,9 +2340,9 @@
               "status": "dead"
             },
             {
-              "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+              "id": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
               "state": {
-                "id": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
+                "id": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached",
                 "moveSpent": 0,
                 "frame": "base:frame/longspear-v1-guild",
                 "core": true,
@@ -2465,8 +2469,8 @@
                 "contribs": [],
                 "effects": [],
                 "seats": {
-                  "pilot": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
-                  "soul": "sortie-277/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
+                  "pilot": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/pilot",
+                  "soul": "sortie-276/force/friend/base%3Amodel%2Flongspear-v1-guild/1/attached/soul"
                 },
                 "controlMode": "pilot",
                 "cooldowns": {},
@@ -2483,10 +2487,10 @@
           }
         },
         "rng": {
-          "state": "ca8f3a38d3ea492f",
+          "state": "fc00e1c431a3dbab",
           "inc": "000000000000006d"
         },
-        "effectCounter": 12
+        "effectCounter": 0
       }
     },
     {

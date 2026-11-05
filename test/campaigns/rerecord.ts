@@ -5,7 +5,7 @@
 // 戰鬥紀錄沿用原紀錄的戰果、改寫成當下的 sortie 與編號；原指令走完仍缺事件子序列，就逐日等（選 1）到湊齊或滿 EXTEND_DAYS（預設 240）天。
 import { readFileSync, writeFileSync } from "node:fs";
 import { canonicalJson } from "../../src/core/eventlog.ts";
-import { newCampaign } from "../../src/ops/content/start.ts";
+import { beginCampaign } from "../../src/ops/content/start.ts";
 import type { CampaignCommand } from "../../src/ops/sim/campaign.ts";
 import { applySortieResult } from "../../src/ops/sortie/run.ts";
 import type { CampaignState, Sortie } from "../../src/ops/state/types.ts";
@@ -26,7 +26,7 @@ function remap(record: BattleRecord, from: string, to: string): BattleRecord {
 export function rerecord(name: string): { input: Golden; ok: boolean; notes: string[] } {
   const input = JSON.parse(readFileSync(`${import.meta.dirname}/${name}.json`, "utf8")) as Golden;
   const { ctx } = fixture(input.seed);
-  let state: CampaignState = input.setup ? setupState(ctx, input) : newCampaign(ctx.db, ctx.world, `start/${input.start}`, input.seed);
+  let state: CampaignState = input.setup ? setupState(ctx, input) : beginCampaign(ctx.db, ctx.world, `start/${input.start}`, input.seed);
   const out: CampaignCommand[] = [], notes: string[] = [];
   const apply = (command: CampaignCommand): boolean => {
     const record = command.battle;
