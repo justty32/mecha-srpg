@@ -47,7 +47,7 @@ flowchart LR
 | [content-format.md](content-format.md) | 資料夾佈局、id 命名、各類 JSON 範例、「新增 X 要改哪些檔」 |
 | [architecture.md](architecture.md) | 模組邊界、事件日誌與重播、seeded RNG、存檔、headless 測試、可視區介面 |
 
-資料檔：`constraints.json`（不可違反清單）、`adoption.json`（機制表採用對照，以 BB 卷 `CMB-/CHR-/AI-/DAT-/SRW-` 與 ToME 卷 `TM-` id 引用）、`glossary.json`（術語）。
+資料檔：`constraints.json`（不可違反清單）、`adoption.json`（機制表採用對照，兩卷原表在 `ref/`，以 BB 卷 `CMB-/CHR-/AI-/DAT-/SRW-` 與 ToME 卷 `TM-` id 引用）、`glossary.json`（術語）。
 
 ## 機制名 ↔ 風格名對照
 
