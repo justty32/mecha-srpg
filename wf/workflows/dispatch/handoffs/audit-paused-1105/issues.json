@@ -1,0 +1,159 @@
+{
+ "contract": "wf-table/1",
+ "source": "REPORT.md",
+ "extracted": "2026-11-05",
+ "columns": [
+  "id",
+  "severity",
+  "line",
+  "type",
+  "finding",
+  "evidence"
+ ],
+ "rows": [
+  {
+   "id": "I01",
+   "severity": "高",
+   "line": "gear",
+   "type": "缺口",
+   "finding": "124 件 gear 部件只有 25 件能在遊戲中取得；24 件僅掛研究解鎖，但 research.ts 只設 unlocked: 旗標、市場不讀，實際取不到；75 件沒有任何取得路徑（fa 35、fm 31、fw 9）",
+   "evidence": "gear-acquire.json；src/ops/crew/research.ts:12；engine-backlog 75–77"
+  },
+  {
+   "id": "I02",
+   "severity": "高",
+   "line": "gear+舊批",
+   "type": "玩家可見",
+   "finding": "119 處 etymology 寫著「…是提案名」：fa/fm/fw 部件 104 檔、frames 16 檔、fs 地圖 4 檔；wiki 卡片會把 etymology 顯示成「意涵」",
+   "evidence": "src/ui-adapter/vm/wiki/cards.ts:125；grep 提案 content/base"
+  },
+  {
+   "id": "I03",
+   "severity": "中",
+   "line": "small",
+   "type": "紀錄不可信",
+   "finding": "STATE／CLAIMS／SESSION-LOG／next-session 都說 lead-small/report.md 是本機未追蹤的暫停報告；實際整個 repo 與 git 歷史都沒有 lead-small 目錄",
+   "evidence": "find wf -iname '*small*'"
+  },
+  {
+   "id": "I04",
+   "severity": "中",
+   "line": "gear",
+   "type": "紀錄不可信",
+   "finding": "gear report 說 fg-golden/（REPORT.md、golden.patch）在 handoffs；實際不存在，也從未提交（當初在另一台機器的 scratchpad）",
+   "evidence": "lead-fill-gear/report.md 未完成 1"
+  },
+  {
+   "id": "I05",
+   "severity": "中",
+   "line": "四線",
+   "type": "紀錄過時",
+   "finding": "「黃金重錄未收」已被 10/29 a3407d97 取代（之後重錄 golden 與 campaign-hash，full 1111 pass/9 fail）；fg-golden 與 small 的黃金待辦已無對象，但 CLAIMS／SESSION-LOG 仍列為待辦",
+   "evidence": "git log -- test/golden"
+  },
+  {
+   "id": "I06",
+   "severity": "中",
+   "line": "全部",
+   "type": "紀錄過時",
+   "finding": "歷史改寫後舊提交識別已不存在：634e7ad0、352e589b、6f20f4f1、f3592fef、a3c53115、3d79f69、9364f46、dc20d7f4。STATE 已註記一部分；fill-rulings、done/README、四份 report 仍引用舊識別",
+   "evidence": "git cat-file -t"
+  },
+  {
+   "id": "I07",
+   "severity": "中",
+   "line": "fill-scen",
+   "type": "收線未完成",
+   "finding": "done/README 第 93 列記為已收線，但附件夾還在 handoffs/lead-fill-scen/，沒有搬到 done/；該列連結 done/lead-fill-scen/plan/plan.md 失效，commit 寫 dc20d7f4（現行為 0d4fb5ac）",
+   "evidence": "done/README.md:93"
+  },
+  {
+   "id": "I08",
+   "severity": "中",
+   "line": "pilots",
+   "type": "設定缺口",
+   "finding": "名表文化不足：撒哈拉以南 12 名駕駛 culture=bengal，韓國人填 han，俄國人填 norse；古代機命名候選會從錯的文化名表抽。已登記 engine-backlog 82",
+   "evidence": "fp-common.md 第 10 行要求只能用既有 mythic-* 名表"
+  },
+  {
+   "id": "I09",
+   "severity": "低",
+   "line": "worktree",
+   "type": "殘留",
+   "finding": "16 個 10/27 worktree（wl/wm/wn，detached f24420b0）；125 個髒檔與 main 現檔逐位元相同，沒有未入庫的內容",
+   "evidence": "git worktree list；cmp"
+  },
+  {
+   "id": "I10",
+   "severity": "低",
+   "line": "gear",
+   "type": "庫容量",
+   "finding": "a66cd46 把約 16 萬行原始戰鬥紀錄（runBattle-seed-*.json 等）提交進 wf/handoffs/lead-fill-gear；保留方式待決",
+   "evidence": "git show --stat a66cd46"
+  },
+  {
+   "id": "I11",
+   "severity": "低",
+   "line": "bigfill",
+   "type": "越界",
+   "finding": "c8e0e0a 順手刪掉 done/README 的 fill-scen 列（wf/ 屬保留路徑），之後另一個提交補了回來；目前無損",
+   "evidence": "git show c8e0e0a -- done/README.md"
+  },
+  {
+   "id": "I12",
+   "severity": "低",
+   "line": "small",
+   "type": "越界／無 manifest",
+   "finding": "69924b0 新增 src/ops/world/third-blade-ops.test.ts，不在 CLAIMS 明列路徑內；small 沒有 ls-* batch manifest",
+   "evidence": "git show --stat 69924b0"
+  },
+  {
+   "id": "I13",
+   "severity": "低",
+   "line": "pilots",
+   "type": "未套",
+   "finding": "6 條選用 inserts 都沒套：其中 4 條指向 lore faction 不存在的 places 欄（套不進去），2 條是事件 characters 反向索引",
+   "evidence": "lead-fill-pilots/*/inserts.json"
+  },
+  {
+   "id": "I14",
+   "severity": "低",
+   "line": "bigfill",
+   "type": "缺登記",
+   "finding": "report 列的五項引擎需求（外洲地圖、在地人物對話、指定物種遭遇池、新聞欄、月面營運）仍未進 engine-backlog（92 列），與 next-session 記載一致",
+   "evidence": "engine-backlog.json"
+  },
+  {
+   "id": "I15",
+   "severity": "低",
+   "line": "舊批",
+   "type": "同名",
+   "finding": "兩件不同部件都叫「凡鐵連吼」（component/autocannon-30、component/mx-iron-repeater），兩個效果都叫「失衡」；都是 10/24 舊批，不屬四線",
+   "evidence": "names scan"
+  },
+  {
+   "id": "I16",
+   "severity": "低",
+   "line": "舊批",
+   "type": "年表措辭",
+   "finding": "timeline 2093-09「堅盾-I型 普及」和 2101「堅盾-I 普及」標題幾乎相同、內容其實不同（首批仿造／民兵全面配備）；容易被讀成矛盾",
+   "evidence": "content/lore/timeline.json"
+  },
+  {
+   "id": "I17",
+   "severity": "中",
+   "line": "night-1028",
+   "type": "定位重複",
+   "finding": "night-ck-crookbow 偏弓（alien C）掛 kx-mirror-turn、鏡衣加棘射，與鏡肢、斜帷、吐棘者定位重疊；night-ck-keeljaw 沉顎（beast B）與崖牙共用 kx-beast-alpha、kx-star-howl，像 B 級版崖牙",
+   "evidence": "content/base/species/night-ck-crookbow.json、night-ck-keeljaw.json（Sonnet 抽查）"
+  },
+  {
+   "id": "I18",
+   "severity": "低",
+   "line": "expansion-1028",
+   "type": "措辭",
+   "finding": "exp-sanya-iliev 的「晚禱」指禱告，但庫內的晚禱是群喉的俗稱；exp-liang-ran 等夸父來認她，但夸父已經認了丹增・卓瑪",
+   "evidence": "content/lore/characters/exp-sanya-iliev.json、exp-liang-ran.json"
+  }
+ ]
+}
