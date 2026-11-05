@@ -10,7 +10,7 @@
 
 ## 待使用者項
 
-- [content] 裁決人物清單 P01 朴仁哲失腿採前盾撞碎或閘門夾斷；其餘內容候選一併待審 → [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
+- [content] 其餘內容候選待審（P01 朴仁哲失腿已定案：閘門夾斷）→ [審閱入口](notes/investigations/content-review-2026-10-27/README.md)。
 - [planning] 使用者另開 Claude Fable 後，交付 [設計報告題綱](notes/investigations/content-review-2026-10-27/fable-brief.md)；取得報告與裁決後再派實作。
 
 
