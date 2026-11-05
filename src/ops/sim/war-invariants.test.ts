@@ -18,17 +18,30 @@ const fakeBattle: BattleRunner = (state, ctx, sortie) => {
   return { ok: true };
 };
 
-const seeds = [1, 2, 3, 7, 17, 42] as const;
-test("六 seed × idle/random/merc × 六蝕月：逐日戰爭不變量", { timeout: 60000 }, () => {
+// 縮減版（2026-11-05 使用者同意）：2 seed × 3 policy × 4 蝕月，不變量每 7 日抽查；外交變態與研發節奏在同一次跑裡檢查。
+const seeds = [1, 7] as const;
+test("兩 seed × idle/random/merc × 四蝕月：每 7 日抽查戰爭不變量；外交變態只在第 2 段、研發事件只在蝕月首日", { timeout: 60000 }, () => {
   const { ctx } = fixture();
+  let relationCount = 0, rndCount = 0;
   for (const policy of ["idle", "random", "merc"] as const) for (const seed of seeds) {
     let metrics = initialWarMetrics(fixture(seed).s);
-    const result = runCampaign({ ...ctx, start: "default", seed, months: 6, policy, continueAfterEnd: true,
+    const result = runCampaign({ ...ctx, start: "default", seed, months: 4, policy, continueAfterEnd: true,
       battle: fakeBattle,
-      onDay(s) { assert.deepEqual(checkInvariants(s, ctx.world), [], `${policy}/${seed}/day${s.clock.day}`); metrics = updateWarMetrics(metrics, s); } });
-    assert.equal(result.summary.length, 6, `${policy}/${seed}/day${result.state.clock.day}`);
+      onDay(s) {
+        if (s.clock.day % 7 === 0) assert.deepEqual(checkInvariants(s, ctx.world), [], `${policy}/${seed}/day${s.clock.day}`);
+        metrics = updateWarMetrics(metrics, s);
+      } });
+    assert.equal(result.summary.length, 4, `${policy}/${seed}/day${result.state.clock.day}`);
+    assert.deepEqual(checkInvariants(result.state, ctx.world), [], `${policy}/${seed}/end`);
     assert.deepEqual(metrics.errors, [], `${policy}/${seed}`);
+    const relations = result.state.log.filter(e => e.type === "RelationChanged");
+    assert(relations.every(e => e.payload.stage === 2), `${policy}/${seed}`);
+    const rnd = result.state.log.filter(e => e.type === "ModelReleased");
+    assert(rnd.every(e => e.day % 28 === 0), `${policy}/${seed}`);
+    relationCount += relations.length; rndCount += rnd.length;
   }
+  assert(relationCount > 0);
+  assert(rndCount > 0);
 });
 
 test("檢查器會攔下戰爭欄位與比例超界", () => {
@@ -63,18 +76,6 @@ test("七日等待與七次單日等待：作戰外交事件及 state 同值", (
   for (let i = 0; i < 7; i++) single = settle(applyCommand(single, ctx.db, ctx.world, { v: "wait", days: 1 }).state);
   assert.deepEqual(batch.log.filter(e => /Operation|Relation|Treaty/.test(e.type)), single.log.filter(e => /Operation|Relation|Treaty/.test(e.type)));
   assert.equal(campaignHash(batch), campaignHash(single));
-});
-
-test("外交變態只在第 2 段；研發事件只在蝕月首日", () => {
-  const { ctx } = fixture();
-  const result = runCampaign({ ...ctx, start: "default", seed: 1, months: 6, policy: "idle", continueAfterEnd: true,
-    battle: fakeBattle });
-  const relations = result.state.log.filter(e => e.type === "RelationChanged");
-  assert(relations.length > 0);
-  assert(relations.every(e => e.payload.stage === 2));
-  const rnd = result.state.log.filter(e => e.type === "ModelReleased");
-  assert(rnd.length > 0);
-  assert(rnd.every(e => e.day % 28 === 0));
 });
 
 test("含作戰與 join 戰鬥的重播不呼叫 runner，state 逐位元相同", { timeout: 30000 }, () => {
