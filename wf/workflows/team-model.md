@@ -37,7 +37,7 @@
 
 **領導**自己 context 吃緊時寫 state 檔交棒（`dispatch/handoffs/STATE.md`），不硬撐；交接書的**範圍詞會被線遞移展開**，範圍用排除法寫死、件數 gate 與容量 gate 並列（見 [dispatch](dispatch/README.md)）。
 
-**agent 可再派子 agent，模型無限制**；它在那一層就是領導，交接書仍須寫「子代理上限」。既有資源節制照舊：平行工人最多 3，全機同時最多一個重負載，細則見 [common/user](common/user.md)。
+**agent 可再派子 agent，模型無限制**；它在那一層就是領導，交接書仍須寫「子代理上限」。人手與試玩資源限制見 [working](common/user/working.md#工作與資源偏好)。
 
 ## 二、三、聰明度分級與 token 消耗速度
 

@@ -2,7 +2,7 @@
 
 [user](../user.md)
 
-**團隊與禁區（使用者 2026-10-27 新裁示）**：頂層／規劃 `gpt-6-astra`，領導／普通工 `gpt-6.1-sol`，簡單工作 `gpt-6.1-terra`，取代先前角色配置，細節見 [team-model](../../team-model.md)。agent 可再派子 agent，模型無限制；子代理上限仍寫進交接書，平行工人最多 3 與重負載限流照舊。原生子 agent 用工具回傳，外部 `codex exec` 線才用 inbox，不把模型名稱等同通訊方式。**工人層盡量都用 codex**、**上網搜尋一律交給 codex**（沿用 2026-10-24 偏好）；隊伍數量無上限。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。內容創作（使用者 2026-10-26 定）：先 codex astra 做計劃、再 sol 產出與微調文筆，數值最後統一調，每件附簡短白話介紹供頂層（`gpt-6-astra`）＋使用者審敘事基調，見 [batch](../../content/batch.md)「兩段式創作」。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24），刪檔一律先問。
+**團隊與禁區（使用者 2026-10-27 新裁示）**：頂層／規劃 `gpt-6-astra`，領導／普通工 `gpt-6.1-sol`，簡單工作 `gpt-6.1-terra`，取代先前角色配置，細節見 [team-model](../../team-model.md)。agent 可再派子 agent，模型無限制；子代理上限仍寫進交接書，資源限制見下方。原生子 agent 用工具回傳，外部 `codex exec` 線才用 inbox，不把模型名稱等同通訊方式。**工人層盡量都用 codex**、**上網搜尋一律交給 codex**（沿用 2026-10-24 偏好）；隊伍數量無上限。事情盡量交給 agent，主 session 只跟使用者溝通、決策、分配授權。負責實質工作的 agent 做事前要**親自讀過適用的 `wf/` 規矩**，不只靠上層摘要；簡單工作與雜活例外。內容創作（使用者 2026-10-26 定）：先 codex astra 做計劃、再 sol 產出與微調文筆，數值最後統一調，每件附簡短白話介紹供頂層（`gpt-6-astra`）＋使用者審敘事基調，見 [batch](../../content/batch.md)「兩段式創作」。硬禁區：不碰鍵盤、滑鼠、螢幕，不開 GUI 視窗，Godot 只准 `godot-mono --headless`；push 已授權（2026-10-24），刪檔一律先問。
 
 領域詞彙常猜錯 → 開 `glossary.md`（見 [common/README](../README.md)）。
 
@@ -12,7 +12,7 @@
 
 **填充規模（同日再澄清）**：期待多 agent 並行擴充機甲、怪獸、人物、地點、事件、勢力等內容，不只少量 lore 或文案一致性整理；按類別分批、相互掛接與去重，仍遵守資源限流。
 
-**資源節制（使用者 2026-10-26）**：「不要濫用npm，電腦的cpu和memory都被整個弄爆了。」全機同時最多一個重負載（`npm test`／`test:e2e`／`test:dom`／sim／fuzz／平衡探針），開跑前 `pgrep -fa 'node --test|playwright|npm (test|run)'` 確認；codex 工人與子 agent 只跑相關單檔測試、lore check、typecheck，全套只由領導收件後跑一次（`--test-concurrency` 壓低）；平行 codex 工人上限 3。派線交接書要寫進這條。（使用者 2026-11-05 再收緊）不只重負載，全機任何 node／npm 程序一次只准一個，不把資源吃滿；常駐的 MCP server 除外。
+**資源節制（使用者 2026-10-26）**：「不要濫用npm，電腦的cpu和memory都被整個弄爆了。」全機同時最多一個重負載（`npm test`／`test:e2e`／`test:dom`／sim／fuzz／平衡探針），開跑前 `pgrep -fa 'node --test|playwright|npm (test|run)'` 確認；codex 工人與子 agent 只跑相關單檔測試、lore check、typecheck，全套只由領導收件後跑一次（`--test-concurrency` 壓低）；（使用者 2026-11-18 裁示）可多開 agent 並行做靜態工作；headless 試玩由 `gpt-6-astra` 負責，同一時間只准一個。派線交接書要寫進這些限制。（使用者 2026-11-05 再收緊）不只重負載，全機任何 node／npm 程序一次只准一個，不把資源吃滿；常駐的 MCP server 除外。
 
 **逐輪填充（2026-10-27）**：使用者授權持續分輪產出，明確要求比對與既有內容的相似或重複。候選先查、交稿再查；不能只比名稱，應比對具體情節、角色功能、場所用途及單位定位，退回重複構想而不刪舊內容。
 
