@@ -48,7 +48,11 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   await expect(root).toBeVisible();
   mark("loaded");
   await expect(root.locator('[data-ui="ops-header"]')).toContainText("第 1 蝕月");
-  await expect(root.locator('[data-ui="ops-tabs"] button[data-action-id="tab:world"] kbd')).toBeVisible();
+  // 第 0 天開場事件使用 prompt 鍵位；先回應事件才恢復分頁快捷鍵。
+  const worldTab = root.locator('[data-ui="ops-tabs"] button[data-action-id="tab:world"]');
+  await expect(root.locator('[data-ui="ops-prompt"]')).toBeVisible();
+  await expect(worldTab).toBeDisabled();
+  await expect(worldTab.locator("kbd")).toHaveCount(0);
   await shot(page, "ship");
 
   // 推進到下個事件；有事件就按 1 回應，直到有可接契約。
@@ -62,6 +66,8 @@ test("營運：開新戰役 → 推進 → 接約 → 航行 → 出戰 → 返�
   }
   expect((await ops(page)).contracts.some(c => c.status === "offered")).toBe(true);
   mark("contracts-offered");
+  await expect(worldTab).toBeEnabled();
+  await expect(worldTab.locator("kbd")).toHaveText("G");
 
   await page.keyboard.press("g");
   await expect(root.locator('[data-ui="world-map"] .world-cell').first()).toBeVisible();

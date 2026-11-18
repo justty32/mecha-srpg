@@ -6,7 +6,7 @@ import type { CampaignEvent, CampaignState, Screen, OpsCommand } from "../state/
 import type { WorldDB } from "../content/worlddb.ts";
 import { evalOpsCond } from "../content/cond.ts";
 import { currentRoom, describeRoom } from "./rooms.ts";
-import { eventLog } from "./templates.ts";
+import { eventsLog } from "./templates.ts";
 import { entityName } from "./parse.ts";
 import { shortestPath } from "../world/move.ts";
 import { allPlaces } from "../world/places.ts";
@@ -30,7 +30,7 @@ export function render(state: CampaignState, events: CampaignEvent[], world: Wor
     const group = cmd.v === "go" ? "rooms" : cmd.v === "choose" ? "choices" : ["save", "help"].includes(cmd.v) ? "system" : room.id;
     return { id: `${specific}:${JSON.stringify(cmd)}`, label, cmd, group, ...(key ? { key } : {}), tooltip: `${label}${key ? `（${key}）` : ""}${disabled ? `：${disabled}` : ""}`, ...(disabled ? { disabled } : {}) };
   };
-  const screen: Screen = { room, log: events.map(event => eventLog(event, state, world)), panels: {
+  const screen: Screen = { room, log: eventsLog(events, state, world), panels: {
     ...(showMap ? { map: allPlaces(state, ctx).map(place => {
       const path = shortestPath(state, ctx, state.ship.pos, place.id);
       return { id: place.id, name: place.name, map: place.map, x: place.at.x, y: place.at.y,

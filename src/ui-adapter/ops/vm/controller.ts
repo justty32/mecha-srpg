@@ -16,13 +16,13 @@ import type { BattleResult } from "../../../ops/sortie/apply.ts";
 import { canonicalJson } from "../../../core/eventlog.ts";
 import { BattleSession, BattleController } from "../../vm/index.ts";
 import { draftSortie, draftError, defaultUnit, controlMode, seatDefs, seatOptions } from "./formation.ts";
-import { buildSnapshot } from "./snapshot.ts";
+import { buildLog, buildSnapshot } from "./snapshot.ts";
 import type { ViewState } from "./snapshot.ts";
 import { bindButtons, mergedBindings, resolveButtonKey } from "./keymap.ts";
 import type { Binding } from "./keymap.ts";
 import { displayName, label, rejection } from "./labels.ts";
 import type { OpsKeyInput, OpsSnapshot, OpsUiAction, BattleReport } from "./types.ts";
-import { createWorldUi, updateWorldUi } from "./world.ts";
+import { WorldViewModel, createWorldUi, updateWorldUi } from "./world.ts";
 
 export type OpsControllerOptions = { db: ContentDB; world: WorldDB; start?: string; seed: number; spectate?: boolean };
 type LiveBattle = { controller: BattleController; session: BattleSession; cmd: Extract<OpsCommand, { v: "sortie" }>; sortie: Sortie; title: string };
@@ -35,7 +35,8 @@ export class OpsController {
   private live: LiveBattle | null = null;
   private customNamed = false;
   private cachedSnapshot: OpsSnapshot | null = null;
-  private ui: ViewState = { tab: "ship", node: null, contract: null, mech: null, person: null, draft: null, battle: null, report: null, message: null, showHelp: false };
+  private worldModel: WorldViewModel | undefined;
+  private ui: ViewState = { logFilter: "important", tab: "ship", node: null, contract: null, mech: null, person: null, draft: null, battle: null, report: null, message: null, showHelp: false };
 
   constructor(opts: OpsControllerOptions) {
     this.opts = opts; this.start = opts.start ?? "start/default";
@@ -60,7 +61,8 @@ export class OpsController {
   private ctx() { return createOpsCtx(this.current, this.opts.db, this.opts.world); }
   private viewSnapshot(): OpsSnapshot {
     if (!this.cachedSnapshot) {
-      const snapshot = buildSnapshot(this.current, this.ctx(), this.ui);
+      if (this.ui.tab === "world") this.worldModel = new WorldViewModel(this.current, this.ctx(), this.ui.map!);
+      const snapshot = buildSnapshot(this.current, this.ctx(), this.ui, undefined, this.worldModel);
       bindButtons(snapshot, this.bindings);
       this.cachedSnapshot = snapshot;
     }
@@ -157,7 +159,37 @@ export class OpsController {
     }
   }
   dispatch(action: OpsUiAction): OpsSnapshot {
+    // 通知篩選只更新呈現，不消耗時間、清提示或打斷待選事件。
+    if (action.type === "logFilter") {
+      const previous = this.viewSnapshot();
+      if (previous.logFilters.some(filter => filter.id === action.filter)) {
+        this.ui.logFilter = action.filter;
+        this.cachedSnapshot = { ...previous, logFilter: action.filter, log: buildLog(this.current, this.ctx(), action.filter) };
+      }
+      return this.snapshot();
+    }
+    // 純切頁沿用同一戰役／選取狀態已驗證的資料；只有首次世界頁需要建立地圖。
+    // 事件、疊層與戰役結束仍走完整路徑，保留原有鎖定與拒絕提示。
+    if (action.type === "tab" && this.cachedSnapshot && !this.live && !this.current.pendingChoices.length
+      && !this.current.pendingEncounter && !this.ui.showHelp && !this.ui.report && !this.ui.draft
+      && !this.current.log.some(e => e.type === "CampaignEnd")) {
+      const previous = structuredClone(this.cachedSnapshot);
+      this.ui.tab = action.tab; this.ui.message = null;
+      previous.tab = action.tab; previous.message = null;
+      for (const tab of previous.tabs) tab.active = tab.action.type === "tab" && tab.action.tab === action.tab;
+      if (action.tab === "world") {
+        this.worldModel ??= new WorldViewModel(this.current, this.ctx(), this.ui.map!);
+        this.cachedSnapshot = buildSnapshot(this.current, this.ctx(), this.ui, previous, this.worldModel);
+      } else {
+        delete previous.world.grid;
+        this.cachedSnapshot = previous;
+      }
+      bindButtons(this.cachedSnapshot, this.bindings);
+      return this.snapshot();
+    }
     // UI 也有原地更新；每次指令（含拒絕提示）都必須重建，不能只比 campaign identity。
+    const mapBase = action.type.startsWith("map") && this.ui.tab === "world" ? this.cachedSnapshot : null;
+    if (!mapBase) this.worldModel = undefined;
     this.cachedSnapshot = null;
     this.ui.message = null;
     if (this.live && action.type !== "battleDone") { this.ui.message = "戰鬥進行中"; return this.snapshot(); }
@@ -168,6 +200,13 @@ export class OpsController {
     }
     if (action.type.startsWith("map")) {
       updateWorldUi(this.current, this.ctx(), this.ui.map!, action as import("./types.ts").WorldMapAction);
+      if (mapBase && this.ui.tab === "world" && !this.current.pendingEncounter && !this.ui.showHelp && !this.ui.report && !this.ui.draft) {
+        const reuseActions = ["mapHover", "mapScroll", "mapResize", "mapViewport", "mapZoom", "mapMinimap", "mapLayers", "mapMaps"].includes(action.type);
+        if (!reuseActions || !this.worldModel) this.worldModel = new WorldViewModel(this.current, this.ctx(), this.ui.map!, this.worldModel);
+        const snapshot = buildSnapshot(this.current, this.ctx(), this.ui, mapBase, this.worldModel, reuseActions);
+        if (!reuseActions) bindButtons(snapshot, this.bindings);
+        this.cachedSnapshot = snapshot;
+      }
       return this.snapshot();
     }
     switch (action.type) {

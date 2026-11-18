@@ -1,9 +1,25 @@
-import { test, expect } from "@playwright/test";
+import { test, expect, type Page } from "@playwright/test";
+
+async function answerOpening(page: Page): Promise<void> {
+  const root = page.locator('[data-page="ops"] [data-ui="ops"]');
+  const prompt = root.locator('[data-ui="ops-prompt"]');
+  const worldTab = root.locator('[data-ui="ops-tabs"] [data-action-id="tab:world"]');
+  await expect(root).toBeVisible();
+  await expect(prompt).toBeVisible();
+  await expect(worldTab).toBeDisabled();
+  // 第 0 天先逐一回應序章；選第一個可用選項，讓正常事件流程解鎖分頁。
+  for (let i = 0; i < 20 && await prompt.isVisible(); i++) {
+    await prompt.locator('button[data-choice]:enabled').first().click();
+  }
+  await expect(prompt).toBeHidden();
+  await expect(worldTab).toBeEnabled();
+}
 
 test("大地圖：開局 → 世界分頁 → 游標到地點 → Enter → 抵達 → 泊", async ({ page }) => {
   const errors: string[] = [];
   page.on("pageerror", e => errors.push(e.message));
   await page.goto("/?seed=3&anim=off#/ops");
+  await answerOpening(page);
   const root = page.locator('[data-page="ops"] [data-ui="ops"]');
   await expect(root).toBeVisible();
   await root.locator('[data-action-id="tab:world"]').click();
@@ -37,7 +53,9 @@ for (const input of ['mouse', 'touch'] as const) test(`世界安全拖曳：${in
   const context = await browser.newContext({ viewport: input === 'mouse' ? { width: 1280, height: 800 } : { width: 390, height: 844 }, hasTouch: input === 'touch', isMobile: input === 'touch' });
   const page = await context.newPage();
   try {
-    await page.goto('/?seed=3&anim=off#/ops'); await page.locator('[data-action-id="tab:world"]').click();
+    await page.goto('/?seed=3&anim=off#/ops');
+    await answerOpening(page);
+    await page.locator('[data-action-id="tab:world"]').click();
     const state = () => page.evaluate(() => {
       const s = (window as unknown as { __ops: { snapshot(): { header: { route: unknown }; world: { grid: { viewport: { x: number; y: number }; cursor: { x: number; y: number }; zoom: number } } } } }).__ops.snapshot();
       return { ...s.world.grid, route: s.header.route };

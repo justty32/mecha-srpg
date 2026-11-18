@@ -357,12 +357,17 @@ for (const input of ['mouse', 'touch'] as const) test(`戰場安全拖曳：${in
       const beforeViewport = await page.evaluate(() => (window as unknown as { __battle: { peek(): { viewport: unknown } } }).__battle.peek().viewport);
       const offset = await page.evaluate(() => (window as unknown as { __panPointers: unknown[] }).__panPointers.length);
       const touchX = Math.round(swipe!.x), touchY = Math.round(swipe!.y);
-      await cdp.send('Emulation.setEmitTouchEventsForMouse', { enabled: true, configuration: 'mobile' });
-      try {
-        await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mousePressed', x: touchX, y: touchY, button: 'left' });
-        for (let step = 1; step <= 8; step++) await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mouseMoved', x: touchX, y: Math.round(touchY - 180 * step / 8), button: 'left' });
-        await cdp.send('Input.emulateTouchFromMouseEvent', { type: 'mouseReleased', x: touchX, y: touchY - 180, button: 'left' });
-      } finally { await cdp.send('Emulation.setEmitTouchEventsForMouse', { enabled: false }); }
+      // 原生頁面捲動需逐幀送出 touch；單次合成手勢在 headless 中可能只有 pointer 而不捲頁。
+      const touch = (type: 'touchStart' | 'touchMove' | 'touchEnd', y?: number) => cdp.send('Input.dispatchTouchEvent', {
+        type, touchPoints: y === undefined ? [] : [{ x: touchX, y, id: 1, radiusX: 4, radiusY: 4, force: 1 }], timestamp: Date.now() / 1000,
+      });
+      const frame = () => new Promise<void>(resolve => setTimeout(resolve, 32));
+      await touch('touchStart', touchY); await frame();
+      for (let step = 1; step <= 12; step++) {
+        await touch('touchMove', touchY - step * 15); await frame();
+      }
+      await touch('touchEnd');
+      await page.waitForTimeout(200);
       const pointers = await page.evaluate(offset => (window as unknown as { __panPointers: { type: string; x: number; y: number; trusted: boolean; pointerType: string }[] }).__panPointers.slice(offset), offset);
       const moves = pointers.filter(event => event.type === 'pointermove');
       expect(pointers.some(event => event.type === 'pointerdown' && event.trusted && event.pointerType === 'touch')).toBe(true);

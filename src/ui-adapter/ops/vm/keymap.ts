@@ -36,6 +36,11 @@ export function allButtons(s: OpsSnapshot): OpsButton[] {
     ...s.contracts.flatMap(c => c.buttons), ...s.mechs.flatMap(m => m.buttons), ...s.market.items.flatMap(i => i.buttons), ...(s.sortie?.buttons ?? [])];
 }
 export function bindButtons(s: OpsSnapshot, bindings: Binding[]): void {
+  // 重用已驗證快照切換 context 時，先撤下前一頁的鍵標籤。
+  for (const button of allButtons(s)) {
+    delete button.key;
+    button.tooltip = button.tooltip.replace(/\n快捷鍵：[^\n]*/g, "");
+  }
   const context = s.prompt ? "prompt" : s.showHelp || s.report ? "overlay" : s.sortie ? "sortie" : s.tab === "world" ? "map" : "room";
   const buttons = context === "map" ? s.world.grid?.actions ?? [] : allButtons(s);
   for (const b of bindings.filter(b => (b.context ?? (b.action.startsWith("choose:") ? "prompt" : "room")) === context)) {

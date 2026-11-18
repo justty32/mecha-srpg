@@ -17,4 +17,3 @@
 - [feature-dev] Fable 三題實作（SIZE、LINK-01、LINK-02 E1→E3′），連同把 10/29 的 specs／plans 併進 core → [裁決](workflows/decisions/2026-11-05-fable-three.md)、[specs](workflows/planning/specs/core/README.md)
 - [refactor] F 類程式碼拆檔：18 檔超過 300 行 → [STRUCTURE](STRUCTURE.md)
 - [balance] 數值（經濟變緊、命中變異）待使用者試玩後再定 → [WAIT_USER](WAIT_USER.md)
-- [testing] e2e 與 ui.test 今天都沒實跑，找沒有其他 node 的時段補跑 → [testing](workflows/testing.md)

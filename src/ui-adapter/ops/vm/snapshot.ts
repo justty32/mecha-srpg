@@ -2,10 +2,12 @@ import { apparentAge } from "../../../core/age.ts";
 import type { CampaignState, OpsCtx, OpsCommand, Sortie } from "../../../ops/state/types.ts";
 import { applyCommand } from "../../../ops/time/index.ts";
 import { render } from "../../../ops/text/render.ts";
+import { registerTextDB } from "../../../ops/text/names.ts";
+import { OPS_LOG_FILTERS, filterLogEvents, eventsLog, type OpsLogFilter } from "../../../ops/text/index.ts";
 import { clock, skyAt } from "../../../ops/state/clock.ts";
 import { placeAt } from "../../../ops/war/loc.ts";
 import { allPlaces, requirePlace } from "../../../ops/world/places.ts";
-import { isDocked, shortestPath } from "../../../ops/world/move.ts";
+import { isDocked, isSafelyDocked, shortestPath } from "../../../ops/world/move.ts";
 import { marketPrice, marketListings, marketReputation } from "../../../ops/world/market.ts";
 import type { MarketState } from "../../../ops/world/market.ts";
 import { peekCrew } from "../../../ops/crew/shared.ts";
@@ -16,24 +18,46 @@ import { layoutNodes } from "./layout.ts";
 import { displayName, label, rejection, tideName } from "./labels.ts";
 import { formationView, draftSortie, draftError } from "./formation.ts";
 import { allButtons } from "./keymap.ts";
-import { WorldViewModel, createWorldUi, type WorldUi } from "./world.ts";
+import { WorldViewModel, createWorldUi, remainingPlaceDays, type WorldUi } from "./world.ts";
 import { blightAt } from "../../../ops/world/blight.ts";
 
 export type ViewState = {
   map?: WorldUi;
+  logFilter?: OpsLogFilter;
   tab: OpsTab; node: string | null; contract: string | null; mech: string | null; person: string | null;
   draft: Sortie | null; battle: OpsSnapshot["battle"]; report: BattleReport | null; message: string | null; showHelp: boolean;
 };
 export function button(id: string, text: string, group: string, action: OpsUiAction, reason?: string): OpsButton {
   return { id, label: text, group, tooltip: `${text}${reason ? `\n${reason}` : ""}`, enabled: !reason, ...(reason ? { reason } : {}), action };
 }
-export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): OpsSnapshot {
+// 等待的可用狀態由待決事件鎖定；不能為了畫按鈕模擬整天。
+function checkCommand(s: CampaignState, ctx: OpsCtx, cmd: OpsCommand) {
+  return cmd.v === "wait" ? { ok: true as const } : applyCommand(s, ctx.db, ctx.world, cmd).result;
+}
+export function buildLog(s: CampaignState, ctx: OpsCtx, filter: OpsLogFilter): OpsSnapshot["log"] {
+  registerTextDB(ctx.world, ctx.db);
+  return eventsLog(filterLogEvents(s.log, s, filter, ctx.world), s, ctx.world, 200);
+}
+export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState, mapBase?: OpsSnapshot, model?: WorldViewModel, reuseMapActions = false): OpsSnapshot {
+  if (mapBase && ui.tab === "world") {
+    const grid = (model ?? new WorldViewModel(s, ctx, ui.map ?? createWorldUi(s))).snapshot(true, reuseMapActions ? mapBase.world.grid!.actions : undefined);
+    if (reuseMapActions) grid.actions = mapBase.world.grid!.actions;
+    else for (const b of grid.actions) if (b.enabled && b.action.type === "cmd") {
+      const result = checkCommand(s, ctx, b.action.cmd);
+      if (!result.ok) { b.enabled = false; b.reason = rejection(result.error); b.tooltip += `\n${b.reason}`; }
+    }
+    if (!reuseMapActions && s.pendingBattle) for (const b of grid.actions) {
+      if (b.action.type === "cmd" && b.action.cmd.v === "wait") {
+        b.enabled = false; b.reason = "先處理待命戰鬥"; b.tooltip += `\n${b.reason}`;
+      }
+    }
+    return { ...mapBase, message: ui.message, world: { ...mapBase.world, grid } };
+  }
   const { db, world } = ctx, name = (id: string) => displayName(s, db, world, id);
-  // 帳目明細（Posted）在帳本分頁看，記錄列表略過以免洗版。
-  const screen = render(s, s.log.filter(e => e.type !== "Posted").slice(-200), world, db), cal = world.require("calendar", s.calendar);
+  const screen = render(s, [], world, db), cal = world.require("calendar", s.calendar);
   const over = s.log.some(e => e.type === "CampaignEnd"), pending = s.pendingChoices[0];
   const cmdButton = (id: string, text: string, group: string, cmd: OpsCommand, disabled?: string): OpsButton => {
-    const result = cmd.v === "wait" ? { ok: true as const } : applyCommand(s, db, world, cmd).result;
+    const result = checkCommand(s, ctx, cmd);
     return button(id, text, group, { type: "cmd", cmd }, disabled ?? (!result.ok ? result.error === "reputation-required" && cmd.v === "trade" ? buyReputationReason(cmd) : rejection(result.error) : undefined));
   };
   const buyReputationReason = (cmd: Extract<OpsCommand, { v: "trade" }>): string => {
@@ -53,7 +77,7 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const destination = pathState?.to;
   const targetPlace = destination && "place" in destination ? destination.place : undefined;
   const targetName = destination ? "place" in destination ? name(destination.place) : "actor" in destination ? name(destination.actor) : `${destination.cell.x},${destination.cell.y}` : "";
-  const route = pathState ? { to: targetPlace ?? targetName, toName: targetName, daysLeft: s.pendingTicks } : undefined;
+  const route = pathState ? { to: targetPlace ?? targetName, toName: targetName, daysLeft: remainingPlaceDays(s, ctx) ?? s.pendingTicks } : undefined;
   const roomButtons = screen.actions.map(a => cmdButton(a.id, a.label, a.group, a.cmd, a.disabled));
   roomButtons.push(cmdButton("dock", "停泊", "world", { v: "dock" }), cmdButton("drift", "懸停", "world", { v: "drift" }));
   roomButtons.push(openButton("sortieOpen", "sortie", ui.contract ?? undefined));
@@ -128,13 +152,13 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
   const snapshot: OpsSnapshot = {
     header: { ...s.clock, omens: activeOmens, stage: today.stage, stageName: label(today.stage), tide: today.tide, tideName: tideName(today.tide), daysPerMonth: cal.daysPerMonth, phaseName: label(s.clock.phase), dateText: `第 ${s.clock.month + 1} 蝕月 第 ${s.clock.dom} 日（${label(s.clock.phase)}）`,
       cash: s.ledger.balances.cash, debt: s.ledger.balances.debt, location: route ? `航行中 → ${targetName}` : here ? name(here) : `${s.ship.pos.cell.x},${s.ship.pos.cell.y}`,
-      route: route ?? null, docked, pressure: s.pressure,
+      route: route ?? null, docked, unsafeDocked: docked && !isSafelyDocked(s, ctx), pressure: s.pressure,
       fuel: { cur: s.ship.fuel.cur, max: s.ship.fuel.max }, hull: { cur: s.ship.hull.cur, max: s.ship.hull.max } },
     tab: ui.tab, tabs: (["ship", "world", "contracts", "roster", "mechs", "ledger", "market", "calendar"] as const).map(tab => ({ ...button(`tab:${tab}`, label(tab), "tabs", { type: "tab", tab }), active: tab === ui.tab })),
     timeButtons: [button("advance:day", "推進一天", "time", { type: "advance", until: "day" }), button("advance:event", "到下個事件", "time", { type: "advance", until: "event" })],
     room: { id: screen.room.id, title: screen.room.title, desc: screen.room.desc }, roomButtons,
     world: { nodes: worldNodes, routes: [],
-      ...(ui.tab === "world" ? { grid: new WorldViewModel(s, ctx, ui.map ?? createWorldUi(s)).snapshot() } : {}),
+      ...(ui.tab === "world" ? { grid: (model ?? new WorldViewModel(s, ctx, ui.map ?? createWorldUi(s))).snapshot() } : {}),
       selected: selected ? { id: selected.id, name: selected.name,
         lines: [`座標：${name(selectedDef!.map)} ${selectedDef!.at.x},${selectedDef!.at.y}`, `所有權：${selected.ownerName ?? "無"}`, `服務：${selectedDef!.services.map(id => world.get("room", world.get("service", id)?.room ?? id)?.title ?? label(id)).join("、") || "無"}`,
           `蝕域：${selected.blight?.depthName ?? "無"}`, `裂縫：${selected.rift ? `${selected.rift.phaseName}／${selected.rift.width}` : "無"}`, path ? `航程 ${path.days} 天／燃料 ${path.fuel}` : "沒有可通行航線"],
@@ -159,7 +183,8 @@ export function buildSnapshot(s: CampaignState, ctx: OpsCtx, ui: ViewState): Ops
         { day: s.clock.day + cal.daysPerMonth - s.clock.dom + 1, text: "新蝕月：薪資結算" }].sort((a, b) => a.day - b.day) },
     panels: { rifts: Object.values(s.rifts).map(r => ({ id: r.id, nodeName: name(r.site), phaseName: label(r.phase), width: r.width })),
       queue: s.jobs.map(j => ({ id: j.id, text: `${label(j.kind)}：${name(j.target)} ${j.doneHours}/${j.needHours}`, progress: j.needHours ? Math.min(1, j.doneHours / j.needHours) : 1 })) },
-    log: screen.log, prompt, sortie, battle: ui.battle, report: ui.report, message: ui.message, keyHints: [], showHelp: ui.showHelp, over,
+    logFilter: ui.logFilter ?? "important", logFilters: OPS_LOG_FILTERS.map(filter => ({ ...filter })),
+    log: buildLog(s, ctx, ui.logFilter ?? "important"), prompt, sortie, battle: ui.battle, report: ui.report, message: ui.message, keyHints: [], showHelp: ui.showHelp, over,
   };
   for (const b of snapshot.world.grid?.actions ?? []) {
     if (b.enabled && b.action.type === "cmd") {

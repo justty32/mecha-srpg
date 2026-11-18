@@ -53,6 +53,32 @@ function setup(t: TestContext, snapshot: OpsSnapshot = opsFixture()) {
   return { root, win, view, actions, keys, q, click };
 }
 
+test("契約空板提示既有推進一天；進行中與歷史契約不誤導等待", t => {
+  const empty = opsFixture("contracts"); empty.contracts = [];
+  const { root, view } = setup(t, empty);
+  assert.match(root.querySelector(".pane-contracts")!.textContent!, /「推進一天」.*是否有新委託/);
+  assert.equal(root.querySelectorAll('button[data-action-id="advance:day"]').length, 1);
+  for (const status of ["active", "done"] as const) {
+    const next = opsFixture("contracts");
+    next.contracts = [next.contracts[0]!]; next.contracts[0]!.status = status;
+    view.render(next);
+    assert.doesNotMatch(root.querySelector(".pane-contracts")!.textContent!, /是否有新委託/);
+    assert.match(root.querySelector(".pane-contracts")!.textContent!, /清剿：沼原/);
+  }
+});
+
+test("只建立目前頁內容，隱藏頁首開使用最新快照", t => {
+  const first = opsFixture("world");
+  const { root, view } = setup(t, first);
+  for (const pane of root.querySelectorAll(".ops-pane:not(.pane-world)")) assert.equal(pane.childNodes.length, 0);
+  const next = opsFixture("ship"); next.room.title = "更新後的艦橋";
+  view.render(next);
+  assert.equal(root.querySelector(".pane-ship h2")?.textContent, "更新後的艦橋");
+  assert.equal(root.querySelector(".pane-contracts")?.childNodes.length, 0);
+  view.render(opsFixture("contracts"));
+  assert.ok(root.querySelector(".pane-contracts h2"));
+});
+
 test("按鈕標 kbd 與 tooltip；disabled 按鈕 tooltip 末行寫 reason", t => {
   const { q, win, root } = setup(t);
   const go = q('button[data-action-id="go:hangar"]')!;
@@ -164,4 +190,54 @@ test("快捷安全解析當前snapshot；prompt禁用、釘選不dispatch", t =>
   stale.dispatchEvent(new win.MouseEvent("click", { bubbles: true }));
   assert.deepEqual(actions, []);
   assert.ok([...panel.querySelectorAll<HappyButton>(".shortcut-activate")].every(b => b.disabled));
+});
+
+
+test("通知分類原生選單：送分類 action，空狀態與模態鎖定保留事件", t => {
+  const s = opsFixture();
+  s.log = [];
+  const { q, root, win, view, actions, keys } = setup(t, s);
+  const select = q('[data-ui="ops-log-filter"]') as HTMLSelectElement;
+  assert.equal(select.getAttribute("aria-label"), "通知分類");
+  assert.equal(select.value, "important");
+  assert.equal(select.options.length, 6);
+  assert.equal(q('[data-ui="ops-log-empty"]')!.textContent, "目前沒有重點通知");
+  select.focus();
+  for (const key of ["ArrowDown", "Enter", " ", ".", "1"]) {
+    const event = new win.KeyboardEvent("keydown", { key, bubbles: true, cancelable: true });
+    select.dispatchEvent(event as unknown as Event);
+    assert.equal(event.defaultPrevented, false, `原生選單保留 ${key}`);
+  }
+  assert.deepEqual(keys, []);
+  select.value = "money";
+  select.dispatchEvent(new win.Event("change", { bubbles: true }) as unknown as Event);
+  assert.deepEqual(actions, [{ type: "logFilter", filter: "money" }]);
+  s.logFilter = "money"; s.tab = "ledger";
+  view.render(s);
+  assert.equal(select.value, "money");
+  assert.equal(q('[data-ui="ops-log-empty"]')!.textContent, "此分類尚無記錄");
+  assert.equal(win.document.activeElement, select, "重繪保留選單節點與焦點");
+  s.prompt = promptFixture(); view.render(s);
+  const prompt = root.querySelector('[data-ui="ops-prompt"]');
+  assert.equal(select.disabled, true);
+  select.value = "all";
+  select.dispatchEvent(new win.Event("change", { bubbles: true }) as unknown as Event);
+  assert.equal(actions.length, 1, "模態底下的控制項不可送操作");
+  assert.equal(root.querySelector('[data-ui="ops-prompt"]'), prompt);
+  s.prompt = null; s.log = [{ day: 14, text: "薪資結算", kind: "money" }];
+  view.render(s);
+  assert.equal(select.disabled, false);
+  assert.equal(q('[data-ui="ops-log-empty"]')!.hidden, true);
+});
+
+
+test("所在港口：一般停泊沿用原文，失守停泊在待選事件下仍警示遇襲", t => {
+  const s = opsFixture(); s.prompt = promptFixture();
+  const { q, view } = setup(t, s);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /嶺口（停泊）/);
+  assert.doesNotMatch(q('[data-ui="ops-header"]')!.textContent!, /仍可能遇襲/);
+  s.header.unsafeDocked = true;
+  view.render(s);
+  assert.match(q('[data-ui="ops-header"]')!.textContent!, /嶺口（停泊・失守，仍可能遇襲）/);
+  assert.ok(q('[data-ui="ops-prompt"]'));
 });

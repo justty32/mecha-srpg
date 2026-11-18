@@ -52,7 +52,15 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
   const logPanel = el(doc, "aside", "", "ops-log-panel");
   const log = part("ol", "ops-log");
   log.setAttribute("aria-label", "營運記錄");
-  logPanel.append(el(doc, "h2", "記錄"), log);
+  const logHeading = el(doc, "div", "", "ops-log-heading");
+  const logLabel = el(doc, "label", "分類", "ops-log-filter-label");
+  const logFilter = part("select", "ops-log-filter");
+  logFilter.setAttribute("aria-label", "通知分類");
+  logLabel.append(logFilter);
+  logHeading.append(el(doc, "h2", "通知"), logLabel);
+  const logEmpty = part("p", "ops-log-empty", "muted");
+  logEmpty.setAttribute("role", "status");
+  logPanel.append(logHeading, el(doc, "p", "隊伍位置與勢力動向請看世界圖。", "ops-log-note muted"), logEmpty, log);
   layout.append(left, main, logPanel);
   const overlayLayer = el(doc, "div", "", "ops-overlays");
   shell.append(header, message, over, layout, overlayLayer);
@@ -88,8 +96,8 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
       fact("天象", h.omens.map(o => o.name).join("、") || "無"),
       fact("潮候", h.stageName), fact("潮級", `${h.tide}・${h.tideName}`),
       fact("現金", money(h.cash), h.cash < 0 ? "neg" : ""), fact("債", money(h.debt), h.debt > 0 ? "neg" : ""),
-      fact("所在", `${h.location}${h.docked ? "（停泊）" : ""}`),
-      fact("航程", h.route ? `→ ${h.route.toName}・剩 ${h.route.daysLeft} 天` : "—"),
+      fact("所在", `${h.location}${h.docked ? h.unsafeDocked ? "（停泊・失守，仍可能遇襲）" : "（停泊）" : ""}`),
+      fact("航程", h.route ? `→ ${h.route.toName}・預估剩 ${h.route.daysLeft} 天` : "—"),
       fact("蝕壓", String(h.pressure)), fuel, hull);
   };
   const paintSide = (s: OpsSnapshot): void => {
@@ -112,6 +120,11 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
     log.scrollTop = log.scrollHeight;
   };
 
+  const filterChange = (): void => {
+    const filter = current?.logFilters.find(option => option.id === logFilter.value);
+    if (filter && !logFilter.disabled) opts.onAction({ type: "logFilter", filter: filter.id });
+  };
+  logFilter.addEventListener("change", filterChange);
   const click = (event: MouseEvent): void => {
     const hit = registeredAction(registry, event.target, shell);
     if (hit) opts.onAction(hit.action);
@@ -140,6 +153,17 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
       if (changed("time", s.timeButtons)) time.replaceChildren(buttonRow(doc, s.timeButtons, registry));
       if (changed("tabs", s.tabs)) tabs.replaceChildren(buttonRow(doc, s.tabs, registry, "ops-buttons ops-tab-list"));
       if (changed("side", s.panels)) paintSide(s);
+      if (changed("logFilters", s.logFilters)) {
+        logFilter.replaceChildren(...s.logFilters.map(filter => {
+          const option = el(doc, "option", filter.label);
+          option.value = filter.id;
+          return option;
+        }));
+      }
+      logFilter.value = s.logFilter;
+      logFilter.disabled = !!(s.prompt || s.sortie || s.report || s.showHelp || s.battle);
+      logEmpty.hidden = s.log.length > 0;
+      logEmpty.textContent = s.logFilter === "important" ? "目前沒有重點通知" : "此分類尚無記錄";
       if (changed("log", s.log)) paintLog(s);
       panes.paint(s);
       overlays.paint(s);
@@ -160,6 +184,7 @@ export function mountOps(root: HTMLElement, opts: OpsMountOptions): OpsView {
       destroyed = true;
       doc.removeEventListener("keydown", keydown);
       shell.removeEventListener("click", click);
+      logFilter.removeEventListener("change", filterChange);
       panes.destroy();
       shortcuts.destroy();
       tooltip.destroy();

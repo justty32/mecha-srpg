@@ -5,6 +5,9 @@
 // 戰鬥：snapshot.battle 非 null 時 DOM 改掛戰鬥畫面（BattleController 由 controller.battleController() 取得），
 // 戰鬥分出勝負後玩家按「返回營運」→ 送 { type: "battleDone" }，controller 回寫戰果並在 snapshot.report 顯示。
 
+import type { OpsLogFilter } from "../../../ops/text/index.ts";
+export type { OpsLogFilter } from "../../../ops/text/index.ts";
+
 import type { OpsCommand } from "../../../ops/state/types.ts";
 
 /** 營運畫面的分頁（面板常駐，分頁只切主區內容）。 */
@@ -28,6 +31,7 @@ export type OpsUiAction =
   | WorldMapAction
   | { type: "cmd"; cmd: OpsCommand }                       // 任何 ops 指令（經 ops applyCommand 送出；按鈕、快捷鍵、文字形式結果恆等）
   | { type: "tab"; tab: OpsTab }
+  | { type: "logFilter"; filter: OpsLogFilter }
   | { type: "advance"; until: "day" | "event" }            // 推進一天／到下個事件（連續 wait 1，遇 prompt、新契約、抵達、裂縫變化、戰鬥待命或上限日數停）
   | { type: "selectNode"; node: string }                   // 世界圖點地點（顯示詳情與航行按鈕）
   | { type: "selectContract"; contract: string }
@@ -63,6 +67,7 @@ export type OpsHeader = TideView & {
   location: string;                 // 所在地點名（航行中為「航行中 → 目的地」）
   route: { to: string; toName: string; daysLeft: number } | null;
   docked: boolean;                  // 停泊（進城）或懸停
+  unsafeDocked: boolean;            // 已停泊但失守地點不提供遇襲保護
   pressure: number;                 // 潮壓
   fuel: { cur: number; max: number }; hull: { cur: number; max: number };
 };
@@ -210,6 +215,8 @@ export type OpsSnapshot = {
   market: MarketView;
   calendar: CalendarView;
   panels: { rifts: { id: string; nodeName: string; phaseName: string; width: string }[]; queue: { id: string; text: string; progress: number }[] };   // 側欄常駐小表
+  logFilter: OpsLogFilter;
+  logFilters: { id: OpsLogFilter; label: string }[];
   log: OpsLogLine[];                // 最近 200 行，舊→新
   prompt: PromptView | null;        // 事件／對話／命名；非 null 時多數按鈕 disabled（reason「先回應事件」）
   sortie: SortieView | null;        // 編成畫面

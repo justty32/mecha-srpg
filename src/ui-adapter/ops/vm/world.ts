@@ -1,7 +1,7 @@
 import type { CampaignState, OpsCtx, Loc, OpsCommand, PlaceDef } from "../../../ops/state/types.ts";
-import { gridOf, terrainAt, footprintOf, cellKey, cellsWithin } from "../../../ops/world/grid.ts";
-import { allPlaces } from "../../../ops/world/places.ts";
-import { shortestPath, availableFuel } from "../../../ops/world/move.ts";
+import { gridOf, terrainAt, footprintOf, cellKey, cellsWithin, stepCost, type GridMap } from "../../../ops/world/grid.ts";
+import { allPlaces, worldRules } from "../../../ops/world/places.ts";
+import { shortestPath, availableFuel, shipMover } from "../../../ops/world/move.ts";
 import { visibleCells, knownActors } from "../../../ops/world/fog.ts";
 import type { MapCell, WorldLayer, WorldMapAction, WorldGridSnapshot, WorldCellView, WorldPathPreview, OpsButton } from "./types.ts";
 
@@ -52,7 +52,7 @@ export function createWorldUi(s: CampaignState): WorldUi {
 export class WorldViewModel {
   readonly size: { w: number; h: number };
   readonly viewport: WorldUi["viewport"];
-  private readonly grid;
+  private readonly grid: GridMap;
   private readonly places: PlaceDef[];
   private readonly placeCells = new Map<string, PlaceDef>();
   private readonly territory = new Map<string, string>();
@@ -63,10 +63,12 @@ export class WorldViewModel {
   private readonly s: CampaignState;
   private readonly ctx: OpsCtx;
   readonly ui: WorldUi;
-  constructor(s: CampaignState, ctx: OpsCtx, ui: WorldUi) {
+  private routeCache = new Map<string, WorldPathPreview>();
+  constructor(s: CampaignState, ctx: OpsCtx, ui: WorldUi, previous?: WorldViewModel) {
     this.s = s; this.ctx = ctx; this.ui = ui;
     this.observed = knownActors(s).filter(({ actor }) => actor.pos.map === ui.map);
     this.grid = gridOf(ctx.world, ui.map);
+    if (previous?.s === s && previous.grid === this.grid) this.routeCache = previous.routeCache;
     this.size = { w: this.grid.width, h: this.grid.height };
     this.viewport = { w: Math.min(ui.viewport.w, this.size.w), h: Math.min(ui.viewport.h, this.size.h), x: 0, y: 0 };
     this.viewport.x = clamp(ui.viewport.x, this.size.w - this.viewport.w);
@@ -87,9 +89,10 @@ export class WorldViewModel {
   get cursor() { return this.ui.cursor; }
   get ship() { return this.s.ship.pos.cell; }
   dirty(): Set<string> | "all" { return "all"; }
-  private unknown(c: MapCell): boolean {
-    return this.ui.layers.fog && !!this.grid.dark[c.y * this.size.w + c.x] && !this.s.maps[this.map]?.known[cellKey(c)];
+  private unexplored(c: MapCell): boolean {
+    return !!this.grid.dark[c.y * this.size.w + c.x] && !this.s.maps[this.map]?.known[cellKey(c)];
   }
+  private unknown(c: MapCell): boolean { return this.ui.layers.fog && this.unexplored(c); }
   private depth(c: MapCell) {
     return this.s.maps[this.map]?.known[cellKey(c)]?.blight?.depth;
   }
@@ -120,13 +123,34 @@ export class WorldViewModel {
   pathPreview(to: Loc | { actor: string }): WorldPathPreview {
     const target = "actor" in to ? this.actors().find(({ actor }) => actor.id === to.actor)?.actor.pos : to;
     if (!target) return { cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "目標不存在" };
-    const p = target.map === this.map ? this.placeCells.get(cellKey(target.cell)) : undefined;
+    const p = target.map === this.map && !this.unexplored(target.cell) ? this.placeCells.get(cellKey(target.cell)) : undefined;
+    const cacheKey = `${target.map}:${cellKey(target.cell)}:${p?.id ?? ""}`;
+    const cached = this.routeCache.get(cacheKey);
+    if (cached) return cached;
+    const remember = (preview: WorldPathPreview) => {
+      if (this.routeCache.size >= 16) this.routeCache.delete(this.routeCache.keys().next().value!);
+      this.routeCache.set(cacheKey, preview); return preview;
+    };
     const route = shortestPath(this.s, this.ctx, this.s.ship.pos, p?.id ?? target);
-    if (!route) return { cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "沒有可通行航線" };
-    const cells = route.legs.filter(l => l.map === this.map).flatMap(l => l.cells);
-    const fuel = route.fuel, enough = availableFuel(this.s) >= fuel;
-    return { cells, days: route.days, fuel, risk: cells.map(c => ({ shallow: 1, deep: 2, core: 3 })[this.depth(c) ?? "shallow"] * (this.depth(c) ? 1 : 0)),
-      reachable: enough, note: enough ? "" : `燃料不足：缺 ${Math.ceil(fuel - availableFuel(this.s))} 氦` };
+    if (!route) return remember({ cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "沒有可通行航線" });
+    let cells = route.legs.filter(l => l.map === this.map).flatMap(l => l.cells);
+    let days = route.days, fuel = route.fuel;
+    // 實際航向地點在首次進入城域便抵達，並非一路走到地點中心。
+    // 只估同圖直航；航道仍沿用既有時刻／票價估算，不另造時刻規則。
+    if (route.legs.length === 1 && !route.legs[0]!.lane && this.s.ship.pos.map === this.map) {
+      if (p) {
+        const footprint = new Set(footprintOf(p).map(cellKey));
+        const end = footprint.has(cellKey(this.ship)) ? -1 : cells.findIndex(c => footprint.has(cellKey(c)));
+        if (end >= 0) cells = cells.slice(0, end + 1);
+        else if (footprint.has(cellKey(this.ship))) cells = [];
+      }
+      const estimate = estimateDirectTravel(this.s, this.ctx, this.map, cells);
+      if (!Number.isFinite(estimate.days) || !Number.isFinite(estimate.fuel)) return remember({ cells: [], days: 0, fuel: 0, risk: [], reachable: false, note: "沒有可通行航線" });
+      days = estimate.days; fuel = estimate.fuel;
+    }
+    const enough = availableFuel(this.s) >= fuel;
+    return remember({ cells, days, fuel, risk: cells.map(c => ({ shallow: 1, deep: 2, core: 3 })[this.depth(c) ?? "shallow"] * (this.depth(c) ? 1 : 0)),
+      reachable: enough, note: !cells.length && p ? `已在${p.name}` : enough ? "" : `預估燃料不足：缺 ${Math.ceil(fuel - availableFuel(this.s))} 氦` });
   }
   hover(x: number, y: number): { lines: string[] } {
     const c = { x, y }, cell = this.cell(x, y);
@@ -140,17 +164,17 @@ export class WorldViewModel {
       route.reachable ? `到此 ${route.days} 天 ${route.fuel} 燃料` : route.note] };
   }
   sail(): Extract<OpsCommand, { v: "sail" }> {
-    const p = !this.unknown(this.cursor) && this.placeCells.get(cellKey(this.cursor));
+    const p = !this.unexplored(this.cursor) && this.placeCells.get(cellKey(this.cursor));
     return { v: "sail", to: p ? p.id : { ...this.cursor } };
   }
   actions(): OpsButton[] {
     const blocked = this.s.pendingChoices.length ? "先回應事件" : this.s.log.some(e => e.type === "CampaignEnd") ? "戰役已結束" : undefined;
     const button = (id: string, label: string, action: OpsButton["action"], reason?: string): OpsButton => ({ id: `map:${id}`, label, group: "map", action,
       enabled: !(blocked ?? reason), ...((blocked ?? reason) ? { reason: blocked ?? reason } : {}),
-      tooltip: [label, ...(id === "sail" ? [`航程 ${preview.days} 天／燃料 ${preview.fuel}`] : []), blocked ?? reason].filter(Boolean).join("\n") });
+      tooltip: [label, ...(id === "sail" ? [`預估航程 ${preview.days} 天／燃料 ${preview.fuel}`, preview.note] : []), blocked ?? reason].filter(Boolean).join("\n") });
     const here = allPlaces(this.s, this.ctx).some(p => p.map === this.s.ship.pos.map && footprintOf(p).some(c => cellKey(c) === cellKey(this.ship)));
     const preview = this.ui.preview ? this.preview : this.pathPreview({ map: this.map, region: "", cell: this.cursor });
-    const sailReason = this.map !== this.s.ship.pos.map && typeof this.sail().to !== "string" ? "跨圖航行請選地點" : preview.reachable ? undefined : preview.note;
+    const sailReason = this.map !== this.s.ship.pos.map && typeof this.sail().to !== "string" ? "跨圖航行請選地點" : (preview.reachable || preview.note.startsWith("預估燃料不足：")) ? undefined : preview.note;
     return [button("sail", "航", { type: "cmd", cmd: this.sail() }, sailReason),
       button("dock", "泊", { type: "cmd", cmd: { v: "dock" } }, !here ? "不在地點範圍內" : undefined),
       button("drift", "懸", { type: "cmd", cmd: { v: "drift" } }, this.s.ship.drifting && !this.s.ship.path ? "已經懸停" : undefined),
@@ -175,7 +199,21 @@ export class WorldViewModel {
     if (this.s.ship.pos.map === this.map) mark(this.ship, "#ffe17d", "ship");
     return { w, h, colors, classes };
   }
-  snapshot(): WorldGridSnapshot {
+  private cachedGrid: WorldGridSnapshot | undefined;
+  snapshot(reuseGrid = false, actions?: OpsButton[]): WorldGridSnapshot {
+    if (reuseGrid && this.cachedGrid) {
+      const hover = this.ui.hover ?? this.cursor;
+      const old = this.cachedGrid, source = this.ui.viewport;
+      const v = { w: Math.min(source.w, this.size.w), h: Math.min(source.h, this.size.h), x: 0, y: 0 };
+      v.x = clamp(source.x, this.size.w - v.w); v.y = clamp(source.y, this.size.h - v.h);
+      const changed = old.zoom !== this.ui.zoom || v.x !== old.viewport.x || v.y !== old.viewport.y || v.w !== old.viewport.w || v.h !== old.viewport.h;
+      const cells = changed ? [] : old.cells;
+      if (changed) for (let y = v.y; y < v.y + v.h; y++) for (let x = v.x; x < v.x + v.w; x++) cells.push(this.cell(x, y));
+      Object.assign(this.viewport, v);
+      return this.cachedGrid = { ...old, viewport: v, cells, zoom: this.ui.zoom,
+        layerMenu: this.ui.layerMenu, mapMenu: this.ui.mapMenu, showMinimap: this.ui.showMinimap,
+        actions: actions ?? this.actions(), hover: { at: { ...hover }, ...this.hover(hover.x, hover.y) } };
+    }
     const cells: WorldCellView[] = [], v = this.viewport;
     for (let y = v.y; y < v.y + v.h; y++) for (let x = v.x; x < v.x + v.w; x++) cells.push(this.cell(x, y));
     const hover = this.ui.hover ?? this.cursor, mini = this.minimap();
@@ -186,10 +224,10 @@ export class WorldViewModel {
       || !!this.s.maps[this.map]?.known[cellKey(label.at)]).map(label => ({
       ...label, name: names?.[label.id]?.name ?? label.id, at: { ...label.at },
     })) : [];
-    return { map: this.map, name: this.ctx.world.require("map", this.map).name, size: this.size, viewport: v, cells, regionLabels,
+    return this.cachedGrid = { map: this.map, name: this.ctx.world.require("map", this.map).name, size: this.size, viewport: v, cells, regionLabels,
       cursor: this.cursor, ship: this.ship, zoom: this.ui.zoom, layers: this.layers, layerMenu: this.ui.layerMenu, mapMenu: this.ui.mapMenu, showMinimap: this.ui.showMinimap,
       maps: this.ctx.world.all("map").map(m => ({ id: m.id, name: m.name })), hover: { at: hover, ...this.hover(hover.x, hover.y) }, preview: this.preview,
-      actions: this.actions(), minimap: { w: mini.w, h: mini.h, colors: mini.colors } };
+      actions: actions ?? this.actions(), minimap: { w: mini.w, h: mini.h, colors: mini.colors } };
   }
 }
 
@@ -225,4 +263,44 @@ export function updateWorldUi(s: CampaignState, ctx: OpsCtx, ui: WorldUi, action
   }
   ui.viewport.w = Math.max(1, Math.min(ui.viewport.w, grid.width)); ui.viewport.h = Math.max(1, Math.min(ui.viewport.h, grid.height));
   ui.viewport.x = clamp(ui.viewport.x, grid.width - ui.viewport.w); ui.viewport.y = clamp(ui.viewport.y, grid.height - ui.viewport.h);
+}
+
+/** 依目前已知情報估算；不預演遭遇、不讀取未知蝕塊或推進戰役。 */
+export function estimateDirectTravel(s: CampaignState, ctx: OpsCtx, map: string, cells: MapCell[], initialCarry = 0): { days: number; fuel: number } {
+  const grid = gridOf(ctx.world, map);
+  const mover = shipMover(s, ctx), rules = worldRules(ctx);
+  if (!Number.isFinite(mover.mp) || mover.mp <= 0) return { days: Infinity, fuel: Infinity };
+  let days = 0, fuel = 0, carry = initialCarry, index = 0, previous = s.ship.pos.cell;
+  while (index < cells.length) {
+    days++; let mp = mover.mp + carry, moved = false, deep = false;
+    while (index < cells.length) {
+      const cell = cells[index]!, depth = s.maps[map]?.known[cellKey(cell)]?.blight?.depth;
+      const cost = stepCost(grid, mover, previous, cell, (_at, terrain) => depth ? Math.max(terrain, rules.grid.blightCost[depth]) : terrain);
+      if (cost === undefined) return { days: Infinity, fuel: Infinity };
+      if (cost > mp) break;
+      mp -= cost; moved = true; deep ||= depth === "deep" || depth === "core";
+      previous = cell; index++;
+    }
+    if (moved && s.ship.hull.cur > 0) fuel += rules.travel.fuelPerDay * (deep ? 2 : 1);
+    carry = mp;
+  }
+  return { days, fuel };
+}
+
+
+/** 已排定的同圖地點直航；不重尋路，也不改引擎的保守預支／排程。 */
+export function remainingPlaceDays(s: CampaignState, ctx: OpsCtx): number | undefined {
+  const path = s.ship.path;
+  if (!path || path.lane || path.via.length || path.legs.length !== 1 || path.legs[0]!.lane
+    || path.legs[0]!.map !== s.ship.pos.map || !("place" in path.to)) return undefined;
+  const place = allPlaces(s, ctx).find(p => p.id === ("place" in path.to ? path.to.place : ""));
+  if (!place || place.map !== s.ship.pos.map) return undefined;
+  const grid = gridOf(ctx.world, place.map), footprint = footprintOf(place);
+  if (!footprint.some(c => !grid.dark[c.y * grid.width + c.x] || !!s.maps[place.map]?.known[cellKey(c)])) return undefined;
+  const keys = new Set(footprint.map(cellKey));
+  if (keys.has(cellKey(s.ship.pos.cell))) return 0;
+  const end = path.cells.findIndex(c => keys.has(cellKey(c)));
+  if (end < 0) return undefined;
+  const estimate = estimateDirectTravel(s, ctx, place.map, path.cells.slice(0, end + 1), s.ship.mpCarry);
+  return Number.isFinite(estimate.days) ? estimate.days : undefined;
 }

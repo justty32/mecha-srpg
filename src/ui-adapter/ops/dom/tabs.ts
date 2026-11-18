@@ -92,7 +92,7 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
         el(doc, "h3", "移動到"), buttonRow(doc, rooms, registry, "ops-buttons room-exits")];
     }],
     contracts: s => [s.contracts, () => {
-      if (!s.contracts.length) return [el(doc, "h2", "契約"), el(doc, "p", "目前沒有可接或進行中的契約。", "muted")];
+      if (!s.contracts.length) return [el(doc, "h2", "契約"), el(doc, "p", "目前沒有契約。可使用「推進一天」，再回來查看是否有新委託。", "muted")];
       const list = el(doc, "ul", "", "ops-list");
       for (const c of s.contracts) {
         list.append(pickRow(doc, registry, { type: "selectContract", contract: c.id }, c.selected,
@@ -177,10 +177,10 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
     panes,
     paint(s) {
       for (const tab of TAB_ORDER) panes[tab].hidden = tab !== s.tab;
-      world.render(s.world);
-      for (const [tab, painter] of Object.entries(painters) as [Exclude<OpsTab, "world">, typeof painters.ship][]) {
-        const [data, build] = painter(s);
-        if (changed(tab, data)) panes[tab].replaceChildren(...build());
+      if (s.tab === "world") world.render(s.world);
+      else {
+        const [data, build] = painters[s.tab](s);
+        if (changed(s.tab, data)) panes[s.tab].replaceChildren(...build());
       }
     },
     destroy() { world.destroy(); },

@@ -100,6 +100,12 @@
 .ops-view .ops-mini { margin: 0; padding-left: 16px; font-size: .8rem; }
 .ops-view [data-ui="ops-main"] { overflow: auto; }
 .ops-view .ops-log-panel { display: flex; flex-direction: column; }
+.ops-view .ops-log-heading { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+.ops-view .ops-log-heading h2 { margin: 0; }
+.ops-view .ops-log-filter-label { display: flex; align-items: center; gap: 6px; font-size: .8rem; }
+.ops-view .ops-log-filter-label select { max-width: 100%; }
+.ops-view .ops-log-note { margin: 8px 0; font-size: .75rem; }
+.ops-view [data-ui="ops-log-empty"] { font-size: .85rem; }
 .ops-view [data-ui="ops-log"] { margin: 0; padding: 0; list-style: none; flex: 1; min-height: 0; overflow-y: auto; font-size: .85rem; }
 .ops-view [data-ui="ops-log"] li { padding: 4px 0; border-bottom: 1px solid #ffffff0c; display: flex; gap: 6px; }
 .ops-view .ops-log-day { color: var(--muted); font-family: ui-monospace, monospace; flex: 0 0 auto; }
@@ -148,7 +154,10 @@
 .ops-view .ops-upcoming { margin: 0; padding-left: 18px; font-size: .85rem; }
 
 /* 世界圖（world-map.ts） */
-.ops-view .world-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 260px; gap: 12px; height: 100%; min-height: 0; }
+/* 明確約束世界頁高度，避免 auto pane 由格數撐高，再被 ResizeObserver 當成可視區。 */
+.ops-view .pane-world { height: 100%; min-height: 0; }
+.ops-view .world-wrap { display: grid; grid-template-columns: minmax(0, 1fr) 260px; grid-template-rows: minmax(0, 1fr); gap: 12px; height: 100%; min-height: 0; }
+.ops-view .world-detail { min-height: 0; overflow: auto; }
 .ops-view .world-map-col { display: flex; flex-direction: column; gap: 6px; min-height: 0; min-width: 0; }
 .ops-view .world-tools { display: flex; gap: 4px; }
 .ops-view .world-scroll { flex: 1; min-height: 240px; overflow: auto; background: #070b12; border: 1px solid var(--border); }
@@ -246,7 +255,7 @@
   .ops-view .ops-tab-list button { padding: 6px; }
   .ops-view [data-ui="ops-rifts"], .ops-view [data-ui="ops-queue"] { max-height: 100px; overflow-y: auto; }
   .ops-view [data-ui="ops-main"] { overflow: visible; }
-  .ops-view .world-wrap { height: auto; }
+  .ops-view .world-wrap { grid-template-rows: auto; height: auto; }
   .ops-view .world-map-col { height: 360px; }
   .ops-view .ops-log-panel { height: 180px; }
 }
@@ -268,7 +277,7 @@
   .ops-view .ops-tab-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; }
   .ops-view [data-ui="ops-rifts"], .ops-view [data-ui="ops-queue"] { max-height: 100px; overflow-y: auto; }
   .ops-view [data-ui="ops-main"] { overflow: visible; }
-  .ops-view .world-wrap { height: auto; grid-template-columns: minmax(0, 1fr); }
+  .ops-view .world-wrap { grid-template-rows: auto; height: auto; grid-template-columns: minmax(0, 1fr); }
   .ops-view .world-map-col { height: clamp(300px, 50dvh, 420px); }
   .ops-view .ops-log-panel { height: 180px; }
   .ops-view button { min-height: 44px; }

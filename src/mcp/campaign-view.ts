@@ -4,7 +4,7 @@ import { cellKey } from "../ops/world/grid.ts";
 // 營運畫面只傳可供決策的摘要；指令紀錄與完整狀態留在 session。
 import type { CampaignEvent, CampaignState, OpsCommand, Screen, Sortie } from "../ops/state/types.ts";
 import type { BattleResult, sortieBattleSetup } from "../ops/sortie/index.ts";
-import { render, eventLog, entityName, VERBS, describeRoom, roomDefinition } from "../ops/text/index.ts";
+import { render, entityName, VERBS, describeRoom, roomDefinition } from "../ops/text/index.ts";
 import type { McpEnv } from "./tool.ts";
 import { createOpsCtx } from "../ops/content/start.ts";
 import { placeAt } from "../ops/war/loc.ts";
@@ -111,7 +111,7 @@ export function commandInfo(env: McpEnv, state: CampaignState, cmd: OpsCommand):
   const contract = cmd.v === "board" ? cmd.contract : cmd.v === "look" && cmd.target && state.contracts[cmd.target] ? cmd.target : undefined;
   if (cmd.v === "board" || contract) return `契約板：\n${Object.values(state.contracts).filter(c => !contract || c.id === contract).map(c =>
     `${c.id} ${c.status} → ${campaignName(env, state, c.target.place)}｜酬 ${money(c.terms.total)} 預付 ${money(c.terms.advance)} 每頭 ${money(c.terms.perHead)}｜期限 day ${c.deadlineDay}｜${world.get("contract", c.template)?.objectives.map(o => o.kind).join("、") ?? c.template}`
-  ).join("\n") || "目前無契約"}`;
+  ).join("\n") || (contract ? "找不到這份契約。" : '目前沒有契約。可推進一天（{"v":"wait","days":1}），再查看契約板（{"v":"board"}）是否有新委託。')}`;
   return "";
 }
 
@@ -243,7 +243,7 @@ export function campaignView(env: McpEnv, id: string, state: CampaignState, even
   const ctx = createOpsCtx(state, db, world), here = placeAt(state, { world }, state.ship.pos);
   const travel = (node: string) => { const p = shortestPath(state, ctx, state.ship.pos, node); return p ? { days: p.days, fuel: p.fuel } : null; };
   // ops 沒寫文案的事件只會顯示「未登錄事件：X」，對決策沒資訊；併成一行計數，不佔 log 名額。
-  const rows = events.map(e => eventLog(e, state, world)), unlogged: Record<string, number> = {};
+  const rows = screen.log, unlogged: Record<string, number> = {};
   const useful = rows.filter(r => { const m = /^未登錄事件：(.+)。$/u.exec(r.text); if (m) unlogged[m[1]!] = (unlogged[m[1]!] ?? 0) + 1; return !m; });
   const log = limit === 0 ? [] : useful.slice(-limit);
   const omitted = useful.length - log.length;

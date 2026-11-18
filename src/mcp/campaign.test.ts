@@ -1,5 +1,8 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { campaignView } from "./campaign-view.ts";
+import { newCampaign } from "../ops/content/start.ts";
+import { render } from "../ops/text/index.ts";
 import { createCampaignTools } from "./campaign.ts";
 import { createEnv } from "./tool.ts";
 import type { ToolResult } from "./tool.ts";
@@ -198,4 +201,34 @@ test("campaign_act sortie：真實 AI 戰果與記錄可存檔重播", async () 
   const loaded = data(await call("campaign_load", { blob: JSON.stringify(saved.blob) }));
   assert.deepEqual(loaded.clock, battle.view.clock);
   assert.equal(data(await call("campaign_save", { id: loaded.id })).blob.snapshotHash, saved.blob.snapshotHash);
+});
+
+test("campaignView：與網頁共用訊號合併，顯示行數決定省略量", () => {
+  const env = createEnv(), { db, world } = env.world(), state = newCampaign(db, world, "start/default", 3);
+  const events = [
+    { seq: 0, day: 0, type: "DayStart", payload: {} },
+    ...Array.from({ length: 250 }, (_, i) => ({ seq: i + 1, day: 0, type: "ActorSpawned", payload: {} })),
+  ];
+  const before = structuredClone(events), rows = render(state, events, world, db).log;
+  const full = campaignView(env, "c1", state, events, 2).data;
+  assert.deepEqual(full.log, rows); assert.equal(full.logOmitted, 0);
+  const limited = campaignView(env, "c1", state, events, 1).data;
+  assert.deepEqual(limited.log, rows.slice(-1)); assert.equal(limited.logOmitted, 1);
+  const hidden = campaignView(env, "c1", state, events, 0).data;
+  assert.deepEqual(hidden.log, []); assert.equal(hidden.logOmitted, 2);
+  assert.deepEqual(events, before);
+});
+
+test("campaignView：附近情報、勢力動向與契約摘要仍保留警報", () => {
+  const env = createEnv(), { db, world } = env.world(), state = newCampaign(db, world, "start/default", 3);
+  const types = ["Sighted", "Sighted", "WorldAction", "WorldAction", "EncounterOffered", "ContractOffered", "ContractOffered"];
+  const events = types.map((type, seq) => ({ seq, day: 1, type, payload: { actor: "person-1", node: "base:place/dhaka" } }));
+  const view = campaignView(env, "c1", state, events, 20);
+  assert.deepEqual(view.data.log, render(state, events, world, db).log);
+  assert.equal(view.data.log.length, 4);
+  assert.equal(view.data.log[2]!.kind, "warn");
+  assert.match(view.summary, /2 則附近隊伍目擊情報/);
+  assert.match(view.summary, /2 則勢力動向/);
+  assert.match(view.summary, /2 份新契約/);
+  assert.match(view.summary, /艦橋等你下令/);
 });

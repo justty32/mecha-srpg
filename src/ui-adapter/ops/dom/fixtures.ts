@@ -14,9 +14,15 @@ export function opsFixture(tab: OpsTab = "ship"): OpsSnapshot {
   return {
     header: {
       day: 14, month: 0, dom: 15, daysPerMonth: 28, phase: "spring", phaseName: "漲潮", stage: "spring", stageName: "漲潮", tide: 2, tideName: "漲潮", dateText: "第 1 蝕月 第 15 日（漲潮）",
-      omens: [], cash: 12400, debt: 30000, location: "嶺口", route: null, docked: true, pressure: 3,
+      omens: [], cash: 12400, debt: 30000, location: "嶺口", route: null, docked: true, unsafeDocked: false, pressure: 3,
       fuel: { cur: 40, max: 60 }, hull: { cur: 85, max: 100 },
     },
+    logFilter: "important",
+    logFilters: [
+      { id: "important", label: "重點" }, { id: "contracts", label: "契約" },
+      { id: "money", label: "帳務" }, { id: "crew", label: "船員與機體" },
+      { id: "world", label: "世界消息" }, { id: "all", label: "全部記錄" },
+    ],
     tab,
     tabs: TAB_NAMES.map(([t, label, key]) => btn(`tab:${t}`, label, "tabs", { type: "tab", tab: t }, { key, active: t === tab })),
     timeButtons: [

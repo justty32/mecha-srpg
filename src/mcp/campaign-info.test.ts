@@ -4,6 +4,7 @@ import { createCampaignTools } from "./campaign.ts";
 import { createEnv } from "./tool.ts";
 import type { ToolResult } from "./tool.ts";
 import { runCampaign, defaultBattleRunner, campaignHash, loadCampaign } from "../ops/sim/index.ts";
+import { commandInfo } from "./campaign-view.ts";
 
 function setup() {
   const env = createEnv(), tools = createCampaignTools(env);
@@ -18,6 +19,29 @@ function data(result: ToolResult): Record<string, any> {
   return result.structuredContent!;
 }
 function summary(result: ToolResult): string { return (result.content[0] as { text: string }).text; }
+
+test("首日空契約板提示既有等待指令；有進行中或歷史契約時不提示空板", async () => {
+  const { env, call } = setup(), { id } = data(await call("campaign_new", { seed: 3 }));
+  data(await call("campaign_act", { id, command: { v: "choose", choice: 2 } }));
+  data(await call("campaign_act", { id, command: { v: "choose", choice: 1 } }));
+  const empty = data(await call("campaign_act", { id, command: { v: "board" } }));
+  assert.match(empty.commandInfo, /推進一天.*是否有新委託/);
+  assert.ok(empty.commandInfo.includes('{"v":"wait","days":1}'));
+  data(await call("campaign_act", { id, command: { v: "wait", days: 1 } }));
+  const board = data(await call("campaign_act", { id, command: { v: "board" } }));
+  assert.ok(!/是否有新委託/.test(board.commandInfo));
+  const { db, world } = env.world();
+  const state = loadCampaign(db, world, data(await call("campaign_save", { id })).blob);
+  const contract = Object.values(state.contracts)[0]!; assert.ok(contract);
+  state.contracts = { [contract.id]: contract };
+  for (const status of ["active", "done"] as const) {
+    contract.status = status;
+    const text = commandInfo(env, state, { v: "board" });
+    assert.match(text, new RegExp(contract.id));
+    assert.ok(!/是否有新委託/.test(text));
+  }
+  assert.equal(commandInfo(env, state, { v: "board", contract: "missing" }), "契約板：\n找不到這份契約。");
+});
 
 test("營運資訊：每台機庫部位百分比、駕駛名、look 詳情與 pending 選項", async () => {
   const { call } = setup(), initial = data(await call("campaign_new", { seed: 5 })), { id } = initial;

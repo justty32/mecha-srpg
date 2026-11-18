@@ -51,7 +51,7 @@ export function mountOpsPage(container: HTMLElement): { destroy(): void } {
   };
   const send = (action: OpsUiAction): void => {
     notice = null;
-    const shortcutId = opsShortcutForAction(controller.snapshot(), action);
+    const shortcutId = opsShortcutForAction(latest, action);
     latest = controller.dispatch(action);
     if (shortcutId) shortcutStore.record(shortcutId);
     if (action.type === "cmd" && action.cmd.v === "save" && latest.message === null) {

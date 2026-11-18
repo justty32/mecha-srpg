@@ -65,8 +65,13 @@ export function mountWorldMap(root: HTMLElement, opts: { onAction(a: OpsUiAction
       return node;
     }));
   };
+  const canvasPaint = new WeakMap<HTMLCanvasElement, string>();
   const paintCanvas = (canvas: HTMLCanvasElement, g: WorldGridSnapshot, large = false) => {
-    const m = g.minimap; canvas.width = large ? g.size.w : m.w; canvas.height = large ? g.size.h : m.h;
+    const m = g.minimap;
+    const signature = JSON.stringify([large, g.size, m]);
+    if (canvasPaint.get(canvas) === signature) return;
+    canvasPaint.set(canvas, signature);
+    canvas.width = large ? g.size.w : m.w; canvas.height = large ? g.size.h : m.h;
     const context = canvas.getContext("2d");
     if (context) for (let i = 0; i < m.colors.length; i++) { context.fillStyle = m.colors[i]!; context.fillRect(i % m.w * canvas.width / m.w, Math.floor(i / m.w) * canvas.height / m.h, canvas.width / m.w, canvas.height / m.h); }
     if (large) { canvas.style.width = `${g.size.w * 3}px`; canvas.style.height = `${g.size.h * 3}px`; }
