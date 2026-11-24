@@ -350,7 +350,7 @@ export class BattleController {
     const inspected = this.vm.cell(this.cursor.x, this.cursor.y, this.selected), terrain = db.require("terrain", inspected.terrain.id);
     const outcome = this.session.outcome();
     const commands = this.commands();
-    return { title: this.title, round: s.round, maxRounds: s.rt?.maxRounds ?? null, activeUnit: actor,
+    return { mission: this.vm.mission(), title: this.title, round: s.round, maxRounds: s.rt?.maxRounds ?? null, activeUnit: actor,
       playerTurn: this.session.isPlayerTurn(), outcome: outcome ? { ...outcome,
         text: outcome.winner === null ? "戰鬥結束：平局" : outcome.winner === this.session.playerSlot ? "戰鬥結束：我方勝利" : "戰鬥結束：我方戰敗" } : null,
       map: { width: s.map.width, height: s.map.height }, viewport: { ...v }, cells, dirty,

@@ -82,3 +82,5 @@
 - 切線、交接書、領地表 → [dispatch](dispatch/README.md)；派線用哪支工具 → [dispatch/tool-index](dispatch/tool-index.md)。
 - 獨佔資源與鎖 → [resources](resources.md)。
 - 通訊契約與醒鐘 → [inbox/PROTOCOL](inbox/PROTOCOL.md)。
+
+aos 按需角色與通道例外見 [org/letters](../org/letters.md)；既有模型與 codex 工人偏好不變。

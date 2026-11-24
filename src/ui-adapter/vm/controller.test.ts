@@ -189,3 +189,69 @@ test("回收戰場支援彈正常選能力再點牆一次即扣AP並拆牆，無
   assert.equal(s.persons[pid]!.pools.ap!.cur, ap - 2);
   assert.equal(c.session.commands.length, before + 1);
 });
+
+test("controller：任務依runtime列出真目標、陣營後果與數值，未知敵人不洩名", () => {
+  const c = controller(), s = c.session.state, runtime = s.rt!;
+  const enemy = Object.values(s.units).find(u => u.owner !== c.session.playerSlot)!;
+  s.knowledge[c.session.playerSlot]!.visible = [];
+  runtime.objectives = [
+    { kind: "survive", params: { rounds: 3 }, for: "player", onComplete: "win" },
+    { kind: "killTarget", params: { unit: enemy.id }, for: "player", onComplete: "continue" },
+    { kind: "hold", params: { rounds: 2, zone: [{ x: 1, y: 2 }] }, for: "player", onComplete: "lose" },
+    { kind: "survive", params: { rounds: 987 }, for: "enemy", onComplete: "win" },
+  ];
+  runtime.maxRounds = 12; runtime.noRetreat = true;
+  const mission = c.snapshot().mission!;
+  assert.deepEqual(mission.objectives.map(o => o.effect), ["win", "continue", "lose"]);
+  assert.equal(mission.objectives[0]!.text, "存活至第 3 輪輪末");
+  assert.match(mission.objectives[1]!.text, /指定目標/);
+  assert.ok(!JSON.stringify(mission).includes(enemy.id));
+  assert.ok(!JSON.stringify(mission).includes(enemy.frame));
+  assert.match(mission.objectives[2]!.text, /1,2.*2 輪/);
+  assert.ok(!JSON.stringify(mission).includes("987"), "敵方私有目標不得公開");
+  assert.equal(mission.retreat, "本場禁止撤離。");
+  assert.match(mission.timeout!, /12.*平局/);
+  runtime.objectives = [{ kind: "eliminate", params: {}, for: "player", onComplete: "win" }];
+  assert.match(c.snapshot().mission!.objectives[0]!.text, /擊敗或擊退所有敵軍/);
+});
+
+test("controller：空目標沿用各陣營預設殲滅，撤離文字依實際出口與時限", () => {
+  const c = controller(), s = c.session.state, runtime = s.rt!;
+  runtime.objectives = []; runtime.exits = []; runtime.noRetreat = false; runtime.maxRounds = null;
+  const mission = c.snapshot().mission!;
+  assert.equal(mission.objectives.length, 1);
+  assert.ok(mission.objectives.every(o => o.effect === "win" && o.text.includes("擊敗或擊退所有敵軍")));
+  assert.match(mission.retreat, /每台.*地圖邊界撤離點.*使用「撤離」.*完成任務依本場目標判定/);
+  assert.equal(mission.timeout, null);
+  runtime.exits = [{ x: 0, y: 1 }];
+  assert.match(c.snapshot().mission!.retreat, /明列出口格.*使用「撤離」/);
+});
+
+
+test("controller：任務只讀目前觀戰視角，無己方目標顯示保底擊退且禁撤不提示撤離過關", () => {
+  const sim = scenarioToSetup(db, "scenario/skirmish-whitegloves", 1);
+  const c = new BattleController({ session: new BattleSession({ db, sim, seed: 1, playerSlot: "enemy", spectate: true, autoAdvance: false }) });
+  const runtime = c.session.state.rt!;
+  runtime.objectives = [
+    { kind: "survive", params: { rounds: 999 }, for: "player", onComplete: "win" },
+    { kind: "survive", params: { rounds: 4 }, for: "enemy", onComplete: "win" },
+    { kind: "hold", params: { rounds: 888 }, for: "ally", onComplete: "win" },
+  ];
+  assert.deepEqual(c.snapshot().mission!.objectives, [{ effect: "win", text: "存活至第 4 輪輪末" }]);
+  runtime.objectives = runtime.objectives.filter(o => o.for !== "enemy");
+  const fallback = c.snapshot().mission!.objectives;
+  assert.equal(fallback.length, 1);
+  assert.match(fallback[0]!.text, /其他目標尚未定局.*我方作戰單位存活.*擊退所有敵軍.*至少一個已撤離/);
+  const own = Object.values(c.session.state.units).find(u => u.owner === "enemy")!;
+  runtime.objectives = ["reachExit", "escort"].map(kind => ({ kind: kind as "reachExit" | "escort", params: { unit: own.id }, for: "enemy", onComplete: "win" as const }));
+  runtime.noRetreat = true;
+  runtime.exits = [{ x: 0, y: 1 }];
+  for (const objective of c.snapshot().mission!.objectives) {
+    assert.match(objective.text, /抵達明列出口格（本場禁止撤離）/);
+    assert.doesNotMatch(objective.text, /或使用「撤離」/);
+  }
+  runtime.exits = [];
+  for (const objective of c.snapshot().mission!.objectives) {
+    assert.match(objective.text, /無明列出口且禁止撤離.*尚未撤離的單位無法達成/);
+  }
+});

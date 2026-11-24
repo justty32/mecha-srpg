@@ -49,6 +49,16 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   helpToggle.textContent = "?";
   helpToggle.setAttribute("aria-label", "快捷鍵說明");
   topbar.append(title, round, turn, position, helpToggle);
+  const mission = anchor("section", "mission");
+  mission.setAttribute("aria-label", "戰鬥目標");
+  const missionObjectives = element(doc, "ul");
+  const missionRules = element(doc, "details");
+  const missionSummary = element(doc, "summary", "撤退與時限");
+  const missionRetreat = element(doc, "p");
+  const missionTimeout = element(doc, "p");
+  missionRules.append(missionSummary, missionRetreat, missionTimeout);
+  mission.append(missionObjectives, missionRules);
+  let missionKey = "";
   const layout = element(doc, "div", "", "battle-layout");
   const field = element(doc, "section", "", "battle-field");
   const frame = element(doc, "div", "", "board-frame");
@@ -113,7 +123,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
   commandPanel.append(unit, commands, controls);
   field.append(frame, inspect, messageSlot, outcome, help);
   layout.append(field, commandPanel, sidebar, logPanel);
-  shell.append(topbar, layout);
+  shell.append(topbar, mission, layout);
   root.append(shell);
   message.hidden = outcome.hidden = help.hidden = true;
   const paintBoard = createBoard(board, cellSize);
@@ -245,6 +255,7 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
     const active = doc.activeElement;
     const target = event.target as HTMLElement | null;
     if (active?.matches("input, textarea") || target?.matches?.("input, textarea")) return;
+    if ((target === missionSummary || active === missionSummary) && (event.key === "Enter" || event.key === " ")) return;
     const line = target?.closest?.<HTMLElement>("li[data-seq]");
     if (line && shell.contains(line) && (event.key === "Enter" || event.key === " ")) {
       event.preventDefault(); opts.onAction({ type: "focusLog", seq: Number(line.dataset.seq) }); return;
@@ -272,6 +283,20 @@ export function mountBattle(root: HTMLElement, opts: MountOptions): BattleView {
       current = s;
       title.textContent = s.title; title.title = s.title;
       round.textContent = `第 ${s.round} 輪${s.maxRounds === null ? "" : ` / ${s.maxRounds}`}`;
+      mission.hidden = !s.mission;
+      const nextMissionKey = JSON.stringify(s.mission ?? null);
+      if (nextMissionKey !== missionKey) {
+        missionKey = nextMissionKey;
+        const effects = { win: "勝利條件", lose: "失敗條件", continue: "附加目標" };
+        missionObjectives.replaceChildren(...(s.mission?.objectives ?? []).map(objective => {
+          const row = element(doc, "li");
+          row.append(element(doc, "strong", `${effects[objective.effect]}：`), doc.createTextNode(objective.text));
+          return row;
+        }));
+        missionRetreat.textContent = s.mission?.retreat ?? "";
+        missionTimeout.textContent = s.mission?.timeout ?? "";
+        missionTimeout.hidden = !s.mission?.timeout;
+      }
       // SPEC-GAP：快照無獨立行動者名稱；優先查可視格／選取單位，否則顯示 id。
       const activeName = s.cells.find(c => c.unit?.id === s.activeUnit)?.unit?.name
         ?? (s.selected?.id === s.activeUnit ? s.selected?.name : null) ?? s.activeUnit;

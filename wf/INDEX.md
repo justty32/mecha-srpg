@@ -19,6 +19,8 @@ mecha-srpg = **2108 地月機甲戰爭網頁文字 SRPG：純 TypeScript＋Vite�
 | `wf/tools/` | kernel 工具：`wf-lint.sh`（檢查，在地 hook `wf-lint-local.sh`）、`tabledb.py`（資料檔 CRUD／連結）、`find_big_lists.py`、`fix_moved_links.py`；內容閘門 `content_gate.py`／`content_accept.sh`／`content_index.py`；inbox 與派線腳本（對照表見 [dispatch/tool-index](workflows/dispatch/tool-index.md)）；資料檔契約見 [data-files](workflows/common/data-files.md) |
 | `wf/inbox/` | agent 之間的信件放信處：`new/`＝給頂層的終局回報、`mail/`／`teams/`／`orders/`／`topics/` 用到才長出來、`done/`＝已處理（只留本機）；使用方式 [workflows/inbox/](workflows/inbox/README.md) |
 | [wf/notes/](notes/README.md) | 調查證據與待審閱問題；不代替設計契約或驗收結果 |
+| [wf/org/](org/README.md) | 按需組織：角色、通信、落地計畫與啟用記錄 |
+| [wf/aos/](aos/README.md) | aos 按需 agent 定義與使用方式 |
 <!-- wf-insert:INDEX -->
 
 ## 頂層文件

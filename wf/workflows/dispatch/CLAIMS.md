@@ -9,7 +9,12 @@
 | 線 | 誰 | 可寫 | 備註 |
 |----|----|------|------|
 | fix-playtest-1105 | Opus（隔離 worktree `.claude/worktrees/`）| 該 worktree 內 `src/`、`content/`、`code-map.json` 等試玩修正範圍 | 完成後由頂層 merge；依據 [playtest-1105](handoffs/playtest-1105/REPORT.md) |
-| test-prune-1105 | 原生 agent | `test/`、`src/**/*.test.ts`、`wf/workflows/testing.md`、`wf/notes/investigations/test-prune-1105/` | 測試刪減 |
+
+
+
+
+
+
 
 ## 保留給調度者，任何線都不得寫
 
@@ -18,3 +23,7 @@
 | `AGENTS.md`、`CLAUDE.md`、`.claude/`、`.gitignore` | 入口與適配層；多條線同時動會互相打架 |
 | 頂層 `SPEC.md`／`PROJECT.md`／`README.md` | 設計契約與對外說明；改動走頂層決策 |
 | `wf/`（含本表、`handoffs/`）| 線只能追加 ROSTER 與本表自己那一列、寫自己的 REPORT |
+
+## aos 按需角色
+
+角色卡列的領域不自動授權寫入。main 可在當次 brief 明列委派 wf 內的報告／交接檔，除此仍保留給調度者。唯讀 review 不取得任何檔案寫入權，記於啟用記錄與任務 brief，不追加虛假的寫入領地。

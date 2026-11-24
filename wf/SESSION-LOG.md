@@ -17,3 +17,4 @@
 - [feature-dev] Fable 三題實作（SIZE、LINK-01、LINK-02 E1→E3′），連同把 10/29 的 specs／plans 併進 core → [裁決](workflows/decisions/2026-11-05-fable-three.md)、[specs](workflows/planning/specs/core/README.md)
 - [refactor] F 類程式碼拆檔：18 檔超過 300 行 → [STRUCTURE](STRUCTURE.md)
 - [balance] 數值（經濟變緊、命中變異）待使用者試玩後再定 → [WAIT_USER](WAIT_USER.md)
+- [testing] 契約回歸、戰鬥目標與出口複驗：11/24 三項修正完成，完整 UI 208案與build通過；已分離觀戰準備預算，修改後完整e2e 19案全過；FSM astra新局實玩已收件回收，覆蓋與限制已記，15:40補驗三項已收件回收，十分鐘實機單見 org/manual-playtest-2026-11-24.md；待使用者整合確認 → [本輪狀態](org/round-2026-11-24.md)

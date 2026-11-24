@@ -212,6 +212,7 @@ svg.fx-item { inset: 0; width: 100%; height: 100%; }
 .feature-marker, .object-marker { position: absolute; left: 2px; font-size: 10px; color: #ffe4a0; background: #20252bdd; z-index: 2; }
 .feature-marker { top: 1px; }
 .object-marker { bottom: 1px; color: #9ef0cc; }
+.exit-marker { position: absolute; top: 1px; right: 2px; z-index: 3; font-size: 10px; color: #b5f7ff; background: #132a35e8; pointer-events: none; }
 
 .part-picker { width: min(720px, 94%); max-height: 85%; overflow-y: auto; display: grid; gap: 6px; }
 .part-picker[hidden] { display: none; }
@@ -325,3 +326,13 @@ svg.fx-item { inset: 0; width: 100%; height: 100%; }
 @media (max-width: 900px) and (max-height: 500px) {
   .battle-view .board-frame { height: 240px; }
 }
+
+
+/* 實際目標在手控與觀戰共用頂區；長文換行，規則可展開。 */
+.battle-view [data-ui="mission"] { flex: 0 0 auto; display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; min-width: 0; margin-bottom: 10px; padding: 7px 12px; border: 1px solid var(--border); border-radius: 7px; background: var(--panel); font-size: .8rem; line-height: 1.4; overflow-wrap: anywhere; }
+.battle-view [data-ui="mission"][hidden] { display: none; }
+.battle-view [data-ui="mission"] ul { flex: 1 1 240px; min-width: 0; margin: 0; padding: 0; list-style: none; }
+.battle-view [data-ui="mission"] details { flex: 0 1 auto; min-width: 0; }
+.battle-view [data-ui="mission"] details[open] { flex-basis: 100%; }
+.battle-view [data-ui="mission"] summary { cursor: pointer; color: var(--muted); }
+.battle-view [data-ui="mission"] p { margin: 4px 0 0; }

@@ -199,42 +199,129 @@ test("正式情境選單可進混合兵種並返回回收戰場", async ({ page 
   expect(errors).toEqual([]);
 });
 
-test("正式default觀戰與node同seed命令、hash及逐單位真終局一致", async ({ page }) => {
-  const errors = watchErrors(page), seed = 1;
-  const { db, errors: contentErrors } = loadContentDirs(["content/base"]);
-  expect(contentErrors).toEqual([]);
-  const definition = db.require("scenario", "scenario/skirmish-whitegloves");
-  expect(definition.rounds).toBe(20); // 正式內容實值；不為節奏稽核延長戰局。
-  const expected = runBattle({ db, sim: scenarioToSetup(db, definition.id, seed), seed });
-  expect(expected.stopped).toBe("outcome");
-  expect(expected.state.rt?.outcome?.reason).toBe("eliminate"); // timeout／擊退不能冒稱全殲終局。
-  const numeric = (state: BattleState) => ({
-    units: Object.values(state.units).sort((a, b) => a.id.localeCompare(b.id)).map(unit => ({ id: unit.id, pos: unit.pos, moveSpent: unit.moveSpent ?? 0, pools: unit.pools, parts: unit.parts })),
-    persons: Object.values(state.persons).sort((a, b) => a.id.localeCompare(b.id)).map(person => ({ id: person.id, attrs: person.attrsBase, pools: person.pools })),
+test.describe("正式default觀戰", () => {
+  const seed = 1;
+  const fixtureMark = (phase: string) => {
+    const started = performance.now();
+    let previous = started;
+    return (stage: string, detail: Record<string, unknown> = {}) => {
+      const now = performance.now();
+      console.log("[diagnose-e2e-1124]", JSON.stringify({ phase, stage, elapsedMs: now - started, durationMs: now - previous, ...detail }));
+      previous = now;
+    };
+  };
+  // 僅此案使用；內容驗證與 Node 終局各依 worker fixture 的預設預算準備。
+  const formalTest = test.extend<{}, {
+    formalContent: ReturnType<typeof loadContentDirs>["db"];
+    formalExpected: ReturnType<typeof runBattle>;
+  }>({
+    formalContent: [async ({}, use) => {
+      const mark = fixtureMark("content-fixture");
+      mark("loadContentDirs-begin");
+      const { db, errors: contentErrors } = loadContentDirs(["content/base"]);
+      mark("loadContentDirs-end");
+      expect(contentErrors).toEqual([]);
+      await use(db);
+    }, { scope: "worker" }],
+    formalExpected: [async ({ formalContent: db }, use) => {
+      const mark = fixtureMark("expected-fixture");
+      const definition = db.require("scenario", "scenario/skirmish-whitegloves");
+      expect(definition.rounds).toBe(20); // 正式內容實值；不為節奏稽核延長戰局。
+      mark("scenarioToSetup-begin");
+      const sim = scenarioToSetup(db, definition.id, seed);
+      mark("scenarioToSetup-end");
+      mark("runBattle-begin");
+      const expected = runBattle({ db, sim, seed });
+      mark("runBattle-end", { round: expected.state.round, commandsLength: expected.commands.length });
+      expect(expected.stopped).toBe("outcome");
+      expect(expected.state.rt?.outcome?.reason).toBe("eliminate"); // timeout／擊退不能冒稱全殲終局。
+      await use(expected);
+    }, { scope: "worker" }],
   });
-  await page.goto("/?seed=1&spectate=1&anim=off");
-  await expect(page.locator('[data-ui="topbar"] h1')).toContainText("正面交戰・不可撤離");
-  await settle(page);
-  const audit = await page.evaluate(() => (window as unknown as { __battle: { audit(): {
-    round: number; outcome: BattleOutcome | null; hash: string; commands: Command[]; numeric: ReturnType<typeof numeric>;
-    units: { id: string; owner: string; status: string }[]; deathIds: string[]; retreatCount: number; ejectCount: number;
-  } } }).__battle.audit());
-  expect(audit.outcome).not.toBeNull();
-  expect(audit.outcome?.reason).toBe("eliminate");
-  expect(audit.outcome).toEqual(expected.state.rt?.outcome);
-  expect(audit.round).toBe(expected.state.round);
-  expect(audit.commands).toEqual(expected.commands);
-  expect(audit.hash).toBe(expected.hash);
-  expect(audit.numeric).toEqual(numeric(expected.state));
-  expect(audit.retreatCount).toBe(0); expect(audit.ejectCount).toBe(0);
-  const originals = ["player-0", "player-1", "player-2", "player-3", "enemy-0", "enemy-1", "enemy-2", "enemy-3"];
-  expect(audit.units.map(unit => unit.id).sort()).toEqual([...originals].sort());
-  for (const id of originals) {
-    expect(audit.units.find(unit => unit.id === id)?.status, id).toBe(expected.state.rt?.unitStatus[id]);
-  }
-  expect(audit.deathIds).toEqual(expected.state.log.events.filter(event => event.type === "UnitDied").map(event => String(event.payload.unit)));
-  await expect(page.locator('[data-ui="outcome"]')).toBeVisible();
-  expect(errors).toEqual([]);
+
+  formalTest("正式default觀戰與node同seed命令、hash及逐單位真終局一致", async ({ page, formalExpected: expected }) => {
+    const prefix = "[diagnose-e2e-1124]", started = performance.now();
+    let previous = started;
+    const mark = (stage: string, detail: Record<string, unknown> = {}) => {
+      const now = performance.now();
+      console.log(prefix, JSON.stringify({ stage, elapsedMs: now - started, durationMs: now - previous, ...detail }));
+      previous = now;
+    };
+    mark("start");
+    page.on("console", message => {
+      if (message.text().startsWith(prefix)) {
+        console.log(prefix, JSON.stringify({ stage: "browser-console", elapsedMs: performance.now() - started, message: message.text() }));
+      }
+    });
+    try {
+      const errors = watchErrors(page);
+      const numeric = (state: BattleState) => ({
+        units: Object.values(state.units).sort((a, b) => a.id.localeCompare(b.id)).map(unit => ({ id: unit.id, pos: unit.pos, moveSpent: unit.moveSpent ?? 0, pools: unit.pools, parts: unit.parts })),
+        persons: Object.values(state.persons).sort((a, b) => a.id.localeCompare(b.id)).map(person => ({ id: person.id, attrs: person.attrsBase, pools: person.pools })),
+      });
+      mark("goto-begin");
+      await page.goto("/?seed=1&spectate=1&anim=off");
+      mark("goto-end");
+      mark("title-begin");
+      await expect(page.locator('[data-ui="topbar"] h1')).toContainText("正面交戰・不可撤離");
+      mark("title-end");
+      mark("settle-request");
+      await page.evaluate(prefix => {
+        const entered = performance.now();
+        let previous = entered;
+        const mark = (stage: string, detail: Record<string, unknown> = {}) => {
+          const now = performance.now();
+          console.log(prefix, JSON.stringify({ stage, performanceNow: now, elapsedMs: now - entered, durationMs: now - previous, ...detail }));
+          previous = now;
+        };
+        mark("evaluate-enter");
+        const battle = (window as unknown as { __battle: {
+          settle(): void; peek(): { round: number; busy: unknown; outcome: unknown };
+        } }).__battle;
+        const before = battle.peek();
+        mark("settle-enter", { round: before.round, busy: before.busy, outcome: before.outcome });
+        try {
+          battle.settle();
+          const after = battle.peek();
+          mark("settle-exit", { round: after.round, busy: after.busy, outcome: after.outcome });
+        } catch (error) {
+          mark("settle-catch", { error: String(error) });
+          throw error;
+        } finally {
+          mark("settle-finally");
+        }
+      }, prefix);
+      mark("settle-return");
+      mark("audit-request");
+      const audit = await page.evaluate(() => (window as unknown as { __battle: { audit(): {
+        round: number; outcome: BattleOutcome | null; hash: string; commands: Command[]; numeric: ReturnType<typeof numeric>;
+        units: { id: string; owner: string; status: string }[]; deathIds: string[]; retreatCount: number; ejectCount: number;
+      } } }).__battle.audit());
+      mark("audit-return");
+      expect(audit.outcome).not.toBeNull();
+      expect(audit.outcome?.reason).toBe("eliminate");
+      expect(audit.outcome).toEqual(expected.state.rt?.outcome);
+      expect(audit.round).toBe(expected.state.round);
+      expect(audit.commands).toEqual(expected.commands);
+      expect(audit.hash).toBe(expected.hash);
+      expect(audit.numeric).toEqual(numeric(expected.state));
+      expect(audit.retreatCount).toBe(0); expect(audit.ejectCount).toBe(0);
+      const originals = ["player-0", "player-1", "player-2", "player-3", "enemy-0", "enemy-1", "enemy-2", "enemy-3"];
+      expect(audit.units.map(unit => unit.id).sort()).toEqual([...originals].sort());
+      for (const id of originals) {
+        expect(audit.units.find(unit => unit.id === id)?.status, id).toBe(expected.state.rt?.unitStatus[id]);
+      }
+      expect(audit.deathIds).toEqual(expected.state.log.events.filter(event => event.type === "UnitDied").map(event => String(event.payload.unit)));
+      await expect(page.locator('[data-ui="outcome"]')).toBeVisible();
+      expect(errors).toEqual([]);
+      mark("comparisons-complete");
+    } catch (error) {
+      mark("test-catch", { error: String(error) });
+      throw error;
+    } finally {
+      mark("test-finally");
+    }
+  });
 });
 
 for (const input of ['mouse', 'touch'] as const) test(`戰場安全拖曳：${input}、邊界反向、取消、縮放與輕點`, async ({ browser }) => {

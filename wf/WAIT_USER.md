@@ -10,6 +10,8 @@
 
 ## 待使用者項
 
+11/24 UI本機修正的快速實機入口見 [十分鐘試玩單](org/manual-playtest-2026-11-24.md)；自動補驗不取代下列平衡、手機手感或美術評閱，未擅自關閉既有待辦。
+
 - [balance] 請試玩 b3d931d5 之後的平衡（劈斬、弧光、windup 0.3、戰役經濟），回饋決定數值 → 依回饋調數值；營運變動須同 commit 重錄黃金（[testing](workflows/testing.md)）。
 
 - [content] 其餘內容候選待審（P01 朴仁哲失腿已定案：閘門夾斷）；10/27 七輪與 10/28 expansion／night 的 23 份 batch manifest 仍是 draft（技術已入庫，11/05 audit-paused-1105 已機械核對）→ [審閱入口](notes/investigations/content-review-2026-10-27/README.md)、[四線審查](workflows/dispatch/handoffs/audit-paused-1105/REPORT.md)。

@@ -168,6 +168,23 @@ export class OpsController {
       }
       return this.snapshot();
     }
+    // 同一戰役中選詳情不改契約／市場指令；通用出戰沿用該契約已驗證的結果。
+    if (action.type === "selectContract" && this.ui.tab === "contracts" && this.cachedSnapshot
+      && Object.hasOwn(this.current.contracts, action.contract) && !this.live && !this.current.pendingChoices.length
+      && !this.current.pendingEncounter && !this.current.pendingBattle && !this.ui.showHelp && !this.ui.report && !this.ui.draft
+      && !this.current.log.some(e => e.type === "CampaignEnd")) {
+      const candidate = this.cachedSnapshot.contracts.find(c => c.id === action.contract);
+      const sortie = candidate?.buttons.find(b => b.id === `sortieOpen:${action.contract}`);
+      if (sortie) {
+        const snapshot = structuredClone(this.cachedSnapshot);
+        this.ui.contract = action.contract; this.ui.message = null; snapshot.message = null;
+        for (const contract of snapshot.contracts) contract.selected = contract.id === action.contract;
+        snapshot.roomButtons = snapshot.roomButtons.map(b => b.id === "sortieOpen"
+          ? { ...sortie, id: "sortieOpen", group: "sortie" } : b);
+        bindButtons(snapshot, this.bindings); this.cachedSnapshot = snapshot;
+        return this.snapshot();
+      }
+    }
     // 純切頁沿用同一戰役／選取狀態已驗證的資料；只有首次世界頁需要建立地圖。
     // 事件、疊層與戰役結束仍走完整路徑，保留原有鎖定與拒絕提示。
     if (action.type === "tab" && this.cachedSnapshot && !this.live && !this.current.pendingChoices.length

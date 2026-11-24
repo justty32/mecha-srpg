@@ -11,6 +11,10 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
     cell.cursor && "cursor", cell.selected && "selected", cell.intent && "intent"].filter(Boolean).join(" ");
   node.style.backgroundColor = cell.terrain.color;
   node.title = `${cell.terrain.name}${cell.unit ? ` · ${cell.unit.name}` : ""}${cell.unit?.notice ? `\n${cell.unit.notice}` : ""}${cell.travelNote ? `\n${cell.travelNote}` : ""}`;
+  if (cell.exit) node.title += cell.exit.kind === "boundary"
+    ? "\n邊界撤離點：移動到此格後，須使用「撤離」才會退出本場戰鬥；僅抵達邊界不算完成抵達出口或護送目標。"
+    : cell.exit.retreatAllowed ? "\n明列出口：移動到此格後，可使用「撤離」退出本場戰鬥；是否完成任務依本場目標判定。"
+    : "\n明列出口：本場禁止撤離；抵達是否完成任務依本場目標判定。";
   if (cell.feature) node.title += `\n可破壞地物 HP ${cell.feature.hp}/${cell.feature.max} · 選擇攻擊後點此格`;
   for (const object of cell.objects ?? []) node.title += `\n${object.name} · ${object.note}`;
   if (cell.unit) {
@@ -24,6 +28,10 @@ function paintCell(node: HTMLDivElement, cell: CellView): void {
   glyph.className = "terrain-glyph";
   glyph.textContent = cell.terrain.glyph;
   node.replaceChildren(glyph);
+  if (cell.exit) {
+    const marker = doc.createElement("span"); marker.className = "exit-marker";
+    marker.textContent = cell.exit.kind === "boundary" ? "撤離點" : "出口"; node.append(marker);
+  }
   if (cell.feature) {
     const marker = doc.createElement("span"); marker.className = "feature-marker";
     marker.textContent = `HP ${cell.feature.hp}`; node.append(marker);

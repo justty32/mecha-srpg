@@ -1,8 +1,8 @@
-# dispatch — 派線、交接書、領地、收線（調度者用）
+# dispatch — 派線、交接書、領地、收線
 
 [WORKFLOWS](../../WORKFLOWS.md)｜[INDEX](../../INDEX.md)
 
-把一件大工作切成幾條線交給別的 agent 跑，並負責**仲裁與驗收**。調度者不深潛實作。誰站哪一層、派哪級模型見 [team-model](../team-model.md)；派線、監看、收工用哪支工具見 [tool-index](tool-index.md)。
+切線交給 agent，負責**仲裁與驗收**。調度者不深潛實作。誰站哪一層、派哪級模型見 [team-model](../team-model.md)；派線、監看、收工用哪支工具見 [tool-index](tool-index.md)。
 
 **何時用**：一件工作大到要同時開幾條線，或要派給 codex 這種行程外的 agent 做。
 **何時不用**：一兩個檔的小改（開線的交接成本大過收益）；需求還沒定、要跟使用者來回確認方向（那是頂層與 gpt-6-astra 規劃的事 → [planning](../planning.md)）；只是要問一件事或送一則情報 → [inbox](../inbox/README.md)。
@@ -83,6 +83,8 @@
 | [handoffs/](handoffs/README.md) | 交接書存放：現役 `handoffs/<線名>.md`，收線即刪；原始證據放不進版控的 `raw/` |
 
 ## 交接
+
+[aos 通道例外](../../org/letters.md)。
 
 - 線要用獨佔資源 → 在交接書指名可拿哪個鎖（[resources](../resources.md)）。
 - codex 線回報與催件 → [inbox](../inbox/README.md)；卡在使用者 → [WAIT_USER](../../WAIT_USER.md)。

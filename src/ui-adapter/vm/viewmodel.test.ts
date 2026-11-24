@@ -33,6 +33,95 @@ test("viewmodel：cell 地形取自內容包", () => {
   const terrain = db.require("terrain", session.state.map.terrain[0]!);
   assert.deepEqual(cell.terrain, { id: terrain.id, name: terrain.name, glyph: terrain.glyph, color: terrain.color });
 });
+test("viewmodel：公知出口預先標記，撤離按鈕與正式規則的指定格及邊界一致", () => {
+  for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
+    const { session, vm } = fixture(), s = session.state, actor = session.activeUnit()!;
+    s.rt!.exits = explicit ? [{ x: 0, y: 2 }] : [];
+    s.rt!.noRetreat = noRetreat;
+    // 地形與出口為公知資料；清除敵方可見情報不能隱藏出口或洩漏敵軍。
+    s.knowledge.player!.visible = [];
+    assert.deepEqual(vm.cell(0, 2).exit, explicit || !noRetreat ? { kind: explicit ? "explicit" : "boundary", retreatAllowed: !noRetreat } : undefined);
+    assert.equal(vm.cell(1, 1).exit, undefined);
+    assert.deepEqual(vm.cell(0, 1).exit, !explicit && !noRetreat ? { kind: "boundary", retreatAllowed: true } : undefined);
+    for (const pos of [{ x: 0, y: 2 }, { x: 0, y: 1 }, { x: 1, y: 1 }]) {
+      s.units[actor]!.pos = pos;
+      const official = session.preview({ kind: "retreat", actor });
+      const command = vm.commands(actor).find(c => c.id === "retreat")!;
+      assert.equal(command.enabled, official.result.ok, `${explicit}/${noRetreat}/${pos.x},${pos.y}`);
+    }
+  }
+});
+test("目標出口：reachExit／escort 交叉明列出口與禁撤，對照正式輪末 objectiveDone", () => {
+  for (const kind of ["reachExit", "escort"] as const) for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
+    const { session, vm } = fixture(), s = session.state, runtime = s.rt!, actor = session.activeUnit()!;
+    const target = Object.values(s.units).find(u => u.owner === "player" && u.id !== actor)!;
+    runtime.exits = explicit ? [{ x: 0, y: 2 }] : [];
+    runtime.noRetreat = noRetreat;
+    runtime.objectives = [{ kind, for: "player", onComplete: "win", params: { unit: target.id } }];
+    runtime.maxRounds = null;
+    target.pos = { x: 0, y: 2 };
+    const text = vm.mission().objectives[0]!.text;
+    if (explicit) {
+      assert.match(text, /抵達明列出口格/);
+      assert.match(text, noRetreat ? /本場禁止撤離/ : /或使用「撤離」/);
+    } else {
+      assert.doesNotMatch(text, /抵達明列出口格/);
+      assert.match(text, noRetreat ? /無明列出口且禁止撤離.*無法達成/ : /邊界撤離點使用「撤離」.*僅抵達邊界不算完成/);
+    }
+    // end 的輪末 signal 透過 evaluateObjectives 呼叫正式 objectiveDone，保持 UI 的 sim 邊界。
+    runtime.acted = Object.keys(s.units).filter(id => id !== actor);
+    for (const status of ["active", "retreated"] as const) {
+      runtime.unitStatus[target.id] = status;
+      const preview = session.preview({ kind: "end", actor });
+      assert.equal(preview.result.ok, true);
+      assert.ok(preview.result.ok && preview.result.events.some(e => e.type === "RoundEnd"));
+      const done = explicit || status === "retreated";
+      assert.equal(preview.state.rt!.outcome?.reason ?? null, done ? kind : null, `${kind}/${explicit}/${noRetreat}/${status}`);
+      if (done) assert.equal(preview.state.rt!.outcome!.winner, "player");
+    }
+  }
+});
+
+test("目標姓名：己方具名駕駛保留、可見與公知敵機只露機型、未知敵機遮名且不建 unit 快照", () => {
+  const sim = scenarioToSetup(db, "scenario/skirmish-whitegloves", 1);
+  const enemySetup = sim.setup.units.find(u => u.owner === "enemy")!;
+  enemySetup.persons = [{ id: "enemy-secret-pilot", def: "person/ilse-brandt", seat: "pilot" }];
+  const session = new BattleSession({ db, sim, seed: 1, autoAdvance: false }), vm = new BattleViewModel(session), s = session.state;
+  const own = Object.values(s.units).find(u => u.owner === "player" && Object.values(u.seats).some(Boolean))!;
+  const enemy = Object.values(s.units).find(u => u.owner === "enemy" && Object.values(u.seats).some(Boolean))!;
+  const pilotName = (id: string) => {
+    const pid = Object.values(s.units[id]!.seats).find(pid => pid && s.persons[pid]!.seat?.role === "pilot")!;
+    return db.require("person", s.persons[pid]!.def).name;
+  };
+  const ownName = pilotName(own.id), enemyName = pilotName(enemy.id), frame = db.require("frame", enemy.frame).name;
+  assert.notEqual(ownName, enemyName, "敵方具名駕駛與己方須可分辨");
+  s.rt!.objectives = [own, enemy].map(u => ({ kind: "killTarget", params: { unit: u.id }, for: "player", onComplete: "win" }));
+  vm.unit = () => { throw new Error("目標名稱不應建構完整 unit 快照"); };
+  const knowledge = s.knowledge.player!;
+  knowledge.visible = [enemy.id];
+  const visible = vm.mission();
+  assert.ok(visible.objectives[0]!.text.includes(ownName));
+  assert.equal(visible.objectives[1]!.text, `擊殺${frame}（所有指定目標均須死亡）`);
+  assert.ok(!JSON.stringify(visible).includes(enemyName));
+  knowledge.lastSeen[enemy.id] = { cell: { ...enemy.pos }, round: s.round }; knowledge.visible = [];
+  const before = structuredClone(knowledge);
+  assert.equal(vm.mission().objectives[1]!.text, "擊殺指定目標（所有指定目標均須死亡）");
+  assert.deepEqual(knowledge, before, "讀目標不改寫可見／最後所見情報");
+  s.rt!.presences = { [enemy.id]: { engageable: false } };
+  assert.equal(vm.mission().objectives[1]!.text, `擊殺${frame}（所有指定目標均須死亡）`);
+  assert.ok(!JSON.stringify(vm.mission()).includes(enemyName));
+});
+
+test("目標姓名：可見與公知怪獸保留個體名及稱號，非公知未知怪獸遮名", () => {
+  const { session, vm } = monsterFixture(), s = session.state;
+  s.rt!.objectives = [{ kind: "killTarget", params: { unit: "named" }, for: "player", onComplete: "win" }];
+  s.knowledge.player!.visible = ["named"];
+  assert.match(vm.mission().objectives[0]!.text, /吉大港的那隻「萬潮葬王」/);
+  s.knowledge.player!.visible = [];
+  assert.match(vm.mission().objectives[0]!.text, /擊殺指定目標/);
+  s.rt!.presences = { named: { engageable: false } };
+  assert.match(vm.mission().objectives[0]!.text, /吉大港的那隻「萬潮葬王」/);
+});
 test("viewmodel：未見敵軍不出現在格子", () => {
   const { session, vm } = fixture(), enemy = session.state.units["enemy-0"]!;
   session.state.knowledge.player!.visible = [];

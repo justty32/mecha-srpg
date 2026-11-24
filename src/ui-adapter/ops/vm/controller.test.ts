@@ -11,7 +11,7 @@ import { OpsController } from "./index.ts";
 import { WorldViewModel } from "./world.ts";
 import type { WorldDB } from "../../../ops/content/worlddb.ts";
 import type { WorldKind, WorldDefByKind } from "../../../ops/state/types.ts";
-import { allButtons } from "./keymap.ts";
+import { allButtons, bindButtons, resolveButtonKey, type Binding } from "./keymap.ts";
 import type { OpsSnapshot, OpsKeyInput } from "./types.ts";
 const { db, world } = loadWorldDirs(["content/base"]);
 const opts = { db, world, seed: 3, spectate: true };
@@ -346,4 +346,48 @@ test("所在港口停泊保護依失守規則顯示，待選事件仍可看到�
   assert.equal(fallen.header.unsafeDocked, true);
   assert.deepEqual(fallen.prompt, safe.prompt);
   assert.deepEqual(state, before, "呈現警示不改模擬狀態");
+});
+
+
+test("契約詳情快捷鍵只操作明選契約，停用與未選不接別份，艦橋保留原語意", () => {
+  const c = new OpsController(opts); prompts(c);
+  c.dispatch({ type: "advance", until: "day" }); prompts(c);
+  const snapshot = c.snapshot();
+  assert.ok(snapshot.contracts.length > 0);
+  const template = snapshot.contracts[0]!;
+  const card = (id: string, selected: boolean): OpsSnapshot["contracts"][number] => ({ ...structuredClone(template), id, selected,
+    buttons: (["accept", "drop", "sail", "sortieOpen"] as const).map(v => ({
+      id: `${v}:${id}`, label: v, group: "contract", enabled: true, tooltip: v,
+      action: v === "sortieOpen" ? { type: "sortieOpen" as const, contract: id }
+        : v === "sail" ? { type: "cmd" as const, cmd: { v, to: id } }
+        : { type: "cmd" as const, cmd: { v, contract: id } },
+    })) });
+  const first = card("first", false), selected = card("selected", true);
+  snapshot.contracts = [first, selected]; snapshot.tab = "contracts";
+  snapshot.roomButtons = structuredClone(first.buttons);
+  const bindings: Binding[] = [
+    { action: "accept", label: "接約", keys: ["a"], context: "room" },
+    { action: "drop", label: "放棄", keys: ["x"], context: "room" },
+    { action: "sail", label: "航行", keys: ["s"], context: "room" },
+    { action: "sortieOpen", label: "出戰", keys: ["b"], context: "room" },
+  ];
+  bindButtons(snapshot, bindings);
+  for (const [index, binding] of bindings.entries()) {
+    assert.equal(selected.buttons[index]!.key, binding.keys[0]!.toUpperCase());
+    assert.deepEqual(resolveButtonKey(snapshot, bindings, { key: binding.keys[0]! }), selected.buttons[index]!.action);
+    assert.equal(first.buttons[index]!.key, undefined);
+  }
+  selected.buttons.forEach(b => { b.enabled = false; });
+  bindButtons(snapshot, bindings);
+  for (const binding of bindings) assert.equal(resolveButtonKey(snapshot, bindings, { key: binding.keys[0]! }), null);
+  selected.selected = false;
+  bindButtons(snapshot, bindings);
+  assert.equal(resolveButtonKey(snapshot, bindings, { key: "a" }), null, "契約頁未明選時不接不可見的契約");
+  assert.equal(resolveButtonKey(snapshot, bindings, { key: "x" }), null, "契約頁未明選時不放棄不可見的契約");
+  assert.deepEqual(resolveButtonKey(snapshot, bindings, { key: "s" }), snapshot.roomButtons[2]!.action, "未選不限制通用航行");
+  assert.deepEqual(resolveButtonKey(snapshot, bindings, { key: "b" }), snapshot.roomButtons[3]!.action, "未選不限制通用出戰");
+  snapshot.tab = "ship";
+  bindButtons(snapshot, bindings);
+  assert.deepEqual(resolveButtonKey(snapshot, bindings, { key: "a" }), snapshot.roomButtons[0]!.action, "艦橋保留原room快捷鍵語意");
+  assert.deepEqual(resolveButtonKey(snapshot, bindings, { key: "x" }), snapshot.roomButtons[1]!.action);
 });

@@ -67,6 +67,117 @@ test("契約空板提示既有推進一天；進行中與歷史契約不誤導�
   }
 });
 
+test("契約板先列進行中與依期限穩定排序的可接取，終局四態收進原生歷史", t => {
+  const s = opsFixture("contracts"), base = s.contracts[0]!;
+  s.contracts = [
+    { ...base, id: "late", title: "晚約", deadlineDay: 40, selected: false },
+    ...(["done", "failed", "cancelled", "expired"] as const).map(status => ({ ...base, id: status, title: status, status, selected: false })),
+    { ...base, id: "near-a", title: "近約甲", deadlineDay: 20, selected: false },
+    { ...base, id: "active", title: "已接", status: "active", selected: false },
+    { ...base, id: "near-b", title: "近約乙", deadlineDay: 20, selected: false },
+    { ...base, id: "stage", title: "階段", status: "stage", selected: false },
+  ];
+  const { root, win, click, actions } = setup(t, s);
+  const groups = root.querySelector(".ops-contract-groups")!;
+  assert.deepEqual([...groups.querySelectorAll("h3")].map(n => n.textContent), ["進行中", "可接取"]);
+  assert.deepEqual([...groups.querySelectorAll(":scope > ul > li strong")].map(n => n.textContent), ["已接", "階段", "近約甲", "近約乙", "晚約"]);
+  const history = groups.querySelector("details")!;
+  assert.equal(history.open, false);
+  assert.equal(history.querySelector("summary")!.textContent, "已結束（4）");
+  assert.equal(history.querySelectorAll('li[role="button"][tabindex="0"]').length, 4);
+  history.open = true;
+  click(".ops-contract-history li");
+  assert.deepEqual(actions, [{ type: "selectContract", contract: "done" }]);
+  history.querySelector("li")!.dispatchEvent(new win.KeyboardEvent("keydown", { key: "Enter", bubbles: true }));
+  assert.deepEqual(actions[1], { type: "selectContract", contract: "done" });
+});
+
+test("契約選取跨接受與過期保留，轉歷史自動展開且一般重繪尊重手動開關", t => {
+  const s = opsFixture("contracts"); s.contracts = [s.contracts[0]!];
+  const { root, view } = setup(t, s);
+  const selected = () => root.querySelector('.pane-contracts li[aria-pressed="true"] strong')!.textContent;
+  s.contracts[0]!.status = "active"; view.render(s);
+  assert.equal(selected(), s.contracts[0]!.title);
+  assert.equal(root.querySelector(".ops-contract-groups h3")!.textContent, "進行中");
+  s.contracts[0]!.status = "expired"; view.render(s);
+  assert.equal(selected(), s.contracts[0]!.title);
+  let history = root.querySelector(".ops-contract-history")!;
+  assert.equal(history.hasAttribute("open"), true);
+  assert.match(root.querySelector(".pane-contracts")!.textContent!, /目前沒有可接取的契約/);
+  assert.equal(root.querySelectorAll(".ops-contract-groups > h3").length, 0);
+  history.toggleAttribute("open", false);
+  s.contracts[0]!.daysLeft--; view.render(s);
+  history = root.querySelector(".ops-contract-history")!; assert.equal(history.hasAttribute("open"), false);
+  history.toggleAttribute("open", true);
+  s.contracts[0]!.daysLeft--; view.render(s);
+  assert.equal(root.querySelector(".ops-contract-history")!.hasAttribute("open"), true);
+  assert.equal(root.querySelector(".ops-detail h2")!.textContent, s.contracts[0]!.title);
+});
+
+test("契約焦點：歷史列 Enter／空白經 controller 選取並重繪後保留同列", t => {
+  const { db, world } = loadWorldDirs(["content/base"]);
+  const controller = opened(new OpsController({ db, world, seed: 3 }));
+  controller.dispatch({ type: "advance", until: "day" }); opened(controller);
+  const initial = controller.dispatch({ type: "tab", tab: "contracts" });
+  assert.ok(initial.contracts.length >= 2);
+  const id = initial.contracts.find(c => !c.selected)!.id;
+  // 只固定歷史分組資料；選取與詳情快照仍走真 controller.dispatch。
+  const historySnapshot = (s: OpsSnapshot) => {
+    s.contracts.find(c => c.id === id)!.status = "expired";
+    return s;
+  };
+  const win = new Window(), root = win.document.createElement("div"); win.document.body.append(root);
+  let dispatches = 0;
+  const view = mountOps(root as unknown as HTMLElement, { onKey: () => false, onAction: action => {
+    dispatches++;
+    view.render(historySnapshot(controller.dispatch(action)));
+  } });
+  t.after(() => { view.destroy(); win.close(); });
+  view.render(historySnapshot(initial));
+  for (const key of ["Enter", " "]) {
+    const details = root.querySelector(".ops-contract-history")!;
+    details.open = true;
+    const before = details.querySelector("li")!;
+    before.focus(); assert.ok(win.document.activeElement === before);
+    before.dispatchEvent(new win.KeyboardEvent("keydown", { key, bubbles: true }));
+    const after = root.querySelector(".ops-contract-history li")!;
+    assert.equal(after.getAttribute("aria-pressed"), "true");
+    assert.equal(root.querySelector(".ops-detail h2")!.textContent, initial.contracts.find(c => c.id === id)!.title);
+    assert.ok(win.document.activeElement === after, "重繪後焦點應在同一契約列");
+    if (key === "Enter") assert.ok(before !== after, "第一次選取必須真的重建契約頁");
+  }
+  assert.equal(dispatches, 2);
+});
+
+test("契約焦點：summary 日期更新、列消失與收合採可見 fallback，外部焦點不搶", t => {
+  const s = opsFixture("contracts"), base = s.contracts[0]!;
+  s.contracts = [{ ...base, id: "offered", selected: true }, { ...base, id: "history", status: "expired", selected: false }];
+  const { root, win, view } = setup(t, s);
+  const summary = () => root.querySelector(".ops-contract-history summary")!;
+  const update = () => { s.contracts[0]!.daysLeft--; view.render(s); };
+  summary().focus(); update();
+  assert.ok(win.document.activeElement === summary(), "日期更新仍停在 summary");
+  root.querySelector(".ops-contract-history")!.open = true;
+  root.querySelector(".ops-contract-history li")!.focus();
+  root.querySelector(".ops-contract-history")!.open = false;
+  update();
+  assert.ok(win.document.activeElement === summary(), "收合後不得聚焦隱藏歷史列");
+  root.querySelector(".ops-contract-history")!.open = true;
+  root.querySelector(".ops-contract-history li")!.focus();
+  s.contracts.pop(); update();
+  assert.ok(win.document.activeElement === root.querySelector('.pane-contracts li[aria-pressed="true"]'), "列消失回到可見選取列");
+  root.querySelector(".pane-contracts li")!.focus();
+  s.contracts = []; view.render(s);
+  assert.ok(win.document.activeElement === root.querySelector(".pane-contracts h2"), "空板回到契約標題");
+  const outside = win.document.createElement("button"); root.before(outside); outside.focus();
+  s.contracts = [base]; view.render(s);
+  assert.ok(win.document.activeElement === outside);
+  const outsidePane = root.querySelector("button")!;
+  assert.ok(!outsidePane.closest(".pane-contracts"));
+  outsidePane.focus(); update();
+  assert.ok(win.document.activeElement === outsidePane, "契約頁外的營運按鈕也不搶");
+});
+
 test("只建立目前頁內容，隱藏頁首開使用最新快照", t => {
   const first = opsFixture("world");
   const { root, view } = setup(t, first);

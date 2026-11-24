@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 import { Window } from "happy-dom";
 import { mountBattle } from "./render.ts";
 import { snapshotFixture } from "./fixtures.ts";
+import { loadContentDirs } from "../../content/loader.ts";
+import { controllerForScenario } from "../vm/controller.ts";
 
 function setup(t: TestContext) {
   const win = new Window();
@@ -247,4 +249,70 @@ test("已知血量25%即使結構100%也顯瀕危，無blood不造流血提示",
   delete unit.blood; view.render(snapshot);
   assert.equal(cell.querySelector(".cell-blood"), null);
   assert.equal(cell.classList.contains("blood-critical"), false);
+});
+
+
+test("戰鬥目標共用頂區：保留實際數字與我方結果，無任務時隱藏", t => {
+  const { root, view, snapshot } = setup(t);
+  const mission = root.querySelector('[data-ui="mission"]')!;
+  assert.equal(mission.hasAttribute("hidden"), true);
+  snapshot.mission = {
+    objectives: [
+      { effect: "win", text: "存活至第 5 輪" },
+      { effect: "lose", text: "運輸車遭擊毀" },
+      { effect: "continue", text: "抵達（2, 3）" },
+    ],
+    retreat: "我方全員撤離後，依撤退規則結算。",
+    timeout: "第 8 輪結束，未達目標則平局。",
+  };
+  view.render(snapshot);
+  assert.equal(mission.hasAttribute("hidden"), false);
+  assert.equal(mission.getAttribute("aria-label"), "戰鬥目標");
+  const lines = [...mission.querySelectorAll("li")].map(line => line.textContent);
+  assert.deepEqual(lines, ["勝利條件：存活至第 5 輪",
+    "失敗條件：運輸車遭擊毀", "附加目標：抵達（2, 3）"]);
+  const rules = mission.querySelector("details")!;
+  rules.open = true;
+  snapshot.playerTurn = false;
+  snapshot.round++;
+  view.render(snapshot);
+  assert.equal(rules.open, true, "戰鬥重繪保留原生展開狀態");
+  assert.match(rules.textContent!, /第 8 輪結束，未達目標則平局/);
+  snapshot.mission = undefined;
+  view.render(snapshot);
+  assert.equal(mission.hasAttribute("hidden"), true);
+});
+
+test("出口與目標：正式快照四種配置的標記、title、tooltip 與 aria 語義一致", t => {
+  const { root, view } = setup(t), { db } = loadContentDirs(["content/base"]);
+  const c = controllerForScenario(db, "scenario/skirmish-whitegloves", 1), s = c.session.state, runtime = s.rt!;
+  const own = Object.values(s.units).find(u => u.owner === "player")!;
+  runtime.objectives = (["reachExit", "escort"] as const).map(kind => ({ kind, params: { unit: own.id }, for: "player", onComplete: "win" }));
+  for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
+    runtime.exits = explicit ? [{ x: 0, y: 2 }] : [];
+    runtime.noRetreat = noRetreat;
+    view.render(c.snapshot());
+    const exit = root.querySelector('[data-x="0"][data-y="2"]')!, boundary = root.querySelector('[data-x="0"][data-y="1"]')!;
+    const mission = root.querySelector('[data-ui="mission"]')!;
+    assert.equal(exit.querySelector(".exit-marker")?.textContent ?? null, explicit ? "出口" : noRetreat ? null : "撤離點");
+    assert.equal(boundary.querySelector(".exit-marker")?.textContent ?? null, !explicit && !noRetreat ? "撤離點" : null);
+    const title = exit.getAttribute("title")!;
+    assert.equal(exit.getAttribute("data-tip"), title);
+    assert.equal(exit.getAttribute("aria-label"), `0,2 ${title}`);
+    for (const line of mission.querySelectorAll("li")) {
+      assert.match(line.textContent!, explicit ? /抵達明列出口格/ : noRetreat ? /無明列出口且禁止撤離.*無法達成/ : /邊界撤離點使用「撤離」.*僅抵達邊界不算完成/);
+    }
+    if (explicit) assert.match(title, noRetreat ? /明列出口：本場禁止撤離/ : /明列出口：.*使用「撤離」/);
+    else if (!noRetreat) assert.match(title, /邊界撤離點：.*須使用「撤離」.*僅抵達邊界不算完成/);
+    else assert.doesNotMatch(title, /明列出口|邊界撤離點/);
+  }
+});
+
+test("出口：舊快照未帶 kind 仍呈明列出口", t => {
+  const { root, view, snapshot } = setup(t);
+  snapshot.cells[0]!.exit = { retreatAllowed: true };
+  view.render(snapshot);
+  const cell = root.querySelector('[data-x="12"][data-y="18"]')!;
+  assert.equal(cell.querySelector(".exit-marker")!.textContent, "出口");
+  assert.match(cell.getAttribute("title")!, /明列出口：.*使用「撤離」/);
 });

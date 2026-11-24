@@ -1,0 +1,43 @@
+{
+ "contract": "wf-table/1",
+ "source": "round-2026-11-24.md",
+ "extracted": "2026-11-24",
+ "columns": [
+  "id",
+  "status",
+  "location",
+  "scenario",
+  "finding",
+  "fix",
+  "acceptance"
+ ],
+ "rows": [
+  {
+   "id": "exit-semantics",
+   "status": "已修正；完整UI208案與build、修改後完整e2e19案通過；自然實玩覆蓋待回報",
+   "location": "src/ui-adapter/vm/viewmodel.ts:43; src/rules/objectives.ts:22; src/rules/flow.ts:137",
+   "scenario": "exits=[]，reachExit/escort，指定單位仍 active 且位於邊界",
+   "finding": "UI 邊界標出口並指示抵達出口，但目標只接受明列出口或已撤離；禁撤且無出口時更無可用途徑。",
+   "fix": "不改正式規則。明列出口保留抵達敘述；邊界替代標撤離點，無出口的目標說明須下撤離指令。禁撤且無出口需說明限制。",
+   "acceptance": "兩類目標交叉 exits 有/無、noRetreat true/false；正式 objectiveDone 對照邊界 active 不完成、retreated 完成；DOM 標記與提示一致。"
+  },
+  {
+   "id": "pilot-disclosure",
+   "status": "已修正；完整UI208案與build、修改後完整e2e19案通過；自然實玩覆蓋待回報",
+   "location": "src/ui-adapter/vm/viewmodel.ts:29; src/ui-adapter/vm/text.ts:16; src/ui-adapter/vm/viewmodel.ts:211",
+   "scenario": "可見敵方機甲有具名駕駛，為玩家 killTarget 目標",
+   "finding": "mission 用 unitName 公開敵駕駛姓名；一般面板僅機體名稱且 persons 空。",
+   "fix": "目標名稱沿用既有安全顯示規則，不可見敵人仍遮名；避免不必要的 unit() 副作用或重複昂貴建構。",
+   "acceptance": "己方、可見敵機、不可見敵機與具名怪獸案例；敵機人物姓名不出現在 mission，既有公開物種名稱不退化。"
+  },
+  {
+   "id": "contract-focus",
+   "status": "已修正；完整UI208案與build、修改後完整e2e19案通過；瀏覽器Tab實玩待回報",
+   "location": "src/ui-adapter/ops/dom/tabs.ts:206; src/ui-adapter/ops/dom/render.ts:138",
+   "scenario": "歷史列 focus 後 Enter/空白選取並真正重繪，或 summary focus 時日期更新",
+   "finding": "replaceChildren 移除焦點元素，只保留 details.open，未恢復焦點。",
+   "fix": "只在焦點原位於契約 pane 時保存語義識別；重繪後還原相同列/summary，移除或收合時選可見 fallback，不搶外部焦點。",
+   "acceptance": "focus→keydown→controller dispatch→render→activeElement；選取列、summary 更新、列消失、外部焦點四情境；後續 Tab 需瀏覽器驗證。"
+  }
+ ]
+}

@@ -3,7 +3,7 @@ import { controlLabel, moraleLabel, roleLabel, statusLabel, layerTypeLabel, pool
   familyLabel, targetShapeLabel, effectTimingLabel, functionLabel, damageTypeLabel, defenseSummary } from "./labels.ts";
 import { cellKey } from "../../core/ids.ts";
 import type { GameEvent } from "../../core/events.ts";
-import type { PoolDecl, NumExpr } from "../../core/types-def.ts";
+import type { PoolDecl, NumExpr, Objective } from "../../core/types-def.ts";
 import type { BattleSession } from "./session.ts";
 import type { CellView, CommandOption, LogLine, UnitView, PartOption } from "./types.ts";
 import { DEFAULT_KEYMAP, keyLabel } from "./keymap.ts";
@@ -21,6 +21,51 @@ export class BattleViewModel {
     this.session = session; this.setViewport(0, 0);
     session.observers.add(() => this.captureVisible());
     this.captureVisible();
+  }
+
+  /** 目標採戰鬥展開後的 runtime；不得由契約名稱或未知敵方資料倒推。 */
+  mission(): NonNullable<import("./types.ts").UiSnapshot["mission"]> {
+    const { state: s, playerSlot, db } = this.session, runtime = s.rt;
+    const targetName = (id: string): string => {
+      const u = s.units[id];
+      if (!u) return "指定目標";
+      if (u.owner === playerSlot) return unitName(db, s, id);
+      if (!s.knowledge[playerSlot]?.visible.includes(id) && !runtime?.presences?.[id]) return "指定目標";
+      // 沿用單位面板的公開名稱：敵機只顯示機型，公開怪獸保留個體名與稱號。
+      return db.get("species", u.frame) ? unitName(db, s, id) : db.require("frame", u.frame).name;
+    };
+    const exitGoal = runtime?.exits.length
+      ? `抵達明列出口格${runtime.noRetreat ? "（本場禁止撤離）" : "或使用「撤離」"}`
+      : runtime?.noRetreat ? "完成撤離（本場無明列出口且禁止撤離，尚未撤離的單位無法達成）"
+      : "到地圖邊界撤離點使用「撤離」（僅抵達邊界不算完成）";
+    const objectives: Objective[] = runtime?.objectives.length ? runtime.objectives
+      : Object.keys(s.factions).sort().filter(slot => slot !== "berserk").map(slot => ({ kind: "eliminate", params: {}, for: slot, onComplete: "win" }));
+    const text = (o: Objective): string => {
+      const p = o.params;
+      const ids = [...new Set([...(Array.isArray(p.units) ? p.units.filter((v): v is string => typeof v === "string") : []),
+        ...(typeof p.unit === "string" ? [p.unit] : [])])];
+      const targets = [...new Set(ids.map(targetName))].join("、") || "指定目標";
+      switch (o.kind) {
+        case "eliminate": return Array.isArray(p.slots) ? "擊敗或擊退指定陣營全部單位（使其失去作戰能力，含撤離、被俘）" : "擊敗或擊退所有敵軍（使其失去作戰能力，含撤離、被俘）";
+        case "survive": return typeof p.rounds === "number" ? `存活至第 ${p.rounds} 輪輪末` : "存活目標未設定有效輪數（無法達成）";
+        case "killTarget": return `擊殺${targets}（所有指定目標均須死亡）`;
+        case "capture": return typeof p.unit === "string" ? `捕獲${targetName(p.unit)}並歸我方控制` : "捕獲目標未設定（無法達成）";
+        case "reachExit": return typeof p.unit === "string" ? `使我方的${targetName(p.unit)}${exitGoal}` : "抵達出口目標未設定（無法達成）";
+        case "escort": return `護送${targets}全部存活並${exitGoal}`;
+        case "hold": {
+          const zone = Array.isArray(p.zone) ? p.zone.filter((c): c is { x: number; y: number } => !!c && typeof c === "object"
+            && "x" in c && "y" in c && typeof c.x === "number" && typeof c.y === "number") : null;
+          if (typeof p.rounds !== "number" || p.rounds <= 0 || zone?.length === 0) return "守住目標未設定有效區域或輪數（無法達成）";
+          const area = zone ? `指定區域（${zone.map(c => `${c.x},${c.y}`).join("；")}）` : "戰場";
+          return `連續守住${area} ${p.rounds} 輪（每輪末有己方作戰單位${zone ? "且無敵對作戰單位" : ""}）`;
+        }
+      }
+    };
+    const ownObjectives = objectives.filter(o => o.for === playerSlot);
+    return { objectives: ownObjectives.length ? ownObjectives.map(o => ({ effect: o.onComplete, text: text(o) }))
+      : [{ effect: "win", text: "其他目標尚未定局時，保持我方作戰單位存活，擊退所有敵軍（敵軍均已失去作戰能力，且至少一個已撤離）。" }],
+      retreat: runtime?.noRetreat ? "本場禁止撤離。" : `每台單位須各自到${runtime?.exits.length ? "明列出口格" : "地圖邊界撤離點"}使用「撤離」；撤離是否完成任務依本場目標判定。`,
+      timeout: runtime?.maxRounds == null ? null : `第 ${runtime.maxRounds} 輪輪末仍無目標決定勝負：平局（超時）。` };
   }
 
   captureVisible(): void {
@@ -52,11 +97,20 @@ export class BattleViewModel {
     return frame.tags.find(tag => Object.hasOwn(db.registries.locomotion, tag)) ?? "leg";
   }
 
+  /** 與正式撤離規則一致：明列出口優先，未明列時才以圖內邊界為撤離點；不代表目標判定的出口。 */
+  private atRetreatExit(x: number, y: number): boolean {
+    const { state: s, query: q } = this.session;
+    return !!s.rt && (s.rt.exits.length ? s.rt.exits.some(p => p.x === x && p.y === y)
+      : q.inBounds(s, { x, y }) && (x === 0 || y === 0 || x === s.map.width - 1 || y === s.map.height - 1));
+  }
+
   cell(x: number, y: number, selected: Id | null = null): CellView {
     const { state: s, db, query: q, playerSlot } = this.session;
     if (!q.inBounds(s, { x, y })) throw new Error("座標超出地圖");
     const t = db.require("terrain", s.map.terrain[y * s.map.width + x]!);
     const cell: CellView = { x, y, terrain: { id: t.id, name: t.name, glyph: t.glyph, color: t.color } };
+    if (this.atRetreatExit(x, y) && (!s.rt?.noRetreat || s.rt.exits.length))
+      cell.exit = { kind: s.rt?.exits.length ? "explicit" : "boundary", retreatAllowed: !s.rt?.noRetreat };
     if (t.destructible && (s.map.featureHp[cellKey(x, y)] ?? 0) > 0)
       cell.feature = { hp: s.map.featureHp[cellKey(x, y)]!, max: t.destructible.hp };
     cell.objects = (s.map.objects ?? []).filter(o => !o.collected && this.objectKnown(o) && o.at.x === x && o.at.y === y).map(o => ({
@@ -301,7 +355,7 @@ export class BattleViewModel {
         : type === "skip" ? (!this.session.autoAdvance && !this.session.isPlayerTurn() && !this.session.outcome() && this.session.activeUnit() ? undefined : "目前沒有演出")
         : unavailable ?? (type === "defer" && s.rt?.waitUsed.includes(unitId!) ? rejectionText("wait-used")
         : type === "retreat" && s.rt?.noRetreat ? rejectionText("no-retreat")
-        : type === "retreat" && !s.rt?.exits.some(p => p.x === pos?.x && p.y === pos?.y) ? rejectionText("not-at-exit")
+        : type === "retreat" && (!pos || !this.atRetreatExit(pos.x, pos.y)) ? rejectionText("not-at-exit")
         : type === "eject" && !q.commanderOf(s, unitId!) ? rejectionText("no-commander") : undefined);
       add({ id, label, group: type === "eject" || type === "retreat" ? "system" : "turn", tooltip: label,
         enabled: !reason, ...(reason ? { reason } : {}), action: { type } }, type);

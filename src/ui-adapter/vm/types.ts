@@ -28,6 +28,7 @@ export type Highlight = "reach" | "path" | "target" | "range";
 
 export type CellView = {
   x: number; y: number;
+  exit?: { kind?: "explicit" | "boundary"; retreatAllowed: boolean }; // 明列出口／邊界撤離點；舊快照未帶 kind 視為明列出口，禁撤仍標明列出口
   terrain: { id: Id; name: string; glyph: string; color: string };
   feature?: { hp: number; max: number };
   objects?: { id: string; name: string; kind: string; note: string }[];
@@ -109,6 +110,7 @@ export type Busy = { kind: "ai"; actor: Id | null; name: string | null };
 export type AnimMode = "on" | "fast" | "off";
 
 export type UiSnapshot = {
+  mission?: { objectives: { effect: "win" | "lose" | "continue"; text: string }[]; retreat: string; timeout: string | null };
   title: string;                    // 情境名
   round: number; maxRounds: number | null;
   activeUnit: Id | null;            // 現在輪到的單位

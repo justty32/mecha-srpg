@@ -83,6 +83,7 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
     main.append(pane);
   }
   const world = mountWorldMap(panes.world, { onAction });
+  let historyOpen = false, selectedHistory: string | null = null;
   const painters: Record<Exclude<OpsTab, "world">, (s: OpsSnapshot) => [unknown, () => Node[]]> = {
     ship: s => [[s.room, s.roomButtons], () => {
       const rooms = s.roomButtons.filter(b => b.group === "rooms");
@@ -92,15 +93,37 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
         el(doc, "h3", "移動到"), buttonRow(doc, rooms, registry, "ops-buttons room-exits")];
     }],
     contracts: s => [s.contracts, () => {
-      if (!s.contracts.length) return [el(doc, "h2", "契約"), el(doc, "p", "目前沒有契約。可使用「推進一天」，再回來查看是否有新委託。", "muted")];
-      const list = el(doc, "ul", "", "ops-list");
-      for (const c of s.contracts) {
-        list.append(pickRow(doc, registry, { type: "selectContract", contract: c.id }, c.selected,
-          el(doc, "strong", c.title), `${c.statusName}・${money(c.total)}・剩 ${c.daysLeft} 天`));
+      const previousHistory = panes.contracts.querySelector<HTMLDetailsElement>(".ops-contract-history");
+      if (previousHistory) historyOpen = previousHistory.open;
+      if (!s.contracts.length) {
+        selectedHistory = null;
+        return [el(doc, "h2", "契約"), el(doc, "p", "目前沒有契約。可使用「推進一天」，再回來查看是否有新委託。", "muted")];
       }
+      const ongoing = s.contracts.filter(c => c.status === "active" || c.status === "stage");
+      const offered = s.contracts.filter(c => c.status === "offered").sort((a, b) => a.deadlineDay - b.deadlineDay);
+      const history = s.contracts.filter(c => ["done", "failed", "cancelled", "expired"].includes(c.status));
       const sel = s.contracts.find(c => c.selected);
+      const nextSelectedHistory = history.find(c => c.selected)?.id ?? null;
+      if (nextSelectedHistory && nextSelectedHistory !== selectedHistory) historyOpen = true;
+      selectedHistory = nextSelectedHistory;
+      const groups = el(doc, "div", "", "ops-contract-groups");
+      const list = (contracts: ContractView[]) => {
+        const ul = el(doc, "ul", "", "ops-list");
+        for (const c of contracts) ul.append(pickRow(doc, registry, { type: "selectContract", contract: c.id }, c.selected,
+          el(doc, "strong", c.title), `${c.statusName}・${money(c.total)}・剩 ${c.daysLeft} 天`));
+        return ul;
+      };
+      if (ongoing.length) groups.append(el(doc, "h3", "進行中"), list(ongoing));
+      if (offered.length) groups.append(el(doc, "h3", "可接取"), list(offered));
+      else groups.append(el(doc, "p", "目前沒有可接取的契約。", "muted"));
+      if (history.length) {
+        const details = el(doc, "details", "", "ops-contract-history");
+        details.open = historyOpen;
+        details.append(el(doc, "summary", `已結束（${history.length}）`), list(history));
+        groups.append(details);
+      }
       const split = el(doc, "div", "", "ops-split");
-      split.append(list, sel ? contractDetail(doc, sel, registry) : el(doc, "p", "選一份契約查看詳情。", "muted ops-detail"));
+      split.append(groups, sel ? contractDetail(doc, sel, registry) : el(doc, "p", "選一份契約查看詳情。", "muted ops-detail"));
       return [el(doc, "h2", "契約"), split];
     }],
     roster: s => [s.roster, () => [el(doc, "h2", "名冊"), (() => {
@@ -176,11 +199,43 @@ export function createTabs(main: HTMLElement, registry: ActionRegistry, onAction
   return {
     panes,
     paint(s) {
+      const pane = panes.contracts, focused = doc.activeElement;
+      // 只恢復原本就在可見契約頁內的焦點，避免背景更新搶走頁外焦點。
+      const restore = s.tab === "contracts" && !pane.closest("[hidden]") && !!focused && pane.contains(focused);
+      const row = focused?.closest(".ops-pick"), action = row ? registry.get(row) : undefined;
+      const contract = action?.type === "selectContract" ? action.contract : null;
+      const summaryFocused = focused?.matches(".ops-contract-history > summary");
+      const buttonId = (focused as HTMLElement | null)?.dataset.actionId;
       for (const tab of TAB_ORDER) panes[tab].hidden = tab !== s.tab;
       if (s.tab === "world") world.render(s.world);
       else {
         const [data, build] = painters[s.tab](s);
-        if (changed(s.tab, data)) panes[s.tab].replaceChildren(...build());
+        if (changed(s.tab, data)) {
+          panes[s.tab].replaceChildren(...build());
+          if (restore) {
+            const visible = (node: HTMLElement): boolean => {
+              if (node.closest("[hidden]")) return false;
+              const closed = node.closest("details:not([open])");
+              return !closed || !!closed.querySelector(":scope > summary")?.contains(node);
+            };
+            const rows = [...pane.querySelectorAll<HTMLElement>(".ops-pick")];
+            const summary = pane.querySelector<HTMLElement>(".ops-contract-history > summary");
+            const sameRow = rows.find(node => {
+              const next = registry.get(node);
+              return next?.type === "selectContract" && next.contract === contract;
+            });
+            const sameButton = buttonId ? [...pane.querySelectorAll<HTMLButtonElement>("button[data-action-id]")]
+              .find(node => node.dataset.actionId === buttonId && !node.disabled) : undefined;
+            const preferred = summaryFocused ? summary : sameRow ?? sameButton;
+            const fallback = sameRow?.closest("details:not([open])") ? summary : null;
+            const target = [preferred, fallback, ...rows.filter(node => node.getAttribute("aria-pressed") === "true"),
+              ...rows, summary, pane.querySelector<HTMLElement>("h2")].find((node): node is HTMLElement => !!node && visible(node));
+            if (target) {
+              if (target.tagName === "H2") target.tabIndex = -1;
+              target.focus({ preventScroll: true });
+            }
+          }
+        }
       }
     },
     destroy() { world.destroy(); },

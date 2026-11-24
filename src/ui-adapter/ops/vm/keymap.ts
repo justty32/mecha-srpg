@@ -35,6 +35,13 @@ export function allButtons(s: OpsSnapshot): OpsButton[] {
   return [...s.tabs, ...s.timeButtons, ...s.roomButtons, ...(s.world.grid?.actions ?? []), ...(s.world.selected?.buttons ?? []),
     ...s.contracts.flatMap(c => c.buttons), ...s.mechs.flatMap(m => m.buttons), ...s.market.items.flatMap(i => i.buttons), ...(s.sortie?.buttons ?? [])];
 }
+// 契約詳情已明選目標時，契約操作不能退回艦橋或另一份契約。
+function buttonsForBinding(s: OpsSnapshot, action: string, fallback: OpsButton[]): OpsButton[] {
+  const selected = s.tab === "contracts" && s.contracts.find(c => c.selected);
+  if (selected && ["accept", "drop", "sail", "sortieOpen"].includes(action)) return selected.buttons;
+  if (s.tab === "contracts" && ["accept", "drop"].includes(action)) return [];
+  return fallback;
+}
 export function bindButtons(s: OpsSnapshot, bindings: Binding[]): void {
   // 重用已驗證快照切換 context 時，先撤下前一頁的鍵標籤。
   for (const button of allButtons(s)) {
@@ -44,7 +51,8 @@ export function bindButtons(s: OpsSnapshot, bindings: Binding[]): void {
   const context = s.prompt ? "prompt" : s.showHelp || s.report ? "overlay" : s.sortie ? "sortie" : s.tab === "world" ? "map" : "room";
   const buttons = context === "map" ? s.world.grid?.actions ?? [] : allButtons(s);
   for (const b of bindings.filter(b => (b.context ?? (b.action.startsWith("choose:") ? "prompt" : "room")) === context)) {
-    const matches = buttons.filter(button => actionKey(button.action) === b.action);
+    const candidates = context === "room" ? buttonsForBinding(s, b.action, buttons) : buttons;
+    const matches = candidates.filter(button => actionKey(button.action) === b.action);
     const button = matches.find(b => b.enabled) ?? matches[0];
     if (button && b.keys[0]) { button.key = keyText(b.keys[0]); button.tooltip += `\n快捷鍵：${button.key}`; }
   }
