@@ -120,6 +120,7 @@ export type RulesRuntime = {
   conventionalFactor?: number;        // 情境 rules.conventionalFactor 覆蓋凡鐵外甲倍率（抵抗性）；省略＝用 constants
   fieldEffects: EffectInstance[];     // scope = cell／faction／battle 的效果
   objectives: Objective[]; maxRounds: number | null; exits: Cell[]; noRetreat: boolean;
+  exitsBySlot?: Record<FactionSlot, Cell[]>; deployZones?: Record<FactionSlot, Cell[]>;
   outcome: BattleOutcome | null;
   holdProgress?: Record<string, { round: number; count: number }>;
 };

@@ -10,6 +10,7 @@ import type { BattleSetup, BattleResult, UnitInit } from "../rules/index.ts";
 import { createFactionAI, startRound, runUnitTurn, observeEvents } from "../ai/index.ts";
 import type { AiParams, FactionAI } from "../ai/index.ts";
 import { createRulesQuery, createRulesExec } from "../ai/adapters/rules-adapter.ts";
+import { materializeExits } from "./exits.ts";
 
 export type PlayerSpec = { kind: "ai"; policy?: Id; params?: AiParams } | { kind: "script"; commands: Command[] };
 export type SimSetup = { scenario: Id | null; setup: BattleSetup;
@@ -126,9 +127,12 @@ export function scenarioToSetup(db: ContentDB, scenario: Id | DynamicScenario, s
     else if (units.some(u => u.id === target)) objective.params.unit = target;
     else throw new Error(`objective 目標不存在：${target}`);
   }
+  const exitsBySlot = materializeExits(map);
   const setup: BattleSetup = { id: sc.id, factions, allies, map: { width: map.width, height: map.height,
     ...(map.objects ? { objects: structuredClone(map.objects) } : {}),
     fill: cells[0]!.terrain, cells, exits: structuredClone(map.exits),
+    ...(exitsBySlot !== undefined ? { exitsBySlot } : {}),
+    ...(map.deployZones !== undefined ? { deployZones: structuredClone(map.deployZones) } : {}),
     ...(map.globals ? { globals: structuredClone(map.globals) } : {}) }, units, objectives,
     ...(sc.rules ? { rules: structuredClone(sc.rules), noRetreat: sc.rules.noRetreat ?? false } : {}) };
   const rounds = opts?.rounds ?? sc.rounds;

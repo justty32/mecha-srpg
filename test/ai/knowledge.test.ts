@@ -83,3 +83,14 @@ test("knowledge 純函式不改輸入，回傳資料可獨立修改", () => {
   maskedState(q, s, "p", k).units.a!.pos.x = 99;
   assert.deepEqual({ s, k }, before);
 });
+
+
+test("knowledge：舊pursuitCells無情報原地，不建立搜索記憶", async () => {
+  const { pursuitCells, knownPursuitCells } = await import("../../src/ai/knowledge.ts");
+  const { createRng } = await import("../../src/core/rng.ts");
+  const { q, s } = setup();
+  const know = emptyKnowledge(), view = maskedState(q, s, "p", know);
+  const ctx = { q, s, view, slot: "p", know, assignment: null, params: {}, danger: {}, rng: createRng(1) };
+  assert.deepEqual(knownPursuitCells(ctx, "a"), []);
+  assert.deepEqual(pursuitCells(ctx, "a"), [s.units.a!.pos]);
+});

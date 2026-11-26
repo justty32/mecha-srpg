@@ -122,3 +122,48 @@ test("save：預付盾準備與實際motion保留，讀回可驗證同一重播"
   assert.equal(loaded.state.units.a!.defense!.charges, 2);
   assert.deepEqual(loaded.state, state);
 });
+
+
+test("save：陣營出口及部署區setup/snapshot往返與非法形狀", () => {
+  const save = fixture(true);
+  const fields = { exitsBySlot: { player: [], enemy: [{ x: 1, y: 1 }], third: [{ x: 0, y: 0 }] },
+    deployZones: { player: [{ x: 2, y: 2 }], enemy: [], third: [] } };
+  Object.assign(save.setup!.map, structuredClone(fields));
+  Object.assign(save.snapshot!.rt!, structuredClone(fields));
+  const parsed = parseSave(serializeSave(save));
+  assert.deepEqual(parsed, save);
+  assert.deepEqual(loadSave(db, parsed).state, save.snapshot);
+  for (const key of ["exitsBySlot", "deployZones"] as const) {
+    for (const invalid of [null, [], { player: {} }, { player: [null] }, { player: [{ x: "0", y: 1 }] },
+      { player: [{ x: 0 }] }, { player: [{ x: 0.5, y: 1 }] }, { player: [{ x: 0, y: 1, extra: 1 }] }]) {
+      for (const target of ["setup", "snapshot"] as const) {
+        const bad = structuredClone(save);
+        const container = target === "setup" ? bad.setup!.map : bad.snapshot!.rt!;
+        Object.assign(container, { [key]: invalid });
+        assert.throws(() => serializeSave(bad), /形狀/);
+        assert.throws(() => parseSave(JSON.stringify(bad)), /形狀/);
+      }
+    }
+  }
+});
+
+
+test("save：明列出口及部署區可載入並以setup重播核對snapshot", async () => {
+  const { createBattle, startBattle } = await import("../../src/rules/index.ts");
+  const setup: import("../../src/rules/index.ts").BattleSetup = {
+    id: "save-slot-exits", map: { width: 4, height: 4, fill: "terrain/plain", exits: [],
+      exitsBySlot: { player: [], enemy: [{ x: 3, y: 1 }], third: [{ x: 0, y: 0 }] },
+      deployZones: { player: [{ x: 1, y: 1 }], enemy: [{ x: 2, y: 1 }], third: [] } },
+    units: [
+      { id: "p", owner: "player", pos: { x: 1, y: 1 }, monster: { species: "species/hound", grade: "C" } },
+      { id: "e", owner: "enemy", pos: { x: 2, y: 1 }, monster: { species: "species/hound", grade: "C" } },
+    ], objectives: [],
+  };
+  const state = createBattle(db, setup, 1);
+  startBattle({ db, s: state });
+  const save = createSave(db, { scenario: null, seed: 1, setup, commands: [], snapshot: state });
+  const parsed = parseSave(serializeSave(save));
+  assert.deepEqual(loadSave(db, parsed, { verifySnapshot: true }).state, state);
+  assert.notStrictEqual(parsed.setup!.map.exitsBySlot, setup.map.exitsBySlot);
+  assert.notStrictEqual(parsed.snapshot!.rt!.deployZones, state.rt!.deployZones);
+});

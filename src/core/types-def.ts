@@ -246,6 +246,7 @@ export type MapDef = {
   features?: { at: Cell; terrain: Id; hp?: number }[];
   deployZones: Record<FactionSlot, Cell[]>;
   exits: Cell[];
+  exitsBySlot?: Record<FactionSlot, Cell[]>;
   globals?: { tide?: NumExpr; light?: number };
 };
 export type FactionDef = {

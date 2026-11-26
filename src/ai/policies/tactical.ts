@@ -5,7 +5,7 @@ import { registerPolicy } from "../policy.ts";
 import { dangerAt } from "../danger.ts";
 import { lethalParts, rangeGap, scoreCandidate } from "../score.ts";
 import { OBJECTIVE_DEFAULTS, objectiveMoveValue } from "../objectives.ts";
-import { pursuitCells } from "../knowledge.ts";
+import { searchCells } from "../knowledge.ts";
 import { mobile } from "../intent.ts";
 import { isSupport, supportUsed } from "../support.ts";
 
@@ -20,7 +20,7 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   if (!self || !q.isActive(view, actor)) return [];
   const others = Object.keys(view.units).sort().filter((id) => id !== actor && q.isActive(view, id));
   const enemies = others.filter((id) => opts?.hostileOnly === false || q.hostile(view, actor, id));
-  const targets = pursuitCells(ctx, actor, opts?.hostileOnly !== false);
+  const targets = searchCells(ctx, agent, opts?.hostileOnly !== false);
   const nearest = (cell: Cell): number => Math.min(...targets.map(target => q.distance(cell, target)));
   const reachCosts = q.reachable(view, actor);
   const reachable = Object.keys(reachCosts).sort().map((key) => {
@@ -167,7 +167,7 @@ export function proposeTactical(ctx: AiCtx, agent: Agent, opts?: { maxMoves?: nu
   // 本輪已用過 Wait 就不提（真規則會拒絕 wait-used；stub 無 rt.waitUsed 簿記時照舊）。
   if (!view.rt?.waitUsed.includes(actor)) candidates.push({ cmd: { kind: "wait", actor } });
   candidates.push({ cmd: { kind: "end", actor } });
-  if (mobile(q, view, actor) && view.rt?.exits.some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
+  if (mobile(q, view, actor) && q.retreatCellsFor(view, self.owner).some((cell) => q.distance(cell, self.pos) === 0)) candidates.push({ cmd: { kind: "retreat", actor } });
   // 沒有握指令權的人物（無人機、失去駕駛）不能棄機；不提出必被規則以 no-commander 拒絕的候選。
   if (q.commanderOf(view, actor) !== null) candidates.push({ cmd: { kind: "eject", actor } });
   return candidates;

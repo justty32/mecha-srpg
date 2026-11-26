@@ -36,6 +36,7 @@ test("viewmodel：cell 地形取自內容包", () => {
 test("viewmodel：公知出口預先標記，撤離按鈕與正式規則的指定格及邊界一致", () => {
   for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
     const { session, vm } = fixture(), s = session.state, actor = session.activeUnit()!;
+    s.rt!.exitsBySlot = {};
     s.rt!.exits = explicit ? [{ x: 0, y: 2 }] : [];
     s.rt!.noRetreat = noRetreat;
     // 地形與出口為公知資料；清除敵方可見情報不能隱藏出口或洩漏敵軍。
@@ -55,6 +56,7 @@ test("目標出口：reachExit／escort 交叉明列出口與禁撤，對照正�
   for (const kind of ["reachExit", "escort"] as const) for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
     const { session, vm } = fixture(), s = session.state, runtime = s.rt!, actor = session.activeUnit()!;
     const target = Object.values(s.units).find(u => u.owner === "player" && u.id !== actor)!;
+    runtime.exitsBySlot = {};
     runtime.exits = explicit ? [{ x: 0, y: 2 }] : [];
     runtime.noRetreat = noRetreat;
     runtime.objectives = [{ kind, for: "player", onComplete: "win", params: { unit: target.id } }];
@@ -107,7 +109,7 @@ test("目標姓名：己方具名駕駛保留、可見與公知敵機只露機�
   const before = structuredClone(knowledge);
   assert.equal(vm.mission().objectives[1]!.text, "擊殺指定目標（所有指定目標均須死亡）");
   assert.deepEqual(knowledge, before, "讀目標不改寫可見／最後所見情報");
-  s.rt!.presences = { [enemy.id]: { engageable: false } };
+  s.rt!.presences = { [enemy.id]: { aura: "effect/kx-tidal-dread", engageable: false } };
   assert.equal(vm.mission().objectives[1]!.text, `擊殺${frame}（所有指定目標均須死亡）`);
   assert.ok(!JSON.stringify(vm.mission()).includes(enemyName));
 });
@@ -119,7 +121,7 @@ test("目標姓名：可見與公知怪獸保留個體名及稱號，非公知�
   assert.match(vm.mission().objectives[0]!.text, /吉大港的那隻「萬潮葬王」/);
   s.knowledge.player!.visible = [];
   assert.match(vm.mission().objectives[0]!.text, /擊殺指定目標/);
-  s.rt!.presences = { named: { engageable: false } };
+  s.rt!.presences = { named: { aura: "effect/kx-tidal-dread", engageable: false } };
   assert.match(vm.mission().objectives[0]!.text, /吉大港的那隻「萬潮葬王」/);
 });
 test("viewmodel：未見敵軍不出現在格子", () => {
@@ -345,4 +347,96 @@ test("敵格結構只沿最後所見，不讀敵方現時傷害或血池", () =>
   const stale = vm.cell(enemy.pos.x, enemy.pos.y).unit!;
   assert.equal(stale.stale, true); assert.equal(stale.hpRatio, visible.hpRatio);
   assert.equal(stale.blood, undefined);
+});
+
+test("陣營出口：玩家標記不隨選中敵人，空slot不回退，禁撤仍保留目標出口", () => {
+  const { session, vm } = fixture(), s = session.state, rt = s.rt!, actor = session.activeUnit()!;
+  const left = { x: 0, y: 2 }, right = { x: s.map.width - 1, y: 2 };
+  const target = Object.values(s.units).find(u => u.owner === "player" && u.id !== actor)!;
+  rt.exits = [left]; rt.exitsBySlot = { player: [right], enemy: [left] }; rt.noRetreat = false;
+  s.knowledge.player!.visible = [];
+  assert.deepEqual(vm.cell(right.x, right.y, "enemy-0").exit, { kind: "explicit", retreatAllowed: true });
+  assert.equal(vm.cell(left.x, left.y, "enemy-0").exit, undefined);
+  s.units[actor]!.pos = left;
+  assert.equal(vm.commands(actor).find(c => c.id === "retreat")!.enabled, false);
+  s.units[actor]!.pos = right;
+  assert.equal(vm.commands(actor).find(c => c.id === "retreat")!.enabled, true);
+  rt.noRetreat = true;
+  assert.deepEqual(vm.cell(right.x, right.y).exit, { kind: "explicit", retreatAllowed: false });
+  assert.equal(vm.commands(actor).find(c => c.id === "retreat")!.enabled, false);
+  for (const kind of ["reachExit", "escort"] as const) {
+    rt.objectives = [{ kind, for: "player", onComplete: "win", params: { unit: target.id } }];
+    rt.acted = Object.keys(s.units).filter(id => id !== actor); rt.maxRounds = null;
+    const completed = () => {
+      const preview = session.preview({ kind: "end", actor });
+      assert.equal(preview.result.ok, true);
+      assert.ok(preview.result.ok && preview.result.events.some(e => e.type === "RoundEnd"));
+      return preview.state.rt!.outcome?.reason ?? null;
+    };
+    target.pos = left;
+    assert.equal(completed(), null, "站在敵方出口不能完成我方目標");
+    target.pos = right;
+    assert.equal(completed(), kind, "禁止撤離仍可抵達我方明列出口完成目標");
+    assert.match(vm.mission().objectives[0]!.text, /抵達明列出口格.*禁止撤離/u);
+    rt.exitsBySlot.player = [];
+    assert.equal(completed(), null, "刻意空出口不能以邊界完成");
+    rt.unitStatus[target.id] = "retreated";
+    assert.equal(completed(), kind, "空出口仍保留已撤離成功短路");
+    rt.unitStatus[target.id] = "active";
+    assert.equal(vm.cell(right.x, right.y).exit, undefined);
+    assert.match(vm.mission().objectives[0]!.text, /尚未撤離.*無法達成/u);
+    rt.noRetreat = false;
+    assert.match(vm.mission().objectives[0]!.text, /無出口且無可用撤離格/u);
+    assert.doesNotMatch(vm.mission().retreat, /地圖邊界/u);
+    assert.equal(vm.cell(left.x, left.y).exit, undefined);
+    assert.equal(vm.commands(actor).find(c => c.id === "retreat")!.enabled, false);
+    rt.exitsBySlot.player = [right]; rt.noRetreat = true;
+  }
+});
+
+test("出口標記：尚無runtime時不以查詢的四邊fallback誤標", () => {
+  const { session, vm } = fixture();
+  session.state.rt = undefined;
+  // 此案只檢查出口標記；正式 unitAt 需要 runtime，不在本案查單位。
+  session.query.unitAt = () => null;
+  session.state.knowledge.player!.lastSeen = {};
+  assert.equal(vm.cell(0, 2).exit, undefined);
+});
+
+
+test("護送跨owner：任務出口與目標撤離能力分開，已撤離仍完成，未知不洩漏", () => {
+  const { session, vm } = fixture(), s = session.state, rt = s.rt!, actor = session.activeUnit()!;
+  const target = Object.values(s.units).find(u => u.owner === "enemy")!;
+  const left = { x: 0, y: 2 }, right = { x: s.map.width - 1, y: 2 };
+  target.pos = right;
+  s.knowledge.player!.visible = [target.id];
+  rt.exits = []; rt.exitsBySlot = { player: [], enemy: [right] }; rt.noRetreat = false;
+  rt.objectives = [{ kind: "escort", for: "player", onComplete: "win", params: { unit: target.id } }];
+  rt.acted = Object.keys(s.units).filter(id => id !== actor); rt.maxRounds = null;
+  const completed = () => {
+    const preview = session.preview({ kind: "end", actor });
+    assert.equal(preview.result.ok, true);
+    return preview.state.rt!.outcome?.reason ?? null;
+  };
+  const text = () => vm.mission().objectives[0]!.text;
+  assert.match(text(), /本任務陣營無明列出口/u);
+  assert.match(text(), /有可用撤離格/u);
+  assert.doesNotMatch(text(), /尚未撤離.*無法達成|地圖邊界/u);
+  assert.equal(completed(), null, "站在目標所屬陣營出口不代表抵達任務出口");
+  rt.unitStatus[target.id] = "retreated";
+  assert.equal(completed(), "escort", "目標可依自身owner撤離後完成任務");
+  assert.match(text(), /已撤離的目標仍視為達成/u);
+  rt.unitStatus[target.id] = "active";
+  rt.exitsBySlot = { player: [left], enemy: [] }; target.pos = left;
+  assert.match(text(), /抵達任務陣營的明列出口格/u);
+  assert.match(text(), /無可用撤離格/u);
+  assert.match(text(), /任務出口不保證可撤離/u);
+  assert.equal(completed(), "escort", "目標不能撤離仍可抵達任務出口");
+  s.knowledge.player!.visible = []; s.knowledge.player!.lastSeen = {};
+  const unknown = text();
+  assert.match(unknown, /指定目標/u);
+  assert.match(unknown, /未公開目標的撤離能力未知/u);
+  assert.doesNotMatch(unknown, /無可用撤離格|無法達成/u);
+  rt.exitsBySlot.enemy = [right];
+  assert.equal(text(), unknown, "隱藏目標的owner出口不可影響公開文字");
 });

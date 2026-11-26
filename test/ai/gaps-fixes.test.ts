@@ -25,7 +25,7 @@ test("swarm 在截斷前篩母體距離，半徑內仍有前進候選", () => {
   assert.ok(env.q.distance(env.s.units.a!.pos, env.s.units.mother!.pos) <= 3);
 });
 
-test("可見敵人優先，失聯追 lastSeen，無情報才回中央且不讀隱藏位置", () => {
+test("可見敵人優先，失聯追 lastSeen，無情報缺部署原地且不讀隱藏位置", () => {
   const env = setup([unit("a", "player", 25), unit("b", "enemy", 35)], { maxMoves: 1, objMoves: 0, band: 1 });
   env.know = { visible: [], lastSeen: { b: { cell: { x: 32, y: 1 }, round: 0 } }, revealed: {} };
   const ctx = context(env), agent = createAgent("a", "tactical");
@@ -37,7 +37,7 @@ test("可見敵人優先，失聯追 lastSeen，無情報才回中央且不讀�
   assert.ok(moves.length > 0);
   assert.ok(moves.every(c => c.cmd.kind === "move" && c.cmd.path.at(-1)!.x > 25));
   ctx.know = emptyKnowledge();
-  assert.ok(scoreCandidate(ctx, agent, left) > scoreCandidate(ctx, agent, right));
+  assert.equal(scoreCandidate(ctx, agent, left), scoreCandidate(ctx, agent, right));
   ctx.know = { visible: ["c"], lastSeen: { b: { cell: { x: 32, y: 1 }, round: 0 } }, revealed: {} };
   ctx.view.units.c = { ...structuredClone(ctx.view.units.a!), id: "c", owner: "enemy", pos: { x: 22, y: 1 } };
   ctx.view.rt!.unitStatus.c = "active";

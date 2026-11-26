@@ -28,3 +28,16 @@ test("species移動額度只擴真SpeciesDef，spawn species仍接受Id引用", 
   assert.deepEqual(validateAgainst("effect", spawn), []);
   assert.ok(validateAgainst("effect", { ...effect, hooks: { onApply: [{ do: "spawn", species: { id: species.id }, grade: "D", at: "adjacent" }] } }).length > 0);
 });
+
+
+test("map schema接受三方含空出口，拒絕非法字典與未知格欄位", () => {
+  const map = structuredClone(db.all("map")[0]!);
+  assert.deepEqual(validateAgainst("map", { ...map, exitsBySlot: {
+    player: [{ x: 0, y: 1 }], enemy: [{ x: 3, y: 1 }], third: [],
+  } }), []);
+  for (const exitsBySlot of [null, [], { player: {} }, { player: [null] },
+    { player: [{ x: "0", y: 1 }] }, { player: [{ x: 0 }] }, { player: [{ x: 0, y: 1, extra: 1 }] }]) {
+    assert.ok(validateAgainst("map", { ...map, exitsBySlot }).length > 0);
+  }
+  assert.ok(validateAgainst("map", { ...map, unknown: true }).length > 0);
+});

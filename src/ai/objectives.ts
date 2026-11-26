@@ -17,6 +17,7 @@ export type ObjectiveInfo = {
   killBonus: Record<Id, number>; bonusReasons: Record<Id, Bonus[]>; spare: Id[];
   holdZones: Cell[][]; contestZones: Cell[][]; exitUnits: Id[]; escortees: Id[]; interceptUnits: Id[];
   friendlyExitUnits: Id[];
+  exitGoals: { units: Id[]; exits: Cell[]; friendly: boolean }[];
 };
 // 只快取快照中的公開事實；權重在取用時套用，避免不同 profile 共用時污染。
 const cache = new WeakMap<BattleState, Map<FactionSlot, ObjectiveInfo>>();
@@ -27,7 +28,7 @@ export function objectiveInfo(q: RulesQuery, view: BattleState, slot: FactionSlo
   const cached = slots.get(slot);
   if (cached) return cached;
   const info: ObjectiveInfo = { killBonus: {}, bonusReasons: {}, spare: [], holdZones: [], contestZones: [],
-    exitUnits: [], escortees: [], interceptUnits: [], friendlyExitUnits: [] };
+    exitUnits: [], escortees: [], interceptUnits: [], friendlyExitUnits: [], exitGoals: [] };
   const bonus = (id: Id, reason: Bonus): void => {
     (info.bonusReasons[id] ??= []).push(reason);
     info.killBonus[id] = (info.killBonus[id] ?? 0) + OBJECTIVE_DEFAULTS[reason];
@@ -48,13 +49,16 @@ export function objectiveInfo(q: RulesQuery, view: BattleState, slot: FactionSlo
     }
     if (o.kind === "escort" || o.kind === "reachExit") {
       const active = ids.filter(id => !!view.units[id] && q.isActive(view, id));
+      const exits = q.exitsFor(view, o.for);
       if (friendly) {
         const friends = active.filter(id => view.units[id]!.owner === slot || !isHostileSlot(q, view, slot, view.units[id]!.owner));
+        info.exitGoals.push({ units: friends, exits, friendly: true });
         info.friendlyExitUnits.push(...friends);
         info.exitUnits.push(...friends.filter(id => view.units[id]!.owner === slot));
         if (o.kind === "escort") info.escortees.push(...friends);
       } else {
         const enemies = active.filter(id => isHostileSlot(q, view, slot, view.units[id]!.owner));
+        info.exitGoals.push({ units: enemies, exits, friendly: false });
         info.interceptUnits.push(...enemies);
         for (const id of enemies) bonus(id, "objIntercept");
       }
@@ -77,7 +81,7 @@ export function objectiveTargetFactor(info: ObjectiveInfo, id: Id, params: AiPar
 
 export function objectiveMoveValue(ctx: Pick<AiCtx, "q" | "view" | "slot" | "params">, unit: Id, from: Cell, to: Cell): number {
   const { q, view, slot } = ctx, p = { ...OBJECTIVE_DEFAULTS, ...ctx.params };
-  const info = objectiveInfo(q, view, slot), exits = view.rt?.exits ?? [];
+  const info = objectiveInfo(q, view, slot);
   const distance = (c: Cell, zone: Cell[]): number => Math.min(...zone.map(b => q.distance(c, b)));
   const progress = (zone: Cell[]): number => zone.length ? distance(from, zone) - distance(to, zone) : 0;
   const at = (c: Cell, zone: Cell[]): number => Number(zone.some(b => q.distance(c, b) === 0));
@@ -87,10 +91,13 @@ export function objectiveMoveValue(ctx: Pick<AiCtx, "q" | "view" | "slot" | "par
     && info.bonusReasons[id]!.some(reason => reason === "objKill" || reason === "objSpawner"))
     .sort((a, b) => q.distance(from, view.units[a]!.pos) - q.distance(from, view.units[b]!.pos) || a.localeCompare(b))[0];
   if (hunt) value += p.objHunt * (q.distance(from, view.units[hunt]!.pos) - q.distance(to, view.units[hunt]!.pos));
-  if (info.exitUnits.includes(unit)) value += p.objExit * progress(exits);
+  if (info.exitUnits.includes(unit)) {
+    for (const goal of info.exitGoals) if (goal.friendly && goal.units.includes(unit)) value += p.objExit * progress(goal.exits);
+  }
   else {
     for (const zone of info.holdZones) value += p.objHold * progress(zone) + p.objHoldStay * (at(to, zone) - at(from, zone));
-    if (info.friendlyExitUnits.length) value -= p.objNoBlock * (at(to, exits) - at(from, exits));
+    const exits = info.exitGoals.filter(goal => goal.friendly && goal.units.length).flatMap(goal => goal.exits);
+    value -= p.objNoBlock * (at(to, exits) - at(from, exits));
   }
   for (const zone of info.contestZones) value += p.objContest * progress(zone);
   if (!info.escortees.includes(unit)) {
@@ -101,9 +108,9 @@ export function objectiveMoveValue(ctx: Pick<AiCtx, "q" | "view" | "slot" | "par
       value += p.objEscort * (Math.max(0, q.distance(from, pos) - p.escortRange) - Math.max(0, q.distance(to, pos) - p.escortRange));
     }
   }
-  for (const id of info.interceptUnits) {
+  for (const goal of info.exitGoals.filter(goal => !goal.friendly)) for (const id of goal.units) {
     const pos = view.units[id]!.pos;
-    const exit = [...exits].sort((a, b) => q.distance(pos, a) - q.distance(pos, b) || a.x - b.x || a.y - b.y)[0];
+    const exit = [...goal.exits].sort((a, b) => q.distance(pos, a) - q.distance(pos, b) || a.x - b.x || a.y - b.y)[0];
     if (exit) value += p.objBlock * (q.distance(from, exit) - q.distance(to, exit));
   }
   return value;

@@ -74,3 +74,26 @@ test("scripted AI／遙控低命中率仍能選用武器，機體 AP 扣款且�
   assert.equal(replay.hash, run.hash);
   assert.equal(replay.state.units["enemy-0"]!.core, false); assert.equal(replay.state.units["enemy-0"]!.crew, "remote");
 });
+
+
+test("scenarioToSetup手標優先、缺slot派生且runtime深複製", () => {
+  const scenario = structuredClone(db.require("scenario", scenarioId));
+  const mapDef = structuredClone(db.require("map", scenario.map));
+  mapDef.exitsBySlot = { player: [], third: [{ x: 0, y: 0 }] };
+  const sim = scenarioToSetup(db, { ...scenario, mapDef }, 1);
+  assert.deepEqual(sim.setup.map.exitsBySlot!.player, []);
+  assert.deepEqual(sim.setup.map.exitsBySlot!.third, mapDef.exitsBySlot.third);
+  assert.deepEqual(sim.setup.map.exitsBySlot!.enemy,
+    Array.from({ length: mapDef.height }, (_, y) => ({ x: mapDef.width - 1, y })));
+  assert.deepEqual(sim.setup.map.deployZones, mapDef.deployZones);
+  assert.equal(Object.hasOwn(mapDef.exitsBySlot, "enemy"), false);
+  const state = createBattle(db, sim.setup, 1);
+  assert.deepEqual(state.rt!.exitsBySlot, sim.setup.map.exitsBySlot);
+  assert.deepEqual(state.rt!.deployZones, mapDef.deployZones);
+  sim.setup.map.exitsBySlot!.third![0]!.x = 1;
+  assert.equal(state.rt!.exitsBySlot!.third![0]!.x, 0);
+  assert.equal(mapDef.exitsBySlot.third![0]!.x, 0);
+  const slot = Object.keys(mapDef.deployZones).find(slot => mapDef.deployZones[slot]!.length)!;
+  assert.notStrictEqual(state.rt!.deployZones![slot], sim.setup.map.deployZones![slot]);
+  assert.notStrictEqual(sim.setup.map.deployZones![slot], mapDef.deployZones[slot]);
+});

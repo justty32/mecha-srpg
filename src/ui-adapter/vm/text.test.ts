@@ -25,3 +25,15 @@ test("text：指定十三種事件各產生中文", () => {
   }
   assert.equal(eventText(db, state, event("PoolChanged")), null);
 });
+
+
+test("BattleEnd：reason或detail擊退補中性撤離說明，平局與非擊退不變", () => {
+  for (const winner of ["player", "enemy"]) for (const key of ["reason", "detail"]) {
+    const evt = event("BattleEnd"); evt.payload = { winner, [key]: "repelled" };
+    assert.equal(eventText(db, state, evt)!.text, `戰鬥結束，${winner}陣營獲勝——對方判斷戰況不利，撤離戰場`);
+  }
+  const evt = event("BattleEnd"); evt.payload = { winner: "player", reason: "eliminate" };
+  assert.equal(eventText(db, state, evt)!.text, "戰鬥結束，player陣營獲勝");
+  evt.payload = { winner: null, reason: "repelled" };
+  assert.equal(eventText(db, state, evt)!.text, "戰鬥結束，平局");
+});

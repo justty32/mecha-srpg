@@ -4,8 +4,10 @@ import type { BattleState, FactionKnowledge, LayerKnowledge } from "../core/type
 import type { GameEvent } from "../core/events.ts";
 import { cloneBattleState } from "../core/clone-state.ts";
 import type { RulesQuery } from "./rules-query.ts";
-import type { AiCtx } from "./policy.ts";
+import type { Agent, AiCtx } from "./policy.ts";
 import { isHostileSlot } from "./hostility.ts";
+
+import { searchFallbackCells } from "./search.ts";
 
 const DEFAULTS = { ttl: 3 };
 
@@ -13,8 +15,8 @@ export function emptyKnowledge(): FactionKnowledge {
   return { visible: [], lastSeen: {}, revealed: {} };
 }
 
-// 追敵候選與評分共用：可見敵人優先，其次最後所見，完全無情報才探索中央。
-export function pursuitCells(ctx: AiCtx, actor: Id, hostileOnly = true) {
+// 只讀公開情報；無情報回空，交由呼叫者決定後備。
+export function knownPursuitCells(ctx: AiCtx, actor: Id, hostileOnly = true) {
   const { q, view, know } = ctx;
   const visible = Object.keys(view.units).sort().filter(id => id !== actor && q.isActive(view, id)
     && (!hostileOnly || q.hostile(view, actor, id))).map(id => view.units[id]!.pos);
@@ -24,7 +26,18 @@ export function pursuitCells(ctx: AiCtx, actor: Id, hostileOnly = true) {
     const owner = ctx.s.units[id]?.owner;
     return !know.visible.includes(id) && (!hostileOnly || (owner !== undefined && isHostileSlot(q, view, ctx.slot, owner)));
   }).map(id => know.lastSeen[id]!.cell);
-  return remembered.length ? remembered : [{ x: Math.floor(view.map.width / 2), y: Math.floor(view.map.height / 2) }];
+  return remembered;
+}
+
+/** 舊簽名保留一輪；沒有協調層搜索記憶時原地。 */
+export function pursuitCells(ctx: AiCtx, actor: Id, hostileOnly = true) {
+  const known = knownPursuitCells(ctx, actor, hostileOnly);
+  return known.length ? known : [{ ...ctx.view.units[actor]!.pos }];
+}
+
+export function searchCells(ctx: AiCtx, agent: Agent, hostileOnly = true) {
+  const known = knownPursuitCells(ctx, agent.unit, hostileOnly);
+  return known.length ? known : searchFallbackCells(ctx, agent);
 }
 
 export function ownUnits(q: RulesQuery, s: BattleState, slot: FactionSlot): Id[] {

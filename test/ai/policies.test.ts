@@ -4,6 +4,7 @@ import type { Command } from "../../src/core/types-state.ts";
 import { createRng } from "../../src/core/rng.ts";
 import type { Agent, AiCtx, Candidate } from "../../src/ai/index.ts";
 import { createAgent, emptyKnowledge, updateKnowledge, maskedState, dangerMap, getPolicy, policyIds, selectCandidate, takeTurn } from "../../src/ai/index.ts";
+import { buildSearchRoute } from "../../src/ai/search.ts";
 import { loadContentDirs } from "../../src/content/loader.ts";
 import type { StubBattle } from "./stub-rules.ts";
 import { createStubRules, makeStubBattle } from "./stub-rules.ts";
@@ -71,15 +72,18 @@ test("berserk：只剩友方時仍以合法範圍能力攻擊友方", () => {
 
 test("berserk：不能友傷的近戰不被鄰接友軍困住，無敵方情報時仍探索", () => {
   for (const visible of [true, false]) {
-    const { ctx } = setup({ width: 14, height: 5, units: [
+    const { ctx } = setup({ width: 14, height: 5, deployZones: { red: [{ x: 12, y: 2 }] }, units: [
       { id: "a", owner: "blue", pos: { x: 1, y: 2 }, abilities: ["stub:ability/claw"], ap: 2, perception: visible ? 20 : 2 },
       { id: "friend", owner: "blue", pos: { x: 2, y: 2 }, abilities: ["stub:ability/claw"] },
       { id: "enemy", owner: "red", pos: { x: 10, y: 2 }, abilities: ["stub:ability/claw"] },
     ] });
-    const c = choose(ctx, createAgent("a", "berserk"));
+    const agent = createAgent("a", "berserk");
+    ctx.searchEnabled = true;
+    agent.memory.search = buildSearchRoute(ctx, agent);
+    const c = choose(ctx, agent);
     assert.equal(c.cmd.kind, "move");
     if (c.cmd.kind === "move") {
-      const target = visible ? ctx.view.units.enemy!.pos : { x: 7, y: 2 };
+      const target = visible ? ctx.view.units.enemy!.pos : { x: 12, y: 2 };
       assert.ok(ctx.q.distance(c.cmd.path.at(-1)!, target) < ctx.q.distance(ctx.view.units.a!.pos, target));
     }
   }
@@ -148,4 +152,40 @@ test("scripted：依序執行步驟、覆寫 actor、用完 end", () => {
   assert.deepEqual(commands, [...script.map((cmd) => ({ ...cmd, actor: "a" })), { kind: "end", actor: "a" }]);
   assert.equal(agent.memory.step, 3);
   assert.equal(script[0]!.actor, "ignored");
+});
+
+test("flee 依 actor.owner 的相反出口，不用 ctx.slot 或共用出口", () => {
+  const { ctx } = setup({ width: 9, height: 5, exits: [{ x: 0, y: 2 }], units: [
+    { id: "a", owner: "blue", pos: { x: 4, y: 2 }, abilities: [], ap: 2 },
+  ] });
+  ctx.s.rt!.exitsBySlot = { blue: [{ x: 8, y: 2 }], red: [{ x: 0, y: 2 }] };
+  ctx.slot = "red"; ctx.view = structuredClone(ctx.s);
+  const agent = createAgent("a", "flee"), policy = getPolicy("flee");
+  const c = choose(ctx, agent);
+  assert.equal(c.cmd.kind, "move");
+  if (c.cmd.kind === "move") assert.ok(c.cmd.path.at(-1)!.x > 4);
+  for (const x of [0, 8]) {
+    ctx.view.units.a!.pos = { x, y: 2 };
+    assert.equal(policy.propose(ctx, agent).some(c => c.cmd.kind === "retreat"), x === 8);
+  }
+});
+
+test("flee/tactical 撤離候選交叉 slot 空、noRetreat 與舊 flat 空 fallback", () => {
+  for (const policyId of ["flee", "tactical"]) for (const mode of ["empty-slot", "no-retreat", "legacy"] as const) {
+    const { ctx } = setup({ width: 8, height: 3, units: [
+      { id: "a", owner: "blue", pos: { x: 0, y: 1 }, abilities: [] },
+    ] });
+    if (mode === "empty-slot") ctx.s.rt!.exitsBySlot = { blue: [] };
+    if (mode === "no-retreat") ctx.s.rt!.noRetreat = true;
+    ctx.view = structuredClone(ctx.s);
+    const policy = getPolicy(policyId), agent = createAgent("a", policyId);
+    assert.equal(policy.propose(ctx, agent).some(c => c.cmd.kind === "retreat"), mode === "legacy", `${policyId}/${mode}`);
+    if (policyId === "flee") assert.equal(policy.score(ctx, agent, { cmd: { kind: "retreat", actor: "a" } }),
+      mode === "legacy" ? 100 : -Infinity, "逃離評分也拒絕非法 Retreat");
+    if (mode === "empty-slot" && policyId === "flee") {
+      ctx.params.fleeDistance = 0;
+      assert.ok(policy.propose(ctx, agent).filter(c => c.cmd.kind === "move").every(c => policy.score(ctx, agent, c) === 0),
+        "無撤離格不捏造朝邊界的進展分");
+    }
+  }
 });

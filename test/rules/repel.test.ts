@@ -35,3 +35,23 @@ test("eliminate 全死保持舊 payload，沒有 detail", () => {
   assert.deepEqual(evaluateObjectives(ctx, false), { winner: "player", reason: "eliminate" });
   assert.equal(Object.hasOwn(ctx.s.rt!.outcome!, "detail"), false);
 });
+
+
+test("陣營專屬出口、明列空出口及撤離拒絕優先序", () => {
+  const ctx = fixture([]), runtime = ctx.s.rt!;
+  runtime.exits = [{ x: 5, y: 3 }];
+  runtime.exitsBySlot = { player: [{ x: 0, y: 1 }], enemy: [{ x: 5, y: 2 }], third: [] };
+  assert.equal(retreat(ctx, "e")?.code, "not-at-exit");
+  ctx.s.units.e!.pos = { x: 5, y: 2 };
+  runtime.noRetreat = true;
+  assert.equal(retreat(ctx, "missing")?.code, "bad-actor");
+  runtime.unitStatus.e = "dead";
+  assert.equal(retreat(ctx, "e")?.code, "not-active");
+  runtime.unitStatus.e = "active";
+  assert.equal(retreat(ctx, "e")?.code, "no-retreat");
+  runtime.noRetreat = false;
+  runtime.exitsBySlot.enemy = [];
+  assert.equal(retreat(ctx, "e")?.code, "not-at-exit");
+  runtime.exitsBySlot.enemy = [{ x: 5, y: 2 }];
+  assert.equal(retreat(ctx, "e"), null);
+});

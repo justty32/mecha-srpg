@@ -25,7 +25,7 @@ export class BattleViewModel {
 
   /** 目標採戰鬥展開後的 runtime；不得由契約名稱或未知敵方資料倒推。 */
   mission(): NonNullable<import("./types.ts").UiSnapshot["mission"]> {
-    const { state: s, playerSlot, db } = this.session, runtime = s.rt;
+    const { state: s, playerSlot, db, query: q } = this.session, runtime = s.rt;
     const targetName = (id: string): string => {
       const u = s.units[id];
       if (!u) return "指定目標";
@@ -34,10 +34,26 @@ export class BattleViewModel {
       // 沿用單位面板的公開名稱：敵機只顯示機型，公開怪獸保留個體名與稱號。
       return db.get("species", u.frame) ? unitName(db, s, id) : db.require("frame", u.frame).name;
     };
-    const exitGoal = runtime?.exits.length
-      ? `抵達明列出口格${runtime.noRetreat ? "（本場禁止撤離）" : "或使用「撤離」"}`
-      : runtime?.noRetreat ? "完成撤離（本場無明列出口且禁止撤離，尚未撤離的單位無法達成）"
-      : "到地圖邊界撤離點使用「撤離」（僅抵達邊界不算完成）";
+    const exitGoal = (o: Objective, ids: string[]): string => {
+      const exits = q.exitsFor(s, o.for);
+      const publicTargets = ids.flatMap(id => {
+        const u = s.units[id];
+        return u && (u.owner === playerSlot || s.knowledge[playerSlot]?.visible.includes(id) || runtime?.presences?.[id])
+          ? [{ id, owner: u.owner }] : [];
+      });
+      // 護送可跨 owner；未知目標不以隱藏陣營推斷撤離能力。
+      if (o.kind === "escort" && (publicTargets.length !== ids.length || publicTargets.some(t => t.owner !== o.for))) {
+        const capabilities = publicTargets.map(t => `${targetName(t.id)}：${q.retreatCellsFor(s, t.owner).length ? "有" : "無"}可用撤離格`).join("；");
+        return `${exits.length ? "抵達任務陣營的明列出口格，或完成撤離" : "完成撤離（本任務陣營無明列出口）"}（各目標須依所屬陣營的可用撤離格使用「撤離」，任務出口不保證可撤離；已撤離的目標仍視為達成${runtime?.noRetreat ? "；本場禁止撤離" : ""}${capabilities ? `；${capabilities}` : ""}${publicTargets.length !== ids.length ? "；未公開目標的撤離能力未知" : ""}）`;
+      }
+      const retreat = q.retreatCellsFor(s, o.for);
+      return exits.length
+        ? `抵達明列出口格${retreat.length ? "或使用「撤離」" : runtime?.noRetreat ? "（本場禁止撤離）" : "（本陣營無可用撤離格）"}`
+        : retreat.length ? "到地圖邊界撤離點使用「撤離」（僅抵達邊界不算完成）"
+        : runtime?.noRetreat ? "完成撤離（本場無明列出口且禁止撤離，尚未撤離的單位無法達成）"
+        : "完成撤離（本陣營無出口且無可用撤離格，尚未撤離的單位無法達成）";
+    };
+    const playerExits = q.exitsFor(s, playerSlot), playerRetreat = q.retreatCellsFor(s, playerSlot);
     const objectives: Objective[] = runtime?.objectives.length ? runtime.objectives
       : Object.keys(s.factions).sort().filter(slot => slot !== "berserk").map(slot => ({ kind: "eliminate", params: {}, for: slot, onComplete: "win" }));
     const text = (o: Objective): string => {
@@ -50,8 +66,8 @@ export class BattleViewModel {
         case "survive": return typeof p.rounds === "number" ? `存活至第 ${p.rounds} 輪輪末` : "存活目標未設定有效輪數（無法達成）";
         case "killTarget": return `擊殺${targets}（所有指定目標均須死亡）`;
         case "capture": return typeof p.unit === "string" ? `捕獲${targetName(p.unit)}並歸我方控制` : "捕獲目標未設定（無法達成）";
-        case "reachExit": return typeof p.unit === "string" ? `使我方的${targetName(p.unit)}${exitGoal}` : "抵達出口目標未設定（無法達成）";
-        case "escort": return `護送${targets}全部存活並${exitGoal}`;
+        case "reachExit": return typeof p.unit === "string" ? `使我方的${targetName(p.unit)}${exitGoal(o, [p.unit])}` : "抵達出口目標未設定（無法達成）";
+        case "escort": return `護送${targets}全部存活並${exitGoal(o, ids)}`;
         case "hold": {
           const zone = Array.isArray(p.zone) ? p.zone.filter((c): c is { x: number; y: number } => !!c && typeof c === "object"
             && "x" in c && "y" in c && typeof c.x === "number" && typeof c.y === "number") : null;
@@ -64,7 +80,8 @@ export class BattleViewModel {
     const ownObjectives = objectives.filter(o => o.for === playerSlot);
     return { objectives: ownObjectives.length ? ownObjectives.map(o => ({ effect: o.onComplete, text: text(o) }))
       : [{ effect: "win", text: "其他目標尚未定局時，保持我方作戰單位存活，擊退所有敵軍（敵軍均已失去作戰能力，且至少一個已撤離）。" }],
-      retreat: runtime?.noRetreat ? "本場禁止撤離。" : `每台單位須各自到${runtime?.exits.length ? "明列出口格" : "地圖邊界撤離點"}使用「撤離」；撤離是否完成任務依本場目標判定。`,
+      retreat: runtime?.noRetreat ? "本場禁止撤離。" : !playerRetreat.length ? "本陣營無可用撤離格，無法使用「撤離」。"
+        : `每台單位須各自到${playerExits.length ? "明列出口格" : "地圖邊界撤離點"}使用「撤離」；撤離是否完成任務依本場目標判定。`,
       timeout: runtime?.maxRounds == null ? null : `第 ${runtime.maxRounds} 輪輪末仍無目標決定勝負：平局（超時）。` };
   }
 
@@ -97,11 +114,9 @@ export class BattleViewModel {
     return frame.tags.find(tag => Object.hasOwn(db.registries.locomotion, tag)) ?? "leg";
   }
 
-  /** 與正式撤離規則一致：明列出口優先，未明列時才以圖內邊界為撤離點；不代表目標判定的出口。 */
-  private atRetreatExit(x: number, y: number): boolean {
+  private atRetreatExit(x: number, y: number, slot = this.session.playerSlot): boolean {
     const { state: s, query: q } = this.session;
-    return !!s.rt && (s.rt.exits.length ? s.rt.exits.some(p => p.x === x && p.y === y)
-      : q.inBounds(s, { x, y }) && (x === 0 || y === 0 || x === s.map.width - 1 || y === s.map.height - 1));
+    return !!s.rt && q.retreatCellsFor(s, slot).some(p => p.x === x && p.y === y);
   }
 
   cell(x: number, y: number, selected: Id | null = null): CellView {
@@ -109,8 +124,10 @@ export class BattleViewModel {
     if (!q.inBounds(s, { x, y })) throw new Error("座標超出地圖");
     const t = db.require("terrain", s.map.terrain[y * s.map.width + x]!);
     const cell: CellView = { x, y, terrain: { id: t.id, name: t.name, glyph: t.glyph, color: t.color } };
-    if (this.atRetreatExit(x, y) && (!s.rt?.noRetreat || s.rt.exits.length))
-      cell.exit = { kind: s.rt?.exits.length ? "explicit" : "boundary", retreatAllowed: !s.rt?.noRetreat };
+    const explicit = q.exitsFor(s, playerSlot).some(p => p.x === x && p.y === y);
+    const retreatAllowed = this.atRetreatExit(x, y);
+    if (explicit || retreatAllowed)
+      cell.exit = { kind: explicit ? "explicit" : "boundary", retreatAllowed };
     if (t.destructible && (s.map.featureHp[cellKey(x, y)] ?? 0) > 0)
       cell.feature = { hp: s.map.featureHp[cellKey(x, y)]!, max: t.destructible.hp };
     cell.objects = (s.map.objects ?? []).filter(o => !o.collected && this.objectKnown(o) && o.at.x === x && o.at.y === y).map(o => ({
@@ -355,7 +372,7 @@ export class BattleViewModel {
         : type === "skip" ? (!this.session.autoAdvance && !this.session.isPlayerTurn() && !this.session.outcome() && this.session.activeUnit() ? undefined : "目前沒有演出")
         : unavailable ?? (type === "defer" && s.rt?.waitUsed.includes(unitId!) ? rejectionText("wait-used")
         : type === "retreat" && s.rt?.noRetreat ? rejectionText("no-retreat")
-        : type === "retreat" && (!pos || !this.atRetreatExit(pos.x, pos.y)) ? rejectionText("not-at-exit")
+        : type === "retreat" && (!pos || !this.atRetreatExit(pos.x, pos.y, s.units[unitId!]!.owner)) ? rejectionText("not-at-exit")
         : type === "eject" && !q.commanderOf(s, unitId!) ? rejectionText("no-commander") : undefined);
       add({ id, label, group: type === "eject" || type === "retreat" ? "system" : "turn", tooltip: label,
         enabled: !reason, ...(reason ? { reason } : {}), action: { type } }, type);

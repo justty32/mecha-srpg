@@ -3,6 +3,7 @@ import type { BattleOutcome, BattleState } from "../core/types-state.ts";
 import type { Ctx } from "./state.ts";
 import { distance, emit, hostileSlots, isActive, rt, unit } from "./state.ts";
 import { onSignal } from "./hooks.ts";
+import { exitsFor } from "./exits.ts";
 
 export function objectiveDone(ctx: Ctx, o: Objective): boolean {
   const runtime = rt(ctx.s), target = typeof o.params.unit === "string" ? o.params.unit : undefined;
@@ -20,13 +21,13 @@ export function objectiveDone(ctx: Ctx, o: Objective): boolean {
       return targets.size > 0 && [...targets].every(id => runtime.unitStatus[id] === "dead");
     }
     case "reachExit": return !!target && !!ctx.s.units[target] && unit(ctx, target).owner === o.for
-      && (runtime.unitStatus[target] === "retreated" || (isActive(ctx, target) && runtime.exits.some(c => distance(c, unit(ctx, target).pos) === 0)));
+      && (runtime.unitStatus[target] === "retreated" || (isActive(ctx, target) && exitsFor(ctx.s, o.for).some(c => distance(c, unit(ctx, target).pos) === 0)));
     // SPEC-GAP：護送目標明列 unit／units，全部存活到出口或已撤離才完成。
     case "escort": {
       const targets = [...new Set([...(Array.isArray(o.params.units)
         ? o.params.units.filter((id): id is string => typeof id === "string") : []), ...(target ? [target] : [])])];
       return targets.length > 0 && targets.every(id => !!ctx.s.units[id]
-        && (runtime.unitStatus[id] === "retreated" || (isActive(ctx, id) && runtime.exits.some(c => distance(c, unit(ctx, id).pos) === 0))));
+        && (runtime.unitStatus[id] === "retreated" || (isActive(ctx, id) && exitsFor(ctx.s, o.for).some(c => distance(c, unit(ctx, id).pos) === 0))));
     }
     case "hold": return typeof o.params.rounds === "number" && o.params.rounds > 0
       && (runtime.holdProgress?.[JSON.stringify(o)]?.count ?? 0) >= o.params.rounds;

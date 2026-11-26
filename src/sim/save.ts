@@ -59,6 +59,14 @@ function decode(v: unknown): unknown {
 const string = (v: unknown): v is string => typeof v === "string";
 const integer = (v: unknown): v is number => typeof v === "number" && Number.isSafeInteger(v);
 const cell = (v: unknown): boolean => object(v) && integer(v.x) && integer(v.y);
+function slotCells(v: unknown): boolean {
+  return object(v) && Object.values(v).every(cells => Array.isArray(cells) && cells.every(c =>
+    cell(c) && object(c) && Object.keys(c).every(key => key === "x" || key === "y")));
+}
+function mapSlots(v: ObjectValue): boolean {
+  return (v.exitsBySlot === undefined || slotCells(v.exitsBySlot))
+    && (v.deployZones === undefined || slotCells(v.deployZones));
+}
 function command(v: unknown): boolean {
   if (!object(v) || !string(v.actor)) return false;
   switch (v.kind) {
@@ -75,6 +83,7 @@ function command(v: unknown): boolean {
 function setupShape(v: unknown): boolean {
   return object(v) && string(v.id) && object(v.map) && integer(v.map.width) && v.map.width > 0
     && integer(v.map.height) && v.map.height > 0 && string(v.map.fill) && Array.isArray(v.map.exits) && v.map.exits.every(cell)
+    && mapSlots(v.map)
     && (v.map.cells === undefined || (Array.isArray(v.map.cells) && v.map.cells.every(c => object(c) && cell(c.at) && string(c.terrain))))
     && Array.isArray(v.units) && v.units.every(u => object(u) && string(u.id) && string(u.owner) && cell(u.pos)
       && (string(u.frame) || (object(u.monster) && string(u.monster.species) && string(u.monster.grade)))
@@ -97,7 +106,7 @@ function snapshotShape(v: unknown): boolean {
       && object(p.pools) && Array.isArray(p.contribs) && Array.isArray(p.effects))
     && object(v.map) && integer(v.map.width) && integer(v.map.height) && Array.isArray(v.map.terrain) && v.map.terrain.every(string)
     && object(v.factions) && object(v.knowledge) && object(v.rng) && string(v.rng.state) && string(v.rng.inc)
-    && (v.rt === undefined || (object(v.rt) && (v.rt.presences === undefined || (object(v.rt.presences)
+    && (v.rt === undefined || (object(v.rt) && mapSlots(v.rt) && (v.rt.presences === undefined || (object(v.rt.presences)
       && Object.values(v.rt.presences).every(p => object(p) && string(p.aura)
         && (p.engageable === undefined || typeof p.engageable === "boolean")
         && (p.captureLocked === undefined || typeof p.captureLocked === "boolean")

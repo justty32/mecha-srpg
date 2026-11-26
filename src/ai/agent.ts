@@ -4,11 +4,13 @@ import type { BattleState, Command, FactionKnowledge, RngState } from "../core/t
 import type { RulesQuery, ExecCommand, QueryResult } from "./rules-query.ts";
 import type { Agent, AiCtx, AiParams, Assignment, Candidate } from "./policy.ts";
 import { candidateKey, getPolicy, selectCandidate } from "./policy.ts";
-import { maskedState, observe, updateKnowledge } from "./knowledge.ts";
+import { knownPursuitCells, maskedState, observe, updateKnowledge } from "./knowledge.ts";
 import { dangerMap } from "./danger.ts";
 import { individualRetreat, mobile } from "./intent.ts";
 import { individualRetreatReady } from "./retreat.ts";
 import { isSupport, rememberSupport, supportUsed } from "./support.ts";
+
+import { buildSearchRoute, readSearchMemory, reduceSearchProgress, searchAllowed, pursuitHostileOnly } from "./search.ts";
 
 const DEFAULTS = { maxActions: 8, maxRetries: 3, maxPureMoves: 1, band: 0.8 };
 
@@ -31,6 +33,22 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
   const { q, s } = env;
   const commands: Command[] = [];
   let cachedContext: AiCtx | undefined;
+  let decision: { policy: ReturnType<typeof getPolicy>; useFrame: boolean } | undefined;
+  const decisionContext = (): AiCtx => {
+    const ctx = context();
+    const effective = decision?.useFrame ? { ...ctx, params: { ...env.params, ...frameProfile!.params } } : { ...ctx };
+    effective.searchEnabled = !!decision && searchAllowed(effective, agent, decision.policy.id, env.params);
+    return effective;
+  };
+  const commitSearch = (): void => {
+    if (!decision || !q.isActive(s, agent.unit)) return;
+    const ctx = decisionContext();
+    if (ctx.searchEnabled !== true || knownPursuitCells(ctx, agent.unit,
+      pursuitHostileOnly(ctx, agent, decision.policy.id)).length) return;
+    const memory = readSearchMemory(agent) ?? buildSearchRoute(ctx, agent);
+    agent.memory.search = reduceSearchProgress(ctx, agent, memory);
+    cachedContext = undefined;
+  };
   const execute = (cmd: Command): QueryResult => {
     // 指令可能改變世界；連拒絕分支也重新建立決策快照。
     cachedContext = undefined;
@@ -39,6 +57,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
       if (cmd.kind === "useAbility" && isSupport(q.abilityDef(cmd.ability))) rememberSupport(agent, s.round, cmd.ability);
       commands.push(structuredClone(cmd));
       env.know = observe(q, s, updateKnowledge(q, s, env.slot, env.know), env.slot, result.events);
+      commitSearch();
     }
     return result;
   };
@@ -74,6 +93,9 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     if (useFrame) ctx = { ...ctx, params: { ...env.params, ...frameProfile.params } };
     const policy = getPolicy(s.units[agent.unit]!.controlMode === "berserk" ? "berserk" : withdraw ? "flee"
       : mode === "regroup" ? "regroup" : mode === "instinct" ? "tactical" : mode === "gather" ? "swarm" : useFrame ? frameProfile.policy : base);
+    decision = { policy, useFrame };
+    commitSearch();
+    ctx = decisionContext();
     // PW-07：本版沒有意圖宣告，不呼叫 precommit。
     // 手寫腳本、逃跑與失控保持各自語意；純移動額度只約束戰術策略家族。
     const limitMoves = ["tactical", "sentinel", "swarm"].includes(policy.id);
@@ -87,8 +109,7 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
     };
     while (true) {
       if (failures >= maxRetries) return end();
-      ctx = context();
-      if (useFrame) ctx = { ...ctx, params: { ...env.params, ...frameProfile.params } };
+      ctx = decisionContext();
       const scored = candidates.map((c) => ({ c, score: policy.score(ctx, agent, c) }));
       // End 是無可取行動時的退路，不能用固定小正分蓋過有效的低傷害攻擊。
       const canAct = scored.some(({ c, score }) => c.cmd.kind !== "end" && Number.isFinite(score) && score > 0);
@@ -102,7 +123,6 @@ export function takeTurn(env: TurnEnv, agent: Agent, opts?: TurnOptions): Comman
           continue;
         }
         if (!q.isActive(s, agent.unit)) return commands;
-  const frameProfile = agent.policy === "tactical" ? q.frameAiProfile?.(s, agent.unit) : undefined;
       }
       if (!execute(candidate.cmd).ok) {
         reject(candidate);

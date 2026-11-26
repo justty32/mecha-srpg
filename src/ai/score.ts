@@ -10,7 +10,7 @@ import { isHostileSlot } from "./hostility.ts";
 import { shouldRetreat } from "./retreat.ts";
 import { OBJECTIVE_DEFAULTS, objectiveInfo, objectiveMoveValue, objectiveTargetFactor } from "./objectives.ts";
 import type { AiParams } from "./policy.ts";
-import { pursuitCells } from "./knowledge.ts";
+import { searchCells } from "./knowledge.ts";
 import { isSupport, supportKind, supportDelta, supportCost, supportUsed, SUPPORT_DEFAULTS } from "./support.ts";
 
 const DEFAULTS = {
@@ -177,16 +177,19 @@ export function scoreCandidate(ctx: AiCtx, agent: Agent, c: Candidate): number {
   const needs = want(ctx, agent.unit, cmd.kind === "useAbility" ? cmd.target?.unit : undefined);
   if (cmd.kind === "wait") return p.waitScore;
   if (cmd.kind === "end") return p.endScore;
-  if (cmd.kind === "retreat") return objectiveInfo(q, view, ctx.slot).exitUnits.includes(agent.unit)
-    && view.rt?.exits.some(c => q.distance(c, actor.pos) === 0)
-    ? Math.max(needs.retreat! * 10, (ctx.params.objExit ?? OBJECTIVE_DEFAULTS.objExit) * 10) : needs.retreat! * 10;
+  if (cmd.kind === "retreat") {
+    if (!q.retreatCellsFor(view, actor.owner).some(cell => q.distance(cell, actor.pos) === 0)) return -Infinity;
+    const goal = objectiveInfo(q, view, ctx.slot).exitGoals.some(goal => goal.friendly && goal.units.includes(agent.unit)
+      && goal.exits.some(cell => q.distance(cell, actor.pos) === 0));
+    return goal ? Math.max(needs.retreat! * 10, (ctx.params.objExit ?? OBJECTIVE_DEFAULTS.objExit) * 10) : needs.retreat! * 10;
+  }
   if (cmd.kind === "eject") return hpFraction(q, ctx.s, agent.unit) < p.ejectBelow && ctx.assignment?.allowRetreat ? needs.survive! * 5 : 0;
   const destination = c.move ?? (cmd.kind === "move" ? cmd.path.at(-1) : undefined) ?? actor.pos;
   const objectiveMove = objectiveMoveValue(ctx, agent.unit, actor.pos, destination);
   // 原地等待也承受現有威脅；只扣移動增加的危險，避免原地攻擊被無條件壓成負分。
   const danger = p.dangerK * Math.max(0, dangerAt(ctx.danger, destination) - dangerAt(ctx.danger, actor.pos));
   if (cmd.kind === "move") {
-    const targets = pursuitCells(ctx, agent.unit);
+    const targets = searchCells(ctx, agent);
     const nearest = (cell: Cell): number => Math.min(...targets.map(target => q.distance(cell, target)));
     const gap = rangeGap(ctx, agent.unit, actor.pos), next = rangeGap(ctx, agent.unit, destination);
     const progress = gap !== null && next !== null ? ctx.params.rangeWeight! * (gap - next)

@@ -4,6 +4,7 @@ import type { Cell, Objective } from "../../src/core/types-def.ts";
 import type { AiCtx, Candidate } from "../../src/ai/index.ts";
 import { createAgent, createDefaultStrategy, emptyKnowledge, maskedState, updateKnowledge,
   objectiveInfo, OBJECTIVE_DEFAULTS, scoreCandidate, selectCandidate, targetValue } from "../../src/ai/index.ts";
+import { objectiveMoveValue } from "../../src/ai/objectives.ts";
 import { proposeTactical } from "../../src/ai/policies/tactical.ts";
 import { createRng } from "../../src/core/rng.ts";
 import { createStubRules, loadStubAbilities, makeStubBattle } from "./stub-rules.ts";
@@ -158,4 +159,54 @@ test("盟軍不停在玩家護送出口格", () => {
   assert.deepEqual(choose(ctx, [exit, side]), side);
   ctx.params.objNoBlock = 0;
   assert.deepEqual(choose(ctx, [exit, side]), exit);
+});
+
+for (const kind of ["reachExit", "escort"] as const) test(`${kind} 目標按 for，禁撤仍保留目標進展`, () => {
+  const ctx = context([objective(kind, { unit: "a" }, kind === "escort" ? "ally" : "p")],
+    [unit("a", "p", 2, 2), unit("b", "e", 8, 2)]);
+  ctx.s.rt!.exitsBySlot = { p: [{ x: kind === "escort" ? 0 : 4, y: 2 }], ally: [{ x: 4, y: 2 }], e: [{ x: 0, y: 2 }] };
+  ctx.s.rt!.noRetreat = true; refresh(ctx);
+  assert.ok(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 3, y: 2 }) > 0);
+  assert.ok(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 1, y: 2 }) < 0);
+  assert.deepEqual(destination(choose(ctx), ctx.view.units.a!.pos), { x: 4, y: 2 });
+  ctx.s.units.a!.pos = { x: 4, y: 2 }; refresh(ctx);
+  const agent = createAgent("a", "tactical");
+  assert.equal(proposeTactical(ctx, agent).some(c => c.cmd.kind === "retreat"), false);
+  assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "retreat", actor: "a" } }), -Infinity);
+});
+
+test("多方護送與攔截逐任務保留出口，盟軍禁止擋道不借己方出口", () => {
+  const ctx = context([objective("escort", { unit: "passenger" }, "ally"), objective("escort", { unit: "b" }, "foe")],
+    [unit("a", "p", 2, 2), unit("passenger", "p", 2, 0), unit("b", "e", 8, 2)]);
+  ctx.s.rt!.exitsBySlot = { p: [{ x: 0, y: 2 }], ally: [{ x: 4, y: 2 }], e: [{ x: 0, y: 2 }], foe: [{ x: 9, y: 2 }] };
+  ctx.params.objEscort = 0; ctx.params.objBlock = 0; refresh(ctx);
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 4, y: 2 }), -OBJECTIVE_DEFAULTS.objNoBlock);
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 0, y: 2 }), 0);
+  ctx.params.objNoBlock = 0; ctx.params.objBlock = 1;
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 3, y: 2 }), 1, "攔截敵方 for 的右出口");
+  const goals = objectiveInfo(ctx.q, ctx.view, ctx.slot).exitGoals;
+  assert.deepEqual(goals.map(g => g.exits), [[{ x: 4, y: 2 }], [{ x: 9, y: 2 }]]);
+});
+
+test("同單位多任務不混出口，slot 空及舊空目標無進展", () => {
+  const ctx = context([objective("escort", { unit: "a" }), objective("escort", { unit: "a" }, "ally")],
+    [unit("a", "p", 2, 2), unit("b", "e", 8, 2)]);
+  ctx.s.rt!.exitsBySlot = { p: [{ x: 0, y: 2 }], ally: [{ x: 4, y: 2 }] }; refresh(ctx);
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 3, y: 2 }), 0, "左右任務各自進展抵銷");
+  ctx.s.rt!.exitsBySlot = { p: [], ally: [] }; refresh(ctx);
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 3, y: 2 }), 0);
+  delete ctx.s.rt!.exitsBySlot; ctx.s.rt!.exits = []; refresh(ctx);
+  assert.equal(objectiveMoveValue(ctx, "a", { x: 2, y: 2 }, { x: 3, y: 2 }), 0, "不把邊界當目標出口");
+});
+
+test("退場加分須同時在 actor 撤離格與該任務 for 出口", () => {
+  const ctx = context([objective("escort", { unit: "a" }, "ally")],
+    [unit("a", "p", 0, 2), unit("b", "e", 8, 2)]);
+  ctx.s.rt!.exitsBySlot = { p: [{ x: 0, y: 2 }], ally: [{ x: 4, y: 2 }] }; refresh(ctx);
+  const agent = createAgent("a", "tactical"), retreat: Candidate = { cmd: { kind: "retreat", actor: "a" } };
+  assert.equal(scoreCandidate(ctx, agent, retreat), 0, "己方合法撤離格並非該任務目標出口");
+  ctx.s.units.a!.pos = { x: 4, y: 2 }; refresh(ctx);
+  assert.equal(scoreCandidate(ctx, agent, retreat), -Infinity, "目標出口未必可下 Retreat");
+  ctx.s.rt!.exitsBySlot.p = [{ x: 4, y: 2 }]; refresh(ctx);
+  assert.equal(scoreCandidate(ctx, agent, retreat), OBJECTIVE_DEFAULTS.objExit * 10);
 });

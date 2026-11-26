@@ -33,10 +33,13 @@ test("方格地形生成的怪獸遭遇與 RNG 保持固定指紋", () => {
   const { s, ctx, sortie } = fixture();
   s.rng = { state: "0522a486b3bda0d1", inc: "000000000000006d" };
   const sc = generateScenario(s, ctx, sortie);
-  // 本輪合法新增物件／地物配方；完整結構與生成後RNG仍固定。
-  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "3d6e033ffcd15824");
-  // 只移除這兩個新增欄位，仍須完全符合原結構＋原RNG指紋，不能靠換hash掩蓋亂數漂移。
-  const legacy = structuredClone(sc);
+  // 分陣營出口不消耗亂數；移除新欄位後仍須符合既有完整指紋。
+  assert.equal(fnv1a64(JSON.stringify({ sc, rng: s.rng })), "ffd42971d1f09ce0");
+  const prior = structuredClone(sc);
+  for (const map of [prior.mapDef!, prior.ops.map]) delete map.exitsBySlot;
+  assert.equal(fnv1a64(JSON.stringify({ sc: prior, rng: s.rng })), "3d6e033ffcd15824");
+  // 再移除物件／地物配方，保留更早版本的結構與RNG檢查。
+  const legacy = structuredClone(prior);
   for (const map of [legacy.mapDef!, legacy.ops.map]) { delete map.objects; delete map.features; }
   assert.equal(fnv1a64(JSON.stringify({ sc: legacy, rng: s.rng })), "be2027dc27300024");
   const map = sc.mapDef!;

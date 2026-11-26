@@ -6,6 +6,7 @@ import { forceRatio, scoreCandidate } from "../../src/ai/score.ts";
 import { createRng } from "../../src/core/rng.ts";
 import { proposeTactical } from "../../src/ai/policies/tactical.ts";
 import { createDefaultStrategy } from "../../src/ai/strategy.ts";
+import { buildSearchRoute } from "../../src/ai/search.ts";
 import { emptyKnowledge } from "../../src/ai/knowledge.ts";
 import { createStubRules, makeStubBattle } from "./stub-rules.ts";
 import { loadContentDirs } from "../../src/content/loader.ts";
@@ -38,7 +39,7 @@ test("skirmish seed 1 原始情境 20 輪的 Wait 比例低於一半或分出勝
   assert.ok(waits / Math.max(1, turns) < 0.5 || (run.result?.winner ?? null) !== null);
 });
 
-test("未接敵會朝中央偵察，既有危險不壓低原地攻擊，profile 可覆蓋係數", () => {
+test("未接敵有部署朝搜索航點、缺部署原地，既有危險不壓低原地攻擊，profile 可覆蓋係數", () => {
   const { q } = createStubRules();
   const s = makeStubBattle({ width: 10, height: 5, units: [
     { id: "a", owner: "blue", pos: { x: 0, y: 0 }, abilities: ["stub:ability/rifle"] },
@@ -54,6 +55,11 @@ test("未接敵會朝中央偵察，既有危險不壓低原地攻擊，profile 
   ctx.params.waitScore = 3;
   assert.equal(scoreCandidate(ctx, agent, { cmd: { kind: "wait", actor: "a" } }), 3);
   const unseen = { ...ctx, view: { ...s, units: { a: s.units.a! } }, danger: {}, params: {} };
-  const moves = proposeTactical(unseen, agent).filter(c => c.cmd.kind === "move");
-  assert.ok(moves.some(c => scoreCandidate(unseen, agent, c) > 0));
+  const idle = proposeTactical(unseen, agent).filter(c => c.cmd.kind === "move");
+  assert.ok(idle.every(c => scoreCandidate(unseen, agent, c) <= 0));
+  s.rt!.deployZones = { red: [{ x: 9, y: 4 }] };
+  const searching = { ...unseen, searchEnabled: true };
+  agent.memory = { search: buildSearchRoute(searching, agent) };
+  const moves = proposeTactical(searching, agent).filter(c => c.cmd.kind === "move");
+  assert.ok(moves.some(c => scoreCandidate(searching, agent, c) > 0));
 });

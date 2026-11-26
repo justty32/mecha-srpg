@@ -18,10 +18,13 @@ type TerrainDef = {
 type MapDef = { id: Id; width: number; height: number;                  // 任意尺寸；>120×120 由 ui-adapter 可視區渲染
   cells: string;                                                        // 每格一個 glyph，查 legend；或 { rle: string }
   legend: Record<string, Id>; features?: { at: Cell; terrain: Id; hp?: number }[];
-  deployZones: Record<FactionSlot, Cell[]>; exits: Cell[];              // exits＝撤離邊；預設四邊全部
+  deployZones: Record<FactionSlot, Cell[]>; exits: Cell[];              // exits＝舊圖共用出口
+  exitsBySlot?: Record<FactionSlot, Cell[]>;                            // 明列 [] 刻意無出口，缺 slot 才 fallback
   globals?: { tide?: NumExpr; light?: number };                         // battle.* 可引用的全局值
 };
 ```
+
+`scenarioToSetup` 對有非空部署區且未手標的 slot 物化最近整邊出口：比較部署格到 left/right/top/bottom 的距離總和，平手依此順序；slot 字典序、格 y/x 排序，不消耗 RNG、不改來源與舊 `exits`。明列空陣列也優先，無部署區不捏造出口；直接 `BattleSetup/createBattle` 不再派生。runtime 同時保留部署區供 AI 搜索。營運生成圖明列原任務玩家出口、敵方對邊與盟軍任務出口，擴圖後依最終尺寸重建。
 
 ## 勢力 FactionDef（世界圖上的任何集團）
 

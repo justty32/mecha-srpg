@@ -48,6 +48,8 @@ export function createRulesQuery(db: ContentDB, snapshot?: BattleState): RulesQu
     // 其餘歷史只供對外回放與 hash，AI 決策只讀此次 preview 的新事件。
     predictionState: s => cloneBattleState(s, e => e.type === "PersonDied" || e.type === "ControlChanged"),
     inBounds: (s, cell) => R.inBounds(s, cell),
+    exitsFor: (s, slot) => R.exitsFor(s, slot),
+    retreatCellsFor: (s, slot) => R.retreatCellsFor(s, slot),
     distance: (a, b) => R.distance(a, b),
     unitAt: (s, cell) => R.unitAt(c(s), cell),
     isActive: (s, id) => !!s.units[id] && R.isActive(c(s), id),

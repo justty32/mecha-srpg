@@ -11,7 +11,7 @@
 
 ## 下次接續（open）
 
-- [feature-dev] AI 三項實作：照計畫，估 2 次全套 → [計畫](workflows/planning/plans/ai-retreat-search-1105.md)
+- [feature-dev] 11/25 AI撤退AND／分陣營出口／無情報搜索已整合，使用者已授權提交推送；typecheck/check/build、AI127案、34場比較及3情境決定性通過。非AI148檔完成128檔（首輪884pass/4fail/1cancelled），20檔未完；encounter與DOM修正重跑綠，controller兩項舊fixture未修，MCP正式60秒逾時仍非綠。已停自身runner並回收所有工人，產品61檔與最終63檔快照核對一致 → 下次修controller並補20檔及MCP預算檢討，見 [本輪報告](org/round-2026-11-25.md) 與 [證據](org/evidence-2026-11-25/README.md)。
 - [testing] 測試刪減第二階段約 79 案，含補 cards-new 刪後四項覆蓋、審 playtest-1105 新測試 → [test-prune-1105](notes/investigations/test-prune-1105/README.md)
 - [testing] 測試刪減第三階段（黃金縮減）：a3407d97 已追認，現可做 → [鑑定](notes/investigations/golden-a3407d97/README.md)、[裁決](workflows/decisions/2026-11-05-golden-a3407d97.md)
 - [feature-dev] Fable 三題實作（SIZE、LINK-01、LINK-02 E1→E3′），連同把 10/29 的 specs／plans 併進 core → [裁決](workflows/decisions/2026-11-05-fable-three.md)、[specs](workflows/planning/specs/core/README.md)

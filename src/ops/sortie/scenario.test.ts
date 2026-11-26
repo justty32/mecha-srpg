@@ -143,3 +143,42 @@ test("屍體改裝機帶駕駛員可出戰，活捕帶座位拒絕", async () =>
   s.restraint.beasts[mech.id]!.kind = "live"; mech.frame = ctx.db.require("frame", "frame/bio-mite").id;
   assert.deepEqual(validateSortie(s, ctx, sortie), { ok: false, error: "captured-requires-instinct" });
 });
+
+test("營運明列玩家原出口、敵方對邊，互動物件仍避開出口與部署區", () => {
+  const { s, ctx, sortie } = fixture();
+  const sc = generateScenario(s, ctx, sortie), map = sc.ops.map;
+  assert.deepEqual(map.exitsBySlot!.player, map.exits);
+  assert.deepEqual(map.exitsBySlot!.enemy, Array.from({ length: map.height }, (_, y) => ({ x: map.width - 1, y })));
+  const reserved = new Set([...Object.values(map.deployZones).flat(), ...Object.values(map.exitsBySlot!).flat()]
+    .map(c => `${c.x},${c.y}`));
+  for (const object of map.objects ?? []) if (object.id.startsWith("ops:"))
+    assert.equal(reserved.has(`${object.at.x},${object.at.y}`), false);
+  const sim = scenarioToSetup(ctx.db, sc, sc.seed!);
+  assert.deepEqual(sim.setup.map.exitsBySlot, map.exitsBySlot);
+});
+
+test("intercept 擴圖後玩家與盟軍同出口、敵對邊，第三方依部署派生且確定", () => {
+  const { s, ctx, sortie } = fixture();
+  s.ship.pos = structuredClone(sortie.loc);
+  const faction = Object.keys(s.factions).find(id => s.factions[id]!.forces?.units.length)!;
+  const base = { id: "exit-enemy", kind: "force" as const, faction, pos: structuredClone(s.ship.pos),
+    mp: 60, str: 30, stance: "hostile" as const, goal: { type: "idle" as const }, born: 0, flags: [] };
+  s.actors = { [base.id]: base,
+    third: { ...structuredClone(base), id: "third", kind: "swarm", faction: "third-faction",
+      swarm: { rift: "rift-test", family: "insect", grades: ["D"] }, str: 10 },
+    ally: { ...structuredClone(base), id: "ally", kind: "band", stance: "friendly" } };
+  const input = { ...sortie, contract: undefined, rift: undefined, trigger: "intercept" as const, actors: [base.id, "third", "ally"] };
+  const a = structuredClone(s), b = structuredClone(s);
+  const sc = generateScenario(a, createOpsCtx(a, ctx.db, ctx.world), input);
+  const again = generateScenario(b, createOpsCtx(b, ctx.db, ctx.world), input);
+  assert.deepEqual(sc, again);
+  const map = sc.ops.map, sim = scenarioToSetup(ctx.db, sc, sc.seed!);
+  assert.ok(sc.slots.third!.units.length); assert.ok(sc.slots.ally!.units.length);
+  assert.deepEqual(map.exitsBySlot!.ally, map.exitsBySlot!.player);
+  assert.deepEqual(map.exitsBySlot!.player, Array.from({ length: map.height }, (_, y) => ({ x: 0, y })));
+  assert.deepEqual(map.exitsBySlot!.enemy, Array.from({ length: map.height }, (_, y) => ({ x: map.width - 1, y })));
+  assert.equal(Object.hasOwn(map.exitsBySlot!, "third"), false);
+  assert.ok(sim.setup.map.exitsBySlot!.third!.length);
+  for (const cells of Object.values(sim.setup.map.exitsBySlot!))
+    assert.ok(cells.every(c => c.x >= 0 && c.x < map.width && c.y >= 0 && c.y < map.height));
+});

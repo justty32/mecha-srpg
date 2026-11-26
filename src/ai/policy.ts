@@ -37,6 +37,7 @@ export type AiCtx = {
   assignment: Assignment | null;
   params: AiParams;
   rng: RngState;
+  searchEnabled?: boolean;
 };
 
 /** 單位層代理的資料部分；決策迴圈在 agent.ts 的 takeTurn。 */

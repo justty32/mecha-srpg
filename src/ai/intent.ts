@@ -11,7 +11,7 @@ export const DEFAULTS = {
   ...RETREAT_DEFAULTS,
   intentGiveUpRatio: 0.45, intentGiveUpLoss: 0.7, intentMinRound: 8,
   intentStallRounds: 5, intentTravelPerRound: 4, intentExitReserve: 1,
-  intentImpossibleRatio: 1, intentDamageAlpha: 0.4,
+  intentDamageAlpha: 0.4,
   individualFleeHp: 0.25, pilotFleeHp: 0.2,
   commanderScatter: 0.6, humanCommanderScatter: 0.3,
   rotateHp: 0.45, rotatePool: 0.15, rotateRounds: 2, rotateCooldown: 3,
@@ -29,17 +29,6 @@ export type IntentMemory = {
 type Context = Pick<StrategyCtx, "q" | "s" | "view" | "slot" | "params">;
 const own = (ctx: Context) => Object.keys(ctx.s.units).sort().filter(id => ctx.s.units[id]!.owner === ctx.slot);
 const active = (ctx: Context) => own(ctx).filter(id => ctx.q.isActive(ctx.s, id));
-
-export function retreatCells(s: BattleState): Cell[] {
-  if (s.rt?.noRetreat) return [];
-  if (s.rt?.exits.length) return s.rt.exits;
-  // SPEC-GAP：未宣告出口時四邊皆可撤離；與 rules/flow.retreat 一致，不改目標的出口語意。
-  const cells: Cell[] = [];
-  for (let y = 0; y < s.map.height; y++) for (let x = 0; x < s.map.width; x++) {
-    if (x === 0 || y === 0 || x === s.map.width - 1 || y === s.map.height - 1) cells.push({ x, y });
-  }
-  return cells;
-}
 
 function tags(q: RulesQuery, s: BattleState, id: string): string[] {
   return [...q.unitTags(s, id), ...(q.speciesIntent?.(s, id)?.behaviors ?? [])];
@@ -134,10 +123,10 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
   }
   const damage = memory.damageRate ?? 0;
   const loss = own(ctx).length ? 1 - own(ctx).reduce((sum, id) => sum + (q.isActive(s, id) ? hpFraction(q, s, id) : 0), 0) / own(ctx).length : 0;
-  const ratio = forceRatio(q, s, view, slot), exits = retreatCells(s);
+  const ratio = forceRatio(q, s, view, slot), exits = q.retreatCellsFor(s, slot);
   const travel = (cells: Cell[]) => cells.length && friends.length ? Math.min(...friends.flatMap(id => cells.map(c => q.distance(s.units[id]!.pos, c)))) / p.intentTravelPerRound : 0;
   const remaining = s.rt?.maxRounds == null ? Infinity : s.rt.maxRounds - s.round;
-  const escape = Math.ceil(travel(exits)) + p.intentExitReserve;
+  const escape = exits.length ? Math.ceil(travel(exits)) + p.intentExitReserve : 0;
   const unreachable = (kind: Intent["kind"], o?: Objective): boolean => {
     // 勝利條件是擇一完成；斬首／捕獲只估指定目標，不要求殲滅護衛。
     const targets = [...new Set([...(typeof o?.params.unit === "string" ? [o.params.unit] : []),
@@ -155,13 +144,34 @@ export function planIntent(ctx: Context, memory: IntentMemory, assignments: Assi
       needed = Math.max(0, Number(o?.params.rounds ?? 0) - count);
       if (Array.isArray(o?.params.zone)) needed += travel(o.params.zone as Cell[]);
     }
-    if (kind === "escort" || kind === "reachExit") needed = travel(s.rt?.exits ?? []);
+    if (kind === "escort" || kind === "reachExit") {
+      const goalSlot = o?.for ?? slot;
+      const goalTargets = kind === "reachExit" ? (typeof o?.params.unit === "string" ? [o.params.unit] : []) : targets;
+      if (!goalTargets.length) return true;
+      // 陣營／id 存在性是公開資料；死亡、撤離與位置只讀情報快照。
+      if (goalTargets.some(id => !s.units[id] || kind === "reachExit" && s.units[id]!.owner !== goalSlot
+        || view.rt?.unitStatus[id] != null && !["active", "retreated"].includes(view.rt.unitStatus[id]!)
+        || view.units[id] && view.rt?.unitStatus[id] !== "retreated" && !q.isActive(view, id))) return true;
+      const pending = goalTargets.filter(id => view.rt?.unitStatus[id] !== "retreated");
+      if (!pending.length) return false;
+      const goalExits = q.exitsFor(view, goalSlot);
+      needed = Math.max(...pending.map(id => {
+        const target = view.units[id];
+        // 未知位置保守處理，但不掩蓋其他已知目標的不可達。
+        if (!target) return -Infinity;
+        // walking 不受 noRetreat 影響；合法 owner 撤離也可完成 escort。
+        const routes = [...goalExits, ...q.retreatCellsFor(view, target.owner)];
+        return Math.min(...routes.map(c => q.distance(target.pos, c))) / p.intentTravelPerRound;
+      }));
+      if (needed === Infinity) return true;
+    }
     const offensive = !["survive", "hold", "guardNest"].includes(kind);
     return needed > remaining - (offensive ? escape : 0);
   };
   const impossible = intent.objectives ? intent.objectives.every(o => unreachable(o.kind, o)) : unreachable(intent.kind);
+  const outmatched = ratio < p.intentGiveUpRatio || loss >= p.intentGiveUpLoss;
   if (!memory.leaderLost && s.round >= p.intentMinRound && !s.rt?.noRetreat
-    && (ratio < p.intentGiveUpRatio || loss >= p.intentGiveUpLoss || impossible && ratio <= p.intentImpossibleRatio)) memory.retreat = true;
+    && exits.length > 0 && impossible && outmatched) memory.retreat = true;
   memory.rotations ??= {};
   const leaderAlive = memory.commander && q.isActive(s, memory.commander);
   for (const a of assignments) {

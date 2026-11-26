@@ -41,7 +41,7 @@ test("三情境的執行期目標：hold 區域與進度、killTarget 剩餘、e
   assert.match((await h.call("battle_observe", { id: kill.id })).text, /剩 2／3/u);
   const convoy = await h.start("convoy-run"), escort = convoy.data.objectives.find((o: any) => o.kind === "escort");
   assert.deepEqual(escort.progress.targets.map((t: any) => t.id), ["convoy-0", "convoy-1"]);
-  assert.deepEqual(escort.progress.exits, convoy.battle.session.state.rt!.exits);
+  assert.deepEqual(escort.progress.exits, convoy.battle.session.rulesQuery.exitsFor(convoy.battle.session.state, escort.for));
   assert.match(convoy.text, /護送.*convoy-0.*convoy-1.*出口 18 格/u);
 });
 
@@ -161,4 +161,42 @@ test("cli call／list 的靜態相依只含 node，serve 才載入遊戲", () =>
   const imports = [...source.matchAll(/^import\s+(?!type\b).*?from\s+["']([^"']+)["']/gmu)].map(m => m[1]!);
   assert.ok(imports.length > 0); assert.ok(imports.every(id => id.startsWith("node:")));
   assert.match(source, /await import\("\.\/server\.ts"\)/u);
+});
+
+
+test("陣營出口：MCP目標取for，ASCII只取玩家明列出口，空slot不補四邊", async () => {
+  const { battle } = await harness().start("glade-spore-hold"), { session, view } = battle;
+  const s = session.state, rt = s.rt!, left = { x: 0, y: 2 }, right = { x: s.map.width - 1, y: 2 };
+  rt.exits = [left]; rt.exitsBySlot = { player: [right], enemy: [left], ally: [] }; rt.noRetreat = true;
+  const target = s.units["player-0"]!; target.pos = right;
+  rt.objectives = ["player", "enemy", "ally"].flatMap(slot => (["reachExit", "escort"] as const)
+    .map(kind => ({ kind, for: slot, onComplete: "win" as const, params: { unit: target.id } })));
+  const objectives = view.objectives();
+  for (const o of objectives) {
+    assert.deepEqual(o.progress.exits, o.for === "player" ? [right] : o.for === "enemy" ? [left] : []);
+    assert.equal(o.progress.arrived, o.for === "player" ? 1 : 0);
+    assert.match(o.text, o.for === "ally" ? /出口 0 格/u : /出口 1 格/u);
+  }
+  const map = view.map(), glyph = (x: number) => map.ascii.split("\n")[3]![5 + x * map.cellWidth];
+  assert.equal(glyph(right.x), ">"); assert.notEqual(glyph(left.x), ">");
+  rt.unitStatus[target.id] = "retreated";
+  assert.ok(view.objectives().every(o => o.progress.arrived === 1), "已撤離短路保留，即使出口為空");
+  rt.exitsBySlot.player = [];
+  assert.equal(view.map().ascii.includes(">"), false);
+  rt.exitsBySlot = {}; rt.exits = []; rt.noRetreat = false;
+  assert.equal(view.map().ascii.includes(">"), false, "ASCII不新增舊圖四邊fallback標記");
+});
+
+test("MCP BattleEnd覆寫保留擊退說明，勝負視角與平局不誤稱敵軍", async () => {
+  const { battle } = await harness().start("glade-spore-hold"), { session, view } = battle;
+  for (const winner of ["player", "enemy", null]) for (const key of ["reason", "detail"]) {
+    for (const reason of ["repelled", "eliminate"]) {
+      view.track(() => session.state.log.events.push({ seq: session.state.log.events.length, round: 1,
+        type: "BattleEnd", payload: { winner, [key]: reason } }));
+      const text = view.events.at(-1)!.text;
+      assert.equal(text, winner === null ? "戰鬥結束，平局"
+        : `戰鬥結束，${view.slotName(winner)}獲勝${reason === "repelled" ? "——對方判斷戰況不利，撤離戰場" : ""}`);
+      assert.doesNotMatch(text, /敵軍撤退/u);
+    }
+  }
 });

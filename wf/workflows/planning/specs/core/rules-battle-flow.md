@@ -18,7 +18,9 @@ load(scenario, content) → deploy → [round]* → end(result) → BattleResult
 
 ## 撤離 Retreat（整機）
 
-`Retreat` 指令只在單位位於 `map.exits` 任一格時合法；結算：單位狀態凍結、從地圖移除、標 `retreated`、仍帶回營運層。情境 `rules.noRetreat` 可禁撤（CHR-15 改造：不做 BB「全員在邊緣才算安全撤退」，個別單位各自撤）。撤離者不再分 XP。
+`Retreat` 指令依單位 `owner` 查 `retreatCellsFor`：runtime `exitsBySlot` 有該 slot 時採其格子，明列 `[]` 刻意無出口；缺 slot 才用舊共用 `exits`，僅舊共用出口為空時回退圖內四邊（角落去重）。結算：單位狀態凍結、從地圖移除、標 `retreated`、仍帶回營運層。情境 `rules.noRetreat` 可禁撤（CHR-15 改造：不做 BB「全員在邊緣才算安全撤退」，個別單位各自撤）。撤離者不再分 XP。
+
+目標到達使用 `exitsFor(state, objective.for)`，不套四邊 fallback、不受 `noRetreat` 阻止；`reachExit` 保留目標 owner 等於 for 的條件，`escort` 可跨 owner，兩者均保留已撤離目標短路。因此任務出口不一定是被護送者可執行撤離的出口。兩個查詢皆純讀並回傳座標副本；UI 經 BattleSession、AI 經 RulesQuery adapter 使用，不各自重寫邊界判定。
 
 ## 棄機 Eject
 

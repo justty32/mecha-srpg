@@ -69,7 +69,7 @@ export function eventText(db: ContentDB, state: BattleState, evt: GameEvent): Lo
       kind = "death"; break;
     case "MoraleChanged": text = `${name("person")}的士氣變為${morale[value("to")] ?? value("to")}`; kind = "morale"; break;
     case "RoundStart": text = `第 ${evt.round} 輪開始`; kind = "turn"; break;
-    case "BattleEnd": text = p.winner === null ? "戰鬥結束，平局" : `戰鬥結束，${value("winner")}陣營獲勝`; kind = "system"; break;
+    case "BattleEnd": text = p.winner === null ? "戰鬥結束，平局" : `戰鬥結束，${value("winner")}陣營獲勝${p.reason === "repelled" || p.detail === "repelled" ? "——對方判斷戰況不利，撤離戰場" : ""}`; kind = "system"; break;
     default: return null;
   }
   return { seq: evt.seq, round: evt.round, text, kind };

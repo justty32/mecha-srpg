@@ -20,6 +20,14 @@ berserk 有收益的自護／自增益（SPEC-GAP 補，2026-10-26）見 [ai/sup
 
 `FactionKnowledge = { visible: Set<unitId>; lastSeen: Record<unitId, { cell, round }>; revealed: Record<unitId, Record<PartId, LayerKnowledge>> }`。感測＝該 slot 所有單位 `perception` 半徑（含感測部件 contribs）的聯集，每輪重算；離開視野的單位保留 `lastSeen`、過期 `k` 輪後移除。對手內層 HP 預設只知道 body plan 的**公開欄**（層的種類與順序、最大 HP），`revealed` 由偵察能力（`tags:["scan"]`）寫入實際值。估值讀 `FactionKnowledge`，**不讀真實狀態**；玩家 UI 讀同一份（所以玩家也看不到未偵察的內層實值）。
 
+## 無情報搜索（2026-11-25 採用契約，整合驗證中）
+
+追蹤順序為可見敵人、未過期 lastSeen、搜索航點。有效 tactical／berserk 且可移動者，沒有追蹤情報時才搜索；守巢、守區、生存、護送、突破意圖及 gather／regroup／retreat 模式不啟用，search=0 可關閉。Assignment 的 stance=hold 本身不等於守區意圖。
+
+`src/ai/search.ts` 經 RulesQuery 讀公開部署區，依 slot／格排序去重及界內檢查，本方 active mobile 單位依 ID 分配敵部署格；searchSpread 預設2以格距分散，容量不足允許重疊，建構不耗 RNG、不讀隱藏敵位置。路線依序敵部署、中央、自家最遠部署格；沒有敵部署區就原地，不憑空轉中央。
+
+Agent.memory.search 保存版本、固定航點身份與已訪清單。首次有效決策前及成功執行並更新情報後，協調層依實際位置的感知距離推進；拒絕不推進，前置移動成功即使後續主指令失敗仍保留進度。候選及評分純讀，完成不重開，友軍增減不改既有路線；暫停搜索不刪記憶。此契約不承諾任意中途存檔保存完整AI協調狀態。
+
 ## 回合流程（通用 tactical Policy）
 
 **第 1 步・需求 `want`**（TM-25 改造）：由單位狀態求值一組需求分：`survive`（hp 池比例低、承擔逼近上限）、`kill`、`disable`、`protect`（Assignment 指定）、`scout`、`reposition`、`retreat`（AI-17 改造：兵力比與士氣）；各需求是 `aiProfile` 參數裡的 NumExpr。
@@ -42,7 +50,7 @@ berserk 有收益的自護／自增益（SPEC-GAP 補，2026-10-26）見 [ai/sup
 
 裁示（design-notes mechanics 末三段）：每一方帶意圖、達不到就撤，取代平手；勝利不必全殲；意圖分陣營層（指揮者）與個體層（本能），怪獸指揮者稀少且低智。實作在 `src/ai/intent.ts`、`src/ai/retreat.ts`，門檻全在 `DEFAULTS`、可由 aiprofile `params` 覆寫（只收數字）。
 
-**陣營意圖**取自：情境目標 → aiprofile `intent`（`params` 只收數字，代碼 0–8＝eliminate／hunt／guardNest／hold／escort／reachExit／killTarget／capture／survive）→ 族行為（spawner＝守巢、territorial＝奪點、其他＝獵食）→ 殲滅。每輪評估全部非 lose 目標：戰力比、損失、目標進度（killTarget／capture 只算目標 HP）、需要輪數（可見單位 HP 差 EMA）對剩餘輪數；`intentMinRound` 之後全部達不到才整隊撤（`intentGiveUpRatio`、`intentGiveUpLoss`、`intentImpossibleRatio`）。巢穴、蝕錨等不可移動者不撤。
+**陣營意圖**取自：情境目標 → aiprofile `intent`（`params` 只收數字，代碼 0–8＝eliminate／hunt／guardNest／hold／escort／reachExit／killTarget／capture／survive）→ 族行為（spawner＝守巢、territorial＝奪點、其他＝獵食）→ 殲滅。每輪評估全部非 lose 目標：戰力比、損失、目標進度（killTarget／capture 只算目標 HP）、需要輪數（可見單位 HP 差 EMA）對剩餘輪數；`intentMinRound` 之後，全部目標都達不到，且戰力比低於 `intentGiveUpRatio` 或損失達 `intentGiveUpLoss`，才整隊撤；僅戰況不利但目標仍可達不撤，僅目標不可達但戰況未達門檻也不撤（2026-11-05 裁決，2026-11-25 落地）。巢穴、蝕錨等不可移動者不撤。
 
 **個體本能**：怪獸 HP < `individualFleeHp` 逃（已失控 `controlMode:"berserk"` 者不逃；「發狂」走承擔／失控規則）；駕駛重傷 `pilotFleeHp` 或士氣 breaking／fleeing 自退。
 
@@ -50,7 +58,9 @@ berserk 有收益的自護／自增益（SPEC-GAP 補，2026-10-26）見 [ai/sup
 
 **結算**（rules-battle-flow「勝負」）：對手 active 撤光且有人撤離＝擊退勝，`BattleEnd{reason:"repelled", detail:"repelled"}`；營運層照此回寫擊退／撤退。
 
-**SPEC-GAP（實作暫定，規劃線日後定）**：地圖未宣告 `exits` 時四邊可撤；多方局擊退勝方取字典序第一個仍有 active 的敵對 slot；意圖用數字代碼。**未做**：tag 指定指揮者、補給／治療輪替、字串意圖欄。
+出口查詢經 `RulesQuery`：撤離依 actor.owner 的 `retreatCellsFor`，目標路程／護送／攔截依各個 objective.for 的 `exitsFor`，不可混用；明列 slot 空出口不補四邊，只有缺 slot 且舊共用出口空才允許四邊撤離。禁撤只阻撤離，不阻明列目標出口到達。
+
+**SPEC-GAP（實作暫定，規劃線日後定）**：多方局擊退勝方取字典序第一個仍有 active 的敵對 slot；意圖用數字代碼。**未做**：tag 指定指揮者、補給／治療輪替、字串意圖欄。
 
 ## 範圍攻擊與友傷（AI-11 改造）
 

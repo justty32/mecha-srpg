@@ -12,7 +12,8 @@ import type { RulesQuery, ExecCommand, QueryResult } from "../../src/ai/rules-qu
 export type StubPart = { id: PartId; functions: string[]; layers: { type: string; hp: number }[] };
 export type StubUnit = { id: Id; owner: FactionSlot; pos: Cell; abilities: Id[]; ap?: number; perception?: number;
   grade?: Grade; parts?: StubPart[]; tags?: string[]; controlMode?: ControlMode; commander?: { id: Id; morale?: MoraleStage } };
-export type StubBattle = { width: number; height: number; walls?: Cell[]; exits?: Cell[]; units: StubUnit[] };
+export type StubBattle = { width: number; height: number; walls?: Cell[]; exits?: Cell[]; units: StubUnit[];
+  exitsBySlot?: Record<FactionSlot, Cell[]>; deployZones?: Record<FactionSlot, Cell[]>; noRetreat?: boolean };
 
 const DEFAULT_PARTS: StubPart[] = [
   { id: "torso", functions: ["core"], layers: [{ type: "armor", hp: 40 }, { type: "structure", hp: 30 }] },
@@ -33,7 +34,9 @@ export function makeStubBattle(spec: StubBattle, seed: number): BattleState {
       terrain: Array<string>(spec.width * spec.height).fill("stub:plain"), featureHp: {} },
     rt: { nextUid: 1, nextContrib: 1, actionSeq: 0, active: null, acted: [], waited: [], waitUsed: [], reactUsed: {},
       commander: {}, unitStatus: {}, monsters: {}, moraleStreak: {}, berserkFrom: {}, xpGained: {}, fieldEffects: [],
-      objectives: [], maxRounds: null, exits: structuredClone(spec.exits ?? []), noRetreat: false, outcome: null,
+      objectives: [], maxRounds: null, exits: structuredClone(spec.exits ?? []), noRetreat: spec.noRetreat ?? false, outcome: null,
+      ...(spec.exitsBySlot !== undefined ? { exitsBySlot: structuredClone(spec.exitsBySlot) } : {}),
+      ...(spec.deployZones !== undefined ? { deployZones: structuredClone(spec.deployZones) } : {}),
       allies: {}, globals: {} },
     stub: { units: {}, walls: structuredClone(spec.walls ?? []) },
   };
@@ -87,6 +90,19 @@ export function createStubRules(abilities: Record<Id, AbilityDef> = loadStubAbil
   const q: RulesQuery = {
     effectDef: id => { throw new Error(`未知替身效果：${id}`); },
     poolDecls: () => [],
+    exitsFor(s, slot) {
+      const bySlot = s.rt?.exitsBySlot;
+      return structuredClone(bySlot && Object.hasOwn(bySlot, slot) ? bySlot[slot]! : s.rt?.exits ?? []);
+    },
+    retreatCellsFor(s, slot) {
+      if (s.rt?.noRetreat) return [];
+      const cells = q.exitsFor(s, slot);
+      if (cells.length || (s.rt?.exitsBySlot && Object.hasOwn(s.rt.exitsBySlot, slot))) return cells;
+      for (let y = 0; y < s.map.height; y++) for (let x = 0; x < s.map.width; x++) {
+        if (x === 0 || y === 0 || x === s.map.width - 1 || y === s.map.height - 1) cells.push({ x, y });
+      }
+      return cells;
+    },
     roleAttr: () => 0,
     inBounds: (s, c) => c.x >= 0 && c.y >= 0 && c.x < s.map.width && c.y < s.map.height,
     distance: (a, b) => Math.max(Math.abs(a.x - b.x), Math.abs(a.y - b.y)),

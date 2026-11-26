@@ -24,6 +24,8 @@ export interface RulesQuery {
   predictionState?(s: BattleState): BattleState;
   // ---------- 地圖與單位（唯讀） ----------
   inBounds(s: BattleState, cell: Cell): boolean;
+  exitsFor(s: BattleState, slot: FactionSlot): Cell[];
+  retreatCellsFor(s: BattleState, slot: FactionSlot): Cell[];
   /** Chebyshev 距離（8 方向）。 */
   distance(a: Cell, b: Cell): number;
   /** 該格的單位（含 derelict；不含 dead／retreated／captured）。 */

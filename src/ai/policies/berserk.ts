@@ -3,7 +3,8 @@ import type { Agent, AiCtx, Candidate } from "../policy.ts";
 import { registerPolicy } from "../policy.ts";
 import { tacticWeights, hpFraction, previewOutcome } from "../score.ts";
 import { isSupport, supportDelta, supportCost, supportUsed } from "../support.ts";
-import { pursuitCells } from "../knowledge.ts";
+import { searchCells } from "../knowledge.ts";
+import { pursuitHostileOnly } from "../search.ts";
 import { proposeTactical } from "./tactical.ts";
 
 const DEFAULTS = { berserkAttack: 10, berserkDistance: 1, friendlyFirePenalty: 0,
@@ -26,7 +27,7 @@ function selfSupport(ctx: AiCtx, agent: Agent, c: Candidate): { defense: number;
       const a = ctx.q.abilityDef(ability), weights = tacticWeights(ctx.q, after, agent.unit, ability);
       if (a.target.kind === "self" || !((weights.attack ?? 0) > 0 || (weights.attackArea ?? 0) > 0)) continue;
       for (const id of Object.keys(after.units).sort()) {
-        if (id === agent.unit || !ctx.q.isActive(after, id) || (hostileOnly(ctx, agent) && !ctx.q.hostile(after, agent.unit, id))) continue;
+        if (id === agent.unit || !ctx.q.isActive(after, id) || (pursuitHostileOnly(ctx, agent, "berserk") && !ctx.q.hostile(after, agent.unit, id))) continue;
         const target = a.target.kind === "unit" || a.target.kind === "part" ? { unit: id } : { cell: after.units[id]!.pos };
         if (ctx.q.checkAbility(after, agent.unit, ability, target) === null) attack = Math.max(attack,
           (ctx.params.berserkAttack ?? DEFAULTS.berserkAttack) + (ctx.params.berserkDistance ?? DEFAULTS.berserkDistance)
@@ -43,17 +44,9 @@ function selfSupport(ctx: AiCtx, agent: Agent, c: Candidate): { defense: number;
   return { defense: defense / Math.max(1, outcome.runs), offense: offense / Math.max(1, outcome.runs), attack: best };
 }
 
-function hostileOnly(ctx: AiCtx, agent: Agent): boolean {
-  // 只有可友傷的攻擊才追友軍，否則鄰接友軍會擋住所有追敵移動。
-  return !ctx.q.abilitiesOf(ctx.view, agent.unit).some(id => {
-    const def = ctx.q.abilityDef(id), weights = tacticWeights(ctx.q, ctx.view, agent.unit, id);
-    return (def.mode === "activated" || def.mode === "sustained") && def.target.kind !== "self"
-      && def.target.friendly !== "no" && ((weights.attack ?? 0) > 0 || (weights.attackArea ?? 0) > 0);
-  });
-}
 
 function nearest(ctx: AiCtx, agent: Agent, cell: Cell): number {
-  return Math.min(...pursuitCells(ctx, agent.unit, hostileOnly(ctx, agent)).map(target => ctx.q.distance(cell, target)));
+  return Math.min(...searchCells(ctx, agent, pursuitHostileOnly(ctx, agent, "berserk")).map(target => ctx.q.distance(cell, target)));
 }
 
 registerPolicy({
@@ -63,7 +56,7 @@ registerPolicy({
     if (!self) return [];
     const attackCtx = { ...ctx, params: { ...ctx.params, friendlyFirePenalty: DEFAULTS.friendlyFirePenalty } };
     // SPEC-GAP：不覆寫規則的 friendly 限制，友傷必須有規則允許的能力（例如範圍攻擊）。
-    return proposeTactical(attackCtx, agent, { hostileOnly: hostileOnly(ctx, agent) }).filter((c) => {
+    return proposeTactical(attackCtx, agent, { hostileOnly: pursuitHostileOnly(ctx, agent, "berserk") }).filter((c) => {
       if (c.cmd.kind === "useAbility") {
         if (c.cmd.target?.unit === agent.unit) {
           const benefit = selfSupport(ctx, agent, c);

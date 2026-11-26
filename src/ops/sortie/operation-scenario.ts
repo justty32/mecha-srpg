@@ -1,4 +1,5 @@
 import { nextFloat, nextInt } from "../../core/rng.ts";
+import { edgeCells } from "../../sim/exits.ts";
 import type { UnitSpawn, Objective, Cell } from "../../core/types-def.ts";
 import type { CampaignState, OpsCtx, Sortie } from "../state/types.ts";
 import type { ForceState } from "../war/types.ts";
@@ -75,6 +76,9 @@ export function generateOperationScenario(s: CampaignState, ctx: OpsCtx, sortie:
   map.deployZones.ally = Array.from({ length: height }, (_, y) => ({ x: 2, y }));
   map.deployZones.enemy = Array.from({ length: height }, (_, y) => ({ x: map.width - 1, y }));
   map.exits = Array.from({ length: height }, (_, y) => ({ x: ["escort", "relic-hunt"].includes(def.kind) ? map.width - 1 : 0, y }));
+  map.exitsBySlot = { player: structuredClone(map.exits),
+    enemy: edgeCells(map.width, height, ["escort", "relic-hunt"].includes(def.kind) ? "left" : "right"),
+    ...(scenario.slots.ally ? { ally: structuredClone(map.exits) } : {}) };
   const defaultObjective = (): Objective => {
     const kind = def.kind;
     if (kind === "relic-hunt") return { kind: "reachExit", params: { unit: "player-0" }, for: "player", onComplete: "win" };

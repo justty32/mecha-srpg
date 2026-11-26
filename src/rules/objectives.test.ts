@@ -87,3 +87,34 @@ test("reachExit、capture、killTarget 與 lose 結算", () => {
   rt(ctx.s).objectives = [{ ...objective, onComplete: "lose" }];
   assert.deepEqual(evaluateObjectives(ctx, false), { winner: "enemy", reason: "reachExit" });
 });
+
+
+test("出口目標取for而非護送單位owner，禁撤不影響到達", () => {
+  const ctx = fixture(), runtime = rt(ctx.s);
+  runtime.exitsBySlot = { player: [{ x: 2, y: 2 }], enemy: [{ x: 4, y: 4 }] };
+  runtime.noRetreat = true;
+  const escort = { kind: "escort" as const, params: { unit: "v" }, for: "player", onComplete: "win" as const };
+  assert.equal(objectiveDone(ctx, escort), false);
+  unit(ctx, "v").pos = { x: 2, y: 2 };
+  assert.equal(objectiveDone(ctx, escort), true);
+  const reach = { ...escort, kind: "reachExit" as const, params: { unit: "u" } };
+  unit(ctx, "u").pos = { x: 2, y: 2 };
+  assert.equal(objectiveDone(ctx, reach), true);
+  runtime.exitsBySlot.player = [];
+  assert.equal(objectiveDone(ctx, reach), false);
+  runtime.unitStatus.u = "retreated";
+  assert.equal(objectiveDone(ctx, reach), true);
+  runtime.unitStatus.v = "retreated";
+  assert.equal(objectiveDone(ctx, escort), true);
+});
+
+test("舊空出口四邊只提供撤離，active到邊不完成出口目標", () => {
+  const ctx = fixture(); rt(ctx.s).exits = []; unit(ctx, "u").pos = { x: 0, y: 0 };
+  for (const kind of ["reachExit", "escort"] as const) {
+    const o = { kind, params: { unit: "u" }, for: "player", onComplete: "win" as const };
+    assert.equal(objectiveDone(ctx, o), false);
+    rt(ctx.s).unitStatus.u = "retreated";
+    assert.equal(objectiveDone(ctx, o), true);
+    rt(ctx.s).unitStatus.u = "active";
+  }
+});

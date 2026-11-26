@@ -289,6 +289,7 @@ test("出口與目標：正式快照四種配置的標記、title、tooltip 與 
   const own = Object.values(s.units).find(u => u.owner === "player")!;
   runtime.objectives = (["reachExit", "escort"] as const).map(kind => ({ kind, params: { unit: own.id }, for: "player", onComplete: "win" }));
   for (const explicit of [false, true]) for (const noRetreat of [false, true]) {
+    runtime.exitsBySlot = {};
     runtime.exits = explicit ? [{ x: 0, y: 2 }] : [];
     runtime.noRetreat = noRetreat;
     view.render(c.snapshot());

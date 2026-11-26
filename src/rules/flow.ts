@@ -14,11 +14,13 @@ import { killPerson } from "./injury.ts";
 import { setControl } from "./control.ts";
 import { defensePart } from "./defense.ts";
 import { isDead } from "./layers.ts";
+import { retreatCellsFor } from "./exits.ts";
 import { killUnit } from "./attack.ts";
 
 export type BattleSetup = { id: string;
   allies?: Record<FactionSlot, FactionSlot[]>; factions?: Record<FactionSlot, Id>;
   map: { objects?: BattlefieldObjectDef[]; width: number; height: number; fill: Id; cells?: { at: Cell; terrain: Id; hp?: number }[]; exits: Cell[];
+    exitsBySlot?: Record<FactionSlot, Cell[]>; deployZones?: Record<FactionSlot, Cell[]>;
     globals?: { tide?: NumExpr; light?: number } };
   units: UnitInit[]; objectives: Objective[]; maxRounds?: number; noRetreat?: boolean;
   /** 情境規則覆蓋（ScenarioDef.rules）；目前只有凡鐵外甲倍率。 */
@@ -50,6 +52,8 @@ export function createBattle(db: ContentDB, setup: BattleSetup, seed: number): B
   if (setup.rules?.scriptedAccuracyBase !== undefined) runtime.scriptedAccuracyBase = setup.rules.scriptedAccuracyBase;
   if (setup.rules?.conventionalFactor !== undefined) runtime.conventionalFactor = setup.rules.conventionalFactor;
   runtime.exits = structuredClone(setup.map.exits);
+  if (setup.map.exitsBySlot !== undefined) runtime.exitsBySlot = structuredClone(setup.map.exitsBySlot);
+  if (setup.map.deployZones !== undefined) runtime.deployZones = structuredClone(setup.map.deployZones);
   runtime.globals = structuredClone(setup.map.globals ?? {});
   for (const [slot, allies] of Object.entries(setup.allies ?? {})) for (const ally of allies) {
     runtime.allies[slot] = [...new Set([...(runtime.allies[slot] ?? []), ally])].sort();
@@ -133,9 +137,7 @@ export function retreat(ctx: Ctx, unitId: Id): Rejection | null {
   if (!isActive(ctx, unitId)) return { code: "not-active" };
   const runtime = rt(ctx.s), u = unit(ctx, unitId);
   if (runtime.noRetreat) return { code: "no-retreat" };
-  // SPEC-GAP：無明列出口的地圖允許四邊撤離；有出口時仍限指定格。
-  const atExit = runtime.exits.length ? runtime.exits.some(c => distance(c, u.pos) === 0)
-    : inBounds(ctx.s, u.pos) && (u.pos.x === 0 || u.pos.y === 0 || u.pos.x === ctx.s.map.width - 1 || u.pos.y === ctx.s.map.height - 1);
+  const atExit = retreatCellsFor(ctx.s, u.owner).some(c => distance(c, u.pos) === 0);
   if (!atExit) return { code: "not-at-exit" };
   runtime.unitStatus[unitId] = "retreated";
   ctx.s.factions[u.owner]?.retreated.push(unitId);

@@ -98,7 +98,7 @@ export class BattleView {
       const effect = db.get("effect", String(event.payload.effect ?? ""));
       if (effect?.ui.hidden) continue;
       const line = eventText(db, s, { ...event, payload: displayValues(event.payload) });
-      if (line && event.type === "BattleEnd" && typeof event.payload.winner === "string") line.text = `戰鬥結束，${this.slotName(event.payload.winner)}獲勝`;
+      if (line && event.type === "BattleEnd" && typeof event.payload.winner === "string") line.text = `戰鬥結束，${this.slotName(event.payload.winner)}獲勝${event.payload.reason === "repelled" || event.payload.detail === "repelled" ? "——對方判斷戰況不利，撤離戰場" : ""}`;
       if (line && event.type === "EffectApplied" && typeof event.payload.effect === "string") {
         line.text = line.text.replace(/「[^」]*」/u, `「${this.contentName("effect", event.payload.effect)}」`);
       }
@@ -176,9 +176,10 @@ export class BattleView {
           text = `守住${area}連續 ${required} 輪（目前 ${current}／${required}；${zone.length ? "區內有敵方或無本方單位則歸零" : "無本方存活單位則歸零"}）`; break;
         }
         case "escort": case "reachExit": {
-          const arrived = ids.filter(id => rt.unitStatus[id] === "retreated" || (s.units[id] && q.isActive(s, id) && rt.exits.some(c => q.distance(c, s.units[id]!.pos) === 0))).length;
-          Object.assign(progress, { targets, arrived, total: ids.length, exits: rt.exits.map(c => ({ ...c })) });
-          text = `${o.kind === "escort" ? "護送" : "引導"} ${names} 到出口（已到 ${arrived}／${ids.length}；出口 ${rt.exits.length} 格：${rt.exits.map(cellText).join("、")}）`; break;
+          const exits = q.exitsFor(s, o.for);
+          const arrived = ids.filter(id => rt.unitStatus[id] === "retreated" || (s.units[id] && q.isActive(s, id) && exits.some(c => q.distance(c, s.units[id]!.pos) === 0))).length;
+          Object.assign(progress, { targets, arrived, total: ids.length, exits: exits.map(c => ({ ...c })) });
+          text = `${o.kind === "escort" ? "護送" : "引導"} ${names} 到出口（已到 ${arrived}／${ids.length}；出口 ${exits.length} 格：${exits.map(cellText).join("、")}）`; break;
         }
         case "survive": {
           const required = typeof o.params.rounds === "number" ? o.params.rounds : rt.maxRounds, remaining = Math.max(0, (required ?? s.round) - s.round);
@@ -242,6 +243,7 @@ export class BattleView {
     for (let xx = x; xx < x + w; xx++) if (xx % 5 === 0 && (xx - x) * cellWidth + String(xx).length <= header.length) {
       [...String(xx)].forEach((c, i) => { header[(xx - x) * cellWidth + i] = c; });
     }
+    const exits = q.exitsFor(s, this.playerSlot);
     const lines = [`     ${header.join("")}`], terrains = new Set<string>(), drawn = new Set<string>();
     for (let yy = y; yy < y + h; yy++) {
       let row = yy % 5 === 0 ? String(yy).padStart(4) + " " : "     ";
@@ -249,7 +251,7 @@ export class BattleView {
         const unit = legend.find(u => u.pos.x === xx && u.pos.y === yy && !u.stale);
         const terrain = s.map.terrain[yy * s.map.width + xx]!;
         if (unit) drawn.add(unit.glyph); else if (canSee({ x: xx, y: yy })) terrains.add(terrain);
-        const exit = s.rt?.exits.some(p => p.x === xx && p.y === yy);
+        const exit = exits.some(p => p.x === xx && p.y === yy);
         row += (exit ? ">" : unit?.glyph ?? (!canSee({ x: xx, y: yy }) ? "?" : terrainGlyphs.get(terrain)!)).padEnd(cellWidth);
       }
       lines.push(row);

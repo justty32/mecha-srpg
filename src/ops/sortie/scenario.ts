@@ -4,6 +4,7 @@ import { gridOf, neighbors, terrainAt } from "../world/grid.ts";
 import { requirePlace, worldRules } from "../world/places.ts";
 import type { Cell, EffectRef, MapDef, Objective, UnitSpawn } from "../../core/types-def.ts";
 import type { DynamicScenario } from "../../sim/run.ts";
+import { edgeCells } from "../../sim/exits.ts";
 import type { PersonState } from "../../core/types-state.ts";
 import { GRADES } from "../../core/types-def.ts";
 import { chance, nextInt, nextU32, pickWeighted } from "../../core/rng.ts";
@@ -187,6 +188,9 @@ function interceptScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie, scenar
   for (const { slot, x, cols, rows } of zones)
     map.deployZones[slot] = Array.from({ length: cols * rows }, (_, i) => ({ x: x + i % cols, y: 1 + Math.floor(i / cols) }));
   map.exits = Array.from({ length: map.height }, (_, y) => ({ x: 0, y }));
+  map.exitsBySlot = { player: structuredClone(map.exits), enemy: edgeCells(map.width, map.height, "right"),
+    ...(scenario.slots.ally ? { ally: structuredClone(map.exits) } : {}) };
+  // third 保留獨立部署語義，由 scenarioToSetup 依新的部署區派生。
   map.globals = { ...map.globals, tide: s.clock.phase === "spring" ? 1 : s.clock.phase === "neap" ? -1 : 0 };
   scenario.objectives = [{ kind: "eliminate", params: { slots: ["enemy", ...(scenario.slots.third ? ["third"] : [])] }, for: "player", onComplete: "win" },
     { kind: "eliminate", params: { slots: ["player", ...(scenario.slots.ally ? ["ally"] : [])] }, for: "enemy", onComplete: "win" }];
@@ -229,6 +233,7 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   map.deployZones.player = Array.from({ length: map.height }, (_, y) => [{ x: 1, y }, { x: 2, y }]).flat();
   map.deployZones.enemy = Array.from({ length: map.height }, (_, y) => ({ x: map.width - 1, y }));
   map.exits = Array.from({ length: map.height }, (_, y) => ({ x: 0, y }));
+  map.exitsBySlot = { player: structuredClone(map.exits), enemy: edgeCells(map.width, map.height, "right") };
   const enemy: UnitSpawn[] = [];
   const persons: Record<string, PersonState> = {};
   const usedPilots = new Set<string>();
@@ -396,7 +401,8 @@ function generateStandardScenario(s: CampaignState, ctx: OpsCtx, sortie: Sortie)
   // 正式內容提供戰場物件配方；不覆蓋部署、出口或目標區，位置選擇不消耗RNG。
   const battlefield = ctx.db.get("map", "map/playable-battlefield");
   if (battlefield) {
-    const reserved = new Set(Object.values(map.deployZones).flat().concat(map.exits).map(c => `${c.x},${c.y}`));
+    const reserved = new Set(Object.values(map.deployZones).flat().concat(map.exits,
+      Object.values(map.exitsBySlot ?? {}).flat()).map(c => `${c.x},${c.y}`));
     for (const objective of objectives) {
       const zone = objective.params.zone;
       if (Array.isArray(zone)) for (const c of zone) if (c && typeof c === "object" && "x" in c && "y" in c) reserved.add(`${c.x},${c.y}`);
